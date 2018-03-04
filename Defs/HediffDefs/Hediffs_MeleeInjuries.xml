@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<HediffDef Name="OG_Melee_InjuryBase" Abstract="True">
+		<hediffClass>Hediff_Injury</hediffClass>
+		<tendable>true</tendable>
+		<displayWound>true</displayWound>
+	</HediffDef>
+	
+	<DamageDef Name="OGStunBase" Abstract="True">
+		<harmsHealth>false</harmsHealth>
+		<makesBlood>false</makesBlood>
+	</DamageDef>
+
+	<HediffDef Name="OGAffectorBase" Abstract="True">
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+	</HediffDef>
+	
+		<!--==================== HeDiff New Affectors =========================-->
+
+	<HediffDef ParentName="OGAffectorBase">
+		<defName>OG_unConsciousness</defName>
+		<label>unconsciousness</label>
+		<initialSeverity>2</initialSeverity>
+		<makesAlert>false</makesAlert>
+		<comps>
+				<li Class="HediffCompProperties_Disappears">
+					<disappearsAfterTicks>
+						<min>1500</min>
+						<max>6000</max>
+					</disappearsAfterTicks>
+				</li>
+		</comps>
+		<stages>
+			<li>
+				<forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
+				<capMods>
+				<li>
+					<capacity>Consciousness</capacity>
+					<offset>-0.30</offset>
+				</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<!-- Injuries -->
+
+	<HediffDef ParentName="OG_Melee_InjuryBase">
+		<defName>OGHeatStab</defName>
+		<label>stab</label>
+		<comps>
+			<li Class="HediffCompProperties_TendDuration">
+				<labelTendedWell>bandaged</labelTendedWell>
+				<labelTendedWellInner>sutured</labelTendedWellInner>
+				<labelSolidTendedWell>set</labelSolidTendedWell>
+			</li>
+			<li Class="HediffCompProperties_Infecter">
+				<infectionChance>0.50</infectionChance>
+			</li>
+			<li Class="HediffCompProperties_GetsOld">
+				<oldLabel>stab scar</oldLabel>
+			</li>
+		</comps>
+		<injuryProps>
+			<painPerSeverity>3</painPerSeverity>
+			<averagePainPerSeverityOld>0.5</averagePainPerSeverityOld>
+			<bleedRate>0.2</bleedRate>
+			<canMerge>false</canMerge>
+			<destroyedLabel>Melted off</destroyedLabel>
+			<destroyedOutLabel>Melted out</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+	
+	<!--==================== Power Weapon HeDiff =========================-->
+
+	<HediffDef ParentName="OG_Melee_InjuryBase">
+		<defName>hediff_PowerWeapon</defName>
+		<label>disruption field</label>
+		<comps>
+			<li Class="HediffCompProperties_TendDuration">
+				<labelTendedWell>bandaged</labelTendedWell>
+				<labelTendedWellInner>sutured</labelTendedWellInner>
+				<labelSolidTendedWell>set</labelSolidTendedWell>
+			</li>
+			<li Class="HediffCompProperties_Infecter">
+				<infectionChance>0.50</infectionChance>
+			</li>
+			<li Class="HediffCompProperties_GetsOld">
+				<oldLabel>disruption scar</oldLabel>
+			</li>
+		</comps>
+		<injuryProps>
+			<painPerSeverity>3</painPerSeverity>
+			<averagePainPerSeverityOld>0.5</averagePainPerSeverityOld>
+			<bleedRate>0.2</bleedRate>
+			<canMerge>false</canMerge>
+			<destroyedLabel>Severed</destroyedLabel>
+			<destroyedOutLabel>Destroyed</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+
+	
+	<!--==================== Power Maul HeDiff =========================-->
+
+	<HediffDef ParentName="InjuryBase">
+		<defName>hediff_PowerMaul</defName>
+		<label>being pacified</label>
+		<makesAlert>false</makesAlert>
+		<makesSickThought>true</makesSickThought>
+		<comps>
+				<li Class="HediffCompProperties_Disappears">
+					<disappearsAfterTicks>
+						<min>30000</min>
+						<max>60000</max>
+					</disappearsAfterTicks>
+				</li>
+		</comps>
+		<stages>
+			<li>	
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.30</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.30</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="HediffGiver_Random">
+						<hediff>OG_unConsciousness</hediff>
+						<mtbDays>1.5</mtbDays>
+						<partsToAffect>
+							<li>Brain</li>
+						</partsToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+			<injuryProps>
+				<painPerSeverity>0.12</painPerSeverity>
+				<averagePainPerSeverityOld>0</averagePainPerSeverityOld>
+				<bleedRate>0</bleedRate>
+				<canMerge>true</canMerge>
+				<destroyedLabel>Destroyed</destroyedLabel>
+				<destroyedOutLabel>Fried</destroyedOutLabel>
+			</injuryProps>
+	</HediffDef>
+
+	
+</Defs>

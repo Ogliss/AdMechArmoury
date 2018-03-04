@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+	<!--==================== Tau  - Honor Blade =========================-->
+
+	<ThingDef ParentName="OGXBaseMeleeWeapon_Sharp">
+		<defName>Melee_HonorBlade</defName>
+		<label>Tau Honor Blade</label>
+		<description>A Honour Blade is a weapon carried by Tau Ethereals and Ethereal Guards for a number of uses. It's mainly used as a symbols of their office, ceremonial weapons, and in self-defence. While each weapon is custom-made, they all feature a broad blade fitted to a long, lightweight metallic staff. Ethereals use the blades primarily to settle disputes, engaging in lengthy, highly stylised duels that are more coordinated co-meditation than combat. The combatants dance and weave as if in a trance, their weapons flashing past one another scant millimeters and microseconds from causing terrible damage. Yet somehow, the dance is always bloodless, as if the Ethereals are in total union with one another. In truth, the combatants are engaged in a deeply spiritual duel, conducted at a level which none outside of their caste can discern. Some Ethereals carry their Honour Blades on the field of battle, not expecting to have to use them, but prepared to make a last stand against their foes nonetheless.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/HonorBlade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>InteractIGMWeapons</soundInteract>
+		<costStuffCount>400</costStuffCount>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>2.5</Mass>
+			<Weapon_Bulk>2.25</Weapon_Bulk>
+			<MarketValue>750</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>23</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<verbs>
+			<li>
+				<verbClass>Verb_MeleeAttack</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<meleeDamageDef>OGIPowerWeapon</meleeDamageDef>
+			</li>
+		</verbs>
+		<costList>
+			<ImperialComponent>5</ImperialComponent>
+		</costList>
+		<weaponTags>
+			<li>THonourBlade</li>
+		</weaponTags>
+		<thingCategories>
+			<li>TMelee</li>
+		</thingCategories>
+		<tradeTags>
+			<li>TMelee</li>
+		</tradeTags>
+	 </ThingDef>
+	 
+</Defs>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<DamageDef Name="OGLocalInjuryBase" Abstract="True" ParentName="LocalInjuryBase">
+		<workerClass>DamageWorker_AddInjury</workerClass>
+	</DamageDef>
+
+	<!--==================== Common Damage Types =========================-->
+	<!--==================== Power Weapon Damage Type =========================-->
+	
+	
+  <DamageDef ParentName="OGLocalInjuryBase">
+    <defName>OGIPowerWeapon</defName>
+    <label>power field</label>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was ended by a Power Weapon.</deathMessage>
+    <hediff>hediff_PowerWeapon</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Electric</impactSoundType>
+    <armorCategory>PowerWeapon</armorCategory>
+  </DamageDef>
+
+	
+
+
+
+	<!--==================== Power Maul Damage Type =========================-->
+
+	<DamageDef ParentName="LocalInjuryBase">
+		<defName>OGIPowerMaul</defName>
+		<label>PowerMaul</label>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} has been bludgeoned to death.</deathMessage>
+		<hediff>hediff_PowerMaul</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<harmsHealth>true</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<armorCategory>PowerWeapon</armorCategory>
+		<explosionDamage>0</explosionDamage>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+    <combatLogRules>Damage_Stun</combatLogRules>
+	</DamageDef>
+
+	
+	</Defs>

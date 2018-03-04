@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <StatDef Name="OGArmorRatingPW" Abstract="True">
+    <category>Apparel</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <hideAtValue>0</hideAtValue>
+    <toStringStyle>PercentOne</toStringStyle>
+    <parts>
+      <li Class="StatPart_Quality">
+        <factorAwful>0.0</factorAwful>
+        <factorShoddy>0.0</factorShoddy>
+        <factorPoor>0.0</factorPoor>
+        <factorNormal>0</factorNormal>
+        <factorGood>0.0</factorGood>
+        <factorSuperior>0.0</factorSuperior>
+        <factorExcellent>0.0</factorExcellent>
+        <factorMasterwork>0.0</factorMasterwork>
+        <factorLegendary>0.0</factorLegendary>
+      </li>
+      <li Class="StatPart_Health">
+        <curve>
+          <points>
+            <li>(0,0.25)</li>
+            <li>(0.70,1)</li>
+          </points>
+        </curve>
+      </li>
+    </parts>
+  </StatDef>
+
+
+  <StatDef ParentName="OGArmorRatingPW">
+    <defName>ArmorRating_PowerWeapon</defName>
+    <label>Armor - Disruption Field</label>
+    <description>Power Weapons disruption field negates all armour</description>
+  </StatDef>
+
+
+</Defs>
