@@ -24,26 +24,36 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\JecsTools-master\Assemblies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Users\User\Desktop\JecsTools-master\Assemblies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>_DLLs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>_DLLs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvShieldBelt.cs" />
+    <Compile Include="BulletOH.cs" />
+    <Compile Include="BulletCP.cs" />
     <Compile Include="CompOversizedWeapon.cs" />
     <Compile Include="CompProperties_OversizedWeapon.cs" />
     <Compile Include="Gizmo_AdvShieldBeltStatus.cs" />
@@ -53,20 +63,23 @@
     <Compile Include="Projectile_BulletEffect.cs" />
     <Compile Include="Projectile_Laser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Overheatable.cs" />
+    <Compile Include="StatDefOf_OH.cs" />
     <Compile Include="StatDefOf_CP.cs" />
-    <Compile Include="StatPart_Overheatable.cs" />
+    <Compile Include="StatDrawEntry.cs" />
+    <Compile Include="StatPart_Overheat.cs" />
     <Compile Include="StatPart_Reliability.cs" />
+    <Compile Include="StatWorker_Overheat.cs" />
     <Compile Include="StatWorker_Reliability.cs" />
     <Compile Include="ThingDef_BulletEffect.cs" />
-    <Compile Include="ThingDef_GunOGOverheat.cs" />
-    <Compile Include="ThingDef_GunOGJam.cs" />
+    <Compile Include="ThingDef_GunOH.cs" />
+    <Compile Include="ThingDef_GunCP.cs" />
     <Compile Include="ThingDef_LaserProjectile.cs" />
-    <Compile Include="VerbPropertiesOGJam.cs" />
-    <Compile Include="VerbPropertiesOGOverheat.cs" />
-    <Compile Include="Verb_LaunchProjectileOGJam.cs" />
-    <Compile Include="Verb_ShootOGJam.cs" />
-    <Compile Include="Verb_ShootGetsHot.cs" />
+    <Compile Include="VerbPropertiesOH.cs" />
+    <Compile Include="VerbPropertiesCP.cs" />
+    <Compile Include="Verb_LaunchProjectileOH.cs" />
+    <Compile Include="Verb_LaunchProjectileCP.cs" />
+    <Compile Include="Verb_ShootOH.cs" />
+    <Compile Include="Verb_ShootCP.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

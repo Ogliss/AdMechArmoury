@@ -302,7 +302,7 @@
  
 <!-- ====================== Plasma Caliver ===================== -->
 
- <ThingDef ParentName="BaseBullet">
+ <ThingDef ParentName="OverheatBullet">
 	<defName>OGI_Bullet_PlasmaCaliver</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -320,7 +320,7 @@
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseHumanMakeableGunGetsHot">
 	<defName>OGI_Gun_PlasmaCaliver</defName>
     <label>Plasma Caliver</label>
 	<description>Plasma Calivers are a type of Plasma Weapon used by Adeptus Mechanicus Skitarii. This gun exchanges range for a terrifying rate of fire. A squad of Skitarii armed with several plasma calivers lights up the night with each volley. They risk life and limb in the process, as Imperial plasma weaponry is notoriously unreliable</description>
@@ -364,8 +364,9 @@
 		<li>AMRanged</li>
 	</tradeTags>
     <verbs>
-		<li>
-			<verbClass>AdeptusMechanicus.Verb_ShootGetsHot</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOH">
+			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
+			<overheat>UR</overheat>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCaliver</defaultProjectile>
 			<warmupTime>1</warmupTime>
@@ -405,7 +406,7 @@
  
 <!-- ====================== Plasma Culverin ===================== -->
   
- <ThingDef ParentName="BaseBullet">
+ <ThingDef ParentName="OverheatBullet">
 	<defName>OGI_Bullet_PlasmaCulverin</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -423,7 +424,7 @@
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseHumanMakeableGunGetsHot">
     <defName>OGI_Gun_PlasmaCulverin</defName>
     <label>Plasma Culverin</label>
     <description>A Plasma Culverin is a type of heavy Plasma Weapon deployed by the Adeptus Mechanicus' Kataphron Battle Servitors, particularly the variant known as the Kataphron Destroyer. Plasma Culverins sacrifice the range of their cannon pattern equivalents in exchange for a higher rate of fire. Only the Adeptus Mechanicus dare coax such rampant destruction from their Plasma Weapons, yet to the Adepts of the Forge World of Ryza in particular, the scars they leave on wielder and war zone alike are considered quite normal.</description>
@@ -477,8 +478,9 @@
 		<MoveSpeed>-0.25</MoveSpeed>
     </equippedStatOffsets>
     <verbs>
-		<li>
-			<verbClass>AdeptusMechanicus.Verb_ShootGetsHot</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOH">
+			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
+			<overheat>UR</overheat>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCulverin</defaultProjectile>
 			<warmupTime>4</warmupTime>

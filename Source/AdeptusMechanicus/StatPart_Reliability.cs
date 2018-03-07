@@ -7,9 +7,9 @@ namespace AdeptusMechanicus
     {
         public override void TransformValue(StatRequest req, ref float val)
         {
-            if (req.HasThing && (req.Thing.GetType() == Type.GetType("AdeptusMechanicus.ThingDef_GunOGJam")))
+            if (req.HasThing && (req.Thing.GetType() == Type.GetType("AdeptusMechanicus.ThingDef_GunCP")))
             {
-                ThingDef_GunOGJam gun = (ThingDef_GunOGJam)req.Thing;
+                ThingDef_GunCP gun = (ThingDef_GunCP)req.Thing;
                 string reliabilityString;
                 float jamsOn;
                 GetReliability(gun, out reliabilityString, out jamsOn);
@@ -67,7 +67,7 @@ namespace AdeptusMechanicus
             return result;
         }
 
-        public static void GetReliability(ThingDef_GunOGJam gun, out string rel, out float jamsOn)
+        public static void GetReliability(ThingDef_GunCP gun, out string rel, out float jamsOn)
         {
             rel = string.Empty;
             jamsOn = JamChance(gun);
@@ -86,7 +86,7 @@ namespace AdeptusMechanicus
         /// </summary>
         /// <param name="gun">The gun object</param>
         /// <returns>floating point number representing the jam chance</returns>
-        public static float JamChance(ThingDef_GunOGJam gun)
+        public static float JamChance(ThingDef_GunCP gun)
         {
             float result = 0f;
             switch (gun.reliability)
@@ -113,7 +113,7 @@ namespace AdeptusMechanicus
         /// Returns a factor to scale quality. If the ownerEquipment doesn't have a CompQuality it will return a factor of 0.
         /// </summary>
         /// <returns>Quality-based scale factor</returns>
-        public static int GetQualityFactor(ThingDef_GunOGJam gun)
+        public static int GetQualityFactor(ThingDef_GunCP gun)
         {
             QualityCategory qc;
             if (gun.TryGetQuality(out qc))
