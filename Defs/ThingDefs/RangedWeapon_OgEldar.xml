@@ -12,12 +12,13 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGEShuriken</damageDef>
-			<damageAmountBase>7</damageAmountBase>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EShurikenPistol</defName>
 		<label>Eldar Shuriken Pistol</label>
 		<description>The Shuriken Pistol, known in the Eldar Lexicon as murekh, is a smaller one-handed pistol version of the Shuriken Catapult. Amongst humans these weapons are sometimes referred to as "slingers" or "sling pistols." The shorter barrel length and smaller capacity reduces the weapon's efficiency and so limits the range, rate of fire and power. The shurikens it fires are identical to those used in the larger weapon; a spinning disc which can slice straight through flesh and bone. Certain Eldar heroes and warriors, such as Striking Scorpion Aspect Warriors, use Shuriken Pistols as their main weapon. Other Eldar units usually use them as secondary backup weapons.</description>
@@ -25,10 +26,11 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/ShurikenPistol</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>1050</MarketValue>
+			<Mass>1.2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -36,7 +38,7 @@
 			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -46,7 +48,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EShurikenPistol</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
-				<range>12</range>
+				<range>25</range>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 				<burstShotCount>8</burstShotCount>
 				<soundCast>ShurikenSound</soundCast>
@@ -84,15 +86,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -108,12 +110,13 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGEShuriken</damageDef>
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EShurikenCatapult</defName>
 		<label>Eldar Shuriken Catapult</label>
 		<description>The Shuriken Catapult, or tuelean in the Eldar Lexicon, is the primary infantry weapon of Eldar Guardians. Like much of the technology of the Eldar, shuriken catapults are grown from the same psychoactive Wraithbone that forms the physical shell of the Craftworlds. A specialised subset of Bonesingers, taken from those who have previously walked the Path of the Warrior, are tasked with crafting the weapons used by those who would defend their home. All citizens of the craftworlds are trained in the use of the Shuriken Catapult as part of their preparation to form the Guardian militia in times of conflict. In the age of constant war that is the 41st Millennium, most Craftworlds are forced to become better acquainted with these lethal weapons than many of them would like.</description>
@@ -121,10 +124,11 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/ShurikenCatapult</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>1850</MarketValue>
+			<Mass>2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -132,7 +136,7 @@
 			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.05</PsychicSensitivity>
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -141,8 +145,8 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EShurikenCatapult</defaultProjectile>
-				<warmupTime>1.3</warmupTime>
-				<range>18</range>
+				<warmupTime>0.7</warmupTime>
+				<range>28</range>
 				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 				<burstShotCount>14</burstShotCount>
 				<soundCast>ShurikenSound</soundCast>
@@ -180,15 +184,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -204,12 +208,13 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGEStar</damageDef>
-			<damageAmountBase>29</damageAmountBase>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EStarcannon</defName>
 		<label>Eldar Starcannon</label>
 		<description>The Starcannon is the most common form of Eldar Plasma Weapon, and makes use of a small nuclear fusion reaction to superheat a stream of matter into its plasma state. The Starcannon is a rapid-fire weapon and its potent blasts are able to pierce all but the heaviest types of armour worn by infantry. It is also hauntingly accurate due to its use of a sophisticated electromagnetic pulse to guide its lethal blasts to enemy targets. The Eldar Starcannon is far superior to its Imperial counterparts as the core of the Eldar Plasma Weapon is protected by a sophisticated series of electromagnetic containment fields to ensure the weapon will never overheat in the hands of its wielder, despite producing the incandescent heat of a sun.</description>
@@ -223,18 +228,19 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>5750</MarketValue>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.55</AccuracyLong>
-			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
@@ -242,8 +248,8 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EStarcannon</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>36</range>
+				<warmupTime>3</warmupTime>
+				<range>45</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>StarcannonSound</soundCast>
@@ -273,22 +279,22 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
 	
 	<!--==================== Eldar - Wraithcannon =========================-->
-
-	<ThingDef ParentName="BaseBullet">
+	
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletWC" ParentName="BaseBullet">
 		<defName>OGE_Bullet_EWraithcannon</defName>
 		<label>Wraith Blast</label>
 		<graphicData>
@@ -297,12 +303,21 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGEWraith</damageDef>
-			<damageAmountBase>29</damageAmountBase>
-			<speed>135</speed>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<speed>75</speed>
 		</projectile>
+	<thingClass>AdeptusMechanicus.Projectile_WC</thingClass>
+	<DetonationChance>8</DetonationChance>
+	<blastRadius>2.25</blastRadius>
+	<blastdamageDef>OGEWraithBlast</blastdamageDef>
+	<blastdamageAmount>10</blastdamageAmount>
+	<blastarmorPenetration>0</blastarmorPenetration>
+	<blastsoundExplode>MeleeHit_Metal_ThunderHammer</blastsoundExplode>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EWraithcannon</defName>
 		<label>Eldar Wraithcannon</label>
 		<description>An Eldar Wraithcannon is basically a smaller, more portable version of the D-Cannon. It is used by the Eldar Wraithguard to great effect as a strong, armour-piercing weapon since no amount of armour can protect a foe from this dimension-warping attack. It functions by opening a small rift into the Warp into which the enemy is sucked.</description>
@@ -316,10 +331,11 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>6500</MarketValue>
+			<Mass>3.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
@@ -327,19 +343,17 @@
 			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
+			<MoveSpeed>-0.35</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EWraithcannon</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>36</range>
-				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<warmupTime>1.00</warmupTime>
+				<range>18</range>
 				<soundCast>WraithcannonSound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
@@ -375,15 +389,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -398,8 +412,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
-			<damageDef>OGILas</damageDef>
+			<damageDef>OGIPowerWeapon</damageDef>
 			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
 		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
@@ -413,7 +428,7 @@
 		<StartFireChance>1</StartFireChance>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EBrightlance</defName>
 		<label>Eldar Brightlance</label>
 		<description>The Bright Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Bright Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
@@ -427,18 +442,19 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>8500</MarketValue>
+			<Mass>4.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -448,7 +464,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EBrightlance</defaultProjectile>
 				<warmupTime>2.5</warmupTime>
-				<range>36</range>
+				<range>45</range>
 				<soundCast>BrightlanceSound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
@@ -475,15 +491,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -502,6 +518,7 @@
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIMelta</damageDef>
 		<damageAmountBase>105</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
 		<speed>50</speed>
 		<explosionRadius>0.50</explosionRadius>
 		<soundExplode>OGIFL_Explosion</soundExplode>
@@ -517,7 +534,7 @@
 			<StartFireChance>1</StartFireChance>	
  </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseMakeableGun">
     <defName>OGE_Gun_FusionGun</defName>
     <label>Eldar Fusion Gun</label>
     <description>The Eldar possess an unsurpassed mastery of heat-based weapons, and take savage delight in the devastation they create. They utilise a deadly Melta Weapon known as a Fusion Gun, a weapon that is unique to the Aspect Warriors known as Fire Dragons amongst the Eldar. Though it can only be used at short range, it possesses a sophisticated targetting system, as befits high status troops like Aspect Warriors. Like most Eldar technology, the weapon is psychically activated, its resonant Wraithbone construction being sensitive to the Eldar's innately psychic mind. A Fire Dragons' Fusion Gun is linked to its targetter via its handle.</description>
@@ -525,11 +542,11 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/FusionGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractAutopistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>6000</MarketValue>
-		<Mass>5.2</Mass>
+		<Mass>2.5</Mass>
 		<AccuracyTouch>0.75</AccuracyTouch>
 		<AccuracyShort>0.80</AccuracyShort>
 		<AccuracyMedium>0.90</AccuracyMedium>
@@ -537,7 +554,7 @@
 		<RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
     </statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -583,15 +600,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
  </ThingDef>
 
@@ -608,11 +625,12 @@
 		<projectile>
 			<damageDef>OGTRailgun</damageDef>
 			<damageAmountBase>59</damageAmountBase>
+			<armorPenetrationBase>0.50</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_ERangerLongrifle</defName>
 		<label>Eldar Longrifle</label>
 		<description>The Ranger Long Rifle is the favoured weapon of Eldar Rangers and Pathfinders. It is a long-barrelled rifle, superficially similar to the Imperial Sniper Rifle and Imperial Long-Las Rifle, that fires energy bolts capable of piercing most armour when aimed correctly. Unlike the mass-produced weapons of the Imperium, these potent Eldar weapons are hand-grown by Bonesingers with specific attention paid to the eyesight and grip, creating a weapon perfectly adapted to its user. The Ranger Long Rifle uses a Gyrostatic Arm to keep the weapon stable, dispensing with the clumsy bipods that must be used by the lesser races with their Sniper Rifles. The Gyrostatic Arm also all but eliminates recoil. Whereas the artificial crystals used by Imperial laser–technology struggle to maintain a focused beam over long distances, the psychically-grown crystals used by Eldar laser weapons are able to focus a tight beam of coherent light over a much greater distance, allowing a skilled user to punch through weak points in armour at great distances.</description>
@@ -620,28 +638,28 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/RangerLongrifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>1000</MarketValue>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.55</AccuracyLong>
+			<Mass>3</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
 			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_ERangerLR</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>36</range>
+				<warmupTime>2</warmupTime>
+				<range>45</range>
 				<soundCast>RangerLongrifleSound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
@@ -677,15 +695,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -702,11 +720,12 @@
 		<projectile>
 			<damageDef>OGEDeathspinner</damageDef>
 			<damageAmountBase>29</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGE_Gun_EDeathspinner</defName>
 		<label>Eldar Deathspinner</label>
 		<description>A Death Spinner is the standard weapon used by the Eldar Aspect Warriors known as the Warp Spiders. They are deadly weapons that use mono-filament threads to rip through a target's body. The Death Spinner is a part of a whole family of Eldar weapons that use mono-filament technology. All these weapons, including the massive Doomweaver Cannon mounted on super-heavy Eldar gravity tanks and the Harlequin's Kiss used by the Harlequins, work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
@@ -714,10 +733,11 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/DeathSpinner</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>2250</MarketValue>
+			<Mass>2.75</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
@@ -725,7 +745,7 @@
 			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -735,7 +755,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_EDeathspinner</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
-				<range>36</range>
+				<range>31</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>DeathspinnerSound</soundCast>
@@ -773,15 +793,15 @@
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>ERanged</li>
+			<li>OGERanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 

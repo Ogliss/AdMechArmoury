@@ -13,11 +13,12 @@
 		<projectile>
 			<damageDef>OGCSonic</damageDef>
 			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGC_Gun_CSonicBlaster</defName>
 		<label>Traitor Sonic Blaster</label>
 		<description>The Sonic Blaster is a heavy Sonic Weapon that when fired unleashes wave after wave of devastating harmonics and literally rips its target apart with the power of extreme sound. The Sonic Blaster is the preferred weapon of Chaos Space Marine Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Sonic Blaster is about the same size as the Astartes' man-portable Heavy Bolter, and is wielded with both hands. There exists a slightly larger variant of the weapon that is used by Chaos Sonic Dreadnoughts, where it is twin-linked with a second Sonic Blaster to cause even more destructive results. Imperial records do not list any other known users of the Sonic Blaster, although there probably exist many more amongst the Forces of Chaos dedicated to the Prince of Pleasure.</description>
@@ -31,10 +32,11 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>2500</MarketValue>
+		<Mass>3.2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -42,7 +44,7 @@
 			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>-0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.05</PsychicSensitivity>
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -52,10 +54,10 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_CBlastmaster</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
-				<range>24</range>
+				<range>31</range>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 				<burstShotCount>8</burstShotCount>
-				<soundCast>LasGunSound</soundCast>
+				<soundCast>HellgunSound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -68,15 +70,15 @@
 			<li>CBlastmaster</li>
 		</weaponTags>
 		<thingCategories>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -93,11 +95,12 @@
 		<projectile>
 			<damageDef>OGCSonic</damageDef>
 			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGC_Gun_CBlastmaster</defName>
 		<label>Traitor Blastmaster</label>
 		<description>The Blastmaster is a heavy Sonic Weapon that when fired focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects. The Blastmaster is used alongside the smaller Sonic Blaster weapon. These weapons are employed by Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Blastmaster is about the same size as the Astartes man-portable Lascannon, and is wielded with both hands.</description>
@@ -111,10 +114,11 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>5000</MarketValue>
+		<Mass>6.4</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -122,7 +126,7 @@
 			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>-0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.05</PsychicSensitivity>
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -132,10 +136,10 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_CBlastmaster</defaultProjectile>
 				<warmupTime>1.3</warmupTime>
-				<range>48</range>
+				<range>45</range>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 				<burstShotCount>4</burstShotCount>
-				<soundCast>LasGunSound</soundCast>
+				<soundCast>HellgunSound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -148,15 +152,15 @@
 			<li>CSonicBlaster</li>
 		</weaponTags>
 		<thingCategories>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
@@ -178,12 +182,13 @@
 	</comps>
 		<projectile>
 			<damageDef>OGCRAC</damageDef>
-			<damageAmountBase>9</damageAmountBase>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGC_Gun_CRAutocannon</defName>
 		<label>Traitor Reaper Autocannon</label>
 		<description>The Reaper Autocannon is a double-barrelled variant of the standard Autocannon. The Reaper Autocannon was originally designed during the Great Crusade for use as a heavy support weapon for the Terminator Squads of the Space Marine Legions. The weapon features two barrels and is capable of a high rate of fire, but it requires the incredible strength available to those who wear Terminator Armour to be carried as an infantry-portable weapon. This is because the recoil of this weapon is too great for even Power Armour-wearing Space Marines to unleash it effectively. The weapon usually features a large blade on the end of the barrels that can be used in close combat if needed.</description>
@@ -191,18 +196,19 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/ReaperAutocannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>6000</MarketValue>
+			<Mass>9.6</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.55</AccuracyLong>
-			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>-0.05</ShootingAccuracy>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.05</PsychicSensitivity>
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -211,8 +217,8 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_CRAutocannon</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>36</range>
+				<warmupTime>3.5</warmupTime>
+				<range>45</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>6</burstShotCount>
 				<soundCast>AutocannonSound</soundCast>
@@ -228,15 +234,15 @@
 			<li>CReaperAutocannon</li>
 		</weaponTags>
 		<thingCategories>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>CRanged</li>
+			<li>OGCRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 

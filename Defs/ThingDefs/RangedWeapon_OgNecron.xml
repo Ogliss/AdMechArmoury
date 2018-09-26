@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
 	<!--==================== Necron - Gauss Flayer =========================-->
-
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 		<defName>OGN_Bullet_NGaussFlayer</defName>
 		<label>Guass Blast</label>
@@ -12,10 +10,11 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGNGauss</damageDef>
-			<damageAmountBase>15</damageAmountBase>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
 			<speed>105</speed>
     </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+		<thingClass>AdeptusMechanicus.Projectile_NG</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
 			<preFiringFinalIntensity>2</preFiringFinalIntensity>
 			<postFiringInitialIntensity>2</postFiringInitialIntensity>
@@ -24,7 +23,7 @@
 			<postFiringDuration>50</postFiringDuration>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGN_Gun_NGaussFlayer</defName>
 		<label>Necron Gauss Flayer</label>
 		<description>A Gauss Flayer is a type of Necron Gauss Weapon that can strip a target down to nothing molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Flayers are rifle-like weapons consisting of a stock, a transparent tube containing the unholy and unknown viridian energy the weapon fires, and sometimes an axe-like bayonet underneath the circular muzzle.
@@ -34,10 +33,11 @@ Unlike more conventional directed energy weapons, a Gauss Flayer does not delive
 			<texPath>Things/Item/Equipment/WeaponRanged/GaussFlayer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
     </graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>7500</MarketValue>
+			<Mass>4</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.60</AccuracyMedium>
@@ -45,20 +45,20 @@ Unlike more conventional directed energy weapons, a Gauss Flayer does not delive
 			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
-			<ShootingAccuracy>-0.1</ShootingAccuracy>
+			<ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.5</PsychicSensitivity>
 			<MoveSpeed>0.5</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
+				<verbClass>AdeptusMechanicus.Verb_ShootNG</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGN_Bullet_NGaussFlayer</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
-				<range>24</range>
+				<range>31</range>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<burstShotCount>8</burstShotCount>
-				<soundCast>ShotRevolver</soundCast>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -91,21 +91,19 @@ Unlike more conventional directed energy weapons, a Gauss Flayer does not delive
 			<li>NGaussFlayer</li>
 		</weaponTags>
 		<thingCategories>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
-
 	<!--==================== Necron - Gause Blaster =========================-->
-
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 		<defName>OGN_Bullet_NGaussBlaster</defName>
 		<label>Necron Gauss Blast</label>
@@ -115,10 +113,11 @@ Unlike more conventional directed energy weapons, a Gauss Flayer does not delive
 		</graphicData>
 		<projectile>
 			<damageDef>OGNGauss</damageDef>
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
 			<speed>105</speed>
     </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+		<thingClass>AdeptusMechanicus.Projectile_NG</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
 			<preFiringFinalIntensity>2</preFiringFinalIntensity>
 			<postFiringInitialIntensity>2</postFiringInitialIntensity>
@@ -127,7 +126,7 @@ Unlike more conventional directed energy weapons, a Gauss Flayer does not delive
 			<postFiringDuration>8</postFiringDuration>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGN_Gun_NGaussBlaster</defName>
 		<label>Necron Gauss Blaster</label>
 		<description>A Gauss Blaster is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Blasters are larger than the more common Gauss Flayers and feature two barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.
@@ -137,10 +136,11 @@ Unlike more conventional directed energy weapons, a Gauss Blaster does not deliv
 			<texPath>Things/Item/Equipment/WeaponRanged/GaussBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
     </graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.60</AccuracyMedium>
@@ -152,14 +152,14 @@ Unlike more conventional directed energy weapons, a Gauss Blaster does not deliv
 		</equippedStatOffsets>
 		<verbs>
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
+				<verbClass>AdeptusMechanicus.Verb_ShootNG</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGN_Bullet_NGaussBlaster</defaultProjectile>
-				<warmupTime>0.5</warmupTime>
-				<range>24</range>
+				<warmupTime>0.75</warmupTime>
+				<range>38</range>
 				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
 				<burstShotCount>12</burstShotCount>
-				<soundCast>ShotRevolver</soundCast>
+				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -173,21 +173,19 @@ Unlike more conventional directed energy weapons, a Gauss Blaster does not deliv
 			<li>NGaussBlaster</li>
 		</weaponTags>
 		<thingCategories>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
-
 	<!--==================== Necron - Gauss Cannon =========================-->
-
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 		<defName>OGN_Bullet_NGaussCannon</defName>
 		<label>Necron Gauss Blast</label>
@@ -198,9 +196,10 @@ Unlike more conventional directed energy weapons, a Gauss Blaster does not deliv
 		<projectile>
 			<damageDef>OGNGauss</damageDef>
 			<damageAmountBase>60</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>105</speed>
     </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+		<thingClass>AdeptusMechanicus.Projectile_NG</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
 			<preFiringFinalIntensity>2</preFiringFinalIntensity>
 			<postFiringInitialIntensity>2</postFiringInitialIntensity>
@@ -209,7 +208,7 @@ Unlike more conventional directed energy weapons, a Gauss Blaster does not deliv
 			<postFiringDuration>50</postFiringDuration>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGN_Gun_NGaussCannon</defName>
 		<label>Necron Gauss Cannon</label>
 		<description>A Gauss Cannon is type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Cannons are larger than the more common Gauss Flayers and Gauss Blasters, and feature four barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.
@@ -219,10 +218,11 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 			<texPath>Things/Item/Equipment/WeaponRanged/GaussCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
     </graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>25000</MarketValue>
+			<Mass>9</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.60</AccuracyMedium>
@@ -234,12 +234,12 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 		</equippedStatOffsets>
 		<verbs>
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
+				<verbClass>AdeptusMechanicus.Verb_ShootNG</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGN_Bullet_NGaussCannon</defaultProjectile>
 				<warmupTime>0.5</warmupTime>
-				<range>36</range>
-				<soundCast>ShotRevolver</soundCast>
+				<range>45</range>
+				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -253,22 +253,19 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 			<li>NGaussCannon</li>
 		</weaponTags>
 		<thingCategories>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
 
-
-
 	<!--==================== Necron - Staff of Light =========================-->
-
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 		<defName>OGN_Bullet_NStaffOfLight</defName>
 		<label>Necron Light Blast</label>
@@ -279,9 +276,10 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 		<projectile>
 			<damageDef>OGNGauss</damageDef>
 			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>60</speed>
     </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+		<thingClass>AdeptusMechanicus.Projectile_NG</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
 			<preFiringFinalIntensity>2</preFiringFinalIntensity>
 			<postFiringInitialIntensity>2</postFiringInitialIntensity>
@@ -290,7 +288,7 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 			<postFiringDuration>8</postFiringDuration>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseIGGun">
+	<ThingDef ParentName="OGBaseGun">
 		<defName>OGN_Gun_NStaffOfLight</defName>
 		<label>Necron Staff Of Light</label>
 		<description>A Staff of Light is a device of arcane Necron technology that serves as both a symbol of rank and authority, as well as a potent weapon for Necron royals. Shaped like a traditional Necrontyr staff with an ornate headpiece, its haft is actually a disguised power generator rod; and the crest a finely tuned focussing device which allows the wielder to unleash searing bolts of viridian energy at a rapid rate towards the enemy. These beams are so potent that they are even capable of penetrating Astartes Power Armour with ease. As well as being capable of projecting devastating blasts of energy at range, a Staff of Light also serves a similar function to a Power Weapon in close combat. A Staff of Light is usually only found in the armouries of Necron royalty, including those belonging to Necron Overlords, Necron Lords or Necron Destroyer Lords. However, Crypteks of an unspecialised nature in their techno-sorcerous arts also commonly wield a Staff of Light in battle.</description>
@@ -298,10 +296,11 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 			<texPath>Things/Item/Equipment/WeaponRanged/StaffOfLight</texPath>
 			<graphicClass>Graphic_Single</graphicClass>		
     </graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>37500</MarketValue>
+			<Mass>3</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.60</AccuracyMedium>
@@ -312,14 +311,14 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 		</equippedStatOffsets>
 		<verbs>
 			<li>
-				<verbClass>Verb_Shoot</verbClass>
+				<verbClass>AdeptusMechanicus.Verb_ShootNG</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGN_Bullet_NStaffOfLight</defaultProjectile>
 				<warmupTime>0.5</warmupTime>
 				<range>18</range>
 				<ticksBetweenBurstShots>11</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
-				<soundCast>ShotRevolver</soundCast>
+				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			<targetParams>
@@ -350,17 +349,16 @@ Unlike more conventional directed energy weapons, a Gauss Cannon does not delive
 			<li>NStaffOfLight</li>
 		</weaponTags>
 		<thingCategories>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>NRanged</li>
+			<li>OGNRanged</li>
 		</tradeTags>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ImperialComponent>1</ImperialComponent>
-			<RefinedCeramite>2</RefinedCeramite>
-			<Ceramite>10</Ceramite>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
-
 
 </Defs>

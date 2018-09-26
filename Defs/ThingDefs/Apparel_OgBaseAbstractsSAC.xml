@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <!--QX========================= Imperial Guard - Apparel Base ==========================QX-->
-
+    <!--========================= Imperial - Apparel Base ==========================-->
 	<ThingDef Name="IGCApparelBase" Abstract="True">
 		<thingClass>Apparel</thingClass>
 		<category>Item</category>
@@ -33,8 +32,7 @@
 		</comps>
 	</ThingDef>
 
-    <!--QX========================= Imperial Guard - Clothes Base - Apparel Makable Base ==========================QX-->
-
+    <!--========================= Imperial Guard - Clothes Base - Apparel Makable Base ==========================-->
 	<ThingDef Name="IGCApparelMakeableBase" ParentName="IGCApparelBase" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>TailoringSpeed</workSpeedStat>
@@ -49,8 +47,7 @@
 		</recipeMaker>
 	</ThingDef>
 
-    <!--QX========================= Imperial Guard - Apparel Armor Makable Base ==========================QX-->
-
+    <!--========================= Imperial Guard - Apparel Armor Makable Base ==========================-->
 	<ThingDef Name="IGCArmorMakeableBase" ParentName="IGCApparelBase" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -63,5 +60,245 @@
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		</recipeMaker>
 	</ThingDef>
-	
+
+    <!--========================= Tau - Apparel Base ==========================-->
+	<ThingDef Name="OGTApparelBase" Abstract="True">
+		<thingClass>Apparel</thingClass>
+		<category>Item</category>
+		<selectable>True</selectable>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<graphicData>
+			<onGroundRandomRotateAngle>25</onGroundRandomRotateAngle>
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2.5</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+    <!--========================= Tau - Clothes Base - Apparel Makable Base ==========================-->
+	<ThingDef Name="OGTApparelMakeableBase" ParentName="OGTApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Tau - Apparel Armor Makable Base ==========================-->
+	<ThingDef Name="OGTArmorMakeableBase" ParentName="OGTApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Ork - Apparel Base ==========================-->
+	<ThingDef Name="OGOApparelBase" Abstract="True">
+		<thingClass>Apparel</thingClass>
+		<category>Item</category>
+		<selectable>True</selectable>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<graphicData>
+			<onGroundRandomRotateAngle>25</onGroundRandomRotateAngle>
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2.5</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+    <!--========================= Ork - Clothes Base - Apparel Makable Base ==========================-->
+	<ThingDef Name="OGOApparelMakeableBase" ParentName="OGOApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Ork - Apparel Armor Makable Base ==========================-->
+	<ThingDef Name="OGOArmorMakeableBase" ParentName="OGOApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Eldar - Apparel Base ==========================-->
+	<ThingDef Name="OGEApparelBase" Abstract="True">
+		<thingClass>Apparel</thingClass>
+		<category>Item</category>
+		<selectable>True</selectable>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<graphicData>
+			<onGroundRandomRotateAngle>25</onGroundRandomRotateAngle>
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2.5</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+    <!--========================= Eldar - Clothes Base - Apparel Makable Base ==========================-->
+	<ThingDef Name="OGEApparelMakeableBase" ParentName="OGEApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Eldar - Apparel Armor Makable Base ==========================-->
+	<ThingDef Name="OGEArmorMakeableBase" ParentName="OGEApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Dark Eldar - Apparel Base ==========================-->
+	<ThingDef Name="OGDEApparelBase" Abstract="True">
+		<thingClass>Apparel</thingClass>
+		<category>Item</category>
+		<selectable>True</selectable>
+		<pathCost>10</pathCost>
+		<useHitPoints>True</useHitPoints>
+		<graphicData>
+			<onGroundRandomRotateAngle>25</onGroundRandomRotateAngle>
+		</graphicData>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<DeteriorationRate>2.5</DeteriorationRate>
+			<SellPriceFactor>0.5</SellPriceFactor>
+		</statBases>
+		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>True</alwaysHaulable>
+		<tickerType>Never</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+    <!--========================= Dark Eldar - Clothes Base - Apparel Makable Base ==========================-->
+	<ThingDef Name="OGDEApparelMakeableBase" ParentName="OGDEApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>TailoringSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
+    <!--========================= Dark Eldar - Apparel Armor Makable Base ==========================-->
+	<ThingDef Name="OGDEArmorMakeableBase" ParentName="OGDEApparelBase" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		</recipeMaker>
+	</ThingDef>
+
 </Defs>

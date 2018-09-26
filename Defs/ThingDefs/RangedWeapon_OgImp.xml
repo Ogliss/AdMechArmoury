@@ -3,8 +3,6 @@
 <Defs>
   
 <!-- ====================== Bolt Pistol ===================== -->
-
-
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltPistol</defName>
     <label>Pistol Bolt</label>
@@ -16,9 +14,11 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIBolt</damageDef>
-		<explosionRadius>1.01</explosionRadius>
-		<damageAmountBase>15</damageAmountBase>
-		<speed>100</speed>
+		<explosionRadius>0.5</explosionRadius>
+		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>75</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
  </ThingDef>
@@ -31,7 +31,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/BoltPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
-    <soundInteract>InteractAutopistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
 		<WorkToMake>27500</WorkToMake>
 		<MarketValue>1750</MarketValue>
@@ -39,7 +39,7 @@
 		<AccuracyTouch>0.90</AccuracyTouch>
 		<AccuracyShort>0.95</AccuracyShort>
 		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.70</AccuracyLong>
+		<AccuracyLong>0.50</AccuracyLong>
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
@@ -47,8 +47,8 @@
 	</recipeMaker>
     <costList>
 		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<Component>4</Component>
+		<Plasteel>3</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
 		<ImperialComponent>3</ImperialComponent>
 		<RefinedAdamantium>3</RefinedAdamantium>
 		<ImperialPowercore>1</ImperialPowercore>
@@ -57,6 +57,7 @@
     <weaponTags>
 		<li>Gun</li>
 		<li>BoltPistol</li>
+		<li>GuevesaPistol</li>
     </weaponTags>
 	<thingCategories>
 		<li>IGCRanged</li>
@@ -69,8 +70,9 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_BoltPistol</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>12</range>
+			<warmupTime>0.5</warmupTime>
+			<range>26</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -93,9 +95,114 @@
     </tools>
  </ThingDef>
  
-<!-- ====================== Storm Bolter ===================== -->
-
+<!-- ====================== Bolter ===================== -->
+<!--
   
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGI_Bullet_BoltGun</defName>
+    <label>Bolt</label>
+    <graphicData>
+		<texPath>Things/Projectile/BoltShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+	<thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+		<damageDef>OGIBolt</damageDef>
+	 	<explosionRadius>0.5</explosionRadius>
+		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>100</speed>
+		<soundExplode>OGIPP_Explosion</soundExplode>
+    </projectile>
+ </ThingDef>
+  
+ <ThingDef ParentName="BaseMakeableIGGun">
+    <defName>OGI_Gun_BoltGun</defName>
+    <label>Bolter</label>
+    <description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/BoltGun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.1</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>180000</WorkToMake>
+		<MarketValue>4000</MarketValue>
+		<Mass>5.2</Mass>
+		<AccuracyTouch>0.85</AccuracyTouch>
+		<AccuracyShort>0.90</AccuracyShort>
+		<AccuracyMedium>0.92</AccuracyMedium>
+		<AccuracyLong>0.85</AccuracyLong>
+		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRBoltGun</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>60</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>BoltGun</li>
+		</weaponTags>
+		<thingCategories>
+			<li>IGCRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>IGCRanged</li>
+		</tradeTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_BoltGun</defaultProjectile>
+			<warmupTime>0.30</warmupTime>
+			<range>31</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>BoltSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+ 
+ -->
+
+<!-- ====================== Storm Bolter ===================== --> 
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_StormBolter</defName>
     <label>Bolt</label>
@@ -107,8 +214,10 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIBolt</damageDef>
-	 	<explosionRadius>1.01</explosionRadius>
+	 	<explosionRadius>0.75</explosionRadius>
 		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1.5</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
     </projectile>
@@ -128,7 +237,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>180000</WorkToMake>
 		<MarketValue>4000</MarketValue>
@@ -144,8 +253,8 @@
 	</recipeMaker>
     <costList>
 		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<Component>4</Component>
+		<Plasteel>6</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
 		<ImperialComponent>12</ImperialComponent>
 		<RefinedAdamantium>12</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
@@ -167,7 +276,8 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_StormBolter</defaultProjectile>
 			<warmupTime>0.30</warmupTime>
-			<range>24</range>
+			<range>31</range>
+			<forcedMissRadius>0.01</forcedMissRadius>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -199,9 +309,7 @@
     </tools>
  </ThingDef>
  
- <!-- ====================== Stalker Pattern Bolter ===================== -->
-
-  
+ <!-- ====================== Stalker Pattern Bolter ===================== --> 
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_StalkerBolter</defName>
     <label>Bolt</label>
@@ -214,6 +322,8 @@
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIBolt</damageDef>
 		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>2</stoppingPower>
 		<speed>100</speed>
     </projectile>
  </ThingDef>
@@ -226,7 +336,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/StalkerBolter</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>180000</WorkToMake>
 		<MarketValue>5000</MarketValue>
@@ -243,7 +353,7 @@
     <costList>
 		<Steel>15</Steel>
 		<Plasteel>15</Plasteel>
-		<Component>4</Component>
+		<ComponentIndustrial>6</ComponentIndustrial>
 		<ImperialComponent>12</ImperialComponent>
 		<RefinedAdamantium>12</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
@@ -263,10 +373,11 @@
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_StormBolter</defaultProjectile>
-			<warmupTime>0.70</warmupTime>
-			<range>30</range>
-			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<defaultProjectile>OGI_Bullet_StalkerBolter</defaultProjectile>
+			<warmupTime>1.70</warmupTime>
+			<range>45</range>
+			<forcedMissRadius>0.01</forcedMissRadius>
+			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>2</burstShotCount>
 			<soundCast>BoltSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -297,9 +408,7 @@
     </tools>
  </ThingDef>
  
-<!-- ====================== Heavy Bolter ===================== -->
-
-  
+ <!-- ====================== Heavy Bolter ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_HeavyBolter</defName>
     <label>Heavy Bolt</label>
@@ -313,6 +422,8 @@
 		<damageDef>OGIBolt</damageDef>
 	 	<explosionRadius>1.05</explosionRadius>
 		<damageAmountBase>45</damageAmountBase>
+		<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>2</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
     </projectile>
@@ -332,7 +443,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>125000</WorkToMake>
 		<MarketValue>6500</MarketValue>
@@ -349,7 +460,7 @@
     <costList>
 		<Steel>30</Steel>
 		<Plasteel>30</Plasteel>
-		<Component>8</Component>
+		<ComponentIndustrial>8</ComponentIndustrial>
 		<ImperialComponent>10</ImperialComponent>
 		<RefinedAdamantium>5</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
@@ -373,8 +484,9 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_HeavyBolter</defaultProjectile>
-			<warmupTime>2</warmupTime>
-			<range>36</range>
+			<warmupTime>3</warmupTime>
+			<range>38</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -397,9 +509,217 @@
     </tools>
  </ThingDef>
 
-  
-<!-- ====================== Hellgun ===================== -->
+ <!-- ====================== LasPistol ===================== -->
+<!--
+<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>OGI_Bullet_LasPistol</defName>
+    <label>Laspistol Blast</label>
+    <graphicData>
+		<texPath>Things/Projectile/LasShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGILas</damageDef>
+		<damageAmountBase>10</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>10</postFiringDuration>
+			<StartFireChance>0.1</StartFireChance>	
+ </ThingDef>
 
+ <ThingDef ParentName="BaseMakeableIGGun">
+    <defName>OGI_Gun_LasPistol</defName>
+    <label>Las Pistol</label>
+    <description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.
+
+The Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/LasPistol</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>2500</MarketValue>
+		<Mass>3.2</Mass>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRLasPistol</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>70</Plasteel>
+		<ComponentIndustrial>12</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>LasPistol</li>
+		</weaponTags>
+		<thingCategories>
+			<li>IGCRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>IGCRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_LasPistol</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>26</range>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>HellgunSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+  -->
+  <!-- ====================== LasGun ===================== -->
+<!--
+<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>OGI_Bullet_LasGun</defName>
+    <label>Las Gun Blast</label>
+    <graphicData>
+		<texPath>Things/Projectile/LasShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGILas</damageDef>
+		<damageAmountBase>10</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<stoppingPower>1.25</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>10</postFiringDuration>
+			<StartFireChance>0.1</StartFireChance>	
+ </ThingDef>
+
+ <ThingDef ParentName="BaseMakeableIGGun">
+    <defName>OGI_Gun_LasGun</defName>
+    <label>LasGun</label>
+    <description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. It is standard-issue for the Adeptus Mechanicus' cybernetic Skitarii infantry, all Astra Militarum rank-and-file infantry and most junior Astra Militarum officers. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. A Lasgun has a longer range than a Laspistol, but is nowhere near as powerful as a Lascannon nor does it possess the rapid-firing qualities of the Multi-Laser or the Hellgun. Though not as powerful as kinetic projectile weapons such as the ubiquitous Bolter, the lower cost of production, the lack of a requirement for ammunition production and resupply make the Lasgun the best choice for the large forces of the Imperial Guard. The Lasgun uses a small portable capacitor power pack to produce a focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot. The Lasgun is effective when used en masse, but considerably less effective when used alone.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/LasGun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>2500</MarketValue>
+		<Mass>3.2</Mass>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRLasGun</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>70</Plasteel>
+		<ComponentIndustrial>12</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>Lasgun</li>
+		</weaponTags>
+		<thingCategories>
+			<li>IGCRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>IGCRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>31</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>HellgunSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+-->
+  <!-- ====================== Hellgun ===================== -->
 <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_Hellgun</defName>
     <label>Hellgun Blast</label>
@@ -410,19 +730,20 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGILas</damageDef>
-		<damageAmountBase>16</damageAmountBase>
+		<damageAmountBase>20</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1.25</stoppingPower>
 		<speed>105</speed>
     </projectile>
 		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
-			<preFiringFinalIntensity>1</preFiringFinalIntensity>
-			<postFiringInitialIntensity>1</postFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
 			<postFiringFinalIntensity>0</postFiringFinalIntensity>
-			<preFiringDuration>1</preFiringDuration>
+			<preFiringDuration>2</preFiringDuration>
 			<postFiringDuration>25</postFiringDuration>
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
-
 
  <ThingDef ParentName="BaseMakeableIGGun">
     <defName>OGI_Gun_Hellgun</defName>
@@ -432,7 +753,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/Hellgun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>125000</WorkToMake>
 		<MarketValue>2500</MarketValue>
@@ -441,16 +762,16 @@
 			<AccuracyShort>0.80</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
 			<AccuracyLong>0.70</AccuracyLong>
-			<RangedWeapon_Cooldown>0.70</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
 		<researchPrerequisite>WRHellgun</researchPrerequisite>
 	</recipeMaker>
     <costList>
 		<Steel>30</Steel>
-		<Plasteel>30</Plasteel>
-		<Component>8</Component>
-		<ImperialComponent>10</ImperialComponent>
+		<Plasteel>20</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
+		<ImperialComponent>8</ImperialComponent>
 		<RefinedAdamantium>5</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
     </costList>
@@ -458,6 +779,7 @@
     <weaponTags>
 		<li>EliteGun</li>
 		<li>Hellgun</li>
+		<li>GuevesaAdvGun</li>
 		</weaponTags>
 		<thingCategories>
 			<li>IGCRanged</li>
@@ -472,8 +794,8 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_Hellgun</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>31</range>
+			<warmupTime>1</warmupTime>
+			<range>37</range>
 			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>HellgunSound</soundCast>
@@ -504,9 +826,7 @@
     </tools>
  </ThingDef>
 
-  
-<!-- ====================== Long-Las ===================== -->
-
+  <!-- ====================== Long-Las ===================== -->
 <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LongLas</defName>
     <label>Long-Las Blast</label>
@@ -517,19 +837,20 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGILas</damageDef>
-		<damageAmountBase>55</damageAmountBase>
+		<damageAmountBase>40</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1.5</stoppingPower>
 		<speed>105</speed>
     </projectile>
 		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
 			<preFiringInitialIntensity>0</preFiringInitialIntensity>
-			<preFiringFinalIntensity>1</preFiringFinalIntensity>
-			<postFiringInitialIntensity>1</postFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
 			<postFiringFinalIntensity>0</postFiringFinalIntensity>
-			<preFiringDuration>1</preFiringDuration>
+			<preFiringDuration>2</preFiringDuration>
 			<postFiringDuration>25</postFiringDuration>
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
-
 
  <ThingDef ParentName="BaseMakeableIGGun">
     <defName>OGI_Gun_LongLas</defName>
@@ -539,7 +860,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/LongLas</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>125000</WorkToMake>
 		<MarketValue>3500</MarketValue>
@@ -554,9 +875,9 @@
 		<researchPrerequisite>WRLongLas</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
+		<Steel>35</Steel>
 		<Plasteel>30</Plasteel>
-		<Component>8</Component>
+		<ComponentIndustrial>8</ComponentIndustrial>
 		<ImperialComponent>10</ImperialComponent>
 		<RefinedAdamantium>5</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
@@ -565,6 +886,7 @@
     <weaponTags>
 		<li>EliteGun</li>
 		<li>LongLas</li>
+		<li>GuevesaAdvGun</li>
 		</weaponTags>
 		<thingCategories>
 			<li>IGCRanged</li>
@@ -581,7 +903,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_LongLas</defaultProjectile>
 			<warmupTime>2</warmupTime>
-			<range>48</range>
+			<range>45</range>
 			<soundCast>LongLasSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -611,7 +933,6 @@
  </ThingDef>
 
   <!-- ====================== Las Cannon ===================== -->
-
 <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LasCannon</defName>
     <label>Las Blast</label>
@@ -624,6 +945,8 @@
 		<damageDef>OGILas</damageDef>
 	 	<explosionRadius>0.55</explosionRadius>
 		<damageAmountBase>75</damageAmountBase>
+		<stoppingPower>4</stoppingPower>
+		<armorPenetrationBase>0.84</armorPenetrationBase>
 		<speed>105</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
     </projectile>
@@ -639,7 +962,6 @@
 			<CanStartFire>true</CanStartFire>
  </ThingDef>
 
-
  <ThingDef ParentName="BaseMakeableIGGun">
     <defName>OGI_Gun_LasCannon</defName>
     <label>LasCannon</label>
@@ -654,7 +976,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>125000</WorkToMake>
 		<MarketValue>7250</MarketValue>
@@ -669,9 +991,9 @@
 		<researchPrerequisite>WRLasCannon</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
+		<Steel>50</Steel>
 		<Plasteel>30</Plasteel>
-		<Component>8</Component>
+		<ComponentIndustrial>10</ComponentIndustrial>
 		<ImperialComponent>10</ImperialComponent>
 		<RefinedAdamantium>5</RefinedAdamantium>
 		<ImperialPowercore>2</ImperialPowercore>
@@ -696,7 +1018,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
 			<warmupTime>4</warmupTime>
-			<range>48</range>
+			<range>45</range>
 			<soundCast>LascannonSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -717,10 +1039,7 @@
     </tools>
  </ThingDef>
 
-  
 <!-- ====================== Plasma Pistol ===================== -->
-
-
  <ThingDef ParentName="OverheatBullet">
 	<defName>OGI_Bullet_PlasmaPistol</defName>
     <label>Plasma Bolt</label>
@@ -734,12 +1053,14 @@
 		<damageDef>OGIPlasma</damageDef>
 		<explosionRadius>0.50</explosionRadius>
 		<damageAmountBase>17</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>1.5</stoppingPower>
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="OGBaseHumanMakeableGunGetsHot">
+ <ThingDef ParentName="OGBaseMakeableGunGetsHot">
 	<defName>OGI_Gun_PlasmaPistol</defName>
     <label>Plasma Pistol</label>
     <description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
@@ -747,7 +1068,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
-    <soundInteract>InteractAutopistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
 		<WorkToMake>15000</WorkToMake>
 		<MarketValue>2250</MarketValue>
@@ -763,8 +1084,8 @@
 	</recipeMaker>
     <costList>
 		<Steel>25</Steel>
-		<Plasteel>25</Plasteel>
-		<Component>10</Component>
+		<Plasteel>15</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
 		<ImperialComponent>3</ImperialComponent>
 		<RefinedAdamantium>3</RefinedAdamantium>
 		<ImperialPowercore>3</ImperialPowercore>
@@ -772,6 +1093,7 @@
 	<weaponTags>
 		<li>Gun</li>
 		<li>PlasmaPistol</li>
+		<li>GuevesaAdvPistol</li>
 	</weaponTags>
 	<thingCategories>
 		<li>IGCRanged</li>
@@ -785,8 +1107,9 @@
 			<overheat>UR</overheat>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaPistol</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>12</range>
+			<warmupTime>0.4</warmupTime>
+			<range>26</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>2</burstShotCount>
 			<soundCast>PlasmaPistolSound</soundCast>
@@ -817,10 +1140,110 @@
       </li>
     </tools>
  </ThingDef>
+ 
+<!-- ====================== Plasma Gun ===================== -->
+<!--
+ <ThingDef ParentName="OverheatBullet">
+	<defName>OGI_Bullet_PlasmaGun</defName>
+    <label>Plasma Bolt</label>
+    <graphicData>
+		<texPath>Things/Projectile/PlamsShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+	<thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGIPlasma</damageDef>
+		<explosionRadius>0.50</explosionRadius>
+		<damageAmountBase>45</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>2</stoppingPower>
+		<speed>55</speed>
+		<soundExplode>OGIPP_Explosion</soundExplode>
+	</projectile>
+ </ThingDef>
+
+ <ThingDef ParentName="OGBaseMakeableGunGetsHot">
+	<defName>OGI_Gun_PlasmaGun</defName>
+    <label>Plasma Gun</label>
+    <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.
+
+Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaGun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<WorkToMake>18000</WorkToMake>
+		<MarketValue>3250</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.52</AccuracyLong>
+		<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRPlasmaGun</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>55</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+    </costList>
+	<weaponTags>
+		<li>EliteGun</li>
+		<li>PlasmaGun</li>
+	</weaponTags>
+	<thingCategories>
+		<li>IGCRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>IGCRanged</li>
+	</tradeTags>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOH">
+			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
+			<overheat>UR</overheat>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
+			<warmupTime>1.25</warmupTime>
+			<range>31</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
+			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>PlasmaPistolSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+-->
 
 <!-- ====================== Plasma Cannon ===================== -->
-
-  
  <ThingDef ParentName="OverheatBullet">
 	<defName>OGI_Bullet_PlasmaCannon</defName>
     <label>Plasma Bolt</label>
@@ -833,13 +1256,15 @@
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIPlasmaCannon</damageDef>
 	 	<explosionRadius>2.55</explosionRadius>
-		<damageAmountBase>150</damageAmountBase>
+		<damageAmountBase>90</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>3</stoppingPower>
 		<speed>55</speed>
 		<soundExplode>OGIPC_Explosion</soundExplode>
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseHumanMakeableGunGetsHot">
+ <ThingDef ParentName="OGBaseMakeableGunGetsHot">
     <defName>OGI_Gun_PlasmaCannon</defName>
     <label>Plasma Cannon</label>
     <description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is an Imperial heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
@@ -853,7 +1278,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>8000</MarketValue>
@@ -869,11 +1294,11 @@
 	</recipeMaker>
     <costList>
 		<Steel>300</Steel>
-		<Plasteel>300</Plasteel>
-		<Component>80</Component>
+		<Plasteel>200</Plasteel>
+		<ComponentIndustrial>30</ComponentIndustrial>
 		<ImperialComponent>6</ImperialComponent>
 		<RefinedAdamantium>6</RefinedAdamantium>
-		<ImperialPowercore>4</ImperialPowercore>
+		<ImperialPowercore>10</ImperialPowercore>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -896,7 +1321,8 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCannon</defaultProjectile>
 			<warmupTime>4</warmupTime>
-			<range>42</range>
+			<range>45</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<soundCast>PlasmaCannonSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -917,10 +1343,199 @@
     </tools>
  </ThingDef>
 
-   
+  <!-- ====================== AutoPistol ===================== -->
+<!--
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGI_Bullet_AutoPistol</defName>
+    <label>Autopistol Bullett</label>
+    <graphicData>
+		<texPath>Things/Projectile/AutoShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGIAuto</damageDef>
+		<damageAmountBase>7</damageAmountBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>100</speed>
+	</projectile>
+ </ThingDef>
+
+ <ThingDef ParentName="BaseMakeableIGGun">
+	<defName>OGI_Gun_AutoPistol</defName>
+    <label>AutoPistol</label>
+    <description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/AutoPistol</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>5000</WorkToMake>
+		<MarketValue>1250</MarketValue>
+		<Mass>4</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.62</AccuracyLong>
+		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>BasicImperialConstruction</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>100</Steel>
+		<Plasteel>10</Plasteel>
+		<ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>AutoGun</li>
+	</weaponTags>
+	<thingCategories>
+		<li>IGCRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>IGCRanged</li>
+	</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_AutoPistol</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>25</range>
+			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+			<burstShotCount>12</burstShotCount>
+			<soundCast>AutocannonSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+    <tools>
+		<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		</li>
+    </tools>
+ </ThingDef>
+-->
+ 
+ <!-- ====================== AutoGun ===================== -->
+<!--
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGI_Bullet_AutoGun</defName>
+    <label>Autogun Bullett</label>
+    <graphicData>
+		<texPath>Things/Projectile/AutoShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGIAuto</damageDef>
+		<explosionRadius>0.50</explosionRadius>
+		<damageAmountBase>7</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>100</speed>
+	</projectile>
+ </ThingDef>
+
+ <ThingDef ParentName="BaseMakeableIGGun">
+	<defName>OGI_Gun_AutoGun</defName>
+    <label>AutoGun</label>
+    <description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/AutoGun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>5000</WorkToMake>
+		<MarketValue>1250</MarketValue>
+		<Mass>4</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.62</AccuracyLong>
+		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>BasicImperialConstruction</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>100</Steel>
+		<Plasteel>10</Plasteel>
+		<ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>AutoGun</li>
+	</weaponTags>
+	<thingCategories>
+		<li>IGCRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>IGCRanged</li>
+	</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_AutoGun</defaultProjectile>
+			<warmupTime>0.75</warmupTime>
+			<range>31</range>
+			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+			<burstShotCount>12</burstShotCount>
+			<soundCast>AutocannonSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+    <tools>
+		<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		</li>
+    </tools>
+ </ThingDef>
+-->
+
 <!-- ====================== AutoCannon ===================== -->
-
-
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AutoCannon</defName>
     <label>AutoCannon Shell</label>
@@ -934,6 +1549,8 @@
 		<damageDef>OGIAuto</damageDef>
 		<explosionRadius>0.50</explosionRadius>
 		<damageAmountBase>70</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>2</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIAC_Explosion</soundExplode>
 	</projectile>
@@ -953,7 +1570,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>15000</WorkToMake>
 		<MarketValue>4250</MarketValue>
@@ -962,7 +1579,7 @@
 		<AccuracyShort>0.81</AccuracyShort>
 		<AccuracyMedium>0.70</AccuracyMedium>
 		<AccuracyLong>0.62</AccuracyLong>
-		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
 		<researchPrerequisite>WRAutoCannon</researchPrerequisite>
@@ -970,7 +1587,7 @@
     <costList>
 		<Steel>100</Steel>
 		<Plasteel>100</Plasteel>
-		<Component>10</Component>
+		<ComponentIndustrial>10</ComponentIndustrial>
 		<ImperialComponent>3</ImperialComponent>
 		<RefinedAdamantium>3</RefinedAdamantium>
 		<ImperialPowercore>4</ImperialPowercore>
@@ -994,8 +1611,9 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_AutoCannon</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>48</range>
+			<warmupTime>1.75</warmupTime>
+			<range>45</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
 			<soundCast>AutocannonSound</soundCast>
@@ -1019,8 +1637,6 @@
  </ThingDef>
  
 <!-- ====================== Ogryn Ripper Gun ===================== -->
-
-
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_OgrynRipperGun</defName>
     <label>Ripper Blast</label>
@@ -1031,6 +1647,9 @@
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIRipper</damageDef>
+		<damageAmountBase>20</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<stoppingPower>4</stoppingPower>
 		<speed>50</speed>
 	</projectile>
  </ThingDef>
@@ -1043,7 +1662,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/OgrynRipperGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
-    <soundInteract>InteractShotgun</soundInteract>
+    <soundInteract>Interact_Shotgun</soundInteract>
     <statBases>
 		<WorkToMake>15000</WorkToMake>
 		<MarketValue>2250</MarketValue>
@@ -1058,9 +1677,9 @@
 		<researchPrerequisite>WRRipperGun</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
-		<Plasteel>100</Plasteel>
-		<Component>10</Component>
+		<Steel>75</Steel>
+		<Plasteel>10</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
 		<ImperialComponent>3</ImperialComponent>
 		<RefinedAdamantium>3</RefinedAdamantium>
 		<ImperialPowercore>4</ImperialPowercore>
@@ -1084,11 +1703,11 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_OgrynRipperGun</defaultProjectile>
-			<warmupTime>1.5</warmupTime>
-			<range>12</range>
+			<warmupTime>0.5</warmupTime>
+			<range>16</range>
 			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 			<burstShotCount>12</burstShotCount>
-			<soundCast>ShotShotgun</soundCast>
+			<soundCast>Shot_Shotgun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
@@ -1116,14 +1735,12 @@
     </tools>
  </ThingDef>
  
- 
-	<!--==================== Ogryn Grenade Gauntlet =========================-->
-
+<!--==================== Ogryn Grenade Gauntlet =========================-->
 	<ThingDef ParentName="BaseBullet">
 		<defName>OGI_Bullet_OgrynGrenadeGauntlet</defName>
 		<label>Ogryn Gauntlet Grenade</label>
 		<graphicData>
-			<texPath>Things/IGCore/Projectile/GrenadaProjectile</texPath>
+			<texPath>Things/Projectile/Grenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -1132,9 +1749,11 @@
 			<flyOverhead>True</flyOverhead>
 			<damageDef>OGIBomb</damageDef>
 			<damageAmountBase>20</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
 			<explosionRadius>1.00</explosionRadius>
+			<stoppingPower>1</stoppingPower>
 			<speed>35</speed>
-			<soundExplode>IGLRG_Explosion</soundExplode>
+			<soundExplode>OGIAC_Explosion</soundExplode>
 		</projectile>
 	</ThingDef>
 
@@ -1146,20 +1765,24 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/OgrynGrenadeGauntlet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<soundInteract>InteractIGRWeapons</soundInteract>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>100000</WorkToMake>
 			<MarketValue>3250</MarketValue>
+			<Mass>7</Mass>
 			<AccuracyTouch>0.60</AccuracyTouch>
 			<AccuracyShort>0.60</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
 			<AccuracyLong>0.50</AccuracyLong>
-			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
 			<researchPrerequisite>WRGrenadeGauntlet</researchPrerequisite>
 		</recipeMaker>
 		<costList>
+			<Steel>75</Steel>
+			<Plasteel>35</Plasteel>
+			<ComponentIndustrial>16</ComponentIndustrial>
 			<ImperialComponent>10</ImperialComponent>
 			<RefinedAdamantium>5</RefinedAdamantium>
 			<ImperialPowercore>2</ImperialPowercore>
@@ -1171,10 +1794,10 @@
 				<defaultProjectile>OGI_Bullet_OgrynGrenadeGauntlet</defaultProjectile>
 				<forcedMissRadius>5.0</forcedMissRadius>
 				<warmupTime>4.0</warmupTime>
-				<range>30</range>
+				<range>31</range>
 				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
 				<burstShotCount>4</burstShotCount>
-				<soundCast>IGGrenadeLaunch</soundCast>
+				<soundCast>Shot_IncendiaryLauncher</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>12</muzzleFlashScale>
 				<targetParams>
@@ -1213,9 +1836,7 @@
     </tools>
 	</ThingDef>
 	
-<!-- ====================== AssaultCannon ===================== -->
-
-  
+<!-- ====================== AssaultCannon ===================== --> 
  <ThingDef ParentName="JamableBullet">
 	<defName>OGI_Bullet_AssaultCannon</defName>
     <label>Assaultcannon bullet</label>
@@ -1225,12 +1846,14 @@
     </graphicData>
     <projectile>
 		<damageDef>OGIAssault</damageDef>
-		<damageAmountBase>15</damageAmountBase>
+		<damageAmountBase>5</damageAmountBase>
+		<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseHumanMakeableGunJamable">
+ <ThingDef ParentName="OGBaseMakeableGunJamable">
     <defName>OGI_Gun_AssaultCannon</defName>
     <label>Assaultcannon</label>
     <description>The Assault Cannon is a ballistic six-barreled, self-loading rotary Autocannon, effective against infantry targets and light vehicles at close to medium range. It is a medium calibre rotary Autocannon, with its 6 barrels cycled by an electric motor past a single chamber. The Assault Cannon was developed after the end of the Horus Heresy in the early 31st Millennium as a replacement for the Autocannon. Introduced during the Mark IIIA phase of Indomitus Pattern Terminator Armour development, this weapon is the standard alternative to the Heavy Flamer as a Terminator Squad's special ranged weapon. Its design has changed little in 10 Terran millennia, retaining the distinctively long, cylindrical, rotating barrels. Although it lacks the range of the Autocannon and many other Imperial heavy weapons, the Assault Cannon is a fearsome weapon when used at the close range role from which it was intended to be fired.</description>
@@ -1244,25 +1867,24 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>4750</MarketValue>
 		<Mass>10</Mass>
 		<AccuracyTouch>0.60</AccuracyTouch>
-		<AccuracyShort>0.52</AccuracyShort>
+		<AccuracyShort>0.55</AccuracyShort>
 		<AccuracyMedium>0.40</AccuracyMedium>
-		<AccuracyLong>0.30</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-		<Weapon_Bulk>2.0</Weapon_Bulk>
+		<AccuracyLong>0.35</AccuracyLong>
+		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
 	</statBases>
 	<recipeMaker>
 		<researchPrerequisite>WRAssaultCannon</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>50</Steel>
+		<Steel>100</Steel>
 		<Plasteel>50</Plasteel>
-		<Component>10</Component>
+		<ComponentIndustrial>24</ComponentIndustrial>
 		<ImperialComponent>4</ImperialComponent>
 		<RefinedAdamantium>4</RefinedAdamantium>
 		<ImperialPowercore>3</ImperialPowercore>
@@ -1287,9 +1909,8 @@
 			<reliability>UR</reliability>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
-			<warmupTime>3</warmupTime>
-			<forcedMissRadius>0.8</forcedMissRadius>
-			<range>24</range>
+			<warmupTime>1.5</warmupTime>
+			<range>38</range>
 			<burstShotCount>120</burstShotCount>
 			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<soundCast>AssaultcannonSound</soundCast>
@@ -1313,8 +1934,6 @@
  </ThingDef>
 	
 <!-- ====================== Heavy Stubber ===================== -->
-
-  
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_HeavyStubber</defName>
     <label>Heavy Stubber Bullet</label>
@@ -1324,7 +1943,9 @@
     </graphicData>
     <projectile>
 		<damageDef>OGIAssault</damageDef>
-		<damageAmountBase>15</damageAmountBase>
+		<damageAmountBase>7</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1.25</stoppingPower>
 		<speed>100</speed>
     </projectile>
  </ThingDef>
@@ -1343,7 +1964,7 @@
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
 	</comps>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>2000</MarketValue>
@@ -1353,15 +1974,14 @@
 		<AccuracyMedium>0.75</AccuracyMedium>
 		<AccuracyLong>0.72</AccuracyLong>
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-		<Weapon_Bulk>2.0</Weapon_Bulk>
 	</statBases>
 	<recipeMaker>
 		<researchPrerequisite>ImperialHeavyWeapons</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>50</Steel>
-		<Plasteel>50</Plasteel>
-		<Component>10</Component>
+		<Steel>100</Steel>
+		<Plasteel>10</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
 		<ImperialComponent>4</ImperialComponent>
 		<RefinedAdamantium>4</RefinedAdamantium>
 		<ImperialPowercore>3</ImperialPowercore>
@@ -1370,6 +1990,7 @@
     <weaponTags>
 		<li>GunHeavy</li>
 		<li>HeavyStubber</li>
+		<li>GuevesaGun</li>
 	</weaponTags>
 	<thingCategories>
 		<li>IGCRanged</li>
@@ -1386,11 +2007,10 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_HeavyStubber</defaultProjectile>
 			<warmupTime>3</warmupTime>
-			<forcedMissRadius>0.8</forcedMissRadius>
-			<range>24</range>
+			<range>36</range>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-			<soundCast>ShotMinigun</soundCast>
+			<soundCast>Shot_Minigun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<targetParams>
@@ -1411,8 +2031,6 @@
  </ThingDef>
 
 <!-- ====================== Flamer ===================== -->
-
-  
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_Flamer</defName>
     <label>burning promethium </label>
@@ -1426,9 +2044,11 @@
 			<flyOverhead>false</flyOverhead>
 			<damageDef>Flame</damageDef>
 			<damageAmountBase>3</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
 			<explosionRadius>1.00</explosionRadius>
-			<postExplosionSpawnThingDef>FilthFuel</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
 			<speed>20</speed>
 			<soundExplode>OGIFL_Explosion</soundExplode>
     </projectile>
@@ -1442,7 +2062,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/Flamer</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractRifle</soundInteract>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>2000</MarketValue>
@@ -1458,8 +2078,8 @@
 	</recipeMaker>
     <costList>
 		<Steel>150</Steel>
-		<Plasteel>5</Plasteel>
-		<Component>4</Component>
+		<Plasteel>15</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
 		<ImperialComponent>2</ImperialComponent>
 		<RefinedAdamantium>2</RefinedAdamantium>
 		<ImperialPowercore>1</ImperialPowercore>
@@ -1468,6 +2088,7 @@
     <weaponTags>
 		<li>EliteGun</li>
 		<li>Flamer</li>
+		<li>GuevesaSpecialGun</li>
 	</weaponTags>
 	<thingCategories>
 		<li>IGCRanged</li>
@@ -1480,8 +2101,9 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
-			<warmupTime>1.5</warmupTime>
+			<warmupTime>0.5</warmupTime>
 			<range>12</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<burstShotCount>36</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<soundCast>FlamerSound</soundCast>
@@ -1514,8 +2136,6 @@
  </ThingDef>
 
 <!-- ====================== Metla Gun ===================== -->
-
-
 <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_MeltaGun</defName>
     <label>Melta Blast</label>
@@ -1527,8 +2147,10 @@
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIMelta</damageDef>
 		<damageAmountBase>125</damageAmountBase>
+		<armorPenetrationBase>1</armorPenetrationBase>
 		<speed>50</speed>
 		<explosionRadius>0.50</explosionRadius>
+		<stoppingPower>4</stoppingPower>
 		<soundExplode>OGIFL_Explosion</soundExplode>
     </projectile>
 		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
@@ -1550,7 +2172,7 @@
 		<texPath>Things/Item/Equipment/WeaponRanged/MeltaGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <soundInteract>InteractAutopistol</soundInteract>
+    <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>6000</MarketValue>
@@ -1565,17 +2187,18 @@
 		<researchPrerequisite>WRMetla</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
+		<Steel>50</Steel>
 		<Plasteel>100</Plasteel>
-		<Component>40</Component>
+		<ComponentIndustrial>10</ComponentIndustrial>
 		<ImperialComponent>2</ImperialComponent>
 		<RefinedAdamantium>2</RefinedAdamantium>
-		<ImperialPowercore>4</ImperialPowercore>
+		<ImperialPowercore>15</ImperialPowercore>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>EliteGun</li>
 		<li>MetlaGun</li>
+		<li>GuevesaSpecialGun</li>
 	</weaponTags>
 	<thingCategories>
 		<li>IGCRanged</li>
@@ -1588,7 +2211,7 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_MeltaGun</defaultProjectile>
-			<warmupTime>2</warmupTime>
+			<warmupTime>0.5</warmupTime>
 			<range>16</range>
 			<soundCast>MeltaSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>

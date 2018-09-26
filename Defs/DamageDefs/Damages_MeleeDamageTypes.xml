@@ -6,8 +6,6 @@
 	</DamageDef>
 
 	<!--==================== Common Damage Types =========================-->
-	<!--==================== Power Weapon Damage Type =========================-->
-	
 	
   <DamageDef ParentName="OGLocalInjuryBase">
     <defName>OGIPowerWeapon</defName>
@@ -20,32 +18,91 @@
     <impactSoundType>Electric</impactSoundType>
     <armorCategory>PowerWeapon</armorCategory>
   </DamageDef>
-
-	
-
-
-
+  
 	<!--==================== Power Maul Damage Type =========================-->
 
-	<DamageDef ParentName="LocalInjuryBase">
-		<defName>OGIPowerMaul</defName>
-		<label>PowerMaul</label>
-		<hasForcefulImpact>false</hasForcefulImpact>
-		<externalViolence>false</externalViolence>
-		<deathMessage>{0} has been bludgeoned to death.</deathMessage>
-		<hediff>hediff_PowerMaul</hediff>
-		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-		<harmsHealth>true</harmsHealth>
-		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>PowerWeapon</armorCategory>
-		<explosionDamage>0</explosionDamage>
-		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
-		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
-		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
-		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
-		<soundExplosion>Explosion_EMP</soundExplosion>
-    <combatLogRules>Damage_Stun</combatLogRules>
-	</DamageDef>
+	<DamageDef ParentName="OGLocalInjuryBase">
+    <defName>OGIPowerMaul</defName>
+    <label>PowerMaul</label>
+    <workerClass>DamageWorker_Blunt</workerClass>
+	<hasForcefulImpact>false</hasForcefulImpact>
+	<externalViolence>false</externalViolence>
+    <deathMessage>{0} has been beaten to death.</deathMessage>
+    <hediff>hediff_PowerMaul</hediff>
+    <hediffSkin>Bruise</hediffSkin>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Electric</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+    <bluntStunDuration>2.0</bluntStunDuration>
+    <bluntInnerHitChance>0.4</bluntInnerHitChance>
+    <bluntInnerHitDamageFractionToConvert>
+      <min>0.1</min>
+      <max>0.2</max>
+    </bluntInnerHitDamageFractionToConvert>
+    <bluntInnerHitDamageFractionToAdd>
+      <min>0.2</min>
+      <max>0.35</max>
+    </bluntInnerHitDamageFractionToAdd>
+    <bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+      <points>
+        <li>(0.04, 0.20)</li>
+        <li>(0.5, 1)</li>
+      </points>
+    </bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+    <bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+      <points>
+        <li>(0.4, 0)</li>
+        <li>(0.9, 0.15)</li>
+      </points>
+    </bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+	<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+	<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+	<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+	<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+	<soundExplosion>Explosion_EMP</soundExplosion>
+	<combatLogRules>Damage_Stun</combatLogRules>
+  </DamageDef>
+	
+		<!--==================== ThunderHammer Damage Type =========================-->
 
+	<DamageDef ParentName="OGLocalInjuryBase">
+    <defName>OGIThunderhammer</defName>
+    <label>ThunderHammer</label>
+    <workerClass>DamageWorker_Blunt</workerClass>
+	<hasForcefulImpact>true</hasForcefulImpact>
+	<externalViolence>true</externalViolence>
+    <deathMessage>{0} has been struck down!</deathMessage>
+    <hediff>Crush</hediff>
+    <hediffSkin>Bruise</hediffSkin>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+    <bluntStunDuration>2.0</bluntStunDuration>
+    <bluntInnerHitChance>0.4</bluntInnerHitChance>
+    <bluntInnerHitDamageFractionToConvert>
+      <min>0.1</min>
+      <max>0.2</max>
+    </bluntInnerHitDamageFractionToConvert>
+    <bluntInnerHitDamageFractionToAdd>
+      <min>0.2</min>
+      <max>0.35</max>
+    </bluntInnerHitDamageFractionToAdd>
+    <bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+      <points>
+        <li>(0.04, 0.20)</li>
+        <li>(0.5, 1)</li>
+      </points>
+    </bluntStunChancePerDamagePctOfCorePartToHeadCurve>
+    <bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+      <points>
+        <li>(0.4, 0)</li>
+        <li>(0.9, 0.15)</li>
+      </points>
+    </bluntStunChancePerDamagePctOfCorePartToBodyCurve>
+  </DamageDef>
 	
 	</Defs>

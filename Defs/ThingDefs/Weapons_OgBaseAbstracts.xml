@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 <!--==================== Base Weapon Template =========================-->
-
 	<ThingDef Abstract="True" Name="JamableBullet" ParentName="BaseBullet">
     <thingClass>AdeptusMechanicus.BulletCP</thingClass>
 	</ThingDef>
@@ -10,8 +9,7 @@
     <thingClass>AdeptusMechanicus.BulletOH</thingClass>
 	</ThingDef>
 
-<!--==================== Base Weapon Template =========================-->
-	
+<!--==================== Base Weapon Template =========================-->	
 	<ThingDef Abstract="True" Name="OGBaseWeapon">
 		<thingClass>ThingWithComps</thingClass>
 		<category>Item</category>
@@ -41,10 +39,7 @@
 		</graphicData>
 	</ThingDef>
 	
-	
-		
-<!--==================== Mod - Base Gun Weapon Template =========================-->
-		
+<!--==================== Mod - Base Gun Weapon Template =========================-->		
 	<ThingDef Name="OGBaseGun" Abstract="True" ParentName="OGBaseWeapon">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
@@ -59,7 +54,7 @@
         <compClass>CompQuality</compClass>
       </li>
       <li Class="CompProperties_Art">
-        <nameMaker>ArtName_WeaponGun</nameMaker>
+        <nameMaker>NamerArtWeaponGun</nameMaker>
         <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
         <minQualityForArtistic>Excellent</minQualityForArtistic>
       </li>
@@ -93,6 +88,30 @@
       <li>Gun</li>
     </weaponTags>
   </ThingDef>
+
+	<ThingDef Name="OGBaseOrkMakeableGun" ParentName="OGBaseMakeableGun" Abstract="True">
+    <weaponTags>
+      <li>Ork_Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+	<ThingDef Name="OGBaseTauMakeableGun" ParentName="OGBaseMakeableGun" Abstract="True">
+    <weaponTags>
+      <li>Tau_Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+	<ThingDef Name="OGBaseEldarMakeableGun" ParentName="OGBaseMakeableGun" Abstract="True">
+    <weaponTags>
+      <li>Eldar_Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+	<ThingDef Name="OGBaseNecronMakeableGun" ParentName="OGBaseMakeableGun" Abstract="True">
+    <weaponTags>
+      <li>Necron_Gun</li>
+    </weaponTags>
+  </ThingDef>
   
 <!--==================== Mod - Base Jamable Gun Weapon Template =========================-->
   
@@ -104,7 +123,7 @@
 	<thingClass>AdeptusMechanicus.ThingDef_GunCP</thingClass>
   </ThingDef>
   
-	<ThingDef Name="OGBaseHumanMakeableGunJamable" ParentName="BaseMakeableIGGun" Abstract="True">
+	<ThingDef Name="OGBaseHumanMakeableGunJamable" ParentName="OGBaseHumanMakeableGun" Abstract="True">
 	<thingClass>AdeptusMechanicus.ThingDef_GunCP</thingClass>
    </ThingDef>
    
@@ -118,7 +137,7 @@
 	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
   </ThingDef>
   
-	<ThingDef Name="OGBaseHumanMakeableGunGetsHot" ParentName="BaseMakeableIGGun" Abstract="True">
+	<ThingDef Name="OGBaseHumanMakeableGunGetsHot" ParentName="OGBaseHumanMakeableGun" Abstract="True">
 	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
   </ThingDef>
 	
@@ -155,11 +174,11 @@
       <categories>
         <li>Root</li>
       </categories>
-      <exceptedThingDefs>
+      <disallowedThingDefs>
         <li>Silver</li>
         <li>Gold</li>
         <li>WoodLog</li>
-      </exceptedThingDefs>
+      </disallowedThingDefs>
     </defaultIngredientFilter>
     </recipeMaker>
   </ThingDef>
@@ -172,10 +191,10 @@
         <categories>
           <li>Root</li>
         </categories>
-        <exceptedThingDefs>
+        <disallowedThingDefs>
           <li>Silver</li>
           <li>Gold</li>
-        </exceptedThingDefs>
+        </disallowedThingDefs>
       </defaultIngredientFilter>
     </recipeMaker>
   </ThingDef>
@@ -188,7 +207,7 @@
 				<compClass>CompQuality</compClass>
 			</li>
 			<li Class="CompProperties_Art">
-				<nameMaker>ArtName_WeaponMelee</nameMaker>
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
 				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
 				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
@@ -203,7 +222,7 @@
 				<compClass>CompQuality</compClass>
 			</li>
 			<li Class="CompProperties_Art">
-				<nameMaker>ArtName_WeaponMelee</nameMaker>
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
 				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
 				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
@@ -265,7 +284,7 @@
 				<compClass>CompQuality</compClass>
 			</li>
 			<li Class="CompProperties_Art">
-				<nameMaker>ArtName_WeaponMelee</nameMaker>
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
 				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
 				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
@@ -280,7 +299,7 @@
 				<compClass>CompQuality</compClass>
 			</li>
 			<li Class="CompProperties_Art">
-				<nameMaker>ArtName_WeaponMelee</nameMaker>
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
 				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
 				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
