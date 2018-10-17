@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <Defs>
-  
-<!-- ====================== Bolt Pistol ===================== -->
+ <!-- ====================== Bolt Pistol ===================== -->
  <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_BoltPistol</defName>
+	<defName>OGI_Bullet_BoltSml</defName>
     <label>Pistol Bolt</label>
     <graphicData>
 		<texPath>Things/Projectile/BoltShotSml</texPath>
@@ -23,12 +21,12 @@
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
 	<defName>OGI_Gun_BoltPistol</defName>
     <label>Bolt Pistol</label>
     <description>A Bolt Pistol is a smaller version of the Bolter in standard use by the Space Marines and other Imperial forces such as the Orders Militant of the Adepta Sororitas and certain members of the Astra Militarum and the Imperial Navy. Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium. The current standard pattern in use amongst the Space Marines is the Mark III. Bolt Pistols are also used by many other Imperial forces as well as the Chaos Space Marines. A Bolt Pistol is commonly used in conjunction with a close combat weapon by Space Marine officers, Veterans and Assault Squads to make them into melee combat specialists.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/BoltPistol</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -43,15 +41,12 @@
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRBoltPistol</researchPrerequisite>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>3</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-		<ImperialComponent>3</ImperialComponent>
-		<RefinedAdamantium>3</RefinedAdamantium>
-		<ImperialPowercore>1</ImperialPowercore>
+		<Steel>150</Steel>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>2</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -60,18 +55,18 @@
 		<li>GuevesaPistol</li>
     </weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_BoltPistol</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
-			<range>26</range>
+			<range>25</range>
 			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
@@ -95,34 +90,83 @@
     </tools>
  </ThingDef>
  
-<!-- ====================== Bolter ===================== -->
-<!--
-  
- <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_BoltGun</defName>
-    <label>Bolt</label>
+ <!-- ====================== Dual Bolt Pistols ===================== --> 
+ <ThingDef ParentName="OGBaseImperialGun">
+	<defName>OGI_Gun_DualBoltPistols</defName>
+    <label>Dual Bolt Pistols</label>
+    <description>A Bolt Pistol is a smaller version of the Bolter in standard use by the Space Marines and other Imperial forces such as the Orders Militant of the Adepta Sororitas and certain members of the Astra Militarum and the Imperial Navy. Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium. The current standard pattern in use amongst the Space Marines is the Mark III. Bolt Pistols are also used by many other Imperial forces as well as the Chaos Space Marines. A Bolt Pistol is commonly used in conjunction with a close combat weapon by Space Marine officers, Veterans and Assault Squads to make them into melee combat specialists.</description>
     <graphicData>
-		<texPath>Things/Projectile/BoltShotSml</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/DualBoltPistols</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-	<thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-		<damageDef>OGIBolt</damageDef>
-	 	<explosionRadius>0.5</explosionRadius>
-		<damageAmountBase>30</damageAmountBase>
-		<armorPenetrationBase>0.32</armorPenetrationBase>
-		<stoppingPower>1</stoppingPower>
-		<speed>100</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-    </projectile>
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<WorkToMake>27500</WorkToMake>
+		<MarketValue>1750</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.80</AccuracyTouch>
+		<AccuracyShort>0.75</AccuracyShort>
+		<AccuracyMedium>0.60</AccuracyMedium>
+		<AccuracyLong>0.35</AccuracyLong>
+		<RangedWeapon_Cooldown>0.63</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>200</Steel>
+		<Plasteel>50</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>Gun</li>
+		<li>DualBoltPistol</li>
+		<li>GuevesaPistol</li>
+    </weaponTags>
+	<thingCategories>
+		<li>OGIRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>OGIRanged</li>
+	</tradeTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
+			<warmupTime>0.25</warmupTime>
+			<range>22</range>
+			<forcedMissRadius>0.1</forcedMissRadius>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>BoltSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+    </tools>
  </ThingDef>
-  
- <ThingDef ParentName="BaseMakeableIGGun">
+ 
+ <!-- ====================== Bolter ===================== -->
+ <ThingDef ParentName="OGBaseImperialGun">
     <defName>OGI_Gun_BoltGun</defName>
     <label>Bolter</label>
     <description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/BoltGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.1</drawSize>			
     </graphicData>
@@ -143,12 +187,12 @@
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRBoltGun</researchPrerequisite>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
 		<Steel>175</Steel>
 		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
+		<ComponentIndustrial>4</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -156,16 +200,16 @@
 		<li>BoltGun</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <verbs>
 		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_BoltGun</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
 			<warmupTime>0.30</warmupTime>
 			<range>31</range>
 			<forcedMissRadius>0.5</forcedMissRadius>
@@ -200,35 +244,13 @@
     </tools>
  </ThingDef>
  
- -->
-
-<!-- ====================== Storm Bolter ===================== --> 
- <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_StormBolter</defName>
-    <label>Bolt</label>
-    <graphicData>
-		<texPath>Things/Projectile/BoltShotSml</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-	<thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIBolt</damageDef>
-	 	<explosionRadius>0.75</explosionRadius>
-		<damageAmountBase>30</damageAmountBase>
-		<armorPenetrationBase>0.32</armorPenetrationBase>
-		<stoppingPower>1.5</stoppingPower>
-		<speed>100</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-    </projectile>
- </ThingDef>
-  
- <ThingDef ParentName="BaseMakeableIGGun">
+ <!-- ====================== Storm Bolter ===================== --> 
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_StormBolter</defName>
     <label>Storm Bolter</label>
     <description>The Storm Bolter is a double-barrelled version of the standard .75 calibre Bolter. As it is heavier and causes more recoil than a normal Bolter, it is even more rarely used than the Bolter by the regiments of the Astra Militarum. Instead, Storm Bolters are the standard weapons employed by Space Marine Terminators or as a pintle-mounted weapon on an Imperial main battle tank. Storm Bolters are also used by the Astartes of the Grey Knights Chapter as a gauntlet-mounted weapon with its feed located on the rear of their armour. The Storm Bolter also sees limited use amongst the Orders Militant of the Adepta Sororitas, where it is considered a specialist weapon, and favoured by those squads of Dominions, the Sororitas' heavy-weapons troops, who prefer to engage in mid-range, anti-infantry combat.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/StormBolter</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/StormBolter</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.1</drawSize>			
     </graphicData>
@@ -249,15 +271,12 @@
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRStormBolter</researchPrerequisite>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>6</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>150</Steel>
+		<Plasteel>60</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -265,19 +284,19 @@
 		<li>StormBolter</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_StormBolter</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
 			<warmupTime>0.30</warmupTime>
 			<range>31</range>
-			<forcedMissRadius>0.01</forcedMissRadius>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -309,31 +328,13 @@
     </tools>
  </ThingDef>
  
- <!-- ====================== Stalker Pattern Bolter ===================== --> 
- <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_StalkerBolter</defName>
-    <label>Bolt</label>
-    <graphicData>
-		<texPath>Things/Projectile/BoltShotSml</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-	<thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIBolt</damageDef>
-		<damageAmountBase>30</damageAmountBase>
-		<armorPenetrationBase>0.32</armorPenetrationBase>
-		<stoppingPower>2</stoppingPower>
-		<speed>100</speed>
-    </projectile>
- </ThingDef>
-  
- <ThingDef ParentName="BaseMakeableIGGun">
+ <!-- ====================== Stalker Pattern Bolter ===================== -->
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_StalkerBolter</defName>
     <label>Stalker Pattern Bolter</label>
     <description>The Stalker Pattern Bolter is a standard Godwyn Mark Vb Pattern Bolter modified with an M40 Targeter System and an elongated barrel so that it may also serve as a Sniper Rifle. Although the Space Marines Scouts are its primary users, the Stalker Pattern Bolter finds itself in use in military organisations throughout the Imperium.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/StalkerBolter</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/StalkerBolter</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -348,15 +349,12 @@
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRStalkerBolter</researchPrerequisite>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>150</Steel>
+		<Plasteel>45</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -364,19 +362,19 @@
 		<li>StalkerBolter</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_StalkerBolter</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
 			<warmupTime>1.70</warmupTime>
 			<range>45</range>
-			<forcedMissRadius>0.01</forcedMissRadius>
+			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>2</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -424,17 +422,17 @@
 		<damageAmountBase>45</damageAmountBase>
 		<armorPenetrationBase>0.48</armorPenetrationBase>
 		<stoppingPower>2</stoppingPower>
-		<speed>100</speed>
+		<speed>75</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialHeavyGun">
     <defName>OGI_Gun_HeavyBolter</defName>
     <label>Heavy Bolter</label>
     <description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/HeavyBolter</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/HeavyBolter</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -455,15 +453,12 @@
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRHeavyBolter</researchPrerequisite>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>200</Steel>
+		<Plasteel>60</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -471,10 +466,10 @@
 		<li>HeavyBolter</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -510,8 +505,7 @@
  </ThingDef>
 
  <!-- ====================== LasPistol ===================== -->
-<!--
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LasPistol</defName>
     <label>Laspistol Blast</label>
     <graphicData>
@@ -536,14 +530,12 @@
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
     <defName>OGI_Gun_LasPistol</defName>
     <label>Las Pistol</label>
-    <description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.
-
-The Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
+    <description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers./n/nThe Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/LasPistol</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -558,23 +550,24 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRLasPistol</researchPrerequisite>
+		<researchPrerequisite>WRImpLasTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>175</Steel>
-		<Plasteel>70</Plasteel>
-		<ComponentIndustrial>12</ComponentIndustrial>
+		<Steel>75</Steel>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>2</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>Gun</li>
 		<li>LasPistol</li>
+		<li>GuevesaPistol</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
     </equippedStatOffsets>
@@ -584,10 +577,10 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_LasPistol</defaultProjectile>
 			<warmupTime>0.3</warmupTime>
-			<range>26</range>
+			<range>25</range>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>4</burstShotCount>
-			<soundCast>HellgunSound</soundCast>
+			<soundCast>LaspistolSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<targetParams>
@@ -614,10 +607,9 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
       </li>
     </tools>
  </ThingDef>
-  -->
-  <!-- ====================== LasGun ===================== -->
-<!--
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+  
+ <!-- ====================== LasGun ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LasGun</defName>
     <label>Las Gun Blast</label>
     <graphicData>
@@ -642,12 +634,12 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
     <defName>OGI_Gun_LasGun</defName>
     <label>LasGun</label>
     <description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. It is standard-issue for the Adeptus Mechanicus' cybernetic Skitarii infantry, all Astra Militarum rank-and-file infantry and most junior Astra Militarum officers. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. A Lasgun has a longer range than a Laspistol, but is nowhere near as powerful as a Lascannon nor does it possess the rapid-firing qualities of the Multi-Laser or the Hellgun. Though not as powerful as kinetic projectile weapons such as the ubiquitous Bolter, the lower cost of production, the lack of a requirement for ammunition production and resupply make the Lasgun the best choice for the large forces of the Imperial Guard. The Lasgun uses a small portable capacitor power pack to produce a focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot. The Lasgun is effective when used en masse, but considerably less effective when used alone.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/LasGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -662,36 +654,37 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRLasGun</researchPrerequisite>
+		<researchPrerequisite>WRImpLasTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>175</Steel>
-		<Plasteel>70</Plasteel>
-		<ComponentIndustrial>12</ComponentIndustrial>
+		<Steel>75</Steel>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>Gun</li>
 		<li>Lasgun</li>
+		<li>GuevesaGun</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
     </equippedStatOffsets>
     <verbs>
 		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>31</range>
 			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
-			<soundCast>HellgunSound</soundCast>
+			<soundCast>LaspistolSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<targetParams>
@@ -718,9 +711,9 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
       </li>
     </tools>
  </ThingDef>
--->
-  <!-- ====================== Hellgun ===================== -->
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+
+ <!-- ====================== Hellgun ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_Hellgun</defName>
     <label>Hellgun Blast</label>
     <graphicData>
@@ -745,12 +738,12 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_Hellgun</defName>
     <label>Hellgun</label>
     <description>A Hellgun, also called a Hot-shot Lasgun, is a pattern of Imperial Lasgun that possesses a more advanced and powerful laser generation system intended to provide more potent laser fire on-target. This makes the Hellgun superior in both range and power output compared to the standard-issue Lasgun. However, the higher power output requires superior quality power cells or the use of a separate backpack power supply, and the more complex inner workings of the weapon require more time and resources to manufacture than the standard Lasgun. This makes it more costly to field and so it is not generally issued to the average soldier of most Astra Militarum regiments.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Hellgun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Hellgun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -765,15 +758,13 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRHellgun</researchPrerequisite>
+		<researchPrerequisite>WRImpLasTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
-		<Plasteel>20</Plasteel>
+		<Steel>105</Steel>
+		<Plasteel>40</Plasteel>
 		<ComponentIndustrial>6</ComponentIndustrial>
-		<ImperialComponent>8</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -782,20 +773,20 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<li>GuevesaAdvGun</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
     </equippedStatOffsets>
     <verbs>
 		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_Hellgun</defaultProjectile>
 			<warmupTime>1</warmupTime>
-			<range>37</range>
+			<range>35</range>
 			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>HellgunSound</soundCast>
@@ -826,8 +817,8 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
     </tools>
  </ThingDef>
 
-  <!-- ====================== Long-Las ===================== -->
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+ <!-- ====================== Long-Las ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LongLas</defName>
     <label>Long-Las Blast</label>
     <graphicData>
@@ -837,7 +828,7 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGILas</damageDef>
-		<damageAmountBase>40</damageAmountBase>
+		<damageAmountBase>55</damageAmountBase>
 		<armorPenetrationBase>0.32</armorPenetrationBase>
 		<stoppingPower>1.5</stoppingPower>
 		<speed>105</speed>
@@ -852,12 +843,12 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<StartFireChance>0.1</StartFireChance>	
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_LongLas</defName>
     <label>Long-Las</label>
     <description>Favoured by Imperial Guard Sharpshooters, the Long-Las, originally known as the "Sniper Variant Lasgun," is a specially modified version of the standard Lasgun constructed for increased range and accuracy. In addition to the redoubtable Lasgun's many variants, there are certain types of weapons that exhibit differences enough to be considered seperate weapons. One such weapon is the Sniper Variant Lasgun, better known as the Long-Las. Such weapons are only ever issued to those Guardsmen of the Astra Militarum who have displayed a flair for marksmanship, stealth operations and scout movement, for such weapons are difficult to produce and require more training and intelligence to utilise properly.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/LongLas</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LongLas</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -872,15 +863,13 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRLongLas</researchPrerequisite>
+		<researchPrerequisite>WRImpLasTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>35</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>105</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
+		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -889,10 +878,10 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<li>GuevesaAdvGun</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -932,8 +921,8 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
     </tools>
  </ThingDef>
 
-  <!-- ====================== Las Cannon ===================== -->
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+ <!-- ====================== Las Cannon ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_LasCannon</defName>
     <label>Las Blast</label>
     <graphicData>
@@ -962,12 +951,12 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<CanStartFire>true</CanStartFire>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialHeavyGun">
     <defName>OGI_Gun_LasCannon</defName>
     <label>LasCannon</label>
     <description>The powerful Lascannon is a formidable Laser Weapon whose energetic shot of coherent light is capable of penetrating most armoured vehicles. It is the favourite anti-tank weapon of the Imperial Guard and is also commonly used by the Space Marines. Its high strength and armour-piercing ability make it a formidable weapon and when it is twin-linked, it becomes even more deadly. However, it is very heavy and power-consuming, and must recharge after every shot, making it a poor anti-personnel weapon. As a result, it is usually installed on tanks or Sentinel platforms, and in the Imperial Guard, two-man teams are required to operate and carry around a single Lascannon. To accommodate the increased power output, the Lascannon has become the largest man-portable form of Las-weaponry, the barrel being several times larger in diameter and length than the standard Lasgun. Space Marines also make extensive use of the Lascannon.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/LasCannon</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasCannon</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>			
     </graphicData>
@@ -988,15 +977,13 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRLasCannon</researchPrerequisite>
+		<researchPrerequisite>WRImpLasTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>50</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>200</Steel>
+		<Plasteel>70</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
+		<Gold>4</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -1004,10 +991,10 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<li>LasCannon</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1038,9 +1025,9 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
       </li>
     </tools>
  </ThingDef>
-
-<!-- ====================== Plasma Pistol ===================== -->
- <ThingDef ParentName="OverheatBullet">
+  
+ <!-- ====================== Plasma Pistol ===================== -->
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaPistol</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -1060,12 +1047,13 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="OGBaseMakeableGunGetsHot">
+ <ThingDef ParentName="OGBaseImperialGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
 	<defName>OGI_Gun_PlasmaPistol</defName>
     <label>Plasma Pistol</label>
     <description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaPistol</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -1080,15 +1068,13 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRPlasmaPistol</researchPrerequisite>
+		<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>25</Steel>
-		<Plasteel>15</Plasteel>
+		<Steel>125</Steel>
+		<Plasteel>55</Plasteel>
 		<ComponentIndustrial>4</ComponentIndustrial>
-		<ImperialComponent>3</ImperialComponent>
-		<RefinedAdamantium>3</RefinedAdamantium>
-		<ImperialPowercore>3</ImperialPowercore>
+		<Gold>2</Gold>
     </costList>
 	<weaponTags>
 		<li>Gun</li>
@@ -1096,10 +1082,10 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 		<li>GuevesaAdvPistol</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <verbs>
 		<li Class="AdeptusMechanicus.VerbPropertiesOH">
@@ -1108,7 +1094,7 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaPistol</defaultProjectile>
 			<warmupTime>0.4</warmupTime>
-			<range>26</range>
+			<range>25</range>
 			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>2</burstShotCount>
@@ -1141,9 +1127,8 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
     </tools>
  </ThingDef>
  
-<!-- ====================== Plasma Gun ===================== -->
-<!--
- <ThingDef ParentName="OverheatBullet">
+ <!-- ====================== Plasma Gun ===================== -->
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaGun</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -1163,14 +1148,15 @@ The Laspistol is capable of producing the same amount of damage in a skilled use
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="OGBaseMakeableGunGetsHot">
+ <ThingDef ParentName="OGImperialSpecialGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
 	<defName>OGI_Gun_PlasmaGun</defName>
     <label>Plasma Gun</label>
     <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.
 
 Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -1185,26 +1171,28 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRPlasmaGun</researchPrerequisite>
+		<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
 		<Steel>175</Steel>
 		<Plasteel>55</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
+		<ComponentIndustrial>6</ComponentIndustrial>
+		<Gold>4</Gold>
     </costList>
 	<weaponTags>
 		<li>EliteGun</li>
 		<li>PlasmaGun</li>
+		<li>GuevesaAdvGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <verbs>
 		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootOHRF</verbClass>
 			<overheat>UR</overheat>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
@@ -1241,10 +1229,9 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
       </li>
     </tools>
  </ThingDef>
--->
 
-<!-- ====================== Plasma Cannon ===================== -->
- <ThingDef ParentName="OverheatBullet">
+ <!-- ====================== Plasma Cannon ===================== -->
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCannon</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -1264,12 +1251,13 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGunGetsHot">
+ <ThingDef ParentName="OGImperialHeavyGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
     <defName>OGI_Gun_PlasmaCannon</defName>
     <label>Plasma Cannon</label>
     <description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is an Imperial heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaCannon</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCannon</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -1290,26 +1278,25 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRPlasmaCannon</researchPrerequisite>
+		<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>300</Steel>
-		<Plasteel>200</Plasteel>
-		<ComponentIndustrial>30</ComponentIndustrial>
-		<ImperialComponent>6</ImperialComponent>
-		<RefinedAdamantium>6</RefinedAdamantium>
-		<ImperialPowercore>10</ImperialPowercore>
+		<Steel>200</Steel>
+		<Plasteel>100</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
+		<Gold>6</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>GunHeavy</li>
 		<li>PlasmaCannon</li>
+		<li>GuevesaHeavyGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1343,13 +1330,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
 
-  <!-- ====================== AutoPistol ===================== -->
-<!--
+ <!-- ====================== AutoPistol ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AutoPistol</defName>
     <label>Autopistol Bullett</label>
     <graphicData>
-		<texPath>Things/Projectile/AutoShotLrg</texPath>
+		<texPath>Things/Projectile/Bullet_Small</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
@@ -1361,12 +1347,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
 	<defName>OGI_Gun_AutoPistol</defName>
     <label>AutoPistol</label>
     <description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/AutoPistol</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -1387,23 +1373,24 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>BasicImperialConstruction</researchPrerequisite>
+	
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
+		<Steel>50</Steel>
 		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>5</ComponentIndustrial>
+		<ComponentIndustrial>1</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>Gun</li>
-		<li>AutoGun</li>
+		<li>AutoPistol</li>
+		<li>GuevesaPistol</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1415,9 +1402,9 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 			<defaultProjectile>OGI_Bullet_AutoPistol</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>25</range>
-			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-			<burstShotCount>12</burstShotCount>
-			<soundCast>AutocannonSound</soundCast>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_Autopistol</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
@@ -1436,21 +1423,18 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		</li>
     </tools>
  </ThingDef>
--->
- 
+
  <!-- ====================== AutoGun ===================== -->
-<!--
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AutoGun</defName>
     <label>Autogun Bullett</label>
     <graphicData>
-		<texPath>Things/Projectile/AutoShotLrg</texPath>
+		<texPath>Things/Projectile/Bullet_Small</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIAuto</damageDef>
-		<explosionRadius>0.50</explosionRadius>
 		<damageAmountBase>7</damageAmountBase>
 		<armorPenetrationBase>0.16</armorPenetrationBase>
 		<stoppingPower>1</stoppingPower>
@@ -1458,12 +1442,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
 	<defName>OGI_Gun_AutoGun</defName>
     <label>AutoGun</label>
     <description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/AutoGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -1484,37 +1468,38 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>BasicImperialConstruction</researchPrerequisite>
+	
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
+		<Steel>75</Steel>
 		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>5</ComponentIndustrial>
+		<ComponentIndustrial>2</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
 		<li>Gun</li>
 		<li>AutoGun</li>
+		<li>GuevesaGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
+	
     </equippedStatOffsets>
     <verbs>
 		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_AutoGun</defaultProjectile>
 			<warmupTime>0.75</warmupTime>
 			<range>31</range>
-			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-			<burstShotCount>12</burstShotCount>
-			<soundCast>AutocannonSound</soundCast>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_AssaultRifle</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
@@ -1533,9 +1518,8 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		</li>
     </tools>
  </ThingDef>
--->
-
-<!-- ====================== AutoCannon ===================== -->
+  
+ <!-- ====================== AutoCannon ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AutoCannon</defName>
     <label>AutoCannon Shell</label>
@@ -1556,12 +1540,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGBaseImperialGun">
 	<defName>OGI_Gun_AutoCannon</defName>
     <label>AutoCannon</label>
     <description>An Autocannon is an automatic, self-loading heavy ballistic weapon that fires a high velocity hail of solid shells, and is used by the military forces of the Imperium of Man. It is an ancient weapon, but has nevertheless remained a widely-used piece of wargear throughout the Imperium's history. These rapid-firing weapons can lay down a burst of fire to cover advancing troops, or strafe enemy-held positions. Autocannons are considered ideally suited for attacking enemy vehicles and fortifications from long range.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/AutoCannon</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoCannon</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -1582,15 +1566,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRAutoCannon</researchPrerequisite>
+		<researchPrerequisite>ImperialHeavyWeapons</researchPrerequisite>
 	</recipeMaker>
     <costList>
 		<Steel>100</Steel>
-		<Plasteel>100</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>3</ImperialComponent>
-		<RefinedAdamantium>3</RefinedAdamantium>
-		<ImperialPowercore>4</ImperialPowercore>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -1598,10 +1579,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>AutoCannon</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1636,7 +1617,7 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
  
-<!-- ====================== Ogryn Ripper Gun ===================== -->
+ <!-- ====================== Ogryn Ripper Gun ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_OgrynRipperGun</defName>
     <label>Ripper Blast</label>
@@ -1654,12 +1635,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
 	<defName>OGI_Gun_OgrynRipperGun</defName>
     <label>Ripper Gun</label>
     <description>The Ripper Gun is a heavy, automatic combat Shotgun built to the massive scale of Ogryns serving in the Imperial Guard. Compared to other Imperial weapons, these weapons are fairly simple, somewhat akin to the Ork Shoota. A Ripper Gun is a short range weapon that fires several shells at once to compensate for the poor aim of the average Ogryn. Ripper Guns usually can fire either a single heavy shell or a hail of shot in each burst, and possesses a hard-wired burst limiter to prevent the Ogryn from emptying his weapon the first time he pulls the trigger.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/OgrynRipperGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/OgrynRipperGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Shotgun</soundInteract>
@@ -1674,15 +1655,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
       <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRRipperGun</researchPrerequisite>
+		<researchPrerequisite>ImperialSpecialWeapons</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>75</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>3</ImperialComponent>
-		<RefinedAdamantium>3</RefinedAdamantium>
-		<ImperialPowercore>4</ImperialPowercore>
+		<Steel>100</Steel>
+		<Plasteel>30</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -1690,10 +1668,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>OgrynRipperGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1735,16 +1713,16 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
  
-<!--==================== Ogryn Grenade Gauntlet =========================-->
-	<ThingDef ParentName="BaseBullet">
+ <!--==================== Ogryn Grenade Gauntlet =========================-->
+ <ThingDef ParentName="BaseBullet">
 		<defName>OGI_Bullet_OgrynGrenadeGauntlet</defName>
 		<label>Ogryn Gauntlet Grenade</label>
+		<thingClass>Projectile_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Grenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<flyOverhead>True</flyOverhead>
 			<damageDef>OGIBomb</damageDef>
@@ -1757,12 +1735,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialHeavyGun">
 		<defName>OGI_Gun_OgrynGrenadeGauntlet</defName>
 		<label>Grenadier Gauntlet</label>
 		<description>The Imperial Grenade Gauntlet is a type of heavy Grenade Launcher used by Imperial Guard Bullgryn's. The foe are left reeling and shell-shocked even before the maul-wielding Ogryns charge into their midst and bludgeon the survivors to a red paste.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/OgrynGrenadeGauntlet</texPath>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/OgrynGrenadeGauntlet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
@@ -1777,15 +1755,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
-			<researchPrerequisite>WRGrenadeGauntlet</researchPrerequisite>
+			<researchPrerequisite>ImperialHeavyWeapons</researchPrerequisite>
 		</recipeMaker>
 		<costList>
-			<Steel>75</Steel>
-			<Plasteel>35</Plasteel>
-			<ComponentIndustrial>16</ComponentIndustrial>
-			<ImperialComponent>10</ImperialComponent>
-			<RefinedAdamantium>5</RefinedAdamantium>
-			<ImperialPowercore>2</ImperialPowercore>
+		<Steel>100</Steel>
+		<Plasteel>45</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
 		</costList>
 		<verbs>
 			<li>
@@ -1811,10 +1786,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>OgrynGrenadeGauntlet</li>
 		</weaponTags>
 		<thingCategories>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>IGCRanged</li>
+			<li>OGIRanged</li>
 		</tradeTags>
     <tools>
       <li>
@@ -1836,8 +1811,8 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
 	</ThingDef>
 	
-<!-- ====================== AssaultCannon ===================== --> 
- <ThingDef ParentName="JamableBullet">
+ <!-- ====================== AssaultCannon ===================== --> 
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AssaultCannon</defName>
     <label>Assaultcannon bullet</label>
     <graphicData>
@@ -1853,12 +1828,13 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGunJamable">
+ <ThingDef ParentName="OGImperialHeavyGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunCP</thingClass>
     <defName>OGI_Gun_AssaultCannon</defName>
     <label>Assaultcannon</label>
     <description>The Assault Cannon is a ballistic six-barreled, self-loading rotary Autocannon, effective against infantry targets and light vehicles at close to medium range. It is a medium calibre rotary Autocannon, with its 6 barrels cycled by an electric motor past a single chamber. The Assault Cannon was developed after the end of the Horus Heresy in the early 31st Millennium as a replacement for the Autocannon. Introduced during the Mark IIIA phase of Indomitus Pattern Terminator Armour development, this weapon is the standard alternative to the Heavy Flamer as a Terminator Squad's special ranged weapon. Its design has changed little in 10 Terran millennia, retaining the distinctively long, cylindrical, rotating barrels. Although it lacks the range of the Autocannon and many other Imperial heavy weapons, the Assault Cannon is a fearsome weapon when used at the close range role from which it was intended to be fired.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/AssaultCannon</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.10</drawSize>			
     </graphicData>
@@ -1879,15 +1855,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
 	</statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRAssaultCannon</researchPrerequisite>
+		<researchPrerequisite>MultibarrelWeapons</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
-		<Plasteel>50</Plasteel>
-		<ComponentIndustrial>24</ComponentIndustrial>
-		<ImperialComponent>4</ImperialComponent>
-		<RefinedAdamantium>4</RefinedAdamantium>
-		<ImperialPowercore>3</ImperialPowercore>
+		<Steel>150</Steel>
+		<Plasteel>75</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -1895,10 +1868,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>AssaultCannon</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -1933,7 +1906,7 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
 	
-<!-- ====================== Heavy Stubber ===================== -->
+ <!-- ====================== Heavy Stubber ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_HeavyStubber</defName>
     <label>Heavy Stubber Bullet</label>
@@ -1950,12 +1923,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_HeavyStubber</defName>
     <label>Heavy Stubber</label>
     <description>A Heavy Stubber is the name given to a range of heavy-barrelled Auto Weapons used for sustained fire. Like Autoguns they are easily manufactured and maintained, and are commonly used by Imperial Guard forces across the Imperium. A mainstay support weapon on lower-technology level planets that cannot maintain laser weapons in working order due to technological or resource limitations, and also popular with outlaws and hive gangers, the Heavy Stubber is ideal for fighting off large numbers of enemies or even lightly armoured vehicles. Its high rate of fire makes up for its lack of strength and armour-piercing abilities.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/HeavyStubber</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/HeavyStubber</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.10</drawSize>			
     </graphicData>
@@ -1976,15 +1949,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 	</statBases>
 	<recipeMaker>
-		<researchPrerequisite>ImperialHeavyWeapons</researchPrerequisite>
+		<researchPrerequisite>ImperialSpecialWeapons</researchPrerequisite>
 	</recipeMaker>
     <costList>
 		<Steel>100</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-		<ImperialComponent>4</ImperialComponent>
-		<RefinedAdamantium>4</RefinedAdamantium>
-		<ImperialPowercore>3</ImperialPowercore>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>3</ComponentIndustrial>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -1993,10 +1963,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>GuevesaGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
@@ -2030,7 +2000,7 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
 
-<!-- ====================== Flamer ===================== -->
+ <!-- ====================== Flamer ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_Flamer</defName>
     <label>burning promethium </label>
@@ -2042,10 +2012,11 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     <thingClass>Projectile_Explosive</thingClass>
     <projectile>
 			<flyOverhead>false</flyOverhead>
-			<damageDef>Flame</damageDef>
+			<damageDef>OGFlamer</damageDef>
 			<damageAmountBase>3</damageAmountBase>
 		<armorPenetrationBase>0.16</armorPenetrationBase>
 			<explosionRadius>1.00</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
 			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 			<stoppingPower>0.75</stoppingPower>
@@ -2054,12 +2025,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </projectile>
   </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_Flamer</defName>
     <label>Flamer</label>
     <description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Flamer</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Flamer</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -2074,15 +2045,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRFlamer</researchPrerequisite>
+
 	</recipeMaker>
     <costList>
 		<Steel>150</Steel>
 		<Plasteel>15</Plasteel>
 		<ComponentIndustrial>4</ComponentIndustrial>
-		<ImperialComponent>2</ImperialComponent>
-		<RefinedAdamantium>2</RefinedAdamantium>
-		<ImperialPowercore>1</ImperialPowercore>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -2091,10 +2059,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>GuevesaSpecialGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <verbs>
 		<li>
@@ -2135,8 +2103,8 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
     </tools>
  </ThingDef>
 
-<!-- ====================== Metla Gun ===================== -->
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+ <!-- ====================== Metla Gun ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGI_Bullet_MeltaGun</defName>
     <label>Melta Blast</label>
     <graphicData>
@@ -2164,12 +2132,12 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 			<StartFireChance>1</StartFireChance>	
  </ThingDef>
   
- <ThingDef ParentName="BaseMakeableIGGun">
+ <ThingDef ParentName="OGImperialSpecialGun">
     <defName>OGI_Gun_MeltaGun</defName>
     <label>MeltaGun</label>
     <description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/MeltaGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MeltaGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -2184,15 +2152,13 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>WRMetla</researchPrerequisite>
+
 	</recipeMaker>
     <costList>
-		<Steel>50</Steel>
+		<Steel>150</Steel>
 		<Plasteel>100</Plasteel>
 		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>2</ImperialComponent>
-		<RefinedAdamantium>2</RefinedAdamantium>
-		<ImperialPowercore>15</ImperialPowercore>
+		<Gold>4</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -2201,10 +2167,10 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
 		<li>GuevesaSpecialGun</li>
 	</weaponTags>
 	<thingCategories>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>IGCRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
     <verbs>
 		<li>
@@ -2241,7 +2207,6 @@ Plasma Weapons make use of hydrogen fuel suspended in a liquid state in either f
       </li>
     </tools>
  </ThingDef>
-
+ 
 <!-- ====================== Sniper Rifle ===================== -->
-
 </Defs>

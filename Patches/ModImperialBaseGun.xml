@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "OGBaseImperialGun"]/@ParentName</xpath>
+
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGBaseImperialGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+		</operations>	
+	</Operation>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "OGMechanicusGun"]/@ParentName</xpath>
+
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGMechanicusGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

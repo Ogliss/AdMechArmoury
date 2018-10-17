@@ -1,12 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-	<HediffDef Name="OG_Melee_InjuryBase" Abstract="True">
-		<hediffClass>Hediff_Injury</hediffClass>
-		<tendable>true</tendable>
-		<displayWound>true</displayWound>
-	</HediffDef>
+  <HediffDef Name="OG_Melee_InjuryBase" Abstract="True">
+	<hediffClass>Hediff_Injury</hediffClass>
+	<tendable>true</tendable>
+	<displayWound>true</displayWound>
+	<labelNounPretty>{0} in the {1}</labelNounPretty>
+  </HediffDef>
 	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CutBaseHediff">
+    <defName>Cut</defName>
+    <label>cut</label>
+    <labelNoun>a cut</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>cut scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="StabBaseHediff">
+    <defName>Stab</defName>
+    <label>stab</label>
+    <labelNoun>a stab wound</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>stab scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CrushBaseHediff">
+    <defName>Crush</defName>
+    <label>crush</label>
+    <labelNoun>a crush wound</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>mangled scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.01</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Crushed</destroyedLabel>
+    </injuryProps>
+  </HediffDef>
+
 	<DamageDef Name="OGStunBase" Abstract="True">
 		<harmsHealth>false</harmsHealth>
 		<makesBlood>false</makesBlood>
@@ -17,8 +97,7 @@
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 	</HediffDef>
 	
-		<!--==================== HeDiff New Affectors =========================-->
-
+	<!-- ==================== HeDiff New Affectors ========================= -->
 	<HediffDef ParentName="OGAffectorBase">
 		<defName>OG_unConsciousness</defName>
 		<label>unconsciousness</label>
@@ -45,75 +124,57 @@
 		</stages>
 	</HediffDef>
 	
-	<!-- Injuries -->
-
-	<HediffDef ParentName="OG_Melee_InjuryBase">
-		<defName>OGHeatStab</defName>
-		<label>stab</label>
+	<!-- ==================== Power Weapon HeDiff ========================= -->
+	<HediffDef ParentName="CutBaseHediff">
+		<defName>PowerCut</defName>
+		<label>power weapon(cut)</label>
 		<comps>
-			<li Class="HediffCompProperties_TendDuration">
-				<labelTendedWell>bandaged</labelTendedWell>
-				<labelTendedWellInner>sutured</labelTendedWellInner>
-				<labelSolidTendedWell>set</labelSolidTendedWell>
-			</li>
-			<li Class="HediffCompProperties_Infecter">
-				<infectionChance>0.50</infectionChance>
-			</li>
-			<li Class="HediffCompProperties_GetsPermanent">
-				<permanentLabel>stab scar</permanentLabel>
-			</li>
+		
 		</comps>
 		<injuryProps>
-			<painPerSeverity>3</painPerSeverity>
-			<averagePainPerSeverityPermanent>0.5</averagePainPerSeverityPermanent>
-			<bleedRate>0.2</bleedRate>
-			<canMerge>false</canMerge>
-			<destroyedLabel>Melted off</destroyedLabel>
-			<destroyedOutLabel>Melted out</destroyedOutLabel>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
 		</injuryProps>
 	</HediffDef>
 	
-	<!--==================== Power Weapon HeDiff =========================-->
-
-	<HediffDef ParentName="OG_Melee_InjuryBase">
-		<defName>hediff_PowerWeapon</defName>
-		<label>disruption field</label>
+	<HediffDef ParentName="StabBaseHediff">
+		<defName>PowerStab</defName>
+		<label>power weapon(stab)</label>
 		<comps>
-			<li Class="HediffCompProperties_TendDuration">
-				<labelTendedWell>bandaged</labelTendedWell>
-				<labelTendedWellInner>sutured</labelTendedWellInner>
-				<labelSolidTendedWell>set</labelSolidTendedWell>
-			</li>
-			<li Class="HediffCompProperties_Infecter">
-				<infectionChance>0.50</infectionChance>
-			</li>
-			<li Class="HediffCompProperties_GetsPermanent">
-				<permanentLabel>disruption scar</permanentLabel>
-			</li>
+		
 		</comps>
 		<injuryProps>
-			<painPerSeverity>3</painPerSeverity>
-			<averagePainPerSeverityPermanent>0.5</averagePainPerSeverityPermanent>
-			<bleedRate>0.2</bleedRate>
-			<canMerge>false</canMerge>
-			<destroyedLabel>Severed</destroyedLabel>
-			<destroyedOutLabel>Destroyed</destroyedOutLabel>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+	
+	<HediffDef ParentName="CrushBaseHediff">
+		<defName>PowerBlunt</defName>
+		<label>power weapon(blunt)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
 		</injuryProps>
 	</HediffDef>
 
-	
-	<!--==================== Power Maul HeDiff =========================-->
-
+	<!-- ==================== Power Maul HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>hediff_PowerMaul</defName>
+		<defName>hediff_Pacifier</defName>
 		<label>being pacified</label>
 		<makesAlert>false</makesAlert>
 		<makesSickThought>true</makesSickThought>
 		<comps>
 				<li Class="HediffCompProperties_Disappears">
 					<disappearsAfterTicks>
-						<min>30000</min>
-						<max>60000</max>
+						<min>1000</min>
+						<max>6000</max>
 					</disappearsAfterTicks>
 				</li>
 		</comps>
@@ -150,5 +211,191 @@
 			</injuryProps>
 	</HediffDef>
 
+	<!-- ==================== Toxins HeDiff ========================= -->
+	<HediffDef>
+    <defName>Toxins</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+    <label>toxic buildup</label>
+    <lethalSeverity>1</lethalSeverity>
+    <makesSickThought>true</makesSickThought>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <taleOnVisible>ToxicityRevealed</taleOnVisible>
+    <comps>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <label>initial</label>
+        <minSeverity>0.04</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.40</minSeverity>
+        <vomitMtbDays>5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>146</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>438</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>serious</label>
+        <minSeverity>0.60</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>37</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>111</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.80</minSeverity>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.10</setMax>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>13</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>39</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
+  	<!-- ==================== Force Weapon HeDiff ========================= -->
+	<HediffDef ParentName="CutBaseHediff">
+		<defName>ForceCut</defName>
+		<label>force weapon(cut)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
 	
+	<HediffDef ParentName="StabBaseHediff">
+		<defName>ForceStab</defName>
+		<label>force weapon(stab)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+	
+	<HediffDef ParentName="CrushBaseHediff">
+		<defName>ForceBlunt</defName>
+		<label>Force weapon(blunt)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+
+  
+	<!-- ==================== Psychic Shock HeDiff ========================= -->
+	<HediffDef ParentName="DiseaseBase">
+    <defName>FWPsychicShock</defName>
+    <label>psychic shock</label>
+    <labelNoun>a psychic shock</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>1500</min>
+          <max>7500</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+			<injuryProps>
+				<bleedRate>0</bleedRate>
+				<canMerge>true</canMerge>
+			</injuryProps>
+  </HediffDef>
 </Defs>

@@ -1,14 +1,129 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!--========================= Imperial - Wargear ==========================-->
+	<!--========================= Imperial - Wargear S 1 ==========================-->
+	<!--========================= Imperial - Rosarius ==========================-->  
+	<ThingDef ParentName="IGCArmorMakeableBase">
+    <defName>OGI_Apparel_Rosarius</defName>
+    <label>Rosarius</label>
+    <description>A Rosarius is a symbol of office for the clerical members of the Adeptus Ministorum and is also a symbol of office for the Chaplains of the Space Marines alongside the Crozius. A Rosarius normally takes the form of a gorget, amulet, or signet ring of adamantium usually shaped into the form of the Imperial Aquila or a Gothic Cross with a jewel in the centre, and houses a powerful protective Conversion Field emitter, protecting the Ministorum's priest or the Space Marine Chaplain from attacks both physical and psychic that might otherwise break through the protection of even the mighty Space Marine Power Armour or the indomitable psychic strength of his own will. The field's effect is to convert the kinetic energy of an impact into harmless photons of the visible light spectrum. When the field stops a shot, a blinding flash of light is produced as the energetic conversion occurs. The field is capable of rendering even Plasma Gun shots harmless. It is worn around the neck or waist on a sash, a cord, or a string of prayer beads.</description>
+    <thingClass>AdeptusMechanicus.AdvShieldBelt</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Apparel_ImperialRosarius</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <statBases>
+		<Mass>3</Mass>
+		<EnergyShieldRechargeRate>0.065</EnergyShieldRechargeRate>
+		<EnergyShieldEnergyMax>2.2</EnergyShieldEnergyMax>
+		<MarketValue>34000</MarketValue>
+		<MaxHitPoints>180</MaxHitPoints>
+    </statBases>
+		<equippedStatOffsets>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.30</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.50</PsychicSensitivity>
+			<PainShockThreshold>0.15</PainShockThreshold>
+			<MentalBreakThreshold>-0.14</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>4</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+		</recipeMaker>
+    <thingCategories>
+      <li>OGIWargear</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>OGTorsoWargear1</li>
+      </bodyPartGroups>
+      <layers>
+        <li>OnSkin</li>
+      </layers>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1,1,1,1)</only>
+
+        </li>
+      </options>
+    </colorGenerator>
+    <generateCommonality>0.7</generateCommonality>
+  </ThingDef>
+
+	<!--========================= Imperial - Iron Halo ==========================-->  
+	<ThingDef ParentName="IGCArmorMakeableBase">
+    <defName>OGI_Apparel_IronHalo</defName>
+    <label>Iron Halo</label>
+    <description>The Iron Halo is a revered part of the Armoury of the Chapters of the Adeptus Astartes and is also a common Astartes award for valour. The Iron Halo is a halo-shaped ring that is positioned above the head of the wielder, usually mounted on the backpack of Space Marine Power Armour but sometimes mounted in the gorget. The Iron Halo is a prestigious honour that is granted only to the most exceptional of the Astartes within a Space Marine Chapter as a reward for uncommon initiative and valour. It is most often worn by the Chapter's Captains and Chapter Master, though Veteran Astartes and Sergeants can also earn the right to add it to their armour in certain circumstances. The Iron Halo appears to share the same basic technological mechanisms as the Space Marine Chaplain's Rosarius, as they both produce a protective effect using gravitic and now poorly-understood Conversion Field technology.</description>
+    <thingClass>AdeptusMechanicus.AdvShieldBelt</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Apparel_IronHalo</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <statBases>
+		<Mass>3</Mass>
+		<EnergyShieldRechargeRate>0.26</EnergyShieldRechargeRate>
+		<EnergyShieldEnergyMax>0.55</EnergyShieldEnergyMax>
+		<MarketValue>14000</MarketValue>
+		<MaxHitPoints>180</MaxHitPoints>
+    </statBases>
+		<equippedStatOffsets>
+		<PsychicSensitivity>-0.10</PsychicSensitivity>
+		<PainShockThreshold>0.10</PainShockThreshold>
+		<MentalBreakThreshold>-0.04</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>4</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+		</recipeMaker>
+    <thingCategories>
+      <li>OGIWargear</li>
+    </thingCategories>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>OGTorsoWargear1</li>
+      </bodyPartGroups>
+      <layers>
+        <li>OnSkin</li>
+      </layers>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1,1,1,1)</only>
+
+        </li>
+      </options>
+    </colorGenerator>
+    <generateCommonality>0.7</generateCommonality>
+  </ThingDef>
+ 
+	<!--========================= Imperial - Wargear S 2 ==========================-->
     <!--========================= Imperial - Purity Seal ==========================-->
 	<ThingDef ParentName="IGCArmorMakeableBase">
-		<defName>OGStd-PuritySealA</defName>
+		<defName>OGI_Apparel_PuritySealA</defName>
 		<label>imperial purity seal</label>
 		<description>Purity seals are borne by various Imperial troops, applied to weapons, armor and vehicles. They take the form of wax seals and parchment inscribed with declarations and prayers. They are prominently displayed on armour, and symbolize that the wearer is uncontaminated by the slightest taint of Chaos.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/Apparel_PuritySealA</texPath>
+			<texPath>Things/Item/Equipment/Wargear/Imperial/Apparel_PuritySealA</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
@@ -22,9 +137,9 @@
 			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>40</Steel>
-			<Plasteel>4</Plasteel>
-			<ImperialComponent>2</ImperialComponent>
+			<Steel>20</Steel>
+			<Plasteel>10</Plasteel>
+			<Gold>1</Gold>
 		</costList>
 		<recipeMaker>
 			
@@ -48,11 +163,11 @@
 			<li>OGIAddons</li>
 		</tradeTags>
 	</ThingDef>
-    
-	<!--========================= Imperial - Servo Skulls ==========================-->
+
+    <!--========================= Imperial - Servo Skulls ==========================-->
     <!--========================= Imperial - Hospitaller Skull ==========================-->
 	<ThingDef ParentName="IGCArmorMakeableBase">
-		<defName>OGStd-ServoSkullA</defName>
+		<defName>OGI_Apparel_ServoSkullA</defName>
 		<label>Imperial Hospitaller Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.
 		
@@ -80,7 +195,7 @@
 			<Steel>40</Steel>
 			<Plasteel>4</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
-			<ImperialComponent>2</ImperialComponent>
+			<Gold>2</Gold>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>ARBasicServoSkull</researchPrerequisite>
@@ -108,7 +223,7 @@
 	
     <!--========================= Imperial - Inquisitorial Skull ==========================-->
 	<ThingDef ParentName="IGCArmorMakeableBase">
-		<defName>OGStd-ServoSkullB</defName>
+		<defName>OGI_Apparel_ServoSkullB</defName>
 		<label>Imperial Inquisitorial Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.
 		
@@ -134,7 +249,7 @@
 			<Steel>40</Steel>
 			<Plasteel>4</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
-			<ImperialComponent>2</ImperialComponent>
+			<Gold>2</Gold>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>ARBasicServoSkull</researchPrerequisite>
@@ -162,7 +277,7 @@
 	
     <!--========================= Imperial - Mechanicus Skull ==========================-->
 	<ThingDef ParentName="IGCArmorMakeableBase">
-		<defName>OGStd-ServoSkullC</defName>
+		<defName>OGI_Apparel_ServoSkullC</defName>
 		<label>Imperial Basic Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.
 		
@@ -191,7 +306,7 @@
 			<Steel>40</Steel>
 			<Plasteel>4</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
-			<ImperialComponent>2</ImperialComponent>
+			<Gold>2</Gold>
 		</costList>
 		<recipeMaker>
 			<researchPrerequisite>ARBasicServoSkull</researchPrerequisite>
@@ -216,8 +331,9 @@
 			<li>OGIAddons</li>
 		</tradeTags>
 	</ThingDef>
-	
-	   <!--========================= Imperial - Power Armour ==========================-->
+
+	<!--========================= Imperial - Armour ==========================-->
+	<!--========================= Imperial - Power Armour ==========================-->
 <!--
 	<ThingDef ParentName="IGCArmorMakeableBase">
 		<defName>OGStd-PowerArmour</defName>
@@ -254,7 +370,7 @@
 			<Steel>40</Steel>
 			<ComponentIndustrial>18</ComponentIndustrial>
 			<Plasteel>135</Plasteel>
-			<ImperialComponent>2</ImperialComponent>
+			<Gold>2</Gold>
 		</costList>
 		<apparel>
 		<careIfWornByCorpse>false</careIfWornByCorpse>
@@ -334,119 +450,127 @@
     </colorGenerator>
 	</ThingDef>
 -->
-	
-	   <!--========================= Imperial - Rosarius ==========================--> 
-	  <ThingDef ParentName="IGCArmorMakeableBase">
-    <defName>Apparel_ImperialRosarius</defName>
-    <label>Imperial Rosarius</label>
-    <description>A Rosarius is a symbol of office for the clerical members of the Adeptus Ministorum and is also a symbol of office for the Chaplains of the Space Marines alongside the Crozius. A Rosarius normally takes the form of a gorget, amulet, or signet ring of adamantium usually shaped into the form of the Imperial Aquila or a Gothic Cross with a jewel in the centre, and houses a powerful protective Conversion Field emitter, protecting the Ministorum's priest or the Space Marine Chaplain from attacks both physical and psychic that might otherwise break through the protection of even the mighty Space Marine Power Armour or the indomitable psychic strength of his own will. The field's effect is to convert the kinetic energy of an impact into harmless photons of the visible light spectrum. When the field stops a shot, a blinding flash of light is produced as the energetic conversion occurs. The field is capable of rendering even Plasma Gun shots harmless. It is worn around the neck or waist on a sash, a cord, or a string of prayer beads.</description>
-    <thingClass>AdeptusMechanicus.AdvShieldBelt</thingClass>
-    <graphicData>
-      <texPath>Things/Item/Equipment/Apparel_ImperialRosarius</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <tickerType>Normal</tickerType>
-    <statBases>
-		<Mass>3</Mass>
-		<EnergyShieldRechargeRate>0.065</EnergyShieldRechargeRate>
-		<EnergyShieldEnergyMax>2.2</EnergyShieldEnergyMax>
-		<MarketValue>34000</MarketValue>
-		<MaxHitPoints>180</MaxHitPoints>
-    </statBases>
+
+	<!--========================= Tau - Armour ==========================-->
+	<!--========================= Tau - Combat Suit ==========================-->
+	<!--
+	<ThingDef ParentName="OGTApparelBase">
+		<defName>OGT-CombatArmour</defName>
+		<label>tau combat armour</label>
+		<description>Combat Armour is a form of Tau standard-issue infantry armour worn by all Fire Warriors in battle, and is similar in design and construction to Imperial Carapace Armour. Combat Armour is constructed in two layers. The outer face is a hard, ultra-dense nano-crystalline metal veneer bonded to an inner layer of high performance, thermo-set, molecular polyethene. The outer layer material is known as Fio'tak in the Tau Lexicon, and is commonly used as a form of armour across nearly all types of Tau units due to its lightweight nature and impact-resistant structure. The inner layer of Combat Armour acts as an energy-absorbent padding for energy dispersal, and helps prevent blunt trauma effects from high velocity impacts. The highly advanced materials used in Combat Armour's construction are very resilient to penetration and lightweight compared to more conventional Imperial materials such as plasteel.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/TauCombatSuit/TauCombatSuit</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1500</MarketValue>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>60000</WorkToMake>
+			<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+			<ArmorRating_Sharp>1.10</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.50</ArmorRating_Heat>
+			<Insulation_Heat>10</Insulation_Heat>
+			<Insulation_Cold>30</Insulation_Cold>
+			<Mass>4</Mass>
+		</statBases>
 		<equippedStatOffsets>
-			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
-			<ShootingAccuracyPawn>0.30</ShootingAccuracyPawn>
-			<PsychicSensitivity>-0.50</PsychicSensitivity>
-			<PainShockThreshold>0.15</PainShockThreshold>
-			<MentalBreakThreshold>-0.14</MentalBreakThreshold>
+			<MoveSpeed>-0.03</MoveSpeed>
+			<WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.0</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>40</Steel>
-			<Plasteel>4</Plasteel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-			<ImperialComponent>2</ImperialComponent>
+			<Steel>100</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+			
 		</recipeMaker>
-    <thingCategories>
-      <li>OGIWargear</li>
-    </thingCategories>
-    <apparel>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
-      <bodyPartGroups>
-        <li>OGTorsoWargear1</li>
-      </bodyPartGroups>
-      <layers>
-        <li>OnSkin</li>
-      </layers>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1,1,1,1)</only>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/TauCombatSuit/TauCombatSuit</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Military</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGTArmour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+-->
 
-        </li>
-      </options>
-    </colorGenerator>
-    <generateCommonality>0.7</generateCommonality>
-  </ThingDef>
-
-	   <!--========================= Imperial - Iron Halo ==========================-->  
-	  <ThingDef ParentName="IGCArmorMakeableBase">
-    <defName>Apparel_ImperialIronHalo</defName>
-    <label>Imperial Iron Halo</label>
-    <description>The Iron Halo is a revered part of the Armoury of the Chapters of the Adeptus Astartes and is also a common Astartes award for valour. The Iron Halo is a halo-shaped ring that is positioned above the head of the wielder, usually mounted on the backpack of Space Marine Power Armour but sometimes mounted in the gorget. The Iron Halo is a prestigious honour that is granted only to the most exceptional of the Astartes within a Space Marine Chapter as a reward for uncommon initiative and valour. It is most often worn by the Chapter's Captains and Chapter Master, though Veteran Astartes and Sergeants can also earn the right to add it to their armour in certain circumstances. The Iron Halo appears to share the same basic technological mechanisms as the Space Marine Chaplain's Rosarius, as they both produce a protective effect using gravitic and now poorly-understood Conversion Field technology.</description>
-    <thingClass>AdeptusMechanicus.AdvShieldBelt</thingClass>
-    <graphicData>
-      <texPath>Things/Item/Equipment/Apparel_IronHalo</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <tickerType>Normal</tickerType>
-    <statBases>
-		<Mass>3</Mass>
-		<EnergyShieldRechargeRate>0.26</EnergyShieldRechargeRate>
-		<EnergyShieldEnergyMax>0.55</EnergyShieldEnergyMax>
-		<MarketValue>14000</MarketValue>
-		<MaxHitPoints>180</MaxHitPoints>
-    </statBases>
+	<!--========================= Tau - Combat Suit Helmet ==========================-->
+	<!--
+	<ThingDef ParentName="OGTApparelBase">
+		<defName>OGT-CombatHelmet</defName>
+		<label>tau combat Helmet</label>
+		<description>Combat Armour is a form of Tau standard-issue infantry armour worn by all Fire Warriors in battle, and is similar in design and construction to Imperial Carapace Armour. Combat Armour is constructed in two layers. The outer face is a hard, ultra-dense nano-crystalline metal veneer bonded to an inner layer of high performance, thermo-set, molecular polyethene. The outer layer material is known as Fio'tak in the Tau Lexicon, and is commonly used as a form of armour across nearly all types of Tau units due to its lightweight nature and impact-resistant structure. The inner layer of Combat Armour acts as an energy-absorbent padding for energy dispersal, and helps prevent blunt trauma effects from high velocity impacts. The highly advanced materials used in Combat Armour's construction are very resilient to penetration and lightweight compared to more conventional Imperial materials such as plasteel.</description>
+		<graphicData>
+		<texPath>Things/Item/Apparel/TauCombatSuitHelmet/CombatHelmet</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>1</Mass>
+			<MarketValue>500</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>30000</WorkToMake>
+			<ArmorRating_Sharp>1.00</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.27</ArmorRating_Heat>
+			<Insulation_Heat>3</Insulation_Heat>
+			<Insulation_Cold>-10</Insulation_Cold>
+		</statBases>
 		<equippedStatOffsets>
-		<PsychicSensitivity>-0.10</PsychicSensitivity>
-		<PainShockThreshold>0.10</PainShockThreshold>
-		<MentalBreakThreshold>-0.04</MentalBreakThreshold>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>40</Steel>
-			<Plasteel>4</Plasteel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-			<ImperialComponent>2</ImperialComponent>
+			<Steel>50</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+		
 		</recipeMaker>
-    <thingCategories>
-      <li>OGIWargear</li>
-    </thingCategories>
-    <apparel>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
-      <bodyPartGroups>
-        <li>OGTorsoWargear1</li>
-      </bodyPartGroups>
-      <layers>
-        <li>OnSkin</li>
-      </layers>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(1,1,1,1)</only>
-
-        </li>
-      </options>
-    </colorGenerator>
-    <generateCommonality>0.7</generateCommonality>
-  </ThingDef>
- 
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/TauCombatSuitHelmet/CombatHelmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>Military</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGTHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+	</ThingDef>
+-->	
 </Defs>

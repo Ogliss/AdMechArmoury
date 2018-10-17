@@ -1,12 +1,204 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  
+<!-- ==================== Special Melee Weapons ==================== -->
+<!-- ==================== Power Weapons ==================== -->
   <ManeuverDef>
-    <defName>PowerMaul</defName>
-    <requiredCapacity>PowerMaul</requiredCapacity>
+    <defName>PowerSlash</defName>
+    <requiredCapacity>PowerCut</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackPowerweapon</verbClass>
+      <meleeDamageDef>PowerCut</meleeDamageDef>
+      <soundCast>MeleeHit_Metal_PowerWeapon</soundCast>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>PowerStab</defName>
+    <requiredCapacity>PowerStab</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackPowerweapon</verbClass>
+      <meleeDamageDef>PowerStab</meleeDamageDef>
+      <soundCast>MeleeHit_Metal_PowerWeapon</soundCast>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>PowerSmash</defName>
+    <requiredCapacity>PowerBlunt</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackPowerweapon</verbClass>
+      <meleeDamageDef>PowerBlunt</meleeDamageDef>
+      <soundCast>MeleeHit_Metal_PowerWeapon</soundCast>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Transonic Weapons ==================== -->
+  <ManeuverDef>
+    <defName>TransonicSlash</defName>
+    <requiredCapacity>TransonicCut</requiredCapacity>
     <verb>
       <verbClass>Verb_MeleeAttackDamage</verbClass>
-      <meleeDamageDef>OGIPowerMaul</meleeDamageDef>
+      <meleeDamageDef>Cut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>TransonicStab</defName>
+    <requiredCapacity>TransonicStab</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>Stab</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>TransonicSmash</defName>
+    <requiredCapacity>TransonicBlunt</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>Blunt</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Posioned Weapons ==================== -->
+  <ManeuverDef>
+    <defName>PoisionedCut</defName>
+    <requiredCapacity>PoisionCut</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>ToxicCut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+  <ManeuverDef>
+    <defName>PoisionedStab</defName>
+    <requiredCapacity>PoisionStab</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>ToxicStab</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Plagued Weapons ==================== -->
+  <ManeuverDef>
+    <defName>PlaguedCut</defName>
+    <requiredCapacity>PlagueCut</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>OGDEPlagueCut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+  <ManeuverDef>
+    <defName>PlaguedStab</defName>
+    <requiredCapacity>PlagueStab</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>OGDEPlagueStab</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Force Weapons ==================== -->
+  <ManeuverDef>
+    <defName>ForceSlash</defName>
+    <requiredCapacity>ForceCut</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackForceweapon</verbClass>
+      <meleeDamageDef>ForceCut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>ForceStab</defName>
+    <requiredCapacity>ForceStab</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackForceweapon</verbClass>
+      <meleeDamageDef>ForceStab</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <ManeuverDef>
+    <defName>ForceSmash</defName>
+    <requiredCapacity>ForceBlunt</requiredCapacity>
+    <verb>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackForceweapon</verbClass>
+      <meleeDamageDef>ForceBlunt</meleeDamageDef>
+      <!-- <soundCast>MeleeHit_Metal_ThunderHammer</soundCast> -->
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Pacifier Weapons ==================== -->
+  <ManeuverDef>
+    <defName>Pacifiy</defName>
+    <requiredCapacity>Pacifier</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>OGIPacifier</meleeDamageDef>
     </verb>
     <logEntryDef>MeleeAttack</logEntryDef>
     <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
@@ -16,10 +208,39 @@
   </ManeuverDef>
   
   <ManeuverDef>
+    <defName>PacifiyBlunt</defName>
+    <requiredCapacity>PacifierBlunt</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>OGIPacifier</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+  <ManeuverDef>
+    <defName>PacifiyPoke</defName>
+    <requiredCapacity>PacifierPoke</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>OGIPacifier</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Poke_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Poke_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Poke_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Poke_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  
+<!-- ==================== Thunderhammer ==================== -->
+  <ManeuverDef>
     <defName>ThunderSmash</defName>
     <requiredCapacity>ThunderBlunt</requiredCapacity>
     <verb>
-      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <verbClass>AdeptusMechanicus.Verb_MeleeAttackPowerweapon</verbClass>
       <meleeDamageDef>OGIThunderhammer</meleeDamageDef>
       <soundCast>MeleeHit_Metal_ThunderHammer</soundCast>
     </verb>
@@ -29,5 +250,4 @@
     <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
     <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
   </ManeuverDef>
-  
 </Defs>

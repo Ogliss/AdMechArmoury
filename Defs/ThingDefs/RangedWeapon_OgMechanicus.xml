@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <Defs>
-  
 <!-- ====================== Radium Pistol ===================== -->
-
-
-  <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="BaseBullet">
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OGEffectBulletBase">
 	<defName>OGAM_Bullet_RadiumPistol</defName>
     <label>radium round</label>
     <graphicData>
@@ -24,12 +20,12 @@
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
  </ThingDef>
 
- <ThingDef ParentName="OGBaseMakeableGun">
+	<ThingDef ParentName="OGMechanicusGun">
 	<defName>OGAM_Gun_RadiumPistol</defName>
     <label>Radium Pistol</label>
     <description>A small pistol that uses scaled down radium technology, usually used by Skitarii Vanguard and Ranger Alphas. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/RadiumPistol</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumPistol</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -43,13 +39,13 @@
 		<AccuracyLong>0.70</AccuracyLong>
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRRadiumWeapons</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-		<ImperialComponent>3</ImperialComponent>
-		<RefinedAdamantium>3</RefinedAdamantium>
-		<ImperialPowercore>1</ImperialPowercore>
+		<Steel>150</Steel>
+		<Plasteel>35</Plasteel>
+		<ComponentIndustrial>7</ComponentIndustrial>
 		<Gold>1</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
@@ -93,9 +89,7 @@
  </ThingDef>
  
 <!-- ====================== Radium Carbine ===================== -->
-
-  
-  <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="BaseBullet">
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OGEffectBulletBase">
 	<defName>OGAM_Bullet_RadiumCarbine</defName>
     <label>radium round</label>
     <graphicData>
@@ -114,12 +108,12 @@
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGun">
+	<ThingDef ParentName="OGMechanicusGun">
     <defName>OGAM_Gun_RadiumCarbine</defName>
     <label>Radium Carbine</label>
     <description>A rapid firing radium weapon capable of a punishing rate of fire, it is the main armament of Skitarii Vanguard. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/RadiumRifle</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumRifle</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.1</drawSize>			
     </graphicData>
@@ -139,14 +133,13 @@
 		<AccuracyLong>0.65</AccuracyLong>
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRRadiumWeapons</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<ComponentSpacer>4</ComponentSpacer>
-		<ComponentIndustrial>12</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>85</Steel>
+		<Plasteel>55</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
 		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
@@ -162,7 +155,7 @@
 		</tradeTags>
     <verbs>
 		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_RadiumCarbine</defaultProjectile>
 			<warmupTime>0.40</warmupTime>
@@ -198,10 +191,8 @@
     </tools>
  </ThingDef>
  
- <!-- ====================== Radium Jezzail===================== -->
-
-  
-  <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="BaseBullet">
+<!-- ====================== Radium Jezzail===================== -->
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OGEffectBulletBase">
 	<defName>OGAM_Bullet_RadiumJezzail</defName>
     <label>Bolt</label>
     <graphicData>
@@ -220,12 +211,12 @@
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGun">
+ <ThingDef ParentName="OGMechanicusSpecialGun">
     <defName>OGAM_Gun_RadiumJezzail</defName>
     <label>Radium Jezzail</label>
     <description>A long sniper-like radium weapon that is sometimes used by Sydonian Dragoons instead of a Taser Lance. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/RadiumJezzail</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumJezzail</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>			
     </graphicData>
@@ -245,13 +236,14 @@
 		<AccuracyLong>0.75</AccuracyLong>
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRRadiumWeapons</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>15</Steel>
-		<Plasteel>15</Plasteel>
-		<ComponentIndustrial>12</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>115</Steel>
+		<Plasteel>75</Plasteel>
+		<ComponentIndustrial>8</ComponentIndustrial>
+		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -302,10 +294,8 @@
     </tools>
  </ThingDef>
  
- 
 <!-- ====================== Plasma Caliver ===================== -->
-
- <ThingDef ParentName="OverheatBullet">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCaliver</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -325,12 +315,13 @@
 	</projectile>
  </ThingDef>
 
- <ThingDef ParentName="OGBaseMakeableGunGetsHot">
-	<defName>OGI_Gun_PlasmaCaliver</defName>
+ <ThingDef ParentName="OGMechanicusSpecialGun">
+		<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+	<defName>OGAM_Gun_PlasmaCaliver</defName>
     <label>Plasma Caliver</label>
 	<description>Plasma Calivers are a type of Plasma Weapon used by Adeptus Mechanicus Skitarii. This gun exchanges range for a terrifying rate of fire. A squad of Skitarii armed with several plasma calivers lights up the night with each volley. They risk life and limb in the process, as Imperial plasma weaponry is notoriously unreliable</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaCaliver</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCaliver</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -345,15 +336,13 @@
 		<RangedWeapon_Cooldown>2.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>ImperialMechanicusWeapons</researchPrerequisite>
+		<researchPrerequisite>WRMechanicusPlasma</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>75</Steel>
+		<Steel>175</Steel>
 		<Plasteel>55</Plasteel>
 		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Gold>6</Gold>
     </costList>
 	<weaponTags>
 		<li>EliteGun</li>
@@ -367,7 +356,7 @@
 	</tradeTags>
     <verbs>
 		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
+			<verbClass>AdeptusMechanicus.Verb_ShootOHRF</verbClass>
 			<overheat>UR</overheat>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCaliver</defaultProjectile>
@@ -406,10 +395,8 @@
     </tools>
  </ThingDef>
 
- 
 <!-- ====================== Plasma Culverin ===================== -->
-  
- <ThingDef ParentName="OverheatBullet">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCulverin</defName>
     <label>Plasma Bolt</label>
     <graphicData>
@@ -429,12 +416,13 @@
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGunGetsHot">
-    <defName>OGI_Gun_PlasmaCulverin</defName>
+ <ThingDef ParentName="OGMechanicusHeavyGun">
+		<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+    <defName>OGAM_Gun_PlasmaCulverin</defName>
     <label>Plasma Culverin</label>
     <description>A Plasma Culverin is a type of heavy Plasma Weapon deployed by the Adeptus Mechanicus' Kataphron Battle Servitors, particularly the variant known as the Kataphron Destroyer. Plasma Culverins sacrifice the range of their cannon pattern equivalents in exchange for a higher rate of fire. Only the Adeptus Mechanicus dare coax such rampant destruction from their Plasma Weapons, yet to the Adepts of the Forge World of Ryza in particular, the scars they leave on wielder and war zone alike are considered quite normal.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/PlasmaCulverin</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCulverin</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
@@ -455,16 +443,13 @@
 		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<researchPrerequisite>ImperialMechanicusWeapons</researchPrerequisite>
-		
+		<researchPrerequisite>WRMechanicusPlasma</researchPrerequisite>
 	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
+		<Steel>200</Steel>
 		<Plasteel>100</Plasteel>
 		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>12</ImperialComponent>
-		<RefinedAdamantium>12</RefinedAdamantium>
-		<ImperialPowercore>16</ImperialPowercore>
+		<Gold>8</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -511,9 +496,7 @@
     </tools>
  </ThingDef>
  
-<!-- ====================== Macro Stubber ===================== -->
-
-  
+<!-- ====================== Macro Stubber ===================== --> 
  <ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_MacroStubber</defName>
     <label>macro stub bullet</label>
@@ -531,12 +514,12 @@
     </projectile>
  </ThingDef>
   
- <ThingDef ParentName="OGBaseMakeableGun">
+ <ThingDef ParentName="OGMechanicusGun">
     <defName>OGAM_Gun_MacroStubber</defName>
     <label>Macro Stubber</label>
     <description>This type of antique weapon is used by Adeptus Mechanicus Tech-Priests and is able to hurl out a thunderous cloud of solid slugs</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/MacroStubber</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MacroStubber</texPath>
 		<graphicClass>Graphic_Single</graphicClass>	
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -550,13 +533,14 @@
 		<AccuracyLong>0.70</AccuracyLong>
 		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>5</ComponentIndustrial>
-		<ImperialComponent>5</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>70</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>1</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -601,10 +585,8 @@
     </tools>
  </ThingDef>
 
-  
-<!-- ====================== Stub Carbine ===================== -->
-
-<ThingDef ParentName="BaseBullet">
+ <!-- ====================== Stub Carbine ===================== -->
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_StubCarbine</defName>
     <label>stubber bullet</label>
     <graphicData>
@@ -621,13 +603,12 @@
     </projectile>
  </ThingDef>
 
-
- <ThingDef ParentName="OGBaseMakeableGun">
+ <ThingDef ParentName="OGMechanicusGun">
     <defName>OGAM_Gun_StubCarbine</defName>
     <label>Stub Carbine</label>
     <description>A Stubcarbine is a compact, solid projectile weapon used exclusively by Sicarian Infiltrators, perhaps the most sinister of the Adeptus Mechanicus's Skitarii warrior clades. The Stubcarbine, though compact, deals the same damage as the Heavy Stubbers mounted on the tanks of the Astra Militarum. When a squad of Sicarian Infiltrators opens fire with these weapons, the air fills with a storm of solid shot that chews their victims to ruin.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/StubCarbine</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/StubCarbine</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -641,13 +622,14 @@
 			<AccuracyLong>0.70</AccuracyLong>
 			<RangedWeapon_Cooldown>0.70</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Steel>80</Steel>
+		<Plasteel>50</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
+		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -699,11 +681,8 @@
     </tools>
  </ThingDef>
 
-  
 <!-- ====================== Galvanic Rifle ===================== -->
-
-
-<ThingDef ParentName="BaseBullet">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_GalvanicRifle</defName>
     <label>galvanic round</label>
     <graphicData>
@@ -720,13 +699,12 @@
     </projectile>
  </ThingDef>
 
-
- <ThingDef ParentName="OGBaseMakeableGun">
+ <ThingDef ParentName="OGMechanicusSpecialGun">
     <defName>OGAM_Gun_GalvanicRifle</defName>
     <label>Galvanic Rifle</label>
     <description>The Mark IV Arkhan Galvanic Rifle, modelled after the hunting flintlocks of Mars' distant colonial past, is a precision tool in the hands of a Skitarii Ranger. Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic Servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/GalvanicRifle</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/GalvanicRifle</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>			
     </graphicData>
@@ -746,13 +724,14 @@
 		<AccuracyLong>0.80</AccuracyLong>
 		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>30</Steel>
-		<Plasteel>30</Plasteel>
+		<Steel>130</Steel>
+		<Plasteel>40</Plasteel>
 		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>5</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Gold>4</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -774,7 +753,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
 			<warmupTime>3</warmupTime>
-			<range>34</range>
+			<range>38</range>
 			<soundCast>Shot_ChargeRifle</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -803,10 +782,8 @@
     </tools>
  </ThingDef>
 
-  <!-- ====================== Transuranic Arquebus ===================== -->
-
-  
-<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+<!-- ====================== Transuranic Arquebus ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
 	<defName>OGAM_Bullet_Transuranic_Arquebus</defName>
     <label>transuranic shell</label>
     <graphicData>
@@ -830,13 +807,12 @@
 			<postFiringDuration>6</postFiringDuration>
  </ThingDef>
 
-
- <ThingDef ParentName="OGBaseMakeableGun">
+ <ThingDef ParentName="OGMechanicusHeavyGun">
     <defName>OGAM_Gun_Transuranic_Arquebus</defName>
     <label>Transuranic Arquebus</label>
     <description>A Transuranic Arquebus is a long-barrelled infantry weapon which epitomises the precision and inhuman efficiency that typify the cyborg Skitarii legions of the Adeptus Mechanicus. Firing a shell of depleted transuranium, a transuranic arquebus can puncture a tank from one side to the other, the resultant pressure wave also pulping any biological creatures that may be sheltering inside. Both Skitarii Vanguards and Skitarii Rangers typically field Transuranic Arquebuses as a special weapon in their squads.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/TransuranicArquebus</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/TransuranicArquebus</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.50</drawSize>			
     </graphicData>
@@ -856,13 +832,14 @@
 		<AccuracyLong>0.80</AccuracyLong>
 		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
     </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
     <costList>
-		<Steel>100</Steel>
-		<Plasteel>30</Plasteel>
+		<Steel>150</Steel>
+		<Plasteel>60</Plasteel>
 		<ComponentIndustrial>10</ComponentIndustrial>
-		<ImperialComponent>10</ImperialComponent>
-		<RefinedAdamantium>15</RefinedAdamantium>
-		<ImperialPowercore>2</ImperialPowercore>
+		<Gold>2</Gold>
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
@@ -904,5 +881,183 @@
       </li>
     </tools>
  </ThingDef>
+ 
+ 	<!--==================== Mechanicus - Phospur Serpenta =========================-->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGAM_Bullet_PhosphorSml</defName>
+		<label>Phosphur Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/PhosphurSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+			<damageDef>OGFlamer</damageDef>
+			<explosionRadius>0.55</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OGMechanicusSpecialGun">
+		<defName>OGAM_Gun_PhosphorSerpenta</defName>
+		<label>Phosphor Serpenta</label>
+		<description>Phosphor Weapons are a type of weapon used by the Adeptus Mechanicus. Though the technology to produce these weapons has been lost to the Imperium, surviving weapons are still utilized by the Skitarii. They are used to mark out high priority targets on the battlefield, and if struck by the burning spheres fired by these weapons the victim will find himself under fire from subsequent light-guided volleys</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PhosphorSerpenta</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>750</MarketValue>
+			<Mass>2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>26</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<forcedMissRadius>0.1</forcedMissRadius>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Gun</li>
+			<li>PhosphorSerpenta</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGAMRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>30</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+	</ThingDef>
+
+	<!--==================== Mechanicus - Phospur Blaster =========================-->
+	<ThingDef ParentName="OGMechanicusSpecialGun">
+		<defName>OGAM_Gun_PhosphorBlastPistol</defName>
+		<label>Phosphor Blast Pistol</label>
+		<description>Phosphor Weapons are a type of weapon used by the Adeptus Mechanicus. Though the technology to produce these weapons has been lost to the Imperium, surviving weapons are still utilized by the Skitarii. They are used to mark out high priority targets on the battlefield, and if struck by the burning spheres fired by these weapons the victim will find himself under fire from subsequent light-guided volleys</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PhosphorBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>750</MarketValue>
+			<Mass>2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>26</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<forcedMissRadius>0.1</forcedMissRadius>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Gun</li>
+			<li>PhosphorBlastPistol</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGAMRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>70</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+	</ThingDef>
 
 </Defs>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchProjectDef[defName="EldarTechBase"]</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[starts-with(*,'OGE_Melee') or starts-with(*,'OGE_Gun')]/recipeMaker/prerequisites</xpath>
+    </li>
+  </operations>
+</Operation>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchProjectDef[defName="DarkEldarTechBase"]</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[starts-with(*,'OGDE_Melee') or starts-with(*,'OGDE_Gun')]/recipeMaker</xpath>
+    </li>
+  </operations>
+</Operation>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchProjectDef[defName="TauTechBase"]</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[starts-with(*,'OGT_Melee') or starts-with(*,'OGT_Gun')]/recipeMaker</xpath>
+    </li>
+  </operations>
+</Operation>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchProjectDef[defName="OrkTekBase"]</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[starts-with(*,'OGO_Melee') or starts-with(*,'OGO_Gun')]/recipeMaker</xpath>
+    </li>
+  </operations>
+</Operation>
+
+</Patch>
