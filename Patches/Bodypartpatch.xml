@@ -6,48 +6,11 @@
 	<!-- Human -->
 
 	<Operation Class="PatchOperationSequence">
-
-		<operations>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "Human"]/corePart/parts</xpath>
-				<value>			
-					<li>
-						<def>OGNeuralLink</def>
-						<customLabel>neural link</customLabel>
-						<coverage>0</coverage>
-						<height>Bottom</height>
-						<groups>
-							<li>OGNeuralLink</li>
-						</groups>
-					</li>		
-					<li>
-						<def>OGTorsoWargear1</def>
-						<customLabel>wargear slot 1</customLabel>
-						<coverage>0</coverage>
-						<height>Bottom</height>
-						<groups>
-							<li>OGTorsoWargear1</li>
-						</groups>
-					</li>				
-					<li>
-						<def>OGTorsoWargear2</def>
-						<customLabel>wargear slot 2</customLabel>
-						<coverage>0</coverage>
-						<height>Bottom</height>
-						<groups>
-							<li>OGTorsoWargear2</li>
-						</groups>
-					</li>	
-					<li>
-						<def>OGTorsoWargear3</def>
-						<customLabel>wargear slot 3</customLabel>
-						<coverage>0</coverage>
-						<height>Bottom</height>
-						<groups>
-							<li>OGTorsoWargear3</li>
-						</groups>
-					</li>
-				</value>
+  <operations>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName = "Human"]</xpath>
+					<attribute>Name</attribute>
+					<value>HumanBase</value>
 			</li>
 		</operations>	
 	</Operation>

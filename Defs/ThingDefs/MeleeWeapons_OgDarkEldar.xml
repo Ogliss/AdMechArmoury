@@ -13,7 +13,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>17500</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>3500</MarketValue>
 		</statBases>
@@ -96,7 +96,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>25000</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>3500</MarketValue>
 		</statBases>
@@ -110,6 +110,22 @@
 			<li>Metallic</li>
 		</stuffCategories>
 		<tools>
+			<li>
+				<label>pommel</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>hilt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
 			<li>
 				<label>blade</label>
 				<capacities>
@@ -251,7 +267,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>35000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>3500</MarketValue>
@@ -339,7 +355,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>32500</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>4250</MarketValue>
@@ -424,7 +440,23 @@
 		</stuffCategories>
     <tools>
 		<li>
-			<label>point</label>
+			<label>pommel</label>
+			<capacities>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.6</cooldownTime>
+		</li>
+		<li>
+			<label>hilt</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.6</cooldownTime>
+		</li>
+		<li>
+			<label>whip lash</label>
 			<capacities>
 				<li>PacifierBlunt</li>
 			</capacities>
@@ -433,7 +465,7 @@
 			<cooldownTime>2.3</cooldownTime>
 		</li>
 		<li>
-				<label>blade</label>
+				<label>whip blades</label>
 				<capacities>
 					<li>Cut</li>
 				</capacities>
@@ -537,6 +569,7 @@
  	<!--==================== Dark Eldar  - Hellglaive =========================--> 
   <ThingDef ParentName="OGDEBaseMeleeWeapon_Sharp_Quality">
     <defName>OGDE_Melee_Hellglaive</defName>
+	<!--<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>-->
     <label>Hellglaive</label>
     <description>A Hellglaive is a weapon used by Dark Eldar Hellions. It is essentially a double-bladed close-combat weapon, with a built-in Splinter Rifle.</description>
     <graphicData>
@@ -546,6 +579,7 @@
     <soundInteract>Interact_BeatFire</soundInteract>
 	<costStuffCount>400</costStuffCount>
 	<statBases>
+		<reliability>1</reliability>
 		<WorkToMake>27500</WorkToMake>
 		<Mass>2.5</Mass>
 		
@@ -556,10 +590,19 @@
 		<AccuracyLong>0.75</AccuracyLong>
 		<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
     </statBases>
-    <verbs>
-		<li>
-			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
-			<hasStandardCommand>false</hasStandardCommand>
+		<comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<AbilityUserClass>AbilityUser.GenericCompAbilityUser</AbilityUserClass>
+				<Abilities>
+					<li>OGDE_Ability_FireSplinter</li>
+				</Abilities>
+			</li>
+		</comps>
+    <!--<verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
+			<hasStandardCommand>true</hasStandardCommand>
 				<targetable>true</targetable>
 				<onlyManualCast>true</onlyManualCast>
 			<defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
@@ -571,7 +614,7 @@
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 		</li> 
-    </verbs>
+    </verbs>-->
     <tools>
       <li>
         <label>shaft</label>

@@ -26,7 +26,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>12000</WorkToMake>
 			<MarketValue>500</MarketValue>
 			<Mass>1.2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -113,7 +113,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>20000</WorkToMake>
 			<MarketValue>1250</MarketValue>
 			<Mass>2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -199,7 +199,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>40000</WorkToMake>
 			<MarketValue>1850</MarketValue>
 			<Mass>2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -301,7 +301,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>50000</WorkToMake>
 			<MarketValue>1850</MarketValue>
 			<Mass>2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -409,7 +409,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>60000</WorkToMake>
 			<MarketValue>5750</MarketValue>
 			<Mass>4</Mass>
 			<AccuracyTouch>0.30</AccuracyTouch>
@@ -516,7 +516,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>55000</WorkToMake>
 			<MarketValue>6500</MarketValue>
 			<Mass>3.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
@@ -632,7 +632,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>65000</WorkToMake>
 			<MarketValue>8500</MarketValue>
 			<Mass>4.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
@@ -740,7 +740,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>45000</WorkToMake>
 			<MarketValue>8500</MarketValue>
 			<Mass>4.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
@@ -831,7 +831,7 @@
 			<preFiringDuration>60</preFiringDuration>
 			<postFiringDuration>60</postFiringDuration>
 			<StartFireChance>1</StartFireChance>	
-			<!--IsMelta>true</IsMelta-->	
+			<IsMelta>true</IsMelta>
  </ThingDef>
   
 	<ThingDef ParentName="OGEldarSpecialGun">
@@ -844,7 +844,7 @@
     </graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
-		<WorkToMake>120000</WorkToMake>
+		<WorkToMake>50000</WorkToMake>
 		<MarketValue>6000</MarketValue>
 		<Mass>2.5</Mass>
 		<AccuracyTouch>0.75</AccuracyTouch>
@@ -918,6 +918,229 @@
 		</costList>
  </ThingDef>
 
+	<!--==================== Eldar - Neuro disruptor =========================-->
+	<ThingDef  Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="OGEffectBulletBase">
+		<defName>OGE_Bullet_NeuroDisruptor</defName>
+		<label>Neuro disruptor blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/SonicShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGENeuroDisruptor</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<speed>100</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_LaserEffect</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>25</preFiringDuration>
+			<postFiringDuration>25</postFiringDuration>
+			<AddHediffChance>0.25</AddHediffChance>
+			<HediffToAdd>FWPsychicShock</HediffToAdd>
+			<CanResistHediff>true</CanResistHediff>
+			<ResistHediffStat>PsychicSensitivity</ResistHediffStat>
+	</ThingDef>
+
+	<ThingDef ParentName="OGEldarGun">
+		<defName>OGE_Gun_ENeuroDisruptor</defName>
+		<label>Neuro Disruptor</label>
+		<description>Neuro Disruptors are elegant psychocrystalline weapons that fire beams of energy capable of burning away nervous tissue in an agonising instant. Armour offers no protection from these weapons, for it is simply bypassed altogether. Indeed, foes hit by a neuro disruptor show no outward sign of injury, excepting their sudden, violent convulsions as they tumble to the floor.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/NeuroDisruptor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>45000</WorkToMake>
+			<MarketValue>4500</MarketValue>
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>20</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>ShurikenSound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ENeuro Disruptor</li>
+			<li>EGun</li>
+			<li>EAllGuns</li>
+			<li>EArmoury</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGERanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+      <researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Plasteel>15</Plasteel>
+			<Steel>30</Steel>
+		</costList>
+	</ThingDef>
+	
+ <!-- ====================== Lasbalster ===================== -->
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>OGE_Bullet_LasBlaster</defName>
+    <label>Las Blast</label>
+    <graphicData>
+		<texPath>Things/Projectile/LasShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGILas</damageDef>
+		<damageAmountBase>20</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>1.25</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>25</postFiringDuration>
+			<StartFireChance>0.1</StartFireChance>	
+ </ThingDef>
+
+ <ThingDef ParentName="OGEldarSpecialGun">
+    <defName>OGE_Gun_LasBlaster</defName>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+    <label>Lasblaster</label>
+    <description>The Lasblaster is an Eldar Laser Weapon utilised exclusively by Swooping Hawks Aspect Warriors. Eldar lasers use psychically grown crystals to refine their already intense bursts to their optimum potency. Many Eldar consider Laser Weapons the most elegant of all, exulting in the fact that their technological mastery extends even to light itself. These include the Swooping Hawks Aspect Warriors, who have transformed the practice of pinpoint laser fire into an art in itself. Their Exarchs lead them in this deadly technique, utilising sustained fusillades of deadly light to overwhelm their foes. The Lasblaster is lower in strength than other Eldar weapons but has a range advantage that suits it to assault troops.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Eldar/LasBlaster</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<reliability>1</reliability>
+		<WorkToMake>60000</WorkToMake>
+		<MarketValue>2500</MarketValue>
+		<Mass>3.2</Mass>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>105</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
+		<Gold>2</Gold>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+			<li>ELasblaster</li>
+			<li>EEliteGun</li>
+			<li>EAllGuns</li>
+			<li>EArmoury</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGERanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+    </equippedStatOffsets>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<reliability>ST</reliability>
+			<rapidfire>true</rapidfire>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>35</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>HellgunSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+
 	<!--==================== Eldar - Range Longrifle =========================-->
 	<ThingDef ParentName="BaseBullet">
 		<defName>OGE_Bullet_RangerLR</defName>
@@ -944,7 +1167,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>50000</WorkToMake>
 			<MarketValue>1000</MarketValue>
 			<Mass>3</Mass>
 			<AccuracyTouch>0.40</AccuracyTouch>
@@ -1043,7 +1266,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>35000</WorkToMake>
 			<MarketValue>2250</MarketValue>
 			<Mass>2.75</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
@@ -1063,7 +1286,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
-				<range>31</range>
+				<range>28</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>DeathspinnerSound</soundCast>
@@ -1119,4 +1342,110 @@
 		</costList>
 	</ThingDef>
 
+	<!--==================== Eldar - Haywire Cannon =========================-->
+	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+		<defName>OGE_Bullet_HaywireCannon</defName>
+		<label>Haywire Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/HaywireBlast</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGIArc</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<speed>105</speed>
+		<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+		<preFiringInitialIntensity>0</preFiringInitialIntensity>
+		<preFiringFinalIntensity>2</preFiringFinalIntensity>
+		<postFiringInitialIntensity>2</postFiringInitialIntensity>
+		<postFiringFinalIntensity>0</postFiringFinalIntensity>
+		<preFiringDuration>60</preFiringDuration>
+		<postFiringDuration>60</postFiringDuration>
+		<StartFireChance>0</StartFireChance>
+	</ThingDef>
+
+	<ThingDef ParentName="OGEldarSpecialGun">
+		<defName>OGE_Gun_HaywireCannon</defName>
+		<label>Haywire Cannon</label>
+		<description>Haywire Cannons are Eldar weapons mainly used by Harlequins. These are long-barrelled weapons so lightweight that can be fired even when moving. Crackling blasts of electromagnetic energy leap from the forked projector-vanes of the Haywire Blaster with every shot. Capable of scrambling even the most robust electrical systems, a single hit from such a weapon can leave enemy tanks and aircraft powerless and at the mercy of the Harlequins' wrath.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/HarlequinHaywireCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>40000</WorkToMake>
+			<MarketValue>8500</MarketValue>
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>28</range>
+				<soundCast>PlasmaPistolSound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EHaywireBlaster</li>
+			<li>DEHeavyGun</li>
+			<li>DEAllGuns</li>
+			<li>DEArmoury</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGDERanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<researchPrerequisite>EldarHeavyWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+	</ThingDef>
+	
 </Defs>

@@ -6,13 +6,25 @@
 	<!-- Human -->
 
 	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
 		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "IGStd-ServoArm"]</xpath>
+			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName = "IGStd-ServoArm"]/apparel/bodyPartGroups</xpath>
 				<value>			
 						<bodyPartGroups>
-							<li>OGTorsoWargear3</li>
+							<li>Waist</li>
 						</bodyPartGroups>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "IGStd-ServoArm"]/apparel/layers</xpath>
+				<value>			
+						<layers>
+							<li>BeltWargear3</li>
+						</layers>
 				</value>
 			</li>
 		</operations>	

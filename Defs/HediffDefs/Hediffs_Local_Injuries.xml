@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-  <!-- Injuries -->
-
+<!-- ==================== Injuries HeDiffs ========================= -->
+<!-- ==================== Burn Damage HeDiffs ========================= -->
+<!-- ==================== Plasma Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
 		<defName>PlasmaBurn</defName>
 		<label>plasma burn</label>
@@ -14,7 +14,7 @@
         <labelSolidTendedWell>set</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
+        <infectionChance>0.05</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>plasma burn scar</permanentLabel>
@@ -29,6 +29,7 @@
 		</injuryProps>
 	</HediffDef>
 	
+<!-- ==================== Laser Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
 		<defName>LaserBurn</defName>
 		<label>laserburn</label>
@@ -40,7 +41,7 @@
         <labelSolidTendedWell>set</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
+        <infectionChance>0.05</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>laser burn scar</permanentLabel>
@@ -55,6 +56,7 @@
 		</injuryProps>
 	</HediffDef>
 	
+<!-- ==================== Melta Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
 		<defName>MeltaBurn</defName>
 		<label>meltaburn</label>
@@ -66,7 +68,7 @@
         <labelSolidTendedWell>set</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
+        <infectionChance>0.05</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>melta burn scar</permanentLabel>
@@ -81,7 +83,116 @@
 		</injuryProps>
 	</HediffDef>
 	
+<!-- ==================== Electrical Burn HeDiff ========================= -->
+	<HediffDef ParentName="InjuryBase">
+		<defName>ElectricalBurn</defName>
+		<label>electrical burn</label>
+    <labelNoun>an electrical burn</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.05</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>electrical burn scar</permanentLabel>
+      </li>
+    </comps>
+		<injuryProps>
+      <painPerSeverity>0.02275</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+			<destroyedLabel>Burned away</destroyedLabel>
+			<destroyedOutLabel>Burned away</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
 	
+<!-- ==================== Gunshot Damage HeDiffs ========================= -->
+<!-- ==================== Radium Gunshot HeDiff ========================= -->
+	<HediffDef ParentName="InjuryBase">
+		<defName>RadiumGunshot</defName>
+		<label>gunshot</label>
+    <labelNoun>an irradiated gunshot</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.5</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>irradiated scar</permanentLabel>
+      </li>
+    </comps>
+		<injuryProps>
+      <painPerSeverity>0.01675</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+			<destroyedLabel>Shot Off</destroyedLabel>
+			<destroyedOutLabel>Shot Out</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+	
+<!-- ==================== Galvanic Gunshot HeDiff ========================= -->
+	<HediffDef ParentName="InjuryBase">
+		<defName>GalvanicWound</defName>
+		<label>galvanic gunshot</label>
+    <labelNoun>a galvanic gunshot</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.25</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>galvanic scar</permanentLabel>
+      </li>
+    </comps>
+		<injuryProps>
+      <painPerSeverity>0.01675</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+			<destroyedLabel>Shot Off</destroyedLabel>
+			<destroyedOutLabel>Shot Out</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+	
+<!-- ==================== Transuranic Gunshot HeDiff ========================= -->
+	<HediffDef ParentName="InjuryBase">
+		<defName>TransuranicWound</defName>
+		<label>transuranic gunshot</label>
+    <labelNoun>a transuranic gunshot</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.25</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>transuranic scar</permanentLabel>
+      </li>
+    </comps>
+		<injuryProps>
+      <painPerSeverity>0.01675</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+			<destroyedLabel>Shot Off</destroyedLabel>
+			<destroyedOutLabel>Shot Out</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+
+<!-- ==================== Gauss Gunshot HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
 		<defName>GaussWound</defName>
 		<label>gauss wound</label>
@@ -107,83 +218,4 @@
 			<destroyedOutLabel>Disintegrated</destroyedOutLabel>
 		</injuryProps>
 	</HediffDef>
-	
-	<HediffDef ParentName="InjuryBase">
-		<defName>RadiumGunshot</defName>
-		<label>gunshot</label>
-    <labelNoun>an irradiated gunshot</labelNoun>
-    <comps>
-      <li Class="HediffCompProperties_TendDuration">
-        <labelTendedWell>bandaged</labelTendedWell>
-        <labelTendedWellInner>sutured</labelTendedWellInner>
-        <labelSolidTendedWell>set</labelSolidTendedWell>
-      </li>
-      <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
-      </li>
-      <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>flaying scar</permanentLabel>
-      </li>
-    </comps>
-		<injuryProps>
-      <painPerSeverity>0.01675</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
-      <canMerge>true</canMerge>
-			<destroyedLabel>Shot Off</destroyedLabel>
-			<destroyedOutLabel>Shot Out</destroyedOutLabel>
-		</injuryProps>
-	</HediffDef>
-	
-	<HediffDef ParentName="InjuryBase">
-		<defName>GalvanicWound</defName>
-		<label>galvanic gunshot</label>
-    <labelNoun>a galvanic gunshot</labelNoun>
-    <comps>
-      <li Class="HediffCompProperties_TendDuration">
-        <labelTendedWell>bandaged</labelTendedWell>
-        <labelTendedWellInner>sutured</labelTendedWellInner>
-        <labelSolidTendedWell>set</labelSolidTendedWell>
-      </li>
-      <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
-      </li>
-      <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>flaying scar</permanentLabel>
-      </li>
-    </comps>
-		<injuryProps>
-      <painPerSeverity>0.01675</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
-      <canMerge>true</canMerge>
-			<destroyedLabel>Shot Off</destroyedLabel>
-			<destroyedOutLabel>Shot Out</destroyedOutLabel>
-		</injuryProps>
-	</HediffDef>
-	
-	<HediffDef ParentName="InjuryBase">
-		<defName>TransuranicWound</defName>
-		<label>transuranic gunshot</label>
-    <labelNoun>a transuranic gunshot</labelNoun>
-    <comps>
-      <li Class="HediffCompProperties_TendDuration">
-        <labelTendedWell>bandaged</labelTendedWell>
-        <labelTendedWellInner>sutured</labelTendedWellInner>
-        <labelSolidTendedWell>set</labelSolidTendedWell>
-      </li>
-      <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.25</infectionChance>
-      </li>
-      <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>flaying scar</permanentLabel>
-      </li>
-    </comps>
-		<injuryProps>
-      <painPerSeverity>0.01675</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
-      <canMerge>true</canMerge>
-			<destroyedLabel>Shot Off</destroyedLabel>
-			<destroyedOutLabel>Shot Out</destroyedOutLabel>
-		</injuryProps>
-	</HediffDef>
-	
 </Defs>

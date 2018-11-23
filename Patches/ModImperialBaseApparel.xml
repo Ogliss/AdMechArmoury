@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "IGCArmorMakeableBase"]</xpath>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGIArmorMakeable"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGCArmorMakeableBase</value>
+			</li>
+		</operations>	
+	</Operation>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "IGCApparelMakeableBase"]</xpath>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGIApparelMakeable"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGCApparelMakeableBase</value>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

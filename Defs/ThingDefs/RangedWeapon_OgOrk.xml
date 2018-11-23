@@ -14,7 +14,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>7</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<speed>60</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
@@ -110,12 +110,13 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>7</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<speed>40</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="OGOrkGun">
 		<defName>OGO_Gun_OShoota</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Shoota</label>
 		<description>A Shoota is a kinetic, ballistic weapon used by the Orks that is chosen not for its efficiency but for the amount of noise it makes and the amount of damage it can do. The best Shootas are deafening and deadly in equal measure. Like the Slugga, Shootas are not very accurate. This suits the Orks just fine since they seem less interested in accuracy than in causing damage and raising a ruckus. The noise of a Shoota will give Orks a morale boost and can cause enemies to lose their morale and retreat from the overpowering noise of dozens of Shootas. None the less, mobs of Shoota Boyz make up for their lack of accuracy with the sheer volume of fire directed at their targets.</description>
 		<graphicData>
@@ -124,6 +125,7 @@
     </graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
+		<reliability>1</reliability>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>2250</MarketValue>
 			<Mass>3</Mass>
@@ -142,8 +144,9 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
-				<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGO_Bullet_OShoota</defaultProjectile>
 				<warmupTime>0.5</warmupTime>
@@ -190,13 +193,14 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>7</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<speed>40</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="OGOrkSpecialGun">
 		<defName>OGO_Gun_OTwinLinkedShoota</defName>
-		<label>Ork Twin Linked Shoota</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Twin Linked Shoota</label>
 		<description>Ork Mekboyz often customise their Shootas by adding an additional barrel for more firepower. These custom Shootas cost their clients much more teef than the usual Shoota, and are often utilised by both Ork Nobs and Warbosses. Often times these deadly weapons are incorporated into Mega Armour.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/TwinLinkedShoota</texPath>
@@ -204,6 +208,7 @@
     </graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
+		<reliability>1</reliability>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>3550</MarketValue>
 			<Mass>6</Mass>
@@ -222,8 +227,9 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
-				<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGO_Bullet_OTwinLinkedShoota</defaultProjectile>
 				<warmupTime>0.5</warmupTime>
@@ -269,7 +275,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationBase>0.32</armorPenetrationBase>
-			<speed>135</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
@@ -369,7 +375,7 @@
 
 	<ThingDef ParentName="OGOrkHeavyGun">
 		<defName>OGO_Gun_OSnazzgun</defName>
-		<label>Ork Snazzgun</label>
+		<label>Snazzgun</label>
 		<description>A Snazzgun is either a ballistic or directed energy weapon favoured by the most ostentatious and obnoxious of Orks, known as Flash Gitz. Snazzguns vary as much in design as Shootas, but all are lethal in the extreme. Many Flash Gitz hard-wire their Snazzguns to their primitive bionics, incorporating a variety of barrels, scopes and targeting arrays into their cybernetics to maximise their Snazzgun's effectiveness -- not that this necessarily makes them any better shots, but it does make them feel bigger and cleverer as they are shooting. An individual Snazzgun shoots either bolts of energy or ballistic rounds, but not both. A Snazzgun, just like a Shoota, is inherently inaccurate and can do variable damage, as the velocity of its shots (if the weapon is of the ballistic variety) can vary.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/SnazzGun</texPath>
@@ -552,13 +558,13 @@
 	</ThingDef>
 
 	<ThingDef ParentName="OGOrkHeavyGun">
-		<defName>OGO_Gun_OPlasmaDeffgun</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
-		<label>Plasma Deffgun</label>
-		<description>Deffguns are heavy Ork weapons, fine examples of the Mek's craft that are made from all kinds of materials, mainly scavenged heavy weaponry of other races. Deffguns are so large they must be mounted on a special firing rig strapped to to an Ork's broad shoulders. No man could hope to fit into a Deffgun's rig without heavy augmetics or thick slabs of vat-grown muscle. This cumbersome rig is needed to absorb bone-breaking recoil each time the Deffgun is fired.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Ork/PlasmaDeffgun</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+	<defName>OGO_Gun_OPlasmaDeffgun</defName>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<label>Plasma Deffgun</label>
+	<description>Deffguns are heavy Ork weapons, fine examples of the Mek's craft that are made from all kinds of materials, mainly scavenged heavy weaponry of other races. Deffguns are so large they must be mounted on a special firing rig strapped to to an Ork's broad shoulders. No man could hope to fit into a Deffgun's rig without heavy augmetics or thick slabs of vat-grown muscle. This cumbersome rig is needed to absorb bone-breaking recoil each time the Deffgun is fired.</description>
+	<graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Ork/PlasmaDeffgun</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
     </graphicData>
 	<comps>     
@@ -568,6 +574,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
+			<reliability>1</reliability>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>9000</MarketValue>
 			<Mass>9</Mass>
@@ -586,16 +593,22 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li Class="AdeptusMechanicus.VerbPropertiesOH">
-				<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGO_Bullet_OPlasmaDeffgun</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>38</range>
-				<forcedMissRadius>0.5</forcedMissRadius>
-				<soundCast>Shot_Revolver</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>10</muzzleFlashScale>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>true</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
+			<logging>false</logging>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGO_Bullet_OPlasmaDeffgun</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>38</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
+			<soundCast>Shot_Revolver</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>

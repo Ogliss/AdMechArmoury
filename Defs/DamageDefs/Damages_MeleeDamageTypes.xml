@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-	<DamageDef Name="OGLocalInjuryBase" Abstract="True" ParentName="LocalInjuryBase">
-		<workerClass>DamageWorker_AddInjury</workerClass>
-	</DamageDef>
-
 	<DamageDef Name="StabBase">
     <defName>Stab</defName>
     <label>stab</label>
@@ -18,6 +13,13 @@
     <stabChanceOfForcedInternal>0.6</stabChanceOfForcedInternal>
     <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
 	</DamageDef>
+	
+  <!-- Damage types are the same as Blunt, but behaves like stabbing; intended for things like rifle barrels -->
+  <DamageDef ParentName="BluntBase" Name="PokeBase">
+    <defName>Poke</defName>
+    <workerClass>DamageWorker_Stab</workerClass>
+    <stabChanceOfForcedInternal>0.4</stabChanceOfForcedInternal>
+  </DamageDef>
 
 	<!--==================== Common Damage Types =========================-->
 	<!--==================== Power Weapon Damage Types =========================-->
@@ -81,11 +83,7 @@
 		<impactSoundType>Electric</impactSoundType>
 		<armorCategory>Sharp</armorCategory>
     <additionalHediffs>
-      <li>
-        <hediff>Plague</hediff>
-        <severityPerDamageDealt>0.001</severityPerDamageDealt>
-        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
-      </li>
+	
     </additionalHediffs>
 	</DamageDef>
 	
@@ -202,92 +200,8 @@
 		<armorCategory>Blunt</armorCategory>
 	</DamageDef>
 	
-  	<!--==================== Force Strike Damage =========================-->
-    <DamageDef ParentName="BluntBase">
-		<defName>OGForceStrike</defName>
-		<label>force strike</label>
-		<externalViolence>false</externalViolence>
-		<harmsHealth>false</harmsHealth>
-		<isExplosive>true</isExplosive>
-		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-		<deathMessage>{0} was slain by a force strike.</deathMessage>
-		<armorCategory>Heat</armorCategory>
-		<defaultDamage>10</defaultDamage>
-		<explosionBuildingDamageFactor>0</explosionBuildingDamageFactor>
-		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
-		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
-		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
-		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
-		<combatLogRules>Damage_Bomb</combatLogRules>
-		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
-    <additionalHediffs>
-      <li>
-        <hediff>FWPsychicShock</hediff>
-        <severityPerDamageDealt>1</severityPerDamageDealt>
-        <victimSeverityScaling>PsychicSensitivity</victimSeverityScaling>
-      </li>
-    </additionalHediffs>
-	</DamageDef>
-	<!--==================== Pacification Damage Type =========================-->
-	<DamageDef ParentName="OGLocalInjuryBase">
-    <defName>OGIPacifier</defName>
-    <label>Pacification</label>
-	<!--
-    <workerClass>DamageWorker_Blunt</workerClass>
-	-->
-	<hasForcefulImpact>false</hasForcefulImpact>
-	<externalViolence>false</externalViolence>
-    <deathMessage>{0} shouldnt have resisted...</deathMessage>
-    <hediff>hediff_Pacifier</hediff>
-		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-		<harmsHealth>true</harmsHealth>
-		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>Blunt</armorCategory>
-		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
-		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
-		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
-		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
-	
-	<!--
-    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-	<harmsHealth>true</harmsHealth>
-    <impactSoundType>Electric</impactSoundType>
-    <armorCategory>Blunt</armorCategory>
-    <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
-    <bluntStunDuration>2.0</bluntStunDuration>
-    <bluntInnerHitChance>0.4</bluntInnerHitChance>
-    <bluntInnerHitDamageFractionToConvert>
-      <min>0.1</min>
-      <max>0.2</max>
-    </bluntInnerHitDamageFractionToConvert>
-    <bluntInnerHitDamageFractionToAdd>
-      <min>0.2</min>
-      <max>0.35</max>
-    </bluntInnerHitDamageFractionToAdd>
-    <bluntStunChancePerDamagePctOfCorePartToHeadCurve>
-      <points>
-        <li>(0.04, 0.20)</li>
-        <li>(0.5, 1)</li>
-      </points>
-    </bluntStunChancePerDamagePctOfCorePartToHeadCurve>
-    <bluntStunChancePerDamagePctOfCorePartToBodyCurve>
-      <points>
-        <li>(0.4, 0)</li>
-        <li>(0.9, 0.15)</li>
-      </points>
-    </bluntStunChancePerDamagePctOfCorePartToBodyCurve>
-	<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
-	<explosionCellMote>Mote_BlastEMP</explosionCellMote>
-	<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
-	<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
-	<soundExplosion>Explosion_EMP</soundExplosion>
-	-->
-	<combatLogRules>Damage_Stun</combatLogRules>
-  </DamageDef>
-	
 	<!--==================== ThunderHammer Damage Type =========================-->
-	<DamageDef ParentName="OGLocalInjuryBase">
+	<DamageDef ParentName="BluntBase">
     <defName>OGIThunderhammer</defName>
     <label>ThunderHammer</label>
     <workerClass>DamageWorker_Blunt</workerClass>

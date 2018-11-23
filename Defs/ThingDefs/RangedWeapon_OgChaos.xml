@@ -11,12 +11,12 @@
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
-		<WorkToMake>27500</WorkToMake>
+		<WorkToMake>25000</WorkToMake>
 		<MarketValue>1750</MarketValue>
 		<Mass>1.2</Mass>
 		<AccuracyTouch>0.90</AccuracyTouch>
-		<AccuracyShort>0.95</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
+		<AccuracyShort>0.75</AccuracyShort>
+		<AccuracyMedium>0.60</AccuracyMedium>
 		<AccuracyLong>0.50</AccuracyLong>
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
@@ -32,7 +32,6 @@
     <weaponTags>
 		<li>Gun</li>
 		<li>BoltPistol</li>
-		<li>GuevesaPistol</li>
     </weaponTags>
 	<thingCategories>
 		<li>OGCRanged</li>
@@ -72,11 +71,12 @@
  
 <!-- ====================== Bolter ===================== -->
  <ThingDef ParentName="OGChaosGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGC_Gun_BoltGun</defName>
     <label>Bolter</label>
     <description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
     <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/BoltGun</texPath>
+		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/BoltGunA</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.1</drawSize>			
     </graphicData>
@@ -87,13 +87,14 @@
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>180000</WorkToMake>
 		<MarketValue>4000</MarketValue>
 		<Mass>5.2</Mass>
-		<AccuracyTouch>0.85</AccuracyTouch>
-		<AccuracyShort>0.90</AccuracyShort>
-		<AccuracyMedium>0.92</AccuracyMedium>
-		<AccuracyLong>0.85</AccuracyLong>
+		<AccuracyTouch>0.75</AccuracyTouch>
+		<AccuracyShort>0.80</AccuracyShort>
+		<AccuracyMedium>0.75</AccuracyMedium>
+		<AccuracyLong>0.65</AccuracyLong>
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
@@ -116,13 +117,14 @@
 			<li>OGCRanged</li>
 		</tradeTags>
     <verbs>
-		<li>
-			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
-			<warmupTime>0.30</warmupTime>
+			<warmupTime>0.60</warmupTime>
 			<range>31</range>
-			<forcedMissRadius>0.5</forcedMissRadius>
+			<forcedMissRadius>0.1</forcedMissRadius>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -175,9 +177,9 @@
 		<MarketValue>4000</MarketValue>
 		<Mass>5.2</Mass>
 		<AccuracyTouch>0.85</AccuracyTouch>
-		<AccuracyShort>0.90</AccuracyShort>
-		<AccuracyMedium>0.92</AccuracyMedium>
-		<AccuracyLong>0.85</AccuracyLong>
+		<AccuracyShort>0.80</AccuracyShort>
+		<AccuracyMedium>0.75</AccuracyMedium>
+		<AccuracyLong>0.65</AccuracyLong>
 		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
@@ -206,7 +208,7 @@
 			<defaultProjectile>OGI_Bullet_BoltSml</defaultProjectile>
 			<warmupTime>0.30</warmupTime>
 			<range>31</range>
-			<forcedMissRadius>0.5</forcedMissRadius>
+			<forcedMissRadius>0.1</forcedMissRadius>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>6</burstShotCount>
 			<soundCast>BoltSound</soundCast>
@@ -237,6 +239,84 @@
       </li>
     </tools>
  </ThingDef>
+	 
+<!-- ====================== Heavy Bolter ===================== --> 
+ <ThingDef ParentName="OGChaosHeavyGun">
+    <defName>OGC_Gun_HeavyBolter</defName>
+    <label>Heavy Bolter</label>
+    <description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/HeavyBolter</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>6500</MarketValue>
+		<Mass>8.2</Mass>
+		<AccuracyTouch>0.75</AccuracyTouch>
+		<AccuracyShort>0.80</AccuracyShort>
+		<AccuracyMedium>0.80</AccuracyMedium>
+		<AccuracyLong>0.80</AccuracyLong>
+		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>200</Steel>
+		<Plasteel>60</Plasteel>
+		<ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>GunHeavy</li>
+		<li>HeavyBolter</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGCRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_HeavyBolter</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>38</range>
+			<forcedMissRadius>0.5</forcedMissRadius>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>BoltSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
 
 <!--==================== Traitor - Sonic Blaster =========================-->
  <ThingDef ParentName="BaseBullet">
@@ -255,6 +335,7 @@
 	</ThingDef>
 
  <ThingDef ParentName="OGChaosGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<defName>OGC_Gun_CSonicBlaster</defName>
 		<label>Traitor Sonic Blaster</label>
 		<description>The Sonic Blaster is a heavy Sonic Weapon that when fired unleashes wave after wave of devastating harmonics and literally rips its target apart with the power of extreme sound. The Sonic Blaster is the preferred weapon of Chaos Space Marine Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Sonic Blaster is about the same size as the Astartes' man-portable Heavy Bolter, and is wielded with both hands. There exists a slightly larger variant of the weapon that is used by Chaos Sonic Dreadnoughts, where it is twin-linked with a second Sonic Blaster to cause even more destructive results. Imperial records do not list any other known users of the Sonic Blaster, although there probably exist many more amongst the Forces of Chaos dedicated to the Prince of Pleasure.</description>
@@ -270,6 +351,7 @@
 	</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
+		<reliability>1</reliability>
 			<WorkToMake>32000</WorkToMake>
 			<MarketValue>2500</MarketValue>
 		<Mass>3.2</Mass>
@@ -285,8 +367,9 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
-				<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_CBlastmaster</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
@@ -477,84 +560,6 @@
 			<Steel>10</Steel>
 		</costList>
 	</ThingDef>
-	 
-<!-- ====================== Heavy Bolter ===================== --> 
- <ThingDef ParentName="OGChaosHeavyGun">
-    <defName>OGC_Gun_HeavyBolter</defName>
-    <label>Heavy Bolter</label>
-    <description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/HeavyBolter</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-	<comps>     
-		<li>
-			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
-		</li>
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<MarketValue>6500</MarketValue>
-		<Mass>8.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.80</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>WRImpBoltTech</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>200</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>GunHeavy</li>
-		<li>HeavyBolter</li>
-		</weaponTags>
-		<thingCategories>
-			<li>OGCRanged</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGCRanged</li>
-		</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_HeavyBolter</defaultProjectile>
-			<warmupTime>3</warmupTime>
-			<range>38</range>
-			<forcedMissRadius>0.5</forcedMissRadius>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>BoltSound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
- </ThingDef>
 
 <!-- ====================== Las Cannon ===================== -->
  <ThingDef ParentName="OGChaosHeavyGun">
@@ -634,7 +639,7 @@
   
 <!-- ====================== Plasma Pistol ===================== -->
  <ThingDef ParentName="OGChaosSpecialGun">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<defName>OGC_Gun_PlasmaPistol</defName>
     <label>Plasma Pistol</label>
     <description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
@@ -644,6 +649,7 @@
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>15000</WorkToMake>
 		<MarketValue>2250</MarketValue>
 		<Mass>1.2</Mass>
@@ -674,16 +680,19 @@
 		<li>OGCRanged</li>
 	</tradeTags>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
-			<overheat>UR</overheat>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>false</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
+			<logging>false</logging>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaPistol</defaultProjectile>
 			<warmupTime>0.4</warmupTime>
 			<range>25</range>
 			<forcedMissRadius>0.5</forcedMissRadius>
-			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
-			<burstShotCount>2</burstShotCount>
 			<soundCast>PlasmaPistolSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
@@ -715,16 +724,17 @@
  
 <!-- ====================== Plasma Gun ===================== -->
  <ThingDef ParentName="OGChaosSpecialGun">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<defName>OGC_Gun_PlasmaGun</defName>
     <label>Plasma Gun</label>
-    <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder./n/nPlasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
+    <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.\n\nPlasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>18000</WorkToMake>
 		<MarketValue>3250</MarketValue>
 		<Mass>1.2</Mass>
@@ -755,16 +765,22 @@
 		<li>OGCRanged</li>
 	</tradeTags>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOHRF</verbClass>
-			<overheat>UR</overheat>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>false</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
+			<rapidfire>true</rapidfire>
+			<logging>false</logging>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
 			<warmupTime>1.25</warmupTime>
 			<range>31</range>
 			<forcedMissRadius>0.5</forcedMissRadius>
 			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
+			<burstShotCount>1</burstShotCount>
 			<soundCast>PlasmaPistolSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
@@ -796,7 +812,7 @@
 
 <!-- ====================== Plasma Cannon ===================== -->
  <ThingDef ParentName="OGChaosHeavyGun">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGC_Gun_PlasmaCannon</defName>
     <label>Plasma Cannon</label>
     <description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is an Imperial heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
@@ -812,6 +828,7 @@
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>8000</MarketValue>
 		<Mass>5.2</Mass>
@@ -846,10 +863,15 @@
 		<MoveSpeed>-0.25</MoveSpeed>
     </equippedStatOffsets>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
-			<overheat>UR</overheat>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>false</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
 			<hasStandardCommand>true</hasStandardCommand>
+			<logging>false</logging>
 			<defaultProjectile>OGI_Bullet_PlasmaCannon</defaultProjectile>
 			<warmupTime>4</warmupTime>
 			<range>45</range>

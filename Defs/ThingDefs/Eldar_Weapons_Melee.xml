@@ -3,7 +3,7 @@
 	<!--==================== Eldar  - Scorpion Chainsword =========================-->
 	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGE_Melee_ScorpionChainsword</defName>
-		<label>Elder Scorpion Chainsword</label>
+		<label>Scorpion Chainsword</label>
 		<description>The Scorpion Chainsword is a deadly one-handed melee weapon whose vicious blade is comprised of diamond-toothed edges that mangle and tear flesh. First amongst the ritual weapons used by the Striking Scorpions Shrine, these distinctive chainswords bolster the strength of their users considerably. It bears a resemblance to the Chainswords utilised by the military forces of the Imperium of Man.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/ScorpionChainsword</texPath>
@@ -12,7 +12,7 @@
 		</graphicData>
 		<soundInteract>Interact_Chainsword</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>18000</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>1500</MarketValue>
 		</statBases>
@@ -60,7 +60,7 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-		<!-- <researchPrerequisite>EldarTechBase</researchPrerequisite> -->
+			<researchPrerequisite>EldarTechBase</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
@@ -95,7 +95,7 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>24500</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>1500</MarketValue>
 		</statBases>
@@ -143,7 +143,7 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-		<researchPrerequisite>EldarBasicWeaponsTech</researchPrerequisite>
+		<researchPrerequisite>EldarBasicMeleeTech</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
@@ -178,12 +178,22 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>28000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>750</MarketValue>
 		</statBases>
 		<equippedAngleOffset>-25</equippedAngleOffset>
+		
+		<comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<AbilityUserClass>AbilityUser.GenericCompAbilityUser</AbilityUserClass>
+				<Abilities>
+					<li>OGE_Ability_FireShuriken</li>
+				</Abilities>
+			</li>
+		</comps>
+		<!--
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
@@ -201,6 +211,7 @@
 			</targetParams>
 		</li> 
     </verbs>
+	-->
 		<tools>
 			<li>
 				<label>fist</label>
@@ -218,7 +229,7 @@
 				
 			</recipeUsers>
 			
-			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisite>EldarPowerWeapons</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
@@ -233,6 +244,7 @@
 		<costStuffCount>400</costStuffCount>
 		<weaponTags>
 			<li>EScorpionsClaw</li>
+			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
 			<li>OGEMelee</li>
@@ -245,7 +257,7 @@
 	<!--==================== Eldar  - Power Sword =========================-->
 	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGE_Melee_PowerSword</defName>
-		<label>Elder Power Sword</label>
+		<label>Power Sword</label>
 		<description>Power Weapons generally exude a hazy, blue-coloured field of energy that wraps around the primary impact region of a melee weapon, be it a sword's blade or warhammer's head and is capable of disrupting the molecular bonds of matter when it strikes. These weapons may be constructed to appear as a primitive, simple melee weapon, with the power field generator concealed within the hilt or haft of the weapon. Once the power field is switched on, however, the obvious humming sound given off and the blue light gives the secret of the weapon's true nature away.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/PowerSwordEldar</texPath>
@@ -254,7 +266,7 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>25000</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>3500</MarketValue>
 		</statBases>
@@ -304,7 +316,7 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-		<researchPrerequisite>EldarBasicWeaponsTech</researchPrerequisite>
+		<researchPrerequisite>EldarPowerWeapons</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
@@ -333,7 +345,7 @@
 	<ThingDef Class="AdeptusMechanicus.ThingDef_ForceWeapon" ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGE_Melee_Diresword</defName>
 		<label>Diresword</label>
-		<description>A Diresword is an Aeldari Power Weapon only wielded by Exarchs of the Dire Avengers Aspect. These one-handed, single-edged Power Swords are crafted in the graceful Aeldari style, into which a potent Aeldari spirit has been placed through the incorporation of a Spirit Stone into the blade./n/nAny target wounded by a Diresword can be killed outright by the spirit residing within the Spirit Stone. When a blow is struck, the spirit within the sword will attempt to destroy the enemy's mind, potentially killing them instantly. This action is similar to the Imperial Nemesis Force Weapons used by psykers like the Grey Knights.</description>
+		<description>A Diresword is an Aeldari Power Weapon only wielded by Exarchs of the Dire Avengers Aspect. These one-handed, single-edged Power Swords are crafted in the graceful Aeldari style, into which a potent Aeldari spirit has been placed through the incorporation of a Spirit Stone into the blade.\n\nAny target wounded by a Diresword can be killed outright by the spirit residing within the Spirit Stone. When a blow is struck, the spirit within the sword will attempt to destroy the enemy's mind, potentially killing them instantly. This action is similar to the Imperial Nemesis Force Weapons used by psykers like the Grey Knights.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/Diresword</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -341,7 +353,7 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>32000</WorkToMake>
 			<Mass>2.5</Mass>
 			<MarketValue>3500</MarketValue>
 		</statBases>
@@ -403,7 +415,7 @@
 			<li>Metallic</li>
 		</stuffCategories>
 		<weaponTags>
-			<li>EPowerSword</li>
+			<li>EDireSword</li>
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
@@ -422,17 +434,28 @@
 	<!--==================== Eldar  - Witchblade =========================-->
 	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGE_Melee_Witchblade</defName>
-		<label>Elder Witchblade</label>
+		<label>Witchblade</label>
 		<description>A Witchblade is a psychically-attuned melee weapon that Eldar walking the Path of the Seer, such as Warlocks and Farseers, often carry to battle. Essentially a potent Force Weapon, these swords resonate with their users, enhancing their strength to terrifying levels -- Farseers have been known to slash through the heaviest of Power Armour or cleave battle tanks clean in half with devastating blows from these weapons. Used to enhance and unleash the latent psychic power of the wielder, Witchblades are effective against all infantry targets; humanoid, xenos, beast or Daemon. A Witch Blade contains a helix-shaped, crystalline psychic matrix embedded with runes to channel and focus a Seer's energies.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/Witchblade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
+      <drawSize>1.25</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+		<!--
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(0,0,168,0)</glowColor>
+      </li>
+	  -->
+	</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
-		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>30000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>3500</MarketValue>
@@ -443,9 +466,6 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
 		<tools>
 			<li>
 				<label>blade</label>
@@ -479,6 +499,10 @@
 			<Plasteel>2</Plasteel>
 			<Steel>10</Steel>
 		</costList>
+		<costStuffCount>400</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
 		<weaponTags>
 			<li>EWitchblade</li>
 			<li>EPsykerMelee</li>
@@ -501,10 +525,22 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/Miststave</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
+      <drawSize>1.25</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+		<!--
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(0,0,168,0)</glowColor>
+      </li>
+	  -->
+	</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>18000</WorkToMake>
 			<Mass>3.5</Mass>
 			
 			<MarketValue>750</MarketValue>
@@ -514,7 +550,7 @@
 			<li>
 				<label>haft</label>
 				<capacities>
-					<li>PowerBlunt</li>
+					<li>ForceBlunt</li>
 				</capacities>
 				<power>8</power>
 				<cooldownTime>1.4</cooldownTime>
@@ -522,18 +558,10 @@
 			<li>
 				<label>head</label>
 				<capacities>
-					<li>PowerBlunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>1.6</cooldownTime>
-			</li>
-			<li>
-				<label>force strike</label>
-				<capacities>
 					<li>ForceBlunt</li>
 				</capacities>
 				<power>10</power>
-				<cooldownTime>2.0</cooldownTime>
+				<cooldownTime>1.6</cooldownTime>
 			</li>
 		</tools>
 		<recipeMaker>
@@ -580,7 +608,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>200</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>30000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>3500</MarketValue>
@@ -669,7 +697,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>35000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>4500</MarketValue>
@@ -756,7 +784,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>250</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>30000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>4250</MarketValue>
@@ -824,11 +852,23 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/Executioner</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+      <drawSize>1.25</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+		<!--
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(0,0,168,0)</glowColor>
+      </li>
+	  -->
+	</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>35000</WorkToMake>
 			<Mass>2.5</Mass>
 			
 			<MarketValue>14250</MarketValue>
@@ -872,7 +912,7 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-		<researchPrerequisite>EldarAdvancedMelee</researchPrerequisite>
+		<researchPrerequisite>EldarPowerWeapons</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
@@ -882,8 +922,7 @@
 			<Steel>10</Steel>
 		</costList>
 		<weaponTags>
-			<li>EGhostAxe</li>
-			<li>EGhostMelee</li>
+			<li>EExecutioner</li>
 			<li>EArmoury</li>
 		</weaponTags>
 		<thingCategories>
@@ -907,7 +946,7 @@
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>35000</WorkToMake>
 			<Mass>0.5</Mass>
 			<MarketValue>7500</MarketValue>
 		</statBases>
@@ -971,84 +1010,90 @@
 			<li>OGEMelee</li>
 		</tradeTags>
 	 </ThingDef>
-	
+
  	<!--==================== Eldar  - Singing Spear =========================--> 
-	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
+  	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
     <defName>OGE_Melee_SingingSpear</defName>
     <label>Eldar Singing Spear</label>
     <description>The Singing Spear is potent psychic melee weapon used by Eldar Farseers and Warlocks. It is a silver spear formed of unknown materials and covered in sparkling gems. When held by a psyker, the weapon emits a constant low hum that gives it its name. This weapon is essentially a Witchblade that can be thrown a short distance, automatically returning to the user's hand after each throw and is thus considered both a melee and a limited ranged weapon. However, it is a two-handed weapon that is heavy and difficult to wield, so its use in close combat is less effective than other Eldar blades.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/WeaponMelee/Eldar/SingingSpear</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>1.25</drawSize>			
     </graphicData>
 	<comps>     
 		<li>
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
 		</li>
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<AbilityUserClass>AbilityUser.GenericCompAbilityUser</AbilityUserClass>
+				<Abilities>
+					<li>OGE_Ability_ThrowSingingSpear</li>
+				</Abilities>
+			</li>
+		<!--
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(0,0,168,0)</glowColor>
+      </li>
+	  -->
 	</comps>
-    <soundInteract>Interact_BeatFire</soundInteract>
-	<costStuffCount>400</costStuffCount>
+	<soundInteract>Interact_Revolver</soundInteract>
 	<statBases>
-		<WorkToMake>27500</WorkToMake>
+		<WorkToMake>37500</WorkToMake>
 		<Mass>2.5</Mass>
-		
-		<MarketValue>4250</MarketValue>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.75</AccuracyLong>
-		<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
-		
-    </statBases>
+		<MarketValue>3750</MarketValue>
+      <AccuracyTouch>0.80</AccuracyTouch>
+      <AccuracyShort>0.71</AccuracyShort>
+      <AccuracyMedium>0.50</AccuracyMedium>
+      <AccuracyLong>0.32</AccuracyLong>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+	</statBases>
+	<equippedAngleOffset>-45</equippedAngleOffset>
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-				<targetable>true</targetable>
-				<onlyManualCast>true</onlyManualCast>
 			<defaultProjectile>SingingSpear_Thrown</defaultProjectile>
-			<warmupTime>0.50</warmupTime>
-			<range>25</range>
+			<warmupTime>2</warmupTime>
+			<range>20</range>
 			<soundCast>Interact_BeatFire</soundCast>
+			<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+			</targetParams>
 		</li> 
     </verbs>
-    <tools>
-      <li>
-        <label>point</label>
-        <capacities>
-          <li>PowerStab</li>
-        </capacities>
-        <power>30</power>
-		<armorPenetration>1</armorPenetration>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-		<li>
-				<label>blade</label>
+		<tools>
+			<li>
+				<label>fist</label>
 				<capacities>
-					<li>PowerCut</li>
+					<li>PowerBlunt</li>
 				</capacities>
-				<power>30</power>
+				<power>66</power>
 				<armorPenetration>1</armorPenetration>
-				<cooldownTime>1.7</cooldownTime>
+				<cooldownTime>2.8</cooldownTime>
 			</li>
-    </tools>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
+		</tools>
+
 		<recipeMaker>
 			<recipeUsers>
-			
+				
 			</recipeUsers>
-		<researchPrerequisite>EldarAdvancedMelee</researchPrerequisite>
+			
+			<researchPrerequisite>EldarAdvancedMelee</researchPrerequisite>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>1</OGE_Component>
 			<OGE_Wraithbone>2</OGE_Wraithbone>
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Plasteel>2</Plasteel>
-			<Steel>10</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
 		</costList>
+		<costStuffCount>400</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
 		<weaponTags>
 			<li>ESingingSpear</li>
 			<li>EPsykerMelee</li>
@@ -1060,14 +1105,21 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
-  </ThingDef>
+	 </ThingDef>
+  
 	<ThingDef ParentName="BaseProjectileNeolithic">
     <defName>SingingSpear_Thrown</defName>
     <label>Singing Spear</label>
     <graphicData>
       <texPath>Things/Projectile/SingingSpear_Thrown</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.750</drawSize>			
     </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>RangedStab</damageDef>
@@ -1076,5 +1128,4 @@
       <speed>26</speed>
     </projectile>
 	</ThingDef>
-  
 </Defs>

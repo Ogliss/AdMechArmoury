@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!--==================== Base Damage Type - STD =========================-->
-	<DamageDef Name="LocalInjuryBase" Abstract="True">
+	<DamageDef Name="OGLocalInjuryBase" Abstract="True">
 		<workerClass>DamageWorker_AddInjury</workerClass>
+		<harmsHealth>true</harmsHealth>
+	</DamageDef>
+
+	<DamageDef Name="OGLocalRangedInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<harmsHealth>true</harmsHealth>
+		<isRanged>true</isRanged>
+	</DamageDef>
+
+	<DamageDef Name="OGGlobalInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddGlobal</workerClass>
+		<harmsHealth>true</harmsHealth>
 	</DamageDef>
 	
-	<DamageDef Name="PlasmaInjury" ParentName="LocalInjuryBase" Abstract="True">
+	<DamageDef Name="PlasmaInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>
 		<hediff>PlasmaBurn</hediff>
@@ -16,7 +28,7 @@
 		<combatLogRules>Damage_Bomb</combatLogRules>
 	</DamageDef>
 	
-	<DamageDef Name="MeltaInjury" ParentName="LocalInjuryBase" Abstract="True">
+	<DamageDef Name="MeltaInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
 		<externalViolence>true</externalViolence>
 		<hasForcefulImpact>false</hasForcefulImpact>
 		<hediff>MeltaBurn</hediff>
@@ -27,7 +39,7 @@
 		<combatLogRules>Damage_Bomb</combatLogRules>
 	</DamageDef>
 	
-	<DamageDef Name="LasInjury" ParentName="LocalInjuryBase" Abstract="True">
+	<DamageDef Name="LasInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>
 		<hediff>LaserBurn</hediff>
@@ -39,7 +51,7 @@
 	</DamageDef>
 	
 	<!--==================== Base Damage Type - No Camera Shake =========================-->	
-	<DamageDef Name="LocalInjuryBaseNoCamShake" Abstract="True">
+	<DamageDef Name="OGLocalRangedInjuryBaseNoCamShake" Abstract="True">
 		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
 	</DamageDef>
 	
@@ -55,12 +67,12 @@
 		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
 	</DamageDef>
 	<!--==================== Base Damage Type - No Camera Shake =========================-->	
-	<DamageDef Name="LocalInjuryBaseFlameNoCamShake" Abstract="True">
+	<DamageDef Name="OGLocalRangedInjuryBaseFlameNoCamShake" Abstract="True">
 		<workerClass>AdeptusMechanicus.DamageWorker_FlameNoCamShake</workerClass>
 	</DamageDef>
 	<!--==================== Imperial Damage Types =========================-->
 	<!--==================== Flamer Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseFlameNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseFlameNoCamShake">
     <defName>OGFlamer</defName>
     <label>flame</label>
     <hasForcefulImpact>false</hasForcefulImpact>
@@ -88,7 +100,7 @@
 		<label>plasma</label>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<defaultDamage>0</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -103,7 +115,7 @@
 		<label>plasma cannon</label>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<defaultDamage>45</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -118,7 +130,7 @@
 		<label>melta</label>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<defaultDamage>10</defaultDamage>
-		<explosionBuildingDamageFactor>5</explosionBuildingDamageFactor>
+		<buildingDamageFactor>5</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>50</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastFlame</explosionCellMote>
@@ -132,10 +144,11 @@
 	<DamageDef ParentName="LasInjuryNoCamShake">
 		<defName>OGILas</defName>
 		<label>laser</label>
+		<isRanged>true</isRanged>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>3</explosionBuildingDamageFactor>
+		<buildingDamageFactor>3</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -145,7 +158,7 @@
 	</DamageDef>
 
 	<!--==================== Autogun Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGIAuto</defName>
 		<label>autogun</label>
 		<externalViolence>true</externalViolence>
@@ -158,7 +171,7 @@
 		<armorCategory>Sharp</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -166,7 +179,7 @@
 	</DamageDef>
 
 	<!--==================== Ripper Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGIRipper</defName>
 		<label>Ripper</label>
 		<externalViolence>true</externalViolence>
@@ -181,7 +194,7 @@
 	</DamageDef>
 
 	<!--==================== Assaultcannon Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGIAssault</defName>
 		<label>assaultcannon</label>
 		<externalViolence>true</externalViolence>
@@ -194,7 +207,7 @@
 </DamageDef>
 
 	<!--==================== Boltgun Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGIBolt</defName>
 		<label>bolt</label>
 		<externalViolence>true</externalViolence>
@@ -207,7 +220,7 @@
 		<armorCategory>Blunt</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -217,7 +230,7 @@
 	</DamageDef>
 
 	<!--==================== Bomb Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGIBomb</defName>
 		<label>bomb</label>
 		<externalViolence>true</externalViolence>
@@ -230,7 +243,7 @@
 		<armorCategory>Blunt</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -242,7 +255,7 @@
 	
 	<!--==================== Chaos Damage Types =========================-->
 	<!--==================== Sonic Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGCSonic</defName>
 		<label>Sonic</label>
 		<externalViolence>true</externalViolence>
@@ -258,7 +271,7 @@
 	</DamageDef>
 	
 	<!--==================== ReaperAutocannon Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGCRAC</defName>
 		<label>reaper autocannon</label>
 		<externalViolence>true</externalViolence>
@@ -271,7 +284,7 @@
 		<armorCategory>Sharp</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>1</explosionBuildingDamageFactor>
+		<buildingDamageFactor>1</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -280,7 +293,7 @@
 	
 	<!--==================== Tau Damage Types =========================-->
 	<!--==================== PlasmaPulse Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGTPlasmaPulse</defName>
 		<label>plasma pulse</label>
 		<externalViolence>true</externalViolence>
@@ -296,7 +309,7 @@
 	</DamageDef>
 	
 	<!--==================== Ion Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGTIon</defName>
 		<label>ion beam</label>
 		<externalViolence>true</externalViolence>
@@ -312,7 +325,7 @@
 	</DamageDef>
 	
 	<!--==================== Railgun Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGTRailgun</defName>
 		<label>Railgun Slug</label>
 		<externalViolence>true</externalViolence>
@@ -327,7 +340,7 @@
 	</DamageDef>
 	
 	<!--==================== Kroot Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGTKroot</defName>
 		<label>Kroot Slug</label>
 		<externalViolence>true</externalViolence>
@@ -340,7 +353,7 @@
 	</DamageDef>
 	
 	<!--==================== Vespid Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGTNeutron</defName>
 		<label>Neutron blast</label>
 		<externalViolence>true</externalViolence>
@@ -356,7 +369,7 @@
 		
 	<!--==================== Eldar Damage Types =========================-->
 	<!--==================== Shuriken Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGEShuriken</defName>
 		<label>Shuriken</label>
 		<externalViolence>true</externalViolence>
@@ -370,7 +383,7 @@
 	</DamageDef>
 	
 	<!--==================== Plasma Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGEPlas</defName>
 		<label>Starfire</label>
 		<externalViolence>true</externalViolence>
@@ -386,7 +399,7 @@
 	
 	<!--==================== Wraithcannon Damage Types =========================-->
 	<!--==================== Wraithcannon Normal Damage =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGEWraith</defName>
 		<label>Warp Rift</label>
 		<externalViolence>true</externalViolence>
@@ -400,7 +413,7 @@
 	</DamageDef>
 	
 	<!--==================== Wraithcannon Explosion Damage =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGEWraithBlast</defName>
 		<label>Warp Rift Blast</label>
 		<externalViolence>true</externalViolence>
@@ -412,7 +425,7 @@
 		<impactSoundType>Bullet</impactSoundType>
 		<armorCategory>Sharp</armorCategory>
 		<defaultDamage>0</defaultDamage>
-		<explosionBuildingDamageFactor>0</explosionBuildingDamageFactor>
+		<buildingDamageFactor>0</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
@@ -423,7 +436,7 @@
 	</DamageDef>
 
 	<!--==================== Brightlance Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGELance</defName>
 		<label>Lance</label>
 		<externalViolence>true</externalViolence>
@@ -436,7 +449,7 @@
 		<armorCategory>Heat</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>3</explosionBuildingDamageFactor>
+		<buildingDamageFactor>3</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -446,7 +459,7 @@
 	</DamageDef>
 	
 	<!--==================== Deathspinner Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGEDeathspinner</defName>
 		<label>Mono-filament Mesh </label>
 		<externalViolence>true</externalViolence>
@@ -460,7 +473,7 @@
 			
 	<!--==================== Dark Eldar Damage Types =========================-->
 	<!--==================== Splinter Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGESplinter</defName>
 		<label>Splinter</label>
 		<externalViolence>true</externalViolence>
@@ -474,7 +487,7 @@
 	</DamageDef>
 	
 	<!--==================== Plasma Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGDEPlas</defName>
 		<label>Disintergrator</label>
 		<externalViolence>true</externalViolence>
@@ -490,8 +503,8 @@
 	
 	<!--==================== Stinger Damage Types =========================-->
 	<!--==================== Stinger Normal Damage =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
-		<defName>OGEStinger</defName>
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGDEStinger</defName>
 		<label>Stinger</label>
 		<externalViolence>true</externalViolence>
 		<isExplosive>false</isExplosive>
@@ -501,10 +514,17 @@
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Bullet</impactSoundType>
 		<armorCategory>Sharp</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>Toxins</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
 	</DamageDef>
 	
 	<!--==================== Stinger Explosion Damage =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGEStingerBlast</defName>
 		<label>Stinger Toxin Blast</label>
 		<externalViolence>true</externalViolence>
@@ -516,7 +536,7 @@
 		<impactSoundType>Bullet</impactSoundType>
 		<armorCategory>Sharp</armorCategory>
 		<defaultDamage>0</defaultDamage>
-		<explosionBuildingDamageFactor>0</explosionBuildingDamageFactor>
+		<buildingDamageFactor>0</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
@@ -524,10 +544,17 @@
 		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
 		<combatLogRules>Damage_Bomb</combatLogRules>
+    <additionalHediffs>
+      <li>
+        <hediff>Toxins</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
 	</DamageDef>
 		
 	<!--==================== Darklance Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBaseNoCamShake">
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
 		<defName>OGDELance</defName>
 		<label>Lance</label>
 		<externalViolence>true</externalViolence>
@@ -540,7 +567,7 @@
 		<armorCategory>Heat</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
-		<explosionBuildingDamageFactor>3</explosionBuildingDamageFactor>
+		<buildingDamageFactor>3</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
@@ -550,7 +577,7 @@
 	</DamageDef>
 	
 	<!--==================== Shredder Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGDEShredder</defName>
 		<label>Mono-filament Mesh </label>
 		<externalViolence>true</externalViolence>
@@ -564,7 +591,7 @@
 	
 	<!--==================== Necron Damage Type =========================-->
 	<!--==================== Gauss Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGNGauss</defName>
 		<label>Gauss</label>
 		<externalViolence>true</externalViolence>
@@ -579,9 +606,9 @@
 	
 	<!--==================== Mechanicus Damage Type =========================-->
 	<!--==================== Radium Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGIRadium</defName>
-		<label>Gauss</label>
+		<label>radium round</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} would have died anyway.</deathMessage>
 		<hediff>RadiumGunshot</hediff>
@@ -589,13 +616,20 @@
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Slice</impactSoundType>
 		<armorCategory>Sharp</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>RadiationPoisioning</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
 		
 	</DamageDef>
 	
 	<!--==================== Galvanic Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGIGalvanic</defName>
-		<label>Gauss</label>
+		<label>galvanic discharge</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} caught a Galvanic round.</deathMessage>
 		<hediff>GalvanicWound</hediff>
@@ -607,9 +641,9 @@
 	</DamageDef>
 	
 	<!--==================== Transuranic Damage Type =========================-->
-	<DamageDef ParentName="LocalInjuryBase">
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
 		<defName>OGITransuranic</defName>
-		<label>Gauss</label>
+		<label>transuranic</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was taken by a Transuranic bolt.</deathMessage>
 		<hediff>TransuranicWound</hediff>
@@ -619,5 +653,69 @@
 		<armorCategory>Sharp</armorCategory>
 		
 	</DamageDef>
-
+	
+	<!--==================== Arc Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGIArc</defName>
+		<label>Arc</label>
+		<externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+		<deathMessage>{0} has been Electrocuted.</deathMessage>
+		<makesBlood>false</makesBlood>
+		<harmsHealth>false</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<defaultDamage>50</defaultDamage>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<hediff>ElectricalBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+		<combatLogRules>Damage_EMP</combatLogRules>
+		<armorCategory>Heat</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.25</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+		<!--==================== Tyranid Damage Type =========================-->
+<!-- 
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGSpitter</defName>
+		<label>Tyranid Infection</label>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} has died by Tyranid Plague.</deathMessage>
+		<hediff>hediff_TYPlague</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<harmsHealth>true</harmsHealth>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_IGC_GreenSPlat</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<soundExplosion>SpitterHitSound</soundExplosion>
+	</DamageDef>
+	
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGBioPlasma</defName>
+		<label>Tyranid Infection</label>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} has died by Tyranid Plague.</deathMessage>
+		<hediff>hediff_TYPlague</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<harmsHealth>true</harmsHealth>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_IGC_GreenSPlat</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<soundExplosion>BioPlasmaHitSound</soundExplosion>
+	</DamageDef>
+	-->
 </Defs>

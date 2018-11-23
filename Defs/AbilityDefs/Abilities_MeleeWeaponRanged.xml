@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ======================== Melee Weapon Ranged Ability Defs ================================== -->
+<!-- ======================== Imperial - Abilities ================================== -->
+<!-- ======================== Imperial - Bolter Ability ================================== -->
+<ThingDef ParentName="BaseProjectileAbilityExplosive">
+   <defName>Projectile_OGIBolt</defName>
+		<graphicData>
+			<texPath>Things/Projectile/BoltShotSml</texPath>
+		</graphicData>
+		<projectile>
+			<damageDef>OGIBolt</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<speed>75</speed>
+			<flyOverhead>false</flyOverhead>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>OGI_Ability_FireBolter</defName>
+        <label>Fire Bolter</label>
+        <uiIconPath>Things/Projectile/BoltShotSml</uiIconPath>
+        <description>Fire built in Bolter.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_OGIBolt</defaultProjectile>
+            <abilityDef>OGI_Ability_FireBolter</abilityDef>
+            <warmupTime>0.6</warmupTime>
+            <SecondsToRecharge>10.0</SecondsToRecharge>
+            <burstShotCount>3</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>0.1</forcedMissRadius>
+			<soundCast>BoltSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
+<!-- ======================== Eldar - Abilities ================================== -->
+<!-- ======================== Eldar - Shuriken Catapult Ability ================================== -->
+<ThingDef ParentName="BaseProjectileAbility">
+   <defName>Projectile_OGEShuriken</defName>
+		<graphicData>
+			<texPath>Things/Projectile/ShurikenSml</texPath>
+		</graphicData>
+		<projectile>
+			<damageDef>OGEShuriken</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>OGE_Ability_FireShuriken</defName>
+        <label>Fire Shuriken Catapult</label>
+        <uiIconPath>Things/Projectile/ShurikenSml</uiIconPath>
+        <description>Fire built in Shuriken Catapult.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_OGEShuriken</defaultProjectile>
+            <abilityDef>OGE_Ability_FireShuriken</abilityDef>
+            <warmupTime>0.7</warmupTime>
+            <SecondsToRecharge>10.0</SecondsToRecharge>
+            <burstShotCount>14</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>28</range>
+			<soundCast>ShurikenSound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
+<!-- ======================== Eldar - Singing Spear Ability ================================== -->
+<ThingDef ParentName="BaseProjectileAbility">
+   <defName>Projectile_OGESingingSpear</defName>
+		<graphicData>
+			<texPath>Things/Projectile/SingingSpear_Thrown</texPath>
+			<drawSize>1.750</drawSize>			
+		</graphicData>
+		<comps>     
+			<li>
+				<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+			</li>
+		</comps>
+		<projectile>
+			  <damageDef>RangedStab</damageDef>
+			  <armorPenetrationBase>1</armorPenetrationBase>
+			  <damageAmountBase>30</damageAmountBase>
+			  <speed>26</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>OGE_Ability_ThrowSingingSpear</defName>
+        <label>Throw Singing Spear</label>
+        <uiIconPath>Things/Projectile/SingingSpear_Thrown</uiIconPath>
+        <description>Throw the Singing Spear.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_OGESingingSpear</defaultProjectile>
+            <abilityDef>OGE_Ability_ThrowSingingSpear</abilityDef>
+            <warmupTime>2</warmupTime>
+            <SecondsToRecharge>10.0</SecondsToRecharge>
+            <burstShotCount>1</burstShotCount>
+			<range>20</range>
+			<soundCast>Interact_BeatFire</soundCast>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
+ <!-- ======================== Dark Eldar - Abilities ================================== -->
+<!-- ======================== Dark Eldar - Splinter Rifle Ability ================================== -->
+<ThingDef ParentName="BaseProjectileAbility">
+   <defName>Projectile_OGDESplinter</defName>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+		</graphicData>
+		<projectile>
+			<damageDef>OGESplinter</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+ </ThingDef>
+
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>OGDE_Ability_FireSplinter</defName>
+        <label>Fire Splinter Rifle</label>
+        <uiIconPath>Things/Projectile/SplinterSml</uiIconPath>
+        <description>Fire built in Splinter Rifle.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_OGDESplinter</defaultProjectile>
+            <abilityDef>OGDE_Ability_FireSplinter</abilityDef>
+            <warmupTime>0.7</warmupTime>
+            <SecondsToRecharge>10.0</SecondsToRecharge>
+            <burstShotCount>9</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>31</range>
+			<soundCast>SplinterSound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+ </AbilityUser.AbilityDef>
+ 
+</Defs>

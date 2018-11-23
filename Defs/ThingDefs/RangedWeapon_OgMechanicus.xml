@@ -9,6 +9,7 @@
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIRadium</damageDef>
 		<damageAmountBase>9</damageAmountBase>
@@ -16,8 +17,10 @@
 		<speed>100</speed>
 	</projectile>
 	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
-	<AddHediffChance>0.5</AddHediffChance>
+	<AddHediffChance>0.35</AddHediffChance>
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
+	<CanResistHediff>true</CanResistHediff>
+	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
  </ThingDef>
 
 	<ThingDef ParentName="OGMechanicusGun">
@@ -50,6 +53,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>Gun</li>
 		<li>RadiumPistol</li>
     </weaponTags>
@@ -67,7 +71,7 @@
 			<warmupTime>0.3</warmupTime>
 			<range>26</range>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
+			<burstShotCount>3</burstShotCount>
 			<soundCast>Shot_ChargeBlaster</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
@@ -97,6 +101,7 @@
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIRadium</damageDef>
 		<damageAmountBase>9</damageAmountBase>
@@ -104,11 +109,14 @@
 		<speed>100</speed>
     </projectile>
 	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
-	<AddHediffChance>0.5</AddHediffChance>
+	<AddHediffChance>0.35</AddHediffChance>
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
+	<CanResistHediff>true</CanResistHediff>
+	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
  </ThingDef>
   
 	<ThingDef ParentName="OGMechanicusGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGAM_Gun_RadiumCarbine</defName>
     <label>Radium Carbine</label>
     <description>A rapid firing radium weapon capable of a punishing rate of fire, it is the main armament of Skitarii Vanguard. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
@@ -124,6 +132,7 @@
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>180000</WorkToMake>
 		<MarketValue>4000</MarketValue>
 		<Mass>3.2</Mass>
@@ -144,6 +153,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>Gun</li>
 		<li>RadiumCarbine</li>
 		</weaponTags>
@@ -154,8 +164,9 @@
 			<li>OGAMRanged</li>
 		</tradeTags>
     <verbs>
-		<li>
-			<verbClass>AdeptusMechanicus.Verb_ShootRF</verbClass>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_RadiumCarbine</defaultProjectile>
 			<warmupTime>0.40</warmupTime>
@@ -200,6 +211,7 @@
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIRadium</damageDef>
 		<damageAmountBase>30</damageAmountBase>
@@ -209,6 +221,8 @@
 	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
 	<AddHediffChance>0.5</AddHediffChance>
 	<HediffToAdd>RadiationPoisioning</HediffToAdd>
+	<CanResistHediff>true</CanResistHediff>
+	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
  </ThingDef>
   
  <ThingDef ParentName="OGMechanicusSpecialGun">
@@ -247,6 +261,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>EliteGun</li>
 		<li>RadiumJezzail</li>
 		</weaponTags>
@@ -294,6 +309,107 @@
     </tools>
  </ThingDef>
  
+ <!-- ====================== Mitralock ===================== -->
+   <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>OGAM_Bullet_Mitralock</defName>
+    <label>Mitralock Blast</label>
+    <graphicData>
+		<texPath>Things/Projectile/LasShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGILas</damageDef>
+		<damageAmountBase>22</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>3</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>25</postFiringDuration>
+			<StartFireChance>0.1</StartFireChance>	
+ </ThingDef>
+ 
+  <ThingDef ParentName="OGMechanicusHeavyGun">
+    <defName>OGAM_Gun_Mitralock</defName>
+    <label>Mitralock</label>
+    <description>Mitralocks are a type of Las-weapon used by the Adeptus Mechanicus. Commonly equipped to Tech-Thralls, Mitralocks release a fan of las-pulses akin to a shotgun blast. The firing range is reduced in favour of an increased likelihood of injuring their targets.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/Imperial/Mitralock</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Shotgun</soundInteract>
+    <statBases>
+      <WorkToMake>18000</WorkToMake>
+      <Mass>5.4</Mass>
+      <AccuracyTouch>0.80</AccuracyTouch>
+      <AccuracyShort>0.87</AccuracyShort>
+      <AccuracyMedium>0.77</AccuracyMedium>
+      <AccuracyLong>0.64</AccuracyLong>
+      <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <weaponTags>
+		<li>AMArmoury</li>
+		<li>EliteGun</li>
+		<li>Mitralock</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGAMRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOGSG">
+			<verbClass>AdeptusMechanicus.Verb_ShootShotgun</verbClass>
+			<pelletCount>18</pelletCount>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>OGAM_Bullet_Mitralock</defaultProjectile>
+        <warmupTime>0.25</warmupTime>
+        <range>18</range>
+        <soundCast>Shot_Shotgun</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  
 <!-- ====================== Plasma Caliver ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCaliver</defName>
@@ -315,17 +431,25 @@
 	</projectile>
  </ThingDef>
 
+  
  <ThingDef ParentName="OGMechanicusSpecialGun">
-		<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
-	<defName>OGAM_Gun_PlasmaCaliver</defName>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+    <defName>OGAM_Gun_PlasmaCaliver</defName>
     <label>Plasma Caliver</label>
 	<description>Plasma Calivers are a type of Plasma Weapon used by Adeptus Mechanicus Skitarii. This gun exchanges range for a terrifying rate of fire. A squad of Skitarii armed with several plasma calivers lights up the night with each volley. They risk life and limb in the process, as Imperial plasma weaponry is notoriously unreliable</description>
-    <graphicData>
+     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCaliver</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
+		<drawSize>1.10</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
+		<reliability>0.25</reliability>
 		<WorkToMake>18000</WorkToMake>
 		<MarketValue>3250</MarketValue>
 		<Mass>1.2</Mass>
@@ -334,7 +458,7 @@
 		<AccuracyMedium>0.70</AccuracyMedium>
 		<AccuracyLong>0.62</AccuracyLong>
 		<RangedWeapon_Cooldown>2.26</RangedWeapon_Cooldown>
-    </statBases>
+	</statBases>
 	<recipeMaker>
 		<researchPrerequisite>WRMechanicusPlasma</researchPrerequisite>
 	</recipeMaker>
@@ -344,57 +468,58 @@
 		<ComponentIndustrial>10</ComponentIndustrial>
 		<Gold>6</Gold>
     </costList>
-	<weaponTags>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>AMArmoury</li>
 		<li>EliteGun</li>
 		<li>PlasmaCaliver</li>
 	</weaponTags>
 	<thingCategories>
-		<li>OGAMRanged</li>
+		<li>OGIRanged</li>
 	</thingCategories>
 	<tradeTags>
-		<li>OGAMRanged</li>
+		<li>OGIRanged</li>
 	</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOHRF</verbClass>
-			<overheat>UR</overheat>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>true</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
+			<rapidfire>true</rapidfire>
+			<logging>false</logging>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCaliver</defaultProjectile>
-			<warmupTime>1</warmupTime>
+			<warmupTime>1.5</warmupTime>
 			<range>28</range>
-			<forcedMissRadius>0.5</forcedMissRadius>
-			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
+			<forcedMissRadius>0.1</forcedMissRadius>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<soundCast>PlasmaPistolSound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-
 		</li>
     </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
+	<tools>
+		<li>
+			<label>barrels</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		</li>
     </tools>
  </ThingDef>
-
+	
 <!-- ====================== Plasma Culverin ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCulverin</defName>
@@ -417,7 +542,7 @@
  </ThingDef>
   
  <ThingDef ParentName="OGMechanicusHeavyGun">
-		<thingClass>AdeptusMechanicus.ThingDef_GunOH</thingClass>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGAM_Gun_PlasmaCulverin</defName>
     <label>Plasma Culverin</label>
     <description>A Plasma Culverin is a type of heavy Plasma Weapon deployed by the Adeptus Mechanicus' Kataphron Battle Servitors, particularly the variant known as the Kataphron Destroyer. Plasma Culverins sacrifice the range of their cannon pattern equivalents in exchange for a higher rate of fire. Only the Adeptus Mechanicus dare coax such rampant destruction from their Plasma Weapons, yet to the Adepts of the Forge World of Ryza in particular, the scars they leave on wielder and war zone alike are considered quite normal.</description>
@@ -433,6 +558,7 @@
 	</comps>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
+		<reliability>1</reliability>
 		<WorkToMake>120000</WorkToMake>
 		<MarketValue>16000</MarketValue>
 		<Mass>5.2</Mass>
@@ -453,6 +579,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>GunHeavy</li>
 		<li>PlasmaCulverin</li>
 	</weaponTags>
@@ -466,9 +593,14 @@
 		<MoveSpeed>-0.25</MoveSpeed>
     </equippedStatOffsets>
     <verbs>
-		<li Class="AdeptusMechanicus.VerbPropertiesOH">
-			<verbClass>AdeptusMechanicus.Verb_ShootOH</verbClass>
-			<overheat>UR</overheat>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<canJam>true</canJam>
+			<reliability>ST</reliability>
+			<overheat>true</overheat>
+			<criticaloverheatExplosion>true</criticaloverheatExplosion>
+			<overheatsOn>10</overheatsOn>
+			<logging>false</logging>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_PlasmaCulverin</defaultProjectile>
 			<warmupTime>4</warmupTime>
@@ -544,6 +676,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>EliteGun</li>
 		<li>MacroStubber</li>
 		</weaponTags>
@@ -578,6 +711,185 @@
         <label>barrel</label>
         <capacities>
           <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+
+<!-- ====================== Arc Pistol ===================== --> 
+ <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+	<defName>OGAM_Bullet_ArcBolt</defName>
+    <label>arc bolt</label>
+    <graphicData>
+		<texPath>Things/Projectile/LightningBolt</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGIArc</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<armorPenetrationBase>1</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_LaserEffect</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>10</postFiringDuration>
+			<StartFireChance>0.1</StartFireChance>	
+			<AddHediffChance>0.5</AddHediffChance>
+			<HediffToAdd>hediff_Pacifier</HediffToAdd>
+ </ThingDef>
+  
+ <ThingDef ParentName="OGMechanicusGun">
+    <defName>OGAM_Gun_ArcPistol</defName>
+    <label>Arc Pistol</label>
+    <description>A small pistol based on Arc Weapon technology and most commonly used by Skitarii Vanguard / Ranger Alphas.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcPistol</texPath>
+		<graphicClass>Graphic_Single</graphicClass>	
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>6500</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.75</AccuracyTouch>
+		<AccuracyShort>0.80</AccuracyShort>
+		<AccuracyMedium>0.80</AccuracyMedium>
+		<AccuracyLong>0.70</AccuracyLong>
+		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechAdvBallistics</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>70</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>1</Gold>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>AMArmoury</li>
+		<li>EliteGun</li>
+		<li>ArcPistol</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGAMRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+	
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>26</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shot_MachinePistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
+ 
+<!-- ====================== Arc Rifle ===================== -->
+ <ThingDef ParentName="OGMechanicusSpecialGun">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGAM_Gun_ArcRifle</defName>
+    <label>Arc Rifle</label>
+    <description>A rapid firing Arc Weapon used as a special weapon in Skitarii Vanguard and Ranger squads.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcRifle</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<reliability>1</reliability>
+		<WorkToMake>18000</WorkToMake>
+		<MarketValue>3250</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.65</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.62</AccuracyLong>
+		<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>WRMechanicusPlasma</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>55</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>6</Gold>
+    </costList>
+	<weaponTags>
+		<li>AMArmoury</li>
+		<li>EliteGun</li>
+		<li>ArcRifle</li>
+	</weaponTags>
+	<thingCategories>
+		<li>OGAMRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>OGAMRanged</li>
+	</tradeTags>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOG">
+			<verbClass>AdeptusMechanicus.Verb_ShootOG</verbClass>
+			<rapidfire>true</rapidfire>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>31</range>
+			<soundCast>Shot_MachinePistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
         </capacities>
         <power>10</power>
         <cooldownTime>1.9</cooldownTime>
@@ -633,6 +945,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>Gun</li>
 		<li>StubCarbine</li>
 		</weaponTags>
@@ -737,6 +1050,7 @@
     <weaponTags>
 		<li>EliteGun</li>
 		<li>GalvanicRifle</li>
+		<li>AMArmoury</li>
 		</weaponTags>
 		<thingCategories>
 			<li>OGAMRanged</li>
@@ -843,6 +1157,7 @@
     </costList>
 	<techLevel>Spacer</techLevel>
     <weaponTags>
+		<li>AMArmoury</li>
 		<li>GunHeavy</li>
 		<li>TransuranicArquebus</li>
 		</weaponTags>
@@ -963,6 +1278,7 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
+		<li>AMArmoury</li>
 			<li>Gun</li>
 			<li>PhosphorSerpenta</li>
 		</weaponTags>
@@ -1043,6 +1359,7 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
+		<li>AMArmoury</li>
 			<li>Gun</li>
 			<li>PhosphorBlastPistol</li>
 		</weaponTags>
@@ -1060,4 +1377,108 @@
 		</costList>
 	</ThingDef>
 
+ <!-- ====================== Cognis Flamer ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGAM_Bullet_CognisFlamer</defName>
+    <label>burning promethium </label>
+    <graphicData>
+      <texPath>Things/Projectile/FlamerShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>1.50</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>20</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
+ <ThingDef ParentName="OGMechanicusHeavyGun">
+    <defName>OGAM_Gun_CognisFlamer</defName>
+    <label>Cognis Flamer</label>
+    <description>A Cognis Flamer is an Imperial Flamer Weapon used by the military forces of the Adeptus Mechanicus which has been outfitted with a Cogitator. The spark-like anger of the Cognis Flamer's artificially intelligent Machine Spirit has been fanned to a roaring blaze. When under duress it will fight with incendiary wrath, even should its wielder be distracted.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/CognisFlamer</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>22000</WorkToMake>
+		<MarketValue>2500</MarketValue>
+		<Mass>3.2</Mass>
+		<AccuracyTouch>0.90</AccuracyTouch>
+		<AccuracyShort>0.60</AccuracyShort>
+		<AccuracyMedium>0.55</AccuracyMedium>
+		<AccuracyLong>0.50</AccuracyLong>
+		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+
+	</recipeMaker>
+    <costList>
+		<Steel>150</Steel>
+		<Plasteel>15</Plasteel>
+		<ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>AMArmoury</li>
+		<li>EliteGun</li>
+		<li>CognisFlamer</li>
+	</weaponTags>
+	<thingCategories>
+		<li>OGAMRanged</li>
+	</thingCategories>
+	<tradeTags>
+		<li>OGAMRanged</li>
+	</tradeTags>
+    <verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOGSG">
+			<verbClass>AdeptusMechanicus.Verb_ShootShotgun</verbClass>
+			<pelletCount>3</pelletCount>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_CognisFlamer</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>18</range>
+			<forcedMissRadius>0.75</forcedMissRadius>
+			<burstShotCount>36</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<soundCast>FlamerSound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+ </ThingDef>
 </Defs>

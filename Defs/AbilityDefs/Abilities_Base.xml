@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+  <!-- ========================BaseDef================================== -->
+  <AbilityUser.AbilityDef Name="BaseAbility" Abstract="True">
+    <uiIconPath>UI/Glow_Corrupt</uiIconPath>
+  </AbilityUser.AbilityDef>
+
+  <!-- -->
+ 
+<ThingDef Name="BaseProjectileAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AbilityUser.Projectile_Ability</thingClass>
+   <defName>Projectile_OGAbility</defName>
+   <label>Ability Projectile</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
+ 
+<ThingDef Name="BaseProjectileAbilityExplosive" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseBullet" Abstract="True">
+   <thingClass>AdeptusMechanicus.Projectile_AbilityExplosive</thingClass>
+   <defName>Projectile_OGAbilityExplosive</defName>
+   <label>Ability Explosive Projectile</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
+ 
+<ThingDef Name="BaseGrenadeAbility" Class="AbilityUser.ProjectileDef_Ability" ParentName="BaseGrenadeProjectile" Abstract="True">
+   <thingClass>AdeptusMechanicus.Projectile_AbilityExplosive</thingClass>
+   <defName>Projectile_OGGrenade</defName>
+   <label>Throw Grenade</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+ </ThingDef>
+</Defs>

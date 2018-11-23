@@ -4,11 +4,21 @@
 	<success>Always</success>
 		<operations>			
 			<li Class="PatchOperationTest">
-				<xpath>/Defs/ThingDef[@Name = "OGBaseImperialGun"]/@ParentName</xpath>
+				<xpath>/Defs/ThingDef[@Name = "BaseMakeableIGGun"]</xpath>
 
 			</li>
 			<li Class="PatchOperationAttributeSet">
 				<xpath>/Defs/ThingDef[@Name = "OGBaseImperialGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGImperialSpecialGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGImperialHeavyGun"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseMakeableIGGun</value>
 			</li>
@@ -18,13 +28,61 @@
 	<success>Always</success>
 		<operations>			
 			<li Class="PatchOperationTest">
-				<xpath>/Defs/ThingDef[@Name = "OGMechanicusGun"]/@ParentName</xpath>
+				<xpath>/Defs/ThingDef[@Name = "IGBaseMeleeWeapon"]</xpath>
+
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGIBaseMeleeWeapon_Sharp_Quality"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGBaseMeleeWeapon</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGIBaseMeleeWeapon_Blunt_Quality"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGBaseMeleeWeapon</value>
+			</li>
+		</operations>	
+	</Operation>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "BaseMakeableIGGun"]</xpath>
 
 			</li>
 			<li Class="PatchOperationAttributeSet">
 				<xpath>/Defs/ThingDef[@Name = "OGMechanicusGun"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseMakeableIGGun</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGMechanicusSpecialGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGMechanicusHeavyGun"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseMakeableIGGun</value>
+			</li>
+		</operations>	
+	</Operation>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "IGBaseMeleeWeapon"]</xpath>
+
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGAMBaseMeleeWeapon_Sharp_Quality"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGBaseMeleeWeapon</value>
+			</li>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[@Name = "OGAMBaseMeleeWeapon_Blunt_Quality"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>IGBaseMeleeWeapon</value>
 			</li>
 		</operations>	
 	</Operation>

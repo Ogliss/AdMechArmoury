@@ -4,7 +4,7 @@
 	<ThingDef ParentName="OGAMBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGAM_Melee_TransonicRazor</defName>
 		<label>Transonic Razor</label>
-		<description>Transonic Weapons are a type of weapon used by Adeptus Mechanicus Skitarii, most infamously Sicarian Ruststalkers. These weapons emit a low insistent buzz that makes stomachs turn. When they strike armour, these weapons will adjust their hostile sonic field to match its own resonant frequency, quickly slicing through it./n/n For all intents and purposes the Transonic Blade functions like a Power Weapon.</description>
+		<description>Transonic Weapons are a type of weapon used by Adeptus Mechanicus Skitarii, most infamously Sicarian Ruststalkers. These weapons emit a low insistent buzz that makes stomachs turn. When they strike armour, these weapons will adjust their hostile sonic field to match its own resonant frequency, quickly slicing through it.\n\n For all intents and purposes the Transonic Blade functions like a Power Weapon.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/TransonicRazor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -12,7 +12,7 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>10000</WorkToMake>
+			<WorkToMake>20000</WorkToMake>
 			<Mass>2.0</Mass>
 			<MarketValue>1250</MarketValue>
 		</statBases>
@@ -68,7 +68,7 @@
 	<ThingDef ParentName="OGAMBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGAM_Melee_TransonicBlade</defName>
 		<label>Transonic Blade</label>
-		<description>Transonic Weapons are a type of weapon used by Adeptus Mechanicus Skitarii, most infamously Sicarian Ruststalkers. These weapons emit a low insistent buzz that makes stomachs turn. When they strike armour, these weapons will adjust their hostile sonic field to match its own resonant frequency, quickly slicing through it./n/n For all intents and purposes the Transonic Blade functions like a Power Weapon.</description>
+		<description>Transonic Weapons are a type of weapon used by Adeptus Mechanicus Skitarii, most infamously Sicarian Ruststalkers. These weapons emit a low insistent buzz that makes stomachs turn. When they strike armour, these weapons will adjust their hostile sonic field to match its own resonant frequency, quickly slicing through it.\n\n For all intents and purposes the Transonic Blade functions like a Power Weapon.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/TransonicBlade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -82,7 +82,7 @@
 	</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>15000</WorkToMake>
+			<WorkToMake>25000</WorkToMake>
 			<Mass>2.0</Mass>
 			<MarketValue>2250</MarketValue>
 		</statBases>
@@ -148,6 +148,8 @@
 	<comps>     
 		<li>
 			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>  
+	      <li Class="CompProperties_EquippableLight">
 		</li>
 	</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
@@ -162,9 +164,9 @@
 			<li>
 				<label>head</label>
 				<capacities>
-					<li>Pacifier</li>
+					<li>PacifierBlunt</li>
 				</capacities>
-				<power>8</power>
+				<power>13</power>
 				<armorPenetration>1</armorPenetration>
 				<cooldownTime>1.8</cooldownTime>
 			</li>
@@ -196,6 +198,67 @@
 	 </ThingDef>
 	<!-- ==================== - ========================= -->
 	 
+	<!-- ==================== Mechanicus  - Taser Goad ========================= -->
+	<ThingDef ParentName="OGAMBaseMeleeWeapon_Blunt_Quality">
+		<defName>OGAM_Melee_TaserGoad</defName>
+		<label>Taser Goad</label>
+		<description>Taser Goads are a type of weapon used by Adeptus Mechanicus Skitarii. Powered by a hyperdynamo capacitor, taser weapons store an incredible amount of energy. A solid impact will cause this energy to discharge in a scorching blast. After unleashing the electrical discharge is stored by the electrothief prongs at goad's tip.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/TaserGoad</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		<drawSize>1.25</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>3.5</Mass>
+			<MarketValue>750</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>prongs</label>
+				<capacities>
+					<li>PacifierPoke</li>
+					<li>PacifierBlunt</li>
+				</capacities>
+				<power>13</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+			</recipeUsers>
+			<researchPrerequisite>ImperialSpecialPowerWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>200</costStuffCount>
+		<weaponTags>
+			<li>AMTaserGoad</li>
+		</weaponTags>
+		<thingCategories>
+			<li>OGAMMelee</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAMMelee</li>
+		</tradeTags>
+	 </ThingDef>
+	<!-- ==================== - ========================= -->
+	
 	<!--==================== Mechanicus - Chord Claw (Single) =========================-->
 	<ThingDef ParentName="OGIBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGAM_Melee_SingleChordClaw</defName>
@@ -208,7 +271,7 @@
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>37500</WorkToMake>
 			<Mass>3.2</Mass>
 			
 			<MarketValue>2250</MarketValue>
@@ -252,66 +315,6 @@
 		<costStuffCount>300</costStuffCount>
 		<weaponTags>
 			<li>AMChordClaw</li>
-		</weaponTags>
-		<thingCategories>
-			<li>OGAMMelee</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGAMMelee</li>
-		</tradeTags>
-	 </ThingDef>
-	<!-- ==================== - ========================= -->
-	
-	<!-- ==================== Mechanicus  - Taser Goad ========================= -->
-	<ThingDef ParentName="OGAMBaseMeleeWeapon_Blunt_Quality">
-		<defName>OGAM_Melee_TaserGoad</defName>
-		<label>Taser Goad</label>
-		<description>Taser Goads are a type of weapon used by Adeptus Mechanicus Skitarii. Powered by a hyperdynamo capacitor, taser weapons store an incredible amount of energy. A solid impact will cause this energy to discharge in a scorching blast. After unleashing the electrical discharge is stored by the electrothief prongs at goad's tip.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/TaserGoad</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		<drawSize>1.25</drawSize>			
-    </graphicData>
-	<comps>     
-		<li>
-			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
-		</li>
-	</comps>
-		<soundInteract>Interact_Revolver</soundInteract>
-		<statBases>
-			<WorkToMake>27500</WorkToMake>
-			<Mass>3.5</Mass>
-			<MarketValue>750</MarketValue>
-		</statBases>
-		<equippedAngleOffset>-25</equippedAngleOffset>
-		<tools>
-			<li>
-				<label>prongs</label>
-				<capacities>
-					<li>PacifierPoke</li>
-				</capacities>
-				<power>16</power>
-				<armorPenetration>1</armorPenetration>
-				<cooldownTime>1.8</cooldownTime>
-			</li>
-		</tools>
-		<recipeMaker>
-			<recipeUsers>
-			</recipeUsers>
-			<researchPrerequisite>ImperialSpecialPowerWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<Plasteel>10</Plasteel>
-			<ComponentIndustrial>8</ComponentIndustrial>
-			<Gold>6</Gold>
-		</costList>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
-		<costStuffCount>200</costStuffCount>
-		<weaponTags>
-			<li>AMTaserGoad</li>
 		</weaponTags>
 		<thingCategories>
 			<li>OGAMMelee</li>
