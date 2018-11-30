@@ -4,53 +4,78 @@
 	<HediffDef Name="OGSpecialBadHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
-    <isBad>true</isBad>
-	<makesAlert>false</makesAlert>
-	<makesSickThought>false</makesSickThought>
+		<everCurableByItem>false</everCurableByItem>
+		<initialSeverity>0.5</initialSeverity>
+		<minSeverity>0.001</minSeverity>
+		<maxSeverity>1</maxSeverity>
+		<isBad>true</isBad>
+		<makesAlert>false</makesAlert>
+		<makesSickThought>false</makesSickThought>
 	</HediffDef>
 	
 	<HediffDef Name="OGSpecialGoodHeDiff" Abstract="True">
 		<hediffClass>HediffWithComps</hediffClass>
-    <defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
-    <isBad>false</isBad>
-	<makesAlert>false</makesAlert>
-	<makesSickThought>false</makesSickThought>
+		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
+		<everCurableByItem>false</everCurableByItem>
+		<initialSeverity>0.5</initialSeverity>
+		<minSeverity>0.001</minSeverity>
+		<maxSeverity>1</maxSeverity>
+		<isBad>false</isBad>
+		<makesAlert>false</makesAlert>
+		<makesSickThought>false</makesSickThought>
 	</HediffDef>
 
 	
   <HediffDef ParentName="OGSpecialGoodHeDiff">
-    <defName>FragGrenadeThrowerHeDiff</defName>
-    <label>Throw frag</label>
-    <labelNoun>frag grenades</labelNoun>
+    <defName>OGI_HeDiff_ServoArm</defName>
+    <label>Servo Arm</label>
+    <labelNoun>servo arm attack</labelNoun>
     <stages>
       <li>
         <label>initial</label>
         <becomeVisible>false</becomeVisible>
       </li>
-	 
     </stages>
     <comps>
       <li Class="HediffCompProperties_VerbGiver">
-	  
-		<verbs>
+		<tools>
 			<li>
-				<label>throw grenade</label>
-				<verbClass>Verb_LaunchProjectile</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<range>12.9</range>
-				<forcedMissRadius>1.9</forcedMissRadius>
-				<warmupTime>1.5</warmupTime>
-				<noiseRadius>4</noiseRadius>
-				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-				<soundCast>ThrowGrenade</soundCast>
-				<targetParams>
-					<canTargetLocations>true</canTargetLocations>
-				</targetParams>
-				<defaultProjectile>Proj_GrenadeFrag</defaultProjectile>
-				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				<label>servo Arm</label>
+				<capacities>
+					<li>PowerBlunt</li>
+				</capacities>
+				<power>66</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>2.8</cooldownTime>
 			</li>
-		</verbs>
-		
+		</tools>
+      </li>
+    </comps>
+  </HediffDef>	
+  
+  <HediffDef ParentName="OGSpecialGoodHeDiff">
+    <defName>OGE_HeDiff_BansheeScream</defName>
+    <label>Banshee Scream</label>
+    <labelNoun>banshee sonic attack</labelNoun>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_VerbGiver">
+		<tools>
+			<li>
+				<label>banshee screem</label>
+				<capacities>
+					<li>PowerBlunt</li>
+				</capacities>
+				<power>66</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+		</tools>
       </li>
     </comps>
   </HediffDef>
