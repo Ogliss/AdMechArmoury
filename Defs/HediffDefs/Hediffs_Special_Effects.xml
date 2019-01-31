@@ -46,7 +46,8 @@
 				</capacities>
 				<power>66</power>
 				<armorPenetration>1</armorPenetration>
-				<cooldownTime>2.8</cooldownTime>
+				<cooldownTime>3.4</cooldownTime>
+				<chanceFactor>0.17</chanceFactor>
 			</li>
 		</tools>
       </li>
@@ -76,6 +77,39 @@
 				<cooldownTime>2.8</cooldownTime>
 			</li>
 		</tools>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <HediffDef ParentName="OGSpecialGoodHeDiff">
+    <defName>OGE_HeDiff_InbuiltShurikenCatapult</defName>
+    <label>Inbuilt Shuriken Catapult</label>
+    <labelNoun>Inbuilt Shuriken Catapult</labelNoun>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_VerbGiver">
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+			<warmupTime>0.7</warmupTime>
+			<range>28</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>14</burstShotCount>
+			<soundCast>ShurikenSound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li> 
+    </verbs>
       </li>
     </comps>
   </HediffDef>

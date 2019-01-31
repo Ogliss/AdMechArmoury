@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+	  <success>Always</success>
+		<xpath>/Defs/ThingDef[@ParentName="BenchBase"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+		<value>
+			<li>ToolCabinetShelf</li>
+		</value>
+	</Operation>
+	
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+		<xpath>/Defs/ThingDef[@ParentName="BenchBase"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[@ParentName="BenchBase"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+		<value>
+			<li>ToolCabinetShelf</li>
+		</value>
+    </li>
+  </operations>
+</Operation>
+
+
+</Patch>

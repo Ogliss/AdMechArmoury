@@ -55,6 +55,7 @@
 	<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 	<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 	<!-- <soundExplosion>OGIPC_Explosion</soundExplosion> -->
+	<defaultArmorPenetration>1</defaultArmorPenetration>
 </DamageDef>
 
 	<!--==================== Krak Grenade Damage Type =========================-->
@@ -110,6 +111,7 @@
 	<soundExplosion>Explosion_EMP</soundExplosion>
 	<combatLogRules>Damage_EMP</combatLogRules>
 		<armorCategory>Heat</armorCategory>
+	<defaultArmorPenetration>1</defaultArmorPenetration>
     <additionalHediffs>
       <li>
         <hediff>hediff_Pacifier</hediff>
@@ -122,13 +124,37 @@
 	<!--==================== Photon/Flashbang Grenade Damage Type =========================-->
   <DamageDef ParentName="StunBase">
 	<defName>OGGrenadePhoton</defName>
+    <workerClass>AdeptusMechanicus.DamageWorker_AddEyes</workerClass>
 	<label>photon grenade</label>
 	<externalViolence>true</externalViolence>
+	<harmsHealth>true</harmsHealth>
+        <hediff>OGGrenadeFlashHediff</hediff>
 	<deathMessage>{0} has been stunned to death.</deathMessage>
 	<defaultDamage>20</defaultDamage>
 	<explosionCellMote>Mote_BlastDry</explosionCellMote>
 	<soundExplosion>Explosion_Stun</soundExplosion>
 	<combatLogRules>Damage_Stun</combatLogRules>
+	<defaultArmorPenetration>1</defaultArmorPenetration>
   </DamageDef>
+  
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>OGGrenadeFlashHediff</defName>
+    <label>blinded</label>
+    <labelNoun>blinded</labelNoun>
+    <battleStateLabel>blind</battleStateLabel>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SelfHeal">
+        <healAmount>0.005</healAmount>
+      </li>
+    </comps>
+  </HediffDef>
+
   <!--==================== End of Grenade Damage Types =========================-->
 </Defs>

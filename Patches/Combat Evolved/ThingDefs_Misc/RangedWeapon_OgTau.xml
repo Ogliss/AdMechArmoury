@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulseCarbine</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.08</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTPulseCarbine</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>18</range>
+      <soundCast>PlasmaPistolSound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>40</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTPulseCarbine</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>TPulseCarbine</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulseRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTPulseRifle</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>30</range>
+      <soundCast>PlasmaPistolSound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>4</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTPulseRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>EliteGun</li>
+		<li>TPulseRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TKrootRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.25</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTKrootRifle</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>24</range>
+      <soundCast>PlasmaPistolSound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>4</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTKrootRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TRailRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTRailRifle</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>48</range>
+      <soundCast>RailgunSound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>8</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTRailRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TRailRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TRailRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGt_Gun_TIonRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTIonRifle</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>48</range>
+      <soundCast>IonSound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTIonRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TIonRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGt_Gun_TIonRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGt_Gun_TBurstCannon</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.15</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTBurstCannon</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>18</range>
+      <soundCast>PlasmaPistolSound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+	  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>36</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>180</magazineSize>
+      <reloadTime>5.5</reloadTime>
+      <ammoSet>AmmoSet_OGTTBurstCannon</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+		<aiUseBurstMode>TRUE</aiUseBurstMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TBurstCannon</li>
+    </weaponTags>
+  </li>
+ 
+  </operations>
+</Operation>
+
+</Patch>

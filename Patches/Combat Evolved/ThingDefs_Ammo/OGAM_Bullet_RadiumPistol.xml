@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>	
+		
+    <ThingCategoryDef>
+      <defName>AmmoOGAMRadiumPistol</defName>
+      <label>radium charge</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGAMRadiumPistol</defName>
+    <label>radium charge</label>
+    <ammoTypes>
+      <Ammo_OGAMRadiumPistol>Bullet_OGAMRadiumPistol</Ammo_OGAMRadiumPistol>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGAMRadiumPistolBase" ParentName="AmmoBase" Abstract="True">
+    <description>radium ammo</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGAMRadiumPistol</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGAMRadiumPistolBase">
+    <defName>Ammo_OGAMRadiumPistol</defName>
+    <label>radium cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGAMRadiumPistol" ParentName="BaseBullet" Abstract="true">
+	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
+	<AddHediffChance>0.5</AddHediffChance>
+	<HediffToAdd>RadiationPoisioning</HediffToAdd>
+   <graphicData>
+      <texPath>Things/Projectile/RadiumShotSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGIBolt</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAMRadiumPistol">
+    <defName>Bullet_OGAMRadiumPistol</defName>
+    <label>radium round</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationBaseBase>0.65</armorPenetrationBaseBase>
+    </projectile>
+  </ThingDef>
+
+		</value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

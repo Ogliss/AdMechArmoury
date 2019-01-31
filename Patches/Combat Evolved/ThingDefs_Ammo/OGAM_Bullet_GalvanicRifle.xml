@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>	
+		
+    <ThingCategoryDef>
+      <defName>AmmoOGAMGalvanicRifle</defName>
+      <label>galvanic ammo</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGAMGalvanicRifle</defName>
+    <label>galvanic ammo</label>
+    <ammoTypes>
+      <Ammo_OGAMGalvanicRifle>Bullet_OGAMGalvanicRifle</Ammo_OGAMGalvanicRifle>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGAMGalvanicRifleBase" ParentName="AmmoBase" Abstract="True">
+    <description>galvanic ammo</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGAMStubCarbine</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGAMGalvanicRifleBase">
+    <defName>Ammo_OGAMGalvanicRifle</defName>
+    <label>galvanic cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGAMGalvanicRifle" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/GalvanicRifleShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGIGalvanic</damageDef>
+      <speed>105</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAMGalvanicRifle">
+    <defName>Bullet_OGAMGalvanicRifle</defName>
+    <label>galvanic round</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>45</damageAmountBase>
+      <armorPenetrationBaseBase>0.75</armorPenetrationBaseBase>
+    </projectile>
+  </ThingDef>
+
+		</value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

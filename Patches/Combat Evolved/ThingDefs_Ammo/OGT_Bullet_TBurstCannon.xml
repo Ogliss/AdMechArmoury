@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>	
+		
+    <ThingCategoryDef>
+      <defName>AmmoOGTTBurstCannon</defName>
+      <label>Burst charge</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGTTBurstCannon</defName>
+    <label>Burst charge</label>
+    <ammoTypes>
+      <Ammo_OGTTBurstCannon>Bullet_OGTTBurstCannon</Ammo_OGTTBurstCannon>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGTTBurstCannonBase" ParentName="AmmoBase" Abstract="True">
+    <description>Burst Cannon ammo</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGTTBurstCannon</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGTTBurstCannonBase">
+    <defName>Ammo_OGTTBurstCannon</defName>
+    <label>Burst Cannon cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGTTBurstCannon" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/PlasmaPulseSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGTPlasmaPulse</damageDef>
+      <speed>135</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGTTBurstCannon">
+    <defName>Bullet_OGTTBurstCannon</defName>
+    <label>Burst Pulse</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationBaseBase>0.75</armorPenetrationBaseBase>
+    </projectile>
+  </ThingDef>
+
+		</value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

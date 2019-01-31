@@ -73,11 +73,8 @@
 		</stuffCategories>
 		<weaponTags>
 			<li>EScorpionChainsword</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -156,11 +153,8 @@
 		</stuffCategories>
 		<weaponTags>
 			<li>EBitingBlade</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -185,13 +179,30 @@
 		</statBases>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		
+		<tickerType>Normal</tickerType>
 		<comps>  
+	      <li Class="AdeptusMechanicus.CompProperties_WargearWeapon">
+		</li> 
+		<!--
 			<li Class="AbilityUser.CompProperties_AbilityItem">
 				<AbilityUserClass>AbilityUser.GenericCompAbilityUser</AbilityUserClass>
 				<Abilities>
 					<li>OGE_Ability_FireShuriken</li>
 				</Abilities>
-			</li>
+			</li> 
+			
+			  <li Class="AdeptusMechanicus.CompProperties_HediffWeapon">
+				<hediffDef>OGE_HeDiff_InbuiltShurikenCatapult</hediffDef>
+				<severityBasedOnDurability>false</severityBasedOnDurability>
+				<partsToAffect>
+				
+				</partsToAffect>
+				
+				<groupsToAffect>
+				</groupsToAffect>
+				
+			  </li>
+			-->
 		</comps>
 		<!--
     <verbs>
@@ -244,11 +255,10 @@
 		<costStuffCount>400</costStuffCount>
 		<weaponTags>
 			<li>EScorpionsClaw</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -331,16 +341,187 @@
 		</stuffCategories>
 		<weaponTags>
 			<li>EPowerSword</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
 	 </ThingDef>	 
 	 
+	<!--==================== Eldar  - Dual Mirrorsword =========================-->
+	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGE_Melee_MirrorswordD</defName>
+		<label>Paired Mirrorswords</label>
+		<description>A Mirrorsword is a type of Aeldari Power Sword employed by a Howling Banshee Exarch. Two Mirrorswords are commonly employed by those Howling Banshee Exarchs who have mastered a deadly ambidextrous form of melee combat that uses the paired blades of two matching Power Swords.\n\nMirrorswords allow for a greater number of blows to be made by the wielder in melee combat, compared to other Aeldari warriors who also wield dual close combat weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/MirrorSwordD</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>3500</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>pommel</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>0.5</cooldownTime>
+			</li>
+			<li>
+				<label>hilt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>0.5</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>PowerCut</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>0.7</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>PowerStab</li>
+				</capacities>
+				<power>30</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.25</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<researchPrerequisite>EldarPowerWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGE_Component>1</OGE_Component>
+			<OGE_Wraithbone>2</OGE_Wraithbone>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<costStuffCount>200</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<weaponTags>
+			<li>EDMirrorswords</li>
+			<li>OGEMelee</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGEMelee</li>
+		</tradeTags>
+	 </ThingDef>	 
+	 	 
+	<!--==================== Eldar  - Mirrorsword =========================-->
+	<ThingDef ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGE_Melee_MirrorswordS</defName>
+		<label>Mirrorsword</label>
+		<description>A Mirrorsword is a type of Aeldari Power Sword employed by a Howling Banshee Exarch. Two Mirrorswords are commonly employed by those Howling Banshee Exarchs who have mastered a deadly ambidextrous form of melee combat that uses the paired blades of two matching Power Swords.\n\nMirrorswords allow for a greater number of blows to be made by the wielder in melee combat, compared to other Aeldari warriors who also wield dual close combat weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/MirrorSwordS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>3500</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>pommel</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>hilt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>PowerCut</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.4</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>PowerStab</li>
+				</capacities>
+				<power>30</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>2.5</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<researchPrerequisite>EldarPowerWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGE_Component>1</OGE_Component>
+			<OGE_Wraithbone>2</OGE_Wraithbone>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<costStuffCount>200</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<weaponTags>
+			<li>EMirrorsword</li>
+			<li>OGEMelee</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGEMelee</li>
+		</tradeTags>
+	 </ThingDef>	 
+	 	 
 	<!--==================== Eldar  - Diresword =========================-->
 	<ThingDef Class="AdeptusMechanicus.ThingDef_ForceWeapon" ParentName="OGEBaseMeleeWeapon_Sharp_Quality">
 		<defName>OGE_Melee_Diresword</defName>
@@ -416,11 +597,10 @@
 		</stuffCategories>
 		<weaponTags>
 			<li>EDireSword</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -468,6 +648,22 @@
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tools>
 			<li>
+				<label>pommel</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>hilt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
 				<label>blade</label>
 				<capacities>
 					<li>PowerCut</li>
@@ -506,11 +702,9 @@
 		<weaponTags>
 			<li>EWitchblade</li>
 			<li>EPsykerMelee</li>
-			<li>EArmoury</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -550,7 +744,7 @@
 			<li>
 				<label>haft</label>
 				<capacities>
-					<li>ForceBlunt</li>
+					<li>Blunt</li>
 				</capacities>
 				<power>8</power>
 				<cooldownTime>1.4</cooldownTime>
@@ -580,13 +774,12 @@
 		</stuffCategories>
 		<costStuffCount>400</costStuffCount>
 		<weaponTags>
-			<li>IForceStaff</li>
+			<li>EForceStaff</li>
+			<li>OGEForceWeapon</li>
+			<li>ForceWeapon</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGIMelee</li>
-		</thingCategories>
 		<tradeTags>
-			<li>OGIMelee</li>
+			<li>OGEMelee</li>
 		</tradeTags>
 	<KillChance>0</KillChance>
 	<blastdamageDef>OGForceStrike</blastdamageDef>
@@ -674,11 +867,9 @@
 		<weaponTags>
 			<li>EGhostSword</li>
 			<li>EGhostMelee</li>
-			<li>EArmoury</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -761,11 +952,9 @@
 		<weaponTags>
 			<li>EDualGhostSword</li>
 			<li>EGhostMelee</li>
-			<li>EArmoury</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -834,11 +1023,7 @@
 		<weaponTags>
 			<li>EGhostAxe</li>
 			<li>EGhostMelee</li>
-			<li>EArmoury</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -923,11 +1108,10 @@
 		</costList>
 		<weaponTags>
 			<li>EExecutioner</li>
-			<li>EArmoury</li>
-		</weaponTags>
-		<thingCategories>
 			<li>OGEMelee</li>
-		</thingCategories>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -1001,11 +1185,7 @@
 		<weaponTags>
 			<li>EHarlequinsKiss</li>
 			<li>ESpecialMelee</li>
-			<li>EArmoury</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -1051,6 +1231,7 @@
       <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
 	</statBases>
 	<equippedAngleOffset>-45</equippedAngleOffset>
+	<!--
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
@@ -1064,6 +1245,7 @@
 			</targetParams>
 		</li> 
     </verbs>
+	-->
 		<tools>
 			<li>
 				<label>fist</label>
@@ -1097,11 +1279,9 @@
 		<weaponTags>
 			<li>ESingingSpear</li>
 			<li>EPsykerMelee</li>
-			<li>EArmoury</li>
+			<li>OGEPowerWeapon</li>
+			<li>PowerWeapon</li>
 		</weaponTags>
-		<thingCategories>
-			<li>OGEMelee</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
@@ -1128,4 +1308,5 @@
       <speed>26</speed>
     </projectile>
 	</ThingDef>
+	
 </Defs>

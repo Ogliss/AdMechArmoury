@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>	
+		
+    <ThingCategoryDef>
+      <defName>AmmoOGAMRadiumJezzail</defName>
+      <label>radium charge (Jezzail)</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGAMRadiumJezzail</defName>
+    <label>radium charge (Jezzail)</label>
+    <ammoTypes>
+      <Ammo_OGAMRadiumJezzail>Bullet_OGAMRadiumJezzail</Ammo_OGAMRadiumJezzail>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGAMRadiumJezzailBase" ParentName="AmmoBase" Abstract="True">
+    <description>radium ammo (Jezzail)</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGAMRadiumJezzail</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGAMRadiumJezzailBase">
+    <defName>Ammo_OGAMRadiumJezzail</defName>
+    <label>radium cartridge (Jezzail)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGAMRadiumJezzail" ParentName="BaseBullet" Abstract="true">
+	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
+	<AddHediffChance>0.156</AddHediffChance>
+	<HediffToAdd>RadiationPoisioning</HediffToAdd>
+   <graphicData>
+      <texPath>Things/Projectile/RadiumShotSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGIRadium</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAMRadiumJezzail">
+    <defName>Bullet_OGAMRadiumJezzail</defName>
+    <label>Bolt</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>30</damageAmountBase>
+      <armorPenetrationBaseBase>0.94</armorPenetrationBaseBase>
+    </projectile>
+  </ThingDef>
+
+		</value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

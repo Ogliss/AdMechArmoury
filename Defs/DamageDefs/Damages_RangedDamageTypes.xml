@@ -26,6 +26,7 @@
 		<impactSoundType>Blunt</impactSoundType>
 		<armorCategory>Heat</armorCategory>
 		<combatLogRules>Damage_Bomb</combatLogRules>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
 	
 	<DamageDef Name="MeltaInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
@@ -37,6 +38,7 @@
 		<impactSoundType>Blunt</impactSoundType>
 		<armorCategory>Heat</armorCategory>
 		<combatLogRules>Damage_Bomb</combatLogRules>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
 	
 	<DamageDef Name="LasInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
@@ -107,6 +109,7 @@
 		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
 
 	<!--==================== Plasma Cannon Damage Type =========================-->
@@ -122,6 +125,7 @@
 		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 		<soundExplosion>OGIPC_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
 
 	<!--==================== Meltagun Damage Type =========================-->
@@ -155,6 +159,23 @@
 		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	<!--==================== Lascannon Damage Type =========================-->
+	<DamageDef ParentName="LasInjuryNoCamShake">
+		<defName>OGILasC</defName>
+		<label>laser</label>
+		<isRanged>true</isRanged>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
 
 	<!--==================== Autogun Damage Type =========================-->
@@ -447,7 +468,7 @@
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Bullet</impactSoundType>
 		<armorCategory>Heat</armorCategory>
-		
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 		<defaultDamage>25</defaultDamage>
 		<buildingDamageFactor>3</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
@@ -565,7 +586,7 @@
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Bullet</impactSoundType>
 		<armorCategory>Heat</armorCategory>
-		
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 		<defaultDamage>25</defaultDamage>
 		<buildingDamageFactor>3</buildingDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
@@ -664,6 +685,7 @@
 		<harmsHealth>false</harmsHealth>
 		<impactSoundType>Electric</impactSoundType>
 		<defaultDamage>50</defaultDamage>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
 		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
 		<hediff>ElectricalBurn</hediff>
 		<hediffSolid>Crack</hediffSolid>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>	
+		
+    <ThingCategoryDef>
+      <defName>AmmoOGStarcannon</defName>
+      <label>Star Bolt charge</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGStarcannon</defName>
+    <label>Star Bolt charge</label>
+    <ammoTypes>
+      <Ammo_OGStarcannon>Bullet_OGEEStarcannon</Ammo_OGStarcannon>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGEEStarcannonBase" ParentName="AmmoBase" Abstract="True">
+    <description>Star Bolt ammo</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGStarcannon</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGEEStarcannonBase">
+    <defName>Ammo_OGStarcannon</defName>
+    <label>Star Bolt cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Ion</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGEEStarcannon" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/PlamsShotSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGEStar</damageDef>
+      <speed>135</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGEEStarcannon">
+    <defName>Bullet_OGEEStarcannon</defName>
+    <label>Star Bolt</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>29</damageAmountBase>
+      <armorPenetrationBaseBase>0.95</armorPenetrationBaseBase>
+    </projectile>
+  </ThingDef>
+	
+		</value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

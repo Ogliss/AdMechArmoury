@@ -40,9 +40,6 @@
 		<recipeMaker>
 			<researchPrerequisite>WGRConversionField</researchPrerequisite>
 		</recipeMaker>
-    <thingCategories>
-      <li>OGIWargear</li>
-    </thingCategories>
     <apparel>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
@@ -107,9 +104,6 @@
 		<recipeMaker>
 			<researchPrerequisite>WGRConversionField</researchPrerequisite>
 		</recipeMaker>
-    <thingCategories>
-      <li>OGIWargear</li>
-    </thingCategories>
     <apparel>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
@@ -122,6 +116,137 @@
 				<li>OGIWargear</li>
 				<li>OGIWargear1</li>
 				<li>IronHalo</li>
+				<li>OGIShield</li>
+			</tags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1,1,1,1)</only>
+
+        </li>
+      </options>
+    </colorGenerator>
+    <generateCommonality>0.7</generateCommonality>
+  </ThingDef>
+ 
+	<!-- ========================= Imperial - Combat Shield ========================== -->  
+	<ThingDef ParentName="OGIWargearMakeable">
+    <defName>OGI_Wargear_CombatShield</defName>
+    <label>Combat Shield</label>
+    <description>A Combat Shield is piece of defensive equipment utilised mainly by the forces of the Adeptus Astartes, Combat Shields are usually fabricated from plasteel, and incorporate a form of technology very similar to that of Imperial Power Weapons in the form of a miniaturised power generator which, when activated, emits a field of disruptive energy around the face and circumference of the shield. A Combat Shield is a compromise between flexibility and defence, trading the stronger field and physical protection a Storm Shield's size offers for a free hand.\n\nCombat Shields Protect against melee attacks Only</description>
+    <thingClass>AdeptusMechanicus.CloseCombatShield</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_CombatShield</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+	<comps>     
+	      <li Class="AdeptusMechanicus.CompProperties_Wargear">
+		</li>
+	</comps>
+    <tickerType>Normal</tickerType>
+    <statBases>
+      <WorkToMake>12000</WorkToMake>
+		<Mass>3</Mass>
+		<EnergyShieldRechargeRate>0.5</EnergyShieldRechargeRate>
+		<EnergyShieldEnergyMax>0.55</EnergyShieldEnergyMax>
+		<MarketValue>10000</MarketValue>
+		<MaxHitPoints>240</MaxHitPoints>
+    </statBases>
+		<equippedStatOffsets>
+		<PsychicSensitivity>-0.05</PsychicSensitivity>
+		<PainShockThreshold>0.10</PainShockThreshold>
+		<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>20</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+		</recipeMaker>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+	  <wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/Wargear_CombatShield/Naked</wornGraphicPath>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>BeltWargear1</li>
+        <li>ShellEquipment</li>
+        <li>Shell</li>
+      </layers>
+			<tags>
+				<li>OGIWargear</li>
+				<li>OGIWargear1</li>
+				<li>CombatShield</li>
+				<li>OGIShield</li>
+			</tags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1,1,1,1)</only>
+
+        </li>
+      </options>
+    </colorGenerator>
+    <generateCommonality>0.7</generateCommonality>
+  </ThingDef>
+  
+ 	<!-- ========================= Imperial - Storm Shield ========================== -->  
+	<ThingDef ParentName="OGIWargearMakeable">
+    <defName>OGI_Wargear_StormShield</defName>
+    <label>Storm Shield</label>
+    <description>A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection. The Storm Shield is a much larger and rarer version of the Combat Shield and is usually used by only the most decorated of Astartes, often Vanguard Veterans or Veterans wearing Terminator Armour. Unlike the Combat Shield, which is attached to the user's arm and thus allows the hands to remain free, the Storm Shield is heavier and needs to be carried in one hand.\n\nCombat Shields Protect against melee attacks Only</description>
+    <thingClass>AdeptusMechanicus.CloseCombatShield</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_StormShield</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+	<comps>     
+	      <li Class="AdeptusMechanicus.CompProperties_Wargear">
+		</li>
+	</comps>
+    <tickerType>Normal</tickerType>
+    <statBases>
+      <WorkToMake>12000</WorkToMake>
+		<Mass>3</Mass>
+		<EnergyShieldRechargeRate>0.26</EnergyShieldRechargeRate>
+		<EnergyShieldEnergyMax>1.55</EnergyShieldEnergyMax>
+		<MarketValue>14000</MarketValue>
+		<MaxHitPoints>480</MaxHitPoints>
+    </statBases>
+		<equippedStatOffsets>
+		<PsychicSensitivity>-0.05</PsychicSensitivity>
+		<PainShockThreshold>0.10</PainShockThreshold>
+		<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>4</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>WGRConversionField</researchPrerequisite>
+		</recipeMaker>
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>BeltWargear1</li>
+      </layers>
+			<tags>
+				<li>OGIWargear</li>
+				<li>OGIWargear1</li>
+				<li>StormShield</li>
 				<li>OGIShield</li>
 			</tags>
     </apparel>
@@ -184,9 +309,6 @@
 				<li>PuritySealA</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIWargear</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGIWargear</li>
 		</tradeTags>
@@ -199,7 +321,7 @@
 		<label>Hospitaller Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for medical procedures, biometric analysis and outfitted with basic surgical tools.</description>
 		<graphicData>
-			<texPath>Pawn/OGIServoSkull/OGIServoSkullA</texPath>
+			<texPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullA</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<tickerType>Normal</tickerType>
@@ -235,7 +357,7 @@
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Pawn/OGIServoSkull/OGIServoSkullA</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullA</wornGraphicPath>
 			<layers>
 				<li>OverheadEquipment</li>
 			</layers>
@@ -245,9 +367,6 @@
 				<li>HospitalServoSkull</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIWargear</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGIWargear</li>
 		</tradeTags>
@@ -259,7 +378,7 @@
 		<label>Inquisitorial Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for Inquisitorial procedures, language analysis, negotiations and outfitted with a neural link to allow the user to access the cogitators for aim assistance.</description>
 		<graphicData>
-			<texPath>Pawn/OGIServoSkull/OGIServoSkullB</texPath>
+			<texPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullB</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<tickerType>Normal</tickerType>
@@ -293,7 +412,7 @@
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Pawn/OGIServoSkull/OGIServoSkullB</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullB</wornGraphicPath>
 			<layers>
 				<li>OverheadEquipment</li>
 			</layers>
@@ -303,9 +422,6 @@
 				<li>InquisitorServoSkull</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIWargear</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGIWargear</li>
 		</tradeTags>
@@ -317,7 +433,7 @@
 		<label>Mechanarium Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for Mechanicus procedures, Structural analysis, Schematics and outfitted with a set of tools designed to increase the users productivity.</description>
 		<graphicData>
-			<texPath>Pawn/OGIServoSkull/OGIServoSkullC</texPath>
+			<texPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullC</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<tickerType>Normal</tickerType>
@@ -354,7 +470,7 @@
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Pawn/OGIServoSkull/OGIServoSkullC</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/OGIServoSkull/OGIServoSkullC</wornGraphicPath>
 			<layers>
 				<li>OverheadEquipment</li>
 			</layers>
@@ -364,9 +480,6 @@
 				<li>MechanicusServoSkull</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIWargear</li>
-		</thingCategories>
 		<tradeTags>
 			<li>OGIWargear</li>
 		</tradeTags>

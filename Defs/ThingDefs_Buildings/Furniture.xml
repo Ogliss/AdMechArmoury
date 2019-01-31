@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<defName>ToolCabinetShelf</defName>
+		<label>tool cabinet(shelf)</label>
+		<description>Increases work speed when placed near a workbench. One workbench use to up to two tool cabinets.</description>
+		<graphicData>
+			<texPath>Buildings/Common/ToolCabinetShelf</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(2,1)</drawSize>
+			<color>(96,114,95)</color>
+		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+		<passability>Standable</passability>
+		<fillPercent>0.4</fillPercent>
+		<castEdgeShadows>false</castEdgeShadows>
+		<clearBuildingArea>false</clearBuildingArea>
+		<costList>
+		  <Steel>200</Steel>
+		</costList>
+		<researchPrerequisites>
+		  <li>ComplexFurniture</li>
+		</researchPrerequisites>
+		<defaultPlacingRot>South</defaultPlacingRot>
+		<statBases>
+		  <MaxHitPoints>100</MaxHitPoints>
+		  <WorkToBuild>1800</WorkToBuild>
+		  <Mass>40</Mass>
+		  <Flammability>0.5</Flammability>
+		</statBases>
+		<size>(2,1)</size>
+		<designationHotKey>Misc12</designationHotKey>
+		<staticSunShadowHeight>0.5</staticSunShadowHeight>
+		<surfaceType>None</surfaceType>
+		<canOverlapZones>false</canOverlapZones>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Facility">
+				<statOffsets>
+				  <WorkTableWorkSpeedFactor>0.06</WorkTableWorkSpeedFactor>
+				</statOffsets>
+				<maxSimultaneous>2</maxSimultaneous>
+				<maxDistance>8</maxDistance>
+			</li>
+		</comps>
+		<building>
+			<canPlaceOverWall>true</canPlaceOverWall>
+			<isEdifice>false</isEdifice>
+		</building>
+		<designationCategory>Misc</designationCategory>
+		<thingCategories>
+		  <li>BuildingsMisc</li>
+		</thingCategories>
+	</ThingDef>
+
+</Defs>

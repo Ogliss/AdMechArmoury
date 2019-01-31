@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AC73323-B4F2-4592-B3EA-53AC4F8D73A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdeptusMechanicus</RootNamespace>
+    <AssemblyName>AdeptusMechanicusMain</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\RimWorld\Mods\AdMechArmoury\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="0JecsTools">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AbilityUser">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\AbilityUser.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CompActivatableEffect">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\CompActivatableEffect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CompSlotLoadable">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\CompSlotLoadable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\818773962\Assemblies\HugsLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AIDefOf.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="CompInvunerableSaveOG.cs" />
+    <Compile Include="Class2.cs" />
+    <Compile Include="CompSpawnerPawnsOnDamaged.cs" />
+    <Compile Include="CompWarpFireOverlay.cs" />
+    <Compile Include="HediffApparel\CompProperties_LungProtectionApparel.cs" />
+    <Compile Include="HediffApparel\CompApparel.cs" />
+    <Compile Include="DamageWorker_AddEyes.cs" />
+    <Compile Include="HediffApparel\CompProperties_EyeProtectionApparel.cs" />
+    <Compile Include="HediffGiver_StartWithHediff.cs" />
+    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="Hives\CompSpawnerHiveLikes.cs" />
+    <Compile Include="Hives\CompSpawnerLike.cs" />
+    <Compile Include="Hives\HiveLike.cs" />
+    <Compile Include="Hives\HiveLikeDefOf.cs" />
+    <Compile Include="Hives\HiveLikeUtility.cs" />
+    <Compile Include="Hives\IncidentWorker_Hivelike.cs" />
+    <Compile Include="Hives\InfestationLikeCellFinder.cs" />
+    <Compile Include="Hives\JobGiver_HiveLikeDefense.cs" />
+    <Compile Include="Hives\JobGiver_MaintainHiveLikes.cs" />
+    <Compile Include="Hives\JobGiver_WanderHiveLike.cs" />
+    <Compile Include="Hives\LordJob_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelated.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelatedData.cs" />
+    <Compile Include="Hives\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="IncidentWorker_CrashedShip.cs" />
+    <Compile Include="LordJob_PawnsDefendShip.cs" />
+    <Compile Include="Projectile_ExplosiveOG.cs" />
+    <Compile Include="CompPowerWeaponActivatableEffect.cs" />
+    <Compile Include="ApparelGizmo\PowerGlow.cs" />
+    <Compile Include="ApparelGizmo\Patches - Copy.cs" />
+    <Compile Include="ApparelGizmo\Patches.cs" />
+    <Compile Include="ApparelLight\CompEquippableLight.cs" />
+    <Compile Include="ApparelLight\CompProperties_LaunchProjectile.cs" />
+    <Compile Include="ApparelLight\Util_ApparelWithLight.cs" />
+    <Compile Include="ApparelLight\Util_CompEquippableLight.cs" />
+    <Compile Include="CompRocketSlotLoadable.cs" />
+    <Compile Include="CompHediffWeapon.cs" />
+    <Compile Include="CompWargearWeaponSecondry.cs" />
+    <Compile Include="CompWargearWeaponToggle.cs" />
+    <Compile Include="CompWargearWeapon.cs" />
+    <Compile Include="CompWargear.cs" />
+    <Compile Include="HediffApparel\HediffApparel.cs" />
+    <Compile Include="ProjectileDef_ExplosiveProjectile.cs" />
+    <Compile Include="Projectile_ExplosiveAbility.cs" />
+    <Compile Include="Shieldstuff\ProtectiveEyeWear.cs" />
+    <Compile Include="Shieldstuff\AdvShieldBelt.cs" />
+    <Compile Include="Shieldstuff\Gizmo_CloseCombatShieldStatus.cs" />
+    <Compile Include="Shieldstuff\CloseCombatShield.cs" />
+    <Compile Include="Shieldstuff\Gizmo_AdvShieldBeltStatus.cs" />
+    <Compile Include="Thing_AddsHediff.cs" />
+    <Compile Include="Thing_AddsHediffDef.cs" />
+    <Compile Include="Verb_ShootShotgun.cs" />
+    <Compile Include="DamageWorker_AddBrain.cs" />
+    <Compile Include="DamageWorker_BombNoCamShake.cs" />
+    <Compile Include="DamageWorker_FlameNoCamShake.cs" />
+    <Compile Include="EffectBullet\Projectile_BulletEffect.cs" />
+    <Compile Include="EffectBullet\ThingDef_BulletEffect.cs" />
+    <Compile Include="Jamming\Verb_LaunchProjectileOG.cs" />
+    <Compile Include="LaserProjectiles\Projectile_LaserEffect.cs" />
+    <Compile Include="LaserProjectiles\Projectile_Laser.cs" />
+    <Compile Include="LaserProjectiles\ThingDef_LaserProjectile.cs" />
+    <Compile Include="NecronGauss\Verb_ShootNGRF.cs" />
+    <Compile Include="OversizeWeapons\CompOversizedWeapon.cs" />
+    <Compile Include="OversizeWeapons\CompProperties_OversizedWeapon.cs" />
+    <Compile Include="OversizeWeapons\HarmonyCompOversizedWeapon.cs" />
+    <Compile Include="ThingDef_ForceWeapon.cs" />
+    <Compile Include="Verb_MeleeAttackForceweapon.cs" />
+    <Compile Include="Verb_ShootRF.cs" />
+    <Compile Include="Wraithcannon\Projectile_WC.cs" />
+    <Compile Include="Jamming\BulletOG.cs" />
+    <Compile Include="OGHediffDefOf.cs" />
+    <Compile Include="Wraithcannon\ThingDef_BulletWC.cs" />
+    <Compile Include="NecronGauss\Projectile_NG.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Jamming\StatDefOf_OG.cs" />
+    <Compile Include="StatDrawEntry.cs" />
+    <Compile Include="Jamming\StatPart_Reliability.cs" />
+    <Compile Include="Jamming\StatWorker_Reliability.cs" />
+    <Compile Include="Jamming\ThingDef_GunOG.cs" />
+    <Compile Include="Jamming\VerbPropertiesOG.cs" />
+    <Compile Include="Jamming\Verb_ShootOG.cs" />
+    <Compile Include="NecronGauss\Verb_LaunchProjectileNG.cs" />
+    <Compile Include="NecronGauss\Verb_ShootNG.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Nonfunctional\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

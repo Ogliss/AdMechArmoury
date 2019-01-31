@@ -6,7 +6,7 @@
 	</ThingDef>
 
 	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect"  Abstract="True" Name="OGEffectBulletBase" ParentName="BaseBullet">
-    <thingClass>Bullet</thingClass>
+    <thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
 	</ThingDef>
 	
 	<!-- ==================== Base Weapon Template ========================= -->	
@@ -38,7 +38,8 @@
 			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
 		</graphicData>
 	</ThingDef>
-		<!-- ==================== Base Weapon with light Template ========================= -->	
+
+	<!-- ==================== Base Weapon with light Template ========================= -->	
 	<ThingDef Abstract="True" Name="OGBaseWeaponLight">
 		<!-- <thingClass>AdeptusMechanicus.ThingWithLight</thingClass> -->
 		<thingClass>ThingWithComps</thingClass>
@@ -71,6 +72,7 @@
 			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
 		</graphicData>
 	</ThingDef>
+
 	<!-- ==================== Mod - Base Gun Weapon Template ========================= -->		
 	<ThingDef Name="OGBaseGun" Abstract="True" ParentName="OGBaseWeapon">
 		<techLevel>Industrial</techLevel>
@@ -93,86 +95,55 @@
     </comps>
   </ThingDef>
 
- 	<ThingDef Name="OGBaseHumanGun" ParentName="OGBaseGun" Abstract="True">
-    <weaponTags>
-      <li>Gun</li>
-	</weaponTags>
-	</ThingDef>
-  	
-	<!-- ==================== Mod - Base Gun Weapon Template ========================= -->		
-	<ThingDef Name="OGBaseGunN" Abstract="True" ParentName="OGBaseWeapon">
-		<techLevel>Industrial</techLevel>
-		<smeltable>true</smeltable>
-		<thingCategories>
-      <li>WeaponsRanged</li>
-    </thingCategories>
-    <comps>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
-  </ThingDef>
-
-	<!-- ==================== Mod - Base Melee Weapon Template ========================= -->
-<!--
-	<ThingDef Name="OGBaseWeapon" Abstract="True" ParentName="OGBaseWeapon">
-    <techLevel>Industrial</techLevel>
-		<smeltable>true</smeltable>
-    <thingCategories>
-      <li>WeaponsMelee</li>
-    </thingCategories>
-
-    <recipeMaker>
-      <workSpeedStat>SmithingSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <effectWorking>Smith</effectWorking>
-      <soundWorking>Recipe_Smith</soundWorking>
-      <recipeUsers>
-	  
-      </recipeUsers>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
-    <inspectorTabs>
-      <li>ITab_Art</li>
-    </inspectorTabs>
-  </ThingDef>
-  -->
 	<!-- ==================== Mod - Base Makeable Gun Weapon Template ========================= -->
-	<ThingDef Name="OGBaseMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGImperialBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+	  <li>OGIRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>ImperialRanged</li>
+      <li>ImperialWeapon</li>
+    </weaponTags>
+	</ThingDef> 
+	
+	<ThingDef Name="OGBaseImperialMakeableGun" ParentName="OGImperialBaseGun" Abstract="True">
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>TableMachining</li>
+        <li>OGI_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
     </recipeMaker>
   </ThingDef>
   
-	<ThingDef Name="OGBaseImperialGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<ThingDef Name="OGImperialGun" ParentName="OGBaseImperialMakeableGun" Abstract="True">
     <weaponTags>
       <li>Imperial_Gun</li>
+	  <li>OGIGun</li>
     </weaponTags>
     <recipeMaker>
       <researchPrerequisite>ImperialTechBase</researchPrerequisite>
     </recipeMaker>
   </ThingDef>
   
-	<ThingDef Name="OGImperialSpecialGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<ThingDef Name="OGImperialSpecialGun" ParentName="OGBaseImperialMakeableGun" Abstract="True">
     <weaponTags>
       <li>Imperial_SpecialGun</li>
+	  <li>OGISpecialGun</li>
     </weaponTags>
     <recipeMaker>
       <researchPrerequisite>ImperialSpecialWeapons</researchPrerequisite>
     </recipeMaker>
   </ThingDef>
   
-	<ThingDef Name="OGImperialHeavyGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<ThingDef Name="OGImperialHeavyGun" ParentName="OGBaseImperialMakeableGun" Abstract="True">
     <weaponTags>
       <li>Imperial_HeavyGun</li>
+	  <li>OGIHeavyGun</li>
     </weaponTags>
     <recipeMaker>
       <researchPrerequisite>ImperialHeavyWeapons</researchPrerequisite>
@@ -182,9 +153,15 @@
 	<!-- ==================== Mod - Base Imperial Melee Weapon Template ========================= -->
 	<ThingDef Name="OGIBaseMeleeWeapon" Abstract="True" ParentName="OGBaseWeapon">
     <techLevel>Industrial</techLevel>
-		<smeltable>true</smeltable>
-    <thingCategories>
-    </thingCategories>
+	<smeltable>true</smeltable>
+	<thingCategories>
+	  <li>OGIMelee</li>
+	</thingCategories>
+    <weaponTags>
+	  <li>OGIMelee</li>
+      <li>ImperialMelee</li>
+      <li>ImperialWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -192,8 +169,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
+        <li>OGI_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
 	  <researchPrerequisite>ImperialTechBase</researchPrerequisite>
@@ -220,6 +196,11 @@
 				<categories>
 					<li>Root</li>
 				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
 			</defaultIngredientFilter>
 		</recipeMaker>
 	  </ThingDef>
@@ -231,6 +212,11 @@
 				<categories>
 					<li>Root</li>
 				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
 			</defaultIngredientFilter>
 		</recipeMaker>
 	</ThingDef>
@@ -238,16 +224,77 @@
 	<!-- ==================== Mod - Base Imperial Sharp Quality Melee Weapon Template ========================= -->
 	<ThingDef Name="OGIBaseMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Sharp">
 	
-	
+    <weaponTags>
+      <li>ImperialMeleeBasic</li>
+    </weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Imperial Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- ==================== Mod - Base Imperial Blunt Quality Melee Weapon Template ========================= -->
 	<ThingDef Name="OGIBaseMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Blunt">
 
-	
+    <weaponTags>
+      <li>ImperialMeleeBasic</li>
+    </weaponTags>
 	</ThingDef>
 	 
-	<ThingDef Name="OGMechanicusGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<!-- ==================== Mod - Power Imperial Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OGIPowerMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Sharp">
+	
+    <weaponTags>
+      <li>ImperialMeleePower</li>
+    </weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Power Imperial Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OGIPowerMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Blunt">
+
+    <weaponTags>
+      <li>ImperialMeleePower</li>
+    </weaponTags>
+	</ThingDef>
+	 
+	<!-- ==================== Mod - Force Imperial Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OGIForceMeleeWeapon_Sharp_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Sharp">
+	
+    <weaponTags>
+      <li>ImperialMeleeForce</li>
+    </weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Force Imperial Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OGIForceMeleeWeapon_Blunt_Quality" Abstract="True" ParentName="OGIBaseMeleeWeapon_Blunt">
+
+    <weaponTags>
+      <li>ImperialMeleeForce</li>
+    </weaponTags>
+	</ThingDef>
+	 
+	<!-- ==================== Mod - Base Mechanicus Weapon Template ========================= -->	 
+	<ThingDef Name="OGMechanicusBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+	  <li>OGAMRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>MechanicusRanged</li>
+      <li>MechanicusWeapon</li>
+    </weaponTags>
+	</ThingDef>
+		
+	<ThingDef Name="OGBaseMechanicusMakeableGun" ParentName="OGMechanicusBaseGun" Abstract="True">
+	    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>OGI_TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+      <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    </recipeMaker>
+  </ThingDef>
+	
+	<ThingDef Name="OGMechanicusGun" ParentName="OGBaseMechanicusMakeableGun" Abstract="True">
     <weaponTags>
       <li>Mechanicus_Gun</li>
     </weaponTags>
@@ -256,7 +303,7 @@
     </recipeMaker>
   </ThingDef>
 	
-	<ThingDef Name="OGMechanicusSpecialGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<ThingDef Name="OGMechanicusSpecialGun" ParentName="OGBaseMechanicusMakeableGun" Abstract="True">
     <weaponTags>
       <li>Mechanicus_SpecialGun</li>
     </weaponTags>
@@ -265,7 +312,7 @@
     </recipeMaker>
   </ThingDef>
 	
-	<ThingDef Name="OGMechanicusHeavyGun" ParentName="OGBaseMakeableGun" Abstract="True">
+	<ThingDef Name="OGMechanicusHeavyGun" ParentName="OGBaseMechanicusMakeableGun" Abstract="True">
     <weaponTags>
       <li>Mechanicus_HeavyGun</li>
     </weaponTags>
@@ -277,9 +324,14 @@
 	<!-- ==================== Mod - Base Mechanicus Melee Weapon Template ========================= -->
 	<ThingDef Name="OGAMBaseMeleeWeapon" Abstract="True" ParentName="OGBaseWeapon">
     <techLevel>Industrial</techLevel>
-		<smeltable>true</smeltable>
-    <thingCategories>
-    </thingCategories>
+	<smeltable>true</smeltable>
+	<thingCategories>
+	  <li>OGAMMelee</li>
+	</thingCategories>
+    <weaponTags>
+      <li>MechanicusMelee</li>
+      <li>MechanicusWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -287,8 +339,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
+        <li>OGI_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
 	  <researchPrerequisite>ImperialTechBase</researchPrerequisite>
@@ -321,8 +372,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>ElectricSmithy</li>
-        <li>FueledSmithy</li>
+        <li>OGI_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
 	  <researchPrerequisite>ImperialTechBase</researchPrerequisite>
@@ -341,6 +391,7 @@
 			</li>
 		</comps>
 	</ThingDef>
+
 	<!-- ==================== Mod - Base Mechanicus Melee Weapon Sharp Template ========================= -->
 	<ThingDef Name="OGAMBaseMeleeWeapon_Sharp" ParentName="OGAMBaseMeleeWeapon" Abstract="True">
 		<recipeMaker>
@@ -393,8 +444,17 @@
 	</ThingDef>
 	 
 	<!-- ==================== Mod - Base Chaos Weapon Template ========================= -->
-	<ThingDef Name="OGBaseChaosMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGChaosBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+	  <li>OGCRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>ChaosRanged</li>
+      <li>ChaosWeapon</li>
+    </weaponTags>
+	</ThingDef>
 	
+	<ThingDef Name="OGBaseChaosMakeableGun" ParentName="OGChaosBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -402,7 +462,7 @@
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
        <!-- 
-		<li>TableMachining</li>
+		<li>OGC_TableMachining</li>
 		-->
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
@@ -441,8 +501,13 @@
 	<ThingDef Name="OGCBaseMeleeWeapon" Abstract="True" ParentName="OGBaseWeapon">
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
-    <thingCategories>
-    </thingCategories>
+	<thingCategories>
+	  <li>OGCMelee</li>
+	</thingCategories>
+    <weaponTags>
+      <li>ChaosMelee</li>
+      <li>ChaosWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -504,16 +569,24 @@
 	</ThingDef>
 	 
 	<!-- ==================== Mod - Base Ork Weapon Template ========================= -->
-	<ThingDef Name="OGBaseOrkMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGOrkBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+	  <li>OGORanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>OrkRanged</li>
+      <li>OrkWeapon</li>
+    </weaponTags>
+	</ThingDef>
+	
+	<ThingDef Name="OGBaseOrkMakeableGun" ParentName="OGOrkBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	<!--
-        <li>TableMachining</li>
-	-->
+        <li>OGO_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -552,7 +625,12 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
+      <li>OGOMelee</li>
     </thingCategories>
+    <weaponTags>
+      <li>OrkMelee</li>
+      <li>OrkWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -560,7 +638,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	  
+        <li>OGO_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
@@ -614,16 +692,24 @@
 	</ThingDef>
 	 
 	<!-- ==================== Mod - Base Tau Weapon Template ========================= -->
-	<ThingDef Name="OGBaseTauMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGTauBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+	  <li>OGTRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>TauRanged</li>
+      <li>TauWeapon</li>
+    </weaponTags>
+	</ThingDef>
+	
+	<ThingDef Name="OGBaseTauMakeableGun" ParentName="OGTauBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	<!--
-        <li>TableMachining</li>
-	-->
+        <li>OGT_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -662,7 +748,12 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
+      <li>OGTMelee</li>
     </thingCategories>
+    <weaponTags>
+      <li>TauMelee</li>
+      <li>TauWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -670,7 +761,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	  
+        <li>OGT_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
@@ -724,16 +815,24 @@
 	</ThingDef>
 	 
 	<!-- ==================== Mod - Base Eldar Weapon Template ========================= -->
-	<ThingDef Name="OGBaseEldarMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGEldarBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+		<li>OGERanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>EldarRanged</li>
+      <li>EldarWeapon</li>
+    </weaponTags>
+	</ThingDef>
+	
+	<ThingDef Name="OGBaseEldarMakeableGun" ParentName="OGEldarBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	<!--
-        <li>TableMachining</li>
-	-->
+        <li>OGE_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -772,7 +871,12 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
+      <li>OGEMelee</li>
     </thingCategories>
+    <weaponTags>
+      <li>EldarMelee</li>
+      <li>EldarWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -780,7 +884,7 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	  
+        <li>OGE_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
@@ -834,7 +938,17 @@
 	</ThingDef>
 	 
  	<!-- ==================== Mod - Base Dark Eldar Weapon Template ========================= -->
-	<ThingDef Name="OGBaseDarkEldarMakeableGun" ParentName="OGBaseGun" Abstract="True">
+	<ThingDef Name="OGDarkEldarBaseGun" ParentName="OGBaseGun" Abstract="True">
+	<thingCategories>
+		<li>OGDERanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>DarkEldarRanged</li>
+      <li>DarkEldarWeapon</li>
+    </weaponTags>
+	</ThingDef>
+	
+	<ThingDef Name="OGBaseDarkEldarMakeableGun" ParentName="OGDarkEldarBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -842,7 +956,7 @@
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
 	<!--
-        <li>TableMachining</li>
+        <li>OGDE_TableMachining</li>
 	-->
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
@@ -882,7 +996,12 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
+      <li>OGDEMelee</li>
     </thingCategories>
+    <weaponTags>
+      <li>DarkEldarMelee</li>
+      <li>DarkEldarWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -890,7 +1009,9 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-	  
+	<!--
+        <li>OGDE_TableMachining</li>
+	-->
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
@@ -943,9 +1064,25 @@
 	
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Base Chaos Weapon Template ========================= -->
-	<ThingDef Name="OGBaseNecronMakeableGun" ParentName="OGBaseGunN" Abstract="True">
+	<!-- ==================== Mod - Base Necron Weapon Template ========================= -->	
+	<ThingDef Name="OGBecronBaseGun" Abstract="True" ParentName="OGBaseWeapon">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+	<thingCategories>
+		<li>OGNRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>NecronRanged</li>
+      <li>NecronWeapon</li>
+    </weaponTags>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+	</ThingDef>
 	
+	<ThingDef Name="OGBaseNecronMakeableGun" ParentName="OGBecronBaseGun" Abstract="True">
 	    <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -953,7 +1090,7 @@
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
        <!-- 
-		<li>TableMachining</li>
+		<li>OGN_TableMachining</li>
 		-->
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
@@ -993,7 +1130,12 @@
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
     <thingCategories>
+      <li>OGNMelee</li>
     </thingCategories>
+    <weaponTags>
+      <li>NecronMelee</li>
+      <li>NecronWeapon</li>
+    </weaponTags>
 
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>

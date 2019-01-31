@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGN_Gun_NGaussFlayer</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.15</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGNNGaussFlayer</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>24</range>
+      <soundCast>ShotRevolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>32</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGNNGaussFlayer</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>NGaussFlayer</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGN_Gun_NGaussFlayer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Poke</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.35</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGN_Gun_NGaussBlaster</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.2</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGNNGaussBlasterA</defaultProjectile>
+      <warmupTime>0.5</warmupTime>
+      <range>24</range>
+      <soundCast>ShotRevolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>12</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>60</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGNNGaussBlasterA</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>EliteGun</li>
+		<li>NGaussBlaster</li>
+    </weaponTags>
+  </li>
+	
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGN_Gun_NGaussCannon</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>3.05</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.3</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGNNGaussCannon</defaultProjectile>
+      <warmupTime>0.5</warmupTime>
+      <range>36</range>
+      <soundCast>ShotRevolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>5.5</reloadTime>
+      <ammoSet>AmmoSet_OGNNGaussCannon</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>HeavyGun</li>
+		<li>NGaussCannon</li>
+    </weaponTags>
+  </li>
+	
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGN_Gun_NStaffOfLight</defName>
+    <statBases>
+      <Mass>1.8</Mass>
+      <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>1.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.15</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGNNStaffOfLight</defaultProjectile>
+      <warmupTime>0.5</warmupTime>
+      <range>18</range>
+      <soundCast>ShotRevolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>15</magazineSize>
+      <reloadTime>2.5</reloadTime>
+      <ammoSet>AmmoSet_OGNNStaffOfLight</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>NStaffOfLight</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGN_Gun_NGaussFlayer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetration>0.25</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetration>1.0</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

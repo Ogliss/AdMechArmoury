@@ -6,10 +6,13 @@
 			<li Class="PatchOperationTest">
 				<xpath>/Defs/ThingDef[@Name = "IGCArmorMakeableBase"]</xpath>
 			</li>
-			<li Class="PatchOperationAttributeSet">
-				<xpath>/Defs/ThingDef[@Name = "OGIArmorMakeable"]</xpath>
-					<attribute>ParentName</attribute>
-					<value>IGCArmorMakeableBase</value>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name = "OGIArmorMakeableBase" or @Name = "OGIWargearMakeable" or @Name = "OGAMArmorMakeableBase" or @Name = "OGAMWargearMakeable"]/recipeMaker/recipeUsers</xpath>
+					<value>
+					<recipeUsers>
+						<li>ImperialArmorFab</li>
+					</recipeUsers>
+					</value>
 			</li>
 		</operations>	
 	</Operation>
@@ -19,10 +22,14 @@
 			<li Class="PatchOperationTest">
 				<xpath>/Defs/ThingDef[@Name = "IGCApparelMakeableBase"]</xpath>
 			</li>
-			<li Class="PatchOperationAttributeSet">
-				<xpath>/Defs/ThingDef[@Name = "OGIApparelMakeable"]</xpath>
-					<attribute>ParentName</attribute>
-					<value>IGCApparelMakeableBase</value>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name = "OGIApparelMakeableBase" or @Name = "OGAMApparelMakeableBase"]/recipeMaker/recipeUsers</xpath>
+				<value>
+					<recipeUsers>
+						<li>ElectricTailoringBench</li>
+						<li>ImperialArmorFab</li>
+					</recipeUsers>
+				</value>
 			</li>
 		</operations>	
 	</Operation>

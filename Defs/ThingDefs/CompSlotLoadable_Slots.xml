@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Class="CompSlotLoadable.SlotLoadableDef">
+		<defName>OGI_RocketSlot</defName>
+		<thingClass>CompSlotLoadable.SlotLoadable</thingClass>
+		<label>Rockets</label>
+		<description>This ammunitrion slot determines the missile type fired by the launcher.</description>
+		<slottableThingDefs>
+			<li>OGI_Rocket_Frag</li>
+			<li>OGI_Rocket_Krak</li>
+		</slottableThingDefs>
+		<doesChangeStats>true</doesChangeStats>
+	</ThingDef>
+
+  <!--================== Base ==================-->
+  
+  <ThingDef Name="OG_RocketBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>	
+    <description>These rockets are fired by various missile and rocket launchers</description>
+    <soundInteract>Silver_Drop</soundInteract>
+    <soundDrop>Silver_Drop</soundDrop>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>false</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>1</stackLimit>
+	<tradeNeverStack>true</tradeNeverStack>
+  	<statBases>
+	  <Beauty>5</Beauty>
+      <MarketValue>2000</MarketValue>
+      <Mass>0.3</Mass>	  
+	</statBases>
+	<comps>
+		<li Class="CompProperties_Forbiddable"/>
+	</comps>
+	<alwaysHaulable>true</alwaysHaulable>
+	<drawGUIOverlay>true</drawGUIOverlay>
+	<rotatable>false</rotatable>
+	<pathCost>15</pathCost>
+  </ThingDef>
+  
+  <!-- ================ Imperial Rockets ================ -->
+  <!-- ================ Imperial Rockets Base ================ -->
+  <ThingDef Name="OG_RocketBaseImp" ParentName="OG_RocketBase" Abstract="True">
+  	<statBases>
+	  <Beauty>5</Beauty>
+      <MarketValue>3000</MarketValue>
+      <Mass>0.3</Mass>	  
+	</statBases>
+    <thingCategories>
+      <li>OGIMissiles</li>
+    </thingCategories>	
+	<tradeTags>
+      <li>Artifact</li>
+    </tradeTags>
+  </ThingDef>  
+
+  <!-- ================ Imperial Frag Rocket ================ -->
+      <ThingDef ParentName="OG_RocketBaseImp">
+    <defName>OGI_Rocket_Frag</defName>
+    <label>Imperial Frag missiles</label>
+	<description>Frag Missiles are designed to explode on impact with any surface, raking the immediate area with lethal shrapnel composed of aerodynamic metallic shards. Though Frag Missiles are primarily intended to be used as anti-infantry weapons, they can also be deployed effectively against light vehicles. Frag Missiles are often ineffective against heavily armoured infantry.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileFrag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(124,196,243)</color>
+    </graphicData>
+		<comps>
+			<li Class="CompSlotLoadable.CompProperties_SlottedBonus">
+				<additionalProjectiles>
+					<li>OGI_Bullet_RocketFrag</li>
+				</additionalProjectiles>
+				<!-- <projectileReplacer>>OGI_Bullet_RocketFrag</projectileReplacer> -->
+				
+			</li>
+	 </comps>
+  </ThingDef>  
+  
+  <!-- ================ Imperial Krak Rocket ================ -->
+    <ThingDef ParentName="OG_RocketBaseImp">
+    <defName>OGI_Rocket_Krak</defName>
+    <label>Imperial Krak Missiles</label>
+	<description>Krak Missiles are primarily intended to serve as anti-vehicle weapons, and contain a high-strength shaped charge with a relatively small blast radius, but causes massive damage to anything it hits with minimal collateral damage. Krak Missiles are also very effective against heavily armoured infantry, bunkers and other armoured or fortified static targets where their concentrated explosives will often punch holes straight through armour. However, a Krak Missile's small blast radius makes them impractical for use against most infantry and moving targets.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileKrak</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(240,241,241)</color>
+    </graphicData>
+		<comps>
+			<li Class="CompSlotLoadable.CompProperties_SlottedBonus">
+				<additionalProjectiles>
+					<li>OGI_Bullet_RocketKrak</li>
+				</additionalProjectiles>
+			</li>
+	 </comps>
+  </ThingDef>  
+  
+  
+</Defs>

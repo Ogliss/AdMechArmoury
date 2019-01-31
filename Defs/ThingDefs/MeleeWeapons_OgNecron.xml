@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Necron - Staff of Light =========================-->
+	<ThingDef ParentName="OGNBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGN_Gun_NStaffOfLight</defName>
+		<label>Necron Staff Of Light</label>
+		<description>A Staff of Light is a device of arcane Necron technology that serves as both a symbol of rank and authority, as well as a potent weapon for Necron royals. Shaped like a traditional Necrontyr staff with an ornate headpiece, its haft is actually a disguised power generator rod; and the crest a finely tuned focussing device which allows the wielder to unleash searing bolts of viridian energy at a rapid rate towards the enemy. These beams are so potent that they are even capable of penetrating Astartes Power Armour with ease. As well as being capable of projecting devastating blasts of energy at range, a Staff of Light also serves a similar function to a Power Weapon in close combat. A Staff of Light is usually only found in the armouries of Necron royalty, including those belonging to Necron Overlords, Necron Lords or Necron Destroyer Lords. However, Crypteks of an unspecialised nature in their techno-sorcerous arts also commonly wield a Staff of Light in battle.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Necron/StaffOfLight</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>37500</MarketValue>
+			<Mass>3</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>AdeptusMechanicus.Verb_ShootNG</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_NStaffOfLight</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>18</range>
+				<soundCast>GaussSound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>PowerCut</li>
+        </capacities>
+        <power>35</power>
+		<armorPenetration>1</armorPenetration>
+        <cooldownTime>1.5</cooldownTime>
+      </li>
+      <li>
+        <label>stave</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.5</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_NStaffOfLight</li>
+			<li>NStaffOfLight</li>
+			<li>OGNPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNMelee</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+	</ThingDef>
+
+	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
+		<defName>OGN_Bullet_NStaffOfLight</defName>
+		<label>Necron Light Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/GaussBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGNGauss</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>60</speed>
+    </projectile>
+		<thingClass>AdeptusMechanicus.Projectile_NG</thingClass>
+			<preFiringInitialIntensity>0</preFiringInitialIntensity>
+			<preFiringFinalIntensity>2</preFiringFinalIntensity>
+			<postFiringInitialIntensity>2</postFiringInitialIntensity>
+			<postFiringFinalIntensity>0</postFiringFinalIntensity>
+			<preFiringDuration>2</preFiringDuration>
+			<postFiringDuration>8</postFiringDuration>
+	</ThingDef>
+	 	 
+	<!--==================== Necron - Hyperphase Sword =========================-->
+	<ThingDef ParentName="OGNBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGN_Melee_HyperphaseSword</defName>
+		<label>Hyperphase Sword</label>
+		<description>A Hyperphase Sword is a Necron melee weapon whose energy blade vibrates across dimensional states and can easily slice through armour and flesh to sever the vital organs within. A Hyperphase Sword can be considered an advanced type of Power Weapon.\n\nHyperphase Swords are found exclusively as part of the armouries of Necron royals, such as Necron Overlords, Necron Lords, Necron Destroyer Lords, and their favoured Lychguards.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Necron/HyperphaseSword</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>3500</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>pommel</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>hilt</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>PowerCut</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.4</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>PowerStab</li>
+				</capacities>
+				<power>30</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>2.5</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<!-- <researchPrerequisite>EldarBasicWeaponsTech</researchPrerequisite> -->
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<costStuffCount>200</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<weaponTags>
+			<li>OGN_Melee_HyperphaseSword</li>
+			<li>NHyperphaseSword</li>
+			<li>OGNPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNMelee</li>
+		</tradeTags>
+	 </ThingDef>	 
+	 
+  	<!--==================== Necron  - WarScythe =========================-->
+	<ThingDef ParentName="OGNBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGN_Melee_WarScythe</defName>
+		<label>Warscythe</label>
+		<description>A Warscythe is an energy-bladed battle stave commonly found in the armouries of Necron royals. The Warscythe has served as a traditional weapon of the Necron nobility and their elite bodyguards for many thousands of Terran years. A Warscythe is made from the same living metal as that which makes up all Necron bodies and vehicles, Necrodermis, and is fitted with a Phase Blade, whose edge is out of phase with the normal space-time continuum and thus can slip effortlessly through even the heaviest forms of armour. Because of the partially incorporeal nature of these blades, a Warscythe is capable of passing through defensive energy shields, such as those emitted by an Iron Halo, that would normally deflect almost any other form of attack. The entropic power field that also flickers about a Warscythe blade can disrupt almost any material known to man, leaving the victim’s underlying structure -- be it organic or inorganic -- vulnerable to the weapon’s cleaving impact.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Necron/WarScythe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.25</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+		<!--
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(0,0,168,0)</glowColor>
+      </li>
+	  -->
+	</comps>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<costStuffCount>400</costStuffCount>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>2.5</Mass>
+			
+			<MarketValue>14250</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+    <tools>
+      <li>
+        <label>shaft</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>13</power>
+        <cooldownTime>1.7</cooldownTime>
+      </li>
+		<li>
+			<label>point</label>
+			<capacities>
+				<li>PowerStab</li>
+			</capacities>
+			<power>50.5</power>
+			<armorPenetration>1</armorPenetration>
+			<cooldownTime>2.3</cooldownTime>
+		</li>
+		<li>
+				<label>blade</label>
+				<capacities>
+					<li>PowerCut</li>
+				</capacities>
+				<power>30</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.7</cooldownTime>
+			</li>
+    </tools>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<!-- <researchPrerequisite>EldarAdvancedMelee</researchPrerequisite> -->
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<weaponTags>
+			<li>OGN_Melee_WarScythe</li>
+			<li>NWarScythe</li>
+			<li>OGNPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNMelee</li>
+		</tradeTags>
+	</ThingDef>
+
+</Defs>

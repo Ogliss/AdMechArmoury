@@ -182,7 +182,7 @@
 			<defaultProjectile>Projectile_OGTGrenadePhoton</defaultProjectile>
             <abilityDef>OGT_Ability_ThrowPhoton</abilityDef>
             <warmupTime>2.4</warmupTime>
-            <SecondsToRecharge>60.0</SecondsToRecharge>
+            <SecondsToRecharge>30.0</SecondsToRecharge>
             <burstShotCount>1</burstShotCount>
             <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<range>12.9</range>
@@ -436,7 +436,57 @@
 			</targetParams>
         </MainVerb>
 	</AbilityUser.AbilityDef>
-  
+	
+  <!-- ======================== Eldar - Hallucinogen Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeAbility">
+		<defName>Projectile_OGEGrenadeHallucinogen</defName>
+		<graphicData>
+			<texPath>Things/Projectile/EldarHaywireGrenade</texPath>
+		</graphicData>
+		<projectile>
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<postExplosionSpawnThingDef>HallucinogenGas</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilityUser.AbilityDef ParentName="BaseAbility">
+        <defName>OGE_Ability_ThrowHallucinogen</defName>
+        <label>Throw Hallucinogen Grenade</label>
+        <uiIconPath>Things/Projectile/EldarHaywireGrenade</uiIconPath>
+        <description>Throws a Hallucinogen Grenade.</description>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+            <AlwaysHits>false</AlwaysHits>
+            <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
+            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+            <tooltipShowHediffsToApply>true</tooltipShowHediffsToApply>
+            <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>Projectile_OGEGrenadeHallucinogen</defaultProjectile>
+            <abilityDef>OGE_Ability_ThrowHallucinogen</abilityDef>
+            <warmupTime>2.4</warmupTime>
+            <SecondsToRecharge>30.0</SecondsToRecharge>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            <isPrimary>false</isPrimary>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </MainVerb>
+	</AbilityUser.AbilityDef>
+ 
   <!-- ======================== Eldar - Grenade Launcher Ability ================================== -->
 <!--
  <ThingDef ParentName="BaseGrenadeAbility">
