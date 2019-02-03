@@ -1379,4 +1379,105 @@
 		</costList>
 	</ThingDef>
 	
+		<!--==================== Eldar - Reaper Launcher =========================-->
+ <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BaseBullet">
+	<defName>OGE_Bullet_ReaperLauncher</defName>
+    <label>Bolt</label>
+    <graphicData>
+			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+			<damageDef>OGEPlas</damageDef>
+			<explosionRadius>1.00</explosionRadius>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
+		<soundExplode>OGIPP_Explosion</soundExplode>
+	</projectile>
+	<thingClass>Projectile_ExplosiveOG</thingClass>
+	<explosionradius>0.5</explosionradius>
+ </ThingDef>	
+
+	<ThingDef ParentName="OGEldarHeavyGun">
+		<defName>OGE_Gun_EReaperLauncher</defName>
+		<label>Reaper Launcher</label>
+		<description>A Reaper Launcher is a unique heavy weapon utilised exclusively by the Aeldari Dark Reapers Aspect Warriors. With this deadly weapon the Dark Reapers are the undisputed masters of delivering death from afar. This long-barrelled Missile Launcher can create a blistering firestorm with a single salvo. The armour-piercing missiles it fires are powerful enough to take down all but the most heavily protected foe.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DarkReaperLauncher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+    </graphicData>
+	<comps>     
+		<li>
+			<compClass>AdeptusMechanicus.CompOversizedWeapon</compClass>
+		</li>
+	</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<MarketValue>5750</MarketValue>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+		<li Class="AdeptusMechanicus.VerbPropertiesOGSG">
+			<verbClass>AdeptusMechanicus.Verb_ShootShotgun</verbClass>
+			<pelletCount>3</pelletCount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_ReaperLauncher</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>StarcannonSound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EReaperLauncher</li>
+			<li>EHeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<OGE_Component>8</OGE_Component>
+			<Plasteel>25</Plasteel>
+			<OGE_Wraithbone>35</OGE_Wraithbone>
+		</costList>
+	</ThingDef>
+
+	
 </Defs>

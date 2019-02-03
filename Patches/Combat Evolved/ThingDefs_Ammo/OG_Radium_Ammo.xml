@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>	
+		
+	<!-- ==================== Radium Weapons ========================== -->
+	
+    <ThingCategoryDef>
+      <defName>AmmoOGAMRadium</defName>
+      <label>radium charge (Jezzail)</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGRadiumJezzail</defName>
+    <label>radium jezzail round</label>
+    <ammoTypes>
+      <Ammo_OGRadium>Bullet_OGRadiumJezzail</Ammo_OGRadium>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGRadium</defName>
+    <label>radium round</label>
+    <ammoTypes>
+      <Ammo_OGRadium>Bullet_OGRadium</Ammo_OGRadium>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGRadiumBase" ParentName="AmmoBase" Abstract="True">
+    <description>radium rounds</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGAMRadium</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGRadiumBase">
+    <defName>Ammo_OGRadium</defName>
+    <label>radium cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+	
+	<!-- ==================== Recipes ========================== -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGRadium</defName>
+    <label>make Radium cartridge x90</label>
+    <description>Craft 90 Radium cartridges.</description>
+    <jobString>Making Radium cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGRadium>90</Ammo_OGRadium>
+    </products>
+	<researchPrerequisite>WRRadiumWeapons</researchPrerequisite>
+  </RecipeDef>
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGRadium" ParentName="BaseBullet" Abstract="true">
+
+   <graphicData>
+      <texPath>Things/Projectile/RadiumShotSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGIRadium</damageDef>
+      <speed>100</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGRadium">
+    <defName>Bullet_OGRadium</defName>
+    <label>radium round</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationBase>0.34</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGRadium">
+    <defName>Bullet_OGRadiumJezzail</defName>
+    <label>radium round</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>30</damageAmountBase>
+      <armorPenetrationBase>0.94</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+
+			</value>
+		</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

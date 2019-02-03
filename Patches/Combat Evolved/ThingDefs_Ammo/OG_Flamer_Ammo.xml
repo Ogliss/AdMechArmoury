@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>	
+    <ThingCategoryDef>
+      <defName>AmmoOGFlamer</defName>
+      <label>Flamethrower</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGFlamer</defName>
+    <label>Flamethrower ammo</label>
+    <ammoTypes>
+      <Ammo_OGFlamer>Bullet_OGFlamer</Ammo_OGFlamer>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGCombiBoltFlamer</defName>
+    <label>Bolter/Flamer</label>
+    <ammoTypes>
+      <Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
+      <Ammo_OGFlamer>Bullet_OGFlamer</Ammo_OGFlamer>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGFlamerHeavy</defName>
+    <label>Flamethrower ammo</label>
+    <ammoTypes>
+      <Ammo_OGFlamer>Bullet_OGFlamerHeavy</Ammo_OGFlamer>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGPhosphor</defName>
+    <label>Flamethrower ammo</label>
+    <ammoTypes>
+      <Ammo_OGFlamer>Bullet_OGPhosphor</Ammo_OGFlamer>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGFlamerBase" ParentName="AmmoBase" Abstract="True">
+    <description>Promethium gel</description>
+    <statBases>
+	  <Mass>0.02</Mass>
+	  <Bulk>0.05</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGFlamer</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGFlamerBase">
+    <defName>Ammo_OGFlamer</defName>
+    <label>Flamethrower cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>ThermobaricFuel</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGFlamer" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/FlamerShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>PrometheumFlame</damageDef>
+      <speed>20</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
+    <defName>Bullet_OGFlamer</defName>
+    <label>Flamethrower</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>1</damageAmountBase>
+	  <pelletCount>3</pelletCount>
+      <armorPenetrationBase>0.3</armorPenetrationBase>
+	  <flyOverhead>false</flyOverhead>
+	  <explosionRadius>1.00</explosionRadius>
+	  <postExplosionSpawnThingDef>FilthPrometheum</postExplosionSpawnThingDef>
+	  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+	  <soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
+    <defName>Bullet_OGFlamerHeavy</defName>
+    <label>Flamethrower</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>3</damageAmountBase>
+	  <pelletCount>3</pelletCount>
+      <armorPenetrationBase>0.3</armorPenetrationBase>
+	  <flyOverhead>false</flyOverhead>
+	  <explosionRadius>1.00</explosionRadius>
+	  <postExplosionSpawnThingDef>FilthPrometheum</postExplosionSpawnThingDef>
+	  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+	  <soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+	
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
+    <defName>Bullet_OGPhosphor</defName>
+    <label>Phosphor</label>
+		<graphicData>
+			<texPath>Things/Projectile/PhosphurSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>6</damageAmountBase>
+      <armorPenetrationBase>0.3</armorPenetrationBase>
+	  <flyOverhead>false</flyOverhead>
+	  <explosionRadius>0.5</explosionRadius>
+	  <postExplosionSpawnThingDef>FilthPrometheum</postExplosionSpawnThingDef>
+	  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+	  <soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+	
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGFlamer</defName>
+    <label>make OFlamer x50</label>
+    <description>Craft 50 Flamer cartridges.</description>
+    <jobString>Making Flamer cartridges.</jobString>
+    <workAmount>15000</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>22</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGFlamer>5</Ammo_OGFlamer>
+    </products>
+  </RecipeDef>
+	
+			</value>
+		</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

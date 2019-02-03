@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>	
+	<!-- ==================== Tau Ion ========================== -->
+    <ThingCategoryDef>
+      <defName>AmmoOGIonRifle</defName>
+      <label>Ion charge</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGIonRifle</defName>
+    <label>Ion charge</label>
+    <ammoTypes>
+      <Ammo_OGIonRifle>Bullet_OGIonRifle</Ammo_OGIonRifle>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="OGIonRifleBase" ParentName="AmmoBase" Abstract="True">
+    <description>Ion ammo</description>
+    <statBases>
+	  <Mass>0.01</Mass>
+	  <Bulk>0.02</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoOGIonRifle</li>
+    </thingCategories>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGIonRifleBase">
+    <defName>Ammo_OGIonRifle</defName>
+    <label>Ion cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Ion</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGIonRifle" ParentName="BaseBullet" Abstract="true">
+ 	<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/IonBeamSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGTIon</damageDef>
+      <speed>135</speed>
+    </projectile>
+  </ThingDef>
+
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGIonRifle">
+    <defName>Bullet_OGIonRifle</defName>
+    <label>Ion Rifle Beam</label>
+<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>45</damageAmountBase>
+	  <explosionRadius>0.75</explosionRadius>
+      <armorPenetrationBase>3.0</armorPenetrationBase>
+	  <soundExplode>OGIPP_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+		
+			</value>
+		</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

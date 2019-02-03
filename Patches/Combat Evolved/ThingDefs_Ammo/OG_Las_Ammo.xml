@@ -11,16 +11,17 @@
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs</xpath>
 			<value>	
-		
+		<!-- ==================== Las weapons ========================== -->
+	
    <CombatExtended.AmmoCategoryDef>
     <defName>OGLasAC</defName>
-    <label>Sonic Wave</label>
+    <label>Las Charge</label>
     <description>Focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects.</description>
   </CombatExtended.AmmoCategoryDef>
 
     <ThingCategoryDef>
       <defName>AmmoOGLas</defName>
-      <label>Las charge</label>
+      <label>Las charges</label>
       <parent>AmmoAdvanced</parent>
       <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
     </ThingCategoryDef>
@@ -29,7 +30,7 @@
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGLasCannon</defName>
-    <label>Las charge</label>
+    <label>Heavy Las charge (Imperial)</label>
     <ammoTypes>
       <Ammo_OGLasCannon>Bullet_OGLasCannon</Ammo_OGLasCannon>
     </ammoTypes>
@@ -37,11 +38,76 @@
   
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGLasStd</defName>
-    <label>Las charge</label>
+    <label>Las charge (Imperial)</label>
     <ammoTypes>
       <Ammo_OGLasStd>Bullet_OGLasStd</Ammo_OGLasStd>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
+	
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGLasHot</defName>
+    <label>Las charge Hot (Imperial)</label>
+    <ammoTypes>
+      <Ammo_OGLasStd>Bullet_OGLasHot</Ammo_OGLasStd>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGLasLong</defName>
+    <label>LongLas charge (Imperial)</label>
+    <ammoTypes>
+      <Ammo_OGLasStd>Bullet_OGLasLong</Ammo_OGLasStd>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGLasBlast</defName>
+    <label>LasBlast charge (Imperial)</label>
+    <ammoTypes>
+      <Ammo_OGLasStd>Bullet_OGLasBlast</Ammo_OGLasStd>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGLasE</defName>
+    <label>Lasblaster charge (Eldar)</label>
+    <ammoTypes>
+      <Ammo_OGLasE>Bullet_OGLasE</Ammo_OGLasE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGRangerLR</defName>
+    <label>Lance charge (Eldar)</label>
+    <ammoTypes>
+      <Ammo_OGLasLanceE>Bullet_OGLasELong</Ammo_OGLasLanceE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGPrism</defName>
+    <label>Lance charge (Eldar)</label>
+    <ammoTypes>
+      <Ammo_OGLasLanceE>Bullet_OGPrism</Ammo_OGLasLanceE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGBrightlance</defName>
+    <label>Lance charge (Eldar)</label>
+    <ammoTypes>
+      <Ammo_OGLasLanceE>Bullet_OGBrightlance</Ammo_OGLasLanceE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGDarklance</defName>
+    <label>Lance charge (Dark Eldar)</label>
+    <ammoTypes>
+      <Ammo_OGLasLanceE>Bullet_OGDarklance</Ammo_OGLasLanceE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
 	
 	<!-- ==================== Ammo ========================== -->
 
@@ -62,7 +128,7 @@
 
 <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
     <defName>Ammo_OGLasCannon</defName>
-    <label>Las charge</label>
+    <label>Heavy Las charge (Imperial)</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Regular</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -73,10 +139,35 @@
     <ammoClass>OGLasAC</ammoClass>
   </ThingDef>
 	
-
 <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
     <defName>Ammo_OGLasStd</defName>
-    <label>Las charge</label>
+    <label>Las charge (Imperial)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>OGLasAC</ammoClass>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+    <defName>Ammo_OGLasE</defName>
+    <label>Las charge (Eldar)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>OGLasAC</ammoClass>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+    <defName>Ammo_OGLasLanceE</defName>
+    <label>Lance charge (Eldar)</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Regular</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -128,7 +219,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>ComponentIndustrialIndustrial</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -137,7 +228,72 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>ComponentIndustrialIndustrial</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGLasCannon>40</Ammo_OGLasCannon>
+    </products>
+	<researchPrerequisite>WRImpLasTech</researchPrerequisite>
+  </RecipeDef>
+	
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGPrism</defName>
+    <label>Prism flare</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>45</damageAmountBase>
+	  <explosionRadius>0.55</explosionRadius>
+      <armorPenetrationBase>3.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+	
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGBrightlance</defName>
+    <label>Brightlance shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>75</damageAmountBase>
+	  <explosionRadius>0.55</explosionRadius>
+      <armorPenetrationBase>3.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+	
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGDarklance</defName>
+    <label>Darklance shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>75</damageAmountBase>
+	  <explosionRadius>0.55</explosionRadius>
+      <armorPenetrationBase>3.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+	
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGLasLanceE</defName>
+    <label>make Las cartridge x40</label>
+    <description>Craft 40 Las cartridges.</description>
+    <jobString>Making Las cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -150,9 +306,36 @@
     <defName>Bullet_OGLasStd</defName>
     <label>Las shot</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>75</damageAmountBase>
-	  <explosionRadius>0.55</explosionRadius>
-      <armorPenetrationBase>3.0</armorPenetrationBase>
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationBase>0.30</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+	
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGLasHot</defName>
+    <label>Las hotshot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationBase>1.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGLasLong</defName>
+    <label>Las longshot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>55</damageAmountBase>
+      <armorPenetrationBase>1.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGLasBlast</defName>
+    <label>Las blast</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+	  <pelletCount>6</pelletCount>
+      <damageAmountBase>6</damageAmountBase>
+      <armorPenetrationBase>1.0</armorPenetrationBase>
     </projectile>
   </ThingDef>
 	
@@ -173,7 +356,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>ComponentIndustrialIndustrial</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -182,11 +365,64 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>ComponentIndustrialIndustrial</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
       <Ammo_OGLasStd>180</Ammo_OGLasStd>
+    </products>
+	<researchPrerequisite>WRImpLasTech</researchPrerequisite>
+  </RecipeDef>
+		
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+		<defName>Bullet_OGLasE</defName>
+		<label>Las shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>8</damageAmountBase>
+		  <armorPenetrationBase>0.30</armorPenetrationBase>
+		</projectile>
+	  </ThingDef>
+  
+<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGLasCharge">
+    <defName>Bullet_OGLasELong</defName>
+    <label>Las longshot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>55</damageAmountBase>
+      <armorPenetrationBase>1.0</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+		
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGLasE</defName>
+    <label>make Las cartridge x180</label>
+    <description>Craft 180 Las cartridges.</description>
+    <jobString>Making Las cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGLasE>180</Ammo_OGLasE>
     </products>
 	<researchPrerequisite>WRImpLasTech</researchPrerequisite>
   </RecipeDef>

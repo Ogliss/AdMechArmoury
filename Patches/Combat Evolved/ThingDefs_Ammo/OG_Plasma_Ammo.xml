@@ -29,15 +29,24 @@
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGPlasmaStd</defName>
-    <label>Standard Plasma Flask</label>
+    <label>Standard Plasma Flask (Imperial)</label>
     <ammoTypes>
       <Ammo_OGPlasmaStd>Bullet_OGPlasmaStd</Ammo_OGPlasmaStd>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
   
   <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGCombiBoltPlasma</defName>
+    <label>Bolter/Plasma (Imperial)</label>
+    <ammoTypes>
+      <Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
+      <Ammo_OGPlasmaStd>Bullet_OGPlasmaStd</Ammo_OGPlasmaStd>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGPlasmaCannon</defName>
-    <label>Large Plasma Flask</label>
+    <label>Large Plasma Flask (Imperial)</label>
     <ammoTypes>
       <Ammo_OGPlasmaLarge>Bullet_OGPlasmaCannon</Ammo_OGPlasmaLarge>
     </ammoTypes>
@@ -45,7 +54,7 @@
   
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGPlasmaEld</defName>
-    <label>Eldar Plasma Flask</label>
+    <label>Eldar Plasma Flask (Eldar)</label>
     <ammoTypes>
       <Ammo_OGPlasmaEld>Bullet_OGPlasmaEld</Ammo_OGPlasmaEld>
     </ammoTypes>
@@ -53,11 +62,39 @@
   
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_OGPlasmaDEld</defName>
-    <label>Dark Eldar Plasma Flask</label>
+    <label>Dark Eldar Plasma Flask (Dark Eldar)</label>
     <ammoTypes>
       <Ammo_OGPlasmaEld>Bullet_OGPlasmaDEld</Ammo_OGPlasmaEld>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGPulse</defName>
+    <label>Tau Pulse cartridge</label>
+    <ammoTypes>
+      <Ammo_OGPulse>Bullet_OGPulse</Ammo_OGPulse>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGPulseBlast</defName>
+    <label>Tau Pulse cartridge</label>
+    <ammoTypes>
+      <Ammo_OGPulse>Bullet_OGPulseBlast</Ammo_OGPulse>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_OGPlasmaOrk</defName>
+    <label>Deffgun charge</label>
+    <ammoTypes>
+      <Ammo_OGPlasmaStd>Bullet_OGPlasmaDeffgun</Ammo_OGPlasmaStd>
+      <Ammo_OGPlasmaOrk>Bullet_OGPlasmaDeffgun</Ammo_OGPlasmaOrk>
+      <Ammo_OGPlasmaLarge>Bullet_OGPlasmaDeffgun</Ammo_OGPlasmaLarge>
+      <Ammo_OGPlasmaEld>Bullet_OGPlasmaDeffgun</Ammo_OGPlasmaEld>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
 	<!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="OGPlasmaBase" ParentName="AmmoBase" Abstract="True">
@@ -77,7 +114,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGPlasmaBase">
     <defName>Ammo_OGPlasmaStd</defName>
-    <label>standard Plasma Flask</label>
+    <label>Plasma Flask (Imperial)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -105,7 +142,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>ComponentIndustrialIndustrial</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -114,7 +151,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>ComponentIndustrialIndustrial</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -124,8 +161,56 @@
   </RecipeDef>
 	
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGPlasmaBase">
+    <defName>Ammo_OGPlasmaOrk</defName>
+    <label>Plasma Flask (Ork)</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>OGPlasmaAC</ammoClass>
+  </ThingDef>
+	
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGPlasmaOrk</defName>
+    <label>make ork Plasma Flask x80</label>
+    <description>Craft 80 ork Plasma Flasks.</description>
+    <jobString>Making ork Plasma Flasks.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGPlasmaOrk>80</Ammo_OGPlasmaOrk>
+    </products>
+	<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
+  </RecipeDef>
+	
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGPlasmaBase">
     <defName>Ammo_OGPlasmaLarge</defName>
-    <label>Large Plasma Flask</label>
+    <label>Large Plasma Flask (Imperial)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -153,7 +238,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>ComponentIndustrialIndustrial</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -162,7 +247,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>ComponentIndustrialIndustrial</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -174,7 +259,7 @@
 	
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGPlasmaBase">
     <defName>Ammo_OGPlasmaEld</defName>
-    <label>Eldar Plasma flask</label>
+    <label>Plasma flask (Eldar)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -202,7 +287,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>ComponentIndustrialIndustrial</li>
+            <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -211,11 +296,59 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>ComponentIndustrialIndustrial</li>
+        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
       <Ammo_OGPlasmaEld>80</Ammo_OGPlasmaEld>
+    </products>
+	<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
+  </RecipeDef>
+	
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="OGPlasmaBase">
+    <defName>Ammo_OGPulse</defName>
+    <label>Tau Pulse rounds</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.95</MarketValue>
+    </statBases>
+    <ammoClass>OGPlasmaAC</ammoClass>
+  </ThingDef>
+	
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_OGPulse</defName>
+    <label>make Tau Pulse round x80</label>
+    <description>Craft 80 Tau Pulse rounds.</description>
+    <jobString>Making Tau Pulse rounds.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_OGPulse>80</Ammo_OGPulse>
     </products>
 	<researchPrerequisite>WRImpPlasmaTech</researchPrerequisite>
   </RecipeDef>
@@ -246,13 +379,17 @@
   </ThingDef>
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGPlasma">
+    <graphicData>
+      <texPath>Things/Projectile/PlamsShotLrg</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
     <defName>Bullet_OGPlasmaCannon</defName>
     <label>Plasma shot</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>90</damageAmountBase>
       <armorPenetrationBase>3.0</armorPenetrationBase>
 	  <explosionRadius>2.55</explosionRadius>
-	  <soundExplode>OGIPP_Explosion</soundExplode>
+	  <soundExplode>OGIPC_Explosion</soundExplode>
     </projectile>
   </ThingDef>
   
@@ -277,6 +414,48 @@
       <armorPenetrationBase>1.5</armorPenetrationBase>
 	  <explosionRadius>0.50</explosionRadius>
 	  <soundExplode>OGIPP_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGPlasma">
+    <defName>Bullet_OGPlasmaDeffgun</defName>
+    <label>Plasma shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>OGIPlasmaCannon</damageDef>
+      <damageAmountBase>100</damageAmountBase>
+      <armorPenetrationBase>2.5</armorPenetrationBase>
+	  <explosionRadius>2.55</explosionRadius>
+	  <soundExplode>OGIPC_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGPulse" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/PlasmaPulseSml</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>OGTPlasmaPulse</damageDef>
+      <speed>55</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGPulse">
+    <defName>Bullet_OGPulse</defName>
+    <label>Plasma pulse</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <armorPenetrationBase>0.5</armorPenetrationBase>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGPulse">
+    <defName>Bullet_OGPulseBlast</defName>
+    <label>Plasma pulse</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+	  <pelletCount>18</pelletCount>
+      <damageAmountBase>2</damageAmountBase>
+      <armorPenetrationBase>0.5</armorPenetrationBase>
     </projectile>
   </ThingDef>
   
