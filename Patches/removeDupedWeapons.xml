@@ -7,8 +7,12 @@
 				<xpath>/Defs/ThingDef[defName = "Gun_BoltGun"]</xpath>
 
 			</li>
+			<li Class="PatchOperationSetName">
+				<xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/costList/Gun_BoltGun</xpath>
+				<name>OGI_Gun_BoltGun</name>
+			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_BoltGun"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Gun_BoltGun"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -21,7 +25,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_LasPistol"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Gun_LasPistol"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -34,7 +38,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_LasGun"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Gun_LasGun"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -47,7 +51,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_PlasmaGun"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Gun_PlasmaRifle"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -59,12 +63,16 @@
 				<xpath>/Defs/ThingDef[defName = "Gun_AutoGun"]</xpath>
 
 			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/TraderKindDef/stockGenerators/li[12]/thingDef</xpath>
+				<value><thingDef>OGI_Gun_AutoGun</thingDef></value>
+			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_AutoGun"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Gun_AutoGun"]</xpath>
 			</li>
 		</operations>
 	</Operation>
-	<!--
+	
 	<Operation Class="PatchOperationSequence">
 	<success>Always</success>
 		<operations>	
@@ -73,11 +81,11 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Gun_AssaultCannon"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "IG_Gun_AssCan"]</xpath>
 			</li>
 		</operations>
 	</Operation>
-	-->
+	
 	<Operation Class="PatchOperationSequence">
 	<success>Always</success>
 		<operations>	
@@ -86,7 +94,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Melee_ChainSword"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Melee_ChainSword"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -99,7 +107,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Melee_ThunderHammer"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Melee_ThunderHammer"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -112,7 +120,7 @@
 
 			</li>
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName = "OGI_Melee_PowerAxe"]</xpath>
+				<xpath>/Defs/ThingDef[defName = "Melee_PowerAxe"]</xpath>
 			</li>
 		</operations>
 	</Operation>

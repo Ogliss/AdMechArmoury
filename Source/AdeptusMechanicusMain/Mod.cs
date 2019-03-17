@@ -5,30 +5,18 @@ using Verse;
 namespace AdeptusMechanicus
 {
 
-    public class DangerousApparelTags : DefModExtension
-    {
-        protected List<string> tags;
 
-        public List<string> Tags
-        {
-            get
-            {
-                return tags;
-            }
-        }
-    }
-
-    public class ModWearableExplosive : Verse.Mod
+    public class ModAdMechArmoury : Verse.Mod
     {
 
-        public ModWearableExplosive(ModContentPack content) : base(content)
+        public ModAdMechArmoury(ModContentPack content) : base(content)
         {
-            base.GetSettings<ModWearableExplosiveSettings>();
+            base.GetSettings<ModAdMechArmourySettings>();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            ModWearableExplosiveSettings.DoSettingsWindowContents(inRect);
+            ModAdMechArmourySettings.DoSettingsWindowContents(inRect);
         }
 
         public override string SettingsCategory()
@@ -47,37 +35,22 @@ namespace AdeptusMechanicus
                 if (def != null && def.apparel != null && def.apparel.tags != null && def.apparel.tags.Contains("WearableExplosive"))
                 {
                     // Activate Spawn with Raids.
-                    if (LoadedModManager.GetMod<ModWearableExplosive>().GetSettings<ModWearableExplosiveSettings>().SpawnWithRaids)
+                    if (LoadedModManager.GetMod<ModAdMechArmoury>().GetSettings<ModAdMechArmourySettings>().SpawnWithRaids)
                     {
-                        // Apply tags specified in DangerousApparelTags to the apparel tags
-                        if (def.GetModExtension<DangerousApparelTags>() != null)
-                        {
-                            foreach (string tag in def.GetModExtension<DangerousApparelTags>().Tags)
-                            {
-                                if (!def.apparel.tags.Contains(tag))
-                                    def.apparel.tags.Add(tag);
-                            }
-                        }
+ 
                     }
                     // Deactivate Spawn with Raids.
                     else
                     {
-                        // Remove tags specified in DangerousApparelTags to the apparel tags
-                        if (def.GetModExtension<DangerousApparelTags>() != null)
-                        {
-                            foreach (string tag in def.GetModExtension<DangerousApparelTags>().Tags)
-                            {
-                                if (def.apparel.tags.Contains(tag))
-                                    def.apparel.tags.Remove(tag);
-                            }
-                        }
+
+
                     } // check and update raids
                 } // valid WearableExplosive
             } // search thingdefs
         }
     }
 
-    public class ModWearableExplosiveSettings : ModSettings
+    public class ModAdMechArmourySettings : ModSettings
     {
 
         protected static bool spawnWithRaids = false;
