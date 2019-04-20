@@ -1,9 +1,11 @@
-﻿using RimWorld;
+﻿using AbilityUser;
+using RimWorld;
 using System;
+using Verse;
 
 namespace AdeptusMechanicus
 {
-    class StatPart_Reliability : StatPart
+    public class StatPart_Reliability : StatPart
     {
         public override void TransformValue(StatRequest req, ref float val)
         {
@@ -80,7 +82,7 @@ namespace AdeptusMechanicus
             else
                 rel = "Unreliable";
         }
-
+        
         /// <summary>
         /// Calculates the chance that the gun will jam
         /// </summary>
@@ -103,11 +105,16 @@ namespace AdeptusMechanicus
                 default:
                     return 0;
             }
+        //    Log.Message(string.Format("result {0}", result));
             result += GetQualityFactor(gun);
+        //    Log.Message(string.Format("result {0}", result));
             result = result * 100 / gun.HitPoints / 100;
+        //    Log.Message(string.Format("result {0}", result));
             result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
+        //    Log.Message(string.Format("result {0}", result));
             return result;
         }
+        
 
         /// <summary>
         /// Returns a factor to scale quality. If the ownerEquipment doesn't have a CompQuality it will return a factor of 0.
@@ -138,5 +145,6 @@ namespace AdeptusMechanicus
             }
             return 0;
         }
+        
     }
 }

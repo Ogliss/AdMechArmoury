@@ -11,9 +11,12 @@ namespace AdeptusMechanicus
         public bool overheat = false;
         public bool canDamageWeapon = false;
         public bool criticaloverheatExplosion = false;
+        public bool isSecondry = false;
         public float extraWeaponDamage = 0f;
         public float overheatsOn = 0f;
         public int pelletCount = 1;
+        public int coolDown = 0;
+        public int lastShotTick = 0;
 
 
         public override string ToString()
