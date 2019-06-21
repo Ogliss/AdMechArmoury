@@ -106,7 +106,7 @@ namespace AdeptusMechanicus
             {
                 shield = this
             };
-            yield break;
+            base.GetWornGizmos();
         }
 
         // Token: 0x06000057 RID: 87 RVA: 0x00003C1D File Offset: 0x00001E1D

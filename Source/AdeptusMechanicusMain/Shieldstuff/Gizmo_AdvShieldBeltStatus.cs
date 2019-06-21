@@ -6,7 +6,6 @@ using Verse;
 namespace AdeptusMechanicus
 {
     // Token: 0x02000011 RID: 17
-    [StaticConstructorOnStartup]
     internal class Gizmo_AdvShieldBeltStatus : Gizmo
     {
         // Token: 0x17000008 RID: 8

@@ -83,10 +83,15 @@ namespace AdeptusMechanicus
             {
                 yield return new Gizmo_CloseCombatShieldStatus
                 {
-                    shield = this
+                    shield = this,
+                    
                 };
             }
-            yield break;
+        }
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            return base.GetGizmos();
         }
 
         // Token: 0x0600273A RID: 10042 RVA: 0x0012AA43 File Offset: 0x00128E43
