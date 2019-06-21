@@ -308,17 +308,6 @@
   <!-- ========================= Imperial Guard - Flak Armour ========================== -->
   <ThingDef ParentName="OGIArmorMakeable">
     <defName>OGIG_Apparel_FlakArmour</defName>
-    <thingClass>AdeptusMechanicus.Apparel_VisibleAccessoryColour</thingClass>
-    <modExtensions>
-      <li Class="AdeptusMechanicus.VisibleAccessoryDefExtension">
-        <order>1</order>
-        <northtop>false</northtop>
-					<NorthOffset>0.0</NorthOffset>
-					<SouthOffset>0.0002</SouthOffset>
-					<EastOffset>0.0</EastOffset>
-					<WestOffset>0.0</WestOffset>
-      </li>
-    </modExtensions>
     <label>imperial guard Flak Armor</label>
     <description>Standard Issue Flak Armor for the Emperor's Hammer, it offers effective protection against all manner of attacks while remaining quite light.</description>
     <techLevel>Spacer</techLevel>
@@ -326,17 +315,17 @@
       <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
     </recipeMaker>
     <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_ArmorFC/IG_Armor</texPath>
+      <texPath>Things/Item/Apparel/Imperial/IG/IG_Armor/IG_Armor_Icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
-      <Mass>4</Mass>
-      <WorkToMake>15000</WorkToMake>
-      <MaxHitPoints>200</MaxHitPoints>
+      <Mass>3</Mass>
+      <WorkToMake>40000</WorkToMake>
+      <MaxHitPoints>250</MaxHitPoints>
       <MarketValue>500</MarketValue>
-      <ArmorRating_Sharp>1.00</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.36</ArmorRating_Blunt>
+      <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
       <ArmorRating_Heat>0.30</ArmorRating_Heat>
       <Insulation_Cold>10</Insulation_Cold>
       <Insulation_Heat>10</Insulation_Heat>
@@ -346,9 +335,9 @@
       <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
     </equippedStatOffsets>
     <costList>
-      <Steel>1</Steel>
-      <Plasteel>1</Plasteel>
-      <Hyperweave>1</Hyperweave>
+      <Steel>40</Steel>
+      <Plasteel>40</Plasteel>
+      <Hyperweave>10</Hyperweave>
     </costList>
 	<generateCommonality>2</generateCommonality>
     <apparel>
@@ -358,7 +347,7 @@
         <li>Shoulders</li>
         <li>Arms</li>
       </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_ArmorFC/IG_Armor</wornGraphicPath>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Armor/IG_Armor</wornGraphicPath>
       <layers>
         <li>Middle</li>
       </layers>
@@ -372,42 +361,30 @@
         <li>Soldier</li>
       </defaultOutfitTags>
     </apparel>
-    <comps>
-      <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
-			<PauldronEntries>
-				<li>
-					<shoulderPadType>Both</shoulderPadType>
-					<shaderType>CutoutComplex</shaderType>
-					<padTexPath>Things/Item/Apparel/Imperial/IG/IG_Armor/Pauldrons/Flak_Pauldrons</padTexPath>
-					<commonality>10</commonality>
-				</li>
-			</PauldronEntries>
-					<NorthOffset>0.15</NorthOffset>
-					<SouthOffset>0.15</SouthOffset>
-					<EastOffset>0.15</EastOffset>
-					<WestOffset>0.15</WestOffset>
-      </li>
-    </comps>
-	
-	<!--
-	
-	-->
     <colorGenerator Class="ColorGenerator_Options">
       <options>
-		<li>
-			<weight>10</weight>
-			<max>(0.349,0.541,0.361)</max>
-			<min>(0.263,0.376,0.251)</min>
-		</li>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(0.349,0.541,0.361,1)</only>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(0.263,0.376,0.251,1)</only>
+				</li>
+				<li>
+					<weight>6</weight>
+					<only>RGBA(0.29,0.38,0.278,1)</only>
+				</li>
       </options>
     </colorGenerator>
+    <comps>
+		
+    </comps>
   </ThingDef>
 
   <!-- ========================= Imperial Guard - Flak Helmet ========================== -->
   <ThingDef ParentName="OGIHelmetMakeable" Name="IGHelmet">
     <defName>OGIG_Apparel_BasicFlakHelm</defName>
-    <thingClass>AdeptusMechanicus.Apparel_Colour</thingClass>
     <label>imperial guard helmet</label>
     <description>A lightweight combat helmet.</description>
     <graphicData>
@@ -420,9 +397,7 @@
       <Plasteel>10</Plasteel>
     </costList>
     <statBases>
-      <WorkToMake>8000</WorkToMake>
-      <MaxHitPoints>120</MaxHitPoints>
-      <Mass>1.2</Mass>
+      <MaxHitPoints>150</MaxHitPoints>
       <MarketValue>300</MarketValue>
       <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
@@ -451,11 +426,18 @@
    </apparel>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
-		<li>
-			<weight>10</weight>
-			<max>(0.349,0.541,0.361)</max>
-			<min>(0.263,0.376,0.251)</min>
-		</li>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(0.349,0.541,0.361,1)</only>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>RGBA(0.263,0.376,0.251,1)</only>
+				</li>
+				<li>
+					<weight>6</weight>
+					<only>RGBA(0.29,0.38,0.278,1)</only>
+				</li>
       </options>
     </colorGenerator>
     <comps>
@@ -466,8 +448,7 @@
   <!-- ========================= Imperial Guard - Flak Helmet ========================== -->
   <ThingDef ParentName="IGHelmet">
     <defName>OGIG_Apparel_GoggledFlakHelm</defName>
-    <thingClass>AdeptusMechanicus.Apparel_Colour</thingClass>
-    <label>imperial guard helme (Goggled)</label>
+    <label>imperial guard helmet</label>
     <description>A lightweight combat helmet.\n\nProtective Eye Wear</description>
     <!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
     <graphicData>
@@ -480,7 +461,6 @@
       <Plasteel>20</Plasteel>
     </costList>
     <statBases>
-      <WorkToMake>10000</WorkToMake>
       <MaxHitPoints>175</MaxHitPoints>
       <MarketValue>350</MarketValue>
       <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
@@ -527,7 +507,6 @@
       <Plasteel>10</Plasteel>
     </costList>
     <statBases>
-      <WorkToMake>4000</WorkToMake>
       <MaxHitPoints>100</MaxHitPoints>
       <MarketValue>400</MarketValue>
       <ArmorRating_Blunt>0.075</ArmorRating_Blunt>
@@ -760,7 +739,7 @@
     <label>cadian flak helmet</label>
     <description>A lightweight combat helmet.</description>
     <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Helmet/IG_Helmet_Icon</texPath>
+      <texPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Helmet/IG_Cadian_Helmet_Icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
@@ -782,7 +761,7 @@
       <bodyPartGroups>
         <li>UpperHead</li>
       </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Helmet/IG_Helmet</wornGraphicPath>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Helmet/IG_Cadian_Helmet</wornGraphicPath>
       <layers>
         <li>Overhead</li>
       </layers>

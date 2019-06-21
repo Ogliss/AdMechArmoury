@@ -5,7 +5,7 @@ using Verse;
 namespace CombatExtended
 {
     // Token: 0x0200003A RID: 58
-    public class PatchOperationMakeGunCEOGCompatible : PatchOperation
+    public class PatchOperationMakeGunCECompatible : PatchOperation
     {
         // Token: 0x060000F2 RID: 242 RVA: 0x0000979C File Offset: 0x0000799C
         protected override bool ApplyWorker(XmlDocument xml)
@@ -113,7 +113,7 @@ namespace CombatExtended
                     }
                 }
             }
-            xmlElement.AppendChild(this.CreateListElementAndPopulate(xml, this.Properties.node, "CombatExtended.VerbPropertiesCEOG"));
+            xmlElement.AppendChild(this.CreateListElementAndPopulate(xml, this.Properties.node, "CombatExtended.VerbPropertiesCE"));
         }
 
         // Token: 0x060000F7 RID: 247 RVA: 0x00009A98 File Offset: 0x00007C98

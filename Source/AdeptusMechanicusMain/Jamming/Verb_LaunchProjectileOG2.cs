@@ -1,263 +1,166 @@
-﻿using System;
-using RimWorld;
-using UnityEngine;
+﻿using RimWorld;
+using System.Linq;
 using Verse;
+
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x0200102C RID: 4140
-    public class Verb_LaunchProjectileOG1 : Verb 
+    public class Verb_LaunchProjectileOG : Verb_LaunchProjectile
     {
-        // Token: 0x1700104C RID: 4172
-        // (get) Token: 0x060064F2 RID: 25842 RVA: 0x001B8B58 File Offset: 0x001B6F58
-        /*
-        public VerbPropertiesOG VerbProps
+        protected virtual float Reliable
         {
             get
             {
-                CompWargearWeaponSecondry comp = base.EquipmentSource.TryGetComp<CompWargearWeaponSecondry>();
-                if (comp != null && comp.Castverb != null)
-                {
-                    return comp.Castverb.verbProps as VerbPropertiesOG;
-                }
-                else
+                return EquipmentSource.GetStatValue(StatDefOf_OG.reliability);
+            }
+        }
+
+        public VerbPropertiesOG VerbPropsOG
+        {
+            get
+            {
                 return verbProps as VerbPropertiesOG;
             }
         }
 
-        public virtual ThingDef Projectile
-        {
-            get
-            {
-                ThingDef thingDef;
-                thingDef = this.verbProps.defaultProjectile;
-                if (base.EquipmentSource != null)
-                {
-                    CompWargearWeaponSecondry comp = base.EquipmentSource.TryGetComp<CompWargearWeaponSecondry>();
-                    if (comp != null && comp.Castverb != null)
-                    {
-                        thingDef = comp.Castverb.verbProps.defaultProjectile;
-                    }
-                    else if (comp != null && comp.Castverb == null)
-                    {
-                        thingDef = comp.DefaultVerb.verbProps.defaultProjectile;
-                    }
-                }
-                return thingDef;
-            }
-        }
-        */
-
-        public VerbPropertiesOG VerbProps
-        {
-            get
-            {
-                /*
-                if (base.EquipmentSource != null)
-                {
-                    CompWargearWeaponSecondry comp = base.EquipmentSource.GetComp<CompWargearWeaponSecondry>();
-                    if (comp != null && comp.Castverb != comp.DefaultVerb && comp.Castverb != null)
-                    {
-                        Log.Message(string.Format("Verb_LaunchProjectileOG.VerbProps comp.Castverb.verbProps: {0}", comp.Castverb.verbProps));
-                        return comp.Castverb.verbProps as VerbPropertiesOG;
-                    }
-                }
-                */
-                Log.Message(string.Format("Verb_LaunchProjectileOG.VerbProps verbProps: {0}", verbProps));
-                return verbProps as VerbPropertiesOG;
-            }
-        }
-
-        public virtual ThingDef Projectile
-        {
-            get
-            {
-                /*
-                if (base.EquipmentSource != null)
-                {
-                    CompWargearWeaponSecondry comp = base.EquipmentSource.GetComp<CompWargearWeaponSecondry>();
-                    if (comp != null && comp.Castverb != comp.DefaultVerb && comp.Castverb != null)
-                    {
-                        Log.Message(string.Format("Verb_LaunchProjectileOG.Projectile comp.Castverb.verbProps.defaultProjectile: {0}", comp.Castverb.verbProps.defaultProjectile));
-                        return comp.Castverb.verbProps.defaultProjectile;
-                    }
-                }
-                */
-                Log.Message(string.Format("Verb_LaunchProjectileOG.Projectile this.verbProps.defaultProjectile: {0}", this.verbProps.defaultProjectile));
-                return this.verbProps.defaultProjectile;
-            }
-        }
-
-        // Token: 0x060064F3 RID: 25843 RVA: 0x001B8BA0 File Offset: 0x001B6FA0
-        public override void WarmupComplete()
-        {
-            base.WarmupComplete();
-            Find.BattleLog.Add(new BattleLogEntry_RangedFire(this.caster, (!this.currentTarget.HasThing) ? null : this.currentTarget.Thing, (base.EquipmentSource == null) ? null : base.EquipmentSource.def, this.Projectile, this.ShotsPerBurst > 1));
-        }
-
-        // Token: 0x060064F4 RID: 25844 RVA: 0x001B8C14 File Offset: 0x001B7014
         protected override bool TryCastShot()
         {
-            if (this.currentTarget.HasThing && this.currentTarget.Thing.Map != this.caster.Map)
+            int logcount = 0;
+            bool logging = VerbPropsOG.logging;
+            bool canJam = VerbPropsOG.canJam;
+            float overheatsOn = VerbPropsOG.overheatsOn;
+            float overheatRoll = 100f;
+            logcount++;
+            string msg = string.Format("");
+            string lmsg = string.Format("log {0}", logcount);
+            //bool rapidfire = VerbPropsCP.rapidfire;
+            string reliabilityString;
+            float jamsOn;
+            StatPart_Reliability.GetReliability((ThingDef_GunOG)EquipmentSource, out reliabilityString, out jamsOn);
+            logcount++;
+            lmsg = string.Format("log {0} reliabilityString {1}", logcount, reliabilityString);
+            if (logging == true) { Log.Message(lmsg); }
+            jamsOn = jamsOn++;
+            float jamRoll = 0;
+            logcount++;
+            lmsg = string.Format("log {0} jamsOn {1}", logcount, jamsOn);
+            if (logging == true) { Log.Message(lmsg); }
+            if (VerbPropsOG.overheat == true) { jamRoll = (Rand.Range(0, 100)) / 10f; }
+            else { jamRoll = (Rand.Range(0, 1000)) / 10f; }
+            logcount++;
+            lmsg = string.Format("log {0} jamRoll {1}", logcount, jamRoll);
+            if (logging == true) { Log.Message(lmsg); }
+            if (jamRoll < jamsOn && canJam==true)
             {
-                return false;
-            }
-            ThingDef projectile = this.Projectile;
-            if (VerbProps.logging)
-            {
-                Log.Message(string.Format("Verb_LaunchProjectileOG: {0}, defaultProjectile: {1}", this.VerbProps.label, projectile.label));
-            }
-            if (projectile == null)
-            {
-                return false;
-            }
-            ShootLine shootLine;
-            bool flag = base.TryFindShootLineFromTo(this.caster.Position, this.currentTarget, out shootLine);
-            if (this.verbProps.stopBurstWithoutLos && !flag)
-            {
-                return false;
-            }
-            if (base.EquipmentSource != null)
-            {
-                CompWargearWeaponSecondry comp = base.EquipmentSource.GetComp<CompWargearWeaponSecondry>();
-                if (comp != null)
+                logcount++;
+                lmsg = string.Format("log {0} VerbPropsCP.overheat {1}", logcount, VerbPropsOG.overheat);
+                if (logging == true) { Log.Message(lmsg); }
+                if (VerbPropsOG.overheat == true)
                 {
-                    comp.Notify_ProjectileLaunched(this.burstShotsLeft);
-                }
-            }
-            Thing launcher = this.caster;
-            Thing equipment = base.EquipmentSource;
-            CompMannable compMannable = this.caster.TryGetComp<CompMannable>();
-            if (compMannable != null && compMannable.ManningPawn != null)
-            {
-                launcher = compMannable.ManningPawn;
-                equipment = this.caster;
-            }
-            Vector3 drawPos = this.caster.DrawPos;
-            Projectile projectile2 = (Projectile)GenSpawn.Spawn(projectile, shootLine.Source, this.caster.Map, WipeMode.Vanish);
-            if (this.verbProps.forcedMissRadius > 0.5f)
-            {
-                float num = VerbUtility.CalculateAdjustedForcedMiss(this.verbProps.forcedMissRadius, this.currentTarget.Cell - this.caster.Position);
-                if (num > 0.5f)
-                {
-                    int max = GenRadial.NumCellsInRadius(num);
-                    int num2 = Rand.Range(0, max);
-                    if (num2 > 0)
+                    DamageDef damageDef = Projectile.projectile.damageDef;
+                    HediffDef HediffToAdd = damageDef.hediff;
+                    float ArmorPenetration = Projectile.projectile.GetArmorPenetration(EquipmentSource, null);
+                    overheatsOn = VerbPropsOG.overheatsOn;
+                    overheatRoll = (Rand.Range(0, 1000)) / 10f;
+                    logcount++;
+                    lmsg = string.Format("log {0} overheatsOn {1}", logcount, overheatsOn);
+                    if (logging == true) { Log.Message(lmsg); }
+                    int DamageAmount = 0;
+                    logcount++;
+                    lmsg = string.Format("log {0} overheatRoll {1}", logcount, overheatRoll);
+                    if (logging == true) { Log.Message(lmsg); }
+                    Pawn launcherPawn = caster as Pawn;
+                    if (overheatRoll < overheatsOn)
                     {
-                        IntVec3 c = this.currentTarget.Cell + GenRadial.RadialPattern[num2];
-                        this.ThrowDebugText("ToRadius");
-                        this.ThrowDebugText("Rad\nDest", c);
-                        ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
-                        if (Rand.Chance(0.5f))
+                        DamageAmount = Projectile.projectile.GetDamageAmount(EquipmentSource, null);
+                        if (VerbPropsOG.criticaloverheatExplosion == true)
                         {
-                            projectileHitFlags = ProjectileHitFlags.All;
+                            msg = string.Format("{0}'s {1} critically overheated. ({2}/{3}) causing an explosion doing {4} damage", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn, DamageAmount);
                         }
-                        if (!this.canHitNonTargetPawnsNow)
+                        else
                         {
-                            projectileHitFlags &= ~ProjectileHitFlags.NonTargetPawns;
+                            msg = string.Format("{0}'s {1} critically overheated. ({2}/{3}) causing {4} damage", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn, DamageAmount);
                         }
-                        projectile2.Launch(launcher, drawPos, c, this.currentTarget, projectileHitFlags, equipment, null);
-                        return true;
+                    //    if (overheatRoll < overheatsOn && VerbPropsOG.criticaloverheatExplosion == true) { CriticalOverheatExplosion(); }
                     }
+                    else
+                    {
+                        DamageAmount = Projectile.projectile.GetDamageAmount(EquipmentSource, null) / 100;
+                        msg = string.Format("{0}'s {1} overheated. ({2}/{3}) causing {4} damage", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn, DamageAmount);
+                    }
+                    var overheatOnPawn = launcherPawn?.health?.hediffSet?.GetFirstHediffOfDef(HediffToAdd);
+                    if (overheatOnPawn != null && overheatRoll < overheatsOn && VerbPropsOG.criticaloverheatExplosion == true)
+                    {
+                        overheatOnPawn.Severity += DamageAmount;
+                    }
+                    else
+                    {
+                        foreach (var part in launcherPawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Hand"))
+                        {
+                            logcount++;
+                            lmsg = string.Format("log {0} launcherPawn.health.hediffSet.PartIsMissing(part) {1}", logcount, launcherPawn.health.hediffSet.PartIsMissing(part));
+                            if (logging == true) { Log.Message(lmsg); }
+                            if (launcherPawn.health.hediffSet.PartIsMissing(part) == false)
+                            {
+                                logcount++;
+                                lmsg = string.Format("log {0} customLabel {1} hitPoints {2}", logcount, part.customLabel, part.def.hitPoints);
+                                if (logging == true) { Log.Message(lmsg); }
+                                Hediff hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, null);
+                                hediff.Severity = Rand.Range(0, DamageAmount);
+                                launcherPawn.health.AddHediff(hediff, part., null);
+                            }
+                            else
+                            {
+                                msg = string.Format("{0}'s {1} overheated. ({2}/{3}) causing {4} damage", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn, DamageAmount);
+                            }
+                        }
+                    }
+                    Messages.Message(msg, MessageTypeDefOf.NegativeHealthEvent);
                 }
-            }
-            ShotReport shotReport = ShotReport.HitReportFor(this.caster, this, this.currentTarget);
-            Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
-            ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
-            if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
-            {
-                shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget);
-                this.ThrowDebugText("ToWild" + ((!this.canHitNonTargetPawnsNow) ? string.Empty : "\nchntp"));
-                this.ThrowDebugText("Wild\nDest", shootLine.Dest);
-                ProjectileHitFlags projectileHitFlags2 = ProjectileHitFlags.NonTargetWorld;
-                if (Rand.Chance(0.5f) && this.canHitNonTargetPawnsNow)
-                {
-                    projectileHitFlags2 |= ProjectileHitFlags.NonTargetPawns;
+                else
+                { 
+                msg = string.Format("{0}'s {1} had a weapon jam. ({2}/{3})", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn);
+                    Messages.Message(msg, MessageTypeDefOf.SilentInput);
                 }
-                projectile2.Launch(launcher, drawPos, shootLine.Dest, this.currentTarget, projectileHitFlags2, equipment, targetCoverDef);
-                return true;
-            }
-            if (this.currentTarget.Thing != null && this.currentTarget.Thing.def.category == ThingCategory.Pawn && !Rand.Chance(shotReport.PassCoverChance))
-            {
-                this.ThrowDebugText("ToCover" + ((!this.canHitNonTargetPawnsNow) ? string.Empty : "\nchntp"));
-                this.ThrowDebugText("Cover\nDest", randomCoverToMissInto.Position);
-                ProjectileHitFlags projectileHitFlags3 = ProjectileHitFlags.NonTargetWorld;
-                if (this.canHitNonTargetPawnsNow)
-                {
-                    projectileHitFlags3 |= ProjectileHitFlags.NonTargetPawns;
-                }
-                projectile2.Launch(launcher, drawPos, randomCoverToMissInto, this.currentTarget, projectileHitFlags3, equipment, targetCoverDef);
-                return true;
-            }
-            ProjectileHitFlags projectileHitFlags4 = ProjectileHitFlags.IntendedTarget;
-            if (this.canHitNonTargetPawnsNow)
-            {
-                projectileHitFlags4 |= ProjectileHitFlags.NonTargetPawns;
-            }
-            if (!this.currentTarget.HasThing || this.currentTarget.Thing.def.Fillage == FillCategory.Full)
-            {
-                projectileHitFlags4 |= ProjectileHitFlags.NonTargetWorld;
-            }
-            this.ThrowDebugText("ToHit" + ((!this.canHitNonTargetPawnsNow) ? string.Empty : "\nchntp"));
-            if (this.currentTarget.Thing != null)
-            {
-                projectile2.Launch(launcher, drawPos, this.currentTarget, this.currentTarget, projectileHitFlags4, equipment, targetCoverDef);
-                this.ThrowDebugText("Hit\nDest", this.currentTarget.Cell);
-            }
-            else
-            {
-                projectile2.Launch(launcher, drawPos, shootLine.Dest, this.currentTarget, projectileHitFlags4, equipment, targetCoverDef);
-                this.ThrowDebugText("Hit\nDest", shootLine.Dest);
-            }
-            return true;
-        }
-
-        // Token: 0x060064F5 RID: 25845 RVA: 0x001B907E File Offset: 0x001B747E
-        private void ThrowDebugText(string text)
-        {
-            if (DebugViewSettings.drawShooting)
-            {
-                MoteMaker.ThrowText(this.caster.DrawPos, this.caster.Map, text, -1f);
-            }
-        }
-
-        // Token: 0x060064F6 RID: 25846 RVA: 0x001B90AB File Offset: 0x001B74AB
-        private void ThrowDebugText(string text, IntVec3 c)
-        {
-            if (DebugViewSettings.drawShooting)
-            {
-                MoteMaker.ThrowText(c.ToVector3Shifted(), this.caster.Map, text, -1f);
-            }
-        }
-
-        // Token: 0x060064F7 RID: 25847 RVA: 0x001B90D4 File Offset: 0x001B74D4
-        public override float HighlightFieldRadiusAroundTarget(out bool needLOSToCenter)
-        {
-            needLOSToCenter = true;
-            ThingDef projectile = this.Projectile;
-            if (projectile == null)
-            {
-                return 0f;
-            }
-            return projectile.projectile.explosionRadius;
-        }
-
-        // Token: 0x060064F8 RID: 25848 RVA: 0x001B9104 File Offset: 0x001B7504
-        public override bool Available()
-        {
-            if (!base.Available())
-            {
+                EquipmentSource.HitPoints--;
+                if (overheatRoll < overheatsOn && VerbPropsOG.criticaloverheatExplosion == true) { CriticalOverheatExplosion(); }
                 return false;
             }
-            if (base.CasterIsPawn)
+            return base.TryCastShot();
+        }
+        public virtual void CriticalOverheatExplosion()
+        {
+            int logcount = 0;
+            //bool logging = VerbPropsOG.logging;
+            bool logging = true;
+            string lmsg = string.Format("log {0}", logcount);
+            logcount++; lmsg = string.Format("log {0}", logcount); if (logging == true) { Log.Message(lmsg); }
+            Map map = caster.Map;
+            logcount++; lmsg = string.Format("log {0} EquipmentSource.def.projectile.explosionEffect: {1}", logcount, Projectile.projectile.explosionEffect); if (logging == true) { Log.Message(lmsg); }
+            if (Projectile.projectile.explosionEffect != null)
             {
-                Pawn casterPawn = base.CasterPawn;
-                if (casterPawn.Faction != Faction.OfPlayer && casterPawn.mindState.MeleeThreatStillThreat && casterPawn.mindState.meleeThreat.Position.AdjacentTo8WayOrInside(casterPawn.Position))
-                {
-                    return false;
-                }
+                Effecter effecter = Projectile.projectile.explosionEffect.Spawn();
+                effecter.Trigger(new TargetInfo(EquipmentSource.Position, map, false), new TargetInfo(EquipmentSource.Position, map, false));
+                effecter.Cleanup();
             }
-            return this.Projectile != null;
+            IntVec3 position = caster.Position;
+            Map map2 = map;
+            float explosionRadius = Projectile.projectile.explosionRadius;
+            DamageDef damageDef = Projectile.projectile.damageDef;
+            Thing launcher = EquipmentSource;
+            int DamageAmount = Projectile.projectile.GetDamageAmount(EquipmentSource, null);
+            logcount++; lmsg = string.Format("log {0} DamageAmount {1}", logcount, DamageAmount); if (logging == true) { Log.Message(lmsg); }
+            float ArmorPenetration = Projectile.projectile.GetArmorPenetration(EquipmentSource, null);
+            SoundDef soundExplode = Projectile.projectile.soundExplode;
+            ThingDef equipmentDef = EquipmentSource.def;
+            ThingDef def = EquipmentSource.def;
+            Thing thing = EquipmentSource;
+            ThingDef postExplosionSpawnThingDef = Projectile.projectile.postExplosionSpawnThingDef;
+            float postExplosionSpawnChance = Projectile.projectile.postExplosionSpawnChance;
+            int postExplosionSpawnThingCount = Projectile.projectile.postExplosionSpawnThingCount;
+            ThingDef preExplosionSpawnThingDef = Projectile.projectile.preExplosionSpawnThingDef;
+            GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, DamageAmount, ArmorPenetration, soundExplode);//, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, EquipmentSource.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, EquipmentSource.def.projectile.preExplosionSpawnChance, EquipmentSource.def.projectile.preExplosionSpawnThingCount, EquipmentSource.def.projectile.explosionChanceToStartFire, EquipmentSource.def.projectile.explosionDamageFalloff);
+            return;
         }
     }
 }

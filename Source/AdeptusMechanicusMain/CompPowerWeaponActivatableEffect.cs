@@ -18,7 +18,7 @@ namespace AdeptusMechanicus
             Pawn p = this.parent.holdingOwner.Owner.ParentHolder as Pawn;
         //    Log.Message(string.Format("{0}", p.Drafted));
             if (p.Drafted)
-            if (this.parent.SpawnedOrAnyParentSpawned && (p.Drafted || (p.CurJob != null && p.CurJob.def.alwaysShowWeapon) || (p.mindState.duty != null && p.mindState.duty.def.alwaysShowWeapon)))
+        //    if (this.parent.SpawnedOrAnyParentSpawned && (p.Drafted || (p.CurJob != null && p.CurJob.def.alwaysShowWeapon) || (p.mindState.duty != null && p.mindState.duty.def.alwaysShowWeapon)))
             {
                 return true;
             }
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus
         public override void Activate()
         {
             base.Activate();
-            //MakeGlower();
+            MakeGlower();
         }
 
         public void MakeGlower()

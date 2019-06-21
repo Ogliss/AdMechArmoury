@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        public VerbPropertiesOG VerbProps
+        public VerbPropertiesOG VerbPropsOG
         {
             get
             {
@@ -26,24 +26,26 @@ namespace AdeptusMechanicus
         protected override bool TryCastShot()
         {
             int logcount = 0;
-            bool logging = VerbProps.logging;
-            bool canDamageWeapon = VerbProps.canDamageWeapon;
-            float extraWeaponDamage = VerbProps.extraWeaponDamage;
-            bool canJam = VerbProps.canJam;
+            bool logging = VerbPropsOG.logging;
+            bool canDamageWeapon = VerbPropsOG.canDamageWeapon;
+            float extraWeaponDamage = VerbPropsOG.extraWeaponDamage;
+            bool canJam = VerbPropsOG.canJam;
             logcount++;
             string msg = string.Format("");
             string lmsg = string.Format("log {0}", logcount);
+            //bool rapidfire = VerbPropsCP.rapidfire;
             string reliabilityString;
             float jamsOn;
             StatPart_Reliability.GetReliability((ThingDef_GunOG)EquipmentSource, out reliabilityString, out jamsOn);
             logcount++;
+            lmsg = string.Format("log {0} reliabilityString {1}", logcount, reliabilityString);
             if (logging == true) { Log.Message(lmsg); }
             jamsOn = jamsOn++;
             float jamRoll = 0;
             logcount++;
             lmsg = string.Format("log {0} jamsOn {1}", logcount, jamsOn);
             if (logging == true) { Log.Message(lmsg); }
-            if (VerbProps.overheat == true) { jamRoll = (Rand.Range(0, 100)); }
+            if (VerbPropsOG.overheat == true) { jamRoll = (Rand.Range(0, 100)); }
             else { jamRoll = (Rand.Range(0, 1000)) / 10f; }
             logcount++;
             lmsg = string.Format("log {0} jamRoll {1}", logcount, jamRoll);
@@ -51,14 +53,14 @@ namespace AdeptusMechanicus
             if (jamRoll < jamsOn && canJam==true)
             {
                 logcount++;
-                lmsg = string.Format("log {0} VerbPropsCP.overheat {1}", logcount, VerbProps.overheat);
+                lmsg = string.Format("log {0} VerbPropsCP.overheat {1}", logcount, VerbPropsOG.overheat);
                 if (logging == true) { Log.Message(lmsg); }
-                if (VerbProps.overheat == true)
+                if (VerbPropsOG.overheat == true)
                 {
                     DamageDef damageDef = Projectile.projectile.damageDef;
                     HediffDef HediffToAdd = damageDef.hediff;
                     float ArmorPenetration = Projectile.projectile.GetArmorPenetration(EquipmentSource, null);
-                    float overheatsOn = VerbProps.overheatsOn;
+                    float overheatsOn = VerbPropsOG.overheatsOn;
                     logcount++;
                     lmsg = string.Format("log {0} overheatsOn {1}", logcount, overheatsOn);
                     if (logging == true) { Log.Message(lmsg); }
@@ -72,7 +74,7 @@ namespace AdeptusMechanicus
                     {
                         DamageAmount = Projectile.projectile.GetDamageAmount(EquipmentSource, null);
                         msg = string.Format("{0}'s {1} critically overheated. ({2}/{3}) causing {4} damage", caster.LabelCap, EquipmentSource.LabelCap, jamRoll, jamsOn, DamageAmount);
-                        if (VerbProps.criticaloverheatExplosion == true) { CriticalOverheatExplosion(); }
+                        if (VerbPropsOG.criticaloverheatExplosion == true) { CriticalOverheatExplosion(); }
                     }
                     else
                     {

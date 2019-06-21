@@ -5,12 +5,9 @@
 <!-- ======================== Imperial - Combi Flamer Ability ================================== -->
 <ThingDef ParentName="BaseProjectileAbilityExplosive">
    <defName>Projectile_OGIFlamer</defName>
-    <tickerType>Normal</tickerType>
-    <graphicData>
-      <texPath>Things/Projectile/Fire</texPath>
-      <graphicClass>Graphic_Flicker</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerShotS</texPath>
+		</graphicData>
 		<projectile>
 			<damageDef>OGFlamer</damageDef>
 			<damageAmountBase>3</damageAmountBase>
@@ -29,7 +26,7 @@
 	<AbilityUser.AbilityDef ParentName="BaseAbility">
         <defName>OGI_Ability_FireFlamer</defName>
         <label>Fire Flamer</label>
-        <uiIconPath>Things/Projectile/Fire/FireA</uiIconPath>
+        <uiIconPath>Things/Projectile/FlamerShotS</uiIconPath>
         <description>Fire built in Flamer.</description>
         <MainVerb Class="AbilityUser.VerbProperties_Ability">
             <verbClass>AbilityUser.Verb_UseAbility</verbClass>
@@ -140,16 +137,8 @@
         <label>Fire Plasma</label>
         <uiIconPath>Things/Projectile/PlamsShotSml</uiIconPath>
         <description>Fire built in Plasmagun.</description>
-        <MainVerb Class="AbilityUser.VerbProperties_AbilityOG">
-            <verbClass>AdeptusMechanicus.Verb_UseAbilityOG</verbClass>
-			<label>Standard</label>
-			<canJam>true</canJam>
-			<reliability>ST</reliability>
-			<overheat>true</overheat>
-			<criticaloverheatExplosion>false</criticaloverheatExplosion>
-			<overheatsOn>10</overheatsOn>
-			<rapidfire>true</rapidfire>
-			<logging>true</logging>
+        <MainVerb Class="AbilityUser.VerbProperties_Ability">
+            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
             <AlwaysHits>false</AlwaysHits>
             <tooltipShowProjectileDamage>true</tooltipShowProjectileDamage>
             <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
