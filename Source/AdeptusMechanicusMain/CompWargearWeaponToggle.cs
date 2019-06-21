@@ -79,11 +79,11 @@ namespace AdeptusMechanicus
                 {
                     case CompWargearWeaponToggle.FireMode.Primary:
                         command_Action.icon = PrimaryProjectile.defaultProjectile.uiIcon; // ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOn", true);
-                        command_Action.defaultLabel = "Firemode: "+ PrimaryProjectile.label;
+                        command_Action.defaultLabel = "Firemode: " + PrimaryProjectile.label;
                         break;
                     case CompWargearWeaponToggle.FireMode.Secondary:
                         command_Action.icon = SecondaryProjectile.defaultProjectile.uiIcon; // ContentFinder<Texture2D>.Get("Ui/Commands/CommandButton_LigthModeForcedOff", true);
-                        command_Action.defaultLabel = "Firemode: "+ SecondaryProjectile.label;
+                        command_Action.defaultLabel = "Firemode: " + SecondaryProjectile.label;
                         break;
                 }
                 command_Action.defaultDesc = "Switch mode.";

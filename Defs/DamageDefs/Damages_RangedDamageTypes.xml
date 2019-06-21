@@ -55,6 +55,7 @@
 	<!--==================== Base Damage Type - No Camera Shake =========================-->	
 	<DamageDef Name="OGLocalRangedInjuryBaseNoCamShake" Abstract="True">
 		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
+		<harmsHealth>true</harmsHealth>
 	</DamageDef>
 	
 	<DamageDef Name="PlasmaInjuryNoCamShake" ParentName="PlasmaInjury" Abstract="True">
@@ -227,18 +228,19 @@
 		<armorCategory>Sharp</armorCategory>
 </DamageDef>
 
-	<!--==================== Boltgun Damage Type =========================-->
+	<!--==================== Boltgun Damage Types =========================-->
+	<!--==================== Standard Bolt Damage Type =========================-->
 	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
-		<defName>OGIBolt</defName>
-		<label>bolt</label>
+		<defName>OGIBoltStd</defName>
+		<label>standard bolt</label>
 		<externalViolence>true</externalViolence>
 		<isExplosive>true</isExplosive>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<hediff>Shredded</hediff>
 		<hediffSolid>Crack</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Blunt</impactSoundType>
-		<armorCategory>Blunt</armorCategory>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
 		
 		<defaultDamage>25</defaultDamage>
 		<buildingDamageFactor>1</buildingDamageFactor>
@@ -248,6 +250,106 @@
 		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Dragonfire Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltDragonfire</defName>
+		<label>dragonfire bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	
+	<!--==================== Hellfire Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltHellfire</defName>
+		<label>hellfire bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+    <additionalHediffs>
+      <li>
+        <hediff>Toxins</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+	
+	<!--==================== Kraken Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltKraken</defName>
+		<label>kraken bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Vengeance Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltVengeance</defName>
+		<label>vengeance bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
 	</DamageDef>
 
 	<!--==================== Bomb Damage Type =========================-->

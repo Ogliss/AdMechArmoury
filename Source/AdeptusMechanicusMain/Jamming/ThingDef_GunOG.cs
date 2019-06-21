@@ -10,9 +10,9 @@ namespace AdeptusMechanicus
         {
             get
             {
-                foreach (VerbProperties v in def.Verbs)
+                foreach (VerbPropertiesOG v in def.Verbs)
                 {
-                    if (v.GetType() == Type.GetType("AdeptusMechanicus.VerbPropertiesOG"))
+                    if (v.GetType() == Type.GetType("AdeptusMechanicus.VerbPropertiesOG") && v.canJam)
                     {
                         return ((VerbPropertiesOG)v).reliability;
                     }
@@ -20,6 +20,17 @@ namespace AdeptusMechanicus
                 return Reliability.NA;
             }
         }
+
+        public override void Tick()
+        {
+            base.Tick();
+            CompWargearWeaponSecondry comp = base.GetComp<CompWargearWeaponSecondry>();
+            if (comp != null)
+            {
+                comp.CompTick();
+            }
+        }
+
         public override string GetInspectString()
         {
             string result = base.GetInspectString();

@@ -206,8 +206,7 @@
 		</comps>
 	 </ThingDef>
 	 
-	 
-	<!--==================== Imperial - Power Sword  MKII =========================-->
+	 	<!--==================== Imperial - Power Sword  MKII =========================-->
 	<ThingDef ParentName="OGIPowerMeleeWeapon_Sharp_Quality">
 		<defName>OGI_Melee_PowerSwordMKII</defName>
 		<label>Power Sword MKII</label>
@@ -399,6 +398,7 @@
 		<costStuffCount>300</costStuffCount>
 		<weaponTags>
 			<li>IGCLightningClaw</li>
+			<li>LightningClaw</li>
 			<li>OGIPowerWeapon</li>
 			<li>PowerWeapon</li>
 		</weaponTags>
@@ -726,5 +726,77 @@
 		  </li>
 		</comps>
 	 </ThingDef>
-	 
+	 	 
+	<!--==================== Imperial  - Force Staff =========================-->
+	<ThingDef Class="AdeptusMechanicus.ThingDef_ForceWeapon" ParentName="OGIBaseMeleeWeapon_Blunt_Quality">
+		<defName>OGI_Melee_ForceStaff</defName>
+		<label>Force Staff</label>
+		<description>Force Weapons are advanced, psychically-attuned close combat weapons that are only effective in the hands of a psyker. Force Weapons effectively act as deadly, psychic extensions or amplifiers of the wielder's own Empyrean-spawned powers. They are designed to allow a psyker to channel deadly Warp energies into their victim, acting as a conduit between the wielder's mind and the flesh of his target. Large alien monstrosities and daemons that are resilient to conventional weapons can be slain outright by a single wound from a Force Weapon, as their bodies and minds are destroyed by the unearthly powers of the Immaterium.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/ForceStaff</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>3.5</Mass>
+			
+			<MarketValue>1750</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>haft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+			<li>
+				<label>force strike</label>
+				<capacities>
+					<li>ForceBlunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+		<researchPrerequisite>WRForceWeapons</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>400</costStuffCount>
+		<weaponTags>
+			<li>IForceStaff</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIMelee</li>
+		</tradeTags>
+	<KillChance>10</KillChance>
+	<blastdamageDef>OGForceStrike</blastdamageDef>
+	<blastsoundExplode>MeleeHit_Metal_ForceWeapon</blastsoundExplode>
+	<blastdamageAmount>10</blastdamageAmount>
+	<forceWeaponEffect>FWPsychicShock</forceWeaponEffect>
+	 </ThingDef>
+	
 </Defs>

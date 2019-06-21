@@ -4,12 +4,12 @@
 <!-- ======================== Imperial - Abilities ================================== -->
 <!-- ======================== Imperial - Bolter Ability ================================== -->
 <ThingDef ParentName="BaseProjectileAbilityExplosive">
-   <defName>Projectile_OGIBolt</defName>
+   <defName>Projectile_OGIBoltStd</defName>
 		<graphicData>
 			<texPath>Things/Projectile/BoltShotSml</texPath>
 		</graphicData>
 		<projectile>
-			<damageDef>OGIBolt</damageDef>
+			<damageDef>OGIBoltStd</damageDef>
 			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBase>0.32</armorPenetrationBase>
 			<explosionRadius>0.5</explosionRadius>
@@ -32,7 +32,7 @@
             <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
             <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
             <hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_OGIBolt</defaultProjectile>
+			<defaultProjectile>Projectile_OGIBoltStd</defaultProjectile>
             <abilityDef>OGI_Ability_FireBolter</abilityDef>
             <warmupTime>0.6</warmupTime>
             <SecondsToRecharge>10.0</SecondsToRecharge>
@@ -51,9 +51,10 @@
  </AbilityUser.AbilityDef>
  
 <!-- ======================== Eldar - Abilities ================================== -->
+
 <!-- ======================== Eldar - Shuriken Catapult Ability ================================== -->
-<ThingDef ParentName="BaseProjectileAbility">
-   <defName>Projectile_OGEShuriken</defName>
+	<ThingDef ParentName="BaseProjectileAbility">
+		<defName>Projectile_OGEShuriken</defName>
 		<graphicData>
 			<texPath>Things/Projectile/ShurikenSml</texPath>
 		</graphicData>
@@ -64,7 +65,7 @@
 			<speed>100</speed>
 			<flyOverhead>false</flyOverhead>
 		</projectile>
- </ThingDef>
+	</ThingDef>
 
 	<AbilityUser.AbilityDef ParentName="BaseAbility">
         <defName>OGE_Ability_FireShuriken</defName>
@@ -79,6 +80,7 @@
             <tooltipShowHediffsToApply>false</tooltipShowHediffsToApply>
             <tooltipShowMentalStatesToApply>false</tooltipShowMentalStatesToApply>
             <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			<defaultProjectile>Projectile_OGEShuriken</defaultProjectile>
             <abilityDef>OGE_Ability_FireShuriken</abilityDef>
             <warmupTime>0.7</warmupTime>
@@ -89,12 +91,11 @@
 			<soundCast>ShurikenSound</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>8</muzzleFlashScale>
-            <isPrimary>false</isPrimary>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
         </MainVerb>
- </AbilityUser.AbilityDef>
+	</AbilityUser.AbilityDef>
  
 <!-- ======================== Eldar - Singing Spear Ability ================================== -->
 <ThingDef ParentName="BaseProjectileAbility">

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- ========================= Mechanicus - Armour ========================== -->
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>/Defs/ThingCategoryDef[defName = "Federation"]</xpath>
+    </li>
+	
+	<!-- ========================= Mechanicus - Enginseer Hood ========================== -->
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]/comps</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]</xpath>
+          <value>
+            <comps />
+          </value>
+        </nomatch>
+      </li>
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]/comps</xpath>
+        <value>
+		  <li Class="FactionColors.CompProperties_FactionColor">
+			<compClass>FactionColors.CompFactionColor</compClass>
+		  </li>
+		  <li Class="FactionColors.CompProperties_PauldronDrawer">
+			<compClass>FactionColors.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Astartes/PowerArmor/Astartes_Pauldrons</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+		  </li>
+        </value>
+	</li>
+	
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]</xpath>
+        <value>
+			<thingClass>FactionColors.ApparelUniform</thingClass>
+        </value>
+	</li>
+	
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]/colorGenerator</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]/colorGenerator</xpath>
+          <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+          </value>
+        </nomatch>
+        <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerHood"]/colorGenerator</xpath>
+        <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+        </value>
+        </match>
+      </li>
+	
+	<!-- ========================= Mechanicus - Enginseer Robe ========================== -->
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]/comps</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]</xpath>
+          <value>
+            <comps />
+          </value>
+        </nomatch>
+      </li>
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]/comps</xpath>
+        <value>
+		  <li Class="FactionColors.CompProperties_FactionColor">
+			<compClass>FactionColors.CompFactionColor</compClass>
+		  </li>
+		  <li Class="FactionColors.CompProperties_PauldronDrawer">
+			<compClass>FactionColors.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Astartes/PowerArmor/Astartes_Pauldrons</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+		  </li>
+        </value>
+	</li>
+	
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]</xpath>
+        <value>
+			<thingClass>FactionColors.ApparelUniform</thingClass>
+        </value>
+	</li>
+	
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]/colorGenerator</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]/colorGenerator</xpath>
+          <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+          </value>
+        </nomatch>
+        <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_EnginseerRobe"]/colorGenerator</xpath>
+        <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+        </value>
+        </match>
+      </li>
+	
+	<!-- ========================= Mechanicus - Skitarii Legionnaire Helmet ========================== -->
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]/comps</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]</xpath>
+          <value>
+            <comps />
+          </value>
+        </nomatch>
+      </li>
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]/comps</xpath>
+        <value>
+		  <li Class="FactionColors.CompProperties_FactionColor">
+			<compClass>FactionColors.CompFactionColor</compClass>
+		  </li>
+		  <li Class="FactionColors.CompProperties_PauldronDrawer">
+			<compClass>FactionColors.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Astartes/PowerArmor/Astartes_Pauldrons</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+		  </li>
+        </value>
+	</li>
+	
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]</xpath>
+        <value>
+			<thingClass>FactionColors.ApparelUniform</thingClass>
+        </value>
+	</li>
+	
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]/colorGenerator</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]/colorGenerator</xpath>
+          <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+          </value>
+        </nomatch>
+        <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireHelmet"]/colorGenerator</xpath>
+        <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+        </value>
+        </match>
+      </li>
+	
+	<!-- ========================= Mechanicus - Skitarii Legionnaire Armour ========================== -->
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]/comps</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]</xpath>
+          <value>
+            <comps />
+          </value>
+        </nomatch>
+      </li>
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]/comps</xpath>
+        <value>
+		  <li Class="FactionColors.CompProperties_FactionColor">
+			<compClass>FactionColors.CompFactionColor</compClass>
+		  </li>
+		  <li Class="FactionColors.CompProperties_PauldronDrawer">
+			<compClass>FactionColors.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Astartes/PowerArmor/Astartes_Pauldrons</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+		  </li>
+        </value>
+	</li>
+	
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]</xpath>
+        <value>
+			<thingClass>FactionColors.ApparelUniform</thingClass>
+        </value>
+	</li>
+	
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]/colorGenerator</xpath>
+        <success>Always</success>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]/colorGenerator</xpath>
+          <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+          </value>
+        </nomatch>
+        <match Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="OGAM_Apparel_SkitariiLegionnaireArmour"]/colorGenerator</xpath>
+        <value>
+			<colorGenerator Class="ColorGenerator_Options">
+			  <options>
+				<li>
+				  <weight>10</weight>
+				  <only>RGBA(1.0,1.0,1.0,1)</only>
+				</li>      
+			  </options>
+			</colorGenerator>
+        </value>
+        </match>
+      </li>
+	
+  </operations>
+</Operation>
+
+</Patch>
