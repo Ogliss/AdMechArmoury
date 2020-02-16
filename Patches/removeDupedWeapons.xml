@@ -14,6 +14,20 @@
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "Gun_BoltGun"]</xpath>
 			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRBoltGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRBoltGun"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_T2BoltGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_T2BoltGun"]</xpath>
+			</li>
 		</operations>
 	</Operation>
 	
@@ -26,6 +40,13 @@
 			</li>
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "Gun_LasPistol"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasPistol"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasPistol"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -40,6 +61,31 @@
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "Gun_LasGun"]</xpath>
 			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasGun"]</xpath>
+
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ResearchProjectDef[defName = "AdvancedImperialConstruction"]/prerequisites</xpath>
+					<value>
+					<prerequisites>
+						<li>BasicImperialConstruction</li>
+						<li>WRImpLasTech</li>
+					</prerequisites>
+					</value>
+			</li>	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRWebber"]/prerequisites</xpath>
+					<value>
+					<prerequisites>
+						<li>WRImpLasTech</li>
+					</prerequisites>
+					</value>
+			</li>	
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasGun"]</xpath>
+			</li>
 		</operations>
 	</Operation>
 	
@@ -52,6 +98,13 @@
 			</li>
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "Gun_PlasmaRifle"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRPlasmaRifle"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRPlasmaRifle"]</xpath>
 			</li>
 		</operations>
 	</Operation>
@@ -82,6 +135,13 @@
 			</li>
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName = "IG_Gun_AssCan"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_AssCannon"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_AssCannon"]</xpath>
 			</li>
 		</operations>
 	</Operation>

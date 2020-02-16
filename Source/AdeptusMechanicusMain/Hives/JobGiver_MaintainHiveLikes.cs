@@ -1,8 +1,9 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 using Verse.AI;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x020000A3 RID: 163
 	public class JobGiver_MaintainHiveLikes : JobGiver_AIFightEnemies
@@ -27,7 +28,7 @@ namespace RimWorld
 				{
 					if (intVec.GetRoom(pawn.Map, RegionType.Set_Passable) == room)
 					{
-						HiveLike hivelike = (HiveLike)pawn.Map.thingGrid.ThingAt(intVec, ThingDefOf.Hive);
+						HiveLike hivelike = (HiveLike)pawn.Map.thingGrid.ThingsListAt(intVec).Find(x=> x.def.thingClass == typeof(AdeptusMechanicus.HiveLike));
 						if (hivelike != null && pawn.CanReserve(hivelike, 1, -1, null, false))
 						{
 							CompMaintainable compMaintainable = hivelike.TryGetComp<CompMaintainable>();

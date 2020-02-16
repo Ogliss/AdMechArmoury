@@ -1,8 +1,9 @@
 ﻿using System;
 using Verse;
 using Verse.AI;
+using RimWorld;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x020000A2 RID: 162
 	public class JobGiver_HiveLikeDefense : JobGiver_AIFightEnemies

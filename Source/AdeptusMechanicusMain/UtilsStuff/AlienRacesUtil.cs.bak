@@ -1,0 +1,34 @@
+﻿using RimWorld;
+using System;
+using System.Reflection;
+using Verse;
+
+namespace AdeptusMechanicus
+{
+    [StaticConstructorOnStartup]
+    static class AlienRacesUtil
+    {
+        public static bool AlienRaces = false;
+        static AlienRacesUtil()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                string name;
+                if (p.Name.Contains("Humanoid Alien Races 2.0"))
+                {
+                    AlienRaces = true;
+                    break;
+                }
+            }
+            if (AlienRaces)
+            {
+            //    Log.Message(string.Format("Humanoid Alien Races 2.0 Detected"));
+            }
+            else
+            {
+            //    Log.Message(string.Format("Humanoid Alien Races 2.0 NOT Detected"));
+            }
+        }
+        
+    }
+}

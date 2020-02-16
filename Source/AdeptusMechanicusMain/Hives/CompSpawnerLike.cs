@@ -1,8 +1,9 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000763 RID: 1891
     public class CompProperties_SpawnerLike : CompProperties

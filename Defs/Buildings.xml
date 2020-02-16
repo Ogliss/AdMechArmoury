@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>HolographicEmitter</defName>
+		<label>holo-emitter</label>
+    <description>A holo-Emitter. Used on light, fast ships to simulate useful crew members if they are recovered just after death. The body is destroyed on scanning.</description>
+    <thingClass>HoloEmitters.Things.HoloEmitter</thingClass>
+		<graphicData>	
+			<texPath>Things/Buildings/HoloEmitter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+		</graphicData>
+		<costList>
+			<Gold>120</Gold>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <designationCategory>Misc</designationCategory>
+		<altitudeLayer>Building</altitudeLayer>
+		 <minifiedDef>MinifiedThing</minifiedDef>
+		<tickerType>Rare</tickerType>
+		<fillPercent>0.5</fillPercent>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<WorkToBuild>6500</WorkToBuild>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Mass>50</Mass>
+		</statBases>
+		<size>(1,1)</size>
+		<passability>Standable</passability>
+		<pathCost>60</pathCost>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,0)</interactionCellOffset>
+		<tradeability>None</tradeability>
+		<surfaceType>None</surfaceType>
+		<comps>
+			 <li Class="HoloEmitters.CompProperties_HoloEmitter"/>
+      		<li Class="CompProperties_Glower">  
+       	 	<overlightRadius>9.0</overlightRadius>
+        	<glowRadius>9.0</glowRadius>
+        	<glowColor>(170,170,240,0)</glowColor>
+      		</li>
+      		<li Class="CompProperties_Power">
+        	<compClass>CompPowerTrader</compClass>
+			<!--
+        	<startElectricalFires>true</startElectricalFires>
+			-->
+        	<basePowerConsumption>800</basePowerConsumption>
+      		</li>
+			<li Class="CompProperties_Flickable"/>
+		</comps>
+		<building>
+			<heatPerTickWhileWorking>0.25</heatPerTickWhileWorking>
+		</building>
+		<constructEffect>ConstructMetal</constructEffect>
+	</ThingDef>
+  
+</Defs>

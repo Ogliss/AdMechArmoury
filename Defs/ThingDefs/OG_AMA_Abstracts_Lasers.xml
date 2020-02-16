@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef>
+    <defName>AdeptusMechanicusBeamGraphic</defName>
+    <thingClass>AdeptusMechanicus.LaserBeamGraphic</thingClass>
+    <drawOffscreen>true</drawOffscreen>
+    <label>laser beam</label>
+    
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="BaseBullet">
+    <thingClass>AdeptusMechanicus.LaserBeam</thingClass>
+    <drawOffscreen>true</drawOffscreen>
+    <beamGraphic>AdeptusMechanicusBeamGraphic</beamGraphic>
+   
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Projectile/LasShotLrg</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+	
+    <explosionEffect>AdeptusMechanicusLaserImpact</explosionEffect>
+    <hitLivingEffect>AdeptusMechanicusLaserLivingImpact</hitLivingEffect>
+    
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <speed>10000</speed>
+    </projectile>
+    
+    <seam>0.25</seam>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="OG_Bullet_LaserGeneric" ParentName="OG_Bullet_LaserBase">
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Projectile/LasShotLrg</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="OG_Bullet_LaserAnim" ParentName="OG_Bullet_LaserBase">
+    <graphicData>
+      <graphicClass>Graphic_Flicker</graphicClass>
+      <texPath>Things/Projectile/AnimLightning</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="OG_Bullet_LaserRandom" ParentName="OG_Bullet_LaserBase">
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Things/Projectile/AnimLightning</texPath>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="OG_Bullet_LaserGauss" ParentName="OG_Bullet_LaserBase">
+    <textures>
+      <li>Things/Projectile/ParticleBeam</li>
+    </textures>
+
+    	<decorations>
+        <li>
+            <mote>AdeptusMechanicus_Mote_LaserDecorationYellow</mote>
+            <spacing>0.8</spacing>
+            <initialOffset>-0.1</initialOffset>
+            <speed>1.0</speed>
+            <speedJitter>0.55</speedJitter>
+            <speedJitterOffset>90</speedJitterOffset>
+        </li>
+        <li>
+            <mote>AdeptusMechanicus_Mote_LaserDecorationPurple</mote>
+            <spacing>0.8</spacing>
+            <initialOffset>0.3</initialOffset>
+            <speed>1.0</speed>
+            <speedJitter>0.45</speedJitter>
+            <speedJitterOffset>90</speedJitterOffset>
+        </li>
+     </decorations>
+   </ThingDef>
+
+</Defs>

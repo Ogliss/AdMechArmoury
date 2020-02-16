@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI.Group;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x02000196 RID: 406
 	public class LordToil_HiveLikeRelatedData : LordToilData

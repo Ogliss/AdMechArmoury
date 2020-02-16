@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Verse;
 using Verse.AI.Group;
 using Verse.Sound;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     public class ThingDef_TunnelHiveLikeSpawner : ThingDef
     {
@@ -134,7 +135,7 @@ namespace RimWorld
                 //Log.Message(string.Format("1 b"));
             }
             //Log.Message(string.Format("2"));
-            boltMesh = LightningBoltMeshPool.RandomBoltMesh;
+            boltMesh = LightningBoltMeshPoolOG.RandomBoltMesh;
             //Log.Message(string.Format("3"));
             if (!strikeLoc.Fogged(map))
             {

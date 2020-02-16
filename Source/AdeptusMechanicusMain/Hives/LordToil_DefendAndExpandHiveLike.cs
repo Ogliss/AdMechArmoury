@@ -1,7 +1,8 @@
 ﻿using System;
 using Verse.AI;
+using RimWorld;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x0200018F RID: 399
 	public class LordToil_DefendAndExpandHiveLike : LordToil_HiveLikeRelated
@@ -13,7 +14,7 @@ namespace RimWorld
 			for (int i = 0; i < this.lord.ownedPawns.Count; i++)
 			{
 				HiveLike hiveFor = (HiveLike)base.GetHiveLikeFor(this.lord.ownedPawns[i]);
-				PawnDuty duty = new PawnDuty(DutyDefOf.DefendAndExpandHive, hiveFor, this.distToHiveToAttack);
+				PawnDuty duty = new PawnDuty(OGHiveLikeDefOf.OGAMXB_DefendAndExpandHiveLike, hiveFor, this.distToHiveToAttack);
 				this.lord.ownedPawns[i].mindState.duty = duty;
 			}
 		}

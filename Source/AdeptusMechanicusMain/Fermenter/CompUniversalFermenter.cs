@@ -438,7 +438,6 @@ namespace AdeptusMechanicus
 				yield return command_Action2;
 			}
 			yield break;
-			yield break;
 		}
 
 		// Token: 0x06000022 RID: 34 RVA: 0x00002868 File Offset: 0x00000A68

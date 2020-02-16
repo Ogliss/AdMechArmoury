@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using RimWorld;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000340 RID: 832
     public class IncidentWorker_Hivelike : IncidentWorker
@@ -11,15 +12,17 @@ namespace RimWorld
         // Token: 0x06000E63 RID: 3683 RVA: 0x0006B874 File Offset: 0x00069C74
         protected override bool CanFireNowSub(IncidentParms parms)
 		{
-            /*
+            
 			Map map = (Map)parms.target;
 			IntVec3 intVec;
-			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map) < 30 && InfestationLikeCellFinder.TryFindCell(out intVec, map);
-            */
+			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map, this.def.shipPart) < 100&& AdeptusMechanicus.InfestationLikeCellFinder.TryFindCell(out intVec, map, this.def.shipPart);
+            
 
+            /*
             Map map = (Map)parms.target;
             IntVec3 intVec = DropCellFinder.RandomDropSpot(map);
-            return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map) < 100;
+            return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map, this.def.shipPart) < 100;
+            */
         }
 
 		// Token: 0x06000E64 RID: 3684 RVA: 0x0006B8B4 File Offset: 0x00069CB4

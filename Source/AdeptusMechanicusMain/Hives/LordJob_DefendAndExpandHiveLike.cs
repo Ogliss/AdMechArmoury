@@ -1,8 +1,9 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 using Verse.AI.Group;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x0200016E RID: 366
 	public class LordJob_DefendAndExpandHiveLike : LordJob

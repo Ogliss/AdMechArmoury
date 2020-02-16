@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Verse;
+using RimWorld;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000768 RID: 1896
     public class CompProperties_SpawnerHiveLikes : CompProperties
@@ -55,7 +56,7 @@ namespace RimWorld
 		{
 			get
 			{
-				return this.canSpawnHiveLikes && HiveLikeUtility.TotalSpawnedHiveLikesCount(this.parent.Map) < 30;
+                return this.canSpawnHiveLikes && HiveLikeUtility.TotalSpawnedHiveLikesCount(this.parent.Map, this.parent.def) < 30;
 			}
 		}
 
@@ -84,9 +85,22 @@ namespace RimWorld
 				{
 					this.CalculateNextHiveLikeSpawnTick();
 				}
-			}
+            }
             else
             if (this.parent is TunnelHiveLikeSpawner tunnellike && (tunnellike == null || tunnellike.active) && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
+            {
+                TunnelHiveLikeSpawner t;
+                if (this.TrySpawnChildHiveLike(false, out t))
+                {
+                    Messages.Message("MessageHiveReproduced".Translate(), t, MessageTypeDefOf.NegativeEvent, true);
+                }
+                else
+                {
+                    this.CalculateNextHiveLikeSpawnTick();
+                }
+            }
+            else
+            if (this.parent is Building_CrashedShipPart shippart && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
             {
                 TunnelHiveLikeSpawner t;
                 if (this.TrySpawnChildHiveLike(false, out t))
@@ -239,7 +253,7 @@ namespace RimWorld
 					List<Thing> thingList = c2.GetThingList(map);
 					for (int j = 0; j < thingList.Count; j++)
 					{
-						if (thingList[j] is HiveLike || thingList[j] is TunnelHiveSpawner)
+						if (thingList[j] is HiveLike || thingList[j] is TunnelSpawner)
 						{
 							return false;
 						}
@@ -271,7 +285,7 @@ namespace RimWorld
 					action = delegate()
 					{
 						HiveLike hivelike;
-						this.TrySpawnChildHiveLike(false, out hivelike);
+						this.TrySpawnChildHiveLike(true, out hivelike);
 					}
 				};
 			}

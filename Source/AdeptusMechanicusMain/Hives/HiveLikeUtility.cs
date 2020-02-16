@@ -1,21 +1,45 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x020006ED RID: 1773
 	public static class HiveLikeUtility
 	{
 		// Token: 0x06002688 RID: 9864 RVA: 0x00124A2B File Offset: 0x00122E2B
-		public static int TotalSpawnedHiveLikesCount(Map map)
+		public static int TotalSpawnedHiveLikesCount(Map map, ThingDef hiveLike)
 		{
-			return map.listerThings.ThingsOfDef(ThingDefOf.Hive).Count;
+			return map.listerThings.ThingsOfDef(hiveLike).Count;
 		}
+        
+        public static List<Thing> SpawnedHivelikes(Map map, FactionDef factionDef)
+        {
+            HiveLike hiveLike = null;
+            List<Thing> lista = new List<Thing>();
+            if (!DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == factionDef).NullOrEmpty())
+            {
+                List<Thing> listb = new List<Thing>();
+                foreach (ThingDef_HiveLike hivelikeDef in DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == factionDef))
+                {
+                    listb = map.listerThings.ThingsOfDef(hivelikeDef);
+                    if (!listb.NullOrEmpty())
+                    {
+                        foreach (var item in listb)
+                        {
+                            lista.Add(item);
+                        }
+                    }
+                }
 
-		// Token: 0x06002689 RID: 9865 RVA: 0x00124A44 File Offset: 0x00122E44
-		public static bool AnyHiveLikePreventsClaiming(Thing thing)
+            }
+            return lista;
+        }
+
+        // Token: 0x06002689 RID: 9865 RVA: 0x00124A44 File Offset: 0x00122E44
+        public static bool AnyHiveLikePreventsClaiming(Thing thing)
 		{
 			if (!thing.Spawned)
 			{

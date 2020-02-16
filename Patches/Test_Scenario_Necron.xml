@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationPlayerName">
+	<names>
+		<li>Ogliss</li>
+	</names>
+  <success>Always</success>
+    <match Class="PatchOperationAdd">
+        <success>Always</success>
+        <xpath>Defs</xpath>
+        <value>
+		<ScenarioDef>
+	<defName>OG_WeaponsTest_Necron</defName>
+		<label>Weapons Test (Necron)</label>
+		<description>Necron Weapons Testing Scenario.</description>
+    <scenario>
+      <summary>Five pawns, All Necron Weapons.</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+		<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+			<def>ConfigPage_ConfigureStartingPawns</def>
+			<pawnCount>5</pawnCount>
+			<pawnChoiceCount>10</pawnChoiceCount>
+		</li>
+		<li Class="ScenPart_PlayerPawnsArriveMethod">
+			<def>PlayerPawnsArriveMethod</def>
+		</li>
+		<li Class="ScenPart_StartingThing_Defined">
+			<def>StartingThing_Defined</def>
+			<thingDef>MealSurvivalPack</thingDef>
+			<count>300</count>
+		</li>
+		
+		</parts>
+	</scenario>
+	</ScenarioDef>
+        </value>
+    </match>
+</Operation>
+
+</Patch>

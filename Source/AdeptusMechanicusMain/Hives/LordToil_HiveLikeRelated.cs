@@ -4,7 +4,7 @@ using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x02000195 RID: 405
 	public abstract class LordToil_HiveLikeRelated : LordToil
@@ -50,7 +50,16 @@ namespace RimWorld
 		// Token: 0x06000880 RID: 2176 RVA: 0x000475D8 File Offset: 0x000459D8
 		private HiveLike FindClosestHiveLike(Pawn pawn)
 		{
-			return (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(OGHiveLikeDefOf.HiveLike), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
-		}
+            HiveLike hiveLike = null;
+            if (!DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def).NullOrEmpty())
+            {
+                foreach (ThingDef_HiveLike hivelikeDef in DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == pawn.Faction.def))
+                {
+                    hiveLike = (HiveLike)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(hivelikeDef), PathEndMode.Touch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 30f, (Thing x) => x.Faction == pawn.Faction, null, 0, 30, false, RegionType.Set_Passable, false);
+                    if (hiveLike != null) break;
+                }
+            }
+            return hiveLike;
+        }
 	}
 }

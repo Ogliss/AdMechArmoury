@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
 	// Token: 0x020000A5 RID: 165
 	public class JobGiver_WanderHiveLike : JobGiver_Wander

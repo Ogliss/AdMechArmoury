@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using RimWorld;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x0200092D RID: 2349
     public static class InfestationLikeCellFinder
     {
         // Token: 0x0600368B RID: 13963 RVA: 0x001A0E1C File Offset: 0x0019F21C
-        public static bool TryFindCell(out IntVec3 cell, Map map)
+        public static bool TryFindCell(out IntVec3 cell, Map map, ThingDef thingDef, FactionDef factionDef = null)
         {
             //Log.Message(string.Format("Tick: 1"));
-            InfestationLikeCellFinder.CalculateLocationCandidates(map);
+            InfestationLikeCellFinder.CalculateLocationCandidates(map, thingDef);
             InfestationLikeCellFinder.LocationCandidate locationCandidate;
             if (!InfestationLikeCellFinder.locationCandidates.TryRandomElementByWeight((InfestationLikeCellFinder.LocationCandidate x) => x.score, out locationCandidate))
             {
@@ -20,12 +21,12 @@ namespace RimWorld
                 //Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", cell));
                 return false;
             }
-            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, OGHiveLikeDefOf.HiveLike, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map) > 0f && x.GetFirstThing(map, OGHiveLikeDefOf.HiveLike) == null && x.GetFirstThing(map, ThingDefOf.TunnelHiveSpawner) == null);
+            cell = CellFinder.FindNoWipeSpawnLocNear(locationCandidate.cell, map, thingDef, Rot4.North, 2, (IntVec3 x) => InfestationLikeCellFinder.GetScoreAt(x, map, thingDef) > 0f && x.GetFirstThing(map, thingDef) == null && x.GetFirstThing(map, ((ThingDef_HiveLike)thingDef).TunnelDef) == null);
             return true;
         }
 
         // Token: 0x0600368C RID: 13964 RVA: 0x001A0EAC File Offset: 0x0019F2AC
-        private static float GetScoreAt(IntVec3 cell, Map map)
+        private static float GetScoreAt(IntVec3 cell, Map map, ThingDef thingDef)
         {
             if ((float)InfestationLikeCellFinder.distToColonyBuilding[cell] > 30f)
             {
@@ -39,7 +40,7 @@ namespace RimWorld
             {
                 return 0f;
             }
-            if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map))
+            if (InfestationLikeCellFinder.CellHasBlockingThings(cell, map, thingDef))
             {
                 return 0f;
             }
@@ -90,70 +91,7 @@ namespace RimWorld
             return num7;
         }
 
-        // Token: 0x0600368D RID: 13965 RVA: 0x001A1070 File Offset: 0x0019F470
-        public static void DebugDraw()
-        {
-            if (DebugViewSettings.drawInfestationChance)
-            {
-                if (InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors == null)
-                {
-                    InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors = new List<Pair<IntVec3, float>>();
-                }
-                if (Time.frameCount % 8 == 0)
-                {
-                    InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors.Clear();
-                    Map currentMap = Find.CurrentMap;
-                    CellRect cellRect = Find.CameraDriver.CurrentViewRect;
-                    cellRect.ClipInsideMap(currentMap);
-                    cellRect = cellRect.ExpandedBy(1);
-                    InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(currentMap);
-                    InfestationLikeCellFinder.CalculateClosedAreaSizeGrid(currentMap);
-                    InfestationLikeCellFinder.CalculateDistanceToColonyBuildingGrid(currentMap);
-                    float num = 0.001f;
-                    for (int i = 0; i < currentMap.Size.z; i++)
-                    {
-                        for (int j = 0; j < currentMap.Size.x; j++)
-                        {
-                            IntVec3 cell = new IntVec3(j, 0, i);
-                            float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, currentMap);
-                            if (scoreAt > num)
-                            {
-                                num = scoreAt;
-                            }
-                        }
-                    }
-                    for (int k = 0; k < currentMap.Size.z; k++)
-                    {
-                        for (int l = 0; l < currentMap.Size.x; l++)
-                        {
-                            IntVec3 intVec = new IntVec3(l, 0, k);
-                            if (cellRect.Contains(intVec))
-                            {
-                                float scoreAt2 = InfestationLikeCellFinder.GetScoreAt(intVec, currentMap);
-                                if (scoreAt2 > 7.5f)
-                                {
-                                    float second = GenMath.LerpDouble(7.5f, num, 0f, 1f, scoreAt2);
-                                    InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors.Add(new Pair<IntVec3, float>(intVec, second));
-                                }
-                            }
-                        }
-                    }
-                }
-                for (int m = 0; m < InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors.Count; m++)
-                {
-                    IntVec3 first = InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors[m].First;
-                    float second2 = InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors[m].Second;
-                    CellRenderer.RenderCell(first, SolidColorMaterials.SimpleSolidColorMaterial(new Color(0f, 0f, 1f, second2), false));
-                }
-            }
-            else
-            {
-                InfestationLikeCellFinder.tmpCachedInfestationChanceCellColors = null;
-            }
-        }
-
-        // Token: 0x0600368E RID: 13966 RVA: 0x001A127C File Offset: 0x0019F67C
-        private static void CalculateLocationCandidates(Map map)
+        private static void CalculateLocationCandidates(Map map, ThingDef thingDef)
         {
             InfestationLikeCellFinder.locationCandidates.Clear();
             InfestationLikeCellFinder.CalculateTraversalDistancesToUnroofed(map);
@@ -164,7 +102,7 @@ namespace RimWorld
                 for (int j = 0; j < map.Size.x; j++)
                 {
                     IntVec3 cell = new IntVec3(j, 0, i);
-                    float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map);
+                    float scoreAt = InfestationLikeCellFinder.GetScoreAt(cell, map, thingDef);
                     if (scoreAt > 0f)
                     {
                         InfestationLikeCellFinder.locationCandidates.Add(new InfestationLikeCellFinder.LocationCandidate(cell, scoreAt));
@@ -173,18 +111,17 @@ namespace RimWorld
             }
         }
 
-        // Token: 0x0600368F RID: 13967 RVA: 0x001A1318 File Offset: 0x0019F718
-        private static bool CellHasBlockingThings(IntVec3 cell, Map map)
+        private static bool CellHasBlockingThings(IntVec3 cell, Map map, ThingDef thingDef)
         {
             List<Thing> thingList = cell.GetThingList(map);
             for (int i = 0; i < thingList.Count; i++)
             {
-                if (thingList[i] is Pawn || thingList[i] is HiveLike || thingList[i] is TunnelHiveSpawner)
+                if (thingList[i] is Pawn || thingList[i] is HiveLike || thingList[i] is TunnelHiveLikeSpawner)
                 {
                     return true;
                 }
                 bool flag = thingList[i].def.category == ThingCategory.Building && thingList[i].def.passability == Traversability.Impassable;
-                if (flag && GenSpawn.SpawningWipes(OGHiveLikeDefOf.HiveLike, thingList[i].def))
+                if (flag && GenSpawn.SpawningWipes(thingDef, thingList[i].def))
                 {
                     return true;
                 }

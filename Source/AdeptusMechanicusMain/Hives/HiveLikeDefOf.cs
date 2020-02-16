@@ -1,7 +1,9 @@
 ﻿using System;
 using Verse;
+using RimWorld;
+using Verse.AI;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000956 RID: 2390
     [DefOf]
@@ -12,11 +14,13 @@ namespace RimWorld
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(OGHiveLikeDefOf));
         }
+        
+    //    public static ThingDef HiveLike;
+    //    public static ThingDef TunnelHiveLikeSpawner;
 
-        //    public static HediffDef RRY_FaceHuggerInfection;
-        //    public static HediffDef RRY_XenomorphImpregnation;
-        public static ThingDef HiveLike;
-        public static ThingDef TunnelHiveLikeSpawner; 
+        public static DutyDef OGAMXB_DefendAndExpandHiveLike;
+        public static DutyDef OGAMXB_DefendHiveLikeAggressively;
+        public static DutyDef OGAMXB_AssaultColony;
 
         //   public static FactionDef OGChaosDeamonFaction;
 
