@@ -34,9 +34,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Rebelrots-Yautja-Race\Assemblies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0JecsTools">
       <HintPath>..\..\..\..\..\..\workshop\content\294100\932008009\Assemblies\0JecsTools.dll</HintPath>
@@ -86,20 +85,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Harmony\AM_BackCompatibility_GameLoadingVars_Patch.cs" />
-    <Compile Include="Harmony\AM_DrawExtras_Apparel_DrawWornExtras_Patch - Copy.cs" />
-    <Compile Include="Harmony\AM_PawnGenerator_GeneratePawn_StartWithHediff_Patch.cs" />
-    <Compile Include="Harmony\AM_FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
-    <Compile Include="Harmony\AM_BackCompatibility_BackCompatibleDefName_Patch.cs" />
-    <Compile Include="Harmony\AM_ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_ApparelTracker_Notify_ApparelRemoved_CompAbilityItem_Patch.cs" />
-    <Compile Include="Harmony\AM_Projectile_CanHit_PhaseShifter_Patch.cs" />
-    <Compile Include="Harmony\AM_Projectile_Impact_TeslaWeapon_Patch.cs" />
-    <Compile Include="Harmony\AM_VerbTracker_CreateVerbTargetCommand_Patch.cs" />
-    <Compile Include="Harmony\AM_VerbTracker_PrimaryVerb_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_BackCompatibility_GameLoadingVars_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GeneratePawn_StartWithHediff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_BackCompatibility_BackCompatibleDefName_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_ApparelTracker_Notify_ApparelRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_CanHit_PhaseShifter_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_Impact_TeslaWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_CreateVerbTargetCommand_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_PrimaryVerb_Patch.cs" />
     <Compile Include="Abilities\AbilityEffectUtility.cs" />
-    <Compile Include="Harmony\AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch.cs" />
     <Compile Include="UtilsStuff\Class1.cs" />
     <Compile Include="UtilsStuff\DualWieldDefExt.cs" />
     <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
@@ -138,58 +137,58 @@
     <Compile Include="Apparel\Shieldstuff\Gizmo_PsychicShieldStatus.cs" />
     <Compile Include="Barricades\Building_DeployableBarricade.cs" />
     <Compile Include="Barricades\DeployableBarricadeExtension.cs" />
-    <None Include="Harmony\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Patches.cs.bak" />
+    <None Include="Harmony\Patches\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Patches.cs.bak" />
     <Compile Include="Buildings\Class1.cs" />
-    <Compile Include="Harmony\AM_Corpse_ButcherProducts_BloodReplacer_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnGenerator_GenerateRandomAge_test_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch.cs" />
-    <Compile Include="Harmony\AM_AbilityUserCompAbilityUser_PostSpawnSetup_AbilityItem_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_EquipmentTracker_EquipmentTrackerTick_ActivatableEffect_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_EquipmentTracker_TryDropEquipment_ActivatableEffect_Patch.cs" />
-    <Compile Include="Harmony\AM_ThingWithComps_get_Graphic_CompAdvancedGraphic_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnGroupMakerUtility_GeneratePawns__Patch.cs" />
-    <Compile Include="Harmony\AM_IncidentWorker_RaidEnemy_TryExecute_RaidAlert_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_PathFollower_CostToMoveIntoCell_MoveThroughCover_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnRenderer_DrawEquipmentAiming_Patches.cs" />
-    <Compile Include="Harmony\AM_DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch.cs" />
-    <Compile Include="Harmony\AM_PreApplyDamage_HediffComp_Shield_Patch.cs" />
-    <Compile Include="Harmony\AM_Projectile_GetArmorPenetration_Rending_Patch.cs" />
-    <Compile Include="Harmony\AM_Projectile_Impact_DistortWeapon_Patch.cs" />
-    <Compile Include="Harmony\AM_DrawExtras_Apparel_DrawWornExtras_Patch.cs" />
-    <Compile Include="Harmony\AM_RecipeDef_AvailableNow_ExtraPrerequisite_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnGenerator_GeneratePawn_FactionDefExtension_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.cs" />
-    <Compile Include="Harmony\AM_PawnGroupKindWorker_Trader_GenerateCarriers_Patches.cs" />
-    <Compile Include="Harmony\AM_HediffGiverUtility_TryApply_Patch.cs" />
-    <Compile Include="Harmony\AM_FloatMenuMakerMap_ChoicesAtFor_Patch.cs" />
-    <Compile Include="Harmony\AM_CoverUtility_BaseBlockChancee_DeployableBarricade_Patch.cs" />
-    <Compile Include="Harmony\AM_GenGrid_Standable_DeployableBarricade_Patch.cs" />
-    <Compile Include="Harmony\AM_GenGrid_Impassable_DeployableBarricade_Patch.cs" />
-    <Compile Include="Harmony\AM_PathGrid_PerceivedPathCostAt_DeployableBarricade_Patch.cs" />
-    <Compile Include="Harmony\AM_PathGrid_CalculatedCostAt_DeployableBarricade_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_EquipmentTracker_Notify_EquipmentRemoved_CompAbilityItem_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_EquipmentTracker_Notify_EquipmentAdded_ActivatableEffect_Patch.cs" />
-    <Compile Include="Harmony\AM_GenSpawn_Spawn_ActivatableEffect_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_EquipmentTracker_GetGizmos_VerbGiverExtra_Patch.cs" />
-    <Compile Include="Harmony\AM_Pawn_GetGizmos_HediffComps_Patch.cs" />
-    <Compile Include="Harmony\AM_Apparel_GetWornGizmos_GizmosFromCompWearable_Patch.cs" />
-    <Compile Include="Harmony\AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.cs" />
-    <Compile Include="Harmony\AM_ShotReport_HitReportFor_Patch.cs" />
-    <Compile Include="Harmony\AM_VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
-    <Compile Include="Harmony\AM_VerbTracker_GetVerbsCommands_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch.cs" />
-    <Compile Include="Harmony\AM_VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
-    <Compile Include="Harmony\AM_HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
-    <Compile Include="Harmony\AM_Verb_Shoot_X_Patches - Copy.cs" />
-    <Compile Include="Harmony\AM_Verb_Shoot_TryStartCastOn_warmupTime_SpecialRules_Patch.cs" />
-    <Compile Include="Harmony\AM_ShotReport_GetAimOnTargetChance_StandardTarget_Debuff_Patch.cs" />
-    <Compile Include="Harmony\AM_AnimalRangeUnlocker_Patches.cs" />
+    <Compile Include="Harmony\Patches\AM_Corpse_ButcherProducts_BloodReplacer_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GenerateRandomAge_test_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_AbilityUserCompAbilityUser_PostSpawnSetup_AbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_EquipmentTrackerTick_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_TryDropEquipment_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ThingWithComps_get_Graphic_CompAdvancedGraphic_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGroupMakerUtility_GeneratePawns__Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_IncidentWorker_RaidEnemy_TryExecute_RaidAlert_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_PathFollower_CostToMoveIntoCell_MoveThroughCover_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnRenderer_DrawEquipmentAiming_Patches.cs" />
+    <Compile Include="Harmony\Patches\AM_DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PreApplyDamage_HediffComp_Shield_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_GetArmorPenetration_Rending_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_Impact_DistortWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_RecipeDef_AvailableNow_ExtraPrerequisite_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GeneratePawn_FactionDefExtension_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGroupKindWorker_Trader_GenerateCarriers_Patches.cs" />
+    <Compile Include="Harmony\Patches\AM_HediffGiverUtility_TryApply_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_FloatMenuMakerMap_ChoicesAtFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_CoverUtility_BaseBlockChancee_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenGrid_Standable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenGrid_Impassable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PathGrid_PerceivedPathCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PathGrid_CalculatedCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_Notify_EquipmentRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_Notify_EquipmentAdded_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenSpawn_Spawn_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_GetGizmos_VerbGiverExtra_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_GetGizmos_HediffComps_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Apparel_GetWornGizmos_GizmosFromCompWearable_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ShotReport_HitReportFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_GetVerbsCommands_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_X_Patches - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_TryStartCastOn_warmupTime_SpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ShotReport_GetAimOnTargetChance_StandardTarget_Debuff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_AnimalRangeUnlocker_Patches.cs" />
     <None Include="Harmony\Patches.cs.bak" />
     <Compile Include="UtilsStuff\AIDefOf.cs" />
     <Compile Include="Apparel\Apparel_Colour.cs" />
@@ -206,6 +205,7 @@
     <Compile Include="Abilities\CompAbilityItemEdit.cs" />
     <Compile Include="AMExtentions\AdeptusMechanicusExtensions.cs" />
     <Compile Include="AMExtentions\AdeptusIntergrationUtil.cs" />
+    <None Include="packages.config" />
     <None Include="UtilsStuff\CompPoweredStatChange.cs.bak" />
     <Compile Include="UtilsStuff\DeepStrike\TeleportSpawner.cs" />
     <Compile Include="UtilsStuff\WeatherStuff\WeatherEvent_WarpLightningStrike.cs" />
