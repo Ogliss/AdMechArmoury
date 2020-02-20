@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Ork  - Crude Choppa =========================-->
+	<ThingDef ParentName="OGOBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGO_Melee_CrudeChoppa</defName>
+		<label>Krude Choppa</label>
+		<description>Choppas are a general term given to any Ork close combat weapon, typically heavy swords and axes. Slugga Boyz are always armed with a Slugga and Choppa, at least until they save up enough teef to buy something better, like a Shoota. There is little finesse to a Choppa, as most are little more than sharpened pieces of scrap metal which have been roughly shaped into something resembling a sword or axe. There are, however, more advanced choppas, often taking the form of a crude Chainsword.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Ork/KrudeChoppa</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>1000</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>225</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>28</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<costStuffCount>75</costStuffCount>
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+			<researchPrerequisite>OrkTekBase</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>1</Steel>
+			<WoodLog>1</WoodLog>
+		</costList>
+		<weaponTags>
+			<li>OCrudeChoppa</li>
+			<li>OBrutalityMelee</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGOMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+	<!--==================== Ork  - Choppa =========================-->
+	<ThingDef ParentName="OGOBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGO_Melee_Choppa</defName>
+		<label>Choppa</label>
+		<description>Choppas are a general term given to any Ork close combat weapon, typically heavy swords and axes. Slugga Boyz are always armed with a Slugga and Choppa, at least until they save up enough teef to buy something better, like a Shoota. There is little finesse to a Choppa, as most are little more than sharpened pieces of scrap metal which have been roughly shaped into something resembling a sword or axe. There are, however, more advanced choppas, often taking the form of a crude Chainsword.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Ork/Choppa</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<costStuffCount>75</costStuffCount>
+		<statBases>
+			<WorkToMake>1500</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>500</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+			<researchPrerequisite>OrkishBrutality</researchPrerequisite>
+		</recipeMaker>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>24</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<costList>
+			<OGO_Bitz>10</OGO_Bitz>
+		</costList>
+		<weaponTags>
+			<li>OChoppa</li>
+			<li>OBrutalityMelee</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGOMelee</li>
+		</tradeTags>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_AdvancedGraphic">
+			<randomised>true</randomised>
+		</li> 
+	</comps>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+	<!--==================== Ork  - Chain Choppa =========================-->
+	<ThingDef ParentName="OGOBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGO_Melee_ChainChoppa</defName>
+		<label>Chain Choppa</label>
+		<description>Choppas are a general term given to any Ork close combat weapon, typically heavy swords and axes. Slugga Boyz are always armed with a Slugga and Choppa, at least until they save up enough teef to buy something better, like a Shoota. There is little finesse to a Choppa, as most are little more than sharpened pieces of scrap metal which have been roughly shaped into something resembling a sword or axe. There are, however, more advanced choppas, often taking the form of a crude Chainsword.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Ork/ChainChoppa</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Chainsword</soundInteract>
+		<costStuffCount>75</costStuffCount>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>550</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+			<researchPrerequisite>OrkishBrutality</researchPrerequisite>
+		</recipeMaker>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>30</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<costList>
+			<OGO_Component>1</OGO_Component>
+			<OGO_Bitz>15</OGO_Bitz>
+		</costList>
+		<weaponTags>
+			<li>OChainChoppa</li>
+			<li>OBrutalityMelee</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGOMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+	<!--==================== Ork  - Big Choppa =========================-->
+	<ThingDef ParentName="OGOBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGO_Melee_BigChoppa</defName>
+		<label>Big Choppa</label>
+		<description>Enormous axes with jagged metal teeth, Big Choppas are chosen more for their sheer weight than subtlety. A Big Choppa is a two-handed weapon, often wielded by Ork Nobz and Warbosses. Some Big Choppas are even outfitted with whirring chainsaw blades or circular saws instead of a standard axe blade.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Ork/BigChoppa</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>4.5</Mass>
+			<MarketValue>1500</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+		<researchPrerequisite>OrkishExtremeBrutality</researchPrerequisite>
+		</recipeMaker>
+		<costStuffCount>150</costStuffCount>
+		<costList>
+			<OGO_Component>1</OGO_Component>
+			<Plasteel>2</Plasteel>
+			<OGO_Bitz>10</OGO_Bitz>
+		</costList>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>18</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>48</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<weaponTags>
+			<li>OBigChoppa</li>
+			<li>OEBrutalityMelee</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGOMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+	<!--==================== Ork  - Power Klaw =========================-->
+	<ThingDef ParentName="OGOBaseMeleeWeapon_Sharp_Quality">
+		<defName>OGO_Melee_PowerKlaw</defName>
+		<label>Power Klaw</label>
+		<description>The Power Klaw is a crude, over-sized, armoured gauntlet that generates an energy field around it, one that is capable of violently disrupting any solid matter it touches. Similar to an Imperial Power Fist, this deadly close-combat weapon takes the form of a servo-motored claw, large even for an Ork, that ends in two or more snapping blades that spark with discharges from an unstable disruptive energy field. Though more primitive than their Imperial counterpart, the huge hydraulic shears of an Ork Power Klaw are capable of rending and crushing even the toughest foes and even armoured vehicles.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Ork/PowerKlaw</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>2.5</Mass>
+			
+			<MarketValue>750</MarketValue>
+		</statBases>
+	<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+			</recipeUsers>
+		<researchPrerequisite>OrkishPowerField</researchPrerequisite>
+	</recipeMaker>
+		<costStuffCount>400</costStuffCount>
+		<costList>
+			<OGO_Component>10</OGO_Component>
+			<Plasteel>20</Plasteel>
+			<OGO_Bitz>30</OGO_Bitz>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<tools>
+			<li>
+				<label>klaws</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>66</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>2.4</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+		  <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+			<!--
+			<angleAdjustmentNorth>-90</angleAdjustmentNorth>
+			<angleAdjustmentSouth>-90</angleAdjustmentSouth>
+			-->	
+			<angleAdjustmentEast>-45</angleAdjustmentEast>
+			<angleAdjustmentWest>45</angleAdjustmentWest>
+			<eastOffset>-0.25,0,-0.0</eastOffset>
+			<westOffset>0.25,-0.1,-0.0</westOffset>
+			<southOffset>-0.35,0,-0.0</southOffset>
+		  </li> 
+		  <li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+		  </li>
+		</comps>
+		<weaponTags>
+			<li>OPowerKlaw</li>
+			<li>OPowerMelee</li>
+			<li>OGOPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGOMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+</Defs>

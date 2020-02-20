@@ -289,7 +289,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             return f;
         }
-
+        /*
         public static bool abilityWeapon(this Pawn pawn)
         {
             bool flag1 = pawn.equipment != null;
@@ -310,7 +310,7 @@ namespace AdeptusMechanicus.ExtensionMethods
         {
             return false;
         }
-
+        */
         public static bool isPsyker(this Pawn pawn)
         {
             bool result;

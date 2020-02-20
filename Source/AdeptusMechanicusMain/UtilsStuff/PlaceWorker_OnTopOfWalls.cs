@@ -8,7 +8,7 @@ namespace AdeptusMechanicus
     public class PlaceWorker_OnTopOfWalls : PlaceWorker
     {
         // Token: 0x0600013B RID: 315 RVA: 0x0000B4A4 File Offset: 0x000096A4
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             bool flag = GridsUtility.GetThingList(loc, map).FirstOrDefault((Thing x) => x.def.defName.Contains("Wall") || x.def.defName.Contains("Smoothed")) != null;
             AcceptanceReport result;

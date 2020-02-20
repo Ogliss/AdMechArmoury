@@ -6,16 +6,16 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.Harmony
-{
-    [HarmonyPatch(typeof(Verb), "TryStartCastOn")]
+namespace AdeptusMechanicus.HarmonyInstance
+{// LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true
+    [HarmonyPatch(typeof(Verb), "TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
     public static class AM_Verb_Shoot_TryStartCastOn_warmupTime_SpecialRules_Patch
     {
         [HarmonyPrefix, HarmonyPriority(200)]
@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.Harmony
                 return;
             }
             */
-            if (__instance.GetType()!=typeof(Verb_Shoot))
+            if (__instance.GetType()!=typeof(Verb_Shoot) && __instance.GetType()!=typeof(Verb_ShootEquipment))
             {
                 return;
             }
@@ -101,17 +101,19 @@ namespace AdeptusMechanicus.Harmony
         {
             List<Type> types = typeof(Verb_LaunchProjectile).AllSubclassesNonAbstract().ToList();
             types.Add(typeof(Verb_LaunchProjectile));
+            /*
             List<Type> nottypes = typeof(AbilityUser.Verb_UseAbility).AllSubclassesNonAbstract().ToList();
             nottypes.Add(typeof(AbilityUser.Verb_UseAbility));
             if (!types.Contains(__instance.GetType()) || nottypes.Contains(__instance.GetType()))
             {
-                /*
+                
                 List<string> listl = new List<string>();
                 types.ForEach(x => listl.Add(x.Name));
                 Log.Message(string.Format("Mismatched Verbtype: {0}, needs {1}", __instance.GetType(), listl.ToCommaList()));
-                */
+                
                 return;
             }
+            */
             if (__instance.EquipmentSource != null)
             {
                 ThingWithComps gun = __instance.EquipmentSource;

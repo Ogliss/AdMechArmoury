@@ -62,10 +62,13 @@ namespace RimWorld
                    select td;
         }
 
-        // Token: 0x0600223C RID: 8764 RVA: 0x00101D93 File Offset: 0x00100193
         private string CurrentAnimalLabel()
         {
-            return (this.animalKind == null) ? "RandomPet".Translate() : this.animalKind.label;
+            if (this.animalKind == null)
+            {
+                return "RandomPet".TranslateSimple();
+            }
+            return this.animalKind.label;
         }
 
         // Token: 0x0600223D RID: 8765 RVA: 0x00101DBA File Offset: 0x001001BA

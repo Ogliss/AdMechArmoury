@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verse.AI.PathGrid), "CalculatedCostAt", new Type[] { typeof(IntVec3), typeof(bool), typeof(IntVec3) })]
     public static class AM_PathGrid_CalculatedCostAt_DeployableBarricade_Patch

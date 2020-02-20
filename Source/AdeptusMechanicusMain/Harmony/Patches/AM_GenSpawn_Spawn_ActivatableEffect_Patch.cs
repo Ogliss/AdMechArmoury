@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(GenSpawn), "Spawn")]
     [HarmonyPatch(new Type[] { typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4), typeof(WipeMode), typeof(bool) })]

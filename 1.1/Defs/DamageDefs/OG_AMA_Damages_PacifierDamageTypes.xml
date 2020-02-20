@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Pacification Damage Type =========================-->
+	<DamageDef ParentName="BluntBase">
+		<defName>OGIPacifierBlunt</defName>
+		<label>Pacification</label>
+		<hasForcefulImpact>true</hasForcefulImpact>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} shouldnt have resisted...</deathMessage>
+		<hediff>hediff_Pacifier</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<harmsHealth>true</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<combatLogRules>Damage_Stun</combatLogRules>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.5</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+  
+	<DamageDef ParentName="PokeBase">
+		<defName>OGIPacifierPoke</defName>
+		<label>Pacification</label>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} shouldnt have resisted...</deathMessage>
+		<hediff>hediff_Pacifier</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<harmsHealth>true</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<combatLogRules>Damage_Stun</combatLogRules>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.5</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+  
+	<!--==================== Electrical Damage Type =========================-->
+	<DamageDef ParentName="OGGlobalInjuryBase">
+		<defName>OGElectrical</defName>
+		<label>Electrical</label>
+		<externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+		<deathMessage>{0} has been Electrocuted.</deathMessage>
+		<harmsHealth>false</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<defaultDamage>50</defaultDamage>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<hediff>hediff_Pacifier</hediff>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+		<combatLogRules>Damage_EMP</combatLogRules>
+		<armorCategory>Heat</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.25</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+
+	<!--==================== Neuro Disruptor Damage =========================-->
+	<DamageDef ParentName="OGGlobalInjuryBase">
+		<defName>OGENeuroDisruptor</defName>
+		<label>Neuro Disruptor</label>
+		<externalViolenceForMechanoids>false</externalViolenceForMechanoids>
+		<deathMessage>{0}'s mind was melted by a Neuro Disruptor.</deathMessage>
+		<harmsHealth>false</harmsHealth>
+        <hediff>PsychicInterfearance</hediff>
+		<impactSoundType>Electric</impactSoundType>
+		<defaultDamage>50</defaultDamage>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+		<combatLogRules>Damage_EMP</combatLogRules>
+		<armorCategory>Heat</armorCategory>
+    <additionalHediffs>
+  	<!--
+      <li>
+        <hediff>FWPsychicShock</hediff>
+        <severityPerDamageDealt>1</severityPerDamageDealt>
+        <victimSeverityScaling>PsychicSensitivity</victimSeverityScaling>
+      </li>
+	  -->
+    </additionalHediffs>
+	</DamageDef>
+
+  	<!--==================== Force Strike Damage =========================-->
+    <DamageDef ParentName="BluntBase">
+		<defName>OGForceStrike</defName>
+		<label>force strike</label>
+		<externalViolence>false</externalViolence>
+		<harmsHealth>false</harmsHealth>
+		<isExplosive>true</isExplosive>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<deathMessage>{0} was slain by a force strike.</deathMessage>
+		<armorCategory>Heat</armorCategory>
+		<defaultDamage>10</defaultDamage>
+		<buildingDamageFactor>0</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
+    <additionalHediffs>
+      <li>
+        <hediff>FWPsychicShock</hediff>
+        <severityPerDamageDealt>1</severityPerDamageDealt>
+        <victimSeverityScaling>PsychicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+</Defs>

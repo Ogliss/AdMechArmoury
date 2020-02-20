@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "EquipmentTrackerTick")]
     public static class AM_Pawn_EquipmentTracker_EquipmentTrackerTick_ActivatableEffect_Patch

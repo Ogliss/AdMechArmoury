@@ -6,14 +6,14 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "DamageInfosToApply")]
     public static class AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch

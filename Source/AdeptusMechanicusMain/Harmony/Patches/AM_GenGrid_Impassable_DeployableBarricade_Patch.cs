@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verse.GenGrid), "Impassable")]
     public static class AM_GenGrid_Impassable_DeployableBarricade_Patch

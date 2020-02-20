@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AdeptusMechanicus.Harmony;
+using AdeptusMechanicus.HarmonyInstance;
 using RimWorld;
 using Verse;
 

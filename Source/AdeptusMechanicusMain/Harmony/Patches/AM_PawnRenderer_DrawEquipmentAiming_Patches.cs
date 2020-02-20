@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
-    
+    // LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, new Type[] { typeof(Thing), typeof(Vector3), typeof(float) })]
     // PawnRenderer.DrawEquipmentAiming(Thing eq, Vector3 drawLoc, float aimAngle)
     [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming", new Type[] { typeof(Thing), typeof(Vector3), typeof(float) })]
     public static class AM_PawnRenderer_DrawEquipmentAiming_Patches

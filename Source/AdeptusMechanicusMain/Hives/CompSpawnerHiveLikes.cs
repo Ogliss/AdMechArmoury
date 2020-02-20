@@ -100,7 +100,7 @@ namespace AdeptusMechanicus
                 }
             }
             else
-            if (this.parent is Building_CrashedShipPart shippart && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
+            if (this.parent is Building shippart && Find.TickManager.TicksGame >= this.nextHiveSpawnTick)
             {
                 TunnelHiveLikeSpawner t;
                 if (this.TrySpawnChildHiveLike(false, out t))

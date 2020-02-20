@@ -6,13 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_Shoot), "get_ShotsPerBurst")]
     public static class AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch

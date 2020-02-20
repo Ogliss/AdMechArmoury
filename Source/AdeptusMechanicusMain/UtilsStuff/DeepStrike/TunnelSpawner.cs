@@ -77,7 +77,7 @@ namespace AdeptusMechanicus
                 IntVec3 c;
                 if (Rand.MTBEventOccurs(TunnelSpawner.FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TunnelSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out c, 999999))
                 {
-                    FilthMaker.MakeFilth(c, base.Map, TunnelSpawner.filthTypes.RandomElement<ThingDef>(), 1);
+                    FilthMaker.TryMakeFilth(c, base.Map, TunnelSpawner.filthTypes.RandomElement<ThingDef>(), 1);
                 }
                 if (Rand.MTBEventOccurs(TunnelSpawner.DustMoteSpawnMTB, 1f, 1.TicksToSeconds()))
                 {

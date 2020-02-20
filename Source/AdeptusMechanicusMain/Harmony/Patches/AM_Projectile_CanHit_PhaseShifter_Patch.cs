@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     // Projectile.Impact
     [HarmonyPatch(typeof(Projectile), "CanHit")]

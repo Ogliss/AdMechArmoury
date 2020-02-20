@@ -6,15 +6,16 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(Verb), "get_EquipmentSource")]
     public static class AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch
     {
@@ -47,4 +48,5 @@ namespace AdeptusMechanicus.Harmony
             return true;
         }
     }
+    */
 }

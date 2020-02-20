@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(PawnTechHediffsGenerator), "GenerateTechHediffsFor")]
     public static class AM_PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch

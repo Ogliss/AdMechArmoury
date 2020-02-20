@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RecipeDef>
+    <defName>Make_ComponentOrk</defName>
+    <label>make ork component</label>
+    <description>Make an ork component.</description>
+    <jobString>Making ork component.</jobString>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>5000</workAmount>
+    <unfinishedThingDef>UnfinishedComponent</unfinishedThingDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>OGO_Bitz</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>OGO_Bitz</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <OGO_Component>1</OGO_Component>
+    </products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+    <workSkill>Crafting</workSkill>
+	<recipeUsers>
+		<li>OGO_TableMachining</li>
+	</recipeUsers>
+  </RecipeDef>
+  
+  <RecipeDef>
+    <defName>Make_OGO_Bitz</defName>
+    <label>make ork bitz</label>
+    <description>Make ork bitz.</description>
+    <jobString>Making ork bitz.</jobString>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <workAmount>5000</workAmount>
+    <unfinishedThingDef>UnfinishedComponent</unfinishedThingDef>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>ComponentIndustrial</li>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <OGO_Bitz>10</OGO_Bitz>
+    </products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+    <workSkill>Crafting</workSkill>
+	<recipeUsers>
+		<li>OGO_TableMachining</li>
+	</recipeUsers>
+  </RecipeDef>
+
+</Defs>

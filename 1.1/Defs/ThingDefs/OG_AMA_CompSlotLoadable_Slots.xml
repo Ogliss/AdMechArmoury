@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Class="CompSlotLoadable.SlotLoadableDef">
+		<defName>OGI_BoltSlot</defName>
+		<thingClass>CompSlotLoadable.SlotLoadable</thingClass>
+		<label>Bolts</label>
+		<description>This ammunitrion slot determines the bolt type fired by the weapon.</description>
+		<slottableThingDefs>
+			<li>OGI_Bolt_Hellfire</li>
+			<li>OGI_Bolt_Kraken</li>
+		</slottableThingDefs>
+		<doesChangeStats>true</doesChangeStats>
+	</ThingDef>
+
+  <!--================== Base ==================-->
+  
+  <ThingDef Name="OG_BoltBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>	
+    <description>These miniture rockets or 'Bolts' are fired by various launchers known as Bolt Weapons</description>
+    <soundInteract>Silver_Drop</soundInteract>
+    <soundDrop>Silver_Drop</soundDrop>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>false</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>1</stackLimit>
+	<tradeNeverStack>true</tradeNeverStack>
+  	<statBases>
+	  <Beauty>5</Beauty>
+      <MarketValue>2000</MarketValue>
+      <Mass>0.3</Mass>	  
+	</statBases>
+	<comps>
+		<li Class="CompProperties_Forbiddable"/>
+	</comps>
+	<alwaysHaulable>true</alwaysHaulable>
+	<drawGUIOverlay>true</drawGUIOverlay>
+	<rotatable>false</rotatable>
+	<pathCost>15</pathCost>
+  </ThingDef>
+  
+  <!-- ================ Imperial Bolts ================ -->
+  <!-- ================ Imperial Bolt Base ================ -->
+  <ThingDef Name="OG_BoltBaseImp" ParentName="OG_BoltBase" Abstract="True">
+  	<statBases>
+	  <Beauty>5</Beauty>
+      <MarketValue>3000</MarketValue>
+      <Mass>0.3</Mass>	  
+	</statBases>
+    <thingCategories>
+      <li>OGIMissiles</li>
+    </thingCategories>	
+	<tradeTags>
+      <li>Artifact</li>
+    </tradeTags>
+  </ThingDef>  
+
+  <!-- ================ Imperial Hellfire Bolt ================ -->
+      <ThingDef ParentName="OG_BoltBase">
+    <defName>OGI_Bolt_Hellfire</defName>
+    <label>hellfire bolts</label>
+	<description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileFrag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(124,196,243)</color>
+    </graphicData>
+		<comps>
+			<li Class="CompSlotLoadable.CompProperties_SlottedBonus">
+				<!--
+				<additionalProjectiles>
+					<li>OGI_Bullet_BoltHellfire</li>
+				</additionalProjectiles>
+				-->
+				<projectileReplacer>OGI_Bullet_BoltHellfire</projectileReplacer>
+				
+			</li>
+	 </comps>
+  </ThingDef>  
+  
+  <!-- ================ Imperial Kraken Bolt ================ -->
+    <ThingDef ParentName="OG_BoltBase">
+    <defName>OGI_Bolt_Kraken</defName>
+    <label>kraken bolts</label>
+	<description>Kraken Bolts are specialised Bolter shells with an enhanced adamantium core and improved propellant, and were utilised by Seeker Squads during the Great Crusade and Horus Heresy eras of the late 30th and early 31st Millennia, as well as Sternguard Veterans in modern times. They possessed superior armour-piercing properties and increased range compared to standard bolts, but the expense and resources required to create them kept them in limited issue.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileKrak</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(240,241,241)</color>
+    </graphicData>
+		<comps>
+			<li Class="CompSlotLoadable.CompProperties_SlottedBonus">
+				<!--
+				<additionalProjectiles>
+					<li>OGI_Bullet_BoltKraken</li>
+				</additionalProjectiles>
+				-->
+				<projectileReplacer>OGI_Bullet_BoltKraken</projectileReplacer>
+			</li>
+	 </comps>
+  </ThingDef>  
+  
+  
+</Defs>

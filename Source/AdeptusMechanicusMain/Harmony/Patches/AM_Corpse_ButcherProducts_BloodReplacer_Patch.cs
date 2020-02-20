@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Corpse), "ButcherProducts")]
     public static class AM_Corpse_ButcherProducts_BloodReplacer_Patch
@@ -59,7 +59,7 @@ namespace AdeptusMechanicus.Harmony
                 if (bloodReplacer.bloodDef != null)
                 {
                     Log.Message("ButcherProducts_BloodReplacer bloodDef");
-                    FilthMaker.MakeFilth(butcher.Position, butcher.Map, bloodReplacer.bloodDef, __instance.InnerPawn.LabelIndefinite(), 1);
+                    FilthMaker.TryMakeFilth(butcher.Position, butcher.Map, bloodReplacer.bloodDef, __instance.InnerPawn.LabelIndefinite(), 1);
                 }
             }
             if (__instance.InnerPawn.RaceProps.Humanlike)

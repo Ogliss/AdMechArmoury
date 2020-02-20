@@ -6,11 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     // Token: 0x020000AB RID: 171
     [HarmonyPatch(typeof(FloatMenuMakerMap), "ChoicesAtFor")]

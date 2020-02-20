@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "GetGizmos")]
     public static class AM_Pawn_EquipmentTracker_GetGizmos_VerbGiverExtra_Patch
@@ -42,7 +42,7 @@ namespace AdeptusMechanicus.Harmony
                         {
                             command.hotKey = KeyBindingDefOf.Misc1;
                         }
-                        __result.Add(command);
+                        __result.AddItem(command);
                     }
                 }
 

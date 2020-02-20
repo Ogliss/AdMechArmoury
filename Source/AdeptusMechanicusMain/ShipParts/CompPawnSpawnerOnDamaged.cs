@@ -240,7 +240,7 @@ namespace RimWorld
                         break;
                     }
                     Log.Message(string.Format("try spawn 4"));
-                    PawnGenerationRequest request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, false, 1f, false, true, true, false, false, false, false, null, null, null, null, null, null, null, null);
+                    PawnGenerationRequest request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, false, 1f);
                     Log.Message(string.Format("try spawn 5"));
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
                     Log.Message(string.Format("try spawn 6"));

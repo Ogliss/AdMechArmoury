@@ -1,5 +1,6 @@
 ﻿namespace AdeptusMechanicus
 {
+    /*
     public class ProjectileDef_AbilityExplosive : AbilityUser.ProjectileDef_Ability
     {
         public bool CanStartFire = false;
@@ -12,4 +13,5 @@
         public float StartFireChance;
         public string warmupGraphicPathSingle = null;
     }
+    */
 }

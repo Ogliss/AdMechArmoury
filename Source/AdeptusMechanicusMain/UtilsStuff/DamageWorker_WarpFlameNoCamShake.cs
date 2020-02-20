@@ -25,7 +25,7 @@ namespace AdeptusMechanicus
             {
                 foreach (IntVec3 c in victim.OccupiedRect())
                 {
-                    FilthMaker.MakeFilth(c, map, ThingDefOf.Filth_Ash, 1);
+                    FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Ash, 1);
                 }
                 Plant plant = victim as Plant;
                 if (plant != null && victim.def.plant.IsTree && plant.LifeStage != PlantLifeStage.Sowing && victim.def != ThingDefOf.BurnedTree)
@@ -36,16 +36,15 @@ namespace AdeptusMechanicus
             }
             return damageResult;
         }
-
-        // Token: 0x06004AA7 RID: 19111 RVA: 0x0022CB98 File Offset: 0x0022AF98
-        public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, bool canThrowMotes)
+        public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, List<Thing> ignoredThings, bool canThrowMotes)
         {
-            base.ExplosionAffectCell(explosion, c, damagedThings, canThrowMotes);
+            base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
             if ((this.def == OGDamageDefOf.OG_Chaos_Deamon_Warpfire || this.def == OGDamageDefOf.OG_WarpStormStrike) && Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(c, explosion.Map)))
             {
                 WarpfireUtility.TryStartWarpfireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
             }
         }
+
         public override void ExplosionStart(Explosion explosion, List<IntVec3> cellsToAffect)
         {
             if (this.def.explosionHeatEnergyPerCell > 1.401298E-45f)

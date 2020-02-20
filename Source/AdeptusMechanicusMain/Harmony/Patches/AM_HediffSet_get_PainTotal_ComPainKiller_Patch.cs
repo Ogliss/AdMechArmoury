@@ -6,13 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(HediffSet), "get_PainTotal")]
     public static class AM_HediffSet_get_PainTotal_ComPainKiller_Patch

@@ -6,10 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
+using AbilityUser;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
     public static class AM_Pawn_EquipmentTracker_Notify_EquipmentAdded_ActivatableEffect_Patch
@@ -32,6 +33,22 @@ namespace AdeptusMechanicus.Harmony
                 if (flag)
                 {
                     compForceWeapon.TryActivate();
+                }
+            }
+            if (eq.TryGetComp<CompAbilityItem>() != null && eq.TryGetComp<CompAbilityItem>() is CompAbilityItem abilityItem)
+            {
+                Log.Message("is abilityItem");
+                if (!abilityItem.Props.Abilities.NullOrEmpty())
+                {
+                    Log.Message("has Abilities");
+                    foreach (AbilityDef def in abilityItem.Props.Abilities)
+                    {
+                        if (!__instance.pawn.abilities.abilities.Any(x=> x.def == def))
+                        {
+                            Log.Message("add Abilities");
+                            __instance.pawn.abilities.GainAbility(def);
+                        }
+                    }
                 }
             }
         }

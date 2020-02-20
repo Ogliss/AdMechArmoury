@@ -6,14 +6,14 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(VerbProperties), "AdjustedArmorPenetration", new[] { typeof(Tool), typeof(Pawn), typeof(Thing), typeof(HediffComp_VerbGiver) })]
     public static class AM_VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch

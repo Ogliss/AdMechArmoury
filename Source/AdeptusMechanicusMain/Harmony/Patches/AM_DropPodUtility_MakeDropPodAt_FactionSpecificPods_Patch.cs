@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
-using Verse.AI;
-using Verse.AI.Group;
-using Harmony;
-using Verse.Sound;
-using System.Reflection;
-using AdeptusMechanicus;
-using UnityEngine;
+using HarmonyLib;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(DropPodUtility), "MakeDropPodAt", null)]
     public class AM_DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch 

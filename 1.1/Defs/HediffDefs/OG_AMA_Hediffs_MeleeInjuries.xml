@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef Name="OG_Melee_InjuryBase" Abstract="True">
+	<description>description</description>
+	<hediffClass>Hediff_Injury</hediffClass>
+	<tendable>true</tendable>
+	<displayWound>true</displayWound>
+	<labelNounPretty>{0} in the {1}</labelNounPretty>
+  </HediffDef>
+	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CutBaseHediff">
+	<description>description</description>
+    <defName>Cut</defName>
+    <label>cut</label>
+    <labelNoun>a cut</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>cut scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="StabBaseHediff">
+    <defName>Stab</defName>
+	<description>description</description>
+    <label>stab</label>
+    <labelNoun>a stab wound</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>stab scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+	
+  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CrushBaseHediff">
+    <defName>Crush</defName>
+	<description>description</description>
+    <label>crush</label>
+    <labelNoun>a crush wound</labelNoun>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.15</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>mangled scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.01</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Crushed</destroyedLabel>
+    </injuryProps>
+  </HediffDef>
+
+	<!-- ==================== Power Weapon HeDiff ========================= -->
+	<HediffDef ParentName="CutBaseHediff" Name="OG_PowerWeapon_CutBaseHediff">
+		<defName>OG_PowerWeapon_Cut</defName>
+		<label>power weapon(cut)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+	
+	<HediffDef ParentName="StabBaseHediff" Name="OG_PowerWeapon_StabBaseHediff">
+		<defName>OG_PowerWeapon_Stab</defName>
+		<label>power weapon(stab)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+	
+	<HediffDef ParentName="CrushBaseHediff" Name="OG_PowerWeapon_BluntBaseHediff">
+		<defName>OG_PowerWeapon_Blunt</defName>
+		<label>power weapon(blunt)</label>
+		<comps>
+		
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+	</HediffDef>
+
+  	<!-- ==================== Force Weapon HeDiff ========================= -->
+	<HediffDef ParentName="OG_PowerWeapon_CutBaseHediff" Name="OG_ForceWeapon_CutBaseHediff">
+		<defName>OG_ForceWeapon_Cut</defName>
+		<label>force weapon(cut)</label>
+		<comps>
+		
+		</comps>
+		<!--
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+		-->
+	</HediffDef>
+	
+	<HediffDef ParentName="OG_PowerWeapon_StabBaseHediff" Name="OG_ForceWeapon_StabBaseHediff">
+		<defName>OG_ForceWeapon_Stab</defName>
+		<label>force weapon(stab)</label>
+		<comps>
+		
+		</comps>
+		<!--
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+		-->
+	</HediffDef>
+	
+	<HediffDef ParentName="OG_PowerWeapon_BluntBaseHediff" Name="OG_ForceWeapon_BluntBaseHediff">
+		<defName>OG_ForceWeapon_Blunt</defName>
+		<label>Force weapon(blunt)</label>
+		<comps>
+		
+		</comps>
+		<!--
+		<injuryProps>
+			<painPerSeverity>0.0375</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.1</bleedRate>
+		</injuryProps>
+		-->
+	</HediffDef>
+
+</Defs>

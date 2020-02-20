@@ -6,11 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using Harmony;
+using HarmonyLib;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(AbilityUser.CompAbilityUser), "PostSpawnSetup")]
     public static class AM_AbilityUserCompAbilityUser_PostSpawnSetup_AbilityItem_Patch
     {
@@ -78,4 +79,5 @@ namespace AdeptusMechanicus.Harmony
             }
         }
     }
+    */
 }

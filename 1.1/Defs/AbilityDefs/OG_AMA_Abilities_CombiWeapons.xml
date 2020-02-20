@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ======================== Combi Weapon Ability Defs ================================== -->
+<!-- ======================== Imperial - Combi Weapon Abilities ================================== -->
+<!-- ======================== Imperial - Combi Flamer Ability ================================== -->
+
+	<AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireFlamer</defName>
+        <label>Fire Flamer</label>
+        <iconPath>Things/Projectile/FlamerFire/FireA</iconPath>
+        <description>Fire built in Flamer.</description>
+        <abilityClass>EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+		<verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
+            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+            <Multishot>true</Multishot>
+			<ScattershotCount>1</ScattershotCount>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>18</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>12</range>
+			<soundCast>OG_Flamer_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+	</AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Melta Ability ================================== -->
+
+	<AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireMelta</defName>
+        <label>Fire Melta</label>
+        <uiIconPath>Things/Projectile/MeltaShot</uiIconPath>
+        <description>Fire built in Melta.</description>
+        <abilityClass>EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
+            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<soundCast>OG_Melta_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<range>16</range>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+ </AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Plasma Ability ================================== -->
+	<AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+        <defName>OGI_Ability_FirePlasma</defName>
+        <label>Fire Plasma</label>
+        <uiIconPath>Things/Projectile/PlamsShotSml</uiIconPath>
+        <description>Fire built in Plasmagun.</description>
+        <abilityClass>EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
+            <verbClass>AdeptusMechanicus.Verb_UseEquipment</verbClass>
+			<Jams>true</Jams>
+			<reliability>ST</reliability>
+			<GetsHot>true</GetsHot>
+			<GetsHotCrit>false</GetsHotCrit>
+			<RapidFire>true</RapidFire>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>Projectile_OGIPlasma</defaultProjectile>
+            <warmupTime>1.25</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<range>31</range>
+			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+ </AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Grav Ability ================================== -->
+	<AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireGrav</defName>
+        <label>Fire Gravgun</label>
+        <uiIconPath>Things/Projectile/PlamsShotSml</uiIconPath>
+        <description>Fire built in Gravgun.</description>
+        <abilityClass>EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
+            <verbClass>AdeptusMechanicus.Verb_UseEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>Projectile_OGIPlasma</defaultProjectile>
+            <warmupTime>1.25</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<range>31</range>
+			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+		  <li Class="CompProperties_EffectWithDest">
+			<compClass>CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+		  </li>
+		</comps>
+ </AdeptusMechanicus.Abilities.EquipmentAbilityDef>
+ 
+</Defs>

@@ -13,12 +13,12 @@ namespace RimWorld
             this.compClass = typeof(CompWarpFireOverlay);
         }
 
-        // Token: 0x06000AB0 RID: 2736 RVA: 0x00055958 File Offset: 0x00053D58
-        public override void DrawGhost(IntVec3 center, Rot4 rot, ThingDef thingDef, Color ghostCol, AltitudeLayer drawAltitude)
+        public override void DrawGhost(IntVec3 center, Rot4 rot, ThingDef thingDef, Color ghostCol, AltitudeLayer drawAltitude, Thing thing = null)
         {
             Graphic graphic = GhostUtility.GhostGraphicFor(CompWarpFireOverlay.FireGraphic, thingDef, ghostCol);
             graphic.DrawFromDef(center.ToVector3ShiftedWithAltitude(drawAltitude), rot, thingDef, 0f);
         }
+
 
         // Token: 0x040004A9 RID: 1193
         public float fireSize = 1f;

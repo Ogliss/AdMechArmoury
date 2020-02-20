@@ -6,14 +6,14 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using AbilityUser;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [StaticConstructorOnStartup]
     public static class HarmonyPatchesOG
@@ -24,7 +24,7 @@ namespace AdeptusMechanicus.Harmony
         private static readonly Type patchType = typeof(HarmonyPatchesOG);
         static HarmonyPatchesOG()
         {
-            var harmony = HarmonyInstance.Create("rimworld.ogliss.adeptusmechanicus.main");
+            var harmony = new Harmony("rimworld.ogliss.adeptusmechanicus.main");
 
             var type = typeof(HarmonyPatchesOG);
             /*
@@ -46,17 +46,19 @@ namespace AdeptusMechanicus.Harmony
                 prefix: new HarmonyMethod(type: type, name: nameof(Pre_AddFoodPoisoningHediff_CompCheck)),
                 postfix: null);
             */
-
+            /*
             Type typeFromHandle3 = typeof(PawnRenderer);
             HarmonyPatchesOG.pawnField_PawnRenderer = typeFromHandle3.GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
             MethodInfo method5 = typeFromHandle3.GetMethod("RenderPawnAt", new Type[]
             {
                 typeof(Vector3),
                 typeof(RotDrawMode),
+                typeof(bool),
                 typeof(bool)
             });
             MethodInfo method6 = typeof(HarmonyPatchesOG).GetMethod("Patch_PawnRenderer_RenderPawnAt");
             harmony.Patch(method5, null, new HarmonyMethod(method6), null);
+            */
             /*
             harmony.Patch(AccessTools.Method(typeof(Pawn), nameof(Pawn.GetGizmos)), null,
                 new HarmonyMethod(type, nameof(GetGizmos_PostFix)));
