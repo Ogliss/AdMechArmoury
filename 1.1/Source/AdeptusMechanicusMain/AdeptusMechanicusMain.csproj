@@ -37,8 +37,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.2.0.0.4\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.0.0.5\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -327,7 +327,7 @@
     <None Include="_HumanlikeOrdersUtility.cs.bak" />
     <None Include="Harmony\Patches\AM_BackCompatibility_GameLoadingVars_Patch.cs.bak" />
     <Compile Include="Abilities\CompAbilityEffect_Shoot.cs" />
-    <Compile Include="Abilities\Class2.cs" />
+    <Compile Include="Abilities\EquipmentAbilityDef.cs" />
     <Compile Include="Abilities\EquipmentAbility.cs" />
     <Compile Include="Abilities\Command_EquipmentAbility.cs" />
     <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch - Copy.cs" />
@@ -341,7 +341,6 @@
     <Compile Include="Harmony\Patches\AM_Projectile_Impact_TeslaWeapon_Patch.cs" />
     <Compile Include="Harmony\Patches\AM_VerbTracker_CreateVerbTargetCommand_Patch.cs" />
     <Compile Include="Harmony\Patches\AM_VerbTracker_PrimaryVerb_Patch.cs" />
-    <None Include="Abilities\AbilityEffectUtility.cs.bak" />
     <Compile Include="Harmony\Patches\AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch.cs" />
     <Compile Include="UtilsStuff\Class1.cs" />
     <Compile Include="UtilsStuff\IncidentWorker_RefugeeChased.cs" />
@@ -444,7 +443,6 @@
     <Compile Include="ShipParts\Building_CrashedShipPartOG.cs" />
     <Compile Include="Apparel\CompColorableTwo.cs" />
     <None Include="Hives\HiveLike.cs.bak" />
-    <None Include="Abilities\Projectile_AbilityOG.cs.bak" />
     <Compile Include="ShipParts\IncidentWorker_CrashedHiveShip.cs" />
     <Compile Include="Abilities\CompAbilityItem.cs" />
     <Compile Include="AMExtentions\AdeptusMechanicusExtensions.cs" />
@@ -468,7 +466,7 @@
     <Compile Include="UtilsStuff\SettingsMenu\AMConstants.cs" />
     <Compile Include="UtilsStuff\SettingsMenu\AMASettings.cs" />
     <Compile Include="UtilsStuff\ArmourySettingsRef.cs" />
-    <Compile Include="UtilsStuff\BodyAddonOffsets.cs" />
+    <Compile Include="UtilsStuff\ArtificalPawn.cs" />
     <Compile Include="UtilsStuff\AM_MeshMaker.cs" />
     <Compile Include="UtilsStuff\AM_MeshBolt.cs" />
     <Compile Include="UtilsStuff\Infiltrate\InfiltratorExtension.cs" />
@@ -501,11 +499,9 @@
     <Compile Include="UtilsStuff\CompFoodPoisonProtection.cs" />
     <Compile Include="UtilsStuff\IncidentWorker_WandererJoin.cs" />
     <Compile Include="UtilsStuff\PlaceWorker_OnTopOfWalls.cs" />
-    <None Include="Weaponry\Command_VerblikeTarget.cs.bak" />
     <Compile Include="UtilsStuff\CompPainKiller.cs" />
     <Compile Include="Weaponry\GunStuff\Graphic_Variant.cs" />
     <Compile Include="Weaponry\GunStuff\CompProperties_AddedBulletEffect.cs" />
-    <None Include="Weaponry\CompWargearWeaponToggle - Copy.cs.bak" />
     <Compile Include="UtilsStuff\HediffComp_DrawImplant.cs" />
     <Compile Include="Weaponry\CompWeapon_MeleeSpecialRules.cs" />
     <Compile Include="UtilsStuff\CompGlowerPawn.cs" />
@@ -559,15 +555,10 @@
     <Compile Include="Apparel\ApparelLight\CompEquippableLight.cs" />
     <Compile Include="Apparel\ApparelLight\Util_ApparelWithLight.cs" />
     <Compile Include="Apparel\ApparelLight\Util_CompEquippableLight.cs" />
-    <None Include="Weaponry\GunStuff\CompRocketSlotLoadable.cs.bak" />
     <Compile Include="Weaponry\CompHediffWeapon.cs" />
-    <None Include="Weaponry\CompWargearWeaponSecondry.cs.bak" />
-    <None Include="Weaponry\CompWargearWeaponToggle.cs.bak" />
     <Compile Include="Weaponry\CompWargearWeapon.cs" />
     <Compile Include="Apparel\CompWargear.cs" />
     <Compile Include="Apparel\HediffApparel\HediffApparel.cs" />
-    <Compile Include="Weaponry\GunStuff\ProjectileDef_ExplosiveProjectile.cs" />
-    <None Include="Abilities\Projectile_ExplosiveAbility.cs.bak" />
     <Compile Include="Apparel\VisibleAccessoryDefExtension.cs" />
     <Compile Include="Apparel\Shieldstuff\ProtectiveEyeWear.cs" />
     <Compile Include="Apparel\Shieldstuff\AdvShieldBelt.cs" />
@@ -584,10 +575,8 @@
     <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\Projectile_Laser.cs.bal" />
     <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\ThingDef_LaserProjectile.cs.bal" />
     <Compile Include="Weaponry\GunStuff\CompWeapon_GunSpecialRules.cs" />
-    <None Include="Weaponry\ThingDef_ForceWeapon.cs.bak" />
     <Compile Include="Weaponry\GunStuff\Verb_ShootEquipment.cs" />
     <Compile Include="Weaponry\GunStuff\Verb_UseEquipment.cs" />
-    <None Include="Weaponry\Verb_MeleeAttackForceweapon.cs.bak" />
     <Compile Include="UtilsStuff\OGDefOf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Weaponry\GunStuff\StatDrawEntry.cs" />
