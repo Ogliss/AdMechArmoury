@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AdeptusMechanicus.ExtensionMethods;
-using HarmonyLib;
+using Harmony;
 using Verse;
 
 namespace AdeptusMechanicus

@@ -29,33 +29,34 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
-            Gender? fixedGender = null;
+            Gender? gender = null;
             if (this.def.pawnFixedGender != Gender.None)
             {
-                fixedGender = new Gender?(this.def.pawnFixedGender);
+                gender = new Gender?(this.def.pawnFixedGender);
             }
             PawnKindDef pawnKind = this.def.pawnKind;
             Faction ofPlayer = Faction.OfPlayer;
 
-            Log.Message(string.Format("{0}", ofPlayer.def.defName));
-            var list = (from def in DefDatabase<PawnKindDef>.AllDefs
-                        where ((def.race == ofPlayer.def.basicMemberKind.race) && (def.defName.Contains("StrangerInBlack")))
-                        select def).ToList();
-            if (list.Count > 0)
-            {
-                pawnKind = list.RandomElement<PawnKindDef>();
-                pawnKind.defaultFactionType = ofPlayer.def;
-            }
+        //        Log.Message(string.Format("{0}", ofPlayer.def.defName));
+                var list = (from def in DefDatabase<PawnKindDef>.AllDefs
+                            where ((def.race == ofPlayer.def.basicMemberKind.race) && (def.defName.Contains("StrangerInBlack")))
+                            select def).ToList();
+                if (list.Count > 0)
+                {
+                    pawnKind = list.RandomElement<PawnKindDef>();
+                    pawnKind.defaultFactionType = ofPlayer.def;
+                }
 
-            Log.Message(string.Format("{0}", pawnKind.defName));
+    //        Log.Message(string.Format("{0}", pawnKind.defName));
             bool pawnMustBeCapableOfViolence = this.def.pawnMustBeCapableOfViolence;
-            PawnGenerationRequest request = new PawnGenerationRequest(pawnKind, ofPlayer, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, this.def.pawnMustBeCapableOfViolence, 20f, false, true, true, true, false, false, false, false, 0f, null, 1f, null, null, null, null, null, null, null, fixedGender, null, null, null, null);
+            Gender? fixedGender = gender;
+            PawnGenerationRequest request = new PawnGenerationRequest(pawnKind, ofPlayer, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, pawnMustBeCapableOfViolence, 20f, false, true, true, false, false, false, false, null, null, null, null, null, fixedGender, null, null);
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             GenSpawn.Spawn(pawn, loc, map, WipeMode.Vanish);
-            TaggedString baseLetterText = this.def.letterText.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-            TaggedString baseLetterLabel = this.def.letterLabel.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN", true);
-            PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref baseLetterText, ref baseLetterLabel, pawn);
-            base.SendStandardLetter(baseLetterLabel, baseLetterText, LetterDefOf.PositiveEvent, parms, pawn, Array.Empty<NamedArgument>());
+            string text = this.def.letterText.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN");
+            string label = this.def.letterLabel.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn, "PAWN");
+            PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref label, pawn);
+            Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent, pawn, null, null);
             return true;
         }
 

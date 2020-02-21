@@ -63,7 +63,7 @@ namespace AdeptusMechanicus
         public static void MakeTunnelAt(IntVec3 c, Map map, ActiveDropPodInfo info, FactionDefExtension extension)
         {
             ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("OG_AMA_Tunneler");
-            Log.Message(string.Format("making tunnelSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
+    //        Log.Message(string.Format("making tunnelSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
             TunnelSpawner tunnelSpawner = (TunnelSpawner)ThingMaker.MakeThing(TunnelDef, null);
             foreach (Thing item in info.innerContainer)
             {
@@ -79,7 +79,7 @@ namespace AdeptusMechanicus
             WeatherEvent @event = new WeatherEvent_DeepStrike_Teleport(map, c, boltstring: (extension !=null ? extension.TeleportBoltTexPath : ""));
             map.weatherManager.eventHandler.AddEvent(@event);
             ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("OG_AMA_Teleporter");
-            Log.Message(string.Format("making teleportSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
+    //        Log.Message(string.Format("making teleportSpawner: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info.innerContainer.ContentsString));
             TeleportSpawner teleportSpawner = (TeleportSpawner)ThingMaker.MakeThing(TunnelDef, null);
             foreach (Thing item in info.innerContainer)
             {
@@ -170,7 +170,7 @@ namespace AdeptusMechanicus
         public static void MakeTunnelAt(IntVec3 c, Map map, List<Thing> info)
         {
             ThingDef TunnelDef = DefDatabase<ThingDef>.GetNamed("OG_AMA_Tunneler");
-            Log.Message(string.Format("making tunnel: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info));
+    //        Log.Message(string.Format("making tunnel: {0}, @: {1}, {2}, {3}", TunnelDef, c, map, info));
             TunnelSpawner tunnelSpawner = (TunnelSpawner)ThingMaker.MakeThing(TunnelDef, null);
             foreach (Thing item in info)
             {

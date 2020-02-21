@@ -6,13 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(HediffSet), "get_PainTotal")]
     public static class AM_HediffSet_get_PainTotal_ComPainKiller_Patch
@@ -24,7 +24,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (__instance.pawn.TryGetComp<CompPainKiller>()!=null && __instance.pawn.TryGetComp<CompPainKiller>() is CompPainKiller painkill)
                 {
-                    Log.Message("activeing pankiller comp");
+            //        Log.Message("activeing pankiller comp");
                     __result = Mathf.Clamp(__result * painkill.Props.painOffset, 0f, 1f);
                 }
             }

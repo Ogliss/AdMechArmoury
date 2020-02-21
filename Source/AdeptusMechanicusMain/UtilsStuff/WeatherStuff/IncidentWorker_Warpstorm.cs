@@ -20,9 +20,9 @@ namespace RimWorld
         {
             Map map = (Map)parms.target;
             int duration = Mathf.RoundToInt(this.def.durationDays.RandomInRange * 60000f);
-            GameCondition_Warpstorm gameCondition_Warpstorm = (GameCondition_Warpstorm)GameConditionMaker.MakeCondition(OGGameConditionDefOf.OG_Warpstorm, duration);
+            GameCondition_Warpstorm gameCondition_Warpstorm = (GameCondition_Warpstorm)GameConditionMaker.MakeCondition(OGGameConditionDefOf.OG_Warpstorm, duration, 0);
             map.gameConditionManager.RegisterCondition(gameCondition_Warpstorm);
-            base.SendStandardLetter(this.def.letterLabel, GameConditionDefOf.Flashstorm.letterText, this.def.letterDef, parms, new TargetInfo());
+            base.SendStandardLetter(new TargetInfo(gameCondition_Warpstorm.centerLocation.ToIntVec3, map, false), null, new string[0]);
             if (map.weatherManager.curWeather.rainRate > 0.1f)
             {
                 map.weatherDecider.StartNextWeather();

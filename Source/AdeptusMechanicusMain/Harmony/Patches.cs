@@ -1,32 +1,32 @@
 ﻿using RimWorld;
 using Verse;
-using HarmonyLib;
+using Harmony;
 using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using AbilityUser;
 using System.Linq;
+using DualWield;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [StaticConstructorOnStartup]
     class Main
     {
         static Main()
         {
-            var harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
-            Log.Message("com.ogliss.rimworld.mod.AdeptusMechanicus start");
+            var harmony = HarmonyInstance.Create("com.ogliss.rimworld.mod.AdeptusMechanicus");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             PatchPawnsArrivalModeWorker(harmony);
             if (AdeptusIntergrationUtil.enabled_rooloDualWield)
             {
-                /*
-                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("CompOversizedWeapon.HarmonyCompOversizedWeapon", "CompOversizedWeapon"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PreFix", null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PostFix", null));
-                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("CompActivatableEffect.HarmonyCompActivatableEffect", "CompActivatableEffect"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_Activatable_PreFix", null));
-                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("DualWield.Harmony.PawnRenderer_DrawEquipmentAiming", "DualWield.Harmony"), "DrawEquipmentAimingOverride", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAimingOverride_DualWield_compActivatableEffect_PreFix", null));
-                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("DualWield.Ext_Pawn_EquipmentTracker", "DualWield"), "AddOffHandEquipment", null, null),null , new HarmonyMethod(Main.patchType, "AddOffHandEquipment_PostFix", null));
-                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("DualWield.Harmony.PawnWeaponGenerator_TryGenerateWeaponFor", "DualWield.Harmony"), "Postfix", null, null), new HarmonyMethod(Main.patchType, "PawnWeaponGenerator_TryGenerateWeaponFor_PostFix", null));
-                */
+                
+                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("CompOversizedWeapon.HarmonyCompOversizedWeapon", "CompOversizedWeapon"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PreFix", null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PostFix", null));
+                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("CompActivatableEffect.HarmonyCompActivatableEffect", "CompActivatableEffect"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_Activatable_PreFix", null));
+                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("DualWield.Harmony.PawnRenderer_DrawEquipmentAiming", "DualWield.Harmony"), "DrawEquipmentAimingOverride", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAimingOverride_DualWield_compActivatableEffect_PreFix", null));
+                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("DualWield.Ext_Pawn_EquipmentTracker", "DualWield"), "AddOffHandEquipment", null, null),null , new HarmonyMethod(Main.patchType, "AddOffHandEquipment_PostFix", null));
+                harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("DualWield.Harmony.PawnWeaponGenerator_TryGenerateWeaponFor", "DualWield.Harmony"), "Postfix", null, null), new HarmonyMethod(Main.patchType, "PawnWeaponGenerator_TryGenerateWeaponFor_PostFix", null));
             }
             else
             {
@@ -79,7 +79,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            Log.Message("com.ogliss.rimworld.mod.AdeptusMechanicus end");
         }
 
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
@@ -116,7 +115,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
 
         private static readonly Type patchType = typeof(Main);
-        /*
+
         // Token: 0x0600000A RID: 10 RVA: 0x000022B0 File Offset: 0x000004B0
         public static bool DrawEquipmentAiming_ActivatableEffect_OverSized_PreFix(PawnRenderer __instance, Thing eq, Vector3 drawLoc, float aimAngle)
         {
@@ -199,7 +198,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                                 bool f9pre = value2.TargetCurrentlyAimingAt == null || value2.stances.curStance.GetType() == typeof(Stance_Mobile);
                                 bool flag9 = compOversizedWeapon.Props != null && (!value2.IsFighting() || f9pre) && compOversizedWeapon.Props.verticalFlipNorth && value2.Rotation == Rot4.North;
-                                Log.Message(string.Format("f9pre: {0}, TargetCurrentlyAimingAtNull: {1}, curStanceMobile: {2}, flag9: {3}", f9pre, value2.TargetCurrentlyAimingAt == null, value2.stances.curStance.GetType() == typeof(Stance_Mobile), flag9));
+                        //        Log.Message(string.Format("f9pre: {0}, TargetCurrentlyAimingAtNull: {1}, curStanceMobile: {2}, flag9: {3}", f9pre, value2.TargetCurrentlyAimingAt == null, value2.stances.curStance.GetType() == typeof(Stance_Mobile), flag9));
                                 if (flag9)
                                 {
                                     num += 180f;
@@ -488,9 +487,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             return num;
         }
-        */
         // 
-        /*
         public static void AddOffHandEquipment(Pawn_EquipmentTracker instance, ThingWithComps newEq)
         {
             ThingOwner<ThingWithComps> value = Traverse.Create(instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
@@ -504,6 +501,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 value.TryAdd(newEq, true);
             }
         }
+
         // Token: 0x0600000A RID: 10 RVA: 0x000022B0 File Offset: 0x000004B0
         public static void AddOffHandEquipment_PostFix(Pawn_EquipmentTracker __instance, ThingWithComps newEq)
         {
@@ -521,7 +519,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
         }
-
         // Token: 0x0600000A RID: 10 RVA: 0x000022B0 File Offset: 0x000004B0
         public static bool DrawEquipmentAiming_DualWield_Activatable_PreFix(PawnRenderer __instance, Thing eq, Vector3 drawLoc, float aimAngle)
         {
@@ -787,6 +784,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 //    Log.Message(string.Format("eq is Null __result:{0}, eq: {1}", __result, eq));
             }
         }
+
         // Token: 0x0600000A RID: 10 RVA: 0x000022B0 File Offset: 0x000004B0
         public static void PawnWeaponGenerator_TryGenerateWeaponFor_PostFix(Pawn pawn)
         {
@@ -839,8 +837,8 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
         }
-        */
-        private static void PatchPawnsArrivalModeWorker(Harmony harmonyInstance)
+
+        private static void PatchPawnsArrivalModeWorker(HarmonyInstance harmonyInstance)
         {
             var prefix = typeof(AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch).GetMethod("Arrive_DSI");
             var baseType = typeof(PawnsArrivalModeWorker);
@@ -854,7 +852,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        private static void PatchVerbsShoot(Harmony harmonyInstance)
+        private static void PatchVerbsShoot(HarmonyInstance harmonyInstance)
         {
             var postfix = typeof(AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch).GetMethod("ShotsPerBurst_RapidFire_Postfix");
             var baseType = typeof(Verb_LaunchProjectile);

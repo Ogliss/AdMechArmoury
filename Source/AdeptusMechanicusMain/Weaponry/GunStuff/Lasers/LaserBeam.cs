@@ -159,7 +159,7 @@ namespace AdeptusMechanicus
             {
                 if (this.def.projectile.Conversion())
                 {
-                    Log.Message("Conversion Blast");
+            //        Log.Message("Conversion Blast");
                     float distance = Vector3.Distance(origin, destination);
                     return base.DamageAmount + distance;
                 }
@@ -173,7 +173,7 @@ namespace AdeptusMechanicus
             {
                 if (this.def.projectile.Melta())
                 {
-                    Log.Message("Melta Blast");
+            //        Log.Message("Melta Blast");
                     Pawn pawn = launcher as Pawn;
                     if (pawn!=null)
                     {
@@ -195,7 +195,7 @@ namespace AdeptusMechanicus
                 }
                 else if (this.def.projectile.Volkite())
                 {
-                    Log.Message("Volkite Blast");
+            //        Log.Message("Volkite Blast");
                     Pawn pawn = launcher as Pawn;
                     if (pawn != null)
                     {

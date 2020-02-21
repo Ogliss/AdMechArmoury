@@ -6,11 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
     public static class AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch
@@ -18,12 +18,12 @@ namespace AdeptusMechanicus.HarmonyInstance
 
     //    public static MethodInfo FillBackstorySlotShuffled = typeof(PawnBioAndNameGenerator).GetMethod("FillBackstorySlotShuffled", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod);
         [HarmonyPostfix]
-        public static void GiveShuffledBioTo_AdultAge_Postfix(Pawn pawn, FactionDef factionType, string requiredLastName, List<BackstoryCategoryFilter> backstoryCategories)
+        public static void GiveShuffledBioTo_AdultAge_Postfix(Pawn pawn, FactionDef factionType, string requiredLastName, List<string> backstoryCategories)
         {
         //    MethodInfo dynMethod = typeof(PawnBioAndNameGenerator).GetMethod("FillBackstorySlotShuffled", BindingFlags.NonPublic | BindingFlags.Instance);
             
             pawn.Name = PawnBioAndNameGenerator.GeneratePawnName(pawn, NameStyle.Full, requiredLastName);
-            AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FillBackstorySlotShuffled(pawn, BackstorySlot.Childhood, ref pawn.story.childhood, pawn.story.adulthood, backstoryCategories, factionType);
+            AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FillBackstorySlotShuffled(pawn, BackstorySlot.Childhood, ref pawn.story.childhood, backstoryCategories, factionType);
             //    dynMethod.Invoke(typeof(PawnBioAndNameGenerator), new object[] { pawn, BackstorySlot.Childhood, pawn.story.childhood, backstoryCategories, factionType });
             if (pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive) != null)
             {
@@ -31,18 +31,17 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (pawn.ageTracker.AgeBiologicalYearsFloat >= pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive).minAge)
                 {
             //        Log.Message(string.Format("Adult"));
-                    AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FillBackstorySlotShuffled(pawn, BackstorySlot.Adulthood, ref pawn.story.adulthood, pawn.story.childhood, backstoryCategories, factionType);
+                    AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FillBackstorySlotShuffled(pawn, BackstorySlot.Adulthood, ref pawn.story.adulthood, backstoryCategories, factionType);
                     //    dynMethod.Invoke(typeof(PawnBioAndNameGenerator), new object[] { pawn, BackstorySlot.Adulthood, pawn.story.adulthood, backstoryCategories, factionType });
                 }
             }
         }
 
 
-        private static void FillBackstorySlotShuffled(Pawn pawn, BackstorySlot slot, ref Backstory backstory, Backstory backstoryOtherSlot, List<BackstoryCategoryFilter> backstoryCategories, FactionDef factionType)
+        private static void FillBackstorySlotShuffled(Pawn pawn, BackstorySlot slot, ref Backstory backstory, List<string> backstoryCategories, FactionDef factionType)
         {
             AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.tmpBackstories.Clear();
-            BackstoryCategoryFilter backstoryCategoryFilter = backstoryCategories.RandomElementByWeight((BackstoryCategoryFilter c) => c.commonality);
-            AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.tmpBackstories = BackstoryDatabase.ShuffleableBackstoryList(slot, backstoryCategoryFilter);
+            BackstoryDatabase.ShuffleableBackstoryList(slot, backstoryCategories, AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.tmpBackstories);
             IEnumerable<Backstory> source = from bs in AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.tmpBackstories.TakeRandom(20)
                                             where slot != BackstorySlot.Adulthood || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables)
                                             select bs;

@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Projectile), "Impact")]
     public static class AM_Projectile_Impact_TeslaWeapon_Patch
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (__instance.def.projectile.damageDef == DefDatabase<DamageDef>.GetNamed("OG_N_Tesla_Damage"))
                         {
-                            Log.Message(string.Format("TeslaWeapon_launcher: {0} : Primary Fired: {1}", ___launcher.LabelShortCap, ((Pawn)___launcher).equipment.PrimaryEq.PrimaryVerb.GetProjectile()==__instance.def));
+                    //        Log.Message(string.Format("TeslaWeapon_launcher: {0} : Primary Fired: {1}", ___launcher.LabelShortCap, ((Pawn)___launcher).equipment.PrimaryEq.PrimaryVerb.GetProjectile()==__instance.def));
                             bool explode = true;// Rand.Chance(0.167f);
                             if (explode)
                             {

@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
             
 			Map map = (Map)parms.target;
 			IntVec3 intVec;
-			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map, this.def.mechClusterBuilding) < 100&& AdeptusMechanicus.InfestationLikeCellFinder.TryFindCell(out intVec, map, this.def.mechClusterBuilding);
+			return base.CanFireNowSub(parms) && HiveLikeUtility.TotalSpawnedHiveLikesCount(map, this.def.shipPart) < 100&& AdeptusMechanicus.InfestationLikeCellFinder.TryFindCell(out intVec, map, this.def.shipPart);
             
 
             /*
@@ -25,13 +25,11 @@ namespace AdeptusMechanicus
             */
         }
 
-        protected override bool TryExecuteWorker(IncidentParms parms)
-        {
-            Map map = (Map)parms.target;
-            /*
-            Thing t = InfestationUtility.SpawnTunnels(Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1), map, false, false, null);
-            */
-            int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
+		// Token: 0x06000E64 RID: 3684 RVA: 0x0006B8B4 File Offset: 0x00069CB4
+		protected override bool TryExecuteWorker(IncidentParms parms)
+		{
+			Map map = (Map)parms.target;
+			int hivelikeCount = Mathf.Max(GenMath.RoundRandom(parms.points / 220f), 1);
             if (def.tags.Contains("TunnelLike"))
             {
                 //Log.Message(string.Format("TunnelLike"));
@@ -43,7 +41,7 @@ namespace AdeptusMechanicus
                     num = Mathf.Min(3, i);
                     t = this.SpawnTunnelLikeCluster(num, map);
                 }
-                base.SendStandardLetter(parms, t, Array.Empty<NamedArgument>());
+                base.SendStandardLetter(t, null, new string[0]);
             }
             else
             {
@@ -56,17 +54,16 @@ namespace AdeptusMechanicus
                     num = Mathf.Min(3, i);
                     t = this.SpawnHiveLikeCluster(num, map);
                 }
-                base.SendStandardLetter(parms, t, Array.Empty<NamedArgument>());
+                base.SendStandardLetter(t, null, new string[0]);
             }
+			Find.TickManager.slower.SignalForceNormalSpeedShort();
+			return true;
+		}
 
-            Find.TickManager.slower.SignalForceNormalSpeedShort();
-            return true;
-        }
-        
         private HiveLike SpawnHiveLikeCluster(int hiveCount, Map map)
         {;
             IntVec3 loc = DropCellFinder.RandomDropSpot(map);
-            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.mechClusterBuilding;
+            ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
             HiveLike hivelike = (HiveLike)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.OfTunnel, null), loc, map);
             hivelike.SetFaction(hivelike.OfFaction, null);
@@ -87,7 +84,7 @@ namespace AdeptusMechanicus
         private TunnelHiveLikeSpawner SpawnTunnelLikeCluster(int hiveCount, Map map)
         {
             IntVec3 loc = DropCellFinder.RandomDropSpot(map);
-            ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.mechClusterBuilding;
+            ThingDef_HiveLike tD = (ThingDef_HiveLike)this.def.shipPart;
             ThingDef_TunnelHiveLikeSpawner thingDef = (ThingDef_TunnelHiveLikeSpawner)tD.TunnelDef;
             TunnelHiveLikeSpawner hivelike = (TunnelHiveLikeSpawner)ThingMaker.MakeThing(thingDef, null);
             GenSpawn.Spawn(ThingMaker.MakeThing(hivelike.def, null), loc, map);
@@ -142,7 +139,7 @@ namespace AdeptusMechanicus
 			IntVec3 loc;
 			if (!InfestationLikeCellFinder.TryFindCell(out loc, map))
             {
-                Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
+        //        Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 return null;
 			}
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
@@ -150,11 +147,11 @@ namespace AdeptusMechanicus
 			for (int i = 0; i < hivelikeCount - 1; i++)
 			{
 				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.shipPart, this.def.shipPart.GetCompProperties<CompProperties_SpawnerHiveLikes>(), true, true);
-                Log.Message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
+        //        Log.Message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 if (loc.IsValid)
                 {
                     thing = GenSpawn.Spawn(ThingMaker.MakeThing(thingDef.TunnelDef, null), loc, map, WipeMode.FullRefund);
-                    Log.Message(string.Format("spawning: {0} @ {1}", thing.Label, loc));
+            //        Log.Message(string.Format("spawning: {0} @ {1}", thing.Label, loc));
                 }
 			}
 			return thing;

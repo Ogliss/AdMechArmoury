@@ -6,18 +6,18 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    [HarmonyPatch(typeof(Thing), "get_Graphic")]
+    [HarmonyPatch(typeof(ThingWithComps), "get_Graphic")]
     public static class AM_ThingWithComps_get_Graphic_CompAdvancedGraphic_Patch
     {
         [HarmonyPostfix]
-        public static void get_Graphic_CompAdvancedGraphic(Thing __instance, ref Graphic __result)
+        public static void get_Graphic_CompAdvancedGraphic(ThingWithComps __instance, ref Graphic __result)
         {
             if (__instance!=null)
             {

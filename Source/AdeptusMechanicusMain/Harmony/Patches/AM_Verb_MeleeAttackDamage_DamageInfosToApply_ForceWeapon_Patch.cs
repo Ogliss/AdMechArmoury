@@ -6,14 +6,14 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "DamageInfosToApply")]
     public static class AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch
@@ -53,7 +53,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             else { int targetPsychiclySensitiveDegree = 0; }
                                             if (__result.Any(x => x.Def.forceWeapon()))
                                             {
-                                                Log.Message(string.Format("1"));
+                                        //        Log.Message(string.Format("1"));
                                                 float CasterMood = Caster.needs.mood.CurLevelPercentage;
                                                 float VictimMood = Victim?.needs?.mood != null ? Victim.needs.mood.CurLevelPercentage : 1;
                                                 foreach (var item in __result.Where(x => x.Def.forceWeapon()))
@@ -62,7 +62,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                     float? targetRoll = Rand.Range(0, (int)targetPsychicSensitivity) * VictimMood;
                                                     casterRoll = (casterRoll - (targetPsychicSensitivity / 2));
                                                     Activate = (casterRoll > targetRoll);
-                                                    Log.Message(string.Format("Caster:{0}, Victim:{1}", casterRoll, targetRoll));
+                                            //        Log.Message(string.Format("Caster:{0}, Victim:{1}", casterRoll, targetRoll));
                                                     if (Activate)
                                                     {
                                                         DamageDef damDef = WeaponRules.ForceWeaponEffect;

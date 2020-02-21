@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecuteWorker")]
+    [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryExecute")]
     public static class AM_IncidentWorker_RaidEnemy_TryExecute_RaidAlert_Patch
     {
         [HarmonyPostfix]

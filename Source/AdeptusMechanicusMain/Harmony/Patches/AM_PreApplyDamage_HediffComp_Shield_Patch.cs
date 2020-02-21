@@ -6,13 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus;
 using UnityEngine;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Pawn_HealthTracker), "PreApplyDamage", null)]
     public class AM_PreApplyDamage_HediffComp_Shield_Patch

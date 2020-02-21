@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using Verse;
-using HarmonyLib;
+using Harmony;
 using UnityEngine;
 using RimWorld;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal", new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool) })]
+    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal", new Type[] { typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool) })]
     public static class AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch
     {
         [HarmonyPostfix]
-        public static void PawnRenderer_RenderPawnInternal_Postfix(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
+        public static void PawnRenderer_RenderPawnInternal_Postfix(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType = RotDrawMode.Fresh, bool portrait = false, bool headStump = false)
         {
             if (!__instance.graphics.AllResolved)
             {
@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             if (AdeptusIntergrationUtil.enabled_AlienRaces)
             {
-                AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.AlienRacesPatch(ref __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, out mesh, bodyDrawType, portrait, headStump, invisible);
+                AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.AlienRacesPatch(ref __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, out mesh, bodyDrawType, portrait, headStump);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        static void AlienRacesPatch(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, out Mesh mesh, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
+        static void AlienRacesPatch(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, out Mesh mesh, RotDrawMode bodyDrawType = RotDrawMode.Fresh, bool portrait = false, bool headStump = false)
         {
             mesh = null;
             Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();

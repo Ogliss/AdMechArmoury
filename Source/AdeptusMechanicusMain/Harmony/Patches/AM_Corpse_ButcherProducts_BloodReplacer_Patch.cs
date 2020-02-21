@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Corpse), "ButcherProducts")]
     public static class AM_Corpse_ButcherProducts_BloodReplacer_Patch
@@ -17,7 +17,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static bool ButcherProducts_BloodReplacer_Prefix(Corpse __instance, Pawn butcher, float efficiency, ref IEnumerable<Thing> __result)
         {
-            Log.Message("ButcherProducts_BloodReplacer_Prefix");
+    //        Log.Message("ButcherProducts_BloodReplacer_Prefix");
             if (__instance == null)
             {
                 Log.Warning("ApparelGizmosFromComps cannot access Corpse.");
@@ -25,17 +25,17 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             else
             {
-                Log.Message("__instance");
+        //        Log.Message("__instance");
                 bloodReplacer = __instance.InnerPawn.TryGetComp<CompButcherBloodReplacer>();
                 if (bloodReplacer!=null)
                 {
-                    Log.Message("bloodReplacer");
+            //        Log.Message("bloodReplacer");
                     if (bloodReplacer.bloodDef != null)
                     {
-                        Log.Message("bloodDef");
+                //        Log.Message("bloodDef");
                         if (bloodReplacer.timeAfterDeath == 0f)
                         {
-                            Log.Message("timeAfterDeath");
+                    //        Log.Message("timeAfterDeath");
                             __result = ButcherProducts(__instance, butcher, efficiency);
                         }
                         return false;
@@ -48,18 +48,18 @@ namespace AdeptusMechanicus.HarmonyInstance
         private static CompButcherBloodReplacer bloodReplacer = null;
         private static IEnumerable<Thing> ButcherProducts(Corpse __instance, Pawn butcher, float efficiency)
         {
-            Log.Message("ButcherProducts_BloodReplacer");
+    //        Log.Message("ButcherProducts_BloodReplacer");
             foreach (Thing t in __instance.InnerPawn.ButcherProducts(butcher, efficiency))
             {
                 yield return t;
             }
             if (bloodReplacer != null)
             {
-                Log.Message("ButcherProducts_BloodReplacer bloodReplacer");
+        //        Log.Message("ButcherProducts_BloodReplacer bloodReplacer");
                 if (bloodReplacer.bloodDef != null)
                 {
                     Log.Message("ButcherProducts_BloodReplacer bloodDef");
-                    FilthMaker.TryMakeFilth(butcher.Position, butcher.Map, bloodReplacer.bloodDef, __instance.InnerPawn.LabelIndefinite(), 1);
+                    FilthMaker.MakeFilth(butcher.Position, butcher.Map, bloodReplacer.bloodDef, __instance.InnerPawn.LabelIndefinite(), 1);
                 }
             }
             if (__instance.InnerPawn.RaceProps.Humanlike)

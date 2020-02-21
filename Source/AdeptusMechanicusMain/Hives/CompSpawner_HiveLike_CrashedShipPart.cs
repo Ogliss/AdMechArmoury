@@ -80,7 +80,7 @@ namespace AdeptusMechanicus
 			base.CompTick();
 			if (this.parent is Building_HiveLike_CrashedShipPart hivelike && (hivelike == null || hivelike.active) && Find.TickManager.TicksGame >= this.nextHiveSpawnTick && hivelike.age >300)
             {
-                Log.Message(string.Format("this.parent is HiveLike_CrashedShipPart"));
+        //        Log.Message(string.Format("this.parent is HiveLike_CrashedShipPart"));
                 TunnelHiveLikeSpawner t;
                 if (this.TrySpawnChildHiveLike(false, out t))
                 {

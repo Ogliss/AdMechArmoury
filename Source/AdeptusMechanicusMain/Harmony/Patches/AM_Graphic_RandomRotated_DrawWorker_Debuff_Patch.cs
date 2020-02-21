@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
  //   [HarmonyPatch(typeof(Graphic_RandomRotated), "DrawWorker")]
     public static class AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch

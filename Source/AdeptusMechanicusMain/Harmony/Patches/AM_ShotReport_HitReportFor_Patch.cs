@@ -6,12 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    /*
     [HarmonyPatch(typeof(Verse.ShotReport), "HitReportFor")]
     public static class AM_ShotReport_HitReportFor_Patch
     {
@@ -21,5 +20,4 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         }
     }
-    */
 }

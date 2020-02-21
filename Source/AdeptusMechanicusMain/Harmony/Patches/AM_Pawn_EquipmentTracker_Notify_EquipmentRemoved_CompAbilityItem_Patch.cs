@@ -6,34 +6,36 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using AbilityUser;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved")]
     public static class AM_Pawn_EquipmentTracker_Notify_EquipmentRemoved_CompAbilityItem_Patch
     {
         [HarmonyPostfix]
         public static void Notify_EquipmentRemovedPostfix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
-            if (eq.TryGetComp<CompAbilityItem>() != null && eq.TryGetComp<CompAbilityItem>() is CompAbilityItem abilityItem)
+            bool abilityitem = eq.TryGetComp<CompAbilityItem>() != null;
+            if (abilityitem)
             {
-                if (!abilityItem.Props.Abilities.NullOrEmpty())
+                foreach (CompAbilityItem compAbilityItem in eq.GetComps<CompAbilityItem>())
                 {
-                    foreach (AbilityDef def in abilityItem.Props.Abilities)
+                    foreach (CompAbilityUser compAbilityUser in __instance.pawn.GetComps<CompAbilityUser>())
                     {
-                        if (__instance.pawn.abilities.abilities.Any(x => x.def == def))
+                        if (compAbilityUser.AbilityData.TemporaryWeaponPowers.Any(x=> compAbilityItem.Props.Abilities.Contains(x.Def)))
                         {
-                            Ability ability = __instance.pawn.abilities.abilities.Find(x => x.def == def);
-                            __instance.pawn.abilities.abilities.Remove(ability);
+                            foreach (AbilityDef abilityDef in compAbilityItem.Props.Abilities)
+                            {
+                                compAbilityUser.RemoveWeaponAbility(abilityDef);
+                            }
                         }
                     }
                 }
             }
         }
     }
-    
+
 }

@@ -6,12 +6,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(PawnTechHediffsGenerator), "GenerateTechHediffsFor")]
     public static class AM_PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch
@@ -56,7 +56,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).Any<BodyPartRecord>())
                         {
                             recipeDef.Worker.ApplyOnPawn(pawn, recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).RandomElement<BodyPartRecord>(), null, emptyIngredientsList, null);
-                            Log.Message(string.Format("adding {0} to {1} for {2}", recipeDef.addsHediff.LabelCap, pawn.LabelShortCap, recipeDef.addsHediff.spawnThingOnRemoved.LabelCap));
+                    //        Log.Message(string.Format("adding {0} to {1} for {2}", recipeDef.addsHediff.LabelCap, pawn.LabelShortCap, recipeDef.addsHediff.spawnThingOnRemoved.LabelCap));
                             partsMoney -= recipeDef.addsHediff.spawnThingOnRemoved.BaseMarketValue;
                             if (Rand.Value > pawn.kindDef.techHediffsChance)
                             {

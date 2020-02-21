@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdeptusMechanicus.HarmonyInstance;
-using HarmonyLib;
+using AdeptusMechanicus.Harmony;
+using Harmony;
 using RimWorld;
 using Verse;
 
@@ -66,7 +66,7 @@ namespace AdeptusMechanicus
                                     ;
                                 }
                                 _graphic = gfx[gfxint];
-                                Log.Message(string.Format("_graphic is Random subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
+                        //        Log.Message(string.Format("_graphic is Random subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
                             }
                         }
                     }
@@ -93,14 +93,14 @@ namespace AdeptusMechanicus
                                 }
                                 if (gfxint == -1)
                                 {
-                                    Log.Message("gfxint == -1");
-                                    Log.Message(string.Format("{0} Quality: {1}", this.parent.Label, quality.Quality));
-                                    Log.Message(string.Format("{0} minQuality: {1}", this.parent.Label, Props.minQuality));
+                            //        Log.Message("gfxint == -1");
+                            //        Log.Message(string.Format("{0} Quality: {1}", this.parent.Label, quality.Quality));
+                            //        Log.Message(string.Format("{0} minQuality: {1}", this.parent.Label, Props.minQuality));
                                     if ((int)quality.Quality >= (int)Props.minQuality)
                                     {
-                                        Log.Message("quality Min reached");
+                                //        Log.Message("quality Min reached");
                                         int i = (int)quality.Quality - (int)Props.minQuality+1;
-                                        Log.Message(string.Format("{0} Quality: {1}, Min Quality: {2}, set: {3}/{4}", this.parent.Label, quality.Quality, Props.minQuality, i, gfx.Count));
+                                //        Log.Message(string.Format("{0} Quality: {1}, Min Quality: {2}, set: {3}/{4}", this.parent.Label, quality.Quality, Props.minQuality, i, gfx.Count));
                                         gfxint = Math.Min(i, gfx.Count-1);
                                     }
                                     else
@@ -111,14 +111,14 @@ namespace AdeptusMechanicus
                                 }
                                 else
                                 {
-                                    Log.Message(string.Format("{0} gfxint: {1}", this.parent.Label, gfxint));
+                            //        Log.Message(string.Format("{0} gfxint: {1}", this.parent.Label, gfxint));
                                 }
                                 if (true)
                                 {
 
                                 }
                                 _graphic = gfx[gfxint];
-                                Log.Message(string.Format("_graphic is Quality subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
+                        //        Log.Message(string.Format("_graphic is Quality subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
                             }
                         }
                     }

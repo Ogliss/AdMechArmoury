@@ -6,14 +6,14 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     /*
     [HarmonyPatch(typeof(HediffGiverUtility), "TryApply")]

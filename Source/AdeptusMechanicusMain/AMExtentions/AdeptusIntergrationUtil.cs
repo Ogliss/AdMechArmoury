@@ -1,6 +1,6 @@
 ﻿using DualWield;
 using DualWield.Storage;
-using HarmonyLib;
+using Harmony;
 using RimWorld;
 using System;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace AdeptusMechanicus
                 AstraTyranid = DefDatabase<FactionDef>.GetNamed("TyranidFaction");
             }
         }
-        /*
+
         // Token: 0x06000021 RID: 33 RVA: 0x000037B0 File Offset: 0x000019B0
         public static void AdMechAddOffHandEquipment(this Pawn_EquipmentTracker instance, ThingWithComps newEq)
         {
@@ -61,8 +61,6 @@ namespace AdeptusMechanicus
                 value.TryAdd(newEq, true);
             }
         }
-        */
-        /*
         // Token: 0x06000022 RID: 34 RVA: 0x00003818 File Offset: 0x00001A18
         public static bool AdMechTryGetOffHandEquipment(this Pawn_EquipmentTracker instance, out ThingWithComps result)
         {
@@ -90,7 +88,7 @@ namespace AdeptusMechanicus
             }
             return result2;
         }
-        */
+
         public static Faction OfChaosMarine
         {
             get

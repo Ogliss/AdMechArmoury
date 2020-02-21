@@ -6,12 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
-    /*
     [HarmonyPatch(typeof(AbilityUser.CompAbilityUser), "PostSpawnSetup")]
     public static class AM_AbilityUserCompAbilityUser_PostSpawnSetup_AbilityItem_Patch
     {
@@ -57,7 +56,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                         if (compAbilityItem.Props.Abilities.NullOrEmpty())
                         {
-                            Log.Message(string.Format("Apparel {0} is ability item with no abilities", eq.LabelCap));
+                    //        Log.Message(string.Format("Apparel {0} is ability item with no abilities", eq.LabelCap));
                         }
                         else
                         {
@@ -79,5 +78,4 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
     }
-    */
 }

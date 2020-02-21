@@ -23,7 +23,7 @@ namespace AdeptusMechanicus
         protected override bool CanFireNowSub(IncidentParms parms)
         {
             Map map = (Map)parms.target;
-            return map.listerThings.ThingsOfDef(this.def.mechClusterBuilding).Count <= 0;
+            return map.listerThings.ThingsOfDef(this.def.shipPart).Count <= 0;
         }
 
         // Token: 0x06000EA8 RID: 3752 RVA: 0x0006C2D0 File Offset: 0x0006A6D0
@@ -36,7 +36,7 @@ namespace AdeptusMechanicus
             float shrapnelDirection = Rand.Range(0f, 360f);
             Faction faction = null;
             Building_HiveLike_CrashedShipPart building_CrashedShipPart = null;
-            building_CrashedShipPart = (Building_HiveLike_CrashedShipPart)ThingMaker.MakeThing(this.def.mechClusterBuilding, null);
+            building_CrashedShipPart = (Building_HiveLike_CrashedShipPart)ThingMaker.MakeThing(this.def.shipPart, null);
             if (faction == null)
             {
                 faction = building_CrashedShipPart.GetComp<CompPawnSpawnerOnDamaged>().OfFaction;
@@ -60,7 +60,7 @@ namespace AdeptusMechanicus
             }
             if (num > 0)
             {
-                base.SendStandardLetter(parms, list, Array.Empty<NamedArgument>());
+                base.SendStandardLetter(list, null, new string[0]);
             }
             return num > 0;
         }

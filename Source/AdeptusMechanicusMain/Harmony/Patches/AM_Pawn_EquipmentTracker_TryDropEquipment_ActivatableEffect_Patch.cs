@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "TryDropEquipment")]
     public static class AM_Pawn_EquipmentTracker_TryDropEquipment_ActivatableEffect_Patch

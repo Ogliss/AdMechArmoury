@@ -6,12 +6,13 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using System.Reflection;
 using AdeptusMechanicus;
+using UnityEngine;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     /*
     [HarmonyPatch(typeof(Apparel), "DrawWornExtras")]
@@ -164,7 +165,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (flag)
             {
-                Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", Wearer.Label, __instance.def.label, direction, offset, Wearer.Drawer.DrawPos.y));
+        //        Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", Wearer.Label, __instance.def.label, direction, offset, Wearer.Drawer.DrawPos.y));
             }
 
             return offset;

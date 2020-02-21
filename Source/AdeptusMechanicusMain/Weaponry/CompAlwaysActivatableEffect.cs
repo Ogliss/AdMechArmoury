@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace AdeptusMechanicus
 {
-    public class CompProperties_AlwaysActivatableEffect : CompActivatableEffect.CompProperties_ActivatableEffect
+    public class CompProperties_AlwaysActivatableEffect : CompProperties_ActivatableEffect
     {
         public CompProperties_AlwaysActivatableEffect() => this.compClass = typeof(CompAlwaysActivatableEffect);
     }

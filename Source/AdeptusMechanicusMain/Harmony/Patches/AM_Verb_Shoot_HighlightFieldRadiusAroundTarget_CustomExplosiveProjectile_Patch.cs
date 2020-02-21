@@ -6,40 +6,20 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
 
-    [HarmonyPatch(typeof(Verb_LaunchProjectile), "HighlightFieldRadiusAroundTarget")]
+    [HarmonyPatch(typeof(Verb_Shoot), "HighlightFieldRadiusAroundTarget")]
     public static class AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch
     {
         [HarmonyPostfix]
-        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref Verb_LaunchProjectile __instance, ref float __result)
-        {
-            if (__instance.Projectile != null)
-            {
-                if (__instance.Projectile.thingClass == typeof(Projectile_ExplosiveOG))
-                {
-                    ThingDef_BulletExplosiveOG bulletExplosiveOG = (ThingDef_BulletExplosiveOG)__instance.Projectile;
-                    if (bulletExplosiveOG.explosionradius != 0)
-                    {
-                        __result = bulletExplosiveOG.explosionradius;
-                    }
-                }
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Verb_UseEquipment), "HighlightFieldRadiusAroundTarget")]
-    public static class AM_Verb_UseEquipment_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch
-    {
-        [HarmonyPostfix]
-        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref Verb_UseEquipment __instance, ref float __result)
+        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref Verb_Shoot __instance, ref float __result)
         {
             if (__instance.Projectile != null)
             {

@@ -6,10 +6,10 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     [HarmonyPatch(typeof(Verse.CoverUtility), "BaseBlockChance", new Type[] { typeof(Thing) })]
     public static class AM_CoverUtility_BaseBlockChancee_DeployableBarricade_Patch

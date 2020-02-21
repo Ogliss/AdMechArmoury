@@ -6,11 +6,11 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using HarmonyLib;
+using Harmony;
 using Verse.Sound;
 using UnityEngine;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.Harmony
 {
     // Token: 0x020000AB RID: 171
     [HarmonyPatch(typeof(FloatMenuMakerMap), "ChoicesAtFor")]
@@ -29,7 +29,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 foreach (var item in list2)
                 {
                     Pawn p = (Pawn)item;
-                    Log.Message(string.Format("{0}'s free jim....", p.LabelShortCap));
+            //        Log.Message(string.Format("{0}'s free jim....", p.LabelShortCap));
                 }
             }
             bool flag1 = list.Any(x => x is Pawn p && p.IsPrisonerOfColony);
@@ -39,7 +39,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 foreach (var item in list2)
                 {
                     Pawn p = (Pawn)item;
-                    Log.Message(string.Format("{0}'s captured jim....", p.LabelShortCap));
+            //        Log.Message(string.Format("{0}'s captured jim....", p.LabelShortCap));
                 }
             }
             bool flag2 = list.Any(x => x is Corpse p);
@@ -50,7 +50,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     Corpse pc = (Corpse)item;
                     Pawn p = pc.InnerPawn;
-                    Log.Message(string.Format("{0}'s dead jim....", p.LabelShortCap));
+            //        Log.Message(string.Format("{0}'s dead jim....", p.LabelShortCap));
                 }
             }
         }

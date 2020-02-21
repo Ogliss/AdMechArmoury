@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AdeptusMechanicus.HarmonyInstance;
+using AdeptusMechanicus.Harmony;
 using RimWorld;
 using Verse;
 
@@ -42,7 +42,7 @@ namespace AdeptusMechanicus
 
         public void Remove(Pawn pawn)
         {
-            Log.Message(string.Format("Off"));
+    //        Log.Message(string.Format("Off"));
             if (pawn != null)
             {
                HarmonyPatchesOG.Patch.ChangeBodyType(pawn, bodyTypeDef);
@@ -51,7 +51,7 @@ namespace AdeptusMechanicus
 
         public bool Add(Pawn pawn)
         {
-            Log.Message(string.Format("On"));
+    //        Log.Message(string.Format("On"));
             // Sanity test; if our pawn doesn't exist, don't even bother.
             if (pawn == null) return false;
             bodyTypeDef = pawn.story.bodyType;
@@ -65,11 +65,11 @@ namespace AdeptusMechanicus
 
             // We know our parent is an Apparel; cast it as such so we can access its Wearer member.
             Apparel parent = base.parent as Apparel;
-            Log.Message(string.Format("tick"));
+    //        Log.Message(string.Format("tick"));
             // We only need to do something if our wearer has changed.
             if (GetWearer != lastWearer)
             {
-                Log.Message(string.Format("tock"));
+        //        Log.Message(string.Format("tock"));
                 // It has, so remove our effects from the last wearer and apply them to the new one.
                 Remove(lastWearer);
                 Add(GetWearer);
