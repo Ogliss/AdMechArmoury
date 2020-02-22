@@ -440,15 +440,15 @@ namespace CompSlotLoadable
 
         public static IEnumerable<Gizmo> GizmoGetter(CompSlotLoadable CompSlotLoadable)
         {
-            //Log.Message("5");
+            Log.Message("5");
             if (CompSlotLoadable.GizmosOnEquip)
             {
-                //Log.Message("6");
+                Log.Message("6");
                 //Iterate EquippedGizmos
                 var enumerator = CompSlotLoadable.EquippedGizmos().GetEnumerator();
                 while (enumerator.MoveNext())
                 {
-                    //Log.Message("7");
+                    Log.Message("7");
                     var current = enumerator.Current;
                     yield return current;
                 }
@@ -457,18 +457,18 @@ namespace CompSlotLoadable
 
         public static void GetGizmos_PostFix(Pawn __instance, ref IEnumerable<Gizmo> __result)
         {
-            //Log.Message("1");
+            Log.Message("1");
             var pawn_EquipmentTracker = __instance.equipment;
             if (pawn_EquipmentTracker != null)
             {
-                //Log.Message("2");
+                Log.Message("2");
                 var thingWithComps =
                     pawn_EquipmentTracker
                         .Primary; //(ThingWithComps)AccessTools.Field(typeof(Pawn_EquipmentTracker), "primaryInt").GetValue(pawn_EquipmentTracker);
 
                 if (thingWithComps != null)
                 {
-                    //Log.Message("3");
+                    Log.Message("3");
                     var CompSlotLoadable = thingWithComps.GetComp<CompSlotLoadable>();
                     if (CompSlotLoadable != null)
                         if (GizmoGetter(CompSlotLoadable).Count() > 0)

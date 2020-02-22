@@ -25,14 +25,20 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (!pawn.kindDef.techHediffsTags.Contains("UseAllTechHediff"))
             {
+                Log.Message(string.Format("{0} Does not UseAllTechHediff", pawn.LabelShortCap));
                 return;
+            }
+            else
+            {
+                Log.Message(string.Format("{0} UseAllTechHediff", pawn.LabelShortCap));
             }
             if (Rand.Value > pawn.kindDef.techHediffsChance)
             {
                 return;
             }
             float partsMoney = pawn.kindDef.techHediffsMoney.RandomInRange;
-            
+
+            Log.Message(string.Format("{0} TechHediffMoney: {1}", pawn.LabelShortCap, partsMoney));
             foreach (Hediff hd in pawn.health.hediffSet.hediffs.FindAll(x=> (x.def.spawnThingOnRemoved!=null && x.def.spawnThingOnRemoved.isTechHediff) || x.def.hediffClass == typeof(Hediff_AddedPart) || x.def.hediffClass == typeof(Hediff_Implant)))
             {
                 partsMoney = partsMoney - hd.def.spawnThingOnRemoved.BaseMarketValue;
