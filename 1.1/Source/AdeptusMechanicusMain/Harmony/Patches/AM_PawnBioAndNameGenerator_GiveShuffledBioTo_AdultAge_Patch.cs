@@ -20,8 +20,20 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static bool GiveShuffledBioTo_AdultAge_Postfix(Pawn pawn, FactionDef factionType, string requiredLastName, List<BackstoryCategoryFilter> backstoryCategories)
         {
-            GiveShuffledBioTo(pawn, factionType, requiredLastName, backstoryCategories);
-            return false;
+            if (pawn.ageTracker.AgeBiologicalYears<20)
+            {
+                bool act = pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive);
+                if (act)
+                {
+                    GiveShuffledBioTo(pawn, factionType, requiredLastName, backstoryCategories);
+                    return false;
+                }
+            }
+            if (backstoryCategories.NullOrEmpty())
+            {
+                Log.Message(string.Format("{0} backstoryCategories null", pawn.NameShortColored));
+            }
+            return true;
         }
 
         private static void GiveShuffledBioTo(Pawn pawn, FactionDef factionType, string requiredLastName, List<BackstoryCategoryFilter> backstoryCategories)

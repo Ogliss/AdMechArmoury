@@ -223,9 +223,14 @@ namespace CompSlotLoadable
 
         public virtual IEnumerable<Gizmo> EquippedGizmos()
         {
+            Log.Message("EquippedGizmos ");
             if (slots != null)
+            {
+                Log.Message("EquippedGizmos slots != null");
+
                 if (slots.Count > 0)
                 {
+                    Log.Message("EquippedGizmos slots.Count > 0");
                     if (isGathering)
                         yield return new Command_Action
                         {
@@ -234,6 +239,7 @@ namespace CompSlotLoadable
                             icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel", true),
                             action = delegate { TryCancel(); }
                         };
+                    Log.Message("EquippedGizmos isGathering");
                     foreach (var slot in slots)
                         if (slot.IsEmpty())
                             yield return new Command_Action
@@ -253,6 +259,7 @@ namespace CompSlotLoadable
                                 action = delegate { ProcessInput(slot); }
                             };
                 }
+            }
         }
 
         public virtual string SlotDesc(SlotLoadable slot)

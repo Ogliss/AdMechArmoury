@@ -15,7 +15,7 @@ using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    /*
+    /* 
     [HarmonyPatch(typeof(HediffGiverUtility), "TryApply")]
     public static class AM_HediffGiverUtility_TryApply_Patch
     {

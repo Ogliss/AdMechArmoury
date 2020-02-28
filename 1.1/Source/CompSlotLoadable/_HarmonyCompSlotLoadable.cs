@@ -19,8 +19,6 @@ namespace CompSlotLoadable
 
         static HarmonyCompSlotLoadable()
         {
-            var harmony = new Harmony("rimworld.Ogliss.comps.slotloadable");
-
             Log.Message("CompSlotLoadable StaticConstructorOnStartup start");
             Harmony harmony = new Harmony("rimworld.Ogliss.comps.slotloadable");
             /*
@@ -155,6 +153,7 @@ namespace CompSlotLoadable
         public static void DrawThingRow_PostFix(ITab_Pawn_Gear __instance, ref float y, float width, Thing thing,
             bool inventory = false)
         {
+            Log.Message("1");
             if (thing is ThingWithComps thingWithComps)
             {
                 var comp = thingWithComps.AllComps.FirstOrDefault(x => x is CompSlotLoadable);
@@ -446,21 +445,15 @@ namespace CompSlotLoadable
 
         public static IEnumerable<Gizmo> GizmoGetter(CompSlotLoadable CompSlotLoadable)
         {
-            Log.Message("5");
             //Log.Message("5");
             if (CompSlotLoadable.GizmosOnEquip)
             {
-                Log.Message("6");
                 //Log.Message("6");
                 //Iterate EquippedGizmos
                 var enumerator = CompSlotLoadable.EquippedGizmos().GetEnumerator();
-                while (enumerator.MoveNext())
                 //Log.Message("7");
                 if (CompSlotLoadable.EquippedGizmos()!=null)
                 {
-                    Log.Message("7");
-                    var current = enumerator.Current;
-                    yield return current;
                     //Log.Message("8");
                     foreach (Gizmo item in CompSlotLoadable.EquippedGizmos())
                     {
@@ -471,7 +464,6 @@ namespace CompSlotLoadable
             }
         }
 
-        public static void GetGizmos_PostFix(Pawn __instance, ref IEnumerable<Gizmo> __result)
         public static void GetGizmos_PostFix(Pawn __instance, ref IEnumerable<Gizmo> __result) 
         {
             //Log.Message("1");

@@ -190,7 +190,7 @@ namespace JecsTools
                         return true;
                     //////////////////////////
                     if (toCheck.GetType() == Data.GetType() || Equals(toCheck.GetType(), Data) ||
-                        toCheck.GetType() == Data || toCheck.GetType().ToString() == Data.ToString() ||
+                        toCheck.GetType() == (Type)Data || toCheck.GetType().ToString() == Data.ToString() ||
                         Data.GetType().IsInstanceOfType(toCheck))
                         return true;
                     break;

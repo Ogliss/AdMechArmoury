@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using AdeptusMechanicus.Abilities;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -33,6 +34,27 @@ namespace AdeptusMechanicus.HarmonyInstance
                 harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("CompOversizedWeapon.HarmonyCompOversizedWeapon", "CompOversizedWeapon"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_ActivatableEffect_OverSized_PreFix", null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_ActivatableEffect_OverSized_PostFix", null));
                 harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssemblyNew("CompActivatableEffect.HarmonyCompActivatableEffect", "CompActivatableEffect"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAimingPostFix_OverSized_Activatable_PreFix", null));
                 */
+            }
+            //    [HarmonyPatch(typeof(NeurotrainerDefGenerator), "ImpliedThingDefs"),StaticConstructorOnStartup]
+            /*
+            foreach (AbilityDef item in DefDatabase<EquipmentAbilityDef>.AllDefs)
+            {
+                Log.Message(string.Format("checking {0}", item.LabelCap));
+                if (DefDatabase<ThingDef>.AllDefs.Any(x=> x.descriptionHyperlinks.Contains(item)))
+                {
+                    Log.Message(string.Format("Psytrainer for {0}", item.LabelCap));
+                    DefDatabase<ThingDef>.AllDefsListForReading.RemoveAll(x=> x.descriptionHyperlinks.Contains(item));
+                }
+            }
+            */
+            IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
+            foreach (AbilityDef item in DefDatabase<AdeptusMechanicus.Abilities.EquipmentAbilityDef>.AllDefs)
+            {
+                if (pystrainers.Any(x=> x.defName.Contains(item.defName)))
+                {
+                    ThingDef trainer = pystrainers.First(x => x.defName.Contains(item.defName));
+                    DefDatabase<ThingDef>.AllDefsListForReading.Remove(trainer);
+                }
             }
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OG_WeaponsTest")))
             {

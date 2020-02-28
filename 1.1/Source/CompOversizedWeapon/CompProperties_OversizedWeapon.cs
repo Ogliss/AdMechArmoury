@@ -23,6 +23,7 @@ namespace CompOversizedWeapon
         public float angleAdjustmentWest = 0f;
         public float angleAdjustmentNorth = 0f;
         public float angleAdjustmentSouth = 0f;
+        public bool useAlienRacesDrawsize = false;
 
         public GraphicData groundGraphic = null;
 

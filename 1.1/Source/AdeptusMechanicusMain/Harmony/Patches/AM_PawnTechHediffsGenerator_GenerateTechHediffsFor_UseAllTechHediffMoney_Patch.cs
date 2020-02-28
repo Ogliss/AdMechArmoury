@@ -19,18 +19,19 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static void GenerateTechHediffsFor_UseAllTechHediffMoney(Pawn pawn)
         {
+            bool logflag = SteamUtility.SteamPersonaName == "Ogliss";
             if (pawn.kindDef.techHediffsTags == null)
             {
                 return;
             }
             if (!pawn.kindDef.techHediffsTags.Contains("UseAllTechHediff"))
             {
-                Log.Message(string.Format("{0} Does not UseAllTechHediff", pawn.LabelShortCap));
+                if (logflag) Log.Message(string.Format("{0} Does not UseAllTechHediff", pawn.LabelShortCap));
                 return;
             }
             else
             {
-                Log.Message(string.Format("{0} UseAllTechHediff", pawn.LabelShortCap));
+                if (logflag) Log.Message(string.Format("{0} UseAllTechHediff", pawn.LabelShortCap));
             }
             if (Rand.Value > pawn.kindDef.techHediffsChance)
             {

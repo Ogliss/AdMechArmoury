@@ -37,8 +37,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.2.0.0.5\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.0.0.7\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -47,19 +47,23 @@
     <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_DLLs\1CompActivatableEffect.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_DLLs\1CompOversizedWeapon.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="1CompSlotLoadable">
       <HintPath>_DLLs\1CompSlotLoadable.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="1CompToggleDef">
       <HintPath>_DLLs\1CompToggleDef.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AlienRace">
-      <HintPath>..\..\..\..\AlienRaces\Assemblies\AlienRace.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -331,6 +335,7 @@
     <Compile Include="Abilities\EquipmentAbility.cs" />
     <Compile Include="Abilities\Command_EquipmentAbility.cs" />
     <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_HediffGiverUtility_TryApply_Patch - Copy.cs" />
     <Compile Include="Harmony\Patches\AM_PawnGenerator_GeneratePawn_StartWithHediff_Patch.cs" />
     <Compile Include="Harmony\Patches\AM_FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
     <Compile Include="Harmony\Patches\AM_Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
@@ -343,7 +348,8 @@
     <Compile Include="Harmony\Patches\AM_VerbTracker_PrimaryVerb_Patch.cs" />
     <Compile Include="Harmony\Patches\AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch.cs" />
     <Compile Include="UtilsStuff\Class1.cs" />
-    <Compile Include="UtilsStuff\IncidentWorker_RefugeeChased.cs" />
+    <Compile Include="UtilsStuff\AdMechDebugToolsSpawning.cs" />
+    <Compile Include="UtilsStuff\Graphic_Randomized.cs" />
     <Compile Include="UtilsStuff\DualWieldDefExt.cs" />
     <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
     <Compile Include="UtilsStuff\DamageWorker_WarpFlameNoCamShake.cs" />

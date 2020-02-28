@@ -99,9 +99,9 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void TryStartCastOn_RapidFire_Postfix(ref Verb __instance, LocalTargetInfo castTarg, float __state)
         {
+            /*
             List<Type> types = typeof(Verb_LaunchProjectile).AllSubclassesNonAbstract().ToList();
             types.Add(typeof(Verb_LaunchProjectile));
-            /*
             List<Type> nottypes = typeof(AbilityUser.Verb_UseAbility).AllSubclassesNonAbstract().ToList();
             nottypes.Add(typeof(AbilityUser.Verb_UseAbility));
             if (!types.Contains(__instance.GetType()) || nottypes.Contains(__instance.GetType()))
@@ -114,6 +114,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 return;
             }
             */
+            if (__instance.GetType() != typeof(Verb_Shoot) && __instance.GetType() != typeof(Verb_ShootEquipment))
+            {
+                return;
+            }
             if (__instance.EquipmentSource != null)
             {
                 ThingWithComps gun = __instance.EquipmentSource;
