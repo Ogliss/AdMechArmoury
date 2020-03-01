@@ -1,10 +1,9 @@
-﻿using AbilityUser;
-using RimWorld;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Text;
 using Verse;
 
-namespace AdeptusMechanicus.Abilities
+namespace AdeptusMechanicus
 {
     class EquipmentAbilityDef : AbilityDef
     {

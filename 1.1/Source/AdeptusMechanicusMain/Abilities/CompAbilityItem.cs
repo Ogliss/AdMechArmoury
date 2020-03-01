@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace AbilityUser
+namespace AdeptusMechanicus
 {
     public class CompProperties_AbilityItem : CompProperties
     {

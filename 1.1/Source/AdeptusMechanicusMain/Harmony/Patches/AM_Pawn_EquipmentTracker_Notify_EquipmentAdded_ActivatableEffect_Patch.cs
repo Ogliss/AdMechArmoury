@@ -8,7 +8,6 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
-using AbilityUser;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {

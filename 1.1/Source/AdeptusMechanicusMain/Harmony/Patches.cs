@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using AdeptusMechanicus.Abilities;
+using AdeptusMechanicus;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -48,7 +48,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             */
             IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
-            foreach (AbilityDef item in DefDatabase<AdeptusMechanicus.Abilities.EquipmentAbilityDef>.AllDefs)
+            foreach (AbilityDef item in DefDatabase<AdeptusMechanicus.EquipmentAbilityDef>.AllDefs)
             {
                 if (pystrainers.Any(x=> x.defName.Contains(item.defName)))
                 {

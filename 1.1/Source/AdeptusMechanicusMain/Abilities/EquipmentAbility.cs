@@ -1,4 +1,4 @@
-﻿using AdeptusMechanicus.Abilities;
+﻿using AdeptusMechanicus;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;

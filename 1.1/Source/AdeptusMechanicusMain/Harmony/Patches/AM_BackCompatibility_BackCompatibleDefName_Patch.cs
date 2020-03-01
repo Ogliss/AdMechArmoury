@@ -173,17 +173,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         __result = "OG_Ork_Tek_Faction";
                     }
-                    if (defName == "OrkPlayerColony")
-                    {
-                        __result = "OG_Ork_Player";
-                    }
                     if (defName == "FeralOrkFaction")
                     {
                         __result = "OG_Ork_Feral_Faction";
                     }
-                    if (defName == "OrkPlayerColonyTribal")
+                    if (defName.Contains("Ork") && defName.Contains("Player"))
                     {
-                        __result = "OG_Ork_Feral_Player";
+                        if (defName.Contains("Trib"))
+                        {
+                            __result = "OG_Ork_PlayerTribe";
+                        }
+                        else
+                        {
+                            __result = "OG_Ork_PlayerColony";
+                        }
                     }
                     if (defName == "RokOrkz")
                     {
@@ -193,6 +196,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         __result = "OG_Ork_Hulk";
                     }
+
                     // Tau factions
                     if (defName == "TauFaction")
                     {

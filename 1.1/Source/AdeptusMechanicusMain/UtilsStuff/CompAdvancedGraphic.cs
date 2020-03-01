@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdeptusMechanicus.HarmonyInstance;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 
@@ -34,22 +36,113 @@ namespace Verse
             base.PostSpawnSetup(respawningAfterLoad);
             if (!respawningAfterLoad)
             {
-                GetGraphic();
+            //    Graphic(parent.Graphic);
             }
         }
 
         public override void PostPostMake()
         {
             base.PostPostMake();
-            GetGraphic();
+        //    Graphic(parent.Graphic);
         }
 
+        public Graphic Graphic(Graphic graphic)
+        {
+            if (_graphic == null)
+            {
+                if (Props.randomised)
+                {
+                    Traverse traverse = Traverse.Create(graphic);
+                    if (graphic.GetType() == typeof(Graphic_RandomRotated))
+                    {
+                        Graphic_Random subGraphic = (Graphic_Random)AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.subgraphic.GetValue(graphic);
+                        if (subGraphic != null)
+                        {
+                            Traverse traverse2 = Traverse.Create(subGraphic);
+                            Graphic[] subGraphics = (Graphic[])AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.subgraphics.GetValue(subGraphic);
+                            if (!subGraphics.NullOrEmpty())
+                            {
+                                List<Verse.Graphic> gfx = subGraphics.Where(x => !x.path.EndsWith("_Glow") && !x.path.EndsWith("m")).ToList();
+                                if (gfxint == -1)
+                                {
+                                    gfxint = Rand.Range(0, gfx.Count());
+                                    //    Log.Message("gfxint is Rand.Range(0, subGraphics.Count())");
+                                }
+                                if (true)
+                                {
+                                    ;
+                                }
+                                _graphic = gfx[gfxint];
+                                Log.Message(string.Format("_graphic is Random subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
+                            }
+                        }
+                    }
+                }
+                if (Props.quality)
+                {
+                    Traverse traverse = Traverse.Create(graphic);
+                    if (graphic.GetType() == typeof(Graphic_RandomRotated))
+                    {
+                        Graphic_Random subGraphic = (Graphic_Random)AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.subgraphic.GetValue(graphic);
+                        if (subGraphic != null)
+                        {
+                            Traverse traverse2 = Traverse.Create(subGraphic);
+                            Graphic[] subGraphics = (Graphic[])AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.subgraphics.GetValue(subGraphic);
+                            if (!subGraphics.NullOrEmpty())
+                            {
+                                List<Verse.Graphic> gfx = subGraphics.Where(x => !x.path.EndsWith("_Glow") && !x.path.EndsWith("m")).ToList();
+                                CompQuality quality = this.parent.TryGetComp<CompQuality>();
+                                if (quality == null)
+                                {
+                                    Log.Warning(string.Format("WARNING!! {0} is set to use quality graphics but has no CompQuality, using random graphic", this.parent.Label));
+                                    gfxint = Rand.Range(0, gfx.Count());
+                                    return gfx[gfxint];
+                                }
+                                if (gfxint == -1)
+                                {
+                                    Log.Message("gfxint == -1");
+                                    Log.Message(string.Format("{0} Quality: {1}", this.parent.Label, quality.Quality));
+                                    Log.Message(string.Format("{0} minQuality: {1}", this.parent.Label, Props.minQuality));
+                                    if ((int)quality.Quality >= (int)Props.minQuality)
+                                    {
+                                        Log.Message("quality Min reached");
+                                        int i = (int)quality.Quality - (int)Props.minQuality + 1;
+                                        Log.Message(string.Format("{0} Quality: {1}, Min Quality: {2}, set: {3}/{4}", this.parent.Label, quality.Quality, Props.minQuality, i, gfx.Count));
+                                        gfxint = Math.Min(i, gfx.Count - 1);
+                                    }
+                                    else
+                                    {
+                                        gfxint = 0;
+                                    }
+                                    //    Log.Message("gfxint is Rand.Range(0, subGraphics.Count())");
+                                }
+                                else
+                                {
+                                    Log.Message(string.Format("{0} gfxint: {1}", this.parent.Label, gfxint));
+                                }
+                                if (true)
+                                {
+
+                                }
+                                _graphic = gfx[gfxint];
+                                Log.Message(string.Format("_graphic is Quality subGraphics[gfxint] DrawRotatedExtraAngleOffset: {0}, ShouldDrawRotated: {1}", gfx[gfxint].DrawRotatedExtraAngleOffset, gfx[gfxint].ShouldDrawRotated));
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (_graphic == null)
+            {
+                //    Log.Message("_graphic is null");
+
+                _graphic = graphic;
+            }
+            return _graphic;
+        }
+        /*
         public void GetGraphic()
         {
-            if (parent.def.graphicData.graphicClass == typeof(Graphic_Random))
-            {
-
-            }
             string path = parent.def.graphicData.texPath;
             Shader shader = parent.def.graphicData.shaderType.Shader;
             Vector2 drawSize = parent.def.graphicData.drawSize;
@@ -106,6 +199,7 @@ namespace Verse
             else gfxint = 0;
             _graphic = subGraphics[gfxint];
         }
+        */
         public Graphic current
         {
             get
