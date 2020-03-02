@@ -17,7 +17,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 List<Thing> list = info.innerContainer.Where(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())).ToList();
                 Thing thing = list.RandomElement();
-            //    Log.Message(string.Format("thing.Faction: {0}", thing.Faction));
                 FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
                 if (thing.Faction.IsPlayer)
                 {
