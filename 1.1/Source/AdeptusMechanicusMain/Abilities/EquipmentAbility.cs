@@ -23,6 +23,7 @@ namespace RimWorld
         {
         }
 
+        public ThingWithComps sourceEquipment;
         public int MaxCastingTicks => (int)(abilityDef.cooldown * GenTicks.TicksPerRealSecond);
         private int TicksUntilCasting = -1;
         public int CooldownTicksLeft
@@ -34,6 +35,7 @@ namespace RimWorld
         public new void ExposeData()
         {
             Scribe_Defs.Look<AbilityDef>(ref this.def, "def");
+            Scribe_References.Look(ref this.sourceEquipment, "sourceEquipment");
             if (this.def == null)
             {
                 return;

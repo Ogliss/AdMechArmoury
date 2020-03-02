@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -19,11 +18,8 @@ namespace CompSlotLoadable
 
         static HarmonyCompSlotLoadable()
         {
-            Log.Message("CompSlotLoadable StaticConstructorOnStartup start");
-            Harmony harmony = new Harmony("rimworld.Ogliss.comps.slotloadable");
-            /*
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            */
+            var harmony = new Harmony("jecstools.jecrell.comps.slotloadable");
+            
             var type = typeof(HarmonyCompSlotLoadable);
             harmony.Patch(AccessTools.Method(typeof(Pawn), nameof(Pawn.GetGizmos)), null,
                 new HarmonyMethod(type, nameof(GetGizmos_PostFix)));
@@ -37,7 +33,6 @@ namespace CompSlotLoadable
                 new HarmonyMethod(type, nameof(PostApplyDamage_PostFix)), null);
             harmony.Patch(AccessTools.Method(typeof(StatWorker), "StatOffsetFromGear"), null,
                 new HarmonyMethod(type, nameof(StatOffsetFromGear_PostFix)));
-            Log.Message("CompSlotLoadable StaticConstructorOnStartup end");
         }
 
         // debugging
@@ -153,7 +148,7 @@ namespace CompSlotLoadable
         public static void DrawThingRow_PostFix(ITab_Pawn_Gear __instance, ref float y, float width, Thing thing,
             bool inventory = false)
         {
-            Log.Message("1");
+            //Log.Message("1");
             if (thing is ThingWithComps thingWithComps)
             {
                 var comp = thingWithComps.AllComps.FirstOrDefault(x => x is CompSlotLoadable);
@@ -451,20 +446,16 @@ namespace CompSlotLoadable
                 //Log.Message("6");
                 //Iterate EquippedGizmos
                 var enumerator = CompSlotLoadable.EquippedGizmos().GetEnumerator();
-                //Log.Message("7");
-                if (CompSlotLoadable.EquippedGizmos()!=null)
+                while (enumerator.MoveNext())
                 {
-                    //Log.Message("8");
-                    foreach (Gizmo item in CompSlotLoadable.EquippedGizmos())
-                    {
-                        //Log.Message("8.1");
-                        yield return item;
-                    }
+                    //Log.Message("7");
+                    var current = enumerator.Current;
+                    yield return current;
                 }
             }
         }
 
-        public static void GetGizmos_PostFix(Pawn __instance, ref IEnumerable<Gizmo> __result) 
+        public static void GetGizmos_PostFix(Pawn __instance, ref IEnumerable<Gizmo> __result)
         {
             //Log.Message("1");
             var pawn_EquipmentTracker = __instance.equipment;
@@ -480,48 +471,6 @@ namespace CompSlotLoadable
                     //Log.Message("3");
                     var CompSlotLoadable = thingWithComps.GetComp<CompSlotLoadable>();
                     if (CompSlotLoadable != null)
-                    {
-                        //Log.Message("4");
-                        if (GizmoGetter(CompSlotLoadable).Count() > 0)
-                        {
-                            //Log.Message("4.1");
-                            if (__instance != null)
-                            {
-                                //Log.Message("4.2");
-                                if (__instance.Faction == Faction.OfPlayer)
-                                {
-                                    //Log.Message("4.3");
-                                    __result = __result.Concat(GizmoGetter(CompSlotLoadable));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-    /*
-    [HarmonyPatch(typeof(Pawn), "GetGizmos")]
-    public static class Pawn_GetGizmos_postfix
-    {
-        [HarmonyPostfix]
-        public static void GetGizmos_Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
-        {
-            Log.Message("1");
-            var pawn_EquipmentTracker = __instance.equipment;
-            if (pawn_EquipmentTracker != null)
-            {
-                Log.Message("2");
-                var thingWithComps =
-                    pawn_EquipmentTracker
-                        .Primary; //(ThingWithComps)AccessTools.Field(typeof(Pawn_EquipmentTracker), "primaryInt").GetValue(pawn_EquipmentTracker);
-
-                if (thingWithComps != null)
-                {
-                    Log.Message("3");
-                    var CompSlotLoadable = thingWithComps.GetComp<CompSlotLoadable>();
-                    if (CompSlotLoadable != null)
                         if (GizmoGetter(CompSlotLoadable).Count() > 0)
                             if (__instance != null)
                                 if (__instance.Faction == Faction.OfPlayer)
@@ -529,23 +478,5 @@ namespace CompSlotLoadable
                 }
             }
         }
-
-        public static IEnumerable<Gizmo> GizmoGetter(CompSlotLoadable CompSlotLoadable)
-        {
-            Log.Message("5");
-            if (CompSlotLoadable.GizmosOnEquip)
-            {
-                Log.Message("6");
-                //Iterate EquippedGizmos
-                var enumerator = CompSlotLoadable.EquippedGizmos().GetEnumerator();
-                while (enumerator.MoveNext())
-                {
-                    Log.Message("7");
-                    var current = enumerator.Current;
-                    yield return current;
-                }
-            }
-        }
     }
-        */
 }

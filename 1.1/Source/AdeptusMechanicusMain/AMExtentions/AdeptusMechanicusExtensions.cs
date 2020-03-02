@@ -10,6 +10,19 @@ namespace AdeptusMechanicus.ExtensionMethods
 
     public static class AdeptusMechanicusExtensions
     {
+        public static void GainEquipmentAbility(this Pawn_AbilityTracker tracker, EquipmentAbilityDef def, ThingWithComps thing)
+        {
+            if (!tracker.abilities.Any((Ability a) => a.def == def))
+            {
+                EquipmentAbility ab = Activator.CreateInstance(def.abilityClass, new object[]
+                {
+                    tracker.pawn,
+                    def
+                }) as EquipmentAbility;
+                ab.sourceEquipment = thing;
+                tracker.abilities.Add(ab);
+            }
+        }
         /*
         // Token: 0x060051F6 RID: 20982 RVA: 0x0025FD78 File Offset: 0x0025E178
         public static Graphic ExtractInnerGraphicFor(this Graphic outerGraphic, Thing thing)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JecsTools;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -91,5 +90,75 @@ namespace CompSlotLoadable
             FloatMenus.Add(curSec);
             return FloatMenus;
         }
+    }
+
+
+    public enum _ConditionType
+    {
+        IsType,
+        IsTypeStringMatch,
+        ThingHasComp,
+        HediffHasComp
+    }
+
+    public struct _Condition : IEquatable<_Condition>
+    {
+        public _ConditionType Condition;
+        public object Data;
+
+        public _Condition(_ConditionType condition, object data)
+        {
+            Condition = condition;
+            Data = data;
+        }
+
+        public override string ToString()
+        {
+            return "Condition_" + Condition + "_" + Data;
+        }
+
+        public bool Equals(_Condition other)
+        {
+            return Data == other.Data && Condition == other.Condition;
+        }
+
+        public bool Passes(object toCheck)
+        {
+            //Log.Message(toCheck.GetType().ToString());
+            //Log.Message(Data.ToString());
+
+            switch (Condition)
+            {
+                case _ConditionType.IsType:
+                    //////////////////////////
+                    ///PSYCHOLOGY SPECIAL CASE
+                    if (toCheck.GetType().ToString() == "Psychology.PsychologyPawn" && Data.ToString() == "Verse.Pawn")
+                        return true;
+                    //////////////////////////
+                    if (toCheck.GetType() == Data.GetType() || Equals(toCheck.GetType(), Data) ||
+                        toCheck.GetType() == Data || toCheck.GetType().ToString() == Data.ToString() ||
+                        Data.GetType().IsInstanceOfType(toCheck))
+                        return true;
+                    break;
+                case _ConditionType.IsTypeStringMatch:
+                    if (toCheck.GetType().ToString() == (string)toCheck)
+                        return true;
+                    break;
+                case _ConditionType.ThingHasComp:
+                    var dataType = Data;
+                    if (toCheck is ThingWithComps t && t?.AllComps?.Count > 0 && Enumerable.Any(t.AllComps, comp =>
+                            comp?.props?.compClass?.ToString() == dataType?.ToString() ||
+                            comp?.props?.compClass?.BaseType?.ToString() == dataType?.ToString()))
+                        return true;
+                    break;
+            }
+            return false;
+        }
+    }
+
+    public abstract class FloatMenuPatch
+    {
+        public abstract IEnumerable<KeyValuePair<_Condition, Func<Vector3, Pawn, Thing, List<FloatMenuOption>>>>
+            GetFloatMenus();
     }
 }

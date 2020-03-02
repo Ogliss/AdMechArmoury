@@ -16,7 +16,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (info.innerContainer.Any(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())))
             {
                 List<Thing> list = info.innerContainer.Where(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())).ToList();
-                FactionDefExtension extension = list.RandomElement().Faction.def.GetModExtension<FactionDefExtension>();
+                Thing thing = list.RandomElement();
+            //    Log.Message(string.Format("thing.Faction: {0}", thing.Faction));
+                FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
+                if (thing.Faction.IsPlayer)
+                {
+                    return result;
+                }
                 if (extension.DropPodOverride == DeepStrikeType.Drop)
                 {
                     DeepStrikeUtility.MakeDropPodAt(c, map, info, extension);

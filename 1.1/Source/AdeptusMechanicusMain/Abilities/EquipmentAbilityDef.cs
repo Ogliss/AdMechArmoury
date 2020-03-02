@@ -5,7 +5,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    class EquipmentAbilityDef : AbilityDef
+    public class EquipmentAbilityDef : AbilityDef
     {
         public float cooldown = -1;
         public virtual string GetDescription()
