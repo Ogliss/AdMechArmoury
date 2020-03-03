@@ -1,6 +1,6 @@
 ﻿using Verse;
 using RimWorld;
-using CompActivatableEffect;
+using AdeptusMechanicus;
 using UnityEngine;
 
 namespace AdeptusMechanicus
@@ -13,7 +13,7 @@ namespace AdeptusMechanicus
     public class CompPowerWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
 
-        private CompActivatableEffect.CompActivatableEffect.State currentState = CompActivatableEffect.CompActivatableEffect.State.Deactivated;
+        private CompActivatableEffect.State currentState = AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
         /*
         public override bool CanActivate()
         {
@@ -32,7 +32,7 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (!GetPawn.IsColonist)
             {
-                this.currentState = CompActivatableEffect.CompActivatableEffect.State.Activated;
+                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
             }
         }
 

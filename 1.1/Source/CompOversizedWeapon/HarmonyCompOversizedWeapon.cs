@@ -5,7 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CompOversizedWeapon
+namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
     internal static class HarmonyCompOversizedWeapon
@@ -43,7 +43,7 @@ namespace CompOversizedWeapon
                         return false;
                 }
 
-                var compOversizedWeapon = thingWithComps.TryGetComp<CompOversizedWeapon>();
+                var compOversizedWeapon = thingWithComps.TryGetComp<AdeptusMechanicus.CompOversizedWeapon>();
                 if (compOversizedWeapon != null)
                 {
                     var flip = false;
@@ -92,8 +92,8 @@ namespace CompOversizedWeapon
                     var s = new Vector3(eq.def.graphicData.drawSize.x, 1f, eq.def.graphicData.drawSize.y);
                     var matrix = default(Matrix4x4);
 
-         
                     Vector3 curOffset = AdjustRenderOffsetFromDir(pawn, compOversizedWeapon);
+                    curOffset.y -= 0.1f;
                     matrix.SetTRS(drawLoc + curOffset, Quaternion.AngleAxis(num, Vector3.up), s);                        
                     
                     Graphics.DrawMesh(!flip ? MeshPool.plane10 : MeshPool.plane10Flip, matrix, matSingle, 0);

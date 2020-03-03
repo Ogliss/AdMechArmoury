@@ -6,7 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace CompSlotLoadable
+namespace AdeptusMechanicus
 {
     public class CompSlotLoadable : ThingComp
     {

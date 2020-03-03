@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     if (eq.TryGetComp<CompAlwaysActivatableEffect>() != null && eq.TryGetComp<CompAlwaysActivatableEffect>() is CompAlwaysActivatableEffect compAlwaysActivatable)
                     {
-                        bool flag = compAlwaysActivatable.CurrentState == CompActivatableEffect.CompActivatableEffect.State.Deactivated;
+                        bool flag = compAlwaysActivatable.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
                         if (flag)
                         {
                             compAlwaysActivatable.TryActivate();

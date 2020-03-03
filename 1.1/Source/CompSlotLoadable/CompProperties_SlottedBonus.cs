@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CompSlotLoadable
+namespace AdeptusMechanicus
 {
     public class CompProperties_SlottedBonus : CompProperties
     {

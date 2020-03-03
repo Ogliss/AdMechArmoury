@@ -79,19 +79,22 @@ namespace RimWorld
                 return false;
             }
             float points = Mathf.Max(parms.points * 0.9f, 300f);
+            Thing thing = ThingMaker.MakeThing(shipPartDef, null);
+            Building building_CrashedShipPart = (Building)thing;
+            CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetComp<CompPawnSpawnerOnDamaged>();
+            Faction faction = damaged.faction ?? Faction.OfMechanoids;
+            thing.SetFaction(faction, null);
             List<Pawn> list2 = PawnGroupMakerUtility.GeneratePawns(new PawnGroupMakerParms
             {
                 groupKind = PawnGroupKindDefOf.Combat,
                 tile = map.Tile,
-                faction = Faction.OfMechanoids,
+                faction = faction,
                 points = points
             }, true).ToList<Pawn>();
-            Thing thing = ThingMaker.MakeThing(shipPartDef, null);
-            thing.SetFaction(Faction.OfMechanoids, null);
-            LordMaker.MakeNewLord(Faction.OfMechanoids, new LordJob_SleepThenMechanoidsDefend(new List<Thing>
+            LordMaker.MakeNewLord(faction, new LordJob_SleepThenMechanoidsDefend(new List<Thing>
             {
                 thing
-            }, Faction.OfMechanoids, 28f, intVec, false, false), map, list2);
+            }, faction, 28f, intVec, false, false), map, list2);
             DropPodUtility.DropThingsNear(intVec, map, list2.Cast<Thing>(), 110, false, false, true, true);
             foreach (Pawn thing2 in list2)
             {

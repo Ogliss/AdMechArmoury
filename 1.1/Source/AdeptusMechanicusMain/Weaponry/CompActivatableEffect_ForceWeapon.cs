@@ -1,6 +1,6 @@
 ﻿using Verse;
 using RimWorld;
-using CompActivatableEffect;
+using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus
@@ -13,7 +13,7 @@ namespace AdeptusMechanicus
     public class CompForceWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
 
-        private CompActivatableEffect.CompActivatableEffect.State currentState = CompActivatableEffect.CompActivatableEffect.State.Deactivated;
+        private CompActivatableEffect.State currentState = CompActivatableEffect.State.Deactivated;
         
         public CompWeapon_MeleeSpecialRules specialRules
         {
@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (GetPawn!=null && GetPawn.isPsyker(out int level))
             {
-                this.currentState = CompActivatableEffect.CompActivatableEffect.State.Activated;
+                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
             }
         }
 

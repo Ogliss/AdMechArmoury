@@ -4,7 +4,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace CompSlotLoadable
+namespace AdeptusMechanicus
 {
     /**
      * Modified JobDriver_Equip

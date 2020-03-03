@@ -1,7 +1,7 @@
 using UnityEngine;
 using Verse;
 
-namespace CompToggleDef
+namespace AdeptusMechanicus
 {
     public class ToggleDefCardUtility
     {

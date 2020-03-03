@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace CompActivatableEffect
+namespace AdeptusMechanicus
 {
     public class CompProperties_ActivatableEffect : CompProperties
     {

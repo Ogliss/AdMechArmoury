@@ -1,6 +1,6 @@
 using Verse;
 
-namespace CompToggleDef
+namespace AdeptusMechanicus
 {
     public class CompProperties_ToggleDef : CompProperties
     {

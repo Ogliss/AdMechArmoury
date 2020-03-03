@@ -1,21 +1,21 @@
 ﻿using Verse;
 using RimWorld;
-using CompActivatableEffect;
+using AdeptusMechanicus;
 using UnityEngine;
 using System.Collections.Generic;
 
 namespace AdeptusMechanicus
 {
-    public class CompProperties_AlwaysActivatableEffect : CompActivatableEffect.CompProperties_ActivatableEffect
+    public class CompProperties_AlwaysActivatableEffect : CompProperties_ActivatableEffect
     {
         public CompProperties_AlwaysActivatableEffect() => this.compClass = typeof(CompAlwaysActivatableEffect);
     }
 
-    public class CompAlwaysActivatableEffect : CompActivatableEffect.CompActivatableEffect
+    public class CompAlwaysActivatableEffect : CompActivatableEffect
     {
 
         private Graphic graphicInt;
-        private CompActivatableEffect.CompActivatableEffect.State currentState = CompActivatableEffect.CompActivatableEffect.State.Deactivated;
+        private AdeptusMechanicus.CompActivatableEffect.State currentState = AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
 
         public bool PowerWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_PowerWeapon_")));
         public bool RendingWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
@@ -60,7 +60,7 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (!GetPawn.IsColonist)
             {
-                this.currentState = CompActivatableEffect.CompActivatableEffect.State.Activated;
+                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
             }
         }
 

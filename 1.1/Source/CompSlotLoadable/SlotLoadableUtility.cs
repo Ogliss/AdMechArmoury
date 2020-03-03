@@ -3,7 +3,7 @@ using System.Linq;
 using RimWorld;
 using Verse;
 
-namespace CompSlotLoadable
+namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
     public static class SlotLoadableUtility

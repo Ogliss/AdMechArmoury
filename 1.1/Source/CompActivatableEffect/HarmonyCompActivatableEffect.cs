@@ -6,7 +6,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace CompActivatableEffect
+namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
     internal static class HarmonyCompActivatableEffect
@@ -40,8 +40,8 @@ namespace CompActivatableEffect
         {
             if (__instance is Pawn_EquipmentTracker eqq &&
                 eqq.Primary is ThingWithComps t &&
-                t.GetComp<CompActivatableEffect>() is CompActivatableEffect compActivatableEffect &&
-                compActivatableEffect.CurrentState == CompActivatableEffect.State.Activated)
+                t.GetComp<AdeptusMechanicus.CompActivatableEffect>() is AdeptusMechanicus.CompActivatableEffect compActivatableEffect &&
+                compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Activated)
                 compActivatableEffect.TryDeactivate();
         }
 
@@ -49,8 +49,8 @@ namespace CompActivatableEffect
         {
             if (__instance is Pawn p && p.equipment is Pawn_EquipmentTracker eq &&
                 eq.Primary is ThingWithComps t &&
-                t.GetComp<CompActivatableEffect>() is CompActivatableEffect compActivatableEffect &&
-                compActivatableEffect.CurrentState == CompActivatableEffect.State.Activated)
+                t.GetComp<AdeptusMechanicus.CompActivatableEffect>() is AdeptusMechanicus.CompActivatableEffect compActivatableEffect &&
+                compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Activated)
                 compActivatableEffect.TryDeactivate();
         }
         
@@ -62,15 +62,15 @@ namespace CompActivatableEffect
             }
             if (__instance.pawn is Pawn p && p.equipment is Pawn_EquipmentTracker eq &&
                 eq.Primary is ThingWithComps t &&
-                t.GetComp<CompActivatableEffect>() is CompActivatableEffect compActivatableEffect)
+                t.GetComp<AdeptusMechanicus.CompActivatableEffect>() is AdeptusMechanicus.CompActivatableEffect compActivatableEffect)
                 if (value == false)
                 {
-                    if (compActivatableEffect.CurrentState == CompActivatableEffect.State.Activated)
+                    if (compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Activated)
                         compActivatableEffect.TryDeactivate();
                 }
                 else
                 {
-                    if (compActivatableEffect.CurrentState == CompActivatableEffect.State.Deactivated)
+                    if (compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Deactivated)
                         compActivatableEffect.TryActivate();
                 }
         }
@@ -85,7 +85,7 @@ namespace CompActivatableEffect
                 var thingWithComps =
                     pawn_EquipmentTracker?.Primary; //(ThingWithComps)AccessTools.Field(typeof(Pawn_EquipmentTracker), "primaryInt").GetValue(pawn_EquipmentTracker);
 
-                var compActivatableEffect = thingWithComps?.GetComp<CompActivatableEffect>();
+                var compActivatableEffect = thingWithComps?.GetComp<AdeptusMechanicus.CompActivatableEffect>();
                 if (compActivatableEffect == null) return true;
 
                 //Equipment source throws errors when checked while casting abilities with a weapon equipped.
@@ -99,7 +99,7 @@ namespace CompActivatableEffect
                 {
                 }
 
-                if (compActivatableEffect.CurrentState == CompActivatableEffect.State.Activated) return true;
+                if (compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Activated) return true;
                 
                 if (Find.TickManager.TicksGame % 250 == 0)
                     Messages.Message("DeactivatedWarning".Translate(pawn.Label),
@@ -156,10 +156,10 @@ namespace CompActivatableEffect
             var pawn_EquipmentTracker = pawn.equipment;
             var thingWithComps =
                 pawn_EquipmentTracker?.Primary; //(ThingWithComps)AccessTools.Field(typeof(Pawn_EquipmentTracker), "primaryInt").GetValue(pawn_EquipmentTracker);
-            CompOversizedWeapon.CompOversizedWeapon compOversized = thingWithComps.TryGetComp<CompOversizedWeapon.CompOversizedWeapon>();
-            var compActivatableEffect = thingWithComps?.GetComp<CompActivatableEffect>();
+            AdeptusMechanicus.CompOversizedWeapon compOversized = thingWithComps.TryGetComp<AdeptusMechanicus.CompOversizedWeapon>();
+            var compActivatableEffect = thingWithComps?.GetComp<AdeptusMechanicus.CompActivatableEffect>();
             if (compActivatableEffect?.Graphic == null) return;
-            if (compActivatableEffect.CurrentState != CompActivatableEffect.State.Activated) return;
+            if (compActivatableEffect.CurrentState != AdeptusMechanicus.CompActivatableEffect.State.Activated) return;
             var num = aimAngle - 90f;
             var flip = false;
 
@@ -281,7 +281,7 @@ namespace CompActivatableEffect
             }
         }
 
-        private static float AdjustOffsetAtPeace(Thing eq, Pawn pawn, CompOversizedWeapon.CompOversizedWeapon compOversizedWeapon, float num)
+        private static float AdjustOffsetAtPeace(Thing eq, Pawn pawn, CompOversizedWeapon compOversizedWeapon, float num)
         {
             if (compOversizedWeapon == null)
             {
@@ -298,7 +298,7 @@ namespace CompActivatableEffect
             return num;
         }
 
-        private static float AdjustNonCombatRotation(Pawn pawn, float num, CompOversizedWeapon.CompOversizedWeapon compOversizedWeapon)
+        private static float AdjustNonCombatRotation(Pawn pawn, float num, AdeptusMechanicus.CompOversizedWeapon compOversizedWeapon)
         {
             if (compOversizedWeapon==null)
             {
@@ -326,7 +326,7 @@ namespace CompActivatableEffect
             return num;
         }
 
-        private static Vector3 AdjustRenderOffsetFromDir(Pawn pawn, CompOversizedWeapon.CompOversizedWeapon compOversizedWeapon)
+        private static Vector3 AdjustRenderOffsetFromDir(Pawn pawn, CompOversizedWeapon compOversizedWeapon)
         {
             var curDir = pawn.Rotation;
 
@@ -353,7 +353,7 @@ namespace CompActivatableEffect
             return curOffset;
         }
 
-        public static IEnumerable<Gizmo> GizmoGetter(CompActivatableEffect compActivatableEffect)
+        public static IEnumerable<Gizmo> GizmoGetter(AdeptusMechanicus.CompActivatableEffect compActivatableEffect)
         {
             //Log.Message("5");
             if (compActivatableEffect.GizmosOnEquip)
@@ -383,7 +383,7 @@ namespace CompActivatableEffect
                 if (thingWithComps != null)
                 {
                     //Log.Message("3");
-                    var compActivatableEffect = thingWithComps.GetComp<CompActivatableEffect>();
+                    var compActivatableEffect = thingWithComps.GetComp<AdeptusMechanicus.CompActivatableEffect>();
                     if (compActivatableEffect != null)
                         if (__instance != null)
                             if (__instance.Faction == Faction.OfPlayer)
@@ -392,7 +392,7 @@ namespace CompActivatableEffect
                             }
                             else
                             {
-                                if (compActivatableEffect.CurrentState == CompActivatableEffect.State.Deactivated)
+                                if (compActivatableEffect.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Deactivated)
                                     compActivatableEffect.Activate();
                             }
                 }

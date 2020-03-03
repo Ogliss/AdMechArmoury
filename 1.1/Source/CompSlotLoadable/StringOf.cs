@@ -1,4 +1,4 @@
-﻿namespace CompSlotLoadable
+﻿namespace AdeptusMechanicus
 {
     public static class StringOf
     {

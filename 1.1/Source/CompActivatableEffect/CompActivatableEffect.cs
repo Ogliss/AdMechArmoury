@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace CompActivatableEffect
+namespace AdeptusMechanicus
 {
     public class CompActivatableEffect : CompUseEffect
     {

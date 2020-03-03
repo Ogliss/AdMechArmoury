@@ -1,4 +1,4 @@
-﻿namespace CompSlotLoadable
+﻿namespace AdeptusMechanicus
 {
     public class SlotBonusProps_VampiricEffect
     {

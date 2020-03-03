@@ -20,8 +20,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (pawn != null)
                 {
                     Pawn value2 = pawn;
-                    CompActivatableEffect.CompActivatableEffect compActivatableEffect = eq.TryGetComp<CompActivatableEffect.CompActivatableEffect>();
-                    CompOversizedWeapon.CompOversizedWeapon compOversizedWeapon = eq.TryGetComp<CompOversizedWeapon.CompOversizedWeapon>();
+                    AdeptusMechanicus.CompActivatableEffect compActivatableEffect = eq.TryGetComp<AdeptusMechanicus.CompActivatableEffect>();
+                    AdeptusMechanicus.CompOversizedWeapon compOversizedWeapon = eq.TryGetComp<AdeptusMechanicus.CompOversizedWeapon>();
                     if (compActivatableEffect != null && compOversizedWeapon != null)
                     {
                         return false;
