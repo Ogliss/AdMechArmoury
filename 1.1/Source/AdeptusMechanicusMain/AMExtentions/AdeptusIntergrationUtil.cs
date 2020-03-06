@@ -19,6 +19,7 @@ namespace AdeptusMechanicus
         public static bool enabled_MagosXenobiologis = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Magos Xenobiologis"));
         public static bool enabled_AlienRaces = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name == "Humanoid Alien Races 2.0");
 
+        public static bool enabled_AdeptusAstartes = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus") && m.Name.Contains("Astartes"));
         public static bool enabled_XenobiologisOrk = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Ork") && m.Name.Contains("Xenobiologis"));
         public static bool enabled_XenobiologisTau = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Tau") && m.Name.Contains("Xenobiologis"));
         public static bool enabled_XenobiologisEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Eldar") && !m.Name.Contains("Dark") && m.Name.Contains("Xenobiologis"));

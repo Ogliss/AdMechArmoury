@@ -8,9 +8,9 @@ using RimWorld;
 
 namespace AdeptusMechanicus.settings
 {
-    public static class AMASettingsHelper
+    public static class SettingsHelper
     {
-        public static AMASettings latest;
+        public static AMSettings latest;
     }
     
 }

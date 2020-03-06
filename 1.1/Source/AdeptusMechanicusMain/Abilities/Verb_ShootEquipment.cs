@@ -23,7 +23,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (RapidFire && AMASettings.Instance.AllowRapidFire)
+                if (RapidFire && AMSettings.Instance.AllowRapidFire)
                 {
                     if (caster.Position.InHorDistOf(((Pawn)caster).TargetCurrentlyAimingAt.Cell, RapidFireRange))
                     {

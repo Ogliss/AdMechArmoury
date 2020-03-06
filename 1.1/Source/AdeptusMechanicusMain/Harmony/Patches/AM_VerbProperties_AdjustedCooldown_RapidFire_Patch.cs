@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 RapidFire = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(ownerVerb.verbProps)].RapidFire;
             }
-            if (RapidFire && AMASettings.Instance.AllowRapidFire)
+            if (RapidFire && AMSettings.Instance.AllowRapidFire)
             {
 
                 if (ownerVerb.caster.Position.InHorDistOf(((Pawn)ownerVerb.caster).TargetCurrentlyAimingAt.Cell, ownerVerb.verbProps.range / 2))

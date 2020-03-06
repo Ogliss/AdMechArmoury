@@ -20,29 +20,24 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void GenerateTechHediffsFor_UseAllTechHediffMoney(Pawn pawn)
         {
             bool logflag = SteamUtility.SteamPersonaName == "Ogliss";
-            if (pawn.kindDef.techHediffsTags == null)
+            if (pawn.kindDef.techHediffsTags.NullOrEmpty())
             {
-                return;
-            }
-            if (!pawn.kindDef.techHediffsTags.Contains("UseAllTechHediff"))
-            {
-                if (logflag) Log.Message(string.Format("{0} Does not UseAllTechHediff", pawn.LabelShortCap));
                 return;
             }
             else
+            if (!pawn.kindDef.techHediffsTags.Any(x=> x =="UseAllTechHediff"))
             {
-                if (logflag) Log.Message(string.Format("{0} UseAllTechHediff", pawn.LabelShortCap));
+                return;
             }
             if (Rand.Value > pawn.kindDef.techHediffsChance)
             {
                 return;
             }
             float partsMoney = pawn.kindDef.techHediffsMoney.RandomInRange;
-
-            Log.Message(string.Format("{0} TechHediffMoney: {1}", pawn.LabelShortCap, partsMoney));
+            
             foreach (Hediff hd in pawn.health.hediffSet.hediffs.FindAll(x=> (x.def.spawnThingOnRemoved!=null && x.def.spawnThingOnRemoved.isTechHediff) || x.def.hediffClass == typeof(Hediff_AddedPart) || x.def.hediffClass == typeof(Hediff_Implant)))
             {
-                partsMoney = partsMoney - hd.def.spawnThingOnRemoved.BaseMarketValue;
+                partsMoney -= hd.def.spawnThingOnRemoved.BaseMarketValue;
             }
             
             int i = 0;
@@ -55,7 +50,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     ThingDef partDef = source.RandomElementByWeight((ThingDef w) => w.BaseMarketValue);
                     IEnumerable<RecipeDef> source2 = from x in DefDatabase<RecipeDef>.AllDefs
-                                                     where x.IsIngredient(partDef) && pawn.def.AllRecipes.Contains(x)
+                                                     where x.IsIngredient(partDef) && x.targetsBodyPart
                                                      select x;
                     if (source2.Any<RecipeDef>())
                     {
@@ -63,7 +58,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).Any<BodyPartRecord>())
                         {
                             recipeDef.Worker.ApplyOnPawn(pawn, recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).RandomElement<BodyPartRecord>(), null, emptyIngredientsList, null);
-                            Log.Message(string.Format("adding {0} to {1} for {2}", recipeDef.addsHediff.LabelCap, pawn.LabelShortCap, recipeDef.addsHediff.spawnThingOnRemoved.LabelCap));
                             partsMoney -= recipeDef.addsHediff.spawnThingOnRemoved.BaseMarketValue;
                             if (Rand.Value > pawn.kindDef.techHediffsChance)
                             {

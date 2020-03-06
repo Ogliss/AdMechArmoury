@@ -8,48 +8,86 @@ using RimWorld;
 
 namespace AdeptusMechanicus.settings
 {
-    public class AMAMod : Mod
+    public class AMAMod : AMMod
     {
-        public static AMAMod Instance;
-        public AMASettings settings;
         public AMAMod(ModContentPack content) : base(content)
         {
-            this.settings = GetSettings<AMASettings>();
-            AMASettingsHelper.latest = this.settings;
-            AMAMod.Instance = this;
-            AMASettings.Instance = base.GetSettings<AMASettings>();
+            this.settings = GetSettings<AMSettings>();
+            SettingsHelper.latest = this.settings;
+            Instance = this;
+            AMSettings.Instance = base.GetSettings<AMSettings>();
         }
-        
+
         public override string SettingsCategory() => "AM_ModSeries".Translate() + ": " + "AMA_ModName".Translate();
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Listing_Standard listing_Standard = new Listing_Standard();
             float num = 800f;
-            float num2 = 500f + (settings.ShowSpecialRules ? 30 : 0) + (settings.ShowWeaponSpecialRules ? 120 : 0) + (settings.ShowAllowedWeapons ? 120 : 0);
-            PreModOptions(listing_Standard, inRect, num, ref num2);
-            Rect rect = new Rect(inRect.x, inRect.y - 50, num, num2);
+            Rect rect = new Rect(inRect.x, inRect.y - 50, num, MenuLength);
             listing_Standard.BeginScrollView(inRect, ref pos, ref rect);
 
-            listing_Standard.Label("AMA_ModName".Translate()+" Settings");
-            ModOptions(ref listing_Standard, rect, inRect, num, num2);
+            listing_Standard.Label("AMA_ModName".Translate() + " Settings");
+            ModOptions(ref listing_Standard, rect, inRect, num, MenuLength);
+
 
             listing_Standard.EndScrollView(ref rect);
-
-            PostModOptions(listing_Standard, inRect, num, num2);
+            PostModOptions(listing_Standard, inRect, num, MenuLength);
 
         }
 
-        public void PreModOptions(Listing_Standard listing_Standard, Rect inRect, float num, ref float num2)
+        public float MenuLength
         {
-            if (num > num*2)
+            get
+            {
+                float num = 200f + (settings.ShowSpecialRules ? 60 : 0) + (settings.ShowWeaponSpecialRules ? 120 : 0) + (settings.ShowAllowedWeapons ? 120 : 0);
+                bool AMXB = AdeptusIntergrationUtil.enabled_MagosXenobiologis;
+                if (AMXB)
+                {
+                    num += 200f;
+                    num += SettingsHelper.latest.ShowImperium ? 60f : 0f;
+                    num += SettingsHelper.latest.ShowChaos ? 120f : 0f;
+                    num += SettingsHelper.latest.ShowEldar ? 60f : 0f;
+                    num += SettingsHelper.latest.ShowTau ? 60f : 0f;
+                    num += SettingsHelper.latest.ShowOrk ? 60f : 0;
+                    num += SettingsHelper.latest.ShowNecron ? 60f : 0;
+                    num += SettingsHelper.latest.ShowTyranid ? 60f : 0;
+                }
+                bool AMXO = AdeptusIntergrationUtil.enabled_XenobiologisOrk;
+                if (AMXO)
+                {
+                    num += (AMSettings.Instance.ShowOrk ? (AMXB ? 60f : 120f) : 0);
+                }
+                bool AMXE = AdeptusIntergrationUtil.enabled_XenobiologisEldar;
+                if (AMXE)
+                {
+                    num += (AMSettings.Instance.ShowEldar ? (AMXB ? 60f : 120f) : 0);
+                }
+                bool AMXT = AdeptusIntergrationUtil.enabled_XenobiologisTau;
+                if (AMXT)
+                {
+                    num += (AMSettings.Instance.ShowTau ? (AMXB ? 60f : 120f) : 0);
+                }
+                bool AMAA = AdeptusIntergrationUtil.enabled_AdeptusAstartes;
+                if (AMAA)
+                {
+                    num += (AMSettings.Instance.ShowImperium ? (AMXB ? 60f : 120f) : 0);
+                }
+                return num;
+            }
+        }
+
+
+        public override void PreModOptions(Listing_Standard listing_Standard, Rect inRect, float num, ref float num2)
+        {
+            if (num > num * 2)
             {
                 Log.Message(string.Format("PreModOptions Listing: {0}, inRect: {1}, num: {2}, num2: {3}", listing_Standard, inRect, num, num2));
             }
 
         }
 
-        public void ModOptions(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
+        public override void ModOptions(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
         {
             listing_Standard.CheckboxLabeled("AMA_ShowSpecialRules".Translate(), ref settings.ShowSpecialRules, "AMA_ShowSpecialRulesDesc".Translate());
             Rect rectShowSpecialRules = new Rect(rect.x, rect.y + 10, num, 120f);
@@ -91,27 +129,22 @@ namespace AdeptusMechanicus.settings
                 CheckboxLabeled(rectShowWeaponSpecialRules.BottomHalf().BottomHalf().RightHalf().ContractedBy(4), "AMA_AllowTyranidWeapons".Translate(), ref settings.AllowTyranidWeapons, "AMA_AllowTyranidWeaponsDesc".Translate());
                 listing_Standard.EndSection(listing_Standard);
             }
+            XenobiologisSettings(ref listing_Standard, rect, inRect, num, num2);
+            ImperialSettings(ref listing_Standard, rect, inRect, num, num2);
+            ChaosSettings(ref listing_Standard, rect, inRect, num, num2);
+            EldarSettings(ref listing_Standard, rect, inRect, num, num2);
+            OrkSettings(ref listing_Standard, rect, inRect, num, num2);
+            TauSettings(ref listing_Standard, rect, inRect, num, num2);
+            NecronSettings(ref listing_Standard, rect, inRect, num, num2);
+            TyranidSettings(ref listing_Standard, rect, inRect, num, num2);
         }
-
-        public void PostModOptions(Listing_Standard listing_Standard, Rect inRect, float num, float num2)
+        
+        public override void PostModOptions(Listing_Standard listing_Standard, Rect inRect, float num, float num2)
         {
             this.settings.Write();
         }
 
-
-        public void CheckboxLabeled(Rect rect, string label, ref bool checkOn, string tooltip = null, bool disabled = false, Texture2D texChechked = null, Texture2D texUnchechked = null, bool placeCheckboxNearText = false)
-        {
-            if (!tooltip.NullOrEmpty())
-            {
-                if (Mouse.IsOver(rect))
-                {
-                    Widgets.DrawHighlight(rect);
-                }
-                TooltipHandler.TipRegion(rect, tooltip);
-            }
-            Widgets.CheckboxLabeled(rect, label, ref checkOn, disabled, texChechked, texUnchechked, placeCheckboxNearText);
-           // base.Gap(this.verticalSpacing);
-        }
+        
         private Vector2 pos = new Vector2(0f, 0f);
         private Vector2 pos2 = new Vector2(0f, 0f);
 

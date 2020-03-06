@@ -87,7 +87,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Immunitylist = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].UserEffectImmuneList;
                 AddHediffChance = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].ResistEffectStat != null ? _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].EffectsUserChance * __instance.caster.GetStatValue(_VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].ResistEffectStat, true) : _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].EffectsUserChance;
             }
-            if ((GetsHot && AMASettings.Instance.AllowGetsHot) || (Jams && AMASettings.Instance.AllowJams))
+            if ((GetsHot && AMSettings.Instance.AllowGetsHot) || (Jams && AMSettings.Instance.AllowJams))
             {
                 string msg = string.Format("");
                 string reliabilityString;
@@ -208,7 +208,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            if (ScattershotCount > 0 && Multishot && AMASettings.Instance.AllowMultiShot)
+            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot)
             {
                 //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
                 for (int i = 0; i < ScattershotCount; i++)
@@ -223,7 +223,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 TryCastExtraShot(ref __instance);
             }
-            if (UserEffect && AMASettings.Instance.AllowUserEffects)
+            if (UserEffect && AMSettings.Instance.AllowUserEffects)
             {
                 if (__instance.caster.def.category == ThingCategory.Pawn)
                 {
@@ -612,7 +612,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             HediffDef UserHediff = __instance.verbProperties.UserEffect;
             float AddHediffChance = __instance.verbProperties.EffectsUserChance;
             List<string> Immunitylist = __instance.verbProperties.UserEffectImmuneList;
-            if ((GetsHot && AMASettings.Instance.AllowGetsHot) || (Jams && AMASettings.Instance.AllowJams))
+            if ((GetsHot && AMSettings.Instance.AllowGetsHot) || (Jams && AMSettings.Instance.AllowJams))
             {
                 string msg = string.Format("");
                 string reliabilityString;
@@ -733,7 +733,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            if (ScattershotCount > 0 && Multishot && AMASettings.Instance.AllowMultiShot)
+            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot)
             {
                 //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
                 for (int i = 0; i < ScattershotCount; i++)
@@ -748,7 +748,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 TryCastExtraShot(ref __instance);
             }
-            if (UserEffect && AMASettings.Instance.AllowUserEffects)
+            if (UserEffect && AMSettings.Instance.AllowUserEffects)
             {
                 if (__instance.caster.def.category == ThingCategory.Pawn)
                 {

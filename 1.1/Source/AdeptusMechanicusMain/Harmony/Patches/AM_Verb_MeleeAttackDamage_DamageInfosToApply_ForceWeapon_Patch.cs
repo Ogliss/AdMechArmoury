@@ -29,7 +29,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (__instance.EquipmentSource.GetComp<CompWeapon_MeleeSpecialRules>() is CompWeapon_MeleeSpecialRules WeaponRules)
                         {
-                            if (AMASettings.Instance.AllowForceWeaponEffect)
+                            if (AMSettings.Instance.AllowForceWeaponEffect)
                             {
                                 bool ForceAttack = __result.Any(x => x.Def.forceWeapon());
                                 if (WeaponRules.ForceWeapon && ForceAttack && __instance.CasterPawn is Pawn Caster)

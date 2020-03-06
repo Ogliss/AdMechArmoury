@@ -48,7 +48,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 BodyBurstSize = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(__instance.verbProps)].TyranidBurstBodySize;
             }
-            if (RapidFire && AMASettings.Instance.AllowRapidFire)
+            if (RapidFire && AMSettings.Instance.AllowRapidFire)
             {
                 if (__instance.caster.Position.InHorDistOf(((Pawn)__instance.caster).TargetCurrentlyAimingAt.Cell, RapidFireRange))
                 {
