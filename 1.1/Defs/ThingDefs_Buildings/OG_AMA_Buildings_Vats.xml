@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<defName>OG_OrganVat</defName>
+		<label>organ vat</label>
+		<description>A vat for growing various natural organs. Requires a clean room to operate efficently and regular maintence by a skilled scientist and doctor. If power goes out it will rapidly lose maintence.</description>
+		<thingClass>AdeptusMechanicus.Building_VatGrower</thingClass>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/QEVat</texPath>
+			<drawSize>(2,2)</drawSize>
+			<drawRotated>false</drawRotated>
+			<shadowData>
+				<volume>(0.52, 0.53, 0.09)</volume>
+				<offset>(0,0,-0.43)</offset>
+			</shadowData>
+		</graphicData>
+		<drawerType>RealtimeOnly</drawerType>
+		<size>(1,1)</size>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>70</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<hasInteractionCell>true</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<!--<designationCategory>Production</designationCategory>-->
+		<rotatable>true</rotatable>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+		<uiIconOffset>(0, 0.03)</uiIconOffset>
+		<uiIconScale>0.65</uiIconScale>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<building>
+			<uninstallWork>1800</uninstallWork>
+		</building>
+		<thingCategories>
+			<li>BuildingsProduction</li>
+		</thingCategories>
+		<costList>
+			<Steel>200</Steel>
+			<Silver>35</Silver>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<researchPrerequisites>
+			<!-- <li>OG_OrganVat</li> -->
+		</researchPrerequisites>
+		<statBases>
+			<MaxHitPoints>300</MaxHitPoints>
+			<WorkToBuild>10000</WorkToBuild>
+			<Flammability>0.5</Flammability>
+			<Beauty>5</Beauty>
+			<Mass>50</Mass>
+			<Cleanliness>1.2</Cleanliness>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>200</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>1.75</glowRadius>
+				<glowColor>(181,230,29,0)</glowColor>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.VatGrowerProperties">
+				<bottomGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatBottom</texPath>
+					<drawSize>(2,2)</drawSize>
+					<drawRotated>false</drawRotated>
+				</bottomGraphic>
+				<topGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatTop</texPath>
+					<drawSize>(2,2)</drawSize>
+					<drawRotated>false</drawRotated>
+				</topGraphic>
+				<glowGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatGlow</texPath>
+					<shaderType>MoteGlow</shaderType>
+					<drawSize>(2,2)</drawSize>
+					<drawRotated>false</drawRotated>
+				</glowGraphic>
+				<topDetailGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatTopDetail</texPath>
+					<shaderType>MoteGlow</shaderType>
+					<drawSize>(2,2)</drawSize>
+					<drawRotated>false</drawRotated>
+				</topDetailGraphic>
+			</li>
+		</modExtensions>
+	</ThingDef>
+<!--
+	<ThingDef ParentName="BuildingBase">
+		<defName>QE_PawnVat</defName>
+		<label>clone vat</label>
+		<description>A enormous vat for growing clones of living organisms from scratch. Requires a clean room to operate efficently and regular maintence by a skilled scientist and doctor. If power goes out it will rapidly lose maintence.</description>
+		<thingClass>QEthics.Building_PawnVatGrower</thingClass>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/QEVat</texPath>
+			<drawSize>(6,6)</drawSize>
+			<drawRotated>false</drawRotated>
+			<shadowData>
+				<volume>(0.52, 0.53, 0.09)</volume>
+				<offset>(0,0,-0.43)</offset>
+			</shadowData>
+		</graphicData>
+		<drawerType>RealtimeOnly</drawerType>
+		<size>(3,3)</size>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>70</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<hasInteractionCell>true</hasInteractionCell>
+		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
+		<designationCategory>Production</designationCategory>
+		<rotatable>true</rotatable>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+		<constructionSkillPrerequisite>12</constructionSkillPrerequisite>
+		<uiIconOffset>(0, 0.03)</uiIconOffset>
+		<uiIconScale>0.75</uiIconScale>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<building>
+			<uninstallWork>1800</uninstallWork>
+		</building>
+		<thingCategories>
+			<li>BuildingsProduction</li>
+		</thingCategories>
+		<costList>
+			<Steel>325</Steel>
+			<Silver>225</Silver>
+			<Plasteel>75</Plasteel>
+			<ComponentSpacer>3</ComponentSpacer>
+		</costList>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<researchPrerequisites>
+			<li>QE_VatGrownBeings</li>
+		</researchPrerequisites>
+		<statBases>
+			<MaxHitPoints>1000</MaxHitPoints>
+			<WorkToBuild>10000</WorkToBuild>
+			<Flammability>0.5</Flammability>
+			<Beauty>5</Beauty>
+			<Mass>145</Mass>
+			<Cleanliness>2.4</Cleanliness>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>700</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2.75</glowRadius>
+				<glowColor>(181,230,29,0)</glowColor>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="QEthics.VatGrowerProperties">
+				<bottomGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatBottom</texPath>
+					<drawSize>(6,6)</drawSize>
+					<drawRotated>false</drawRotated>
+				</bottomGraphic>
+				<topGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatTop</texPath>
+					<drawSize>(6,6)</drawSize>
+					<drawRotated>false</drawRotated>
+				</topGraphic>
+				<glowGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatGlow</texPath>
+					<shaderType>MoteGlow</shaderType>
+					<drawSize>(6,6)</drawSize>
+					<drawRotated>false</drawRotated>
+				</glowGraphic>
+				<topDetailGraphic>
+					<graphicClass>Graphic_Single</graphicClass>
+					<texPath>Things/Building/QEVatTopDetail</texPath>
+					<shaderType>MoteGlow</shaderType>
+					<drawSize>(6,6)</drawSize>
+					<drawRotated>false</drawRotated>
+				</topDetailGraphic>
+			</li>
+		</modExtensions>
+	</ThingDef>
+-->
+</Defs>

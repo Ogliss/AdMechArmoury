@@ -27,7 +27,9 @@
     </statBases>
 	<generateCommonality>1</generateCommonality>
     <apparel>
+	<!--
 	<useWornGraphicMask>true</useWornGraphicMask>
+	-->
       <bodyPartGroups>
         <li>Torso</li>
         <li>Shoulders</li>
@@ -312,6 +314,109 @@
   </ThingDef>
 
   <!-- ========================= Imperial Guard - Armour ========================== -->
+  <!-- ========================= Imperial Guard - Light Flak ========================== -->
+  <ThingDef ParentName="OGIArmorMakeable">
+    <defName>OGIG_Apparel_LightFlakArmour</defName>
+    <label>Light flak armour</label>
+    <description>A tough fabric jacket with armor plates sewn in. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
+    <recipeMaker>
+      <researchPrerequisite>FlakArmor</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Chestplate/IG_Cadian_Chestplate</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.00</drawSize>
+    </graphicData>
+    <costList>
+      <Cloth>50</Cloth>
+      <Steel>70</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <statBases>
+      <MaxHitPoints>260</MaxHitPoints>
+      <WorkToMake>14000</WorkToMake>
+      <Mass>7</Mass>
+      <Flammability>0.6</Flammability>
+      <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.18</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.20</ArmorRating_Heat>
+      <Insulation_Cold>10.4</Insulation_Cold> <!-- like a cloth jacket -->
+      <Insulation_Heat>3</Insulation_Heat>
+      <EquipDelay>6</EquipDelay>
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.12</MoveSpeed>
+    </equippedStatOffsets>
+    <apparel>
+	<useWornGraphicMask>true</useWornGraphicMask>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Neck</li>
+        <li>Shoulders</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Cadian_Chestplate/IG_Cadian_Chestplate</wornGraphicPath>
+      <layers>
+        <li>Middle</li>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>OGImperialGuard</li>
+        <li>OGCadian</li>
+        <li>OGIGArmour</li>
+        <li>OGCadianArmour</li>
+        <li>OGIGFlak</li>
+        <li>OGCadianFlak</li>
+        <li>OGIGFlakChest</li>
+        <li>OGCadianFlakChest</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel><!--
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <only>RGBA(1.00,1.00,1.00,1)</only>
+        </li>
+        <li>
+          <only>(0.44,0.44,0.44)</only>
+        </li>
+        <li>
+          <only>(0.62,0.62,0.62)</only>
+        </li>
+      </options>
+    </colorGenerator>-->
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <only>RGBA(1.00,1.00,1.00,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.95,0.95,0.95,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.90,0.90,0.90,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.85,0.85,0.85,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.80,0.80,0.80,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.75,0.75,0.75,1)</only>
+        </li>
+        <li>
+          <only>RGBA(0.70,0.70,0.70,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+  </ThingDef>
+
   <!-- ========================= Imperial Guard - Flak Armour ========================== -->
   <ThingDef ParentName="OGIArmorMakeable">
     <defName>OGIG_Apparel_FlakArmour</defName>
@@ -344,18 +449,18 @@
       <MarketValue>500</MarketValue>
       <ArmorRating_Sharp>1.00</ArmorRating_Sharp>
       <ArmorRating_Blunt>0.36</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.30</ArmorRating_Heat>
-      <Insulation_Cold>10</Insulation_Cold>
-      <Insulation_Heat>10</Insulation_Heat>
+      <ArmorRating_Heat>0.40</ArmorRating_Heat>
+      <Insulation_Cold>12</Insulation_Cold>
+      <Insulation_Heat>9</Insulation_Heat>
     </statBases>
     <equippedStatOffsets>
       <MoveSpeed>-0.10</MoveSpeed>
       <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
     </equippedStatOffsets>
     <costList>
-      <Steel>1</Steel>
-      <Plasteel>1</Plasteel>
-      <Hyperweave>1</Hyperweave>
+      <Steel>60</Steel>
+      <Plasteel>40</Plasteel>
+      <DevilstrandCloth>30</DevilstrandCloth>
     </costList>
 	<generateCommonality>2</generateCommonality>
     <apparel>
@@ -442,20 +547,19 @@
       <WorkToMake>24000</WorkToMake>
       <MaxHitPoints>200</MaxHitPoints>
       <MarketValue>500</MarketValue>
-      <ArmorRating_Sharp>1.00</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.36</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.30</ArmorRating_Heat>
-      <Insulation_Cold>10</Insulation_Cold>
+      <ArmorRating_Sharp>1.03</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.42</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.54</ArmorRating_Heat>
+      <Insulation_Cold>20</Insulation_Cold>
       <Insulation_Heat>10</Insulation_Heat>
     </statBases>
     <equippedStatOffsets>
-      <MoveSpeed>-0.10</MoveSpeed>
-      <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
+      <MoveSpeed>-0.15</MoveSpeed>
     </equippedStatOffsets>
     <costList>
-      <Steel>1</Steel>
-      <Plasteel>1</Plasteel>
-      <Hyperweave>1</Hyperweave>
+      <Steel>20</Steel>
+      <Plasteel>80</Plasteel>
+      <Hyperweave>10</Hyperweave>
     </costList>
 	<generateCommonality>2</generateCommonality>
     <apparel>
@@ -916,7 +1020,7 @@
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <Mass>0.14</Mass>
-      <Insulation_Heat>-10</Insulation_Heat>
+      <Insulation_Heat>-5</Insulation_Heat>
       <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
       <StuffEffectMultiplierInsulation_Cold>0.50</StuffEffectMultiplierInsulation_Cold>
       <StuffEffectMultiplierInsulation_Heat>-0.5</StuffEffectMultiplierInsulation_Heat>
@@ -974,7 +1078,7 @@
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <Mass>0.07</Mass>
-      <Insulation_Heat>-5</Insulation_Heat>
+      <Insulation_Heat>-2.5</Insulation_Heat>
       <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
       <StuffEffectMultiplierInsulation_Cold>0.250</StuffEffectMultiplierInsulation_Cold>
       <StuffEffectMultiplierInsulation_Heat>-0.5</StuffEffectMultiplierInsulation_Heat>

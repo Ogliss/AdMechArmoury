@@ -84,6 +84,7 @@ namespace RimWorld
             CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetComp<CompPawnSpawnerOnDamaged>();
             Faction faction = damaged.faction ?? Faction.OfMechanoids;
             thing.SetFaction(faction, null);
+            /*
             List<Pawn> list2 = PawnGroupMakerUtility.GeneratePawns(new PawnGroupMakerParms
             {
                 groupKind = PawnGroupKindDefOf.Combat,
@@ -106,6 +107,7 @@ namespace RimWorld
             }
             list.AddRange(from p in list2
                           select new TargetInfo(p));
+            */
             GenSpawn.Spawn(SkyfallerMaker.MakeSkyfaller(ThingDefOf.CrashedShipPartIncoming, thing), intVec, map, WipeMode.Vanish);
             list.Add(new TargetInfo(intVec, map, false));
             base.SendStandardLetter(parms, list, Array.Empty<NamedArgument>());
