@@ -105,38 +105,86 @@
       </li>
     </comps>
   </HediffDef>
+
+
+	<HediffDef>
+		<defName>Regeneration_OG</defName>
+		<hediffClass>AdeptusMechanicus.Hediff_Regeneration</hediffClass>
+		<label>regeneration</label>
+		<description>description</description>
+		<defaultLabelColor>(0.6,0.85,0.91)</defaultLabelColor>
+		<isBad>false</isBad>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>BloodFiltration</capacity>
+						<offset>0.35</offset>
+					</li>
+					<li>
+						<capacity>BloodPumping</capacity>
+						<offset>0.35</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>Regenerating_Part_OG</defName>
+		<label>regrowing</label>
+		<description>description</description>
+		<hediffClass>AdeptusMechanicus.Hediff_RegeneratingPart</hediffClass>
+		<defaultLabelColor>(0.59, 0.92, 0.69)</defaultLabelColor>
+		<isBad>false</isBad>
+		<addedPartProps>
+			<!-- isSolid>true</isSolid -->
+			<partEfficiency>0.1</partEfficiency>
+		</addedPartProps>
+		<initialSeverity>0.0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<painOffset>0.2</painOffset>
+			</li>
+			<li>
+				<minSeverity>0.3</minSeverity>
+				<painOffset>0.15</painOffset>
+			</li>
+			<li>
+				<minSeverity>0.6</minSeverity>
+				<painOffset>0.1</painOffset>
+			</li>
+			<li>
+				<minSeverity>0.9</minSeverity>
+				<painOffset>0.05</painOffset>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_Immunizable">
+				<severityPerDayNotImmune>0.07</severityPerDayNotImmune> <!-- 0.07 is roughly a Quadrum (15 days) -->
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>Regenerated_Part_OG</defName>
+		<label>regenerated bodypart</label>
+		<description>description</description>
+		<hediffClass>AdeptusMechanicus.Hediff_Removable</hediffClass>
+		<defaultLabelColor>(1.0, 1.0, 1.0)</defaultLabelColor>
+		<isBad>false</isBad>
+		<initialSeverity>0.0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+	</HediffDef>
   
-  <HediffDef ParentName="OGSpecialGoodHeDiff">
-    <defName>OGE_HeDiff_InbuiltShurikenCatapult</defName>
-    <label>Inbuilt Shuriken Catapult</label>
-    <labelNoun>Inbuilt Shuriken Catapult</labelNoun>
-    <stages>
-      <li>
-        <label>initial</label>
-        <becomeVisible>false</becomeVisible>
-      </li>
-    </stages>
-    <comps>
-      <li Class="HediffCompProperties_VerbGiver">
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
-			<warmupTime>0.7</warmupTime>
-			<range>28</range>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<burstShotCount>14</burstShotCount>
-			<soundCast>OG_Shuriken_Sound</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li> 
-    </verbs>
-      </li>
-    </comps>
-  </HediffDef>
 
 </Defs>

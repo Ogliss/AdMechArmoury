@@ -393,6 +393,22 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         __result = "OG_Wargear_ServoSkull_Imperial";
                     }
+                    if (defName == "MechanicusTechBase")
+                    {
+                        __result = "OG_Tech_Base_Mechanicus";
+                    }
+                    if (defName == "WRRadiumWeapons")
+                    {
+                        __result = "OG_Weapons_Radium_Mechanicus";
+                    }
+                    if (defName == "WRMechAdvBallistics")
+                    {
+                        __result = "OG_Weapons_AdvBallistics_Mechanicus";
+                    }
+                    if (defName == "WRMechanicusPlasma")
+                    {
+                        __result = "OG_Weapons_Plasma_Mechanicus";
+                    }
                 }
                 if (defType == typeof(HediffDef))
                 {

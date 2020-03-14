@@ -10,24 +10,49 @@ using HarmonyLib;
 using Verse.Sound;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using UnityEngine;
+using System.Reflection;
 
-namespace AdeptusMechanicus.AdeptusAstartes
+namespace AdeptusMechanicus
 {
-    // FoodUtility.BestPawnToHuntForPredator(getter, forceScanWholeMap)  BestPawnToHuntForPredator(Pawn predator, bool forceScanWholeMap)
-    // Xeno/Neomorph Hunting patch
-    [HarmonyPatch(typeof(RaidStrategyWorker), "CanUsePawn")]
-    public static class AM_RaidStrategyWorker_CanUsePawn_FactionLeader_Patch
+
+    // Token: 0x02000020 RID: 32 AdeptusMechanicus.PsySilencerExt
+    public class PsySilencerExt : DefModExtension
+    {
+
+    }
+
+    [HarmonyPatch(typeof(ThingRequiringRoyalPermissionUtility), "IsViolatingRulesOfAnyFaction", new Type[] { typeof(Def), typeof(Pawn), typeof(int), typeof(bool) })]
+    public static class AMA_ThingRequiringRoyalPermissionUtility_IsViolatingRulesOfAnyFaction_ExtraSilencer_Patch
+    {
+        [HarmonyPrefix]
+        public static bool Post_IsViolatingRulesOfAnyFaction(Def implantOrWeapon, Pawn pawn, int implantLevel, bool ignoreSilencer, ref bool __result)
+        {
+            Log.Message(string.Format("should {0} cast?", implantOrWeapon));
+            bool silenced = pawn.health.hediffSet.hediffs.Any(x => x.def.HasModExtension<PsySilencerExt>());
+            if (silenced)
+            {
+                Log.Message("ignoreing this cast");
+                __result = false;
+                return false;
+            }
+            return true;
+        }
+        //    public static FieldInfo graphic = typeof(Graphic).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+    }
+
+    [HarmonyPatch(typeof(AbilityDef), "GetTooltip")]
+    public static class AMA_AbilityDef_GetTooltip_ExtraSilencer_Patch
     {
         [HarmonyPostfix]
-        public static void CanUse_factionLeader_Postfix(RaidStrategyWorker __instance, Pawn p, List<Pawn> otherPawns, ref bool __result)
+        public static void Post_GetTooltip(AbilityDef __instance, Pawn pawn, ref string __result)
         {
-            if (p.kindDef.factionLeader)
+            if (pawn != null)
             {
-                if (otherPawns.Any(x => x.kindDef.factionLeader))
+                bool silenced = pawn.health.hediffSet.hediffs.Any(x => x.def.HasModExtension<PsySilencerExt>());
+                if (silenced)
                 {
-                    __result = false;
-                    Log.Warning(string.Format("Excess {0} detected:  there are {1} already in the raid, Disallowing", p.LabelShortCap, otherPawns.Where(x => x.def == p.def).Count()));
-                    return;
+                    __result = __instance.LabelCap + ((__instance.level > 0) ? ("\n" + "Level".Translate() + " " + __instance.level) : "") + "\n\n" + __instance.description + "\n\n" + __instance.StatSummary.ToLineList(null, false);
                 }
             }
         }

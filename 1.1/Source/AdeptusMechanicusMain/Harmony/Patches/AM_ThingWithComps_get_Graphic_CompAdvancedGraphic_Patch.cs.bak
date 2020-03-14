@@ -14,7 +14,7 @@ using System.Reflection;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    [HarmonyPatch(typeof(Thing), "get_DefaultGraphic")]
+    [HarmonyPatch(typeof(ThingWithComps), "PostMake")]
     public static class AM_Thing_get_DefaultGraphic_CompAdvancedGraphic_Patch
     {
         [HarmonyPostfix]

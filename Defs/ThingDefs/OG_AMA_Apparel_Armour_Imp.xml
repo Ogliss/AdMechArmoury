@@ -1,121 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ========================= Imperial - Armour ========================== -->
-	<!-- ========================= Imperial - Power Armour ========================== -->
-<!--
-	<ThingDef ParentName="OGIArmorMakeable">
-		<defName>OGStd-PowerArmour</defName>
-		<label>Space Marine Power Armour</label>
-		<description>Power Armour is an advanced form of powered combat armour, worn primarily by the Space Marines and the Chaos Space Marines, though suits have been created to be worn by mere mortals. It is a completely enclosed suit of combat armour composed of shaped Adamantium and Plasteel plates, encased in a Ceramite ablative layer. Each suit possesses a full suite of life-support functions for operation in hostile environments, an automated medicae system to provide some level of first aid to a wounded wearer and a highly advanced and fully integrated tactical targeting and threat analysis system known as Auto-senses. The suit would be heavy and cumbersome to wear but for the electrically motivated fibre bundles within the armour that replicates the wearer's movement and enhances his strength beyond its already considerable superhuman baseline (for Space Marines). Whilst Power Armour is most commonly associated with the Space Marines of the Adeptus Astartes, the Sisters of Battle and many Inquisitors also use powered armour of one sort or another. Typically, however, these armours may not contain the same strength-enhancing properties or life-support functions of Space Marine Power Armour, nor do they always provide the same level of protection.</description>
-		<techLevel>Spacer</techLevel>
-	<recipeMaker>
-		<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-		<researchPrerequisite>PoweredArmor</researchPrerequisite>
-    </recipeMaker>
-		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
-		<statBases>
-			<Mass>15</Mass>
-			<MarketValue>1500</MarketValue>
-			<MaxHitPoints>50</MaxHitPoints>
-			<WorkToMake>25000</WorkToMake>
-			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.65</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.30</ArmorRating_Heat>
-			<Insulation_Heat>50</Insulation_Heat>
-			<Insulation_Cold>50</Insulation_Cold>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<MoveSpeed>0.10</MoveSpeed>
-			<WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
-		</equippedStatOffsets>
-		<costList>
-			<Steel>40</Steel>
-			<ComponentIndustrial>18</ComponentIndustrial>
-			<Plasteel>135</Plasteel>
-			<Gold>2</Gold>
-		</costList>
-		<apparel>
-		<careIfWornByCorpse>false</careIfWornByCorpse>
-			<bodyPartGroups>
-				<li>Torso</li>
-				<li>Neck</li>
-				<li>Shoulders</li>
-				<li>Arms</li>
-				<li>Legs</li>
-			</bodyPartGroups>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</wornGraphicPath>
-			<layers>
-				<li>Shell</li>
-			</layers>
-			<tags>
-				<li>AstartesPowerArmour</li>
-			</tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-		</apparel>
-		<thingCategories>
-			<li>OGIAddons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIAddons</li>
-		</tradeTags>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.33,0.33,0.33,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.65,0.65,0.65,1)</only>
-				</li>
-				<li>
-					<weight>6</weight>
-					<only>RGBA(0.3,0.3,0.3,1)</only>
-				</li>
-				<li>
-					<weight>6</weight>
-					<only>RGBA(0.5,0.5,0.5,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.9,0.9,0.9,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.7,0.5,0.5,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.5,0.7,0.5,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.5,0.5,0.7,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.5,0.7,0.7,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.7,0.5,0.7,1)</only>
-				</li>
-				<li>
-					<weight>10</weight>
-					<only>RGBA(0.7,0.7,0.5,1)</only>
-				</li>
-      </options>
-    </colorGenerator>
-	</ThingDef>
--->
-
 	<!-- ========================= Mechanicus - Armour ========================== -->
 	<!-- ========================= Mechanicus - Enginseer robe ========================== -->
 	<ThingDef ParentName="OGAMArmorMakeable">
@@ -126,6 +11,7 @@
 			<texPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/TechPriestRobe</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<color>(149,0,8)</color>
 		</graphicData>
 		<statBases>
 			<MarketValue>1500</MarketValue>
@@ -160,6 +46,7 @@
 			
 		</recipeMaker>
 		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Shoulders</li>
@@ -183,6 +70,7 @@
 		<tradeTags>
 			<li>Apparel</li>
 		</tradeTags>
+	<!--	
     <colorGenerator Class="ColorGenerator_Options">
 	<options>
         <li>
@@ -191,6 +79,7 @@
         </li>
       </options>
     </colorGenerator>
+	-->
 		<comps>
 		
 		</comps>
@@ -205,6 +94,7 @@
 			<texPath>Things/Item/Apparel/Imperial/AM/TechPriestHoodFC/TechPriestHood</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<color>(149,0,8)</color>
 		</graphicData>
 		<statBases>
 			<Mass>1</Mass>

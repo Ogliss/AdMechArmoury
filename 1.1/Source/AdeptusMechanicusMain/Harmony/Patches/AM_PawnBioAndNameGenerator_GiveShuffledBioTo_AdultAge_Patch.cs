@@ -15,12 +15,18 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
     public static class AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch
     {
-
-    //    public static MethodInfo FillBackstorySlotShuffled = typeof(PawnBioAndNameGenerator).GetMethod("FillBackstorySlotShuffled", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod);
+        //    public static MethodInfo FillBackstorySlotShuffled = typeof(PawnBioAndNameGenerator).GetMethod("FillBackstorySlotShuffled", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod);
         [HarmonyPrefix]
-        public static bool GiveShuffledBioTo_AdultAge_Postfix(Pawn pawn, FactionDef factionType, string requiredLastName, List<BackstoryCategoryFilter> backstoryCategories)
+        public static bool GiveShuffledBioTo_AdultAge_Prefix(Pawn pawn, FactionDef factionType, string requiredLastName, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
-            if (pawn.ageTracker.AgeBiologicalYears<20)
+            bool ext = pawn.kindDef.HasModExtension<BackstoryExtension>();
+            if (ext)
+            {
+                BackstoryCategoryFilter backstoryCategoryFilter = backstoryCategories.RandomElementByWeight((BackstoryCategoryFilter c) => c.commonality);
+                backstoryCategories.Clear();
+                backstoryCategories.Add(backstoryCategoryFilter);
+            }
+            if (pawn.ageTracker.AgeBiologicalYears < 20)
             {
                 bool act = pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive);
                 if (act)
@@ -54,21 +60,22 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 backstoryCategoryFilter = AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FallbackCategoryGroup;
             }
+            List<string> lista = new List<string>();
+            foreach (BackstoryCategoryFilter filter in backstoryCategories)
+            {
+                foreach (string str in filter.categories)
+                {
+                    if (!lista.Contains(str))
+                    {
+                        lista.Add(str);
+                    }
+                }
+            }
+            Log.Message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
             if (!(from bs in BackstoryDatabase.ShuffleableBackstoryList(slot, backstoryCategoryFilter).TakeRandom(20)
                   where slot != BackstorySlot.Adulthood || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables)
                   select bs).TryRandomElementByWeight(new Func<Backstory, float>(AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.BackstorySelectionWeight), out backstory))
             {
-                List<string> lista = new List<string>();
-                foreach (BackstoryCategoryFilter filter in backstoryCategories)
-                {
-                    foreach (string str in filter.categories)
-                    {
-                        if (!lista.Contains(str))
-                        {
-                            lista.Add(str);
-                        }
-                    }
-                }
                 Log.Message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
                 Log.Error(string.Concat(new object[]
                 {
