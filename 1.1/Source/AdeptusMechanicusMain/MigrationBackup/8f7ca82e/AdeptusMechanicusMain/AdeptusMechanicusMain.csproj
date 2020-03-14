@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AC73323-B4F2-4592-B3EA-53AC4F8D73A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdeptusMechanicus</RootNamespace>
+    <AssemblyName>AdeptusMechanicusMain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\1.1\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Lib.Harmony.2.0.0.7\lib\net472\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_DLLs\1AnimatedProjectile.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_DLLs\1CompActivatableEffect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_DLLs\1CompOversizedWeapon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="1CompSlotLoadable">
+      <HintPath>_DLLs\1CompSlotLoadable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="1CompToggleDef">
+      <HintPath>_DLLs\1CompToggleDef.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.1\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1631756268\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DualWield">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1628211313\Assemblies\DualWield.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="_HumanlikeOrdersUtility.cs.bak" />
+    <None Include="Harmony\Patches\AM_BackCompatibility_GameLoadingVars_Patch.cs.bak" />
+    <Compile Include="Abilities\HediffComp_Ability.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_Shoot.cs" />
+    <Compile Include="Abilities\EquipmentAbilityDef.cs" />
+    <Compile Include="Abilities\EquipmentAbility.cs" />
+    <Compile Include="Abilities\Command_EquipmentAbility.cs" />
+    <Compile Include="Abilities\Verb_LaunchProjectileEquipment.cs" />
+    <Compile Include="Abilities\Verb_ShootEquipment.cs" />
+    <Compile Include="Abilities\Verb_UseEquipment.cs" />
+    <Compile Include="Backstories\BackstoryDef.cs" />
+    <Compile Include="DefExtentions\Class1.cs" />
+    <Compile Include="GameCondition_PlanetConquest.cs" />
+    <Compile Include="Harmony\Patches\AM_ABlankPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_RaidStrategyWorker_CanUsePawn_FactionLeader_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\AM_ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GeneratePawn_StartWithHediff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_BackCompatibility_BackCompatibleDefName_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_ApparelTracker_Notify_ApparelAddedRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_CanHit_PhaseShifter_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_Impact_TeslaWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ThingWithComps_get_Graphic_CompAdvancedGraphic_Patch - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_CreateVerbTargetCommand_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_PrimaryVerb_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_get_EquipmentSource_Verb_UseEquipment_Patch.cs" />
+    <Compile Include="Regeneration\Hediff_Regeneration.cs" />
+    <Compile Include="Regeneration\Hediff_Removable.cs" />
+    <Compile Include="Regeneration\Hediff_RegeneratingPart.cs" />
+    <Compile Include="Regeneration\BodypartUtility.cs" />
+    <Compile Include="UtilsStuff\Class1.cs" />
+    <Compile Include="UtilsStuff\AdMechDebugToolsSpawning.cs" />
+    <Compile Include="ShipParts\IncidentWorker_ShipPartCrash.cs" />
+    <Compile Include="UtilsStuff\CompFoodPoisonProtection - Copy.cs" />
+    <Compile Include="UtilsStuff\Graphic_Randomized.cs" />
+    <Compile Include="UtilsStuff\DualWieldDefExt.cs" />
+    <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_WarpFlameNoCamShake.cs" />
+    <Compile Include="UtilsStuff\PatchOperationPlayerName.cs" />
+    <Compile Include="SettingsMenu\AMMod.cs" />
+    <Compile Include="UtilsStuff\Warpfire.cs" />
+    <Compile Include="UtilsStuff\WarpfireUtility.cs" />
+    <Compile Include="UtilsStuff\WarpSpark.cs" />
+    <Compile Include="Weaponry\CompAlwaysActivatableEffect.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Anim.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Plasma.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Trailer.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\Building_LaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\Building_LaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\IBeamColorThing.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\IDrawnWeaponWithRotation.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\JobDriver_ChangeLaserColor.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeam.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamColoring.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamGraphic.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\MeshMakerLaser.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\MoteLaserDectoration.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\AM_PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\AM_TuretTop_DrawTurret_LaserTurret_Patch.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunBase.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunTurret.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\ThingExtensions.cs" />
+    <None Include="Apparel\Apparel_VisibleAccessory.cs.bak" />
+    <Compile Include="Apparel\CompApparelExtraDrawer.cs" />
+    <Compile Include="Apparel\Shieldstuff\PsychicShield.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_PsychicShieldStatus.cs" />
+    <Compile Include="Buildings\Barricades\Building_DeployableBarricade.cs" />
+    <Compile Include="Buildings\Barricades\DeployableBarricadeExtension.cs" />
+    <None Include="Harmony\Patches\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Patches.cs.bak" />
+    <Compile Include="Buildings\Class1.cs" />
+    <Compile Include="Harmony\Patches\AM_Corpse_ButcherProducts_BloodReplacer_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GenerateRandomAge_test_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_AgeTracker_AgeTick_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_EquipmentTrackerTick_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_TryDropEquipment_ActivatableEffect_Patch.cs" />
+    <None Include="Harmony\Patches\AM_ThingWithComps_get_Graphic_CompAdvancedGraphic_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGroupMakerUtility_GeneratePawns__Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_IncidentWorker_RaidEnemy_TryExecute_RaidAlert_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_PathFollower_CostToMoveIntoCell_MoveThroughCover_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnRenderer_DrawEquipmentAiming_Patches.cs" />
+    <Compile Include="Harmony\Patches\AM_DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PreApplyDamage_HediffComp_Shield_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_GetArmorPenetration_Rending_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Projectile_Impact_DistortWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_DrawExtras_Apparel_DrawWornExtras_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_RecipeDef_AvailableNow_ExtraPrerequisite_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGenerator_GeneratePawn_FactionDefExtension_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PawnGroupKindWorker_Trader_GenerateCarriers_Patches.cs" />
+    <Compile Include="Harmony\Patches\AM_HediffGiverUtility_TryApply_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_FloatMenuMakerMap_ChoicesAtFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_CoverUtility_BaseBlockChancee_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenGrid_Standable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenGrid_Impassable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PathGrid_PerceivedPathCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_PathGrid_CalculatedCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_Notify_EquipmentAddedRemoved_CompAbilityItem_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_Notify_EquipmentAdded_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_GenSpawn_Spawn_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_EquipmentTracker_GetGizmos_VerbGiverExtra_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Pawn_GetGizmos_HediffComps_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Apparel_GetWornGizmos_GizmosFromCompWearable_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Graphic_RandomRotated_DrawWorker_Debuff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ShotReport_HitReportFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbTracker_GetVerbsCommands_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_X_Patches - Copy.cs" />
+    <Compile Include="Harmony\Patches\AM_Verb_Shoot_TryStartCastOn_warmupTime_SpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_ShotReport_GetAimOnTargetChance_StandardTarget_Debuff_Patch.cs" />
+    <Compile Include="Harmony\Patches\AM_AnimalRangeUnlocker_Patches.cs" />
+    <None Include="Harmony\Patches.cs.bak" />
+    <Compile Include="UtilsStuff\AIDefOf.cs" />
+    <Compile Include="Apparel\Apparel_Colour.cs" />
+    <Compile Include="Apparel\Apparel_ShockCollar.cs" />
+    <Compile Include="Apparel\Apparel_VisibleAccessory.cs" />
+    <Compile Include="ShipParts\Building_HiveLike_CrashedShipPart.cs" />
+    <Compile Include="Hives\CompSpawner_HiveLike_CrashedShipPart.cs" />
+    <Compile Include="ShipParts\Building_CrashedShipPartOG.cs" />
+    <Compile Include="Apparel\CompColorableTwo.cs" />
+    <None Include="Hives\HiveLike.cs.bak" />
+    <Compile Include="ShipParts\IncidentWorker_CrashedHiveShip.cs" />
+    <Compile Include="Abilities\CompAbilityItem.cs" />
+    <Compile Include="ExtentionMethods\AdeptusMechanicusExtensions.cs" />
+    <Compile Include="ExtentionMethods\AdeptusIntergrationUtil.cs" />
+    <None Include="UtilsStuff\CompPoweredStatChange.cs.bak" />
+    <Compile Include="UtilsStuff\DeepStrike\TeleportSpawner.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\WeatherEvent_WarpLightningStrike.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\IncidentWorker_Warpstorm.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\GameCondition_Warpstorm.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\FlyerIncoming.cs" />
+    <Compile Include="UtilsStuff\JobGiver_ServitorIdle.cs" />
+    <Compile Include="UtilsStuff\LightningBoltMeshMakerOG.cs" />
+    <Compile Include="UtilsStuff\CompAdvancedGraphic.cs" />
+    <None Include="SettingsMenu\AdMechModsUtil.cs.bak" />
+    <None Include="UtilsStuff\AlienRacesUtil.cs.bak" />
+    <Compile Include="Buildings\Building_DeployableBarricade.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\ActiveFlyer.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\WeatherEvent_DeepStrike_Teleport.cs" />
+    <Compile Include="SettingsMenu\AMAMod.cs" />
+    <Compile Include="SettingsMenu\AMASettingsHelper.cs" />
+    <Compile Include="SettingsMenu\AMConstants.cs" />
+    <Compile Include="SettingsMenu\AMASettings.cs" />
+    <Compile Include="UtilsStuff\ArmourySettingsRef.cs" />
+    <Compile Include="UtilsStuff\ArtificalPawn.cs" />
+    <Compile Include="UtilsStuff\AM_MeshMaker.cs" />
+    <Compile Include="UtilsStuff\AM_MeshBolt.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\InfiltratorExtension.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\InfiltrateUtility.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\Infiltrate_MapComponent.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrike_MapComponent.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrikeExtension.cs" />
+    <Compile Include="UtilsStuff\PawnsArrivalModeWorker_DeepStrike.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrikeUtility.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\TunnelSpawner.cs" />
+    <Compile Include="UtilsStuff\HediffComp_PhaseShifter.cs" />
+    <Compile Include="UtilsStuff\CompLeaper.cs" />
+    <Compile Include="UtilsStuff\FlyingObject_Leap.cs" />
+    <Compile Include="UtilsStuff\HediffComp_VerbGiverExtra.cs" />
+    <Compile Include="UtilsStuff\JobDriver_AnimalRangeAttack.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Explode.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Fire.cs" />
+    <Compile Include="Weaponry\GunStuff\SiegeProjectile.cs" />
+    <Compile Include="UtilsStuff\HediffComp_Shield.cs" />
+    <Compile Include="UtilsStuff\ARA_AttackTargetFinder.cs" />
+    <Compile Include="UtilsStuff\HediffComp_MoveThroughCover.cs" />
+    <Compile Include="UtilsStuff\CompUseEffect_GiveTechnology.cs" />
+    <Compile Include="UtilsStuff\ScenPart_StartingAnimalofGender.cs" />
+    <Compile Include="Weaponry\GunStuff\AnimalProjectile.cs" />
+    <Compile Include="UtilsStuff\CompExtraPrerequisite.cs" />
+    <Compile Include="UtilsStuff\HediffGiver_StartWithBionics.cs" />
+    <Compile Include="Weaponry\CompActivatableEffect_ForceWeapon.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_ExtinguishNoCamShake.cs" />
+    <Compile Include="UtilsStuff\CompFoodPoisonProtection.cs" />
+    <Compile Include="UtilsStuff\IncidentWorker_WandererJoin.cs" />
+    <Compile Include="UtilsStuff\PlaceWorker_OnTopOfWalls.cs" />
+    <Compile Include="UtilsStuff\CompPainKiller.cs" />
+    <Compile Include="Weaponry\GunStuff\Graphic_Variant.cs" />
+    <Compile Include="Weaponry\GunStuff\CompProperties_AddedBulletEffect.cs" />
+    <Compile Include="UtilsStuff\HediffComp_DrawImplant.cs" />
+    <Compile Include="Weaponry\CompWeapon_MeleeSpecialRules.cs" />
+    <Compile Include="UtilsStuff\CompGlowerPawn.cs" />
+    <Compile Include="UtilsStuff\FactionDefExtension.cs" />
+    <Compile Include="UtilsStuff\PatchOperationAddOrReplace.cs" />
+    <Compile Include="Apparel\CompPauldronDrawer.cs" />
+    <Compile Include="Apparel\CompPowerArmour.cs" />
+    <None Include="UtilsStuff\UtilCE.cs.bak" />
+    <Compile Include="Apparel\Apparel_VisibleAccessoryColour.cs" />
+    <Compile Include="Buildings\Fermenter\CompProperties_UniversalFermenter.cs" />
+    <Compile Include="Buildings\Fermenter\CompUniversalFermenter.cs" />
+    <Compile Include="Buildings\Fermenter\JobDriver_FillUniversalFermenter.cs" />
+    <Compile Include="Buildings\Fermenter\JobDriver_TakeProductOutOfUniversalFermenter.cs" />
+    <Compile Include="Buildings\Fermenter\Static_Bar.cs" />
+    <Compile Include="Buildings\Fermenter\UniversalFermenterProduct.cs" />
+    <Compile Include="Buildings\Fermenter\Utils.cs" />
+    <Compile Include="Buildings\Fermenter\WorkGiver_FillUniversalFermenter.cs" />
+    <Compile Include="Buildings\Fermenter\WorkGiver_TakeProductOutOfUniversalFermenter.cs" />
+    <Compile Include="UtilsStuff\CompInvunerableSaveOG.cs" />
+    <Compile Include="UtilsStuff\ResearchMod_SetResearchToZero.cs" />
+    <Compile Include="ShipParts\CompPawnSpawnerOnDamaged.cs" />
+    <Compile Include="UtilsStuff\CompWarpFireOverlay.cs" />
+    <Compile Include="Apparel\HediffApparel\CompProperties_LungProtectionApparel.cs" />
+    <Compile Include="Apparel\HediffApparel\CompApparel.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_AddEyes.cs" />
+    <Compile Include="Apparel\HediffApparel\CompProperties_EyeProtectionApparel.cs" />
+    <Compile Include="UtilsStuff\HediffGiver_StartWithHediff.cs" />
+    <Compile Include="Harmony\HarmonyPatches.cs" />
+    <Compile Include="Hives\CompSpawnerHiveLikes.cs" />
+    <Compile Include="Hives\CompSpawnerLike.cs" />
+    <Compile Include="Hives\HiveLike.cs" />
+    <Compile Include="Hives\HiveLikeDefOf.cs" />
+    <Compile Include="Hives\HiveLikeUtility.cs" />
+    <Compile Include="Hives\IncidentWorker_Hivelike.cs" />
+    <Compile Include="Hives\InfestationLikeCellFinder.cs" />
+    <Compile Include="Hives\JobGiver_HiveLikeDefense.cs" />
+    <Compile Include="Hives\JobGiver_MaintainHiveLikes.cs" />
+    <Compile Include="Hives\JobGiver_WanderHiveLike.cs" />
+    <Compile Include="Hives\LordJob_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_DefendAndExpandHiveLike.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelated.cs" />
+    <Compile Include="Hives\LordToil_HiveLikeRelatedData.cs" />
+    <Compile Include="Hives\TunnelHiveLikeSpawner.cs" />
+    <Compile Include="ShipParts\IncidentWorker_CrashedShip.cs" />
+    <Compile Include="ShipParts\LordJob_PawnsDefendShip.cs" />
+    <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\Projectile_Laser.cs.bak" />
+    <Compile Include="Weaponry\GunStuff\Projectile_ExplosiveOG.cs" />
+    <Compile Include="Weaponry\CompActivatableEffect_PowerWeapon.cs" />
+    <Compile Include="Harmony\Patches.cs" />
+    <Compile Include="Apparel\ApparelLight\CompEquippableLight.cs" />
+    <Compile Include="Apparel\ApparelLight\Util_ApparelWithLight.cs" />
+    <Compile Include="Apparel\ApparelLight\Util_CompEquippableLight.cs" />
+    <Compile Include="Weaponry\CompHediffWeapon.cs" />
+    <Compile Include="Weaponry\CompWargearWeapon.cs" />
+    <Compile Include="Apparel\CompWargear.cs" />
+    <Compile Include="Apparel\HediffApparel\HediffApparel.cs" />
+    <Compile Include="Apparel\VisibleAccessoryDefExtension.cs" />
+    <Compile Include="Apparel\Shieldstuff\ProtectiveEyeWear.cs" />
+    <Compile Include="Apparel\Shieldstuff\AdvShieldBelt.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_CloseCombatShieldStatus.cs" />
+    <Compile Include="Apparel\Shieldstuff\CloseCombatShield.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_AdvShieldBeltStatus.cs" />
+    <Compile Include="UtilsStuff\Thing_AddsHediff.cs" />
+    <Compile Include="UtilsStuff\Thing_AddsHediffDef.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_AddBrain.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_BombNoCamShake.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_FlameNoCamShake.cs" />
+    <Compile Include="Weaponry\GunStuff\EffectBullet\Projectile_BulletEffect.cs" />
+    <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\Projectile_LaserEffect.cs.bal" />
+    <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\Projectile_Laser.cs.bal" />
+    <None Include="Weaponry\GunStuff\JecsToolsLaserProjectiles\ThingDef_LaserProjectile.cs.bal" />
+    <Compile Include="Weaponry\GunStuff\CompWeapon_GunSpecialRules.cs" />
+    <Compile Include="UtilsStuff\OGDefOf.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Weaponry\GunStuff\StatDrawEntry.cs" />
+    <Compile Include="Weaponry\GunStuff\StatPart_Reliability.cs" />
+    <Compile Include="Weaponry\GunStuff\StatWorker_Reliability.cs" />
+    <Compile Include="Weaponry\GunStuff\ThingDef_GunOG.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
