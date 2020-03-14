@@ -49,7 +49,7 @@ namespace AdeptusMechanicus
                 }
                 foreach (Thing thing in list)
                 {
-                    Log.Message(string.Format("revealing infiltrator: {0}, @: {1}, {2}", thing, intVec, map));
+                    //    Log.Message(string.Format("revealing infiltrator: {0}, @: {1}, {2}", thing, intVec, map));
                     GenPlace.TryPlaceThing(thing, intVec, map, ThingPlaceMode.Near, null, null);
                 }
             }

@@ -99,9 +99,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         pawnsN.Concat(pawns.FindAll(x => x.canInfiltrate()));
                     }
-                    Log.Message(string.Format("{0} raid, {1} pawns", parms.faction.Name, pawns.Count));
-                    Log.Message(string.Format("{0}/{1} Deepstriking in {2} - {3} ticks ({4} - {5} seconds)", DeepStrikers.Count, pawns.FindAll(x => x.canDeepStrike()).Count, map.DeepStrike().strikeMinDelay, map.DeepStrike().strikeMaxDelay, map.DeepStrike().strikeMinDelay.TicksToSeconds(), map.DeepStrike().strikeMaxDelay.TicksToSeconds()));
-                    Log.Message(string.Format("{0}/{1} infiltrating in {2} - {3} ticks ({4} - {5} seconds)", Infiltrators.Count, pawns.FindAll(x => x.canInfiltrate()).Count, map.Infiltrate().strikeMinDelay, map.Infiltrate().strikeMaxDelay, map.Infiltrate().strikeMinDelay.TicksToSeconds(), map.Infiltrate().strikeMaxDelay.TicksToSeconds()));
+                    //    Log.Message(string.Format("{0} raid, {1} pawns", parms.faction.Name, pawns.Count));
+                    //    Log.Message(string.Format("{0}/{1} Deepstriking in {2} - {3} ticks ({4} - {5} seconds)", DeepStrikers.Count, pawns.FindAll(x => x.canDeepStrike()).Count, map.DeepStrike().strikeMinDelay, map.DeepStrike().strikeMaxDelay, map.DeepStrike().strikeMinDelay.TicksToSeconds(), map.DeepStrike().strikeMaxDelay.TicksToSeconds()));
+                    //    Log.Message(string.Format("{0}/{1} infiltrating in {2} - {3} ticks ({4} - {5} seconds)", Infiltrators.Count, pawns.FindAll(x => x.canInfiltrate()).Count, map.Infiltrate().strikeMinDelay, map.Infiltrate().strikeMaxDelay, map.Infiltrate().strikeMinDelay.TicksToSeconds(), map.Infiltrate().strikeMaxDelay.TicksToSeconds()));
 
                     pawns = pawnsN;
                 }

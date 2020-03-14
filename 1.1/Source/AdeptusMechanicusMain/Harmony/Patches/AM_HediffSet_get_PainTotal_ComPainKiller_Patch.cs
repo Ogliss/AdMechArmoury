@@ -24,7 +24,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (__instance.pawn.TryGetComp<CompPainKiller>()!=null && __instance.pawn.TryGetComp<CompPainKiller>() is CompPainKiller painkill)
                 {
-                    Log.Message("activeing pankiller comp");
+                    //    Log.Message("activeing pankiller comp");
                     __result = Mathf.Clamp(__result * painkill.Props.painOffset, 0f, 1f);
                 }
             }

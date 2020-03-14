@@ -55,7 +55,7 @@ namespace RimWorld
                 }
                 foreach (var i in factions)
                 {
-                    Log.Message(string.Format("{0}", i.Name));
+                    //    Log.Message(string.Format("{0}", i.Name));
                 }
                 return factions;
             }
@@ -193,7 +193,7 @@ namespace RimWorld
             {
                 return;
             }
-            Log.Message(string.Format("parent Spawned: {0}", this.parent.Spawned));
+            //    Log.Message(string.Format("parent Spawned: {0}", this.parent.Spawned));
             if (this.lord == null)
             {
                 IntVec3 invalid;
@@ -222,16 +222,16 @@ namespace RimWorld
                     {
                         if (PawnKinds.NullOrEmpty())
                         {
-                            Log.Message(string.Format("PawnKinds.NullOrEmpty"));
+                            //    Log.Message(string.Format("PawnKinds.NullOrEmpty"));
                         }
-                        Log.Message(string.Format("try spawn 2a"));
+                        //    Log.Message(string.Format("try spawn 2a"));
                         break;
                     }
                     else
                     {
                         kind = kindOption.kind;
                     }
-                    Log.Message(string.Format("try spawn 3"));
+                    //    Log.Message(string.Format("try spawn 3"));
                     IntVec3 center;
                     if (!(from cell in GenAdj.CellsAdjacent8Way(this.parent)
                           where this.CanSpawnPawnAt(cell)
@@ -239,28 +239,28 @@ namespace RimWorld
                     {
                         break;
                     }
-                    Log.Message(string.Format("try spawn 4"));
+                    //    Log.Message(string.Format("try spawn 4"));
                     PawnGenerationRequest request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, false, 1f);
-                    Log.Message(string.Format("try spawn 5"));
+                    //    Log.Message(string.Format("try spawn 5"));
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
-                    Log.Message(string.Format("try spawn 6"));
+                    //    Log.Message(string.Format("try spawn 6"));
                     if (!GenPlace.TryPlaceThing(pawn, center, this.parent.Map, ThingPlaceMode.Near, null, null))
                     {
-                        Log.Message(string.Format("try spawn 6b"));
+                        //    Log.Message(string.Format("try spawn 6b"));
                         Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.Discard);
                         break;
                     }
-                    Log.Message(string.Format("try spawn 7"));
+                    //    Log.Message(string.Format("try spawn 7"));
                     this.lord.AddPawn(pawn);
-                    Log.Message(string.Format("pawn: {0} to Lord: {1}", pawn.LabelShortCap, this.lord));
+                    //    Log.Message(string.Format("pawn: {0} to Lord: {1}", pawn.LabelShortCap, this.lord));
                     this.pointsLeft -= pawn.kindDef.combatPower;
                 }
             }
             finally
             {
-                Log.Message(string.Format("Finally {0} points left", this.pointsLeft));
+                //    Log.Message(string.Format("Finally {0} points left", this.pointsLeft));
                 this.pointsLeft = 0f;
-                Log.Message(string.Format("set points left to {0} ", this.pointsLeft));
+                //    Log.Message(string.Format("set points left to {0} ", this.pointsLeft));
             }
             SoundDefOf.PsychicPulseGlobal.PlayOneShotOnCamera(this.parent.Map);
         }

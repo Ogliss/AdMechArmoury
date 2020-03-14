@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
     {
         static HarmonyCompOversizedWeapon()
         {
-            var harmony = new Harmony("rimworld.jecstools.comps.oversized");
+            var harmony = new Harmony("rimworld.Ogliss.comps.oversized");
             harmony.Patch(typeof(PawnRenderer).GetMethod("DrawEquipmentAiming"),
                 new HarmonyMethod(typeof(HarmonyCompOversizedWeapon).GetMethod("DrawEquipmentAimingPreFix")), null);
             harmony.Patch(AccessTools.Method(typeof(Thing), "get_DefaultGraphic"), null,

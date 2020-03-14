@@ -93,7 +93,7 @@ namespace AdeptusMechanicus
                     IntVec3 position = base.Position;
                     if (!this.innerContainer.NullOrEmpty())
                     {
-                        Log.Message(string.Format("{0} to drop", innerContainer.ContentsString));
+                        //    Log.Message(string.Format("{0} to drop", innerContainer.ContentsString));
                         this.innerContainer.TryDropAll(position, map, ThingPlaceMode.Near);
                     }
                     this.Destroy(DestroyMode.Vanish);

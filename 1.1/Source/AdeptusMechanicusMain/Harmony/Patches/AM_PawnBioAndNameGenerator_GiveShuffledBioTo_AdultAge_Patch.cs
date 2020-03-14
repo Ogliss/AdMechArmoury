@@ -37,7 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (backstoryCategories.NullOrEmpty())
             {
-                Log.Message(string.Format("{0} backstoryCategories null", pawn.NameShortColored));
+                Log.Warning(string.Format("{0} backstoryCategories null", pawn.NameShortColored));
             }
             return true;
         }
@@ -71,7 +71,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            Log.Message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
+            //    Log.Message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
             if (!(from bs in BackstoryDatabase.ShuffleableBackstoryList(slot, backstoryCategoryFilter).TakeRandom(20)
                   where slot != BackstorySlot.Adulthood || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables)
                   select bs).TryRandomElementByWeight(new Func<Backstory, float>(AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.BackstorySelectionWeight), out backstory))

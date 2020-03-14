@@ -100,7 +100,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     rangeList.Add(verbList[i]);
                     hasRangedVerb = true;
-                    Log.Warning("Added Ranged Verb");
+                    //    Log.Warning("Added Ranged Verb");
                 }
             }
             //Log.Warning("got list of ranged verb");

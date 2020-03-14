@@ -40,7 +40,7 @@ namespace AdeptusMechanicus
         public static void TicksPerMove_PostFix(Pawn __instance, ref float __result, bool diagonal) {
             if ( __instance.IsColonist )  {
                 float num = __instance.GetStatValue(StatDefOf.MoveSpeed, true);
-                Log.Message("move speed : "+__instance.Name+ " : (GetStatValue of MoveSpeed:" +num+") (TicksPerMove:"+__result+")");
+            //    Log.Message("move speed : "+__instance.Name+ " : (GetStatValue of MoveSpeed:" +num+") (TicksPerMove:"+__result+")");
             }
         } */
 

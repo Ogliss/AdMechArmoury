@@ -28,11 +28,11 @@ namespace AdeptusMechanicus
         [HarmonyPrefix]
         public static bool Post_IsViolatingRulesOfAnyFaction(Def implantOrWeapon, Pawn pawn, int implantLevel, bool ignoreSilencer, ref bool __result)
         {
-            Log.Message(string.Format("should {0} cast?", implantOrWeapon));
+            //    Log.Message(string.Format("should {0} cast?", implantOrWeapon));
             bool silenced = pawn.health.hediffSet.hediffs.Any(x => x.def.HasModExtension<PsySilencerExt>());
             if (silenced)
             {
-                Log.Message("ignoreing this cast");
+                //    Log.Message("ignoreing this cast");
                 __result = false;
                 return false;
             }

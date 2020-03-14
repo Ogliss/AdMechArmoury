@@ -54,7 +54,7 @@ namespace Verse
                 if (ind == -1)
                 {
                     ind = Rand.RangeInclusive(0, subGraphics.Length-1);
-                    Log.Message(string.Format("getting base graphic for Graphic_Randomized at {0} which is {1} @ {2}", ind, this.subGraphics[ind].GetType(), this.subGraphics[ind].MatSingle));
+                    //    Log.Message(string.Format("getting base graphic for Graphic_Randomized at {0} which is {1} @ {2}", ind, this.subGraphics[ind].GetType(), this.subGraphics[ind].MatSingle));
                 }
                 if (_MatSingle ==null)
                 {
@@ -70,7 +70,7 @@ namespace Verse
         // Token: 0x060014E2 RID: 5346 RVA: 0x0007A1B9 File Offset: 0x000783B9
         public override Graphic GetColoredVersion(Shader newShader, Color newColor, Color newColorTwo)
         {
-            Log.Message(string.Format("getting GetColoredVersion for Graphic_Randomized @ {0} with {1} subgrphics", this.path, this.subGraphics.Count()));
+            //    Log.Message(string.Format("getting GetColoredVersion for Graphic_Randomized @ {0} with {1} subgrphics", this.path, this.subGraphics.Count()));
             if (newColorTwo != Color.white)
             {
                 Log.ErrorOnce("Cannot use Graphic_Random.GetColoredVersion with a non-white colorTwo.", 9910251, false);
