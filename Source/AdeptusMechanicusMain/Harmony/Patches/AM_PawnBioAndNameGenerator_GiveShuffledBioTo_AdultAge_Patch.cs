@@ -25,8 +25,7 @@ namespace AdeptusMechanicus.Harmony
             pawn.Name = PawnBioAndNameGenerator.GeneratePawnName(pawn, NameStyle.Full, requiredLastName);
             AM_PawnBioAndNameGenerator_GiveShuffledBioTo_AdultAge_Patch.FillBackstorySlotShuffled(pawn, BackstorySlot.Childhood, ref pawn.story.childhood, backstoryCategories, factionType);
             //    dynMethod.Invoke(typeof(PawnBioAndNameGenerator), new object[] { pawn, BackstorySlot.Childhood, pawn.story.childhood, backstoryCategories, factionType });
-
-            if (pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive))
+            if (pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive) != null)
             {
             //    Log.Message(string.Format("Pawn: {0}, Comes of age at: {1}, Adult: {2}", pawn.LabelShortCap, pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive).minAge, pawn.ageTracker.AgeBiologicalYearsFloat));
             if (pawn.ageTracker.AgeBiologicalYearsFloat >= pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive).minAge)

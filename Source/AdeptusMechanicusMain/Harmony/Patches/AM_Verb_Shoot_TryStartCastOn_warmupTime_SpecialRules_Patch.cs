@@ -31,11 +31,10 @@ namespace AdeptusMechanicus.Harmony
                 return;
             }
             */
-            if (__instance.GetType()!=typeof(Verb_Shoot) && __instance.GetType() != typeof(Verb_UseEquipment))
+            if (__instance.GetType()!=typeof(Verb_Shoot))
             {
                 return;
             }
-            Log.Message(string.Format("__instance.GetType() = {0}", __instance.GetType()));
             if (__instance.EquipmentSource != null)
             {
                 ThingWithComps gun = __instance.EquipmentSource;
@@ -100,27 +99,19 @@ namespace AdeptusMechanicus.Harmony
         [HarmonyPostfix]
         public static void TryStartCastOn_RapidFire_Postfix(ref Verb __instance, LocalTargetInfo castTarg, float __state)
         {
-            /*
             List<Type> types = typeof(Verb_LaunchProjectile).AllSubclassesNonAbstract().ToList();
             types.Add(typeof(Verb_LaunchProjectile));
             List<Type> nottypes = typeof(AbilityUser.Verb_UseAbility).AllSubclassesNonAbstract().ToList();
             nottypes.Add(typeof(AbilityUser.Verb_UseAbility));
             if (!types.Contains(__instance.GetType()) || nottypes.Contains(__instance.GetType()))
             {
-                
+                /*
                 List<string> listl = new List<string>();
                 types.ForEach(x => listl.Add(x.Name));
                 Log.Message(string.Format("Mismatched Verbtype: {0}, needs {1}", __instance.GetType(), listl.ToCommaList()));
-                
+                */
                 return;
             }
-            */
-            Log.Message(string.Format("__instance.GetType() = {0}", __instance.GetType()));
-            if (__instance.GetType() != typeof(Verb_Shoot) && __instance.GetType() != typeof(Verb_UseEquipment))
-            {
-                return;
-            }
-            Log.Message(string.Format("__instance.GetType() = {0}", __instance.GetType()));
             if (__instance.EquipmentSource != null)
             {
                 ThingWithComps gun = __instance.EquipmentSource;

@@ -21,7 +21,6 @@ namespace AdeptusMechanicus.Harmony
         [HarmonyPrefix, HarmonyPriority(200)]
         public static bool get_EquipmentSource_Verb_UseEquipment_Prefix(ref Verb __instance,ref ThingWithComps __result)
         {
-            Log.Message(string.Format("get_EquipmentSource_Verb_UseEquipment_Prefix__instance.GetType() = {0}", __instance.GetType()));
             if (__instance.GetType() == typeof(Verb_UseEquipment))
             {
                 Verb_UseEquipment verb = (Verb_UseEquipment)__instance;

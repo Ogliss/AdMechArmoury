@@ -638,7 +638,7 @@ namespace AdeptusMechanicus.Harmony
                                 }
                             }
                             num %= 360f;
-                            drawLoc.y = compActivatableEffect.Altitude(drawLoc);
+                            drawLoc.y = compActivatableEffect.Props.Altitude;
                             Material matSingle = compActivatableEffect.Graphic.MatSingle;
                             Vector3 s = new Vector3(eq.def.graphicData.drawSize.x, 1f, eq.def.graphicData.drawSize.y);
                             Matrix4x4 matrix = default(Matrix4x4);
