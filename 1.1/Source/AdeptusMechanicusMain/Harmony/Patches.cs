@@ -47,6 +47,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
             */
+            /*
             IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
             foreach (AbilityDef item in DefDatabase<AdeptusMechanicus.EquipmentAbilityDef>.AllDefs)
             {
@@ -56,6 +57,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     DefDatabase<ThingDef>.AllDefsListForReading.Remove(trainer);
                 }
             }
+            */
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OG_WeaponsTest")))
             {
                 foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.Contains("OG_WeaponsTest")))
