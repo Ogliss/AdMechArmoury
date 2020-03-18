@@ -15,7 +15,6 @@ using System.Reflection;
 
 namespace AdeptusMechanicus
 {
-
     // Token: 0x02000020 RID: 32 AdeptusMechanicus.PsySilencerExt
     public class PsySilencerExt : DefModExtension
     {

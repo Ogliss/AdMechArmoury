@@ -15,9 +15,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         static Main()
         {
-            var harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            PatchPawnsArrivalModeWorker(harmony);
             if (AdeptusIntergrationUtil.enabled_rooloDualWield)
             {
                 /*
@@ -47,17 +44,18 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
             */
-            /*
+            
             IEnumerable<ThingDef> pystrainers = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains(NeurotrainerDefGenerator.PsytrainerDefPrefix));
             foreach (AbilityDef item in DefDatabase<AdeptusMechanicus.EquipmentAbilityDef>.AllDefs)
             {
                 if (pystrainers.Any(x=> x.defName.Contains(item.defName)))
                 {
                     ThingDef trainer = pystrainers.First(x => x.defName.Contains(item.defName));
-                    DefDatabase<ThingDef>.AllDefsListForReading.Remove(trainer);
+
+                    trainer.thingSetMakerTags.Clear();
                 }
             }
-            */
+            
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OG_WeaponsTest")))
             {
                 foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.Contains("OG_WeaponsTest")))
@@ -102,6 +100,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
+
         }
 
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
@@ -862,7 +861,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         }
         */
-        private static void PatchPawnsArrivalModeWorker(Harmony harmonyInstance)
+        public static void PatchPawnsArrivalModeWorker(Harmony harmonyInstance)
         {
             var prefix = typeof(AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch).GetMethod("Arrive_DSI");
             var baseType = typeof(PawnsArrivalModeWorker);
@@ -876,7 +875,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        private static void PatchVerbsShoot(Harmony harmonyInstance)
+        public static void PatchVerbsShoot(Harmony harmonyInstance)
         {
             var postfix = typeof(AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch).GetMethod("ShotsPerBurst_RapidFire_Postfix");
             var baseType = typeof(Verb_LaunchProjectile);

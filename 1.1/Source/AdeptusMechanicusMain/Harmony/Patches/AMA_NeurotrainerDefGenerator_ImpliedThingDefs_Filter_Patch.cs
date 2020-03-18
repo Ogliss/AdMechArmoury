@@ -13,29 +13,29 @@ using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using System.Reflection;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.HarmonyInstance
 {
+    
     [HarmonyPatch(typeof(NeurotrainerDefGenerator), "ImpliedThingDefs")]
     public static class AMA_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch
     {
-        [HarmonyPostfix]
-        public static IEnumerable<ThingDef> Post_ImpliedThingDefs(IEnumerable<ThingDef> __result)
+        public static IEnumerable<ThingDef> Postfix(IEnumerable<ThingDef> list)
         {
-            foreach (ThingDef item in __result)
+            foreach (ThingDef item in list)
             {
                 CompProperties_Neurotrainer compProperties = item.GetCompProperties<CompProperties_Neurotrainer>();
-                if (compProperties.ability.GetType() != typeof(EquipmentAbilityDef))
+                if (compProperties.ability!=null)
                 {
-                    yield return item;
+                    if (compProperties.ability.GetType() != typeof(EquipmentAbilityDef))
+                    {
+                        yield return item;
+                    }
                 }
-                else
-                {
-                    Log.Message(string.Format("skipping {0}", item.LabelCap));
-                }
+                else yield return item;
             }
+            yield break;
         }
-        //    public static FieldInfo graphic = typeof(Graphic).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
     }
-
+    
 
 }

@@ -12,27 +12,28 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public static class AdeptusIntergrationUtil
     {
-        public static bool enabled_AstraCore = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Astra Militarum") && m.Name.Contains("Imperial Guard Core Mod"));
-        public static bool enabled_AstraFactions = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Astra Militarum") && m.Name.Contains("Imperial Guard Factions Mod"));
-        public static bool enabled_AstraTurrets = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Astra Militarum") && m.Name.Contains("Imperial Guard Turret Addon Mod"));
+        public static bool enabled_AstraCore = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum"));
+        public static bool enabled_AstraFactions = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum.Factions"));
+        public static bool enabled_AstraTurrets = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum.Turrets"));
 
-        public static bool enabled_MagosXenobiologis = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Magos Xenobiologis"));
-        public static bool enabled_AlienRaces = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name == "Humanoid Alien Races 2.0");
+        public static bool enabled_MagosXenobiologis = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis"));
+        public static bool enabled_AlienRaces = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "erdelf.HumanoidAlienRaces");
 
-        public static bool enabled_AdeptusAstartes = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus") && m.Name.Contains("Astartes"));
-        public static bool enabled_XenobiologisOrk = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Ork") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisTau = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Tau") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Eldar") && !m.Name.Contains("Dark") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisDarkEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Eldar") && m.Name.Contains("Dark") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisChaos = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Chaos") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisNecron = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Necron") && m.Name.Contains("Xenobiologis"));
-        public static bool enabled_XenobiologisTyranid = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name.Contains("Adeptus Mechanicus") && m.Name.Contains("Tyranid") && m.Name.Contains("Xenobiologis"));
+        public static bool enabled_AdeptusAstartes = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Astartes"));
+        public static bool enabled_XenobiologisOrk = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Orkz"));
+        public static bool enabled_XenobiologisTau = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Tau"));
+        public static bool enabled_XenobiologisEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Eldar"));
+        public static bool enabled_XenobiologisDarkEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.DarkEldar"));
+        public static bool enabled_XenobiologisChaos = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Chaos"));
+        public static bool enabled_XenobiologisNecron = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Necron"));
+        public static bool enabled_XenobiologisTyranid = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Tyranid"));
 
-        public static bool enabled_CombatExtended = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name == "Combat Extended");
+        public static bool enabled_CombatExtended = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "CETeam.CombatExtended");
 
-        public static bool enabled_rooloDualWield = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name == "Dual Wield");
-        
-        public static bool enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.Name == "A RimWorld of Magic");
+        public static bool enabled_rooloDualWield = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Roolo.DualWield");
+        public static bool enabled_rooloRunAndGun = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Roolo.RunAndGun");
+
+        public static bool enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Torann.ARimworldOfMagic");
 
         private static FactionDef AstraChaosMarine;
         private static FactionDef AstraTraitorGuard;
@@ -45,6 +46,10 @@ namespace AdeptusMechanicus
                 AstraChaosMarine = DefDatabase<FactionDef>.GetNamed("IG_ChaosMarineFaction");
                 AstraTraitorGuard = DefDatabase<FactionDef>.GetNamed("TraitorGuardFaction");
                 AstraTyranid = DefDatabase<FactionDef>.GetNamed("TyranidFaction");
+            }
+            if (true)
+            {
+
             }
         }
         /*
@@ -96,26 +101,222 @@ namespace AdeptusMechanicus
         {
             get
             {
+                if (!enabled_AstraFactions)
+                {
+                    return null;
+                }
                 //    Log.Message(string.Format("{0}", AstraChaosMarine));
-                return Find.FactionManager.FirstFactionOfDef(AstraChaosMarine);
+                return Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("IG_ChaosMarineFaction"));
             }
         }
         public static Faction OfTraitorGuard
         {
             get
             {
+                if (!enabled_AstraFactions)
+                {
+                    return null;
+                }
                 //    Log.Message(string.Format("{0}", AstraTraitorGuard));
-                return Find.FactionManager.FirstFactionOfDef(AstraTraitorGuard);
+                return Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("TraitorGuardFaction"));
             }
         }
         public static Faction OfTyranid
         {
             get
             {
+                if (!enabled_AstraFactions)
+                {
+                    return null;
+                }
                 //    Log.Message(string.Format("{0}", AstraTyranid));
-                return Find.FactionManager.FirstFactionOfDef(AstraTyranid);
+                return Find.FactionManager.FirstFactionOfDef(DefDatabase<FactionDef>.GetNamed("TyranidFaction"));
             }
         }
     }
+    static class UtilCE
+    {
+        public static bool CombatExtended = false;
+        public static ModContentPack modContent = null;
+        static UtilCE()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == ("CETeam.CombatExtended"))
+                {
+                    modContent = p;
+                    CombatExtended = true;
+                }
+            }
+        }
 
+    }
+
+    static class UtilAvPSynths
+    {
+        private static bool logging = false;
+        private static bool initialized = false;
+        public static bool AvP = false;
+        static UtilAvPSynths()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == "Ogliss.AlienVsPredator")
+                {
+                    AvP = true;
+                }
+            }
+        }
+
+        public static bool isAvPSynth(PawnKindDef pawn)
+        {
+            bool Result = pawn.RaceProps.FleshType.defName == "RRY_SynthFlesh";
+
+            return Result;
+        }
+        public static bool isAvPSynth(Pawn pawn)
+        {
+            bool Result = pawn.def.race.FleshType.defName == "RRY_SynthFlesh";
+
+            return Result;
+        }
+        public static bool isAvPSynth(ThingDef td)
+        {
+            bool Result = td.race.FleshType.defName == "RRY_SynthFlesh";
+
+            return Result;
+        }
+    }
+
+    static class UtilChjAndroids
+    {
+        public static bool ChjAndroid = false;
+        public static ModContentPack modContent = null;
+        static UtilChjAndroids()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == ("ChJees.Androids"))
+                {
+                    modContent = p;
+                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                    ChjAndroid = true;
+                }
+            }
+
+        }
+
+        public static bool isChjAndroid(PawnKindDef pawn)
+        {
+            //    bool Result = pawn.race.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (pawn.race.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+        public static bool isChjAndroid(Pawn pawn)
+        {
+            //    bool Result = pawn.def.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (pawn.def.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+        public static bool isChjAndroid(ThingDef td)
+        {
+            //    bool Result = td.comps.Any(x => x.compClass.Name.Contains("Androids.CompProperties_EnergyTracker"));
+            bool Result = false;
+            if (td.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+    }
+
+    static class UtilTieredAndroids
+    {
+        public static bool TieredAndroid = false;
+        public static ModContentPack modContent = null;
+        static UtilTieredAndroids()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.PackageIdPlayerFacing == ("Atlas.AndroidTiers"))
+                {
+                    modContent = p;
+                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                    TieredAndroid = true;
+                }
+            }
+        }
+
+        public static bool isAtlasAndroid(PawnKindDef pawn)
+        {
+
+            bool Result = false;
+            if (pawn.race.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+        public static bool isAtlasAndroid(Pawn pawn)
+        {
+            bool Result = false;
+            if (pawn.def.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+        public static bool isAtlasAndroid(ThingDef td)
+        {
+            bool Result = false;
+            if (td.modContentPack == modContent)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+    }
+
+    static class UtilDinosauria
+    {
+        public static bool Dinosauria = false;
+        public static ModContentPack modContent = null;
+        static UtilDinosauria()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.Name.Contains("Dinosauria"))
+                {
+                    modContent = p;
+                    Dinosauria = true;
+                }
+            }
+        }
+
+    }
+
+    static class UtilJurassicRimworld
+    {
+        public static bool JurassicRimworld = false;
+        public static ModContentPack modContent = null;
+        static UtilJurassicRimworld()
+        {
+            foreach (ModContentPack p in LoadedModManager.RunningMods)
+            {
+                if (p.Name.Contains("Jurassic Rimworld"))
+                {
+                    modContent = p;
+                    JurassicRimworld = true;
+                }
+            }
+        }
+    }
 }

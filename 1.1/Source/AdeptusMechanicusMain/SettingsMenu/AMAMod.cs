@@ -5,6 +5,8 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 using RimWorld;
+using System;
+using AdeptusMechanicus.HarmonyInstance;
 
 namespace AdeptusMechanicus.settings
 {
@@ -16,6 +18,10 @@ namespace AdeptusMechanicus.settings
             SettingsHelper.latest = this.settings;
             Instance = this;
             AMSettings.Instance = base.GetSettings<AMSettings>();
+            var harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            Main.PatchPawnsArrivalModeWorker(harmony);
+            if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
         }
 
         public override string SettingsCategory() => "AM_ModSeries".Translate() + ": " + "AMA_ModName".Translate();

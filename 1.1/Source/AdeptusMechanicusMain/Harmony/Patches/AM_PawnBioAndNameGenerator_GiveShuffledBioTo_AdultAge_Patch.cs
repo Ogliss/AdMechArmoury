@@ -26,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 backstoryCategories.Clear();
                 backstoryCategories.Add(backstoryCategoryFilter);
             }
-            if (pawn.ageTracker.AgeBiologicalYears < 20)
+            if (pawn.ageTracker.AgeBiologicalYears < 20 && pawn.def.modContentPack.PackageIdPlayerFacing.Contains("AdMech"))
             {
                 bool act = pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive);
                 if (act)
