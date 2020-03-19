@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__result!=null)
             {
-                if (__result.Faction!=null)
+                if (__result.Faction!=null && __result.RaceProps.Humanlike)
                 {
                     if (__result.Faction.def.HasModExtension<FactionDefExtension>())
                     {

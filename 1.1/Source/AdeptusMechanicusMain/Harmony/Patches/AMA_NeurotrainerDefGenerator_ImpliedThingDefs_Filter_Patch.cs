@@ -26,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 CompProperties_Neurotrainer compProperties = item.GetCompProperties<CompProperties_Neurotrainer>();
                 if (compProperties.ability!=null)
                 {
-                    if (compProperties.ability.GetType() != typeof(EquipmentAbilityDef))
+                    if (compProperties.ability.GetType() != typeof(AdeptusMechanicus.EquipmentAbilityDef))
                     {
                         yield return item;
                     }

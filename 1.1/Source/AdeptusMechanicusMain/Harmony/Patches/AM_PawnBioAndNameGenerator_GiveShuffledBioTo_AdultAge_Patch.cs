@@ -19,6 +19,14 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static bool GiveShuffledBioTo_AdultAge_Prefix(Pawn pawn, FactionDef factionType, string requiredLastName, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
+            if (pawn != null)
+            {
+                return true;
+            }
+            if (!pawn.RaceProps.Humanlike)
+            {
+                return true;
+            }
             bool ext = pawn.kindDef.HasModExtension<BackstoryExtension>();
             if (ext)
             {
