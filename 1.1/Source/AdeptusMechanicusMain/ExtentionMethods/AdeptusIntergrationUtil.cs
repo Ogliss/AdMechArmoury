@@ -35,22 +35,11 @@ namespace AdeptusMechanicus
 
         public static bool enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Torann.ARimworldOfMagic");
 
-        private static FactionDef AstraChaosMarine;
-        private static FactionDef AstraTraitorGuard;
-        private static FactionDef AstraTyranid;
+
 
         static AdeptusIntergrationUtil()
         {
-            if (enabled_AstraFactions)
-            {
-                AstraChaosMarine = DefDatabase<FactionDef>.GetNamed("IG_ChaosMarineFaction");
-                AstraTraitorGuard = DefDatabase<FactionDef>.GetNamed("TraitorGuardFaction");
-                AstraTyranid = DefDatabase<FactionDef>.GetNamed("TyranidFaction");
-            }
-            if (true)
-            {
 
-            }
         }
         /*
         // Token: 0x06000021 RID: 33 RVA: 0x000037B0 File Offset: 0x000019B0
