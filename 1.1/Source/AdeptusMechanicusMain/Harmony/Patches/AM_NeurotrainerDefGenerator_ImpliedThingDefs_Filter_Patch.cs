@@ -17,7 +17,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 {
     
     [HarmonyPatch(typeof(NeurotrainerDefGenerator), "ImpliedThingDefs")]
-    public static class AMA_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch
+    public static class AM_NeurotrainerDefGenerator_ImpliedThingDefs_Filter_Patch
     {
         public static IEnumerable<ThingDef> Postfix(IEnumerable<ThingDef> list)
         {

@@ -18,8 +18,17 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Notify_EquipmentAddedPostfix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
+            if (eq==null || __instance==null)
+            {
+                return;
+            }
             if (eq.TryGetComp<CompAbilityItem>() != null && eq.TryGetComp<CompAbilityItem>() is CompAbilityItem abilityItem)
             {
+                Pawn pawn = __instance.pawn;
+                if (!pawn.RaceProps.Humanlike)
+                {
+                    return;
+                }
                 if (!abilityItem.Props.Abilities.NullOrEmpty())
                 {
                     foreach (AbilityDef def in abilityItem.Props.Abilities)
@@ -39,8 +48,17 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Notify_EquipmentRemovedPostfix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
+            if (eq == null || __instance == null)
+            {
+                return;
+            }
             if (eq.TryGetComp<CompAbilityItem>() != null && eq.TryGetComp<CompAbilityItem>() is CompAbilityItem abilityItem)
             {
+                Pawn pawn = __instance.pawn;
+                if (!pawn.RaceProps.Humanlike)
+                {
+                    return;
+                }
                 if (!abilityItem.Props.Abilities.NullOrEmpty())
                 {
                     foreach (AbilityDef def in abilityItem.Props.Abilities)

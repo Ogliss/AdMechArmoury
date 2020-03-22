@@ -21,6 +21,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool abilityitem = apparel.TryGetComp<CompAbilityItem>() != null;
             if (abilityitem)
             {
+                Pawn pawn = __instance.pawn;
+                if (!pawn.RaceProps.Humanlike)
+                {
+                    return;
+                }
                 foreach (CompAbilityItem compAbilityItem in apparel.GetComps<CompAbilityItem>())
                 {
                     if (__instance.pawn.abilities.abilities.Any(x => compAbilityItem.Props.Abilities.Contains(x.def)))
@@ -47,6 +52,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (apparel.TryGetComp<CompAbilityItem>() != null && apparel.TryGetComp<CompAbilityItem>() is CompAbilityItem abilityItem)
             {
+                Pawn pawn = __instance.pawn;
+                if (!pawn.RaceProps.Humanlike)
+                {
+                    return;
+                }
                 if (!abilityItem.Props.Abilities.NullOrEmpty())
                 {
                     foreach (AbilityDef def in abilityItem.Props.Abilities)
