@@ -18,7 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class AM_VerbTracker_CreateVerbTargetCommand_CompAdvancedGraphic_Patch
     {
         [HarmonyPostfix]
-        public static void Postfix(VerbTracker __instance, Thing ownerThing, Verb verb, Command_VerbTarget __result)
+        public static void Postfix(VerbTracker __instance, Thing ownerThing, Verb verb, ref Command_VerbTarget __result)
         {
             if (__instance != null)
             {
@@ -27,6 +27,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     __result.icon = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
                     // __result.IconDrawColor = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
+                }
+                if (true)
+                {
+                    __result.icon = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
                 }
             }
         }

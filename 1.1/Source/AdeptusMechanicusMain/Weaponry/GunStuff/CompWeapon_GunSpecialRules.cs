@@ -55,6 +55,7 @@ namespace AdeptusMechanicus
         }
 
         public CompToggleFireMode fireMode => this.parent.TryGetComp<CompToggleFireMode>();
+        public int CurMode => fireMode != null ? fireMode.fireMode : 0;
         public bool HeavyWeapon => Props.HeavyWeapon;
         public bool TyranidBurstBodySize => Props.TyranidBurstBodySize;
         public bool TwinLinked => fireMode != null ? Props.VerbEntries[fireMode.fireMode].TwinLinked : Props.VerbEntries[0].TwinLinked;

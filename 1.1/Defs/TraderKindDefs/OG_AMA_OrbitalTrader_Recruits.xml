@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--QX========================= Imperial Guard - Rogue Trader Definition ==========================QX-->
+  <IncidentDef>
+    <defName>OrbitalRecruiterArrival</defName>
+    <label>orbital recruiter arrival</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Recruiters.IncidentWorker_OrbitalRecruiterArrival</workerClass>
+    <category>OrbitalVisitor</category>
+    <baseChance>3</baseChance>
+    <requireColonistsPresent>True</requireColonistsPresent>
+  </IncidentDef>
+
+  <TraderKindDef>
+    <defName>OG_Orbital_RecruiterMerchant</defName>
+    <label>recruiter ship</label>
+    <orbital>true</orbital>
+    <requestable>false</requestable>
+    <commonalityMultFromPopulationIntent>
+      <points>
+        <li>(0.2, 0)</li>
+        <li>(1,   1)</li>
+        <li>(2,   3)</li>
+      </points>
+    </commonalityMultFromPopulationIntent>
+    <stockGenerators>
+
+      <!-- Recruits -->
+      <li Class="Recruiters.StockGenerator_Recruits">
+        <countRange>2~4</countRange>
+      </li>
+      
+      <!-- Buying 
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireRoyal</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+      -->
+    </stockGenerators>
+	<modExtensions>
+	  <li Class="Recruiters.RecruiterExt">
+	  </li>
+	</modExtensions>
+  </TraderKindDef>
+  
+  <TraderKindDef>
+    <defName>OG_Orbital_MercsMerchant</defName>
+    <label>Merc ship</label>
+    <orbital>true</orbital>
+    <requestable>false</requestable>
+    <commonalityMultFromPopulationIntent>
+      <points>
+        <li>(0.2, 0)</li>
+        <li>(1,   1)</li>
+        <li>(2,   3)</li>
+      </points>
+    </commonalityMultFromPopulationIntent>
+    <stockGenerators>
+
+      <!-- Mercs -->
+      <li Class="Recruiters.StockGenerator_Mercs">
+        <countRange>2~20</countRange>
+      </li>
+      
+      <!-- Buying 
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireRoyal</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+      -->
+    </stockGenerators>
+	<modExtensions>
+	  <li Class="Recruiters.RecruiterExt">
+	  </li>
+	</modExtensions>
+  </TraderKindDef>
+</Defs>
