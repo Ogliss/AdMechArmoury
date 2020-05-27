@@ -76,15 +76,24 @@ namespace AdeptusMechanicus
                 MoteMaker.ThrowSmoke(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(radius * 0.7f), map, radius * 0.6f);
             }
 
+            Rand.PushState();
             if (Rand.Chance(ignitionChance))
                 foreach (var vec3 in cellsToAffect)
                 {
                     var fireSize = radius - vec3.DistanceTo(Position);
                     if (fireSize > 0.1f)
                     {
-                        FireUtility.TryStartFireIn(vec3, map, fireSize);
+                        if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                        {
+                            WarpfireUtility.TryStartWarpfireIn(vec3, map, fireSize);
+                        }
+                        else
+                        {
+                            FireUtility.TryStartFireIn(vec3, map, fireSize);
+                        }
                     }
                 }
+            Rand.PopState();
 
             //Fire explosion should be tiny.
             if (this.def.projectile.explosionEffect != null)
@@ -100,6 +109,7 @@ namespace AdeptusMechanicus
         {
             IntVec3 intVec = base.Position;
             bool flag;
+            Rand.PushState();
             if (Rand.Chance(0.8f))
             {
                 intVec = base.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(1, 8)];
@@ -110,11 +120,27 @@ namespace AdeptusMechanicus
                 intVec = base.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(10, 20)];
                 flag = false;
             }
+            Rand.PopState();
             if (!intVec.InBounds(base.Map))
             {
                 return;
             }
-            if (Rand.Chance(FireUtility.ChanceToStartFireIn(intVec, base.Map)))
+
+            float chance;
+
+            if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+            {
+                chance = WarpfireUtility.ChanceToStartWarpfireIn(intVec, base.Map);
+            }
+            else
+            {
+                chance = FireUtility.ChanceToStartFireIn(intVec, base.Map);
+            }
+
+            Rand.PushState();
+            bool f = Rand.Chance(chance);
+            Rand.PopState();
+            if (f)
             {
                 if (!flag)
                 {
@@ -124,12 +150,27 @@ namespace AdeptusMechanicus
                     {
                         return;
                     }
-                    Spark spark = (Spark)GenSpawn.Spawn(ThingDefOf.Spark, base.Position, base.Map, WipeMode.Vanish);
+                    Spark spark;
+                    if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                    {
+                        spark = (Spark)GenSpawn.Spawn(OGThingDefOf.OG_WarpSpark, base.Position, base.Map, WipeMode.Vanish);
+                    }
+                    else
+                    {
+                        spark = (Spark)GenSpawn.Spawn(ThingDefOf.Spark, base.Position, base.Map, WipeMode.Vanish);
+                    }
                     spark.Launch(this, intVec, intVec, ProjectileHitFlags.All, null);
                 }
                 else
                 {
-                    FireUtility.TryStartFireIn(intVec, base.Map, 0.1f);
+                    if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                    {
+                        WarpfireUtility.TryStartWarpfireIn(intVec, base.Map, 0.1f);
+                    }
+                    else
+                    {
+                        FireUtility.TryStartFireIn(intVec, base.Map, 0.1f);
+                    }
                 }
             }
         }
@@ -183,11 +224,15 @@ namespace AdeptusMechanicus
         
         public override void Draw()
         {
-
+            string mote = "Mote_FlameGlow";
+            if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+            {
+                mote = "OG_Mote_WarpFireGlow";
+            }
             Mesh mesh = MeshPool.GridPlane(this.def.graphicData.drawSize * traveled);
-            Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed("Mote_FlameGlow").graphicData.drawSize * (traveled * 7));
+            Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed(mote).graphicData.drawSize * (traveled * 7));
             Graphics.DrawMesh(mesh, this.DrawPos, this.ExactRotation, Graphic.MatSingle, 0);
-            Graphics.DrawMesh(mesh2, this.DrawPos, this.ExactRotation, DefDatabase<ThingDef>.GetNamed("Mote_FlameGlow").graphic.MatSingle, 0);
+            Graphics.DrawMesh(mesh2, this.DrawPos, this.ExactRotation, DefDatabase<ThingDef>.GetNamed(mote).graphic.MatSingle, 0);
             base.Comps_PostDraw();
         }
 

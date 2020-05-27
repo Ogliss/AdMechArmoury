@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
         
         public static List<Thing> SpawnedHivelikes(Map map, FactionDef factionDef)
         {
-            HiveLike hiveLike = null;
+        //    HiveLike hiveLike = null;
             List<Thing> lista = new List<Thing>();
             if (!DefDatabase<ThingDef_HiveLike>.AllDefsListForReading.FindAll(x => x.Faction == factionDef).NullOrEmpty())
             {

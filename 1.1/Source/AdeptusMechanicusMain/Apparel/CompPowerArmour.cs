@@ -45,7 +45,7 @@ namespace AdeptusMechanicus
             Log.Message(string.Format("Off"));
             if (pawn != null)
             {
-               HarmonyPatchesOG.Patch.ChangeBodyType(pawn, bodyTypeDef);
+                HarmonyPatches.ChangeBodyType(pawn, bodyTypeDef);
             }
         }
 
@@ -55,7 +55,7 @@ namespace AdeptusMechanicus
             // Sanity test; if our pawn doesn't exist, don't even bother.
             if (pawn == null) return false;
             bodyTypeDef = pawn.story.bodyType;
-            HarmonyPatchesOG.Patch.ChangeBodyType(pawn, RimWorld.BodyTypeDefOf.Hulk);
+            HarmonyPatches.ChangeBodyType(pawn, RimWorld.BodyTypeDefOf.Hulk);
             return true;
         }
 

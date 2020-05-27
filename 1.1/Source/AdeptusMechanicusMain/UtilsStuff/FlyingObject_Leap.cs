@@ -90,7 +90,6 @@ namespace AdeptusMechanicus
             {
                 MoteMaker.ThrowDustPuff(this.pawn.Position, this.pawn.Map, Rand.Range(1.2f, 1.8f));
             }
-            this.initialize = false;
         }
 
         // Token: 0x060005F9 RID: 1529 RVA: 0x00056F84 File Offset: 0x00055184
@@ -280,7 +279,6 @@ namespace AdeptusMechanicus
         protected float speed = 28f;
 
         // Token: 0x040005C4 RID: 1476
-        private bool drafted = false;
 
         // Token: 0x040005C5 RID: 1477
         protected int ticksToImpact;
@@ -304,7 +302,6 @@ namespace AdeptusMechanicus
         public int weaponDmg = 0;
 
         // Token: 0x040005CC RID: 1484
-        private bool initialize = true;
 
         // Token: 0x040005CD RID: 1485
         private Pawn pawn;

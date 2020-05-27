@@ -23,6 +23,85 @@ namespace AdeptusMechanicus.ExtensionMethods
                 tracker.abilities.Add(ab);
             }
         }
+
+        public static bool ButtonTextLine(this Listing_Standard L, string label, string highlightTag = null)
+        {
+            Rect rect = L.GetRect(Text.LineHeight);
+            bool result = Widgets.ButtonText(rect, label, true, true, true);
+            if (highlightTag != null)
+            {
+                UIHighlighter.HighlightOpportunity(rect, highlightTag);
+            }
+            L.Gap(L.verticalSpacing);
+            return result;
+        }
+
+        // Token: 0x06001B7B RID: 7035 RVA: 0x000A80E6 File Offset: 0x000A62E6
+        public static void TextFieldNumericLabeled<T>(this Listing_Standard L, string label, ref T val, ref string buffer, float min = 0f, float max = 1E+09f, string tooltip = null, float textpart = 0.75f, float boxpart = 0.25f) where T : struct
+        {
+            TextFieldNumericLabeled<T>(L.GetRect(Text.LineHeight), label, ref val, ref buffer, min, max, tooltip, textpart, boxpart);
+            L.Gap(L.verticalSpacing);
+        }
+        public static void TextFieldNumericLabeled<T>(Rect rect, string label, ref T val, ref string buffer, float min = 0f, float max = 1E+09f, string tooltip = null, float textpart = 0.75f, float boxpart = 0.25f) where T : struct
+        {
+            Rect rect2 = rect.LeftPart(textpart).Rounded();
+            Rect rect3 = rect.RightPart(boxpart).Rounded();
+            TextAnchor anchor = Text.Anchor;
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(rect2, label);
+            if (tooltip != null)
+            {
+                TooltipHandler.TipRegion(rect2, tooltip);
+            }
+            Text.Anchor = anchor;
+            Widgets.TextFieldNumeric(rect3, ref val, ref buffer, min, max);
+        }
+
+        // Token: 0x06001B47 RID: 6983 RVA: 0x000A6A5C File Offset: 0x000A4C5C
+        public static Listing_Standard BeginSection(this Listing_Standard L, float height, bool hidesection = false, int type = 0)
+        {
+            Rect rect = L.GetRect(height + 8f);
+            if (!hidesection) 
+            {
+                switch (type)
+                {
+                    case 1:
+                        Widgets.DrawWindowBackground(rect);
+                        break;
+                    case 2:
+                        Widgets.DrawWindowBackgroundTutor(rect);
+                        break;
+                    case 3:
+                        Widgets.DrawOptionUnselected(rect);
+                        break;
+                    case 4:
+                        Widgets.DrawOptionSelected(rect);
+                        break;
+                    default:
+                        Widgets.DrawMenuSection(rect);
+                        break;
+                }
+            }
+            Listing_Standard listing_Standard = new Listing_Standard();
+            listing_Standard.Begin(rect.ContractedBy(4f));
+            return listing_Standard;
+        }
+
+        public static void CheckboxLabeled(this Listing_Standard listing_Standard, string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false)
+        {
+            float lineHeight = Text.LineHeight;
+            Rect rect = listing_Standard.GetRect(lineHeight);
+            if (!tooltip.NullOrEmpty() || highlight)
+            {
+                if (Mouse.IsOver(rect))
+                {
+                    Widgets.DrawHighlight(rect);
+                }
+                if (!tooltip.NullOrEmpty()) TooltipHandler.TipRegion(rect, tooltip);
+            }
+            Widgets.CheckboxLabeled(rect, label, ref checkOn, disabled, null, null, false);
+            listing_Standard.Gap(listing_Standard.verticalSpacing);
+        }
         /*
         // Token: 0x060051F6 RID: 20982 RVA: 0x0025FD78 File Offset: 0x0025E178
         public static Graphic ExtractInnerGraphicFor(this Graphic outerGraphic, Thing thing)
@@ -329,50 +408,64 @@ namespace AdeptusMechanicus.ExtensionMethods
         */
         public static bool isPsyker(this Pawn pawn)
         {
-            bool result;
-            if (pawn.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) && pawn.RaceProps.Humanlike)
-            {
-                result = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity) > 0;
-            }
-            else
-            {
-                result = false;
-            }
-            return result;
+            return pawn.isPsyker(out int Level);
         }
 
         public static bool isPsyker(this Pawn pawn, out int Level)
         {
-            bool result;
-            if (pawn.isPsyker())
-            {
-                Level = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity);
-                result = pawn.isPsyker();
-            }
-            else
-            {
-                Level = 0;
-                result = false;
-            }
-            return result;
+            return pawn.isPsyker(out Level, out float Mult);
         }
 
         public static bool isPsyker(this Pawn pawn, out int Level, out float Mult)
         {
-            bool result;
-            if (pawn.isPsyker())
+            bool result = false;
+            Mult = 0f;
+            Level = 0;
+
+            if (pawn.RaceProps.Humanlike)
             {
+                if (pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_ImplantWithLevel)))
+                {
+                    Level = (pawn.health.hediffSet.hediffs.First(x => x.GetType() == typeof(Hediff_ImplantWithLevel)) as Hediff_ImplantWithLevel).level;
+                    result = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity) > 0;
+                }
+                else
+                if (pawn.story.traits.HasTrait(TraitDefOf.PsychicSensitivity))
+                {
+                    result = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity) > 0;
+                    Level = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity);
+                }
                 Mult = pawn.GetStatValue(StatDefOf.PsychicSensitivity) * (pawn.needs.mood.CurInstantLevelPercentage - pawn.health.hediffSet.PainTotal);
-                result = pawn.isPsyker(out Level);
             }
             else
             {
-                Mult = 0f;
-                Level = 0;
-                result = false;
+                ToolUserPskyerDefExtension extension = null;
+                if (pawn.def.HasModExtension<ToolUserPskyerDefExtension>())
+                {
+                    extension = pawn.def.GetModExtension<ToolUserPskyerDefExtension>();
+                }
+                else
+                if (pawn.kindDef.HasModExtension<ToolUserPskyerDefExtension>())
+                {
+                    extension = pawn.kindDef.GetModExtension<ToolUserPskyerDefExtension>();
+                }
+                if (extension != null)
+                {
+                    Level = extension.Level;
+                }
+                if (pawn.needs!=null && pawn.needs.mood!=null)
+                {
+                    Mult = pawn.GetStatValue(StatDefOf.PsychicSensitivity) * (pawn.needs.mood.CurInstantLevelPercentage - pawn.health.hediffSet.PainTotal);
+                }
+                else
+                {
+                    Mult = pawn.GetStatValue(StatDefOf.PsychicSensitivity) * (1 - pawn.health.hediffSet.PainTotal);
+                }
             }
+
             return result;
         }
+
 
         public static bool powerWeapon(this Thing thing)
         {
@@ -384,10 +477,30 @@ namespace AdeptusMechanicus.ExtensionMethods
 
         public static bool powerWeapon(this Verb verb)
         {
-            bool flag1 = verb.GetDamageDef() == OGDamageDefOf.OG_PowerWeapon_Blunt;
-            bool flag2 = verb.GetDamageDef() == OGDamageDefOf.OG_PowerWeapon_Cut;
-            bool flag3 = verb.GetDamageDef() == OGDamageDefOf.OG_PowerWeapon_Stab;
-            return flag1 || flag2 || flag3;
+            return verb.GetDamageDef().powerWeapon();
+        }
+
+        public static bool powerWeapon(this DamageDef damage)
+        {
+            return damage.defName.Contains("OG_Power_");
+        }
+
+        public static bool witchbladeWeapon(this Thing thing)
+        {
+            bool flag1 = thing.TryGetComp<CompEquippable>() != null;
+            bool flag2 = thing.def.IsMeleeWeapon;
+            bool flag3 = thing.TryGetComp<CompEquippable>().AllVerbs.Any(x => x.witchbladeWeapon());
+            return flag1 && flag2 && flag3;
+        }
+
+        public static bool witchbladeWeapon(this Verb verb)
+        {
+            return verb.GetDamageDef().witchbladeWeapon();
+        }
+
+        public static bool witchbladeWeapon(this DamageDef damage)
+        {
+            return damage.defName.Contains("OG_Witchblade_");
         }
 
         public static bool forceWeapon(this Thing thing)
@@ -400,15 +513,12 @@ namespace AdeptusMechanicus.ExtensionMethods
 
         public static bool forceWeapon(this Verb verb)
         {
-            bool flag1 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Blunt;
-            bool flag2 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Cut;
-            bool flag3 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Stab;
-            return flag1 || flag2 || flag3;
+            return verb.GetDamageDef().forceWeapon();
         }
 
         public static bool forceWeapon(this DamageDef damage)
         {
-            return damage.defName.Contains("OG_ForceWeapon_");
+            return damage.defName.Contains("OG_Force_");
         }
         
         public static bool rendingWeapon(this Thing thing)
@@ -421,20 +531,12 @@ namespace AdeptusMechanicus.ExtensionMethods
 
         public static bool rendingWeapon(this Verb verb)
         {
-            bool flag1 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Blunt;
-            bool flag2 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Cut;
-            bool flag3 = verb.GetDamageDef() == OGDamageDefOf.OG_ForceWeapon_Stab;
-            return flag1 || flag2 || flag3;
+            return verb.GetDamageDef().rendingWeapon();
         }
 
         public static bool rendingWeapon(this DamageDef damage)
         {
-            return damage.defName.Contains("OG_RendingWeapon_");
-        }
-
-        public static bool rendingWeapon(this HediffDef hediff)
-        {
-            return hediff.defName.Contains("OG_RendingWeapon_");
+            return damage.defName.Contains("OG_Rending_");
         }
 
     }

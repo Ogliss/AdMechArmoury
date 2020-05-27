@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using System.Text.RegularExpressions;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -20,201 +21,258 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (GenDefDatabase.GetDefSilentFail(defType, defName, false) == null)
             {
+                string newName = string.Empty;
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    
+                    if (defName.Contains("OGT_Gun_TKroot"))
+                    {
+                        newName = Regex.Replace(defName, "OGT_Gun_TKroot", "OGK_Gun_Kroot");
+                    }
+                    else
                     if (defName.Contains("Alien_Kroot"))
                     {
-                        __result = "OG_Alien_Kroot";
+                        newName = "OG_Alien_Kroot";
                     }
                     else
                     if (defName.Contains("Alien_Tau"))
                     {
-                        __result = "OG_Alien_Tau";
+                        newName ="OG_Alien_Tau";
                     }
                     else
                     if (defName.Contains("Alien_Ork"))
                     {
-                        __result = "OG_Alien_Ork";
+                        newName ="OG_Alien_Ork";
                     }
                     else
                     if (defName.Contains("Cybork"))
                     {
-                        __result = "OG_Alien_Cybork";
+                        newName ="OG_Alien_Cybork";
                     }
                     else
                     if (defName.Contains("Alien_Cybork"))
                     {
-                        __result = "OG_Alien_Cybork";
+                        newName ="OG_Alien_Cybork";
                     }
                     else
                     if (defName.Contains("Alien_Grot"))
                     {
-                        __result = "OG_Alien_Grot";
+                        newName ="OG_Alien_Grot";
                     }
                     else
                     if (defName.Contains("Alien_Eldar"))
                     {
-                        __result = "OG_Alien_Eldar";
+                        newName ="OG_Alien_Eldar";
                     }
                     else
                     if (defName.Contains("AttackSquig"))
                     {
-                        __result = "OG_Squig_Ork";
+                        newName ="OG_Squig_Ork";
                     }
                     else
                     if (defName.Contains("Squig"))
                     {
-                        __result = "OG_Squig";
+                        newName ="OG_Squig";
                     }
                     else
                     if (defName.Contains("Snotling"))
                     {
-                        __result = "OG_Ork_Snotling";
+                        newName ="OG_Ork_Snotling";
                     }
                     
                     if (defName != __result)
                     {
                         if (defName.Contains("Corpse"))
                         {
-                            __result = "Corpse_" + __result;
+                            newName ="Corpse_" + __result;
                         }
                         if (defName.Contains("Meat"))
                         {
                             if (defName.Contains("Cyborg_Ork"))
                             {
-                                __result = "Meat_OG_Alien_Ork";
+                                newName ="Meat_OG_Alien_Ork";
                             }
                             else
                             if (defName.Contains("Squig"))
                             {
-                                __result = "Meat_OG_Squig";
+                                newName ="Meat_OG_Squig";
                             }
                             else
-                            __result = "Meat_" + __result;
+                            newName ="Meat_" + __result;
                         }
                     }
                     if (defName.Contains("OrkGrog"))
                     {
-                        __result = "OG_Ork_Grog";
+                        newName ="OG_Ork_Grog";
                     }
                     if (defName.Contains("Plant_OrkFungus"))
                     {
-                        __result = "OG_Plant_OrkoidFungus";
+                        newName ="OG_Plant_OrkoidFungus";
                     }
                     if (defName.Contains("Meat_Cyborg_Ork"))
                     {
-                        __result = "Meat_OG_Alien_Ork";
+                        newName ="Meat_OG_Alien_Ork";
                     }
                     if (defName.Contains("CadianFlakArmour"))
                     {
-                        __result = "OGIG_Apparel_FlakArmour";
+                        newName ="OGIG_Apparel_FlakArmour";
                     }
                     if (defName.Contains("Rosarius"))
                     {
-                        __result = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("Rosarius")).ToList().First().defName;
+                        newName =DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("Rosarius")).ToList().First().defName;
                     }
                     if (defName.Contains("IronHalo"))
                     {
-                        __result = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("IronHalo")).ToList().First().defName;
+                        newName =DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("IronHalo")).ToList().First().defName;
                     }
                     if (defName.Contains("PuritySealA"))
                     {
-                        __result = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("PuritySealA")).ToList().First().defName;
+                        newName =DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("PuritySealA")).ToList().First().defName;
                     }
                     if (defName.Contains("Apparel_TribalKroot"))
                     {
-                        __result = "OGK_Apparel_TribalKroot";
+                        newName ="OGK_Apparel_TribalKroot";
                     }
                     
                     if (defName.Contains("OGT_CombatHelmet"))
                     {
-                        __result = "OGT_Apparel_CombatHelmet";
+                        newName ="OGT_Apparel_CombatHelmet";
                     }
                     if (defName.Contains("OGT_CombatArmour"))
                     {
-                        __result = "OGT_Apparel_CombatArmour";
+                        newName ="OGT_Apparel_CombatArmour";
                     }
                     if (defName.Contains("OGE_Apparel_RuneArmour"))
                     {
-                        __result = "OGE_Apparel_RuneArmourWarlock";
+                        newName ="OGE_Apparel_RuneArmourWarlock";
                     }
                     if (defName.Contains("OGCDWarpRift"))
                     {
-                        __result = DefDatabase<ThingDef>.AllDefs.Where(x=> x.defName.Contains("Warp") && x.defName.Contains("Rift")).RandomElement().defName;
+                        newName =DefDatabase<ThingDef>.AllDefs.Where(x=> x.defName.Contains("Warp") && x.defName.Contains("Rift")).RandomElement().defName;
                     }
-                    
+
+                    if (defName.Contains("OGC_Gun_C"))
+                    {
+                        newName = Regex.Replace(defName, "OGC_Gun_C", "OGC_Gun_");
+                    }
+                    if (defName.Contains("OGC_Melee_C"))
+                    {
+                        newName = Regex.Replace(defName, "OGC_Melee_C", "OGC_Melee_");
+                    }
+
+                    if (defName.Contains("OGE_Gun_E"))
+                    {
+                        newName = Regex.Replace(defName, "OGE_Gun_E", "OGE_Gun_");
+                    }
+                    if (defName.Contains("OGE_Melee_E"))
+                    {
+                        newName = Regex.Replace(defName, "OGE_Melee_E", "OGE_Melee_");
+                    }
+
+                    if (defName.Contains("OGN_Gun_N"))
+                    {
+                        newName = Regex.Replace(defName, "OGN_Gun_N", "OGN_Gun_");
+                    }
+                    if (defName.Contains("OGN_Melee_N"))
+                    {
+                        newName = Regex.Replace(defName, "OGN_Melee_N", "OGN_Melee_");
+                    }
+
+                    if (defName.Contains("OGO_Gun_O"))
+                    {
+                        newName = Regex.Replace(defName, "OGO_Gun_O", "OGO_Gun_");
+                    }
+                    if (defName.Contains("OGO_Melee_O"))
+                    {
+                        newName = Regex.Replace(defName, "OGO_Melee_O", "OGO_Melee_");
+                    }
+
+                    if (defName.Contains("OGT_Gun_T"))
+                    {
+                        newName = Regex.Replace(defName, "OGT_Gun_T", "OGT_Gun_");
+                    }
+                    if (defName.Contains("OGT_Melee_T"))
+                    {
+                        newName = Regex.Replace(defName, "OGT_Melee_T", "OGT_Melee_");
+                    }
+                    /*
+                    if (defName.Contains("OGT_Gun_") && defName.Contains("NeutronBlaster"))
+                    {
+
+                    }
+                    */
                 }
                 if (defType == typeof(FactionDef))
                 {
                     if (defName == "OGChaosDeamonFaction")
                     {
-                        __result = "OG_Chaos_Deamon_Faction";
+                        newName ="OG_Chaos_Deamon_Faction";
                     }
                     if (defName == "MechanicusFaction")
                     {
-                        __result = "OG_Mechanicus_Faction";
+                        newName ="OG_Mechanicus_Faction";
                     }
                     if (defName == "NecronFaction")
                     {
-                        __result = "OG_Necron_Faction";
+                        newName ="OG_Necron_Faction";
                     }
                     // Eldar Factions
                     if (defName == "EldarFaction")
                     {
-                        __result = "OG_Eldar_Craftworld_Faction";
+                        newName ="OG_Eldar_Craftworld_Faction";
                     }
                     if (defName == "EldarPlayerColony")
                     {
-                        __result = "OG_Eldar_Player_Craftworld";
+                        newName ="OG_Eldar_Player_Craftworld";
                     }
                     // Ork factions
                     if (defName == "OrkFaction")
                     {
-                        __result = "OG_Ork_Tek_Faction";
+                        newName ="OG_Ork_Tek_Faction";
                     }
                     if (defName == "FeralOrkFaction")
                     {
-                        __result = "OG_Ork_Feral_Faction";
+                        newName ="OG_Ork_Feral_Faction";
                     }
                     if (defName.Contains("Ork") && defName.Contains("Player"))
                     {
                         if (defName.Contains("Trib"))
                         {
-                            __result = "OG_Ork_PlayerTribe";
+                            newName ="OG_Ork_PlayerTribe";
                         }
                         else
                         {
-                            __result = "OG_Ork_PlayerColony";
+                            newName ="OG_Ork_PlayerColony";
                         }
                     }
                     if (defName == "RokOrkz")
                     {
-                        __result = "OG_Ork_Rok";
+                        newName ="OG_Ork_Rok";
                     }
                     if (defName == "HulkOrkz")
                     {
-                        __result = "OG_Ork_Hulk";
+                        newName ="OG_Ork_Hulk";
                     }
 
                     // Tau factions
                     if (defName == "TauFaction")
                     {
-                        __result = "OG_Tau_Faction";
+                        newName ="OG_Tau_Faction";
                     }
                     if (defName == "TauPlayerColony")
                     {
-                        __result = "OG_Tau_Player";
+                        newName ="OG_Tau_Player";
                     }
 
                     // Kroot factions
                     if (defName == "KrootFaction")
                     {
-                        __result = "OG_Kroot_Faction";
+                        newName ="OG_Kroot_Faction";
                     }
                     if (defName == "KrootPlayerColonyTribal")
                     {
-                        __result = "OG_Kroot_Player_Tribal";
+                        newName ="OG_Kroot_Player_Tribal";
                     }
 
                 }
@@ -256,7 +314,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => !x.defName.Contains("Nob") && !x.defName.Contains("Warboss")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                         
                     }
                     if (defName.Contains("Grot"))
@@ -266,19 +324,19 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => x.defName.Contains("Colonist")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Snotling"))
                     {
                         list = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.defName.Contains("Snotling")).ToList();
                         
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Squig"))
                     {
                         list = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.defName.Contains("Squig")).ToList();
                         
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Tau"))
                     {
@@ -307,7 +365,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => x.defName.Contains("Colonist")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Kroot"))
                     {
@@ -320,7 +378,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => x.defName.Contains("Colonist")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Guevesa"))
                     {
@@ -330,7 +388,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => x.defName.Contains("Colonist")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
                     if (defName.Contains("Eldar"))
                     {
@@ -343,79 +401,211 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             list = list.Where(x => x.defName.Contains("Colonist")).ToList();
                         }
-                        __result = list.RandomElement().defName;
+                        newName =list.RandomElement().defName;
                     }
 
                 }
                 if (defType == typeof(ResearchProjectDef))
                 {
-                    if (defName == "ImperialTechBase")
+                    // Common Reseach renames
+                    if (defName == "WRPowerWeapons" || defName == "OG_Weapons_Power_Imperial")
                     {
-                        __result = "OG_Tech_Base_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Powered";
                     }
-                    if (defName == "WRPowerWeapons")
+                    if (defName == "ImperialSpecialPowerWeapons" || defName == "OG_Weapons_SpecialPower_Imperial")
                     {
-                        __result = "OG_Weapons_Power_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Powered_Special";
                     }
-                    if (defName == "WGRConversionField")
+                    if (defName == "WRForceWeapons" || defName == "OG_Weapons_Force_Imperial")
                     {
-                        __result = "OG_Wargear_ConversionField_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Force";
                     }
-                    if (defName == "ImperialSpecialWeapons")
+                    if (defName == "ImperialSpecialWeapons" || defName == "OG_Weapons_Special_Imperial")
                     {
-                        __result = "OG_Weapons_Special_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Special";
                     }
-                    if (defName == "ImperialSpecialPowerWeapons")
+                    if (defName == "ImperialHeavyWeapons" || defName == "OG_Weapons_Heavy_Imperial")
                     {
-                        __result = "OG_Weapons_SpecialPower_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Heavy";
                     }
-                    if (defName == "ImperialHeavyWeapons")
+                    if (defName == "WRImpLasTech" || defName == "OG_Weapons_Laser_Imperial")
                     {
-                        __result = "OG_Weapons_Heavy_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Laser";
                     }
-                    if (defName == "WRForceWeapons")
+                    if (defName == "WRImpBoltTech" || defName == "OG_Weapons_Bolter_Imperial")
                     {
-                        __result = "OG_Weapons_Force_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Bolt";
                     }
-                    if (defName == "WRImpLasTech")
+                    if (defName == "WRImpPlasmaTech" || defName == "OG_Weapons_Plasma_Imperial")
                     {
-                        __result = "OG_Weapons_Laser_Imperial";
+                        newName = "OG_Common_Tech_Weapons_Plasma";
                     }
-                    if (defName == "WRImpBoltTech")
+                    // Imperial Reseach renames
+                    if (defName == "ImperialTechBase" || defName == "OG_Tech_Base_Imperial")
                     {
-                        __result = "OG_Weapons_Bolter_Imperial";
+                        newName = "OG_Imperial_Tech_Base_T1";
                     }
-                    if (defName == "WRImpPlasmaTech")
+                    if (defName == "OG_Weapons_Base_Imperial")
                     {
-                        __result = "OG_Weapons_Plasma_Imperial";
+                        newName = "OG_Imperial_Tech_Weapons_T1";
                     }
-                    if (defName == "ARBasicServoSkull")
+                    if (defName == "WGRConversionField" || defName == "OG_Wargear_ConversionField_Imperial")
                     {
-                        __result = "OG_Wargear_ServoSkull_Imperial";
+                        newName ="OG_Imperial_Tech_Wargear_Shield";
                     }
-                    if (defName == "MechanicusTechBase")
+                    if (defName == "ARBasicServoSkull" || defName == "OG_Wargear_ServoSkull_Imperial")
                     {
-                        __result = "OG_Tech_Base_Mechanicus";
+                        newName ="OG_Imperial_Tech_Wargear_ServoSkull";
                     }
-                    if (defName == "WRRadiumWeapons")
+                    // Mechanicus Reseach renames
+                    if (defName == "MechanicusTechBase" || defName == "OG_Tech_Base_Mechanicus")
                     {
-                        __result = "OG_Weapons_Radium_Mechanicus";
+                        newName = "OG_Mechanicus_Tech_Base_T1";
                     }
-                    if (defName == "WRMechAdvBallistics")
+                    if (defName == "WRRadiumWeapons" || defName == "OG_Weapons_Radium_Mechanicus")
                     {
-                        __result = "OG_Weapons_AdvBallistics_Mechanicus";
+                        newName = "OG_Mechanicus_Tech_Weapons_Ranged_T1";
                     }
-                    if (defName == "WRMechanicusPlasma")
+                    if (defName == "WRMechAdvBallistics" || defName == "OG_Weapons_AdvBallistics_Mechanicus")
                     {
-                        __result = "OG_Weapons_Plasma_Mechanicus";
+                        newName = "OG_Mechanicus_Tech_Weapons_Ranged_T2";
+                    }
+                    if (defName == "WRMechanicusPlasma" || defName == "OG_Weapons_Plasma_Mechanicus")
+                    {
+                        newName = "OG_Mechanicus_Tech_Weapons_Ranged_T3";
+                    }
+                    // Eldar Reseach renames
+                    if (defName == "EldarTechBase")
+                    {
+                        newName = "OG_Eldar_Tech_Base_T1";
+                    }
+                    if (defName == "EldarBasicWeaponsTech")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Ranged_T1";
+                    }
+                    if (defName == "EldarAdvancedWeapons")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Ranged_T2";
+                    }
+                    if (defName == "EldarHeavyWeapons")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Ranged_T3";
+                    }
+                    if (defName == "EldarWraithTech")
+                    {
+                        newName = "OG_Eldar_Tech_Base_T2";
+                    }
+                    if (defName == "EldarBasicMeleeTech")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Melee_T1"; 
+                    }
+                    if (defName == "EldarPowerWeapons")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Melee_T2"; 
+                    }
+                    if (defName == "EldarAdvancedMelee")
+                    {
+                        newName = "OG_Eldar_Tech_Weapons_Melee_T3";
+                    }
+                    if (defName == "EldarArmour")
+                    {
+                        newName = "OG_Eldar_Tech_Apparel_Armour_T1";
+                    }
+                    if (defName == "EldarAspectArmour")
+                    {
+                        newName = "OG_Eldar_Tech_Apparel_Armour_T2";
+                    }
+                    if (defName == "EldarAdvancedArmour")
+                    {
+                        newName = "OG_Eldar_Tech_Apparel_Armour_T3";
+                    }
+
+                    // Tau Reseach renames TauTechBase
+                    if (defName == "TauTechBase")
+                    {
+                        newName = "OG_Tau_Tech_Base_T1";
+                    }
+                    if (defName == "TauPlasmaTech")
+                    {
+                        newName = "OG_Tau_Tech_Weapons_Ranged_T1";
+                    }
+                    if (defName == "TauAdvancedWeapons")
+                    {
+                        newName = "OG_Tau_Tech_Weapons_Ranged_T2";
+                    }
+                    if (defName == "TauIonTech")
+                    {
+                        newName = "OG_Tau_Tech_Weapons_Ranged_T3";
+                    }
+                    if (defName == "TauArmour")
+                    {
+                        newName = "OG_Tau_Tech_Apparel_Armour_T1";
+                    }
+                    if (defName == "TauDroneTech")
+                    {
+                        newName = "OG_Tau_Tech_Wargear_Drone";
+                    }
+                    if (defName == "TauShieldTech")
+                    {
+                        newName = "OG_Tau_Tech_Wargear_Shield";
+                    }
+
+                    // Ork Reseach renames
+                    if (defName == "OrkTekBase")
+                    {
+                        newName = "OG_Ork_Tech_Base_T1";
+                    }
+                    if (defName == "OrkishBrutality")
+                    {
+                        newName = "OG_Ork_Tech_Weapons_Melee_T1";
+                    }
+                    if (defName == "OrkishExtremeBrutality")
+                    {
+                        newName = "OG_Ork_Tech_Weapons_Melee_T2";
+                    }
+                    if (defName == "OrkishPowerField")
+                    {
+                        newName = "OG_Ork_Tech_Weapons_Melee_T3";
+                    }
+                    if (defName == "OrkishCunning")
+                    {
+                        newName = "OG_Ork_Tech_Weapons_Ranged_T1";
+                    }
+                    if (defName == "OrkishIntenseCunning")
+                    {
+                        newName = "OG_Ork_Tech_Weapons_Ranged_T2";
+                    }
+                    if (defName == "OrkishMekTek")
+                    {
+                        newName = "OG_Ork_Tech_Base_T2";
+                    }
+                    if (defName == "OrkishBigMekBrainz")
+                    {
+                        newName = "OG_Ork_Tech_Base_T3";
+                    }
+                    if (defName == "OrkishArmour")
+                    {
+                        newName = "OG_Ork_Tech_Apparel_Armour_T1";
+                    }
+                    if (defName == "OrkishEavyArmour")
+                    {
+                        newName = "OG_Ork_Tech_Apparel_Armour_T2";
+                    }
+                    if (defName == "OrkishMegaArmour")
+                    {
+                        newName = "OG_Ork_Tech_Apparel_Armour_T3";
                     }
                 }
                 if (defType == typeof(HediffDef))
                 {
                     if (defName == "HyperactiveNymuneOrgan")
                     {
-                        __result = "OG_Kroot_Mutation_HyperactiveNymuneOrgan";
+                        newName ="OG_Kroot_Mutation_HyperactiveNymuneOrgan";
                     }
+                }
+                if (!newName.NullOrEmpty())
+                {
+                    __result = newName;
                 }
                 if (defName == __result)
                 {

@@ -20,8 +20,41 @@ namespace AdeptusMechanicus
         public bool PowerWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_PowerWeapon_")));
         public bool RendingWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
         public bool ForceWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
+        public bool Witchblade => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
         public override bool CanActivate() => GetPawn != null && GetPawn.Spawned && GetPawn.Map != null;
         
+        public string texPath
+        {
+            get
+            {
+                string tex = this.Props.graphicData.texPath;
+                if (this.parent.TryGetComp<CompAdvancedGraphic>() != null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
+                {
+                    tex = graphic.current.path;
+                }
+                if (tex.NullOrEmpty())
+                {
+                    tex =  this.parent.def.graphicData.texPath;
+                }
+                return tex + "_Glow";
+            }
+        }
+
+        private GraphicData intGraphicData;
+        private GraphicData GraphicData
+        {
+            get
+            {
+                if (intGraphicData == null)
+                {
+                    intGraphicData = new GraphicData();
+                    intGraphicData.CopyFrom(this.Props.graphicData);
+                    intGraphicData.texPath = this.texPath;
+                }
+                return intGraphicData;
+            }
+        }
+
         public override Graphic Graphic
         {
             get
@@ -35,16 +68,10 @@ namespace AdeptusMechanicus
                         Log.ErrorOnce(this.parent.def + " has no SecondLayer graphicData but we are trying to access it.", 764532, false);
                         return BaseContent.BadGraphic;
                     }
-                    if (this.parent.TryGetComp<CompAdvancedGraphic>()!=null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
-                    {
-                        this.Props.graphicData.texPath = graphic.current.path + "_Glow";
-                    }
-                    this.Props.graphicData.texPath = this.Props.graphicData.texPath == null ? this.parent.def.graphicData.texPath + "_Glow" : this.Props.graphicData.texPath;
-                    this.Props.graphicData.texPath = this.Props.graphicData.texPath == null ? this.parent.def.graphicData.texPath + "Glow" : this.Props.graphicData.texPath;
-                    Color newColor = (this.Props.graphicData.color == Color.white) ? this.parent.DrawColor : this.Props.graphicData.color;
-                    Color newColorTwo = (this.Props.graphicData.colorTwo == Color.white) ? this.parent.DrawColorTwo : this.Props.graphicData.colorTwo;
-                    Shader shader = (this.Props.graphicData.shaderType == null) ? this.parent.Graphic.Shader : this.Props.graphicData.shaderType.Shader;
-                    this.graphicInt = this.Props.graphicData.Graphic.GetColoredVersion(shader, newColor, newColorTwo);
+                    Color newColor = (GraphicData.color == Color.white) ? this.parent.DrawColor : GraphicData.color;
+                    Color newColorTwo = (GraphicData.colorTwo == Color.white) ? this.parent.DrawColorTwo : GraphicData.colorTwo;
+                    Shader shader = (GraphicData.shaderType == null) ? this.parent.Graphic.Shader : GraphicData.shaderType.Shader;
+                    this.graphicInt = GraphicData.Graphic.GetColoredVersion(shader, newColor, newColorTwo);
                     this.graphicInt = this.PostGraphicEffects(this.graphicInt);
                 }
                 return this.graphicInt;
@@ -58,7 +85,7 @@ namespace AdeptusMechanicus
         public override void Initialize()
         {
             base.Initialize();
-            if (!GetPawn.IsColonist)
+            if (GetPawn!=null && !GetPawn.IsColonist)
             {
                 this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
             }
@@ -80,15 +107,19 @@ namespace AdeptusMechanicus
             string str2 = string.Empty;
             if (RendingWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Rending Weapon" : str2 + ", Rending Weapon";
+                str2 = str2.NullOrEmpty() ? str + " Rending Weapon" : str + ", Rending Weapon";
             }
             if (PowerWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Power Weapon": str2 + ", Power Weapon";
+                str2 = str2.NullOrEmpty() ? str + " Power Weapon": str + ", Power Weapon";
             }
             if (ForceWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Force Weapon" : str2 + ", Force Weapon";
+                str2 = str2.NullOrEmpty() ? str + "Force Weapon" : str + ", Force Weapon";
+            }
+            if (Witchblade)
+            {
+                str2 = str2.NullOrEmpty() ? str + " Witchblade" : str + ", Witchblade";
             }
             return str2.NullOrEmpty() ? null : str+str2;
         }
@@ -119,8 +150,18 @@ namespace AdeptusMechanicus
                 List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
                 List<string> listl = new List<string>();
                 list.ForEach(x => listl.Add(x.label));
-                str = str + string.Format("\n Force Weapon: Attacks made by the fallowing Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), m.ForceWeaponKillChance);
+                str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), m.ForceWeaponKillChance);
             }
+
+            if (Witchblade)
+            {
+                CompWeapon_MeleeSpecialRules m = parent.GetComp<CompWeapon_MeleeSpecialRules>();
+                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
+                List<string> listl = new List<string>();
+                list.ForEach(x => listl.Add(x.label));
+                str = str + string.Format("\n Witchblade: Attacks made by the following Tools can cause increased damage if the wielder is a Psyker:\n{0}", listl.ToCommaList());
+            }
+
             return str;
         }
     }

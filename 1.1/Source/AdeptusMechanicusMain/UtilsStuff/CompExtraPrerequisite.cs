@@ -19,7 +19,7 @@ namespace AdeptusMechanicus
     // Token: 0x02000C69 RID: 3177
     public class CompExtraPrerequisite : ThingComp
     {
-        public new CompProperties_ExtraPrerequisite Props
+        public CompProperties_ExtraPrerequisite Props
         {
             get
             {

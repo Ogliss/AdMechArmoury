@@ -46,9 +46,11 @@ namespace AdeptusMechanicus
         public Shader shader = ShaderDatabase.Cutout;
         public bool ExtraUseBodyOffset; 
         private bool useSecondaryColor;
-        private bool useFactionTextures = false;
+        //    private bool useFactionTextures = false;
+#pragma warning disable IDE0052 // Remove unread private members
         private bool pauldronInitialized = false;
-        
+#pragma warning restore IDE0052 // Remove unread private members
+
         public ExtraPartEntry extraPartEntry;
         public ExtraPartEntry ExtraPartEntry
         {
@@ -75,28 +77,28 @@ namespace AdeptusMechanicus
             }
         }
 
-        private Graphic _extraGraphic;
-        public Graphic ExtraGraphic
+        private Graphic _Graphic;
+        public Graphic Graphic
         {
             get
             {
-                string path = ExtraGraphicPath;
+                string path = GraphicPath;
                 if (ExtraUseBodyOffset && !onHead)
                 {
                     path += "_" + pawn.story.bodyType.ToString();
                 }
-                this._extraGraphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
-                return _extraGraphic;
+                this._Graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
+                return _Graphic;
             }
         }
 
-        public string extraGraphicPath;
-        public string ExtraGraphicPath
+        public string graphicPath;
+        public string GraphicPath
         {
             get
             {
-                this.extraGraphicPath = ExtraPartEntry.extraTexPath;
-                return extraGraphicPath;
+                this.graphicPath = ExtraPartEntry.extraTexPath;
+                return graphicPath;
             }
         }
 
@@ -121,19 +123,25 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (MainColor == Color.white)
+                if (ExtraPartEntry != null)
                 {
-                    MainColor = this.parent.DrawColor;
-                    //    Log.Message(string.Format("CompApparelExtaDrawer return {1}'s DrawColor {0}", MainColor, this.parent.def.label));
-                    return MainColor;
-                }
-                if (MainColor != Color.white)
-                {
-                    return MainColor;
-                }
-                if (this.useSecondaryColor)
-                {
-                    return this.parent.DrawColorTwo;
+                    if (ExtraPartEntry.PrimaryColor != Color.white)
+                    {
+                        return ExtraPartEntry.PrimaryColor;
+                    }
+                    if (ExtraPartEntry.UsePrimaryColor)
+                    {
+                        return this.parent.DrawColor;
+                    }
+                    else
+                    if (ExtraPartEntry.UseSecondaryColor)
+                    {
+                        if (ExtraPartEntry.SecondaryColor != Color.white)
+                        {
+                            return ExtraPartEntry.SecondaryColor;
+                        }
+                        return this.parent.DrawColorTwo;
+                    }
                 }
                 return this.parent.DrawColor;
             }
@@ -166,62 +174,50 @@ namespace AdeptusMechanicus
         {
             base.PostExposeData();
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
-            Scribe_Values.Look<string>(ref this.extraGraphicPath, "extragraphicPath", null, false);
+            Scribe_Values.Look<string>(ref this.graphicPath, "extragraphicPath", null, false);
             Scribe_Values.Look<bool>(ref this.ExtraUseBodyOffset, "UseBodyOffset", false);
         //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
         }
         
         public float GetAltitudeOffset(Rot4 rotation, ExtraPartEntry partEntry)
         {
-            VisibleAccessoryDefExtension myDef = parent.def.GetModExtension<VisibleAccessoryDefExtension>() ?? new VisibleAccessoryDefExtension();
-            myDef.Validate();
-            float offset = _OffsetFactor * myDef.order;
-            offset = offset + (_SubOffsetFactor * myDef.sublayer);
+            float offset = _OffsetFactor * partEntry.order;
+            offset = offset + (_SubOffsetFactor * partEntry.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
-            string direction;
             if (!onHead)
             {
                 if (rotation == Rot4.North)
                 {
                     offset += _BodyOffset;
-                    if (myDef.northtop)
+                    if (partEntry.northtop)
                     {
                         offset += _HairOffset;
                         offset += NorthOffset(partEntry);
                     }
                     else
                     {
-                        offset += myDef.NorthOffset;
                         offset += NorthOffset(partEntry);
                     }
-                    direction = "North";
                 }
                 else if (rotation == Rot4.West)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.WestOffset;
                     offset += WestOffset(partEntry);
-                    direction = "West";
                 }
                 else if (rotation == Rot4.East)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.EastOffset;
                     offset += EastOffset(partEntry);
-                    direction = "East";
                 }
                 else if (rotation == Rot4.South)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.SouthOffset;
                     offset += SouthOffset(partEntry);
-                    direction = "South";
                 }
                 else
                 {
                     offset += _BodyOffset;
-                    direction = "Unknown";
                 }
             }
             else
@@ -229,11 +225,9 @@ namespace AdeptusMechanicus
                 if (rotation == Rot4.North)
                 {
                     offset += _BodyOffset;
-                    direction = "North";
                 }
                 else
                     offset += _HeadOffset;
-                direction = "Other";
             }
             if (flag)
             {
@@ -285,27 +279,15 @@ namespace AdeptusMechanicus
         public bool ShouldDrawExtra(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material extraMaterial)
         {
             extraMaterial = null;
-            try
+            if (pawn.needs != null && pawn.story != null)
             {
-                if (pawn.needs != null && pawn.story != null)
+                if (this.Graphic != null)
                 {
-                    CompApparelExtraDrawer drawer;
-                    if ((drawer = curr.TryGetComp<CompApparelExtraDrawer>()) != null)
-                    {
-                        if (drawer.ExtraGraphic != null)
-                        {
-                            extraMaterial = drawer.ExtraGraphic.GetColoredVersion(ShaderDatabase.CutoutComplex, this.mainColor, this.secondaryColor).MatAt(bodyFacing);
-                            return true;
-                        }
-                    }
+                    extraMaterial = this.Graphic.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing);
+                    return true;
                 }
-                return false;
             }
-            catch
-            {
-                Log.Error("SDE Error CAN NOT Draw Extra");
-                return false;
-            }
+            return false;
 
         }
         
@@ -315,7 +297,7 @@ namespace AdeptusMechanicus
             if (!this.pprops.ExtrasEntries.NullOrEmpty())
             {
                 extraPartEntry = this.pprops.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
-                this.extraGraphicPath = extraPartEntry.extraTexPath;
+                this.graphicPath = extraPartEntry.extraTexPath;
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
                 this.ExtraUseBodyOffset = extraPartEntry.UseBodytypeOffsets;
@@ -377,12 +359,20 @@ namespace AdeptusMechanicus
         public ShaderTypeDef shaderType;
         public string extraTexPath;
         public int commonality;
+        public bool UsePrimaryColor;
+        public Color PrimaryColor = Color.white;
         public bool UseSecondaryColor;
+        public Color SecondaryColor = Color.white;
         public bool UseFactionTextures;
+        public int order = 1;
+        public int sublayer = 0;
+        public bool northtop = false;
         public float NorthOffset = 0f;
         public float SouthOffset = 0f;
         public float EastOffset = 0f;
         public float WestOffset = 0f;
+        // Token: 0x0400006D RID: 109
+        private bool validated = false;
     }
 
 }

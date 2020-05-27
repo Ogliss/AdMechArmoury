@@ -69,15 +69,15 @@ namespace AdeptusMechanicus
         public static DamageDef OG_E_Distortion_Damage_Blast;
         public static DamageDef OG_N_Gauss_Damage;
 
-        public static DamageDef OG_PowerWeapon_Cut;
-        public static DamageDef OG_PowerWeapon_Stab;
-        public static DamageDef OG_PowerWeapon_Blunt;
+        public static DamageDef OG_Power_Cut;
+        public static DamageDef OG_Power_Stab;
+        public static DamageDef OG_Power_Blunt;
         public static DamageArmorCategoryDef OG_PowerWeapon;
 
         public static DamageDef OGForceStrike;
-        public static DamageDef OG_ForceWeapon_Cut;
-        public static DamageDef OG_ForceWeapon_Stab;
-        public static DamageDef OG_ForceWeapon_Blunt;
+        public static DamageDef OG_Force_Cut;
+        public static DamageDef OG_Force_Stab;
+        public static DamageDef OG_Force_Blunt;
         public static DamageDef OG_Chaos_Deamon_Warpfire;
 
 

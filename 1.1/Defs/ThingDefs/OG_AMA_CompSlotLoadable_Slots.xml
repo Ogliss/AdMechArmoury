@@ -5,10 +5,23 @@
 		<defName>OGI_BoltSlot</defName>
 		<thingClass>AdeptusMechanicus.SlotLoadable</thingClass>
 		<label>Bolts</label>
-		<description>This ammunitrion slot determines the bolt type fired by the weapon.</description>
+		<description>This ammunition slot determines the bolt type fired by the weapon.</description>
 		<slottableThingDefs>
 			<li>OGI_Bolt_Hellfire</li>
+			<li>OGI_Bolt_Dragonfire</li>
 			<li>OGI_Bolt_Kraken</li>
+			<li>OGI_Bolt_Vengeance</li>
+		</slottableThingDefs>
+		<doesChangeStats>true</doesChangeStats>
+	</ThingDef>
+
+	<ThingDef Class="AdeptusMechanicus.SlotLoadableDef">
+		<defName>OGI_HeavyBoltSlot</defName>
+		<thingClass>AdeptusMechanicus.SlotLoadable</thingClass>
+		<label>Heavy Bolts</label>
+		<description>This ammunition slot determines the bolt type fired by the weapon.</description>
+		<slottableThingDefs>
+			<li>OGI_HeavyBolt_Hellfire</li>
 		</slottableThingDefs>
 		<doesChangeStats>true</doesChangeStats>
 	</ThingDef>
@@ -79,6 +92,30 @@
 				
 			</li>
 	 </comps>
+  </ThingDef> 
+  
+  <!-- ================ Imperial Dragonfire Bolt ================ -->
+      <ThingDef ParentName="OG_BoltBase">
+    <defName>OGI_Bolt_Dragonfire</defName>
+    <label>fragonfire bolts</label>
+	<description>Dragonfire Bolts are hollow-shelled bolts that are issued fo use by Sternguard Veterans, and explode with a gout of superheated gas that can eliminate the value of cover for enemy troops. Any targets struck receive full damage even when partially protected by cover.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileFrag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(124,196,243)</color>
+    </graphicData>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_SlottedBonus">
+				<!--
+				<additionalProjectiles>
+					<li>OGI_Bullet_BoltDragonfire</li>
+				</additionalProjectiles>
+				-->
+				<projectileReplacer>OGI_Bullet_BoltDragonfire</projectileReplacer>
+				
+			</li>
+	 </comps>
   </ThingDef>  
   
   <!-- ================ Imperial Kraken Bolt ================ -->
@@ -99,10 +136,102 @@
 					<li>OGI_Bullet_BoltKraken</li>
 				</additionalProjectiles>
 				-->
-				<projectileReplacer>OGI_Bullet_BoltKraken</projectileReplacer>
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Kraken Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+					<warmupTime>0.45</warmupTime>
+					<range>38.75</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
 			</li>
 	 </comps>
   </ThingDef>  
   
+  <!-- ================ Imperial Vengeance Bolt ================ -->
+    <ThingDef ParentName="OG_BoltBase">
+    <defName>OGI_Bolt_Vengeance</defName>
+    <label>Vengeance bolts</label>
+	<description>Vengeance Round bolts are designed for use against heavy infantry and armoured targets. Each bolt has a volatile core utilising unstable flux core technology that makes them hazardous to use, but extremely potent at penetrating through heavily armoured targets. They are especially effective at punching clean through even the Ceramite plates of Power Armour. As their name implies, these bolts were developed by the Imperium specifically to target the Chaos Space Marines of the Traitor Legions.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileKrak</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(240,241,241)</color>
+    </graphicData>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_SlottedBonus">
+				<!--
+				<additionalProjectiles>
+					<li>OGI_Bullet_BoltVengeance</li>
+				</additionalProjectiles>
+				-->
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Vengeance Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltVengeance</defaultProjectile>
+					<warmupTime>0.45</warmupTime>
+					<range>23.25</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
+			</li>
+	 </comps>
+  </ThingDef>  
+  
+  
+  <!-- ================ Imperial Heavy Hellfire Bolt ================ -->
+      <ThingDef ParentName="OG_BoltBase">
+    <defName>OGI_HeavyBolt_Hellfire</defName>
+    <label>heavy hellfire bolts</label>
+	<description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
+    <graphicData>
+      <texPath>Things/Item/ImpMissileFrag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(1,1)</drawSize>
+	  <color>(124,196,243)</color>
+    </graphicData>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_SlottedBonus">
+				<!--
+				<additionalProjectiles>
+					<li>OGI_Bullet_BoltHellfire</li>
+				</additionalProjectiles>
+				-->
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Heavy Hellfire Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_HeavyBoltHellfire</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>38</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
+				
+			</li>
+	 </comps>
+  </ThingDef> 
   
 </Defs>

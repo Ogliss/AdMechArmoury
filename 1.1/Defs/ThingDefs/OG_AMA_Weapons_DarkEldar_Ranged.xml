@@ -16,7 +16,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OGEffectBulletBase">
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OG_Bullet_Base_Effect">
 		<defName>OGDE_Bullet_ToxicSplinter</defName>
 		<label>Toxic Splinter</label>
 		<graphicData>
@@ -36,7 +36,7 @@
 	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
 	</ThingDef>
 	
-	<ThingDef ParentName="OGDarkEldarGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun">
 		<defName>OGDE_Gun_SplinterPistol</defName>
 		<label>Splinter Pistol</label>
 		<description>The Splinter Pistol is the ranged weapon of choice for most the remainder of the Dark Eldar forces, finding frequent use in the ranks of Archons, Wyches, Reaver Jetbikers and most Sybarites and Dracons. Usually paired with a Monomolecular Knife or Claw and used as a pair for added effectiveness in assaults. The Splinter Pistol uses the same ammunition and firing mechanisms as the rifle, although compacted and therefore have shorter range, and with a smaller ammunition crystal to reduce the weight even further. Splinter Pistol crystals are therefore the most frequently impregnated with toxins, as they are the weapons that most need the added effect.\n\nThe gun houses an ammunition disintegration generator to break up the crystal into shards, along with a cyclic ammunition feeder to house the shards before firing. Once fired, it routes the energy used to disintegrate the ammunition crystal through a magno-electric impulse chamber that accelerates the crystal to supersonic speeds, rocketing it towards its intended target.</description>
@@ -96,23 +96,23 @@
         <cooldownTime>1.9</cooldownTime>
       </li>
     </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>DESplinterPistol</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGDERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		</recipeMaker>
-		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Plasteel>2</Plasteel>
-			<Steel>10</Steel>
-		</costList>
+	<techLevel>Spacer</techLevel>
+	<weaponTags>
+		<li>DESplinterPistol</li>
+	</weaponTags>
+	<tradeTags>
+		<li>OGDERanged</li>
+	</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+		</researchPrerequisites>
+	</recipeMaker>
+	<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+		<ComponentIndustrial>1</ComponentIndustrial>
+		<Plasteel>2</Plasteel>
+		<Steel>10</Steel>
+	</costList>
     <modExtensions>
       <li Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
@@ -124,7 +124,7 @@
     </modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun">
 		<defName>OGDE_Gun_SplinterRifle</defName>
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Splinter Rifle</label>
@@ -202,24 +202,24 @@
         <cooldownTime>1.9</cooldownTime>
       </li>
     </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>DESplinterRifle</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGDERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
+	<techLevel>Spacer</techLevel>
+	<weaponTags>
+		<li>DESplinterRifle</li>
+	</weaponTags>
+	<tradeTags>
+		<li>OGDERanged</li>
+	</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+		</researchPrerequisites>
 	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
-		</recipeMaker>
-		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Plasteel>2</Plasteel>
-			<Steel>10</Steel>
-		</costList>
+	</recipeMaker>
+	<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+		<ComponentIndustrial>1</ComponentIndustrial>
+		<Plasteel>2</Plasteel>
+		<Steel>10</Steel>
+	</costList>
     <modExtensions>
       <li Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
@@ -231,7 +231,7 @@
     </modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_Shardcarbine</defName>
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Shardcarbine</label>
@@ -315,11 +315,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -352,7 +353,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarHeavyGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
 		<defName>OGDE_Gun_SplinterCannon</defName>
 		<label>Splinter Cannon</label>
 		<description>The Splinter Cannon is the most lethal of the four, and much more expensive to produce, as it incorporates several additions to allow the user to fire this large, bulky weapon even while charging into assault.\n\nThe primary additions are a semi-liquid stabilization mechanism housed approximately in the center of the cannon, to provide a counterweight to the constantly fluctuating center of gravity on the weapon. Second, an auto-burst trigger will continue to fire splinters for four to five seconds after it has been pulled, in case the user loses his grip temporarily during the charge. Finally, and possibly most important, is the addition of magneto-impulse directional spines along the barrel, and a secondary power generator housed in the back of the cannon, to prevent stalling or improper functioning. These directional spines provide additional magnetic field stability, preventing the splinters from exiting the barrel traveling at an awkward angle or hitting the inside of the barrel and causing damage to the weapon.\n\nThe Splinter Cannon otherwise contains the same mechanism for loading and firing ammunition, and comes with a very large ammunition crystal to allow for extended use of the cannon regardless of its high rate of fire.</description>
@@ -420,12 +421,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarAdvancedWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -459,7 +460,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarHeavyGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
 		<defName>OGDE_Gun_DisintergratorCannon</defName>
 		<label>Disintergrator Cannon</label>
 		<description>The Disintegrator Cannon is a Dark Eldar weapon, able to fire burst of particles of unstable matter from a stolen sun. It is similar to Imperial plasma weapons but more sophisticated and does not suffer from the same over-heating problems. It remains cool even in the fiercest battles despite the ravening energies housed within.</description>
@@ -528,12 +529,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarHeavyWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Plasma</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -595,7 +596,7 @@
     </projectile>
   </ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_BlastPistol</defName>
 		<label>Blast Pistol</label>
 		<description>A smaller hand-held version of the Blaster is known as the Blast Pistol. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
@@ -661,12 +662,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarHeavyWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -683,7 +684,7 @@
     </modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_Blaster</defName>
 		<label>Blaster</label>
 		<description>A Blaster is a smaller, lightweight version of a Dark Lance, which includes a semi-liquid stabilizer like that found in the Dark Eldar Splinter Cannon. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
@@ -749,12 +750,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarHeavyWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -771,7 +772,7 @@
     </modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarHeavyGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
 		<defName>OGDE_Gun_Darklance</defName>
 		<label>Darklance</label>
 		<description>The Dark Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Dark Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
@@ -838,12 +839,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarHeavyWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -905,7 +906,7 @@
   </ThingDef>
 
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_HaywireBlaster</defName>
 		<label>Haywire Blaster</label>
 		<description>Haywire Blasters are Dark Eldar weapons mainly used by Scourges. These are long-barrelled weapons so lightweight that can be fired even when moving. As ammunition it uses crippling electromagnetic energy drawn from the highest aeries of Commorragh which is later released in a horrifying burst. A well-aimed haywire blast can destroy an enemy tank's control system in a single shot. Even the mighty Land Raider can be destroyed by these weapons.</description>
@@ -973,10 +974,10 @@
 			<li>OGDERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarHeavyWeapons</researchPrerequisite>	-->
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Haywire</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
@@ -1043,7 +1044,7 @@
     </projectile>
   </ThingDef>
   
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
     <defName>OGDE_Gun_FusionPistol</defName>
     <label>Fusion Pistol</label>
     <description>A Fusion Pistol is a hand-held, heat-based Melta Weapon utilised exclusively by the ELdar and Dark Eldar. Fusion Pistols cause the molecules of the target to hyper-vibrate, generating so much heat that their targets burst into flames before suddenly liquefying, and then evaporating into nothingness. Though incredibly short-ranged, the sheer destructive potential of these weapons ensures that they see common usage amongst the masques of the enigmatic Eldar known as Harlequins.</description>
@@ -1109,12 +1110,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarAdvancedWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Melta</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -1131,7 +1132,7 @@
     </modExtensions>
  </ThingDef>
   
-	<ThingDef ParentName="OGDarkEldarHeavyGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
     <defName>OGDE_Gun_HeatLance</defName>
     <label>Heat Lance</label>
     <description>Heat Lances are Dark Eldar weapons used by Reavers and Scourges. It is a great technological breakthrough as commorrites have managed to combine the power of melta- and high-yield las-technology in one weapon. As with every melta weapon, the heat lance has short range but is extremely devastating.</description>
@@ -1198,12 +1199,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarAdvancedWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Melta</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -1236,10 +1237,10 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_Shredder</defName>
 		<label>Shredder</label>
-		<description>he Shredder is a weapon used primarily by Dark Eldar Warriors. When the gun is fired at its target, it unleashes an expanding mesh of monofilaments with miniscule barbs along their lenght. The mesh entangles the victim in an invisible net that slices apart the target as it struggles.</description>
+		<description>the Shredder is a weapon used primarily by Dark Eldar Warriors. When the gun is fired at its target, it unleashes an expanding mesh of monofilaments with miniscule barbs along their lenght. The mesh entangles the victim in an invisible net that slices apart the target as it struggles.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/Shredder</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -1304,12 +1305,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarAdvancedWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Aeldari_Tech_Weapons_Monofilament</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -1327,7 +1328,7 @@
 	</ThingDef>
 
 	<!--==================== Dark Eldar - Stinger Pistol =========================-->
-	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OGEffectBulletBase">
+	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OG_Bullet_Base_Effect">
 		<defName>OGDE_Bullet_Stinger</defName>
 		<label>small Stinger</label>
 		<graphicData>
@@ -1347,7 +1348,7 @@
 	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
 	</ThingDef>
 
-	<ThingDef ParentName="OGDarkEldarSpecialGun">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
 		<defName>OGDE_Gun_StingerPistol</defName>
 		<label>Stinger Pistol</label>
 		<description>The Stinger is a Dark Eldar weapon used primarily by Haemonculi. This weapon resembles a smaller, more rounded Splinter Pistol, although the similarities end there. The Stinger, instead, fires small hypodermic needles at the target, the cavity of which contain an incredibly exotic bacteria. This bacteria, once introduced to the target's bloodstream, multiplies quickly, and shortly afterwards causes the victim to literally explode, sending fragments of bone and armor flying in all directions. In the event that the victim's comrades are close enough or unlucky enough to have one of these fragments lodged in their bodies, the bacteria will travel from the lodged debris into the comrade's bloodstream, multiplying and ultimately causing them to explode..</description>
@@ -1414,12 +1415,12 @@
 		<tradeTags>
 			<li>OGDERanged</li>
 		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-	<!--	<researchPrerequisite>DarkEldarAdvancedWeapons</researchPrerequisite>	-->
-		</recipeMaker>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Common_Tech_Weapons_Melta</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>

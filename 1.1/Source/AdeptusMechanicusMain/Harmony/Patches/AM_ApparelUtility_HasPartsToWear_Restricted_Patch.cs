@@ -11,7 +11,7 @@ using Verse.Sound;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.AdeptusAstartes
+namespace AdeptusMechanicus.HarmonyInstance
 {
     
     [HarmonyPatch(typeof(ApparelUtility), "HasPartsToWear")]

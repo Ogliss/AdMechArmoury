@@ -208,20 +208,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot)
+            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot || TwinLinked)
             {
+                Traverse traverse = Traverse.Create(__instance);
+                LocalTargetInfo currentTarget = (LocalTargetInfo)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.currentTarget.GetValue(__instance);
+                bool canHitNonTargetPawnsNow = (bool)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
                 //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
-                for (int i = 0; i < ScattershotCount; i++)
+                if (TwinLinked)
                 {
-                    //    Log.Message(string.Format("Launching extra projectile {0} / {1}", i+1, ScattershotCount));
-                    //    AccessTools.Method(typeof(Verb_Shoot).BaseType, "TryCastShot", null, null).Invoke(__instance, null);
-                    TryCastExtraShot(ref __instance);
+                    TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
                 }
-            }
-            else
-            if (TwinLinked)
-            {
-                TryCastExtraShot(ref __instance);
+                else
+                {
+                    for (int i = 0; i < ScattershotCount; i++)
+                    {
+                        TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
+                    }
+                }
+                
             }
             if (UserEffect && AMSettings.Instance.AllowUserEffects)
             {
@@ -277,11 +281,8 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static FieldInfo currentTarget = typeof(Verb_Shoot).GetField("currentTarget", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         public static FieldInfo canHitNonTargetPawnsNow = typeof(Verb_Shoot).GetField("canHitNonTargetPawnsNow", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         // Token: 0x0600651E RID: 25886 RVA: 0x001B8BC0 File Offset: 0x001B6FC0
-        public static bool TryCastExtraShot(ref Verb_Shoot __instance)
+        public static bool TryCastExtraShot(ref Verb_Shoot __instance, LocalTargetInfo currentTarget, bool canHitNonTargetPawnsNow)
         {
-            Traverse traverse = Traverse.Create(__instance);
-            LocalTargetInfo currentTarget = (LocalTargetInfo)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.currentTarget.GetValue(__instance);
-            bool canHitNonTargetPawnsNow = (bool)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
             if (currentTarget.HasThing && currentTarget.Thing.Map != __instance.caster.Map)
             {
                 return false;
@@ -733,20 +734,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot)
+            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot || TwinLinked)
             {
+                Traverse traverse = Traverse.Create(__instance);
+                LocalTargetInfo currentTarget = (LocalTargetInfo)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.currentTarget.GetValue(__instance);
+                bool canHitNonTargetPawnsNow = (bool)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
                 //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
-                for (int i = 0; i < ScattershotCount; i++)
+                if (TwinLinked)
                 {
-                    //    Log.Message(string.Format("Launching extra projectile {0} / {1}", i+1, ScattershotCount));
-                    //    AccessTools.Method(typeof(Verb_Shoot).BaseType, "TryCastShot", null, null).Invoke(__instance, null);
-                    TryCastExtraShot(ref __instance);
+                    TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
                 }
-            }
-            else
-            if (TwinLinked)
-            {
-                TryCastExtraShot(ref __instance);
+                else
+                {
+                    for (int i = 0; i < ScattershotCount; i++)
+                    {
+                        TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
+                    }
+                }
+
             }
             if (UserEffect && AMSettings.Instance.AllowUserEffects)
             {
@@ -802,11 +807,8 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static FieldInfo currentTarget = typeof(Verb_Shoot).GetField("currentTarget", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         public static FieldInfo canHitNonTargetPawnsNow = typeof(Verb_Shoot).GetField("canHitNonTargetPawnsNow", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         // Token: 0x0600651E RID: 25886 RVA: 0x001B8BC0 File Offset: 0x001B6FC0
-        public static bool TryCastExtraShot(ref Verb_ShootEquipment __instance)
+        public static bool TryCastExtraShot(ref Verb_ShootEquipment __instance, LocalTargetInfo currentTarget, bool canHitNonTargetPawnsNow)
         {
-            Traverse traverse = Traverse.Create(__instance);
-            LocalTargetInfo currentTarget = (LocalTargetInfo)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.currentTarget.GetValue(__instance);
-            bool canHitNonTargetPawnsNow = (bool)AM_Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
             if (currentTarget.HasThing && currentTarget.Thing.Map != __instance.caster.Map)
             {
                 return false;

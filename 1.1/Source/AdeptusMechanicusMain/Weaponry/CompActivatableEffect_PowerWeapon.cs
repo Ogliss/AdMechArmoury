@@ -26,16 +26,6 @@ namespace AdeptusMechanicus
         }
         */
 
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (!GetPawn.IsColonist)
-            {
-                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
-            }
-        }
-
         public override void Activate()
         {
             base.Activate();

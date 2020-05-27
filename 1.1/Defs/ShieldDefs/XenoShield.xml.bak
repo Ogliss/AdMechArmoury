@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+	<ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality" Name="OG_ShieldBase" Abstract="True">
+		<defName>OG_ShieldBase</defName>
+		<label>Shield</label>
+		<equipmentType>None</equipmentType>
+		<techLevel>Neolithic</techLevel>
+		<tools>
+			<li>
+				<label>side</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>0.8</cooldownTime>
+			</li>
+			<li>
+				<label>buckle</label>
+				<labelUsedInLogging>false</labelUsedInLogging>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8.0</power>
+				<cooldownTime>1.3</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_ShieldBase">
+		<defName>OGI_Wargear_CombatShield</defName>
+		<label>Combat Shield</label>
+		<description>Shield made from a Xenomorph head. It protects the wearer from both melee and ranged attacks, and is immune to the acidic effect of the Xenomorph's blood.</description>
+		<graphicData>
+			<texPath>Things/Shields/Xenomorph/Xenomorph_Head_Shield/Xenomorph_Drone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<weaponTags>
+			<li>Shield</li>
+			<li>XenoShield</li>
+		</weaponTags>
+				<statBases>
+			<WorkToMake>100</WorkToMake>
+			<MaxHitPoints>160</MaxHitPoints>
+			<Mass>4.0</Mass>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.5</ShootingAccuracyPawn>
+			<!--MoveSpeed>-1.6</MoveSpeed-->
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Woody</li>
+		</stuffCategories>
+		<costList>
+			<WoodLog>5</WoodLog>
+			<RRY_Xenomorph_HeadShell>1</RRY_Xenomorph_HeadShell>
+ 		</costList>
+		<recipeMaker>
+      <researchPrerequisite>RRY_XenomorphCrafting</researchPrerequisite>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		</recipeMaker>
+		<comps>
+			<li Class="PawnShields.CompProperties_Shield">
+				<!-- Rendering systems -->
+				<wieldedGraphic>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<texPath>Things/Shields/Xenomorph/Xenomorph_Head_Shield/Xenomorph_Drone</texPath>
+					<drawSize>(1.1, 1.1)</drawSize>
+				</wieldedGraphic>
+				<renderProperties>
+					<!-- Same as defaults in C# -->
+					<northOffset>(-0.3, -0.017, -0.3)</northOffset>
+					<southOffset>(0.3, 0.033, -0.3)</southOffset>
+					<westOffset>(-0.0, 0.053, -0.0)</westOffset>
+					<eastOffset>(0.0, -0.017, -0.0)</eastOffset>
+					<flipRotation>true</flipRotation>
+					<renderWhenPeaceful>false</renderWhenPeaceful>
+				</renderProperties>
+				<!-- Blocking system (Optional???) -->
+				<canBlockRanged>true</canBlockRanged>
+				<canBlockMelee>true</canBlockMelee>
+				<meleeBlockChanceFactor>8.0</meleeBlockChanceFactor>				<!-- Default: 1.0 == 100% -->
+				<rangedBlockChanceFactor>0.5</rangedBlockChanceFactor>
+				<!-- Shield damage system (Optional) -->
+				<shieldTakeDamage>true</shieldTakeDamage>
+				<shieldTakeDamageFactor>1.2</shieldTakeDamageFactor>
+				<!-- Auto discard system (Optional) -->
+				<canBeAutoDiscarded>true</canBeAutoDiscarded>
+				<healthAutoDiscardThreshold>0.2</healthAutoDiscardThreshold>
+				<!-- Shield fatigue system (Optional) -->
+				<useFatigue>true</useFatigue>
+				<damageToFatigueFactor>0.005</damageToFatigueFactor>
+			</li>
+		</comps>
+	</ThingDef>	
+	
+</Defs>

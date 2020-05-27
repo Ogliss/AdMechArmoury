@@ -16,8 +16,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGEldarGun">
-		<defName>OGE_Gun_EShurikenPistol</defName>
+	<ThingDef ParentName="OG_Eldar_Gun">
+		<defName>OGE_Gun_ShurikenPistol</defName>
 		<label>Shuriken Pistol</label>
 		<description>The Shuriken Pistol, known in the Eldar Lexicon as murekh, is a smaller one-handed pistol version of the Shuriken Catapult. Amongst humans these weapons are sometimes referred to as "slingers" or "sling pistols." The shorter barrel length and smaller capacity reduces the weapon's efficiency and so limits the range, rate of fire and power. The shurikens it fires are identical to those used in the larger weapon; a spinning disc which can slice straight through flesh and bone. Certain Eldar heroes and warriors, such as Striking Scorpion Aspect Warriors, use Shuriken Pistols as their main weapon. Other Eldar units usually use them as secondary backup weapons.</description>
 		<graphicData>
@@ -52,30 +52,30 @@
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>4</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>7</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenPistol</li>
@@ -84,30 +84,29 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-      <researchPrerequisite>EldarTechBase</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Eldar_Tech_Weapons_Shuriken</li>
+			</researchPrerequisites>
 		</recipeMaker>
-		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+		<costList>
 			<OGE_Component>2</OGE_Component>
 			<Plasteel>5</Plasteel>
 			<OGE_Wraithbone>10</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Eldar - Shuriken Catapult =========================-->
-	<ThingDef ParentName="OGEldarGun">
-		<defName>OGE_Gun_EShurikenCatapult</defName>
+	<ThingDef ParentName="OG_Eldar_Gun">
+		<defName>OGE_Gun_ShurikenCatapult</defName>
 		<label>Shuriken Catapult</label>
 		<description>The Shuriken Catapult, or tuelean in the Eldar Lexicon, is the primary infantry weapon of Eldar Guardians. Like much of the technology of the Eldar, shuriken catapults are grown from the same psychoactive Wraithbone that forms the physical shell of the Craftworlds. A specialised subset of Bonesingers, taken from those who have previously walked the Path of the Warrior, are tasked with crafting the weapons used by those who would defend their home. All citizens of the craftworlds are trained in the use of the Shuriken Catapult as part of their preparation to form the Guardian militia in times of conflict. In the age of constant war that is the 41st Millennium, most Craftworlds are forced to become better acquainted with these lethal weapons than many of them would like.</description>
 		<graphicData>
@@ -147,25 +146,25 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenCatapult</li>
@@ -174,29 +173,30 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			</recipeUsers>
-		<researchPrerequisite>EldarBasicWeaponsTech</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Eldar_Tech_Weapons_Shuriken</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>4</OGE_Component>
 			<Plasteel>10</Plasteel>
 			<OGE_Wraithbone>20</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Eldar - Avenger Shuriken Catapult =========================-->
-	<ThingDef ParentName="OGEldarSpecialGun">
-		<defName>OGE_Gun_EShurikenCatapultAvenger</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Special">
+		<defName>OGE_Gun_ShurikenCatapultAvenger</defName>
 		<label>Avenger Shuriken Catapult</label>
 		<description>The Shuriken Catapult, or tuelean in the Eldar Lexicon, is the primary infantry weapon of Eldar Guardians. Like much of the technology of the Eldar, shuriken catapults are grown from the same psychoactive Wraithbone that forms the physical shell of the Craftworlds. The Avenger Shuriken Catapult is a weapon unique to the Dire Avengers Aspect Warriors shrine. This upgraded version of the Shuriken Catapult features an extended barrel, additional power feeds, in-built rangefinders, a greater firing range and more sophisticated targeting systems, as befits high status troops.</description>
 		<graphicData>
@@ -236,25 +236,25 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenCatapultA</li>
@@ -264,25 +264,25 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Eldar_Tech_Weapons_Shuriken</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>6</OGE_Component>
 			<Plasteel>15</Plasteel>
 			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Eldar - Shuriken Cannon =========================-->
@@ -301,8 +301,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGEldarHeavyGun">
-		<defName>OGE_Gun_EShurikenCannon</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
+		<defName>OGE_Gun_ShurikenCannon</defName>
 		<label>Shuriken Cannon</label>
 		<description>The large Shuriken Cannon works in a similar way to the Shuriken Catapult, but has an ammunition coil to load the weapon more quickly and uses a triple accelerator field for improved rate of fire and power. While the Shuriken weapons above are all hand-held weapons, the Shuriken cannon is very large and needs stabilising gyroscopes to allow any accuracy. They are generally only ever found mounted on Guardian heavy weapon platforms and Aeldari vehicles.</description>
 		<graphicData>
@@ -342,25 +342,25 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenCannon</li>
@@ -370,10 +370,10 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Eldar_Tech_Weapons_Shuriken</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<OGE_Component>7</OGE_Component>
@@ -381,15 +381,15 @@
 			<Steel>15</Steel>
 			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Eldar - Starcannon =========================-->
@@ -409,24 +409,24 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGEldarHeavyGun">
-		<defName>OGE_Gun_EStarcannon</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
+		<defName>OGE_Gun_Starcannon</defName>
 		<label>Starcannon</label>
 		<description>The Starcannon is the most common form of Eldar Plasma Weapon, and makes use of a small nuclear fusion reaction to superheat a stream of matter into its plasma state. The Starcannon is a rapid-fire weapon and its potent blasts are able to pierce all but the heaviest types of armour worn by infantry. It is also hauntingly accurate due to its use of a sophisticated electromagnetic pulse to guide its lethal blasts to enemy targets. The Eldar Starcannon is far superior to its Imperial counterparts as the core of the Eldar Plasma Weapon is protected by a sophisticated series of electromagnetic containment fields to ensure the weapon will never overheat in the hands of its wielder, despite producing the incandescent heat of a sun.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/Starcannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-	<comps>   
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
+		<comps>   
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>60000</WorkToMake>
@@ -459,17 +459,17 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EStarcannon</li>
@@ -479,111 +479,73 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>
 			<OGE_Component>8</OGE_Component>
 			<Plasteel>25</Plasteel>
 			<OGE_Wraithbone>35</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Eldar - Wraithcannon =========================-->
-	<!--
-	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletWC" ParentName="BaseBullet">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
 		<defName>OGE_Bullet_Wraithcannon</defName>
-		<label>Wraith Blast</label>
-		<graphicData>
-			<texPath>Things/Projectile/WraithcannonShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		<label>wraithcannon blast</label>
+		<textures>
+		  <li>Things/Projectile/Wraithcannon_Beam</li>
+		</textures>
+		<seam>0</seam>
+		<lifetime>45</lifetime>
+		<LightningBeam>true</LightningBeam>
+		<StaticLightning>true</StaticLightning>
+		<LightningVariance>1.5</LightningVariance>
+		<beamWidth>0.05</beamWidth>
+		<ArcCount>3</ArcCount>
 		<projectile>
 			<damageDef>OG_E_Distortion_Damage</damageDef>
 			<armorPenetrationBase>1</armorPenetrationBase>
-			<damageAmountBase>15</damageAmountBase>
-			<explosionDamageFalloff>true</explosionDamageFalloff>
-			<speed>75</speed>
-		</projectile>
-	<thingClass>AdeptusMechanicus.Projectile_WC</thingClass>
-	<DetonationChance>8</DetonationChance>
-	<blastRadius>2.25</blastRadius>
-	<blastdamageDef>OG_E_Distortion_Damage_Blast</blastdamageDef>
-	<blastdamageAmount>3</blastdamageAmount>
-	<blastarmorPenetration>0</blastarmorPenetration>
-	<blastsoundExplode>MeleeHit_Metal_ThunderHammer</blastsoundExplode>
-	</ThingDef>
-	-->
-	<!--
-	<ThingDef ParentName="BaseBullet">
-		<defName>OGE_Bullet_Wraithcannon</defName>
-		<label>Wraith Blast</label>
-		<graphicData>
-			<texPath>Things/Projectile/WraithcannonShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OG_E_Distortion_Damage</damageDef>
-			<armorPenetrationBase>1</armorPenetrationBase>
-			<damageAmountBase>15</damageAmountBase>
+			<damageAmountBase>30</damageAmountBase>
 			<explosionDamageFalloff>true</explosionDamageFalloff>
 			<explosionRadius>2.25</explosionRadius>
 			<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
-			<speed>75</speed>
 		</projectile>
 	</ThingDef>
- -->
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_Wraithcannon</defName>
-    <label>wraithcannon blast</label>
-    
-    <textures>
-      <li>Things/Projectile/WraithcannonBeam</li>
-    </textures>
-    <seam>0</seam>
 
-    <projectile>
-		<damageDef>OG_E_Distortion_Damage</damageDef>
-		<armorPenetrationBase>1</armorPenetrationBase>
-		<damageAmountBase>15</damageAmountBase>
-		<explosionDamageFalloff>true</explosionDamageFalloff>
-		<explosionRadius>2.25</explosionRadius>
-		<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarSpecialGun">
-		<defName>OGE_Gun_EWraithcannon</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Special">
+		<defName>OGE_Gun_Wraithcannon</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Wraithcannon</label>
 		<description>An Eldar Wraithcannon is basically a smaller, more portable version of the D-Cannon. It is used by the Eldar Wraithguard to great effect as a strong, armour-piercing weapon since no amount of armour can protect a foe from this dimension-warping attack. It functions by opening a small rift into the Warp into which the enemy is sucked.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/WraithCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-		<equippedAngleOffset>45</equippedAngleOffset>
-	<comps>   
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
+			<drawSize>1.50</drawSize>			
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<comps>   
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
+			<reliability>1</reliability>
 			<WorkToMake>55000</WorkToMake>
 			<MarketValue>6500</MarketValue>
 			<Mass>3.5</Mass>
@@ -608,30 +570,30 @@
 				<soundCast>OG_Wraithcannon_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EWraithcannon</li>
@@ -641,752 +603,164 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarWraithTech</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Eldar_Tech_Weapons_Vortex</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<OGE_Component>6</OGE_Component>
 			<Plasteel>10</Plasteel>
 			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
-	<!--==================== Eldar - Brightlance =========================-->
-	<!--
-	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGE_Bullet_Brightlance</defName>
-		<label>Brightlance laser</label>
-		<graphicData>
-			<texPath>Things/Projectile/IonBeamSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+	<!-- ====================== Lasbalster ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_LasBlaster</defName>
+		<label>las blast</label>
+		<textures>
+		  <li>Things/Projectile/LasShotLrg</li>
+		</textures>
+		<seam>0</seam>
 		<projectile>
-			<damageDef>OGELance</damageDef>
-			<damageAmountBase>75</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
-			<speed>105</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
 		</projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
-		<createsExplosion>true</createsExplosion>
-		<preFiringInitialIntensity>0</preFiringInitialIntensity>
-		<preFiringFinalIntensity>2</preFiringFinalIntensity>
-		<postFiringInitialIntensity>2</postFiringInitialIntensity>
-		<postFiringFinalIntensity>0</postFiringFinalIntensity>
-		<preFiringDuration>60</preFiringDuration>
-		<postFiringDuration>60</postFiringDuration>
-		<StartFireChance>1</StartFireChance>
-	</ThingDef>
- -->
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_Brightlance</defName>
-    <label>brightlance beam</label>
-    
-    <textures>
-      <li>Things/Projectile/IonBeamSml</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-		<damageDef>OGELance</damageDef>
-		<damageAmountBase>75</damageAmountBase>
-		<armorPenetrationBase>0.84</armorPenetrationBase>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarHeavyGun">
-		<defName>OGE_Gun_EBrightlance</defName>
-		<label>Brightlance</label>
-		<description>The Bright Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Bright Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/BrightLance</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-		<equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>65000</WorkToMake>
-			<MarketValue>8500</MarketValue>
-			<Mass>4.5</Mass>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>45</range>
-				<soundCast>OG_Brightlance_Sound</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>EBrightlance</li>
-			<li>EHeavyGun</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarHeavyWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>8</OGE_Component>
-			<Plasteel>25</Plasteel>
-			<OGE_Wraithbone>40</OGE_Wraithbone>
-			<Steel>40</Steel>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
 	</ThingDef>
 
-	<!--==================== Eldar - Prism Rifle =========================--><!--
-	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGE_Bullet_PrismRifle</defName>
-		<label>Prism Beam</label>
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_LasBlaster</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Lasblaster</label>
+		<description>The Lasblaster is an Eldar Laser Weapon utilised exclusively by Swooping Hawks Aspect Warriors. Eldar lasers use psychically grown crystals to refine their already intense bursts to their optimum potency. Many Eldar consider Laser Weapons the most elegant of all, exulting in the fact that their technological mastery extends even to light itself. These include the Swooping Hawks Aspect Warriors, who have transformed the practice of pinpoint laser fire into an art in itself. Their Exarchs lead them in this deadly technique, utilising sustained fusillades of deadly light to overwhelm their foes. The Lasblaster is lower in strength than other Eldar weapons but has a range advantage that suits it to assault troops.</description>
 		<graphicData>
-			<texPath>Things/Projectile/IonBeamSml</texPath>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/LasBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile>
-		<explosionRadius>1.50</explosionRadius>
-			<damageDef>OGELance</damageDef>
-			<damageAmountBase>45</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
-			<speed>105</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
-		<createsExplosion>true</createsExplosion>
-		<preFiringInitialIntensity>0</preFiringInitialIntensity>
-		<preFiringFinalIntensity>2</preFiringFinalIntensity>
-		<postFiringInitialIntensity>2</postFiringInitialIntensity>
-		<postFiringFinalIntensity>0</postFiringFinalIntensity>
-		<preFiringDuration>60</preFiringDuration>
-		<postFiringDuration>60</postFiringDuration>
-		<StartFireChance>1</StartFireChance>
-	</ThingDef>
- -->
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_PrismRifle</defName>
-    <label>prism beam</label>
-    
-    <textures>
-      <li>Things/Projectile/IonBeamSml</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-		<explosionRadius>1.50</explosionRadius>
-		<damageDef>OGELance</damageDef>
-		<damageAmountBase>45</damageAmountBase>
-		<armorPenetrationBase>0.84</armorPenetrationBase>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarSpecialGun">
-		<defName>OGE_Gun_EPrismRifle</defName>
-		<label>Prism Rifle</label>
-		<description>The Prism Rifle is an Eldar energy weapon and the primary weapon of the Shadow Spectres Aspect Warriors. The Prism Rifle is an antiquated weapon, an artifact lost to most of the remaining Eldar race. Using the same technology as the far larger Prism Cannon, each rifle is connected to a single targeting matrix, known as the Ghostlight. Through it each rifle's energy pulse converges into a single beam of bright light that can tear apart tanks and larger targets with ease.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/PrismRifle</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-		<soundInteract>Interact_Autopistol</soundInteract>
+		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>45000</WorkToMake>
-			<MarketValue>8500</MarketValue>
-			<Mass>4.5</Mass>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_PrismRifle</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>45</range>
-				<soundCast>OG_Brightlance_Sound</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>10</muzzleFlashScale>
-			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>EPrismRifle</li>
-			<li>EHeavyGun</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarHeavyWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>4</OGE_Component>
-			<Plasteel>15</Plasteel>
-			<OGE_Wraithbone>30</OGE_Wraithbone>
-			<Steel>10</Steel>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	</ThingDef>
-	
-	<!-- ====================== Eldar - Fusion Gun ===================== -->
-	<!--
-	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-	<defName>OGE_Bullet_FusionGun</defName>
-    <label>Fusion Blast</label>
-    <graphicData>
-		<texPath>Things/Projectile/MeltaShot</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIMelta</damageDef>
-		<damageAmountBase>105</damageAmountBase>
-			<armorPenetrationBase>1</armorPenetrationBase>
-		<speed>50</speed>
-		<explosionRadius>0.50</explosionRadius>
-		<soundExplode>OGIFL_Explosion</soundExplode>
-    </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
-			<createsExplosion>true</createsExplosion>
-			<preFiringInitialIntensity>0</preFiringInitialIntensity>
-			<preFiringFinalIntensity>2</preFiringFinalIntensity>
-			<postFiringInitialIntensity>2</postFiringInitialIntensity>
-			<postFiringFinalIntensity>0</postFiringFinalIntensity>
-			<preFiringDuration>60</preFiringDuration>
-			<postFiringDuration>60</postFiringDuration>
-			<StartFireChance>1</StartFireChance>	
-			<IsMelta>true</IsMelta>
- </ThingDef>
- -->
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_FusionGun</defName>
-    <label>fusion blast</label>
-    
-    <textures>
-      <li>Things/Projectile/MeltaShot</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-		<damageDef>OGIMelta</damageDef>
-		<damageAmountBase>105</damageAmountBase>
-		<armorPenetrationBase>1</armorPenetrationBase>
-		<explosionRadius>0.50</explosionRadius>
-		<soundExplode>OGIFL_Explosion</soundExplode>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarSpecialGun">
-    <defName>OGE_Gun_FusionGun</defName>
-    <label>Fusion Gun</label>
-    <description>The Eldar possess an unsurpassed mastery of heat-based weapons, and take savage delight in the devastation they create. They utilise a deadly Melta Weapon known as a Fusion Gun, a weapon that is unique to the Aspect Warriors known as Fire Dragons amongst the Eldar. Though it can only be used at short range, it possesses a sophisticated targetting system, as befits high status troops like Aspect Warriors. Like most Eldar technology, the weapon is psychically activated, its resonant Wraithbone construction being sensitive to the Eldar's innately psychic mind. A Fire Dragons' Fusion Gun is linked to its targetter via its handle.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Eldar/FusionGun</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<WorkToMake>50000</WorkToMake>
-		<MarketValue>6000</MarketValue>
-		<Mass>2.5</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.90</AccuracyMedium>
-		<AccuracyLong>0.90</AccuracyLong>
-		<RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
-    </statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>0.25</MoveSpeed>
-		</equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
-			<warmupTime>1.75</warmupTime>
-			<range>16</range>
-			<soundCast>OG_Melta_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-	<techLevel>Spacer</techLevel>
-	<weaponTags>
-			<li>EFusionGun</li>
-			<li>EEliteGun</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>4</OGE_Component>
-			<Plasteel>10</Plasteel>
-			<OGE_Wraithbone>35</OGE_Wraithbone>
-			<Steel>10</Steel>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-
-	<!--==================== Eldar - Neuro disruptor =========================-->
-	<!--
-	<ThingDef  Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="OGEffectBulletBase">
-		<defName>OGE_Bullet_NeuroDisruptor</defName>
-		<label>Neuro disruptor blast</label>
-		<graphicData>
-			<texPath>Things/Projectile/SonicShotSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGENeuroDisruptor</damageDef>
-			<damageAmountBase>1</damageAmountBase>
-			<armorPenetrationBase>1</armorPenetrationBase>
-			<speed>100</speed>
-    </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_LaserEffect</thingClass>
-			<preFiringInitialIntensity>0</preFiringInitialIntensity>
-			<preFiringFinalIntensity>2</preFiringFinalIntensity>
-			<postFiringInitialIntensity>2</postFiringInitialIntensity>
-			<postFiringFinalIntensity>0</postFiringFinalIntensity>
-			<preFiringDuration>25</preFiringDuration>
-			<postFiringDuration>25</postFiringDuration>
-			<AddHediffChance>0.25</AddHediffChance>
-			<HediffToAdd>FWPsychicShock</HediffToAdd>
-			<CanResistHediff>true</CanResistHediff>
-			<ResistHediffStat>PsychicSensitivity</ResistHediffStat>
-	</ThingDef>
- -->
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_NeuroDisruptor</defName>
-    <label>disruptor blast</label>
-    
-    <textures>
-      <li>Things/Projectile/SonicShotSml</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-			<damageDef>OGENeuroDisruptor</damageDef>
-			<damageAmountBase>1</damageAmountBase>
-			<armorPenetrationBase>1</armorPenetrationBase>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarGun">
-		<defName>OGE_Gun_ENeuroDisruptor</defName>
-		<label>Neuro Disruptor</label>
-		<description>Neuro Disruptors are elegant psychocrystalline weapons that fire beams of energy capable of burning away nervous tissue in an agonising instant. Armour offers no protection from these weapons, for it is simply bypassed altogether. Indeed, foes hit by a neuro disruptor show no outward sign of injury, excepting their sudden, violent convulsions as they tumble to the floor.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/NeuroDisruptor</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>45000</WorkToMake>
-			<MarketValue>4500</MarketValue>
-			<Mass>1.2</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.95</AccuracyShort>
-			<AccuracyMedium>0.80</AccuracyMedium>
-			<AccuracyLong>0.70</AccuracyLong>
-			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>0.25</MoveSpeed>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
-				<warmupTime>0.3</warmupTime>
-				<range>20</range>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<burstShotCount>1</burstShotCount>
-				<soundCast>OG_Shuriken_Sound</soundCast>
-				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>ENeuroDisruptor</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-      <researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>5</OGE_Component>
-			<Plasteel>10</Plasteel>
-			<OGE_Wraithbone>20</OGE_Wraithbone>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	</ThingDef>
-	
- <!-- ====================== Lasbalster ===================== -->
- <!--
- <ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-	<defName>OGE_Bullet_LasBlaster</defName>
-    <label>Las Blast</label>
-    <graphicData>
-		<texPath>Things/Projectile/LasShotLrg</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGILas</damageDef>
-		<damageAmountBase>20</damageAmountBase>
-		<armorPenetrationBase>0.32</armorPenetrationBase>
-		<stoppingPower>1.25</stoppingPower>
-		<speed>105</speed>
-    </projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
-			<preFiringInitialIntensity>0</preFiringInitialIntensity>
-			<preFiringFinalIntensity>2</preFiringFinalIntensity>
-			<postFiringInitialIntensity>2</postFiringInitialIntensity>
-			<postFiringFinalIntensity>0</postFiringFinalIntensity>
-			<preFiringDuration>2</preFiringDuration>
-			<postFiringDuration>25</postFiringDuration>
-			<StartFireChance>0.1</StartFireChance>	
- </ThingDef>
--->
-
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_LasBlaster</defName>
-    <label>las blast</label>
-    
-    <textures>
-      <li>Things/Projectile/LasShotLrg</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-		<damageDef>OGILas</damageDef>
-		<damageAmountBase>20</damageAmountBase>
-		<armorPenetrationBase>0.32</armorPenetrationBase>
-		<stoppingPower>1.25</stoppingPower>
-    </projectile>
-  </ThingDef>
-
- <ThingDef ParentName="OGEldarSpecialGun" Class="AdeptusMechanicus.LaserGunDef">
-    <defName>OGE_Gun_LasBlaster</defName>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <label>Lasblaster</label>
-    <description>The Lasblaster is an Eldar Laser Weapon utilised exclusively by Swooping Hawks Aspect Warriors. Eldar lasers use psychically grown crystals to refine their already intense bursts to their optimum potency. Many Eldar consider Laser Weapons the most elegant of all, exulting in the fact that their technological mastery extends even to light itself. These include the Swooping Hawks Aspect Warriors, who have transformed the practice of pinpoint laser fire into an art in itself. Their Exarchs lead them in this deadly technique, utilising sustained fusillades of deadly light to overwhelm their foes. The Lasblaster is lower in strength than other Eldar weapons but has a range advantage that suits it to assault troops.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Eldar/LasBlaster</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>60000</WorkToMake>
-		<MarketValue>2500</MarketValue>
-		<Mass>3.2</Mass>
+			<reliability>1</reliability>
+			<WorkToMake>60000</WorkToMake>
+			<MarketValue>2500</MarketValue>
+			<Mass>3.2</Mass>
 			<AccuracyTouch>0.70</AccuracyTouch>
 			<AccuracyShort>0.80</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
 			<AccuracyLong>0.70</AccuracyLong>
 			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>35</Steel>
-		<OGE_Component>6</OGE_Component>
-		<Plasteel>15</Plasteel>
-		<OGE_Wraithbone>20</OGE_Wraithbone>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+		</recipeMaker>
+		<costList>
+			<Steel>35</Steel>
+			<OGE_Component>6</OGE_Component>
+			<Plasteel>15</Plasteel>
+			<OGE_Wraithbone>20</OGE_Wraithbone>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
 			<li>ELasblaster</li>
 			<li>EEliteGun</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
 		</tradeTags>
-    <equippedStatOffsets>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>35</range>
-			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>OG_Hellgun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
 			<li>
-				<RapidFire>true</RapidFire>
-			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>35</range>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Hellgun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+		  </li>
+		</verbs>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<RapidFire>true</RapidFire>
+				</li>
+			</VerbEntries>
+			</li> 
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		</comps>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 
 	<!-- ==================== Eldar - Range Longrifle =========================-->
-	<!--
-	<ThingDef ParentName="BaseBullet">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
 		<defName>OGE_Bullet_RangerLR</defName>
 		<label>Longrifle Round</label>
-		<graphicData>
-			<texPath>Things/Projectile/RailgunSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		<textures>
+		  <li>Things/Projectile/RailgunSml</li>
+		</textures>
+		<seam>0</seam>
 		<projectile>
 			<damageDef>OGTRailgun</damageDef>
 			<damageAmountBase>59</damageAmountBase>
 			<armorPenetrationBase>0.50</armorPenetrationBase>
-			<speed>135</speed>
 		</projectile>
 	</ThingDef>
- -->
- 
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_RangerLR</defName>
-    <label>Longrifle Round</label>
 
-    <textures>
-      <li>Things/Projectile/RailgunSml</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-			<damageDef>OGTRailgun</damageDef>
-			<damageAmountBase>59</damageAmountBase>
-			<armorPenetrationBase>0.50</armorPenetrationBase>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarHeavyGun">
-		<defName>OGE_Gun_ERangerLongrifle</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_RangerLongrifle</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Longrifle</label>
 		<description>The Ranger Long Rifle is the favoured weapon of Eldar Rangers and Pathfinders. It is a long-barrelled rifle, superficially similar to the Imperial Sniper Rifle and Imperial Long-Las Rifle, that fires energy bolts capable of piercing most armour when aimed correctly. Unlike the mass-produced weapons of the Imperium, these potent Eldar weapons are hand-grown by Bonesingers with specific attention paid to the eyesight and grip, creating a weapon perfectly adapted to its user. The Ranger Long Rifle uses a Gyrostatic Arm to keep the weapon stable, dispensing with the clumsy bipods that must be used by the lesser races with their Sniper Rifles. The Gyrostatic Arm also all but eliminates recoil. Whereas the artificial crystals used by Imperial laser–technology struggle to maintain a focused beam over long distances, the psychically-grown crystals used by Eldar laser weapons are able to focus a tight beam of coherent light over a much greater distance, allowing a skilled user to punch through weak points in armour at great distances.</description>
 		<graphicData>
@@ -1424,25 +798,25 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>ERangerLongrifle</li>
@@ -1452,27 +826,383 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarHeavyWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>
 			<OGE_Component>5</OGE_Component>
 			<Plasteel>15</Plasteel>
 			<OGE_Wraithbone>18</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 	
+	<!--==================== Eldar - Prism Rifle =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_PrismRifleFocused</defName>
+		<label>prism beam</label>
+		<textures>
+		  <li>Things/Projectile/IonBeamSml</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGELance</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>1.54</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_PrismRifleDispersed</defName>
+		<label>prism beam</label>
+		<textures>
+		  <li>Things/Projectile/IonBeamSml</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<explosionRadius>1.50</explosionRadius>
+			<damageDef>OGELance</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_PrismRifle</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Prism Rifle</label>
+		<description>The Prism Rifle is an Eldar energy weapon and the primary weapon of the Shadow Spectres Aspect Warriors. The Prism Rifle is an antiquated weapon, an artifact lost to most of the remaining Eldar race. Using the same technology as the far larger Prism Cannon, each rifle is connected to a single targeting matrix, known as the Ghostlight. Through it each rifle's energy pulse converges into a single beam of bright light that can tear apart tanks and larger targets with ease.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/PrismRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<comps>     
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		  <li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+		  </li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>45000</WorkToMake>
+			<MarketValue>8500</MarketValue>
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<label>Focused</label>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_PrismRifleFocused</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<soundCast>OG_Brightlance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li>
+				<label>Dispersed</label>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_PrismRifleDispersed</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<soundCast>OG_Brightlance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EPrismRifle</li>
+			<li>EHeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+		</recipeMaker>
+		<costList>
+			<OGE_Component>4</OGE_Component>
+			<Plasteel>15</Plasteel>
+			<OGE_Wraithbone>30</OGE_Wraithbone>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Eldar - Brightlance =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_Brightlance</defName>
+		<label>brightlance beam</label>
+		<textures>
+		  <li>Things/Projectile/IonBeamSml</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGELance</damageDef>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_EBrightlance</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Brightlance</label>
+		<description>The Bright Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Bright Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/BrightLance</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<comps>     
+			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>65000</WorkToMake>
+			<MarketValue>8500</MarketValue>
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<soundCast>OG_Brightlance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+		<tools>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EBrightlance</li>
+			<li>EHeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+		</recipeMaker>
+		<costList>
+			<OGE_Component>8</OGE_Component>
+			<Plasteel>25</Plasteel>
+			<OGE_Wraithbone>40</OGE_Wraithbone>
+			<Steel>40</Steel>
+		</costList>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Eldar - Fusion Gun ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_FusionGun</defName>
+		<label>fusion blast</label>
+		<textures>
+		  <li>Things/Projectile/MeltaShot</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGIMelta</damageDef>
+			<damageAmountBase>105</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>0.50</explosionRadius>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_FusionGun</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Fusion Gun</label>
+		<description>The Eldar possess an unsurpassed mastery of heat-based weapons, and take savage delight in the devastation they create. They utilise a deadly Melta Weapon known as a Fusion Gun, a weapon that is unique to the Aspect Warriors known as Fire Dragons amongst the Eldar. Though it can only be used at short range, it possesses a sophisticated targetting system, as befits high status troops like Aspect Warriors. Like most Eldar technology, the weapon is psychically activated, its resonant Wraithbone construction being sensitive to the Eldar's innately psychic mind. A Fire Dragons' Fusion Gun is linked to its targetter via its handle.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/FusionGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>50000</WorkToMake>
+			<MarketValue>6000</MarketValue>
+			<Mass>2.5</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
+		</statBases>
+			<equippedStatOffsets>
+				<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+				<PsychicSensitivity>0.15</PsychicSensitivity>
+				<MoveSpeed>0.25</MoveSpeed>
+			</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
+				<warmupTime>1.75</warmupTime>
+				<range>16</range>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+		  </li>
+		</verbs>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EFusionGun</li>
+			<li>EEliteGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Melta</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+		</recipeMaker>
+		<costList>
+			<OGE_Component>4</OGE_Component>
+			<Plasteel>10</Plasteel>
+			<OGE_Wraithbone>35</OGE_Wraithbone>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+
 	<!--==================== Eldar - Deathspinner =========================-->
 	<ThingDef ParentName="BaseBullet">
 		<defName>OGE_Bullet_Deathspinner</defName>
@@ -1489,8 +1219,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OGEldarSpecialGun">
-		<defName>OGE_Gun_EDeathspinner</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Special">
+		<defName>OGE_Gun_Deathspinner</defName>
 		<label>Deathspinner</label>
 		<description>A Death Spinner is the standard weapon used by the Eldar Aspect Warriors known as the Warp Spiders. They are deadly weapons that use mono-filament threads to rip through a target's body. The Death Spinner is a part of a whole family of Eldar weapons that use mono-filament technology. All these weapons, including the massive Doomweaver Cannon mounted on super-heavy Eldar gravity tanks and the Harlequin's Kiss used by the Harlequins, work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
 		<graphicData>
@@ -1530,25 +1260,25 @@
 			</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EDeathspinner</li>
@@ -1558,188 +1288,57 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Aeldari_Tech_Weapons_Monofilament</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>
 			<OGE_Component>6</OGE_Component>
 			<Plasteel>20</Plasteel>
 			<OGE_Wraithbone>15</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
-	<!-- ==================== Eldar - Haywire Cannon ========================= -->
-	<!--
-	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGE_Bullet_HaywireCannon</defName>
-		<label>Haywire Blast</label>
+	<!--==================== Eldar - Reaper Launcher =========================-->
+	<ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BaseBullet">
+		<defName>OGE_Bullet_ReaperLauncher</defName>
+		<thingClass>Projectile_ExplosiveOG</thingClass>
+		<label>Bolt</label>
 		<graphicData>
-			<texPath>Things/Projectile/HaywireBlast</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGIArc</damageDef>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
-			<speed>105</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-		<thingClass>AdeptusMechanicus.Projectile_Laser</thingClass>
-		<preFiringInitialIntensity>0</preFiringInitialIntensity>
-		<preFiringFinalIntensity>2</preFiringFinalIntensity>
-		<postFiringInitialIntensity>2</postFiringInitialIntensity>
-		<postFiringFinalIntensity>0</postFiringFinalIntensity>
-		<preFiringDuration>60</preFiringDuration>
-		<postFiringDuration>60</postFiringDuration>
-		<StartFireChance>0</StartFireChance>
-	</ThingDef>
- -->
- 
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGE_Bullet_HaywireCannon</defName>
-    <label>haywire blast</label>
-
-    <textures>
-      <li>Things/Projectile/HaywireBlast</li>
-    </textures>
-    <seam>0</seam>
-
-    <projectile>
-			<damageDef>OGIArc</damageDef>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
-    </projectile>
-  </ThingDef>
-
-	<ThingDef ParentName="OGEldarSpecialGun">
-		<defName>OGE_Gun_HaywireCannon</defName>
-		<label>Haywire Cannon</label>
-		<description>Haywire Cannons are Eldar weapons mainly used by Harlequins. These are long-barrelled weapons so lightweight that can be fired even when moving. Crackling blasts of electromagnetic energy leap from the forked projector-vanes of the Haywire Blaster with every shot. Capable of scrambling even the most robust electrical systems, a single hit from such a weapon can leave enemy tanks and aircraft powerless and at the mercy of the Harlequins' wrath.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/HarlequinHaywireCannon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>40000</WorkToMake>
-			<MarketValue>8500</MarketValue>
-			<Mass>4.5</Mass>
-			<AccuracyTouch>0.80</AccuracyTouch>
-			<AccuracyShort>0.70</AccuracyShort>
-			<AccuracyMedium>0.65</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>28</range>
-				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>EHaywireBlaster</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-		<researchPrerequisite>EldarHeavyWeapons</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>8</OGE_Component>
-			<Plasteel>35</Plasteel>
-			<OGE_Wraithbone>35</OGE_Wraithbone>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	</ThingDef>
-	
-		<!--==================== Eldar - Reaper Launcher =========================-->
- <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BaseBullet">
-	<defName>OGE_Bullet_ReaperLauncher</defName>
-    <label>Bolt</label>
-    <graphicData>
 			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
 			<damageDef>OGEPlas</damageDef>
 			<explosionRadius>1.00</explosionRadius>
 			<damageAmountBase>35</damageAmountBase>
 			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>0.5</explosionradius>
- </ThingDef>	
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<explosionradius>0.5</explosionradius>
+	</ThingDef>	
 
-	<ThingDef ParentName="OGEldarHeavyGun">
-		<defName>OGE_Gun_EReaperLauncher</defName>
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
+		<defName>OGE_Gun_ReaperLauncher</defName>
 		<label>Reaper Launcher</label>
 		<description>A Reaper Launcher is a unique heavy weapon utilised exclusively by the Aeldari Dark Reapers Aspect Warriors. With this deadly weapon the Dark Reapers are the undisputed masters of delivering death from afar. This long-barrelled Missile Launcher can create a blistering firestorm with a single salvo. The armour-piercing missiles it fires are powerful enough to take down all but the most heavily protected foe.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DarkReaperLauncher</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -1773,33 +1372,33 @@
 			</targetParams>
 			</li>
 		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<Multishot>true</Multishot>
-				<ScattershotCount>2</ScattershotCount>
-			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<Multishot>true</Multishot>
+					<ScattershotCount>2</ScattershotCount>
+				</li>
+			</VerbEntries>
+			</li> 
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		</comps>
+		<tools>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EReaperLauncher</li>
@@ -1809,26 +1408,237 @@
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-			<researchPrerequisite>EldarAdvancedWeapons</researchPrerequisite>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<li>OG_Eldar_Tech_Base_T3</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
 		</recipeMaker>
 		<costList>
 			<OGE_Component>8</OGE_Component>
 			<Plasteel>25</Plasteel>
 			<OGE_Wraithbone>35</OGE_Wraithbone>
 		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
+	<!--==================== Harlequin Ranged Weapons =========================-->
+	<!--==================== Harlequin Eldar - Neuro disruptor =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_NeuroDisruptor</defName>
+		<label>disruptor blast</label>
+		<textures>
+		  <li>Things/Projectile/SonicShotSml</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGENeuroDisruptor</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_NeuroDisruptor</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Neuro Disruptor</label>
+		<description>Neuro Disruptors are elegant psychocrystalline weapons that fire beams of energy capable of burning away nervous tissue in an agonising instant. Armour offers no protection from these weapons, for it is simply bypassed altogether. Indeed, foes hit by a neuro disruptor show no outward sign of injury, excepting their sudden, violent convulsions as they tumble to the floor.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/NeuroDisruptor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>45000</WorkToMake>
+			<MarketValue>4500</MarketValue>
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>20</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Shuriken_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ENeuroDisruptor</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+			<researchPrerequisite>OG_Aeldari_Tech_Weapons_Monofilament</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<OGE_Component>5</OGE_Component>
+			<Plasteel>10</Plasteel>
+			<OGE_Wraithbone>20</OGE_Wraithbone>
+		</costList>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ==================== Harlequin Eldar - Haywire Cannon ========================= -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+		<defName>OGE_Bullet_HaywireCannon</defName>
+		<label>haywire blast</label>
+		<textures>
+		  <li>Things/Projectile/HaywireBlast</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGIArc</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGE_Gun_HaywireCannon</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>Haywire Cannon</label>
+		<description>Haywire Cannons are Eldar weapons mainly used by Harlequins. These are long-barrelled weapons so lightweight that can be fired even when moving. Crackling blasts of electromagnetic energy leap from the forked projector-vanes of the Haywire Blaster with every shot. Capable of scrambling even the most robust electrical systems, a single hit from such a weapon can leave enemy tanks and aircraft powerless and at the mercy of the Harlequins' wrath.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/HarlequinHaywireCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<comps>     
+		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>40000</WorkToMake>
+			<MarketValue>8500</MarketValue>
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>28</range>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+		<tools>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EHaywireBlaster</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Haywire</li>
+			</researchPrerequisites>
+		<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+		</recipeMaker>
+		<costList>
+			<OGE_Component>8</OGE_Component>
+			<Plasteel>35</Plasteel>
+			<OGE_Wraithbone>35</OGE_Wraithbone>
+		</costList>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	
 </Defs>

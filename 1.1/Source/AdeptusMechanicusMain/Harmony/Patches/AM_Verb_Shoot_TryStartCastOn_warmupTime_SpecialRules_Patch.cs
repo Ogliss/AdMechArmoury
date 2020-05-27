@@ -21,16 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix, HarmonyPriority(200)]
         public static void TryStartCastOn_RapidFire_Prefix(ref Verb __instance, LocalTargetInfo castTarg, float __state)
         {
-            /*
-            List<Type> types = typeof(Verb_LaunchProjectile).AllSubclassesNonAbstract().ToList();
-            types.Add(typeof(Verb_LaunchProjectile));
-            List<Type> nottypes = typeof(AbilityUser.Verb_UseAbility).AllSubclassesNonAbstract().ToList();
-            nottypes.Add(typeof(AbilityUser.Verb_UseAbility));
-            if (!types.Contains(__instance.GetType()) || nottypes.Contains(__instance.GetType()))
-            {
-                return;
-            }
-            */
+
             if (__instance.GetType()!=typeof(Verb_Shoot) && __instance.GetType()!=typeof(Verb_ShootEquipment))
             {
                 return;
@@ -45,41 +36,49 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (__instance.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() is CompWeapon_GunSpecialRules GunExt)
                         {
-                        //    Log.Message(string.Format("prefix pre-modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}, last move tick: {3}", gun.def.Verbs[0].warmupTime, gun.def.Verbs[0].ticksBetweenBurstShots, gun.def.Verbs[0].defaultCooldownTime, GunExt.LastMovedTick));
                             if (GunExt.RapidFire)
                             {
+                                Log.Message(string.Format("prefix pre-modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}, last move tick: {3}", gun.def.Verbs[0].warmupTime, gun.def.Verbs[0].ticksBetweenBurstShots, gun.def.Verbs[0].defaultCooldownTime, GunExt.LastMovedTick));
                                 if (__instance.caster.Position.InHorDistOf(castTarg.Cell, __instance.verbProps.range / 2))
                                 {
-                                    if (GunExt.DualFireMode && GunExt.Toggled)
+                                    if (GunExt.fireMode!=null)
                                     {
-                                        __instance.verbProps.warmupTime = GunExt.Props.VerbEntries[1].VerbProps.warmupTime / 2;
+                                        __instance.verbProps.warmupTime = GunExt.fireMode.Active.warmupTime / 2;
                                     }
                                     else
                                     {
-                                        __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime / 2;
+                                        __instance.verbProps.warmupTime = gun.def.Verbs[0].warmupTime / 2;
                                     }
                                 }
                                 else
                                 {
+                                    /*
                                     if (GunExt.DualFireMode && GunExt.Toggled)
                                     {
                                         __instance.verbProps.warmupTime = GunExt.Props.VerbEntries[1].VerbProps.warmupTime;
                                     }
+                                    */
+                                    if (GunExt.fireMode != null)
+                                    {
+                                        __instance.verbProps.warmupTime = GunExt.fireMode.Active.warmupTime;
+                                    }
                                     else
                                     {
-                                        __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime;
+                                    //    __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime;
+                                        __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup;
                                     }
                                 }
+                                Log.Message(string.Format("prefix post-modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}, last move tick: {3}", gun.def.Verbs[0].warmupTime, gun.def.Verbs[0].ticksBetweenBurstShots, gun.def.Verbs[0].defaultCooldownTime, GunExt.LastMovedTick));
                             }
                             else if (GunExt.HeavyWeapon)
                             {
                                 if (GunExt.ticksHere<GunExt.HeavyWeaponSetupTime.SecondsToTicks())
                                 {
-                                    __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime + (GunExt.HeavyWeaponSetupTime - GunExt.ticksHere.TicksToSeconds());
+                                    __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup + (GunExt.HeavyWeaponSetupTime - GunExt.ticksHere.TicksToSeconds());
                                 }
                                 else
                                 {
-                                    __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime;
+                                    __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup;
                                 }
                             }
                         }
@@ -128,14 +127,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (__instance.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() is CompWeapon_GunSpecialRules GunExt)
                         {
-                            if (GunExt.OriginalwarmupTime!=0)
+                            if (GunExt.GunVerbs[0].originalWarmup > 0)
                             {
-                                __instance.verbProps.warmupTime = (float)GunExt.OriginalwarmupTime;
+                                //    __instance.verbProps.warmupTime = (float)GunExt.OriginalwarmupTime;
+                                //    __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime;
+                                __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup;
                             }
                         }
                     }
                 }
-            //    Log.Message(string.Format("postfix Instance modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}", __instance.verbProps.warmupTime, __instance.verbProps.ticksBetweenBurstShots, __instance.verbProps.defaultCooldownTime));
+                Log.Message(string.Format("postfix Instance modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}", __instance.verbProps.warmupTime, __instance.verbProps.ticksBetweenBurstShots, __instance.verbProps.defaultCooldownTime));
             }
         }
     }

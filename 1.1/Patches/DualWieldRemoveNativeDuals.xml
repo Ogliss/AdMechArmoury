@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<!-- <success>Always</success> -->
+		<operations>
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Dual Wield</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<!--success>Always</success-->
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGI_Gun_BoltPistolD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGI_Melee_LightningClawD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGE_Melee_MirrorswordD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGE_Melee_GhostSwordD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGN_Melee_FlayingTalon"]/comps/li[@Class="AdeptusMechanicus.CompProperties_OversizedWeapon"]</xpath>
+						</li>
+					</operations>
+				</match>
+				<nomatch Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+					</operations>
+				</nomatch>
+				</li>
+		</operations>
+	</Operation>
+	
+</Patch>

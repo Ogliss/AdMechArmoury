@@ -372,7 +372,7 @@ namespace AdeptusMechanicus
         private const float MaxDistanceToColonyBuilding = 30f;
 
         // Token: 0x04001DEE RID: 7662
-        private static List<Pair<IntVec3, float>> tmpCachedInfestationChanceCellColors;
+    //    private static List<Pair<IntVec3, float>> tmpCachedInfestationChanceCellColors;
 
         // Token: 0x04001DEF RID: 7663
         private static HashSet<Region> tempUnroofedRegions = new HashSet<Region>();

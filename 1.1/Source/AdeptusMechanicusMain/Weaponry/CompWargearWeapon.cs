@@ -23,10 +23,15 @@ namespace AdeptusMechanicus
 
         public bool GizmosOnEquip = true;
         // Determine who is wearing this ThingComp. Returns a Pawn or null.
-        protected virtual Pawn GetWearer
+        public CompEquippable compEquippable => parent.GetComp<CompEquippable>();
+        protected virtual Pawn CasterPawn
         {
             get
             {
+                if (compEquippable!=null)
+                {
+                    return compEquippable.PrimaryVerb.CasterPawn;
+                }
                 if (ParentHolder != null && ParentHolder is Pawn_EquipmentTracker)
                 {
                     return (Pawn)ParentHolder.ParentHolder;
@@ -39,7 +44,7 @@ namespace AdeptusMechanicus
         }
 
         // Determine if this ThingComp is being worn presently. Returns True/False
-        protected virtual bool IsWorn => (GetWearer != null);
+        protected virtual bool IsWorn => (CasterPawn != null);
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
@@ -49,8 +54,8 @@ namespace AdeptusMechanicus
 
         public virtual IEnumerable<Gizmo> EquippedGizmos()
         {
-            ThingWithComps owner = IsWorn ? GetWearer : parent;
-            bool flag = Find.Selector.SingleSelectedThing == GetWearer;
+            ThingWithComps owner = IsWorn ? CasterPawn : parent;
+            bool flag = Find.Selector.SingleSelectedThing == CasterPawn;
             if (flag)
             {
                 Command_Action command_Action = new Command_Action();
@@ -67,9 +72,9 @@ namespace AdeptusMechanicus
         public override void CompTick()
         {
             base.CompTick();
-            if (GetWearer != lastWearer)
+            if (CasterPawn != lastWearer)
             {
-                lastWearer = GetWearer;
+                lastWearer = CasterPawn;
             }
         }
     }

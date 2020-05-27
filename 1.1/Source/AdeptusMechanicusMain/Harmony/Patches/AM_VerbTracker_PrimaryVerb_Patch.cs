@@ -38,4 +38,16 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
     */
+    [HarmonyPatch(typeof(CompEquippable), "get_PrimaryVerb")]
+    public static class AM_VerbTracker_PrimaryVerb_Patch
+    {
+        [HarmonyPostfix]
+        public static void PrimaryVerb_Postfix(ref CompEquippable __instance, ref Verb __result)
+        {
+            if (__instance.parent.TryGetComp<CompToggleFireMode>() != null)
+            {
+                __result.verbProps = __instance.parent.TryGetComp<CompToggleFireMode>().Active;
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(RecipeDef), "get_AvailableNow")]
     public static class AM_RecipeDef_AvailableNow_ExtraPrerequisite_Patch
     {
@@ -65,4 +66,5 @@ namespace AdeptusMechanicus.HarmonyInstance
             return list;
         }
     }
+    */
 }

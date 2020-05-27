@@ -3,7 +3,7 @@
 	<!--==================== Necron - Gauss Flayer =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NGaussFlayer</defName>
+		<defName>OGN_Bullet_GaussFlayer</defName>
 		<label>Guass Blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/GaussBoltSml</texPath>
@@ -26,7 +26,7 @@
 	-->
 
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NGaussFlayer</defName>
+    <defName>OGN_Bullet_GaussFlayer</defName>
     <label>guass blast</label>
     
     <textures>
@@ -42,8 +42,8 @@
     </projectile>
   </ThingDef>
 
-	<ThingDef ParentName="OGNecronGun" Class="AdeptusMechanicus.LaserGunDef">
-		<defName>OGN_Gun_NGaussFlayer</defName>
+	<ThingDef ParentName="OG_Necron_Gun" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGN_Gun_GaussFlayer</defName>
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Gauss Flayer</label>
 		<description>A Gauss Flayer is a type of Necron Gauss Weapon that can strip a target down to nothing molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Flayers are rifle-like weapons consisting of a stock, a transparent tube containing the unholy and unknown viridian energy the weapon fires, and sometimes an axe-like bayonet underneath the circular muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Flayer does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Flayer, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
@@ -71,7 +71,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NGaussFlayer</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_GaussFlayer</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
@@ -137,12 +137,18 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NGaussFlayer</li>
+			<li>OGN_Gun_GaussFlayer</li>
 			<li>NGaussFlayer</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -162,7 +168,7 @@
 	<!--==================== Necron - Gause Blaster =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NGaussBlaster</defName>
+		<defName>OGN_Bullet_GaussBlaster</defName>
 		<label>Gauss Blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/GaussBoltSml</texPath>
@@ -184,7 +190,7 @@
 	</ThingDef>
 	-->
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NGaussBlaster</defName>
+    <defName>OGN_Bullet_GaussBlaster</defName>
     <label>guass blast</label>
     
     <textures>
@@ -200,8 +206,8 @@
     </projectile>
   </ThingDef>
   
-	<ThingDef ParentName="OGNecronSpecialGun" Class="AdeptusMechanicus.LaserGunDef">
-		<defName>OGN_Gun_NGaussBlaster</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGN_Gun_GaussBlaster</defName>
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Gauss Blaster</label>
 		<description>A Gauss Blaster is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Blasters are larger than the more common Gauss Flayers and feature two barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Blaster does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles.  Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Blaster, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
@@ -227,7 +233,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NGaussBlaster</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
 				<warmupTime>0.75</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
@@ -293,12 +299,18 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NGaussBlaster</li>
+			<li>OGN_Gun_GaussBlaster</li>
 			<li>NGaussBlaster</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -316,8 +328,8 @@
 	</ThingDef>
 
 	<!--==================== Necron - Twin-Linked Gause Blaster =========================-->
-	<ThingDef ParentName="OGNecronSpecialGun">
-		<defName>OGN_Gun_NGaussBlasterTwinLinked</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_GaussBlasterTwinLinked</defName>
 		<label>twin-linked gauss blaster</label>
 		<description>A Gauss Blaster is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Blasters are larger than the more common Gauss Flayers and feature two barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Blaster does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles.  Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Blaster, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
 		<graphicData>
@@ -342,7 +354,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NGaussBlaster</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
 				<warmupTime>0.75</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
@@ -375,12 +387,18 @@
 	</comps>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NGaussBlasterTwinLinked</li>
+			<li>OGN_Gun_GaussBlasterTwinLinked</li>
 			<li>NGaussBlasterTwinLinked</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -400,7 +418,7 @@
 	<!--==================== Necron - Telsa Carbine =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NTeslaCarbine</defName>
+		<defName>OGN_Bullet_TeslaCarbine</defName>
 		<label>Gauss Blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/GaussBoltSml</texPath>
@@ -422,7 +440,7 @@
 	</ThingDef>
 	-->
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NTeslaCarbine</defName>
+    <defName>OGN_Bullet_TeslaCarbine</defName>
     <label>tesla blast</label>
     
     <textures>
@@ -442,7 +460,7 @@
   </ThingDef>
   
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NTeslaCarbine_Arc</defName>
+    <defName>OGN_Bullet_TeslaCarbine_Arc</defName>
     <label>tesla blast</label>
     
     <textures>
@@ -459,8 +477,8 @@
     </projectile>
   </ThingDef>
   
-	<ThingDef ParentName="OGNecronSpecialGun" Class="AdeptusMechanicus.LaserGunDef">
-		<defName>OGN_Gun_NTeslaCarbine</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGN_Gun_TeslaCarbine</defName>
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>tesla carbine</label>
 		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
@@ -486,7 +504,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NTeslaCarbine</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
 				<warmupTime>0.75</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
@@ -537,12 +555,18 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NTeslaCarbine</li>
+			<li>OGN_Gun_TeslaCarbine</li>
 			<li>NTeslaCarbine</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -560,8 +584,8 @@
 	</ThingDef>
 
 	<!--==================== Necron - Twin-Linked Tesla Carbine =========================-->
-	<ThingDef ParentName="OGNecronSpecialGun">
-		<defName>OGN_Gun_NTeslaCarbineTwinLinked</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
 		<label>twin-linked tesla carbine</label>
 		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
 		<graphicData>
@@ -586,7 +610,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NTeslaCarbine</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
 				<warmupTime>0.95</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
@@ -619,12 +643,18 @@
 	</comps>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NTeslaCarbineTwinLinked</li>
+			<li>OGN_Gun_TeslaCarbineTwinLinked</li>
 			<li>NTeslaCarbineTwinLinked</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -644,7 +674,7 @@
 	<!--==================== Necron - Gauss Cannon =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NGaussCannon</defName>
+		<defName>OGN_Bullet_GaussCannon</defName>
 		<label>Gauss Blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/GaussBolt</texPath>
@@ -667,7 +697,7 @@
 	-->
 
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NGaussCannon</defName>
+    <defName>OGN_Bullet_GaussCannon</defName>
     <label>guass blast</label>
     
     <textures>
@@ -683,8 +713,8 @@
     </projectile>
   </ThingDef>
   
-	<ThingDef ParentName="OGNecronHeavyGun">
-		<defName>OGN_Gun_NGaussCannon</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Heavy">
+		<defName>OGN_Gun_GaussCannon</defName>
 		<label>Gauss Cannon</label>
 		<description>A Gauss Cannon is type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Cannons are larger than the more common Gauss Flayers and Gauss Blasters, and feature four barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Cannon does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. In the case of more powerful Gauss Weapons, this process occurs so rapidly and completely that the emerald beam of energy may appear to punch through its target, though it may be more accurate to think of it as "digging" its way through armour. It is said to be extremely painful to be shot with a Gauss Cannon, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
 		<graphicData>
@@ -710,7 +740,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NGaussCannon</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
 				<warmupTime>2.5</warmupTime>
 				<range>31</range>
 				<soundCast>OG_Gauss_Cannon_Sound</soundCast>
@@ -745,12 +775,19 @@
 	</comps>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NGaussCannon</li>
+			<li>OGN_Gun_GaussCannon</li>
 			<li>NGaussCannon</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -770,7 +807,7 @@
 	<!--==================== Necron - Heavy Gauss Cannon =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NGaussCannonHeavy</defName>
+		<defName>OGN_Bullet_GaussCannonHeavy</defName>
 		<label>Gauss Blast</label>
 		<drawOffscreen>true</drawOffscreen>
 		<drawerType>MapMeshAndRealTime</drawerType>
@@ -795,7 +832,7 @@
 	-->
 
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NGaussCannonHeavy</defName>
+    <defName>OGN_Bullet_GaussCannonHeavy</defName>
     <label>guass blast</label>
     
     <textures>
@@ -811,8 +848,8 @@
     </projectile>
   </ThingDef>
   
-	<ThingDef ParentName="OGNecronHeavyGun">
-		<defName>OGN_Gun_NGaussCannonHeavy</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Heavy">
+		<defName>OGN_Gun_GaussCannonHeavy</defName>
 		<label>Heavy Gauss Cannon</label>
 		<description>The Heavy Gauss Cannon is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Heavy Gauss Cannons are larger than even more common Gauss Cannon, and feature four barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires.\n\nUnlike more conventional directed energy weapons, a Gauss weapon does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. In the case of more powerful Gauss Weapons, this process occurs so rapidly and completely that the emerald beam of energy may appear to punch through its target, though it may be more accurate to think of it as "digging" its way through armour. It is said to be extremely painful to be shot with a Gauss Cannon, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
 		<graphicData>
@@ -838,7 +875,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NGaussCannon</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
 				<warmupTime>3.5</warmupTime>
 				<range>45</range>
 				<soundCast>OG_Gauss_Cannon_Sound</soundCast>
@@ -873,12 +910,19 @@
 	</comps>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NGaussCannon</li>
+			<li>OGN_Gun_GaussCannon</li>
 			<li>NGaussCannon</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -898,7 +942,7 @@
 	<!--==================== Necron - Synaptic Disintergrator =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NSynapticDisintergrator</defName>
+		<defName>OGN_Bullet_SynapticDisintergrator</defName>
 		<label>disintergrator blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/ParticleBeam</texPath>
@@ -921,7 +965,7 @@
 	-->
 	
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NSynapticDisintergrator</defName>
+    <defName>OGN_Bullet_SynapticDisintergrator</defName>
     <label>disintergrator blast</label>
     
     <textures>
@@ -937,8 +981,8 @@
     </projectile>
   </ThingDef>
 
-	<ThingDef ParentName="OGNecronSpecialGun">
-		<defName>OGN_Gun_NSynapticDisintergrator</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_SynapticDisintergrator</defName>
 		<label>synaptic disintergrator</label>
 		<description>A Particle Beamer is a heavy, rifle-sized Particle Weapon capable of causing powerful blasts at range to decimate enemy infantry. Tomb Blades can mount a Particle Beamer on their chassis instead of their usual twin-linked Tesla Carbines, whilst Canoptek Spyders who specialise in sentinel duties commonly mount twin-linked Particle Beamers on their backs. Tesseract Arks are also able to mount two Particle Beamers as secondary weapon systems.</description>
 		<graphicData>
@@ -963,7 +1007,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NSynapticDisintergrator</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_SynapticDisintergrator</defaultProjectile>
 				<warmupTime>2.25</warmupTime>
 				<range>45</range>
 				<burstShotCount>1</burstShotCount>
@@ -1013,12 +1057,20 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NSynapticDisintergrator</li>
+			<li>OGN_Gun_SynapticDisintergrator</li>
 			<li>NSynapticDisintergrator</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			<!--li>OG_Necron_Tech_Weapons_Particle</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
@@ -1038,7 +1090,7 @@
 	<!--==================== Necron - Particle Beamer =========================-->
 	<!--
 	<ThingDef Class="AdeptusMechanicus.ThingDef_LaserProjectile" ParentName="BaseBullet">
-		<defName>OGN_Bullet_NParticleBeamer</defName>
+		<defName>OGN_Bullet_ParticleBeamer</defName>
 		<label>disintergrator blast</label>
 		<graphicData>
 			<texPath>Things/Projectile/ParticleBeam</texPath>
@@ -1061,7 +1113,7 @@
 	-->
 	
   <ThingDef ParentName="OG_Bullet_LaserGauss" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_NParticleBeamer</defName>
+    <defName>OGN_Bullet_ParticleBeamer</defName>
     <label>particle beam</label>
     
     <seam>0</seam>
@@ -1074,8 +1126,8 @@
     </projectile>
   </ThingDef>
 
-	<ThingDef ParentName="OGNecronSpecialGun">
-		<defName>OGN_Gun_NParticleBeamer</defName>
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_ParticleBeamer</defName>
 		<label>particle beamer</label>
 		<description>A Particle Beamer is a heavy, rifle-sized Particle Weapon capable of causing powerful blasts at range to decimate enemy infantry. Tomb Blades can mount a Particle Beamer on their chassis instead of their usual twin-linked Tesla Carbines, whilst Canoptek Spyders who specialise in sentinel duties commonly mount twin-linked Particle Beamers on their backs. Tesseract Arks are also able to mount two Particle Beamers as secondary weapon systems.</description>
 		<graphicData>
@@ -1100,7 +1152,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_NParticleBeamer</defaultProjectile>
+				<defaultProjectile>OGN_Bullet_ParticleBeamer</defaultProjectile>
 				<warmupTime>2.25</warmupTime>
 				<range>45</range>
 				<burstShotCount>1</burstShotCount>
@@ -1150,13 +1202,21 @@
     </tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>OGN_Gun_NParticleBeamer</li>
+			<li>OGN_Gun_ParticleBeamer</li>
 			<li>OGN_TombSpyder_Weapons</li>
 			<li>NParticleBeamer</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGNRanged</li>
 		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			<!--li>OG_Necron_Tech_Weapons_Particle</li-->
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>

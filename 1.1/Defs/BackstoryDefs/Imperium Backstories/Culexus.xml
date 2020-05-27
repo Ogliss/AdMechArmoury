@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+<!-- This type of assassin is a blank, who specializes in killing psykers, so probably shouldn't put them in until you put psykers in and can create a quality for blanks. -->
+  <AdeptusMechanicus.BackstoryDef ParentName="Imperial_Base_Adult_Backstory">
+    <defName>Officio_Assassinorum_Culexus</defName>
+    <title>Vindicare</title>
+    <baseDescription>[PAWN_nameDef] was recruited by the Culexus temple for showing the unique defect known as the Pariah Gene, this is a rare one in a billion condition that renders [PAWN_nameDef] immune to psychic powers. [PAWN_pronoun] was sent after enemies of the Imperium, specifically Psykers. </baseDescription>
+    <bodyTypeGlobal>Male</bodyTypeGlobal>
+    <bodyTypeMale>Male</bodyTypeMale>
+    <bodyTypeFemale>Male</bodyTypeFemale>
+    <slot>Adulthood</slot>
+    <workDisables>
+		<li>ManualDumb</li>
+		<li>Caring</li>
+		<li>Crafting</li>
+		<li>Intellectual</li>
+		<li>Animals</li>
+		<li>Artistic</li>
+		<li>Cooking</li>
+		<li>Firefighting</li>
+		<li>PlantWork</li>
+		<li>Social</li>
+		<li>Mining</li>
+	</workDisables>
+    <requiredWorkTags>
+		<li>Violent</li>
+	</requiredWorkTags>
+    <forcedTraits>
+      <li>
+        <defName>Psychopath</defName>
+        <degree>0</degree>
+      </li>
+      <li>
+        <defName>SpeedOffset</defName>
+        <degree>2</degree>
+      </li>
+	  <!--
+      <li>
+        <defName>Blank</defName>
+        <degree>0</degree>
+      </li>
+	  -->
+    </forcedTraits>
+    <disallowedTraits>
+      <li>
+        <defName>Kind</defName>
+        <degree>0</degree>
+      </li>
+    </disallowedTraits>
+    <skillGains>
+      <li>
+        <defName>Shooting</defName>
+        <amount>10</amount>
+      </li>
+      <li>
+        <defName>Melee</defName>
+        <amount>10</amount>
+      </li>
+    </skillGains>
+	<spawnCategories Inherit="false">
+		<li>Imperium_Schola_Cadet</li>	
+		<li>Imperium_Citizen</li>
+		<li>Imperium_Officio_Assassinorum</li>
+	</spawnCategories>
+  </AdeptusMechanicus.BackstoryDef>
+</Defs>

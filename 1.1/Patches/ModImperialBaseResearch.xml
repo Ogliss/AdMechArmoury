@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchProjectDef[defName="BasicImperialConstruction"]</xpath>
+			<success>Invert</success>
+    </li>
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ResearchProjectDef[defName="OG_Imperial_Tech_Base_T0"]/prerequisites</xpath>
+    </li>
+  </operations>
+</Operation>
+
+</Patch>

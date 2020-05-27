@@ -1,22 +1,116 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>OG_Apparel_Tribal_Cloak</defName>
+		<label>tribalcloak</label>
+		<comps>
+		  <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Common/Cloak/Backbit/Cloak</padTexPath>
+						<commonality>10</commonality>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0.005</NorthOffset>
+				<SouthOffset>-0.5</SouthOffset>
+				<EastOffset>0.005</EastOffset>
+				<WestOffset>0.005</WestOffset>
+		  </li>
+		  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+				<ExtrasEntries>
+					<li>
+						<UseBodytypeOffsets>true</UseBodytypeOffsets>
+						<shaderType>Cutout</shaderType>
+						<extraTexPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</extraTexPath>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0.005</NorthOffset>
+				<SouthOffset>-0.0025</SouthOffset>
+				<EastOffset>-0.0025</EastOffset>
+				<WestOffset>-0.0025</WestOffset>
+		  </li>
+		</comps>
+		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--
+			<shaderType>CutoutComplex</shaderType> 
+			-->
+		</graphicData>
+		<techLevel>Neolithic</techLevel>
+		<costStuffCount>60</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<tradeability>Sellable</tradeability>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>1800</WorkToMake>
+			<Mass>0.4</Mass>
+			<StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.55</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<thingCategories>
+			<li>Apparel</li>
+		</thingCategories>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Neck</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<!--wornGraphicPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</wornGraphicPath-->
+			<layers>
+				<li>ShellExtra</li>
+			</layers>
+			<tags>
+				<li>Neolithic</li>
+				<li>TribalCloak</li>
+				<li>Cloak</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+		</recipeMaker>
+		<!--
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(0.4,0.3,0.15)</only>
+				</li>
+				<li>
+					<weight>15</weight>
+					<only>(0.6,0.45,0.18)</only>
+				</li>
+				<li>
+					<weight>20</weight>
+					<only>(0.8,0.6,0.23)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		-->
+	</ThingDef>
+	
+	
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>OG_Apparel_Cloak</defName>
 		<label>cloak</label>
-		
-		<!--
-    <modExtensions>
-      <li Class="AdeptusMechanicus.VisibleAccessoryDefExtension">
-        <order>1</order>
-        <northtop>false</northtop>
-		<NorthOffset>0.0</NorthOffset>
-		<SouthOffset>0</SouthOffset>
-		<EastOffset>0.001</EastOffset>
-		<WestOffset>0.001</WestOffset>
-      </li>
-    </modExtensions>
-		-->
-	
     <comps>
       <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
         <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
@@ -28,11 +122,26 @@
 					<commonality>10</commonality>
 				</li>
 			</PauldronEntries>
-			<NorthOffset>0.0</NorthOffset>
+			<NorthOffset>0.00</NorthOffset>
 			<SouthOffset>-0.5</SouthOffset>
-			<EastOffset>0.0</EastOffset>
-			<WestOffset>0.0</WestOffset>
+			<EastOffset>0.00</EastOffset>
+			<WestOffset>0.00</WestOffset>
       </li>
+	  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+		<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+			<ExtrasEntries>
+				<li>
+					<UseBodytypeOffsets>true</UseBodytypeOffsets>
+					<shaderType>Cutout</shaderType>
+					<extraTexPath>Things/Item/Apparel/Common/Cloak/Cloak</extraTexPath>
+					<commonality>10</commonality>
+				</li>
+			</ExtrasEntries>
+			<NorthOffset>0.005</NorthOffset>
+			<SouthOffset>-0.0025</SouthOffset>
+			<EastOffset>-0.0025</EastOffset>
+			<WestOffset>-0.0025</WestOffset>
+	  </li>
     </comps>
 		<description>A full-body garment, While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
@@ -65,7 +174,7 @@
 				<li>Shoulders</li>
 				<li>Legs</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/Item/Apparel/Common/Cloak/Cloak</wornGraphicPath>
+			<!--wornGraphicPath>Things/Item/Apparel/Common/Cloak/Cloak</wornGraphicPath-->
 			<layers>
 				<li>ShellExtra</li>
 			</layers>
@@ -103,46 +212,61 @@
 	</ThingDef>
 
 	<ThingDef ParentName="ApparelMakeableBase">
-		<defName>OG_Apparel_Tribal_Cloak</defName>
-		<label>tribalcloak</label>
-		<!--
-		<thingClass>AdeptusMechanicus.Apparel_VisibleAccessory</thingClass>
-		-->
-		<modExtensions>
-		  <li Class="AdeptusMechanicus.VisibleAccessoryDefExtension">
-			<order>1</order>
-			<northtop>false</northtop>
-			<!--
-			<NorthOffset>0.0</NorthOffset>
-			<SouthOffset>0</SouthOffset>
-			<EastOffset>0.001</EastOffset>
-			<WestOffset>0.001</WestOffset>
-			-->
-		  </li>
-		</modExtensions>
-		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
+		<defName>OG_Apparel_Mantle</defName>
+		<label>mantle</label>
+    <comps>
+      <!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Common/Mantle/Backbit/Mantle</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+			<NorthOffset>0.00</NorthOffset>
+			<SouthOffset>-0.5</SouthOffset>
+			<EastOffset>0.00</EastOffset>
+			<WestOffset>0.00</WestOffset>
+      </li-->
+	  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+		<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+			<ExtrasEntries>
+				<li>
+					<UseBodytypeOffsets>true</UseBodytypeOffsets>
+					<shaderType>CutoutComplex</shaderType>
+					<extraTexPath>Things/Item/Apparel/Common/Mantle/Mantle</extraTexPath>
+					<commonality>10</commonality>
+				</li>
+			</ExtrasEntries>
+			<NorthOffset>0.005</NorthOffset>
+			<SouthOffset>-0.0025</SouthOffset>
+			<EastOffset>-0.0015</EastOffset>
+			<WestOffset>-0.0015</WestOffset>
+	  </li>
+    </comps>
+		<description>A full-body garment, While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</texPath>
+			<texPath>Things/Item/Apparel/Common/Mantle/Mantle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<!--
-			<shaderType>CutoutComplex</shaderType> 
-			-->
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<techLevel>Neolithic</techLevel>
-		<costStuffCount>60</costStuffCount>
+		<costStuffCount>120</costStuffCount>
 		<stuffCategories>
 			<li>Fabric</li>
 			<li>Leathery</li>
 		</stuffCategories>
 		<tradeability>Sellable</tradeability>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToMake>1800</WorkToMake>
-			<Mass>0.4</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.55</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>1.5</EquipDelay>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>4000</WorkToMake>
+			<Mass>0.75</Mass>
+      <StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.95</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.95</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>1.8</EquipDelay>
 		</statBases>
 		<thingCategories>
 			<li>Apparel</li>
@@ -150,17 +274,17 @@
 		<apparel>
 			<bodyPartGroups>
 				<li>Torso</li>
-				<li>Shoulders</li>
 				<li>Neck</li>
+				<li>Shoulders</li>
 				<li>Legs</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</wornGraphicPath>
+			<!--wornGraphicPath>Things/Item/Apparel/Common/Cloak/Cloak</wornGraphicPath-->
 			<layers>
 				<li>ShellExtra</li>
 			</layers>
 			<tags>
-				<li>Neolithic</li>
-				<li>TribalCloak</li>
+				<li>IndustrialBasic</li>
+				<li>GoodCloak</li>
 				<li>Cloak</li>
 			</tags>
 		</apparel>
@@ -190,4 +314,5 @@
 		</colorGenerator>
 		-->
 	</ThingDef>
+
 </Defs>

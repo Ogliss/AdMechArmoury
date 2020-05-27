@@ -92,7 +92,6 @@ namespace AdeptusMechanicus
             offset = offset + (_SubOffsetFactor * myDef.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == Wearer && Prefs.DevMode && DebugSettings.godMode;
-            string direction;
             if (!onHead)
             {
                 if (rotation == Rot4.North)
@@ -106,30 +105,25 @@ namespace AdeptusMechanicus
                     {
                         offset += myDef.NorthOffset;
                     }
-                    direction = "North";
                 }
                 else if (rotation == Rot4.West)
                 {
                     offset += _BodyOffset;
                     offset += myDef.WestOffset;
-                    direction = "West";
                 }
                 else if (rotation == Rot4.East)
                 {
                     offset += _BodyOffset;
                     offset += myDef.EastOffset;
-                    direction = "East";
                 }
                 else if (rotation == Rot4.South)
                 {
                     offset += _BodyOffset;
                     offset += myDef.SouthOffset;
-                    direction = "South";
                 }
                 else
                 {
                     offset += _BodyOffset;
-                    direction = "Unknown";
                 }
             }
             else
@@ -137,11 +131,9 @@ namespace AdeptusMechanicus
                 if (rotation == Rot4.North)
                 {
                     offset += _BodyOffset;
-                    direction = "North";
                 }
                 else
                     offset += _HeadOffset;
-                direction = "Other";
             }
             if (flag)
             {

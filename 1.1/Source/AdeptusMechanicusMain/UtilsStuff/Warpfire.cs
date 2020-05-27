@@ -358,7 +358,7 @@ namespace RimWorld
         }
 
         // Token: 0x06002652 RID: 9810 RVA: 0x00123790 File Offset: 0x00121B90
-        protected void TrySpread()
+        protected new void TrySpread()
         {
             IntVec3 intVec = base.Position;
             bool flag;

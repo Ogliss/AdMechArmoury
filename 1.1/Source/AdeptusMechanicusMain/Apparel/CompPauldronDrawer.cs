@@ -200,55 +200,43 @@ namespace AdeptusMechanicus
 
         public float GetAltitudeOffset(Rot4 rotation)
         {
-            VisibleAccessoryDefExtension myDef = parent.def.GetModExtension<VisibleAccessoryDefExtension>() ?? new VisibleAccessoryDefExtension();
-            myDef.Validate();
-            float offset = _OffsetFactor * myDef.order;
-            offset = offset + (_SubOffsetFactor * myDef.sublayer);
+            float offset = _OffsetFactor * this.ShoulderPadEntry.order;
+            offset = offset + (_SubOffsetFactor * this.ShoulderPadEntry.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
-            string direction;
             if (!onHead)
             {
                 if (rotation == Rot4.North)
                 {
                     offset += _BodyOffset;
-                    if (myDef.northtop)
+                    if (this.ShoulderPadEntry.northtop)
                     {
                         offset += _HairOffset;
                         offset += NorthOffset(ShoulderPadEntry);
                     }
                     else
                     {
-                        offset += myDef.NorthOffset;
                         offset += NorthOffset(ShoulderPadEntry);
                     }
-                    direction = "North";
                 }
                 else if (rotation == Rot4.West)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.WestOffset;
                     offset += WestOffset(ShoulderPadEntry);
-                    direction = "West";
                 }
                 else if (rotation == Rot4.East)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.EastOffset;
                     offset += EastOffset(ShoulderPadEntry);
-                    direction = "East";
                 }
                 else if (rotation == Rot4.South)
                 {
                     offset += _BodyOffset;
-                    offset += myDef.SouthOffset;
                     offset += SouthOffset(ShoulderPadEntry);
-                    direction = "South";
                 }
                 else
                 {
                     offset += _BodyOffset;
-                    direction = "Unknown";
                 }
             }
             else
@@ -256,11 +244,9 @@ namespace AdeptusMechanicus
                 if (rotation == Rot4.North)
                 {
                     offset += _BodyOffset;
-                    direction = "North";
                 }
                 else
                     offset += _HeadOffset;
-                direction = "Other";
             }
             if (flag)
             {
@@ -409,11 +395,14 @@ namespace AdeptusMechanicus
         public ShaderTypeDef shaderType;
         public string padTexPath;
         public int commonality;
+        public bool northtop = false;
+        public bool UseFactionTextures;
         public bool UsePrimaryColor;
         public Color PrimaryColor = Color.white;
         public bool UseSecondaryColor;
         public Color SecondaryColor = Color.white;
-        public bool UseFactionTextures;
+        public int order = 1;
+        public int sublayer = 0;
         public float NorthOffset = 0f;
         public float SouthOffset = 0f;
         public float EastOffset = 0f;

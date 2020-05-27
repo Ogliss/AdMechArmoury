@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Kroot - Power Sword =========================-->
+	<ThingDef ParentName="OG_Kroot_MeleeWeapon_Power_Sharp_Quality">
+		<defName>OGK_Melee_PowerSword</defName>
+		<label>Power Sword(Kroot)</label>
+		<description>A Power Sword is a Power Weapon that has been shaped into a sword of varying lengths and designs crafted from one of any number of different materials, though usually Adamantium. When its power cell is activated, often by touching a control located on the hilt, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Sword a highly effective Imperial close combat weapon. Power Swords are used by all members of the Imperial armed forces, including the troops of the Imperial Guard and the Space Marines of the Adeptus Astartes.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Kroot/KrootPowerSword</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>2.0</Mass>
+			<MarketValue>2250</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>14</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.3</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+		<!--researchPrerequisite>OG_Tau_Tech_Weapons_Ranged_T2</researchPrerequisite-->
+		</recipeMaker>
+		<costStuffCount>200</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<OGT_Fiotak>2</OGT_Fiotak>
+		</costList>
+		<weaponTags>
+			<li>KPowerSword</li>
+			<li>Kroot</li>
+			<li>OGKPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTMelee</li>
+			<li>OGKMelee</li>
+		</tradeTags>
+		<comps>
+		
+		  <li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+		  </li>
+		</comps>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+	<!--==================== Kroot - Shaman Staff =========================-->
+	<ThingDef ParentName="OG_Kroot_MeleeWeapon_Force_Blunt_Quality">
+		<defName>OGK_Melee_ShamanStaff</defName>
+		<label>Shaman Staff</label>
+		<description>Kroot Shamans often carry a staff, adored with mystical runes and charms that allow them to focustheir powers and deflect enemy Psychic attacks.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Kroot/KrootShamanStaff</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>3.5</Mass>
+			
+			<MarketValue>1750</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(136,0,54)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->					
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_MeleeSpecialRules">
+				<ForceWeapon>true</ForceWeapon>
+				<ForceWeaponEffect>OGForceStrike</ForceWeaponEffect>
+				<ForceWeaponHediff>FWPsychicShock</ForceWeaponHediff>
+				<ForceWeaponKillChance>0.5</ForceWeaponKillChance>
+				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+			<li>
+				<label>haft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+			<li>
+				<label>force strike</label>
+				<capacities>
+					<li>OG_ForceWeapon_Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Force</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<OGT_Component>10</OGT_Component>
+			<OGT_Fiotak>6</OGT_Fiotak>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>400</costStuffCount>
+		<weaponTags>
+			<li>KShamanStaff</li>
+			<li>Kroot</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+	 
+</Defs>

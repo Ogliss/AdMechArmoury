@@ -27,7 +27,7 @@ namespace AdeptusMechanicus
                     return pawn.Corpse.Graphic;
                 }
 
-                return pawn.Drawer.renderer.graphics.nakedGraphic.GetShadowlessGraphic();
+                //return pawn.Drawer.renderer.graphics.nakedGraphic.GetShadowlessGraphic();
             }
         }
 

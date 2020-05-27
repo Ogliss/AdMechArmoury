@@ -11,7 +11,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch
     {
         [HarmonyPostfix]
-        public static void PawnRenderer_RenderPawnInternal_Postfix(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
+        public static void PawnRenderer_RenderPawnInternal_Postfix(ref PawnRenderer __instance, Pawn ___pawn, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
         {
             if (!__instance.graphics.AllResolved)
             {
@@ -19,14 +19,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             Mesh mesh = null;
             Quaternion quat = Quaternion.AngleAxis(angle, Vector3.up);
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             if (AdeptusIntergrationUtil.enabled_AlienRaces)
             {
-                AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.AlienRacesPatch(ref __instance, rootLoc, angle, renderBody, bodyFacing, headFacing, out mesh, bodyDrawType, portrait, headStump, invisible);
+                AM_PawnRenderer_RenderPawnInternal_DrawExtras_Patch.AlienRacesPatch(ref __instance, ___pawn, rootLoc, angle, renderBody, bodyFacing, headFacing, out mesh, bodyDrawType, portrait, headStump, invisible);
             }
             else
             {
-                if (pawn.RaceProps.Humanlike)
+                if (___pawn.RaceProps.Humanlike)
                 {
                     mesh = MeshPool.humanlikeBodySet.MeshAt(bodyFacing);
                 }
@@ -38,14 +37,25 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (renderBody)
             {
                 Vector3 vector = rootLoc;
-                if (pawn.apparel!=null && pawn.apparel.WornApparelCount>0)
+                /*
+                if (bodyFacing != Rot4.North)
                 {
-                    for (int k = 0; k < pawn.apparel.WornApparel.Count; k++)
+                    vector.y += 0.0227272734f;
+                }
+                else
+                {
+                    vector.y += 0.0265151523f;
+                }
+                */
+                if (___pawn.apparel!=null && ___pawn.apparel.WornApparelCount>0)
+                {
+                    for (int k = 0; k < ___pawn.apparel.WornApparel.Count; k++)
                     {
-                        if (pawn.apparel.WornApparel[k].TryGetComp<CompPauldronDrawer>() != null)
+                        if (___pawn.apparel.WornApparel[k].TryGetComp<CompPauldronDrawer>() != null)
                         {
-                            foreach (CompPauldronDrawer Pauldron in pawn.apparel.WornApparel[k].AllComps.Where(x => x.GetType() == typeof(CompPauldronDrawer)))
+                            foreach (CompPauldronDrawer Pauldron in ___pawn.apparel.WornApparel[k].AllComps.Where(x => x.GetType() == typeof(CompPauldronDrawer)))
                             {
+                                Vector3 drawAt = vector;
                                 if (!Pauldron.Props.PauldronEntries.NullOrEmpty())
                                 {
                                     if (!Pauldron.pauldronInitialized)
@@ -59,24 +69,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         }
                                         Pauldron.pauldronInitialized = true;
                                     }
-                                    if (Pauldron.ShouldDrawPauldron(pawn, bodyFacing, out Material pauldronMat))
+                                    if (Pauldron.ShouldDrawPauldron(___pawn, bodyFacing, out Material pauldronMat))
                                     {
-                                        vector.y += Pauldron.GetAltitudeOffset(bodyFacing);
-                                        GenDraw.DrawMeshNowOrLater(mesh, vector, quat, pauldronMat, portrait);
+                                        drawAt.y += Pauldron.GetAltitudeOffset(bodyFacing);
+                                        GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, pauldronMat, portrait);
                                         //    vector.y += CompPauldronDrawer.MinClippingDistance;
                                     }
                                 }
                             }
                         }
-                        if (pawn.apparel.WornApparel[k].TryGetComp<CompApparelExtraDrawer>() != null)
+                        if (___pawn.apparel.WornApparel[k].TryGetComp<CompApparelExtraDrawer>() != null)
                         {
-                            foreach (CompApparelExtraDrawer Extas in pawn.apparel.WornApparel[k].AllComps.Where(x => x.GetType() == typeof(CompApparelExtraDrawer)))
+                            foreach (CompApparelExtraDrawer Extas in ___pawn.apparel.WornApparel[k].AllComps.Where(x => x.GetType() == typeof(CompApparelExtraDrawer)))
                             {
+                                Vector3 drawAt = vector;
                                 if (!Extas.pprops.ExtrasEntries.NullOrEmpty())
                                 {
-                                    if (Extas.ShouldDrawExtra(pawn, pawn.apparel.WornApparel[k], bodyFacing, out Material extraMat))
+                                    if (Extas.ShouldDrawExtra(___pawn, ___pawn.apparel.WornApparel[k], bodyFacing, out Material extraMat))
                                     {
-                                        Vector3 drawAt = vector;
                                         if (Extas.onHead)
                                         {
                                             drawAt = vector + __instance.BaseHeadOffsetAt(headFacing);
@@ -89,9 +99,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                             }
                         }
                         Apparel_VisibleAccessory VisibleAccessory;
-                        if (pawn.apparel.WornApparel[k].GetType() == typeof(Apparel_VisibleAccessory))
+                        if (___pawn.apparel.WornApparel[k].GetType() == typeof(Apparel_VisibleAccessory))
                         {
-                            VisibleAccessory = (Apparel_VisibleAccessory)pawn.apparel.WornApparel[k];
+                            VisibleAccessory = (Apparel_VisibleAccessory)___pawn.apparel.WornApparel[k];
                         }
                         //ApparelGraphicRecord apparelGraphicRecord = __instance.graphics.apparelGraphics[k];
                         //if (apparelGraphicRecord.sourceApparel.def.apparel.LastLayer == ApparelLayer.Shell)
@@ -103,12 +113,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //}
                     }
                 }
-                if (!pawn.Dead)
+                if (!___pawn.Dead)
                 {
-                    for (int l = 0; l < pawn.health.hediffSet.hediffs.Count; l++)
+                    for (int l = 0; l < ___pawn.health.hediffSet.hediffs.Count; l++)
                     {
                         Vector3 drawAt = vector;
-                        HediffComp_DrawImplant_AdMech drawer = pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_DrawImplant_AdMech>();
+                        HediffComp_DrawImplant_AdMech drawer = ___pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_DrawImplant_AdMech>();
                         if (drawer != null)
                         {
                             Material material = null;
@@ -119,24 +129,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 {
                                     drawAt.y -= 0.3f;
                                 }
-                                material = drawer.ImplantMaterial(pawn, bodyFacing);
+                                material = drawer.ImplantMaterial(___pawn, bodyFacing);
                                 //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
                             }
                             else
                             {
-                                if (!pawn.Downed && !pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                if (!___pawn.Downed && !___pawn.Dead && drawer.implantDrawProps.useHeadOffset)
                                 {
                                     drawAt = vector + __instance.BaseHeadOffsetAt(headFacing);
                                 }
                                 else
                                 {
-                                    if (pawn.Downed || pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                    if (___pawn.Downed || ___pawn.Dead && drawer.implantDrawProps.useHeadOffset)
                                     {
                                         drawAt.y = vector.y + __instance.BaseHeadOffsetAt(headFacing).y;
                                     }
                                 }
                                 drawAt.y += 0.005f;
-                                material = drawer.ImplantMaterial(pawn, headFacing);
+                                material = drawer.ImplantMaterial(___pawn, headFacing);
                                 //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
                             }
 
@@ -152,7 +162,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             }
                         }
                         HediffComp_Shield _Shield;
-                        if ((_Shield = pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_Shield>()) != null)
+                        if ((_Shield = ___pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_Shield>()) != null)
                         {
                             _Shield.DrawWornExtras();
                         }
@@ -161,10 +171,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        static void AlienRacesPatch(ref PawnRenderer __instance, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, out Mesh mesh, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
+        static void AlienRacesPatch(ref PawnRenderer __instance, Pawn pawn, Vector3 rootLoc, float angle, bool renderBody, Rot4 bodyFacing, Rot4 headFacing, out Mesh mesh, RotDrawMode bodyDrawType, bool portrait, bool headStump, bool invisible)
         {
             mesh = null;
-            Pawn pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
             AlienRace.ThingDef_AlienRace alienDef = pawn.def as AlienRace.ThingDef_AlienRace;
             if (alienDef != null)
             {

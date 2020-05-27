@@ -21,12 +21,15 @@ namespace AdeptusMechanicus
         Mesh mesh;
         Mesh meshb;
         Mesh meshc;
+        Thing launcher;
+        ThingDef equipmentDef;
         public List<Mesh> meshes = new List<Mesh>();
 
 
         public float Opacity => (float)Math.Sin(Math.Pow(1.0 - 1.0 * ticks / def.lifetime, def.impulse) * Math.PI);
         public bool Lightning => def.LightningBeam;
         public bool Static => def.StaticLightning;
+        public int ticksToDetonation;
         public override void ExposeData()
         {
             base.ExposeData();
@@ -43,6 +46,14 @@ namespace AdeptusMechanicus
             {
                 Destroy(DestroyMode.Vanish);
             }
+            if (this.ticksToDetonation > 0)
+            {
+                this.ticksToDetonation--;
+                if (this.ticksToDetonation <= 0)
+                {
+                    this.Explode();
+                }
+            }
         }
 
         void SetColor(Thing launcher)
@@ -57,12 +68,16 @@ namespace AdeptusMechanicus
             {
                 colorIndex = gun.BeamColor;
             }
+            if (gun !=null)
+            {
+                this.equipmentDef = pawn.equipment.Primary.def;
+            }
         }
 
         public void Setup(Thing launcher, Vector3 origin, Vector3 destination)
         {
             SetColor(launcher);
-
+            this.launcher = launcher;
             a = origin;
             b = destination;
         }
@@ -200,5 +215,32 @@ namespace AdeptusMechanicus
                 Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
             }
         }
+        protected virtual void Explode()
+        {
+            Map map = base.Map;
+            IntVec3 intVec = this.b.ToIntVec3();
+            bool flag = this.def.projectile.explosionEffect != null;
+            if (flag)
+            {
+                Effecter effecter = this.def.projectile.explosionEffect.Spawn();
+                effecter.Trigger(new TargetInfo(intVec, map, false), new TargetInfo(intVec, map, false));
+                effecter.Cleanup();
+            }
+            IntVec3 center = intVec;
+            Map map2 = map;
+            float explosionRadius = this.def.projectile.explosionRadius;
+            DamageDef damageDef = this.def.projectile.damageDef;
+            Thing launcher = this.launcher;
+            int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
+            SoundDef soundExplode = this.def.projectile.soundExplode;
+            ThingDef equipmentDef = this.equipmentDef;
+            ThingDef def = this.def;
+            ThingDef postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
+            float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
+            int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
+            ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
+            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
+        }
+
     }
 }

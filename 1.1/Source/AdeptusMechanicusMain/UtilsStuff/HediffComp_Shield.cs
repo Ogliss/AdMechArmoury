@@ -161,7 +161,7 @@ namespace AdeptusMechanicus
                 }
                 return true;
             }
-            return false;
+            //return false;
         }
 
         // Token: 0x0600273E RID: 10046 RVA: 0x0012AC38 File Offset: 0x00129038

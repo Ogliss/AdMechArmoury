@@ -19,7 +19,6 @@ namespace RimWorld
             this.compClass = typeof(CompPawnSpawnerOnDamaged);
         }
         public FactionDef Faction;
-        public Faction faction;
         public List<FactionDef> Factions = new List<FactionDef>();
         public List<FactionDef> disallowedFactions = new List<FactionDef>();
         public TechLevel techLevel = TechLevel.Undefined;
@@ -29,6 +28,8 @@ namespace RimWorld
         public ThingDef skyFaller;
         public string pawnGroupKind = "Combat";
         public List<PawnGenOption> PawnKinds = new List<PawnGenOption>();
+
+        public Faction faction => Find.FactionManager.FirstFactionOfDef(Faction);
     }
 
     // Token: 0x02000769 RID: 1897
@@ -88,7 +89,6 @@ namespace RimWorld
                     {
                         faction = Find.FactionManager.RandomEnemyFaction(Props.allowHidden, Props.allowDefeated, Props.allowNonHumanlike, techLevel);
                         factionDef = faction.def;
-                        Props.faction = faction;
                     }
                     return faction;
                 }

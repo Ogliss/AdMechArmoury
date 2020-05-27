@@ -20,72 +20,21 @@ namespace AdeptusMechanicus.settings
             AMSettings.Instance = base.GetSettings<AMSettings>();
         }
         
-        public virtual void PreModOptions(Listing_Standard listing_Standard, Rect inRect, float num, ref float num2)
+        public virtual void PreModOptions(Listing_Standard listing_Main, Rect inRect, float num, ref float num2, string Label)
         {
 
         }
 
-        public virtual void ModOptions(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
+        public virtual void ModOptions(ref Listing_Standard listing_Main, Rect rect, Rect inRect, float num, float num2)
         {
 
         }
 
-        public virtual void PostModOptions(Listing_Standard listing_Standard, Rect inRect, float num, float num2)
+        public virtual void PostModOptions(Listing_Standard listing_Main, Rect inRect, float num, float num2)
         {
 
         }
 
-        public virtual void XenobiologisSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void ImperialSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-            AstartesSettings(ref listing_Standard, rect, inRect, num, num2);
-            MechanicusSettings(ref listing_Standard, rect, inRect, num, num2);
-            MilitarumSettings(ref listing_Standard, rect, inRect, num, num2);
-        }
-        public virtual void AstartesSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void MechanicusSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void MilitarumSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void ChaosSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void EldarSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void DarkEldarSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void OrkSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void TauSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void NecronSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        public virtual void TyranidSettings(ref Listing_Standard listing_Standard, Rect rect, Rect inRect, float num, float num2)
-        {
-
-        }
-        
         public static void CheckboxLabeled(Rect rect, string label, ref bool checkOn, string tooltip = null, bool disabled = false, Texture2D texChechked = null, Texture2D texUnchechked = null, bool placeCheckboxNearText = false)
         {
             if (!tooltip.NullOrEmpty())

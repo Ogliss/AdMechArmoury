@@ -76,7 +76,7 @@ namespace AdeptusMechanicus
         }
         // Token: 0x17000C0C RID: 3084
         // (get) Token: 0x06004C86 RID: 19590 RVA: 0x00239F59 File Offset: 0x00238359
-        public HediffCompProperties_VerbGiverExtra Props
+        public new HediffCompProperties_VerbGiverExtra Props
         {
             get
             {
@@ -86,7 +86,7 @@ namespace AdeptusMechanicus
 
         // Token: 0x17000C0D RID: 3085
         // (get) Token: 0x06004C87 RID: 19591 RVA: 0x00239F66 File Offset: 0x00238366
-        public VerbTracker VerbTracker
+        public new VerbTracker VerbTracker
         {
             get
             {
@@ -118,7 +118,7 @@ namespace AdeptusMechanicus
 
         // Token: 0x17000C0F RID: 3087
         // (get) Token: 0x06004C89 RID: 19593 RVA: 0x00239F7B File Offset: 0x0023837B
-        public List<Tool> Tools
+        public new List<Tool> Tools
         {
             get
             {

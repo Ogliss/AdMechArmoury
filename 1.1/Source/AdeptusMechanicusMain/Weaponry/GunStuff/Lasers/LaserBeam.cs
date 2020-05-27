@@ -38,7 +38,7 @@ namespace AdeptusMechanicus
         {
             LaserBeamGraphic graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
             if (graphic == null) return;
-
+            graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.def = def;
             graphic.Setup(launcher, a, b);
             GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
@@ -68,12 +68,14 @@ namespace AdeptusMechanicus
             a.y = b.y = def.Altitude;
 
             SpawnBeam(a, b);
+            /*
             bool createsExplosion = this.def.projectile.explosionRadius>0f;
             if (createsExplosion)
             {
                 this.Explode(hitThing, false);
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher.Faction);
             }
+            */
             Pawn pawn = launcher as Pawn;
             IDrawnWeaponWithRotation weapon = null;
             if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
@@ -92,10 +94,12 @@ namespace AdeptusMechanicus
             if (hitThing == null)
             {
                 TriggerEffect(def.explosionEffect, destination);
+                Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
+                Rand.PopState();
                 if (flag2)
                 {
-                    FireUtility.TryStartFireIn(destination.ToIntVec3(), pawn.Map, 0.05f);
+                    FireUtility.TryStartFireIn(destination.ToIntVec3(), pawn.Map, 0.01f);
                 }
             }
             else
@@ -110,11 +114,12 @@ namespace AdeptusMechanicus
                         SpawnBeamReflections(a, b, 5);
                     }
                 }
-
-                bool flag2 = this.def.causefireChance>0f && Rand.Range(0f, 1f) > this.def.causefireChance;
+                Rand.PushState();
+                bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
+                Rand.PopState();
                 if (flag2)
                 {
-                    hitThing.TryAttachFire(0.05f);
+                    hitThing.TryAttachFire(0.01f);
                 }
                 TriggerEffect(def.explosionEffect, ExactPosition);
             }
@@ -191,7 +196,6 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
-
                 }
                 else if (this.def.projectile.Volkite())
                 {

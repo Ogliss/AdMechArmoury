@@ -11,20 +11,20 @@ using Verse.Sound;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.AdeptusAstartes
+namespace AdeptusMechanicus.HarmonyInstance
 {
     /*
-    [HarmonyPatch(typeof(ApparelUtility), "HasPartsToWear")]
-    public static class AMAA_ApparelUtility_HasPartsToWear_Astartes_Patch
+    [HarmonyPatch(typeof(Class), "Method")]
+    public static class AM_Class_Method_Name_Patch
     {
         [HarmonyPrefix]
-        public static void Pre_(Pawn p, ThingDef apparel, ref bool __result)
+        public static void Prefix(Pawn p, ThingDef apparel, ref bool __result)
         {
 
         }
 
         [HarmonyPostfix]
-        public static void Post_(Pawn p, ThingDef apparel, ref bool __result)
+        public static void Postfix(Pawn p, ThingDef apparel, ref bool __result)
         {
 
         }

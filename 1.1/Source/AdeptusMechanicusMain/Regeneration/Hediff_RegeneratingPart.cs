@@ -44,5 +44,6 @@ namespace AdeptusMechanicus
                 this.pawn.ReplaceHediffFromBodypart(base.Part, HediffDefOf.MissingBodyPart, OGHediffDefOf.Regenerated_Part_OG);
             }
         }
+
     }
 }

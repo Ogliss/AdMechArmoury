@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>			
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[@Name = "BaseMakeableIGGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name = "OG_Imperial_Gun_Makeable" or @Name = "OG_Mechanicus_Gun_Makeable"]/recipeMaker/recipeUsers</xpath>
+					<value>
+					<recipeUsers>
+						<li>ImperialWeaponFab</li>
+					</recipeUsers>
+					</value>
+			</li>	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name = "OG_Imperial_MeleeWeapon_Base" or @Name = "OG_Mechanicus_MeleeWeapon_Base"]/recipeMaker/recipeUsers</xpath>
+					<value>
+					<recipeUsers>
+						<li>ImperialWeaponFab</li>
+					</recipeUsers>
+					</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "OGI_TableMachining"]/designationCategory</xpath>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Imperial Damage Types =========================-->
+	<!--==================== Flamer Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseFlameNoCamShake">
+    <defName>OGFlamer</defName>
+    <label>flame</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} was purified with by Fire!</deathMessage>
+    <hediff>Burn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>10</defaultDamage>
+    <defaultArmorPenetration>0</defaultArmorPenetration>
+    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
+    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+    <soundExplosion>Explosion_Flame</soundExplosion>
+    <combatLogRules>Damage_Flame</combatLogRules>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+  
+	<!--==================== Plasma Damage Type =========================-->
+	<DamageDef ParentName="PlasmaInjuryNoCamShake">
+		<defName>OGIPlasma</defName>
+		<label>plasma</label>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<defaultDamage>0</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+	</DamageDef>
+
+	<!--==================== Plasma Cannon Damage Type =========================-->
+	<DamageDef ParentName="PlasmaInjury">
+		<defName>OGIPlasmaCannon</defName>
+		<label>plasma cannon</label>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<defaultDamage>45</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<soundExplosion>OGIPC_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+	</DamageDef>
+
+	<!--==================== Meltagun Damage Type =========================-->
+	<DamageDef ParentName="MeltaInjuryNoCamShake">
+		<defName>OGIMelta</defName>
+		<label>melta</label>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<defaultDamage>10</defaultDamage>
+		<buildingDamageFactor>5</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>500</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastFlame</explosionCellMote>
+		<explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+		<explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+		<soundExplosion>Explosion_Flame</soundExplosion>
+		<combatLogRules>Damage_Flame</combatLogRules>
+	</DamageDef>
+
+	<!--==================== Lasgun Damage Type =========================-->
+	<DamageDef ParentName="LasInjuryNoCamShake">
+		<defName>OGILas</defName>
+		<label>laser</label>
+		<isRanged>true</isRanged>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		
+		<defaultDamage>10</defaultDamage>
+		<buildingDamageFactor>0.75</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	
+	<!--==================== Volkite Damage Type =========================-->
+	<DamageDef ParentName="LasInjuryNoCamShake">
+		<defName>OGIVolkite</defName>
+		<label>volkite</label>
+		<isRanged>true</isRanged>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>0.75</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	
+	<!--==================== Conversion Beam Damage Type =========================-->
+	<DamageDef ParentName="LasInjuryNoCamShake">
+		<defName>OGIConversion</defName>
+		<label>conversion beam</label>
+		<isRanged>true</isRanged>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+	</DamageDef>
+
+	<!--==================== Lascannon Damage Type =========================-->
+	<DamageDef ParentName="LasInjuryNoCamShake">
+		<defName>OGILasC</defName>
+		<label>laser</label>
+		<isRanged>true</isRanged>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+	</DamageDef>
+
+	<!--==================== Autogun Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIAuto</defName>
+		<label>autogun</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Boltgun Damage Types =========================-->
+	<!--==================== Standard Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltStd</defName>
+		<label>standard bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Dragonfire Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltDragonfire</defName>
+		<label>dragonfire bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	
+	<!--==================== Hellfire Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltHellfire</defName>
+		<label>hellfire bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+    <additionalHediffs>
+      <li>
+        <hediff>Toxins</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+	
+	<!--==================== Kraken Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltKraken</defName>
+		<label>kraken bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Vengeance Bolt Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGIBoltVengeance</defName>
+		<label>vengeance bolt</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+	</DamageDef>
+
+	<!--==================== Bomb Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGIBomb</defName>
+		<label>bomb</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Bomb</soundExplosion>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== Mechanicus Damage Type =========================-->
+	<!--==================== Radium Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGIRadium</defName>
+		<label>radium round</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} would have died anyway.</deathMessage>
+		<hediff>RadiumGunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>RadiationPoisioning</hediff>
+        <severityPerDamageDealt>0.001</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+		
+	</DamageDef>
+	
+	<!--==================== Galvanic Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGIGalvanic</defName>
+		<label>galvanic discharge</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} caught a Galvanic round.</deathMessage>
+		<hediff>GalvanicWound</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+	</DamageDef>
+	
+	<!--==================== Transuranic Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGITransuranic</defName>
+		<label>transuranic</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was taken by a Transuranic bolt.</deathMessage>
+		<hediff>TransuranicWound</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+	</DamageDef>
+	
+	<!--==================== Arc Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGIArc</defName>
+		<label>Arc</label>
+		<externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+		<deathMessage>{0} has been Electrocuted.</deathMessage>
+		<makesBlood>false</makesBlood>
+		<harmsHealth>false</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<defaultDamage>50</defaultDamage>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<hediff>ElectricalBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+		<combatLogRules>Damage_EMP</combatLogRules>
+		<armorCategory>Heat</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.25</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+</Defs>

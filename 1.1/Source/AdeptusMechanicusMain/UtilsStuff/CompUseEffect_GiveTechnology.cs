@@ -13,7 +13,7 @@ namespace RimWorld
     // Token: 0x0200078F RID: 1935
     public class CompUseEffect_GiveTechnology : CompUseEffect
     {
-        public new CompProperties_GiveTech Props
+        public CompProperties_GiveTech Props
         {
             get
             {

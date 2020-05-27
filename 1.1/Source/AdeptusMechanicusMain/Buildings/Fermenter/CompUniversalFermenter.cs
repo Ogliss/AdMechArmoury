@@ -414,7 +414,6 @@ namespace AdeptusMechanicus
 			{
 				yield return gizmo;
 			}
-			IEnumerator<Gizmo> enumerator = null;
 			if (this.ResourceListSize > 1)
 			{
 				Command_Action command_Action2 = new Command_Action

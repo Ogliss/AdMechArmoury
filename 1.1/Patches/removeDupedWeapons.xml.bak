@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Gun_BoltGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationSetName">
+				<xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/costList/Gun_BoltGun</xpath>
+				<name>OGI_Gun_BoltGun</name>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Gun_BoltGun"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRBoltGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRBoltGun"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_T2BoltGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_T2BoltGun"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Gun_LasPistol"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Gun_LasPistol"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasPistol"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasPistol"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Gun_LasGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Gun_LasGun"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasGun"]</xpath>
+
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ResearchProjectDef[defName = "AdvancedImperialConstruction"]/prerequisites</xpath>
+					<value>
+					<prerequisites>
+						<li>BasicImperialConstruction</li>
+						<li>WRImpLasTech</li>
+					</prerequisites>
+					</value>
+			</li>	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRWebber"]/prerequisites</xpath>
+					<value>
+					<prerequisites>
+						<li>WRImpLasTech</li>
+					</prerequisites>
+					</value>
+			</li>	
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRLasGun"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Gun_PlasmaRifle"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Gun_PlasmaRifle"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRPlasmaRifle"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "WRPlasmaRifle"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Gun_AutoGun"]</xpath>
+
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/TraderKindDef/stockGenerators/li[12]/thingDef</xpath>
+				<value><thingDef>OGI_Gun_AutoGun</thingDef></value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Gun_AutoGun"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "IG_Gun_AssCan"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "IG_Gun_AssCan"]</xpath>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_AssCannon"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ResearchProjectDef[defName = "IG_RES_AssCannon"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Melee_ChainSword"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Melee_ChainSword"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Melee_ThunderHammer"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Melee_ThunderHammer"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+	<success>Always</success>
+		<operations>	
+			<li Class="PatchOperationTest">
+				<xpath>/Defs/ThingDef[defName = "Melee_PowerAxe"]</xpath>
+
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Melee_PowerAxe"]</xpath>
+			</li>
+		</operations>
+	</Operation>
+	
+</Patch>

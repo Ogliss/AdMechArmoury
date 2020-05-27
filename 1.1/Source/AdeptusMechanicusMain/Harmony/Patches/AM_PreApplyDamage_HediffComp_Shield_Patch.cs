@@ -18,16 +18,14 @@ namespace AdeptusMechanicus.HarmonyInstance
     public class AM_PreApplyDamage_HediffComp_Shield_Patch
     {
         // Token: 0x060011D5 RID: 4565 RVA: 0x000EC6D0 File Offset: 0x000EA8D0
-        public static bool Prefix(Pawn __instance, ref DamageInfo dinfo, out bool absorbed)
+        public static bool Prefix(Pawn ___pawn, ref DamageInfo dinfo, out bool absorbed)
         {
-            Traverse traverse = Traverse.Create(__instance);
-            Pawn pawn = (Pawn)AM_PreApplyDamage_HediffComp_Shield_Patch.pawn.GetValue(__instance);
-            bool flag = dinfo.Def != null && pawn != null && !pawn.Downed;
+            bool flag = dinfo.Def != null && ___pawn != null && !___pawn.Downed;
             if (flag)
             {
-                if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_Shield>() != null))
+                if (___pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_Shield>() != null))
                 {
-                    List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_Shield>() != null);
+                    List<Hediff> list = ___pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_Shield>() != null);
                     foreach (Hediff item in list)
                     {
                         HediffComp_Shield _Shield = item.TryGetComp<HediffComp_Shield>();
@@ -38,9 +36,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                 }
-                if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_PhaseShifter>() != null))
+                if (___pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_PhaseShifter>() != null))
                 {
-                    List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_PhaseShifter>() != null);
+                    List<Hediff> list = ___pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_PhaseShifter>() != null);
                     foreach (Hediff item in list)
                     {
                         HediffComp_PhaseShifter _Shifter = item.TryGetComp<HediffComp_PhaseShifter>();

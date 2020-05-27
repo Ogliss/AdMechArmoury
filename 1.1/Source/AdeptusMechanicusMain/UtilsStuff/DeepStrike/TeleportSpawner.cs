@@ -10,6 +10,7 @@ using Verse.Sound;
 namespace AdeptusMechanicus
 {
     // Token: 0x020006E5 RID: 1765
+    [StaticConstructorOnStartup]
     public class TeleportSpawner : ThingWithComps, IThingHolder
     {
         public TeleportSpawner()

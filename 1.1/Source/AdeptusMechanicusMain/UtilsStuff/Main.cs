@@ -15,9 +15,9 @@ namespace AdeptusMechanicus
     {
         static Main()
         {
-            if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OG_WeaponsTest")))
+            if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OGAM_TestScenario_")))
             {
-                foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.Contains("OG_WeaponsTest")))
+                foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.Contains("OGAM_TestScenario_")))
                 {
                     if (ScenDef.defName.Contains("Imperial"))
                     {

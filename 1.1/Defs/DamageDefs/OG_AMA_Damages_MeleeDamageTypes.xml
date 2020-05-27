@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<DamageDef Name="StabBase">
-    <defName>Stab</defName>
+    <defName>OG_Stab</defName>
     <label>stab</label>
     <workerClass>DamageWorker_Stab</workerClass>
     <externalViolence>true</externalViolence>
@@ -16,7 +16,7 @@
 	
   <!-- Damage types are the same as Blunt, but behaves like stabbing; intended for things like rifle barrels -->
   <DamageDef ParentName="BluntBase" Name="PokeBase">
-    <defName>Poke</defName>
+    <defName>OG_Poke</defName>
     <workerClass>DamageWorker_Stab</workerClass>
     <stabChanceOfForcedInternal>0.4</stabChanceOfForcedInternal>
   </DamageDef>
@@ -24,74 +24,42 @@
 	<!--==================== Common Damage Types =========================-->
 	<!--==================== Power Weapon Damage Types =========================-->
 	<DamageDef ParentName="CutBase">
-		<defName>OG_PowerWeapon_Cut</defName>
-		<label>power weapon</label>
+		<defName>OG_Power_Cut</defName>
+		<label>powered cut</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Power Weapon.</deathMessage>
 		<hediff>OG_PowerWeapon_Cut</hediff>
 		<hediffSolid>OG_PowerWeapon_Cut</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
-		<defaultArmorPenetration>2</defaultArmorPenetration>
+		<armorCategory>Sharp</armorCategory>
 	</DamageDef>
   
 	<DamageDef ParentName="StabBase">
-		<defName>OG_PowerWeapon_Stab</defName>
-		<label>power weapon</label>
+		<defName>OG_Power_Stab</defName>
+		<label>powered stab</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Power Weapon.</deathMessage>
 		<hediff>OG_PowerWeapon_Stab</hediff>
 		<hediffSolid>OG_PowerWeapon_Stab</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
-		<defaultArmorPenetration>2</defaultArmorPenetration>
+		<armorCategory>Sharp</armorCategory>
 	</DamageDef>
 	
 	<DamageDef ParentName="BluntBase">
-		<defName>OG_PowerWeapon_Blunt</defName>
-		<label>power weapon</label>
+		<defName>OG_Power_Blunt</defName>
+		<label>powered blunt</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Power Weapon.</deathMessage>
 		<hediff>OG_PowerWeapon_Blunt</hediff>
 		<hediffSolid>OG_PowerWeapon_Blunt</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
-		<defaultArmorPenetration>2</defaultArmorPenetration>
+		<armorCategory>Blunt</armorCategory>
 	</DamageDef>
 		
-	<!--==================== Transonic Weapon Damage Types =========================-->
-	<DamageDef ParentName="CutBase">
-		<defName>TransonicCut</defName>
-		<label>transonic blade</label>
-		<externalViolence>true</externalViolence>
-		<deathMessage>{0} was ended by a Transonic Weapon.</deathMessage>
-		<hediff>Cut</hediff>
-		<hediffSolid>Crack</hediffSolid>
-		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
-		<defaultArmorPenetration>1</defaultArmorPenetration>
-	</DamageDef>
-  
-	<DamageDef ParentName="StabBase">
-		<defName>TransonicStab</defName>
-		<label>transonic blade</label>
-		<externalViolence>true</externalViolence>
-		<deathMessage>{0} was ended by a Transonic Weapon.</deathMessage>
-		<hediff>Stab</hediff>
-		<hediffSolid>Crack</hediffSolid>
-		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
-		<defaultArmorPenetration>1</defaultArmorPenetration>
-    <additionalHediffs>
-	
-    </additionalHediffs>
-	</DamageDef>
-	
+	<!--==================== EM =========================-->
 	<DamageDef ParentName="StunBase">
 		<defName>EM</defName>
 		<label>EMP</label>
@@ -110,8 +78,8 @@
 	</DamageDef>
 	
 	<!--==================== Poision Weapon Damage Types =========================-->
-    <DamageDef ParentName="CutBase" Name="ToxicCutBase">
-    <defName>ToxicCut</defName>
+    <DamageDef ParentName="CutBase" Name="OG_Toxic_CutBase">
+    <defName>OG_Toxic_Cut</defName>
     <label>toxic cut</label>
     <additionalHediffs>
       <li>
@@ -122,8 +90,8 @@
     </additionalHediffs>
 	</DamageDef>
     
-    <DamageDef ParentName="StabBase" Name="ToxicStabBase">
-    <defName>ToxicStab</defName>
+    <DamageDef ParentName="StabBase" Name="OG_Toxic_StabBase">
+    <defName>OG_Toxic_Stab</defName>
     <label>toxic cut</label>
     <additionalHediffs>
       <li>
@@ -136,7 +104,7 @@
  
 	<!--==================== Plague Weapon Damage Types =========================-->  
     <DamageDef ParentName="CutBase">
-		<defName>OGDEPlagueCut</defName>
+		<defName>OG_Plague_Cut</defName>
 		<label>plague cut</label>
 		<additionalHediffs>
 		  <li>
@@ -147,18 +115,9 @@
 		</additionalHediffs>
 	</DamageDef>
   
-    <DamageDef>
-		<defName>OGDEPlagueStab</defName>
+    <DamageDef ParentName="StabBase">
+		<defName>OG_Plague_Stab</defName>
 		<label>plague stab</label>
-		<workerClass>DamageWorker_Stab</workerClass>
-		<externalViolence>true</externalViolence>
-		<deathMessage>{0} has been stabbed to death.</deathMessage>
-		<hediff>Stab</hediff>
-		<hediffSolid>Crack</hediffSolid>
-		<impactSoundType>Slice</impactSoundType>
-		<armorCategory>Sharp</armorCategory>
-		<stabChanceOfForcedInternal>0.6</stabChanceOfForcedInternal>
-		<overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
 		<additionalHediffs>
 		  <li>
 			<hediff>Plague</hediff>
@@ -170,50 +129,79 @@
   
 	<!--==================== Force Weapon Damage Types =========================-->
 	<DamageDef ParentName="CutBase">
-		<defName>OG_ForceWeapon_Cut</defName>
-		<label>force weapon</label>
+		<defName>OG_Force_Cut</defName>
+		<label>force cut</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Force Weapon.</deathMessage>
 		<hediff>OG_ForceWeapon_Cut</hediff>
 		<hediffSolid>Crack</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
+		<armorCategory>Sharp</armorCategory>
 		<additionalHediffs>
 		</additionalHediffs>
 	</DamageDef>
   
 	<DamageDef ParentName="StabBase">
-		<defName>OG_ForceWeapon_Stab</defName>
-		<label>force weapon</label>
+		<defName>OG_Force_Stab</defName>
+		<label>force stab</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Force Weapon.</deathMessage>
 		<hediff>OG_ForceWeapon_Stab</hediff>
 		<hediffSolid>Crack</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
+		<armorCategory>Sharp</armorCategory>
 		<additionalHediffs>
 		</additionalHediffs>
 	</DamageDef>
 	
     <DamageDef ParentName="BluntBase">
-		<defName>OG_ForceWeapon_Blunt</defName>
-		<label>force weapon</label>
+		<defName>OG_Force_Blunt</defName>
+		<label>force blunt</label>
 		<externalViolence>true</externalViolence>
 		<deathMessage>{0} was ended by a Force Weapon.</deathMessage>
 		<hediff>OG_ForceWeapon_Blunt</hediff>
 		<hediffSolid>Crack</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Electric</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
+		<armorCategory>Blunt</armorCategory>
+		<additionalHediffs>
+		</additionalHediffs>
+	</DamageDef>
+	
+	<!--==================== Witchblade Weapon Damage Types =========================-->
+	<DamageDef ParentName="CutBase">
+		<defName>OG_Witchblade_Cut</defName>
+		<label>witchblade cut</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was ended by a Witchblade.</deathMessage>
+		<hediff>Cut</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Electric</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<additionalHediffs>
+		</additionalHediffs>
+	</DamageDef>
+  
+	<DamageDef ParentName="StabBase">
+		<defName>OG_Witchblade_Stab</defName>
+		<label>witchblade stab</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was ended by a Witchblade.</deathMessage>
+		<hediff>Stab</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Electric</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
 		<additionalHediffs>
 		</additionalHediffs>
 	</DamageDef>
 	
 	<!--==================== ThunderHammer Damage Type =========================-->
 	<DamageDef ParentName="BluntBase">
-		<defName>OGIThunderhammer</defName>
+		<defName>OG_Imperial_Thunderhammer</defName>
 		<label>ThunderHammer</label>
 		<workerClass>DamageWorker_Blunt</workerClass>
 		<hasForcefulImpact>true</hasForcefulImpact>
@@ -224,7 +212,7 @@
 		<hediffSolid>Crack</hediffSolid>
 		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		<impactSoundType>Blunt</impactSoundType>
-		<armorCategory>OG_PowerWeapon</armorCategory>
+		<armorCategory>Blunt</armorCategory>
 		<defaultArmorPenetration>1</defaultArmorPenetration>
 		<overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
 		<bluntStunDuration>2.0</bluntStunDuration>

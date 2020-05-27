@@ -11,6 +11,7 @@ namespace Verse
     // Token: 0x02000330 RID: 816
     public static class AdMechDebugToolsSpawning
     {
+        /*
         // Token: 0x0600186F RID: 6255 RVA: 0x0008C8C8 File Offset: 0x0008AAC8
         [DebugAction("Spawning", null, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void SpawnDropship()
@@ -27,5 +28,6 @@ namespace Verse
             List<DebugMenuOption> options = list;
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
         }
+        */
     }
 }

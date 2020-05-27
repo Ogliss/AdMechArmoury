@@ -35,7 +35,7 @@ namespace AdeptusMechanicus
 
     public class CompWeapon_MeleeSpecialRules : CompWargearWeapon
     {
-        public CompProperties_Weapon_MeleeSpecialRules Props => (CompProperties_Weapon_MeleeSpecialRules)props;
+        public new CompProperties_Weapon_MeleeSpecialRules Props => (CompProperties_Weapon_MeleeSpecialRules)props;
 
         public bool EffectsUser
         {
@@ -182,8 +182,8 @@ namespace AdeptusMechanicus
 
         public override IEnumerable<Gizmo> EquippedGizmos()
         {
-            ThingWithComps owner = IsWorn ? GetWearer : parent;
-            bool flag = IsWorn ? Find.Selector.SingleSelectedThing == GetWearer : false ;
+            ThingWithComps owner = IsWorn ? CasterPawn : parent;
+            bool flag = IsWorn ? Find.Selector.SingleSelectedThing == CasterPawn : false ;
             if (flag)
             {
                 string desc = string.Empty;
@@ -191,7 +191,7 @@ namespace AdeptusMechanicus
                 if (ForceWeapon)
                 {
                     int level = 0;
-                    bool psyker = IsWorn ? GetWearer.isPsyker(out level) : false;
+                    bool psyker = IsWorn ? CasterPawn.isPsyker(out level) : false;
                     desc = "Force Weapon";
                     if (psyker)
                     {
@@ -244,9 +244,9 @@ namespace AdeptusMechanicus
         public override void CompTick()
         {
             base.CompTick();
-            if (GetWearer != lastWearer)
+            if (CasterPawn != lastWearer)
             {
-                lastWearer = GetWearer;
+                lastWearer = CasterPawn;
             }
         }
         

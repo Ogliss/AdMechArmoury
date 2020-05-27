@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--QX========================= Imperial Guard - Rogue Trader Definition ==========================QX-->
+	
+	<TraderKindDef>
+		<defName>OGI_RogueTraderXeno</defName>
+		<label>Xenotech Rogue Trader</label>
+		<orbital>true</orbital>
+		<stockGenerators>
+			<li Class="StockGenerator_SingleDef">				<!-- THIS DOES SILVER -->
+				<thingDef>Silver</thingDef>
+				<countRange>
+					<min>9000</min>
+					<max>34000</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">				<!-- THIS DOES SILVER -->
+				<thingDef>Gold</thingDef>
+				<countRange>
+					<min>50</min>
+					<max>250</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">				<!-- THIS DOES SILVER -->
+				<thingDef>Uranium</thingDef>
+				<countRange>
+					<min>50</min>
+					<max>250</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">				<!-- THIS DOES Medicine -->
+				<thingDef>MedicineIndustrial</thingDef>
+				<price>Expensive</price>
+				<countRange>
+					<min>5</min>
+					<max>20</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>MedicineUltratech</thingDef>		<!-- THIS DOES GLITTER MEDS -->
+				<price>Expensive</price>
+				<countRange>
+					<min>-3</min>
+					<max>10</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">						<!-- THIS DOES CHAOS RANGED WEAPONS -->
+				<tradeTag>OGCRanged</tradeTag>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>8</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>0</min>
+					<max>6</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">						<!-- THIS DOES TAU RANGED WEAPONS -->
+				<tradeTag>OGTRanged</tradeTag>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>8</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>0</min>
+					<max>6</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">						<!-- THIS DOES ELDAR RANGED WEAPONS -->
+				<tradeTag>OGERanged</tradeTag>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>8</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>0</min>
+					<max>6</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">						<!-- THIS DOES TAU MELEE WEAPONS -->
+				<tradeTag>OGTMelee</tradeTag>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>2</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>0</min>
+					<max>2</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">						<!-- THIS DOES ELDAR MELEE WEAPONS -->
+				<tradeTag>OGEMelee</tradeTag>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>8</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>0</min>
+					<max>6</max>
+				</countRange>
+			</li>
+		</stockGenerators>	  
+	</TraderKindDef>
+
+  <IncidentDef>
+    <defName>OrbitalRecruiterArrival</defName>
+    <label>orbital recruiter arrival</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>RecruitShips.IncidentWorker_OrbitalRecruiterArrival</workerClass>
+    <category>OrbitalVisitor</category>
+    <baseChance>3</baseChance>
+    <requireColonistsPresent>True</requireColonistsPresent>
+  </IncidentDef>
+
+  <TraderKindDef>
+    <defName>OG_Orbital_RecruiterMerchant</defName>
+    <label>recruiter ship</label>
+    <orbital>true</orbital>
+    <requestable>false</requestable>
+    <commonalityMultFromPopulationIntent>
+      <points>
+        <li>(0.2, 0)</li>
+        <li>(1,   1)</li>
+        <li>(2,   3)</li>
+      </points>
+    </commonalityMultFromPopulationIntent>
+    <stockGenerators>
+
+      <!-- Slaves -->
+      <li Class="RecruitShips.StockGenerator_Recruits">
+        <countRange>2~4</countRange>
+      </li>
+      
+      <!-- Buying -->
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireRoyal</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+      
+    </stockGenerators>
+  </TraderKindDef>
+</Defs>

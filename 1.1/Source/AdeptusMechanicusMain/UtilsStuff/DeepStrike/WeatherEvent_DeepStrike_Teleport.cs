@@ -117,9 +117,9 @@ namespace AdeptusMechanicus
         private Mesh boltMesh;
         private string boltstring = "Weather/LightningBolt";
 
-        private Thing spawnThing = null;
+     //   private Thing spawnThing = null;
         private List<Thing> spawnThings = new List<Thing>();
-        private Pawn spawnPawn = null;
+    //    private Pawn spawnPawn = null;
         private List<Pawn> spawnPawns = new List<Pawn>();
 
         // Token: 0x04000C09 RID: 3081

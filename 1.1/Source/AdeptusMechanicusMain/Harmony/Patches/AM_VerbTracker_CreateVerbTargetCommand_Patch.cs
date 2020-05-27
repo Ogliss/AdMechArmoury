@@ -14,7 +14,7 @@ using UnityEngine;
 using AdeptusMechanicus.settings;
 /*
 
-namespace AdeptusMechanicus.Harmony
+namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(VerbTracker), "CreateVerbTargetCommand")]
     public static class AM_VerbTracker_CreateVerbTargetCommand_Patch

@@ -20,7 +20,7 @@ namespace AdeptusMechanicus
     // Token: 0x02000C69 RID: 3177
     public class HediffComp_MoveThroughCover : HediffComp
     {
-        public new HediffCompProperties_MoveThroughCover Props
+        public HediffCompProperties_MoveThroughCover Props
         {
             get
             {
