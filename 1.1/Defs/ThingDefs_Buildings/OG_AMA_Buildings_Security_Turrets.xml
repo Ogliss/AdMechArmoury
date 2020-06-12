@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============== Pintle-Mounted Manual ===============-->
+  <!--=============== Storm Bolter ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>OGI_Turret_StormBolter_Manual</defName>
+    <label>pintle-mounted storm bolter</label>
+    <description>A portable automatic turret. Requires steel to refurbish its barrel after heavy use. May explode when damaged. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/PintleMount_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Buildings/Imperial/Security/PintleMount_StormBolter_Menu</uiIconPath>
+    <uiIconScale>0.90</uiIconScale>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <stealable>false</stealable>
+    <rotatable>true</rotatable>
+    <thingCategories>
+      <li>BuildingsSecurity</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until ammunition depleted</fuelLabel>
+        <fuelGizmoLabel>Ammunition remianing</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs more ammunition</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>60</fuelCapacity>       <!-- 30 bursts -->
+        <fuelMultiplier>0.75</fuelMultiplier> <!-- 1.333 steel per burst, 80 per full rearm -->
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+      <li Class="CompProperties_Mannable">
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>70</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <building>
+      <combatPower>45</combatPower>   <!-- same as a scavenger -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretBurstWarmupTime>4.0</turretBurstWarmupTime>
+      <turretGunDef>OGI_GunTurret_StormBolter</turretGunDef>
+      <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc2</designationHotKey>
+    <researchPrerequisites>
+      <li>GunTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_StormBolter</defName>
+    <label>pintle-mounted storm bolter</label>
+    <description>A simple automatic gun made to be mounted on a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/PintleMount_StormBolter_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>2.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+		<warmupTime>0.00</warmupTime>
+		<range>31</range>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>6</burstShotCount>
+		<soundCast>OG_Bolt_Gun_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!--=============== Heavy Bolter ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>OGI_Turret_HeavyBolter_Manual</defName>
+    <label>pintle-mounted heavy bolter</label>
+    <description>A portable automatic turret. Requires steel to refurbish its barrel after heavy use. May explode when damaged. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/PintleMount_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Buildings/Imperial/Security/PintleMount_HeavyBolter_Menu</uiIconPath>
+    <uiIconScale>0.90</uiIconScale>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <stealable>false</stealable>
+    <rotatable>true</rotatable>
+    <thingCategories>
+      <li>BuildingsSecurity</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until ammunition depleted</fuelLabel>
+        <fuelGizmoLabel>Ammunition remianing</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs more ammunition</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>60</fuelCapacity>       <!-- 30 bursts -->
+        <fuelMultiplier>0.75</fuelMultiplier> <!-- 1.333 steel per burst, 80 per full rearm -->
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+      <li Class="CompProperties_Mannable">
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>70</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <building>
+      <combatPower>45</combatPower>   <!-- same as a scavenger -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>OGI_GunTurret_HeavyBolter</turretGunDef>
+      <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc2</designationHotKey>
+    <researchPrerequisites>
+      <li>GunTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_HeavyBolter</defName>
+    <label>pintle-mounted heavy bolter</label>
+    <description>A simple automatic gun made to be mounted on a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/PintleMount_HeavyBolter_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>2.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<label>Heavy Bolter (Standard)</label>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+		<warmupTime>3</warmupTime>
+		<range>38</range>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>6</burstShotCount>
+		<soundCast>OG_Bolt_Gun_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!--=============== Mini-turret ===============-->
+<!--
+  <ThingDef ParentName="BuildingBase">
+    <defName>Turret_MiniTurret</defName>
+    <label>mini-turret</label>
+    <description>A portable automatic turret. Requires steel to refurbish its barrel after heavy use. May explode when damaged. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretMini_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>Things/Building/Security/TurretMini_MenuIcon</uiIconPath>
+    <uiIconScale>0.90</uiIconScale>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <thingCategories>
+      <li>BuildingsSecurity</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>3.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>80</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until barrel change</fuelLabel>
+        <fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>60</fuelCapacity>
+        <fuelMultiplier>0.75</fuelMultiplier> 
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>30</costStuffCount>
+    <costList>
+      <Steel>70</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+    <building>
+      <combatPower>45</combatPower>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Gun_MiniTurret</turretGunDef>
+      <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc2</designationHotKey>
+    <researchPrerequisites>
+      <li>GunTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_MiniTurret</defName>
+    <label>mini-turret bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>11</damageAmountBase>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_MiniTurret</defName>
+    <label>mini-turret gun</label>
+    <description>A simple automatic gun made to be mounted on a turret.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretMini_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_MiniTurret</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <range>28.9</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <soundCast>GunShotA</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+  </ThingDef>
+-->
+  <!--=============== Heavy turret Base ===============-->
+
+  <ThingDef ParentName="BuildingBase" Name="OG_HeavyTurret" Abstract="True"> 
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretHeavy_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.5, 1.5)</drawSize>
+      <drawOffset>(0,0,-0.1)</drawOffset>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(1.5,0.35,1.4)</volume>
+        <offset>(0,0,-0.05)</offset>
+      </shadowData>
+    </graphicData>    
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <size>(2,2)</size>
+    <statBases>
+      <MaxHitPoints>380</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToBuild>15000</WorkToBuild>
+      <Mass>100</Mass>
+      <Beauty>-20</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretTopDrawSize>2.7</turretTopDrawSize>
+      <turretTopOffset>(0, 0.05)</turretTopOffset>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <designationHotKey>Misc3</designationHotKey>    
+    <uiIconScale>0.95</uiIconScale>
+  </ThingDef>
+
+  <!--=============== Quad Heavy Stubber turret ===============-->
+  <ThingDef ParentName="OG_HeavyTurret">
+    <defName>OGI_Turret_QuadHeavyStubber_Auto</defName>
+    <label>quad heavy stubber turret</label>
+    <description>A heavy automatic turret. Its large-caliber shells do heavy damage over significant ranges, but its barrel must be refurbished after use. It cannot fire at close-up targets, and may explode when damaged.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretHeavy_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.25, 1.25)</drawSize>
+      <drawOffset>(0,0,-0.1)</drawOffset>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(1.5,0.35,1.4)</volume>
+        <offset>(0,0,-0.05)</offset>
+      </shadowData>
+    </graphicData>    
+	<uiIconPath>Things/Buildings/Imperial/Security/TurretMount_QuadHeavyStubber_Menu</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>350</Steel>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until barrel change</fuelLabel>
+        <fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>90</fuelCapacity>      
+        <fuelMultiplier>0.5</fuelMultiplier> 
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>OGI_GunTurret_QuadHeavyStubber</turretGunDef>
+      <turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>HeavyTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_QuadHeavyStubber</defName>
+    <label>quad heavy stubber</label>
+    <description>A self-loading quad heavy stubber designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/TurretMount_QuadHeavyStubber_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.25</AccuracyTouch>
+      <AccuracyShort>0.65</AccuracyShort>
+      <AccuracyMedium>0.60</AccuracyMedium>
+      <AccuracyLong>0.45</AccuracyLong>
+      <RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_HeavyStubber</defaultProjectile>
+		<warmupTime>0</warmupTime>
+		<range>36</range>
+		<burstShotCount>12</burstShotCount>
+		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+		<soundCast>Shot_Minigun</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>28</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+	<comps>  
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<Multishot>true</Multishot>
+				<ScattershotCount>3</ScattershotCount>
+			</li>
+		</VerbEntries>
+		</li>    
+	</comps>
+  </ThingDef>
+
+  <!--=============== Autocannon turret ===============-->
+  <ThingDef ParentName="OG_HeavyTurret">
+    <defName>OGI_Turret_Autocannon_Auto</defName>
+    <label>autocannon turret</label>
+    <description>A heavy automatic turret. Its large-caliber shells do heavy damage over significant ranges, but its barrel must be refurbished after use. It cannot fire at close-up targets, and may explode when damaged.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretHeavy_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.5, 1.5)</drawSize>
+      <drawOffset>(0,0,-0.1)</drawOffset>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(1.5,0.35,1.4)</volume>
+        <offset>(0,0,-0.05)</offset>
+      </shadowData>
+    </graphicData>    
+	<uiIconPath>Things/Buildings/Imperial/Security/TurretMount_Autocannon_Menu</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>350</Steel>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until barrel change</fuelLabel>
+        <fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>90</fuelCapacity>      
+        <fuelMultiplier>0.5</fuelMultiplier> 
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>OGI_GunTurret_Autocannon</turretGunDef>
+      <turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>HeavyTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_Autocannon</defName>
+    <label>autocannon</label>
+    <description>A self-loading large-bore cannon designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/TurretMount_Autocannon_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+	<comps>     
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  </li>  
+	</comps>
+    <statBases>
+      <AccuracyTouch>0.25</AccuracyTouch>
+      <AccuracyShort>0.65</AccuracyShort>
+      <AccuracyMedium>0.60</AccuracyMedium>
+      <AccuracyLong>0.45</AccuracyLong>
+      <RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_AutoCannon</defaultProjectile>
+		<warmupTime>1.75</warmupTime>
+		<range>45</range>
+		<forcedMissRadius>0.01</forcedMissRadius>
+		<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<soundCast>OG_Auto_Cannon_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!--=============== Lascannon turret ===============-->
+  <ThingDef ParentName="OG_HeavyTurret">
+    <defName>OGI_Turret_Lascannon_Auto</defName>
+    <label>lascannon turret</label>
+    <description>A heavy automatic turret. Its large-caliber shells do heavy damage over significant ranges, but its barrel must be refurbished after use. It cannot fire at close-up targets, and may explode when damaged.</description>
+    <thingClass>AdeptusMechanicus.Building_LaserGun</thingClass>   
+	<uiIconPath>Things/Buildings/Imperial/Security/TurretMount_Lascannon_Menu</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>350</Steel>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until barrel change</fuelLabel>
+        <fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>90</fuelCapacity>      
+        <fuelMultiplier>0.5</fuelMultiplier> 
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>OGI_GunTurret_Lascannon</turretGunDef>
+      <turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>HeavyTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_Lascannon</defName>
+    <label>lascannon</label>
+    <description>A self-loading large-bore cannon designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/TurretMount_Lascannon_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.25</AccuracyTouch>
+      <AccuracyShort>0.65</AccuracyShort>
+      <AccuracyMedium>0.60</AccuracyMedium>
+      <AccuracyLong>0.45</AccuracyLong>
+      <RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+		<warmupTime>4</warmupTime>
+		<range>45</range>
+		<soundCast>OG_Las_Cannon_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!--=============== Twin-Linked Lascannon turret ===============-->
+  <ThingDef ParentName="OG_HeavyTurret">
+    <defName>OGI_Turret_LascannonDual_Auto</defName>
+    <label>twin-linked lascannon turret</label>
+    <description>A heavy automatic turret. Its large-caliber shells do heavy damage over significant ranges, but its barrel must be refurbished after use. It cannot fire at close-up targets, and may explode when damaged.</description>
+    <thingClass>AdeptusMechanicus.Building_LaserGun</thingClass>
+	<uiIconPath>Things/Buildings/Imperial/Security/TurretMount_LascannonDual_Menu</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>350</Steel>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until barrel change</fuelLabel>
+        <fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+        <fuelCapacity>90</fuelCapacity>      
+        <fuelMultiplier>0.5</fuelMultiplier> 
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>OGI_GunTurret_LascannonDual</turretGunDef>
+      <turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>HeavyTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>OGI_GunTurret_LascannonDual</defName>
+    <label>lascannon</label>
+    <description>A self-loading large-bore cannon designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Imperial/Security/TurretMount_LascannonDual_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.25</AccuracyTouch>
+      <AccuracyShort>0.65</AccuracyShort>
+      <AccuracyMedium>0.60</AccuracyMedium>
+      <AccuracyLong>0.45</AccuracyLong>
+      <RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+		<verbClass>Verb_Shoot</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+		<warmupTime>4</warmupTime>
+		<range>45</range>
+		<soundCast>OG_Las_Cannon_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+      </li>
+    </verbs>
+	<comps>  
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<TwinLinked>true</TwinLinked>
+			</li>
+		</VerbEntries>
+		</li>    
+	</comps>
+  </ThingDef>
+
+  <!--=============== Uranium slug turret ===============-->
+<!--
+  <ThingDef ParentName="AutocannonTurret">
+    <defName>Turret_Sniper</defName>
+    <label>uranium slug turret</label>
+    <description>An armor-piercing turret. Its ultra-dense uranium shells can punch through heavy armor, but it requires new uranium slugs to be loaded after use. It's more accurate at longer ranges, and can't fire at all close up. May explode when damaged.</description>
+    <uiIconPath>Things/Building/Security/TurretSniper_MenuIcon</uiIconPath>
+    <statBases>
+      <ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+    </statBases>
+    <costList>
+      <Steel>300</Steel>
+      <Plasteel>30</Plasteel>
+      <Uranium>60</Uranium>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shots until rearm</fuelLabel>
+        <fuelGizmoLabel>Uranium slugs</fuelGizmoLabel>
+        <outOfFuelMessage>Cannot shoot: No slugs</outOfFuelMessage>
+        <fuelFilter><thingDefs><li>Uranium</li></thingDefs></fuelFilter>
+        <fuelCapacity>30</fuelCapacity> 
+        <fuelMultiplier>0.3333</fuelMultiplier>
+        <initialFuelPercent>1</initialFuelPercent>
+        <autoRefuelPercent>0.5</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <factorByDifficulty>true</factorByDifficulty>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>Gun_TurretSniper</turretGunDef>
+      <turretBurstCooldownTime>3.2</turretBurstCooldownTime>
+    </building>
+    <researchPrerequisites>
+      <li>SniperTurret</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_TurretSniper</defName>
+    <label>uranium slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.4</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_TurretSniper</defName>
+    <label>uranium slug cannon</label>
+    <description>A self-loading uranium slug cannon designed to attach to a turret.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretSniper_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.20</AccuracyTouch>
+      <AccuracyShort>0.30</AccuracyShort>
+      <AccuracyMedium>0.40</AccuracyMedium>
+      <AccuracyLong>0.95</AccuracyLong>
+      <RangedWeapon_Cooldown>4.0</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_TurretSniper</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <minRange>11.9</minRange>
+        <range>45.9</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>Shot_TurretSniper</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>18</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+  </ThingDef>
+-->
+  <!--=============== Mortar ===============-->
+<!--
+  <ThingDef ParentName="BaseArtilleryBuilding">
+    <defName>Turret_Mortar</defName>
+    <label>mortar</label>
+    <description>A manned mortar that launches all kinds of shells. While it can inflict devastating damage, the mortar's inherent inaccuracy makes it more useful for attacking large fortifications than groups of enemies in the field.</description>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>240</wickTicks>
+        <explosiveRadius>4.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+    </comps>
+    <designationHotKey>Misc4</designationHotKey>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <building>
+      <turretGunDef>Artillery_Mortar</turretGunDef>
+      <buildingTags>
+        <li>Artillery_BaseDestroyer</li>
+        <li>Artillery_MannedMortar</li>
+      </buildingTags>
+    </building>
+  <uiIconPath>Things/Building/Security/TurretMortar_MenuIcon</uiIconPath>
+  <uiIconScale>0.9</uiIconScale>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseArtilleryWeapon">
+    <defName>Artillery_Mortar</defName>
+    <label>mortar</label>
+    <description>Mortar launcher. Lobs bombs over walls. Very inaccurate but long-ranged.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretMortar_Top</texPath>
+    </graphicData>
+    <weaponTags>
+      <li>Artillery_BaseDestroyer</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>4.0</warmupTime>
+        <forcedMissRadius>13</forcedMissRadius>
+        <requireLineOfSight>false</requireLineOfSight>
+        <minRange>29.9</minRange>
+        <range>500</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>Mortar_LaunchA</soundCast>
+        <muzzleFlashScale>16</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CompProperties_ChangeableProjectile" />
+    </comps>
+    <building>
+      <fixedStorageSettings>
+        <filter>
+          <categories>
+            <li>MortarShells</li>
+          </categories>
+        </filter>
+      </fixedStorageSettings>
+      <defaultStorageSettings>
+        <filter>
+          <categories>
+            <li>MortarShells</li>
+          </categories>
+          <disallowedThingDefs>
+            <li>Shell_Firefoam</li>
+            <li>Shell_AntigrainWarhead</li>
+          </disallowedThingDefs>
+        </filter>
+      </defaultStorageSettings>
+    </building>
+  </ThingDef>
+-->
+</Defs>

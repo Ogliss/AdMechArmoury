@@ -4,15 +4,15 @@
 <!-- ======================== Imperial - Abilities ================================== -->
 <!-- ======================== Imperial - Bolter Ability ================================== -->
 
-	<AdeptusMechanicus.EquipmentAbilityDef>
+	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_FireBolter</defName>
         <label>Fire Bolter</label>
         <iconPath>Things/Projectile/BoltShotSml</iconPath>
         <description>Fire built in Bolter.</description>
-        <abilityClass>EquipmentAbility</abilityClass>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>10</cooldown>
-        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
-            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
             <RapidFire>true</RapidFire>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
@@ -30,26 +30,26 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>CompAbilityEffect_Shoot</compClass>
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
- </AdeptusMechanicus.EquipmentAbilityDef>
+ </AbilitesExtended.EquipmentAbilityDef>
  
 <!-- ======================== Eldar - Abilities ================================== -->
 <!-- ======================== Eldar - Shuriken Catapult Ability ================================== -->
-	<AdeptusMechanicus.EquipmentAbilityDef>
+	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGE_Ability_FireShuriken</defName>
         <label>Fire Shuriken Catapult</label>
         <iconPath>Things/Projectile/ShurikenSml</iconPath>
         <description>Fire built in Shuriken Catapult.</description>
-        <abilityClass>EquipmentAbility</abilityClass>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>10</cooldown>
-        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
-            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
@@ -66,25 +66,25 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>CompAbilityEffect_Shoot</compClass>
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
-	</AdeptusMechanicus.EquipmentAbilityDef>
+	</AbilitesExtended.EquipmentAbilityDef>
  
 <!-- ======================== Eldar - Singing Spear Ability ================================== -->
-	<AdeptusMechanicus.EquipmentAbilityDef>
+	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGE_Ability_ThrowSingingSpear</defName>
         <label>Throw Singing Spear</label>
         <iconPath>Things/Projectile/SingingSpear_Thrown</iconPath>
         <description>Throw the Singing Spear.</description>
-        <abilityClass>EquipmentAbility</abilityClass>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
-        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
-            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGE_Thrown_SingingSpear</defaultProjectile>
             <warmupTime>2</warmupTime>
@@ -97,14 +97,14 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>CompAbilityEffect_Shoot</compClass>
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
- </AdeptusMechanicus.EquipmentAbilityDef>
+ </AbilitesExtended.EquipmentAbilityDef>
  
 	<ThingDef ParentName="BaseProjectileNeolithic">
     <defName>OGE_Thrown_SingingSpear</defName>
@@ -115,7 +115,7 @@
       <drawSize>1.750</drawSize>			
     </graphicData>
 	<comps>     
-		<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 		  
 		</li> 
 	</comps>
@@ -129,15 +129,15 @@
 	
  <!-- ======================== Dark Eldar - Abilities ================================== -->
 <!-- ======================== Dark Eldar - Splinter Rifle Ability ================================== -->
-	<AdeptusMechanicus.EquipmentAbilityDef>
+	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGDE_Ability_FireSplinter</defName>
         <label>Fire Splinter Rifle</label>
         <iconPath>Things/Projectile/SplinterSml</iconPath>
         <description>Fire built in Splinter Rifle.</description>
-        <abilityClass>EquipmentAbility</abilityClass>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>10</cooldown>
-        <verbProperties Class="AdeptusMechanicus.VerbProperties_EquipmentAbility">
-            <verbClass>AdeptusMechanicus.Verb_ShootEquipment</verbClass>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
             <RapidFire>true</RapidFire>
             <hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
@@ -154,13 +154,13 @@
         </verbProperties>
 		<comps>
 		  <li Class="CompProperties_EffectWithDest">
-			<compClass>CompAbilityEffect_Shoot</compClass>
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
 			<psychic>false</psychic>
 			<goodwillImpact>0</goodwillImpact>
 			<screenShakeIntensity>0</screenShakeIntensity>
 			<clamorRadius>0</clamorRadius>
 		  </li>
 		</comps>
- </AdeptusMechanicus.EquipmentAbilityDef>
+ </AbilitesExtended.EquipmentAbilityDef>
  
 </Defs>

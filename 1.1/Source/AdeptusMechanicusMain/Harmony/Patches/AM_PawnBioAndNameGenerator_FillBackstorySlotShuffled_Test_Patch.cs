@@ -29,14 +29,14 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (pawn.def.defName.StartsWith("OG_"))
             {
-                Log.Message(pawn.NameShortColored + " is " +pawn.def + " in " + pawn.Faction);
+            //    log.message(pawn.NameShortColored + " is " +pawn.def + " in " + pawn.Faction);
                 BackstoryCategoryFilter backstoryCategoryFilter = backstoryCategories.RandomElementByWeight((BackstoryCategoryFilter c) => c.commonality);
                 if (backstoryCategoryFilter == null)
                 {
 
-                    Log.Message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == null");
+                //    log.message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == null");
                     backstoryCategoryFilter = AM_PawnBioAndNameGenerator_FillBackstorySlotShuffled_Test_Patch.FallbackCategoryGroup;
-                    Log.Message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == " + backstoryCategoryFilter);
+                //    log.message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == " + backstoryCategoryFilter);
                 }
                 List<string> lista = new List<string>();
                 foreach (BackstoryCategoryFilter filter in backstoryCategories)
@@ -53,7 +53,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                       where slot != BackstorySlot.Adulthood || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables)
                       select bs).TryRandomElementByWeight(new Func<Backstory, float>(AM_PawnBioAndNameGenerator_FillBackstorySlotShuffled_Test_Patch.BackstorySelectionWeight), out backstory))
                 {
-                    Log.Message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
+                //    log.message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
                     Log.Error(string.Concat(new object[]
                     {
                     "No shuffled ",

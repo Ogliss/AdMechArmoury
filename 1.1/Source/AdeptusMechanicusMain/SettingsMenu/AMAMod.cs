@@ -83,7 +83,7 @@ namespace AdeptusMechanicus.settings
             }
             if (width > width * 2)
             {
-                Log.Message(string.Format("PreModOptions Listing: {0}, inRect: {1}, num: {2}, num2: {3}", listing_Main, inRect, width, menuLength));
+            //    log.message(string.Format("PreModOptions Listing: {0}, inRect: {1}, num: {2}, num2: {3}", listing_Main, inRect, width, menuLength));
             }
 
         }
@@ -198,6 +198,56 @@ namespace AdeptusMechanicus.settings
             ArmouryWeaponSpecialRules = listing_WeaponSpecialRules.CurHeight;
             ArmouryAllowedWeapons = listing_AllowedWeapons.CurHeight;
             ArmourySettings = ArmouryGeneralSpecialRules + ArmouryWeaponSpecialRules + ArmouryAllowedWeapons;
+            if (!settings.AllowImperialWeapons)
+            {
+                settings.AllowAdeptusAstartes = false;
+                settings.AllowAdeptusMilitarum = false;
+                settings.AllowAdeptusSororitas = false;
+            }
+            if (!settings.AllowMechanicusWeapons)
+            {
+                settings.AllowAdeptusMechanicus = false;
+            }
+            if (!settings.AllowChaosWeapons)
+            {
+                settings.AllowChaosMarine = false;
+                settings.AllowChaosMechanicus = false;
+                settings.AllowChaosGuard = false;
+            }
+            if (!settings.AllowEldarWeapons)
+            {
+                settings.AllowEldarCraftworld = false;
+                settings.AllowEldarExodite = false;
+                settings.AllowEldarHarlequinn = false;
+                settings.AllowEldarWraithguard = false;
+            }
+            if (!settings.AllowDarkEldarWeapons)
+            {
+                settings.AllowDarkEldar = false;
+            }
+            if (!settings.AllowOrkWeapons)
+            {
+                settings.AllowOrkFeral = false;
+                settings.AllowOrkTek = false;
+                settings.AllowOrkRok = false;
+            }
+            if (!settings.AllowTauWeapons)
+            {
+                settings.AllowTau = false;
+                settings.AllowGueVesaAuxiliaries = false;
+                settings.AllowKroot = false;
+                settings.AllowKrootAuxiliaries = false;
+                settings.AllowVespid = false;
+                settings.AllowVespidAuxiliaries = false;
+            }
+            if (!settings.AllowNecronWeapons)
+            {
+                settings.AllowNecron = false;
+            }
+            if (!settings.AllowTyranidWeapons)
+            {
+                settings.AllowTyranid = false;
+            }
             if (AdeptusIntergrationUtil.enabled_MagosXenobiologis)
             {
                 bool XBOptions = settings.ShowXenobiologisSettings;

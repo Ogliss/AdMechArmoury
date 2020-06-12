@@ -60,7 +60,7 @@ namespace AdeptusMechanicus
                 }
                 if (selected)
                 {
-                    Log.Message(string.Format("Apparel_Colour return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
+                //    log.message(string.Format("Apparel_Colour return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
                 }
                 return base.DrawColor;
             }

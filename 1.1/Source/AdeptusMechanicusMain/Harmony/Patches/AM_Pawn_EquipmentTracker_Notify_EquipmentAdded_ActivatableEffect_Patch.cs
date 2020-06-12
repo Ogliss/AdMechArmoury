@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             if (eq.TryGetComp<CompPowerWeaponActivatableEffect>() != null && eq.TryGetComp<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
             {
-                bool flag = compPowerWeapon.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
+                bool flag = compPowerWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
                 if (flag)
                 {
                     compPowerWeapon.TryActivate();
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (eq.TryGetComp<CompForceWeaponActivatableEffect>() != null && eq.TryGetComp<CompForceWeaponActivatableEffect>() is CompForceWeaponActivatableEffect compForceWeapon)
             {
-                bool flag = compForceWeapon.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
+                bool flag = compForceWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
                 if (flag)
                 {
                     compForceWeapon.TryActivate();

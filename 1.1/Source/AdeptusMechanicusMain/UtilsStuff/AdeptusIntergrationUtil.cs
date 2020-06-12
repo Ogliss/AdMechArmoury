@@ -189,7 +189,7 @@ namespace AdeptusMechanicus
                 if (p.PackageIdPlayerFacing == ("ChJees.Androids"))
                 {
                     modContent = p;
-                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                //    log.message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     ChjAndroid = true;
                 }
             }
@@ -239,7 +239,7 @@ namespace AdeptusMechanicus
                 if (p.PackageIdPlayerFacing == ("Atlas.AndroidTiers"))
                 {
                     modContent = p;
-                    Log.Message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
+                //    log.message(string.Format("{0}: PackageId: {1}, PackageIdPlayerFacing: {2}", p.Name, p.PackageId, p.PackageIdPlayerFacing));
                     TieredAndroid = true;
                 }
             }

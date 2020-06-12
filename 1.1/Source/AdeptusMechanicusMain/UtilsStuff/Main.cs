@@ -28,6 +28,10 @@ namespace AdeptusMechanicus
                     {
                         TryAddWeaponsStartingThingToTestScenario(ScenDef, "AM");
                     }
+                    else if (ScenDef.defName.Contains("Astartes"))
+                    {
+                        TryAddWeaponsStartingThingToTestScenario(ScenDef, "AA");
+                    }
                     else if (ScenDef.defName.Contains("Chaos"))
                     {
                         TryAddWeaponsStartingThingToTestScenario(ScenDef, "C");
@@ -64,7 +68,7 @@ namespace AdeptusMechanicus
 
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
         {
-            List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Gun_") || x.defName.Contains("OG" + Tag + "_Melee_") || x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
+            List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Gun_") || x.defName.Contains("OG" + Tag + "_Melee_") || x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Armour_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
 
             foreach (ThingDef Weapon in things)
             {

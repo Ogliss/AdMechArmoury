@@ -10,6 +10,8 @@ namespace AdeptusMechanicus
         public List<ThingDef> RaceDefs = new List<ThingDef>();
         public List<HediffDef> HediffDefs = new List<HediffDef>();
         public List<TraitDef> TraitDefs = new List<TraitDef>();
+        public Gender gender = Gender.None;
+        public BodyTypeDef forcedBodytype = null;
 
     }
 }

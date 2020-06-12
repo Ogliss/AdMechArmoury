@@ -19,8 +19,8 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (eq!=null)
             {
-                AdeptusMechanicus.CompActivatableEffect comp = eq.TryGetComp<AdeptusMechanicus.CompActivatableEffect>();
-                bool flag = __instance != null && comp != null && comp.CurrentState == AdeptusMechanicus.CompActivatableEffect.State.Activated;
+                OgsCompActivatableEffect.CompActivatableEffect comp = eq.TryGetComp<OgsCompActivatableEffect.CompActivatableEffect>();
+                bool flag = __instance != null && comp != null && comp.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Activated;
                 if (flag)
                 {
                     comp.TryDeactivate();

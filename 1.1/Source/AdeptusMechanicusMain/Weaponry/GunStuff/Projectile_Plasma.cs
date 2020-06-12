@@ -9,8 +9,8 @@ namespace AdeptusMechanicus
         public override void Draw()
         {
             Mesh mesh = MeshPool.GridPlane(this.def.graphicData.drawSize);
-            Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed("Mote_PlasmaGlow").graphicData.drawSize*2.5f);
             Graphics.DrawMesh(mesh, this.DrawPos, this.ExactRotation, Graphic.MatSingle, 0);
+            Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed("Mote_PlasmaGlow").graphicData.drawSize * 2.5f);
             Graphics.DrawMesh(mesh2, this.DrawPos, this.ExactRotation, DefDatabase<ThingDef>.GetNamed("Mote_PlasmaGlow").graphic.MatSingle, 0);
             base.Comps_PostDraw();
         }

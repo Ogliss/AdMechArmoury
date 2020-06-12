@@ -19,38 +19,18 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class AM_VerbProperties_AdjustedCooldown_RapidFire_Patch
     { 
         [HarmonyPostfix]
-        public static void AdjustedCooldown_RapidFire_Postfix(ref Verb_Shoot __instance, Verb ownerVerb, Pawn attacker, ref float __result)
+        public static void Postfix(Verb ownerVerb, Pawn attacker, ref float __result, ref float __state)
         {
-            bool RapidFire = false;
-            if (ownerVerb.EquipmentSource != null)
+            __state = __result;
+            if (ownerVerb.RapidFire(__result, out bool InRange, out float modified))
             {
-            //    Log.Message("ownerVerb.EquipmentSource");
-                if (!ownerVerb.EquipmentSource.AllComps.NullOrEmpty())
+                if (InRange)
                 {
-                    if (ownerVerb.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() != null)
-                    {
-                        if (ownerVerb.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() is CompWeapon_GunSpecialRules GunExt)
-                        {
-                            RapidFire = GunExt.RapidFire;
-                        }
-                    }
+                    __result = modified;
                 }
             }
-            if (ownerVerb.HediffCompSource != null && !ownerVerb.IsMeleeAttack)
-            {
-            //    Log.Message("ownerVerb.HediffCompSource");
-                HediffComp_VerbGiverExtra _VGE = (HediffComp_VerbGiverExtra)ownerVerb.HediffCompSource;
+            //    Log.Message("Prefix original warmup " + __state + " " + __instance.verbProps.label + " fired by " + __instance.CasterPawn.LabelShortCap + "\nwarmup " + __instance.verbProps.warmupTime + " Cooldown " + __instance.verbProps.AdjustedCooldown(__instance, __instance.CasterPawn) + " Ticks between shots " + __instance.verbProps.ticksBetweenBurstShots);
 
-                RapidFire = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(ownerVerb.verbProps)].RapidFire;
-            }
-            if (RapidFire && AMSettings.Instance.AllowRapidFire)
-            {
-
-                if (ownerVerb.caster.Position.InHorDistOf(((Pawn)ownerVerb.caster).TargetCurrentlyAimingAt.Cell, ownerVerb.verbProps.range / 2))
-                {
-                    __result = __result / 2;
-                }
-            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_2);
                         yield return new CodeInstruction(OpCodes.Call, typeof(AMA_PawnRenderer_RenderPawnInternal_Transpiler_Patch).GetMethod("CenterCellValue"));
-                        Log.Message(string.Format("operand: {0}, opcode: {1} : {2}", instruction.operand, instruction.opcode, OpCodes.Ldarg_2.OperandType));
+                    //    log.message(string.Format("operand: {0}, opcode: {1} : {2}", instruction.operand, instruction.opcode, OpCodes.Ldarg_2.OperandType));
                     }
                 }
                 yield return instruction;
@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static Vector3 CenterCellValue(Vector3 loc)
         {
 
-            Log.Message(string.Format("Drawpos: {0}", loc));
+        //    log.message(string.Format("Drawpos: {0}", loc));
             
             return loc;
         }

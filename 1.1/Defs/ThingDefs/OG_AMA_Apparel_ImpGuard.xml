@@ -3,6 +3,58 @@
   <!-- ========================= Imperial Guard - Apparel ========================== -->	
   <!-- ========================= Imperial Guard - Undershirt ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel">
+    <defName>OGIG_Apparel_Clothing</defName>
+    <label>clothing</label>
+    <description>A uniform shirt worn by the soldiers of the IG.</description>
+    <graphicData>
+      <texPath>Things/Item/Apparel/Common/Fatigues</texPath>
+      <graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+    </graphicData>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <tradeability>Sellable</tradeability>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <MarketValue>100</MarketValue>
+      <Mass>0.25</Mass>
+      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.22</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>1.5</EquipDelay>
+    </statBases>
+	<generateCommonality>1</generateCommonality>
+    <apparel>
+	<!--
+	<useWornGraphicMask>true</useWornGraphicMask>
+	-->
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Shoulders</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Item/Apparel/Common/Fatigues/Fatigues</wornGraphicPath>
+      <layers>
+        <li>OnSkin</li>
+      </layers>
+      <tags>
+      <li>OGIGClothing</li>
+      <li>OGIGUniform</li>
+      </tags>
+      <defaultOutfitTags>
+      <li>Any</li>
+      </defaultOutfitTags>
+    </apparel>
+	<comps>    
+		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+			<randomised>true</randomised>
+		</li> 
+	</comps>
+  </ThingDef>
+
+  <!-- ========================= Imperial Guard - Undershirt ========================== -->
+  <ThingDef ParentName="OG_Imperial_Apparel">
     <defName>OGIG_Apparel_UniformShirt</defName>
     <label>imperial undershirt</label>
     <description>A uniform shirt worn by the soldiers of the IG.</description>

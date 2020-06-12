@@ -44,12 +44,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                         MormalDeployment.Add(p);
                     }
                     string Deployment = flagStandard ? "Standard" : (flagDeepStrike ? "Deep Strike" : "Infiltration" );
-                    Log.Message(string.Format("pawn: {0}, Deployment: {1}",p.LabelShortCap, Deployment));
+                //    log.message(string.Format("pawn: {0}, Deployment: {1}",p.LabelShortCap, Deployment));
                 }
 
                 if (MormalDeployment.NullOrEmpty())
                 {
-                    Log.Message(string.Format("MormalDeployment.NullOrEmpty()"));
+                //    log.message(string.Format("MormalDeployment.NullOrEmpty()"));
                 }
                 else
                 {

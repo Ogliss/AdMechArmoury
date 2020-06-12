@@ -7,7 +7,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    public class Projectile_Anim : Projectile
+    public class Projectile_Anim : Bullet
     {
         private static int frameTicks = 5;
         private int TicksforFrame = frameTicks;
@@ -18,7 +18,7 @@ namespace AdeptusMechanicus
             {
                 bool flag;
                 this.TicksforFrame--;
-                if (this.def.graphicData.graphicClass == typeof(Graphic_Flicker))
+                if (this.def.graphicData.graphicClass == typeof(Graphic_Cycle))
                 {
                     flag = this.TicksforFrame == 0 && base.Map != null;
                     if (flag)
@@ -50,10 +50,10 @@ namespace AdeptusMechanicus
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            if (this.def.graphicData.graphicClass == typeof(Graphic_Flicker))
+            Graphic_Cycle graphic = base.Graphic as Graphic_Cycle;
+            if (graphic != null)
             {
-                traverse = Traverse.Create(base.Graphic);
-                subGraphics = (Graphic[])subgraphics.GetValue(base.Graphic);
+                subGraphics = graphic.graphics;
             //    Log.Message(string.Format("Subgraphics: {0}", subGraphics.Length));
             }
 

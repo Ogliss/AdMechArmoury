@@ -19,47 +19,72 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class AM_Verb_Shoot_TryStartCastOn_warmupTime_SpecialRules_Patch
     {
         [HarmonyPrefix, HarmonyPriority(200)]
-        public static void Prefix(ref Verb __instance, LocalTargetInfo castTarg, float __state)
+        public static void Prefix(ref Verb __instance, LocalTargetInfo castTarg, ref float __state)
         {
-            if (__instance.GetType()!=typeof(Verb_Shoot) && __instance.GetType()!=typeof(Verb_ShootEquipment))
+            if (__instance.GetType()!=typeof(Verb_Shoot) && __instance.GetType()!=typeof(AbilitesExtended.Verb_ShootEquipment))
             {
                 return;
             }
+            __state = __instance.verbProps.warmupTime;
             if (__instance.EquipmentSource != null)
             {
-                __state = __instance.verbProps.warmupTime;
-                   ThingWithComps gun = __instance.EquipmentSource;
+                ThingWithComps gun = __instance.EquipmentSource;
                 Thing caster = __instance.caster;
                 Pawn CasterPawn = __instance.CasterPawn;
-                if (gun!=null)
+                GunVerbEntry entry = __instance.SpecialRules();
+                if (entry != null)
                 {
+                    if (__instance.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out bool canDamageWeapon, out float extraWeaponDamage))
+                    {
+
+                    }
+                    //    log.message("Prefix__state " + __state);
                     CompEquippable compeq = gun.TryGetComp<CompEquippable>();
                     CompWeapon_GunSpecialRules GunExt = gun.TryGetComp<CompWeapon_GunSpecialRules>();
                     if (GunExt!=null)
                     {
                         if (GunExt.RapidFire)
                         {
-                            //    Log.Message(string.Format("prefix pre-modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}, last move tick: {3}", gun.def.Verbs[0].warmupTime, gun.def.Verbs[0].ticksBetweenBurstShots, gun.def.Verbs[0].defaultCooldownTime, GunExt.LastMovedTick));
-                            if (caster.Position.InHorDistOf(castTarg.Cell, __instance.verbProps.range / 2))
+                            float cooldown = __instance.verbProps.defaultCooldownTime;
+                            if (__instance.CasterIsPawn)
                             {
-                                __instance.verbProps.warmupTime = GunExt.GunVerbs[GunExt.CurMode].originalWarmup / 2;
+                                cooldown = __instance.verbProps.AdjustedCooldown(__instance, __instance.CasterPawn);
                             }
                             else
                             {
-                                __instance.verbProps.warmupTime = GunExt.GunVerbs[GunExt.CurMode].originalWarmup;
+                                if (__instance.Caster.def.building != null)
+                                {
+                                    if (__instance.Caster.def.building.turretBurstCooldownTime >= 0f)
+                                    {
+                                        cooldown = __instance.Caster.def.building.turretBurstCooldownTime;
+                                    }
+                                }
                             }
-                            //    Log.Message(string.Format("prefix post-modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}, last move tick: {3}", gun.def.Verbs[0].warmupTime, gun.def.Verbs[0].ticksBetweenBurstShots, gun.def.Verbs[0].defaultCooldownTime, GunExt.LastMovedTick));
+                        //    log.message(string.Format("RapidFire prefix pre-modified Values, Warmup: {0}", gun.def.Verbs[0].warmupTime, cooldown));
+                            if (caster.Position.InHorDistOf(castTarg.Cell, __instance.verbProps.range / 2))
+                            {
+                                float reduction = ((__instance.verbProps.burstShotCount - 1) * __instance.verbProps.ticksBetweenBurstShots).TicksToSeconds() / 4;
+                                reduction += __state / 2;
+                                __instance.verbProps.warmupTime = __state - reduction;
+                            }
+                            else
+                            {
+                                __instance.verbProps.warmupTime = __state;
+                            }
+                        //    log.message(string.Format("RapidFire prefix post-modified Values, Warmup: {0}", gun.def.Verbs[0].warmupTime, cooldown));
                         }
                         else if (GunExt.HeavyWeapon && __instance.CasterIsPawn)
                         {
+                        //    log.message(string.Format("HeavyWeapon prefix pre-modified Values, Warmup: {0}, last move tick: {1}", gun.def.Verbs[0].warmupTime, GunExt.LastMovedTick));
                             if (CasterPawn.pather.MovedRecently(GunExt.HeavyWeaponSetupTime.SecondsToTicks()))
                             {
-                                __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup + (GunExt.HeavyWeaponSetupTime - GunExt.ticksHere.TicksToSeconds());
+                                __instance.verbProps.warmupTime = __state + (GunExt.HeavyWeaponSetupTime - GunExt.ticksHere.TicksToSeconds());
                             }
                             else
                             {
-                                __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup;
+                                __instance.verbProps.warmupTime = __state;
                             }
+                        //    log.message(string.Format("HeavyWeapon prefix post-modified Values, Warmup: {0}, last move tick: {1}", gun.def.Verbs[0].warmupTime, GunExt.LastMovedTick));
                         }
                     }
                     if (compeq != null)
@@ -72,29 +97,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-        //    Log.Message("Prefix__state " + __state);
         }
 
         [HarmonyPostfix]
         public static void Postfix(ref Verb __instance, LocalTargetInfo castTarg, float __state)
         {
-        //    Log.Message("Postfix__state " + __state);
-            /*
-            List<Type> types = typeof(Verb_LaunchProjectile).AllSubclassesNonAbstract().ToList();
-            types.Add(typeof(Verb_LaunchProjectile));
-            List<Type> nottypes = typeof(AbilityUser.Verb_UseAbility).AllSubclassesNonAbstract().ToList();
-            nottypes.Add(typeof(AbilityUser.Verb_UseAbility));
-            if (!types.Contains(__instance.GetType()) || nottypes.Contains(__instance.GetType()))
-            {
-                
-                List<string> listl = new List<string>();
-                types.ForEach(x => listl.Add(x.Name));
-                Log.Message(string.Format("Mismatched Verbtype: {0}, needs {1}", __instance.GetType(), listl.ToCommaList()));
-                
-                return;
-            }
-            */
-            if (__instance.GetType() != typeof(Verb_Shoot) && __instance.GetType() != typeof(Verb_ShootEquipment))
+            if (__instance.GetType() != typeof(Verb_Shoot) && __instance.GetType() != typeof(AbilitesExtended.Verb_ShootEquipment))
             {
                 return;
             }
@@ -102,22 +110,38 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 ThingWithComps gun = __instance.EquipmentSource;
                 CompEquippable compeq = gun.TryGetComp<CompEquippable>();
-                if (!__instance.EquipmentSource.AllComps.NullOrEmpty())
+                CompWeapon_GunSpecialRules GunExt = gun.TryGetComp<CompWeapon_GunSpecialRules>();
+                if (GunExt!=null)
                 {
-                    if (__instance.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() != null)
+                //    log.message("Postfix__state " + __state);
+                    if (GunExt.RapidFire)
                     {
-                        if (__instance.EquipmentSource.GetComp<CompWeapon_GunSpecialRules>() is CompWeapon_GunSpecialRules GunExt)
+                        float cooldown = __instance.verbProps.defaultCooldownTime;
+                        if (__instance.CasterIsPawn)
                         {
-                            if (GunExt.GunVerbs[0].originalWarmup > 0)
+                            cooldown = __instance.verbProps.AdjustedCooldown(__instance, __instance.CasterPawn);
+                        }
+                        else
+                        {
+                            if (__instance.Caster.def.building != null)
                             {
-                                //    __instance.verbProps.warmupTime = (float)GunExt.OriginalwarmupTime;
-                                //    __instance.verbProps.warmupTime = GunExt.OriginalwarmupTime;
-                                __instance.verbProps.warmupTime = GunExt.GunVerbs[0].originalWarmup;
+                                if (__instance.Caster.def.building.turretBurstCooldownTime >= 0f)
+                                {
+                                    cooldown = __instance.Caster.def.building.turretBurstCooldownTime;
+                                }
                             }
                         }
+                    //    log.message(string.Format("RapidFire postfix pre-modified Values, Warmup: {0}, cooldown: {1}", gun.def.Verbs[0].warmupTime,  cooldown));
+                        __instance.verbProps.warmupTime = __state;
+                    //    log.message(string.Format("RapidFire postfix post-modified Values, Warmup: {0}, cooldown: {1}", gun.def.Verbs[0].warmupTime, cooldown));
+                    }
+                    if (GunExt.HeavyWeapon && __instance.CasterIsPawn)
+                    {
+                    //    log.message(string.Format("postfix pre-modified Values, Warmup: {0}, last move tick: {1}", gun.def.Verbs[0].warmupTime, GunExt.LastMovedTick));
+                        __instance.verbProps.warmupTime = __state;
+                    //    log.message(string.Format("postfix post-modified Values, Warmup: {0}, last move tick: {1}", gun.def.Verbs[0].warmupTime, GunExt.LastMovedTick));
                     }
                 }
-            //    Log.Message(string.Format("postfix Instance modified Values, Warmup: {0}, ticksbetween: {1}, cooldown: {2}", __instance.verbProps.warmupTime, __instance.verbProps.ticksBetweenBurstShots, __instance.verbProps.defaultCooldownTime));
             }
         }
     }

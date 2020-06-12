@@ -112,7 +112,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
                 if (Human != null)
                 {
-                    Log.Message("Adding Human restrictions");
+                    if (Prefs.DevMode) Log.Message("Adding Human restrictions");
                     HarmonyPatches.TryAddRacialRestrictions(Human, "I");
                     List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
                     projectDefs.AddRange(ReseachImperial);
@@ -121,7 +121,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 AlienRace.ThingDef_AlienRace Mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus") as AlienRace.ThingDef_AlienRace;
                 if (Mechanicus != null)
                 {
-                    Log.Message("Adding Mechanicus restrictions");
+                    if (Prefs.DevMode) Log.Message("Adding Mechanicus restrictions");
                     HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "I");
                     HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "AM");
                     List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
@@ -257,22 +257,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
         }
-        /*
-        public static void PatchVerbsShoot(Harmony harmonyInstance)
-        {
-            var postfix = typeof(AM_Verb_Shoot_Get_ShotsPerBurst_RapidFire_Patch).GetMethod("ShotsPerBurst_RapidFire_Postfix");
-            var baseType = typeof(Verb_LaunchProjectile);
-            if (AdeptusIntergrationUtil.enabled_CombatExtended)
-            {
-                baseType = typeof(CombatExtended.Verb_LaunchProjectileCE);
-            }
-            var types = baseType.AllSubclassesNonAbstract();
-            foreach (Type cur in types)
-            {
-                harmonyInstance.Patch(cur.GetMethod("get_ShotsPerBurst"),null, new HarmonyMethod(postfix));
-            }
-        }
-        */
+
     }
 
     public abstract class CompWearable : ThingComp
@@ -284,176 +269,4 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
 
-    /*
-    // RimWorld.FloatMenuMakerMap
-    private static void AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
-    */
-    
-    /*
-    [HarmonyPatch(typeof(PawnComponentsUtility), "AddAndRemoveDynamicComponents")]
-    public static class AdMech_PawnComponentsUtility_AddAndRemoveDynamicComponents_Patch
-    {
-        private static void Postfix(Pawn pawn)
-        {
-            bool flag = pawn.Faction != null && pawn.Faction.IsPlayer;
-            bool flag2 = pawn.def.defName == "Mechanicus_Sicarian";
-            bool flag3 = flag && flag2;
-            if (flag3)
-            {
-                pawn.drafter = new Pawn_DraftController(pawn);
-            }
-        }
-    }
-
-    // Token: 0x02000093 RID: 147
-    [HarmonyPatch(typeof(Pawn_DraftController), "GetGizmos")]
-    internal static class Pawn_DraftController_GetGizmos
-    {
-        // Token: 0x06000218 RID: 536 RVA: 0x0000FB83 File Offset: 0x0000DD83
-        private static void Postfix(Pawn_DraftController __instance, ref IEnumerable<Gizmo> __result)
-        {
-            __result = Pawn_DraftController_GetGizmos.PatchGetGizmos(__instance, __result);
-        }
-
-        // Token: 0x06000219 RID: 537 RVA: 0x0000FB90 File Offset: 0x0000DD90
-        private static IEnumerable<Gizmo> PatchGetGizmos(Pawn_DraftController __instance, IEnumerable<Gizmo> __result)
-        {
-            foreach (Gizmo gizmo in __result)
-            {
-                bool flag = gizmo is Command_Toggle;
-                if (flag)
-                {
-                    Command_Toggle toggleCommand = gizmo as Command_Toggle;
-                    bool flag2 = toggleCommand.defaultDesc != null && toggleCommand.defaultDesc == "CommandToggleDraftDesc".Translate();
-                    if (flag2)
-                    {
-                        yield return toggleCommand;
-                        continue;
-                    }
-                    toggleCommand = null;
-                }
-                yield return gizmo;
-            }
-            IEnumerator<Gizmo> enumerator = null;
-            yield break;
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn_DraftController), "set_Drafted")]
-    internal static class Pawn_Draftcontroller_set_Drafted
-    {
-        // Token: 0x06000217 RID: 535 RVA: 0x0000FB40 File Offset: 0x0000DD40
-        private static void Postfix(Pawn_DraftController __instance)
-        {
-            bool flag = true;
-            if (flag)
-            {
-                bool drafted = __instance.Drafted;
-                if (drafted)
-                {
-
-                }
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Pawn), "get_IsColonistPlayerControlled")]
-    public class Pawn_get_IsColonistPlayerControlled
-    {
-        // Token: 0x06000203 RID: 515 RVA: 0x0000ED24 File Offset: 0x0000CF24
-        public static bool Prefix(Pawn __instance, ref bool __result)
-        {
-            bool flag = Pawn_get_IsColonistPlayerControlled.IsControlled(__instance);
-            if (flag)
-            {
-                bool flag2 = __instance.Faction == Faction.OfPlayer && __instance.def.defName == "Mechanicus_Sicarian" && !__instance.Dead;
-                if (flag2)
-                {
-                    __result = true;
-                    return false;
-                }
-            }
-            int ticksGame = Find.TickManager.TicksGame;
-            return true;
-        }
-
-        // Token: 0x06000204 RID: 516 RVA: 0x0000ED88 File Offset: 0x0000CF88
-        private static bool IsControlled(Pawn pawn)
-        {
-            bool flag = pawn.def.defName != "Mechanicus_Sicarian";
-            bool result;
-            if (flag)
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-            return result;
-        }
-    }
-    */
-    /*
-    [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved")]
-    public static class AdMech_Pawn_EquipmentTracker_Notify_EquipmentRemoved_Patch
-    {
-        [HarmonyPostfix]
-        public static void Notify_EquipmentRemovedPostfix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
-        {
-	        foreach (CompAbilityItem compAbilityItem in eq.GetComps<CompAbilityItem>())
-	        {
-		        foreach (CompAbilityUser compAbilityUser in ((Pawn)__instance.ParentHolder).GetComps<CompAbilityUser>())
-		        {
-			        bool flag = compAbilityUser.GetType() == compAbilityItem.Props.AbilityUserClass;
-			        if (flag)
-			        {
-				        foreach (AbilityDef abilityDef in compAbilityItem.Props.Abilities)
-				        {
-				            compAbilityItem.AbilityUserTarget = compAbilityUser;
-					        compAbilityUser.RemoveWeaponAbility(abilityDef);
-				        }
-			        }
-		        }
-	        }
-        }
-    }
-    */
-
-    /*
-    [HarmonyPatch(typeof(Pawn_RecordsTracker), "Increment")]
-    public static class AdMech_Pawn_RecordsTracker_Increment_Patch
-    {
-        [HarmonyPostfix]
-        public static void IncrementPostfix(Pawn_RecordsTracker __instance, RecordDef def)
-        {
-            if (def == RecordDefOf.Kills)
-            {
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(Verb_Shoot), "TryCastShot")]
-    public static class AdMech_Verb_LaunchProjectile_TryCastShot_Patch
-    {
-
-        [HarmonyPostfix]
-        public static void Postfix(ref Verb_Shoot __instance, MethodBase ___originalMethod)
-        {
-            if (__instance.Projectile.GetCompProperties<CompProperties_ShotgunShell>() != null && __instance.Projectile.GetCompProperties<CompProperties_ShotgunShell>() is CompProperties_ShotgunShell Shell)
-            {
-                if (Shell.PelletCount>1)
-                {
-                    for (int i = 0; i < Shell.PelletCount; i++)
-                    {
-                        __instance?.Invoke();
-                        ;
-                    }
-                }
-            }
-        }
-        
-    }
-    
-    */
 }

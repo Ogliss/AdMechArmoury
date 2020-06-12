@@ -2,6 +2,7 @@
 using RimWorld;
 using AdeptusMechanicus;
 using UnityEngine;
+using OgsCompActivatableEffect;
 
 namespace AdeptusMechanicus
 {
@@ -13,7 +14,7 @@ namespace AdeptusMechanicus
     public class CompPowerWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
 
-        private CompActivatableEffect.State currentState = AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
+        private CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
         /*
         public override bool CanActivate()
         {

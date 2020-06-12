@@ -45,21 +45,21 @@ public static class AM_Projectile_Impact_Necron_Wraith_Patch
                 CompPhaseShifter shifter = hitPawn.TryGetComp<CompPhaseShifter>();
                 if (shifter !=null)
                 {
-                    Log.Message("Phase Shifted");
+                //    log.message("Phase Shifted");
                     if (Rand.Chance(0.667f))
                     {
-                        Log.Message("Didnt Impact");
+                    //    log.message("Didnt Impact");
                         return false;
                     }
                 }
                 else
                 {
-                    Log.Message("shifter is NULL");
+                //    log.message("shifter is NULL");
                 }
             }
             else
             {
-                Log.Message("hitThing not Pawn");
+            //    log.message("hitThing not Pawn");
             }
         }
         return true;

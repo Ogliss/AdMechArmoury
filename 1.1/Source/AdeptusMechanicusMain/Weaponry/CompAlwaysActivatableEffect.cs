@@ -3,6 +3,7 @@ using RimWorld;
 using AdeptusMechanicus;
 using UnityEngine;
 using System.Collections.Generic;
+using OgsCompActivatableEffect;
 
 namespace AdeptusMechanicus
 {
@@ -15,7 +16,7 @@ namespace AdeptusMechanicus
     {
 
         private Graphic graphicInt;
-        private AdeptusMechanicus.CompActivatableEffect.State currentState = AdeptusMechanicus.CompActivatableEffect.State.Deactivated;
+        private OgsCompActivatableEffect.CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
 
         public bool PowerWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_PowerWeapon_")));
         public bool RendingWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
@@ -87,7 +88,7 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (GetPawn!=null && !GetPawn.IsColonist)
             {
-                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
+                this.currentState = CompActivatableEffect.State.Activated;
             }
         }
 

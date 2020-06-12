@@ -58,22 +58,43 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 Vector3 drawAt = vector;
                                 if (!Pauldron.Props.PauldronEntries.NullOrEmpty())
                                 {
-                                    if (!Pauldron.pauldronInitialized)
+                                    if (Pauldron.Props.drawAll)
                                     {
-                                        if (Rand.Chance(Pauldron.Props.PauldronEntryChance))
+                                        foreach (ShoulderPadEntry item in Pauldron.Props.PauldronEntries)
                                         {
-                                            Pauldron.shoulderPadEntry = Pauldron.Props.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
+                                            Pauldron.shoulderPadEntry = item;
                                             Pauldron.pauldronGraphicPath = Pauldron.shoulderPadEntry.padTexPath;
                                             Pauldron.useSecondaryColor = Pauldron.shoulderPadEntry.UseSecondaryColor;
                                             Pauldron.padType = Pauldron.shoulderPadEntry.shoulderPadType;
+                                            Vector3 v = drawAt;
+                                            if (Pauldron.ShouldDrawPauldron(bodyFacing, out Material pauldronMat, item))
+                                            {
+                                                v += quat * Pauldron.GetAltitudeOffset(bodyFacing, item);
+                                                GenDraw.DrawMeshNowOrLater(mesh, v, quat, pauldronMat, portrait);
+                                                //    vector.y += CompPauldronDrawer.MinClippingDistance;
+                                            }
                                         }
-                                        Pauldron.pauldronInitialized = true;
                                     }
-                                    if (Pauldron.ShouldDrawPauldron(___pawn, bodyFacing, out Material pauldronMat))
+                                    else
                                     {
-                                        drawAt.y += Pauldron.GetAltitudeOffset(bodyFacing);
-                                        GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, pauldronMat, portrait);
-                                        //    vector.y += CompPauldronDrawer.MinClippingDistance;
+
+                                        if (!Pauldron.pauldronInitialized)
+                                        {
+                                            if (Rand.Chance(Pauldron.Props.PauldronEntryChance))
+                                            {
+                                                Pauldron.shoulderPadEntry = Pauldron.Props.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
+                                                Pauldron.pauldronGraphicPath = Pauldron.shoulderPadEntry.padTexPath;
+                                                Pauldron.useSecondaryColor = Pauldron.shoulderPadEntry.UseSecondaryColor;
+                                                Pauldron.padType = Pauldron.shoulderPadEntry.shoulderPadType;
+                                            }
+                                            Pauldron.pauldronInitialized = true;
+                                        }
+                                        if (Pauldron.ShouldDrawPauldron(bodyFacing, out Material pauldronMat))
+                                        {
+                                            drawAt += quat * Pauldron.GetAltitudeOffset(bodyFacing);
+                                            GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, pauldronMat, portrait);
+                                            //    vector.y += CompPauldronDrawer.MinClippingDistance;
+                                        }
                                     }
                                 }
                             }
@@ -83,15 +104,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                             foreach (CompApparelExtraDrawer Extas in ___pawn.apparel.WornApparel[k].AllComps.Where(x => x.GetType() == typeof(CompApparelExtraDrawer)))
                             {
                                 Vector3 drawAt = vector;
-                                if (!Extas.pprops.ExtrasEntries.NullOrEmpty())
+                                if (!Extas.Props.ExtrasEntries.NullOrEmpty())
                                 {
                                     if (Extas.ShouldDrawExtra(___pawn, ___pawn.apparel.WornApparel[k], bodyFacing, out Material extraMat))
                                     {
                                         if (Extas.onHead)
                                         {
-                                            drawAt = vector + __instance.BaseHeadOffsetAt(headFacing);
+                                            drawAt = vector + quat * __instance.BaseHeadOffsetAt(headFacing);
                                         }
-                                        drawAt.y += Extas.GetAltitudeOffset(bodyFacing, Extas.ExtraPartEntry);
+                                        drawAt += quat * Extas.GetAltitudeOffset(bodyFacing, Extas.ExtraPartEntry);
                                         GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, extraMat, portrait);
                                         //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                     }

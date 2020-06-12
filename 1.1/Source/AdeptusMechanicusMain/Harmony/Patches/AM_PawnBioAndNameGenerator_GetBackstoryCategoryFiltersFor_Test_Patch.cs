@@ -28,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         l += "\n" + item.categories.ToCommaList();
                     }
-                    Log.Message(l);
+                //    log.message(l);
                 }
             }
             if (pawn.def.defName.StartsWith("OG_"))
@@ -38,7 +38,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     l += "\n"+item.categories.ToCommaList();
                 }
-                Log.Message(l);
+            //    log.message(l);
             }
             
         }

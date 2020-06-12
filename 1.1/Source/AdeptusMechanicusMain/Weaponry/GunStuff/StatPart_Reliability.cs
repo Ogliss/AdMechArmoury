@@ -68,6 +68,19 @@ namespace AdeptusMechanicus
             return result;
         }
 
+        public static void GetReliability(GunVerbEntry gun, out string rel, out float jamsOn)
+        {
+            rel = string.Empty;
+            jamsOn = JamChance(gun);
+            if (jamsOn < 0.25)
+                rel = "Extremely Reliable";
+            else if (jamsOn < 0.5)
+                rel = "Very Reliable";
+            else if (jamsOn < 1)
+                rel = "Standard";
+            else
+                rel = "Unreliable";
+        }
         public static void GetReliability(CompWeapon_GunSpecialRules gun, out string rel, out float jamsOn)
         {
             rel = string.Empty;
@@ -81,25 +94,37 @@ namespace AdeptusMechanicus
             else
                 rel = "Unreliable";
         }
-        public static void GetReliability(VerbProperties_EquipmentAbility gun, out string rel, out float jamsOn)
-        {
-            rel = string.Empty;
-            jamsOn = JamChance(gun);
-            if (jamsOn < 0.25)
-                rel = "Extremely Reliable";
-            else if (jamsOn < 0.5)
-                rel = "Very Reliable";
-            else if (jamsOn < 1)
-                rel = "Standard";
-            else
-                rel = "Unreliable";
-        }
-
         /// <summary>
         /// Calculates the chance that the gun will jam
         /// </summary>
         /// <param name="gun">The gun object</param>
         /// <returns>floating point number representing the jam chance</returns>
+        public static float JamChance(GunVerbEntry gun)
+        {
+            float result = 0f;
+            switch (gun.reliability)
+            {
+                case Reliability.UR:
+                    result = 50f;
+                    break;
+                case Reliability.ST:
+                    result = 30f;
+                    break;
+                case Reliability.VR:
+                    result = 10f;
+                    break;
+                default:
+                    return 0;
+            }
+            //    Log.Message(string.Format("result {0}", result));
+        //    result += GetQualityFactor(gun.parent);
+            //    Log.Message(string.Format("result {0}", result));
+       //     result = result * 100 / gun.parent.HitPoints / 100;
+            //    Log.Message(string.Format("result {0}", result));
+            result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
+            //    Log.Message(string.Format("result {0}", result));
+            return result;
+        }
         public static float JamChance(CompWeapon_GunSpecialRules gun)
         {
             float result = 0f;
@@ -126,34 +151,6 @@ namespace AdeptusMechanicus
             //    Log.Message(string.Format("result {0}", result));
             return result;
         }
-        public static float JamChance(VerbProperties_EquipmentAbility gun)
-        {
-            float result = 0f;
-            switch (gun.reliability)
-            {
-                case Reliability.UR:
-                    result = 50f;
-                    break;
-                case Reliability.ST:
-                    result = 30f;
-                    break;
-                case Reliability.VR:
-                    result = 10f;
-                    break;
-                default:
-                    return 0;
-            }
-            //    Log.Message(string.Format("result {0}", result));
-        //    result += GetQualityFactor(gun.parent);
-            //    Log.Message(string.Format("result {0}", result));
-    //        result = result * 100 / gun.parent.HitPoints / 100;
-            //    Log.Message(string.Format("result {0}", result));
-            result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
-            //    Log.Message(string.Format("result {0}", result));
-            return result;
-        }
-
-
         /// <summary>
         /// Returns a factor to scale quality. If the ownerEquipment doesn't have a CompQuality it will return a factor of 0.
         /// </summary>

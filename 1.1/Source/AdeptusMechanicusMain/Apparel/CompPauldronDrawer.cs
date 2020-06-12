@@ -13,13 +13,12 @@ namespace AdeptusMechanicus
     {
         public List<ShoulderPadEntry> PauldronEntries;
         public float PauldronEntryChance = 1f;
-        public List<ExtraPartEntry> ExtrasEntries;
-        public float ExtraPartEntryChance = 0.5f;
         public int order = 0;
-        public float NorthOffset = 0f;
-        public float SouthOffset = 0f;
-        public float EastOffset = 0f;
-        public float WestOffset = 0f;
+        public Vector3 NorthOffset = new Vector3();
+        public Vector3 SouthOffset = new Vector3();
+        public Vector3 EastOffset = new Vector3();
+        public Vector3 WestOffset = new Vector3();
+        public bool drawAll = false;
         public CompProperties_PauldronDrawer()
         {
             this.compClass = typeof(CompPauldronDrawer);
@@ -70,7 +69,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (!Props.PauldronEntries.NullOrEmpty() && pauldronInitialized)
+                if (!Props.PauldronEntries.NullOrEmpty())
                 {
                     if (shoulderPadEntry == null)
                     {
@@ -198,20 +197,25 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
         }
 
-        public float GetAltitudeOffset(Rot4 rotation)
+        public Vector3 GetAltitudeOffset(Rot4 rotation, ShoulderPadEntry Entry = null)
         {
-            float offset = _OffsetFactor * this.ShoulderPadEntry.order;
-            offset = offset + (_SubOffsetFactor * this.ShoulderPadEntry.sublayer);
+            if (Entry != null)
+            {
+                this.shoulderPadEntry = Entry;
+            }
+            Vector3 offset = new Vector3();
+            offset.y += _OffsetFactor * this.ShoulderPadEntry.order;
+            offset.y += offset.y + (_SubOffsetFactor * this.ShoulderPadEntry.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
             if (!onHead)
             {
                 if (rotation == Rot4.North)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                     if (this.ShoulderPadEntry.northtop)
                     {
-                        offset += _HairOffset;
+                        offset.y += _HairOffset;
                         offset += NorthOffset(ShoulderPadEntry);
                     }
                     else
@@ -221,32 +225,32 @@ namespace AdeptusMechanicus
                 }
                 else if (rotation == Rot4.West)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                     offset += WestOffset(ShoulderPadEntry);
                 }
                 else if (rotation == Rot4.East)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                     offset += EastOffset(ShoulderPadEntry);
                 }
                 else if (rotation == Rot4.South)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                     offset += SouthOffset(ShoulderPadEntry);
                 }
                 else
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                 }
             }
             else
             {
                 if (rotation == Rot4.North)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                 }
                 else
-                    offset += _HeadOffset;
+                    offset.y += _HeadOffset;
             }
             if (flag)
             {
@@ -256,36 +260,36 @@ namespace AdeptusMechanicus
             return offset;
         }
 
-        public float NorthOffset(ShoulderPadEntry Entry)
+        public Vector3 NorthOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.NorthOffset != 0)
+            if (Entry.NorthOffset != Vector3.zero)
             {
                 return Entry.NorthOffset;
             }
             return this.Props.NorthOffset;
         }
 
-        public float SouthOffset(ShoulderPadEntry Entry)
+        public Vector3 SouthOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.SouthOffset != 0)
+            if (Entry.SouthOffset != Vector3.zero)
             {
                 return Entry.SouthOffset;
             }
             return this.Props.SouthOffset;
         }
 
-        public float EastOffset(ShoulderPadEntry Entry)
+        public Vector3 EastOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.EastOffset != 0)
+            if (Entry.EastOffset != Vector3.zero)
             {
                 return Entry.EastOffset;
             }
             return this.Props.EastOffset;
         }
 
-        public float WestOffset(ShoulderPadEntry Entry)
+        public Vector3 WestOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.WestOffset != 0)
+            if (Entry.WestOffset != Vector3.zero)
             {
                 return Entry.WestOffset;
             }
@@ -293,16 +297,18 @@ namespace AdeptusMechanicus
         }
         
 
-        public bool ShouldDrawPauldron(Pawn pawn, Rot4 bodyFacing, out Material pauldronMaterial)
+        public bool ShouldDrawPauldron( Rot4 bodyFacing, out Material pauldronMaterial, ShoulderPadEntry Entry = null)
         {
             pauldronMaterial = null;
             if (pawn.RaceProps.Humanlike)
             {
-                if (this.ShoulderPadEntry != null)
+                if (Entry != null)
                 {
-                    if (this.CheckPauldronRotation(pawn, this.padType))
+                    if (this.CheckPauldronRotation(pawn, Entry.shoulderPadType))
                     {
-                        pauldronMaterial = this.PauldronGraphic.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing);
+                        string path = Entry.padTexPath + "_" + pawn.story.bodyType.ToString();
+                        Graphic g = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
+                        pauldronMaterial = g.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing, this.parent);
                         return true;
                     }
                     else
@@ -312,7 +318,11 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-                //    Log.Message(string.Format("this.PauldronGraphic = null"));
+                    if (this.CheckPauldronRotation(pawn, this.padType))
+                    {
+                        pauldronMaterial = this.PauldronGraphic.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing, this.parent);
+                        return true;
+                    }
                 }
             }
             else
@@ -383,6 +393,7 @@ namespace AdeptusMechanicus
 
     public enum ShoulderPadType
     {
+        Backpack,
         Both,
         Right,
         Left
@@ -394,19 +405,20 @@ namespace AdeptusMechanicus
         public ShoulderPadType shoulderPadType;
         public ShaderTypeDef shaderType;
         public string padTexPath;
+        public string tagged;
         public int commonality;
         public bool northtop = false;
         public bool UseFactionTextures;
-        public bool UsePrimaryColor;
+        public bool UsePrimaryColor = true;
         public Color PrimaryColor = Color.white;
-        public bool UseSecondaryColor;
+        public bool UseSecondaryColor = true;
         public Color SecondaryColor = Color.white;
         public int order = 1;
         public int sublayer = 0;
-        public float NorthOffset = 0f;
-        public float SouthOffset = 0f;
-        public float EastOffset = 0f;
-        public float WestOffset = 0f;
+        public Vector3 NorthOffset = new Vector3();
+        public Vector3 SouthOffset = new Vector3();
+        public Vector3 EastOffset = new Vector3();
+        public Vector3 WestOffset = new Vector3();
     }
     
 }

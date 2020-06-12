@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             if (__instance.EquipmentSource != null && (__instance.EquipmentSource.DrawColor != Color.white || __instance.EquipmentSource.DrawColorTwo != Color.white))
             {
-                Log.Message("swaping UIIcon for "+ __instance.EquipmentSource.LabelShortCap);
+            //    log.message("swaping UIIcon for "+ __instance.EquipmentSource.LabelShortCap);
                 __result = __instance.EquipmentSource.Graphic.MatSingleFor(__instance.EquipmentSource).mainTexture as Texture2D;
             }
             */

@@ -48,7 +48,7 @@ namespace AdeptusMechanicus
                 {
                     if (selected)
                     {
-                        Log.Message(string.Format("Apparel_VisibleAccessory return {1}'s comp.Color {0}", comp.Color, this.def.label));
+                    //    log.message(string.Format("Apparel_VisibleAccessory return {1}'s comp.Color {0}", comp.Color, this.def.label));
                     }
                     return comp.Color;
                 }
@@ -59,14 +59,14 @@ namespace AdeptusMechanicus
                         drawColor = this.def.colorGenerator.NewRandomizedColor();
                         if (selected)
                         {
-                            Log.Message(string.Format("Apparel_VisibleAccessory return {1}'s drawColor {0}", drawColor, this.def.label));
+                        //    log.message(string.Format("Apparel_VisibleAccessory return {1}'s drawColor {0}", drawColor, this.def.label));
                         }
                         return drawColor;
                     }
                     base.DrawColor = this.def.colorGenerator.NewRandomizedColor();
                     if (selected)
                     {
-                        Log.Message(string.Format("Apparel_VisibleAccessory return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
+                    //    log.message(string.Format("Apparel_VisibleAccessory return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
                     }
                     return base.DrawColor;
                 }
@@ -74,14 +74,14 @@ namespace AdeptusMechanicus
                 {
                     if (selected)
                     {
-                        Log.Message(string.Format("Apparel_VisibleAccessory return {1}'s stuffProps.color {0}", this.Stuff.stuffProps.color, this.def.label));
+                    //    log.message(string.Format("Apparel_VisibleAccessory return {1}'s stuffProps.color {0}", this.Stuff.stuffProps.color, this.def.label));
                     }
                     drawColor = this.Stuff.stuffProps.color;
                     return this.Stuff.stuffProps.color;
                 }
                 if (selected)
                 {
-                    Log.Message(string.Format("Apparel_VisibleAccessory else return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
+                //    log.message(string.Format("Apparel_VisibleAccessory else return {1}'s base.DrawColor {0}", base.DrawColor, this.def.label));
                 }
                 return base.DrawColor;
             }
@@ -257,7 +257,7 @@ namespace AdeptusMechanicus
                 bool flag = Find.Selector.SingleSelectedThing == Wearer;
                 if (flag)
                 {
-                    Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.Wearer.Label, this.def.label, direction, offset, Wearer.Drawer.DrawPos.y));
+                //    log.message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.Wearer.Label, this.def.label, direction, offset, Wearer.Drawer.DrawPos.y));
                 }
             }
             */

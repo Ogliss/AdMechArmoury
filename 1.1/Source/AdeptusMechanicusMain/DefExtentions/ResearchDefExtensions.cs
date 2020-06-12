@@ -26,7 +26,7 @@ namespace AdeptusMechanicus
             {
                 if (requiredResearch.NullOrEmpty())
                 {
-                    Log.Message("generating required Research");
+                //    log.message("generating required Research");
                     requiredResearch = DefDatabase<ResearchProjectDef>.AllDefsListForReading.FindAll(x => (Include.NullOrEmpty() ? true : Include.Any(y => x.defName.Contains(y))) && (Exclude.NullOrEmpty() ? true : !Exclude.Any(y => x.defName.Contains(y))) && (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.StartsWith(ResearchKeyPrefix)) && x.defName.Contains(ResearchKey) && (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.EndsWith(ResearchKeyPostfix)));
                 }
                 return requiredResearch;

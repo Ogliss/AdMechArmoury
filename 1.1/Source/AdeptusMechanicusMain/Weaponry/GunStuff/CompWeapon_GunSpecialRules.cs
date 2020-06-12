@@ -58,30 +58,30 @@ namespace AdeptusMechanicus
         public int CurMode => fireMode != null ? fireMode.fireMode : 0;
         public bool HeavyWeapon => Props.HeavyWeapon;
         public bool TyranidBurstBodySize => Props.TyranidBurstBodySize;
-        public bool TwinLinked => fireMode != null ? Props.VerbEntries[fireMode.fireMode].TwinLinked : Props.VerbEntries[0].TwinLinked;
-        public bool RapidFire => fireMode != null ? Props.VerbEntries[fireMode.fireMode].RapidFire : Props.VerbEntries[0].RapidFire;
-        public bool GetsHot => fireMode != null ? Props.VerbEntries[fireMode.fireMode].GetsHot : Props.VerbEntries[0].GetsHot;
-        public bool HotDamageWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].HotDamageWeapon : Props.VerbEntries[0].HotDamageWeapon;
-        public bool GetsHotCrit => fireMode != null ? Props.VerbEntries[fireMode.fireMode].GetsHotCrit : Props.VerbEntries[0].GetsHotCrit;
-        public bool GetsHotCritExplosion => fireMode != null ? Props.VerbEntries[fireMode.fireMode].GetsHotCritExplosion : Props.VerbEntries[0].GetsHotCritExplosion;
-        public bool Jams => fireMode != null ? Props.VerbEntries[fireMode.fireMode].Jams : Props.VerbEntries[0].Jams;
-        public bool JamsDamageWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].JamsDamageWeapon : Props.VerbEntries[0].JamsDamageWeapon;
-        public bool Multishot => fireMode != null ? Props.VerbEntries[fireMode.fireMode].Multishot : Props.VerbEntries[0].Multishot;
-        public bool EffectsUser => fireMode != null ? Props.VerbEntries[fireMode.fireMode].EffectsUser : Props.VerbEntries[0].EffectsUser;
-        public bool Rending => fireMode != null ? Props.VerbEntries[fireMode.fireMode].Rending : Props.VerbEntries[0].Rending;
-        public Reliability reliability => fireMode != null ? Props.VerbEntries[fireMode.fireMode].reliability : Props.VerbEntries[0].reliability;
+        public bool TwinLinked => Props.VerbEntries[CurMode].TwinLinked;
+        public bool RapidFire => Props.VerbEntries[CurMode].RapidFire;
+        public bool GetsHot => Props.VerbEntries[CurMode].GetsHot;
+        public bool HotDamageWeapon => Props.VerbEntries[CurMode].HotDamageWeapon;
+        public bool GetsHotCrit => Props.VerbEntries[CurMode].GetsHotCrit;
+        public bool GetsHotCritExplosion => Props.VerbEntries[CurMode].GetsHotCritExplosion;
+        public bool Jams => Props.VerbEntries[CurMode].Jams;
+        public bool JamsDamageWeapon => Props.VerbEntries[CurMode].JamsDamageWeapon;
+        public bool Multishot => Props.VerbEntries[CurMode].Multishot;
+        public bool EffectsUser => Props.VerbEntries[CurMode].EffectsUser;
+        public bool Rending => Props.VerbEntries[CurMode].Rending;
+        public Reliability reliability =>  Props.VerbEntries[CurMode].reliability;
         public float HeavyWeaponSetupTime => Props.HeavyWeaponSetupTime;
-        public float HotDamage => fireMode != null ? Props.VerbEntries[fireMode.fireMode].HotDamage : Props.VerbEntries[0].HotDamage;
-        public float GetsHotCritChance => fireMode != null ? Props.VerbEntries[fireMode.fireMode].GetsHotCritChance : Props.VerbEntries[0].GetsHotCritChance;
-        public float GetsHotCritExplosionChance => fireMode != null ? Props.VerbEntries[fireMode.fireMode].GetsHotCritExplosionChance : Props.VerbEntries[0].GetsHotCritExplosionChance;
-        public float JamDamage => fireMode != null ? Props.VerbEntries[fireMode.fireMode].JamDamage : Props.VerbEntries[0].JamDamage;
-        public float EffectsUserChance => fireMode != null ? Props.VerbEntries[fireMode.fireMode].EffectsUserChance : Props.VerbEntries[0].EffectsUserChance;
-        public float RendingChance => fireMode != null ? Props.VerbEntries[fireMode.fireMode].RendingChance : Props.VerbEntries[0].RendingChance;
-        public StatDef ResistEffectStat => fireMode != null ? Props.VerbEntries[fireMode.fireMode].ResistEffectStat : Props.VerbEntries[0].ResistEffectStat;
-        public HediffDef UserEffect=> fireMode != null ? Props.VerbEntries[fireMode.fireMode].UserEffect : Props.VerbEntries[0].UserEffect;
-        public List<string> UserEffectImmuneList => fireMode != null ? Props.VerbEntries[fireMode.fireMode].UserEffectImmuneList : Props.VerbEntries[0].UserEffectImmuneList;
-        public ResearchProjectDef requiredResearch => fireMode != null ? Props.VerbEntries[fireMode.fireMode].requiredResearch : Props.VerbEntries[0].requiredResearch;
-        public int ScattershotCount => fireMode != null ? Props.VerbEntries[fireMode.fireMode].ScattershotCount : Props.VerbEntries[0].ScattershotCount;
+        public float HotDamage => Props.VerbEntries[CurMode].HotDamage;
+        public float GetsHotCritChance => Props.VerbEntries[CurMode].GetsHotCritChance;
+        public float GetsHotCritExplosionChance => Props.VerbEntries[CurMode].GetsHotCritExplosionChance;
+        public float JamDamage => Props.VerbEntries[CurMode].JamDamage;
+        public float EffectsUserChance => Props.VerbEntries[CurMode].EffectsUserChance;
+        public float RendingChance => Props.VerbEntries[CurMode].RendingChance;
+        public StatDef ResistEffectStat => Props.VerbEntries[CurMode].ResistEffectStat;
+        public HediffDef UserEffect=> Props.VerbEntries[CurMode].UserEffect;
+        public List<string> UserEffectImmuneList =>  Props.VerbEntries[CurMode].UserEffectImmuneList;
+        public ResearchProjectDef requiredResearch => Props.VerbEntries[CurMode].requiredResearch;
+        public int ScattershotCount => Props.VerbEntries[CurMode].ScattershotCount;
         public bool MeltaWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Melta() : this.parent.def.Verbs[0].defaultProjectile.projectile.Melta();
         public bool VolkiteWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Volkite() : this.parent.def.Verbs[0].defaultProjectile.projectile.Volkite();
         public bool GaussWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Gauss() : this.parent.def.Verbs[0].defaultProjectile.projectile.Gauss();
@@ -127,18 +127,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            foreach (GunVerbEntry entry in GunVerbs)
-            {
-                if (entry.originalWarmup < 0)
-                {
-                    entry.originalWarmup = entry.VerbProps.warmupTime;
-                    Log.Message(parent.LabelShortCap + " setting inital warmup time to " + "( " + entry.originalWarmup + " ) " + entry.VerbProps.warmupTime + " for " + entry.VerbProps.label ?? entry.VerbProps.defaultProjectile.label);
-                }
-            }
-        }
 
         public Reliability Reliability
         {
@@ -237,7 +225,16 @@ namespace AdeptusMechanicus
             }
             if (RapidFire)
             {
-                str = str + string.Format("\n RapidFire: Warmup halved ({0} seconds) and Cooldown halved ({1} seconds) when firing at targets within {2} cells. \n", (this.GunVerbs[0].originalWarmup / 2), compEquippable.VerbTracker.PrimaryVerb.verbProps.defaultCooldownTime / 2, compEquippable.VerbTracker.PrimaryVerb.verbProps.range/2);
+                float reductionbase = ((this.GunVerbs[this.CurMode].VerbProps.burstShotCount - 1) * this.GunVerbs[this.CurMode].VerbProps.ticksBetweenBurstShots).TicksToSeconds() / 4;
+                float warmup = this.GunVerbs[this.CurMode].VerbProps.warmupTime;
+                float cooldown = parent.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
+                float Cycle = cooldown + warmup + (reductionbase * 4);
+                float warmupreduction = (warmup / 2) + reductionbase;
+                float cooldownreduction = (cooldown / 2) + reductionbase;
+                float warmupReduction = (warmupreduction / warmup) * 100;
+                float cooldownReduction = (cooldownreduction / cooldown) * 100;
+                float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (reductionbase * 4);
+                str = str + string.Format("\n RapidFire: Full Firing Cycle time reduced from {5} to {6} when firing at targets within {4} cells.\nWarmup reduced by {0}% ({1} seconds) and Cooldown by {2}% ({3} seconds).\n", warmupReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), warmup - warmupreduction, cooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, compEquippable.VerbTracker.PrimaryVerb.verbProps.range/2, Cycle, newCycle);
             }
             if (GetsHot)
             {

@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static void Pre_TryExecuteWorker(IncidentWorker __instance, IncidentParms parms)
         {
-            Log.Message(string.Format("{0}: {1}",__instance, parms));
+        //    log.message(string.Format("{0}: {1}",__instance, parms));
         }
 
         /*

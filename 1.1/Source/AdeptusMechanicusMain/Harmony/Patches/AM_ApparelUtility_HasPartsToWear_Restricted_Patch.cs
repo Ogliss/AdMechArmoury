@@ -31,23 +31,28 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (apparel.HasModExtension<ApparelRestrictionDefExtension>())
             {
-                __result = false;
+            //    __result = false;
 
                 ApparelRestrictionDefExtension defExtension = apparel.GetModExtension<ApparelRestrictionDefExtension>();
                 if (defExtension!=null)
                 {
+                    bool gender = defExtension.gender == Gender.None || p.gender == defExtension.gender;
+                    bool race = false;
+                    bool hediff = false;
+                    bool trait = false;
                     if (!defExtension.RaceDefs.NullOrEmpty())
                     {
-                        __result = defExtension.RaceDefs.Contains(p.def);
+                        race = defExtension.RaceDefs.Contains(p.def);
                     }
                     if (!defExtension.HediffDefs.NullOrEmpty())
                     {
-                        __result = p.health.hediffSet.hediffs.Any(x => defExtension.HediffDefs.Contains(x.def));
+                        hediff = p.health.hediffSet.hediffs.Any(x => defExtension.HediffDefs.Contains(x.def));
                     }
                     if (!defExtension.TraitDefs.NullOrEmpty())
                     {
-                        __result = p.story.traits.allTraits.Any(x => defExtension.TraitDefs.Contains(x.def));
+                        trait = p.story.traits.allTraits.Any(x => defExtension.TraitDefs.Contains(x.def));
                     }
+                    __result = gender && (race || hediff || trait);
                 }
             }
         }

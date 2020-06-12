@@ -43,16 +43,16 @@ namespace AdeptusMechanicus
             return true;
 
             /*
-            Log.Message(string.Format("{0}", dinfo.Def.label));
+        //    log.message(string.Format("{0}", dinfo.Def.label));
             if (dinfo.Def.defName.Contains("InEyes"))
             {
-                Log.Message(string.Format("{0}", dinfo.Def.defName));
+            //    log.message(string.Format("{0}", dinfo.Def.defName));
                 this.AbsorbedDamage(dinfo);
                 return true;
             }
             else if (dinfo.HitPart.def.defName == "Eye" && dinfo.Def.defName == "OGGrenadePhoton")
             {
-                Log.Message(string.Format("{0}", dinfo.Def.defName));
+            //    log.message(string.Format("{0}", dinfo.Def.defName));
                 this.AbsorbedDamage(dinfo);
                 return true;
             }

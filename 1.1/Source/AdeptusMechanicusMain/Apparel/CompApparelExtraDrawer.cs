@@ -14,10 +14,10 @@ namespace AdeptusMechanicus
         public List<ExtraPartEntry> ExtrasEntries;
         public float ExtraPartEntryChance = 0.5f;
         public int order = 0;
-        public float NorthOffset = 0f;
-        public float SouthOffset = 0f;
-        public float EastOffset = 0f;
-        public float WestOffset = 0f;
+        public Vector3 NorthOffset = new Vector3();
+        public Vector3 SouthOffset = new Vector3();
+        public Vector3 EastOffset = new Vector3();
+        public Vector3 WestOffset = new Vector3();
         public ApparelLayerDef ApparelLayer = null;
         public CompProperties_ApparelExtraDrawer()
         {
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class CompApparelExtraDrawer : ThingComp
     {
-        public CompProperties_ApparelExtraDrawer pprops
+        public CompProperties_ApparelExtraDrawer Props
         {
             get
             {
@@ -56,11 +56,11 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (!pprops.ExtrasEntries.NullOrEmpty())
+                if (!Props.ExtrasEntries.NullOrEmpty())
                 {
                     if (extraPartEntry == null)
                     {
-                        extraPartEntry = this.pprops.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
+                        extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
 
 
                         this.shader = ShaderDatabase.LoadShader(extraPartEntry.shaderType.shaderPath);
@@ -179,20 +179,21 @@ namespace AdeptusMechanicus
         //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
         }
         
-        public float GetAltitudeOffset(Rot4 rotation, ExtraPartEntry partEntry)
+        public Vector3 GetAltitudeOffset(Rot4 rotation, ExtraPartEntry partEntry)
         {
-            float offset = _OffsetFactor * partEntry.order;
-            offset = offset + (_SubOffsetFactor * partEntry.sublayer);
+            Vector3 offset = new Vector3();
+            offset.y = _OffsetFactor * partEntry.order;
+            offset.y = offset.y + (_SubOffsetFactor * partEntry.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
             if (!onHead)
             {
+                offset.y += _BodyOffset;
                 if (rotation == Rot4.North)
                 {
-                    offset += _BodyOffset;
                     if (partEntry.northtop)
                     {
-                        offset += _HairOffset;
+                        offset.y += _HairOffset;
                         offset += NorthOffset(partEntry);
                     }
                     else
@@ -202,32 +203,25 @@ namespace AdeptusMechanicus
                 }
                 else if (rotation == Rot4.West)
                 {
-                    offset += _BodyOffset;
                     offset += WestOffset(partEntry);
                 }
                 else if (rotation == Rot4.East)
                 {
-                    offset += _BodyOffset;
                     offset += EastOffset(partEntry);
                 }
                 else if (rotation == Rot4.South)
                 {
-                    offset += _BodyOffset;
                     offset += SouthOffset(partEntry);
-                }
-                else
-                {
-                    offset += _BodyOffset;
                 }
             }
             else
             {
                 if (rotation == Rot4.North)
                 {
-                    offset += _BodyOffset;
+                    offset.y += _BodyOffset;
                 }
                 else
-                    offset += _HeadOffset;
+                    offset.y += _HeadOffset;
             }
             if (flag)
             {
@@ -236,46 +230,44 @@ namespace AdeptusMechanicus
 
             return offset;
         }
-        
-        public float NorthOffset(ExtraPartEntry Entry)
+
+        public Vector3 NorthOffset(ExtraPartEntry Entry)
         {
-            float result = 0;
-            if (Entry.NorthOffset != 0)
+            if (Entry.NorthOffset != Vector3.zero)
             {
-                result += Entry.NorthOffset;
-                return result;
+                return Entry.NorthOffset;
             }
-            result += this.pprops.NorthOffset;
-            return this.pprops.NorthOffset;
+            return this.Props.NorthOffset;
         }
-        
-        public float SouthOffset(ExtraPartEntry Entry)
+
+        public Vector3 SouthOffset(ExtraPartEntry Entry)
         {
-            if (Entry.SouthOffset != 0)
+            if (Entry.SouthOffset != Vector3.zero)
             {
                 return Entry.SouthOffset;
             }
-            return this.pprops.SouthOffset;
+            return this.Props.SouthOffset;
         }
 
-        public float EastOffset(ExtraPartEntry Entry)
+        public Vector3 EastOffset(ExtraPartEntry Entry)
         {
-            if (Entry.EastOffset != 0)
+            if (Entry.EastOffset != Vector3.zero)
             {
                 return Entry.EastOffset;
             }
-            return this.pprops.EastOffset;
+            return this.Props.EastOffset;
         }
-        
-        public float WestOffset(ExtraPartEntry Entry)
+
+        public Vector3 WestOffset(ExtraPartEntry Entry)
         {
-            if (Entry.WestOffset != 0)
+            if (Entry.WestOffset != Vector3.zero)
             {
                 return Entry.WestOffset;
             }
-            return this.pprops.WestOffset;
+            return this.Props.WestOffset;
         }
-        
+
+
         public bool ShouldDrawExtra(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material extraMaterial)
         {
             extraMaterial = null;
@@ -294,9 +286,9 @@ namespace AdeptusMechanicus
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (!this.pprops.ExtrasEntries.NullOrEmpty())
+            if (!this.Props.ExtrasEntries.NullOrEmpty())
             {
-                extraPartEntry = this.pprops.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
+                extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
                 this.graphicPath = extraPartEntry.extraTexPath;
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
@@ -367,10 +359,10 @@ namespace AdeptusMechanicus
         public int order = 1;
         public int sublayer = 0;
         public bool northtop = false;
-        public float NorthOffset = 0f;
-        public float SouthOffset = 0f;
-        public float EastOffset = 0f;
-        public float WestOffset = 0f;
+        public Vector3 NorthOffset = new Vector3();
+        public Vector3 SouthOffset = new Vector3();
+        public Vector3 EastOffset = new Vector3();
+        public Vector3 WestOffset = new Vector3();
         // Token: 0x0400006D RID: 109
         private bool validated = false;
     }

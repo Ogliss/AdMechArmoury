@@ -22,6 +22,12 @@
 	</projectile>
 	<thingClass>Projectile_ExplosiveOG</thingClass>
 	<explosionradius>0.5</explosionradius>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<effecterDef>Deflect_Metal</effecterDef>
+			
+		  </li>
+		</modExtensions>
  </ThingDef>
 
  <!-- ====================== Dragonfire Bolt ===================== -->
@@ -216,7 +222,7 @@
 		</graphicData>
 		<equippedAngleOffset>0</equippedAngleOffset>
 		<comps>
-			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<!--
 				<verticalFlipOutsideCombat>true</verticalFlipOutsideCombat>
 				-->	
@@ -303,20 +309,10 @@
 	</ThingDef>
  
 	<!-- ====================== Bolter ===================== -->
-	<ThingDef ParentName="OG_Imperial_Gun">
-		<defName>OGI_Gun_BoltGun</defName>
+	<ThingDef ParentName="OG_Imperial_Gun" Name="OG_Imperial_Bolter_Base" Abstract="true">
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-		<label>Bolter</label>
+		<tickerType>Normal</tickerType>
 		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-			<color>(0.286,0.286,0.286)</color>	
-			<drawSize>1.1</drawSize>		
-		</graphicData>
-		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Icon</uiIconPath>
-		<uiIconColor>(1,1,1,1)</uiIconColor>	
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
@@ -327,38 +323,17 @@
 			<AccuracyShort>0.90</AccuracyShort>
 			<AccuracyMedium>0.92</AccuracyMedium>
 			<AccuracyLong>0.85</AccuracyLong>
-			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 		</statBases>
-		<recipeMaker>
-			<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
-		</recipeMaker>
-		<costList>
-			<Steel>175</Steel>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-		</costList>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>ImperialAstartesGun</li>
-			<li>ImperialAstartesBoltGun</li>
-			<li>ImperialGun</li>
-			<li>ImperialBoltGun</li>
-			<li>BoltGun</li>
-			<li>Bolter</li>
-			</weaponTags>
-			<tradeTags>
-				<li>OGIRanged</li>
-			</tradeTags>
-			<generateCommonality>1.0</generateCommonality>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<label>Sandard Bolts</label>
+				<label>Standard Bolts</label>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
 				<warmupTime>1.00</warmupTime>
 				<range>31</range>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>OG_Bolt_Gun_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -368,10 +343,9 @@
 				</targetParams>
 		  </li>
 		</verbs>
-		<tickerType>Normal</tickerType>
-		<comps> 
-			<li Class="AdeptusMechanicus.CompProperties_SlotLoadable">
-				<compClass>AdeptusMechanicus.CompSlotLoadable</compClass>
+		<!--comps> 
+			<li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
+				<compClass>OgsCompSlotLoadable.CompSlotLoadable</compClass>
 				<qualityRestriction>Masterwork</qualityRestriction>
 				<slots>
 					<li>OGI_BoltSlot</li>
@@ -384,13 +358,13 @@
 					</li>
 				</VerbEntries>
 			</li> 
-			<li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
 				<westOffset>0.0,0.0,0.0</westOffset>
 				<southOffset>0.0,1.0,0.0</southOffset>
 			</li> 
-		</comps>
+		</comps-->
 		<tools>
 		  <li>
 			<label>stock</label>
@@ -410,6 +384,26 @@
 			<cooldownTime>1.9</cooldownTime>
 		  </li>
 		</tools>
+		<recipeMaker>
+			<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialAstartesGun</li>
+			<li>ImperialAstartesBoltGun</li>
+			<li>ImperialGun</li>
+			<li>ImperialBoltGun</li>
+			<li>BoltGun</li>
+			<li>Bolter</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
 		<colorGenerator Class="ColorGenerator_Options">
 		  <options>
 			<li>
@@ -447,6 +441,44 @@
 		  </li>
 		</modExtensions>
 	</ThingDef>
+	
+	<ThingDef ParentName="OG_Imperial_Bolter_Base">
+		<defName>OGI_Gun_BoltGun</defName>
+		<label>Bolter</label>
+		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+			<drawSize>1.1</drawSize>		
+		</graphicData>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Icon</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>	
+		<generateCommonality>1.0</generateCommonality>
+		<comps> 
+			<li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
+				<compClass>OgsCompSlotLoadable.CompSlotLoadable</compClass>
+				<qualityRestriction>Masterwork</qualityRestriction>
+				<slots>
+					<li>OGI_BoltSlot</li>
+				</slots>
+			</li>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+					</li>
+				</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li> 
+		</comps>
+	</ThingDef>
  
  <!-- ====================== Sternguard Bolter ===================== -->
 <!--
@@ -464,13 +496,13 @@
 		</graphicData>
 		<tickerType>Normal</tickerType>
 		<comps>     
-		  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+		  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
 				<westOffset>0.0,0.0,0.0</westOffset>
 				<southOffset>0.0,1.0,0.0</southOffset>
 		  </li>  
-		  <li Class="AdeptusMechanicus.CompProperties_SlotLoadable">
+		  <li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
 			<slots>
 				<li>OGI_BoltSlot</li>
 			</slots>
@@ -712,11 +744,11 @@
 		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 		<VerbEntries>
 			<li>
-				<TwinLinked>true</TwinLinked>
+			
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -753,6 +785,141 @@
     </modExtensions>
  </ThingDef>
  
+ <!-- ====================== CombiBolter Base ===================== -->
+ 
+	<ThingDef ParentName="OG_Imperial_Gun_Special" Name="OG_Imperial_BolterCombi_Base" Abstract="true">
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<tickerType>Normal</tickerType>
+		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>180000</WorkToMake>
+			<MarketValue>4000</MarketValue>
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.92</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard Bolts</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>1.00</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+		  </li>
+		</verbs>
+		<!--comps> 
+			<li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
+				<compClass>OgsCompSlotLoadable.CompSlotLoadable</compClass>
+				<qualityRestriction>Masterwork</qualityRestriction>
+				<slots>
+					<li>OGI_BoltSlot</li>
+				</slots>
+			</li>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+					</li>
+				</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li> 
+		</comps-->
+		<tools>
+		  <li>
+			<label>stock</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+		  </li>
+		  <li>
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+		  </li>
+		</tools>
+		<recipeMaker>
+			<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialAstartesGun</li>
+			<li>ImperialAstartesBoltGun</li>
+			<li>ImperialGun</li>
+			<li>ImperialBoltGun</li>
+			<li>BoltGun</li>
+			<li>Bolter</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+		  <options>
+			<li>
+			  <only>RGBA(1.00,1.00,1.00,1)</only>
+			</li>
+			<!--
+			<li>
+			  <only>RGBA(0.95,0.95,0.95,1)</only>
+			</li>
+			<li>
+			  <only>RGBA(0.90,0.90,0.90,1)</only>
+			</li>
+			<li>
+			  <only>RGBA(0.85,0.85,0.85,1)</only>
+			</li>
+			<li>
+			  <only>RGBA(0.80,0.80,0.80,1)</only>
+			</li>
+			<li>
+			  <only>RGBA(0.75,0.75,0.75,1)</only>
+			</li>
+			<li>
+			  <only>RGBA(0.70,0.70,0.70,1)</only>
+			</li>
+			-->
+		  </options>
+		</colorGenerator>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
  <!-- ====================== CombiFlamer ===================== -->
  <ThingDef ParentName="OG_Imperial_Gun_Special">
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
@@ -831,7 +998,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -851,7 +1018,7 @@
 	  </li>
 	  -->
 		
-	<li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+	<li Class="AbilitesExtended.CompProperties_AbilityItem">
 		<Abilities>
 			<li>OGI_Ability_FireFlamer</li>
 		</Abilities>
@@ -966,13 +1133,13 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
 			<southOffset>0.0,1.0,0.0</southOffset>
 	  </li>  
-	<li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+	<li Class="AbilitesExtended.CompProperties_AbilityItem">
 		<Abilities>
 			<li>OGI_Ability_FireMelta</li>
 		</Abilities>
@@ -1110,20 +1277,20 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
 			<southOffset>0.0,1.0,0.0</southOffset>
 	  </li>  
-	<li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+	<li Class="AbilitesExtended.CompProperties_AbilityItem">
 		<Abilities>
 			<li>OGI_Ability_FirePlasma</li>
 		</Abilities>
 	</li>
 		
 		<!--
-			<li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
 				<AbilityUserClass>AbilityUser.GenericCompAbilityUser</AbilityUserClass>
 				<Abilities>
 					<li>OGI_Ability_FireFlamer</li>
@@ -1240,7 +1407,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -1248,7 +1415,7 @@
 	  </li>  
 		
 	  <!--
-	  <li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+	  <li Class="AbilitesExtended.CompProperties_AbilityItem">
 			<Abilities>
 				<li>OGI_Ability_FireGrav</li>
 			</Abilities>
@@ -1488,7 +1655,7 @@
 		<MoveSpeed>-0.25</MoveSpeed>
     </equippedStatOffsets>
 	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -1723,7 +1890,7 @@
     <description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.\n\nThe Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasPistol</texPath>
-		<graphicClass>AdeptusMechanicus.Graphic_Advanced</graphicClass>
+		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
 		<shaderType>CutoutComplex</shaderType>
 		<color>(0.208,0.286,0.176)</color>
     </graphicData>
@@ -1809,7 +1976,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-		<li Class="CompProperties_AdvancedGraphic">
+		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
 			<randomised>true</randomised>
 		</li> 
 	</comps>
@@ -1850,7 +2017,7 @@
     <description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. It is standard-issue for the Adeptus Mechanicus' cybernetic Skitarii infantry, all Astra Militarum rank-and-file infantry and most junior Astra Militarum officers. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. A Lasgun has a longer range than a Laspistol, but is nowhere near as powerful as a Lascannon nor does it possess the rapid-firing qualities of the Multi-Laser or the Hellgun. Though not as powerful as kinetic projectile weapons such as the ubiquitous Bolter, the lower cost of production, the lack of a requirement for ammunition production and resupply make the Lasgun the best choice for the large forces of the Imperial Guard. The Lasgun uses a small portable capacitor power pack to produce a focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot. The Lasgun is effective when used en masse, but considerably less effective when used alone.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun</texPath>
-		<graphicClass>AdeptusMechanicus.Graphic_Advanced</graphicClass>
+		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
 		<shaderType>CutoutComplex</shaderType>
 		<color>(0.208,0.286,0.176)</color>
     </graphicData>
@@ -1937,7 +2104,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-		<li Class="CompProperties_AdvancedGraphic">
+		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
 			<randomised>true</randomised>
 		</li> 
 	</comps>
@@ -1978,10 +2145,10 @@
     <description>.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LuciusLasGun</texPath>
-		<graphicClass>AdeptusMechanicus.Graphic_Advanced</graphicClass>		
+		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>		
     </graphicData>
 	<comps>    
-		<li Class="CompProperties_AdvancedGraphic">
+		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
 			<randomised>true</randomised>
 		</li> 
 		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
@@ -2180,13 +2347,13 @@
     <description>Favoured by Imperial Guard Sharpshooters, the Long-Las, originally known as the "Sniper Variant Lasgun," is a specially modified version of the standard Lasgun constructed for increased range and accuracy. In addition to the redoubtable Lasgun's many variants, there are certain types of weapons that exhibit differences enough to be considered seperate weapons. One such weapon is the Sniper Variant Lasgun, better known as the Long-Las. Such weapons are only ever issued to those Guardsmen of the Astra Militarum who have displayed a flair for marksmanship, stealth operations and scout movement, for such weapons are difficult to produce and require more training and intelligence to utilise properly.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LongLas</texPath>
-		<graphicClass>AdeptusMechanicus.Graphic_Advanced</graphicClass>	
+		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>	
 		<shaderType>CutoutComplex</shaderType>
 		<color>(0.208,0.286,0.176)</color>
     </graphicData>
     <equippedAngleOffset>45</equippedAngleOffset>
 	<comps>    
-		<li Class="CompProperties_AdvancedGraphic">
+		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
 			<randomised>true</randomised>
 		</li> 
 	</comps>
@@ -2284,7 +2451,7 @@
     </graphicData>
     <equippedAngleOffset>45</equippedAngleOffset>
 	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -2548,7 +2715,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -2690,7 +2857,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -2805,7 +2972,7 @@
 				</li>
 			</VerbEntries>
 		</li>
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -2985,11 +3152,11 @@
     <description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol</texPath>
-		<graphicClass>AdeptusMechanicus.Graphic_Advanced</graphicClass>
+		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
 		<drawSize>1.0</drawSize>			
     </graphicData>
 	<comps>    
-	<li Class="CompProperties_AdvancedGraphic">
+	<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
 		<randomised>true</randomised>
 	</li>     
 	</comps>
@@ -3174,7 +3341,7 @@
     </graphicData>
     <equippedAngleOffset>45</equippedAngleOffset>
 	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3221,7 +3388,7 @@
 			<warmupTime>3</warmupTime>
 			<range>36</range>
 			<burstShotCount>12</burstShotCount>
-			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<soundCast>Shot_Minigun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -3265,7 +3432,7 @@
     </graphicData>
     <equippedAngleOffset>45</equippedAngleOffset>
 	<comps>     
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3428,7 +3595,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3520,7 +3687,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3618,7 +3785,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3719,7 +3886,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -3822,7 +3989,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -4031,7 +4198,7 @@
     <tickerType>Normal</tickerType>
     <graphicData>
       <texPath>Things/Projectile/FlamerFire</texPath>
-      <graphicClass>Graphic_Flicker</graphicClass>
+      <graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
@@ -4050,7 +4217,7 @@
 		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
 		<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 		<stoppingPower>0.75</stoppingPower>
-		<speed>20</speed>
+		<speed>10</speed>
 		<soundExplode>OGIFL_Explosion</soundExplode>
     </projectile>
   </ThingDef>
@@ -4206,7 +4373,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -4349,7 +4516,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -4607,7 +4774,7 @@
 			</li>
 		</VerbEntries>
 		</li> 
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -4842,7 +5009,7 @@
     </graphicData>
 	<comps>
 		<!--    
-	  <li Class="AdeptusMechanicus.CompProperties_OversizedWeapon">
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<northOffset>0.0,0.0,0.0</northOffset>
 			<eastOffset>0.0,1.0,0.0</eastOffset>
 			<westOffset>0.0,0.0,0.0</westOffset>
@@ -4982,7 +5149,7 @@
     </verbs>
 	<comps>    
 		<!--
-		<li Class="AdeptusMechanicus.CompProperties_AbilityItem">
+		<li Class="AbilitesExtended.CompProperties_AbilityItem">
 			<Abilities>
 				<li>OGI_Ability_TurboPenetrator</li>
 				<li>OGI_Ability_ShellBreaker</li>

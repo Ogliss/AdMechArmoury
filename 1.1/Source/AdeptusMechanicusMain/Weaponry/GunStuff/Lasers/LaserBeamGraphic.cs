@@ -76,7 +76,7 @@ namespace AdeptusMechanicus
 
         public void Setup(Thing launcher, Vector3 origin, Vector3 destination)
         {
-            SetColor(launcher);
+            //SetColor(launcher);
             this.launcher = launcher;
             a = origin;
             b = destination;

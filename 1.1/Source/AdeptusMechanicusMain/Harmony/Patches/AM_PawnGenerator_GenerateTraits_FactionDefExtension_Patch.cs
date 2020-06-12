@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             pawn.story.adulthood = BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
                             PawnBioAndNameGenerator.GiveAppropriateBioAndNameTo(pawn, request.FixedLastName, pawn.Faction.def);
                         }
-                        Log.Message(string.Format("reroll {0} : {1}({2}) : {3} : {4} : {5}", pawn.NameShortColored, pawn.KindLabel, pawn.kindDef.defName, pawn.story.childhood, pawn.story.adulthood, pawn.Faction));
+                    //    log.message(string.Format("reroll {0} : {1}({2}) : {3} : {4} : {5}", pawn.NameShortColored, pawn.KindLabel, pawn.kindDef.defName, pawn.story.childhood, pawn.story.adulthood, pawn.Faction));
                     }
                     if (pawn.Faction.def.HasModExtension<FactionDefExtension>())
                     {
@@ -41,7 +41,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 foreach (FactionTraitEntry item in Forced.ForcedTraits)
                                 {
-                                    Log.Message(string.Format("{0} : {1}", pawn.NameShortColored, item.def.LabelCap));
+                                //    log.message(string.Format("{0} : {1}", pawn.NameShortColored, item.def.LabelCap));
                                     if (!pawn.story.traits.HasTrait(item.def))
                                     {
                                         int maxTraits;

@@ -211,11 +211,6 @@ namespace RimWorld
                 {
                     PawnGenOption kindOption;
                     PawnKindDef kind;
-                    if (this.parent is Building_HiveLike_CrashedShipPart _HiveShip)
-                    {
-                        _HiveShip.spawnablePawnKinds.TryRandomElement(out kind);
-                    }
-                    else
                     if (!(from opt in PawnKinds
                           where opt.kind.combatPower <= this.pointsLeft
                           select opt).TryRandomElementByWeight((PawnGenOption x) => x.selectionWeight, out kindOption))

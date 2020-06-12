@@ -142,7 +142,7 @@ namespace AdeptusMechanicus
 			IntVec3 loc;
 			if (!InfestationLikeCellFinder.TryFindCell(out loc, map))
             {
-                Log.Message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
+            //    log.message(string.Format("TryFindCell: {0} From !InfestationLikeCellFinder.TryFindCell(out loc, map)", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 return null;
 			}
             ThingDef_HiveLike thingDef = (ThingDef_HiveLike)this.def.shipPart;
@@ -150,11 +150,11 @@ namespace AdeptusMechanicus
 			for (int i = 0; i < hivelikeCount - 1; i++)
 			{
 				loc = CompSpawnerHiveLikes.FindChildHiveLocation(thing.Position, map, this.def.shipPart, this.def.shipPart.GetCompProperties<CompProperties_SpawnerHiveLikes>(), true, true);
-                Log.Message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
+            //    log.message(string.Format("loc: {0} to check", !InfestationLikeCellFinder.TryFindCell(out loc, map)));
                 if (loc.IsValid)
                 {
                     thing = GenSpawn.Spawn(ThingMaker.MakeThing(thingDef.TunnelDef, null), loc, map, WipeMode.FullRefund);
-                    Log.Message(string.Format("spawning: {0} @ {1}", thing.Label, loc));
+                //    log.message(string.Format("spawning: {0} @ {1}", thing.Label, loc));
                 }
 			}
 			return thing;

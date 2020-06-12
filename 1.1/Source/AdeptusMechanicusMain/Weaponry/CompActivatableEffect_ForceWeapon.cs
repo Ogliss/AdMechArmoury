@@ -13,7 +13,7 @@ namespace AdeptusMechanicus
     public class CompForceWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
 
-        private CompActivatableEffect.State currentState = CompActivatableEffect.State.Deactivated;
+        private OgsCompActivatableEffect.CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
         
         public CompWeapon_MeleeSpecialRules specialRules
         {
@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (GetPawn!=null && GetPawn.isPsyker(out int level))
             {
-                this.currentState = AdeptusMechanicus.CompActivatableEffect.State.Activated;
+                this.currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Activated;
             }
         }
 

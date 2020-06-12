@@ -23,13 +23,13 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             foreach (DamageInfo info in __result)
             {
-                Log.Message(string.Format("info: Amount {0}, AP {1}", info.Amount, info.ArmorPenetrationInt));
+            //    log.message(string.Format("info: Amount {0}, AP {1}", info.Amount, info.ArmorPenetrationInt));
                 bool returnoriginal = true;
                 if (AMSettings.Instance.AllowForceWeaponEffect && info.Def.forceWeapon())
                 {
                     returnoriginal = false;
                     DamageInfo dinfo = GetForceDamage(info, __instance, target);
-                    Log.Message(string.Format("post GetForceDamage"));
+                //    log.message(string.Format("post GetForceDamage"));
                     yield return dinfo;
                 }
                 else if (info.Def.powerWeapon() || (!AMSettings.Instance.AllowForceWeaponEffect && info.Def.forceWeapon()))
@@ -37,19 +37,19 @@ namespace AdeptusMechanicus.HarmonyInstance
                     returnoriginal = false;
                     //    info.SetIgnoreArmor(true);
                     DamageInfo dinfo = GetPowerDamage(info, __instance, target);
-                    Log.Message(string.Format("post GetPowerDamage: AP {0}", dinfo.ArmorPenetrationInt));
+                //    log.message(string.Format("post GetPowerDamage: AP {0}", dinfo.ArmorPenetrationInt));
                     yield return dinfo;
                 }
                 else if (info.Def.witchbladeWeapon())
                 {
                     returnoriginal = false;
                     DamageInfo dinfo = GetWitchbladeDamage(info, __instance, target);
-                    Log.Message(string.Format("post GetWitchbladeDamage: Amount {0}, AP {1}", dinfo.Amount, dinfo.ArmorPenetrationInt));
+                //    log.message(string.Format("post GetWitchbladeDamage: Amount {0}, AP {1}", dinfo.Amount, dinfo.ArmorPenetrationInt));
                     yield return dinfo;
                 }
                 if (returnoriginal)
                 {
-                    Log.Message(string.Format("Original"));
+                //    log.message(string.Format("Original"));
                     yield return info;
                 }
             }
@@ -106,7 +106,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (Caster.isPsyker(out int Level, out float Mult))
                 {
-                    Log.Message(Caster.NameShortColored + " Level " + Level + " Mult " + Mult);
+                //    log.message(Caster.NameShortColored + " Level " + Level + " Mult " + Mult);
                     if (__instance.EquipmentSource != null)
                     {
                         CompWeapon_MeleeSpecialRules WeaponRules = __instance.EquipmentSource.TryGetComp<CompWeapon_MeleeSpecialRules>();
@@ -140,7 +140,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             Rand.PopState();
                                             casterRoll = (casterRoll - (targetPsychicSensitivity / 2));
                                             Activate = (casterRoll > targetRoll);
-                                            Log.Message(string.Format("Caster:{0}, Victim:{1}", casterRoll, targetRoll));
+                                        //    log.message(string.Format("Caster:{0}, Victim:{1}", casterRoll, targetRoll));
                                             if (Activate)
                                             {
                                                 DamageDef damDef = WeaponRules.ForceWeaponEffect;

@@ -20,10 +20,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Trader_GenerateCarriers_Postfix(ref PawnGroupKindWorker_Trader __instance, PawnGroupMakerParms parms, PawnGroupMaker groupMaker, Pawn trader, List<Thing> wares, ref List<Pawn> outPawns)
         {
-            Log.Message(string.Format("Trader: {0} is {1} has {2} carriers", trader.Label, trader.trader.traderKind, outPawns.Count));
+        //    log.message(string.Format("Trader: {0} is {1} has {2} carriers", trader.Label, trader.trader.traderKind, outPawns.Count));
             foreach (Pawn carrier in outPawns)
             {
-                Log.Message(string.Format("{0}", carrier.Label));
+            //    log.message(string.Format("{0}", carrier.Label));
             }
             if (trader.TraderKind.defName == "Caravan_Outlander_Carnivore" || trader.TraderKind.defName == "Caravan_Outlander_Herbivore")
             {
