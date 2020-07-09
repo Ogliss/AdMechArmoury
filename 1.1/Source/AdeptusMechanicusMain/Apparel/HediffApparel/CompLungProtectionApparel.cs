@@ -14,6 +14,7 @@ namespace AdeptusMechanicus
         }
         public float Chance = 0.25f;
     }
+
     public class CompLungProtectionApparel : ThingComp
     {
         public CompProperties_LungProtectionApparel Props => (CompProperties_LungProtectionApparel)base.props;

@@ -89,14 +89,15 @@ namespace AdeptusMechanicus
                                 }
                             }
                         }
+                        /*
                         if (item.UseFactionTextures)
                         {
                             var rect3 = new Rect(0f, y, rect.width, 20f);
                             DrawFactionButton(rect3, Drawer, item, false);
                             y += rect2.height;
                         }
-
-                        if (item.UseVariableTextures)
+                        */
+                        if (item.UseVariableTextures || item.UseFactionTextures)
                         {
                             var rect3 = new Rect(0f, y, rect.width, 20f);
                             DrawVariantButton(rect3, Drawer, item, false);
