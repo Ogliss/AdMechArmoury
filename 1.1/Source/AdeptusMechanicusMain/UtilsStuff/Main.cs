@@ -63,11 +63,11 @@ namespace AdeptusMechanicus
                     }
                 }
             }
-            ThingDef mechanicus = DefDatabase<ThingDef>.GetNamed("OG_Human_Mechanicus");
-            ThingDef astartes = DefDatabase<ThingDef>.GetNamed("OG_Human_Astartes");
-            ThingDef ogryn = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Ogryn");
-            ThingDef ratlin = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Ratling");
-            ThingDef beastman = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Beastman");
+            ThingDef mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus");
+            ThingDef astartes = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Astartes");
+            ThingDef ogryn = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ogryn");
+            ThingDef ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling");
+            ThingDef beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman");
             foreach (RecipeDef item in DefDatabase<RecipeDef>.AllDefs)
             {
                 if (item.AllRecipeUsers.Contains(ThingDefOf.Human))
