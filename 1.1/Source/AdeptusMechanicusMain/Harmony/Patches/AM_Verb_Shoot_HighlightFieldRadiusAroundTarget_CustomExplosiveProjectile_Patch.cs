@@ -35,11 +35,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
 
-    [HarmonyPatch(typeof(AbilitesExtended.Verb_UseEquipment), "HighlightFieldRadiusAroundTarget")]
+    [HarmonyPatch(typeof(AbilitesExtended.Verb_EquipmentLaunchProjectile), "HighlightFieldRadiusAroundTarget")]
     public static class AM_Verb_UseEquipment_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch
     {
         [HarmonyPostfix]
-        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref AbilitesExtended.Verb_UseEquipment __instance, ref float __result)
+        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance, ref float __result)
         {
             if (__instance.Projectile != null)
             {

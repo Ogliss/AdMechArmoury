@@ -25,7 +25,16 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
-                    
+                    if (defName == "OGAM_Apparel_SkitariiLegionnaireHelmet")
+                    {
+                        newName = "OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded";
+                    }
+                    else
+                    if (defName == "OGAM_Apparel_SkitariiPrimusHelmet")
+                    {
+                        newName = "OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Unhooded";
+                    }
+                    else
                     if (defName.Contains("OGT_Gun_TKroot"))
                     {
                         newName = Regex.Replace(defName, "OGT_Gun_TKroot", "OGK_Gun_Kroot");
@@ -80,7 +89,25 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName ="OG_Ork_Snotling";
                     }
-                    
+
+
+                    if (defName == "OG_Human_Imperial" || defName == "OG_Human_ELT")
+                    {
+                        newName = "Human";
+                    }
+                    if (defName == "Corpse_OG_Human_Imperial" || defName == "Corpse_OG_Human_ELT")
+                    {
+                        newName = "Corpse_Human";
+                    }
+                    if (defName == "Tau_Kroot_Warrior")
+                    {
+                        newName = "OG_Alien_Kroot";
+                    }
+                    if (defName == "Corpse_Tau_Kroot_Warrior")
+                    {
+                        newName = "Corpse_OG_Alien_Kroot";
+                    }
+
                     if (defName != __result)
                     {
                         if (defName.Contains("Corpse"))
@@ -434,21 +461,23 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (defName == "WRImpBoltTech" || defName == "OG_Weapons_Bolter_Imperial")
                     {
-                        newName = "OG_Common_Tech_Weapons_Bolt";
+                        newName = "OG_Imperial_Tech_Weapons_Bolt";
                     }
                     if (defName == "WRImpPlasmaTech" || defName == "OG_Weapons_Plasma_Imperial")
                     {
                         newName = "OG_Common_Tech_Weapons_Plasma";
                     }
                     // Imperial Reseach renames
-                    if (defName == "ImperialTechBase" || defName == "OG_Tech_Base_Imperial")
+                    if (defName == "ImperialTechBase" || defName == "OG_Tech_Base_Imperial" || defName == "OG_Imperial_Tech_Base_T1")
                     {
-                        newName = "OG_Imperial_Tech_Base_T1";
+                        newName = "OG_Imperial_Tech_Base_T0";
                     }
+                    /*
                     if (defName == "OG_Weapons_Base_Imperial")
                     {
                         newName = "OG_Imperial_Tech_Weapons_T1";
                     }
+                    */
                     if (defName == "WGRConversionField" || defName == "OG_Wargear_ConversionField_Imperial")
                     {
                         newName ="OG_Imperial_Tech_Wargear_Shield";
@@ -464,37 +493,40 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (defName == "WRRadiumWeapons" || defName == "OG_Weapons_Radium_Mechanicus")
                     {
-                        newName = "OG_Mechanicus_Tech_Weapons_Ranged_T1";
+                        newName = "OG_Mechanicus_Tech_Weapons_Radium";
                     }
                     if (defName == "WRMechAdvBallistics" || defName == "OG_Weapons_AdvBallistics_Mechanicus")
                     {
-                        newName = "OG_Mechanicus_Tech_Weapons_Ranged_T2";
+                        newName = "OG_Mechanicus_Tech_Weapons_AdvancedBallistics";
                     }
+                    /*
                     if (defName == "WRMechanicusPlasma" || defName == "OG_Weapons_Plasma_Mechanicus")
                     {
                         newName = "OG_Mechanicus_Tech_Weapons_Ranged_T3";
                     }
+                    */
                     // Eldar Reseach renames
                     if (defName == "EldarTechBase")
                     {
                         newName = "OG_Eldar_Tech_Base_T1";
                     }
-                    if (defName == "EldarBasicWeaponsTech")
+                    if (defName == "EldarBasicWeaponsTech" || defName == "OG_Eldar_Tech_Weapons_Ranged_T1")
                     {
-                        newName = "OG_Eldar_Tech_Weapons_Ranged_T1";
+                        newName = "OG_Eldar_Tech_Weapons_Shuriken"; 
                     }
-                    if (defName == "EldarAdvancedWeapons")
+                    if (defName == "EldarAdvancedWeapons" || defName == "OG_Eldar_Tech_Weapons_Ranged_T2")
                     {
-                        newName = "OG_Eldar_Tech_Weapons_Ranged_T2";
+                        newName = "OG_Aeldari_Tech_Weapons_Monofilament";
                     }
-                    if (defName == "EldarHeavyWeapons")
+                    if (defName == "EldarHeavyWeapons" || defName == "OG_Eldar_Tech_Weapons_Ranged_T3")
                     {
-                        newName = "OG_Eldar_Tech_Weapons_Ranged_T3";
+                        newName = "OG_Eldar_Tech_Weapons_Vortex";
                     }
                     if (defName == "EldarWraithTech")
                     {
                         newName = "OG_Eldar_Tech_Base_T2";
                     }
+                    /*
                     if (defName == "EldarBasicMeleeTech")
                     {
                         newName = "OG_Eldar_Tech_Weapons_Melee_T1"; 
@@ -503,13 +535,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OG_Eldar_Tech_Weapons_Melee_T2"; 
                     }
-                    if (defName == "EldarAdvancedMelee")
+                    */
+                    if (defName == "EldarAdvancedMelee" || defName == "OG_Eldar_Tech_Weapons_Melee_T3")
                     {
-                        newName = "OG_Eldar_Tech_Weapons_Melee_T3";
+                        newName = "OG_Eldar_Tech_Weapons_Witchblade";
                     }
-                    if (defName == "EldarArmour")
+                    if (defName == "EldarArmour" || defName == "OG_Eldar_Tech_Apparel_Armour_T1")
                     {
-                        newName = "OG_Eldar_Tech_Apparel_Armour_T1";
+                        newName = "OG_Aeldari_Tech_Apparel_Armour_T1"; 
                     }
                     if (defName == "EldarAspectArmour")
                     {
@@ -525,17 +558,17 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OG_Tau_Tech_Base_T1";
                     }
-                    if (defName == "TauPlasmaTech")
+                    if (defName == "TauPlasmaTech" || defName == "OG_Tau_Tech_Weapons_Ranged_T1")
                     {
-                        newName = "OG_Tau_Tech_Weapons_Ranged_T1";
+                        newName = "OG_Tau_Tech_Weapons_PlasmaPulse";
                     }
-                    if (defName == "TauAdvancedWeapons")
+                    if (defName == "TauAdvancedWeapons" || defName == "OG_Tau_Tech_Weapons_Ranged_T2")
                     {
-                        newName = "OG_Tau_Tech_Weapons_Ranged_T2";
+                        newName = "OG_Tau_Tech_Weapons_Railgun";
                     }
-                    if (defName == "TauIonTech")
+                    if (defName == "TauIonTech" || defName == "OG_Tau_Tech_Weapons_Ranged_T3")
                     {
-                        newName = "OG_Tau_Tech_Weapons_Ranged_T3";
+                        newName = "OG_Tau_Tech_Weapons_Ion";
                     }
                     if (defName == "TauArmour")
                     {

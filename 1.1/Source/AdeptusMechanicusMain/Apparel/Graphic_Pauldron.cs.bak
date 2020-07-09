@@ -1,0 +1,254 @@
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Verse;
+
+namespace AdeptusMechanicus
+{
+	// Token: 0x020002F3 RID: 755
+	public class Graphic_Pauldron : Graphic
+	{
+		public string GraphicPath
+		{
+			get
+			{
+				return this.path;
+			}
+		}
+
+		public override Material MatSingle
+		{
+			get
+			{
+				return this.subGraphics[0].MatSingle;
+			}
+		}
+
+		public override Material MatEast => subGraphics[0].MatEast;
+
+		public override Material MatNorth => subGraphics[0].MatNorth;
+
+		public override Material MatSouth => subGraphics[0].MatSouth;
+
+		public override Material MatWest => subGraphics[0].MatWest;
+
+		// Token: 0x17000455 RID: 1109
+		// (get) Token: 0x06001542 RID: 5442 RVA: 0x0007CB80 File Offset: 0x0007AD80
+		public override bool WestFlipped
+		{
+			get
+			{
+				return this.westFlipped;
+			}
+		}
+
+		// Token: 0x17000456 RID: 1110
+		// (get) Token: 0x06001543 RID: 5443 RVA: 0x0007CB88 File Offset: 0x0007AD88
+		public override bool EastFlipped
+		{
+			get
+			{
+				return this.eastFlipped;
+			}
+		}
+
+		// Token: 0x17000457 RID: 1111
+		// (get) Token: 0x06001544 RID: 5444 RVA: 0x0007CB90 File Offset: 0x0007AD90
+		public override bool ShouldDrawRotated
+		{
+			get
+			{
+				return (this.data == null || this.data.drawRotated) && (this.MatEast == this.MatNorth || this.MatWest == this.MatNorth);
+			}
+		}
+
+		// Token: 0x17000458 RID: 1112
+		// (get) Token: 0x06001545 RID: 5445 RVA: 0x0007CBCF File Offset: 0x0007ADCF
+		public override float DrawRotatedExtraAngleOffset
+		{
+			get
+			{
+				return this.drawRotatedExtraAngleOffset;
+			}
+		}
+		public override void Init(GraphicRequest req)
+		{
+			this.data = req.graphicData;
+			if (req.path.NullOrEmpty())
+			{
+				throw new ArgumentNullException("folderPath");
+			}
+			if (req.shader == null)
+			{
+				throw new ArgumentNullException("shader");
+			}
+			this.path = req.path;
+			this.color = req.color;
+			this.colorTwo = req.colorTwo;
+			this.drawSize = req.drawSize;
+			List<Texture2D> list = (from x in ContentFinder<Texture2D>.GetAllInFolder(req.path)
+									where !x.name.EndsWith(Graphic_Pauldron.MaskSuffix) && !x.name.EndsWith(Graphic_Pauldron.GlowSuffix) && !x.name.EndsWith(Graphic_Pauldron.GlowMaskSuffix) && !x.name.Contains(Graphic_Pauldron.NSuffix) && !x.name.Contains(Graphic_Pauldron.SSuffix) && !x.name.Contains(Graphic_Pauldron.ESuffix) && !x.name.Contains(Graphic_Pauldron.WSuffix)
+									orderby x.name
+									select x).ToList<Texture2D>();
+			if (list.NullOrEmpty<Texture2D>())
+			{
+				Log.Error("Collection cannot init: No textures found at path " + req.path, false);
+				this.subGraphics = new Graphic[]
+				{
+					BaseContent.BadGraphic
+				};
+				return;
+			}
+			else
+			{
+
+			}
+			this.subGraphics = new Graphic[list.Count];
+			for (int i = 0; i < list.Count; i++)
+			{
+				string path = req.path + "/" + list[i].name;
+				//	Log.Message("loaded "+ path);
+				this.subGraphics[i] = GraphicDatabase.Get(typeof(Graphic_Multi), path, req.shader, this.drawSize, this.color, this.colorTwo, null, req.shaderParameters);
+			}
+		}
+
+		// Token: 0x06001563 RID: 5475 RVA: 0x0007D251 File Offset: 0x0007B451
+		public override Graphic GetColoredVersion(Shader newShader, Color newColor, Color newColorTwo)
+		{
+			return GraphicDatabase.Get<Graphic_Multi>(this.path, newShader, this.drawSize, newColor, newColorTwo, this.data);
+		}
+
+		// Token: 0x06001564 RID: 5476 RVA: 0x0007CDD6 File Offset: 0x0007AFD6
+		public override Material MatAt(Rot4 rot, Thing thing = null)
+		{
+			switch (rot.AsInt)
+			{
+				case 0:
+					return this.MatNorth;
+				case 1:
+					return this.MatEast;
+				case 2:
+					return this.MatSouth;
+				case 3:
+					return this.MatWest;
+				default:
+					return BaseContent.BadMat;
+			}
+		}
+
+		// Token: 0x06001565 RID: 5477 RVA: 0x0007D26D File Offset: 0x0007B46D
+		public override Material MatSingleFor(Thing thing)
+		{
+
+			if (thing == null)
+			{
+				return this.MatSingle;
+			}
+			return this.SubGraphicFor(thing).MatSingle;
+		}
+
+		// Token: 0x06001566 RID: 5478 RVA: 0x0007D285 File Offset: 0x0007B485
+		public Graphic SubGraphicFor(Thing thing)
+		{
+			Graphic graphic = this.subGraphics[0];
+			if (thing.Faction!=null)
+			{
+				if (thing.Faction==Faction.OfPlayer)
+				{
+					CompPauldronDrawer drawer = thing.TryGetComp<CompPauldronDrawer>();
+					if (drawer != null)
+					{
+						if (!drawer.factiongTag.NullOrEmpty())
+						{
+							graphic = this.subGraphics.FirstOrFallback(x => x.path.Contains(drawer.factiongTag));
+							return graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+						}
+					}
+				}
+				if (thing.Faction.def.HasModExtension<FactionDefExtension>())
+				{
+					FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
+					if (!extension.factionTextureTag.NullOrEmpty())
+					{
+						graphic = this.subGraphics.First(x=> x.path.Contains(extension.factionTextureTag));
+					}
+					if (extension.factionColor != null)
+					{
+						color = extension.factionColor;
+					}
+					if (extension.factionColorTwo != null)
+					{
+						colorTwo = extension.factionColorTwo;
+					}
+					return graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+				}
+			}
+			return graphic;
+		}
+
+		// Token: 0x06001567 RID: 5479 RVA: 0x0007D29C File Offset: 0x0007B49C
+		public override void DrawWorker(Vector3 loc, Rot4 rot, ThingDef thingDef, Thing thing, float extraRotation)
+		{
+			Graphic graphic;
+			if (thing != null)
+			{
+				graphic = this.SubGraphicFor(thing);
+			}
+			else
+			{
+				graphic = this.subGraphics[0];
+			}
+			graphic.DrawWorker(loc, rot, thingDef, thing, extraRotation);
+		}
+
+		// Token: 0x06001569 RID: 5481 RVA: 0x0007D3AA File Offset: 0x0007B5AA
+		public override string ToString()
+		{
+			return string.Concat(new object[]
+			{
+				"Advanced(path=",
+				this.path,
+				", count=",
+				this.subGraphics.Length,
+				")"
+			});
+		}
+		protected Graphic[] subGraphics;
+		public int Count
+		{
+			get
+			{
+				return this.subGraphics.Length;
+			}
+		}
+
+		// Token: 0x170000F1 RID: 241
+		// (get) Token: 0x06000452 RID: 1106 RVA: 0x000118B0 File Offset: 0x0000FAB0
+		public Graphic[] Graphics
+		{
+			get
+			{
+				return this.subGraphics;
+			}
+		}
+		// Token: 0x04000E00 RID: 3584
+		private bool westFlipped;
+
+		// Token: 0x04000E01 RID: 3585
+		private bool eastFlipped;
+
+		// Token: 0x04000E02 RID: 3586
+		private float drawRotatedExtraAngleOffset;
+		public static readonly string MaskSuffix = "_m";
+		public static readonly string GlowSuffix = "_Glow";
+		public static readonly string GlowMaskSuffix = "_Glow_m";
+		public static readonly string NSuffix = "_north";
+		public static readonly string SSuffix = "_south";
+		public static readonly string ESuffix = "_east";
+		public static readonly string WSuffix = "_west";
+		public static readonly string MMaskSuffix = "m";
+		public static readonly string MaskIconSuffix = "_m";
+	}
+}

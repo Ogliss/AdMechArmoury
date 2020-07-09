@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             GunVerbEntry entry = __instance.SpecialRules();
             if (entry==null)
             {
-                Log.Message("no SpecialRules detected");
+            //    Log.Message("no SpecialRules detected");
                 return true;
             }
             bool canDamageWeapon;
@@ -41,14 +41,16 @@ namespace AdeptusMechanicus.HarmonyInstance
             string reliabilityString;
             float failChance;
             
-            StatPart_Reliability.GetReliability(entry, out reliabilityString, out failChance);
+            StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out reliabilityString, out failChance);
             failChance = (__instance.GetsHot()) ? (failChance / 10) : (failChance / 100);
             bool failed = false;
             if (__instance.GetsHot() || __instance.Jams())
             {
+            //    Log.Message("failChance: "+failChance);
                 Rand.PushState();
                 failed = Rand.Chance(failChance);
                 Rand.PopState();
+            //    Log.Message("failed: "+failed);
             }
             if (__instance.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out canDamageWeapon, out extraWeaponDamage))
             {
@@ -91,7 +93,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             BodyPartRecord part = list.RandomElement();
                             Hediff hediff;
                             float severity = Rand.Range(Math.Min(0.1f, DamageAmount), Math.Min(DamageAmount, maxburndmg));
-                            hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, null);
+                            hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, part);
                             hediff.Severity = severity;
                             launcherPawn.health.AddHediff(hediff, part, null);
                             DamageAmount -= severity;
@@ -370,11 +372,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
 
-    [HarmonyPatch(typeof(AbilitesExtended.Verb_ShootEquipment), "TryCastShot")]
+    [HarmonyPatch(typeof(AbilitesExtended.Verb_EquipmentLaunchProjectile), "TryCastShot")]
     public static class AM_Verb_ShootEquipment_TryCastShot_WeaponSpecialRules_Patch
     {
         [HarmonyPrefix]
-        public static bool TryCastShot_Prefix(ref AbilitesExtended.Verb_ShootEquipment __instance)
+        public static bool TryCastShot_Prefix(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance)
         {
             //    Log.Warning("TryCastShot");
             bool GetsHot = __instance.verbProperties.GetsHot;
@@ -397,7 +399,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 string msg = string.Format("");
                 string reliabilityString;
                 float failChance;
-                StatPart_Reliability.GetReliability(__instance.EquipmentSource.TryGetComp<CompWeapon_GunSpecialRules>(), out reliabilityString, out failChance);
+                AbilitesExtended.StatPart_Reliability.GetReliability(__instance.verbProperties, out reliabilityString, out failChance);
                 failChance = GetsHot ? (failChance / 10) : (failChance / 100);
                 if (Rand.Chance(failChance))
                 {
@@ -586,7 +588,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static FieldInfo currentTarget = typeof(Verb_Shoot).GetField("currentTarget", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         public static FieldInfo canHitNonTargetPawnsNow = typeof(Verb_Shoot).GetField("canHitNonTargetPawnsNow", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         // Token: 0x0600651E RID: 25886 RVA: 0x001B8BC0 File Offset: 0x001B6FC0
-        public static bool TryCastExtraShot(ref AbilitesExtended.Verb_ShootEquipment __instance, LocalTargetInfo currentTarget, bool canHitNonTargetPawnsNow)
+        public static bool TryCastExtraShot(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance, LocalTargetInfo currentTarget, bool canHitNonTargetPawnsNow)
         {
             if (currentTarget.HasThing && currentTarget.Thing.Map != __instance.caster.Map)
             {
@@ -690,7 +692,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             return true;
         }
-        public static void CriticalOverheatExplosion(ref AbilitesExtended.Verb_ShootEquipment __instance)
+        public static void CriticalOverheatExplosion(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance)
         {
             Map map = __instance.caster.Map;
             if (__instance.Projectile.projectile.explosionEffect != null)

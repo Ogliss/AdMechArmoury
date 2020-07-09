@@ -19,18 +19,64 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return this.parent.TryGetComp<CompWeapon_MeleeSpecialRules>();
+                CompWeapon_MeleeSpecialRules _MeleeSpecialRules = this.parent.TryGetComp<CompWeapon_MeleeSpecialRules>();
+                if (_MeleeSpecialRules!=null)
+                {
+                    return _MeleeSpecialRules;
+                }
+                return null;
+            }
+        }
+
+        public CompEquippable Equippable
+        {
+            get
+            {
+                return this.parent.TryGetComp<CompEquippable>() ?? null;
             }
         }
 
         public override bool CanActivate()
         {
-        //    Log.Message(string.Format("{0} CanActivate IsFighting: {1}, lastGivenWorkType: {2}, alwaysShowWeapon: {3}", GetPawn.LabelShortCap, GetPawn.IsFighting(), GetPawn.mindState.lastGivenWorkType, GetPawn.CurJobDef.alwaysShowWeapon));
-            if (GetPawn is Pawn p && p.Spawned && p.Map != null)
+            if (Equippable == null)
             {
-                return base.CanActivate() &&  (GetPawn.isPsyker() || !specialRules.ForceEffectRequiresPsyker);
+                return false;
             }
-            return false;
+            /*
+            if (specialRules == null)
+            {
+                Log.Warning(parent.LabelCap+ " is a Force weapons without a specialRules comp");
+                return false;
+            }
+            */
+            if (Equippable.PrimaryVerb == null)
+            {
+                return false;
+            }
+            if (Equippable.PrimaryVerb.CasterPawn == null)
+            {
+                return false;
+            }
+            Pawn p = Equippable.PrimaryVerb.CasterPawn;
+            //    Log.Message(string.Format("{0} CanActivate IsFighting: {1}, lastGivenWorkType: {2}, alwaysShowWeapon: {3}", GetPawn.LabelShortCap, GetPawn.IsFighting(), GetPawn.mindState.lastGivenWorkType, GetPawn.CurJobDef.alwaysShowWeapon));
+            if (!p.Spawned || p.Map == null)
+            {
+                return false;
+            }
+            Log.Message("CanActivate 5");
+            if (specialRules != null)
+            {
+                if (specialRules.ForceEffectRequiresPsyker)
+                {
+                    Log.Message("CanActivate 5 1");
+                    if (!p.isPsyker())
+                    {
+                        return false;
+                    }
+                }
+            }
+            Log.Message("CanActivate 6");
+            return base.CanActivate();
         }
         
 

@@ -8,59 +8,33 @@ using Verse;
 namespace AdeptusMechanicus
 {
     // Token: 0x02000067 RID: 103
-    public class MapComponent_DeepStrike : MapComponent, IThingHolder
+    public class MapComponent_DeepStrike : MapComponent
     {
         public MapComponent_DeepStrike(Map map) : base(map)
         {
             this.map = map;
-            this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
+            this.Strikes = new List<DeepStrikeEntry>();
+
         }
 
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-            if (innerContainer.Count > 0)
+            if (Strikes.Count > 0)
             {
-                if (strikeDelay==-1)
+                foreach (DeepStrikeEntry item in Strikes)
                 {
-                    strikeDelay = ResultSpawnDelay.RandomInRange;
-                    ticksSinceRaid++;
-                }
-                if (ticksSinceRaid!=-1)
-                {
-                    ticksSinceRaid++;
-                }
-
-            //    Log.Message(string.Format("{0}, strikeDelay: {1}, ticksLastRaid: {2}, ticksSinceRaid: {3}", innerContainer.ContentsString, strikeDelay, raidLastTick, ticksSinceRaid));
-                if (ticksSinceRaid > strikeDelay)
-                {
-                    foreach (Pawn p in innerContainer)
+                    if (item.delay>0)
                     {
-                        if (p.DeepStrike().pawnsArrivalMode == DeepStrikeType.Drop)
-                        {
-                            Droppers.Add(p);
-                        }
-                        if (p.DeepStrike().pawnsArrivalMode == DeepStrikeType.Fly)
-                        {
-                            Flyers.Add(p);
-                        }
-                        if (p.DeepStrike().pawnsArrivalMode == DeepStrikeType.Teleport)
-                        {
-                            Teleporters.Add(p);
-                        }
-                        if (p.DeepStrike().pawnsArrivalMode == DeepStrikeType.Tunnel)
-                        {
-                            Tunnellers.Add(p);
-                        }
-
+                        item.delay--;
                     }
-
-                    if (!innerContainer.NullOrEmpty())
+                    else
                     {
-                        DoStrike();
+                        DoStrike(item);
+                        strikeLastTick = Find.TickManager.TicksGame;
                     }
-                    strikeLastTick = Find.TickManager.TicksGame;
                 }
+                Strikes.RemoveAll(x => x.struck);
             }
             else
             {
@@ -70,35 +44,77 @@ namespace AdeptusMechanicus
             }
         }
 
-        public void DoStrike()
+        public void DoStrike(DeepStrikeEntry strike)
         {
             string str = string.Empty;
+            Log.Message("0");
+            foreach (var item in strike.members)
+            {
+                Log.Message("0 a");
+                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Drop)
+                {
+                    Droppers.Add(item);
+                }
+                Log.Message("0 b");
+                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Fly)
+                {
+                    Flyers.Add(item);
+                }
+                Log.Message("0 c");
+                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Teleport)
+                {
+                    Teleporters.Add(item);
+                }
+                Log.Message("0 d");
+                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Tunnel)
+                {
+                    Tunnellers.Add(item);
+                }
+                Log.Message("0 e");
+            }
+            Log.Message("1");
             List<Pawn> pawns = new List<Pawn>();
+            Log.Message("2");
             if (!Droppers.NullOrEmpty())
             {
+                Log.Message("2 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop) : ", "+ DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop);
                 pawns.AddRange(Droppers);
                 ArriveDropPod(Droppers);
+                Droppers.Clear();
             }
+            Log.Message("3");
             if (!Flyers.NullOrEmpty())
             {
+                Log.Message("3 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Fly) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Fly);
                 pawns.AddRange(Flyers);
                 ArriveFly(Flyers);
+                Flyers.Clear();
             }
+            Log.Message("4");
             if (!Teleporters.NullOrEmpty())
             {
+                Log.Message("4 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Teleport) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Teleport);
                 pawns.AddRange(Teleporters);
                 ArriveTeleport(Teleporters);
+                Teleporters.Clear();
             }
+            Log.Message("5");
             if (!Tunnellers.NullOrEmpty())
             {
+                Log.Message("5 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Tunnel) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Tunnel);
                 pawns.AddRange(Tunnellers);
                 ArriveTunnel(Tunnellers);
+                Tunnellers.Clear();
             }
+            Log.Message("6");
             Find.LetterStack.ReceiveLetter("AMA_DeepStrike_Incomming".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AMA_DeepStrike_Incomming_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural, str), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
+
+            Log.Message("7");
+            strike.struck = true;
         }
 
         public void ArriveDropPod(List<Pawn> pawns)
@@ -169,27 +185,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x060024F3 RID: 9459 RVA: 0x00116CE3 File Offset: 0x001150E3
-        public ThingOwner GetDirectlyHeldThings()
-        {
-            return this.innerContainer;
-        }
-
-        // Token: 0x060024F4 RID: 9460 RVA: 0x00116CEB File Offset: 0x001150EB
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
-        }
-
-        public IThingHolder ParentHolder
-        {
-            get
-            {
-                return map;
-            }
-        }
-        protected ThingOwner innerContainer;
-        
         public override void ExposeData()
         {
 
@@ -198,13 +193,9 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<int>(ref this.strikeDelay, "strikeDelay", -1, false);
             Scribe_Values.Look<int>(ref this.raidLastTick, "ticksLastRaid", -1, false);
             Scribe_Collections.Look(ref this.Strikes, "StrikesGroups", LookMode.Deep);
-            Scribe_Deep.Look<ThingOwner>(ref this.innerContainer, "innerContainer", new object[]
-            {
-                this
-            });
         }
 
-        public List<DeepStrikeEntry> Strikes = new List<DeepStrikeEntry>();
+        public List<DeepStrikeEntry> Strikes;
 
         private List<Pawn> Droppers = new List<Pawn>();
         private List<Pawn> Flyers = new List<Pawn>();
@@ -218,12 +209,5 @@ namespace AdeptusMechanicus
         public int raidLastTick = -1;
     }
 
-    public class DeepStrikeEntry
-    {
-        private List<Pawn> StrikeGroup = new List<Pawn>();
-        public DeepStrikeType InsetionMethod = DeepStrikeType.Drop;
-        public float StrikeDelay = 0f;
-        public float QuedTick = 0f;
-    }
 
 }

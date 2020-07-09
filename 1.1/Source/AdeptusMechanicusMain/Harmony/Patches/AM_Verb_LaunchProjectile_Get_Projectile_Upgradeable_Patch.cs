@@ -77,11 +77,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
 
-    [HarmonyPatch(typeof(AbilitesExtended.Verb_UseEquipment), "get_Projectile")]
+    [HarmonyPatch(typeof(AbilitesExtended.Verb_EquipmentLaunchProjectile), "get_Projectile")]
     public static class AM_Verb_UseEquipment_Get_Projectile_Upgradeable_Patch
     {
         [HarmonyPostfix]
-        public static void Upgradeable_Projectile_Postfix(ref Verb_LaunchProjectile __instance, ref ThingDef __result)
+        public static void Upgradeable_Projectile_Postfix(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance, ref ThingDef __result)
         {
             if (__instance.EquipmentSource != null)
             {

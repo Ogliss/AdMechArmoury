@@ -30,34 +30,39 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (patch)
                 {
                     pawnsN = pawns.FindAll(x => !x.canDeepStrike() && !x.canInfiltrate());
+
                     bool DeepStrike = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeChance : 0f)));
+
                     if (!pawns.FindAll(x => x.canDeepStrike()).NullOrEmpty() && DeepStrike)
                     {
-                    //    Log.Message(string.Format("Deep Strike Candidates: {0}", pawns.FindAll(x => x.canDeepStrike()).Count));
+                        Log.Message(string.Format("Deep Strike Candidates: {0}", pawns.FindAll(x => x.canDeepStrike()).Count));
                         foreach (Pawn p in pawns.FindAll(x => x.canDeepStrike()))
                         {
                             bool Striker = Rand.Chance(p.chanceDeepStrike());
-                            //    Log.Message(string.Format("Deep Strike Candidate: {0}", p.LabelShortCap));
-                            if (Striker)
+                                Log.Message(string.Format("Deep Strike Candidate: {0}", p.LabelShortCap));
+                            if (Striker || true)
                             {
-                            //    Log.Message(string.Format("{0} Depoyment: Deep Strike", p.LabelShortCap));
+                                Log.Message(string.Format("{0} Depoyment: Deep Strike", p.LabelShortCap));
                                 DeepStrikers.Add(p);
                             }
                             else
                             {
-                            //    Log.Message(string.Format("{0} Depoyment: Normal", p.LabelShortCap));
+                                Log.Message(string.Format("{0} Depoyment: Normal", p.LabelShortCap));
                                 pawnsN.Add(p);
                             }
                         }
                         if (!DeepStrikers.NullOrEmpty())
                         {
-                            foreach (Pawn p in DeepStrikers)
-                            {
-                                map.DeepStrike().GetDirectlyHeldThings().TryAdd(p, false);
-                            }
-                            map.DeepStrike().raidLastTick = Find.TickManager.TicksGame;
+                            Rand.PushState();
                             map.DeepStrike().strikeMinDelay = parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks();
                             map.DeepStrike().strikeMaxDelay = parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks();
+                            int delay = Rand.RangeInclusive(parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks(), parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks());
+                            Rand.PopState();
+                            DeepStrikeEntry strikeEntry = new DeepStrikeEntry(parms.faction, delay);
+                            strikeEntry.AddPawns(DeepStrikers);
+                            map.DeepStrike().Strikes.Add(strikeEntry);
+                            
+                            map.DeepStrike().raidLastTick = Find.TickManager.TicksGame;
                         }
                     }
                     else

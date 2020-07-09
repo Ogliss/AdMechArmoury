@@ -201,13 +201,23 @@ namespace AdeptusMechanicus.ExtensionMethods
                 if (pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_ImplantWithLevel)))
                 {
                     Level = (pawn.health.hediffSet.hediffs.First(x => x.GetType() == typeof(Hediff_ImplantWithLevel)) as Hediff_ImplantWithLevel).level;
-                    result = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity) > 0;
+                    result = true;
                 }
                 else
                 if (pawn.story.traits.HasTrait(TraitDefOf.PsychicSensitivity))
                 {
                     result = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity) > 0;
                     Level = pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity);
+                }
+                else
+                {
+                    TraitDef Corruptionpsyker = DefDatabase<TraitDef>.GetNamedSilentFail("Psyker");
+                    if (Corruptionpsyker!=null)
+                    {
+                        result = true;
+                        pawn.story.traits.HasTrait(Corruptionpsyker);
+                        Level = pawn.story.traits.DegreeOfTrait(Corruptionpsyker);
+                    }
                 }
                 Mult = pawn.GetStatValue(StatDefOf.PsychicSensitivity) * (pawn.needs.mood.CurInstantLevelPercentage - pawn.health.hediffSet.PainTotal);
             }
@@ -225,6 +235,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 }
                 if (extension != null)
                 {
+                    result = true;
                     Level = extension.Level;
                 }
                 if (pawn.needs != null && pawn.needs.mood != null)

@@ -37,10 +37,11 @@ namespace AdeptusMechanicus.settings
             else
             {
 
-        //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompOversizedWeapon", "AdeptusMechanicus"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAiming_ActivatableEffect_OverSized_PreFix", null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAiming_ActivatableEffect_OverSized_PostFix", null));
-        //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompActivatableEffect", "AdeptusMechanicus"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAimingPostFix_OverSized_Activatable_PreFix", null));
+                //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompOversizedWeapon", "AdeptusMechanicus"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAiming_ActivatableEffect_OverSized_PreFix", null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAiming_ActivatableEffect_OverSized_PostFix", null));
+                //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompActivatableEffect", "AdeptusMechanicus"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAimingPostFix_OverSized_Activatable_PreFix", null));
 
             }
+
             if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
         }
 

@@ -33,7 +33,7 @@ namespace AdeptusMechanicus
                 rotationSpeed = 0;
             }
         }
-
+        /*
         public Reliability reliability
         {
             get
@@ -51,6 +51,7 @@ namespace AdeptusMechanicus
                 return Reliability.NA;
             }
         }
+        */
         /*
         public override void Tick()
         {
@@ -62,6 +63,7 @@ namespace AdeptusMechanicus
             }
         }
         */
+        /*
         public override string GetInspectString()
         {
             string result = base.GetInspectString();
@@ -80,7 +82,7 @@ namespace AdeptusMechanicus
             }
             return result;
         }
-
+        */
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
         {
             foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
@@ -101,6 +103,7 @@ namespace AdeptusMechanicus
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
+            /*
             if (GetComp<CompWeapon_GunSpecialRules>() != null)
             {
                 CompWeapon_GunSpecialRules specialRules = GetComp<CompWeapon_GunSpecialRules>();
@@ -125,6 +128,7 @@ namespace AdeptusMechanicus
                     Scribe_Values.Look<string>(ref reliabilityString, "reliability", "NA", false);
                 }
             }
+            */
         }
         void UpdateRotationOffset(int ticks)
         {

@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using AdeptusMechanicus;
 using DualWield;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -31,106 +32,15 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (AdeptusIntergrationUtil.enabled_AlienRaces)
             {
-                if (AdeptusIntergrationUtil.enabled_XenobiologisEldar)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Eldar") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "E");
-                    }
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisDarkEldar)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_DarkEldar") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "DE");
-                    }
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisTau)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Tau") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "T");
-                    }
-                    alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Kroot") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "T");
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "K");
-                    }
-                    alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Vespid") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "T");
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "V");
-                    }
-
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisOrk)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Ork") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "O");
-                    }
-                    alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Grot") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "O");
-                    }
-
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisChaos)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Chaos") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "C");
-                    }
-
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisNecron)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Eldar") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "N");
-                    }
-
-                }
-                if (AdeptusIntergrationUtil.enabled_XenobiologisTyranid)
-                {
-                    AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Eldar") as AlienRace.ThingDef_AlienRace;
-                    if (alien != null)
-                    {
-                        HarmonyPatches.TryAddRacialRestrictions(alien, "TY");
-                    }
-
-                }
-                AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
-                if (Human != null)
-                {
-                    if (Prefs.DevMode) Log.Message("Adding Human restrictions");
-                    HarmonyPatches.TryAddRacialRestrictions(Human, "I");
-                    List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
-                    projectDefs.AddRange(ReseachImperial);
-                    AddRecipies(Human, ReseachImperial);
-                }
-                AlienRace.ThingDef_AlienRace Mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus") as AlienRace.ThingDef_AlienRace;
-                if (Mechanicus != null)
-                {
-                    if (Prefs.DevMode) Log.Message("Adding Mechanicus restrictions");
-                    HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "I");
-                    HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "AM");
-                    List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
-                    projectDefs.AddRange(ReseachImperial);
-                    projectDefs.AddRange(ReseachMechanicus);
-                    AddRecipies(Mechanicus, projectDefs);
-                }
+                AlienRacesPatch();
             }
 
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(EquipmentUtility), "CanEquip", new Type[]
+            {
+                typeof(Thing),
+                typeof(Pawn),
+                typeof(string).MakeByRefType()
+            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
@@ -145,7 +55,117 @@ namespace AdeptusMechanicus.HarmonyInstance
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
         }
 
-        public static void TryAddRacialRestrictions(AlienRace.ThingDef_AlienRace race, string Tag)
+        public static void AlienRacesPatch()
+        {
+
+            if (AdeptusIntergrationUtil.enabled_XenobiologisEldar)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Eldar") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "E");
+                    if (!AdeptusIntergrationUtil.enabled_XenobiologisDarkEldar)
+                    {
+                        HarmonyPatches.TryAddRacialRestrictions(alien, "DE");
+                    }
+                }
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisDarkEldar)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_DarkEldar") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "DE");
+                    if (!AdeptusIntergrationUtil.enabled_XenobiologisEldar)
+                    {
+                        HarmonyPatches.TryAddRacialRestrictions(alien, "E");
+                    }
+                }
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisTau)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Tau") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "T");
+                }
+                alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Kroot") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "T");
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "K");
+                }
+                alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Vespid") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "T");
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "V");
+                }
+
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisOrk)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Ork") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "O");
+                }
+                alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Grot") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "O");
+                }
+
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisChaos)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Chaos") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "C");
+                }
+
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisNecron)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Necron") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "N");
+                }
+
+            }
+            if (AdeptusIntergrationUtil.enabled_XenobiologisTyranid)
+            {
+                AlienRace.ThingDef_AlienRace alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Tyranid") as AlienRace.ThingDef_AlienRace;
+                if (alien != null)
+                {
+                    HarmonyPatches.TryAddRacialRestrictions(alien, "TY");
+                }
+
+            }
+            AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
+            if (Human != null)
+            {
+                if (Prefs.DevMode) Log.Message("Adding Human restrictions");
+                HarmonyPatches.TryAddRacialRestrictions(Human, "I");
+                List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
+                projectDefs.AddRange(ReseachImperial);
+                AddRecipies(Human, ReseachImperial);
+            }
+            AlienRace.ThingDef_AlienRace Mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus") as AlienRace.ThingDef_AlienRace;
+            if (Mechanicus != null)
+            {
+                if (Prefs.DevMode) Log.Message("Adding Mechanicus restrictions");
+                HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "I");
+                HarmonyPatches.TryAddRacialRestrictions(Mechanicus, "AM");
+                List<ResearchProjectDef> projectDefs = new List<ResearchProjectDef>();
+                projectDefs.AddRange(ReseachImperial);
+                projectDefs.AddRange(ReseachMechanicus);
+                AddRecipies(Mechanicus, projectDefs);
+            }
+        }
+        public static void TryAddRacialRestrictions(ThingDef race, string Tag)
         {
             List<RecipeDef> things = DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Gun_") || x.defName.Contains("OG" + Tag + "_Melee_") || x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
 
@@ -157,7 +177,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //    Log.Message(string.Format("adding entry for {0}", def));
                     AlienRace.RaceRestrictionSettings.recipeRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
                 }
-                AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: race);
+                AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
                 //    List<string> names = new List<string>();
                 //    AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].ForEach(x => names.Add(x.defName));
                 //    Log.Message(string.Format("adding value for {0}, {1}", def, names.ToCommaList()));
@@ -165,14 +185,14 @@ namespace AdeptusMechanicus.HarmonyInstance
             List<ThingDef> Apparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
         }
 
-        public static void AddRecipies(AlienRace.ThingDef_AlienRace race, List<ResearchProjectDef> researches)
+        public static void AddRecipies(ThingDef race, List<ResearchProjectDef> researches)
         {
 
             foreach (ResearchProjectDef def in researches)
             {
                 if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
                     AlienRace.RaceRestrictionSettings.researchRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
-                AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: race);
+                AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
             }
 
         }

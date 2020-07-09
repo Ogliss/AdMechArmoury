@@ -68,10 +68,10 @@ namespace AdeptusMechanicus
             return result;
         }
 
-        public static void GetReliability(GunVerbEntry gun, out string rel, out float jamsOn)
+        public static void GetReliability(GunVerbEntry verbEntry, Thing gun, out string rel, out float jamsOn)
         {
             rel = string.Empty;
-            jamsOn = JamChance(gun);
+            jamsOn = JamChance(verbEntry, gun);
             if (jamsOn < 0.25)
                 rel = "Extremely Reliable";
             else if (jamsOn < 0.5)
@@ -97,12 +97,12 @@ namespace AdeptusMechanicus
         /// <summary>
         /// Calculates the chance that the gun will jam
         /// </summary>
-        /// <param name="gun">The gun object</param>
+        /// <param name="verbEntry">The gun object</param>
         /// <returns>floating point number representing the jam chance</returns>
-        public static float JamChance(GunVerbEntry gun)
+        public static float JamChance(GunVerbEntry verbEntry, Thing gun)
         {
             float result = 0f;
-            switch (gun.reliability)
+            switch (verbEntry.reliability)
             {
                 case Reliability.UR:
                     result = 50f;
@@ -116,13 +116,12 @@ namespace AdeptusMechanicus
                 default:
                     return 0;
             }
-            //    Log.Message(string.Format("result {0}", result));
-        //    result += GetQualityFactor(gun.parent);
-            //    Log.Message(string.Format("result {0}", result));
-       //     result = result * 100 / gun.parent.HitPoints / 100;
-            //    Log.Message(string.Format("result {0}", result));
+            if (gun != null)
+            {
+                result += GetQualityFactor(gun);
+                result = result * 100 / gun.HitPoints / 100;
+            }
             result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
-            //    Log.Message(string.Format("result {0}", result));
             return result;
         }
         public static float JamChance(CompWeapon_GunSpecialRules gun)
@@ -131,13 +130,13 @@ namespace AdeptusMechanicus
             switch (gun.reliability)
             {
                 case Reliability.UR:
-                    result = 50f;
-                    break;
-                case Reliability.ST:
                     result = 30f;
                     break;
+                case Reliability.ST:
+                    result = 15f;
+                    break;
                 case Reliability.VR:
-                    result = 10f;
+                    result = 7.5f;
                     break;
                 default:
                     return 0;
@@ -163,11 +162,11 @@ namespace AdeptusMechanicus
                 switch (qc)
                 {
                     case QualityCategory.Awful:
-                        return 30;
+                        return 35;
                     case QualityCategory.Poor:
                         return 25;
                     case QualityCategory.Normal:
-                        return 20;
+                        return 0;
                     case QualityCategory.Good:
                         return -5;
                     case QualityCategory.Excellent:

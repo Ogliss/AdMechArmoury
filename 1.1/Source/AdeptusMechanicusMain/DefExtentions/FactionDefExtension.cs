@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 using Verse;
 
 namespace AdeptusMechanicus
@@ -22,6 +23,10 @@ namespace AdeptusMechanicus
         public float InfiltrateChance = 0.1f;
         public FloatRange InfiltrateDelayMin = new FloatRange(15, 90);
         public FloatRange InfiltrateDelayMax = new FloatRange(90, 180);
+        public string factionTextureTag = string.Empty;
+        public Color factionColor;
+        public Color factionColorTwo;
+
     }
 
     public class FactionTraitEntry

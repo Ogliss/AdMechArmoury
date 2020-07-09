@@ -7,33 +7,26 @@
 		<comps>
 		  <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
 			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
-				<PauldronEntries>
-					<li>
-						<shoulderPadType>Both</shoulderPadType>
-						<shaderType>CutoutComplex</shaderType>
-						<padTexPath>Things/Item/Apparel/Common/Cloak/Backbit/Cloak</padTexPath>
-						<commonality>10</commonality>
-					</li>
-				</PauldronEntries>
-				<NorthOffset>0,0.005,0</NorthOffset>
-				<SouthOffset>0,-0.5,0</SouthOffset>
-				<EastOffset>0,0.005,0</EastOffset>
-				<WestOffset>0,0.005,0</WestOffset>
-		  </li>
-		  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
-			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
-				<ExtrasEntries>
-					<li>
-						<UseBodytypeOffsets>true</UseBodytypeOffsets>
-						<shaderType>Cutout</shaderType>
-						<extraTexPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</extraTexPath>
-						<commonality>10</commonality>
-					</li>
-				</ExtrasEntries>
-				<NorthOffset>0,0.005,0</NorthOffset>
-				<SouthOffset>0,-0.0025,0</SouthOffset>
-				<EastOffset>0,-0.0025,0</EastOffset>
-				<WestOffset>0,-0.0025,0</WestOffset>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>SouthOnly</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Common/Cloak/Backbit/Cloak</padTexPath>
+					<commonality>10</commonality>
+					<SouthOffset>0,-0.55,0</SouthOffset>
+				</li>
+				<li>
+					<shoulderPadType>Backpack</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Common/Tribal_Cloak/Tribal_Cloak</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+			<NorthOffset>0,0.005,0</NorthOffset>
+			<SouthOffset>0,-0.0025,0</SouthOffset>
+			<EastOffset>0,-0.00015,0</EastOffset>
+			<WestOffset>0,-0.00015,0</WestOffset>
+			<drawAll>true</drawAll>
 		  </li>
 		</comps>
 		<description>A full-body garment crafted using neolithic tools. While it may look primitive, it is effective at insulating the wearer.</description>
@@ -111,38 +104,31 @@
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>OG_Apparel_Cloak</defName>
 		<label>cloak</label>
-    <comps>
-      <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+		<comps>
+		  <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 			<PauldronEntries>
 				<li>
-					<shoulderPadType>Both</shoulderPadType>
+					<shoulderPadType>SouthOnly</shoulderPadType>
 					<shaderType>CutoutComplex</shaderType>
 					<padTexPath>Things/Item/Apparel/Common/Cloak/Backbit/Cloak</padTexPath>
 					<commonality>10</commonality>
+					<SouthOffset>0,-0.55,0</SouthOffset>
 				</li>
-			</PauldronEntries>
-			<NorthOffset>0,0.00,0</NorthOffset>
-			<SouthOffset>0,-0.5,0</SouthOffset>
-			<EastOffset>0,0.00,0</EastOffset>
-			<WestOffset>0,0.00,0</WestOffset>
-      </li>
-	  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
-		<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
-			<ExtrasEntries>
 				<li>
-					<UseBodytypeOffsets>true</UseBodytypeOffsets>
-					<shaderType>Cutout</shaderType>
-					<extraTexPath>Things/Item/Apparel/Common/Cloak/Cloak</extraTexPath>
+					<shoulderPadType>Backpack</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Common/Cloak/Cloak</padTexPath>
 					<commonality>10</commonality>
 				</li>
-			</ExtrasEntries>
+			</PauldronEntries>
 			<NorthOffset>0,0.005,0</NorthOffset>
 			<SouthOffset>0,-0.0025,0</SouthOffset>
-			<EastOffset>0,-0.0025,0</EastOffset>
-			<WestOffset>0,-0.0025,0</WestOffset>
-	  </li>
-    </comps>
+			<EastOffset>0,-0.0015,0</EastOffset>
+			<WestOffset>0,-0.0015,0</WestOffset>
+			<drawAll>true</drawAll>
+		  </li>
+		</comps>
 		<description>A full-body garment, While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Common/Cloak/Cloak</texPath>
@@ -214,38 +200,31 @@
 	<ThingDef ParentName="ApparelMakeableBase">
 		<defName>OG_Apparel_Mantle</defName>
 		<label>mantle</label>
-    <comps>
-      <!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+		<comps>
+		  <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 			<PauldronEntries>
 				<li>
-					<shoulderPadType>Both</shoulderPadType>
+					<shoulderPadType>SouthOnly</shoulderPadType>
 					<shaderType>CutoutComplex</shaderType>
-					<padTexPath>Things/Item/Apparel/Common/Mantle/Backbit/Mantle</padTexPath>
+					<padTexPath>Things/Item/Apparel/Common/Cloak/Backbit/Cloak</padTexPath>
+					<commonality>10</commonality>
+					<SouthOffset>0,-0.55,0</SouthOffset>
+				</li>
+				<li>
+					<shoulderPadType>Backpack</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Common/Mantle/Mantle</padTexPath>
 					<commonality>10</commonality>
 				</li>
 			</PauldronEntries>
-			<NorthOffset>0,0.00,0</NorthOffset>
-			<SouthOffset>0,-0.5,0</SouthOffset>
-			<EastOffset>0,0.00,0</EastOffset>
-			<WestOffset>0,0.00,0</WestOffset>
-      </li-->
-	  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
-		<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
-			<ExtrasEntries>
-				<li>
-					<UseBodytypeOffsets>true</UseBodytypeOffsets>
-					<shaderType>CutoutComplex</shaderType>
-					<extraTexPath>Things/Item/Apparel/Common/Mantle/Mantle</extraTexPath>
-					<commonality>10</commonality>
-				</li>
-			</ExtrasEntries>
 			<NorthOffset>0,0.005,0</NorthOffset>
 			<SouthOffset>0,-0.0025,0</SouthOffset>
 			<EastOffset>0,-0.0015,0</EastOffset>
 			<WestOffset>0,-0.0015,0</WestOffset>
-	  </li>
-    </comps>
+			<drawAll>true</drawAll>
+		  </li>
+		</comps>
 		<description>A full-body garment, While it may look primitive, it is effective at insulating the wearer.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Common/Mantle/Mantle</texPath>

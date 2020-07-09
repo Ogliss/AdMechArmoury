@@ -14,6 +14,7 @@ using System.Reflection;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(VerbTracker), "CreateVerbTargetCommand")]
     public static class AM_VerbTracker_CreateVerbTargetCommand_CompAdvancedGraphic_Patch
     {
@@ -35,4 +36,5 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
     }
+    */
 }

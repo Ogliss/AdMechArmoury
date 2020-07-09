@@ -66,7 +66,7 @@ namespace AdeptusMechanicus
             }
             set
             {
-                this.SetColor(value, true);
+                this.SetFactionColor(value, true);
             }
         }
 

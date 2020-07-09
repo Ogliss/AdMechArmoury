@@ -114,7 +114,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             if (WeaponRules.ForceWeapon)
                             {
-                                bool casterPsychiclySensitive = Caster.RaceProps.Humanlike ? Caster.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) : false;
+                                bool casterPsychiclySensitive = Caster.RaceProps.Humanlike ? Caster.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) || Caster.story.traits.HasTrait(DefDatabase<TraitDef>.GetNamedSilentFail("Psyker")) : false;
                                 bool Activate = false;
                                 if ((casterPsychiclySensitive || !WeaponRules.ForceEffectRequiresPsyker) && target.Thing.def.category == ThingCategory.Pawn && target.Thing is Pawn Victim)
                                 {

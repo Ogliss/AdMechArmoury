@@ -8,7 +8,6 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    [StaticConstructorOnStartup]
     public class CompProperties_PauldronDrawer : CompProperties
     {
         public List<ShoulderPadEntry> PauldronEntries;
@@ -19,16 +18,15 @@ namespace AdeptusMechanicus
         public Vector3 EastOffset = new Vector3();
         public Vector3 WestOffset = new Vector3();
         public bool drawAll = false;
+        public string labelKey = string.Empty;
         public CompProperties_PauldronDrawer()
         {
             this.compClass = typeof(CompPauldronDrawer);
         }
-
     }
-    [StaticConstructorOnStartup]
+
     public class CompPauldronDrawer : ThingComp
     {
-
         public CompProperties_PauldronDrawer Props
         {
             get
@@ -48,81 +46,72 @@ namespace AdeptusMechanicus
         public bool ExtraUseBodyOffset; 
         public bool useSecondaryColor;
         public bool useFactionTextures = false;
-        public bool pauldronInitialized;
-
+        public bool UseFactionColors = false;
+        public bool pauldronInitialized => !activeEntries.EnumerableNullOrEmpty();
+    //    public FactionDef FactionDef;
         public int entryInd = -1;
-        
-        public Shader shader
-        {
-            get
-            {
-                if (ShoulderPadEntry!=null)
-                {
-                    return ShoulderPadEntry.shaderType.Shader;
-                }
-                return ShaderDatabase.Cutout;
-            }
-        }
 
-        public ShoulderPadEntry shoulderPadEntry;
-        public ShoulderPadEntry ShoulderPadEntry
+        public List<ShoulderPadEntry> activeEntries;
+        public override void Initialize(CompProperties props)
         {
-            get
+            base.Initialize(props);
+        //    Initialize();
+        }
+        public void Initialize()
+        {
+
+            if (!pauldronInitialized)
             {
-                if (!Props.PauldronEntries.NullOrEmpty())
+                Log.Message(apparel.LabelShortCap + " pauldrons initializing");
+                if (activeEntries.EnumerableNullOrEmpty())
                 {
-                    if (shoulderPadEntry == null)
+                    activeEntries = new List<ShoulderPadEntry>();
+                }
+                if (Props.drawAll)
+                {
+                    for (int i = 0; i < Props.PauldronEntries.Count; i++)
                     {
-                        if (entryInd == -1)
+                        ShoulderPadEntry entry = new ShoulderPadEntry(Props.PauldronEntries[i], this);
+
+                        if (Props.PauldronEntries[i].VariantTextures != null)
                         {
-                            shoulderPadEntry = this.Props.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
-                            entryInd = this.Props.PauldronEntries.IndexOf(shoulderPadEntry);
+                            entry.VariantTextures.activeOption = Props.PauldronEntries[i].VariantTextures.defaultOption;
                         }
-                        else
-                        {
-                            shoulderPadEntry = this.Props.PauldronEntries[entryInd];
-                        }
-                        
-                        this.useSecondaryColor = shoulderPadEntry.UseSecondaryColor;
-                        this.padType = shoulderPadEntry.shoulderPadType;
-                    }
-                    else if (entryInd == -1)
-                    {
-                        entryInd = this.Props.PauldronEntries.IndexOf(shoulderPadEntry);
+                        activeEntries.Add(entry);
                     }
                 }
                 else
                 {
-                    shoulderPadEntry = null;
+                    bool backpack = false;
+                    bool bothPauldrons = false;
+                    bool leftPauldron = false;
+                    bool rightPauldron = false;
+
+                    ShoulderPadEntry entry = new ShoulderPadEntry(Props.PauldronEntries.RandomElementByWeight(x=> x.commonality), this);
+
+                    if (entry.VariantTextures != null)
+                    {
+                        entry.VariantTextures.activeOption = entry.VariantTextures.defaultOption;
+                    }
+                    activeEntries.Add(entry);
                 }
-                return shoulderPadEntry;
-            }
-        }
 
-        private Graphic _pauldronGraphic;
-        public Graphic PauldronGraphic
-        {
-            get
-            {
-                string path = PauldronGraphicPath + "_" + pawn.story.bodyType.ToString();
-                this._pauldronGraphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
-                return _pauldronGraphic;
-            }
-        }
-
-        public string pauldronGraphicPath = null;
-        public string PauldronGraphicPath
-        {
-            get
-            {
-                if (ShoulderPadEntry!=null)
+                if (!activeEntries.EnumerableNullOrEmpty())
                 {
-                    this.pauldronGraphicPath = ShoulderPadEntry.padTexPath;
+                    Log.Message("activeEntries count " + activeEntries.Count);
                 }
-                return pauldronGraphicPath;
+            }
+            else
+            {
+                Log.Message(apparel.LabelShortCap + " pauldrons initialized");
+                foreach (ShoulderPadEntry item in activeEntries)
+                {
+                    item.drawer = this;
+                    item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
+                }
             }
         }
-        
+
         public Apparel apparel
         {
             get
@@ -139,73 +128,111 @@ namespace AdeptusMechanicus
             }
         }
         
-        public Color mainColor
+        
+        public Color mainColorFor(ShoulderPadEntry entry)
         {
-            get
+            if (entry != null)
             {
-                if (shoulderPadEntry!=null)
+                if (entry.VariantTextures!=null)
                 {
-                    if (shoulderPadEntry.PrimaryColor != Color.white)
+                    if (entry.VariantTextures.activeOption.Color!=null)
                     {
-                        return shoulderPadEntry.PrimaryColor;
-                    }
-                    if (shoulderPadEntry.UsePrimaryColor)
-                    {
-                        return this.parent.DrawColor;
-                    }
-                    else
-                    if (shoulderPadEntry.UseSecondaryColor)
-                    {
-                        if (shoulderPadEntry.SecondaryColor != Color.white)
-                        {
-                            return shoulderPadEntry.SecondaryColor;
-                        }
-                        return this.parent.DrawColorTwo;
+                        return entry.VariantTextures.activeOption.Color.Value;
                     }
                 }
-                return this.parent.DrawColor;
+                if (entry.UseFactionColors)
+                {
+                    if (entry.FactionColours(out Color color, out Color colorTwo))
+                    {
+                        if (color != Color.white)
+                        {
+                            return color;
+                        }
+                    }
+                }
+                if (entry.PrimaryColor != Color.white)
+                {
+                    return entry.PrimaryColor;
+                }
+                if (entry.UsePrimaryColor)
+                {
+                    return this.parent.DrawColor;
+                }
+                else
+                if (entry.UseSecondaryColor)
+                {
+                    if (entry.SecondaryColor != Color.white)
+                    {
+                        return entry.SecondaryColor;
+                    }
+                    return this.parent.DrawColorTwo;
+                }
             }
+            return this.parent.DrawColor;
         }
         
-        public Color secondaryColor
+        public Color secondaryColorFor(ShoulderPadEntry entry)
         {
-            get
+            if (entry != null)
             {
-                if (shoulderPadEntry != null)
+                if (entry.VariantTextures != null)
                 {
-                    if (shoulderPadEntry.SecondaryColor != Color.white)
+                    if (entry.VariantTextures.activeOption.ColorTwo != null)
                     {
-                        return shoulderPadEntry.SecondaryColor;
-                    }
-                    if (shoulderPadEntry.UseSecondaryColor)
-                    {
-                        return this.parent.DrawColorTwo;
+                        return entry.VariantTextures.activeOption.ColorTwo.Value;
                     }
                 }
-                return mainColor;
+                if (entry.UseFactionColors)
+                {
+                    if (entry.FactionColours(out Color color, out Color colorTwo))
+                    {
+                        if (colorTwo != Color.white)
+                        {
+                            return colorTwo;
+                        }
+                    }
+                }
+                if (entry.SecondaryColor != Color.white)
+                {
+                    return entry.SecondaryColor;
+                }
+                if (entry.UseSecondaryColor)
+                {
+                    return this.parent.DrawColorTwo;
+                }
             }
+            return this.parent.DrawColorTwo;
         }
-
+        /*
+        public override string TransformLabel(string label)
+        {
+            if (this.activeEntries.Any(x=> x.VariantTextures!=null))
+            {
+                List<ShoulderPadEntry> variables = this.activeEntries.FindAll(x => x.VariantTextures != null);
+                if (variables.Any(x => x.VariantTextures.activeOption.factionDef != null))
+                {
+                    return (label + (this.activeEntries.First(x => x.VariantTextures != null && (x.VariantTextures.activeOption.factionDef != null)).VariantTextures.activeOption.Label));
+                }
+            }
+            return base.TransformLabel(label);
+        }
+        */
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<string>(ref this.pauldronGraphicPath, "pauldrongraphicPath", null, false);
             Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
             Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
             //    Scribe_Values.Look<ShoulderPadEntry>(ref this.shoulderPadEntry, "shoulderPadEntry", null); pauldronInitialized
-            Scribe_Values.Look<bool>(ref this.pauldronInitialized, "pauldronInitialized", false, false);
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
+            Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep); 
+        //    Scribe_Defs.Look(ref this.FactionDef, "FactionDef");
         }
 
-        public Vector3 GetAltitudeOffset(Rot4 rotation, ShoulderPadEntry Entry = null)
+        public Vector3 GetAltitudeOffset(Rot4 rotation, ShoulderPadEntry Entry)
         {
-            if (Entry != null)
-            {
-                this.shoulderPadEntry = Entry;
-            }
             Vector3 offset = new Vector3();
-            offset.y += _OffsetFactor * this.ShoulderPadEntry.order;
-            offset.y += offset.y + (_SubOffsetFactor * this.ShoulderPadEntry.sublayer);
+            offset.y += _OffsetFactor * Entry.order;
+            offset.y += offset.y + (_SubOffsetFactor * Entry.sublayer);
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
             if (!onHead)
@@ -213,30 +240,30 @@ namespace AdeptusMechanicus
                 if (rotation == Rot4.North)
                 {
                     offset.y += _BodyOffset;
-                    if (this.ShoulderPadEntry.northtop)
+                    if (Entry.northtop)
                     {
                         offset.y += _HairOffset;
-                        offset += NorthOffset(ShoulderPadEntry);
+                        offset += NorthOffset(Entry);
                     }
                     else
                     {
-                        offset += NorthOffset(ShoulderPadEntry);
+                        offset += NorthOffset(Entry);
                     }
                 }
                 else if (rotation == Rot4.West)
                 {
                     offset.y += _BodyOffset;
-                    offset += WestOffset(ShoulderPadEntry);
+                    offset += WestOffset(Entry);
                 }
                 else if (rotation == Rot4.East)
                 {
                     offset.y += _BodyOffset;
-                    offset += EastOffset(ShoulderPadEntry);
+                    offset += EastOffset(Entry);
                 }
                 else if (rotation == Rot4.South)
                 {
                     offset.y += _BodyOffset;
-                    offset += SouthOffset(ShoulderPadEntry);
+                    offset += SouthOffset(Entry);
                 }
                 else
                 {
@@ -297,31 +324,26 @@ namespace AdeptusMechanicus
         }
         
 
-        public bool ShouldDrawPauldron( Rot4 bodyFacing, out Material pauldronMaterial, ShoulderPadEntry Entry = null)
+        public bool ShouldDrawPauldron( Rot4 bodyFacing, Vector2 size, out Graphic pauldronMaterial, ShoulderPadEntry Entry)
         {
             pauldronMaterial = null;
+            this.size = size;
             if (pawn.RaceProps.Humanlike)
             {
                 if (Entry != null)
                 {
                     if (this.CheckPauldronRotation(pawn, Entry.shoulderPadType))
                     {
-                        string path = Entry.padTexPath + "_" + pawn.story.bodyType.ToString();
-                        Graphic g = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
-                        pauldronMaterial = g.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing, this.parent);
+                        if (Entry.Graphic==null || (Entry.Graphic != null && !Entry.Graphic.path.Contains(pawn.story.bodyType.defName)))
+                        {
+                            Entry.UpdatePadGraphic();
+                        }
+                        pauldronMaterial = Entry.Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
                         return true;
                     }
                     else
                     {
                     //    Log.Message(string.Format("CheckPauldronRotation false"));
-                    }
-                }
-                else
-                {
-                    if (this.CheckPauldronRotation(pawn, this.padType))
-                    {
-                        pauldronMaterial = this.PauldronGraphic.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing, this.parent);
-                        return true;
                     }
                 }
             }
@@ -332,7 +354,7 @@ namespace AdeptusMechanicus
             return false;
 
         }
-
+        public Vector2 size = new Vector2 (1.5f, 1.5f);
         public bool CheckPauldronRotation(Pawn pawn, ShoulderPadType shoulderPadType)
         {
             if (shoulderPadType == ShoulderPadType.Left && pawn.Rotation == Rot4.East)
@@ -340,6 +362,10 @@ namespace AdeptusMechanicus
                 return false;
             }
             if (shoulderPadType == ShoulderPadType.Right && pawn.Rotation == Rot4.West)
+            {
+                return false;
+            }
+            if (shoulderPadType == ShoulderPadType.SouthOnly && pawn.Rotation != Rot4.South)
             {
                 return false;
             }
@@ -389,36 +415,21 @@ namespace AdeptusMechanicus
                 return ret;
             }
         }
+        public string GetDescription(ShoulderPadType type)
+        {
+            if (type != ShoulderPadType.Backpack)
+            {
+                if (type == ShoulderPadType.Both)
+                {
+                    return type.ToString() + " Pauldrons";
+                }
+                return type.ToString() + " Pauldron";
+            }
+            else
+            {
+                return type.ToString();
+            }
+        }
     }
 
-    public enum ShoulderPadType
-    {
-        Backpack,
-        Both,
-        Right,
-        Left
-    }
-
-    [StaticConstructorOnStartup]
-    public class ShoulderPadEntry
-    {
-        public ShoulderPadType shoulderPadType;
-        public ShaderTypeDef shaderType;
-        public string padTexPath;
-        public string tagged;
-        public int commonality;
-        public bool northtop = false;
-        public bool UseFactionTextures;
-        public bool UsePrimaryColor = true;
-        public Color PrimaryColor = Color.white;
-        public bool UseSecondaryColor = true;
-        public Color SecondaryColor = Color.white;
-        public int order = 1;
-        public int sublayer = 0;
-        public Vector3 NorthOffset = new Vector3();
-        public Vector3 SouthOffset = new Vector3();
-        public Vector3 EastOffset = new Vector3();
-        public Vector3 WestOffset = new Vector3();
-    }
-    
 }

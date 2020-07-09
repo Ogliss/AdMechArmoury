@@ -63,6 +63,52 @@ namespace AdeptusMechanicus
                     }
                 }
             }
+            ThingDef mechanicus = DefDatabase<ThingDef>.GetNamed("OG_Human_Mechanicus");
+            ThingDef astartes = DefDatabase<ThingDef>.GetNamed("OG_Human_Astartes");
+            ThingDef ogryn = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Ogryn");
+            ThingDef ratlin = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Ratling");
+            ThingDef beastman = DefDatabase<ThingDef>.GetNamed("OG_Abhuman_Beastman");
+            foreach (RecipeDef item in DefDatabase<RecipeDef>.AllDefs)
+            {
+                if (item.AllRecipeUsers.Contains(ThingDefOf.Human))
+                {
+                    if (mechanicus!=null)
+                    {
+                        if (!item.AllRecipeUsers.Contains(mechanicus))
+                        {
+                            item.recipeUsers.Add(mechanicus);
+                        }
+                    }
+                    if (astartes != null)
+                    {
+                        if (!item.AllRecipeUsers.Contains(astartes))
+                        {
+                            item.recipeUsers.Add(astartes);
+                        }
+                    }
+                    if (ogryn != null)
+                    {
+                        if (!item.AllRecipeUsers.Contains(ogryn))
+                        {
+                            item.recipeUsers.Add(ogryn);
+                        }
+                    }
+                    if (ratlin != null)
+                    {
+                        if (!item.AllRecipeUsers.Contains(ratlin))
+                        {
+                            item.recipeUsers.Add(ratlin);
+                        }
+                    }
+                    if (astartes != null)
+                    {
+                        if (!item.AllRecipeUsers.Contains(beastman))
+                        {
+                            item.recipeUsers.Add(beastman);
+                        }
+                    }
+                }
+            }
 
         }
 

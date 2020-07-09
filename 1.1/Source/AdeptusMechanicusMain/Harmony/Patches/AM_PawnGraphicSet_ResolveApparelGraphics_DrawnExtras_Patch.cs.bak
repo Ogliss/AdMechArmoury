@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RimWorld;
+using Verse;
+using Verse.AI;
+using Verse.AI.Group;
+using HarmonyLib;
+using Verse.Sound;
+using AdeptusMechanicus;
+using AdeptusMechanicus.ExtensionMethods;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+    [HarmonyPatch(typeof(PawnGraphicSet), "ResolveApparelGraphics")]
+    public static class AM_PawnGraphicSet_ResolveApparelGraphics_DrawnExtras_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ref PawnGraphicSet __instance)
+        {
+			Pawn pawn = __instance.pawn;
+			using (List<Apparel>.Enumerator enumerator = pawn.apparel.WornApparel.GetEnumerator())
+			{
+				while (enumerator.MoveNext())
+				{
+					ApparelGraphicRecord item;
+					CompPauldronDrawer drawer = enumerator.Current.TryGetComp<CompPauldronDrawer>();
+					if (drawer != null)
+					{
+						foreach (ShoulderPadEntry entry in drawer.activeEntries)
+						{
+							__instance.apparelGraphics.Add(new ApparelGraphicRecord(entry.Graphic, enumerator.Current));
+						}
+					}
+				}
+			}
+		}
+    }
+}

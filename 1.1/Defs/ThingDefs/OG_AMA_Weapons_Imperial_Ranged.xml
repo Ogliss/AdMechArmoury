@@ -24,7 +24,7 @@
 	<explosionradius>0.5</explosionradius>
 		<modExtensions>
 		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
-			<effecterDef>Deflect_Metal</effecterDef>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
 			
 		  </li>
 		</modExtensions>
@@ -234,14 +234,14 @@
 				</groundGraphic>
 				<isDualWeapon>true</isDualWeapon>
 				<verticalFlipNorth>true</verticalFlipNorth>
-				<angleAdjustmentNorth>60</angleAdjustmentNorth>
+				<angleAdjustmentNorth>45</angleAdjustmentNorth>
 				<angleAdjustmentEast>-90</angleAdjustmentEast>
 				<angleAdjustmentWest>90</angleAdjustmentWest>
-				<angleAdjustmentSouth>60</angleAdjustmentSouth>
-				<northOffset>0.15,0.0,0.35</northOffset>
-				<eastOffset>0.0,1.0,0.15</eastOffset>
-				<westOffset>0.0,1.0,0.15</westOffset>
-				<southOffset>0.25,1.0,0.30</southOffset>
+				<angleAdjustmentSouth>0</angleAdjustmentSouth>
+				<northOffset>0.25,0.0,0.35</northOffset>
+				<eastOffset>0.0,0.0,0.15</eastOffset>
+				<westOffset>0.0,0.0,0.15</westOffset>
+				<southOffset>0.25,0.0,0.0</southOffset>
 			</li> 
 		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
@@ -278,7 +278,7 @@
 		<tradeTags>
 			<li>OGIRanged</li>
 		</tradeTags>
-			<generateCommonality>0.850</generateCommonality>
+			<generateCommonality>0.250</generateCommonality>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
@@ -2573,6 +2573,17 @@
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
+    <modExtensions>
+      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
+        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+        <trailMoteSize>0.75</trailMoteSize>
+        <trailerMoteInterval>6</trailerMoteInterval>
+      </li-->
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.0</GlowMoteSize>
+      </li>
+    </modExtensions>
  </ThingDef>
  
  <!-- ====================== Plasma Gun shot Std ===================== -->
@@ -2596,6 +2607,17 @@
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
+    <modExtensions>
+      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
+        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+        <trailMoteSize>0.75</trailMoteSize>
+        <trailerMoteInterval>6</trailerMoteInterval>
+      </li-->
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.25</GlowMoteSize>
+      </li>
+    </modExtensions>
  </ThingDef>
  
  <!-- ====================== Plasma Gun shot OC ===================== -->
@@ -2619,6 +2641,17 @@
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
+    <modExtensions>
+      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
+        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+        <trailMoteSize>0.75</trailMoteSize>
+        <trailerMoteInterval>6</trailerMoteInterval>
+      </li-->
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.5</GlowMoteSize>
+      </li>
+    </modExtensions>
  </ThingDef>
 
  <!-- ====================== Plasma Cannon shot ===================== -->
@@ -2640,6 +2673,17 @@
 		<speed>55</speed>
 		<soundExplode>OGIPC_Explosion</soundExplode>
     </projectile>
+    <modExtensions>
+      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
+        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+        <trailMoteSize>0.75</trailMoteSize>
+        <trailerMoteInterval>6</trailerMoteInterval>
+      </li-->
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>2.5</GlowMoteSize>
+      </li>
+    </modExtensions>
  </ThingDef>
   
  <!-- ====================== Plasma Weapons ===================== -->
@@ -2798,7 +2842,7 @@
 	<tradeTags>
 		<li>OGIRanged</li>
 	</tradeTags>
-		<generateCommonality>0.30</generateCommonality>
+		<generateCommonality>0.15</generateCommonality>
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
@@ -2939,7 +2983,7 @@
 	<tradeTags>
 		<li>OGIRanged</li>
 	</tradeTags>
-		<generateCommonality>0.10</generateCommonality>
+		<generateCommonality>0.05</generateCommonality>
     <equippedStatOffsets>
 		<MoveSpeed>-0.25</MoveSpeed>
     </equippedStatOffsets>
@@ -4217,7 +4261,7 @@
 		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
 		<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 		<stoppingPower>0.75</stoppingPower>
-		<speed>10</speed>
+		<speed>15</speed>
 		<soundExplode>OGIFL_Explosion</soundExplode>
     </projectile>
   </ThingDef>
@@ -4271,10 +4315,11 @@
 			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>8</range>
-			<burstShotCount>12</burstShotCount>
+			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<soundCast>OG_Flamer_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 			<muzzleFlashScale>5</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
@@ -4353,7 +4398,7 @@
 			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>14</range>
-			<burstShotCount>24</burstShotCount>
+			<burstShotCount>12</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 			<soundCast>OG_Flamer_Sound</soundCast>

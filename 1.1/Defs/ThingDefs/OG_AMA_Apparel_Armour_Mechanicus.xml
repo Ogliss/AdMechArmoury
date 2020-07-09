@@ -275,16 +275,10 @@
 	</ThingDef>
 
 	<!-- ========================= Mechanicus - Skitarii Legionnaire Helmet ========================== -->
-	<ThingDef ParentName="OG_Mechanicus_Apparel_Armor">
+	<ThingDef Name="OGAM_Apparel_SkitariiLegionnaireHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet</defName>
 		<label>Skitarii Legionnaire Helmet</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
-		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-			<colorTwo>(0,174,17)</colorTwo>
-		</graphicData>
 		<statBases>
 			<Mass>1</Mass>
 			<MarketValue>500</MarketValue>
@@ -316,7 +310,6 @@
 				<li>FullHead</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmetHooded</wornGraphicPath>
 			<layers>
 				<li>Overhead</li>
 			</layers>
@@ -344,31 +337,75 @@
 			</options>
 		</colorGenerator>
 		<!--
-    <colorGenerator Class="ColorGenerator_Options">
-	<options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.514,0.114,0.059,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-		<comps>
-		
-		</comps>
+		<colorGenerator Class="ColorGenerator_Options">
+		<options>
+			<li>
+			  <weight>10</weight>
+			  <only>RGBA(0.514,0.114,0.059,1)</only>
+			</li>
+		  </options>
+		</colorGenerator>
 		-->
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>OG_Toggle_Hood</labelKey>
+			</li> 
+		</comps>
 	</ThingDef>
 
-	<!-- ========================= Mechanicus - Skitarii Primus Helmet ========================== -->
-	<ThingDef ParentName="OG_Mechanicus_Apparel_Armor">
-		<defName>OGAM_Apparel_SkitariiPrimusHelmet</defName>
-		<label>Skitarii Primus Helmet</label>
-		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
+    <ThingDef ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+        <defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Unhooded</defName>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</texPath>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<colorTwo>(0,174,17)</colorTwo>
 		</graphicData>
+        <apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</wornGraphicPath>
+        </apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+				  <weight>10</weight>
+				  <only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
+    <ThingDef ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+        <defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded</defName>
+		<label>Skitarii Legionnaire Helmet(Hooded)</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmetHooded</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+        <apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmetHooded</wornGraphicPath>
+        </apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+				  <weight>10</weight>
+				  <only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
+	<!-- ========================= Mechanicus - Skitarii Primus Helmet ========================== -->
+	<ThingDef Name="OGAM_Apparel_SkitariiPrimusHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
+		<defName>OGAM_Apparel_SkitariiPrimusHelmet</defName>
+		<label>Skitarii Primus Helmet</label>
+		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
 		<statBases>
 			<Mass>1</Mass>
 			<MarketValue>500</MarketValue>
@@ -427,19 +464,59 @@
 				</li>
 			</options>
 		</colorGenerator>
-		<!--
-    <colorGenerator Class="ColorGenerator_Options">
-	<options>
-        <li>
-          <weight>10</weight>
-          <only>RGBA(0.514,0.114,0.059,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
 		<comps>
-		
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>OG_Toggle_Hood</labelKey>
+			</li> 
 		</comps>
-		-->
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
 	</ThingDef>
 
+    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+        <defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Unhooded</defName>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+        <apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</wornGraphicPath>
+        </apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+				  <weight>10</weight>
+				  <only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
+    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+        <defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Hooded</defName>
+		<label>Skitarii Primus Helmet(Hooded)</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmetHooded</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+        <apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmetHooded</wornGraphicPath>
+        </apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+				  <weight>10</weight>
+				  <only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
 </Defs>

@@ -13,7 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    
+    /*
     [HarmonyPatch(typeof(ApparelUtility), "HasPartsToWear")]
     public static class AM_ApparelUtility_HasPartsToWear_Restricted_Patch
     {
@@ -57,5 +57,5 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
     }
-    
+    */
 }

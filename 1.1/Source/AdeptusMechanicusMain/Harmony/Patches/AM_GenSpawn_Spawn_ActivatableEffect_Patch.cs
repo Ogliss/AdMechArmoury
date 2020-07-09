@@ -18,7 +18,12 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void SpawnPostfix(Thing newThing)
         {
-            if (newThing is Pawn p && p.equipment != null)
+            Pawn p = newThing as Pawn;
+            if (p == null)
+            {
+                return;
+            }
+            if (p.equipment != null)
             {
                 if (p.equipment.Primary != null)
                 {

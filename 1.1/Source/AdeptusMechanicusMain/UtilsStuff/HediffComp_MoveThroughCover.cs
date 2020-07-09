@@ -27,18 +27,28 @@ namespace AdeptusMechanicus
                 return (HediffCompProperties_MoveThroughCover)this.props;
             }
         }
+
         public Map Map
         {
             get
             {
-                return Pawn.Map;
+                if (Pawn != null)
+                {
+                    return Pawn.Map ?? Pawn.MapHeld;
+                }
+                return null;
             }
         }
+
         public IntVec3 Position
         {
             get
             {
-                return Map==null ? Pawn.PositionHeld : Pawn.Position;
+                if (Pawn!=null)
+                {
+                    return Map == null ? Pawn.PositionHeld : Pawn.Position;
+                }
+                return IntVec3.Invalid;
             }
         }
 
@@ -46,7 +56,11 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return Position.GetTerrain(Map);
+                if (Map!=null)
+                {
+                    return Position.GetTerrain(Map);
+                }
+                return null;
             }
         }
 
@@ -54,7 +68,11 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return Position.GetFirstBuilding(Map);
+                if (Map != null)
+                {
+                    return Position.GetFirstBuilding(Map);
+                }
+                return null;
             }
         }
 
