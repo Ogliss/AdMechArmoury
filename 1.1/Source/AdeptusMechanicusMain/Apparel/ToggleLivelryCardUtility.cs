@@ -55,55 +55,63 @@ namespace AdeptusMechanicus
         {
             GUI.BeginGroup(rect);
 
-            var Drawer = selectedThing.GetComp<CompPauldronDrawer>();
+            var Drawer = selectedThing.TryGetComp<CompPauldronDrawer>();
 
-            if (Drawer != null && Drawer.Props.PauldronEntries.Any(x=> x.VariantTextures!=null))
+            if (Drawer != null)
             {
-                var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
-                var y = rect.y;
-                var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
-                y += rect2.height;
-                Text.Font = GameFont.Medium;
-                Widgets.Label(rect2, selectedThing.def.LabelCap);
-                Text.Font = GameFont.Small;
-                Widgets.ListSeparator(ref y, rect2.width, "Customiseable Parts:");
                 if (!Drawer.pauldronInitialized)
                 {
                     Drawer.Initialize();
                 }
-                if (!Drawer.activeEntries.EnumerableNullOrEmpty())
+                if (Drawer.Props.PauldronEntries.Any(x => x.VariantTextures != null))
                 {
-                    foreach (var item in Drawer.activeEntries.Where(x => x.VariantTextures != null))
+                    var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
+                    var y = rect.y;
+                    var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
+                    y += rect2.height;
+                    Text.Font = GameFont.Medium;
+                    Widgets.Label(rect2, selectedThing.def.LabelCap);
+                    Text.Font = GameFont.Small;
+                    Widgets.ListSeparator(ref y, rect2.width, "Customiseable Parts:");
+
+
+                    if (!Drawer.activeEntries.EnumerableNullOrEmpty())
                     {
-                        if (item.drawer==null)
+                        foreach (ShoulderPadEntry entry in Drawer.activeEntries.Where(x => x.VariantTextures != null))
                         {
-                            item.drawer = Drawer;
-                        }
-                        if (item.VariantTextures != null)
-                        {
-                            if (item.VariantTextures.Options.Count<1)
+                            if (entry.drawer == null)
                             {
-                                if (Drawer.Props.PauldronEntries.Any(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType))
+                                //entry.drawer = Drawer;
+                            }
+                            if (entry.VariantTextures != null)
+                            {
+                                if (entry.VariantTextures.Options.Count < 1)
                                 {
-                                    item.VariantTextures.Options = Drawer.Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
+                                    if (Drawer.Props.PauldronEntries.Any(x => x.padTexPath == entry.padTexPath && x.shoulderPadType == entry.shoulderPadType))
+                                    {
+                                        entry.VariantTextures.Options = Drawer.Props.PauldronEntries.Find(x => x.padTexPath == entry.padTexPath && x.shoulderPadType == entry.shoulderPadType).VariantTextures.Options;
+                                    }
                                 }
                             }
-                        }
-                        /*
-                        if (item.UseFactionTextures)
-                        {
-                            var rect3 = new Rect(0f, y, rect.width, 20f);
-                            DrawFactionButton(rect3, Drawer, item, false);
-                            y += rect2.height;
-                        }
-                        */
-                        if (item.UseVariableTextures || item.UseFactionTextures)
-                        {
-                            var rect3 = new Rect(0f, y, rect.width, 20f);
-                            DrawVariantButton(rect3, Drawer, item, false);
-                            y += rect2.height;
-                        }
 
+
+
+
+                            if (entry.UseFactionTextures)
+                            {
+                                var rect3 = new Rect(0f, y, rect.width, 20f);
+                                DrawFactionButton(rect3, Drawer, entry, false);
+                                y += rect2.height;
+                            }
+                            if (entry.UseVariableTextures)
+                            {
+                                var rect3 = new Rect(0f, y, rect.width, 20f);
+                                DrawVariantButton(rect3, Drawer, entry, false);
+                                y += rect2.height;
+                            }
+
+
+                        }
                     }
                 }
 
@@ -121,33 +129,35 @@ namespace AdeptusMechanicus
             entry.drawer = comp;
             Rect rect3 = rect.RightHalf().RightHalf();
             Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
-            Widgets.Dropdown<ShoulderPadEntry, string>(rect2, entry,
-                (ShoulderPadEntry sp) => sp.UsedTex,
-                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<string>>>(DrawVariantButton_GenerateMenu),
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
+                (ShoulderPadEntry sp) => sp.VariantTextures.activeOption,
+                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu),
                 entry.Used.Label, null, null, null, delegate ()
                 {
 
                 }, paintable);
         }
         // Token: 0x060046EB RID: 18155 RVA: 0x0017FE99 File Offset: 0x0017E099
-        private static IEnumerable<Widgets.DropdownMenuElement<string>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
+        private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
         {
-            yield return new Widgets.DropdownMenuElement<string>
+            yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
             {
                 option = new FloatMenuOption(e.VariantTextures.defaultOption.TexPath, delegate ()
                 {
+                    /*
                     e.VariantTextures.activeOption = e.VariantTextures.defaultOption;
                     e.UpdatePadGraphic();
+                    */
 
                 }, MenuOptionPriority.Default, null, null, 0f, null, null),
-                payload = e.VariantTextures.defaultOption.TexPath
+                payload = e.VariantTextures.defaultOption
             };
             using (List<PauldronTextureOption>.Enumerator enumerator = e.VariantTextures.Options.GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
                     PauldronTextureOption variant = enumerator.Current;
-                    yield return new Widgets.DropdownMenuElement<string>
+                    yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
                     {
                         option = new FloatMenuOption(variant.TexPath, delegate ()
                         {
@@ -155,7 +165,7 @@ namespace AdeptusMechanicus
                             e.UpdatePadGraphic();
 
                         }, MenuOptionPriority.Default, null, null, 0f, null, null),
-                        payload = variant.TexPath
+                        payload = variant
                     };
 
                 }
@@ -173,30 +183,32 @@ namespace AdeptusMechanicus
 
             Rect rect3 = rect.RightHalf().RightHalf();
             Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
-            Widgets.Dropdown<ShoulderPadEntry, string>(rect2, entry,
-                (ShoulderPadEntry sp) => sp.UsedTex,
-                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<string>>>(DrawFactionButton_GenerateMenu),
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
+                (ShoulderPadEntry sp) => sp.VariantTextures.activeOption,
+                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawFactionButton_GenerateMenu),
                 entry.Used.Label, null, null, null, delegate ()
                 {
-
+                    entry.drawer = comp;
                 }, paintable);
             
         }
 
         // Token: 0x060046EB RID: 18155 RVA: 0x0017FE99 File Offset: 0x0017E099
-        private static IEnumerable<Widgets.DropdownMenuElement<string>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
+        private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
         {
             if (e.VariantTextures.activeOption != e.VariantTextures.defaultOption)
             {
-                yield return new Widgets.DropdownMenuElement<string>
+                yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
                 {
                     option = new FloatMenuOption(e.VariantTextures.defaultOption.TexPath, delegate ()
                     {
+                        /*
                         e.VariantTextures.activeOption = e.VariantTextures.defaultOption;
                         e.UpdatePadGraphic();
+                        */
 
                     }, MenuOptionPriority.Default, null, null, 0f, null, null),
-                    payload = e.VariantTextures.defaultOption.TexPath
+                    payload = e.VariantTextures.defaultOption
                 };
             }
             using (List<PauldronTextureOption>.Enumerator enumerator = e.VariantTextures.Options.OrderBy(x => x.Label).ToList().GetEnumerator())
@@ -206,7 +218,7 @@ namespace AdeptusMechanicus
                     PauldronTextureOption variant = enumerator.Current;
                     if (e.VariantTextures.activeOption != variant)
                     {
-                        yield return new Widgets.DropdownMenuElement<string>
+                        yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
                         {
                             option = new FloatMenuOption(variant.Label, delegate ()
                             {
@@ -232,19 +244,23 @@ namespace AdeptusMechanicus
                                 }
                                 else
                                 {
-                                    if (variant.Color.HasValue)
+                                    if (e.UseFactionColors)
                                     {
-                                        color = variant.Color.Value;
-                                    }
-                                    if (variant.ColorTwo.HasValue)
-                                    {
-                                        colorTwo = variant.ColorTwo.Value;
+                                        if (variant.Color.HasValue)
+                                        {
+                                            color = variant.Color.Value;
+                                        }
+                                        if (variant.ColorTwo.HasValue)
+                                        {
+                                            colorTwo = variant.ColorTwo.Value;
+                                        }
                                     }
                                 }
 
                                 graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
                                 e.drawer.apparel.SetColor(color);
                                 e.drawer.apparel.SetColorTwo(colorTwo);
+
                                 FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
                                 Traverse traverse = Traverse.Create(e.drawer.apparel);
                                 subgraphic.SetValue(e.drawer.apparel, graphic);
@@ -256,7 +272,7 @@ namespace AdeptusMechanicus
 
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),
-                            payload = variant.TexPath
+                            payload = variant
                         };
                     }
                 }

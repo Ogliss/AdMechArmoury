@@ -35,6 +35,13 @@ namespace AdeptusMechanicus.HarmonyInstance
 					}
 				}
 			}
+			CompColorableTwo compColorable = apparel.TryGetComp<CompColorableTwo>();
+			if (compColorable!=null)
+			{
+			//	Log.Message("CompColorableTwo present");
+				rec = new ApparelGraphicRecord(rec.graphic.GetColoredVersion(rec.graphic.Shader, compColorable.Color, compColorable.ColorTwo),apparel);
+
+			}
 		}
 
 	}

@@ -62,7 +62,7 @@ namespace AdeptusMechanicus
 
             if (!pauldronInitialized)
             {
-                Log.Message(apparel.LabelShortCap + " pauldrons initializing");
+            //    Log.Message(apparel.LabelShortCap + " pauldrons initializing");
                 if (activeEntries.EnumerableNullOrEmpty())
                 {
                     activeEntries = new List<ShoulderPadEntry>();
@@ -76,7 +76,9 @@ namespace AdeptusMechanicus
                         if (Props.PauldronEntries[i].VariantTextures != null)
                         {
                             entry.VariantTextures.activeOption = Props.PauldronEntries[i].VariantTextures.defaultOption;
+                            entry.VariantTextures.Options = Props.PauldronEntries[i].VariantTextures.Options;
                         }
+
                         activeEntries.Add(entry);
                     }
                 }
@@ -103,11 +105,25 @@ namespace AdeptusMechanicus
             }
             else
             {
-                Log.Message(apparel.LabelShortCap + " pauldrons initialized");
+            //    Log.Message(apparel.LabelShortCap + " pauldrons initialized");
                 foreach (ShoulderPadEntry item in activeEntries)
                 {
-                    item.drawer = this;
-                    item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
+
+                    //    item.drawer = this;
+                    /*
+                    if (Props.PauldronEntries.Any(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType))
+                    {
+                        item.EastOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).EastOffset;
+                        item.WestOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).WestOffset;
+                        item.NorthOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).NorthOffset;
+                        item.SouthOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).SouthOffset;
+                    }
+                    */
+                    if (item.VariantTextures!=null)
+                    {
+                        item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
+                    }
+                    
                 }
             }
         }
@@ -429,6 +445,31 @@ namespace AdeptusMechanicus
             {
                 return type.ToString();
             }
+        }
+
+        public override string TransformLabel(string label)
+        {
+            if (true)
+            {
+
+            }
+
+            return base.TransformLabel(label);
+        }
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            Initialize();
+            /*
+            foreach (var item in activeEntries)
+            {
+                if (item.VariantTextures != null)
+                {
+                    item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
+                }
+            }
+            */
         }
     }
 

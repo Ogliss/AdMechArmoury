@@ -12,6 +12,7 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
+			//	Log.Message(this.parent.LabelCap + " CompColorableTwo color active: " + active);
 				if (!this.active)
 				{
 					return this.parent.def.graphicData.color;
@@ -26,6 +27,7 @@ namespace AdeptusMechanicus
 				}
 				this.active = true;
 				this.color = value;
+			//	Log.Message(this.parent.LabelCap + " CompColorableTwo color set: " + value);
 				this.parent.Notify_ColorChanged();
 			}
 		}
@@ -34,20 +36,22 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				if (!this.active)
+			//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo active: " + ActiveTwo);
+				if (!this.ActiveTwo)
 				{
 					return this.parent.def.graphicData.colorTwo;
 				}
-				return this.color;
+				return this.colorTwo;
 			}
 			set
 			{
-				if (value == this.color)
+				if (value == this.colorTwo)
 				{
 					return;
 				}
-				this.active = true;
-				this.color = value;
+				this.ActiveTwo = true;
+				this.colorTwo = value;
+			//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo set: " + value);
 				this.parent.Notify_ColorChanged();
 			}
 		}
@@ -70,12 +74,12 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				return this.colorTwoactive;
+				return this.activeTwo;
 			}
 			set
 			{
 
-				this.colorTwoactive = value;
+				this.activeTwo = value;
 			}
 		}
 
@@ -94,14 +98,14 @@ namespace AdeptusMechanicus
 		public override void PostExposeData()
 		{
 			base.PostExposeData();
-			if (Scribe.mode == LoadSaveMode.Saving && !this.active)
+			if (Scribe.mode == LoadSaveMode.Saving && (!this.active && !this.activeTwo))
 			{
 				return;
 			}
 			Scribe_Values.Look<Color>(ref this.color, "color", default(Color), false);
 			Scribe_Values.Look<Color>(ref this.colorTwo, "colorTwo", default(Color), false);
 			Scribe_Values.Look<bool>(ref this.active, "Active", false, false);
-			Scribe_Values.Look<bool>(ref this.colorTwoactive, "colorTwoActive", false, false);
+			Scribe_Values.Look<bool>(ref this.activeTwo, "ActiveTwo", false, false);
 		}
 
 		// Token: 0x06001746 RID: 5958 RVA: 0x00085618 File Offset: 0x00083818
@@ -127,6 +131,6 @@ namespace AdeptusMechanicus
 
 		// Token: 0x04000EA2 RID: 3746
 		private bool active;
-		private bool colorTwoactive;
+		private bool activeTwo;
 	}
 }

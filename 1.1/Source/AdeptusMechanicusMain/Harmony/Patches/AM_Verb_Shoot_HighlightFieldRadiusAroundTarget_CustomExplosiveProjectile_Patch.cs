@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch
     {
         [HarmonyPostfix]
-        public static void HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Postfix(ref Verb_LaunchProjectile __instance, ref float __result)
+        public static void Postfix(ref Verb_LaunchProjectile __instance, ref float __result)
         {
             if (__instance.Projectile != null)
             {

@@ -14,7 +14,6 @@ using UnityEngine;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-
     [HarmonyPatch(typeof(Thing), "get_DrawColor")]
     public static class AM_Thing_DrawColor_CompFactionColorable_Patch
     {
@@ -52,5 +51,4 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
     }
-
 }

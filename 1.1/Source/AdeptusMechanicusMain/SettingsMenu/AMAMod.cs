@@ -41,6 +41,10 @@ namespace AdeptusMechanicus.settings
                 //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompActivatableEffect", "AdeptusMechanicus"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAimingPostFix_OverSized_Activatable_PreFix", null));
 
             }
+            if (AdeptusIntergrationUtil.enabled_ResearchPal)
+            {
+            //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
+            }
 
             if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
         }

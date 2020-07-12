@@ -5,7 +5,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    [StaticConstructorOnStartup]
+ //   [StaticConstructorOnStartup]
     public class PauldronTextureOverride : IExposable
     {
         public PauldronTextureOption defaultOption = new PauldronTextureOption(null, "Blank");
@@ -15,6 +15,7 @@ namespace AdeptusMechanicus
         {
             Scribe_Deep.Look<PauldronTextureOption>(ref this.defaultOption, "defaultOption");
             Scribe_Deep.Look<PauldronTextureOption>(ref this.activeOption, "activeOption", this.defaultOption);
+        //    Scribe_Collections.Look<PauldronTextureOption>(ref this.Options, "Options");
         }
     }
 

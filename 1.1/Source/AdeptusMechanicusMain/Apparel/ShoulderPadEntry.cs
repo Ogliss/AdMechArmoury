@@ -5,7 +5,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    [StaticConstructorOnStartup]
+ //   [StaticConstructorOnStartup]
     public class ShoulderPadEntry : IExposable
     {
         public ShoulderPadEntry()
@@ -83,6 +83,7 @@ namespace AdeptusMechanicus
         {
             if (drawer?.pawn == null)
             {
+                /*
                 if (drawer == null)
                 {
                     Log.Warning("drawer null");
@@ -91,6 +92,7 @@ namespace AdeptusMechanicus
                 {
                     Log.Warning("drawer pawn null");
                 }
+                */
                 Graphic = null;
                 return;
             }

@@ -27,9 +27,9 @@ namespace AdeptusMechanicus
 				}
 				return;
 			}
-			if (comp.Color != newColor)
+			if (comp.ColorTwo != newColor)
 			{
-				comp.Color = newColor;
+				comp.ColorTwo = newColor;
 			}
 		}
 	}

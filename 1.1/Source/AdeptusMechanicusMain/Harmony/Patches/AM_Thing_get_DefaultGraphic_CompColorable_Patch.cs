@@ -14,7 +14,7 @@ using System.Reflection;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Thing), "get_DefaultGraphic")]
-    public static class AM_Thing_get_DefaultGraphic_CompFactionColorable_Patch
+    public static class AM_Thing_get_DefaultGraphic_CompColorable_Patch
     {
         [HarmonyPrefix]
         public static void Prefix(Thing __instance, Graphic __result, ref Graphic ___graphicInt)
@@ -31,9 +31,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                 CompFactionColorable factionColorable = __instance.TryGetComp<CompFactionColorable>();
                 if (factionColorable != null)
                 {
-
                     if (___graphicInt == null)
                     {
+                    //    Log.Message("Thing_get_DefaultGraphic CompFactionColorable");
                         if (__instance.def.graphicData == null)
                         {
                             ___graphicInt = BaseContent.BadGraphic;
@@ -65,21 +65,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                 CompColorableTwo colorableTwo = __instance.TryGetComp<CompColorableTwo>();
                 if (colorableTwo != null)
                 {
-
                     if (___graphicInt == null)
                     {
+                    //    Log.Message(__instance.LabelCap + " CompColorableTwo Color: " + colorableTwo.Color+ " ColorTwo: " + colorableTwo.ColorTwo);
                         if (__instance.def.graphicData == null)
                         {
                             ___graphicInt = BaseContent.BadGraphic;
                         }
-                        Graphic Graphic = __instance.def.graphicData.GraphicColoredFor(__instance).GetColoredVersion(__instance.def.graphicData.shaderType.Shader, colorableTwo.Color, colorableTwo.ColorTwo);
+                        Graphic Graphic = __instance.def.graphicData.GraphicColoredFor(__instance);
                         if (Graphic != null)
                         {
-
+                        //    Log.Message(__instance.LabelCap + " colouring graphic");
+                            Graphic = Graphic.GetColoredVersion(ShaderTypeDefOf.CutoutComplex.Shader, colorableTwo.Color, colorableTwo.ColorTwo);
                             bool flag = Graphic as Graphic_RandomRotated != null;
                             if (flag)
                             {
+                            //    Log.Message(__instance.LabelCap + " setting graphic");
                                 ___graphicInt = new Graphic_RandomRotated(Graphic, 35f);
+
                             }
                         }
                     }

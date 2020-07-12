@@ -41,6 +41,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                 typeof(Pawn),
                 typeof(string).MakeByRefType()
             }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
+            /*
+            if (AdeptusIntergrationUtil.enabled_CombatExtended)
+            {
+                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_MeleeAttackCE), "DamageInfosToApply", null, null), null, new HarmonyMethod(typeof(AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch).GetMethod("Postfix")));
+                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_LaunchProjectileCE), "HighlightFieldRadiusAroundTarget", null, null), null, new HarmonyMethod(typeof(AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch).GetMethod("Postfix")));
+                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_ShootCE), "TryCastShot", null, null), null, new HarmonyMethod(typeof(AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch).GetMethod("Postfix")));
+            }
+            */
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
