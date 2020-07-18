@@ -40,12 +40,24 @@ namespace AdeptusMechanicus
             ThingDef DropPodIncoming = ThingDefOf.DropPodIncoming;
             if (extension!=null)
             {
-                ActiveDropPod = extension.ActiveDropPod;
-                DropPodIncoming = extension.DropPodIncoming;
+                if (extension.ActiveDropPod != null)
+                {
+                    Log.Message("MakeDropPodAt ActiveDropPod " + extension.ActiveDropPod);
+                    ActiveDropPod = extension.ActiveDropPod;
+                }
+                if (extension.DropPodIncoming != null)
+                {
+                    Log.Message("MakeDropPodAt DropPodIncoming " + extension.DropPodIncoming);
+                    DropPodIncoming = extension.DropPodIncoming;
+                }
             }
+            Log.Message("MakeDropPodAt 3");
             ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(ActiveDropPod, null);
+            Log.Message("MakeDropPodAt 4");
             activeDropPod.Contents = info;
+            Log.Message("MakeDropPodAt 5");
             SkyfallerMaker.SpawnSkyfaller(DropPodIncoming, activeDropPod, c, map);
+            Log.Message("MakeDropPodAt 6");
         }
         // Token: 0x06002762 RID: 10082 RVA: 0x0012C458 File Offset: 0x0012A858
 
