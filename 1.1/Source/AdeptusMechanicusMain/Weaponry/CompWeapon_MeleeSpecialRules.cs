@@ -31,6 +31,7 @@ namespace AdeptusMechanicus
         public float EffectsUserChance = 0f;
         public StatDef ResistEffectStat = null;
         public HediffDef UserEffect = null;
+        public new bool GizmosOnEquip = true;
     }
 
     public class CompWeapon_MeleeSpecialRules : CompWargearWeapon

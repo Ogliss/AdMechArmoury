@@ -12,6 +12,7 @@ namespace AdeptusMechanicus
         {
             this.compClass = typeof(CompWargearWeapon);
         }
+        public bool GizmosOnEquip = false;
     }
 
     // Token: 0x02000002 RID: 2
@@ -21,7 +22,7 @@ namespace AdeptusMechanicus
 
         public Pawn lastWearer;
 
-        public bool GizmosOnEquip = true;
+        public bool GizmosOnEquip => Props.GizmosOnEquip;
         // Determine who is wearing this ThingComp. Returns a Pawn or null.
         public CompEquippable compEquippable => parent.GetComp<CompEquippable>();
         protected virtual Pawn CasterPawn

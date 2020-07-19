@@ -20,6 +20,7 @@ namespace AdeptusMechanicus
         public float HeavyWeaponSetupTime = 4f;
         public List<GunVerbEntry> VerbEntries;
         public bool TyranidBurstBodySize = false;
+        public new bool GizmosOnEquip = true;
     }
 
     public class CompWeapon_GunSpecialRules : CompWargearWeapon

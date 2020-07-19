@@ -2,19 +2,27 @@
 using RimWorld;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using System.Collections.Generic;
 
 namespace AdeptusMechanicus
 {
     public class CompProperties_ForceWeaponActivatableEffect : CompProperties_AlwaysActivatableEffect
     {
         public CompProperties_ForceWeaponActivatableEffect() => this.compClass = typeof(CompForceWeaponActivatableEffect);
+        public bool PowerWeapon = false;
+        public bool ForceEffectRequiresPsyker = true;
+        public DamageDef ForceWeaponEffect = null;
+        public HediffDef ForceWeaponHediff = null;
+        public float ForceWeaponKillChance = 0f;
+        public SoundDef ForceWeaponTriggerSound = null;
+
     }
 
     public class CompForceWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
 
         private OgsCompActivatableEffect.CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
-        
+        public new CompProperties_ForceWeaponActivatableEffect Props => this.props as CompProperties_ForceWeaponActivatableEffect;
         public CompWeapon_MeleeSpecialRules specialRules
         {
             get
@@ -25,6 +33,42 @@ namespace AdeptusMechanicus
                     return _MeleeSpecialRules;
                 }
                 return null;
+            }
+        }
+
+        public bool ForceEffectRequiresPsyker
+        {
+            get
+            {
+                return Props.ForceEffectRequiresPsyker;
+            }
+        }
+        public DamageDef ForceWeaponEffect
+        {
+            get
+            {
+                return Props.ForceWeaponEffect;
+            }
+        }
+        public HediffDef ForceWeaponHediff
+        {
+            get
+            {
+                return Props.ForceWeaponHediff;
+            }
+        }
+        public float ForceWeaponKillChance
+        {
+            get
+            {
+                return Props.ForceWeaponKillChance;
+            }
+        }
+        public SoundDef ForceWeaponTriggerSound
+        {
+            get
+            {
+                return Props.ForceWeaponTriggerSound;
             }
         }
 
