@@ -13,6 +13,8 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     class Main
     {
+        public static IEnumerable<ThingDef> TechHediffItems; 
+        public static IEnumerable<RecipeDef> TechHediffRecipes; 
         static Main()
         {
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OGAM_TestScenario_")))
@@ -109,7 +111,12 @@ namespace AdeptusMechanicus
                     }
                 }
             }
-
+            TechHediffItems = from x in DefDatabase<ThingDef>.AllDefs
+                     where x.isTechHediff && x.BaseMarketValue > 0
+                     select x;
+            TechHediffRecipes = from x in DefDatabase<RecipeDef>.AllDefs
+                                          where TechHediffItems.Any(z=> x.IsIngredient(z)) && x.targetsBodyPart
+                                          select x;
         }
 
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
