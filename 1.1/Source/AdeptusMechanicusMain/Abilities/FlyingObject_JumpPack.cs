@@ -68,7 +68,7 @@ namespace AdeptusMechanicus
                 {
                     num = 1;
                 }
-                return num;
+                return (int)(num * (1f - TimeInAnimation));
             }
         }
 
