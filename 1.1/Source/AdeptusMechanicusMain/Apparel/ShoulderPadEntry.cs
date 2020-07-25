@@ -142,7 +142,7 @@ namespace AdeptusMechanicus
                     s = Used.TexPath;
                     if (s.Contains(" "))
                     {
-                        Log.Message("removing space");
+                    //    Log.Message("removing space");
                         s = Regex.Replace(Used.TexPath, " ", "");
                     }
                 }

@@ -120,7 +120,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 GetsHotCritExplosionChance = 0f;
                 canDamageWeapon = false;
                 extraWeaponDamage = 0f;
-                Log.Message("no SpecialRules detected");
+            //    Log.Message("no SpecialRules detected");
                 return GetsHot;
             }
             GetsHot = entry.GetsHot;
@@ -146,7 +146,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             {
                 canDamageWeapon = false;
                 extraWeaponDamage = 0f;
-                Log.Message("no SpecialRules detected");
+           //     Log.Message("no SpecialRules detected");
                 return Jams;
             }
             Jams = entry.Jams;

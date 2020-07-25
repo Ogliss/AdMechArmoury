@@ -47,73 +47,55 @@ namespace AdeptusMechanicus
         public void DoStrike(DeepStrikeEntry strike)
         {
             string str = string.Empty;
-            Log.Message("0");
             foreach (var item in strike.members)
             {
-                Log.Message("0 a");
                 if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Drop)
                 {
                     Droppers.Add(item);
                 }
-                Log.Message("0 b");
                 if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Fly)
                 {
                     Flyers.Add(item);
                 }
-                Log.Message("0 c");
                 if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Teleport)
                 {
                     Teleporters.Add(item);
                 }
-                Log.Message("0 d");
                 if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Tunnel)
                 {
                     Tunnellers.Add(item);
                 }
-                Log.Message("0 e");
             }
-            Log.Message("1");
             List<Pawn> pawns = new List<Pawn>();
-            Log.Message("2");
             if (!Droppers.NullOrEmpty())
             {
-                Log.Message("2 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop) : ", "+ DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop);
                 pawns.AddRange(Droppers);
                 ArriveDropPod(Droppers);
                 Droppers.Clear();
             }
-            Log.Message("3");
             if (!Flyers.NullOrEmpty())
             {
-                Log.Message("3 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Fly) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Fly);
                 pawns.AddRange(Flyers);
                 ArriveFly(Flyers);
                 Flyers.Clear();
             }
-            Log.Message("4");
             if (!Teleporters.NullOrEmpty())
             {
-                Log.Message("4 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Teleport) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Teleport);
                 pawns.AddRange(Teleporters);
                 ArriveTeleport(Teleporters);
                 Teleporters.Clear();
             }
-            Log.Message("5");
             if (!Tunnellers.NullOrEmpty())
             {
-                Log.Message("5 a");
                 str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Tunnel) : ", " + DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Tunnel);
                 pawns.AddRange(Tunnellers);
                 ArriveTunnel(Tunnellers);
                 Tunnellers.Clear();
             }
-            Log.Message("6");
             Find.LetterStack.ReceiveLetter("AMA_DeepStrike_Incomming".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AMA_DeepStrike_Incomming_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural, str), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
-
-            Log.Message("7");
             strike.struck = true;
         }
 

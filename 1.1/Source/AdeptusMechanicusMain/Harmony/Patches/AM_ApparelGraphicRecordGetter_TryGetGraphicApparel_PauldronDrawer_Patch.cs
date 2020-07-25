@@ -10,13 +10,17 @@ namespace AdeptusMechanicus.HarmonyInstance
 {
 	// Token: 0x020001AF RID: 431
 	[HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
-	public static class AM_ApparelGraphicRecordGetter_TryGetGraphicApparel_AdvancedGraphics_Patch
+	public static class AM_ApparelGraphicRecordGetter_TryGetGraphicApparel_PauldronDrawer_Patch
 	{
 
 		// Token: 0x060008F6 RID: 2294 RVA: 0x0004A904 File Offset: 0x00048B04
 		[HarmonyPostfix]
 		public static void Postfix(Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
 		{
+			if (apparel.def.apparel.wornGraphicPath.NullOrEmpty())
+			{
+				return;
+			}
 			bool adv = apparel.TryGetComp<CompPauldronDrawer>() != null;
 			if (adv)
 			{

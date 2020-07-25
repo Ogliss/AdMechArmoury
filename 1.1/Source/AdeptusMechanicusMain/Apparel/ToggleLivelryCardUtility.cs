@@ -265,9 +265,9 @@ namespace AdeptusMechanicus
                                 Traverse traverse = Traverse.Create(e.drawer.apparel);
                                 subgraphic.SetValue(e.drawer.apparel, graphic);
 
-                                Log.Message("set active");
+                            //    Log.Message("set active");
                                 e.VariantTextures.activeOption = variant;
-                                Log.Message("Update PadGraphic");
+                            //    Log.Message("Update PadGraphic");
                                 e.UpdatePadGraphic();
 
 

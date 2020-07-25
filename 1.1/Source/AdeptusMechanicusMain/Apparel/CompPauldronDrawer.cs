@@ -97,11 +97,12 @@ namespace AdeptusMechanicus
                     }
                     activeEntries.Add(entry);
                 }
-
+                /*
                 if (!activeEntries.EnumerableNullOrEmpty())
                 {
                     Log.Message("activeEntries count " + activeEntries.Count);
                 }
+                */
             }
             else
             {

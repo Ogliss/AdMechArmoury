@@ -133,7 +133,7 @@ namespace AdeptusMechanicus
             {
                 this.equipmentDef = this.launcher.def;
             }
-            Log.Message("BattleLogEntry_RangedImpact launcher: " + this.launcher + ", hitThing: " + hitThing + ", intendedTarget: " + this.intendedTarget.Thing + ", equipmentDef: " + this.equipmentDef + ", def: " + this.def+ ", targetCoverDef: " + this.targetCoverDef);
+        //    Log.Message("BattleLogEntry_RangedImpact launcher: " + this.launcher + ", hitThing: " + hitThing + ", intendedTarget: " + this.intendedTarget.Thing + ", equipmentDef: " + this.equipmentDef + ", def: " + this.def+ ", targetCoverDef: " + this.targetCoverDef);
             BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, this.equipmentDef, this.def, this.targetCoverDef);
             Find.BattleLog.Add(battleLogEntry_RangedImpact);
             if (hitThing != null)
