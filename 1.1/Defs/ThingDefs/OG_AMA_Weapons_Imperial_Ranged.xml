@@ -3146,6 +3146,23 @@
     </graphicData>
     <projectile>
       <damageDef>OGIAuto</damageDef>
+      <damageAmountBase>2</damageAmountBase>
+      <stoppingPower>.15</stoppingPower>
+      <armorPenetrationBase>0.14</armorPenetrationBase>
+      <speed>55</speed>
+    </projectile>
+ </ThingDef>
+ 
+ <!-- ====================== Arbites Shotgun shot ===================== -->
+ <ThingDef ParentName="BaseBullet">
+    <defName>OGI_Bullet_ArbitesShotgunRubber</defName>
+    <label>shotgun blast</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>OGIAutoRubber</damageDef>
       <damageAmountBase>1</damageAmountBase>
       <stoppingPower>.15</stoppingPower>
       <armorPenetrationBase>0.14</armorPenetrationBase>
@@ -3163,7 +3180,7 @@
     </graphicData>
     <projectile>
       <damageDef>OGIAuto</damageDef>
-      <damageAmountBase>3</damageAmountBase>
+      <damageAmountBase>4</damageAmountBase>
       <stoppingPower>0.15</stoppingPower>
       <armorPenetrationBase>0.14</armorPenetrationBase>
       <speed>55</speed>
@@ -3808,6 +3825,7 @@
     <verbs>
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
+			<label>Standard</label>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGI_Bullet_ArbitesShotgun</defaultProjectile>
 			<warmupTime>0.35</warmupTime>
@@ -3819,8 +3837,26 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
       </li>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<label>Rubber Bullets</label>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_ArbitesShotgunRubber</defaultProjectile>
+			<warmupTime>0.35</warmupTime>
+			<range>18</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
     </verbs>
-	<comps>    
+    <comps>
+        <li Class="CompToggleFireMode.CompProperties_ToggleFireMode">
+            <canSwitchWhileBusy>false</canSwitchWhileBusy> <!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+            <switchStartsCooldown>true</switchStartsCooldown> <!-- Default = False, starts the current verbs cooldown when switched  -->
+	</li> 
 		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 		<VerbEntries>
 			<li>
