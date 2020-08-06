@@ -40,35 +40,35 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return Props.ForceEffectRequiresPsyker;
+                return specialRules?.ForceEffectRequiresPsyker ?? Props.ForceEffectRequiresPsyker;
             }
         }
         public DamageDef ForceWeaponEffect
         {
             get
             {
-                return Props.ForceWeaponEffect;
+                return specialRules?.ForceWeaponEffect ?? Props.ForceWeaponEffect;
             }
         }
         public HediffDef ForceWeaponHediff
         {
             get
             {
-                return Props.ForceWeaponHediff;
+                return specialRules?.ForceWeaponHediff ?? Props.ForceWeaponHediff;
             }
         }
         public float ForceWeaponKillChance
         {
             get
             {
-                return Props.ForceWeaponKillChance;
+                return specialRules?.ForceWeaponKillChance ?? Props.ForceWeaponKillChance;
             }
         }
         public SoundDef ForceWeaponTriggerSound
         {
             get
             {
-                return Props.ForceWeaponTriggerSound;
+                return specialRules?.ForceWeaponTriggerSound ?? Props.ForceWeaponTriggerSound;
             }
         }
 
@@ -115,6 +115,19 @@ namespace AdeptusMechanicus
                     Log.Message("CanActivate 5 1");
                     if (!p.isPsyker())
                     {
+                        Log.Message("CanActivate 5 1 FAIL!!");
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (ForceEffectRequiresPsyker)
+                {
+                    Log.Message("CanActivate 5 2");
+                    if (!p.isPsyker())
+                    {
+                        Log.Message("CanActivate 5 2 FAIL!!");
                         return false;
                     }
                 }
@@ -166,7 +179,7 @@ namespace AdeptusMechanicus
                 List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
                 List<string> listl = new List<string>();
                 list.ForEach(x => listl.Add(x.label));
-                str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), Props.ForceWeaponKillChance);
+                str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), ForceWeaponKillChance);
             }
             if (Witchblade)
             {
