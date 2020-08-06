@@ -30,6 +30,8 @@ namespace AdeptusMechanicus
         public bool onlyWhileSleeping = false;
         public int ticksUntilNextHeal = 3500;
         public int ticksUntilNextGrow = 14000;
+        public HediffDef Regenerated_Part;
+        public HediffDef Regenerating_Part;
     }
 
     public class Comp_Regeneration : ThingComp

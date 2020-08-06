@@ -9,7 +9,7 @@ using Verse.AI;
 //This is for testing purposes
 namespace AdeptusMechanicus
 {
-    public static class ARA_AttackTargetFinder
+    public static class AMA_AttackTargetFinder
     {
         private static List<IAttackTarget> tmpTargets = new List<IAttackTarget>();
 
@@ -131,11 +131,11 @@ namespace AdeptusMechanicus
                 }
                 return true;
             };
-            if (ARA_AttackTargetFinder.HasRangedAttack(searcher))
+            if (AMA_AttackTargetFinder.HasRangedAttack(searcher))
             {
                 //Log.Warning("Finder: Range detected. Verb is " + verb);
                 //Log.Warning("Finder: Pawn " + searcherPawn.Faction);
-                ARA_AttackTargetFinder.tmpTargets.Clear();
+                AMA_AttackTargetFinder.tmpTargets.Clear();
 
                 //This needs to be fixed. Can't use searcherThing. Doing this the hard way.
                 //Set request for all attackable.
@@ -144,22 +144,22 @@ namespace AdeptusMechanicus
 
                 foreach (IAttackTarget iTarget in searchSet)
                 {
-                    ARA_AttackTargetFinder.tmpTargets.Add(iTarget);
+                    AMA_AttackTargetFinder.tmpTargets.Add(iTarget);
                 }
 
                 if ((byte)(flags & TargetScanFlags.NeedReachable) != 0)
                 {
                     Predicate<IAttackTarget> oldValidator = innerValidator;
-                    innerValidator = ((IAttackTarget t) => oldValidator(t) && ARA_AttackTargetFinder.CanReach(searcherThing, t.Thing, canBash));
+                    innerValidator = ((IAttackTarget t) => oldValidator(t) && AMA_AttackTargetFinder.CanReach(searcherThing, t.Thing, canBash));
                 }
                 bool flag = false;
                 if (searcherThing.Faction != Faction.OfPlayer)
                 {
                     //Log.Warning("Finder: Target available : " + ARA_AttackTargetFinder.tmpTargets.Count);
-                    for (int i = 0; i < ARA_AttackTargetFinder.tmpTargets.Count; i++)
+                    for (int i = 0; i < AMA_AttackTargetFinder.tmpTargets.Count; i++)
                     {
-                        IAttackTarget attackTarget = ARA_AttackTargetFinder.tmpTargets[i];
-                        if (attackTarget.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) && innerValidator(attackTarget) && ARA_AttackTargetFinder.CanShootAtFromCurrentPosition(attackTarget, searcher, verb))
+                        IAttackTarget attackTarget = AMA_AttackTargetFinder.tmpTargets[i];
+                        if (attackTarget.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) && innerValidator(attackTarget) && AMA_AttackTargetFinder.CanShootAtFromCurrentPosition(attackTarget, searcher, verb))
                         {
                             //Log.Warning("Finder: flag is true");
                             flag = true;
@@ -172,9 +172,9 @@ namespace AdeptusMechanicus
                 if (flag)
                 {
                     //Log.Warning("Finder: FlagTrue result");
-                    ARA_AttackTargetFinder.tmpTargets.RemoveAll((IAttackTarget x) => !x.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) || !innerValidator(x));
+                    AMA_AttackTargetFinder.tmpTargets.RemoveAll((IAttackTarget x) => !x.Thing.Position.InHorDistOf(searcherThing.Position, maxDist) || !innerValidator(x));
                     //Log.Warning("Finder: Target Avaliable : " + ARA_AttackTargetFinder.tmpTargets.Count);
-                    result = ARA_AttackTargetFinder.GetRandomShootingTargetByScore(ARA_AttackTargetFinder.tmpTargets, searcher, verb);
+                    result = AMA_AttackTargetFinder.GetRandomShootingTargetByScore(AMA_AttackTargetFinder.tmpTargets, searcher, verb);
                 }
                 else
                 {
@@ -182,16 +182,16 @@ namespace AdeptusMechanicus
                     if ((byte)(flags & TargetScanFlags.NeedReachableIfCantHitFromMyPos) != 0 && (byte)(flags & TargetScanFlags.NeedReachable) == 0)
                     {
                         //Log.Warning("Finder: Needs reachable");
-                        validator2 = ((Thing t) => innerValidator((IAttackTarget)t) && (ARA_AttackTargetFinder.CanReach(searcherThing, t, canBash) || ARA_AttackTargetFinder.CanShootAtFromCurrentPosition((IAttackTarget)t, searcher, verb)));
+                        validator2 = ((Thing t) => innerValidator((IAttackTarget)t) && (AMA_AttackTargetFinder.CanReach(searcherThing, t, canBash) || AMA_AttackTargetFinder.CanShootAtFromCurrentPosition((IAttackTarget)t, searcher, verb)));
                     }
                     else
                     {
                         //Log.Warning("Finder: Running normal validator");
                         validator2 = ((Thing t) => innerValidator((IAttackTarget)t));
                     }
-                    result = (IAttackTarget)GenClosest.ClosestThing_Global(searcherThing.Position, ARA_AttackTargetFinder.tmpTargets, maxDist, validator2, null);
+                    result = (IAttackTarget)GenClosest.ClosestThing_Global(searcherThing.Position, AMA_AttackTargetFinder.tmpTargets, maxDist, validator2, null);
                 }
-                ARA_AttackTargetFinder.tmpTargets.Clear();
+                AMA_AttackTargetFinder.tmpTargets.Clear();
                 //Log.Warning("Trying to return result " + result);
                 return result;
             }
@@ -235,7 +235,7 @@ namespace AdeptusMechanicus
         private static IAttackTarget GetRandomShootingTargetByScore(List<IAttackTarget> targets, IAttackTargetSearcher searcher, Verb verb)
         {
             Pair<IAttackTarget, float> pair;
-            if (ARA_AttackTargetFinder.GetAvailableShootingTargetsByScore(targets, searcher, verb).TryRandomElementByWeight((Pair<IAttackTarget, float> x) => x.Second, out pair))
+            if (AMA_AttackTargetFinder.GetAvailableShootingTargetsByScore(targets, searcher, verb).TryRandomElementByWeight((Pair<IAttackTarget, float> x) => x.Second, out pair))
             {
                 return pair.First;
             }
@@ -244,27 +244,27 @@ namespace AdeptusMechanicus
 
         private static List<Pair<IAttackTarget, float>> GetAvailableShootingTargetsByScore(List<IAttackTarget> rawTargets, IAttackTargetSearcher searcher, Verb verb)
         {
-            ARA_AttackTargetFinder.availableShootingTargets.Clear();
+            AMA_AttackTargetFinder.availableShootingTargets.Clear();
             if (rawTargets.Count == 0)
             {
-                return ARA_AttackTargetFinder.availableShootingTargets;
+                return AMA_AttackTargetFinder.availableShootingTargets;
             }
-            ARA_AttackTargetFinder.tmpTargetScores.Clear();
-            ARA_AttackTargetFinder.tmpCanShootAtTarget.Clear();
+            AMA_AttackTargetFinder.tmpTargetScores.Clear();
+            AMA_AttackTargetFinder.tmpCanShootAtTarget.Clear();
             float num = 0f;
             IAttackTarget attackTarget = null;
             for (int i = 0; i < rawTargets.Count; i++)
             {
-                ARA_AttackTargetFinder.tmpTargetScores.Add(-3.40282347E+38f);
-                ARA_AttackTargetFinder.tmpCanShootAtTarget.Add(false);
+                AMA_AttackTargetFinder.tmpTargetScores.Add(-3.40282347E+38f);
+                AMA_AttackTargetFinder.tmpCanShootAtTarget.Add(false);
                 if (rawTargets[i] != searcher)
                 {
-                    bool flag = ARA_AttackTargetFinder.CanShootAtFromCurrentPosition(rawTargets[i], searcher, verb);
-                    ARA_AttackTargetFinder.tmpCanShootAtTarget[i] = flag;
+                    bool flag = AMA_AttackTargetFinder.CanShootAtFromCurrentPosition(rawTargets[i], searcher, verb);
+                    AMA_AttackTargetFinder.tmpCanShootAtTarget[i] = flag;
                     if (flag)
                     {
-                        float shootingTargetScore = ARA_AttackTargetFinder.GetShootingTargetScore(rawTargets[i], searcher, verb);
-                        ARA_AttackTargetFinder.tmpTargetScores[i] = shootingTargetScore;
+                        float shootingTargetScore = AMA_AttackTargetFinder.GetShootingTargetScore(rawTargets[i], searcher, verb);
+                        AMA_AttackTargetFinder.tmpTargetScores[i] = shootingTargetScore;
                         if (attackTarget == null || shootingTargetScore > num)
                         {
                             attackTarget = rawTargets[i];
@@ -277,7 +277,7 @@ namespace AdeptusMechanicus
             {
                 if (attackTarget != null)
                 {
-                    ARA_AttackTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(attackTarget, 1f));
+                    AMA_AttackTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(attackTarget, 1f));
                 }
             }
             else
@@ -287,19 +287,19 @@ namespace AdeptusMechanicus
                 {
                     if (rawTargets[j] != searcher)
                     {
-                        if (ARA_AttackTargetFinder.tmpCanShootAtTarget[j])
+                        if (AMA_AttackTargetFinder.tmpCanShootAtTarget[j])
                         {
-                            float num3 = ARA_AttackTargetFinder.tmpTargetScores[j];
+                            float num3 = AMA_AttackTargetFinder.tmpTargetScores[j];
                             if (num3 >= num2)
                             {
                                 float second = Mathf.InverseLerp(num - 30f, num, num3);
-                                ARA_AttackTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(rawTargets[j], second));
+                                AMA_AttackTargetFinder.availableShootingTargets.Add(new Pair<IAttackTarget, float>(rawTargets[j], second));
                             }
                         }
                     }
                 }
             }
-            return ARA_AttackTargetFinder.availableShootingTargets;
+            return AMA_AttackTargetFinder.availableShootingTargets;
         }
 
         private static float GetShootingTargetScore(IAttackTarget target, IAttackTargetSearcher searcher, Verb verb)
@@ -320,7 +320,7 @@ namespace AdeptusMechanicus
             {
                 num -= 50f;
             }
-            return num + ARA_AttackTargetFinder.FriendlyFireShootingTargetScoreOffset(target, searcher, verb);
+            return num + AMA_AttackTargetFinder.FriendlyFireShootingTargetScoreOffset(target, searcher, verb);
         }
 
         private static float FriendlyFireShootingTargetScoreOffset(IAttackTarget target, IAttackTargetSearcher searcher, Verb verb)
@@ -382,25 +382,25 @@ namespace AdeptusMechanicus
 
         public static IAttackTarget BestShootTargetFromCurrentPosition(IAttackTargetSearcher searcher, Predicate<Thing> validator, float maxDistance, float minDistance, TargetScanFlags flags)
         {
-            return ARA_AttackTargetFinder.BestAttackTarget(searcher, flags, validator, minDistance, maxDistance, default(IntVec3), 3.40282347E+38f, false);
+            return AMA_AttackTargetFinder.BestAttackTarget(searcher, flags, validator, minDistance, maxDistance, default(IntVec3), 3.40282347E+38f, false);
         }
 
         public static bool CanSee(this Thing seer, Thing target, Func<IntVec3, bool> validator = null)
         {
-            ShootLeanUtility.CalcShootableCellsOf(ARA_AttackTargetFinder.tempDestList, target);
-            for (int i = 0; i < ARA_AttackTargetFinder.tempDestList.Count; i++)
+            ShootLeanUtility.CalcShootableCellsOf(AMA_AttackTargetFinder.tempDestList, target);
+            for (int i = 0; i < AMA_AttackTargetFinder.tempDestList.Count; i++)
             {
-                if (GenSight.LineOfSight(seer.Position, ARA_AttackTargetFinder.tempDestList[i], seer.Map, true, validator, 0, 0))
+                if (GenSight.LineOfSight(seer.Position, AMA_AttackTargetFinder.tempDestList[i], seer.Map, true, validator, 0, 0))
                 {
                     return true;
                 }
             }
-            ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, ARA_AttackTargetFinder.tempSourceList);
-            for (int j = 0; j < ARA_AttackTargetFinder.tempSourceList.Count; j++)
+            ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, AMA_AttackTargetFinder.tempSourceList);
+            for (int j = 0; j < AMA_AttackTargetFinder.tempSourceList.Count; j++)
             {
-                for (int k = 0; k < ARA_AttackTargetFinder.tempDestList.Count; k++)
+                for (int k = 0; k < AMA_AttackTargetFinder.tempDestList.Count; k++)
                 {
-                    if (GenSight.LineOfSight(ARA_AttackTargetFinder.tempSourceList[j], ARA_AttackTargetFinder.tempDestList[k], seer.Map, true, validator, 0, 0))
+                    if (GenSight.LineOfSight(AMA_AttackTargetFinder.tempSourceList[j], AMA_AttackTargetFinder.tempDestList[k], seer.Map, true, validator, 0, 0))
                     {
                         return true;
                     }

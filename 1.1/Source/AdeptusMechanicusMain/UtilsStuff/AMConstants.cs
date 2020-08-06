@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
 
 namespace AdeptusMechanicus
 {
+    /*
     public static class AMConstants
     {
-        //   public static int AMSeed = 454385387;
-        public static int AvPSeed = 454385387;
+        public static int AvPSeed = 454385386;
         public static readonly string ModPrefix = "AvP_";
 
         public static Color YautjaCloakColor = new Color(0.25f, 0.25f, 0.25f, 0.0001f);
@@ -33,4 +29,5 @@ namespace AdeptusMechanicus
             return graphics;
         }
     }
+    */
 }

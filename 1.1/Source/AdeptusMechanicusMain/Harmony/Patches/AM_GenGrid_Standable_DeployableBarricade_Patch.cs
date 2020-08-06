@@ -22,6 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (c.InBounds(map))
                 {
                     List<Thing> list = map.thingGrid.ThingsListAt(c);
+
                     list = list.FindAll(x => x is Building_DeployableBarricade);
                     for (int j = 0; j < list.Count; j++)
                     {

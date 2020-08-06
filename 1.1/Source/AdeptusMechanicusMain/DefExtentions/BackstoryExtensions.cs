@@ -7,6 +7,6 @@ namespace AdeptusMechanicus
     // Token: 0x02000020 RID: 32
     public class BackstoryExtension : DefModExtension
     {
-
+        public bool AdultUseChildCatergory = true;
     }
 }

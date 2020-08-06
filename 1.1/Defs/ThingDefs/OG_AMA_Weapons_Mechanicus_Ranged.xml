@@ -548,220 +548,6 @@
     </modExtensions>
  </ThingDef>
 
-<!-- ====================== Galvanic Rifle ===================== -->
- <ThingDef ParentName="BaseBullet">
-	<defName>OGAM_Bullet_GalvanicRifle</defName>
-    <label>galvanic round</label>
-    <graphicData>
-		<texPath>Things/Projectile/GalvanicRifleShot</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIGalvanic</damageDef>
-		<damageAmountBase>45</damageAmountBase>
-			<armorPenetrationBase>0.48</armorPenetrationBase>
-		<stoppingPower>2</stoppingPower>
-		<speed>105</speed>
-    </projectile>
- </ThingDef>
-
- <ThingDef ParentName="OG_Mechanicus_Gun_Special">
-    <defName>OGAM_Gun_GalvanicRifle</defName>
-    <label>galvanic rifle (AM)</label>
-    <description>The Mark IV Arkhan Galvanic Rifle, modelled after the hunting flintlocks of Mars' distant colonial past, is a precision tool in the hands of a Skitarii Ranger. Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic Servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/GalvanicRifle</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.10</drawSize>			
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<MarketValue>3500</MarketValue>
-		<Mass>3.2</Mass>
-		<AccuracyTouch>0.45</AccuracyTouch>
-		<AccuracyShort>0.65</AccuracyShort>
-		<AccuracyMedium>0.85</AccuracyMedium>
-		<AccuracyLong>0.80</AccuracyLong>
-		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>130</Steel>
-		<Plasteel>40</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<Gold>4</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		
-		<li>GalvanicRifle</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGAMRanged</li>
-		</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
-			<warmupTime>3</warmupTime>
-			<range>38</range>
-			<soundCast>Shot_ChargeRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-
-<!-- ====================== Transuranic Arquebus ===================== -->
- <ThingDef ParentName="BaseBullet">
-	<defName>OGAM_Bullet_Transuranic_Arquebus</defName>
-    <label>transuranic shell</label>
-    <graphicData>
-		<texPath>Things/Projectile/TransuranicShot</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGITransuranic</damageDef>
-		<damageAmountBase>75</damageAmountBase>
-		<armorPenetrationBase>0.68</armorPenetrationBase>
-		<stoppingPower>2.5</stoppingPower>
-		<speed>105</speed>
-    </projectile>
- </ThingDef>
-
- <ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
-    <defName>OGAM_Gun_Transuranic_Arquebus</defName>
-    <label>transuranic arquebus (AM)</label>
-    <description>A Transuranic Arquebus is a long-barrelled infantry weapon which epitomises the precision and inhuman efficiency that typify the cyborg Skitarii legions of the Adeptus Mechanicus. Firing a shell of depleted transuranium, a transuranic arquebus can puncture a tank from one side to the other, the resultant pressure wave also pulping any biological creatures that may be sheltering inside. Both Skitarii Vanguards and Skitarii Rangers typically field Transuranic Arquebuses as a special weapon in their squads.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/TransuranicArquebus</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.10</drawSize>			
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<MarketValue>7250</MarketValue>
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.45</AccuracyTouch>
-		<AccuracyShort>0.75</AccuracyShort>
-		<AccuracyMedium>0.85</AccuracyMedium>
-		<AccuracyLong>0.80</AccuracyLong>
-		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<Gold>2</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>GunHeavy</li>
-		<li>TransuranicArquebus</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGAMRanged</li>
-		</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGAM_Bullet_Transuranic_Arquebus</defaultProjectile>
-			<warmupTime>4</warmupTime>
-			<range>60</range>
-			<soundCast>Shot_ChargeRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
 <!-- ====================== Plasma Caliver ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_PlasmaCaliver</defName>
@@ -997,6 +783,434 @@
 			<southOffset>0.0,1.0,0.0</southOffset>
 	  </li>  
 	</comps>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+ </ThingDef>
+ 
+<!-- ====================== Arc Pistol ===================== --> 
+  <ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.LaserBeamDef">
+    <defName>OGAM_Bullet_ArcBolt</defName>
+    <label>arc bolt</label>
+    
+    <textures>
+      <li>Things/Projectile/AnimLightning</li>
+    </textures>
+    <seam>0</seam>
+    <lifetime>30</lifetime>
+    <LightningBeam>true</LightningBeam>
+    <StaticLightning>true</StaticLightning>
+    <LightningVariance>1.5</LightningVariance>
+    <beamWidth>0.25</beamWidth>
+    <ArcCount>2</ArcCount>
+
+    <projectile>
+		<damageDef>OGIArc</damageDef>
+		<damageAmountBase>5</damageAmountBase>
+		<armorPenetrationBase>1</armorPenetrationBase>
+		<stoppingPower>1</stoppingPower>
+    </projectile>
+  </ThingDef>
+  
+ <ThingDef ParentName="OG_Mechanicus_Gun">
+    <defName>OGAM_Gun_ArcPistol</defName>
+    <label>arc pistol (AM)</label>
+    <description>A small pistol based on Arc Weapon technology and most commonly used by Skitarii Vanguard / Ranger Alphas.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcPistol</texPath>
+		<graphicClass>Graphic_Single</graphicClass>	
+		<shaderType>CutoutComplex</shaderType>
+		<color>(137,33,0)</color>		
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>6500</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.75</AccuracyTouch>
+		<AccuracyShort>0.80</AccuracyShort>
+		<AccuracyMedium>0.80</AccuracyMedium>
+		<AccuracyLong>0.70</AccuracyLong>
+		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Common_Tech_Weapons_Laser</li-->
+			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+			<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
+    <costList>
+		<Steel>70</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>1</Gold>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		
+		<li>ArcPistol</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+	
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>26</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shot_MachinePistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+ </ThingDef>
+ 
+<!-- ====================== Arc Rifle ===================== -->
+ <ThingDef ParentName="OG_Mechanicus_Gun_Special">
+	<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+	<defName>OGAM_Gun_ArcRifle</defName>
+    <label>arc rifle (AM)</label>
+    <description>A rapid firing Arc Weapon used as a special weapon in Skitarii Vanguard and Ranger squads.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcRifle</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>(137,33,0)</color>		
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<WorkToMake>18000</WorkToMake>
+		<MarketValue>3250</MarketValue>
+		<Mass>1.2</Mass>
+		<AccuracyTouch>0.65</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.62</AccuracyLong>
+		<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Common_Tech_Weapons_Laser</li-->
+			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+			<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
+	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
+	</recipeMaker>
+    <costList>
+		<Steel>175</Steel>
+		<Plasteel>55</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>6</Gold>
+    </costList>
+	<weaponTags>
+		
+		<li>ArcRifle</li>
+	</weaponTags>
+	<tradeTags>
+		<li>OGAMRanged</li>
+	</tradeTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>31</range>
+			<soundCast>Shot_MachinePistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<RapidFire>true</RapidFire>
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<northOffset>0.0,0.0,0.0</northOffset>
+			<eastOffset>0.0,1.0,0.0</eastOffset>
+			<westOffset>0.0,0.0,0.0</westOffset>
+			<southOffset>0.0,1.0,0.0</southOffset>
+	  </li>  
+	</comps>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+ </ThingDef>
+
+<!-- ====================== Galvanic Rifle ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGAM_Bullet_GalvanicRifle</defName>
+    <label>galvanic round</label>
+    <graphicData>
+		<texPath>Things/Projectile/GalvanicRifleShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGIGalvanic</damageDef>
+		<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>2</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+ </ThingDef>
+
+ <ThingDef ParentName="OG_Mechanicus_Gun_Special">
+    <defName>OGAM_Gun_GalvanicRifle</defName>
+    <label>galvanic rifle (AM)</label>
+    <description>The Mark IV Arkhan Galvanic Rifle, modelled after the hunting flintlocks of Mars' distant colonial past, is a precision tool in the hands of a Skitarii Ranger. Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic Servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/GalvanicRifle</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.10</drawSize>			
+    </graphicData>
+    <equippedAngleOffset>45</equippedAngleOffset>
+	<comps>     
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<northOffset>0.0,0.0,0.0</northOffset>
+			<eastOffset>0.0,1.0,0.0</eastOffset>
+			<westOffset>0.0,0.0,0.0</westOffset>
+			<southOffset>0.0,1.0,0.0</southOffset>
+	  </li>  
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>3500</MarketValue>
+		<Mass>3.2</Mass>
+		<AccuracyTouch>0.45</AccuracyTouch>
+		<AccuracyShort>0.65</AccuracyShort>
+		<AccuracyMedium>0.85</AccuracyMedium>
+		<AccuracyLong>0.80</AccuracyLong>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>130</Steel>
+		<Plasteel>40</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>4</Gold>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		
+		<li>GalvanicRifle</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>38</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>1.8</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.9</cooldownTime>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+ </ThingDef>
+
+<!-- ====================== Transuranic Arquebus ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGAM_Bullet_Transuranic_Arquebus</defName>
+    <label>transuranic shell</label>
+    <graphicData>
+		<texPath>Things/Projectile/TransuranicShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGITransuranic</damageDef>
+		<damageAmountBase>75</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>2.5</stoppingPower>
+		<speed>105</speed>
+    </projectile>
+ </ThingDef>
+
+ <ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
+    <defName>OGAM_Gun_Transuranic_Arquebus</defName>
+    <label>transuranic arquebus (AM)</label>
+    <description>A Transuranic Arquebus is a long-barrelled infantry weapon which epitomises the precision and inhuman efficiency that typify the cyborg Skitarii legions of the Adeptus Mechanicus. Firing a shell of depleted transuranium, a transuranic arquebus can puncture a tank from one side to the other, the resultant pressure wave also pulping any biological creatures that may be sheltering inside. Both Skitarii Vanguards and Skitarii Rangers typically field Transuranic Arquebuses as a special weapon in their squads.</description>
+    <graphicData>
+		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/TransuranicArquebus</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.10</drawSize>			
+    </graphicData>
+    <equippedAngleOffset>45</equippedAngleOffset>
+	<comps>     
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<northOffset>0.0,0.0,0.0</northOffset>
+			<eastOffset>0.0,1.0,0.0</eastOffset>
+			<westOffset>0.0,0.0,0.0</westOffset>
+			<southOffset>0.0,1.0,0.0</southOffset>
+	  </li>  
+	</comps>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+		<WorkToMake>125000</WorkToMake>
+		<MarketValue>7250</MarketValue>
+		<Mass>5.2</Mass>
+		<AccuracyTouch>0.45</AccuracyTouch>
+		<AccuracyShort>0.75</AccuracyShort>
+		<AccuracyMedium>0.85</AccuracyMedium>
+		<AccuracyLong>0.80</AccuracyLong>
+		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+    </statBases>
+	<recipeMaker>
+		<researchPrerequisite>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</researchPrerequisite>
+	</recipeMaker>
+    <costList>
+		<Steel>150</Steel>
+		<Plasteel>60</Plasteel>
+		<ComponentIndustrial>10</ComponentIndustrial>
+		<Gold>2</Gold>
+    </costList>
+	<techLevel>Spacer</techLevel>
+    <weaponTags>
+		<li>GunHeavy</li>
+		<li>TransuranicArquebus</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGAM_Bullet_Transuranic_Arquebus</defaultProjectile>
+			<warmupTime>4</warmupTime>
+			<range>60</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
     <tools>
       <li>
         <label>barrel</label>
@@ -1366,7 +1580,6 @@
     </modExtensions>
  </ThingDef>
  
- 
 <!-- ====================== Mitralock ===================== -->
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
     <defName>OGAM_Bullet_Mitralock</defName>
@@ -1489,220 +1702,6 @@
     </modExtensions>
   </ThingDef>
   
-<!-- ====================== Arc Pistol ===================== --> 
-  <ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGAM_Bullet_ArcBolt</defName>
-    <label>arc bolt</label>
-    
-    <textures>
-      <li>Things/Projectile/AnimLightning</li>
-    </textures>
-    <seam>0</seam>
-    <lifetime>30</lifetime>
-    <LightningBeam>true</LightningBeam>
-    <StaticLightning>true</StaticLightning>
-    <LightningVariance>1.5</LightningVariance>
-    <beamWidth>0.25</beamWidth>
-    <ArcCount>2</ArcCount>
-
-    <projectile>
-		<damageDef>OGIArc</damageDef>
-		<damageAmountBase>5</damageAmountBase>
-		<armorPenetrationBase>1</armorPenetrationBase>
-		<stoppingPower>1</stoppingPower>
-    </projectile>
-  </ThingDef>
-  
- <ThingDef ParentName="OG_Mechanicus_Gun">
-    <defName>OGAM_Gun_ArcPistol</defName>
-    <label>arc pistol (AM)</label>
-    <description>A small pistol based on Arc Weapon technology and most commonly used by Skitarii Vanguard / Ranger Alphas.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcPistol</texPath>
-		<graphicClass>Graphic_Single</graphicClass>	
-		<shaderType>CutoutComplex</shaderType>
-		<color>(137,33,0)</color>		
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<MarketValue>6500</MarketValue>
-		<Mass>1.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.70</AccuracyLong>
-		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Common_Tech_Weapons_Haywire</li>
-		</researchPrerequisites>
-	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
-	</recipeMaker>
-    <costList>
-		<Steel>70</Steel>
-		<Plasteel>40</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<Gold>1</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		
-		<li>ArcPistol</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGAMRanged</li>
-		</tradeTags>
-    <equippedStatOffsets>
-	
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>26</range>
-			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>Shot_MachinePistol</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
-<!-- ====================== Arc Rifle ===================== -->
- <ThingDef ParentName="OG_Mechanicus_Gun_Special">
-	<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
-	<defName>OGAM_Gun_ArcRifle</defName>
-    <label>arc rifle (AM)</label>
-    <description>A rapid firing Arc Weapon used as a special weapon in Skitarii Vanguard and Ranger squads.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcRifle</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<color>(137,33,0)</color>		
-	</graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<WorkToMake>18000</WorkToMake>
-		<MarketValue>3250</MarketValue>
-		<Mass>1.2</Mass>
-		<AccuracyTouch>0.65</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.62</AccuracyLong>
-		<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Common_Tech_Weapons_Haywire</li>
-		</researchPrerequisites>
-	<!--	<researchPrerequisite>DarkEldarBasicWeaponsTech</researchPrerequisite>	-->
-	</recipeMaker>
-    <costList>
-		<Steel>175</Steel>
-		<Plasteel>55</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<Gold>6</Gold>
-    </costList>
-	<weaponTags>
-		
-		<li>ArcRifle</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGAMRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>31</range>
-			<soundCast>Shot_MachinePistol</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<RapidFire>true</RapidFire>
-			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-
  <!-- ====================== Volkite shots ===================== -->
  <!-- ====================== Std Volkite shot ===================== -->
   <ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.LaserBeamDef">

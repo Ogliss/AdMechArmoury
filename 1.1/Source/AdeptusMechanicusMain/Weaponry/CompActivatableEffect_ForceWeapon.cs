@@ -142,5 +142,41 @@ namespace AdeptusMechanicus
         {
             base.Deactivate();
         }
+        public override string CompInspectStringExtra()
+        {
+            string str = "Special Rules:";
+            string str2 = string.Empty;
+            if (ForceWeapon)
+            {
+                str2 = str2.NullOrEmpty() ? str + "Force Weapon" : str + ", Force Weapon";
+            }
+            if (Witchblade)
+            {
+                str2 = str2.NullOrEmpty() ? str + " Witchblade" : str + ", Witchblade";
+            }
+            return str2.NullOrEmpty() ? null : str + str2;
+        }
+        public override string GetDescriptionPart()
+        {
+
+            string str = string.Empty;
+            CompEquippable c = parent.GetComp<CompEquippable>();
+            if (ForceWeapon)
+            {
+                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
+                List<string> listl = new List<string>();
+                list.ForEach(x => listl.Add(x.label));
+                str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), Props.ForceWeaponKillChance);
+            }
+            if (Witchblade)
+            {
+                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
+                List<string> listl = new List<string>();
+                list.ForEach(x => listl.Add(x.label));
+                str = str + string.Format("\n Witchblade: Attacks made by the following Tools can cause increased damage if the wielder is a Psyker:\n{0}", listl.ToCommaList());
+            }
+
+            return str;
+        }
     }
 }

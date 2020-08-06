@@ -47,7 +47,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             int i = 0;
             while (i<=50)
             {
-                IEnumerable<ThingDef> source = from x in Main.TechHediffItems
+                IEnumerable<ThingDef> source = from x in ArmouryMain.TechHediffItems
                                                where x.BaseMarketValue <= partsMoney && (x.techHediffsTags != null && pawn.kindDef.techHediffsTags.Any((string tag) => x.techHediffsTags.Contains(tag)))
                                                select x;
 
@@ -62,7 +62,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     ThingDef partDef = source.RandomElementByWeight((ThingDef w) => w.BaseMarketValue);
                 //    Log.Message("UseAllTechHediffMoney for " + pawn + " checking " + partDef);
-                    IEnumerable<RecipeDef> source2 = from x in Main.TechHediffRecipes
+                    IEnumerable<RecipeDef> source2 = from x in ArmouryMain.TechHediffRecipes
                                                      where x.IsIngredient(partDef) && x.targetsBodyPart && x.AllRecipeUsers.Contains(pawn.def)
                                                      select x;
                     if (!source2.EnumerableNullOrEmpty())

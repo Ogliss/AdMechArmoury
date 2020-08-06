@@ -8,7 +8,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000003 RID: 3
+    // Token: 0x02000003 RID: 3 
     public class Projectile_Trailer : Bullet
     {
         // Token: 0x06000003 RID: 3 RVA: 0x000020FC File Offset: 0x000010FC

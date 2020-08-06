@@ -531,11 +531,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OG_Eldar_Tech_Weapons_Melee_T1"; 
                     }
+                    */
                     if (defName == "EldarPowerWeapons")
                     {
-                        newName = "OG_Eldar_Tech_Weapons_Melee_T2"; 
+                        newName = "OG_Common_Tech_Weapons_Powered";
                     }
-                    */
                     if (defName == "EldarAdvancedMelee" || defName == "OG_Eldar_Tech_Weapons_Melee_T3")
                     {
                         newName = "OG_Eldar_Tech_Weapons_Witchblade";

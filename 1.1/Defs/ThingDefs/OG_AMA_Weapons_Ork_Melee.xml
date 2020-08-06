@@ -23,6 +23,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>0.5</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tools>
@@ -68,16 +69,16 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	 
 	<!--==================== Ork  - Choppa =========================-->
 	<ThingDef ParentName="OG_Ork_MeleeWeapon_Sharp_Quality">
@@ -89,6 +90,11 @@
 			<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
+		<comps>    
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li> 
+		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>75</costStuffCount>
 		<statBases>
@@ -98,6 +104,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>0.5</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<stuffCategories>
@@ -141,21 +148,16 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
-	<comps>    
-		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li> 
-	</comps>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	 
 	<!--==================== Ork  - Chain Choppa =========================-->
 	<ThingDef ParentName="OG_Ork_MeleeWeapon_Sharp_Quality">
@@ -176,6 +178,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<stuffCategories>
@@ -185,7 +188,10 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-			<researchPrerequisite>OG_Ork_Tech_Weapons_Melee_T1</researchPrerequisite>
+			<researchPrerequisites>
+				<li>BiofuelRefining</li>
+				<li>OG_Ork_Tech_Weapons_Melee_T1</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<tools>
 			<li>
@@ -210,6 +216,7 @@
 		<costList>
 			<OGO_Component>1</OGO_Component>
 			<OGO_Bitz>15</OGO_Bitz>
+			<ChemFuel>5</ChemFuel>
 		</costList>
 		<weaponTags>
 			<li>OChainChoppa</li>
@@ -218,16 +225,16 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	 
 	<!--==================== Ork  - Big Choppa =========================-->
 	<ThingDef ParentName="OG_Ork_MeleeWeapon_Sharp_Quality">
@@ -247,6 +254,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>0.125</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<stuffCategories>
@@ -294,16 +302,16 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	 
 	<!--==================== Ork  - Power Klaw =========================-->
 	<ThingDef ParentName="OG_Ork_MeleeWeapon_Sharp_Quality">
@@ -323,16 +331,20 @@
 			
 			<MarketValue>750</MarketValue>
 		</statBases>
-	<recipeMaker>
-			<recipeUsers>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>-0.125</MoveSpeed>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<!--recipeUsers>
 				<li>ElectricSmithy</li>
 				<li>FueledSmithy</li>
-			</recipeUsers>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Powered</li>
-			<li>OG_Ork_Tech_Base_T3</li>
-		</researchPrerequisites>
-	</recipeMaker>
+			</recipeUsers-->
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+				<li>OG_Ork_Tech_Base_T3</li>
+			</researchPrerequisites>
+		</recipeMaker>
 		<costStuffCount>400</costStuffCount>
 		<costList>
 			<OGO_Component>10</OGO_Component>
@@ -390,16 +402,16 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	 
 	<!--==================== Ork  - Wyrd Staff =========================-->
 	<ThingDef ParentName="OG_Ork_MeleeWeapon_Blunt_Quality">
@@ -420,33 +432,39 @@
 			<MarketValue>1750</MarketValue>
 		</statBases>
 		<equippedStatOffsets>
-		  <PsychicSensitivity>0.50</PsychicSensitivity>
-		  <PsychicEntropyRecoveryRate>0.083</PsychicEntropyRecoveryRate>
+			<MoveSpeed>0.5</MoveSpeed>
+			<PsychicSensitivity>0.50</PsychicSensitivity>
+			<PsychicEntropyRecoveryRate>0.083</PsychicEntropyRecoveryRate>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<comps>    
 			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
-				<gizmosOnEquip>false</gizmosOnEquip>
-				<!--<altitudeLayer>PawnState</altitudeLayer>-->
 				<graphicData>
 					<graphicClass>Graphic_Single</graphicClass>
 					<shaderType>CutoutComplex</shaderType>
 					<color>(136,0,54)</color>	
 				</graphicData>	
+				<ForceWeapon>true</ForceWeapon>
+				<ForceWeaponEffect>OGForceStrike</ForceWeaponEffect>
+				<ForceWeaponHediff>FWPsychicShock</ForceWeaponHediff>
+				<ForceWeaponKillChance>0.1</ForceWeaponKillChance>
+				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
 				<!--
 				<activateSound>Activate</activateSound>
 				<sustainerSound>Hum</sustainerSound>
 				<deactivateSound>Deactivate</deactivateSound>
 				-->					
 			</li>
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_MeleeSpecialRules">
+			<!--li Class="AdeptusMechanicus.CompProperties_Weapon_MeleeSpecialRules">
 				<ForceWeapon>true</ForceWeapon>
 				<ForceWeaponEffect>OGForceStrike</ForceWeaponEffect>
 				<ForceWeaponHediff>FWPsychicShock</ForceWeaponHediff>
 				<ForceWeaponKillChance>0.1</ForceWeaponKillChance>
 				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
-			</li> 
+			</li--> 
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,0.0,0.0</eastOffset>
@@ -505,15 +523,15 @@
 			<li>OGIMelee</li>
 		</tradeTags>
 		<generateCommonality>0.25</generateCommonality>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	 </ThingDef>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 	
 </Defs>

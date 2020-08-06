@@ -129,14 +129,17 @@ namespace AdeptusMechanicus
         {
 
             string str = string.Empty;
+            CompWeapon_MeleeSpecialRules m = parent.TryGetComp<CompWeapon_MeleeSpecialRules>();
             CompEquippable c = parent.GetComp<CompEquippable>();
             if (RendingWeapon)
             {
-                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
-                List<string> listl = new List<string>();
-                list.ForEach(x => listl.Add(x.label));
-                CompWeapon_MeleeSpecialRules m = parent.GetComp<CompWeapon_MeleeSpecialRules>();
-                str = str + string.Format("\n Rending: has a {0} chance to ignore all armour", m.RendingChance);
+                if (m != null)
+                {
+                    List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
+                    List<string> listl = new List<string>();
+                    list.ForEach(x => listl.Add(x.label));
+                    str = str + string.Format("\n Rending: has a {0} chance to ignore all armour", m.RendingChance);
+                }
             }
             if (PowerWeapon)
             {
@@ -147,20 +150,24 @@ namespace AdeptusMechanicus
             }
             if (ForceWeapon)
             {
-                CompWeapon_MeleeSpecialRules m = parent.GetComp<CompWeapon_MeleeSpecialRules>();
-                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
-                List<string> listl = new List<string>();
-                list.ForEach(x => listl.Add(x.label));
-                str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), m.ForceWeaponKillChance);
+                if (m != null)
+                {
+                    List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
+                    List<string> listl = new List<string>();
+                    list.ForEach(x => listl.Add(x.label));
+                    str = str + string.Format("\n Force Weapon: Attacks made by the following Tools can cause Force Attacks if the wielder is a Psyker:\n{0}", listl.ToCommaList(), m.ForceWeaponKillChance);
+                }
             }
 
             if (Witchblade)
             {
-                CompWeapon_MeleeSpecialRules m = parent.GetComp<CompWeapon_MeleeSpecialRules>();
-                List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
-                List<string> listl = new List<string>();
-                list.ForEach(x => listl.Add(x.label));
-                str = str + string.Format("\n Witchblade: Attacks made by the following Tools can cause increased damage if the wielder is a Psyker:\n{0}", listl.ToCommaList());
+                if (m != null)
+                {
+                    List<Tool> list = parent.def.tools.FindAll(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
+                    List<string> listl = new List<string>();
+                    list.ForEach(x => listl.Add(x.label));
+                    str = str + string.Format("\n Witchblade: Attacks made by the following Tools can cause increased damage if the wielder is a Psyker:\n{0}", listl.ToCommaList());
+                }
             }
 
             return str;

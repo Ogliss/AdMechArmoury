@@ -35,12 +35,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 AlienRacesPatch();
             }
 
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(EquipmentUtility), "CanEquip", new Type[]
-            {
-                typeof(Thing),
-                typeof(Pawn),
-                typeof(string).MakeByRefType()
-            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
             /*
             if (AdeptusIntergrationUtil.enabled_CombatExtended)
             {
@@ -49,6 +43,95 @@ namespace AdeptusMechanicus.HarmonyInstance
                 AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_ShootCE), "TryCastShot", null, null), null, new HarmonyMethod(typeof(AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch).GetMethod("Postfix")));
             }
             */
+
+            if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
+            {
+                HarmonyPatches.HeadMatAt_NewTemp();
+            }
+            else
+            {
+                HarmonyPatches.HeadMatAt();
+            }
+
+            if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HairMatAt_NewTemp"))
+            {
+                HarmonyPatches.HairMatAt_NewTemp();
+            }
+            else
+            {
+                HarmonyPatches.HairMatAt();
+            }
+
+            if (AccessTools.GetMethodNames(typeof(EquipmentUtility)).Contains("CanEquip_NewTmp"))
+            {
+                HarmonyPatches.CanEquip_NewTmp();
+            }
+            else
+            {
+                HarmonyPatches.CanEquip();
+            }
+            /*
+            if (AccessTools.GetMethodNames(typeof(PawnRenderer)).Contains("OverrideMaterialIfNeeded_NewTemp"))
+            {
+                HarmonyPatches.OverrideMaterialIfNeeded_NewTemp();
+            }
+            else
+            {
+                HarmonyPatches.OverrideMaterialIfNeeded();
+            }
+            */
+        }
+
+        public static void CanEquip()
+        {
+
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(EquipmentUtility), "CanEquip", new Type[]
+            {
+                typeof(Thing),
+                typeof(Pawn),
+                typeof(string).MakeByRefType()
+            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
+        }
+
+        public static void CanEquip_NewTmp()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(EquipmentUtility), "CanEquip_NewTmp", new Type[]
+            {
+                typeof(Thing),
+                typeof(Pawn),
+                typeof(string).MakeByRefType(),
+                typeof(bool)
+            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
+        }
+
+        /*
+        public static void OverrideMaterialIfNeeded()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded", null, null), null, new HarmonyMethod(typeof(AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch), "Postfix", null), null, null);
+        }
+
+        public static void OverrideMaterialIfNeeded_NewTemp()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded_NewTemp", null, null), null, new HarmonyMethod(typeof(AvP_PawnRenderer_OverrideMaterialIfNeeded_NewTemp_Xenomorph_Patch), "Postfix", null), null, null);
+        }
+        */
+        public static void HairMatAt()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_Test_Patch), "Postfix", null), null, null);
+        }
+
+        public static void HairMatAt_NewTemp()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_NewTemp_Test_Patch), "Postfix", null), null, null);
+        }
+        public static void HeadMatAt()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_Test_Patch), "Postfix", null), null, null);
+        }
+
+        public static void HeadMatAt_NewTemp()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch), "Postfix", null), null, null);
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)

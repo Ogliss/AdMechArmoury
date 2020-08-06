@@ -13,7 +13,7 @@ using UnityEngine;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     // Token: 0x020000AB RID: 171
-    [HarmonyPatch(typeof(FloatMenuMakerMap), "ChoicesAtFor")]
+    [HarmonyPatch(typeof(FloatMenuMakerMap), "ChoicesAtFor", new Type[] { typeof(Vector3), typeof(Pawn)})]
     internal static class AM_FloatMenuMakerMap_ChoicesAtFor_Patch
     {
         // Token: 0x06000245 RID: 581 RVA: 0x00010E84 File Offset: 0x0000F084

@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     ScenarioDef scenDef = DefDatabase<ScenarioDef>.AllDefsListForReading.Find(x => x.scenario.name == scen.name);
                     //   Log.Message("checking name: " + scen.name+ " def: "+ scenDef.defName);
-                    if (scenDef.defName.Contains("OGAM_TestScenario_"))
+                    if (scenDef.defName.Contains("OGAM_TestScenario_") && SteamUtility.SteamPersonaName != "Ogliss")
                     {
                         //    Log.Message("skipping "+ scen.name);
                         continue;

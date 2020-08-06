@@ -68,7 +68,7 @@ namespace AdeptusMechanicus
                 {
                     num = 1;
                 }
-                return (int)(num * (1f - TimeInAnimation));
+                return num;
             }
         }
 
@@ -233,7 +233,7 @@ namespace AdeptusMechanicus
             this.Initialize();
         }
 
-        int delay = 30;
+        int delay = 5;
         public override void Tick()
         {
             base.Tick();
@@ -246,7 +246,7 @@ namespace AdeptusMechanicus
                 {
                     Log.Message("Target moved");
                     this.destination = assignedTarget.Position.ToVector3Shifted();
-                    this.ticksToImpact = UpdateTicksToImpact;
+                //    this.ticksToImpact = UpdateTicksToImpact;
                 }
             }
             if (delay>0)
