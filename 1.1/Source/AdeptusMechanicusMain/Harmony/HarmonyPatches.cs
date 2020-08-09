@@ -262,16 +262,11 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             foreach (RecipeDef def in things)
             {
-                //    Log.Message(string.Format("checking {0}",def));
                 if (!AlienRace.RaceRestrictionSettings.recipeRestrictionDict.ContainsKey(key: def))
                 {
-                    //    Log.Message(string.Format("adding entry for {0}", def));
                     AlienRace.RaceRestrictionSettings.recipeRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
                 }
                 AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
-                //    List<string> names = new List<string>();
-                //    AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].ForEach(x => names.Add(x.defName));
-                //    Log.Message(string.Format("adding value for {0}, {1}", def, names.ToCommaList()));
             }
             List<ThingDef> Apparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
         }

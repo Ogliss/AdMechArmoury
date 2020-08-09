@@ -74,6 +74,77 @@
     </modExtensions>
 	 </ThingDef>
 	 
+	<!-- ==================== Chaos - Chain Axe ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+		<defName>OGC_Melee_ChainAxe</defName>
+		<label>chainaxe (C)</label>
+		<description>A Chainaxe is a brutal hand-to-hand Chain Weapon crafted in the form of a great one or two-handed axe which incorporates a powered chainsaw edge. The biting action of the whirling row of monomolecular teeth means these weapons can hack through both flesh and armour with ease.\n\nThe Chainaxe is the favorite weapon of the Khornate Berserkers found in the ranks of the Chaos Space Marines and of worshippers of the Blood God in general.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/ChainAxe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.25</drawSize>	
+		</graphicData>
+		<comps>    
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,0.0,0.0</eastOffset>
+				<westOffset>0.0,0.10,0.0</westOffset>
+				<southOffset>0.0,0.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>2.0</Mass>
+			
+			<MarketValue>7250</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>25</power>
+				<armorPenetration>0.16</armorPenetration>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>300</costStuffCount>
+		<weaponTags>
+			<li>CChainAxe</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>true</dualWield>
+        <twoHand>false</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+
+	 
 	<!-- ==================== Chaos - Power Sword ========================= -->
 	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
 		<defName>OGC_Melee_PowerSword</defName>
@@ -132,7 +203,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Powered</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costStuffCount>200</costStuffCount>
 		<stuffCategories>
@@ -196,7 +269,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Powered</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -286,7 +361,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Powered_Special</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -386,7 +463,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Powered_Special</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>20</Plasteel>
@@ -480,8 +559,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-			
-			<researchPrerequisite>OG_Common_Tech_Weapons_Powered_Special</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -578,7 +658,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Powered</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -641,8 +723,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-			
-			<researchPrerequisite>OG_Common_Tech_Weapons_Powered_Special</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -729,7 +812,9 @@
 			<recipeUsers>
 				
 			</recipeUsers>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Force</researchPrerequisite>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Plasteel>10</Plasteel>
@@ -936,7 +1021,11 @@
 			<recipeUsers>
 			
 			</recipeUsers>
-		<!-- <researchPrerequisite>ChaosTechBase</researchPrerequisite> -->
+			<!--
+			<researchPrerequisites>
+				<li>ChaosTechBase</li>
+			</researchPrerequisites>
+			 -->
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
