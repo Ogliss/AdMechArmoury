@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+  <ThingDef ParentName="BaseWeaponNeolithic">
+    <defName>OGK_Bow_Recurve</defName>
+    <label>recurve bow</label>
+    <description>A recurve bow. Its construction behaves like a tuned spring, storing energy more efficiently and delivering a faster shot.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/Kroot/KrootBow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Bow_Recurve</soundInteract>
+    <costList>
+      <WoodLog>40</WoodLog>
+    </costList>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.3</Mass>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.78</AccuracyShort>
+      <AccuracyMedium>0.65</AccuracyMedium>
+      <AccuracyLong>0.35</AccuracyLong>
+      <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+    </weaponTags>
+    <recipeMaker>
+      <recipeUsers>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Kroot_Tech_Base_T1</li>
+				<li>RecurveBow</li>
+			</researchPrerequisites>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>OGK_Arrow_Recurve</defaultProjectile>
+        <warmupTime>1.45</warmupTime>
+        <range>25.9</range>
+        <soundCast>Bow_Recurve</soundCast>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>limb</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>OGK_Arrow_Recurve</defName>
+    <label>recurve bow arrow</label>
+    <graphicData>
+      <texPath>Things/Projectile/Arrow_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>ArrowHighVelocity</damageDef>
+      <damageAmountBase>17</damageAmountBase>
+      <stoppingPower>1</stoppingPower>
+      <speed>60</speed>
+    </projectile>
+  </ThingDef>
+
 	<!--==================== Kroot - Kroot Pistol & Rifle =========================-->
 	<ThingDef ParentName="BaseBullet">
 		<defName>OGK_Bullet_Bullet</defName>
@@ -27,38 +101,6 @@
 		<projectile>
 			<damageDef>OGTPlasmaPulse</damageDef>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.32</armorPenetrationBase>
-			<speed>100</speed>
-		</projectile>
-	</ThingDef>
-
-	<!--==================== Kroot - Hunter Rifle =========================-->
-	<ThingDef ParentName="BaseBullet">
-		<defName>OGK_Bullet_HunterBullet</defName>
-		<label>Kroot Round</label>
-		<graphicData>
-			<texPath>Things/Projectile/BoltShotSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGTKroot</damageDef>
-			<damageAmountBase>45</damageAmountBase>
-			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<speed>100</speed>
-		</projectile>
-	</ThingDef>
-	
-	<ThingDef ParentName="BaseBullet">
-		<defName>OGK_Bullet_HunterBulletPulse</defName>
-		<label>Kroot Round</label>
-		<graphicData>
-			<texPath>Things/Projectile/PlasmaPulseSml2</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
-		<projectile>
-			<damageDef>OGTPlasmaPulse</damageDef>
-			<damageAmountBase>50</damageAmountBase>
 			<armorPenetrationBase>0.32</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
@@ -148,7 +190,7 @@
 		</tradeTags>
 	<recipeMaker>
 			<researchPrerequisites>
-				<li>OG_Tau_Tech_Base_T1</li>
+				<li>OG_Kroot_Tech_Base_T1</li>
 			</researchPrerequisites>
 	</recipeMaker>
     <costList>
@@ -260,7 +302,7 @@
 		</tradeTags>
 	<recipeMaker>
 			<researchPrerequisites>
-				<li>OG_Tau_Tech_Base_T1</li>
+				<li>OG_Kroot_Tech_Base_T2</li>
 			</researchPrerequisites>
 	</recipeMaker>
     <costList>
@@ -279,6 +321,38 @@
     </modExtensions>
 	</ThingDef>
 	
+	<!--==================== Kroot - Hunter Rifle =========================-->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGK_Bullet_HunterBullet</defName>
+		<label>Kroot Round</label>
+		<graphicData>
+			<texPath>Things/Projectile/BoltShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGTKroot</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGK_Bullet_HunterBulletPulse</defName>
+		<label>Kroot Round</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaPulseSml2</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
 	<!--==================== Kroot - Kroot Hunter Rifle =========================-->
 	<ThingDef ParentName="OG_Kroot_Gun_Special">
 		<defName>OGK_Gun_KrootHunterRifle</defName>
@@ -363,7 +437,7 @@
 		</tradeTags>
 	<recipeMaker>
 			<researchPrerequisites>
-				<li>OG_Kroot_Tech_Base_T2</li>
+				<li>OG_Kroot_Tech_Base_T3</li>
 			</researchPrerequisites>
 	</recipeMaker>
     <costList>
