@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
             LaserBeamGraphic graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
             if (graphic == null) return;
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
-            graphic.def = def;
+            graphic.projDef = def;
             graphic.Setup(launcher, a, b);
             GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
         }

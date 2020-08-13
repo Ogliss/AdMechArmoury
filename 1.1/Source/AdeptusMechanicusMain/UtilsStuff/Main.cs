@@ -11,7 +11,7 @@ using AdeptusMechanicus;
 namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
-    class ArmouryMain
+    public class ArmouryMain
     {
         public static IEnumerable<ThingDef> TechHediffItems; 
         public static IEnumerable<RecipeDef> TechHediffRecipes; 
@@ -130,6 +130,14 @@ namespace AdeptusMechanicus
             //    Log.Message("ArmouryMain 4");
         }
 
+        public static Listing_Standard BeginSection_OnePointTwo(ref Listing_Standard listing_Main, float f)
+        {
+            return listing_Main.BeginSection_NewTemp(f);
+        }
+        public static Listing_Standard BeginSection_OnePointOne(ref Listing_Standard listing_Main, float f)
+        {
+            return listing_Main.BeginSection(f);
+        }
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
         {
             List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Gun_") || x.defName.Contains("OG" + Tag + "_Melee_") || x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Armour_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
