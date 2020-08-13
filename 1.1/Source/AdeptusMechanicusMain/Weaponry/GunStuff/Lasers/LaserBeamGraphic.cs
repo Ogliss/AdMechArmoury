@@ -38,6 +38,7 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref colorIndex, "colorIndex");
             Scribe_Values.Look(ref a, "a");
             Scribe_Values.Look(ref b, "b");
+            Scribe_Defs.Look(ref projDef, "projectileDef");
         }
 
         public override void Tick()
