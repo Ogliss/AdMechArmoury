@@ -19,16 +19,16 @@ namespace AdeptusMechanicus
                 Thing thingForGraphic = this.GetThingForGraphic();
                 if (thingForGraphic == this)
                 {
-                    Log.Message("thingForGraphic == this");
+                //    Log.Message("thingForGraphic == this");
                     return base.Graphic;
                 }
                 if (thingForGraphic == null)
                 {
-                    Log.Message("thingForGraphic == null");
+                //    Log.Message("thingForGraphic == null");
                 }
                 else
                 {
-                    Log.Message("thingForGraphic == "+ thingForGraphic.LabelShortCap);
+                //    Log.Message("thingForGraphic == "+ thingForGraphic.LabelShortCap);
                 }
                 return thingForGraphic.Graphic;
                 Thing thing = this.Contents.innerContainer.First(x => x.def.category == ThingCategory.Pawn);
@@ -48,7 +48,7 @@ namespace AdeptusMechanicus
         }
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
-            Log.Message("flyer draw at");
+        //    Log.Message("flyer draw at");
             Pawn p = this.GetThingForGraphic() as Pawn;
             if (p!=null)
             {

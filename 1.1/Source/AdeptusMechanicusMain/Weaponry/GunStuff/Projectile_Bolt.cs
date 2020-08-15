@@ -51,10 +51,7 @@ namespace AdeptusMechanicus
                 this.ticksToDetonation = this.def.projectile.explosionDelay;
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher.Faction);
             }
-            else
-            {
-                base.Impact(hitThing);
-            }
+            base.Impact(hitThing);
         }
 
         // Token: 0x060052C9 RID: 21193 RVA: 0x00262928 File Offset: 0x00260D28

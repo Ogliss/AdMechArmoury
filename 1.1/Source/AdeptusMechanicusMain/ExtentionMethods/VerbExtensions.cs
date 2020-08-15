@@ -26,7 +26,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 }
                 if (verb.HediffCompSource != null && !verb.IsMeleeAttack)
                 {
-                    Log.Message("ownerVerb.HediffCompSource");
+                //    Log.Message("ownerVerb.HediffCompSource");
                     HediffComp_VerbGiverExtra _VGE = verb.HediffCompSource as HediffComp_VerbGiverExtra;
                     if (_VGE!=null)
                     {

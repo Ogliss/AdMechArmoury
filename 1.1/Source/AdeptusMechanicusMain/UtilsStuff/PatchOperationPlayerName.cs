@@ -25,7 +25,7 @@ namespace Verse
             {
                 if (this.match != null)
                 {
-                    Log.Message(SteamUtility.SteamPersonaName + " Playing Loading Test Scenario");
+                //    Log.Message(SteamUtility.SteamPersonaName + " Playing Loading Test Scenario");
                     return this.match.Apply(xml);
                 }
             }

@@ -70,7 +70,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Pawn target = pawns.Where(x=> !alreadyhit.Contains(x)).RandomElement();
                         if (target != null)
                         {
-                            Projectile projectile = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("OGN_Bullet_NTeslaCarbine_Arc"), null);
+                            Projectile projectile = (Projectile)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("OGN_Bullet_TeslaCarbine_Arc"), null);
                             GenSpawn.Spawn(projectile, hitPawn.Position, hitPawn.Map, 0);
                             //    Log.Message(string.Format("Launch projectile2 {0} at {1}", projectile, OriginalPawn));
                             projectile.Launch(___launcher, hitPawn.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Projectile), target, target, ProjectileHitFlags.All);

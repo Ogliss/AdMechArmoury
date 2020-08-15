@@ -117,21 +117,21 @@ namespace AdeptusMechanicus.HarmonyInstance
         */
         public static void HairMatAt()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_Test_Patch), "Postfix", null), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void HairMatAt_NewTemp()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_NewTemp_Test_Patch), "Postfix", null), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
         public static void HeadMatAt()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_Test_Patch), "Postfix", null), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void HeadMatAt_NewTemp()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch), "Postfix", null), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)

@@ -100,7 +100,7 @@ namespace AdeptusMechanicus
                 /*
                 if (!activeEntries.EnumerableNullOrEmpty())
                 {
-                    Log.Message("activeEntries count " + activeEntries.Count);
+                //    Log.Message("activeEntries count " + activeEntries.Count);
                 }
                 */
             }

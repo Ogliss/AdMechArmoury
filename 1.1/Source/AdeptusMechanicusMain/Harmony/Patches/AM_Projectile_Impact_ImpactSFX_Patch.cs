@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (!effects.ImpactMoteDef.NullOrEmpty())
                 {
 
-                //    MoteMaker.ThrowExplosionCell(c, explosion.Map, this.def.explosionCellMote, color);
+                    MoteMaker.ThrowExplosionCell(__instance.Position, __instance.Map, __instance.def.projectile.damageDef.explosionCellMote, __instance.def.projectile.damageDef.explosionColorCenter);
                 }
 
             }

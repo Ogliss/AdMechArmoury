@@ -132,12 +132,12 @@ namespace AdeptusMechanicus
                 Pawn pawn = this.flyingThing as Pawn;
                 if (this.def.skyfaller.xPositionCurve != null)
                 {
-                    Log.Message("Xpos mod " + this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
+                //    Log.Message("Xpos mod " + this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
                     drawPos.x += this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation);
                 }
                 if (this.def.skyfaller.zPositionCurve != null)
                 {
-                    Log.Message("Zpos mod " + this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
+                //    Log.Message("Zpos mod " + this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
                     drawPos.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
                 }
                 */
@@ -196,13 +196,13 @@ namespace AdeptusMechanicus
             {
                 if (flightArc == null)
                 {
-                    Log.Message("generating flight arc");
+                //    Log.Message("generating flight arc");
                     SimpleCurve arc = new SimpleCurve();
                     for (float t = 0; t <= 1.0f; t += 0.1f)
                     {
                         Vector2 point = GetPoint(t, this.def.skyfaller.zPositionCurve.Points[0], this.def.skyfaller.zPositionCurve.Points[1], this.def.skyfaller.zPositionCurve.Points[2], this.def.skyfaller.zPositionCurve.Points[3]);
 
-                        Log.Message("adding " + point);
+                    //    Log.Message("adding " + point);
                         arc.Add(point.x, point.y);
                     }
                     arc.Add(1, 0);
@@ -218,14 +218,14 @@ namespace AdeptusMechanicus
             {
                 if (speedArc == null)
                 {
-                    Log.Message("generating speed arc");
+                //    Log.Message("generating speed arc");
                     SimpleCurve arc = new SimpleCurve();
                     float time = 0;
                     for (int i = 0; i < 13; i++)
                     {
                         Vector2 point = GetPoint(time, this.def.skyfaller.speedCurve.Points[0], this.def.skyfaller.speedCurve.Points[1], this.def.skyfaller.speedCurve.Points[2], this.def.skyfaller.speedCurve.Points[3]);
 
-                        Log.Message("adding " + point + " to speed arc at time " + time);
+                    //    Log.Message("adding " + point + " to speed arc at time " + time);
                         arc.Add(time, point.y);
                         time += 0.08333333333333333333333333333333f;
                     }

@@ -107,15 +107,15 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
-            Log.Message("CanActivate 5");
+        //    Log.Message("CanActivate 5");
             if (specialRules != null)
             {
                 if (specialRules.ForceEffectRequiresPsyker)
                 {
-                    Log.Message("CanActivate 5 1");
+                //    Log.Message("CanActivate 5 1");
                     if (!p.isPsyker())
                     {
-                        Log.Message("CanActivate 5 1 FAIL!!");
+                    //    Log.Message("CanActivate 5 1 FAIL!!");
                         return false;
                     }
                 }
@@ -124,15 +124,15 @@ namespace AdeptusMechanicus
             {
                 if (ForceEffectRequiresPsyker)
                 {
-                    Log.Message("CanActivate 5 2");
+                //    Log.Message("CanActivate 5 2");
                     if (!p.isPsyker())
                     {
-                        Log.Message("CanActivate 5 2 FAIL!!");
+                    //    Log.Message("CanActivate 5 2 FAIL!!");
                         return false;
                     }
                 }
             }
-            Log.Message("CanActivate 6");
+        //    Log.Message("CanActivate 6");
             return base.CanActivate();
         }
         

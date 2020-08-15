@@ -35,19 +35,19 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (!pawns.FindAll(x => x.canDeepStrike()).NullOrEmpty() && DeepStrike)
                     {
-                        Log.Message(string.Format("Deep Strike Candidates: {0}", pawns.FindAll(x => x.canDeepStrike()).Count));
+                    //    Log.Message(string.Format("Deep Strike Candidates: {0}", pawns.FindAll(x => x.canDeepStrike()).Count));
                         foreach (Pawn p in pawns.FindAll(x => x.canDeepStrike()))
                         {
                             bool Striker = Rand.Chance(p.chanceDeepStrike());
-                                Log.Message(string.Format("Deep Strike Candidate: {0}", p.LabelShortCap));
+                            //    Log.Message(string.Format("Deep Strike Candidate: {0}", p.LabelShortCap));
                             if (Striker || true)
                             {
-                                Log.Message(string.Format("{0} Depoyment: Deep Strike", p.LabelShortCap));
+                            //    Log.Message(string.Format("{0} Depoyment: Deep Strike", p.LabelShortCap));
                                 DeepStrikers.Add(p);
                             }
                             else
                             {
-                                Log.Message(string.Format("{0} Depoyment: Normal", p.LabelShortCap));
+                            //    Log.Message(string.Format("{0} Depoyment: Normal", p.LabelShortCap));
                                 pawnsN.Add(p);
                             }
                         }

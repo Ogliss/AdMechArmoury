@@ -46,6 +46,10 @@ namespace AdeptusMechanicus
         public Shader shader = ShaderDatabase.Cutout;
         public bool ExtraUseBodyOffset; 
         private bool useSecondaryColor;
+        public bool hidesHair => Props.ExtrasEntries.Any(x=> x.hidesHair);
+        public bool hidesHead => Props.ExtrasEntries.Any(x => x.hidesHead);
+        public bool hidesBody => Props.ExtrasEntries.Any(x => x.hidesBody);
+        public BodyTypeDef forcedBodyType => Props.ExtrasEntries.First(x => x.forcedBodyType!=null)?.forcedBodyType;
         //    private bool useFactionTextures = false;
 #pragma warning disable IDE0052 // Remove unread private members
         private bool pauldronInitialized = false;
@@ -82,12 +86,15 @@ namespace AdeptusMechanicus
         {
             get
             {
-                string path = GraphicPath;
-                if (ExtraUseBodyOffset && !onHead)
+                if (_Graphic == null)
                 {
-                    path += "_" + pawn.story.bodyType.ToString();
+                    string path = GraphicPath;
+                    if (ExtraUseBodyOffset && !onHead)
+                    {
+                        path += "_" + pawn.story.bodyType.ToString();
+                    }
+                    this._Graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
                 }
-                this._Graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor, this.secondaryColor);
                 return _Graphic;
             }
         }
@@ -182,8 +189,11 @@ namespace AdeptusMechanicus
         public Vector3 GetAltitudeOffset(Rot4 rotation, ExtraPartEntry partEntry)
         {
             Vector3 offset = new Vector3();
-            offset.y = _OffsetFactor * partEntry.order;
-            offset.y = offset.y + (_SubOffsetFactor * partEntry.sublayer);
+            if (!partEntry.hidesBody)
+            {
+                offset.y = _OffsetFactor * partEntry.order;
+                offset.y = offset.y + (_SubOffsetFactor * partEntry.sublayer);
+            }
 
             bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
             if (!onHead)
@@ -346,6 +356,10 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class ExtraPartEntry
     {
+        public bool hidesHair = false;
+        public bool hidesHead = false;
+        public bool hidesBody = false;
+        public BodyTypeDef forcedBodyType = null;
         public bool OnHead;
         public bool UseBodytypeOffsets;
         public ShaderTypeDef shaderType;

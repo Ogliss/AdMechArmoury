@@ -11,16 +11,16 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(Verse.AI.Pawn_PathFollower))]
     [HarmonyPatch("CostToMoveIntoCell")]
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(IntVec3) })]
-    public static class Pawn_PathFollower_CostToMoveIntoCell_Patch
+    public static class AM_Pawn_PathFollower_CostToMoveIntoCell_Patch
     {
         [HarmonyPostfix]
-        public static void MakeFloatingCreaturesGreatAgaian(Pawn pawn, IntVec3 c, ref int __result)
+        public static void Postfix(Pawn pawn, IntVec3 c, ref int __result)
 
         {
             if ((pawn.Map != null) && (pawn.TryGetComp<CompFloating>() != null))
             {
                 CompFloating floating = pawn.TryGetComp<CompFloating>();
-                Log.Message(pawn + " has CompFloating isFloater: "+ floating.Props.isFloater+ " canCrossWater: " + floating.Props.canCrossWater);
+            //    Log.Message(pawn + " has CompFloating isFloater: "+ floating.Props.isFloater+ " canCrossWater: " + floating.Props.canCrossWater);
                 if (floating.Props.isFloater)
                 {
                     int num;
@@ -64,7 +64,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (terrainDef.IsWater)
                     {
-                        Log.Message("IsWater "+ __result);
+                    //    Log.Message("IsWater "+ __result);
                     }
                 }
 

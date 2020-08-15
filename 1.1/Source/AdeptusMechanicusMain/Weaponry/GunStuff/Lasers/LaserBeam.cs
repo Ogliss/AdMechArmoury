@@ -64,7 +64,26 @@ namespace AdeptusMechanicus
             dir.y = 0;
 
             Vector3 a = origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
-            Vector3 b = shielded ? hitThing.TrueCenter() - dir.RotatedBy(Rand.Range(-22.5f,22.5f)) * 0.8f : destination;
+            Vector3 b;
+            if (hitThing == null)
+            {
+                b = destination;
+            }
+            else if (shielded)
+            {
+                b = hitThing.TrueCenter() - dir.RotatedBy(Rand.Range(-22.5f, 22.5f)) * 0.8f;
+            }
+            else if ((destination - hitThing.TrueCenter()).magnitude < 1)
+            {
+                b = destination;
+            }
+            else
+            {
+                b = hitThing.TrueCenter();
+                b.x += Rand.Range(-0.5f, 0.5f);
+                b.z += Rand.Range(-0.5f, 0.5f);
+            }
+
             a.y = b.y = def.Altitude;
 
             SpawnBeam(a, b);
@@ -91,29 +110,30 @@ namespace AdeptusMechanicus
                 weapon.RotationOffset = (angle + 180) % 360 - 180;
             }
 
+
+
+
             if (hitThing == null)
             {
-                TriggerEffect(def.explosionEffect, destination);
+                TriggerEffect(def.explosionEffect, b);
                 Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
                 Rand.PopState();
                 if (flag2)
                 {
-                    FireUtility.TryStartFireIn(destination.ToIntVec3(), pawn.Map, 0.01f);
+                    FireUtility.TryStartFireIn(b.ToIntVec3(), pawn.Map, 0.01f);
                 }
             }
             else
             {
-                if (hitThing is Pawn)
-                {
-                    Pawn hitPawn = hitThing as Pawn;
-                    if (shielded)
-                    {
-                        weaponDamageMultiplier *= def.shieldDamageMultiplier;
 
-                        SpawnBeamReflections(a, b, 5);
-                    }
+                if (hitThing is Pawn && shielded)
+                {
+                    weaponDamageMultiplier *= def.shieldDamageMultiplier;
+
+                    SpawnBeamReflections(a, b, 5);
                 }
+
                 Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
                 Rand.PopState();
@@ -121,7 +141,7 @@ namespace AdeptusMechanicus
                 {
                     hitThing.TryAttachFire(0.01f);
                 }
-                TriggerEffect(def.explosionEffect, ExactPosition);
+                TriggerEffect(def.explosionEffect, b);
             }
             if (def.HediffToAdd!=null)
             {

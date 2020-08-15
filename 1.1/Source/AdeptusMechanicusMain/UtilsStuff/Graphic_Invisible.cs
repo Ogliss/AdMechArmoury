@@ -18,5 +18,11 @@ namespace AdeptusMechanicus
         {
             return BaseContent.ClearMat;
         }
+
+        public override Material MatSingle => BaseContent.ClearMat;
+        public override Material MatSingleFor(Thing thing)
+        {
+            return BaseContent.ClearMat;
+        }
     }
 }

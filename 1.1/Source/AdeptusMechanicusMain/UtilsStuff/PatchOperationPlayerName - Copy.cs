@@ -26,7 +26,7 @@ namespace Verse
             {
                 if (this.match != null)
                 {
-                    Log.Message("Playing on Version: "+ version);
+                //    Log.Message("Playing on Version: "+ version);
                     return this.match.Apply(xml);
                 }
             }

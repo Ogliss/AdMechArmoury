@@ -415,7 +415,7 @@ namespace AdeptusMechanicus
                             path += "_" + pawn.story.bodyType.ToString();
                         }
                         Shader shader = Entry?.shaderType.Shader ?? ShaderDatabase.Cutout;
-                        Log.Message(shader.ToString());
+                    //    Log.Message(shader.ToString());
                         Graphic g = GraphicDatabase.Get<Graphic_Multi>(path, shader, pawn.Graphic.drawSize, this.mainColor(Entry), this.secondaryColor(Entry));
                         pauldronMaterial = g.GetColoredVersion(shader, this.mainColor(Entry), this.secondaryColor(Entry)).MatAt(bodyFacing, this.parent);
                         return true;
