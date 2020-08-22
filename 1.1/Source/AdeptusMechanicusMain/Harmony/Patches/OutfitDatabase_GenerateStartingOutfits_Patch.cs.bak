@@ -1,0 +1,57 @@
+﻿using RimWorld;
+using Verse;
+using HarmonyLib;
+using System.Reflection;
+using System.Collections.Generic;
+using System;
+using Verse.AI;
+using System.Text;
+using System.Linq;
+using Verse.AI.Group;
+using RimWorld.Planet;
+using UnityEngine;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+	[HarmonyPatch(typeof(OutfitDatabase), "GenerateStartingOutfits")]
+	public static class OutfitDatabase_GenerateStartingOutfits_Patch
+	{
+		public static void Postfix(OutfitDatabase __instance)
+		{
+			__instance.MakeNewOutfit().label = "AvP_Yautja_OutfitAnything".Translate();
+			Outfit outfit = __instance.MakeNewOutfit();
+			outfit.label = "AvP_Yautja_OutfitWorker".Translate();
+			outfit.filter.SetDisallowAll(null, null);
+			outfit.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+			foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
+			{
+				if (thingDef.apparel != null && thingDef.apparel.defaultOutfitTags != null && thingDef.apparel.defaultOutfitTags.Contains("Worker"))
+				{
+					outfit.filter.SetAllow(thingDef, true);
+				}
+			}
+			Outfit outfit2 = __instance.MakeNewOutfit();
+			outfit2.label = "AvP_Yautja_OutfitSoldier".Translate();
+			outfit2.filter.SetDisallowAll(null, null);
+			outfit2.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+			foreach (ThingDef thingDef2 in DefDatabase<ThingDef>.AllDefs)
+			{
+				if (thingDef2.apparel != null && thingDef2.apparel.defaultOutfitTags != null && thingDef2.apparel.defaultOutfitTags.Contains("Soldier"))
+				{
+					outfit2.filter.SetAllow(thingDef2, true);
+				}
+			}
+			Outfit outfit3 = __instance.MakeNewOutfit();
+			outfit3.label = "AvP_Yautja_OutfitNudist".Translate();
+			outfit3.filter.SetDisallowAll(null, null);
+			outfit3.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
+			foreach (ThingDef thingDef3 in DefDatabase<ThingDef>.AllDefs)
+			{
+				if (thingDef3.apparel != null && !thingDef3.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Legs) && !thingDef3.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Torso))
+				{
+					outfit3.filter.SetAllow(thingDef3, true);
+				}
+			}
+		}
+	}
+}

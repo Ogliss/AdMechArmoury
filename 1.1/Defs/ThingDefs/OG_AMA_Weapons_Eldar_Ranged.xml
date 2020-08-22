@@ -397,13 +397,27 @@
 			<texPath>Things/Projectile/PlamsShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
 		<projectile>
 			<damageDef>OGEPlas</damageDef>
 			<damageAmountBase>35</damageAmountBase>
 			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+    <modExtensions>
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.5</GlowMoteSize>
+      </li>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
@@ -1300,13 +1314,13 @@
 	</ThingDef>
 
 	<!--==================== Eldar - Reaper Launcher =========================-->
-	<ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BaseBullet">
+	<ThingDef ParentName="BaseBullet">
 		<defName>OGE_Bullet_ReaperLauncher</defName>
-		<thingClass>Projectile_ExplosiveOG</thingClass>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<label>Bolt</label>
 		<graphicData>
 			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
 			<flyOverhead>false</flyOverhead>
@@ -1317,7 +1331,21 @@
 			<speed>135</speed>
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
-		<explosionradius>0.5</explosionradius>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+		  </li>
+		  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+			<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+			<trailMoteSize>0.7</trailMoteSize>
+			<trailerMoteInterval>3</trailerMoteInterval>
+		  </li>
+		</modExtensions>
 	</ThingDef>	
 
 	<ThingDef ParentName="OG_Eldar_Gun_Heavy">

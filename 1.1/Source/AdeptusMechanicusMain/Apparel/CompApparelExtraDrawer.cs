@@ -286,6 +286,7 @@ namespace AdeptusMechanicus
                 if (this.Graphic != null)
                 {
                     extraMaterial = this.Graphic.GetColoredVersion(shader, this.mainColor, this.secondaryColor).MatAt(bodyFacing);
+
                     return true;
                 }
             }

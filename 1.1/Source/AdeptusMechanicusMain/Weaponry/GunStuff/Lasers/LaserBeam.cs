@@ -187,6 +187,28 @@ namespace AdeptusMechanicus
         {
             get
             {
+                if (this.def.projectile.Melta())
+                {
+                    //    Log.Message("Melta Blast");
+                    Pawn pawn = launcher as Pawn;
+                    if (pawn != null)
+                    {
+                        IDrawnWeaponWithRotation weapon = null;
+                        if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
+                        if (weapon != null)
+                        {
+                            if (origin != null && destination != null)
+                            {
+                                float distance = Vector3.Distance(origin, destination);
+                                if (distance > ((ThingWithComps)weapon).def.Verbs.Find(x => x.defaultProjectile == this.def).range / 2)
+                                {
+                                    return base.DamageAmount * 2;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
                 if (this.def.projectile.Conversion())
                 {
                     //    Log.Message("Conversion Blast");
@@ -201,28 +223,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (this.def.projectile.Melta())
-                {
-                    //    Log.Message("Melta Blast");
-                    Pawn pawn = launcher as Pawn;
-                    if (pawn!=null)
-                    {
-                        IDrawnWeaponWithRotation weapon = null;
-                        if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
-                        if (weapon !=null)
-                        {
-                            if (origin !=null && destination!=null)
-                            {
-                                float distance = Vector3.Distance(origin, destination);
-                                if (distance > ((ThingWithComps)weapon).def.Verbs.Find(x=> x.defaultProjectile == this.def).range / 2)
-                                {
-                                    return base.ArmorPenetration * 2;
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (this.def.projectile.Volkite())
+                if (this.def.projectile.Volkite())
                 {
                     //    Log.Message("Volkite Blast");
                     Pawn pawn = launcher as Pawn;

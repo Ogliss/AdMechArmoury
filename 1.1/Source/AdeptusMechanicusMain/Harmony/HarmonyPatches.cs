@@ -90,7 +90,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 typeof(Thing),
                 typeof(Pawn),
                 typeof(string).MakeByRefType()
-            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
+            }, null), null, new HarmonyMethod(typeof(EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
         }
 
         public static void CanEquip_NewTmp()
@@ -101,7 +101,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 typeof(Pawn),
                 typeof(string).MakeByRefType(),
                 typeof(bool)
-            }, null), null, new HarmonyMethod(typeof(AM_EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
+            }, null), null, new HarmonyMethod(typeof(EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
         }
 
         /*
@@ -117,21 +117,21 @@ namespace AdeptusMechanicus.HarmonyInstance
         */
         public static void HairMatAt()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HairMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void HairMatAt_NewTemp()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HairMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HairMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
         public static void HeadMatAt()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HeadMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void HeadMatAt_NewTemp()
         {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(AM_PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
@@ -352,7 +352,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         
         public static void PatchPawnsArrivalModeWorker(Harmony harmonyInstance)
         {
-            var prefix = typeof(AM_PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch).GetMethod("Arrive_DSI");
+            var prefix = typeof(PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch).GetMethod("Prefix");
             var baseType = typeof(PawnsArrivalModeWorker);
             var types = baseType.AllSubclassesNonAbstract();
             foreach (Type cur in types)

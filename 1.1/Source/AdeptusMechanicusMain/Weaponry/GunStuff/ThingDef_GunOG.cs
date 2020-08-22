@@ -103,32 +103,6 @@ namespace AdeptusMechanicus
         {
             base.ExposeData();
             Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
-            /*
-            if (GetComp<CompWeapon_GunSpecialRules>() != null)
-            {
-                CompWeapon_GunSpecialRules specialRules = GetComp<CompWeapon_GunSpecialRules>();
-                if (specialRules.GetsHot || specialRules.Jams)
-                {
-                    string reliabilityString;
-                    float jamsOn;
-                    StatPart_Reliability.GetReliability(GetComp<CompWeapon_GunSpecialRules>(), out reliabilityString, out jamsOn);
-
-                    Scribe_Values.Look<string>(ref reliabilityString, "reliability", "NA", false);
-                }
-            }
-            if (GetComp<CompWeapon_GunSpecialRules>() != null)
-            {
-                CompWeapon_GunSpecialRules specialRules = GetComp<CompWeapon_GunSpecialRules>();
-                if (specialRules.GetsHot || specialRules.Jams)
-                {
-                    string reliabilityString;
-                    float jamsOn;
-                    StatPart_Reliability.GetReliability(GetComp<CompWeapon_GunSpecialRules>(), out reliabilityString, out jamsOn);
-
-                    Scribe_Values.Look<string>(ref reliabilityString, "reliability", "NA", false);
-                }
-            }
-            */
         }
         void UpdateRotationOffset(int ticks)
         {

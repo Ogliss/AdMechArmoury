@@ -73,49 +73,53 @@ namespace AdeptusMechanicus
             ThingDef ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling");
             ThingDef beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman");
             //    Log.Message("ArmouryMain 1");
-            foreach (RecipeDef item in DefDatabase<RecipeDef>.AllDefs)
+            IEnumerable<RecipeDef> humanRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x=> x.AllRecipeUsers.Contains(ThingDefOf.Human));
+            foreach (RecipeDef item in humanRecipes)
             {
-                if (item.AllRecipeUsers.Contains(ThingDefOf.Human))
+            //    Log.Message("Checking Human recipes " + item);
+                if (mechanicus != null)
                 {
-                    if (mechanicus!=null)
-                    {
                     //    Log.Message("ArmouryMain 1 mechanicus");
-                        if (!item.AllRecipeUsers.Contains(mechanicus))
-                        {
-                            item.recipeUsers.Add(mechanicus);
-                        }
-                    }
-                    if (astartes != null)
+                    if (!item.AllRecipeUsers.Contains(mechanicus))
                     {
-                    //    Log.Message("ArmouryMain 1 astartes");
+                        item.recipeUsers.Add(mechanicus);
+                    }
+                }
+                if (astartes != null)
+                {
+                    if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
+                    {
                         if (!item.AllRecipeUsers.Contains(astartes))
                         {
+                            //    Log.Message("ArmouryMain 1 astartes");
+                        //    Log.Message("Adding " + item + " to astartes");
                             item.recipeUsers.Add(astartes);
+                        //    Log.Message("Added " + item + " to astartes");
                         }
                     }
-                    if (ogryn != null)
+                }
+                if (ogryn != null)
+                {
+                //        Log.Message("ArmouryMain 1 ogryn");
+                    if (!item.AllRecipeUsers.Contains(ogryn))
                     {
-                        //    Log.Message("ArmouryMain 1 ogryn");
-                        if (!item.AllRecipeUsers.Contains(ogryn))
-                        {
-                            item.recipeUsers.Add(ogryn);
-                        }
+                        item.recipeUsers.Add(ogryn);
                     }
-                    if (ratlin != null)
+                }
+                if (ratlin != null)
+                {
+                //       Log.Message("ArmouryMain 1 ratlin");
+                    if (!item.AllRecipeUsers.Contains(ratlin))
                     {
-                        //    Log.Message("ArmouryMain 1 ratlin");
-                        if (!item.AllRecipeUsers.Contains(ratlin))
-                        {
-                            item.recipeUsers.Add(ratlin);
-                        }
+                        item.recipeUsers.Add(ratlin);
                     }
-                    if (beastman != null)
+                }
+                if (beastman != null)
+                {
+                //        Log.Message("ArmouryMain 1 beastman");
+                    if (!item.AllRecipeUsers.Contains(beastman))
                     {
-                        //    Log.Message("ArmouryMain 1 beastman");
-                        if (!item.AllRecipeUsers.Contains(beastman))
-                        {
-                            item.recipeUsers.Add(beastman);
-                        }
+                        item.recipeUsers.Add(beastman);
                     }
                 }
             }

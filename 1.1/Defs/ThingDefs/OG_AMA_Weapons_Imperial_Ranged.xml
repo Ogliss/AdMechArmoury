@@ -3,7 +3,7 @@
  <!-- ====================== Bolts ===================== -->
  <!-- ====================== Std Bolt ===================== -->
  <!-- ====================== R:24 S:4 AP:5 RF ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BaseBullet" Name="BoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltStd</defName>
     <label>Bolt</label>
     <description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
@@ -19,20 +19,31 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<!--explosionRadius>0.55</explosionRadius-->
 	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>0.5</explosionradius>
-		<modExtensions>
-		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
-			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
-			
-		  </li>
-		</modExtensions>
+	<!--thingClass>AdeptusMechanicus.Projectile_Bolt</thingClass-->
+	<!--thingClass>Bullet</thingClass-->
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
 
  <!-- ====================== Dragonfire Bolt ===================== -->
  <!-- ====================== R:24 S:4 AP:5 RF No Cover ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG"  ParentName="BoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltDragonfire</defName>
     <label>Dragonfire Bolt</label>
     <description>Dragonfire Bolts are hollow-shelled bolts that are issued fo use by Sternguard Veterans, and explode with a gout of superheated gas that can eliminate the value of cover for enemy troops. Any targets struck receive full damage even when partially protected by cover.</description>
@@ -48,14 +59,29 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<explosionRadius>1.55</explosionRadius>
 	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>1.5</explosionradius>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
   
  <!-- ====================== Hellfire Bolt ===================== -->
  <!-- ====================== R:24 S:X AP:5 RF Poisioned 2+ ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltHellfire</defName>
     <label>Hellfire Bolt</label>
     <description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
@@ -70,14 +96,29 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<explosionRadius>1.55</explosionRadius>
 	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>1.5</explosionradius>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Kraken Bolt ===================== -->
  <!-- ====================== R:30 S:4 AP:4 RF ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG"  ParentName="BoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltKraken</defName>
     <label>Kraken Bolt</label>
     <description>Kraken Bolts are specialised Bolter shells with an enhanced adamantium core and improved propellant, and were utilised by Seeker Squads during the Great Crusade and Horus Heresy eras of the late 30th and early 31st Millennia, as well as Sternguard Veterans in modern times. They possessed superior armour-piercing properties and increased range compared to standard bolts, but the expense and resources required to create them kept them in limited issue.</description>
@@ -93,14 +134,29 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<explosionRadius>0.55</explosionRadius>
 	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>0.5</explosionradius>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
   
  <!-- ====================== Vengeance Bolt ===================== -->
  <!-- ====================== R:18 S:4 AP:3 RF Gets Hot ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG"  ParentName="BoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_BoltVengeance</defName>
     <label>Vengeance Bolt</label>
     <description>Vengeance Round bolts are designed for use against heavy infantry and armoured targets. Each bolt has a volatile core utilising unstable flux core technology that makes them hazardous to use, but extremely potent at penetrating through heavily armoured targets. They are especially effective at punching clean through even the Ceramite plates of Power Armour. As their name implies, these bolts were developed by the Imperium specifically to target the Chaos Space Marines of the Traitor Legions.</description>
@@ -116,9 +172,24 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<explosionRadius>0.55</explosionRadius>
 	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>0.5</explosionradius>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
 	<!-- ====================== Bolt Pistol ===================== -->
@@ -321,7 +392,7 @@
 		<statBases>
 			<reliability>1</reliability>
 			<WorkToMake>180000</WorkToMake>
-			<MarketValue>4000</MarketValue>
+			<MarketValue>3000</MarketValue>
 			<Mass>5.2</Mass>
 			<AccuracyTouch>0.85</AccuracyTouch>
 			<AccuracyShort>0.90</AccuracyShort>
@@ -796,7 +867,6 @@
  </ThingDef>
  
  <!-- ====================== CombiBolter Base ===================== -->
- 
 	<ThingDef ParentName="OG_Imperial_Gun_Special" Name="OG_Imperial_BolterCombi_Base" Abstract="true">
 		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<tickerType>Normal</tickerType>
@@ -1276,7 +1346,6 @@
 						<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
 						<warmupTime>1.25</warmupTime>
 						<range>31</range>
-						<forcedMissRadius>0.5</forcedMissRadius>
 						<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
 						<burstShotCount>1</burstShotCount>
 						<soundCast>OG_Plasma_Pistol_Sound</soundCast>
@@ -1482,6 +1551,14 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 	</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Stalker Pattern Bolter ===================== -->
@@ -1578,7 +1655,7 @@
  
  <!-- ====================== Std Heavy Bolt ===================== -->
  <!-- ====================== R:36 S:5 AP:4 H3 ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="BoltBase" Name="HeavyBoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_HeavyBoltStd</defName>
     <label>Heavy Bolt</label>
     <graphicData>
@@ -1593,14 +1670,29 @@
 		<stoppingPower>2</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
+	 	<explosionRadius>0.55</explosionRadius>
     </projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>0.5</explosionradius>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Heavy Hellfire Bolt ===================== -->
  <!-- ====================== R:24 S:X AP:5 RF Poisioned 2+ ====================== -->
- <ThingDef Class="ThingDef_BulletExplosiveOG" ParentName="HeavyBoltBase">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_HeavyBoltHellfire</defName>
     <label>Heavy Hellfire Bolt</label>
     <description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
@@ -1615,9 +1707,24 @@
 		<stoppingPower>2</stoppingPower>
 		<speed>100</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
-	</projectile>
-	<thingClass>Projectile_ExplosiveOG</thingClass>
-	<explosionradius>1.5</explosionradius>
+	 	<explosionRadius>1.55</explosionRadius>
+    </projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+		<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+		<trailMoteSize>0.7</trailMoteSize>
+		<trailerMoteInterval>3</trailerMoteInterval>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Heavy Bolter ===================== -->
@@ -1853,7 +1960,7 @@
 
     <projectile>
 		<damageDef>OGILas</damageDef>
-		<damageAmountBase>20</damageAmountBase>
+		<damageAmountBase>15</damageAmountBase>
 		<armorPenetrationBase>0.32</armorPenetrationBase>
 		<stoppingPower>1.25</stoppingPower>
     </projectile>
@@ -2590,27 +2697,30 @@
 		<texPath>Things/Projectile/PlamsaShotSml</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIPlasma</damageDef>
 		<explosionRadius>0.50</explosionRadius>
 		<damageAmountBase>45</damageAmountBase>
-		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<armorPenetrationBase>0.8</armorPenetrationBase>
 		<stoppingPower>1.5</stoppingPower>
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
     <modExtensions>
-      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
-        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
-        <trailMoteSize>0.75</trailMoteSize>
-        <trailerMoteInterval>6</trailerMoteInterval>
-      </li-->
-      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>1.0</GlowMoteSize>
-      </li>
+		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+		  </li>
+		  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+			<GlowMoteSize>1.0</GlowMoteSize>
+		  </li>
     </modExtensions>
  </ThingDef>
  
@@ -2624,28 +2734,31 @@
 		<graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIPlasma</damageDef>
 		<explosionRadius>0.50</explosionRadius>
 		<damageAmountBase>45</damageAmountBase>
-		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<armorPenetrationBase>0.8</armorPenetrationBase>
 		<stoppingPower>2</stoppingPower>
 		<speed>55</speed>
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <modExtensions>
-      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
-        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
-        <trailMoteSize>0.75</trailMoteSize>
-        <trailerMoteInterval>6</trailerMoteInterval>
-      </li-->
       <li Class="AdeptusMechanicus.GlowerProjectileExtension">
         <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>1.25</GlowMoteSize>
+        <GlowMoteSize>1.5</GlowMoteSize>
       </li>
-    </modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Plasma Gun shot OC ===================== -->
@@ -2658,7 +2771,7 @@
 		<graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIPlasma</damageDef>
@@ -2670,16 +2783,19 @@
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
     <modExtensions>
-      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
-        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
-        <trailMoteSize>0.75</trailMoteSize>
-        <trailerMoteInterval>6</trailerMoteInterval>
-      </li-->
       <li Class="AdeptusMechanicus.GlowerProjectileExtension">
         <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
         <GlowMoteSize>1.5</GlowMoteSize>
       </li>
-    </modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
  </ThingDef>
 
  <!-- ====================== Plasma Cannon shot ===================== -->
@@ -2690,7 +2806,7 @@
 		<texPath>Things/Projectile/PlamsShotLrg</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIPlasmaCannon</damageDef>
@@ -2702,16 +2818,19 @@
 		<soundExplode>OGIPC_Explosion</soundExplode>
     </projectile>
     <modExtensions>
-      <!--li Class="AdeptusMechanicus.TrailerProjectileExtension">
-        <trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
-        <trailMoteSize>0.75</trailMoteSize>
-        <trailerMoteInterval>6</trailerMoteInterval>
-      </li-->
       <li Class="AdeptusMechanicus.GlowerProjectileExtension">
         <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
         <GlowMoteSize>2.5</GlowMoteSize>
       </li>
-    </modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
  </ThingDef>
   
  <!-- ====================== Plasma Weapons ===================== -->
@@ -3157,7 +3276,7 @@
 		<texPath>Things/Projectile/AutoShotLrg</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-	<thingClass>Projectile_Explosive</thingClass>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <projectile>
 		<flyOverhead>false</flyOverhead>
 		<damageDef>OGIAuto</damageDef>
@@ -3168,6 +3287,16 @@
 		<speed>100</speed>
 		<soundExplode>OGIAC_Explosion</soundExplode>
 	</projectile>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
  </ThingDef>
  
  <!-- ====================== Arbites Shotgun shot ===================== -->
@@ -3577,7 +3706,6 @@
 			<defaultProjectile>OGI_Bullet_AutoCannon</defaultProjectile>
 			<warmupTime>1.75</warmupTime>
 			<range>45</range>
-			<forcedMissRadius>0.01</forcedMissRadius>
 			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
 			<burstShotCount>3</burstShotCount>
 			<soundCast>OG_Auto_Cannon_Sound</soundCast>

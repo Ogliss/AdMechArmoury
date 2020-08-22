@@ -7,8 +7,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    //Code borrowed from More Mechanoid, no modification needed.
-    //Credit to these 3 or combination, whoever responsible for this code. Orion, JoeysLucky22, Erdelf
+    // AdeptusMechanicus.Projectile_Fire
     public class Projectile_Fire : Projectile_Anim
     {
         protected override void Impact(Thing hitThing)
@@ -24,7 +23,6 @@ namespace AdeptusMechanicus
             distancetotravel = launcher.Position.DistanceTo(usedTarget.Cell);
             distancetraveled = launcher.Position.DistanceTo(this.Position);
             traveled = (distancetraveled / distancetotravel);
-            //    Log.Message(string.Format("distamce traveled: {0}/{1} ({2}) ", distancetraveled, distancetotravel, traveled.ToStringPercent()));
             pos = this.Position;
             checked
             {
@@ -43,7 +41,6 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
-                    //    TrailThrower.ThrowSmokeTrail(base.Position.ToVector3Shifted(), 0.7f, base.Map, "Mote_Smoke");
                     if (Rand.Chance(0.75f * traveled))
                     {
                         ThrowSmoke(this.DrawPos, base.Map, 0.5f * traveled);

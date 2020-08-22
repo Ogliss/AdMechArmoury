@@ -76,6 +76,7 @@ namespace AdeptusMechanicus
                             hitPawn.health.AddHediff(hediff, null, null);
                         }
                     }
+                    /*
                     else //failure!
                     {
 
@@ -83,6 +84,7 @@ namespace AdeptusMechanicus
                         MoteMaker.ThrowText(hitThing.PositionHeld.ToVector3(), hitThing.MapHeld, "TST_PlagueBullet_FailureMote".Translate(Def.AddHediffChance), 12f);
                         
                     }
+                    */
                 }
             }
         }

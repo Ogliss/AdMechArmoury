@@ -450,13 +450,27 @@
 			<texPath>Things/Projectile/PlamsShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<thingClass>AdeptusMechanicus.Projectile_Plasma</thingClass>
 		<projectile>
 			<damageDef>OGEPlas</damageDef>
 			<damageAmountBase>35</damageAmountBase>
 			<armorPenetrationBase>0.68</armorPenetrationBase>
 			<speed>135</speed>
 		</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+    <modExtensions>
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.5</GlowMoteSize>
+      </li>
+	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+		<explosionMote>true</explosionMote>
+		<explosionMoteSize>0.75</explosionMoteSize>
+		<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+	  </li>
+	</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">

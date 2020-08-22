@@ -307,7 +307,7 @@
 	<!--==================== Ork - Twin Linked Shoota =========================-->
 	<ThingDef ParentName="OG_Ork_Gun_Special">
 		<defName>OGO_Gun_TwinLinkedShoota</defName>
-		<label>rwin-linked shoota (O)</label>
+		<label>twin-linked shoota (O)</label>
 		<description>Ork Mekboyz often customise their Shootas by adding an additional barrel for more firepower. These custom Shootas cost their clients much more teef than the usual Shoota, and are often utilised by both Ork Nobs and Warbosses. Often times these deadly weapons are incorporated into Mega Armour.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/ShootaTwinLinked</texPath>
@@ -783,16 +783,30 @@
 			<texPath>Things/Projectile/PlamsShotLrg</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-	<thingClass>Projectile_Explosive</thingClass>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIPlasmaCannon</damageDef>
-	 	<explosionRadius>1.75</explosionRadius>
-		<damageAmountBase>90</damageAmountBase>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<explosionRadius>1.75</explosionRadius>
+			<damageAmountBase>90</damageAmountBase>
 			<armorPenetrationBase>0.68</armorPenetrationBase>
-		<speed>55</speed>
-		<soundExplode>OGIPC_Explosion</soundExplode>
+			<speed>55</speed>
+			<soundExplode>OGIPC_Explosion</soundExplode>
 		</projectile>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+			<GlowMoteSize>1.5</GlowMoteSize>
+		  </li>
+		  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Ork_Gun_Heavy">
@@ -836,7 +850,6 @@
 			<defaultProjectile>OGO_Bullet_OPlasmaDeffgun</defaultProjectile>
 			<warmupTime>3.5</warmupTime>
 			<range>38</range>
-			<forcedMissRadius>2.5</forcedMissRadius>
 			<soundCast>OG_Plasma_Cannon_Sound</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
@@ -1013,8 +1026,13 @@
       <texPath>Things/Projectile/FlamerFire</texPath>
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
+	</graphicData>
+    <modExtensions>
+      <li Class="AnimatedProjectile.AnimatedProjectileExtension">
+        <ticksPerFrame>15</ticksPerFrame>
+      </li>
+    </modExtensions>
+	<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
     <projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>OGFlamer</damageDef>
@@ -1085,7 +1103,6 @@
 			<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>12</range>
-			<forcedMissRadius>2</forcedMissRadius>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1176,7 +1193,12 @@
       <graphicClass>Graphic_Flicker</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
+    <modExtensions>
+      <li Class="AnimatedProjectile.AnimatedProjectileExtension">
+        <ticksPerFrame>15</ticksPerFrame>
+      </li>
+    </modExtensions>
+	<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
     <projectile>
 			<flyOverhead>false</flyOverhead>
 			<damageDef>OGFlamer</damageDef>
@@ -1246,7 +1268,6 @@
 			<defaultProjectile>OGO_Bullet_Scorcha</defaultProjectile>
 			<warmupTime>2.5</warmupTime>
 			<range>12</range>
-			<forcedMissRadius>2</forcedMissRadius>
 			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
