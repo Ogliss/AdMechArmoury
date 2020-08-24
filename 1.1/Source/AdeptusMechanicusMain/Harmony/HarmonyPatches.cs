@@ -179,18 +179,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (alien != null)
                 {
                     HarmonyPatches.TryAddRacialRestrictions(alien, "T");
+                    AddRecipies(alien, ReseachTau);
                 }
                 alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Kroot") as AlienRace.ThingDef_AlienRace;
                 if (alien != null)
                 {
                     HarmonyPatches.TryAddRacialRestrictions(alien, "T");
                     HarmonyPatches.TryAddRacialRestrictions(alien, "K");
+                    AddRecipies(alien, ReseachKroot);
                 }
                 alien = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Alien_Vespid") as AlienRace.ThingDef_AlienRace;
                 if (alien != null)
                 {
                     HarmonyPatches.TryAddRacialRestrictions(alien, "T");
                     HarmonyPatches.TryAddRacialRestrictions(alien, "V");
+                    AddRecipies(alien, ReseachVespid);
                 }
 
             }
