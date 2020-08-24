@@ -37,6 +37,7 @@ namespace AdeptusMechanicus
                 if (this.def.projectile.explosionDelay == 0)
                 {
                     this.Explode(hitThing);
+                    base.Impact(hitThing);
                     return;
                 }
                 this.landed = true;
@@ -50,7 +51,7 @@ namespace AdeptusMechanicus
         protected virtual void Explode(Thing hitThing = null)
         {
             Map map = base.Map;
-            this.Destroy(DestroyMode.Vanish);
+        //    this.Destroy(DestroyMode.Vanish);
             List<Thing> ignored = new List<Thing>();
             if (hitThing != null)
             {
