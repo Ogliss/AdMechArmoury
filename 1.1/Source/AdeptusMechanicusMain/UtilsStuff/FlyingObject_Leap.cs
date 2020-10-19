@@ -88,7 +88,9 @@ namespace AdeptusMechanicus
             bool flag = this.pawn != null;
             if (flag)
             {
+                Rand.PushState();
                 MoteMaker.ThrowDustPuff(this.pawn.Position, this.pawn.Map, Rand.Range(1.2f, 1.8f));
+                Rand.PopState();
             }
         }
 
@@ -148,7 +150,9 @@ namespace AdeptusMechanicus
                 bool flag3 = Find.TickManager.TicksGame % 2 == 0;
                 if (flag3)
                 {
+                    Rand.PushState();
                     MoteMaker.ThrowDustPuff(base.Position, base.Map, Rand.Range(0.6f, 0.8f));
+                    Rand.PopState();
                 }
                 bool flag4 = this.ticksToImpact <= 0;
                 bool flag5 = flag4;
@@ -216,7 +220,9 @@ namespace AdeptusMechanicus
             if (flag2)
             {
                 Pawn pawn = this.assignedTarget as Pawn;
+                Rand.PushState();
                 bool flag3 = pawn != null && pawn.GetPosture() != PawnPosture.Standing && (this.origin - this.destination).MagnitudeHorizontalSquared() >= 20.25f && Rand.Value > 0.2f;
+                Rand.PopState();
                 bool flag4 = flag3;
                 if (flag4)
                 {

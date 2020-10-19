@@ -455,7 +455,7 @@
     </graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIRadium</damageDef>
+		<damageDef>Bullet</damageDef>
 		<damageAmountBase>7</damageAmountBase>
 		<armorPenetrationBase>0.32</armorPenetrationBase>
 		<stoppingPower>1.25</stoppingPower>
@@ -842,7 +842,7 @@
     <seam>0</seam>
     <lifetime>30</lifetime>
     <LightningBeam>true</LightningBeam>
-    <StaticLightning>true</StaticLightning>
+    <StaticLightning>false</StaticLightning>
     <LightningVariance>1.5</LightningVariance>
     <beamWidth>0.25</beamWidth>
     <ArcCount>2</ArcCount>
@@ -878,9 +878,6 @@
     </statBases>
 	<recipeMaker>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Common_Tech_Weapons_Haywire</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -906,10 +903,10 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<burstShotCount>1</burstShotCount>
 			<warmupTime>0.5</warmupTime>
 			<range>26</range>
 			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<burstShotCount>1</burstShotCount>
 			<soundCast>Shot_MachinePistol</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -941,7 +938,6 @@
  
 <!-- ====================== Arc Rifle ===================== -->
  <ThingDef ParentName="OG_Mechanicus_Gun_Special">
-	<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
 	<defName>OGAM_Gun_ArcRifle</defName>
     <label>arc rifle (AM)</label>
     <description>A rapid firing Arc Weapon used as a special weapon in Skitarii Vanguard and Ranger squads.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
@@ -964,9 +960,6 @@
     </statBases>
 	<recipeMaker>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Common_Tech_Weapons_Haywire</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -977,7 +970,6 @@
 		<Gold>6</Gold>
     </costList>
 	<weaponTags>
-		
 		<li>ArcRifle</li>
 	</weaponTags>
 	<tradeTags>
@@ -988,15 +980,17 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+			<burstShotCount>1</burstShotCount>
 			<warmupTime>1</warmupTime>
 			<range>31</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 			<soundCast>Shot_MachinePistol</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-		</li>
+      </li>
     </verbs>
 	<comps>    
 		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
@@ -1117,6 +1111,7 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
+			<burstShotCount>1</burstShotCount>
 			<warmupTime>3</warmupTime>
 			<range>38</range>
 			<soundCast>Shot_ChargeRifle</soundCast>
@@ -1230,6 +1225,7 @@
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>OGAM_Bullet_Transuranic_Arquebus</defaultProjectile>
+			<burstShotCount>1</burstShotCount>
 			<warmupTime>4</warmupTime>
 			<range>60</range>
 			<soundCast>Shot_ChargeRifle</soundCast>
@@ -1314,14 +1310,15 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
-				<warmupTime>1</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>0.3</warmupTime>
 				<range>26</range>
 				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
     <tools>
@@ -1403,14 +1400,15 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
-				<warmupTime>0.3</warmupTime>
+				<warmupTime>0.8</warmupTime>
+				<burstShotCount>3</burstShotCount>
 				<range>26</range>
 				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
     <tools>
@@ -1536,7 +1534,7 @@
 			<defaultProjectile>OGAM_Bullet_CognisFlamer</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>16</range>
-			<burstShotCount>36</burstShotCount>
+			<burstShotCount>24</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 			<soundCast>OG_Flamer_Sound</soundCast>
@@ -1654,8 +1652,6 @@
         <Crafting>5</Crafting>
       </skillRequirements>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
 			<li>OG_Common_Tech_Weapons_Laser</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -1673,6 +1669,7 @@
 			<defaultProjectile>OGAM_Bullet_Mitralock</defaultProjectile>
 			<warmupTime>0.25</warmupTime>
 			<range>18</range>
+			<burstShotCount>1</burstShotCount>
 			<soundCast>Shot_Shotgun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
@@ -1751,8 +1748,8 @@
  <!-- ====================== Volkite Serpenta ===================== -->
  <ThingDef ParentName="OG_Imperial_Gun_Base">
 	<defName>OGAM_Gun_VolkiteSerpenta</defName>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <label>volkite serpenta (AM)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The pistol variant of a Volkite Weapon wielded single-handed, the Volkite Serpenta was sometimes carried by high-ranking soldiers of the Imperial Army and the Tech-priests of the Mechanicum during the Great Crusade era.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteSerpenta</texPath>
@@ -1772,6 +1769,14 @@
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Smith</soundWorking>
+		<recipeUsers>
+			<li>OGI_TableMachining</li>
+		</recipeUsers>
+		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
 			<!--li>OG_Common_Tech_Weapons_Laser</li-->
 			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
@@ -1836,8 +1841,8 @@
  <!-- ====================== Volkite Charger ===================== -->
  <ThingDef ParentName="OG_Imperial_Gun_Base">
     <defName>OGAM_Gun_VolkiteCharger</defName>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <label>volkite charger (AM)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The Volkite Charger was the assault weapon variant of a Volkite Weapon carried by Space Marine infantry and the military forces of the Mechanicum. Whilst not benefiting from the range or power of its larger cousins, the Charger retained the Volkite thermal ray's deflagrating effects and allowed its wielder a greater degree of movement. Volkite Chargers were often employed by Legion Tactical Support Squads.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteCharger</texPath>
@@ -1905,6 +1910,14 @@
       </li>
     </tools>
 	<recipeMaker>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Smith</soundWorking>
+		<recipeUsers>
+			<li>OGI_TableMachining</li>
+		</recipeUsers>
+		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
 			<!--li>OG_Common_Tech_Weapons_Laser</li-->
 			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
@@ -1937,9 +1950,11 @@
     </modExtensions>
  </ThingDef>
  
+ <!-- ====================== Volkite Caliver ===================== -->
  <ThingDef ParentName="OG_Imperial_Gun_Base">
     <defName>OGAM_Gun_VolkiteCaliver</defName>
     <label>volkite caliver (AM)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The Volkite Caliver was a Volkite heavy weapon variant carried by Space Marine and Mechanicum infantry forces. A Volkite rifle with a devastating effect on flesh and bone, the Volkite Caliver was often employed by mobile Legion Tactical Support Squads, utilising firepower superior to that of the more common Bolter that would eventually replace it as the standard infantry weapon of the Space Marine Legions.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteCaliver</texPath>
@@ -1949,7 +1964,6 @@
 		<drawSize>1.250</drawSize>			
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <statBases>
 		<reliability>1</reliability>
 		<WorkToMake>125000</WorkToMake>
@@ -2009,14 +2023,15 @@
         <cooldownTime>1.9</cooldownTime>
       </li>
     </tools>
-	<!--
-    <costList>
-		<Steel>200</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-    </costList>
-	-->
 	<recipeMaker>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Smith</soundWorking>
+		<recipeUsers>
+			<li>OGI_TableMachining</li>
+		</recipeUsers>
+		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
 			<!--li>OG_Common_Tech_Weapons_Laser</li-->
 			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
@@ -2136,6 +2151,7 @@
 			<defaultProjectile>OGAM_Bullet_ConversionBeamer</defaultProjectile>
 			<warmupTime>4</warmupTime>
 			<range>90</range>
+			<burstShotCount>1</burstShotCount>
 			<soundCast>OG_Las_Cannon_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>

@@ -6,34 +6,60 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    public class CompProperties_ToggleFireMode : CompProperties
+    public class CompProperties_ToggleFireMode : CompProperties_WargearWeapon
     {
         public CompProperties_ToggleFireMode()
         {
             this.compClass = typeof(CompToggleFireMode);
         }
         public ResearchProjectDef requiredResearch;
+        public bool canSwitchWhileBusy = false;
+        public bool switchStartsCooldown = false;
+        public string InspectLabelKey = string.Empty;
     }
 
     public class CompToggleFireMode : CompWargearWeapon
     {
-        public new CompProperties_ToggleFireMode Props => (CompProperties_ToggleFireMode)props;
+        public CompProperties_ToggleFireMode Props => (CompProperties_ToggleFireMode)props;
 
-        public CompEquippable Equippable => parent.TryGetComp<CompEquippable>();
+        protected virtual Pawn GetUser
+        {
+            get
+            {
+                if (ParentHolder != null && ParentHolder is Pawn_EquipmentTracker)
+                {
+                    return (Pawn)ParentHolder.ParentHolder;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        protected virtual bool IsHeld => (GetUser != null);
+        public CompEquippable equippable;
+        public CompEquippable Equippable => equippable ??= parent.TryGetComp<CompEquippable>();
+        public Pawn lastUser;
+        public override bool GizmosOnEquip => true;
         public bool Toggled = false;
         public int fireMode = 0;
 
         public void SwitchFireMode(int x)
         {
             fireMode = x;
+            if (Props.switchStartsCooldown)
+            {
+                this.GetUser.stances.SetStance(new Stance_Cooldown(this.Active.AdjustedCooldownTicks(this.Equippable.PrimaryVerb, this.GetUser), null, this.Equippable.PrimaryVerb));
+            }
         }
 
         public override void CompTick()
         {
             base.CompTick();
-            if (CasterPawn != lastWearer)
+            if (GetUser != lastUser)
             {
-                lastWearer = CasterPawn;
+                lastUser = GetUser;
             }
         }
         public VerbProperties Active
@@ -69,9 +95,8 @@ namespace AdeptusMechanicus
         }
         public override IEnumerable<Gizmo> EquippedGizmos()
         {
-            ThingWithComps owner = IsWorn ? CasterPawn : parent;
-            bool flag = Find.Selector.SingleSelectedThing == CasterPawn;
-            if (flag && CasterPawn.Drafted)
+            bool flag = Find.Selector.SingleSelectedThing == GetUser;
+            if (flag && GetUser.Drafted && GetUser.Faction == Faction.OfPlayer)
             {
                 int num = 700000101;
                 Command_Action command_Action = new Command_Action()
@@ -87,11 +112,11 @@ namespace AdeptusMechanicus
                     },
                     groupKey = num + 1
                 };
-                if (CasterPawn.Faction != Faction.OfPlayer)
+                if (GetUser.Faction != Faction.OfPlayer)
                 {
                     command_Action.Disable("CannotOrderNonControlled".Translate());
                 }
-                else if (CasterPawn.stances.curStance.StanceBusy)
+                else if (GetUser.stances.curStance.StanceBusy && !Props.canSwitchWhileBusy)
                 {
                     command_Action.Disable("Is Busy");
                 }

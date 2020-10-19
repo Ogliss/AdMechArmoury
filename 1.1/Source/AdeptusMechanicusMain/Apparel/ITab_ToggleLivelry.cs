@@ -1,4 +1,9 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -8,7 +13,7 @@ namespace AdeptusMechanicus
     {
         public ITab_ToggleLivelry()
         {
-            size = ToggleLivelryCardUtility.CardSize() + new Vector2(17f, 17f) * 2f;
+            size = ITab_ToggleLivelry.CardSize() + new Vector2(17f, 17f) * 2f;
         }
 
         public override bool IsVisible
@@ -20,11 +25,15 @@ namespace AdeptusMechanicus
 #pragma warning restore IDE0019 // Use pattern matching
                 if (selected != null)
                 {
-                    var td = selected.GetComp<CompPauldronDrawer>();
-                    if (td != null)
+                    if (Drawer != null)
                     {
                         //Log.Message("ITab_isvisible");
-                        labelKey = td.Props.labelKey; // defined by the Comp
+                        labelKey = Drawer.Props.labelKey; // defined by the Comp
+                        return true;
+                    }
+                    else if (Colorable != null)
+                    {
+                        labelKey = "OG_Customize".Translate(); // defined by the Comp
                         return true;
                     }
                 }
@@ -32,15 +41,448 @@ namespace AdeptusMechanicus
             }
         }
 
+        private CompPauldronDrawer Drawer
+        {
+            get
+            {
+                return SelThing.TryGetComp<CompPauldronDrawer>();
+            }
+        }
+        private CompFactionColorableTwo Colorable
+        {
+            get
+            {
+                return SelThing.TryGetComp<CompFactionColorableTwo>();
+            }
+        }
+
         protected override void FillTab()
         {
             var selected = Find.Selector.SingleSelectedThing as ThingWithComps;
-            var td = selected.GetComp<CompPauldronDrawer>();
-            if (td == null) Log.Warning("selected thing has no CompPauldronDrawer for ITab_ToggleLivelry");
-            labelKey = ((CompProperties_PauldronDrawer)td.props).labelKey; //"UM_TabToggleDef";//.Translate();
-            if (labelKey == null) labelKey = "TOGGLEDEF";
-            var rect = new Rect(17f, 17f, ToggleLivelryCardUtility.CardSize().x, ToggleLivelryCardUtility.CardSize().y);
-            ToggleLivelryCardUtility.DrawCard(rect, selected);
+            if (Drawer == null)
+            {
+                if (Colorable == null) Log.Warning("selected thing has no CompPauldronDrawer for ITab_ToggleLivelry"); 
+                labelKey = "OG_Customize";
+            }
+            else labelKey = Drawer.Props.labelKey; //"UM_TabToggleDef";//.Translate();
+            var rect = new Rect(17f, 17f, ITab_ToggleLivelry.CardSize().x, ITab_ToggleLivelry.CardSize().y);
+            if (Drawer == null)
+            {
+                this.DrawCard(rect, selected, Colorable);
+            }
+            else
+            {
+                this.DrawCard(rect, selected, Drawer);
+            }
         }
+
+        // RimWorld.CharacterCardUtility
+        public static Vector2 CardSize()
+        {
+            float width = 395f;
+            return new Vector2(width, 536f);
+        }
+
+
+        // RimWorld.CharacterCardUtility
+        public void DrawCard(Rect rect, ThingWithComps selectedThing, CompPauldronDrawer Drawer)
+        {
+            GUI.BeginGroup(rect);
+
+            if (Drawer != null)
+            {
+                if (!Drawer.pauldronInitialized)
+                {
+                    Drawer.Initialize();
+                }
+                if (Drawer.Props.PauldronEntries.Any(x => !x.options.NullOrEmpty()))
+                {
+                    var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
+                    var y = rect.y;
+                    var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
+                    y += rect2.height;
+                    Text.Font = GameFont.Medium;
+                    Widgets.Label(rect2, selectedThing.def.LabelCap);
+                    Text.Font = GameFont.Small;
+                    Widgets.ListSeparator(ref y, rect2.width, "Customiseable Parts: "+ (string)(!Drawer.activeEntries.EnumerableNullOrEmpty() ? ""+Drawer.activeEntries.Count : ""));
+
+
+                    if (!Drawer.activeEntries.EnumerableNullOrEmpty())
+                    {
+                        foreach (ShoulderPadEntry entry in Drawer.activeEntries)
+                        {
+                            if (entry.Options.NullOrEmpty() && (entry.UseVariableTextures || entry.UseFactionTextures))
+                            {
+                                if (entry.Options.NullOrEmpty())
+                                {
+                                    Log.Message(entry.Label + " no options");
+                                    continue;
+                                }
+                            }
+                            if (entry.Drawer == null)
+                            {
+                                //entry.drawer = Drawer;
+                            }
+                            if (entry.UseFactionTextures)
+                            {
+                                var rect3 = new Rect(0f, y, rect.width, 20f);
+                                DrawFactionButton(rect3, Drawer, entry, false);
+                                y += rect2.height;
+                            }
+                            if (entry.UseVariableTextures)
+                            {
+                                var rect3 = new Rect(0f, y, rect.width, 20f);
+                                DrawVariantButton(rect3, Drawer, entry, false);
+                                y += rect2.height;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Widgets.ListSeparator(ref y, rect2.width, "No Customiseable Parts:");
+                    }
+                }
+
+            }
+
+            GUI.EndGroup();
+        }
+        
+        // RimWorld.CharacterCardUtility
+        public void DrawCard(Rect rect, ThingWithComps selectedThing, CompFactionColorableTwo Colorable)
+        {
+            GUI.BeginGroup(rect);
+
+            if (Colorable != null)
+            {
+                var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
+                var y = rect.y;
+                var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
+                y += rect2.height;
+                Text.Font = GameFont.Medium;
+                Widgets.Label(rect2, selectedThing.def.LabelCap);
+                Text.Font = GameFont.Small;
+                Widgets.ListSeparator(ref y, rect2.width, "Faction Colors: ");
+
+                List<FactionDef> factions = new List<FactionDef>();
+                for (int i = 0; i < DefDatabase<FactionDef>.AllDefsListForReading.Count; i++)
+                {
+                    if (DefDatabase<FactionDef>.AllDefsListForReading[i].HasModExtension<FactionDefExtension>())
+                    {
+                        factions.Add(DefDatabase<FactionDef>.AllDefsListForReading[i]);
+                    }
+                }
+                if (!factions.NullOrEmpty())
+                {
+                    var rect3 = new Rect(0f, y, rect.width, 20f);
+                    DrawFactionColorsButton(rect3, Colorable, false);
+                    y += rect2.height;
+                }
+
+            }
+            GUI.EndGroup();
+        }
+
+        public void DrawVariantButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+         //   entry.Drawer = comp;
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
+
+
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry, (ShoulderPadEntry p) => p.Used, new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(this.DrawVariantButton_GenerateMenu), entry.Used.Label, null, null, null, null, true);
+            /*
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
+                (ShoulderPadEntry sp) => sp.Used,
+                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu),
+                entry.VariantTextures.activeOption.Label, null, null, null, delegate ()
+                {
+
+                }, paintable);
+            */
+        }
+
+        private IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
+        {
+            if (e.Used != e.DefaultOption)
+            {
+                yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
+                {
+                    option = new FloatMenuOption(e.DefaultOption.TexPath, delegate ()
+                    {
+                        
+                        e.activeOption = e.DefaultOption;
+                        e.UpdatePadGraphic();
+                        
+
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                    payload = e.DefaultOption
+                };
+            }
+            using (List<PauldronTextureOption>.Enumerator enumerator = e.Options.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    PauldronTextureOption variant = enumerator.Current;
+                    if (e.Used != variant)
+                    {
+                        yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
+                        {
+                            option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
+                            {
+                                e.Used = variant;
+                                e.UpdatePadGraphic();
+
+                            }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                            payload = variant
+                        };
+                    }
+                }
+            }
+            yield break;
+        }
+
+        public void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
+                (ShoulderPadEntry sp) => entry.Used,
+                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawFactionButton_GenerateMenu),
+                entry.Used.Label, null, null, null, delegate ()
+                {
+                //    entry.Drawer = comp;
+                }, paintable);
+
+        }
+
+        private IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
+        {
+            if (e.Used != e.DefaultOption)
+            {
+                yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
+                {
+                    option = new FloatMenuOption(e.DefaultOption.TexPath, delegate ()
+                    {
+                        Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+                        Color color = graphic.Color;
+                        Color colorTwo = graphic.ColorTwo;
+
+                        graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+                        e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
+                        /*
+                        e.drawer.apparel.SetColorOne(color);
+                        e.drawer.apparel.SetColorTwo(colorTwo);
+                        FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+                        Traverse traverse = Traverse.Create(e.drawer.apparel);
+                        subgraphic.SetValue(e.drawer.apparel, graphic);
+                        */
+                        e.Used = e.DefaultOption;
+                        e.faction = e.DefaultOption.factionDef;
+                        e.UpdatePadGraphic();
+
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                    payload = e.DefaultOption
+                };
+            }
+            using (List<PauldronTextureOption>.Enumerator enumerator = e.Options.OrderBy(x => x.Label).ToList().GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    PauldronTextureOption variant = enumerator.Current;
+                    if (e.Used != variant)
+                    {
+                        yield return new Widgets.DropdownMenuElement<PauldronTextureOption>
+                        {
+                            option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
+                            {
+                                Graphic graphic = e.Drawer.apparel.Graphic;
+                                graphic.path += "_" + variant.TexPath;
+                                Color color = graphic.Color;
+                                Color colorTwo = graphic.ColorTwo;
+                                if (variant.factionDef != null)
+                                {
+                                //    e.faction = variant.factionDef;
+                                    if (variant.factionDef.HasModExtension<FactionDefExtension>())
+                                    {
+                                        FactionDefExtension extension = variant.factionDef.GetModExtension<FactionDefExtension>();
+                                        if (extension.factionColor != null)
+                                        {
+                                            color = extension.factionColor.Value;
+                                        }
+                                        if (extension.factionColorTwo != null)
+                                        {
+                                            colorTwo = extension.factionColorTwo.Value;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (e.UseFactionColors)
+                                    {
+                                        if (variant.Color.HasValue)
+                                        {
+                                            color = variant.Color.Value;
+                                        }
+                                        if (variant.ColorTwo.HasValue)
+                                        {
+                                            colorTwo = variant.ColorTwo.Value;
+                                        }
+                                    }
+                                }
+
+                                graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+
+                                e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
+                                /*
+                                e.drawer.apparel.SetColorOne(color);
+                                e.drawer.apparel.SetColorTwo(colorTwo);
+
+                                FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+                                Traverse traverse = Traverse.Create(e.drawer.apparel);
+                                subgraphic.SetValue(e.drawer.apparel, graphic);
+                                */
+                                //    Log.Message("set active");
+
+                                e.faction = variant.factionDef;
+                                e.Used = variant;
+                                //    Log.Message("Update PadGraphic");
+                                e.UpdatePadGraphic();
+
+
+                            }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                            payload = variant
+                        };
+                    }
+                }
+            }
+            yield break;
+        }
+        
+        public void DrawFactionColorsButton(Rect rect, CompFactionColorableTwo comp, bool paintable)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Dropdown<CompFactionColorableTwo, FactionDef>(rect2, comp,
+                (CompFactionColorableTwo sp) => comp.FactionDef,
+                new Func<CompFactionColorableTwo, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
+                comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None", null, null, null, delegate ()
+                {
+                //    entry.Drawer = comp;
+                }, paintable);
+
+        }
+
+        // Token: 0x060046EB RID: 18155 RVA: 0x0017FE99 File Offset: 0x0017E099
+        private IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompFactionColorableTwo e)
+        {
+            if (e.FactionDef != null)
+            {
+                yield return new Widgets.DropdownMenuElement<FactionDef>
+                {
+                    option = new FloatMenuOption("None", delegate ()
+                    {
+                        Graphic graphic = e.parent.DefaultGraphic;
+                        Color color = graphic.Color;
+                        Color colorTwo = graphic.ColorTwo;
+
+                        graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+                        e.parent.SetColors(color, colorTwo, true, null, graphic);
+                        /*
+                        e.drawer.apparel.SetColorOne(color);
+                        e.drawer.apparel.SetColorTwo(colorTwo);
+                        FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+                        Traverse traverse = Traverse.Create(e.drawer.apparel);
+                        subgraphic.SetValue(e.drawer.apparel, graphic);
+                        */
+                        e.FactionDef = null;
+
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                    payload = null
+                };
+            }
+            using (List<FactionDef>.Enumerator enumerator = e.ColouredDefs.OrderBy(x => x.label).ToList().GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    FactionDef variant = enumerator.Current;
+                    FactionDefExtension ext = enumerator.Current.GetModExtension<FactionDefExtension>();
+
+                    if (e.FactionDef != variant)
+                    {
+                        if (ext == null)
+                        {
+                            continue;
+                        }
+                        if (ext.factionColor == null && ext.factionColorTwo == null && ext.factionMaskTag.NullOrEmpty() && ext.factionTextureTag.NullOrEmpty())
+                        {
+                            continue;
+                        }
+                        yield return new Widgets.DropdownMenuElement<FactionDef>
+                        {
+                            option = new FloatMenuOption((string)variant.LabelCap ?? variant.fixedName, delegate ()
+                            {
+                                Graphic graphic = e.parent.Graphic;
+                            //    graphic.path += "_" + variant.TexPath;
+                                Color color = graphic.Color;
+                                Color colorTwo = graphic.ColorTwo;
+                                if (ext.factionColor != null)
+                                {
+                                    color = ext.factionColor.Value;
+                                }
+                                if (ext.factionColorTwo != null)
+                                {
+                                    colorTwo = ext.factionColorTwo.Value;
+                                }
+                                graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+
+                                e.parent.SetColors(color, colorTwo, true, variant, graphic);
+                                Texture texture;
+                                if (!ext.factionMaskTag.NullOrEmpty())
+                                {
+                                    string msk = "m_" + ext.factionMaskTag;
+                                    texture = ContentFinder<Texture2D>.Get(graphic.path + msk, false);
+                                    if (texture != null)
+                                    {
+                                        graphic.MatEast.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+                                    }
+                                    graphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+                                }
+
+                                /*
+                                e.drawer.apparel.SetColorOne(color);
+                                e.drawer.apparel.SetColorTwo(colorTwo);
+
+                                FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+                                Traverse traverse = Traverse.Create(e.drawer.apparel);
+                                subgraphic.SetValue(e.drawer.apparel, graphic);
+                                */
+                                //    Log.Message("set active");
+
+                                e.FactionDef = variant;
+
+
+                            }, MenuOptionPriority.Default, null, null, 0f, null, null),
+                            payload = variant
+                        };
+                    }
+                }
+            }
+            yield break;
+        }
+
+        public static float HeaderSize = 32f;
+
+        public static float SpacingOffset = 15f;
     }
 }

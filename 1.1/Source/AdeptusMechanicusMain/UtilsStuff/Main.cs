@@ -140,11 +140,11 @@ namespace AdeptusMechanicus
         }
         public static Listing_Standard BeginSection_OnePointOne(ref Listing_Standard listing_Main, float f)
         {
-            return listing_Main.BeginSection(f);
+            return listing_Main.BeginSection_NewTemp(f);
         }
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
         {
-            List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.defName.Contains("OG" + Tag + "_Gun_") || x.defName.Contains("OG" + Tag + "_Melee_") || x.defName.Contains("OG" + Tag + "_Apparel_") || x.defName.Contains("OG" + Tag + "_Armour_") || x.defName.Contains("OG" + Tag + "_Wargear_") || x.defName.Contains("OG" + Tag + "_GrenadePack_")) && (!x.defName.Contains("TOGGLEDEF_") || x.defName.Contains("TOGGLEDEF_S")));
+            List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.PlayerAcquirable && (x.IsWeapon || x.IsApparel) &&  x.defName.Contains("OG" + Tag) && !x.defName.Contains("TOGGLEDEF_S")));
 
             foreach (ThingDef Weapon in things)
             {
@@ -175,7 +175,14 @@ namespace AdeptusMechanicus
             }
         }
 
-
+        public static void CopyFields<T>(T source, T destination)
+        {
+            var fields = source.GetType().GetFields();
+            foreach (var field in fields)
+            {
+                field.SetValue(destination, field.GetValue(source));
+            }
+        }
     }
 
 }

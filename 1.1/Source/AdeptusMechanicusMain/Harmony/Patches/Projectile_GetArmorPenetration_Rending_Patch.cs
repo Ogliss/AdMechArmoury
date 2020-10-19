@@ -69,8 +69,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 if (Rending)
                 {
-                //    Log.Warning(string.Format("Rending: {0}", ___launcher));
+                    //    Log.Warning(string.Format("Rending: {0}", ___launcher));
+                    Rand.PushState();
                     bool RendingEffect = Rand.Chance(RendingChance);
+                    Rand.PopState();
                     if (RendingEffect)
                     {
                     //    Log.Warning(string.Format("RendingEffect: {0}", ___launcher));

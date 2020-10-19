@@ -35,12 +35,15 @@ namespace AdeptusMechanicus
                     {
                         if (pos != this.Position)
                         {
+                            Rand.PushState();
                             if (Rand.Chance(0.75f * traveled))
                             {
                                 TrySpread();
                             }
+                            Rand.PopState();
                         }
                     }
+                    Rand.PushState();
                     if (Rand.Chance(0.75f * traveled))
                     {
                         ThrowSmoke(this.DrawPos, base.Map, 0.5f * traveled);
@@ -52,6 +55,7 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
+                    Rand.PopState();
                     this.TicksforAppearence = 6;
                 }
             }
@@ -212,10 +216,12 @@ namespace AdeptusMechanicus
                 return;
             }
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(DefDatabase<ThingDef>.GetNamed("Mote_Smoke"), null);
+            Rand.PushState();
             moteThrown.Scale = Rand.Range(1.5f, 2.5f) * size;
             moteThrown.rotationRate = Rand.Range(-30f, 30f);
             moteThrown.exactPosition = loc;
             moteThrown.SetVelocity((float)Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
+            Rand.PopState();
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
         

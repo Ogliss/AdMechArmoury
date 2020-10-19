@@ -76,6 +76,7 @@ namespace AdeptusMechanicus
                 this.sustainer.Maintain();
                 Vector3 vector = base.Position.ToVector3Shifted();
                 IntVec3 c;
+                Rand.PushState();
                 if (Rand.MTBEventOccurs(TeleportSpawner.FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TeleportSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out c, 999999))
                 {
                     FilthMaker.TryMakeFilth(c, base.Map, TeleportSpawner.filthTypes.RandomElement<ThingDef>(), 1);
@@ -87,6 +88,7 @@ namespace AdeptusMechanicus
                         y = AltitudeLayer.MoteOverhead.AltitudeFor()
                     }, base.Map, Rand.Range(1.5f, 3f), new Color(1f, 1f, 1f, 2.5f));
                 }
+                Rand.PopState();
                 if (this.secondarySpawnTick <= Find.TickManager.TicksGame)
                 {
                     this.sustainer.End();
@@ -120,7 +122,9 @@ namespace AdeptusMechanicus
         {
             float num = (Find.TickManager.TicksGame - this.secondarySpawnTick).TicksToSeconds();
             Vector3 pos = base.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.Filth);
+            Rand.PushState();
             pos.y += 0.046875f * Rand.Range(0f, 1f);
+            Rand.PopState();
             Color value = new Color(0.470588237f, 0.384313732f, 0.3254902f, 0.7f);
             TeleportSpawner.matPropertyBlock.SetColor(ShaderPropertyIDs.Color, value);
             Matrix4x4 matrix = Matrix4x4.TRS(pos, Quaternion.Euler(0f, initialAngle + speedMultiplier * num, 0f), Vector3.one * scale);

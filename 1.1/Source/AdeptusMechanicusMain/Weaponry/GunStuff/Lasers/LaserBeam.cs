@@ -11,15 +11,26 @@ namespace AdeptusMechanicus
 {
     public class LaserBeam : Projectile
     {
-        new LaserBeamDef def => base.def as LaserBeamDef;
+        public new LaserBeamDef def => base.def as LaserBeamDef;
 
         public override void Draw()
         {
 
         }
         
-        void TriggerEffect(EffecterDef effect, Vector3 position)
+        void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
         {
+            if (this.def.HasModExtension<EffectProjectileExtension>())
+            {
+                EffectProjectileExtension ext = this.def.GetModExtension<EffectProjectileExtension>();
+                ext.ThrowMote(position, this.Map, this.def.projectile.damageDef.explosionCellMote, ext.explosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ThingDef.Named(ext.ImpactMoteDef) ?? null, ext.ImpactMoteSizeRange?.RandomInRange ?? ext.ImpactMoteSize, ThingDef.Named(ext.ImpactGlowMoteDef) ?? null, ext.ImpactGlowMoteSizeRange?.RandomInRange ?? ext.ImpactGlowMoteSize, hitThing);
+            }
+            /*
+            else
+            {
+                TriggerEffect(effect, IntVec3.FromVector3(position));
+            }
+            */
             TriggerEffect(effect, IntVec3.FromVector3(position));
         }
 
@@ -49,11 +60,16 @@ namespace AdeptusMechanicus
             for (int i = 0; i < count; i++)
             {
                 Vector3 dir = (b - a).normalized;
+                Rand.PushState();
                 Vector3 c = b - dir.RotatedBy(Rand.Range(-22.5f,22.5f)) * Rand.Range(1f,4f);
+                Rand.PopState();
 
                 SpawnBeam(b, c);
             }
         }
+    //    public new ThingDef equipmentDef => base.equipmentDef
+        public new Vector3 destination => base.destination;
+        public new Vector3 origin => base.origin;
 
         protected override void Impact(Thing hitThing)
         {
@@ -71,7 +87,9 @@ namespace AdeptusMechanicus
             }
             else if (shielded)
             {
+                Rand.PushState();
                 b = hitThing.TrueCenter() - dir.RotatedBy(Rand.Range(-22.5f, 22.5f)) * 0.8f;
+                Rand.PopState();
             }
             else if ((destination - hitThing.TrueCenter()).magnitude < 1)
             {
@@ -80,8 +98,10 @@ namespace AdeptusMechanicus
             else
             {
                 b = hitThing.TrueCenter();
+                Rand.PushState();
                 b.x += Rand.Range(-0.5f, 0.5f);
                 b.z += Rand.Range(-0.5f, 0.5f);
+                Rand.PopState();
             }
 
             a.y = b.y = def.Altitude;
@@ -141,7 +161,7 @@ namespace AdeptusMechanicus
                 {
                     hitThing.TryAttachFire(0.01f);
                 }
-                TriggerEffect(def.explosionEffect, b);
+                TriggerEffect(def.explosionEffect, b, hitThing);
             }
             if (def.HediffToAdd!=null)
             {
@@ -287,8 +307,9 @@ namespace AdeptusMechanicus
         {
             if (def != null && hitThing != null && hitThing is Pawn hitPawn)
             {
+                Rand.PushState();
                 var rand = Rand.Value; // This is a random percentage between 0% and 100%
-
+                Rand.PopState();
                 StatDef ResistHediffStat = def.ResistHediffStat;
                 float AddHediffChance = def.AddHediffChance;
                 float ResistHediffChance = def.ResistHediffChance;
@@ -311,7 +332,9 @@ namespace AdeptusMechanicus
                 {
 
                     var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(def.HediffToAdd);
+                    Rand.PushState();
                     var randomSeverity = Rand.Range(0.15f, 0.30f);
+                    Rand.PopState();
                     if (effectOnPawn != null)
                     {
                         //If they already have plague, add a random range to its severity.

@@ -29,7 +29,7 @@ namespace AdeptusMechanicus
             }
         }
         public int phasedNotifcationTick = 0;
-        public List<Projectile> phasedfor = new List<Projectile>();
+        public List<ThingWithComps> phasedfor = new List<ThingWithComps>();
         TargetScanFlags targetScanFlags = TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat;
         // Token: 0x0600046F RID: 1135 RVA: 0x0002C322 File Offset: 0x0002A722
         protected virtual bool ExtraTargetValidator(Pawn pawn, Thing target)
@@ -67,11 +67,13 @@ namespace AdeptusMechanicus
                 {
                     chance = chance * (Pawn.health.hediffSet.GetPartHealth(partRecord) / partRecord.def.GetMaxHealth(Pawn));
                 }
-            //    Log.Message(string.Format("Phase chance: {0}", chance));
+                //    Log.Message(string.Format("Phase chance: {0}", chance));
+                Rand.PushState();
                 if (Rand.Chance(chance))
                 {
                     result = false;
                 }
+                Rand.PopState();
                 return result;
             }
         }

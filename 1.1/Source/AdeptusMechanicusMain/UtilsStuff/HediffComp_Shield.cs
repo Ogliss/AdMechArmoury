@@ -181,7 +181,9 @@ namespace AdeptusMechanicus
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
+                Rand.PushState();
                 MoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
+                Rand.PopState();
             }
             this.lastAbsorbDamageTick = Find.TickManager.TicksGame;
             this.KeepDisplaying();
@@ -194,8 +196,10 @@ namespace AdeptusMechanicus
             MoteMaker.MakeStaticMote(Pawn.TrueCenter(), Pawn.Map, ThingDefOf.Mote_ExplosionFlash, 12f);
             for (int i = 0; i < 6; i++)
             {
+                Rand.PushState();
                 Vector3 loc = Pawn.TrueCenter() + Vector3Utility.HorizontalVectorFromAngle((float)Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
                 MoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
+                Rand.PopState();
             }
             this.energy = 0f;
             this.ticksToReset = this.StartingTicksToReset;

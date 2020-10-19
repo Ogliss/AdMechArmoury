@@ -63,7 +63,9 @@ namespace RimWorld
             base.SpawnSetup(map, respawningAfterLoad);
             this.RecalcPathsOnAndAroundMe(map);
             LessonAutoActivator.TeachOpportunity(ConceptDefOf.HomeArea, this, OpportunityType.Important);
+            Rand.PushState();
             this.ticksSinceSpread = (int)(this.SpreadInterval * Rand.Value);
+            Rand.PopState();
         }
 
         // Token: 0x06002649 RID: 9801 RVA: 0x00122F6C File Offset: 0x0012136C
@@ -133,10 +135,12 @@ namespace RimWorld
             {
                 this.SpawnSmokeParticles();
             }
+            Rand.PushState();
             if (Warpfire.fireCount < 15 && this.fireSize > 0.7f && Rand.Value < this.fireSize * 0.01f)
             {
                 ThrowMicroSparks(this.DrawPos, base.Map);
             }
+            Rand.PopState();
             if (this.fireSize > 1f)
             {
                 this.ticksSinceSpread++;
@@ -156,7 +160,10 @@ namespace RimWorld
             }
             if (this.IsHashIntervalTick(150))
             {
-                if (Rand.Chance(0.25f)&&this.Spawned)
+                Rand.PushState();
+                bool despawn = Rand.Chance(0.25f);
+                Rand.PopState();
+                if (despawn && this.Spawned)
                 {
                     this.DeSpawn();
                 }
@@ -180,7 +187,9 @@ namespace RimWorld
                 num = 1f;
             }
             num = 1f - num;
+            Rand.PushState();
             this.ticksUntilSmoke = Warpfire.SmokeIntervalRange.Lerped(num) + (int)(10f * Rand.Value);
+            Rand.PopState();
         }
         // Token: 0x060026BE RID: 9918 RVA: 0x00126330 File Offset: 0x00124730
         public static void ThrowFireGlow(IntVec3 c, Map map, float size)
@@ -190,16 +199,20 @@ namespace RimWorld
             {
                 return;
             }
+            Rand.PushState();
             vector += size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f);
+            Rand.PopState();
             if (!vector.InBounds(map))
             {
                 return;
             }
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(OGThingDefOf.OG_Mote_WarpFireGlow, null);
+            Rand.PushState();
             moteThrown.Scale = Rand.Range(4f, 6f) * size;
             moteThrown.rotationRate = Rand.Range(-3f, 3f);
             moteThrown.exactPosition = vector;
             moteThrown.SetVelocity((float)Rand.Range(0, 360), 0.12f);
+            Rand.PopState();
             GenSpawn.Spawn(moteThrown, vector.ToIntVec3(), map, WipeMode.Vanish);
         }
         // Token: 0x060026C0 RID: 9920 RVA: 0x001264E0 File Offset: 0x001248E0
@@ -210,12 +223,14 @@ namespace RimWorld
                 return;
             }
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(OGThingDefOf.OG_Mote_MicroSparksWarp, null);
+            Rand.PushState();
             moteThrown.Scale = Rand.Range(0.8f, 1.2f);
             moteThrown.rotationRate = Rand.Range(-12f, 12f);
             moteThrown.exactPosition = loc;
             moteThrown.exactPosition -= new Vector3(0.5f, 0f, 0.5f);
             moteThrown.exactPosition += new Vector3(Rand.Value, 0f, Rand.Value);
             moteThrown.SetVelocity((float)Rand.Range(35, 45), 1.2f);
+            Rand.PopState();
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
         // Token: 0x0600264E RID: 9806 RVA: 0x001232A4 File Offset: 0x001216A4
@@ -291,20 +306,24 @@ namespace RimWorld
                     num *= 0.15f;
                 }
                 GenTemperature.PushHeat(base.Position, base.Map, num);
+                Rand.PushState();
                 if (Rand.Value < 0.4f)
                 {
                     float radius = this.fireSize * 3f;
                     SnowUtility.AddSnowRadial(base.Position, base.Map, radius, -(this.fireSize * 0.1f));
                 }
+                Rand.PopState();
                 this.fireSize += 0.00055f * this.flammabilityMax * 150f;
                 if (this.fireSize > 1.75f)
                 {
                     this.fireSize = 1.75f;
                 }
+                Rand.PushState();
                 if (base.Map.weatherManager.RainRate > 0.01f && this.VulnerableToRain() && Rand.Value < 6f)
                 {
                     base.TakeDamage(new DamageInfo(DamageDefOf.Extinguish, 10f, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
                 }
+                Rand.PopState();
             }
         }
 
@@ -362,6 +381,7 @@ namespace RimWorld
         {
             IntVec3 intVec = base.Position;
             bool flag;
+            Rand.PushState();
             if (Rand.Chance(0.8f))
             {
                 intVec = base.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(1, 8)];
@@ -372,11 +392,15 @@ namespace RimWorld
                 intVec = base.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(10, 20)];
                 flag = false;
             }
+            Rand.PopState();
             if (!intVec.InBounds(base.Map))
             {
                 return;
             }
-            if (Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(intVec, base.Map)))
+            Rand.PushState();
+            bool startfire = Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(intVec, base.Map));
+            Rand.PushState();
+            if (startfire)
             {
                 if (!flag)
                 {

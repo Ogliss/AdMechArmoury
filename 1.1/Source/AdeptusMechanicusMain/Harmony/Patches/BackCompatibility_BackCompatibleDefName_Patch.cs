@@ -90,6 +90,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName ="OG_Ork_Snotling";
                     }
 
+                    if (defName == "OGE_Gun_EBrightlance")
+                    {
+                        newName = "OGE_Gun_Brightlance";
+                    }
 
                     if (defName == "OG_Human_Imperial" || defName == "OG_Human_ELT")
                     {
@@ -249,9 +253,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName ="OG_Eldar_Craftworld_Faction";
                     }
+                    if (defName == "OG_Eldar_Player_Craftworld")
+                    {
+                        newName = "OG_Eldar_Craftworld_PlayerColony";
+                    }
                     if (defName == "EldarPlayerColony")
                     {
-                        newName ="OG_Eldar_Player_Craftworld";
+                        newName = "OG_Eldar_Craftworld_PlayerColony";
                     }
                     // Ork factions
                     if (defName == "OrkFaction")

@@ -11,7 +11,37 @@ namespace AdeptusMechanicus.ExtensionMethods
     {
         public static bool isAdult(this Pawn pawn)
         {
-            return pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive) && pawn.ageTracker.AgeBiologicalYearsFloat >= pawn.RaceProps.lifeStageAges.First(x => x.def.reproductive).minAge;
+            float adultage = 18f;
+            if (pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive) && pawn.def != ThingDefOf.Human)
+            {
+                foreach (LifeStageAge item in pawn.RaceProps.lifeStageAges)
+                {
+                    if (item.def.reproductive)
+                    {
+                        adultage = item.minAge;
+                        break;
+                    }
+                }
+                if (AdeptusIntergrationUtil.enabled_AlienRaces)
+                {
+                    float alienage = AlienAdult(pawn);
+                    if (alienage > -1f)
+                    {
+                        adultage = alienage;
+                    }
+                }
+            }
+            return pawn.ageTracker.AgeBiologicalYearsFloat >= adultage;
+        }
+
+        public static float AlienAdult(Pawn pawn)
+        {
+            AlienRace.ThingDef_AlienRace race = pawn.def as AlienRace.ThingDef_AlienRace;
+            if (race != null)
+            {
+                return race.alienRace.generalSettings.minAgeForAdulthood;
+            }
+            return -1;
         }
 
         public static bool canDeepStrike(this Pawn pawn)

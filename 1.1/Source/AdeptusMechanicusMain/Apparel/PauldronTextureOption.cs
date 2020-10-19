@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using Verse;
@@ -16,6 +17,8 @@ namespace AdeptusMechanicus
             texPath = o.texPath;
             color = o.color;
             colorTwo = o.colorTwo;
+            label = o.label ?? o.texPath;
+            invertColors = o.invertColors;
         }
         public PauldronTextureOption(string f, string t)
         {
@@ -28,16 +31,13 @@ namespace AdeptusMechanicus
             texPath = t;
         }
 
-        private Color? color = null;
-        private Color? colorTwo = null;
-        private string label;
-        public string faction;
-        public string texPath;
+        public string TexPath => texPath.NullOrEmpty() ? string.Empty : Regex.Replace(texPath, " ", "");
         public Color? Color
         {
             get
             {
-                return color;
+
+                return invertColors ? colorTwo : color;
             }
             set
             {
@@ -49,7 +49,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return colorTwo;
+                return invertColors ? color : colorTwo;
             }
             set
             {
@@ -80,9 +80,26 @@ namespace AdeptusMechanicus
                 label = value;
             }
         }
-        public string TexPath => texPath.NullOrEmpty() ? string.Empty : Regex.Replace(texPath, " ", "");
 
-        public FactionDef factionDef => !faction.NullOrEmpty() ? DefDatabase<FactionDef>.GetNamedSilentFail(faction) : null;
+        public FactionDef factionDef
+        {
+            get
+            {
+                if (faction.NullOrEmpty())
+                {
+                    List<FactionDef> defs = DefDatabase<FactionDef>.AllDefsListForReading;
+                    for (int i = 0; i < defs.Count; i++)
+                    {
+                        if (defs[i].defName.Contains(this.TexPath))
+                        {
+                            faction = defs[i].defName;
+                            break;
+                        }
+                    }
+                }
+                return !faction.NullOrEmpty() ? DefDatabase<FactionDef>.GetNamedSilentFail(faction) : null;
+            }
+        }
 
         public void ExposeData()
         {
@@ -90,8 +107,15 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref this.texPath, "TexPath");
             Scribe_Values.Look(ref this.label, "label");
             Scribe_Values.Look(ref this.color, "color");
+            Scribe_Values.Look(ref this.invertColors, "invertColors");
             Scribe_Values.Look(ref this.colorTwo, "colorTwo");
         }
+        private Color? color = null;
+        private Color? colorTwo = null;
+        private string label;
+        private bool invertColors = false;
+        public string faction;
+        public string texPath;
     }
 
 }

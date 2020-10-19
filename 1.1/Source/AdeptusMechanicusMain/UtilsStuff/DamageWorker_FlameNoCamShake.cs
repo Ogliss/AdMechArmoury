@@ -19,7 +19,9 @@ namespace AdeptusMechanicus
 			DamageWorker.DamageResult damageResult = base.Apply(dinfo, victim);
 			if (!damageResult.deflected && !dinfo.InstantPermanentInjury)
 			{
+				Rand.PushState();
 				victim.TryAttachFire(Rand.Range(0.15f, 0.25f));
+				Rand.PopState();
 			}
 			if (victim.Destroyed && map != null && pawn == null)
 			{
@@ -41,10 +43,12 @@ namespace AdeptusMechanicus
 		{
 			base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
 			bool fire = this.def.defName.Contains("Fire") || this.def.defName.Contains("Flame");
+			Rand.PushState();
 			if (fire && Rand.Chance(FireUtility.ChanceToStartFireIn(c, explosion.Map)))
 			{
 				FireUtility.TryStartFireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
 			}
+			Rand.PopState();
 		}
 
 		public override void ExplosionStart(Explosion explosion, List<IntVec3> cellsToAffect)

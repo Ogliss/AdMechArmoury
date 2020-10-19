@@ -45,6 +45,7 @@ namespace AdeptusMechanicus
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
         public Shader shader = ShaderDatabase.Cutout;
         public bool ExtraUseBodyOffset; 
+        public bool ExtraUseHeadOffset; 
         private bool useSecondaryColor;
         public bool hidesHair => Props.ExtrasEntries.Any(x=> x.hidesHair);
         public bool hidesHead => Props.ExtrasEntries.Any(x => x.hidesHead);
@@ -329,7 +330,7 @@ namespace AdeptusMechanicus
                                 gotHit = true;
                                 break;
                             }
-                            if (p.groups.Contains(BodyPartGroupDefOf.FullHead) || p.groups.Contains(BodyPartGroupDefOf.UpperHead))
+                            if (p.groups.Contains(BodyPartGroupDefOf.FullHead) || p.groups.Contains(BodyPartGroupDefOf.UpperHead) || p.groups.Contains(BodyPartGroupDefOf.Eyes) || p.groups.Contains(OGBodyPartGroupDefOf.Mouth) || p.groups.Contains(OGBodyPartGroupDefOf.Neck))
                             {
                                 _OnHeadCache.Add(parent.def.defName, true);
                                 gotHit = true;
@@ -363,6 +364,7 @@ namespace AdeptusMechanicus
         public BodyTypeDef forcedBodyType = null;
         public bool OnHead;
         public bool UseBodytypeOffsets;
+        public bool UseHeadOffsets;
         public ShaderTypeDef shaderType;
         public string extraTexPath;
         public int commonality;
@@ -374,6 +376,7 @@ namespace AdeptusMechanicus
         public int order = 1;
         public int sublayer = 0;
         public bool northtop = false;
+        public Vector2 drawSize = new Vector2(1, 1);
         public Vector3 NorthOffset = new Vector3();
         public Vector3 SouthOffset = new Vector3();
         public Vector3 EastOffset = new Vector3();

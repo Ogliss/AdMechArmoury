@@ -118,7 +118,9 @@ namespace AdeptusMechanicus
         {
             bool EyeProtection = false;
             bool LungProtection = false;
+            Rand.PushState();
             bool flag = !Rand.Chance(_addhediffChance);
+            Rand.PopState();
             if (!flag)
             {
                 Hediff hediff = HediffMaker.MakeHediff(_heddiff, p, null);
@@ -154,7 +156,9 @@ namespace AdeptusMechanicus
                         bool flag3 = num != 0f;
                         if (flag3)
                         {
+                            Rand.PushState();
                             float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(p.thingIDNumber ^ 74374237));
+                            Rand.PopState();
                             num *= num2;
                         }
                         float statValue = StatExtension.GetStatValue(p, StatDefOf.ToxicSensitivity, true);
@@ -191,7 +195,9 @@ namespace AdeptusMechanicus
                                     }
                                 }
                                 Hediff hediff3 = hediff2;
+                                Rand.PushState();
                                 float num3 = Rand.Range(0.1f, 0.2f);
+                                Rand.PopState();
                                 bool flag6 = hediff3 != null;
                                 if (flag6)
                                 {
@@ -226,7 +232,9 @@ namespace AdeptusMechanicus
                         }
                     }
                     Hediff hediff5 = hediff4;
+                    Rand.PushState();
                     float num4 = Rand.Range(0.1f, 0.2f);
+                    Rand.PopState();
                     float statValue2 = StatExtension.GetStatValue(p, StatDefOf.ToxicSensitivity, true);
                     bool flag7 = hediff5 != null;
                     if (flag7)
@@ -314,7 +322,9 @@ namespace AdeptusMechanicus
                         if (flag2)
                         {
                             this.touchingThings.Add(thing);
+                            Rand.PushState();
                             this.damageEntities(thing, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                            Rand.PopState();
                             MoteMaker.ThrowDustPuff(thing.Position, base.Map, 0.2f);
                         }
                         bool flag3 = pawn != null;
@@ -357,10 +367,14 @@ namespace AdeptusMechanicus
                     }
                     else
                     {
+                        Rand.PushState();
                         this.damageEntities(thing2, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                        Rand.PopState();
                     }
                 }
+                Rand.PushState();
                 this.damageBuildings(Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                Rand.PopState();
                 this.cachedLabelMouseover = null;
             }
         }
@@ -402,7 +416,9 @@ namespace AdeptusMechanicus
         {
             List<BodyPartRecord> list = new List<BodyPartRecord>();
             List<Apparel> wornApparel = p.apparel.WornApparel;
+            Rand.PushState();
             int num = Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f));
+            Rand.PopState();
             DamageInfo damageInfo = default(DamageInfo);
             MoteMaker.ThrowDustPuff(p.Position, base.Map, 0.2f);
             foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(0, BodyPartDepth.Outside, null, null))

@@ -362,6 +362,356 @@
     </colorGenerator>
   </ThingDef>
 
+
+  <ThingDef ParentName="OG_Imperial_Apparel" Name="OG_Imperial_Tremchcoat_Base" Abstract="True">
+    <description>A long tremchcoat coat for blocking the sun and grit of the outdoors.</description>
+    <label>tremchcoat</label>
+    <techLevel>Spacer</techLevel>
+    <recipeMaker>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.05</drawSize>
+    </graphicData>
+    <costList>
+      <Steel>20</Steel>
+    </costList>
+    <costStuffCount>80</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <WorkToMake>10000</WorkToMake>
+      <Mass>2</Mass>
+      <StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.60</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.85</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>3</EquipDelay>
+    </statBases>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Neck</li>
+        <li>Shoulders</li>
+        <li>Arms</li>
+        <li>Legs</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</wornGraphicPath>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>IndustrialAdvanced</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Worker</li>
+      </defaultOutfitTags>
+    </apparel>
+    <!--colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(0.33,0.33,0.33)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <only>(0.65,0.65,0.65)</only>
+        </li>
+        <li>
+          <weight>30</weight>
+          <only>(0.4,0.3,0.15)</only>
+        </li>
+        <li>
+          <weight>6</weight>
+          <min>(0.3,0.3,0.3)</min>
+          <max>(0.5,0.5,0.5)</max>
+        </li>
+        <li>
+          <weight>2</weight>
+          <min>(0.5,0.5,0.5)</min>
+          <max>(1,1,1)</max>
+        </li>
+      </options>
+    </colorGenerator-->
+  </ThingDef>
+
+  <!-- ========================= Steel Leigon ========================== -->
+  <!-- ========================= Steel Leigon - Trenchcoat ========================== -->
+  <ThingDef ParentName="OG_Imperial_Tremchcoat_Base">
+    <defName>OGIG_Apparel_Armageddon_Uniform_Trenchcoat</defName>
+    <label>armageddon pattern trenchcoat</label>
+    <description>Each Guardsman of the Armageddon Steel Legions is equipped with a toxic-resistant trenchcoat. The specially-treated gear protects a Guardsmen from the most polluted or chemically toxic environments.</description>
+    <graphicData>
+      <texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+	  <color>(183,148,92)</color>
+	  <colorTwo>(45,32,24)</colorTwo>
+    </graphicData>
+    <statBases>
+      <!--Mass>4</Mass>
+      <WorkToMake>24000</WorkToMake>
+      <MaxHitPoints>200</MaxHitPoints>
+      <MarketValue>500</MarketValue>
+      <ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.1</ArmorRating_Heat>
+      <Insulation_Cold>15</Insulation_Cold>
+      <Insulation_Heat>15</Insulation_Heat-->
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-0.12</MoveSpeed>
+      <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
+    </equippedStatOffsets>
+    <costList>
+      <Steel>60</Steel>
+      <Plasteel>40</Plasteel>
+      <DevilstrandCloth>30</DevilstrandCloth>
+    </costList>
+	<generateCommonality>2</generateCommonality>
+    <apparel>
+	<useWornGraphicMask>true</useWornGraphicMask>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</wornGraphicPath>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Neck</li>
+        <li>Shoulders</li>
+        <li>Arms</li>
+        <li>Legs</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>OGImperialGuard</li>
+        <li>OGIGSteelLegion</li>
+        <li>OGIGSteelLegionJacket</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel>
+    <comps>
+      <!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+			<PauldronEntries>
+				<li>
+					<shoulderPadType>Both</shoulderPadType>
+					<shaderType>CutoutComplex</shaderType>
+					<padTexPath>Things/Item/Apparel/Imperial/IG/IG_Armor/Pauldrons/Flak_Pauldrons</padTexPath>
+					<commonality>10</commonality>
+				</li>
+			</PauldronEntries>
+			<NorthOffset>0,0.001,0</NorthOffset>
+			<SouthOffset>0,0.001,0</SouthOffset>
+			<EastOffset>0,0.001,0</EastOffset>
+			<WestOffset>0,0.001,0</WestOffset>
+      </li-->
+    </comps>
+	
+  </ThingDef>
+
+  <!-- ========================= Steel Leigon - Gas Mask ========================== -->
+  <ThingDef ParentName="OG_Imperial_Apparel_Headgear">
+    <defName>OGIG_Apparel_Armageddon_GasMask</defName>
+    <label>armageddon pattern rebreather</label>
+    <description>Designed to keep the wearer alive in even the most noxious atmosphere, this rebreather consists of a mask (often shaped like a skull for senior officers) connected by hose to a small air supply. A character wearing an Armageddon Pattern Rebreather is immune to the effects of gases and issues of air quality, and can even survive underwater at limited depths. The air canister lasts for two full hours before requiring replacement.\n\nProtective Gear: Gas</description>
+    <!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+    <graphicData>
+      <texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+	  <color>(143,124,104)</color>
+    </graphicData>
+    <costList>
+      <Steel>20</Steel>
+      <Plasteel>10</Plasteel>
+    </costList>
+    <statBases>
+      <WorkToMake>4000</WorkToMake>
+      <MaxHitPoints>100</MaxHitPoints>
+      <MarketValue>400</MarketValue>
+      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.05</ArmorRating_Heat>
+    </statBases>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.01</MoveSpeed>
+		<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+		<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+    </equippedStatOffsets>
+	<generateCommonality>0.25</generateCommonality>
+    <apparel>
+	<useWornGraphicMask>true</useWornGraphicMask>
+      <bodyPartGroups Inherit="false">
+        <li>Mouth</li>
+		<li>Neck</li>
+      </bodyPartGroups>
+      <!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</wornGraphicPath-->	
+      <hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>			
+      <layers>
+        <li>OverheadUnder</li>
+      </layers>
+      <tags>
+		<li>OGSteelLeigon</li>
+		<li>OGSteelLeigonArmour</li>
+		<li>OGSteelLeigonHeadgear</li>
+		<li>OGSteelLeigonBasicHelmet</li>
+      </tags>
+      <defaultOutfitTags>
+		<li>SteelLeigonSoldier</li>
+      </defaultOutfitTags> 
+   </apparel>
+	<comps>     
+		  <li Class="AdeptusMechanicus.CompProperties_Wargear">
+		  </li>
+		  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+				<ExtrasEntries>
+					<li>
+						<UseBodytypeOffsets>false</UseBodytypeOffsets>
+						<shaderType>CutoutComplex</shaderType>
+						<extraTexPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</extraTexPath>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,-0.05,0</NorthOffset>
+				<SouthOffset>0,0.005,0</SouthOffset>
+				<EastOffset>0,-0.025,0</EastOffset>
+				<WestOffset>0,0.01,0</WestOffset>
+		  </li>  
+		  <li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+			  <Chance>1</Chance>
+		  </li>
+	</comps>
+  </ThingDef>
+
+  <!-- ========================= Death Korps ========================== -->
+  <!-- ========================= Trenchcoat ========================== -->
+  <ThingDef ParentName="OG_Imperial_Tremchcoat_Base">
+    <!--defName>OGIG_Apparel_Armageddon_Trenchcoat</defName-->
+    <defName>OGIG_Apparel_Krieg_Uniform_Trenchcoat</defName>
+    <label>krieg pattern trenchcoat</label>
+    <description>Each Guardsman of the Death Korps of Krieg is equipped with a toxic-resistant trenchcoat. The specially-treated gear protects a Guardsmen from the most polluted or chemically toxic environments.\n\nPlaceholder Texture.</description>
+    <graphicData>
+      <texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+	  <color>(75,75,75)</color>
+	  <colorTwo>(45,32,24)</colorTwo>
+    </graphicData>
+    <!--statBases>
+      <Mass>4</Mass>
+      <WorkToMake>24000</WorkToMake>
+      <MaxHitPoints>200</MaxHitPoints>
+      <MarketValue>500</MarketValue>
+      <ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.1</ArmorRating_Heat>
+      <Insulation_Cold>15</Insulation_Cold>
+      <Insulation_Heat>15</Insulation_Heat>
+    </statBases-->
+    <equippedStatOffsets>
+      <MoveSpeed>-0.12</MoveSpeed>
+      <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
+    </equippedStatOffsets>
+	<generateCommonality>2</generateCommonality>
+    <apparel>
+	<useWornGraphicMask>true</useWornGraphicMask>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</wornGraphicPath>
+      <tags>
+        <li>OGImperialGuard</li>
+        <li>OGIGDeathKorps</li>
+        <li>OGIGDeathKorpsJacket</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel>
+    <comps>
+    </comps>
+  </ThingDef>
+
+  <!-- =========================  Gas Mask ========================== -->
+  <ThingDef ParentName="OG_Imperial_Apparel_Headgear">
+    <defName>OGIG_Apparel_Krieg_Gasmask</defName>
+    <label>krieg pattern rebreather</label>
+    <description>A simple breathing mask that covers the nose and mouth or entire face, these offer much better protection than filtration plugs and are used by the troops of the Death Korps in toxic environments or during attacks by chemical or even biological weapons.\n\nProtective Gear: Gas.\n\nPlaceholder Texture.</description>
+    <!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+    <graphicData>
+      <texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/GasMask/GasMask</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+	  <color>(143,124,104)</color>
+    </graphicData>
+    <costList>
+      <Steel>20</Steel>
+      <Plasteel>10</Plasteel>
+    </costList>
+    <statBases>
+      <WorkToMake>4000</WorkToMake>
+      <MaxHitPoints>100</MaxHitPoints>
+      <MarketValue>400</MarketValue>
+      <ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.05</ArmorRating_Heat>
+    </statBases>
+    <equippedStatOffsets>
+		<MoveSpeed>-0.01</MoveSpeed>
+		<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+		<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+    </equippedStatOffsets>
+	<generateCommonality>0.25</generateCommonality>
+    <apparel>
+	<useWornGraphicMask>true</useWornGraphicMask>
+      <bodyPartGroups Inherit="false">
+        <li>Mouth</li>
+		<li>Neck</li>
+      </bodyPartGroups>
+      <!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</wornGraphicPath-->	
+      <hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>			
+      <layers>
+        <li>OverheadUnder</li>
+      </layers>
+      <tags>
+        <li>OGIGDeathKorps</li>
+        <li>OGIGDeathKorpsGasmask</li>
+      </tags>
+      <defaultOutfitTags>
+		<li>SteelLeigonSoldier</li>
+      </defaultOutfitTags> 
+   </apparel>
+	<comps>     
+		  <li Class="AdeptusMechanicus.CompProperties_Wargear">
+		  </li>
+		  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+				<ExtrasEntries>
+					<li>
+						<UseBodytypeOffsets>false</UseBodytypeOffsets>
+						<shaderType>CutoutComplex</shaderType>
+						<extraTexPath>Things/Item/Apparel/Imperial/IG/DeathKorps/GasMask/GasMask</extraTexPath>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,-0.05,0</NorthOffset>
+				<SouthOffset>0,0.005,0</SouthOffset>
+				<EastOffset>0,-0.025,0</EastOffset>
+				<WestOffset>0,0.01,0</WestOffset>
+		  </li>  
+		  <li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+			  <Chance>1</Chance>
+		  </li>
+	</comps>
+  </ThingDef>
+
   <!-- ========================= Valhallan ========================== -->
   <!-- ========================= Valhallan - Ushanka ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Headgear" Name="ValhallanHat">

@@ -22,45 +22,61 @@ namespace RimWorld
 
         // Token: 0x040004A9 RID: 1193
         public float fireSize = 1f;
+        public string texPath = string.Empty;
 
         // Token: 0x040004AA RID: 1194
-        public Vector3 offset;
+        public Vector3 offset = new Vector3();
     }
     // Token: 0x0200073A RID: 1850
     [StaticConstructorOnStartup]
     public class CompWarpFireOverlay : ThingComp
     {
-        // Token: 0x17000622 RID: 1570
-        // (get) Token: 0x060028B8 RID: 10424 RVA: 0x00135A90 File Offset: 0x00133E90
-        public CompProperties_WarpFireOverlay Props
+        public CompProperties_WarpFireOverlay Props => (CompProperties_WarpFireOverlay)this.props;
+        public float FireSize
         {
             get
             {
-                return (CompProperties_WarpFireOverlay)this.props;
+                if (fireSize < 0)
+                {
+                    fireSize = Props.fireSize;
+                }
+                return fireSize;
+            }
+            set
+            {
+                fireSize = value;
             }
         }
-
-        // Token: 0x060028B9 RID: 10425 RVA: 0x00135AA0 File Offset: 0x00133EA0
         public override void PostDraw()
         {
             base.PostDraw();
-            Vector3 drawPos = this.parent.DrawPos;
+            Vector3 drawPos = this.parent.DrawPos + Props.offset;
             drawPos.y += 0.046875f;
             Vector2 firesize;
-            firesize.x = 2;
-            firesize.y = 2;
-            CompWarpFireOverlay.FireGraphic.drawSize = firesize;
-            CompWarpFireOverlay.FireGraphic.Draw(drawPos, Rot4.North, this.parent, 0f);
+            firesize.x = FireSize;
+            firesize.y = FireSize;
+            if (fireGraphic == null)
+            {
+                fireGraphic = GraphicDatabase.Get<Graphic_Flicker>(!Props.texPath.NullOrEmpty() ? Props.texPath : "Things/Special/Warpfire/WarpfireSmall", ShaderDatabase.MoteGlowDistorted, firesize, Color.white);
+            }
+            fireGraphic.Draw(drawPos, Rot4.North, this.parent, 0f);
         }
 
-        // Token: 0x060028BA RID: 10426 RVA: 0x00135B09 File Offset: 0x00133F09
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-        }
-        
 
-        // Token: 0x040016B6 RID: 5814
-        public static readonly Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Special/Warpfire", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref this.fireSize, "fireSize", -1);
+
+        }
+
+        private float fireSize;
+        private Graphic fireGraphic;
+        public static Graphic FireGraphic = GraphicDatabase.Get<Graphic_Flicker>("Things/Special/Warpfire", ShaderDatabase.TransparentPostLight, Vector2.one, Color.white);
     }
 }

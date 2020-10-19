@@ -6,20 +6,41 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000020 RID: 32
-    public class TrailerProjectileExtension : DefModExtension
+    // AdeptusMechanicus.ScattershotProjectileExtension
+    public class ScattershotProjectileExtension : DefModExtension
     {
-        public string trailMoteDef = "Mote_Smoke";
-        public float trailMoteSize = 1f;
-        public int trailerMoteInterval = 30;
+        public int projectileCount = 0;
     }
 
+    // AdeptusMechanicus.BarrelOffsetExtension
+    public class BarrelOffsetExtension : DefModExtension
+    {
+        public float barrellength = 1f;
+        public bool muzzleFlare = true;
+        public string muzzleFlareDef = string.Empty;
+        public float muzzleFlareSize = 1f;
+        public bool muzzleSmoke = true;
+        public string muzzleSmokeDef = string.Empty;
+        public float muzzleSmokeSize = 0.35f;
+    }
+    // AdeptusMechanicus.GlowerProjectileExtension
     public class GlowerProjectileExtension : DefModExtension
     {
         public string GlowMoteDef = string.Empty;
         public float GlowMoteSize = 1f;
         public int GlowMoteInterval = 30;
     }
+
+    // AdeptusMechanicus.TrailerProjectileExtension
+    public class TrailerProjectileExtension : DefModExtension
+    {
+        public string trailMoteDef = "Mote_Smoke";
+        public float trailMoteSize = 0.5f;
+        public int trailerMoteInterval = 30;
+        public int motesThrown = 1;
+    }
+
+    // AdeptusMechanicus.EffectProjectileExtension
     public class EffectProjectileExtension : DefModExtension
     {
         public bool explosionMote = false;
@@ -31,6 +52,12 @@ namespace AdeptusMechanicus
         public string ImpactGlowMoteDef = string.Empty;
         public float ImpactGlowMoteSize = 1f;
         public FloatRange? ImpactGlowMoteSizeRange;
+        public bool muzzleFlare = false;
+        public string muzzleFlareDef = string.Empty;
+        public float muzzleFlareSize = 1f;
+        public bool muzzleSmoke = false;
+        public string muzzleSmokeDef = string.Empty;
+        public float muzzleSmokeSize = 0.35f;
         // Token: 0x060051CE RID: 20942 RVA: 0x001B90BC File Offset: 0x001B72BC
         public void ThrowMote(Vector3 loc, Map map, ThingDef explosionMoteDef, float explosionSize, Color color, SoundDef sound, ThingDef ImpactMoteDef, float ImpactMoteSize, ThingDef ImpactGlowMoteDef, float ImpactGlowMoteSize, Thing hitThing = null)
         {
@@ -38,9 +65,11 @@ namespace AdeptusMechanicus
             {
                 return;
             }
+            Rand.PushState();
             float rotationRate = Rand.Range(-30f, 30f);
             float VelocityAngel = (float)Rand.Range(0, 360);
             float VelocitySpeed = Rand.Range(0.48f, 0.72f);
+            Rand.PopState();
             if (ImpactGlowMoteDef != null)
             {
                 MoteMaker.MakeStaticMote(loc, map, ImpactGlowMoteDef, ImpactGlowMoteSize);
@@ -50,7 +79,9 @@ namespace AdeptusMechanicus
                 MoteThrown moteThrown;
                 moteThrown = (MoteThrown)ThingMaker.MakeThing(explosionMoteDef, null);
                 moteThrown.Scale = explosionSize;
+                Rand.PushState();
                 moteThrown.rotationRate = Rand.Range(-30f, 30f);
+                Rand.PopState();
                 moteThrown.exactPosition = loc;
                 moteThrown.instanceColor = color;
                 moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
@@ -68,7 +99,9 @@ namespace AdeptusMechanicus
                     MoteThrown moteThrown;
                     moteThrown = (MoteThrown)ThingMaker.MakeThing(ImpactMoteDef, null);
                     moteThrown.Scale = ImpactMoteSize;
+                    Rand.PushState();
                     moteThrown.rotationRate = Rand.Range(-30f, 30f);
+                    Rand.PopState();
                     moteThrown.exactPosition = loc;
                     moteThrown.instanceColor = pawn.RaceProps.BloodDef.graphic.color;
                     moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
@@ -81,4 +114,5 @@ namespace AdeptusMechanicus
             }
         }
     }
+
 }

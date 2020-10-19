@@ -503,7 +503,7 @@ namespace AdeptusMechanicus.settings
                     bool showAstartes = settings.ShowAstartes;
                     float lineheight = (Text.LineHeight + listing_Main.verticalSpacing);
                     bool options = showXB && showRaces && showImperial && allowAstartes && showAstartes;
-                    float num = Length(options, 1, lineheight, 0, 0);
+                    float num = Length(options, 2, lineheight, 42, 0);
                     return num;
                 }
                 else

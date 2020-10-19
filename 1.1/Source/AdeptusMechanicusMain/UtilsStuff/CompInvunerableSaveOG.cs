@@ -29,7 +29,11 @@ namespace AdeptusMechanicus
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             //Log.Message(string.Format("Bypassing: {0}", !Props.BypassingDamageDefs.Any(def => dinfo.Def == def)));
-            if (dinfo.Def !=null && base.parent is Pawn pawn && pawn != null && Rand.Chance(Props.InvunerableSaveChance) && !Props.BypassingDamageDefs.Any(def => dinfo.Def == def ))
+
+            Rand.PushState();
+            bool invSave = Rand.Chance(Props.InvunerableSaveChance);
+            Rand.PopState();
+            if (dinfo.Def !=null && base.parent is Pawn pawn && pawn != null && invSave && !Props.BypassingDamageDefs.Any(def => dinfo.Def == def ))
             {
                 absorbed = true;
                 SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(base.parent.Position, base.parent.Map, false));
@@ -40,9 +44,10 @@ namespace AdeptusMechanicus
                 int num2 = (int)num;
                 for (int i = 0; i < num2; i++)
                 {
+                    Rand.PushState();
                     MoteMaker.ThrowDustPuff(loc, base.parent.Map, Rand.Range(0.8f, 1.2f));
-
-
+                    float angle = (float)Rand.Range(0, 360);
+                    Rand.PopState();
                     float num3 = Mathf.Lerp(1.2f, 1.55f, 2f);
                     Vector3 vector = pawn.Drawer.DrawPos;
                     vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
@@ -53,7 +58,6 @@ namespace AdeptusMechanicus
                         vector += impactAngleVect * num5;
                         num3 -= num5;
                     }
-                    float angle = (float)Rand.Range(0, 360);
                     Vector3 s = new Vector3(num3, 1f, num3);
                     Matrix4x4 matrix = default(Matrix4x4);
                     matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);

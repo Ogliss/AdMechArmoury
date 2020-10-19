@@ -14,7 +14,10 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				return this.subGraphics[Rand.Range(0, this.subGraphics.Length)].MatSingle;
+				Rand.PushState();
+				int i = Rand.Range(0, this.subGraphics.Length);
+				Rand.PopState();
+				return this.subGraphics[i].MatSingle;
 			}
 		}
 		public Graphic[] graphics => this.subGraphics;

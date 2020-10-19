@@ -19,7 +19,9 @@ namespace AdeptusMechanicus
             DamageWorker.DamageResult damageResult = base.Apply(dinfo, victim);
             if (!damageResult.deflected && !dinfo.InstantPermanentInjury)
             {
+                Rand.PushState();
                 WarpfireUtility.TryAttachWarpfire(victim, Rand.Range(0.15f, 0.25f));
+                Rand.PopState();
             }
             if (victim.Destroyed && map != null && pawn == null)
             {
@@ -39,10 +41,12 @@ namespace AdeptusMechanicus
         public override void ExplosionAffectCell(Explosion explosion, IntVec3 c, List<Thing> damagedThings, List<Thing> ignoredThings, bool canThrowMotes)
         {
             base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
+            Rand.PushState();
             if ((this.def == OGDamageDefOf.OG_Chaos_Deamon_Warpfire || this.def == OGDamageDefOf.OG_WarpStormStrike) && Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(c, explosion.Map)))
             {
                 WarpfireUtility.TryStartWarpfireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
             }
+            Rand.PopState();
         }
 
         public override void ExplosionStart(Explosion explosion, List<IntVec3> cellsToAffect)

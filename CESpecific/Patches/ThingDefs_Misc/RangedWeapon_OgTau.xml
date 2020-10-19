@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<!--==================== Tau - Pulse Pistol =========================-->	
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulsePistol</defName>
+    <statBases>
+      <Mass>0.8</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>0.8</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.08</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGPulse</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>25</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>40</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGPulse</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+		<li>TPulseCarbine</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulsePistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Pulse Carbine =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulseCarbine</defName>
+    <statBases>
+      <Mass>4</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.08</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGPulse</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>28</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>40</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGPulse</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>TPulseCarbine</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Pulse Blaster =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulseBlaster</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.08</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGPulseBlast</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>18</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>40</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGPulseBlast</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>TPulseCarbine</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseBlaster"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Pule Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TPulseRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGPulse</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>30</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>4</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGPulse</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>EliteGun</li>
+		<li>TPulseRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TPulseRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Rail Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TRailRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGRailRifle</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>48</range>
+      <soundCast>RailgunSound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>8</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGRailRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TRailRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TRailRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Ion Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGt_Gun_TIonRifle</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.1</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGTTIonRifle</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>48</range>
+      <soundCast>IonSound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGTTIonRifle</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TIonRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGt_Gun_TIonRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<!--==================== Tau - Burst Cannon =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGt_Gun_TBurstCannon</defName>
+    <statBases>
+      <Mass>2.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.2</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.15</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGPulse</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>18</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+	  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>36</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>180</magazineSize>
+      <reloadTime>5.5</reloadTime>
+      <ammoSet>AmmoSet_OGPulse</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+		<aiUseBurstMode>TRUE</aiUseBurstMode>	
+    </FireModes>
+    <weaponTags>
+		<li>TBurstCannon</li>
+    </weaponTags>
+  </li>
+ 
+	<!--==================== Tau - Kroot Pistol =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TKrootPistol</defName>
+    <statBases>
+      <Mass>1.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>1.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.25</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGKroot</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>25</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>18</magazineSize>
+      <reloadTime>2</reloadTime>
+      <ammoSet>AmmoSet_OGKroot</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>TKrootPistol</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TKrootPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<!--==================== Tau - Kroot Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TKrootRifle</defName>
+    <statBases>
+      <Mass>2.25</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.25</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.25</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGKroot</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>31</range>
+      <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>4</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGKroot</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TKrootRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<!--==================== Tau - Kroot Hunting Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TKrootHunterRifle</defName>
+    <statBases>
+      <Mass>2.5</Mass>
+      <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.25</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.25</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGKroot</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>38</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>12</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGKroot</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TKrootHunterRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+   
+	<!--==================== Tau - Kroot Hunting Rifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGT_Gun_TNeutronBlaster</defName>
+    <statBases>
+      <Mass>3</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.25</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_OGKroot</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>38</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>12</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_OGVespid</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>	
+    </FireModes>
+    <weaponTags>
+		<li>Gun</li>
+		<li>TNeutronBlaster</li>
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Gun_TNeutronBlaster"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+  </operations>
+</Operation>
+
+</Patch>

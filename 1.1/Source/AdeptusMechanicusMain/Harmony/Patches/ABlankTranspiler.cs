@@ -20,12 +20,16 @@ namespace AdeptusMechanicus.HarmonyInstance
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
+            
+            int i = 0;
             foreach (var instruction in instructionsList)
             {
-
+                Log.Message(i+" opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                i++;
                 yield return instruction;
             }
-        }
+            
+}
     }
     */
 }

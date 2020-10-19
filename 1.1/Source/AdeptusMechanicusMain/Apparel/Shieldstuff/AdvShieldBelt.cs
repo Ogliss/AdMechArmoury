@@ -198,7 +198,9 @@ namespace AdeptusMechanicus
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
+                Rand.PushState();
                 MoteMaker.ThrowDustPuff(loc, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                Rand.PopState();
             }
             this.lastAbsorbDamageTick = Find.TickManager.TicksGame;
             this.KeepDisplaying();
@@ -211,7 +213,9 @@ namespace AdeptusMechanicus
             MoteMaker.MakeStaticMote(base.Wearer.TrueCenter(), base.Wearer.Map, ThingDefOf.Mote_ExplosionFlash, 12f);
             for (int i = 0; i < 6; i++)
             {
+                Rand.PushState();
                 MoteMaker.ThrowDustPuff(base.Wearer.TrueCenter() + Vector3Utility.HorizontalVectorFromAngle((float)Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f), base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                Rand.PopState();
             }
             this.energy = 0f;
             this.ticksToReset = this.StartingTicksToReset;
@@ -244,7 +248,9 @@ namespace AdeptusMechanicus
                     vector += this.impactAngleVect * num3;
                     num -= num3;
                 }
+                Rand.PushState();
                 float angle = (float)Rand.Range(0, 360);
+                Rand.PopState();
                 Vector3 s = new Vector3(num, 1f, num);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);

@@ -1,5 +1,6 @@
 ﻿using Verse;
 using HarmonyLib;
+using RimWorld;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -18,7 +19,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (___ticksToImpact % trailer.trailerMoteInterval == 0)
                         {
-                            TrailThrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+                            for (int i = 0; i < trailer.motesThrown; i++)
+                            {
+                                //    TrailThrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+
+                                TrailThrower.ThrowSmoke(__instance.DrawPos, trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+                            }
                         }
                     }
                 }

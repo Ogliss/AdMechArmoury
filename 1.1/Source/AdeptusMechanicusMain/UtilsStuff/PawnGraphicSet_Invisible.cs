@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
                 this.nakedGraphic = new Graphic_Invisible();
                 this.rottingGraphic = new Graphic_Invisible();
                 this.dessicatedGraphic = new Graphic_Invisible();
-                this.headGraphic = null;
+                this.headGraphic = new Graphic_Invisible();
                 this.desiccatedHeadGraphic = new Graphic_Invisible();
                 this.skullGraphic = new Graphic_Invisible();
                 this.hairGraphic = new Graphic_Invisible();

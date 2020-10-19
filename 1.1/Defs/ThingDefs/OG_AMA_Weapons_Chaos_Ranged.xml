@@ -80,7 +80,6 @@
  
 <!-- ====================== Bolter ===================== -->
  <ThingDef ParentName="OG_Chaos_Gun">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGC_Gun_BoltGun</defName>
     <label>bolter (C)</label>
     <description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
@@ -91,7 +90,6 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
-		<reliability>1</reliability>
 		<WorkToMake>180000</WorkToMake>
 		<MarketValue>4000</MarketValue>
 		<Mass>5.2</Mass>
@@ -201,6 +199,7 @@
 			<southOffset>0.0,1.0,0.0</southOffset>
 	  </li>  
 	</comps>
+    <equippedAngleOffset>45</equippedAngleOffset>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
 		<WorkToMake>180000</WorkToMake>
@@ -429,6 +428,7 @@
 			<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
 			<warmupTime>4</warmupTime>
 			<range>45</range>
+			<burstShotCount>1</burstShotCount>
 			<soundCast>OG_Las_Cannon_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -460,9 +460,9 @@
   
 <!-- ====================== Plasma Pistol ===================== -->
  <ThingDef ParentName="OG_Chaos_Gun_Special">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<defName>OGC_Gun_PlasmaPistol</defName>
     <label>plasma pistol (C)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaPistol</texPath>
@@ -508,6 +508,7 @@
 			<defaultProjectile>OGI_Bullet_PlasmaPistol</defaultProjectile>
 			<warmupTime>0.4</warmupTime>
 			<range>25</range>
+			<burstShotCount>1</burstShotCount>
 			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
@@ -565,9 +566,9 @@
  
 <!-- ====================== Plasma Gun ===================== -->
  <ThingDef ParentName="OG_Chaos_Gun_Special">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<defName>OGC_Gun_PlasmaGun</defName>
-    <label>plasma gun</label>
+    <label>plasma gun (C)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.\n\nPlasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
@@ -701,9 +702,9 @@
 
 <!-- ====================== Plasma Cannon ===================== -->
  <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <defName>OGC_Gun_PlasmaCannon</defName>
-    <label>plasma cannon</label>
+    <label>plasma cannon (C)</label>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
     <description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is an Imperial heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaCannon</texPath>
@@ -755,6 +756,7 @@
 			<warmupTime>4</warmupTime>
 			<range>45</range>
 			<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+			<burstShotCount>1</burstShotCount>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<targetParams>
@@ -807,7 +809,7 @@
 <!-- ====================== Metla Gun ===================== -->
  <ThingDef ParentName="OG_Chaos_Gun_Special">
     <defName>OGC_Gun_MeltaGun</defName>
-    <label>meltagun</label>
+    <label>meltagun (C)</label>
     <description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MeltaGun</texPath>
@@ -855,6 +857,7 @@
 			<warmupTime>0.5</warmupTime>
 			<range>16</range>
 			<soundCast>OG_Melta_Sound</soundCast>
+			<burstShotCount>1</burstShotCount>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
 			<targetParams>
@@ -909,7 +912,6 @@
 	</ThingDef>
 
  <ThingDef ParentName="OG_Chaos_Gun">
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<defName>OGC_Gun_SonicBlaster</defName>
 		<label>sonic blaster (C)</label>
 		<description>The Sonic Blaster is a heavy Sonic Weapon that when fired unleashes wave after wave of devastating harmonics and literally rips its target apart with the power of extreme sound. The Sonic Blaster is the preferred weapon of Chaos Space Marine Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Sonic Blaster is about the same size as the Astartes' man-portable Heavy Bolter, and is wielded with both hands. There exists a slightly larger variant of the weapon that is used by Chaos Sonic Dreadnoughts, where it is twin-linked with a second Sonic Blaster to cause even more destructive results. Imperial records do not list any other known users of the Sonic Blaster, although there probably exist many more amongst the Forces of Chaos dedicated to the Prince of Pleasure.</description>
@@ -1296,7 +1298,7 @@
 			<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>38</range>
-			<burstShotCount>120</burstShotCount>
+			<burstShotCount>50</burstShotCount>
 			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			<soundCast>OG_Assaultcannon_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -1391,6 +1393,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
         <forcedMissRadius>2.9</forcedMissRadius>
+			<burstShotCount>1</burstShotCount>
         <warmupTime>4.5</warmupTime>
         <ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
         <range>35.9</range>

@@ -77,15 +77,17 @@ namespace AdeptusMechanicus
             base.CompPostTick(ref severityAdjustment);
             bool flag = this.ticksUntilDamage < 0;
             bool flag2 = timesRepeated < MaxRepeats || MaxRepeats == -1;
+            Rand.PushState();
             if (flag && flag2 && Rand.Chance(repeatChance))
             {
                 timesRepeated++;
                 this.ticksUntilDamage = this.Props.cycleInTicks;
                 this.MakeDamage();
             }
+            Rand.PopState();
             if (timesRepeated >= MaxRepeats && MaxRepeats != -1)
             {
-                this.parent.comps.Remove(this.parent.TryGetComp<HediffComp_DamageOverTime>());
+                this.parent.comps.Remove(this);
             }
             this.ticksUntilDamage--;
         }

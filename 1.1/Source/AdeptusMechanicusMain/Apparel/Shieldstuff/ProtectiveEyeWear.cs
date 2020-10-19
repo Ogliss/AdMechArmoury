@@ -70,7 +70,9 @@ namespace AdeptusMechanicus
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
+                Rand.PushState();
                 MoteMaker.ThrowDustPuff(base.Wearer.Position, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                Rand.PopState();
             }
         }
     }

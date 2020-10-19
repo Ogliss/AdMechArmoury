@@ -4,6 +4,7 @@ using AdeptusMechanicus;
 using UnityEngine;
 using System.Collections.Generic;
 using OgsCompActivatableEffect;
+using AdvancedGraphics;
 
 namespace AdeptusMechanicus
 {
@@ -23,21 +24,33 @@ namespace AdeptusMechanicus
         public bool ForceWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
         public bool Witchblade => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
         public override bool CanActivate() => GetPawn != null && GetPawn.Spawned && GetPawn.Map != null;
-        
-        public string texPath
+
+        private CompAdvancedGraphic advancedGraphic;
+        public CompAdvancedGraphic AdvancedGraphic;
+
+        private string texPath;
+        public string TexPath
         {
             get
             {
-                string tex = this.Props.graphicData.texPath;
-                if (this.parent.TryGetComp<AdvancedGraphics.CompAdvancedGraphic>() != null && this.parent.TryGetComp<AdvancedGraphics.CompAdvancedGraphic>() is AdvancedGraphics.CompAdvancedGraphic graphic)
+                if (texPath.NullOrEmpty())
                 {
-                    tex = graphic.current.path;
+                    string tex = this.Props.graphicData.texPath;
+                    if (tex.NullOrEmpty())
+                    {
+                        tex = this.parent.Graphic.path;
+                        if (this.parent.TryGetComp<CompAdvancedGraphic>() != null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
+                        {
+                            tex = graphic.current.path;
+                        }
+                        if (tex.NullOrEmpty())
+                        {
+                            tex = this.parent.def.graphicData.texPath;
+                        }
+                    }
+                    texPath = tex + "_Glow";
                 }
-                if (tex.NullOrEmpty())
-                {
-                    tex =  this.parent.def.graphicData.texPath;
-                }
-                return tex + "_Glow";
+                return texPath;
             }
         }
 
@@ -50,7 +63,7 @@ namespace AdeptusMechanicus
                 {
                     intGraphicData = new GraphicData();
                     intGraphicData.CopyFrom(this.Props.graphicData);
-                    intGraphicData.texPath = this.texPath;
+                    intGraphicData.texPath = this.TexPath;
                 }
                 return intGraphicData;
             }

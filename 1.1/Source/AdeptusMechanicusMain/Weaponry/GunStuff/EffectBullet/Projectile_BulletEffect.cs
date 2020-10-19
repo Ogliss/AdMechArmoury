@@ -37,7 +37,9 @@ namespace AdeptusMechanicus
             {
                 if (Def.HediffToAdd!=null)
                 {
+                    Rand.PushState();
                     var rand = Rand.Value; // This is a random percentage between 0% and 100%
+                    Rand.PopState();
                     StatDef ResistHediffStat = Def.ResistHediffStat;
                     float AddHediffChance = Def.AddHediffChance;
                     float ResistHediffChance = Def.ResistHediffChance;
@@ -60,7 +62,9 @@ namespace AdeptusMechanicus
                     {
 
                         var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(Def.HediffToAdd);
+                        Rand.PushState();
                         var randomSeverity = Rand.Range(0.15f, 0.30f);
+                        Rand.PopState();
                         if (effectOnPawn != null)
                         {
                             //If they already have plague, add a random range to its severity.

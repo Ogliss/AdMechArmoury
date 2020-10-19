@@ -28,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             for (int i = 0; i < __result.Count; i++)
                             {
-                                __result[i] = AMConstants.Invisiblegraphics(pawn).nakedGraphic.MatSingle;
+                                __result[i] = AMConstants.InvisibleGraphics(pawn).nakedGraphic.MatSingle;
                             }
                             return;
                         }

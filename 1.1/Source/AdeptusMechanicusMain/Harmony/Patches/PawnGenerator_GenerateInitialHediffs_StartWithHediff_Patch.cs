@@ -15,7 +15,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(PawnGenerator), "GenerateInitialHediffs")]
     public static class PawnGenerator_GenerateInitialHediffs_StartWithHediff_Patch
     {
-        [HarmonyPostfix]
+        [HarmonyPostfix, HarmonyPriority(Priority.Last)]
         public static void Post(ref Pawn pawn, PawnGenerationRequest request)
         {
             var hediffGiverSet = pawn?.def?.race?.hediffGiverSets;

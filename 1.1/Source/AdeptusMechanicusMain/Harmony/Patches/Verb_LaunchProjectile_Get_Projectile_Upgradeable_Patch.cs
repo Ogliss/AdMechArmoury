@@ -8,7 +8,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch
     {
         [HarmonyPostfix]
-        public static void Upgradeable_Projectile_Postfix(ref Verb_LaunchProjectile __instance, ref ThingDef __result)
+        public static void Postfix(ref Verb_LaunchProjectile __instance, ref ThingDef __result)
         {
             if (__instance.EquipmentSource != null)
             {

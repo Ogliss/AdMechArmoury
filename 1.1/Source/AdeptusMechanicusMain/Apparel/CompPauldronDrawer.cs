@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
 {
     public class CompProperties_PauldronDrawer : CompProperties
     {
-        public List<ShoulderPadEntry> PauldronEntries;
+        public List<ShoulderPadEntryProps> PauldronEntries;
         public float PauldronEntryChance = 1f;
         public int order = 0;
         public Vector3 NorthOffset = new Vector3();
@@ -25,7 +25,7 @@ namespace AdeptusMechanicus
         }
     }
 
-    public class CompPauldronDrawer : ThingComp
+    public class CompPauldronDrawer : ThingComp, ILoadReferenceable
     {
         public CompProperties_PauldronDrawer Props
         {
@@ -35,23 +35,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
-        const float _HeadOffset = 0.02734375f + MinClippingDistance;
-        const float _HairOffset = 035f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
-        const float _BodyOffset = 0.0234375f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
-        const float _OffsetFactor = 0.001f;
-        const float _SubOffsetFactor = 0.0001f;
-        static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
-        public ShoulderPadType padType;
-        public bool ExtraUseBodyOffset; 
-        public bool useSecondaryColor;
-        public bool useFactionTextures = false;
-        public bool UseFactionColors = false;
-        public bool pauldronInitialized => !activeEntries.EnumerableNullOrEmpty();
-    //    public FactionDef FactionDef;
-        public int entryInd = -1;
-
-        public List<ShoulderPadEntry> activeEntries;
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -73,12 +56,6 @@ namespace AdeptusMechanicus
                     {
                         ShoulderPadEntry entry = new ShoulderPadEntry(Props.PauldronEntries[i], this);
 
-                        if (Props.PauldronEntries[i].VariantTextures != null)
-                        {
-                            entry.VariantTextures.activeOption = Props.PauldronEntries[i].VariantTextures.defaultOption;
-                            entry.VariantTextures.Options = Props.PauldronEntries[i].VariantTextures.Options;
-                        }
-
                         activeEntries.Add(entry);
                     }
                 }
@@ -91,9 +68,9 @@ namespace AdeptusMechanicus
 
                     ShoulderPadEntry entry = new ShoulderPadEntry(Props.PauldronEntries.RandomElementByWeight(x=> x.commonality), this);
 
-                    if (entry.VariantTextures != null)
+                    if (!entry.Options.NullOrEmpty())
                     {
-                        entry.VariantTextures.activeOption = entry.VariantTextures.defaultOption;
+                        entry.Used= entry.DefaultOption;
                     }
                     activeEntries.Add(entry);
                 }
@@ -110,7 +87,8 @@ namespace AdeptusMechanicus
                 foreach (ShoulderPadEntry item in activeEntries)
                 {
 
-                    //    item.drawer = this;
+                //    item.Drawer = this;
+                    item.apparel = this.apparel;
                     /*
                     if (Props.PauldronEntries.Any(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType))
                     {
@@ -120,10 +98,6 @@ namespace AdeptusMechanicus
                         item.SouthOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).SouthOffset;
                     }
                     */
-                    if (item.VariantTextures!=null)
-                    {
-                        item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
-                    }
                     
                 }
             }
@@ -144,47 +118,77 @@ namespace AdeptusMechanicus
                 return this.apparel.Wearer;
             }
         }
-        
-        
+
+       
+        private  CompColorable colours;
+        private bool colortest = false;
+        public CompColorable Colours
+        {
+            get
+            {
+                if (colours == null && !colortest)
+                {
+                    colortest = true;
+                    colours = this.apparel.TryGetComp<CompColorable>();
+                }
+                return colours;
+            }
+        }
+
         public Color mainColorFor(ShoulderPadEntry entry)
         {
             if (entry != null)
             {
-                if (entry.VariantTextures!=null)
+                if (!entry.Options.NullOrEmpty())
                 {
-                    if (entry.VariantTextures.activeOption.Color!=null)
+                    if (entry.Used.Color!=null)
                     {
-                        return entry.VariantTextures.activeOption.Color.Value;
+                    //   Log.Message("mainColorFor "+ entry.shoulderPadType + " activeOption");
+                        return entry.Used.Color.Value;
                     }
                 }
                 if (entry.UseFactionColors)
                 {
-                    if (entry.FactionColours(out Color color, out Color colorTwo))
+                    CompFactionColorableTwo colours = Colours as CompFactionColorableTwo;
+                    if (colours != null)
                     {
-                        if (color != Color.white)
+                        if (colours.Active)
                         {
-                            return color;
+                            return colours.Color;
+                        }
+                    //    Log.Message("mainColorFor " + entry.shoulderPadType + " UseFactionColors");
+                    }
+                    /*
+                    else
+                    {
+                        FactionDef def = pawn?.Faction?.def;
+                        if (entry.FactionColours(out Color color, out Color colorTwo, def))
+                        {
+                            if (color != Color.white)
+                            {
+                                return color;
+                            }
                         }
                     }
+                    */
                 }
-                if (entry.PrimaryColor != Color.white)
+                if (entry.overridePrimaryColor.HasValue)
                 {
-                    return entry.PrimaryColor;
+                //    Log.Message("mainColorFor " + entry.shoulderPadType + " overridePrimaryColor");
+                    return entry.overridePrimaryColor.Value;
                 }
-                if (entry.UsePrimaryColor)
+                if (entry.UseSecondaryColorAsPrimary)
                 {
-                    return this.parent.DrawColor;
-                }
-                else
-                if (entry.UseSecondaryColor)
-                {
-                    if (entry.SecondaryColor != Color.white)
+                    if (entry.overrideSecondaryColor.HasValue)
                     {
-                        return entry.SecondaryColor;
+                    //    Log.Message("mainColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
+                        return entry.overrideSecondaryColor.Value;
                     }
+                //    Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColorTwo");
                     return this.parent.DrawColorTwo;
                 }
             }
+        //    Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColor");
             return this.parent.DrawColor;
         }
         
@@ -192,33 +196,57 @@ namespace AdeptusMechanicus
         {
             if (entry != null)
             {
-                if (entry.VariantTextures != null)
+                if (!entry.Options.NullOrEmpty())
                 {
-                    if (entry.VariantTextures.activeOption.ColorTwo != null)
+                    if (entry.Used.ColorTwo != null)
                     {
-                        return entry.VariantTextures.activeOption.ColorTwo.Value;
+                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " activeOption");
+                        return entry.Used.ColorTwo.Value;
                     }
                 }
                 if (entry.UseFactionColors)
                 {
-                    if (entry.FactionColours(out Color color, out Color colorTwo))
+                    CompFactionColorableTwo colours = Colours as CompFactionColorableTwo;
+                    if (colours != null)
                     {
-                        if (colorTwo != Color.white)
+                        //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " UseFactionColors");
+                        if (colours.ActiveTwo)
                         {
-                            return colorTwo;
+                            return colours.ColorTwo;
                         }
                     }
+                    /*
+                    else
+                    {
+                        FactionDef def = pawn?.Faction?.def;
+                        if (entry.FactionColours(out Color color, out Color colorTwo, def))
+                        {
+                            if (colorTwo != Color.white)
+                            {
+                                return colorTwo;
+                            }
+                        }
+                    }
+                    */
                 }
-                if (entry.SecondaryColor != Color.white)
+                if (entry.overrideSecondaryColor.HasValue)
                 {
-                    return entry.SecondaryColor;
+                //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
+                    return entry.overrideSecondaryColor.Value;
                 }
-                if (entry.UseSecondaryColor)
+                if (entry.UsePrimaryColorAsSecondary)
                 {
-                    return this.parent.DrawColorTwo;
+                    if (entry.overridePrimaryColor.HasValue)
+                    {
+                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overridePrimaryColor");
+                        return entry.overridePrimaryColor.Value;
+                    }
+                //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColor");
+                    return this.parent.DrawColor;
                 }
             }
-            return this.parent.DrawColorTwo;
+        //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColorTwo");
+            return apparel.DrawColorTwo;
         }
         /*
         public override string TransformLabel(string label)
@@ -239,52 +267,57 @@ namespace AdeptusMechanicus
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
             Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
-            //    Scribe_Values.Look<ShoulderPadEntry>(ref this.shoulderPadEntry, "shoulderPadEntry", null); pauldronInitialized
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
             Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep); 
-        //    Scribe_Defs.Look(ref this.FactionDef, "FactionDef");
         }
 
-        public Vector3 GetAltitudeOffset(Rot4 rotation, ShoulderPadEntry Entry)
+        public Vector3 GetOffsetFor(Rot4 rotation, bool northtop)
         {
             Vector3 offset = new Vector3();
+            /*
             offset.y += _OffsetFactor * Entry.order;
             offset.y += offset.y + (_SubOffsetFactor * Entry.sublayer);
-
-            bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
+            */
+        //    bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
             if (!onHead)
             {
+
                 if (rotation == Rot4.North)
                 {
-                    offset.y += _BodyOffset;
-                    if (Entry.northtop)
+                //    offset.y += _BodyOffset;
+                    if (northtop)
                     {
                         offset.y += _HairOffset;
-                        offset += NorthOffset(Entry);
+                    //    offset += NorthOffset(Entry);
+                        offset += Props.NorthOffset;
                     }
                     else
                     {
-                        offset += NorthOffset(Entry);
+                    //    offset += NorthOffset(Entry);
+                        offset += Props.NorthOffset;
                     }
                 }
                 else if (rotation == Rot4.West)
                 {
-                    offset.y += _BodyOffset;
-                    offset += WestOffset(Entry);
+                //    offset.y += _BodyOffset;
+                //    offset += WestOffset(Entry);
+                    offset += Props.WestOffset;
                 }
                 else if (rotation == Rot4.East)
                 {
-                    offset.y += _BodyOffset;
-                    offset += EastOffset(Entry);
+                //    offset.y += _BodyOffset;
+                //    offset += EastOffset(Entry);
+                    offset += Props.EastOffset;
                 }
                 else if (rotation == Rot4.South)
                 {
-                    offset.y += _BodyOffset;
-                    offset += SouthOffset(Entry);
+                //    offset.y += _BodyOffset;
+                //    offset += SouthOffset(Entry);
+                    offset += Props.SouthOffset;
                 }
                 else
                 {
-                    offset.y += _BodyOffset;
+                 //   offset.y += _BodyOffset;
                 }
             }
             else
@@ -296,63 +329,52 @@ namespace AdeptusMechanicus
                 else
                     offset.y += _HeadOffset;
             }
-            if (flag)
-            {
-            //    Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.pawn.Label, parent.def.label, direction, offset, pawn.Drawer.DrawPos.y));
-            }
 
             return offset;
         }
 
         public Vector3 NorthOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.NorthOffset != Vector3.zero)
-            {
-                return Entry.NorthOffset;
-            }
-            return this.Props.NorthOffset;
+            return this.Props.NorthOffset + Entry.Props.NorthOffset;
         }
 
         public Vector3 SouthOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.SouthOffset != Vector3.zero)
-            {
-                return Entry.SouthOffset;
-            }
-            return this.Props.SouthOffset;
+            return this.Props.SouthOffset + Entry.Props.SouthOffset;
         }
 
         public Vector3 EastOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.EastOffset != Vector3.zero)
-            {
-                return Entry.EastOffset;
-            }
-            return this.Props.EastOffset;
+            return this.Props.EastOffset + Entry.Props.EastOffset;
         }
 
         public Vector3 WestOffset(ShoulderPadEntry Entry)
         {
-            if (Entry.WestOffset != Vector3.zero)
-            {
-                return Entry.WestOffset;
-            }
-            return this.Props.WestOffset;
+            return this.Props.WestOffset + Entry.Props.WestOffset;
         }
-        
 
-        public bool ShouldDrawPauldron( Rot4 bodyFacing, Vector2 size, out Graphic pauldronMaterial, ShoulderPadEntry Entry)
+        Mesh GetPauldronMesh(bool portrait, Pawn pawn, Rot4 facing, bool body)
+        {
+            return AlienRace.HarmonyPatches.GetPawnMesh(portrait, pawn, facing, body);
+        }
+        public bool ShouldDrawPauldron(bool portrait, Rot4 bodyFacing, Vector2 size, ShoulderPadEntry Entry, out Graphic pauldronMaterial, out Mesh pauldronMesh)
         {
             pauldronMaterial = null;
+            pauldronMesh = !onHead ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing) : MeshPool.humanlikeHeadSet.MeshAt(bodyFacing);
+            if (AdeptusIntergrationUtil.enabled_AlienRaces)
+            {
+                pauldronMesh = GetPauldronMesh(portrait, pawn, bodyFacing, !onHead);
+            }
             this.size = size;
             if (pawn.RaceProps.Humanlike)
             {
                 if (Entry != null)
                 {
-                    if (this.CheckPauldronRotation(pawn, Entry.shoulderPadType))
+                    if (this.CheckPauldronRotation(bodyFacing, Entry.shoulderPadType))
                     {
                         if (Entry.Graphic==null || (Entry.Graphic != null && !Entry.Graphic.path.Contains(pawn.story.bodyType.defName)))
                         {
+                            Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                             Entry.UpdatePadGraphic();
                         }
                         pauldronMaterial = Entry.Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
@@ -371,26 +393,26 @@ namespace AdeptusMechanicus
             return false;
 
         }
-        public Vector2 size = new Vector2 (1.5f, 1.5f);
-        public bool CheckPauldronRotation(Pawn pawn, ShoulderPadType shoulderPadType)
+        public Vector2 size;
+        public bool CheckPauldronRotation(Rot4 bodyFacing, ShoulderPadType shoulderPadType)
         {
-            if (shoulderPadType == ShoulderPadType.Left && pawn.Rotation == Rot4.East)
+            if (shoulderPadType == ShoulderPadType.Left && bodyFacing == Rot4.East)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.Right && pawn.Rotation == Rot4.West)
+            if (shoulderPadType == ShoulderPadType.Right && bodyFacing == Rot4.West)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.SouthOnly && pawn.Rotation != Rot4.South)
+            if (shoulderPadType == ShoulderPadType.SouthOnly && bodyFacing != Rot4.South)
             {
                 return false;
             }
             return true;
         }
-        
+
         //Utility, return if the apparel is worn on the head/body.        
-        protected bool onHead
+        public bool onHead
         {
             get
             {
@@ -447,13 +469,27 @@ namespace AdeptusMechanicus
                 return type.ToString();
             }
         }
+        public override void ReceiveCompSignal(string signal)
+        {
 
+            if (!signal.NullOrEmpty())
+            {
+                if (signal == UpdateString && pawn.Map != null)
+                {
+                    if (!this.activeEntries.NullOrEmpty())
+                    {
+                        for (int i = 0; i < this.activeEntries.Count; i++)
+                        {
+                            //	Log.Message("Entry drawer " + (i2 + 1));
+                            this.activeEntries[i].UpdatePadGraphic();
+                        }
+                    }
+                }
+            }
+            base.ReceiveCompSignal(signal);
+        }
         public override string TransformLabel(string label)
         {
-            if (true)
-            {
-
-            }
 
             return base.TransformLabel(label);
         }
@@ -462,16 +498,35 @@ namespace AdeptusMechanicus
         {
             base.PostSpawnSetup(respawningAfterLoad);
             Initialize();
-            /*
             foreach (var item in activeEntries)
             {
-                if (item.VariantTextures != null)
-                {
-                    item.VariantTextures.Options = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).VariantTextures.Options;
-                }
+            //    item.Drawer = this;
             }
-            */
         }
+
+        public string GetUniqueLoadID()
+        {
+            return "CompPauldronDrawer_" + parent.thingIDNumber;
+        }
+
+        public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
+        const float _HeadOffset = 0.02734375f + MinClippingDistance;
+        const float _HairOffset = 035f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
+        const float _BodyOffset = 0.0234375f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
+        const float _OffsetFactor = 0.001f;
+        const float _SubOffsetFactor = 0.0001f;
+        static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
+        public ShoulderPadType padType;
+        public bool ExtraUseBodyOffset;
+        public bool useSecondaryColor;
+        public bool useFactionTextures = false;
+        public bool UseFactionColors = false;
+        public bool pauldronInitialized => !activeEntries.EnumerableNullOrEmpty();
+        //    public FactionDef FactionDef;
+        public int entryInd = -1;
+
+        public List<ShoulderPadEntry> activeEntries;
+        public static string UpdateString = "UPDATEPADGRAPHICS";
     }
 
 }

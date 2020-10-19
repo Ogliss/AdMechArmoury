@@ -20,11 +20,20 @@ namespace AdeptusMechanicus
         public void GiveHediff(Pawn pawn)
         {
             //If the random number is not within the chance range, exit.
-            if (!(chance >= Rand.Range(0.0f, 100.0f))) return;
+            Rand.PushState();
+            bool f = !(chance >= Rand.Range(0.0f, 100.0f));
+            Rand.PopState();
+            if (f) return;
             //If the gender is male, check the male commonality chance, and if it fails, exit.
-            if (pawn.gender == Gender.Male && !(maleCommonality >= Rand.Range(0.0f, 100.0f)))
+            Rand.PushState();
+            bool f2 = !(maleCommonality >= Rand.Range(0.0f, 100.0f));
+            Rand.PopState();
+            if (pawn.gender == Gender.Male && f2)
                 return;
-            if (pawn.gender == Gender.Female && !(femaleCommonality >= Rand.Range(0.0f, 100.0f)))
+            Rand.PushState();
+            bool f3 = !(femaleCommonality >= Rand.Range(0.0f, 100.0f));
+            Rand.PopState();
+            if (pawn.gender == Gender.Female && f3)
                 return;
             if (!allowedPawnkinds.NullOrEmpty() && !allowedPawnkinds.Contains(pawn.kindDef))
                 return;

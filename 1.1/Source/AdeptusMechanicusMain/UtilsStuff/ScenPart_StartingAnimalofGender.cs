@@ -90,6 +90,7 @@ namespace RimWorld
         // Token: 0x0600223F RID: 8767 RVA: 0x00101DF8 File Offset: 0x001001F8
         public override void Randomize()
         {
+            Rand.PushState();
             if (Rand.Value < 0.5f)
             {
                 this.animalKind = null;
@@ -98,6 +99,7 @@ namespace RimWorld
             {
                 this.animalKind = this.PossibleAnimals().RandomElement<PawnKindDef>();
             }
+            Rand.PopState();
             this.count = ScenPart_StartingAnimalofGender.PetCountChances.RandomElementByWeight((Pair<int, float> pa) => pa.Second).First;
             this.bondToRandomPlayerPawnChance = 0f;
         }
@@ -133,6 +135,7 @@ namespace RimWorld
                 {
                     animal.Name = PawnBioAndNameGenerator.GeneratePawnName(animal, NameStyle.Full, null);
                 }
+                Rand.PushState();
                 if (Rand.Value < this.bondToRandomPlayerPawnChance && animal.training.CanAssignToTrain(TrainableDefOf.Obedience).Accepted)
                 {
                     Pawn pawn = (from p in Find.GameInitData.startingAndOptionalPawns.Take(Find.GameInitData.startingPawnCount)
@@ -146,6 +149,7 @@ namespace RimWorld
                         animal.playerSettings.Master = pawn;
                     }
                 }
+                Rand.PopState();
                 if (gender != Gender.None)
                 {
                     animal.gender = gender;

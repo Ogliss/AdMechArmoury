@@ -22,6 +22,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                 bool flag1 = (!A.apparel.tags.Contains("OGEnergyShield") || !B.apparel.tags.Contains("OGEnergyShield"));
                 __result = A != B && flag1;
             }
+            ApparelRestrictionDefExtension extA = A.GetModExtension<ApparelRestrictionDefExtension>();
+            ApparelRestrictionDefExtension extB = A.GetModExtension<ApparelRestrictionDefExtension>();
+            bool restricted = extA != null || extB != null;
+            if (restricted)
+            {
+                if (extA != null)
+                {
+
+                }
+                if (extB != null)
+                {
+
+                }
+            }
         }
     }
 }

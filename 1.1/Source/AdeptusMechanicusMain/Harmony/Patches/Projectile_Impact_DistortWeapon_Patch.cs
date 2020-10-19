@@ -82,7 +82,9 @@ public static class Projectile_Impact_Necron_Wraith_Patch
                     {
                         if (__instance.def.projectile.damageDef == OGDamageDefOf.OG_E_Distortion_Damage)
                         {
+                            Rand.PushState();
                             bool explode = Rand.Chance(0.167f);
+                            Rand.PopState();
                             if (explode)
                             {
                                 MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AMA_Distorting_Shot".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);

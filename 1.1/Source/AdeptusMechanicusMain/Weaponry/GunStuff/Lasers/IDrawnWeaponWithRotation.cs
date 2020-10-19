@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AdeptusMechanicus
 {
-    interface IDrawnWeaponWithRotation
+    public interface IDrawnWeaponWithRotation
     {
         float RotationOffset
         {

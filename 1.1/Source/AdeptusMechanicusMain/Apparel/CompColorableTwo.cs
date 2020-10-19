@@ -37,7 +37,7 @@ namespace AdeptusMechanicus
 			get
 			{
 			//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo active: " + ActiveTwo);
-				if (!this.ActiveTwo)
+				if (!this.activeTwo)
 				{
 					return this.parent.def.graphicData.colorTwo;
 				}
@@ -58,7 +58,7 @@ namespace AdeptusMechanicus
 
 		// Token: 0x170004CD RID: 1229
 		// (get) Token: 0x06001743 RID: 5955 RVA: 0x00085558 File Offset: 0x00083758
-		public new bool Active
+		public new virtual bool Active
 		{
 			get
 			{
@@ -70,7 +70,7 @@ namespace AdeptusMechanicus
 			}
 		}
 		
-		public bool ActiveTwo
+		public virtual bool ActiveTwo
 		{
 			get
 			{
@@ -86,22 +86,40 @@ namespace AdeptusMechanicus
 		// Token: 0x06001744 RID: 5956 RVA: 0x00085560 File Offset: 0x00083760
 		public override void Initialize(CompProperties props)
 		{
-			base.Initialize(props);
+			this.props = props;
 			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators) && !this.active)
 			{
 				this.Color = this.parent.def.colorGenerator.NewRandomizedColor();
-			//	Log.Message("getting new random colourtwo "+ this.Color);
+				this.active = true;
+				//	Log.Message("getting new random colourtwo "+ this.Color);
+			}
+			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators) && !this.activeTwo)
+			{
+				this.ColorTwo = this.parent.def.colorGenerator.NewRandomizedColor();
+				this.activeTwo = true;
+				//	Log.Message("getting new random colourtwo "+ this.Color);
+			}
+		}
+
+		public override void PostPostMake()
+		{
+			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators) && !this.active)
+			{
+				this.Color = this.parent.def.colorGenerator.NewRandomizedColor();
+				this.active = true;
+				//	Log.Message("getting new random colourtwo "+ this.Color);
+			}
+			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators) && !this.activeTwo)
+			{
+				this.ColorTwo = this.parent.def.colorGenerator.NewRandomizedColor();
+				this.activeTwo = true;
+				//	Log.Message("getting new random colourtwo "+ this.Color);
 			}
 		}
 
 		// Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
 		public override void PostExposeData()
 		{
-			base.PostExposeData();
-			if (Scribe.mode == LoadSaveMode.Saving && (!this.active && !this.activeTwo))
-			{
-				return;
-			}
 			Scribe_Values.Look<Color>(ref this.color, "color", default(Color), false);
 			Scribe_Values.Look<Color>(ref this.colorTwo, "colorTwo", default(Color), false);
 			Scribe_Values.Look<bool>(ref this.active, "Active", false, false);
@@ -126,11 +144,11 @@ namespace AdeptusMechanicus
 		}
 
 		// Token: 0x04000EA1 RID: 3745
-		private Color color = Color.white;
-		private Color colorTwo = Color.white;
+		protected Color color = Color.white;
+		protected Color colorTwo = Color.white;
 
 		// Token: 0x04000EA2 RID: 3746
-		private bool active;
-		private bool activeTwo;
+		protected bool active;
+		protected bool activeTwo;
 	}
 }

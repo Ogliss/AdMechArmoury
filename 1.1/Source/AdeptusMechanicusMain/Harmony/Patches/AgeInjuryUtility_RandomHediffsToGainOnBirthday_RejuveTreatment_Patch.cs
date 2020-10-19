@@ -71,7 +71,10 @@ namespace AdeptusMechanicus.HarmonyInstance
 					if (hediffGiver_Birthday != null)
 					{
 						float x = (float)age / (raceDef.race.lifeExpectancy + increase);
-						if (Rand.Value < hediffGiver_Birthday.ageFractionChanceCurve.Evaluate(x))
+						Rand.PushState();
+						bool act = Rand.Value < hediffGiver_Birthday.ageFractionChanceCurve.Evaluate(x);
+						Rand.PopState();
+						if (act)
 						{
 							yield return hediffGiver_Birthday;
 						}

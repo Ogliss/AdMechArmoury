@@ -21,13 +21,13 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Post_RecalculateLifeStageIndex(Pawn ___pawn)
         {
-            if (___pawn != null)
+            if (___pawn != null && ___pawn.RaceProps.Humanlike && ___pawn.RaceProps.IsFlesh)
             {
-                if (___pawn.story != null && ___pawn.Map != null && ___pawn.RaceProps.Humanlike)
+                if (___pawn.story != null && ___pawn.Map != null)
                 {
                     if (___pawn.story.adulthood == null)
                     {
-                        if (___pawn.isAdult())
+                        if (isAdult(___pawn))
                         {
                             List<BackstoryCategoryFilter> backstoryCategoryFiltersFor = PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.GetBackstoryCategoryFiltersFor(___pawn, ___pawn.Faction.def);
                             PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.FillBackstorySlotShuffled(___pawn, BackstorySlot.Adulthood, ref ___pawn.story.adulthood, ___pawn.story.childhood, backstoryCategoryFiltersFor, ___pawn.Faction.def);
@@ -36,6 +36,41 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
         }
+        public static bool isAdult(Pawn pawn)
+        {
+            float adultage = 18f;
+            if (pawn.RaceProps.lifeStageAges.Any(x => x.def.reproductive) && pawn.def != ThingDefOf.Human)
+            {
+                foreach (LifeStageAge item in pawn.RaceProps.lifeStageAges)
+                {
+                    if (item.def.reproductive)
+                    {
+                        adultage = item.minAge;
+                        break;
+                    }
+                }
+                if (AdeptusIntergrationUtil.enabled_AlienRaces)
+                {
+                    float alienage = AlienAdult(pawn);
+                    if (alienage > -1f)
+                    {
+                        adultage = alienage;
+                    }
+                }
+            }
+            return pawn.ageTracker.AgeBiologicalYearsFloat >= adultage;
+        }
+
+        public static float AlienAdult(Pawn pawn)
+        {
+            AlienRace.ThingDef_AlienRace race = pawn.def as AlienRace.ThingDef_AlienRace;
+            if (race != null)
+            {
+                return race.alienRace.generalSettings.minAgeForAdulthood;
+            }
+            return -1;
+        }
+
     }
 
 }

@@ -95,12 +95,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (pawn.CanReach(target, PathEndMode.Touch, Danger.Deadly, false))
                 {
                     //Log.Warning("Melee Attack");
+                    Rand.PushState();
                     __result = new Job(JobDefOf.AttackMelee, target)
                     {
                         maxNumMeleeAttacks = 1,
                         expiryInterval = Rand.Range(420, 900),
                         attackDoorIfTargetLost = false
                     };
+                    Rand.PopState();
                     return false;
                 }
                 else
@@ -138,12 +140,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (pawn.CanReach(target, PathEndMode.Touch, Danger.Deadly, false))
                     {
                         //Log.Warning("Melee Attack");
+                        Rand.PushState();
                         __result = new Job(JobDefOf.AttackMelee, target)
                         {
                             maxNumMeleeAttacks = 1,
                             expiryInterval = Rand.Range(420, 900),
                             attackDoorIfTargetLost = false
                         };
+                        Rand.PopState();
                         return false;
                     }
                     else

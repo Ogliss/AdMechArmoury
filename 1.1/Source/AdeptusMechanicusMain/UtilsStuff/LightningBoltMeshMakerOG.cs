@@ -37,7 +37,9 @@ namespace AdeptusMechanicus
         // Token: 0x0600137D RID: 4989 RVA: 0x00095543 File Offset: 0x00093943
         public static Mesh NewBoltMesh(float xMin = -50f, float xMax = 50f, float z = 200f, float str = 3f)
         {
+            Rand.PushState();
             LightningBoltMeshMakerOG.lightningTop = new Vector2(Rand.Range(xMin, xMax), z);
+            Rand.PopState();
             LightningBoltMeshMakerOG.MakeVerticesBase();
             LightningBoltMeshMakerOG.PeturbVerticesRandomly(str);
             LightningBoltMeshMakerOG.DoubleVertices();
@@ -72,7 +74,9 @@ namespace AdeptusMechanicus
         private static void PeturbVerticesRandomly(float str)
         {
             float dmod = 1f;
+            Rand.PushState();
             Perlin perlin = new Perlin(0.0070000002160668373, 2.0, 0.5, 6, Rand.Range(0, int.MaxValue), QualityMode.High);
+            Rand.PopState();
             List<Vector2> list = LightningBoltMeshMakerOG.verts2D.ListFullCopy<Vector2>();
             LightningBoltMeshMakerOG.verts2D.Clear();
             int threshold = (list.Count / 4) * 3;

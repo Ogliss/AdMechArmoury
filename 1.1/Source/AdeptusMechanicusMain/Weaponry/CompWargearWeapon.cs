@@ -22,7 +22,7 @@ namespace AdeptusMechanicus
 
         public Pawn lastWearer;
 
-        public bool GizmosOnEquip => Props.GizmosOnEquip;
+        public virtual bool GizmosOnEquip => Props.GizmosOnEquip;
         // Determine who is wearing this ThingComp. Returns a Pawn or null.
         public CompEquippable compEquippable => parent.GetComp<CompEquippable>();
         protected virtual Pawn CasterPawn

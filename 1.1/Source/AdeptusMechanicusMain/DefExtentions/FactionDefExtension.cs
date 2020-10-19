@@ -24,8 +24,9 @@ namespace AdeptusMechanicus
         public FloatRange InfiltrateDelayMin = new FloatRange(15, 90);
         public FloatRange InfiltrateDelayMax = new FloatRange(90, 180);
         public string factionTextureTag = string.Empty;
-        public Color factionColor;
-        public Color factionColorTwo;
+        public string factionMaskTag = string.Empty;
+        public Color? factionColor;
+        public Color? factionColorTwo;
 
     }
 

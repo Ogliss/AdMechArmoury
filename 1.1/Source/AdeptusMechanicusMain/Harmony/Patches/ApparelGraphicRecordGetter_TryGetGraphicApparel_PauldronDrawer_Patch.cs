@@ -17,12 +17,9 @@ namespace AdeptusMechanicus.HarmonyInstance
 		[HarmonyPostfix]
 		public static void Postfix(Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
 		{
-			if (apparel.def.apparel.wornGraphicPath.NullOrEmpty())
-			{
-				return;
-			}
-			bool adv = apparel.TryGetComp<CompPauldronDrawer>() != null;
-			if (adv)
+			/*
+			bool Pauldron = apparel.TryGetComp<CompPauldronDrawer>() != null;
+			if (Pauldron)
 			{
 			//	Log.Message("Updating pad graphics for "+apparel.LabelShortCap);
 				for (int i = 0; i < apparel.GetComps<CompPauldronDrawer>().Count(); i++)
@@ -39,13 +36,142 @@ namespace AdeptusMechanicus.HarmonyInstance
 					}
 				}
 			}
+			*/
 			CompColorableTwo compColorable = apparel.TryGetComp<CompColorableTwo>();
 			if (compColorable!=null)
 			{
-			//	Log.Message("CompColorableTwo present");
-				rec = new ApparelGraphicRecord(rec.graphic.GetColoredVersion(rec.graphic.Shader, compColorable.Color, compColorable.ColorTwo),apparel);
+				string comptype = "CompColorableTwo Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
+				string msg = string.Empty;
+				string msk = string.Empty;
+				CompFactionColorableTwo factionColors = compColorable as CompFactionColorableTwo;
+				Color colorOne = compColorable.Color;
+				Color colorTwo = compColorable.ColorTwo;
+				if (factionColors != null)
+				{
+                    if (apparel.Wearer.Faction != null)
+					{
+                        if (apparel.Wearer.Faction != Faction.OfPlayer)
+						{
+							factionColors.FactionDef = apparel.Wearer.Faction?.def;
+							msg += (" entry for Non Player Pawn using FactionDef " + factionColors.FactionDef);
+						}
+                        else
+						{
+							CompPauldronDrawer pauldrons = apparel.TryGetComp<CompPauldronDrawer>();
+                            if (pauldrons != null)
+                            {
+                                for (int i = 0; i < pauldrons.activeEntries.Count; i++)
+                                {
+									ShoulderPadEntry entry = pauldrons.activeEntries[i];
+                                    if (entry.faction !=null && entry.UseFactionTextures || entry.UseFactionColors)
+									{
+										factionColors.FactionDef = entry.faction;
+										msg += (" entry for Non Player Pawn using FactionDef " + factionColors.FactionDef);
+										break;
+									}
+
+								}
+                            }
+                            else
+                            {
+								Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
+                            }
+						}
+					}
+                    if (factionColors.Active)
+					{
+						Log.Message("factionColors.Active");
+						colorOne = factionColors.Color;
+						apparel.SetColorOne(colorOne);
+					}
+                    if (factionColors.ActiveTwo)
+					{
+						Log.Message("factionColors.ActiveTwo");
+						colorTwo = factionColors.ColorTwo;
+						apparel.SetColorTwo(colorTwo);
+					}
+                    if (factionColors.Extension != null)
+					{
+						Log.Message("factionColors.Extension != null");
+						if (factionColors.ActiveTwo || factionColors.Active)
+						{
+                            if (!factionColors.Extension.factionMaskTag.NullOrEmpty())
+							{
+								Log.Message("factionColors.factionMaskTag");
+								msk = "m_" + factionColors.Extension.factionMaskTag;
+								Log.Message("factionMaskTag: "+msk);
+							}
+						}
+					}
+					// msg
+					comptype = "CompFactionColorableTwo Active: " + factionColors.Active + ", ActiveTwo: " + factionColors.ActiveTwo;
+				}
+				Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
+				Texture texture;
+				if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
+				{
+					if (!msk.NullOrEmpty())
+					{
+						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_east" + msk, false);
+						if (texture != null)
+						{
+							newgraphic.MatEast.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+						}
+						newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_west" + msk, false);
+						if (texture != null)
+						{
+							newgraphic.MatWest.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+						}
+						newgraphic.MatWest.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_south" + msk, false);
+						if (texture != null)
+						{
+							newgraphic.MatSouth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+						}
+						newgraphic.MatSouth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_north" + msk, false);
+                        if (texture != null)
+						{
+							newgraphic.MatNorth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+						}
+						newgraphic.MatNorth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+						/*
+						ExtendedGraphicData newdata = new ExtendedGraphicData();
+						newdata.graphicClass = typeof(Graphic_MultiMask);
+						Log.Message("ExtendedGraphicData");
+						newdata.texPath = rec.graphic.path;
+						newdata.MaskSelector = msk;
+						newdata.maskKey = olddata.maskKey;
+						newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
+						*/
+					}
+					rec = new ApparelGraphicRecord(newgraphic, apparel);
+				}
+				texture = ContentFinder<Texture2D>.Get(rec.graphic.path +msk, false);
+				if (texture != null)
+				{
+					newgraphic.MatSingle.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+				}
+				newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			}
+			/*
+            for (int i = 0; i < apparel.AllComps.Count; i++)
+            {
+				CompPauldronDrawer drawer = apparel.AllComps[i] as CompPauldronDrawer;
+                if (drawer != null)
+                {
+					drawer.
+                }
 
 			}
+			*/
+			apparel.BroadcastCompSignal(CompPauldronDrawer.UpdateString);
 		}
 
 	}

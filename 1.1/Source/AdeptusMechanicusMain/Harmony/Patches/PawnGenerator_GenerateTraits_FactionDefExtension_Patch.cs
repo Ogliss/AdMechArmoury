@@ -50,7 +50,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             maxTraits = max;
                                         }
                                         else { maxTraits = 4; }
-                                        if (Rand.Chance(item.Chance))
+                                        Rand.PushState();
+                                        bool act = Rand.Chance(item.Chance);
+                                        Rand.PopState();
+                                        if (act)
                                         {
                                             if (pawn.story.traits.allTraits.Count >= maxTraits)
                                             {

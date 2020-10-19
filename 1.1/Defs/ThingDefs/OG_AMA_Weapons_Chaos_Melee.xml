@@ -144,7 +144,6 @@
     </modExtensions>
 	 </ThingDef>
 
-	 
 	<!-- ==================== Chaos - Power Sword ========================= -->
 	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
 		<defName>OGC_Melee_PowerSword</defName>
@@ -872,7 +871,7 @@
 	 </ThingDef>
 	 
 	<!-- ==================== Chaos - Nurgle - Plague Knife ========================= -->
-	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Base">
 		<defName>OGC_Melee_PlagueKnife</defName>
 		<label>Plagueknife</label>
 		<techLevel>Spacer</techLevel>
@@ -883,78 +882,78 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedAngleOffset>-65</equippedAngleOffset>
-    <tools>
-      <li>
-        <label>handle</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>blade</label>
-        <capacities>
-          <li>OG_PlagueWeapon_Cut</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.5</cooldownTime>
-      </li>
-      <li>
-        <label>point</label>
-        <capacities>
-          <li>OG_PlagueWeapon_Stab</li>
-        </capacities>
-        <power>13</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools> 
-	<comps>    
-	  <li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
-		<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
-			<gizmosOnEquip>false</gizmosOnEquip>
-			<!--<altitudeLayer>PawnState</altitudeLayer>-->
-			<graphicData>
-				<graphicClass>Graphic_Single</graphicClass>
-				<shaderType>CutoutComplex</shaderType>
-				<color>(0,98,5)</color>	
-			</graphicData>	
-			<!--
-			<activateSound>Activate</activateSound>
-			<sustainerSound>Hum</sustainerSound>
-			<deactivateSound>Deactivate</deactivateSound>
-			-->						
-	  </li>
-	</comps>
-	<weaponTags>
-      <li>CPlagueknife</li>
-    </weaponTags>
-    <costStuffCount>30</costStuffCount>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>blade</label>
+			<capacities>
+			  <li>OG_PlagueWeapon_Cut</li>
+			</capacities>
+			<power>12</power>
+			<cooldownTime>1.5</cooldownTime>
+		  </li>
+		  <li>
+			<label>point</label>
+			<capacities>
+			  <li>OG_PlagueWeapon_Stab</li>
+			</capacities>
+			<power>13</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		</tools> 
+		<comps>    
+		  <li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(0,98,5)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->						
+		  </li>
+		</comps>
+		<weaponTags>
+		  <li>CPlagueknife</li>
+		</weaponTags>
 		<statBases>
 			<WorkToMake>18000</WorkToMake>
 			<Mass>0.5</Mass>
 		</statBases>
+		<costStuffCount>30</costStuffCount>
 		<stuffCategories>
 			<li>Metallic</li>
 		</stuffCategories>
-		<recipeMaker>
-      <recipeUsers>
-	  
-      </recipeUsers>
-    </recipeMaker>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker Inherit="flase">
+		  <recipeUsers>
+		  
+		  </recipeUsers>
+		</recipeMaker>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!--==================== Choas - Nurgle - Man Reaper =========================-->
-	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Base">
 		<defName>OGC_Melee_ManReaper</defName>
 		<label>man reaper</label>
 		<description>The Manreaper is a daemonic Power Scythe. It is said that even the smell of the pitted scythe can lay a mortal man low for weeks. Though Typhus has never confirmed the rumours that he dipped his weapon in Nurgle's own brew of filth, any mortal being that is touched by its blade quickly collapses into a pile of festering bone.</description>
@@ -1017,15 +1016,10 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-		<recipeMaker>
-			<recipeUsers>
-			
-			</recipeUsers>
-			<!--
-			<researchPrerequisites>
-				<li>ChaosTechBase</li>
-			</researchPrerequisites>
-			 -->
+		<recipeMaker Inherit="flase">
+		  <recipeUsers>
+		  
+		  </recipeUsers>
 		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
@@ -1040,15 +1034,15 @@
 		<tradeTags>
 			<li>OGCMelee</li>
 		</tradeTags>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	 </ThingDef>
 	 
 </Defs>

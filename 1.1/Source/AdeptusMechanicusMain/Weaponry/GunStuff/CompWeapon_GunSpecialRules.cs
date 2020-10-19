@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
             this.compClass = typeof(CompWeapon_GunSpecialRules);
         }
         public bool HeavyWeapon = false;
-        public float HeavyWeaponSetupTime = 4f;
+        public float HeavyWeaponSetupTime;
         public List<GunVerbEntry> VerbEntries;
         public bool TyranidBurstBodySize = false;
         public new bool GizmosOnEquip = true;
@@ -54,58 +54,64 @@ namespace AdeptusMechanicus
                 return gunVerbs;
             }
         }
-
-        public CompToggleFireMode fireMode => this.parent.TryGetComp<CompToggleFireMode>();
-        public int CurMode => fireMode != null ? fireMode.fireMode : 0;
+        public CompToggleFireMode fireMode;
+        public CompToggleFireMode FireMode => fireMode ??= this.parent.TryGetComp<CompToggleFireMode>();
+        public CompEquippable equipable; 
+        public CompEquippable Equipable => equipable ??= this.parent.TryGetComp<CompEquippable>(); 
+        public override bool GizmosOnEquip => FireMode != null;
+        public int CurMode => FireMode != null ? FireMode.fireMode : 0;
         public bool HeavyWeapon => Props.HeavyWeapon;
+        public float HeavyWeaponSetupTime
+        {
+            get
+            {
+                float statValue = this.CasterPawn.GetStatValue(StatDefOf.AimingDelayFactor, true);
+                int ticks = (Equipable.PrimaryVerb.verbProps.warmupTime * statValue).SecondsToTicks();
+                return Props?.HeavyWeaponSetupTime ?? ticks.TicksToSeconds();
+            }
+        }
         public bool TyranidBurstBodySize => Props.TyranidBurstBodySize;
-        public bool TwinLinked => Props.VerbEntries[CurMode].TwinLinked;
-        public bool RapidFire => Props.VerbEntries[CurMode].RapidFire;
-        public bool GetsHot => Props.VerbEntries[CurMode].GetsHot;
-        public bool HotDamageWeapon => Props.VerbEntries[CurMode].HotDamageWeapon;
-        public bool GetsHotCrit => Props.VerbEntries[CurMode].GetsHotCrit;
-        public bool GetsHotCritExplosion => Props.VerbEntries[CurMode].GetsHotCritExplosion;
-        public bool Jams => Props.VerbEntries[CurMode].Jams;
-        public bool JamsDamageWeapon => Props.VerbEntries[CurMode].JamsDamageWeapon;
-        public bool Multishot => Props.VerbEntries[CurMode].Multishot;
-        public bool EffectsUser => Props.VerbEntries[CurMode].EffectsUser;
-        public bool Rending => Props.VerbEntries[CurMode].Rending;
-        public Reliability reliability =>  Props.VerbEntries[CurMode].reliability;
-        public float HeavyWeaponSetupTime => Props.HeavyWeaponSetupTime;
-        public float HotDamage => Props.VerbEntries[CurMode].HotDamage;
-        public float GetsHotCritChance => Props.VerbEntries[CurMode].GetsHotCritChance;
-        public float GetsHotCritExplosionChance => Props.VerbEntries[CurMode].GetsHotCritExplosionChance;
-        public float JamDamage => Props.VerbEntries[CurMode].JamDamage;
-        public float EffectsUserChance => Props.VerbEntries[CurMode].EffectsUserChance;
-        public float RendingChance => Props.VerbEntries[CurMode].RendingChance;
-        public StatDef ResistEffectStat => Props.VerbEntries[CurMode].ResistEffectStat;
-        public HediffDef UserEffect=> Props.VerbEntries[CurMode].UserEffect;
-        public List<string> UserEffectImmuneList =>  Props.VerbEntries[CurMode].UserEffectImmuneList;
-        public ResearchProjectDef requiredResearch => Props.VerbEntries[CurMode].requiredResearch;
-        public int ScattershotCount => Props.VerbEntries[CurMode].ScattershotCount;
-        public bool MeltaWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Melta() : this.parent.def.Verbs[0].defaultProjectile.projectile.Melta();
-        public bool VolkiteWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Volkite() : this.parent.def.Verbs[0].defaultProjectile.projectile.Volkite();
-        public bool GaussWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Gauss() : this.parent.def.Verbs[0].defaultProjectile.projectile.Gauss();
-        public bool HaywireWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Haywire() : this.parent.def.Verbs[0].defaultProjectile.projectile.Haywire();
-        public bool TeslaWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Tesla() : this.parent.def.Verbs[0].defaultProjectile.projectile.Tesla();
-        public bool ConversionWeapon => fireMode != null ? Props.VerbEntries[fireMode.fireMode].VerbProps.defaultProjectile.projectile.Conversion() : this.parent.def.Verbs[0].defaultProjectile.projectile.Conversion();
+        public bool TwinLinked => GunVerbs[CurMode].TwinLinked;
+        public bool RapidFire => GunVerbs[CurMode].RapidFire;
+        public bool GetsHot => GunVerbs[CurMode].GetsHot;
+        public bool HotDamageWeapon => GunVerbs[CurMode].HotDamageWeapon;
+        public bool GetsHotCrit => GunVerbs[CurMode].GetsHotCrit;
+        public bool GetsHotCritExplosion => GunVerbs[CurMode].GetsHotCritExplosion;
+        public bool Jams => GunVerbs[CurMode].Jams;
+        public bool JamsDamageWeapon => GunVerbs[CurMode].JamsDamageWeapon;
+        public bool EffectsUser => GunVerbs[CurMode].EffectsUser;
+        public bool Rending => GunVerbs[CurMode].Rending;
+        public Reliability reliability =>  GunVerbs[CurMode].reliability;
+        public float HotDamage => GunVerbs[CurMode].HotDamage;
+        public float GetsHotCritChance => GunVerbs[CurMode].GetsHotCritChance;
+        public float GetsHotCritExplosionChance => GunVerbs[CurMode].GetsHotCritExplosionChance;
+        public float JamDamage => GunVerbs[CurMode].JamDamage;
+        public float EffectsUserChance => GunVerbs[CurMode].EffectsUserChance;
+        public float RendingChance => GunVerbs[CurMode].RendingChance;
+        public StatDef ResistEffectStat => GunVerbs[CurMode].ResistEffectStat;
+        public HediffDef UserEffect=> GunVerbs[CurMode].UserEffect;
+        public List<string> UserEffectImmuneList =>  GunVerbs[CurMode].UserEffectImmuneList;
+        public ResearchProjectDef requiredResearch => GunVerbs[CurMode].requiredResearch;
+        public bool Multishot => Equipable != null && Equipable.PrimaryVerb.GetProjectile().HasModExtension<ScattershotProjectileExtension>();
+        // public bool Multishot => Props.VerbEntries[CurMode].Multishot || Props.VerbEntries[CurMode].VerbProps.defaultProjectile.HasModExtension<ScattershotProjectileExtension>();
+
+        // public int ScattershotCount => GunVerbs[CurMode].VerbProps.defaultProjectile.GetModExtension<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
+        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtension<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
+        public bool MeltaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Melta();
+        public bool VolkiteWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Volkite();
+        public bool GaussWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Gauss();
+        public bool HaywireWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Haywire();
+        public bool TeslaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Tesla();
+        public bool ConversionWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Conversion();
         public int LastMovedTick
         {
             get
             {
-
-                if (CasterPawn == null)
-                {
-                    return 0;
-                }
-                if (!CasterPawn.pather.MovedRecently(HeavyWeaponSetupTime.SecondsToTicks()))
-                {
-                    return int.MaxValue;
-                }
-                traverse = Traverse.Create(CasterPawn.pather);
-                lastmovedTick = (int)lastMovedTick.GetValue(CasterPawn.pather);
-
                 return lastmovedTick;
+            }
+            set
+            {
+                lastmovedTick = value;
             }
         }
         public int ticksHere
@@ -115,9 +121,7 @@ namespace AdeptusMechanicus
                 return Find.TickManager.TicksGame - LastMovedTick;
             }
         }
-        Traverse traverse;
-        public int lastmovedTick;
-        public static FieldInfo lastMovedTick = typeof(Pawn_PathFollower).GetField("lastMovedTick", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
+        private int lastmovedTick;
 
         public override void CompTick()
         {
@@ -129,6 +133,11 @@ namespace AdeptusMechanicus
         }
 
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref this.lastmovedTick, "WeaponSpecialRuleslastmovedTick", 0);
+        }
         public Reliability Reliability
         {
             get
@@ -139,11 +148,16 @@ namespace AdeptusMechanicus
 
         public override string CompInspectStringExtra()
         {
-            string str = "Special Rules:";
+            string str = "AMA_SpecialRules".Translate();
             string str2 = string.Empty;
-            if (fireMode!=null)
+            if (HeavyWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Fire Modes" : str2 + ", Fire Modes";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_HeavyWeapon".Translate().ToString() : str2 + ", " + "AMA_HeavyWeapon".Translate().ToString();
+            }
+            if (FireMode!=null)
+            {
+                string fire = !FireMode.Props.InspectLabelKey.NullOrEmpty() ? FireMode.Props.InspectLabelKey.Translate().ToString() : "Fire Modes";
+                str2 = str2.NullOrEmpty() ? str2 + " "+ fire : str2 + ", " + fire;
             }
             if (EffectsUser)
             {
@@ -151,54 +165,54 @@ namespace AdeptusMechanicus
             }
             if (RapidFire)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Rapid Fire" : str2 + ", Rapid Fire";
+                str2 = str2.NullOrEmpty() ? str2 + " "+ "AMA_RapidFire".Translate().ToString() : str2 + ", " + "AMA_RapidFire".Translate().ToString();
             }
             if (GetsHot)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Gets Hot" : str2 + ", Gets Hot";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_GetsHot".Translate().ToString() : str2 + ", " + "AMA_GetsHot".Translate().ToString();
             }
             else
             if (Jams)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Jams" : str2 + ", Jams";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Jams".Translate().ToString() : str2 + ", " + "AMA_Jams".Translate().ToString();
             }
             if (TwinLinked)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Twin-Linked" : str2 + ", Twin-Linked";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_TwinLinked".Translate().ToString() : str2 + ", " + "AMA_TwinLinked".Translate().ToString();
             }
             if (Multishot)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Scattershot" : str2 + ", Scattershot";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Scatter".Translate().ToString() : str2 + ", " + "AMA_Scatter".Translate().ToString();
             }
             if (Rending)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Rending Weapon" : str2 + ", Rending Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Rending_Shot".Translate().ToString() : str2 + ", " + "AMA_Rending_Shot".Translate().ToString();
             }
             if (MeltaWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Melta Weapon" : str2 + ", Melta Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Melta".Translate().ToString() : str2 + ", " + "AMA_Melta".Translate().ToString();
             }
             if (VolkiteWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Volkite Weapon" : str2 + ", Volkite Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Volkite".Translate().ToString() : str2 + ", " + "AMA_Volkite".Translate().ToString();
             }
             if (ConversionWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Conversion Weapon" : str2 + ", Conversion Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_ConversionBeam".Translate().ToString() : str2 + ", " + "AMA_ConversionBeam".Translate().ToString();
             }
             if (HaywireWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Haywire Weapon" : str2 + ", Haywire Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Haywire".Translate().ToString() : str2 + ", " + "AMA_Haywire".Translate().ToString();
             }
             /*
             if (GaussWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Gauss Weapon" : str2 + ", Gauss Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " "+ "AMA_Gauss".Translate().ToString() : str2 + ", "+ "AMA_RapidFire".Translate().ToString();
             }
             */
             if (TeslaWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " Tesla Weapon" : str2 + ", Tesla Weapon";
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Tesla".Translate().ToString() : str2 + ", " + "AMA_Tesla".Translate().ToString();
             }
             return str2.NullOrEmpty() ? null : str + str2;
         }
@@ -207,8 +221,8 @@ namespace AdeptusMechanicus
         {
 
             string str = string.Empty;
-            str = str + "Special Rules:";
-            if (fireMode!=null)
+            str = str + "AMA_SpecialRules".Translate();
+            if (FireMode!=null)
             {
                 str = str + string.Format("\nFire Modes: ");
                 foreach (VerbProperties mode in parent.def.Verbs)
@@ -222,7 +236,7 @@ namespace AdeptusMechanicus
                         str = str + string.Format("\n Secondry: {0}", mode.label ?? mode.defaultProjectile.label);
                     }
                 }
-                str = str + string.Format("\n Current Mode: {0} \n", fireMode.Active.label ?? fireMode.Active.defaultProjectile.label);
+                str = str + string.Format("\n Current Mode: {0} \n", FireMode.Active.label ?? FireMode.Active.defaultProjectile.label);
             }
             if (RapidFire)
             {
@@ -235,24 +249,24 @@ namespace AdeptusMechanicus
                 float warmupReduction = (warmupreduction / warmup) * 100;
                 float cooldownReduction = (cooldownreduction / cooldown) * 100;
                 float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (reductionbase * 4);
-                str = str + string.Format("\n RapidFire: Full Firing Cycle time reduced from {5} to {6} when firing at targets within {4} cells.\nWarmup reduced by {0}% ({1} seconds) and Cooldown by {2}% ({3} seconds).\n", warmupReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), warmup - warmupreduction, cooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, compEquippable.VerbTracker.PrimaryVerb.verbProps.range/2, Cycle, newCycle);
+                str = str + "\n " + "AMA_RapidFire".Translate() + ": " + "AMA_RapidFireDesc".Translate(warmupReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), warmup - warmupreduction, cooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2, Cycle, newCycle) + "\n";
             }
             if (GetsHot)
             {
                 string reliabilityString;
                 float failChance;
                 StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
-                str = str + string.Format("\n Gets Hot: This {0} is {1} and has a {2} chance to overheat per shot fired.",parent.Label, reliabilityString, (failChance/100).ToStringPercent());
+                str = str + string.Format("\n "+ "AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent()));
                 if (HotDamageWeapon)
                 {
-                    str = str + string.Format(" Overheats cause {0} damage to the {1}.",HotDamage, parent.def.label);
+                    str = str + "AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label);
                 }
                 if (GetsHotCrit)
                 {
-                    str = str + string.Format("it has a {0} chance to critically overheat, causing more damage to user and weapon.",(GetsHotCritChance/100).ToStringPercent());
+                    str = str + "AMA_GetsHotCrit".Translate((GetsHotCritChance/100).ToStringPercent());
                     if (GetsHotCritExplosion)
                     {
-                        str = str + string.Format("Critical overheats have a {0} chance of cuasing the weapon to explode.", (GetsHotCritExplosionChance/100).ToStringPercent());
+                        str = str + "AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance/100).ToStringPercent());
                     }
                 }
                 str = str + "\n";
@@ -262,53 +276,52 @@ namespace AdeptusMechanicus
                 string reliabilityString;
                 float failChance;
                 StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
-                str = str + string.Format("\n Jams: This {0} is {1} and has a {2} chance to jam per shot fired.", parent.Label, reliabilityString, (failChance/100).ToStringPercent());
+                str = str + string.Format("\n "+"AMA_Jams".Translate()+": "+ "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance/100).ToStringPercent()));
                 if (JamsDamageWeapon)
                 {
-                    str = str + string.Format(" Jamming causes {0} damage to the {1}.", JamDamage, parent.def.label);
+                    str = str + "AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label);
                 }
                 str = str + "\n";
             }
             if (TwinLinked)
             {
-                str = str + "\n Twin-Linked: Fires two projectiles per shot";
+                str = str + "\n "+ "AMA_TwinLinked".Translate() + ": "+ "AMA_TwinLinkedDesc".Translate();
             }
             if (Multishot)
             {
-                str = str + string.Format("\n Scatter-Shot: Fires {0} perjectiles per shot", ScattershotCount);
+                str = str + string.Format("\n "+ "AMA_Scatter".Translate() + ": "+ "AMA_ScatterDesc".Translate(ScattershotCount));
             }
             if (Rending)
             {
-                str = str + string.Format("\n Rending: has a {0} chance to ignore all armour", RendingChance);
+                str = str + string.Format("\n "+ "AMA_Rending_Shot".Translate() + ": "+ "AMA_Rending_ShotDesc".Translate(RendingChance));
             }
             if (MeltaWeapon)
             {
-                str = str + string.Format("\n Melta: Damage Vs Buildings and AP doubled when firing at targets within {0} cells. \n", compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2);
+                str = str + string.Format("\n "+ "AMA_Melta".Translate() + ": "+ "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) +" \n");
             }
             if (VolkiteWeapon)
             {
-                str = str + string.Format("\n Volite: AP begins to drop off when firing at targets over {0} cells. \n", compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2);
+                str = str + string.Format("\n " + "AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n");
             }
             if (ConversionWeapon)
             {
-                str = str + string.Format("\n Conversion: Damage and AP increase the further the target is away. \n");
+                str = str + string.Format("\n " + "AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate() + " \n");
             }
             if (HaywireWeapon)
             {
-                str = str + "\n Haywire Weapon";
-                str = str + string.Format("\n Haywire: additional EMP damage. \n");
+                str = str + string.Format("\n " + "AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate() + " \n");
             }
             /*
             if (GaussWeapon)
             {
                 str = str + "\n Gauss Weapon";
-                str = str + string.Format("\n Conversion: Damage and AP increase the further the target is away. \n");
+                str = str + string.Format("\n " + "AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate() +" \n");
             }
             */
             if (TeslaWeapon)
             {
                 str = str + "\n Tesla Weapon";
-                str = str + string.Format("\n Tesla: Bolt can arc to up to 3 nearby targets. \n");
+                str = str + string.Format("\n " + "AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate() + " \n");
             }
             return str;
             return base.GetDescriptionPart();
@@ -319,10 +332,31 @@ namespace AdeptusMechanicus
             base.PostSpawnSetup(respawningAfterLoad);
         }
 
-        public override void PostExposeData()
+        public override IEnumerable<Gizmo> EquippedGizmos()
         {
-            base.PostExposeData();
+            if (FireMode!=null)
+            {
+                foreach (var item in FireMode.EquippedGizmos())
+                {
+                    yield return item;
+                }
+            }
+
         }
 
+        public override void ReceiveCompSignal(string signal)
+        {
+            switch (signal)
+            {
+                case HeavyWeaponMovedSignal:
+                    this.LastMovedTick = Find.TickManager.TicksGame;
+                    break;
+                default:
+                    base.ReceiveCompSignal(signal);
+                    break;
+            }
+        }
+
+        public const string HeavyWeaponMovedSignal = "OG40K_GunSpecialRules_HeavyWeaponMovedSignal";
     }
 }

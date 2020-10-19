@@ -96,7 +96,9 @@ namespace AdeptusMechanicus
                     bool flag2 = this.Pawn.Downed && !this.Pawn.Dead;
                     if (flag2)
                     {
+                        Rand.PushState();
                         GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, Rand.Range(this.explosionRadius * 0.5f, this.explosionRadius * 1.5f), DamageDefOf.Burn, this.Pawn, Rand.Range(6, 10), 0f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
+                        Rand.PopState();
                         this.Pawn.Kill(null, null);
                     }
                 }
@@ -120,7 +122,9 @@ namespace AdeptusMechanicus
                             bool flag7 = lengthHorizontal <= this.Props.leapRangeMax && lengthHorizontal > this.Props.leapRangeMin;
                             if (flag7)
                             {
+                                Rand.PushState();
                                 bool flag8 = Rand.Chance(this.Props.GetLeapChance);
+                                Rand.PopState();
                                 if (flag8)
                                 {
                                     bool flag9 = this.CanHitTargetFrom(this.Pawn.Position, thing);
@@ -134,7 +138,9 @@ namespace AdeptusMechanicus
                                     bool textMotes = this.Props.textMotes;
                                     if (textMotes)
                                     {
+                                        Rand.PushState();
                                         bool flag10 = Rand.Chance(0.5f);
+                                        Rand.PopState();
                                         if (flag10)
                                         {
                                             MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, "grrr", -1f);
@@ -172,7 +178,9 @@ namespace AdeptusMechanicus
                                                 bool flag14 = pawn.Faction != null && pawn.Faction == faction;
                                                 if (flag14)
                                                 {
+                                                    Rand.PushState();
                                                     bool flag15 = Rand.Chance(1f - this.Props.leapChance);
+                                                    Rand.PopState();
                                                     if (flag15)
                                                     {
                                                         i = enumerable.Count<IntVec3>();
@@ -240,8 +248,10 @@ namespace AdeptusMechanicus
             base.Initialize(props);
             this.initialized = true;
             Pawn pawn = this.parent as Pawn;
+            Rand.PushState();
             this.nextLeap = Mathf.RoundToInt(Rand.Range(this.Props.ticksBetweenLeapChance * 0.75f, 1.25f * this.Props.ticksBetweenLeapChance));
             this.explosionRadius = this.Props.explodingLeaperRadius * Rand.Range(0.8f, 1.25f);
+            Rand.PopState();
         }
 
         // Token: 0x17000116 RID: 278

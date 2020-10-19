@@ -38,7 +38,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (increase!=0)
                 {
                     float x = (float)pawn.ageTracker.AgeBiologicalYears / (pawn.RaceProps.lifeExpectancy + increase);
-                    if (Rand.MTBEventOccurs(__instance.ageFractionMtbDaysCurve.Evaluate(x), 60000f, 60f))
+                    Rand.PushState();
+                    bool act = Rand.MTBEventOccurs(__instance.ageFractionMtbDaysCurve.Evaluate(x), 60000f, 60f);
+                    Rand.PopState();
+                    if (act)
                     {
                         return true;
                     }

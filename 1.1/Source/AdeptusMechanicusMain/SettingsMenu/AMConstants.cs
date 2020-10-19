@@ -14,10 +14,10 @@ namespace AdeptusMechanicus
         public static int AMSeed = 454385387;
         public static readonly string ModPrefix = "AM_";
 
-        public static Color YautjaCloakColor = new Color(0.25f, 0.25f, 0.25f, 0.0001f);
+    //    public static Color YautjaCloakColor = new Color(0.25f, 0.25f, 0.25f, 0.0001f);
         public static int CloakNoiseTex = Shader.PropertyToID("_NoiseTex");
 
-        public static PawnGraphicSet Invisiblegraphics(Pawn pawn)
+        public static PawnGraphicSet InvisibleGraphics(Pawn pawn)
         {
             PawnGraphicSet graphics = new PawnGraphicSet_Invisible(pawn)
             {

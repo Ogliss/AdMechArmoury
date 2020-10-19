@@ -35,15 +35,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 AlienRacesPatch();
             }
 
-            /*
-            if (AdeptusIntergrationUtil.enabled_CombatExtended)
+            if (AdeptusIntergrationUtil.enabled_SOS2)
             {
-                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_MeleeAttackCE), "DamageInfosToApply", null, null), null, new HarmonyMethod(typeof(AM_Verb_MeleeAttackDamage_DamageInfosToApply_ForceWeapon_Patch).GetMethod("Postfix")));
-                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_LaunchProjectileCE), "HighlightFieldRadiusAroundTarget", null, null), null, new HarmonyMethod(typeof(AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch).GetMethod("Postfix")));
-                AMAMod.harmony.Patch(AccessTools.Method(typeof(CombatExtended.Verb_ShootCE), "TryCastShot", null, null), null, new HarmonyMethod(typeof(AM_Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch).GetMethod("Postfix")));
+             //   SOSConstructPatch();
             }
-            */
-
             if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
             {
                 HarmonyPatches.HeadMatAt_NewTemp();
@@ -80,8 +75,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                 HarmonyPatches.OverrideMaterialIfNeeded();
             }
             */
+        //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnApparelGenerator), "GenerateStartingApparelFor", null, null), null, new HarmonyMethod(typeof(PawnApparelGenerator_GenerateStartingApparelFor_FactionColors_Patch), "Postfix", null), null, null);
         }
 
+        public static void SOSConstructPatch()
+        {
+            AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("hasSpaceSuit"), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
+        }
+
+        private static void SOSSpaceSuitPostfix_Flesh_Construct(Pawn thePawn, ref bool __result)
+        {
+            if (thePawn.RaceProps.FleshType.defName.Contains("OG_Flesh_Construct"))
+            {
+                __result = true;
+            }
+        }
         public static void CanEquip()
         {
 
@@ -143,7 +151,32 @@ namespace AdeptusMechanicus.HarmonyInstance
                     .ForEach(f => newStoryTrv.Field(f).SetValue(storyTrv.Field(f).GetValue()));
             newStory.bodyType = bt;
             pawn.story = newStory;
+            IntVec3 pos = pawn.Position;
+            Map map = pawn.Map;
+            Building_Bed bed = null;
+            bool selected = Find.Selector.SelectedPawns.Contains(pawn);
+            bool drafted = pawn.Drafted;
+            bool inBed = pawn.InBed();
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            pawn.DeSpawn();
+            GenSpawn.Spawn(pawn,pos,map);
+            if (drafted)
+            {
+                pawn.drafter.Drafted = true;
+            }
+            if (selected)
+            {
+                Find.Selector.SelectedObjects.Add(pawn);
+            }
+            if (inBed)
+            {
+                if (bed != null)
+                {
+                    pawn.jobs.Notify_TuckedIntoBed(bed);
+                    pawn.mindState.Notify_TuckedIntoBed();
+                }
+
+            }
         }
 
         public static void AlienRacesPatch()
@@ -305,7 +338,9 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             HugsLib.Settings.SettingHandle<int> chance = Traverse.Create(typeof(DualWield.Base)).Field("NPCDualWieldChance").GetValue<HugsLib.Settings.SettingHandle<int>>();
             bool alwaysDW = (pawn.kindDef.weaponTags!=null && pawn.kindDef.weaponTags.Contains("AlwaysDualWield"));
+            Rand.PushState();
             bool flag = !pawn.RaceProps.Humanlike && pawn.RaceProps.ToolUser && pawn.RaceProps.FleshType != FleshTypeDefOf.Mechanoid && pawn.equipment != null && (Rand.Chance((float)chance / 100f) || alwaysDW);
+            Rand.PopState();
             if (flag)
             {
 
@@ -327,10 +362,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (pawn.kindDef.weaponTags == null || pawn.kindDef.weaponTags.Any((string tag) => w.thing.weaponTags.Contains(tag)))
                         {
+                            Rand.PushState();
                             if (w.thing.generateAllowChance >= 1f || Rand.ChanceSeeded(w.thing.generateAllowChance, pawn.thingIDNumber ^ (int)w.thing.shortHash ^ 28554824))
                             {
                                 workingWeapons.Add(w);
                             }
+                            Rand.PopState();
                         }
                     }
                 }

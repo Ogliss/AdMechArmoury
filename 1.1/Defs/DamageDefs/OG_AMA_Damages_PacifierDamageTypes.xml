@@ -78,6 +78,33 @@
     </additionalHediffs>
 	</DamageDef>
 
+	<!--==================== Webber Damage Type =========================-->
+	<DamageDef ParentName="OGGlobalInjuryBase">
+		<defName>OGIWebber</defName>
+		<label>Webber</label>
+		<externalViolenceForMechanoids>true</externalViolenceForMechanoids>
+		<deathMessage>{0} has been Electrocuted.</deathMessage>
+		<harmsHealth>false</harmsHealth>
+		<impactSoundType>Electric</impactSoundType>
+		<defaultDamage>50</defaultDamage>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<hediff>hediff_Pacifier</hediff>
+		<explosionSnowMeltAmount>0</explosionSnowMeltAmount>
+		<explosionCellMote>Mote_BlastEMP</explosionCellMote>
+		<explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
+		<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+		<soundExplosion>Explosion_EMP</soundExplosion>
+		<combatLogRules>Damage_EMP</combatLogRules>
+		<armorCategory>Blunt</armorCategory>
+    <additionalHediffs>
+      <li>
+        <hediff>hediff_Pacifier</hediff>
+        <severityPerDamageDealt>0.25</severityPerDamageDealt>
+        <victimSeverityScaling>PainShockThreshold</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+	</DamageDef>
+
 	<!--==================== Neuro Disruptor Damage =========================-->
 	<DamageDef ParentName="OGGlobalInjuryBase">
 		<defName>OGENeuroDisruptor</defName>

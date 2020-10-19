@@ -18,7 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         CompApparelExtraDrawer extraDrawer = item.TryGetComp<CompApparelExtraDrawer>();
                         if (extraDrawer != null && extraDrawer.hidesHair)
                         {
-                            __result = AMConstants.Invisiblegraphics(pawn).hairGraphic.MatSingle;
+                            __result = AMConstants.InvisibleGraphics(pawn).hairGraphic.MatSingle;
                             return;
                         }
                     }

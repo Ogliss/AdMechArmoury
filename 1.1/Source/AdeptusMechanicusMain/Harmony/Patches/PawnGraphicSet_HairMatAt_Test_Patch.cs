@@ -14,7 +14,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (pawn.apparel.WornApparel.Any(x=> x.def.defName == "OGT_Apparel_XV25Battlesuit"))
                 {
-                    __result.SetTexture(AMConstants.Invisiblegraphics(pawn).headGraphic.MatSingle.name, AMConstants.Invisiblegraphics(pawn).headGraphic.MatSingle.mainTexture);
+                    __result.SetTexture(AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle.name, AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle.mainTexture);
                     __result.shader = ShaderDatabase.Cutout;
                     return;
                 }

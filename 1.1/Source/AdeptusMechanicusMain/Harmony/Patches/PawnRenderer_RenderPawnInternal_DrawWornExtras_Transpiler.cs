@@ -54,125 +54,137 @@ namespace AdeptusMechanicus.HarmonyInstance
             Vector2 size  = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
             if (pawn.apparel != null && pawn.apparel.WornApparelCount > 0)
             {
-                /*
+                
                 if (AdeptusIntergrationUtil.enabled_AlienRaces)
                 {
-                    AlienRacesPatch(pawn, rotation, out size, portrait);
+                    AlienRacesPatch(pawn, bodyFacing, out size, portrait);
                 }
                 else
                 {
-                    Vector3 d;
-                    d = (portrait ? MeshPool.humanlikeBodySet.MeshAt(rotation).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(rotation).bounds.size);
-                    size = new Vector2(d.x * 1.5f, d.z * 1.5f);
+                    size = new Vector2(1.5f, 1.5f);
                 }
-                */
-                foreach (var apparel in pawn.apparel.WornApparel)
+                
+                List<Apparel> worn = pawn.apparel.WornApparel;
+                for (int wa = 0; wa < worn.Count; wa++)
                 {
-                    CompPauldronDrawer Pauldron = apparel.TryGetComp<CompPauldronDrawer>();
-                    if (Pauldron != null)
+                    Apparel apparel = worn[wa];
+                    for (int i = 0; i < apparel.AllComps.Count; i++)
                     {
-                        if (Pauldron.activeEntries.NullOrEmpty())
+                        CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
+                        if (Pauldron != null)
                         {
-                            Pauldron.Initialize();
-                        }
-                        foreach (ShoulderPadEntry item in Pauldron.activeEntries)
-                        {
-                            Vector3 v = vector;
-                            item.drawer = Pauldron;
-                            if (Pauldron.ShouldDrawPauldron(bodyFacing, size, out Graphic pauldronMat, item))
+                            Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                            if (Pauldron.activeEntries.NullOrEmpty())
                             {
-                                v += quat * Pauldron.GetAltitudeOffset(bodyFacing, item);
-                                //    pauldronMat.data.allowFlip = true;
-                                Material material = OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing, null), pawn);
-                                GenDraw.DrawMeshNowOrLater(mesh, v, quat, material, portrait);
-                                //    vector.y += CompPauldronDrawer.MinClippingDistance;
+                                Pauldron.Initialize();
+                            }
+                            foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
+                            {
+                                //    entry.Drawer = Pauldron;
+                                if (entry.apparel == null)
+                                {
+                                    entry.apparel = apparel;
+                                }
+                                if (entry.Drawer == null)
+                                {
+                                    Log.Warning("Warning! Drawer null");
+                                }
+                                if (entry.ShouldDrawEntry(portrait, bodyFacing, size, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                {
+                                    GenDraw.DrawMeshNowOrLater
+                                        (
+                                            // pauldronMesh,
+                                            GetPawnMesh(portrait, pawn, bodyFacing, !Pauldron.onHead),
+                                            center + (quat * offset),
+                                            quat,
+                                            OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                            portrait
+                                        );
+                                }
                             }
                         }
-                    }
-                    CompApparelExtraDrawer ExtraDrawer = apparel.TryGetComp<CompApparelExtraDrawer>();
-                    if (ExtraDrawer != null)
-                    {
-                        foreach (CompApparelExtraDrawer Extas in apparel.AllComps.Where(x => x.GetType() == typeof(CompApparelExtraDrawer)))
+                        CompApparelExtraDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraDrawer;
+                        if (ExtraDrawer != null)
                         {
                             Vector3 drawAt = vector;
-                            if (!Extas.Props.ExtrasEntries.NullOrEmpty())
+                            if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
                             {
-                                if (Extas.ShouldDrawExtra(pawn, apparel, bodyFacing, out Material extraMat))
+                                if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, bodyFacing, out Material extraMat))
                                 {
-                                    if (Extas.onHead)
+                                    if (ExtraDrawer.onHead)
                                     {
                                         drawAt = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
                                     }
-                                    drawAt += quat * Extas.GetAltitudeOffset(bodyFacing, Extas.ExtraPartEntry);
-                                    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, extraMat, portrait);
+                                    drawAt += quat * ExtraDrawer.GetAltitudeOffset(bodyFacing, ExtraDrawer.ExtraPartEntry);
+                                    Material material = OverrideMaterialIfNeeded(extraMat, pawn);
+                                    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
                                     //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                 }
                             }
                         }
                     }
+
                 }
             }
             if (!pawn.Dead)
             {
-                bool implantstodraw = pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_DrawImplant_AdMech>() != null);
-                bool shieldtodraw = pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_Shield>() != null);
-                for (int l = 0; l < pawn.health.hediffSet.hediffs.Count; l++)
+                for (int hd = 0; hd < pawn.health.hediffSet.hediffs.Count; hd++)
                 {
                     Vector3 drawAt = vector;
-                    if (implantstodraw)
+                    HediffWithComps hediff = pawn.health.hediffSet.hediffs[hd] as HediffWithComps;
+                    if (hediff != null)
                     {
-                        HediffComp_DrawImplant_AdMech drawer = pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_DrawImplant_AdMech>();
-                        if (drawer != null)
+                        for (int i = 0; i < hediff.comps.Count; i++)
                         {
-                            Material material = null;
-                            if (drawer.implantDrawProps.implantDrawerType != ImplantDrawerType.Head)
+                            HediffComp_DrawImplant_AdMech drawer = hediff.comps[i] as HediffComp_DrawImplant_AdMech;
+                            if (drawer != null)
                             {
-                                drawAt.y += 0.005f;
-                                if (bodyFacing == Rot4.South && drawer.implantDrawProps.implantDrawerType == ImplantDrawerType.Backpack)
+                                Material material = null;
+                                if (drawer.implantDrawProps.implantDrawerType != ImplantDrawerType.Head)
                                 {
-                                    drawAt.y -= 0.3f;
-                                }
-                                material = drawer.ImplantMaterial(pawn, bodyFacing);
-                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
-                            }
-                            else
-                            {
-                                if (!pawn.Downed && !pawn.Dead && drawer.implantDrawProps.useHeadOffset)
-                                {
-                                    drawAt = vector + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                    drawAt.y += 0.005f;
+                                    if (bodyFacing == Rot4.South && drawer.implantDrawProps.implantDrawerType == ImplantDrawerType.Backpack)
+                                    {
+                                        drawAt.y -= 0.3f;
+                                    }
+                                    material = drawer.ImplantMaterial(pawn, bodyFacing);
+                                    //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
                                 }
                                 else
                                 {
-                                    if (pawn.Downed || pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                    if (!pawn.Downed && !pawn.Dead && drawer.implantDrawProps.useHeadOffset)
                                     {
-                                        drawAt.y = vector.y + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing).y;
+                                        drawAt = vector + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
                                     }
+                                    else
+                                    {
+                                        if (pawn.Downed || pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                        {
+                                            drawAt.y = vector.y + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing).y;
+                                        }
+                                    }
+                                    drawAt.y += 0.005f;
+                                    material = drawer.ImplantMaterial(pawn, headfacing);
+                                    //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
                                 }
-                                drawAt.y += 0.005f;
-                                material = drawer.ImplantMaterial(pawn, headfacing);
-                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
-                            }
 
-                            if (material != null)
+                                if (material != null)
+                                {
+                                    //    GenDraw.DrawMeshNowOrLater(mesh, drawAt , quat, material, portrait);
+
+                                    material = OverrideMaterialIfNeeded(material, pawn);
+                                    //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
+                                    GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
+                                        quat: quat, mat: material, drawNow: portrait);
+
+                                    drawAt.y += HediffComp_DrawImplant_AdMech.MinClippingDistance;
+                                }
+                            }
+                            HediffComp_Shield _Shield;
+                            if ((_Shield = hediff.comps[i] as HediffComp_Shield) != null)
                             {
-                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt , quat, material, portrait);
-
-                                //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
-                                GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
-                                    quat: quat, mat: material, drawNow: portrait);
-
-                                drawAt.y += HediffComp_DrawImplant_AdMech.MinClippingDistance;
+                                _Shield.DrawWornExtras();
                             }
-                        }
-
-                    }
-
-                    if (shieldtodraw)
-                    {
-                        HediffComp_Shield _Shield;
-                        if ((_Shield = pawn.health.hediffSet.hediffs[l].TryGetComp<HediffComp_Shield>()) != null)
-                        {
-                            _Shield.DrawWornExtras();
                         }
                     }
                 }
@@ -186,27 +198,72 @@ namespace AdeptusMechanicus.HarmonyInstance
             Material baseMat = pawn.IsInvisible() ? InvisibilityMatPool.GetInvisibleMat(original) : original;
             return pawn.Drawer.renderer.graphics.flasher.GetDamagedMat(baseMat);
         }
-        /*
-        static void AlienRacesPatch(Pawn pawn, Rot4 bodyFacing, out Vector2 size, bool portrait)
+        
+        public static void AlienRacesPatch(Pawn pawn, Rot4 bodyFacing, out Vector2 size, bool portrait)
         {
             AlienRace.ThingDef_AlienRace alienDef = pawn.def as AlienRace.ThingDef_AlienRace;
-            Vector3 d;
+            Vector2 d;
             if (alienDef != null)
             {
                 AlienRace.AlienPartGenerator.AlienComp comp = pawn.TryGetComp<AlienRace.AlienPartGenerator.AlienComp>();
                 if (comp != null)
                 {
-                    d = (portrait ? comp.alienPortraitGraphics.bodySet.MeshAt(bodyFacing).bounds.size : comp.alienGraphics.bodySet.MeshAt(bodyFacing).bounds.size);
+                //    d = (portrait ? comp.alienPortraitGraphics.bodySet.MeshAt(bodyFacing).bounds.size : comp.alienGraphics.bodySet.MeshAt(bodyFacing).bounds.size);
+                    d = (portrait ? comp.customPortraitDrawSize : comp.customDrawSize);
 
-                    size = new Vector2(d.x, d.z);
+                    size = new Vector2(d.x * 1.5f, d.y * 1.5f);
                     return;
                 }
             }
-            d = (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
-            size = new Vector2(d.x*1.5f, d.z * 1.5f);
+            size = new Vector2(1.5f, 1.5f);
             return;
         }
-        */
 
+
+        // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
+        public static Mesh GetPawnMesh(bool portrait, Pawn pawn, Rot4 facing, bool wantsBody)
+        {
+
+            if (AdeptusIntergrationUtil.enabled_AlienRaces)
+            {
+                return GetAlienPawnMesh(portrait, pawn, facing, wantsBody);
+            }
+            if (!wantsBody)
+            {
+                return MeshPool.humanlikeHeadSet.MeshAt(facing);
+            }
+            return MeshPool.humanlikeBodySet.MeshAt(facing);
+        }
+
+        // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
+        public static Mesh GetAlienPawnMesh(bool portrait, Pawn pawn, Rot4 facing, bool wantsBody)
+        {
+
+            AlienRace.AlienPartGenerator.AlienComp comp = pawn.GetComp<AlienRace.AlienPartGenerator.AlienComp>();
+            if (comp == null)
+            {
+                if (!wantsBody)
+                {
+                    return MeshPool.humanlikeHeadSet.MeshAt(facing);
+                }
+                return MeshPool.humanlikeBodySet.MeshAt(facing);
+            }
+            else if (!portrait)
+            {
+                if (!wantsBody)
+                {
+                    return comp.alienHeadGraphics.headSet.MeshAt(facing);
+                }
+                return comp.alienGraphics.bodySet.MeshAt(facing);
+            }
+            else
+            {
+                if (!wantsBody)
+                {
+                    return comp.alienPortraitHeadGraphics.headSet.MeshAt(facing);
+                }
+                return comp.alienPortraitGraphics.bodySet.MeshAt(facing);
+            }
+        }
     }
 }

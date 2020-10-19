@@ -7,7 +7,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    class LaserBeamGraphic :Thing
+    public class LaserBeamGraphic :Thing
     {
         public LaserBeamDef projDef;
 

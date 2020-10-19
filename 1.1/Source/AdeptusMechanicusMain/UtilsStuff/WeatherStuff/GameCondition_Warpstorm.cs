@@ -30,7 +30,9 @@ namespace RimWorld
         {
             if (Find.TickManager.TicksGame > this.nextLightningTicks)
             {
+                Rand.PushState();
                 Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, (float)this.areaRadius);
+                Rand.PopState();
                 IntVec3 intVec = new IntVec3((int)Math.Round((double)vector.x) + this.centerLocation.x, 0, (int)Math.Round((double)vector.y) + this.centerLocation.z);
                 if (this.IsGoodLocationForStrike(intVec))
                 {
@@ -56,7 +58,9 @@ namespace RimWorld
             }
             for (int i = 0; i < 10; i++)
             {
+                Rand.PushState();
                 this.centerLocation = new IntVec2(Rand.Range(8, base.SingleMap.Size.x - 8), Rand.Range(8, base.SingleMap.Size.z - 8));
+                Rand.PopState();
                 if (this.IsGoodCenterLocation(this.centerLocation))
                 {
                     break;

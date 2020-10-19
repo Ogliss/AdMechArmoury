@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
+    </li>
+	
+	<!--==================== Ork  - Crude Choppa =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_CrudeChoppa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.45</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_CrudeChoppa"]/statBases</xpath>
+		<value>
+      <Bulk>2.5</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Ork  - Choppa =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_Choppa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.45</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_Choppa"]/statBases</xpath>
+		<value>
+      <Bulk>2.5</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Ork  - Chain Choppa =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_ChainChoppa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.45</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_ChainChoppa"]/statBases</xpath>
+		<value>
+      <Bulk>2.5</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Ork  - Big Choppa =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_BigChoppa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>48</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_BigChoppa"]/statBases</xpath>
+		<value>
+      <Bulk>4.5</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Ork  - Power Klaw =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_PowerKlaw"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>klaws</label>
+					<capacities>
+						<li>OG_PowerWeapon_Cut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetration>2.5</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.45</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGO_Melee_PowerKlaw"]/statBases</xpath>
+		<value>
+      <Bulk>2.5</Bulk>
+		</value>
+	</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

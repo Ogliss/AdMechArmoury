@@ -31,14 +31,17 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     pawnsN = pawns.FindAll(x => !x.canDeepStrike() && !x.canInfiltrate());
 
+                    Rand.PushState();
                     bool DeepStrike = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeChance : 0f)));
-
+                    Rand.PopState();
                     if (!pawns.FindAll(x => x.canDeepStrike()).NullOrEmpty() && DeepStrike)
                     {
                     //    Log.Message(string.Format("Deep Strike Candidates: {0}", pawns.FindAll(x => x.canDeepStrike()).Count));
                         foreach (Pawn p in pawns.FindAll(x => x.canDeepStrike()))
                         {
+                            Rand.PushState();
                             bool Striker = Rand.Chance(p.chanceDeepStrike());
+                            Rand.PopState();
                             //    Log.Message(string.Format("Deep Strike Candidate: {0}", p.LabelShortCap));
                             if (Striker)
                             {
@@ -69,13 +72,17 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         pawnsN.Concat(pawns.FindAll(x => x.canDeepStrike()));
                     }
+                    Rand.PushState();
                     bool Infiltrate = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtension<FactionDefExtension>().InfiltrateChance : 0f)));
+                    Rand.PopState();
                     if (!pawns.FindAll(x => x.canInfiltrate()).NullOrEmpty() && Infiltrate)
                     {
                     //    Log.Message(string.Format("Infiltrate Candidates: {0}", pawns.FindAll(x => x.canInfiltrate()).Count));
                         foreach (Pawn p in pawns.FindAll(x => x.canInfiltrate()))
                         {
+                            Rand.PushState();
                             bool Striker = Rand.Chance(p.chanceInfiltrate());
+                            Rand.PopState();
                             //    Log.Message(string.Format("Infiltrate Candidate: {0}", p.LabelShortCap));
                             if (Striker)
                             {

@@ -13,7 +13,9 @@ namespace AdeptusMechanicus
         // Token: 0x0600075F RID: 1887 RVA: 0x000670C4 File Offset: 0x000652C4
         public static Mesh NewBoltMesh(float distance, float amplitude)
         {
+            Rand.PushState();
             AM_MeshMaker.lightningTop = new Vector2(Rand.Range(-0.2f, 0.2f), distance);
+            Rand.PopState();
             AM_MeshMaker.MakeVerticesBase();
             bool flag = amplitude > 0f;
             if (flag)
@@ -41,7 +43,9 @@ namespace AdeptusMechanicus
         // Token: 0x06000761 RID: 1889 RVA: 0x00067194 File Offset: 0x00065394
         private static void PeturbVerticesRandomly(float amplitude)
         {
+            Rand.PushState();
             Perlin perlin = new Perlin(0.0070000002160668373, 2.0, 0.5, 6, Rand.Range(0, int.MaxValue), QualityMode.High);
+            Rand.PopState();
             List<Vector2> list = AM_MeshMaker.verts2D.ListFullCopy<Vector2>();
             AM_MeshMaker.verts2D.Clear();
             for (int i = 0; i < list.Count; i++)

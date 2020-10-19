@@ -2,11 +2,11 @@
 <Defs>
 	<!-- ==================== Base Bullet Templates ========================= -->
 	<ThingDef Abstract="True" Name="OG_Bullet_Base" ParentName="BaseBullet">
-    <thingClass>Bullet</thingClass>
+		<thingClass>Bullet</thingClass>
 	</ThingDef>
 
 	<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect"  Abstract="True" Name="OG_Bullet_Base_Effect" ParentName="BaseBullet">
-    <thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
+		<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
 	</ThingDef>
 	
 	<!-- ==================== Base Weapon Template ========================= -->	
@@ -44,29 +44,35 @@
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
 		<thingCategories>
-      <li>WeaponsRanged</li>
-    </thingCategories>
-  </ThingDef>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<!--
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
+		  </li>
+		</modExtensions>
+		-->
+	</ThingDef>
 
 	<ThingDef Name="OG_Gun_Qaulity" Abstract="True" ParentName="OG_Gun_Base">
-    <comps>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
-  </ThingDef>
+		<comps>
+		  <li>
+			<compClass>CompQuality</compClass>
+		  </li>
+		</comps>
+	</ThingDef>
 
 	<ThingDef Name="OG_Gun_Qaulity_Art" Abstract="True" ParentName="OG_Gun_Qaulity">
-    <inspectorTabs>
-      <li>ITab_Art</li>
-    </inspectorTabs>
-    <comps>
-      <li Class="CompProperties_Art">
-        <nameMaker>NamerArtWeaponGun</nameMaker>
-        <descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
-        <minQualityForArtistic>Excellent</minQualityForArtistic>
-      </li>
-    </comps>
-  </ThingDef>
+		<inspectorTabs>
+		  <li>ITab_Art</li>
+		</inspectorTabs>
+		<comps>
+		  <li Class="CompProperties_Art">
+			<nameMaker>NamerArtWeaponGun</nameMaker>
+			<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+			<minQualityForArtistic>Excellent</minQualityForArtistic>
+		  </li>
+		</comps>
+	</ThingDef>
  
 </Defs>

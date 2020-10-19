@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Autoguns ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoOGAuto</defName>
+		<label>Auto shells</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGAutoHeavy</defName>
+		<label>Autocannon shells</label>
+		<ammoTypes>
+			<Ammo_OGAutocannon>Bullet_OGRAutocannon</Ammo_OGAutocannon>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGAuto</defName>
+		<label>Auto rounds</label>
+		<ammoTypes>
+			<Ammo_OGAuto>Bullet_OGAuto</Ammo_OGAuto>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGAutoBS</defName>
+		<label>Auto cartridge</label>
+		<ammoTypes>
+			<Ammo_OGAutoBS>Bullet_OGAutoBS</Ammo_OGAutoBS>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGAutoOrk</defName>
+		<label>Auto rounds</label>
+		<ammoTypes>
+			<Ammo_OGAuto>Bullet_OGAuto</Ammo_OGAuto>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGSnazz</defName>
+		<label>Auto rounds</label>
+		<ammoTypes>
+			<Ammo_OGAuto>Bullet_OGSnazz</Ammo_OGAuto>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGKroot</defName>
+		<label>Auto rounds</label>
+		<ammoTypes>
+			<Ammo_OGAuto>Bullet_OGKroot</Ammo_OGAuto>
+			<Ammo_OGPulse>Bullet_OGPulse</Ammo_OGPulse>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGCCRAutocannonBase" ParentName="AmmoBase" Abstract="True">
+		<description>Autocannon shells</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGAuto</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGCCRAutocannonBase">
+		<defName>Ammo_OGAutocannon</defName>
+		<label>Autocannon shell</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGAutocannon</defName>
+		<label>make AutoCannon cartridge x70</label>
+		<description>Craft 70 AutoCannon cartridges.</description>
+		<jobString>Making AutoCannon cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGAutocannon>70</Ammo_OGAutocannon>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
+	</RecipeDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGCCRAutocannonBase">
+		<defName>Ammo_OGAuto</defName>
+		<label>Auto round</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGAuto</defName>
+		<label>make Autogun round x90</label>
+		<description>Craft 90 Autogun rounds.</description>
+		<jobString>Making Autogun rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGAuto>90</Ammo_OGAuto>
+		</products>
+		<researchPrerequisite>Machining</researchPrerequisite>
+	</RecipeDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGCCRAutocannonBase">
+		<defName>Ammo_OGAutoBS</defName>
+		<label>Auto cartridge</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGAutoBS</defName>
+		<label>make Auto cartridge x90</label>
+		<description>Craft 90 Auto cartridges.</description>
+		<jobString>Making Auto cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGAutoBS>90</Ammo_OGAutoBS>
+		</products>
+		<researchPrerequisite>Machining</researchPrerequisite>
+	</RecipeDef>
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGAutocannon" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/AutoShotLrg</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>OGCRAC</damageDef>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAutocannon">
+		<defName>Bullet_OGRAutocannon</defName>
+		<label>Autocannon shell</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationBase>0.4</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGAuto" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+		<defName>Bullet_OGAuto</defName>
+		<label>Auto bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.4</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+		<defName>Bullet_OGAutoBS</defName>
+		<label>Auto buckshot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>2</damageAmountBase>
+			<armorPenetrationBase>0.4</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+		<defName>Bullet_OGSnazz</defName>
+		<label>Auto bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/RailgunSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGKroot" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/BoltShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>OGTKroot</damageDef>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGKroot">
+		<defName>Bullet_OGKroot</defName>
+		<label>Kroot round</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.65</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+	
+</Defs>

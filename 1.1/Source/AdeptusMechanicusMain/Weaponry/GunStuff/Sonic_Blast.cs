@@ -62,11 +62,13 @@ namespace AdeptusMechanicus
 					while (enumerator.MoveNext())
 					{
 						ExtraDamage extraDamage = enumerator.Current;
+						Rand.PushState();
 						if (Rand.Chance(extraDamage.chance))
 						{
 							DamageInfo dinfo2 = new DamageInfo(extraDamage.def, extraDamage.amount, extraDamage.AdjustedArmorPenetration(), this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
 							hitThing.TakeDamage(dinfo2).AssociateWithLog(battleLogEntry_RangedImpact);
 						}
+						Rand.PopState();
 					}
 					return;
 				}

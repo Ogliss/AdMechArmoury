@@ -382,7 +382,9 @@ namespace AdeptusMechanicus
             if (flag2)
             {
                 Pawn pawn = this.usedTarget.Thing as Pawn;
+                Rand.PushState();
                 bool flag3 = pawn != null && pawn.GetPosture() != PawnPosture.Standing && (this.origin - this.destination).MagnitudeHorizontalSquared() >= 20.25f && Rand.Value > 0.2f;
+                Rand.PopState();
                 bool flag4 = flag3;
                 if (flag4)
                 {

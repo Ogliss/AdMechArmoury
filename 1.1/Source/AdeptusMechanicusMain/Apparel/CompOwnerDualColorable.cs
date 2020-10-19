@@ -10,12 +10,18 @@ namespace AdeptusMechanicus
 	{
 		public FactionDef faction;
 
+		private bool triedweapon = false;
+		private CompEquippable equippable;
 		public CompEquippable Equippable
 		{
 			get
 			{
-				CompEquippable comp = this.parent.TryGetComp<CompEquippable>();
-				return comp ?? null;
+                if (equippable == null && !triedweapon)
+                {
+					equippable = this.parent.TryGetComp<CompEquippable>();
+					triedweapon = true;
+				}
+				return equippable ?? null;
 			}
 		}
 
@@ -23,9 +29,20 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				if (Equippable?.PrimaryVerb?.CasterPawn!=null)
+				Apparel ap = parent as Apparel;
+				if (ap != null)
+                {
+                    if (ap.Wearer != null)
+                    {
+						return ap.Wearer;
+					}
+                }
+				if (Equippable != null)
 				{
-					return Equippable?.PrimaryVerb?.CasterPawn;
+                    if (Equippable?.PrimaryVerb?.CasterPawn !=null)
+					{
+						return Equippable?.PrimaryVerb?.CasterPawn;
+					}
 				}
 				return this.parent as Pawn;
 			}

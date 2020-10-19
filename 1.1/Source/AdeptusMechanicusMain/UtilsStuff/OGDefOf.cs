@@ -144,4 +144,11 @@ namespace AdeptusMechanicus
         public static readonly StatDef reliability = StatDef.Named("reliability"); // for gun reliability
 
     }
+    [DefOf]
+    public static class OGBodyPartGroupDefOf
+    {
+        public static readonly BodyPartGroupDef Mouth;
+        public static readonly BodyPartGroupDef Neck;
+
+    }
 }

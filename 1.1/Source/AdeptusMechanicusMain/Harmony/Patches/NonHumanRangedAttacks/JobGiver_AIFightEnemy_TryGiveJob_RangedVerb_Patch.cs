@@ -138,8 +138,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Warning("I can't find anything to fight.");
                 return true;
             }
+            Rand.PushState();
             bool useranged = Rand.Chance(rangeVerb.verbProps.commonality);
-        //    Log.Warning(string.Format("useranged: {0}", useranged));
+            int expiryInterval = Rand.Range(420, 900);
+            Rand.PopState();
+            //    Log.Warning(string.Format("useranged: {0}", useranged));
             if (!useranged)
             {
                 //If adjacent melee attack
@@ -148,7 +151,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     __result = new Job(JobDefOf.AttackMelee, enemyTarget)
                     {
                         maxNumMeleeAttacks = 1,
-                        expiryInterval = Rand.Range(420, 900),
+                        expiryInterval = expiryInterval,
                         attackDoorIfTargetLost = false
                     };
                     return false;
@@ -160,7 +163,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     __result = new Job(JobDefOf.AttackMelee, enemyTarget)
                     {
                         maxNumMeleeAttacks = 1,
-                        expiryInterval = Rand.Range(420, 900),
+                        expiryInterval = expiryInterval,
                         attackDoorIfTargetLost = false
                     };
                     return false;

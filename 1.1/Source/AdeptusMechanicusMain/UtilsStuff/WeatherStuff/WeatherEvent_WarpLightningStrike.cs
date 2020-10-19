@@ -45,14 +45,18 @@ namespace RimWorld
             {
                 GenExplosion.DoExplosion(this.strikeLoc, this.map, 3f, OGDamageDefOf.OG_WarpStormStrike, null, -1, -1f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
                 Vector3 loc = this.strikeLoc.ToVector3Shifted();
+                Rand.PushState();
                 bool chance = Rand.Chance(thingDefSpawnChance);
+                Rand.PopState();
                 if (chance && thingDeftoSpawn!=null)
                 {
                     GenSpawn.Spawn(ThingMaker.MakeThing(thingDeftoSpawn, null), strikeLoc, map);
                 }
                 for (int i = 0; i < 4; i++)
                 {
+                    Rand.PushState();
                     chance = Rand.Chance(kindDefSpawnChance);
+                    Rand.PopState();
                     if (chance && kindDeftoSpawn != null)
                     {
                         PawnKindDef pawnkind = kindDeftoSpawn != null ? kindDeftoSpawn : null ;

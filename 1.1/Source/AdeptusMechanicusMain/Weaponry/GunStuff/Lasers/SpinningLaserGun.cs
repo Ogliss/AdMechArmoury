@@ -6,7 +6,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    class SpinningLaserGun : SpinningLaserGunBase
+    public class SpinningLaserGun : SpinningLaserGunBase
     {
         bool IsBrusting(Pawn pawn)
         {

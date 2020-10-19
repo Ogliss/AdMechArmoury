@@ -54,12 +54,14 @@ namespace AdeptusMechanicus.settings
         public bool ShowInquisition = false;
         public bool AllowAdeptusAstartes = false;
         public float AstartePunchingFactor = 1f, AstarteSplitFactor = 1f, AstarteScale = 1f;
-        public bool AstarteUseOrgans, AstarteEasyMode;
+        public bool AstarteUseOrgans, AstarteEasyMode, AstartesMaleOnly, AstartesAgeMatters;
         public bool AllowAdeptusMechanicus = true;
         public bool AllowAdeptusMilitarum = true;
         public bool AllowAdeptusSororitas = false;
 
         // Playable Imperium Settings
+        public IntRange activeChapters;
+        public Dictionary<string, SettingHandle> AstartesChapterSettings = new Dictionary<string, SettingHandle>();
 
         // Chaos Settings
 
@@ -219,6 +221,23 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.ShowTyranid, "AMXB_ShowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
             Scribe_Values.Look(ref this.AllowTyranid, "AMXB_AllowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
             Scribe_Values.Look(ref this.AllowTyranidInfestation, "AMXB_AllowTyranidInfestation", false && AMSettings.Instance.AllowTyranidWeapons && AMSettings.Instance.AllowTyranid);
+            
+            // Astartes Data
+            Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_AstarteEasyMode", false);
+            Scribe_Values.Look(ref this.AstartesAgeMatters, "AMAA_AstartesAgeMatters", true);
+            Scribe_Values.Look(ref this.AstartesMaleOnly, "AMAA_AstartesMaleOnly", true);
+            Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
+
+            // Astartes Playable Race Extras
+            Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
+            Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
+            Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
+            Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
+            Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
+            Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
+            Scribe_Values.Look(ref this.activeChapters, "activeChapters", new IntRange(1, 5));
+            Scribe_Collections.Look<string, SettingHandle>(ref this.AstartesChapterSettings, "AstartesChapterSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
+
             // Tau Data
 
             // Tau Playable Race Extras
@@ -247,15 +266,15 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.15f);
             Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
-
-            Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
-            Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
-            Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
-            Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
-            Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
-            Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
         }
 
 
+    }
+    public abstract class SettingHandle : IExposable
+    {
+        public virtual void ExposeData()
+        {
+
+        }
     }
 }

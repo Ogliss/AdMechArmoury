@@ -34,7 +34,7 @@
 	<HediffDef ParentName="InjuryBase">
 		<defName>LaserBurn</defName>
 		<description>description</description>
-		<label>laserburn</label>
+		<label>las-burn</label>
     <labelNoun>a laser burn</labelNoun>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
@@ -43,19 +43,21 @@
         <labelSolidTendedWell>set</labelSolidTendedWell>
       </li>
       <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.05</infectionChance>
+        <infectionChance>0.10</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>laser burn scar</permanentLabel>
+        <permanentLabel>old las gunshot</permanentLabel>
+        <instantlyPermanentLabel>permanent las gunshot injury</instantlyPermanentLabel>
       </li>
     </comps>
-		<injuryProps>
-      <painPerSeverity>0.02075</painPerSeverity>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
       <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
-      <canMerge>true</canMerge>
-			<destroyedLabel>Burned off</destroyedLabel>
-			<destroyedOutLabel>Burned out</destroyedOutLabel>
-		</injuryProps>
+      <bleedRate>0.00</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Burned off</destroyedLabel>
+      <destroyedOutLabel>Burned out</destroyedOutLabel>
+    </injuryProps>
 	</HediffDef>
 	
 <!-- ==================== Melta Burn HeDiff ========================= -->

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!--QX========================= Imperial Guard - Rogue Trader Definition ==========================QX-->
+  <!--========================= Recruitment Ships - Rogue Trader Definition ==========================-->
   <IncidentDef>
     <defName>OrbitalRecruiterArrival</defName>
     <label>orbital recruiter arrival</label>
@@ -13,11 +13,12 @@
     <baseChance>3</baseChance>
     <requireColonistsPresent>True</requireColonistsPresent>
   </IncidentDef>
-
+  
   <TraderKindDef>
     <defName>OG_Orbital_RecruiterMerchant</defName>
     <label>recruiter ship</label>
     <orbital>true</orbital>
+    <hideThingsNotWillingToTrade>true</hideThingsNotWillingToTrade>
     <requestable>false</requestable>
     <commonalityMultFromPopulationIntent>
       <points>
@@ -28,6 +29,11 @@
     </commonalityMultFromPopulationIntent>
     <stockGenerators>
 
+      <!-- Resources -->
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>0~0</countRange>
+      </li>
       <!-- Recruits -->
       <li Class="Recruiters.StockGenerator_Recruits">
         <countRange>2~4</countRange>
@@ -47,10 +53,24 @@
 	</modExtensions>
   </TraderKindDef>
   
+  <!--========================= Mercenary Ships - Rogue Trader Definition ==========================-->
+  <IncidentDef>
+    <defName>OrbitalMercenaryArrival</defName>
+    <label>orbital mercenary arrival</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Recruiters.IncidentWorker_OrbitalMercenaryArrival</workerClass>
+    <category>OrbitalVisitor</category>
+    <baseChance>3</baseChance>
+    <requireColonistsPresent>True</requireColonistsPresent>
+  </IncidentDef>
+
   <TraderKindDef>
     <defName>OG_Orbital_MercsMerchant</defName>
     <label>Merc ship</label>
     <orbital>true</orbital>
+    <hideThingsNotWillingToTrade>true</hideThingsNotWillingToTrade>
     <requestable>false</requestable>
     <commonalityMultFromPopulationIntent>
       <points>
@@ -60,19 +80,26 @@
       </points>
     </commonalityMultFromPopulationIntent>
     <stockGenerators>
-
+      <!-- Resources -->
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>0~0</countRange>
+      </li>
       <!-- Mercs -->
       <li Class="Recruiters.StockGenerator_Mercs">
         <countRange>2~20</countRange>
       </li>
       
       <!-- Buying 
-      <li Class="StockGenerator_BuyExpensiveSimple" />
       <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
       <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
       <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireRoyal</tag></li>
       <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
       -->
+      <li Class="StockGenerator_BuyTradeTag"><tag>Wargear</tag></li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="Recruiters.StockGenerator_BuyArmor" />
+      <li Class="Recruiters.StockGenerator_BuyWeapon" />
     </stockGenerators>
 	<modExtensions>
 	  <li Class="Recruiters.RecruiterExt">

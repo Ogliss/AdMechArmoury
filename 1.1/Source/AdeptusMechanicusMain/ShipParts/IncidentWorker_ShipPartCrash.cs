@@ -32,7 +32,9 @@ namespace RimWorld
             int num = 0;
             int countToSpawn = this.CountToSpawn;
             List<TargetInfo> list = new List<TargetInfo>();
+            Rand.PushState();
             float shrapnelDirection = Rand.Range(0f, 360f);
+            Rand.PopState();
             for (int i = 0; i < countToSpawn; i++)
             {
                 IntVec3 intVec;

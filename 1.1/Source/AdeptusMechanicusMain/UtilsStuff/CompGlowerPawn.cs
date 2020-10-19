@@ -51,7 +51,9 @@ namespace Verse
             base.PostSpawnSetup(respawningAfterLoad);
             if (!respawningAfterLoad)
             {
+                Rand.PushState();
                 this.nextUpdateTick = Find.TickManager.TicksGame + Rand.Range(0, 100);
+                Rand.PopState();
             }
 
         }

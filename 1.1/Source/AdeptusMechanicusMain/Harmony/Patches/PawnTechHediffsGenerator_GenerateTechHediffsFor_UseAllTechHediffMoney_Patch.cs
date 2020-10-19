@@ -29,8 +29,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return;
             }
-        //    Log.Message("UseAllTechHediffMoney for " + pawn + " 2");
-            if (Rand.Value > pawn.kindDef.techHediffsChance)
+            //    Log.Message("UseAllTechHediffMoney for " + pawn + " 2");
+            Rand.PushState();
+            bool act = Rand.Value > pawn.kindDef.techHediffsChance;
+            Rand.PopState();
+            if (act)
             {
                 return;
             }
@@ -72,7 +75,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             recipeDef.Worker.ApplyOnPawn(pawn, recipeDef.Worker.GetPartsToApplyOn(pawn, recipeDef).RandomElement<BodyPartRecord>(), null, emptyIngredientsList, null);
                             partsMoney -= recipeDef.addsHediff.spawnThingOnRemoved.BaseMarketValue;
-                            if (Rand.Value > pawn.kindDef.techHediffsChance)
+                            Rand.PushState();
+                            bool done = Rand.Value > pawn.kindDef.techHediffsChance;
+                            Rand.PopState();
+                            if (done)
                             {
                             //    Log.Message("UseAllTechHediffMoney for " + pawn + " early exit with " + partsMoney + " partsMoney remaining");
                                 break;

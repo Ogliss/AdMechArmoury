@@ -49,8 +49,13 @@ namespace AdeptusMechanicus
             public float commonalityFemale = -1f;
         }
 
-        public bool CommonalityApproved(Gender g) => Rand.Range(min: 0, max: 100) < (g == Gender.Female ? this.femaleCommonality : this.maleCommonality);
-
+        public bool CommonalityApproved(Gender g)
+        {
+            Rand.PushState();
+            bool result = Rand.Range(min: 0, max: 100) < (g == Gender.Female ? this.femaleCommonality : this.maleCommonality);
+            Rand.PushState();
+            return result;
+        }
         public bool Approved(Pawn p) => this.CommonalityApproved(g: p.gender) &&
             (this.bioAgeRange == default(IntRange) || (this.bioAgeRange.min < p.ageTracker.AgeBiologicalYears && p.ageTracker.AgeBiologicalYears < this.bioAgeRange.max)) &&
             (this.chronoAgeRange == default(IntRange) || (this.chronoAgeRange.min < p.ageTracker.AgeChronologicalYears && p.ageTracker.AgeChronologicalYears < this.chronoAgeRange.max));
@@ -63,6 +68,7 @@ namespace AdeptusMechanicus
 
             if (!this.addToDatabase || BackstoryDatabase.allBackstories.ContainsKey(key: this.defName) || this.title.NullOrEmpty() || this.spawnCategories.NullOrEmpty()) return;
 
+            Rand.PushState();
             this.backstory = new Backstory
             {
                 slot = this.slot,
@@ -89,6 +95,7 @@ namespace AdeptusMechanicus
                     return wt;
                 })()
             };
+            Rand.PopState();
 
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeGlobalResolved").SetValue(value: this.bodyTypeGlobal);
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeFemaleResolved").SetValue(value: this.bodyTypeFemale);

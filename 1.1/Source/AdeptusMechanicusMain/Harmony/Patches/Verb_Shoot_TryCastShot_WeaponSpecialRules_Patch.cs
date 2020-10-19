@@ -60,6 +60,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     float ArmorPenetration = __instance.Projectile.projectile.GetArmorPenetration(__instance.EquipmentSource, null);
                     float DamageAmount = 0;
                     Pawn launcherPawn = __instance.caster as Pawn;
+                    Rand.PushState();
                     if (Rand.Chance(GetsHotCritChance))
                     {
                         DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null);
@@ -71,6 +72,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null);
                         msg = string.Format("{0}'s {1} overheated. ({2} chance) causing {3} damage", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent(), DamageAmount);
                     }
+                    Rand.PopState();
                     float maxburndmg = DamageAmount / 10;
                     while (DamageAmount > 0f)
                     {
@@ -91,7 +93,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             BodyPartRecord part = list.RandomElement();
                             Hediff hediff;
+                            Rand.PushState();
                             float severity = Rand.Range(Math.Min(0.1f, DamageAmount), Math.Min(DamageAmount, maxburndmg));
+                            Rand.PopState();
                             hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, part);
                             hediff.Severity = severity;
                             launcherPawn.health.AddHediff(hediff, part, null);
@@ -213,11 +217,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (!Immunityflag)
                 {
 
+                    Rand.PushState();
                     var rand = Rand.Value; // This is a random percentage between 0% and 100%
-                                           //    Log.Message(string.Format("GunExt.EffectsUser Effect: {0}, Chance: {1}, Roll: {2}, Result: {3}" + GunExt.ResistEffectStat != null ? ", Resist Stat: "+GunExt.ResistEffectStat.LabelCap+", Resist Amount"+ __instance.caster.GetStatValue(GunExt.ResistEffectStat, true) : null, GunExt.UserEffect.LabelCap, AddHediffChance, rand, rand <= AddHediffChance));
+                    Rand.PopState();
+                    //    Log.Message(string.Format("GunExt.EffectsUser Effect: {0}, Chance: {1}, Roll: {2}, Result: {3}" + GunExt.ResistEffectStat != null ? ", Resist Stat: "+GunExt.ResistEffectStat.LabelCap+", Resist Amount"+ __instance.caster.GetStatValue(GunExt.ResistEffectStat, true) : null, GunExt.UserEffect.LabelCap, AddHediffChance, rand, rand <= AddHediffChance));
                     if (rand <= AddHediffChance) // If the percentage falls under the chance, success!
                     {
+                        Rand.PushState();
                         var randomSeverity = Rand.Range(0.05f, 0.15f);
+                        Rand.PopState();
                         var effectOnPawn = launcherPawn?.health?.hediffSet?.GetFirstHediffOfDef(UserHediff);
                         if (effectOnPawn != null)
                         {
@@ -279,16 +287,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (num > 0.5f)
                 {
                     int max = GenRadial.NumCellsInRadius(num);
+                    Rand.PushState();
                     int num2 = Rand.Range(0, max);
+                    Rand.PopState();
                     if (num2 > 0)
                     {
                         IntVec3 c = currentTarget.Cell + GenRadial.RadialPattern[num2];
 
                         ProjectileHitFlags projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
+                        Rand.PushState();
                         if (Rand.Chance(0.5f))
                         {
                             projectileHitFlags = ProjectileHitFlags.All;
                         }
+                        Rand.PopState();
                         if (!canHitNonTargetPawnsNow)
                         {
                             projectileHitFlags &= ~ProjectileHitFlags.NonTargetPawns;
@@ -301,20 +313,28 @@ namespace AdeptusMechanicus.HarmonyInstance
             ShotReport shotReport = ShotReport.HitReportFor(__instance.caster, __instance, currentTarget);
             Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
             ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
-            if (!Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture))
+
+            Rand.PushState();
+            bool f1 = !Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture);
+            Rand.PushState();
+            if (f1)
             {
                 shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget);
                 ProjectileHitFlags projectileHitFlags2 = ProjectileHitFlags.NonTargetWorld;
+                Rand.PushState();
                 if (Rand.Chance(0.5f) && canHitNonTargetPawnsNow)
                 {
                     projectileHitFlags2 |= ProjectileHitFlags.NonTargetPawns;
                 }
+                Rand.PopState();
                 projectile2.Launch(launcher, drawPos, shootLine.Dest, currentTarget, projectileHitFlags2, equipment, targetCoverDef);
                 return true;
             }
-            if (currentTarget.Thing != null && currentTarget.Thing.def.category == ThingCategory.Pawn && !Rand.Chance(shotReport.PassCoverChance))
+            Rand.PushState();
+            bool f2 = !Rand.Chance(shotReport.PassCoverChance);
+            Rand.PopState();
+            if (currentTarget.Thing != null && currentTarget.Thing.def.category == ThingCategory.Pawn && f2)
             {
-
                 ProjectileHitFlags projectileHitFlags3 = ProjectileHitFlags.NonTargetWorld;
                 if (canHitNonTargetPawnsNow)
                 {

@@ -22,6 +22,7 @@
        <!-- 
 		<li>OGC_TableMachining</li>
 		-->
+		<li>OGI_TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
@@ -76,6 +77,22 @@
       <li>ChaosWeapon</li>
     </weaponTags>
 
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="OG_Chaos_MeleeWeapon_MakeableBase" Abstract="True" ParentName="OG_Chaos_MeleeWeapon_Base">
     <recipeMaker>
       <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -90,19 +107,6 @@
 			<li>OG_Chaos_Tech_Base_T1</li>
 		</researchPrerequisites>
     </recipeMaker>
-    <inspectorTabs>
-      <li>ITab_Art</li>
-    </inspectorTabs>
-		<comps>
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-			<li Class="CompProperties_Art">
-				<nameMaker>NamerArtWeaponMelee</nameMaker>
-				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
-				<minQualityForArtistic>Excellent</minQualityForArtistic>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<!-- ==================== Mod - Base Chaos Melee Weapon Sharp Template ========================= -->
