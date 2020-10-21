@@ -11,7 +11,7 @@ namespace AdeptusMechanicus
 {
 
     [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming", new Type[] { typeof(Thing), typeof(Vector3), typeof(float) }), StaticConstructorOnStartup]
-    public static class AM_PawnRenderer_Draw_WquipmentAiming_GunDrawing_Patch
+    public static class PawnRenderer_Draw_WquipmentAiming_GunDrawing_Patch
     {
         [HarmonyPrefix, HarmonyPriority(Priority.First)]
         static void Prefix(Pawn ___pawn, ref Thing eq, ref Vector3 drawLoc, ref float aimAngle, PawnRenderer __instance)

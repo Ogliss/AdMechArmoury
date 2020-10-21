@@ -4,10 +4,56 @@
 <Operation Class="PatchOperationSequence">
   <success>Always</success>
   <operations>
-    <li Class="PatchOperationTest">
-      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
-    </li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Splinter"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_Splinter</defName>
+				<label>splinter shard</label>
+				<graphicData>
+					<texPath>Things/Projectile/SplinterSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGESplinter</damageDef>
+					<damageAmountBase>4</damageAmountBase>
+					<stoppingPower>3</stoppingPower>
+					<armorPenetrationBase>1.48</armorPenetrationBase>
+					<speed>135</speed>
+				</projectile>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+			</ThingDef>
+		</value>
+	</li>
 	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_ToxicSplinter"]</xpath>
+		<value>
+		
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_ToxicSplinter</defName>
+				<label>toxic splinter shard</label>
+				<graphicData>
+					<texPath>Things/Projectile/StingerSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGDEStinger</damageDef>
+					<speed>135</speed>
+					<damageAmountBase>4</damageAmountBase>
+					<armorPenetrationBase>1.5</armorPenetrationBase>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+				<AddHediffChance>0.1</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</ThingDef>
+
+		</value>
+	</li>
+
 	<!--==================== Dark Eldar - Splinter Pistol =========================-->
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_SplinterPistol</defName>
@@ -23,7 +69,7 @@
 		<recoilAmount>0.15</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGSplinter</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
       <warmupTime>0.3</warmupTime>
       <range>25</range>
       <soundCast>OG_Splinter_Sound</soundCast>
@@ -91,7 +137,7 @@
 		<recoilAmount>0.3</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGSplinter</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
       <warmupTime>1.3</warmupTime>
       <range>31</range>
       <soundCast>OG_Splinter_Sound</soundCast>
@@ -159,7 +205,7 @@
 		<recoilAmount>0.3</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGSplinter</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
       <warmupTime>1.3</warmupTime>
       <range>28</range>
       <soundCast>OG_Splinter_Sound</soundCast>
@@ -227,7 +273,7 @@
 		<recoilAmount>0.3</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGSplinterHeavy</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_SplinterCannon</defaultProjectile>
       <warmupTime>1.3</warmupTime>
       <range>36</range>
       <soundCast>OG_Splinter_Sound</soundCast>
@@ -280,6 +326,54 @@
 		</value>
 	</li>
   
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_SplinterCannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_SplinterCannon</defName>
+				<label>splinter shard</label>
+				<graphicData>
+					<texPath>Things/Projectile/SplinterSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGESplinter</damageDef>
+					<damageAmountBase>8</damageAmountBase>
+					<stoppingPower>3</stoppingPower>
+					<armorPenetrationBase>1.96</armorPenetrationBase>
+					<speed>135</speed>
+				</projectile>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_SplinterCannonToxic</defName>
+				<label>toxic splinter shard</label>
+				<graphicData>
+					<texPath>Things/Projectile/StingerSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGDEStinger</damageDef>
+					<speed>135</speed>
+					<damageAmountBase>8</damageAmountBase>
+					<armorPenetrationBase>1.5</armorPenetrationBase>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+				<AddHediffChance>0.1</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</ThingDef>
+		</value>
+	</li>
+
 	<!--==================== Dark Eldar - Disintergrator Cannon =========================-->
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_DisintergratorCannon</defName>
@@ -295,7 +389,7 @@
 		<recoilAmount>0.5</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGPlasmaDEld</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_DisintergratorCannon</defaultProjectile>
       <warmupTime>1.5</warmupTime>
       <range>45</range>
       <soundCast>OG_Starcannon_Sound</soundCast>
@@ -310,7 +404,7 @@
     <AmmoUser>
       <magazineSize>24</magazineSize>
       <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGPlasmaDEld</ammoSet>
+      <ammoSet>AmmoSet_OGDEPlasma</ammoSet>
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
@@ -339,6 +433,76 @@
 		</value>
 	</li>
  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_DisintergratorCannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_DisintergratorCannon</defName>
+				<label>Disintergrator Bolt</label>
+				<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+				<graphicData>
+					<texPath>Things/Projectile/PlamsShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGEPlas</damageDef>
+					<damageAmountBase>35</damageAmountBase>
+					<armorPenetrationBase>1.8</armorPenetrationBase>
+					<stoppingPower>1.5</stoppingPower>
+					<speed>135</speed>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+				<modExtensions>
+				  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+					<explosionMote>true</explosionMote>
+					<explosionMoteSize>0.75</explosionMoteSize>
+					<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+					<ImpactMoteSize>2</ImpactMoteSize>
+					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				  </li>
+				  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+					<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+					<GlowMoteSize>1.5</GlowMoteSize>
+				  </li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+		
+	<!--==================== Dark Eldar - DarkLight Blast =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Darklance"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGDE_Bullet_Darklance</defName>
+				<label>mitralock blast</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/DarkLightShot</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGELance</damageDef>
+					<damageAmountBase>75</damageAmountBase>
+					<armorPenetrationBase>4.0</armorPenetrationBase>
+					<soundExplode>OGIPP_Explosion</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
 	<!--==================== Dark Eldar - Blast Pistol =========================-->
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_BlastPistol</defName>
@@ -542,7 +706,7 @@
 		<recoilAmount>0.5</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGArc</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_HaywireBlaster</defaultProjectile>
       <warmupTime>1.5</warmupTime>
       <range>28</range>
       <soundCast>OG_Deathspinner_Sound</soundCast>
@@ -592,6 +756,69 @@
 		</value>
 	</li>
   
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_HaywireBlaster"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGDE_Bullet_HaywireBlaster</defName>
+				<label>haywire blast</label>
+				<textures>
+				  <li>Things/Projectile/HaywireBlast</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGIArc</damageDef>
+					<damageAmountBase>25</damageAmountBase>
+					<armorPenetrationBase>4.0</armorPenetrationBase>
+					<soundExplode>OGIPP_Explosion</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!--==================== Dark Eldar - Fusion Beam =====================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_FusionBeam"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGDE_Bullet_FusionBeam</defName>
+				<label>melta blast</label>
+				<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/MeltaShot</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGIMelta</damageDef>
+					<damageAmountBase>125</damageAmountBase>
+					<armorPenetrationBase>10.0</armorPenetrationBase>
+					<explosionRadius>0.50</explosionRadius>
+					<soundExplode>OGIFL_Explosion</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.5</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+	
 	<!--==================== Dark Eldar - Fusion Pistol =====================-->
  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_FusionPistol</defName>
@@ -607,7 +834,7 @@
 		<recoilAmount>0.25</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGMelta</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
       <warmupTime>0.3</warmupTime>
       <range>16</range>
       <soundCast>OG_Melta_Sound</soundCast>
@@ -622,7 +849,7 @@
     <AmmoUser>
       <magazineSize>12</magazineSize>
       <reloadTime>4</reloadTime>
-      <ammoSet>AmmoSet_OGMelta</ammoSet>
+      <ammoSet>AmmoSet_OGDEMelta</ammoSet>
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
@@ -650,7 +877,7 @@
 			</tools>
 		</value>
 	</li>
-    
+    			
 	<!--==================== Dark Eldar - Heatlance =====================-->
  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_HeatLance</defName>
@@ -666,7 +893,7 @@
 		<recoilAmount>0.5</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGMelta</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
       <warmupTime>1.75</warmupTime>
       <range>28</range>
       <soundCast>OG_Melta_Sound</soundCast>
@@ -679,7 +906,7 @@
     <AmmoUser>
       <magazineSize>4</magazineSize>
       <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGMelta</ammoSet>
+      <ammoSet>AmmoSet_OGDEMelta</ammoSet>
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>	
@@ -731,7 +958,7 @@
 		<recoilAmount>0.5</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGMonofillament</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_Shredder</defaultProjectile>
       <warmupTime>1.5</warmupTime>
       <range>36</range>
       <soundCast>OG_Deathspinner_Sound</soundCast>
@@ -746,7 +973,7 @@
     <AmmoUser>
       <magazineSize>48</magazineSize>
       <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGMonofillament</ammoSet>
+      <ammoSet>AmmoSet_OGDEMonofillament</ammoSet>
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
@@ -783,6 +1010,29 @@
 		</value>
 	</li>
 
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Shredder"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_Shredder</defName>
+				<label>monofilament mesh</label>
+				<graphicData>
+					<texPath>Things/Projectile/DeathspinnerShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGDEShredder</damageDef>
+					<damageAmountBase>29</damageAmountBase>
+					<stoppingPower>1</stoppingPower>
+					<armorPenetrationBase>0.68</armorPenetrationBase>
+					<speed>135</speed>
+				</projectile>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+			</ThingDef>
+		</value>
+	</li>
+	
 	<!--==================== Dark Eldar - Stinger Pistol =========================-->
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_StingerPistol</defName>
@@ -798,7 +1048,7 @@
 		<recoilAmount>0.15</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_OGNeedle</defaultProjectile>
+      <defaultProjectile>OGDE_Bullet_Stinger</defaultProjectile>
       <warmupTime>0.3</warmupTime>
       <range>25</range>
       <soundCast>OG_Splinter_Sound</soundCast>
@@ -850,6 +1100,33 @@
 		</value>
 	</li>
   
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Stinger"]</xpath>
+		<value>
+		
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
+				<defName>OGDE_Bullet_Stinger</defName>
+				<label>needle</label>
+				<graphicData>
+					<texPath>Things/Projectile/StingerSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGDEStinger</damageDef>
+					<speed>135</speed>
+					<damageAmountBase>1</damageAmountBase>
+					<armorPenetrationBase>0.5</armorPenetrationBase>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+				<AddHediffChance>0.5</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</ThingDef>
+
+		</value>
+	</li>
+
   </operations>
 </Operation>
 

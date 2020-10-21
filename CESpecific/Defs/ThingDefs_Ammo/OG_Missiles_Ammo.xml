@@ -28,11 +28,44 @@
 		<defName>AmmoSet_OGMissile</defName>
 		<label>Missiles</label>
 		<ammoTypes>
-		  <Ammo_OGMissileFrag>Bullet_OGFragMissile</Ammo_OGMissileFrag>
-		  <Ammo_OGMissileKrak>Bullet_OGKrakMissile</Ammo_OGMissileKrak>
+		  <Ammo_OGMissileFrag>OGI_Bullet_RocketFrag</Ammo_OGMissileFrag>
+		  <Ammo_OGMissileKrak>OGI_Bullet_RocketKrak</Ammo_OGMissileKrak>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGEMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+		  <Ammo_OGMissileFrag>OGI_Bullet_RocketFrag</Ammo_OGMissileFrag>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGTMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+		  <Ammo_OGMissileFrag>OGT_Bullet_Missile</Ammo_OGMissileFrag>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGOMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+		  <Ammo_OGMissileKrak>OGO_Bullet_RokkitKrak</Ammo_OGMissileKrak>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGKombiShootaRokkit</defName>
+		<label>Shoota/Burna</label>
+		<ammoTypes>
+			<Ammo_OGAuto>OGO_Bullet_Shoota</Ammo_OGAuto>
+			<Ammo_OGMissileKrak>OGO_Bullet_RokkitKrak</Ammo_OGMissileKrak>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="OGMissileBase" ParentName="AmmoBase" Abstract="True">
@@ -93,7 +126,7 @@
 	</ThingDef>
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseOGMissile" ParentName="BaseBullet" Abstract="true">
+	<!--ThingDef Name="BaseOGMissile" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/AutoShotLrg</texPath>
@@ -107,7 +140,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseOGMissile">
-		<defName>Bullet_OGFragMissile</defName>
+		<defName>OGI_Bullet_RocketFrag</defName>
 		<label>frag missile</label>
 		<graphicData>
 			<texPath>Things/Projectile/ImpMissileFrag</texPath>
@@ -124,7 +157,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseOGMissile">
-		<defName>Bullet_OGKrakMissile</defName>
+		<defName>OGI_Bullet_RocketKrak</defName>
 		<label>krak missile</label>
 		<graphicData>
 			<texPath>Things/Projectile/ImpMissileKrak</texPath>
@@ -138,7 +171,7 @@
 			<armorPenetrationBase>3</armorPenetrationBase>
 			<soundExplode>OGIAC_Explosion</soundExplode>
 		</projectile>
-	</ThingDef>
+	</ThingDef-->
 
 	<!-- ==================== Recipes ========================== -->
 

@@ -11,19 +11,18 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamerHand</defName>
+		<label>Flamethrower ammo</label>
+		<ammoTypes>
+			<Ammo_OGFlamer>OGI_Bullet_FlamerHand</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGFlamer</defName>
 		<label>Flamethrower ammo</label>
 		<ammoTypes>
-			<Ammo_OGFlamer>Bullet_OGFlamer</Ammo_OGFlamer>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-	  
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_OGCombiBoltFlamer</defName>
-		<label>Bolter/Flamer</label>
-		<ammoTypes>
-			<Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
-			<Ammo_OGFlamer>Bullet_OGFlamer</Ammo_OGFlamer>
+			<Ammo_OGFlamer>OGI_Bullet_Flamer</Ammo_OGFlamer>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	  
@@ -31,15 +30,57 @@
 		<defName>AmmoSet_OGFlamerHeavy</defName>
 		<label>Flamethrower ammo</label>
 		<ammoTypes>
-			<Ammo_OGFlamer>Bullet_OGFlamerHeavy</Ammo_OGFlamer>
+			<Ammo_OGFlamer>OGI_Bullet_FlamerHeavy</Ammo_OGFlamer>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	  
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGBurna</defName>
+		<label>Flamethrower ammo</label>
+		<ammoTypes>
+			<Ammo_OGFlamer>OGO_Bullet_Burna</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	  
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGScorcha</defName>
+		<label>Flamethrower ammo</label>
+		<ammoTypes>
+			<Ammo_OGFlamer>OGO_Bullet_Scorcha</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	  
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamerCognis</defName>
+		<label>Flamethrower ammo</label>
+		<ammoTypes>
+			<Ammo_OGFlamer>OGAM_Bullet_FlamerCognis</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	  
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGCombiBoltFlamer</defName>
+		<label>Bolter/Flamer</label>
+		<ammoTypes>
+			<Ammo_OGBoltStd>OGI_Bullet_BoltStd</Ammo_OGBoltStd>
+			<Ammo_OGFlamer>OGI_Bullet_Flamer</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGKombiShootaBurna</defName>
+		<label>Shoota/Burna</label>
+		<ammoTypes>
+			<Ammo_OGAuto>OGO_Bullet_Shoota</Ammo_OGAuto>
+			<Ammo_OGFlamer>OGO_Bullet_Burna</Ammo_OGFlamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGPhosphor</defName>
 		<label>Flamethrower ammo</label>
 		<ammoTypes>
-			<Ammo_OGFlamer>Bullet_OGPhosphor</Ammo_OGFlamer>
+			<Ammo_OGFlamer>OGAM_Bullet_PhosphorSml</Ammo_OGFlamer>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 		
@@ -75,7 +116,7 @@
 		
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGFlamer" ParentName="BaseBullet" Abstract="true">
+	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGFlamer" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/FlamerFire</texPath>
 			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
@@ -88,7 +129,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
-		<defName>Bullet_OGFlamer</defName>
+		<defName>OGI_Bullet_Flamer</defName>
 		<label>Flamethrower</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <damageAmountBase>1</damageAmountBase>
@@ -103,7 +144,7 @@
 	</ThingDef>
 	  
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
-		<defName>Bullet_OGFlamerHeavy</defName>
+		<defName>OGI_Bullet_FlamerHeavy</defName>
 		<label>Flamethrower</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			  <damageAmountBase>3</damageAmountBase>
@@ -118,7 +159,7 @@
 	 </ThingDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGFlamer">
-		<defName>Bullet_OGPhosphor</defName>
+		<defName>OGAM_Bullet_PhosphorSml</defName>
 		<label>Phosphor</label>
 		<graphicData>
 			<texPath>Things/Projectile/PhosphurSml</texPath>
@@ -133,8 +174,10 @@
 			  <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
 			  <soundExplode>OGIFL_Explosion</soundExplode>
 		</projectile>
-	</ThingDef>
+	</ThingDef-->
 		
+
+	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_OGFlamer</defName>
 		<label>make OFlamer x50</label>

@@ -10,9 +10,9 @@ using CombatExtended;
 
 namespace AdeptusMechanicus
 {
-    public class LaserBeamCE : ProjectileCE
+    public class LaserBeamCE : BulletCE
     {
-        public new LaserBeamDef def => base.def as LaserBeamDef;
+        public new LaserBeamDefCE def => base.def as LaserBeamDefCE;
 
         public override void Draw()
         {
@@ -48,12 +48,12 @@ namespace AdeptusMechanicus
 
         void SpawnBeam(Vector3 a, Vector3 b)
         {
-            LaserBeamGraphic graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
+            LaserBeamGraphicCE graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphicCE;
             if (graphic == null) return;
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = def;
             graphic.Setup(launcher, a, b);
-            GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
+            GenSpawn.Spawn(graphic, Origin.ToIntVec3(), Map, WipeMode.Vanish);
         }
 
         void SpawnBeamReflections(Vector3 a, Vector3 b, int count)
@@ -68,19 +68,19 @@ namespace AdeptusMechanicus
                 SpawnBeam(b, c);
             }
         }
-    //    public new ThingDef equipmentDef => base.equipmentDef
-        public Vector3 destination => base.intendedTarget.DrawPos;
-        public new Vector3 origin => base.origin;
+        //    public new ThingDef equipmentDef => base.equipmentDef
+        public Vector3 destination => new Vector3(base.Destination.x,0, base.Destination.y);
+        public Vector3 Origin => new Vector3(base.origin.x,0, base.origin.y);
 
         protected override void Impact(Thing hitThing)
         {
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-            Vector3 dir = (destination - origin).normalized;
+            Vector3 dir = (destination - Origin).normalized;
             dir.y = 0;
 
-            Vector3 a = origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            Vector3 a = Origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
             Vector3 b;
             if (hitThing == null)
             {
@@ -104,9 +104,7 @@ namespace AdeptusMechanicus
                 b.z += Rand.Range(-0.5f, 0.5f);
                 Rand.PopState();
             }
-
             a.y = b.y = def.Altitude;
-
             SpawnBeam(a, b);
             /*
             bool createsExplosion = this.def.projectile.explosionRadius>0f;
@@ -127,13 +125,9 @@ namespace AdeptusMechanicus
             }
             if (weapon != null)
             {
-                float angle = (b - a).AngleFlat() - (intendedTarget.DrawPos - a).AngleFlat();
+                float angle = (b - a).AngleFlat() - (destination - a).AngleFlat();
                 weapon.RotationOffset = (angle + 180) % 360 - 180;
             }
-
-
-
-
             if (hitThing == null)
             {
                 TriggerEffect(def.explosionEffect, b);
@@ -174,7 +168,6 @@ namespace AdeptusMechanicus
             {
                 this.equipmentDef = this.launcher.def;
             }
-        //    Log.Message("BattleLogEntry_RangedImpact launcher: " + this.launcher + ", hitThing: " + hitThing + ", intendedTarget: " + this.intendedTarget.Thing + ", equipmentDef: " + this.equipmentDef + ", def: " + this.def+ ", targetCoverDef: " + this.targetCoverDef);
             BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, this.equipmentDef, this.def, null);
             Find.BattleLog.Add(battleLogEntry_RangedImpact);
             if (hitThing != null)

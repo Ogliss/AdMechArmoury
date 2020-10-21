@@ -11,12 +11,12 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [HarmonyPatch(typeof(TurretTop), "DrawTurret", new Type[] { }), StaticConstructorOnStartup]
-    class AM_TuretTop_DrawTurret_LaserTurret_Patch
+    class TuretTop_DrawTurret_LaserTurret_Patch
     {
         static FieldInfo parentTurretField;
         static FieldInfo curRotationIntField;
 
-        static AM_TuretTop_DrawTurret_LaserTurret_Patch()
+        static TuretTop_DrawTurret_LaserTurret_Patch()
         {
             parentTurretField = typeof(TurretTop).GetField("parentTurret", BindingFlags.NonPublic | BindingFlags.Instance);
             curRotationIntField = typeof(TurretTop).GetField("curRotationInt", BindingFlags.NonPublic | BindingFlags.Instance);

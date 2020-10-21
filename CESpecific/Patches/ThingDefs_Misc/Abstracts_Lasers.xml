@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AdeptusMechanicusBeamGraphic"]/thingClass</xpath>
+				<value>
+				  <thingClass>AdeptusMechanicus.LaserBeamGraphicCE</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Bullet_LaserBase"]</xpath>
+				<value>
+				  <ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="BaseBullet">
+					<thingClass>AdeptusMechanicus.LaserBeamCE</thingClass>
+					<drawOffscreen>true</drawOffscreen>
+					<beamGraphic>AdeptusMechanicusBeamGraphic</beamGraphic>
+				   
+					<graphicData>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <texPath>Things/Projectile/LasShotLrg</texPath>
+					  <shaderType>TransparentPostLight</shaderType>
+					  <drawSize>1.5</drawSize>
+					</graphicData>
+					
+					<explosionEffect>AdeptusMechanicusLaserImpact</explosionEffect>
+					<hitLivingEffect>AdeptusMechanicusLaserLivingImpact</hitLivingEffect>
+					
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <speed>200</speed>
+					</projectile>
+					
+					<seam>0.25</seam>
+				  </ThingDef>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+
+</Patch>

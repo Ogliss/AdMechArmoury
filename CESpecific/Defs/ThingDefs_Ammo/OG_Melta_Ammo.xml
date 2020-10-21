@@ -20,7 +20,23 @@
 		<defName>AmmoSet_OGMelta</defName>
 		<label>Melta charge</label>
 		<ammoTypes>
-			<Ammo_OGMelta>Bullet_OGMelta</Ammo_OGMelta>
+			<Ammo_OGMelta>OGI_Bullet_Melta</Ammo_OGMelta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGDEMelta</defName>
+		<label>Melta charge</label>
+		<ammoTypes>
+			<Ammo_OGMelta>OGDE_Bullet_FusionBeam</Ammo_OGMelta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGEMelta</defName>
+		<label>Melta charge</label>
+		<ammoTypes>
+			<Ammo_OGMelta>OGE_Bullet_FusionGun</Ammo_OGMelta>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -28,8 +44,8 @@
 		<defName>AmmoSet_OGCombiBoltMelta</defName>
 		<label>Bolter/Melta</label>
 		<ammoTypes>
-			<Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
-			<Ammo_OGMelta>Bullet_OGMelta</Ammo_OGMelta>
+			<Ammo_OGBoltStd>OGI_Bullet_BoltStd</Ammo_OGBoltStd>
+			<Ammo_OGMelta>OGI_Bullet_Melta</Ammo_OGMelta>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -37,7 +53,7 @@
 		<defName>AmmoSet_OGMultiMelta</defName>
 		<label>Melta charge</label>
 		<ammoTypes>
-			<Ammo_OGMelta>Bullet_OGMultiMelta</Ammo_OGMelta>
+			<Ammo_OGMelta>OGI_Bullet_MultiMelta</Ammo_OGMelta>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -62,7 +78,7 @@
 		<defName>Ammo_OGMelta</defName>
 		<label>Melta cartridge</label>
 		<graphicData>
-			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<texPath>Things/Ammo/Charged/Concentrated</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -71,42 +87,7 @@
 		<ammoClass>OGFusionAC</ammoClass>
 	</ThingDef>
 
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGMelta" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/MeltaShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGIMelta</damageDef>
-			<speed>50</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGMelta">
-		<defName>Bullet_OGMelta</defName>
-		<label>Melta shot</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>125</damageAmountBase>
-			<explosionRadius>0.50</explosionRadius>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
-			<soundExplode>OGIFL_Explosion</soundExplode>
-		</projectile>	
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGMelta">
-		<defName>Bullet_OGMultiMelta</defName>
-		<label>Melta shot</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>125</damageAmountBase>
-			<explosionRadius>0.50</explosionRadius>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
-			<soundExplode>OGIFL_Explosion</soundExplode>
-		</projectile>	
-	</ThingDef>
-
+	<!-- ================== Recipes ================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_OGMelta</defName>
 		<label>make Melta cartridge x20</label>

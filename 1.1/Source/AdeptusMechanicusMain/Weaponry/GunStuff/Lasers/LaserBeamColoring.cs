@@ -20,7 +20,7 @@ namespace AdeptusMechanicus
             new LaserColor { index = 6, name = "RimlaserBeamRedBlack", allowed = false },
         };
 
-        internal static int IndexBasedOnThingQuality(int index, Thing gun)
+        public static int IndexBasedOnThingQuality(int index, Thing gun)
         {
             if (index != -1) return index;
 

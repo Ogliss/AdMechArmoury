@@ -59,10 +59,6 @@ namespace AdeptusMechanicus.settings
         public bool AllowAdeptusMilitarum = true;
         public bool AllowAdeptusSororitas = false;
 
-        // Playable Imperium Settings
-        public IntRange activeChapters;
-        public Dictionary<string, SettingHandle> AstartesChapterSettings = new Dictionary<string, SettingHandle>();
-
         // Chaos Settings
 
         public bool ShowChaos = false;
@@ -235,9 +231,6 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
             Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
             Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
-            Scribe_Values.Look(ref this.activeChapters, "activeChapters", new IntRange(1, 5));
-            Scribe_Collections.Look<string, SettingHandle>(ref this.AstartesChapterSettings, "AstartesChapterSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
-
             // Tau Data
 
             // Tau Playable Race Extras

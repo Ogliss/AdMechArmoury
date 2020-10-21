@@ -16,11 +16,11 @@ using CombatExtended;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_ShootCE), "WarmupComplete")]
-    public static class Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch_CE
+    public static class Verb_ShootCE_TryCastShot_WeaponSpecialRules_Patch
     {
         public static bool Prefix(ref Verb_ShootCE __instance)
         {
-            //    Log.Warning("TryCastShot");
+            Log.Warning("CE_TryCastShot_WeaponSpecialRules_Patch WarmupComplete ");
             GunVerbEntry entry = __instance.SpecialRules();
             if (entry==null)
             {
@@ -172,6 +172,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 }
             }
+            /*
             if (__instance.MultiShot() || __instance.TwinLinked())
             {
                 Traverse traverse = Traverse.Create(__instance);
@@ -190,6 +191,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
                 }
             }
+            */
             if (__instance.UserEffect(out float Chance, out HediffDef Effect, out StatDef ResistStat, out List<string> ImmuneList))
             {
 

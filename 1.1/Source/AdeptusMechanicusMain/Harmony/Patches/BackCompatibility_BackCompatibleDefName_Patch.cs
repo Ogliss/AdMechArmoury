@@ -94,6 +94,38 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OGE_Gun_Brightlance";
                     }
+                    if (defName == "OGAM_Gun_CognisFlamer")
+                    {
+                        newName = "OGAM_Gun_FlamerCognis";
+                    }
+                    if (defName == "OGAM_Gun_Transuranic_Arquebus")
+                    {
+                        newName = "OGAM_Gun_TransuranicArquebus";
+                    }
+
+
+                    if (defName.Contains("OGC_Melee_") && defName.Contains("LightningClaw"))
+                    {
+                        if (defName.Contains("Dual"))
+                        {
+                            newName = "OGC_Melee_LightningClawD";
+                        }
+                        else if (defName.Contains("Single"))
+                        {
+                            newName = "OGC_Melee_LightningClawS";
+                        }
+                    }
+                    if (defName.Contains("OGI_Gun_") && defName.Contains("Flamer"))
+                    {
+                        if (defName.Contains("Hand"))
+                        {
+                            newName = "OGI_Gun_FlamerHand";
+                        }
+                        else if (defName.Contains("Heavy"))
+                        {
+                            newName = "OGI_Gun_FlamerHeavy";
+                        }
+                    }
 
                     if (defName == "OG_Human_Imperial" || defName == "OG_Human_ELT")
                     {
@@ -642,6 +674,40 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName == "HyperactiveNymuneOrgan")
                     {
                         newName ="OG_Kroot_Mutation_HyperactiveNymuneOrgan";
+                    }
+                }
+                if (defType == typeof(ScenarioDef))
+                {
+                    if (defName == "OG_Militarum_Start")
+                    {
+                        newName = "OGAM_Scenario_Militarum_Crashlanded";
+                    }
+                    if (defName == "OG_Mechanicus_Start")
+                    {
+                        newName = "OGAM_Scenario_Mechanicus_Crashlanded";
+                    }
+                    
+                    if (defName == "OG_Eldar_Craftworld_Scenario_Test")
+                    {
+                        newName = "OGAM_Scenario__Eldar_Craftworld_Crashlanded";
+                    }
+
+                    if (defName == "OG_Ork_Tek_Scenario_Test")
+                    {
+                        newName = "OGAM_Scenario__Ork_Crashlanded";
+                    }
+                    if (defName == "OG_Ork_Feral_Tribe")
+                    {
+                        newName = "OGAM_Scenario_Ork_LostTribe";
+                    }
+
+                    if (defName == "OG_Tau_Crashlanded")
+                    {
+                        newName = "OGAM_Scenario_Tau_Crashlanded";
+                    }
+                    if (defName == "OG_Kroot_Lost_Tribe")
+                    {
+                        newName = "OGAM_Scenario_Kroot_LostTribe";
                     }
                 }
                 if (!newName.NullOrEmpty())

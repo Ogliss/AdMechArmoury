@@ -365,237 +365,6 @@
     </modExtensions>
 	</ThingDef>
 
-	<!--==================== Necron - Telsa Carbine =========================-->
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_TeslaCarbine</defName>
-    <label>tesla blast</label>
-    
-    <textures>
-      <li>Things/Projectile/TeslaBoltGreen</li>
-    </textures>
-    <seam>0</seam>
-    <LightningBeam>true</LightningBeam>
-    <StaticLightning>false</StaticLightning>
-    <ArcCount>3</ArcCount>
-
-    <projectile>
-		<damageDef>OG_N_Tesla_Damage</damageDef>
-		<damageAmountBase>12</damageAmountBase>
-		<armorPenetrationBase>0.48</armorPenetrationBase>
-		<stoppingPower>1.00</stoppingPower>
-    </projectile>
-  </ThingDef>
-  
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGN_Bullet_TeslaCarbine_Arc</defName>
-    <label>tesla blast</label>
-    
-    <textures>
-      <li>Things/Projectile/TeslaBoltGreen</li>
-    </textures>
-    <seam>0</seam>
-    <LightningBeam>true</LightningBeam>
-
-    <projectile>
-		<damageDef>OG_N_Tesla_Arc_Damage</damageDef>
-		<damageAmountBase>12</damageAmountBase>
-		<armorPenetrationBase>0.48</armorPenetrationBase>
-		<stoppingPower>1.00</stoppingPower>
-    </projectile>
-  </ThingDef>
-  
-	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
-		<defName>OGN_Gun_TeslaCarbine</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-		<label>tesla carbine (N)</label>
-		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbine</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-		</graphicData>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>32000</WorkToMake>
-			<MarketValue>15000</MarketValue>
-			<Mass>8</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.60</AccuracyMedium>
-			<AccuracyLong>0.50</AccuracyLong>
-			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<PsychicSensitivity>-0.05</PsychicSensitivity>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
-				<warmupTime>0.75</warmupTime>
-				<range>31</range>
-				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
-				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
-				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<RapidFire>true</RapidFire>
-				<Rending>true</Rending>
-				<EffectsUser>true</EffectsUser>
-				<EffectsUserChance>0.15</EffectsUserChance>
-				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
-				<UserEffect>RadiationPoisioning</UserEffect>
-				<UserEffectImmuneList>
-				<li>Necron</li>
-				</UserEffectImmuneList>
-			</li>
-		</VerbEntries>
-		</li>
-	</comps>
-    <tools>
-      <li>
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.6</cooldownTime>
-      </li>
-    </tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>OGN_Gun_TeslaCarbine</li>
-			<li>NTeslaCarbine</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGNRanged</li>
-		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
-		</researchPrerequisites>
-	</recipeMaker>
-		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Plasteel>2</Plasteel>
-			<Steel>10</Steel>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	</ThingDef>
-
-	<!--==================== Necron - Twin-Linked Tesla Carbine =========================-->
-	<ThingDef ParentName="OG_Necron_Gun_Special">
-		<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
-		<label>twin-linked tesla carbine (N)</label>
-		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbineTwinLinked</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
-    </graphicData>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>32000</WorkToMake>
-			<MarketValue>15000</MarketValue>
-			<Mass>8</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.60</AccuracyMedium>
-			<AccuracyLong>0.50</AccuracyLong>
-			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<PsychicSensitivity>-0.05</PsychicSensitivity>
-		</equippedStatOffsets>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
-				<warmupTime>0.95</warmupTime>
-				<range>31</range>
-				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
-				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
-				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			</li>
-		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<TwinLinked>true</TwinLinked>
-				<RapidFire>true</RapidFire>
-				<Rending>true</Rending>
-				<EffectsUser>true</EffectsUser>
-				<EffectsUserChance>0.15</EffectsUserChance>
-				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
-				<UserEffect>RadiationPoisioning</UserEffect>
-				<UserEffectImmuneList>
-				<li>Necron</li>
-				</UserEffectImmuneList>
-			</li>
-		</VerbEntries>
-		</li>
-	</comps>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>OGN_Gun_TeslaCarbineTwinLinked</li>
-			<li>NTeslaCarbineTwinLinked</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGNRanged</li>
-		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
-		</researchPrerequisites>
-	</recipeMaker>
-		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
-			<ComponentIndustrial>1</ComponentIndustrial>
-			<Plasteel>2</Plasteel>
-			<Steel>10</Steel>
-		</costList>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-	</ThingDef>
-
 	<!--==================== Necron - Gauss Cannon =========================-->
   <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
     <defName>OGN_Bullet_GaussCannon</defName>
@@ -796,6 +565,237 @@
 		<researchPrerequisites>
 			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
 			<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+		</researchPrerequisites>
+	</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Telsa Carbine =========================-->
+  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+    <defName>OGN_Bullet_TeslaCarbine</defName>
+    <label>tesla blast</label>
+    
+    <textures>
+      <li>Things/Projectile/TeslaBoltGreen</li>
+    </textures>
+    <seam>0</seam>
+    <LightningBeam>true</LightningBeam>
+    <StaticLightning>false</StaticLightning>
+    <ArcCount>3</ArcCount>
+
+    <projectile>
+		<damageDef>OG_N_Tesla_Damage</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>1.00</stoppingPower>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+    <defName>OGN_Bullet_TeslaCarbine_Arc</defName>
+    <label>tesla blast</label>
+    
+    <textures>
+      <li>Things/Projectile/TeslaBoltGreen</li>
+    </textures>
+    <seam>0</seam>
+    <LightningBeam>true</LightningBeam>
+
+    <projectile>
+		<damageDef>OG_N_Tesla_Arc_Damage</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>1.00</stoppingPower>
+    </projectile>
+  </ThingDef>
+  
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+		<defName>OGN_Gun_TeslaCarbine</defName>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<label>tesla carbine (N)</label>
+		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<RapidFire>true</RapidFire>
+				<Rending>true</Rending>
+				<EffectsUser>true</EffectsUser>
+				<EffectsUserChance>0.15</EffectsUserChance>
+				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
+				<UserEffect>RadiationPoisioning</UserEffect>
+				<UserEffectImmuneList>
+				<li>Necron</li>
+				</UserEffectImmuneList>
+			</li>
+		</VerbEntries>
+		</li>
+	</comps>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>12</power>
+        <cooldownTime>1.6</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_TeslaCarbine</li>
+			<li>NTeslaCarbine</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+		</researchPrerequisites>
+	</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Twin-Linked Tesla Carbine =========================-->
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
+		<label>twin-linked tesla carbine (N)</label>
+		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbineTwinLinked</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
+				<warmupTime>0.95</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<TwinLinked>true</TwinLinked>
+				<RapidFire>true</RapidFire>
+				<Rending>true</Rending>
+				<EffectsUser>true</EffectsUser>
+				<EffectsUserChance>0.15</EffectsUserChance>
+				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
+				<UserEffect>RadiationPoisioning</UserEffect>
+				<UserEffectImmuneList>
+				<li>Necron</li>
+				</UserEffectImmuneList>
+			</li>
+		</VerbEntries>
+		</li>
+	</comps>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_TeslaCarbineTwinLinked</li>
+			<li>NTeslaCarbineTwinLinked</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+	<recipeMaker>
+		<researchPrerequisites>
+			<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
 		</researchPrerequisites>
 	</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
@@ -1058,4 +1058,133 @@
     </modExtensions>
 	</ThingDef>
 
+	<!--==================== Necron - Staff of Light =========================-->
+  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+    <defName>OGN_Bullet_StaffOfLight</defName>
+    <label>light blast</label>
+    
+    <textures>
+      <li>Things/Projectile/GaussBoltSml</li>
+    </textures>
+    <seam>0</seam>
+
+    <projectile>
+		<damageDef>OG_N_Gauss_Damage</damageDef>
+		<damageAmountBase>30</damageAmountBase>
+		<armorPenetrationBase>0.68</armorPenetrationBase>
+		<stoppingPower>1.00</stoppingPower>
+    </projectile>
+  </ThingDef>
+  
+	<ThingDef ParentName="OG_Necron_MeleeWeapon_Sharp_Quality">
+		<defName>OGN_Gun_StaffOfLight</defName>
+		<label>staff of light (N)</label>
+		<description>A Staff of Light is a device of arcane Necron technology that serves as both a symbol of rank and authority, as well as a potent weapon for Necron royals. Shaped like a traditional Necrontyr staff with an ornate headpiece, its haft is actually a disguised power generator rod; and the crest a finely tuned focussing device which allows the wielder to unleash searing bolts of viridian energy at a rapid rate towards the enemy. These beams are so potent that they are even capable of penetrating Astartes Power Armour with ease. As well as being capable of projecting devastating blasts of energy at range, a Staff of Light also serves a similar function to a Power Weapon in close combat. A Staff of Light is usually only found in the armouries of Necron royalty, including those belonging to Necron Overlords, Necron Lords or Necron Destroyer Lords. However, Crypteks of an unspecialised nature in their techno-sorcerous arts also commonly wield a Staff of Light in battle.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Necron/StaffOfLight</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+    </graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>37500</MarketValue>
+			<Mass>3</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_StaffOfLight</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>18</range>
+				<soundCast>GaussSound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			</li>
+		</verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<Rending>true</Rending>
+				<EffectsUser>true</EffectsUser>
+				<EffectsUserChance>0.15</EffectsUserChance>
+				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
+				<UserEffect>RadiationPoisioning</UserEffect>
+				<UserEffectImmuneList>
+				<li>Necron</li>
+				</UserEffectImmuneList>
+			</li>
+		</VerbEntries>
+		</li> 
+		  <li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(240,37,37)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+		  </li>
+	</comps>
+    <tools>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>OG_PowerWeapon_Cut</li>
+        </capacities>
+        <power>35</power>
+		<armorPenetration>1</armorPenetration>
+        <cooldownTime>1.5</cooldownTime>
+      </li>
+      <li>
+        <label>stave</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>1.5</cooldownTime>
+      </li>
+    </tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_StaffOfLight</li>
+			<li>NStaffOfLight</li>
+			<li>OGNPowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNMelee</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	</ThingDef>
+ 
 </Defs>

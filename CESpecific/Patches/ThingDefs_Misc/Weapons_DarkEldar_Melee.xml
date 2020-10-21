@@ -4,9 +4,109 @@
 <Operation Class="PatchOperationSequence">
   <success>Always</success>
   <operations>
-    <li Class="PatchOperationTest">
-      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
-    </li>
+	<!--==================== Dark Eldar - Wytch Knife =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Melee_WytchKnife"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hilt</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetration>0.5</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.55</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGDE_Melee_WytchKnife"]/statBases</xpath>
+		<value>
+			<Bulk>2.25</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Dark Eldar - Mandrake Blade =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGDE_Melee_MandrakeBlade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hilt</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetration>0.5</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.55</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGDE_Melee_MandrakeBlade"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+		</value>
+	</li>
 	
 	<!--==================== Dark Eldar - Impaler =========================-->
 	<li Class="PatchOperationReplace">
@@ -56,7 +156,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_Impaler"]/statBases</xpath>
 		<value>
-      <Bulk>2.25</Bulk>
+			<Bulk>2.25</Bulk>
 		</value>
 	</li>
 	
@@ -108,7 +208,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_PowerSword"]/statBases</xpath>
 		<value>
-      <Bulk>2.5</Bulk>
+			<Bulk>2.5</Bulk>
 		</value>
 	</li>
 	
@@ -160,7 +260,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_VenomBlade"]/statBases</xpath>
 		<value>
-      <Bulk>2.5</Bulk>
+			<Bulk>2.5</Bulk>
 		</value>
 	</li>
 	
@@ -212,7 +312,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_DjinBlade"]/statBases</xpath>
 		<value>
-      <Bulk>2.5</Bulk>
+			<Bulk>2.5</Bulk>
 		</value>
 	</li>
 	
@@ -247,7 +347,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_Klaive"]/statBases</xpath>
 		<value>
-      <Bulk>2.0</Bulk>
+			<Bulk>2.0</Bulk>
 		</value>
 	</li>
 	
@@ -299,7 +399,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_Agoniser"]/statBases</xpath>
 		<value>
-      <Bulk>2.0</Bulk>
+			<Bulk>2.0</Bulk>
 		</value>
 	</li>
 	
@@ -351,7 +451,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_HuskBlade"]/statBases</xpath>
 		<value>
-      <Bulk>3.25</Bulk>
+			<Bulk>3.25</Bulk>
 		</value>
 	</li>
 	
@@ -395,7 +495,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGDE_Melee_Hellglaive"]/statBases</xpath>
 		<value>
-      <Bulk>4.5</Bulk>
+			<Bulk>4.5</Bulk>
 		</value>
 	</li>
 	

@@ -13,20 +13,29 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGRadiumPistol</defName>
+		<label>radium round</label>
+		<ammoTypes>
+			<Ammo_OGRadium>OGAM_Bullet_RadiumPistol</Ammo_OGRadium>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGRadiumCarbine</defName>
+		<label>radium round</label>
+		<ammoTypes>
+			<Ammo_OGRadium>OGAM_Bullet_RadiumCarbine</Ammo_OGRadium>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGRadiumJezzail</defName>
 		<label>radium jezzail round</label>
 		<ammoTypes>
-			<Ammo_OGRadium>Bullet_OGRadiumJezzail</Ammo_OGRadium>
+			<Ammo_OGRadium>OGAM_Bullet_RadiumJezzail</Ammo_OGRadium>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_OGRadium</defName>
-		<label>radium round</label>
-		<ammoTypes>
-			<Ammo_OGRadium>Bullet_OGRadium</Ammo_OGRadium>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
@@ -49,7 +58,7 @@
 		<defName>Ammo_OGRadium</defName>
 		<label>radium cartridge</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -95,7 +104,7 @@
 	</RecipeDef>
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGRadium" ParentName="BaseBullet" Abstract="true">
+	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGRadium" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/RadiumShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -116,11 +125,11 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGRadium">
-		<defName>Bullet_OGRadiumJezzail</defName>
+		<defName>OGAM_Bullet_RadiumJezzail</defName>
 		<label>radium round</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBase>0.94</armorPenetrationBase>
 		</projectile>
-	</ThingDef>
+	</ThingDef-->
 </Defs>

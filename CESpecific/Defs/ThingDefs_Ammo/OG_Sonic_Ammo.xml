@@ -20,7 +20,7 @@
 		<defName>AmmoSet_OGSonic</defName>
 		<label>Sonic Blast ammo</label>
 		<ammoTypes>
-			<Ammo_OGSonic>Bullet_OGSonic</Ammo_OGSonic>
+			<Ammo_OGSonic>OGC_Bullet_SonicBlaster</Ammo_OGSonic>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -28,7 +28,7 @@
 		<defName>AmmoSet_OGSonicHeavy</defName>
 		<label>Sonic Blast ammo</label>
 		<ammoTypes>
-			<Ammo_OGSonic>Bullet_OGSonicHeavy</Ammo_OGSonic>
+			<Ammo_OGSonic>OGC_Bullet_Blastmaster</Ammo_OGSonic>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -53,7 +53,7 @@
 		<defName>Ammo_OGSonic</defName>
 		<label>Sonic capacitor</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -62,9 +62,44 @@
 		<ammoClass>OGSonicAC</ammoClass>
 	</ThingDef>
 
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGSonic</defName>
+		<label>make small Sonic capacitor x70</label>
+		<description>Craft 70 small Sonic capacitor.</description>
+		<jobString>Making small Sonic capacitor.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGSonic>70</Ammo_OGSonic>
+		</products>
+		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+	</RecipeDef>
+
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGSonic" ParentName="BaseBullet" Abstract="true">
+	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGSonic" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/SonicShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -76,7 +111,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGSonic">
-		<defName>Bullet_OGSonic</defName>
+		<defName>OGC_Bullet_SonicBlaster</defName>
 		<label>Sonic Blast</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>15</damageAmountBase>
@@ -85,12 +120,12 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGSonic">
-		<defName>Bullet_OGSonicHeavy</defName>
+		<defName>OGC_Bullet_Blastmaster</defName>
 		<label>Sonic Blast</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBase>2.0</armorPenetrationBase>
 		</projectile>
-	</ThingDef>
+	</ThingDef-->
 
 </Defs>

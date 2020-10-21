@@ -14,17 +14,17 @@ using CombatExtended;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    [HarmonyPatch(typeof(ProjectileCE), "get_ArmorPenetration")]
-    public static class Projectile_GetArmorPenetration_Rending_Patch_CE
+    //     Impact(Thing hitThing)
+//    [HarmonyPatch(typeof(ProjectileCE), "Impact")] 
+    public static class Projectile_Impact_Rending_Patch_CE
     {
-        public static void Postfix(ProjectileCE __instance, ref LocalTargetInfo ___usedTarget, ref Thing ___launcher, ref float __result)
+        public static bool Prefix(ProjectileCE __instance, Thing ___launcher, IntVec3 ___originInt, Vector2 ___origin, Vector2 ___destinationInt, int ___startingTicksToImpactInt, int ___ticksToImpact, int ___intTicksToImpact, ThingDef ___equipmentDef, ref float ___suppressionAmount, Thing hitThing)
         {
-            if (___usedTarget.HasThing)
+            if (hitThing !=null)
             {
                 bool Rending = false;
                 float RendingChance = 0.167f;
                 Pawn caster = ___launcher as Pawn;
-                Thing hitThing = ___usedTarget.Thing;
                 Thing Launcher = ___launcher;
                 if (caster!=null)
                 {
@@ -75,22 +75,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                     Rand.PopState();
                     if (RendingEffect)
                     {
-                    //    Log.Warning(string.Format("RendingEffect: {0}", ___launcher));
                         DamageDef damageDef = __instance.def.projectile.damageDef;
-                    //    Log.Warning(string.Format("damageDef: {0}", damageDef.LabelCap));
                         DamageArmorCategoryDef armorCategory = damageDef.armorCategory!=null ? damageDef.armorCategory: null;
-                    //    Log.Warning(string.Format("armorCategory: {0}", armorCategory));
                         StatDef armorcatdef = damageDef.armorCategory != null ? armorCategory.armorRatingStat : null;
-                    //    Log.Warning(string.Format("armorcatdef: {0}", armorcatdef));
                         float num = 0f;
                         float num2 = Mathf.Clamp01((armorcatdef!=null ? hitThing.GetStatValue(armorcatdef, true) : 0f) / 2f);
-                    //    Log.Warning(string.Format("num2: {0}", num2));
                         if (hitThing is Pawn hitPawn)
                         {
                             List<BodyPartRecord> allParts = hitPawn.RaceProps.body.AllParts;
-                        //    Log.Warning(string.Format("allParts: {0}", allParts.Count));
                             List<Apparel> list = (hitPawn.apparel == null) ? null : hitPawn.apparel.WornApparel;
-                        //    Log.Warning(string.Format("list: {0}", list.Count));
                             for (int i = 0; i < allParts.Count; i++)
                             {
                                 float num3 = 1f - num2;
@@ -109,14 +102,293 @@ namespace AdeptusMechanicus.HarmonyInstance
                             }
                         }
                         num = Mathf.Clamp(num * 2f, 0f, 2f);
-                        float ArmorPenetration = num;
+                        float armorPenetration = num;
 
                         MoteMaker.ThrowText(hitThing.PositionHeld.ToVector3(), hitThing.MapHeld, "AMA_Rending_Shot".Translate(__instance.LabelCap ,hitThing.LabelShortCap), 3f);
                         //    Log.Warning(string.Format("ArmorPenetration: {0}", ArmorPenetration));
-                        __result = ArmorPenetration;
+
+                        bool flag = ___launcher is AmmoThing;
+                        Map map = __instance.Map;
+                        LogEntry_DamageResult logEntry_DamageResult = null;
+                        bool flag2 = __instance.logMisses || (!__instance.logMisses && hitThing != null && (hitThing is Pawn || hitThing is Building_Turret));
+                        if (flag2)
+                        {
+                            bool flag3 = !flag;
+                            if (flag3)
+                            {
+                                LogImpact(__instance, ___launcher, ___equipmentDef, hitThing, out logEntry_DamageResult);
+                            }
+                        }
+                        bool flag4 = hitThing != null;
+                        if (flag4)
+                        {
+                            int damageAmount = __instance.def.projectile.GetDamageAmount(1f, null);
+                            DamageDefExtensionCE damageDefExtensionCE = __instance.def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
+                            ProjectilePropertiesCE projectilePropertiesCE = (ProjectilePropertiesCE)__instance.def.projectile;
+                        //    float armorPenetration = (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt;
+                            DamageInfo damageInfo = new DamageInfo(__instance.def.projectile.damageDef, (float)damageAmount, armorPenetration, __instance.ExactRotation.eulerAngles.y, ___launcher, null, __instance.def, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                            BodyPartDepth depth = (damageDefExtensionCE != null && damageDefExtensionCE.harmOnlyOutsideLayers) ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
+                            BodyPartHeight collisionBodyHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(__instance.ExactPosition.y);
+                            damageInfo.SetBodyRegion(collisionBodyHeight, depth);
+                            bool flag5 = damageDefExtensionCE != null && damageDefExtensionCE.harmOnlyOutsideLayers;
+                            if (flag5)
+                            {
+                                damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                            }
+                            bool flag6 = flag && hitThing is Pawn;
+                            if (flag6)
+                            {
+                                logEntry_DamageResult = new BattleLogEntry_DamageTaken((Pawn)hitThing, DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff", true), null);
+                                Find.BattleLog.Add(logEntry_DamageResult);
+                            }
+                            try
+                            {
+                                hitThing.TakeDamage(damageInfo).AssociateWithLog(logEntry_DamageResult);
+                                bool flag7 = !(hitThing is Pawn) && projectilePropertiesCE != null && !projectilePropertiesCE.secondaryDamage.NullOrEmpty<SecondaryDamage>();
+                                if (flag7)
+                                {
+                                    foreach (SecondaryDamage secondaryDamage in projectilePropertiesCE.secondaryDamage)
+                                    {
+                                        bool destroyed = hitThing.Destroyed;
+                                        if (destroyed)
+                                        {
+                                            break;
+                                        }
+                                        DamageInfo dinfo = secondaryDamage.GetDinfo(damageInfo);
+                                        hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry_DamageResult);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error("CombatExtended :: BulletCE impacting thing " + hitThing.LabelCap + " of def " + hitThing.def.LabelCap + " added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.", false);
+                                throw ex;
+                            }
+                            finally
+                            {
+                                Impact(__instance, ___launcher, ___equipmentDef, hitThing, ___originInt, ___origin, ___destinationInt, ___startingTicksToImpactInt, ___ticksToImpact, ___intTicksToImpact, ref ___suppressionAmount);
+                            }
+                        }
+                        else
+                        {
+                            SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(__instance.Position, map, false));
+                            bool castShadow = __instance.castShadow;
+                            if (castShadow)
+                            {
+                                MoteMaker.MakeStaticMote(__instance.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                                bool takeSplashes = __instance.Position.GetTerrain(map).takeSplashes;
+                                if (takeSplashes)
+                                {
+                                    MoteMaker.MakeWaterSplash(__instance.ExactPosition, map, Mathf.Sqrt((float)__instance.def.projectile.GetDamageAmount(___launcher, null)) * 1f, 4f);
+                                }
+                            }
+                            Impact(__instance, ___launcher, ___equipmentDef, hitThing, ___originInt, ___origin, ___destinationInt, ___startingTicksToImpactInt, ___ticksToImpact, ___intTicksToImpact, ref ___suppressionAmount);
+                        }
+                        NotifyImpact(__instance, ___launcher, hitThing, map, __instance.Position);
+                    }
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static void Impact(ProjectileCE __instance, Thing launcher, ThingDef equipmentDef, Thing hitThing, IntVec3 OriginIV3, Vector2 origin, Vector2 Destination, int StartingTicksToImpact, int ticksToImpact, int IntTicksToImpact, ref float suppressionAmount)
+        {
+            List<Thing> list = new List<Thing>();
+            if (__instance.Position.IsValid && __instance.def.projectile.preExplosionSpawnChance > 0f && __instance.def.projectile.preExplosionSpawnThingDef != null && (Controller.settings.EnableAmmoSystem || !(__instance.def.projectile.preExplosionSpawnThingDef is AmmoDef)) && Rand.Value < __instance.def.projectile.preExplosionSpawnChance)
+            {
+                ThingDef preExplosionSpawnThingDef = __instance.def.projectile.preExplosionSpawnThingDef;
+                if (preExplosionSpawnThingDef.IsFilth && __instance.Position.Walkable(__instance.Map))
+                {
+                    FilthMaker.TryMakeFilth(__instance.Position, __instance.Map, preExplosionSpawnThingDef, 1, FilthSourceFlags.None);
+                }
+                else
+                {
+                    bool reuseNeolithicProjectiles = Controller.settings.ReuseNeolithicProjectiles;
+                    if (reuseNeolithicProjectiles)
+                    {
+                        Thing thing = ThingMaker.MakeThing(preExplosionSpawnThingDef, null);
+                        thing.stackCount = 1;
+                        thing.SetForbidden(true, false);
+                        GenPlace.TryPlaceThing(thing, __instance.Position, __instance.Map, ThingPlaceMode.Near, null, null, default(Rot4));
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, thing, OpportunityType.GoodToKnow);
+                        list.Add(thing);
                     }
                 }
             }
+            Vector3 vector = (hitThing != null) ? hitThing.DrawPos : __instance.ExactPosition;
+            bool flag3 = !vector.ToIntVec3().IsValid;
+            if (flag3)
+            {
+                __instance.Destroy(DestroyMode.Vanish);
+            }
+            else
+            {
+                CompExplosiveCE compExplosiveCE = __instance.TryGetComp<CompExplosiveCE>();
+                if (compExplosiveCE == null)
+                {
+                    CompFragments compFragments = __instance.TryGetComp<CompFragments>();
+                    if (compFragments != null)
+                    {
+                        compFragments.Throw(vector, __instance.Map, launcher, 1f);
+                    }
+                }
+                if (compExplosiveCE != null || __instance.def.projectile.explosionRadius > 0f)
+                {
+                    if (hitThing is Pawn && (hitThing as Pawn).Dead)
+                    {
+                        list.Add((hitThing as Pawn).Corpse);
+                    }
+                    List<Pawn> list2 = new List<Pawn>();
+                    float? direction = new float?(origin.AngleTo(Vec2Position(__instance, origin, Destination, StartingTicksToImpact, ticksToImpact, IntTicksToImpact, -1f)));
+                    bool flag7 = __instance.def.projectile.explosionRadius > 0f;
+                    if (flag7)
+                    {
+                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), __instance.Map, __instance.def.projectile.explosionRadius, __instance.def.projectile.damageDef, launcher, __instance.def.projectile.GetDamageAmount(1f, null), GenExplosionCE.GetExplosionAP(__instance.def.projectile), __instance.def.projectile.soundExplode, equipmentDef, __instance.def, null, __instance.def.projectile.postExplosionSpawnThingDef, __instance.def.projectile.postExplosionSpawnChance, __instance.def.projectile.postExplosionSpawnThingCount, __instance.def.projectile.applyDamageToExplosionCellsNeighbors, __instance.def.projectile.preExplosionSpawnThingDef, __instance.def.projectile.preExplosionSpawnChance, __instance.def.projectile.preExplosionSpawnThingCount, __instance.def.projectile.explosionChanceToStartFire, __instance.def.projectile.explosionDamageFalloff, direction, list, vector.y, 1f, false, null);
+                        bool flag8 = vector.y < 3f;
+                        if (flag8)
+                        {
+                            list2.AddRange(from x in GenRadial.RadialDistinctThingsAround(vector.ToIntVec3(), __instance.Map, 3f + __instance.def.projectile.explosionRadius, true)
+                                           where x is Pawn
+                                           select x as Pawn);
+                        }
+                    }
+                    bool flag9 = compExplosiveCE != null;
+                    if (flag9)
+                    {
+                        compExplosiveCE.Explode(__instance, vector, __instance.Map, 1f, direction, list);
+                        bool flag10 = vector.y < 3f;
+                        if (flag10)
+                        {
+                            list2.AddRange(from x in GenRadial.RadialDistinctThingsAround(vector.ToIntVec3(), __instance.Map, 3f + (compExplosiveCE.props as CompProperties_ExplosiveCE).explosiveRadius, true)
+                                           where x is Pawn
+                                           select x as Pawn);
+                        }
+                    }
+                    foreach (Pawn pawn in list2)
+                    {
+                        ApplySuppression(__instance, OriginIV3, pawn, launcher, ref suppressionAmount);
+                    }
+                }
+                __instance.Destroy(DestroyMode.Vanish);
+            }
+        }
+
+        private static void LogImpact(ProjectileCE __instance, Thing launcher, ThingDef equipmentDef, Thing hitThing, out LogEntry_DamageResult logEntry)
+        {
+            logEntry = new BattleLogEntry_RangedImpact(launcher, hitThing, __instance.intendedTarget, equipmentDef, __instance.def, null);
+            bool flag = !(launcher is AmmoThing);
+            if (flag)
+            {
+                Find.BattleLog.Add(logEntry);
+            }
+        }
+        private static void NotifyImpact(ProjectileCE __instance, Thing launcher, Thing hitThing, Map map, IntVec3 position)
+        {
+            Bullet bullet = GenerateVanillaBullet(__instance, launcher);
+            BulletImpactData impactData = new BulletImpactData
+            {
+                bullet = bullet,
+                hitThing = hitThing,
+                impactPosition = position
+            };
+            bool flag = hitThing != null;
+            if (flag)
+            {
+                hitThing.Notify_BulletImpactNearby(impactData);
+            }
+            int num = 9;
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 c = position + GenRadial.RadialPattern[i];
+                bool flag2 = c.InBounds(map);
+                if (flag2)
+                {
+                    List<Thing> thingList = c.GetThingList(map);
+                    for (int j = 0; j < thingList.Count; j++)
+                    {
+                        bool flag3 = thingList[j] != hitThing;
+                        if (flag3)
+                        {
+                            thingList[j].Notify_BulletImpactNearby(impactData);
+                        }
+                    }
+                }
+            }
+            bullet.Destroy(DestroyMode.Vanish);
+        }
+        private static Bullet GenerateVanillaBullet(ProjectileCE __instance, Thing launcher)
+        {
+            Bullet bullet = new Bullet
+            {
+                def = __instance.def,
+                intendedTarget = __instance.intendedTarget
+            };
+            Traverse.Create(bullet).Field("launcher").SetValue(launcher);
+            return bullet;
+        }
+        private static void ApplySuppression(ProjectileCE __instance, IntVec3 OriginIV3, Pawn pawn, Thing launcher, ref float suppressionAmount)
+        {
+            ShieldBelt shieldBelt = null;
+            bool humanlike = pawn.RaceProps.Humanlike;
+            if (humanlike)
+            {
+                List<Apparel> wornApparel = pawn.apparel.WornApparel;
+                for (int i = 0; i < wornApparel.Count; i++)
+                {
+                    ShieldBelt shieldBelt2 = wornApparel[i] as ShieldBelt;
+                    bool flag = shieldBelt2 != null;
+                    if (flag)
+                    {
+                        shieldBelt = shieldBelt2;
+                        break;
+                    }
+                }
+            }
+            CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
+            bool flag2;
+            if (compSuppressable != null)
+            {
+                Faction faction = pawn.Faction;
+                Thing thing = launcher;
+                if (faction != ((thing != null) ? thing.Faction : null))
+                {
+                    flag2 = (shieldBelt == null || shieldBelt.ShieldState == ShieldState.Resetting);
+                    goto IL_93;
+                }
+            }
+            flag2 = false;
+            IL_93:
+            bool flag3 = flag2;
+            if (flag3)
+            {
+                suppressionAmount = (float)__instance.def.projectile.GetDamageAmount(1f, null);
+                ProjectilePropertiesCE projectilePropertiesCE = __instance.def.projectile as ProjectilePropertiesCE;
+                float num = (projectilePropertiesCE != null) ? projectilePropertiesCE.armorPenetrationSharp : 0f;
+                float num2 = (num <= 0f) ? 0f : (1f - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor, true) * 0.5f / num, 0f, 1f));
+                suppressionAmount *= num2;
+                compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+            }
+        }
+        private static int FlightTicks(int ticksToImpact, int IntTicksToImpact)
+        {
+            return IntTicksToImpact - ticksToImpact;
+        }
+
+        // Token: 0x1700008A RID: 138
+        // (get) Token: 0x060002A2 RID: 674 RVA: 0x00019DE0 File Offset: 0x00017FE0
+        private static float fTicks(int StartingTicksToImpact, int ticksToImpact, int intTicksToImpact)
+        {
+            return (ticksToImpact == 0) ? StartingTicksToImpact : ((float)FlightTicks(ticksToImpact, intTicksToImpact));
+        }
+        private static Vector2 Vec2Position(ProjectileCE __instance, Vector2 origin, Vector2 Destination, int StartingTicksToImpact, int ticksToImpact, int intTicksToImpact, float ticks = -1f)
+        {
+            bool flag = ticks < 0f;
+            if (flag)
+            {
+                ticks = fTicks(StartingTicksToImpact, ticksToImpact, intTicksToImpact);
+            }
+            return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
         }
     }
 

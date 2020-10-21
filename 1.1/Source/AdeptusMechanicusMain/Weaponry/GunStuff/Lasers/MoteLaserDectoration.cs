@@ -6,7 +6,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    class MoteLaserDectoration : MoteThrown
+    public class MoteLaserDectoration : MoteThrown
     {
         public LaserBeamGraphic beam;
         public float baseSpeed;

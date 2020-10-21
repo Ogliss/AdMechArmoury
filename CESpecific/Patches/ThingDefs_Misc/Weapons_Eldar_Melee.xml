@@ -4,10 +4,6 @@
 <Operation Class="PatchOperationSequence">
   <success>Always</success>
   <operations>
-    <li Class="PatchOperationTest">
-      <xpath>Defs/ResearchTabDef[defName="CE_Turrets"]</xpath>
-    </li>
-	
 	<!--==================== Eldar  - Scorpion Chainsword =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionChainsword"]/tools</xpath>
@@ -56,34 +52,10 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionChainsword"]/statBases</xpath>
 		<value>
-      <Bulk>3.5</Bulk>
+			<Bulk>3.5</Bulk>
 		</value>
 	</li>
 
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionChainsword"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionChainsword"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionChainsword"]/weaponTags</xpath>
-		<value>
-	  <li>EScorpionChainsword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-	
 	<!--==================== Eldar  - Biting Blade =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_BitingBlade"]/tools</xpath>
@@ -136,31 +108,6 @@
 		</value>
 	</li>
 
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_BitingBlade"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_BitingBlade"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_BitingBlade"]/weaponTags</xpath>
-		<value>
-	  <li>EScorpionChainsword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-	
-	
 	<!--==================== Eldar  - Scorpion's Claw =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionsClaw"]/tools</xpath>
@@ -186,30 +133,6 @@
 		</value>
 	</li>
 
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionsClaw"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionsClaw"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_ScorpionsClaw"]/weaponTags</xpath>
-		<value>
-	  <li>EPowerSword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-	
 	<!--==================== Eldar  - Power Sword =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_PowerSword"]/tools</xpath>
@@ -258,110 +181,10 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_PowerSword"]/statBases</xpath>
 		<value>
-      <Bulk>3.5</Bulk>
+			<Bulk>3.5</Bulk>
 		</value>
 	</li>
-
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_PowerSword"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_PowerSword"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_PowerSword"]/weaponTags</xpath>
-		<value>
-	  <li>EPowerSword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-
-	<!--==================== Eldar  - Dual Mirrorsword =========================-->
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>pommel</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>0.50</cooldownTime>
-					<armorPenetration>0.12</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>hilt</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>0.50</cooldownTime>
-					<armorPenetration>0.2</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>blade</label>
-					<capacities>
-						<li>OG_PowerWeapon_Cut</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>0.7</cooldownTime>
-					<armorPenetration>0.9</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>OG_PowerWeapon_Stab</li>
-					</capacities>
-					<power>30</power>
-					<cooldownTime>1.25</cooldownTime>
-					<armorPenetration>0.8</armorPenetration>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/statBases</xpath>
-		<value>
-      <Bulk>3.5</Bulk>
-		</value>
-	</li>
-
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/weaponTags</xpath>
-		<value>
-	  <li>EPowerSword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-
+		
 	<!--==================== Eldar  - Mirrorsword =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordS"]/tools</xpath>
@@ -410,232 +233,69 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordS"]/statBases</xpath>
 		<value>
-      <Bulk>3.5</Bulk>
+			<Bulk>3.5</Bulk>
 		</value>
 	</li>
 
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordS"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordS"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
+	<!--==================== Eldar  - Dual Mirrorsword =========================-->
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Dual Wield</li>
+		</mods>
+		<nomatch Class="PatchOperationSequence">
+			<operations>	
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>pommel</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.50</cooldownTime>
+								<armorPenetration>0.12</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>hilt</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.50</cooldownTime>
+								<armorPenetration>0.2</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>OG_PowerWeapon_Cut</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>0.7</cooldownTime>
+								<armorPenetration>0.9</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>OG_PowerWeapon_Stab</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetration>0.8</armorPenetration>
+							</li>
+						</tools>
+					</value>
+				</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordS"]/weaponTags</xpath>
-		<value>
-	  <li>EPowerSword</li>
-	  <li>EArmoury</li>
-		</value>
-	</li>	
-	
-	<!--==================== Eldar  - Diresword =========================-->
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>pommel</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.12</armorPenetration>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OGE_Melee_MirrorswordD"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>hilt</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.2</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>blade</label>
-					<capacities>
-						<li>OG_ForceWeapon_Cut</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>1.4</cooldownTime>
-					<armorPenetration>0.9</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>OG_ForceWeapon_Stab</li>
-					</capacities>
-					<power>30</power>
-					<cooldownTime>2.5</cooldownTime>
-					<armorPenetration>0.8</armorPenetration>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/statBases</xpath>
-		<value>
-      <Bulk>3.5</Bulk>
-		</value>
-	</li>
-
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/weaponTags</xpath>
-		<value>
-	  <li>EPowerSword</li>
-		</value>
-	</li>	
-	
-	<!--==================== Eldar  - Witchblade =========================-->
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>pommel</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.12</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>hilt</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.2</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>blade</label>
-					<capacities>
-						<li>OG_WitchbladeWeapon_Cut</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>1.4</cooldownTime>
-					<armorPenetration>1</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>OG_WitchbladeWeapon_Stab</li>
-					</capacities>
-					<power>30</power>
-					<cooldownTime>2.5</cooldownTime>
-					<armorPenetration>1.2</armorPenetration>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/statBases</xpath>
-		<value>
-      <Bulk>3.5</Bulk>
-		</value>
-	</li>
-
-	<li Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
-	</li>
-	
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/weaponTags</xpath>
-		<value>
-			<li>EWitchblade</li>
-		</value>
-	</li>
-	
-	<!--==================== Eldar  - Miststave =========================-->
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Miststave"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>ferrule</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.12</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>haft</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.0</cooldownTime>
-					<armorPenetration>0.2</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>OG_ForceWeapon_Blunt</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetration>1</armorPenetration>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Miststave"]/statBases</xpath>
-		<value>
-      <Bulk>1.5</Bulk>
-		</value>
-	</li>
-	
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_Miststave"]/weaponTags</xpath>
-		<value>
-	  <li>EMiststave</li>
-		</value>
+			</operations>	
+		</nomatch>
 	</li>
 	
 	<!--==================== Eldar  - Ghost Sword =========================-->
@@ -691,59 +351,66 @@
 	</li>
 	
 	<!--==================== Eldar  - Dual Ghost Swords =========================-->
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_DualGhostSword"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>pommel</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>0.5</cooldownTime>
-					<armorPenetration>0.12</armorPenetration>
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Dual Wield</li>
+		</mods>
+		<nomatch Class="PatchOperationSequence">
+			<operations>	
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OGE_Melee_DualGhostSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>pommel</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetration>0.12</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>hilt</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetration>0.2</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>OG_PowerWeapon_Cut</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>0.7</cooldownTime>
+								<armorPenetration>1</armorPenetration>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>OG_PowerWeapon_Stab</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetration>1.1</armorPenetration>
+							</li>
+						</tools>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>hilt</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>0.5</cooldownTime>
-					<armorPenetration>0.2</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>blade</label>
-					<capacities>
-						<li>OG_PowerWeapon_Cut</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>0.7</cooldownTime>
-					<armorPenetration>1</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>OG_PowerWeapon_Stab</li>
-					</capacities>
-					<power>30</power>
-					<cooldownTime>1.25</cooldownTime>
-					<armorPenetration>1.1</armorPenetration>
-				</li>
-			</tools>
-		</value>
-	</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OGE_Melee_DualGhostSword"]/statBases</xpath>
-		<value>
-      <Bulk>3.0</Bulk>
-		</value>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OGE_Melee_DualGhostSword"]/statBases</xpath>
+					<value>
+				  <Bulk>3.0</Bulk>
+					</value>
+				</li>
+			</operations>	
+		</nomatch>
 	</li>
-	 
-	 
-	 
+	
 	<!--==================== Eldar  - Ghost Axe =========================-->	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_GhostAxe"]/tools</xpath>
@@ -775,11 +442,10 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_GhostAxe"]/statBases</xpath>
 		<value>
-      <Bulk>5.0</Bulk>
+			<Bulk>5.0</Bulk>
 		</value>
 	</li>
 	
-	 
   	<!--==================== Eldar  - Executioner =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_Executioner"]/tools</xpath>
@@ -820,7 +486,154 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_Executioner"]/statBases</xpath>
 		<value>
-      <Bulk>2.0</Bulk>
+			<Bulk>2.0</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Eldar  - Diresword =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pommel</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hilt</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.2</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>OG_ForceWeapon_Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.9</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>OG_ForceWeapon_Stab</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.8</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Diresword"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+		</value>
+	</li>
+	
+	<!--==================== Eldar  - Witchblade =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pommel</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hilt</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.2</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>OG_WitchbladeWeapon_Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>1</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>OG_WitchbladeWeapon_Stab</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>1.2</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Witchblade"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+		</value>
+	</li>
+
+	<!--==================== Eldar  - Miststave =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Miststave"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>ferrule</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>haft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetration>0.2</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>OG_ForceWeapon_Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>1</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OGE_Melee_Miststave"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
 		</value>
 	</li>
 	

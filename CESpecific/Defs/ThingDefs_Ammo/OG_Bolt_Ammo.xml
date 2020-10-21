@@ -22,7 +22,7 @@
 		<defName>AmmoSet_OGBoltStd</defName>
 		<label>standard Bolt shell</label>
 		<ammoTypes>
-		  <Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
+		  <Ammo_OGBoltStd>OGI_Bullet_BoltStd</Ammo_OGBoltStd>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -30,11 +30,11 @@
 		<defName>AmmoSet_OGBoltStern</defName>
 		<label>Sternguard Bolt shells</label>
 		<ammoTypes>
-		  <Ammo_OGBoltStd>Bullet_OGBoltStd</Ammo_OGBoltStd>
-		  <Ammo_OGBoltDragonfire>Bullet_OGBoltDragonfire</Ammo_OGBoltDragonfire>
-		  <Ammo_OGBoltHellfire>Bullet_OGBoltHellfire</Ammo_OGBoltHellfire>
-		  <Ammo_OGBoltKraken>Bullet_OGBoltKraken</Ammo_OGBoltKraken>
-		  <Ammo_OGBoltVengeance>Bullet_OGBoltVengeance</Ammo_OGBoltVengeance>
+		  <Ammo_OGBoltStd>OGI_Bullet_BoltStd</Ammo_OGBoltStd>
+		  <Ammo_OGBoltDragonfire>OGI_Bullet_BoltDragonfire</Ammo_OGBoltDragonfire>
+		  <Ammo_OGBoltHellfire>OGI_Bullet_BoltHellfire</Ammo_OGBoltHellfire>
+		  <Ammo_OGBoltKraken>OGI_Bullet_BoltKraken</Ammo_OGBoltKraken>
+		  <Ammo_OGBoltVengeance>OGI_Bullet_BoltVengeance</Ammo_OGBoltVengeance>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -42,7 +42,7 @@
 		<defName>AmmoSet_OGBoltStalker</defName>
 		<label>Stalker Bolt shell</label>
 		<ammoTypes>
-		  <Ammo_OGBoltStalker>Bullet_OGBoltStalker</Ammo_OGBoltStalker>
+		  <Ammo_OGBoltStalker>OGI_Bullet_BoltStalkerSilinced</Ammo_OGBoltStalker>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -50,7 +50,8 @@
 		<defName>AmmoSet_OGBoltHeavy</defName>
 		<label>Heavy Bolter shells</label>
 		<ammoTypes>
-		  <Ammo_OGBoltHeavyStd>Bullet_OGBoltHeavyStd</Ammo_OGBoltHeavyStd>
+		  <Ammo_OGBoltHeavyStd>OGI_Bullet_HeavyBoltStd</Ammo_OGBoltHeavyStd>
+		  <Ammo_OGBoltHeavyHellfire>OGI_Bullet_HeavyBoltHellfire</Ammo_OGBoltHeavyHellfire>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -71,6 +72,7 @@
 		</thingCategories>
 	</ThingDef>
 
+	<!-- ====================== Std Bolt ===================== -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
 		<defName>Ammo_OGBoltStd</defName>
 		<label>Standard Bolt cartridge</label>
@@ -119,102 +121,7 @@
 		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
 	</RecipeDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
-		<defName>Ammo_OGBoltStalker</defName>
-		<label>Stalker Bolt cartridge</label>
-		<graphicData>
-		  <texPath>Things/Ammo/HighCaliber/HE</texPath>
-		  <graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		  <MarketValue>0.95</MarketValue>
-		</statBases>
-		<ammoClass>OGBoltAC</ammoClass>
-	</ThingDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGBoltStalker</defName>
-		<label>make stalker Bolt cartridge x30</label>
-		<description>Craft 30 stalker Bolt shells.</description>
-		<jobString>Making stalker Bolt shells.</jobString>
-		<ingredients>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>Plasteel</li>
-			  </thingDefs>
-			</filter>
-			<count>3</count>
-		  </li>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>ComponentIndustrial</li>
-			  </thingDefs>
-			</filter>
-			<count>3</count>
-		  </li>
-		</ingredients>
-		<fixedIngredientFilter>
-		  <thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
-		  </thingDefs>
-		</fixedIngredientFilter>
-		<products>
-		  <Ammo_OGBoltStalker>30</Ammo_OGBoltStalker>
-		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
-	</RecipeDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
-		<defName>Ammo_OGBoltHeavyStd</defName>
-		<label>Heavy Bolt cartridge</label>
-		<graphicData>
-		  <texPath>Things/Ammo/HighCaliber/HE</texPath>
-		  <graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		  <MarketValue>0.95</MarketValue>
-		</statBases>
-		<ammoClass>OGBoltAC</ammoClass>
-	</ThingDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGBoltHeavyStd</defName>
-		<label>make heavy Bolt cartridge x50</label>
-		<description>Craft 50 heavy Bolt shells.</description>
-		<jobString>Making heavy Bolt shells.</jobString>
-		<ingredients>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>Plasteel</li>
-			  </thingDefs>
-			</filter>
-			<count>5</count>
-		  </li>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>ComponentIndustrial</li>
-			  </thingDefs>
-			</filter>
-			<count>5</count>
-		  </li>
-		</ingredients>
-		<fixedIngredientFilter>
-		  <thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
-		  </thingDefs>
-		</fixedIngredientFilter>
-		<products>
-		  <Ammo_OGBoltHeavyStd>30</Ammo_OGBoltHeavyStd>
-		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
-	</RecipeDef>
-
+	<!-- ====================== Dragonfire Bolt ===================== -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
 		<defName>Ammo_OGBoltDragonfire</defName>
 		<label>Dragonfire Bolt cartridge</label>
@@ -263,6 +170,7 @@
 		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- ====================== Hellfire Bolt ===================== -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
 		<defName>Ammo_OGBoltHellfire</defName>
 		<label>Hellfire Bolt cartridge</label>
@@ -311,6 +219,7 @@
 		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- ====================== Kraken Bolt ===================== -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
 		<defName>Ammo_OGBoltKraken</defName>
 		<label>Kraken Bolt cartridge</label>
@@ -359,6 +268,7 @@
 		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
 	</RecipeDef>
 
+	<!-- ====================== Vengeance Bolt ===================== -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
 		<defName>Ammo_OGBoltVengeance</defName>
 		<label>Vengeance Bolt cartridge</label>
@@ -407,115 +317,151 @@
 		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
 	</RecipeDef>
 
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Name="BaseOGBolt" ParentName="BaseBullet" Abstract="true">
+	<!-- ====================== Stalker Bolt ===================== -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
+		<defName>Ammo_OGBoltStalker</defName>
+		<label>Stalker Bolt cartridge</label>
 		<graphicData>
-		  <texPath>Things/Projectile/BoltShotSml</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
+		  <texPath>Things/Ammo/HighCaliber/HE</texPath>
+		  <graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageDef>OGIBoltStd</damageDef>
-		  <speed>100</speed>
-		</projectile>
+		<statBases>
+		  <MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGBoltAC</ammoClass>
 	</ThingDef>
 
-	<!-- ====================== Std Bolt ===================== -->
-	<!-- ====================== R:24 S:4 AP:5 RF ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltStd</defName>
-		<label>BoltStd bullet</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.16</armorPenetrationBase>
-		  <explosionRadius>0.5</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<!-- ====================== Dragonfire Bolt ===================== -->
-	<!-- ====================== R:24 S:4 AP:5 RF No Cover ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltDragonfire</defName>
-		<label>Dragonfire Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.16</armorPenetrationBase>
-		  <explosionRadius>1.01</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<!-- ====================== Hellfire Bolt ===================== -->
-	<!-- ====================== R:24 S:X AP:5 RF Poisioned 2+ ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltHellfire</defName>
-		<label>Hellfire Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.16</armorPenetrationBase>
-		  <explosionRadius>0.51</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<!-- ====================== Kraken Bolt ===================== -->
-	<!-- ====================== R:30 S:4 AP:4 RF ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltKraken</defName>
-		<label>Kraken Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.33</armorPenetrationBase>
-		  <explosionRadius>1.01</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<!-- ====================== Vengeance Bolt ===================== -->
-	<!-- ====================== R:18 S:4 AP:3 RF Gets Hot ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltVengeance</defName>
-		<label>Vengeance Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.5</armorPenetrationBase>
-		  <explosionRadius>0.51</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<!-- ====================== Stalker Silenced Bolt ===================== -->
-	<!-- ====================== R:36 S:4 AP:5 H2 Rending ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltStalker</defName>
-		<label>Stalker Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>30</damageAmountBase>
-		  <armorPenetrationBase>0.16</armorPenetrationBase>
-		  <explosionRadius>0.51</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGBoltStalker</defName>
+		<label>make stalker Bolt cartridge x30</label>
+		<description>Craft 30 stalker Bolt shells.</description>
+		<jobString>Making stalker Bolt shells.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>3</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>3</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		  <Ammo_OGBoltStalker>30</Ammo_OGBoltStalker>
+		</products>
+		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+	</RecipeDef>
 
 	<!-- ====================== Std Heavy Bolt ===================== -->
-	<!-- ====================== R:36 S:5 AP:4 H3 ====================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGBolt">
-		<defName>Bullet_OGBoltHeavyStd</defName>
-		<label>Standard Heavy Bolt</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>45</damageAmountBase>
-		  <armorPenetrationBase>0.42</armorPenetrationBase>
-		  <explosionRadius>0.5</explosionRadius>
-		  <soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
+		<defName>Ammo_OGBoltHeavyStd</defName>
+		<label>Heavy Bolt cartridge</label>
+		<graphicData>
+		  <texPath>Things/Ammo/HighCaliber/HE</texPath>
+		  <graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		  <MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGBoltAC</ammoClass>
 	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGBoltHeavyStd</defName>
+		<label>make heavy Bolt cartridge x50</label>
+		<description>Craft 50 heavy Bolt shells.</description>
+		<jobString>Making heavy Bolt shells.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>5</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>5</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		  <Ammo_OGBoltHeavyStd>30</Ammo_OGBoltHeavyStd>
+		</products>
+		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- ====================== Hellfire Heavy Bolt ===================== -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
+		<defName>Ammo_OGBoltHeavyHellfire</defName>
+		<label>Heavy Hellfire Bolt cartridge</label>
+		<graphicData>
+		  <texPath>Things/Ammo/HighCaliber/HE</texPath>
+		  <graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		  <MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGBoltAC</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGBoltHeavyHellfire</defName>
+		<label>make heavy Hellfire Bolt cartridge x50</label>
+		<description>Craft 50 heavy Hellfire Bolt shells.</description>
+		<jobString>Making heavy Hellfire Bolt shells.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>5</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>5</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+		  <Ammo_OGBoltHeavyHellfire>10</Ammo_OGBoltHeavyHellfire>
+		</products>
+		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+	</RecipeDef>
 
 </Defs>

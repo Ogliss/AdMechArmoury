@@ -1780,7 +1780,7 @@
     <label>Heavy Hellfire Bolt</label>
     <description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
     <graphicData>
-		<texPath>Things/Projectile/BoltShotSml</texPath>
+		<texPath>Things/Projectile/BoltShotLrg</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
@@ -2930,10 +2930,6 @@
 	</projectile>
 	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
     <modExtensions>
-      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>1.5</GlowMoteSize>
-      </li>
 	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
@@ -2942,6 +2938,10 @@
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 	  </li>
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.5</GlowMoteSize>
+      </li>
 	</modExtensions>
  </ThingDef>
  
@@ -2967,10 +2967,6 @@
 		<soundExplode>OGIPP_Explosion</soundExplode>
 	</projectile>
     <modExtensions>
-      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>1.5</GlowMoteSize>
-      </li>
 	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
@@ -2979,6 +2975,10 @@
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 	  </li>
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>1.5</GlowMoteSize>
+      </li>
 	</modExtensions>
  </ThingDef>
 
@@ -3002,10 +3002,6 @@
 		<soundExplode>OGIPC_Explosion</soundExplode>
     </projectile>
     <modExtensions>
-      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>2.5</GlowMoteSize>
-      </li>
 	  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
@@ -3014,6 +3010,10 @@
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 	  </li>
+      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+        <GlowMoteSize>2.5</GlowMoteSize>
+      </li>
 	</modExtensions>
  </ThingDef>
   
@@ -3403,14 +3403,14 @@
  <!-- ====================== AutoPistol shot ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_AutoPistol</defName>
-    <label>Autopistol Bullett</label>
+    <label>Autopistol Bullet</label>
     <graphicData>
 		<texPath>Things/Projectile/Bullet_Small</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
 		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIAuto</damageDef>
+		<damageDef>Bullet</damageDef>
 		<damageAmountBase>7</damageAmountBase>
 		<stoppingPower>1</stoppingPower>
       <armorPenetrationBase>0.14</armorPenetrationBase>
@@ -4015,125 +4015,6 @@
     </modExtensions>
  </ThingDef>
 
- <!-- ====================== Vanaheim Shotgun shot ===================== -->
- <ThingDef ParentName="BaseBullet">
-    <defName>OGI_Bullet_VanaheimShotgun</defName>
-    <label>shotgun blast</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>OGIAuto</damageDef>
-      <damageAmountBase>4</damageAmountBase>
-      <stoppingPower>.15</stoppingPower>
-      <armorPenetrationBase>0.16</armorPenetrationBase>
-      <speed>55</speed>
-    </projectile>
-	<modExtensions>
-	  <li Class="AdeptusMechanicus.ScattershotProjectileExtension">
-		<projectileCount>5</projectileCount>
-	  </li>
-	</modExtensions>
- </ThingDef>
- 
- <!-- ====================== Vanaheim ===================== -->
-  <ThingDef ParentName="OG_Imperial_Gun">
-    <defName>OGI_Gun_Vanaheim</defName>
-    <label>vanaheim shotgun (I)</label>
-    <description>Effectively a large-bore, locally manufactured version of the shotgun designs used by many planetary enforcers, the Vox Legi is a devastating and adaptable weapon that fires shotgun shells nearly the size of those of Astartes Assault shotgun. The increased size of the weapon reduces its ammunition capacity compared to that of its fellow shotguns, but it still remains more powerful and adaptable than a standard shotgun. Most patrolling Arbitrators take advantage of this flexibility by carrying a variety of shotgun shell types so as to offer them different tactical options in the event of encountering a situation that requires their intervention. Over-engineered by a considerable margin, the weapon is also perfectly capable of being used as a large club in close combat. It is also designed for maximum psychological impact, with a very audible pump action (standard Arbites riot training makes use of this). The sound of a hundred Arbitrators simultaneously chambering their weapons has ended countless riots over the millennia. This pattern of combat shotgun is particularly widespread amongst the Arbitrators of The Periphery, and is broadly typical of the weapons favoured by Calixian Arbitrators.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/Imperial/Vanaheim</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<colorTwo>(0.286,0.286,0.286)</colorTwo>	
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-    <soundInteract>Interact_Shotgun</soundInteract>
-    <statBases>
-      <WorkToMake>12000</WorkToMake>
-	  <MarketValue>550</MarketValue>
-      <Mass>3.4</Mass>
-      <AccuracyTouch>0.80</AccuracyTouch>
-      <AccuracyShort>0.87</AccuracyShort>
-      <AccuracyMedium>0.77</AccuracyMedium>
-      <AccuracyLong>0.64</AccuracyLong>
-      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
-    </statBases>
-    <costList>
-      <Steel>60</Steel>
-      <ComponentIndustrial>3</ComponentIndustrial>
-    </costList>
-    <recipeMaker>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-    </recipeMaker>
-    <weaponTags>
-		<li>GunHeavy</li>
-		<li>ArbitesShotgun</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGIRanged</li>
-	</tradeTags>
-		<generateCommonality>0.50</generateCommonality>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_VanaheimShotgun</defaultProjectile>
-			<warmupTime>0.35</warmupTime>
-			<burstShotCount>1</burstShotCount>
-			<range>18</range>
-			<soundCast>Shot_Shotgun</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>    
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-	  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-        <barrellength>0.6</barrellength>
-	  </li>
-    </modExtensions>
-  </ThingDef>
-
  <!-- ====================== Arbites Shotgun shot ===================== -->
  <ThingDef ParentName="BaseBullet">
     <defName>OGI_Bullet_ArbitesShotgun</defName>
@@ -4296,6 +4177,125 @@
       </li>
 	  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
         <barrellength>0.7</barrellength>
+	  </li>
+    </modExtensions>
+  </ThingDef>
+
+ <!-- ====================== Vanaheim Shotgun shot ===================== -->
+ <ThingDef ParentName="BaseBullet">
+    <defName>OGI_Bullet_VanaheimShotgun</defName>
+    <label>shotgun blast</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>OGIAuto</damageDef>
+      <damageAmountBase>4</damageAmountBase>
+      <stoppingPower>.15</stoppingPower>
+      <armorPenetrationBase>0.16</armorPenetrationBase>
+      <speed>55</speed>
+    </projectile>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+		<projectileCount>5</projectileCount>
+	  </li>
+	</modExtensions>
+ </ThingDef>
+ 
+ <!-- ====================== Vanaheim ===================== -->
+  <ThingDef ParentName="OG_Imperial_Gun">
+    <defName>OGI_Gun_Vanaheim</defName>
+    <label>vanaheim shotgun (I)</label>
+    <description>Effectively a large-bore, locally manufactured version of the shotgun designs used by many planetary enforcers, the Vox Legi is a devastating and adaptable weapon that fires shotgun shells nearly the size of those of Astartes Assault shotgun. The increased size of the weapon reduces its ammunition capacity compared to that of its fellow shotguns, but it still remains more powerful and adaptable than a standard shotgun. Most patrolling Arbitrators take advantage of this flexibility by carrying a variety of shotgun shell types so as to offer them different tactical options in the event of encountering a situation that requires their intervention. Over-engineered by a considerable margin, the weapon is also perfectly capable of being used as a large club in close combat. It is also designed for maximum psychological impact, with a very audible pump action (standard Arbites riot training makes use of this). The sound of a hundred Arbitrators simultaneously chambering their weapons has ended countless riots over the millennia. This pattern of combat shotgun is particularly widespread amongst the Arbitrators of The Periphery, and is broadly typical of the weapons favoured by Calixian Arbitrators.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/Imperial/Vanaheim</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<colorTwo>(0.286,0.286,0.286)</colorTwo>	
+    </graphicData>
+    <equippedAngleOffset>45</equippedAngleOffset>
+    <soundInteract>Interact_Shotgun</soundInteract>
+    <statBases>
+      <WorkToMake>12000</WorkToMake>
+	  <MarketValue>550</MarketValue>
+      <Mass>3.4</Mass>
+      <AccuracyTouch>0.80</AccuracyTouch>
+      <AccuracyShort>0.87</AccuracyShort>
+      <AccuracyMedium>0.77</AccuracyMedium>
+      <AccuracyLong>0.64</AccuracyLong>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+    </costList>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <weaponTags>
+		<li>GunHeavy</li>
+		<li>ArbitesShotgun</li>
+	</weaponTags>
+	<tradeTags>
+		<li>OGIRanged</li>
+	</tradeTags>
+		<generateCommonality>0.50</generateCommonality>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_VanaheimShotgun</defaultProjectile>
+			<warmupTime>0.35</warmupTime>
+			<burstShotCount>1</burstShotCount>
+			<range>18</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+	<comps>    
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<northOffset>0.0,0.0,0.0</northOffset>
+			<eastOffset>0.0,1.0,0.0</eastOffset>
+			<westOffset>0.0,0.0,0.0</westOffset>
+			<southOffset>0.0,1.0,0.0</southOffset>
+	  </li>  
+	</comps>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+	  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
+        <barrellength>0.6</barrellength>
 	  </li>
     </modExtensions>
   </ThingDef>
@@ -4719,8 +4719,9 @@
 </ThingDef>
 	
  <!-- ====================== Flamers ===================== -->
+ <!-- ====================== Hand Flamer ===================== -->
  <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_Flamer</defName>
+	<defName>OGI_Bullet_FlamerHand</defName>
     <label>flames</label>
     <tickerType>Normal</tickerType>
     <graphicData>
@@ -4734,7 +4735,7 @@
         <ticksPerFrame>15</ticksPerFrame>
       </li>
 	  <li Class="AdeptusMechanicus.ScattershotProjectileExtension">
-		<projectileCount>3</projectileCount>
+		<projectileCount>2</projectileCount>
 	  </li>
 	</modExtensions>
     <projectile>
@@ -4752,11 +4753,10 @@
     </projectile>
   </ThingDef>
   
- <!-- ====================== Hand Flamer ===================== -->
  <ThingDef ParentName="OG_Imperial_Gun">
-	<defName>OGI_Gun_HandFlamer</defName>
+	<defName>OGI_Gun_FlamerHand</defName>
     <label>hand flamer (I)</label>
-    <description>Hand Flamers (also called "Burners" ) are a more compact pistol version of the standard Flamer, and only require one hand to wield. A Hand Flamer possesses a lower-capacity fuel tank and a much reduced range compared to the standard Flamer, which makes it suited only for assault and close-combat as it can incinerate foes only at short range.\n\nAdepta Sororitas Seraphim units are notable users of Hand Flamers, and commonly employ them in pairs.</description>
+    <description>Hand Flamers are a smaller and more compact version of the standard pattern Flamer that is still capable of unleashing large blasts of flame, but is good for only a few shots before the fuel canister must be swapped out..\n\nAdepta Sororitas Seraphim units are notable users of Hand Flamers, and commonly employ them in pairs.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/FlamerHand</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -4800,8 +4800,8 @@
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
+			<defaultProjectile>OGI_Bullet_FlamerHand</defaultProjectile>
+			<warmupTime>0.25</warmupTime>
 			<range>8</range>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
@@ -4839,6 +4839,39 @@
  </ThingDef>
  
  <!-- ====================== Flamer ===================== -->
+ <ThingDef ParentName="BaseBullet">
+	<defName>OGI_Bullet_Flamer</defName>
+    <label>flames</label>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Things/Projectile/FlamerFire</texPath>
+      <graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+    <modExtensions>
+      <li Class="AnimatedProjectile.AnimatedProjectileExtension">
+        <ticksPerFrame>15</ticksPerFrame>
+      </li>
+	  <li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+		<projectileCount>3</projectileCount>
+	  </li>
+	</modExtensions>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>OGFlamer</damageDef>
+		<damageAmountBase>2</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<explosionRadius>0.75</explosionRadius>
+		<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+		<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+		<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+		<stoppingPower>0.75</stoppingPower>
+		<speed>15</speed>
+		<soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
  <ThingDef ParentName="OG_Imperial_Gun_Special">
     <defName>OGI_Gun_Flamer</defName>
     <label>flamer (I)</label>
@@ -4966,7 +4999,7 @@
 	
  <!-- ====================== Heavy Flamer ===================== -->
  <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_HeavyFlamer</defName>
+	<defName>OGI_Bullet_FlamerHeavy</defName>
     <label>flames</label>
     <tickerType>Normal</tickerType>
     <graphicData>
@@ -4999,9 +5032,9 @@
   </ThingDef>
   
  <ThingDef ParentName="OG_Imperial_Gun_Special">
-    <defName>OGI_Gun_HeavyFlamer</defName>
+    <defName>OGI_Gun_FlamerHeavy</defName>
     <label>heavy flamer (I)</label>
-    <description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
+    <description>A Heavy Flamer is a larger, more powerful version of the standard Flamer, capable of projecting hotter and denser flames. This means that Heavy Flamers possess better armour-piercing capabilities than standard Flamers.</description>
     <graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/FlamerHeavy</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -5044,7 +5077,7 @@
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_HeavyFlamer</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_FlamerHeavy</defaultProjectile>
 			<warmupTime>2.5</warmupTime>
 			<range>16</range>
 			<burstShotCount>24</burstShotCount>
@@ -5231,7 +5264,26 @@
     </modExtensions>
  </ThingDef>
   
- <!-- ====================== Multi Metla ===================== -->
+ <!-- ====================== Multi Metla ===================== -->  
+ <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+    <defName>OGI_Bullet_MultiMelta</defName>
+    <label>melta blast</label>
+    <description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+    <textures>
+      <li>Things/Projectile/MeltaShot</li>
+    </textures>
+    <seam>0</seam>
+
+    <projectile>
+		<damageDef>OGIMelta</damageDef>
+		<damageAmountBase>125</damageAmountBase>
+		<armorPenetrationBase>1</armorPenetrationBase>
+		<explosionRadius>0.50</explosionRadius>
+		<stoppingPower>4</stoppingPower>
+		<soundExplode>OGIFL_Explosion</soundExplode>
+    </projectile>
+  </ThingDef>
+  
  <ThingDef ParentName="OG_Imperial_Gun_Heavy">
     <defName>OGI_Gun_MultiMelta</defName>
     <label>multimelta (I)</label>
@@ -5279,7 +5331,7 @@
 		<li>
 			<verbClass>Verb_Shoot</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+			<defaultProjectile>OGI_Bullet_MultiMelta</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>32</range>
 			<burstShotCount>1</burstShotCount>
@@ -5344,7 +5396,7 @@
     <graphicData>
       <texPath>Things/Projectile/Webber</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-		<drawSize>2.25</drawSize>			
+      <drawSize>2.25</drawSize>			
     </graphicData>
     <thingClass>AdeptusMechanicus.Projectile_Grower</thingClass>
     <projectile>
@@ -5609,7 +5661,7 @@
  <!-- ====================== Sniper shot ===================== -->
  <ThingDef ParentName="BaseBullet">
 	<defName>OGI_Bullet_SniperRound</defName>
-    <label>exitus round</label>
+    <label>sniper round</label>
     <graphicData>
 		<texPath>Things/Projectile/Bullet_Small</texPath>
 		<graphicClass>Graphic_Single</graphicClass>

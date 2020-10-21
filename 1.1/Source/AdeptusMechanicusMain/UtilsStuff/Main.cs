@@ -20,7 +20,8 @@ namespace AdeptusMechanicus
             //    Log.Message("ArmouryMain ");
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OGAM_TestScenario_")))
             {
-                foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.Contains("OGAM_TestScenario_")))
+                List<ScenarioDef> scenariosTesting = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.StartsWith("OGAM_TestScenario_")).ToList();
+                foreach (ScenarioDef ScenDef in scenariosTesting)
                 {
                     if (ScenDef.defName.Contains("Imperial"))
                     {
@@ -63,6 +64,17 @@ namespace AdeptusMechanicus
                     else if (ScenDef.defName.Contains("Tyranid"))
                     {
                         TryAddWeaponsStartingThingToTestScenario(ScenDef, "TY");
+                    }
+                }
+            }
+            if (AdeptusIntergrationUtil.enabled_CombatExtended)
+            {
+
+                if (DefDatabase<ScenarioDef>.AllDefs.Any(x => x.defName.StartsWith("OGAM_Scenario_")))
+                {
+                    foreach (ScenarioDef ScenDef in DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.StartsWith("OGAM_Scenario_")))
+                    {
+                        TryAddCEAmmoScenario(ScenDef);
                     }
                 }
             }
@@ -145,7 +157,6 @@ namespace AdeptusMechanicus
         private static void TryAddWeaponsStartingThingToTestScenario(ScenarioDef ScenDef, string Tag)
         {
             List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => (x.PlayerAcquirable && (x.IsWeapon || x.IsApparel) &&  x.defName.Contains("OG" + Tag) && !x.defName.Contains("TOGGLEDEF_S")));
-
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
@@ -171,6 +182,84 @@ namespace AdeptusMechanicus
                         }
                     }
                     parts.Add(_Defined);
+                    if (AdeptusIntergrationUtil.enabled_CombatExtended && Weapon.IsRangedWeapon)
+                    {
+                        AddAmmoCE(Weapon, ref parts, -1, 1, false); // Prefs.DevMode
+                    }
+                }
+            }
+        }
+        private static void TryAddCEAmmoScenario(ScenarioDef ScenDef)
+        {
+            Log.Message("Trying to add ammo to Scenario " + ScenDef);
+            List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>().Where(x => x.def == ScenPartDefOf.StartingThing_Defined).ToList();
+            List<Pair<ThingDef, int>> guns = new List<Pair<ThingDef, int>>();
+            foreach (ScenPart scenpart in parts)
+            {
+                ThingDef x = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
+                int mult = Traverse.Create(scenpart).Field("count").GetValue<int>();
+                if (x.PlayerAcquirable && x.IsWeapon && x.defName.StartsWith("OG"))
+                {
+                    if (x.IsRangedWeapon)
+                    {
+                        guns.Add(new Pair<ThingDef, int>(x, mult));
+                    }
+                }
+            }
+            foreach (var x in guns)
+            {
+                AddAmmoCE(x.First, ref parts, 100, x.Second, true);
+            }
+
+        }
+
+        public static void AddAmmoCE(ThingDef Weapon, ref List<ScenPart> parts, int count = -1, int mult = 1, bool logging = false)
+        {
+            if (Weapon.HasComp(typeof(CombatExtended.CompAmmoUser)))
+            {
+                if (logging) Log.Message("Trying to add ammo for " + Weapon);
+                CombatExtended.CompProperties_AmmoUser ammo = Weapon.GetCompProperties<CombatExtended.CompProperties_AmmoUser>();
+                foreach (var item in ammo.ammoSet.ammoTypes)
+                {
+                    CombatExtended.AmmoDef ammoDef = item.ammo;
+                    if (count == -1)
+                    {
+                        bool hasammo = false;
+                        foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
+                        {
+                            ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
+                            if (td == ammoDef)
+                            {
+                                hasammo = true;
+                                break;
+                            }
+                        }
+                        if (hasammo)
+                        {
+                            continue;
+                        }
+                    }
+                    for (int i = 0; i < mult; i++)
+                    {
+                        int c = count > 0 && count < item.ammo.stackLimit ? count : item.ammo.stackLimit;
+                        if (logging) Log.Message("Trying to add " + ammoDef + " X " + c);
+                        ScenPart_StartingThing_Defined _Defined = new ScenPart_StartingThing_Defined() { def = ScenPartDefOf.StartingThing_Defined };
+                        Traverse.Create(_Defined).Field("thingDef").SetValue(ammoDef);
+                        Traverse.Create(_Defined).Field("count").SetValue(c);
+                        if (ammoDef.MadeFromStuff)
+                        {
+                            ThingDef stuffdef = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.IsStuff && ammoDef.stuffCategories.Any(y => x.stuffProps.categories.Contains(y))).RandomElement();
+                            if (stuffdef != null)
+                            {
+                                Traverse.Create(_Defined).Field("stuff").SetValue(stuffdef);
+                            }
+                        }
+                        parts.Add(_Defined);
+                        if (count != -1)
+                        {
+                            break;
+                        }
+                    }
                 }
             }
         }

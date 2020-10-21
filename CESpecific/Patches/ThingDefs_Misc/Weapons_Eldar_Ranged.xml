@@ -1,0 +1,1415 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+	<!--==================== Eldar - Shuriken =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_Shuriken"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+				<defName>OGE_Bullet_Shuriken</defName>
+				<label>small Shuriken</label>
+				<graphicData>
+					<texPath>Things/Projectile/ShurikenSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGEShuriken</damageDef>
+					<speed>135</speed>
+					<damageAmountBase>5</damageAmountBase>
+					<armorPenetrationBase>0.75</armorPenetrationBase>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	<!--==================== Eldar - Shuriken Pistol =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_ShurikenPistol</defName>
+    <statBases>
+      <Mass>1.2</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>1.25</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.15</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>25</range>
+      <soundCast>OG_Shuriken_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>40</magazineSize>
+      <reloadTime>2</reloadTime>
+      <ammoSet>AmmoSet_OGShuriken</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+	<!--==================== Eldar - Shuriken Catapult =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_ShurikenCatapult</defName>
+    <statBases>
+      <Mass>2.2</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.20</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.3</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>28</range>
+      <soundCast>OG_Shuriken_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>14</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>4.5</reloadTime>
+      <ammoSet>AmmoSet_OGShuriken</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCatapult"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+	<!--==================== Eldar - Avenger Shuriken Catapult =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_ShurikenCatapultAvenger</defName>
+    <statBases>
+      <Mass>2.5</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.3</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>31</range>
+      <soundCast>OG_Shuriken_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>14</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>4.5</reloadTime>
+      <ammoSet>AmmoSet_OGShuriken</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCatapultAvenger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+	<!--==================== Eldar - Shuriken Cannon =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_ShurikenCannon</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.3</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_ShurikenCannon</defaultProjectile>
+      <warmupTime>0.7</warmupTime>
+      <range>45</range>
+      <soundCast>OG_Shuriken_Sound</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+	  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+        <burstShotCount>21</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>4.5</reloadTime>
+      <ammoSet>AmmoSet_OGShurikenHeavy</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_ShurikenCannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+				<defName>OGE_Bullet_ShurikenCannon</defName>
+				<label>Shuriken</label>
+				<graphicData>
+					<texPath>Things/Projectile/ShurikenSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGEShuriken</damageDef>
+					<speed>135</speed>
+					<damageAmountBase>7</damageAmountBase>
+					<armorPenetrationBase>0.75</armorPenetrationBase>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+
+ 	<!--==================== Eldar - Starcannon =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_Starcannon</defName>
+    <statBases>
+      <Mass>4.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>4.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Starcannon</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>36</range>
+      <soundCast>OG_Starcannon_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+	  <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGEPlasma</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_Starcannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_Starcannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGE_Bullet_Starcannon</defName>
+				<label>Star Bolt</label>
+				<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+				<graphicData>
+					<texPath>Things/Projectile/PlamsShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGEPlas</damageDef>
+					<explosionRadius>0.50</explosionRadius>
+					<damageAmountBase>35</damageAmountBase>
+					<armorPenetrationBase>0.8</armorPenetrationBase>
+					<stoppingPower>1.5</stoppingPower>
+					<speed>75</speed>
+					<soundExplode>OGIPP_Explosion</soundExplode>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+				<modExtensions>
+				  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+					<explosionMote>true</explosionMote>
+					<explosionMoteSize>0.75</explosionMoteSize>
+					<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+					<ImpactMoteSize>2</ImpactMoteSize>
+					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				  </li>
+				  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+					<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+					<GlowMoteSize>1.5</GlowMoteSize>
+				  </li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+					
+	<!--==================== Eldar - Wraithcannon =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_Wraithcannon</defName>
+    <statBases>
+      <Mass>2.5</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>36</range>
+      <soundCast>OG_Wraithcannon_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>24</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGDistort</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_Wraithcannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_Wraithcannon"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_Wraithcannon</defName>
+				<label>wraithcannon blast</label>
+				<textures>
+				  <li>Things/Projectile/Wraithcannon_Beam</li>
+				</textures>
+				<seam>0</seam>
+				<lifetime>45</lifetime>
+				<LightningBeam>true</LightningBeam>
+				<StaticLightning>true</StaticLightning>
+				<LightningVariance>1.5</LightningVariance>
+				<beamWidth>0.05</beamWidth>
+				<ArcCount>3</ArcCount>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OG_E_Distortion_Damage</damageDef>
+					<armorPenetrationBase>1</armorPenetrationBase>
+					<damageAmountBase>30</damageAmountBase>
+					<explosionDamageFalloff>true</explosionDamageFalloff>
+					<explosionRadius>2.25</explosionRadius>
+					<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!-- ====================== Eldar - Lasbalster ===================== -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_LasBlaster</defName>
+    <statBases>
+      <Mass>2.2</Mass>
+      <RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>2.20</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.6</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
+      <warmupTime>1.75</warmupTime>
+      <range>31</range>
+      <soundCast>OG_Melta_Sound</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGLasE</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_LasBlaster"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+ 
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_LasBlaster"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_LasBlaster</defName>
+				<label>las blast</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/LasShotLrg</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGILas</damageDef>
+					<damageAmountBase>20</damageAmountBase>
+					<armorPenetrationBase>3.0</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!--==================== Eldar - Range Longrifle =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_RangerLongrifle</defName>
+    <statBases>
+      <Mass>4.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>4.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGI_Bullet_LongLas</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>36</range>
+      <soundCast>OG_RangerLongrifle_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGRangerLR</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_RangerLongrifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_RangerLR"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_RangerLR</defName>
+				<label>las blast</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/LasShotLrg</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGILas</damageDef>
+					<damageAmountBase>59</damageAmountBase>
+					<armorPenetrationBase>3.0</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!--==================== Eldar - Prism Rifle =========================-->  
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_PrismRifle</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_PrismRifleFocused</defaultProjectile>
+      <warmupTime>2.5</warmupTime>
+      <range>45</range>
+      <soundCast>OG_Brightlance_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+		<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGPrism</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_PrismRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_PrismRifleFocused"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_PrismRifleFocused</defName>
+				<label>prism beam</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/IonBeamSml</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGELance</damageDef>
+					<damageAmountBase>45</damageAmountBase>
+					<armorPenetrationBase>6.0</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_PrismRifleDispersed"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_PrismRifleDispersed</defName>
+				<label>prism beam</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/IonBeamSml</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<explosionRadius>1.50</explosionRadius>
+					<damageDef>OGELance</damageDef>
+					<damageAmountBase>45</damageAmountBase>
+					<armorPenetrationBase>0.84</armorPenetrationBase>
+					<soundExplode>OGIPP_Explosion</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!--==================== Eldar - Brightlance =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_Brightlance</defName>
+    <statBases>
+      <Mass>4.8</Mass>
+      <RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>4.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
+      <warmupTime>2.5</warmupTime>
+      <range>45</range>
+      <soundCast>OG_Brightlance_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGBrightlance</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_Brightlance"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_Brightlance"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_Brightlance</defName>
+				<label>brightlance beam</label>
+				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/IonBeamSml</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGELance</damageDef>
+					<damageAmountBase>75</damageAmountBase>
+					<armorPenetrationBase>4.0</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.25</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+
+	<!--==================== Eldar - Fusion Beam =====================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_FusionGun"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_FusionGun</defName>
+				<label>melta blast</label>
+				<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/MeltaShot</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGIMelta</damageDef>
+					<damageAmountBase>125</damageAmountBase>
+					<armorPenetrationBase>10.0</armorPenetrationBase>
+					<explosionRadius>0.50</explosionRadius>
+					<soundExplode>OGIFL_Explosion</soundExplode>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.5</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!-- ====================== Eldar - Fusion Gun ===================== -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_FusionGun</defName>
+    <statBases>
+      <Mass>4.8</Mass>
+      <RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>4.50</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.6</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
+      <warmupTime>1.75</warmupTime>
+      <range>16</range>
+      <soundCast>OG_Melta_Sound</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGEMelta</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_FusionGun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<!--==================== Eldar - Deathspinner =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_Deathspinner</defName>
+    <statBases>
+      <Mass>2.6</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>1.80</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>28</range>
+      <soundCast>OG_Deathspinner_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+	  <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>48</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGEMonofillament</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_Deathspinner"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_Deathspinner"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGE_Bullet_Deathspinner</defName>
+				<label>monofilament mesh</label>
+				<graphicData>
+					<texPath>Things/Projectile/DeathspinnerShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGDEShredder</damageDef>
+					<damageAmountBase>29</damageAmountBase>
+					<stoppingPower>1</stoppingPower>
+					<armorPenetrationBase>0.68</armorPenetrationBase>
+					<speed>135</speed>
+				</projectile>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Eldar - Reaper Launcher =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_ReaperLauncher</defName>
+    <statBases>
+      <Mass>4</Mass>
+      <RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>1.80</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_ReaperLauncher</defaultProjectile>
+		<warmupTime>3</warmupTime>
+		<range>45</range>
+		<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<soundCast>OG_Starcannon_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>48</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGEMonofillament</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_ReaperLauncher"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_ReaperLauncher"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGE_Bullet_ReaperLauncher</defName>
+				<label>reaper nissile</label>
+				<graphicData>
+					<texPath>Things/Projectile/BoltShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>135</speed>
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGIBoltStd</damageDef>
+					<damageAmountBase>30</damageAmountBase>
+					<armorPenetrationBase>0.33</armorPenetrationBase>
+					<stoppingPower>1</stoppingPower>
+					<soundExplode>OGIPP_Explosion</soundExplode>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+				<modExtensions>
+				  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+					<explosionMote>true</explosionMote>
+					<explosionMoteSize>0.75</explosionMoteSize>
+					<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+					<ImpactMoteSize>2</ImpactMoteSize>
+					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				  </li>
+				  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+					<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+					<trailMoteSize>0.35</trailMoteSize>
+					<trailerMoteInterval>3</trailerMoteInterval>
+				  </li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Harlequin Ranged Weapons =========================-->
+	<!--==================== Harlequin Eldar - Neuro disruptor =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_NeuroDisruptor</defName>
+    <statBases>
+      <Mass>0.8</Mass>
+      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>0.80</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.6</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
+      <warmupTime>0.3</warmupTime>
+      <range>20</range>
+		<soundCast>OG_Shuriken_Sound</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadTime>2.5</reloadTime>
+      <ammoSet>AmmoSet_OGNeuralDisruptor</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_NeuroDisruptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_NeuroDisruptor"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_NeuroDisruptor</defName>
+				<label>disruptor blast</label>
+				<textures>
+				  <li>Things/Projectile/SonicShotSml</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGENeuroDisruptor</damageDef>
+					<damageAmountBase>1</damageAmountBase>
+					<armorPenetrationBase>1</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.5</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Eldar - Haywire Cannon =========================-->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>OGE_Gun_HaywireCannon</defName>
+    <statBases>
+      <Mass>4.6</Mass>
+      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.5</SwayFactor>
+      <Bulk>3.80</Bulk>
+    </statBases>
+    <Properties>
+		<recoilAmount>0.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
+      <warmupTime>1.5</warmupTime>
+      <range>28</range>
+      <soundCast>OG_Deathspinner_Sound</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>48</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_OGArcE</ammoSet>
+    </AmmoUser>
+    <FireModes>
+    	<aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	
+    </weaponTags>
+  </li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Gun_HaywireCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+  
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Bullet_HaywireCannon"]</xpath>
+		<value>
+			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+				<defName>OGE_Bullet_HaywireCannon</defName>
+				<label>haywire blast</label>
+				<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+				<textures>
+				  <li>Things/Projectile/HaywireBlast</li>
+				</textures>
+				<seam>0</seam>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OGIArc</damageDef>
+					<damageAmountBase>25</damageAmountBase>
+					<armorPenetrationBase>0.84</armorPenetrationBase>
+				</projectile>
+				<modExtensions>
+					<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.5</explosionMoteSize>
+						<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+						<ImpactMoteSize>1</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					</li>
+				</modExtensions>
+			</ThingDef>
+		</value>
+	</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

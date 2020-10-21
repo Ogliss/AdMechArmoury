@@ -15,7 +15,7 @@
 		<defName>AmmoSet_OGIonRifle</defName>
 		<label>Ion charge</label>
 		<ammoTypes>
-			<Ammo_OGIonRifle>Bullet_OGIonRifle</Ammo_OGIonRifle>
+			<Ammo_OGIonRifle>OGT_Bullet_IonRifle</Ammo_OGIonRifle>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -49,9 +49,44 @@
 		<ammoClass>Charged</ammoClass>
 	</ThingDef>
 
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_OGIonRifle</defName>
+		<label>make small Ion capacitor x70</label>
+		<description>Craft 70 small Ion capacitor.</description>
+		<jobString>Making small Ion capacitor.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_OGIonRifle>70</Ammo_OGIonRifle>
+		</products>
+		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+	</RecipeDef>
+
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGIonRifle" ParentName="BaseBullet" Abstract="true">
+	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGIonRifle" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/IonBeamSml</texPath>
@@ -72,6 +107,6 @@
 			<armorPenetrationBase>3.0</armorPenetrationBase>
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
-	</ThingDef>
+	</ThingDef-->
 
 </Defs>

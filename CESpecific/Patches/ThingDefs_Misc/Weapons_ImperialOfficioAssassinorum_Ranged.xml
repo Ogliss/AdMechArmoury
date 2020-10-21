@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ====================== Imperial Ranged ===================== -->
+			<!-- ====================== Eversor Weapons ===================== -->
+			<!-- ====================== Executioner Pistol ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_Gun_ExecutionerPistol</defName>
+				<statBases>
+					<Mass>1.4</Mass>
+					<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.25</SwayFactor>
+					<Bulk>1.30</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>25</range>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<burstShotCount>2</burstShotCount>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>12</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_OGExecutionerPistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>		
+				</FireModes>
+				<weaponTags>
+
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGI_Gun_ExecutionerPistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGI_Bullet_Needler"]</xpath>
+				<value>
+				
+					<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
+						<defName>OGI_Bullet_Needler</defName>
+						<label>needle</label>
+						<graphicData>
+							<texPath>Things/Projectile/StingerSml</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGDEStinger</damageDef>
+							<speed>135</speed>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationBase>0.5</armorPenetrationBase>
+						</projectile>
+						<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+						<AddHediffChance>0.5</AddHediffChance>
+						<HediffToAdd>ToxicBuildup</HediffToAdd>
+						<CanResistHediff>true</CanResistHediff>
+						<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+					</ThingDef>
+
+				</value>
+			</li>
+
+			<!-- ====================== Exitus Weapons ===================== -->
+			<!-- ====================== Exitus Pistol ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_Gun_ExitusPistol</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.5</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.25</SwayFactor>
+					<Bulk>0.50</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>25</range>
+					<soundCast>Shot_Autopistol</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+					<burstShotCount>2</burstShotCount>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>12</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_OGExitusPistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>		
+				</FireModes>
+				<weaponTags>
+
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGI_Gun_ExitusPistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ====================== Exitus Rifle ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_Gun_ExitusRifle</defName>
+				<statBases>
+					<Mass>5.8</Mass>
+					<RangedWeapon_Cooldown>2.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.0</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>0.5</SwayFactor>
+					<Bulk>4.50</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<range>45</range>
+					<soundCast>Shot_AssaultRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_OGExitusRifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGI_Gun_ExitusRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGI_Bullet_ExitusRound"]</xpath>
+				<value>
+				
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+						<defName>OGI_Bullet_ExitusRound</defName>
+						<label>Auto bullet</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bullet</damageDef>
+							<speed>135</speed>
+							<damageAmountBase>65</damageAmountBase>
+							<armorPenetrationBase>0.75</armorPenetrationBase>
+						</projectile>
+					</ThingDef>
+
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

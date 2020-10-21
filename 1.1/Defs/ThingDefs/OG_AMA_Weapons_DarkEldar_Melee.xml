@@ -1,146 +1,147 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-  <ThingDef ParentName="OG_DarkEldar_MeleeWeapon_Sharp_Quality">
-	<defName>OGDE_Melee_WytchKnife</defName>
-	<label>wytch knife (DE)</label>
-	<description>One of mankind's oldest manufactured objects. The knife has taken many forms, but the concept has always remained the same: A handle for holding and a sharp edge for cutting.</description>
-	<graphicData>
-		<texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/WytchKnife</texPath>
-		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
-	</graphicData>
-	<comps>    
-		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li> 
-	</comps>
-    <weaponTags>
-      <li>MedievalMeleeBasic</li>
-      <li>NeolithicMeleeBasic</li>
-    </weaponTags>
-    <costStuffCount>30</costStuffCount>
-	<statBases>
-		<WorkToMake>1800</WorkToMake>
-		<Mass>0.5</Mass>
-	</statBases>
-	<equippedAngleOffset>-65</equippedAngleOffset>
-	<stuffCategories>
-		<li>Metallic</li>
-	</stuffCategories>
-    <tools>
-      <li>
-        <label>handle</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>blade</label>
-        <capacities>
-          <li>Cut</li>
-        </capacities>
-        <power>12</power>
-        <cooldownTime>1.5</cooldownTime>
-      </li>
-      <li>
-        <label>point</label>
-        <capacities>
-          <li>Stab</li>
-        </capacities>
-        <power>13</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-		<recipeMaker>
-      <recipeUsers>
-        <li>CraftingSpot</li>
-      </recipeUsers>
-    </recipeMaker>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+	<!--==================== Dark Eldar - Wytch Knife =========================-->
+	<ThingDef ParentName="OG_DarkEldar_MeleeWeapon_Sharp_Quality">
+		<defName>OGDE_Melee_WytchKnife</defName>
+		<label>wytch knife (DE)</label>
+		<description>One of mankind's oldest manufactured objects. The knife has taken many forms, but the concept has always remained the same: A handle for holding and a sharp edge for cutting.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/WytchKnife</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+		  <shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<comps>    
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li> 
+		</comps>
+		<weaponTags>
+		  <li>MedievalMeleeBasic</li>
+		  <li>NeolithicMeleeBasic</li>
+		</weaponTags>
+		<costStuffCount>30</costStuffCount>
+		<statBases>
+			<WorkToMake>1800</WorkToMake>
+			<Mass>0.5</Mass>
+		</statBases>
+		<equippedAngleOffset>-65</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>blade</label>
+			<capacities>
+			  <li>Cut</li>
+			</capacities>
+			<power>12</power>
+			<cooldownTime>1.5</cooldownTime>
+		  </li>
+		  <li>
+			<label>point</label>
+			<capacities>
+			  <li>Stab</li>
+			</capacities>
+			<power>13</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		</tools>
+			<recipeMaker>
+		  <recipeUsers>
+			<li>CraftingSpot</li>
+		  </recipeUsers>
+		</recipeMaker>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 
+	<!--==================== Dark Eldar - Mandrake Blade =========================-->
 	<ThingDef ParentName="OG_DarkEldar_MeleeWeapon_Sharp_Quality">
-    <defName>OGDE_Melee_MandrakeBlade</defName>
-    <label>mandrake blade (DE)</label>
-    <description>The ancient weapon of kings, the longsword can be used for slashing or stabbing.</description>
-    <graphicData>
-      <texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/MandrakeBlade</texPath>
-      <graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
-    </graphicData>
-	<comps>    
-		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li> 
-	</comps>
-    <techLevel>Medieval</techLevel>
-    <weaponTags>
-      <li>MedievalMeleeAdvanced</li>
-    </weaponTags>
-    <costStuffCount>100</costStuffCount>
-    <statBases>
-      <WorkToMake>18000</WorkToMake>
-      <Mass>1.6</Mass>
-    </statBases>
-    <equippedAngleOffset>-65</equippedAngleOffset>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
-    <tools>
-      <li>
-        <label>handle</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>point</label>
-        <capacities>
-          <li>Stab</li>
-        </capacities>
-        <power>23</power>
-        <cooldownTime>2.6</cooldownTime>
-      </li>
-      <li>
-        <label>edge</label>
-        <capacities>
-          <li>Cut</li>
-        </capacities>
-        <power>23</power>
-        <cooldownTime>2.6</cooldownTime>
-      </li>
-    </tools>
-    <recipeMaker>
-		<researchPrerequisites>
-			<li>LongBlades</li>
-		</researchPrerequisites>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-    </recipeMaker>
-    <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-  </ThingDef>
+		<defName>OGDE_Melee_MandrakeBlade</defName>
+		<label>mandrake blade (DE)</label>
+		<description>The ancient weapon of kings, the longsword can be used for slashing or stabbing.</description>
+		<graphicData>
+		  <texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/MandrakeBlade</texPath>
+		  <graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+		  <shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<comps>    
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li> 
+		</comps>
+		<techLevel>Medieval</techLevel>
+		<weaponTags>
+		  <li>MedievalMeleeAdvanced</li>
+		</weaponTags>
+		<costStuffCount>100</costStuffCount>
+		<statBases>
+		  <WorkToMake>18000</WorkToMake>
+		  <Mass>1.6</Mass>
+		</statBases>
+		<equippedAngleOffset>-65</equippedAngleOffset>
+		<stuffCategories>
+		  <li>Metallic</li>
+		</stuffCategories>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>point</label>
+			<capacities>
+			  <li>Stab</li>
+			</capacities>
+			<power>23</power>
+			<cooldownTime>2.6</cooldownTime>
+		  </li>
+		  <li>
+			<label>edge</label>
+			<capacities>
+			  <li>Cut</li>
+			</capacities>
+			<power>23</power>
+			<cooldownTime>2.6</cooldownTime>
+		  </li>
+		</tools>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>LongBlades</li>
+			</researchPrerequisites>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
+		<modExtensions>
+		  <li Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+		  </li>
+		  <li Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+		  </li>
+		</modExtensions>
+	</ThingDef>
 
 	<!--==================== Dark Eldar - Impaler =========================-->
 	<ThingDef ParentName="OG_DarkEldar_MeleeWeapon_Sharp_Quality">
