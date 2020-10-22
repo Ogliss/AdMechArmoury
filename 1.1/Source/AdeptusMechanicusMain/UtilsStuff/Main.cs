@@ -17,6 +17,10 @@ namespace AdeptusMechanicus
         public static IEnumerable<RecipeDef> TechHediffRecipes; 
         static ArmouryMain()
         {
+            /*
+            Log.Message("AppDomain.CurrentDomain.GetAssemblies():\n" + System.AppDomain.CurrentDomain.GetAssemblies().Join(delimiter: "\n"));
+            Log.Message("GenTypes.AllActiveAssemblies:\n" + Traverse.Create(typeof(GenTypes)).Property<IEnumerable<System.Reflection.Assembly>>("AllActiveAssemblies").Value.Join(delimiter: "\n"));
+            */
             //    Log.Message("ArmouryMain ");
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OGAM_TestScenario_")))
             {

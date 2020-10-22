@@ -90,6 +90,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName ="OG_Ork_Snotling";
                     }
 
+                    if (defName.Contains("OG_Knarloc_Kroot"))
+                    {
+                        newName = "OG_Knarloc_Kindred";
+                    }
+
+                    if (defName.Contains("OG_Kroot_Hound"))
+                    {
+                        newName = "OG_Kroothound";
+                    }
+
+                    if (defName.Contains("KindredKrootHound"))
+                    {
+                        newName = "OG_Kroothound_Kindred";
+                    }
+
                     if (defName == "OGE_Gun_EBrightlance")
                     {
                         newName = "OGE_Gun_Brightlance";
@@ -124,6 +139,45 @@ namespace AdeptusMechanicus.HarmonyInstance
                         else if (defName.Contains("Heavy"))
                         {
                             newName = "OGI_Gun_FlamerHeavy";
+                        }
+                    }
+
+                    if (defName.Contains("Kroot") || defName.Contains("Knarloc"))
+                    {
+                        if (defName.Contains("ox") || defName.Contains("Ox"))
+                        {
+                            newName = "OG_KrootOx";
+                        }
+                        else
+                        if (defName.Contains("hound") || defName.Contains("Hound"))
+                        {
+                            newName = "OG_Kroothound";
+                        }
+                        else
+                        if (defName.Contains("knarloc") || defName.Contains("Knarloc"))
+                        {
+                            newName = "OG_Knarloc";
+                        }
+                        else
+                        {
+                            if (!defName.Contains("_Gun_") && !defName.Contains("_Melee_") && !defName.Contains("_Apparel_") && !defName.Contains("_Armour_") && !defName.Contains("_Armor_") && !defName.Contains("_Wargear_"))
+                            {
+                                newName = "OG_Alien_Kroot";
+                            }
+                        }
+
+                        if (defName.Contains("Corpse_"))
+                        {
+                            newName = "Corpse_" + newName;
+                        }
+                        if (defName.Contains("Meat_"))
+                        {
+                            newName = "Meat_" + newName;
+                        }
+                        else
+                        if (defName.Contains("_Kindred"))
+                        {
+                            newName = newName + "_Kindred";
                         }
                     }
 
@@ -674,6 +728,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName == "HyperactiveNymuneOrgan")
                     {
                         newName ="OG_Kroot_Mutation_HyperactiveNymuneOrgan";
+                    }
+                }
+                if (defType == typeof(BodyDef))
+                {
+                    if (defName.Contains("Kroot") || defName.Contains("Tau") || defName.Contains("Vespid"))
+                    {
+                        newName = defName + "_Body";
                     }
                 }
                 if (defType == typeof(ScenarioDef))
