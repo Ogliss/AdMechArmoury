@@ -25,6 +25,57 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName.Contains("ChaosDeamon_"))
+                    {
+                        if (defName.Contains("Corpse_"))
+                        {
+                            newName = Regex.Replace(defName, "Corpse_ChaosDeamon_", "Corpse_OG_Chaos_Deamon_");
+                        }
+                        else
+                            newName = Regex.Replace(defName, "ChaosDeamon_", "OG_Chaos_Deamon_");
+                    }
+                    if (defName.Contains("OGO_Bullet_O"))
+                    {
+                        newName = Regex.Replace(defName, "OGO_Bullet_O", "OGO_Bullet_");
+                    }
+                    if (defName.Contains("OG_AstartesOrgans_"))
+                    {
+                        if (defName.Contains("ProgenoidGland"))
+                        {
+                            newName = "OG_Zygote_Organ_ProgenoidGlands"; //OG_Hediff_AstartesOrgans_
+                        }
+                        else
+                        newName = Regex.Replace(defName, "OG_AstartesOrgans_", "OG_Zygote_Organ_");
+                    }
+                    if (defName.Contains("OGK_Bullet_Hunter"))
+                    {
+                        if (defName.Contains("Pulse"))
+                        {
+                            newName = "OGK_Bullet_HunterPulse";
+                        }
+                        else
+                        newName = "OGK_Bullet_HunterSolid";
+                    }
+                    if (defName == "GlowPodLike")
+                    {
+                        newName = "GlowPod";
+                    }
+                    if (defName == "IG_Aug_GENE")
+                    {
+                        newName = "OG_Astartes_Geneseed";
+                    }
+                    if (defName == "OG_AA_Building_OrganVat")
+                    {
+                        newName = "OGAA_Building_OrganVat";
+                    }
+                    if (defName == "OGIG_Apparel_CarapaceArmourTS")
+                    {
+                        newName = "OGIG_Apparel_TempestusScion_CarapaceArmour";
+                    }
+                    if (defName == "OGIG_Apparel_CarapaceHelmTS")
+                    {
+                        newName = "OGIG_Apparel_TempestusScion_CarapaceHelmet";
+                    }
                     if (defName == "OGAM_Apparel_SkitariiLegionnaireHelmet")
                     {
                         newName = "OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded";
@@ -728,6 +779,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName == "HyperactiveNymuneOrgan")
                     {
                         newName ="OG_Kroot_Mutation_HyperactiveNymuneOrgan";
+                    }
+                    if (defName.Contains("OG_Hediff_AstartesOrgans_"))
+                    {
+                        if (defName.Contains("ProgenoidGland"))
+                        {
+                            newName = "OG_Zygote_Hediff_ProgenoidGland"; //OG_Hediff_AstartesOrgans_
+                        }
+                        else
+                            newName = Regex.Replace(defName, "OG_Hediff_AstartesOrgans_", "OG_Zygote_Hediff_");
                     }
                 }
                 if (defType == typeof(BodyDef))

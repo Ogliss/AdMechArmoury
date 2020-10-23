@@ -57,6 +57,13 @@ namespace Verse
             }
 
         }
+
+        public override void PostDeSpawn(Map map)
+        {
+            map.glowGrid.DeRegisterGlower(this);
+            base.PostDeSpawn(map);
+        }
+
         // Token: 0x04000001 RID: 1
         public const int updatePeriodInTicks = 50;
 
