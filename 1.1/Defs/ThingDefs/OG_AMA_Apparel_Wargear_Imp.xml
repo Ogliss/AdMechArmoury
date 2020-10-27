@@ -319,31 +319,31 @@
 			<texPath>Things/Item/Equipment/Wargear/Imperial/PuritySeal/Apparel_PuritySealA</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-    <inspectorTabs>
-        <li>OgsCompToggleDef.ITab_ToggleDef</li>
-    </inspectorTabs>
-	<comps>    
-        <li Class="OgsCompToggleDef.CompProperties_ToggleDef">
-            <labelKey>OG_Toggle_Wargear</labelKey>
-        </li> 
-		<li Class="AdeptusMechanicus.CompProperties_Wargear">
-		</li>
-		<li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
-			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
-			<ExtrasEntries>
-				<li>
-					<UseBodytypeOffsets>false</UseBodytypeOffsets>
-					<shaderType>CutoutComplex</shaderType>
-					<extraTexPath>Things/Item/Equipment/Wargear/Imperial/PuritySeal/Apparel_PuritySealA</extraTexPath>
-					<commonality>10</commonality>
-				</li>
-			</ExtrasEntries>
-			<NorthOffset>0,0.0,0</NorthOffset>
-			<SouthOffset>0,-0.035,0</SouthOffset>
-			<EastOffset>0,0.0,0</EastOffset>
-			<WestOffset>0,0.0,0</WestOffset>
-		</li>
-	</comps>
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+		<comps>    
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>OG_Toggle_Wargear</labelKey>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_Wargear">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+				<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
+				<ExtrasEntries>
+					<li>
+						<UseBodytypeOffsets>false</UseBodytypeOffsets>
+						<shaderType>CutoutComplex</shaderType>
+						<extraTexPath>Things/Item/Equipment/Wargear/Imperial/PuritySeal/Apparel_PuritySealA</extraTexPath>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,0.0,0</NorthOffset>
+				<SouthOffset>0,-0.035,0</SouthOffset>
+				<EastOffset>0,0.0,0</EastOffset>
+				<WestOffset>0,0.0,0</WestOffset>
+			</li>
+		</comps>
 		<statBases>
 			<MarketValue>1500</MarketValue>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -360,8 +360,8 @@
 			<Gold>1</Gold>
 		</costList>
 		<apparel>
-	<useWornGraphicMask>true</useWornGraphicMask>
-		<careIfWornByCorpse>false</careIfWornByCorpse>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
@@ -391,19 +391,6 @@
                 <li>Belt</li>
             </layers>
         </apparel>
-		<recipeMaker>
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-			<workSkill>Crafting</workSkill>
-			<effectWorking>Smith</effectWorking>
-			<soundWorking>Recipe_Machining</soundWorking>
-			<recipeUsers>
-				<li>OGI_TableMachining</li>
-			</recipeUsers>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-			<researchPrerequisites>
-				<li>OG_Militarum_Tech_Base_T1</li>
-			</researchPrerequisites>
-		</recipeMaker>
     </ThingDef>
     <ThingDef ParentName="OGI_Apparel_PuritySealA">
         <defName>OGI_Apparel_PuritySealA_TOGGLEDEF_1S</defName>
@@ -414,6 +401,11 @@
                 <li>BeltWargear1</li>
             </layers>
         </apparel>
+		<recipeMaker>
+			<recipeUsers Inherit="False">
+			
+			</recipeUsers>
+		</recipeMaker>
     </ThingDef>
     <ThingDef ParentName="OGI_Apparel_PuritySealA">
         <defName>OGI_Apparel_PuritySealA_TOGGLEDEF_2S</defName>
@@ -424,6 +416,11 @@
                 <li>BeltWargear2</li>
             </layers>
         </apparel>
+		<recipeMaker>
+			<recipeUsers Inherit="False">
+			
+			</recipeUsers>
+		</recipeMaker>
     </ThingDef>
     <ThingDef ParentName="OGI_Apparel_PuritySealA">
         <defName>OGI_Apparel_PuritySealA_TOGGLEDEF_3S</defName>
@@ -434,10 +431,15 @@
                 <li>BeltWargear3</li>
             </layers>
         </apparel>
+		<recipeMaker>
+			<recipeUsers Inherit="False">
+			
+			</recipeUsers>
+		</recipeMaker>
     </ThingDef>
     <!-- ========================= Imperial - Wargear Overhead ========================== -->
     <!-- ========================= Imperial - Servo Skulls ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable" Name="OGIServoSkullMakeable" Abstract="true">
+	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable" Name="OG_Imperial_ServoSkull_Makeable" Abstract="true">
 		<defName>OGI_Apparel_ServoSkull</defName>
 		<label>Hospitaller Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.</description>
@@ -498,7 +500,7 @@
 	</ThingDef>
 	
     <!-- ========================= Imperial - Hospitaller Skull ========================== -->
-	<ThingDef ParentName="OGIServoSkullMakeable">
+	<ThingDef ParentName="OG_Imperial_ServoSkull_Makeable">
 		<defName>OGI_Apparel_ServoSkullA</defName>
 		<label>Hospitaller Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for medical procedures, biometric analysis and outfitted with basic surgical tools.</description>
@@ -536,7 +538,7 @@
 	</ThingDef>
 	
     <!-- ========================= Imperial - Inquisitorial Skull ========================== -->
-	<ThingDef ParentName="OGIServoSkullMakeable">
+	<ThingDef ParentName="OG_Imperial_ServoSkull_Makeable">
 		<defName>OGI_Apparel_ServoSkullB</defName>
 		<label>Inquisitorial Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for Inquisitorial procedures, language analysis, negotiations and outfitted with a neural link to allow the user to access the cogitators for aim assistance.</description>
@@ -572,7 +574,7 @@
 	</ThingDef>
 	
     <!-- ========================= Imperial - Mechanicus Skull ========================== -->
-	<ThingDef ParentName="OGIServoSkullMakeable">
+	<ThingDef ParentName="OG_Imperial_ServoSkull_Makeable">
 		<defName>OGI_Apparel_ServoSkullC</defName>
 		<label>Mechanarium Servo Skull</label>
 		<description>A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilize embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. They are fashioned from the skulls of loyal Adepts of the Adeptus Terra and other pious Imperial servants to which robotic components and an antigravitic impeller have been added. This is so that they may continue their work for the Emperor of Mankind even after death. To have one's skull chosen to serve as a Servo-skull is a great honour in the Imperium, for it implies one's service in life has been satisfactory enough to warrant continuation beyond death.\n\nThis one is programed and calibrated with protocols for Mechanicus procedures, Structural analysis, Schematics and outfitted with a set of tools designed to increase the users productivity.</description>

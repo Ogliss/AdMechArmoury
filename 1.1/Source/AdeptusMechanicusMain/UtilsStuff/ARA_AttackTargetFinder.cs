@@ -114,15 +114,13 @@ namespace AdeptusMechanicus
                 else
                 {
                     bool flag2 = false;
-                    CellRect.CellRectIterator iterator = thing.OccupiedRect().GetIterator();
-                    while (!iterator.Done())
+                    foreach (var iterator in thing.OccupiedRect())
                     {
-                        if (!iterator.Current.Fogged(thing.Map))
+                        if (!iterator.Fogged(thing.Map))
                         {
                             flag2 = true;
                             break;
                         }
-                        iterator.MoveNext();
                     }
                     if (!flag2)
                     {

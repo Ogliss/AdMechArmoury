@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>QX.AstraMilitarum</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[(
+							starts-with(@Name,'OG_Imperial_') or 
+							starts-with(@Name,'OG_Militarum_') or 
+							starts-with(@Name,'OG_Mechanicus_') or 
+							starts-with(@Name,'OG_Sororitas_') or
+							starts-with(@Name,'OG_Astartes_') or 
+							starts-with(@Name,'OG_Chaos_')) 
+							and 
+							(contains(@Name, 'Apparel_Makeable') or 
+							contains(@Name, 'Armor_Makeable') or 
+							contains(@Name, 'Wargear_Makeable')) ]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
+							<value>
+								<li>ImperialArmorFab</li>
+							</value>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[(
+							starts-with(@Name,'OG_Imperial_') or 
+							starts-with(@Name,'OG_Militarum_') or 
+							starts-with(@Name,'OG_Mechanicus_') or 
+							starts-with(@Name,'OG_Sororitas_') or
+							starts-with(@Name,'OG_Astartes_') or
+							starts-with(@Name,'OG_Chaos_')) 
+							and 
+							(contains(@Name, 'Gun_Makeable') or 
+							contains(@Name, 'MeleeWeapon_Makeable')) 
+							]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
+							<value>
+								<li>ImperialWeaponFab</li>
+							</value>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/WorkGiverDef[defName="DoBillsImperialMachining"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGI_TableMachining"]<!--/designationCategory--></xpath>
+						</li>
+					</operations>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+	 
+</Patch>

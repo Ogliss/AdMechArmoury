@@ -25,6 +25,91 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName.Contains("BoltGun"))
+                    {
+                        if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
+                        {
+                            newName = "OGC_Gun_BoltGun";
+                        }
+                        else
+                        {
+                            if (defName.Contains("T3BoltGun"))
+                            {
+                                newName = "OGI_Gun_T3BoltGun";
+                            }
+                            else if (defName.Contains("T3BoltGun"))
+                            {
+                                newName = "OGI_Gun_T2BoltGun";
+                            }
+                            else
+                            newName = "OGI_Gun_BoltGun";
+                        }
+                    }
+                    if (defName.Contains("PlasmaRifle"))
+                    {
+                        if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
+                        {
+                            newName = "OGC_Gun_PlasmaGun";
+                        }
+                        else
+                        {
+                            newName = "OGI_Gun_PlasmaGun";
+                        }
+                    }
+                    if (defName.Contains("LasPistol"))
+                    {
+                        if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
+                        {
+                            newName = "OGC_Gun_LasPistol";
+                        }
+                        else
+                        {
+                            newName = "OGI_Gun_LasPistol";
+                        }
+                    }
+                    if (defName.Contains("LasGun"))
+                    {
+                        if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
+                        {
+                            newName = "OGC_Gun_LasGun";
+                        }
+                        else
+                        {
+                            newName = "OGI_Gun_LasGun";
+                        }
+                    }
+                    if (defName == "IG_Melee_ChaosChainsword")
+                    {
+                        newName = "OGC_Melee_ChainSword";
+                    }
+                    if (defName == "Melee_Chainsword")
+                    {
+                        newName = "OGI_Melee_ChainSword";
+                    }
+                    if (defName == "IG_Melee_ChaosPowerAxe")
+                    {
+                        newName = "OGC_Melee_PowerAxe";
+                    }
+                    if (defName == "Melee_PowerAxe")
+                    {
+                        newName = "OGI_Melee_PowerAxe";
+                    }
+                    if (defName == "Melee_ForceSword")
+                    {
+                        newName = "OGI_Melee_ForceSword";
+                    }
+                    if (defName == "Melee_ThunderHammer")
+                    {
+                        newName = "OGI_Melee_ThunderHammer";
+                    }
+                    if (defName == "Gun_ExitusSniper")
+                    {
+                        newName = "OGI_Gun_ExitusRifle";
+                    }
+                    if (defName == "Melee_ForceSword")
+                    {
+                        newName = "OGI_Melee_ForceSword";
+                    }
                     if (defName.Contains("ChaosDeamon_"))
                     {
                         if (defName.Contains("Corpse_"))
@@ -55,6 +140,18 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         else
                         newName = "OGK_Bullet_HunterSolid";
+                    }
+                    if (defName == "OG_Ork_TableMachining")
+                    {
+                        newName = "OGO_TableMachining";
+                    }
+                    if (defName == "OG_Tau_TableMachining")
+                    {
+                        newName = "OGT_TableMachining";
+                    }
+                    if (defName == "OG_Eldar_TableMachining")
+                    {
+                        newName = "OGE_TableMachining";
                     }
                     if (defName == "GlowPodLike")
                     {

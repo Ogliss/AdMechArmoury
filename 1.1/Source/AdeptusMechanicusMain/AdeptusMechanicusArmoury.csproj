@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AC73323-B4F2-4592-B3EA-53AC4F8D73A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdeptusMechanicus</RootNamespace>
+    <AssemblyName>AdeptusMechanicusArmoury</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\1.1\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AnimatedProjectile\bin\Debug\1AnimatedProjectile.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompActivatableEffect\bin\Debug\1CompActivatableEffect.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompOversizedWeapon\bin\Debug\1CompOversizedWeapon.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompSlotLoadable">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompSlotLoadable\bin\Debug\1CompSlotLoadable.dll</HintPath>
+    </Reference>
+    <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleDef\bin\Debug\1CompToggleDef.dll</HintPath>
+    </Reference>
+    <Reference Include="AbilitiesExtended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AbilitiesExtended\bin\Debug\AbilitiesExtended.dll</HintPath>
+    </Reference>
+    <Reference Include="AdvancedGraphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AdvancedGraphics\bin\Debug\AdvancedGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.2\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1631756268\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CompApparelVerbGiver">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompApparelVerbGiver\bin\Debug\CompApparelVerbGiver.dll</HintPath>
+    </Reference>
+    <Reference Include="CompToggleFireMode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleFireMode\bin\Debug\CompToggleFireMode.dll</HintPath>
+    </Reference>
+    <Reference Include="CompTurret">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompTurret\bin\Debug\CompTurret.dll</HintPath>
+    </Reference>
+    <Reference Include="DualWield">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1628211313\Assemblies\DualWield.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RecruitShips">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\RecruitShips\bin\Debug\RecruitShips.dll</HintPath>
+    </Reference>
+    <Reference Include="ShipsHaveInsides">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1909914131\1.2\Assemblies\ShipsHaveInsides.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Abilities\FlyingObject_JumpPack.cs.bak" />
+    <Compile Include="Apparel\Graphic_MultiMask.cs" />
+    <Compile Include="Apparel\ShoulderPadEntryProps.cs" />
+    <Compile Include="Apparel\CompColorableTwo.cs" />
+    <Compile Include="Apparel\CompColorableTwoUtility.cs" />
+    <Compile Include="Apparel\CompOwnerDualColorable.cs" />
+    <Compile Include="Apparel\CompPauldronDrawer.cs" />
+    <None Include="Apparel\CompPauldronDrawer.cs.bak" />
+    <Compile Include="Apparel\CompFactionColorableTwo.cs" />
+    <Compile Include="Apparel\ITab_ToggleLivelry.cs" />
+    <Compile Include="Apparel\PauldronTextureOption.cs" />
+    <None Include="Apparel\PauldronTextureOverride.cs.back" />
+    <Compile Include="Apparel\ShoulderPadEntry.cs" />
+    <Compile Include="Apparel\ShoulderPadType.cs" />
+    <Compile Include="Apparel\ToggleLivelryCardUtility.cs" />
+    <None Include="Apparel\Graphic_Pauldron.cs.bak" />
+    <Compile Include="Buildings\Class1.cs" />
+    <Compile Include="DefExtentions\FactionDefRaidSoundExtension.cs" />
+    <Compile Include="DefExtentions\SpawnWithAnimalsExtension.cs" />
+    <Compile Include="DefExtentions\EquipmentOffsetExtension.cs" />
+    <Compile Include="DefExtentions\ProjectileExtensions.cs" />
+    <Compile Include="DefExtentions\ToolUserPskyerDefExtension.cs" />
+    <Compile Include="DeOf\OGTraitDefOf.cs" />
+    <Compile Include="DeOf\OGDamageDefOf.cs" />
+    <Compile Include="DeOf\OGGameConditionDefOf.cs" />
+    <Compile Include="DeOf\OGHediffDefOf.cs" />
+    <Compile Include="DeOf\OGJobDefOf.cs" />
+    <Compile Include="DeOf\OGPawnsArrivalModeDefOf.cs" />
+    <Compile Include="DeOf\OGReseachDefOf.cs" />
+    <Compile Include="DeOf\OGSoundDefOf.cs" />
+    <Compile Include="DeOf\OGStatDefOf.cs" />
+    <Compile Include="DeOf\OGTaleDefOf.cs" />
+    <Compile Include="DeOf\OGThingDefOf.cs" />
+    <Compile Include="ExtentionMethods\DamageDefExtensions.cs" />
+    <Compile Include="ExtentionMethods\ThingDefExtensions.cs" />
+    <Compile Include="ExtentionMethods\Listing_StandardExtensions.cs" />
+    <Compile Include="ExtentionMethods\Pawn_AbilityTrackerExtensions.cs" />
+    <Compile Include="ExtentionMethods\MapExtensions.cs" />
+    <Compile Include="ExtentionMethods\ThingExtensions.cs" />
+    <Compile Include="ExtentionMethods\PawnExtensions.cs" />
+    <Compile Include="ExtentionMethods\ProjectilePropertiesExtensions.cs" />
+    <Compile Include="ExtentionMethods\Extensions.cs" />
+    <Compile Include="ExtentionMethods\VerbExtensions.cs" />
+    <None Include="Harmony\Patches\Pawn_PathFollower_PawnCanOccupy_Floater_Patch.cs.bak" />
+    <Compile Include="Harmony\CompWearable.cs" />
+    <Compile Include="Harmony\Patches\ThingDef_get_PlayerAcquirable_ModOptions_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatibility_Backstory_GetIdentifierClosestMatch_Patch.cs" />
+    <Compile Include="Harmony\Patches\ArmorUtility_GetPostArmorDamage_InvunerableSave_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\FactionGenerator_NewGeneratedFactionWithRelations_Refugee_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_Impact_ProjectileExtension_Patches.cs" />
+    <Compile Include="Harmony\Patches\QuestGen_Pawns_GeneratePawn_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnApparelGenerator_GenerateStartingApparelFor_FactionColors_Patch.cs" />
+    <Compile Include="Harmony\Patches\FactionGenerator_GenerateFactionsIntoWorld_DisabledFactions_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\PawnGroupMakerUtility_GeneratePawns_AnimalsWithRaiders_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_PathFollower_PatherTick_HeavyWeapons_Patch.cs" />
+    <Compile Include="Harmony\Patches\ThingWithComps_DrawColor_CompColorableTwo_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_Launch_MuzzlePosition_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireAlienRaces.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireCorruptionPsyker.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireCorruptionWorship.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireCorruptionCore.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireAstraFactions.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireAstraCore.cs" />
+    <Compile Include="UtilsStuff\ScenPart_StartingThing_Define.cs" />
+    <Compile Include="UtilsStuff\Attributes\MayRequireCEAttribute.cs" />
+    <Compile Include="UtilsStuff\ExtendedGraphicData.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_AddInjuryStrengthX.cs" />
+    <Compile Include="UtilsStuff\Dialog_FactionDeSpawning.cs" />
+    <Compile Include="UtilsStuff\Dialog_FactionSpawningSettlements.cs" />
+    <Compile Include="UtilsStuff\Dialog_FactionSpawning.cs" />
+    <Compile Include="UtilsStuff\FactionSpawningUtility - Copy.cs" />
+    <Compile Include="UtilsStuff\FactionSpawningUtility.cs" />
+    <Compile Include="Harmony\Patches\Corpse_ButcherProducts_BloodReplacer_Patch.cs" />
+    <Compile Include="Harmony\Patches\NonHumanRangedAttacks\JobGiver_Manhunter_TryGiveJob_RangedVerb_Patch.cs" />
+    <Compile Include="Harmony\Patches\NonHumanRangedAttacks\Pawn_TryGetAttackVerb_VerbCheckNonhumanlike_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_MatsBodyBaseAt_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_HairMatAt_NewTemp_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_HairMatAt_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_HeadMatAt_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnRenderer_DrawEquipment_OffsetExt_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_ApparelTracker_Notify_ApparelRemoved_CompHediffApparel_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_DrawAt_CompFloater_Patch.cs" />
+    <Compile Include="Harmony\Patches\EquipmentUtility_CanEquip_Restricted_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnBioAndNameGenerator_GiveShuffledBioTo_Controller_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_get_DrawPos_CompFloater_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_Tick_Trailer_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch.cs" />
+    <Compile Include="Harmony\Patches\Thing_DrawColorTwo_CompColorableTwo_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_Draw_ProjectileGlow_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_ApparelTracker_Notify_ApparelAdded_CompHediffApparel_Patch.cs" />
+    <Compile Include="Harmony\Patches\IncidentWorker_BaseChanceThisGame_ModOptions_Patch.cs" />
+    <None Include="Harmony\Patches\Projectile_Impact_ImpactSFX_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\StockGenerator_WeaponsRanged_HandlesThingDef_Settings_Patch.cs" />
+    <Compile Include="Harmony\Patches\StockGenerator_WeaponsMelee_HandlesThingDef_Settings_Patch.cs" />
+    <Compile Include="Harmony\Patches\ThingStuffPair_AllWith_Settings_Patch.cs" />
+    <None Include="Harmony\Patches\ApparelProperties_LastLayer_ShellExtra_Patch.cs - Copy.bak" />
+    <Compile Include="Harmony\Patches\Thing_TakeDamage_SpecialRules_Patch.cs" />
+    <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_CompAdvancedGraphic_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
+    <None Include="Harmony\Patches\Verb_MeleeAttackDamage_DamageInfosToApply_SpecialWeapon_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\Verb_ShootEquipment_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_Shoot_WarmupComplete_RapidFIre_FixEXP_Patch.cs" />
+    <Compile Include="Abilities\CompAbilityEffect_JumpPack.cs" />
+    <None Include="Harmony\Patches\Thing_get_DefaultGraphic_CompColorable_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\ApparelGraphicRecordGetter_TryGetGraphicApparel_PauldronDrawer_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_PathFollower_CostToMoveIntoCell_Patch.cs" />
+    <None Include="Harmony\Patches\Verb_UseEquipment_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs.bak" />
+    <Compile Include="UtilsStuff\AMConstants.cs" />
+    <Compile Include="UtilsStuff\FactionSpawningState.cs" />
+    <Compile Include="UtilsStuff\CompFloating.cs" />
+    <Compile Include="UtilsStuff\Graphic_Invisible.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrikeEntry.cs" />
+    <Compile Include="UtilsStuff\FlyingObject_Leap.cs" />
+    <Compile Include="UtilsStuff\PatchOps\PatchOperationGameVersion.cs" />
+    <Compile Include="UtilsStuff\PatchOps\PatchOperationFindModID.cs" />
+    <Compile Include="UtilsStuff\PawnGraphicSet_Invisible.cs" />
+    <Compile Include="UtilsStuff\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
+    <Compile Include="Weaponry\GunStuff\Graphic_Cycle.cs" />
+    <Compile Include="Weaponry\CompReliability.cs" />
+    <Compile Include="Weaponry\GunStuff\ArcingBullet.cs" />
+    <Compile Include="Weaponry\GunStuff\CompUpgradeableProjectile.cs" />
+    <Compile Include="Weaponry\GunStuff\GunVerbEntry.cs" />
+    <Compile Include="Weaponry\GunStuff\Bullet_Explosive.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Grower.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_LightningStrike.cs" />
+    <Compile Include="Weaponry\GunStuff\Sonic_Blast.cs" />
+    <Compile Include="Weaponry\GunStuff\CompWeapon_GunSpecialRules.cs" />
+    <None Include="_HumanlikeOrdersUtility.cs.bak" />
+    <None Include="Harmony\Patches\BackCompatibility_GameLoadingVars_Patch.cs.bak" />
+    <Compile Include="Backstories\BackstoryDef.cs" />
+    <Compile Include="DefExtentions\ResearchDefExtensions.cs" />
+    <Compile Include="DefExtentions\BackstoryExtensions.cs" />
+    <Compile Include="GameCondition_PlanetConquest.cs" />
+    <Compile Include="Harmony\Patches\IncidentWorker_TryExecute_Test_Patch.cs" />
+    <Compile Include="Harmony\Patches\Page_ScenarioLister_ScenariosInCategory_Patch.cs" />
+    <Compile Include="Harmony\Patches\MainTabWindow_Research_DrawResearchPrereqs_AnyOneOf_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch.cs" />
+    <Compile Include="Harmony\Patches\ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\ApparelProperties_LastLayer_ShellExtra_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatibility_GetBackCompatibleType_Patch.cs" />
+    <Compile Include="Harmony\Patches\AgeInjuryUtility_RandomHediffsToGainOnBirthday_RejuveTreatment_Patch.cs" />
+    <Compile Include="Harmony\Patches\HediffGiver_RandomAgeCurved_OnIntervalPassed_RejuveTreatment_Patch.cs" />
+    <None Include="Harmony\Patches\OutfitDatabase_GenerateStartingOutfits_Patch.cs.bak" />
+    <Compile Include="Regeneration\Comp_Regeneration.cs" />
+    <Compile Include="UtilsStuff\HediffComp_RejuvTreatment.cs" />
+    <Compile Include="UtilsStuff\ThinkNode_ConditionalFullyGrown.cs" />
+    <Compile Include="UtilsStuff\ArmouryMain.cs" />
+    <Compile Include="Harmony\Patches\RaidStrategyWorker_CanUsePawnGenOption_FactionLeader_Patch.cs" />
+    <Compile Include="Harmony\Patches\ABlankTranspiler.cs" />
+    <None Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\Corpse_SpawnSetup_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnGenerator_GenerateInitialHediffs_StartWithHediff_Patch.cs" />
+    <Compile Include="Harmony\Patches\FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatibility_BackCompatibleDefName_Patch.cs" />
+    <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
+    <None Include="Harmony\Patches\Projectile_Impact_TeslaWeapon_Patch.cs.bak" />
+    <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\VerbTracker_PrimaryVerb_Patch.cs" />
+    <None Include="Regeneration\Hediff_Regeneration.cs.bak" />
+    <Compile Include="Regeneration\Hediff_Removable.cs" />
+    <Compile Include="Regeneration\Hediff_RegeneratingPart.cs" />
+    <Compile Include="Regeneration\BodypartUtility.cs" />
+    <None Include="UtilsStuff\AdMechDebugToolsSpawning.cs.bak" />
+    <None Include="ShipParts\IncidentWorker_ShipPartCrash.cs.bak" />
+    <Compile Include="DefExtentions\ApparelRestrictionDefExtension.cs" />
+    <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_WarpFlameNoCamShake.cs" />
+    <Compile Include="UtilsStuff\PatchOps\PatchOperationPlayerName.cs" />
+    <Compile Include="SettingsMenu\AMMod.cs" />
+    <Compile Include="UtilsStuff\Warpfire.cs" />
+    <Compile Include="UtilsStuff\WarpfireUtility.cs" />
+    <Compile Include="UtilsStuff\WarpSpark.cs" />
+    <Compile Include="Weaponry\CompAlwaysActivatableEffect.cs" />
+    <Compile Include="Weaponry\GunStuff\GunComps\CompToggleFireMode.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Anim.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Plasma.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Trailer.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\Building_LaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\Building_LaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\IBeamColorThing.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\IDrawnWeaponWithRotation.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\JobDriver_ChangeLaserColor.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeam.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamColoring.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserBeamGraphic.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\LaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\MeshMakerLaser.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\MoteLaserDectoration.cs" />
+    <Compile Include="Harmony\Patches\PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch.cs" />
+    <Compile Include="Harmony\Patches\TuretTop_DrawTurret_LaserTurret_Patch.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGun.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunBase.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunDef.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\SpinningLaserGunTurret.cs" />
+    <Compile Include="Weaponry\GunStuff\Lasers\ThingExtensions.cs" />
+    <Compile Include="Apparel\CompApparelExtraDrawer.cs" />
+    <Compile Include="Apparel\Shieldstuff\PsychicShield.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_PsychicShieldStatus.cs" />
+    <Compile Include="Buildings\Barricades\Building_DeployableBarricade.cs" />
+    <Compile Include="Buildings\Barricades\DeployableBarricadeExtension.cs" />
+    <Compile Include="Buildings\Building_AdvancedArt.cs" />
+    <Compile Include="UtilsStuff\CompButcherBloodReplacer.cs" />
+    <Compile Include="Harmony\Patches\PawnTechHediffsGenerator_GenerateTechHediffsFor_UseAllTechHediffMoney_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_AgeTracker_RecalculateLifeStageIndex_CommingOfAge_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_EquipmentTracker_EquipmentTrackerTick_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_EquipmentTracker_TryDropEquipment_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch.cs" />
+    <None Include="Harmony\Patches\PawnGroupMakerUtility_GeneratePawns_DeepStrike_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\IncidentWorker_RaidEnemy_TryExecute_RaidAlert_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_PathFollower_CostToMoveIntoCell_MoveThroughCover_Patch.cs" />
+    <Compile Include="Harmony\Patches\DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch.cs" />
+    <Compile Include="Harmony\Patches\PreApplyDamage_HediffComp_Shield_Patch.cs" />
+    <Compile Include="Harmony\Patches\Projectile_GetArmorPenetration_Rending_Patch.cs" />
+    <None Include="Harmony\Patches\Projectile_Impact_DistortWeapon_Patch.cs.bak" />
+    <None Include="Harmony\Patches\RecipeDef_AvailableNow_ExtraPrerequisite_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\PawnGenerator_GenerateTraits_FactionDefExtension_Patch.cs" />
+    <None Include="Harmony\Patches\PawnGroupKindWorker_Trader_GenerateCarriers_Patches.cs.bak" />
+    <None Include="Harmony\Patches\HediffGiverUtility_TryApply_Patch.cs.bak" />
+    <None Include="Harmony\Patches\FloatMenuMakerMap_ChoicesAtFor_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\CoverUtility_BaseBlockChancee_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\GenGrid_Standable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\GenGrid_Impassable_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\PathGrid_PerceivedPathCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\PathGrid_CalculatedCostAt_DeployableBarricade_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_EquipmentTracker_Notify_EquipmentAdded_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\GenSpawn_Spawn_ActivatableEffect_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_EquipmentTracker_GetGizmos_VerbGiverExtra_Patch.cs" />
+    <Compile Include="Harmony\Patches\Pawn_GetGizmos_HediffComps_Patch.cs" />
+    <Compile Include="Harmony\Patches\Apparel_GetWornGizmos_GizmosFromCompWearable_Patch.cs" />
+    <None Include="Harmony\Patches\ShotReport_HitReportFor_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
+    <None Include="Harmony\Patches\VerbTracker_GetVerbsCommands_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_UseEquipment_Get_Projectile_Upgradeable_Patch.cs" />
+    <None Include="Harmony\Patches\Verb_Shoot_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
+    <None Include="Harmony\Patches\Verb_get_UIIcon_ColouredWeapons_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\Verb_TryStartCastOn_warmupTime_SpecialRules_Patch.cs" />
+    <None Include="Harmony\Patches\ShotReport_GetAimOnTargetChance_StandardTarget_Debuff_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\NonHumanRangedAttacks\JobGiver_AIFightEnemy_TryGiveJob_RangedVerb_Patch.cs" />
+    <Compile Include="Apparel\ApparelComposite.cs" />
+    <Compile Include="Apparel\Apparel_ShockCollar.cs" />
+    <Compile Include="ExtentionMethods\ObjectExtensions.cs" />
+    <Compile Include="UtilsStuff\AdeptusIntergrationUtil.cs" />
+    <None Include="UtilsStuff\CompPoweredStatChange.cs.bak" />
+    <Compile Include="UtilsStuff\DeepStrike\TeleportSpawner.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\WeatherEvent_WarpLightningStrike.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\IncidentWorker_Warpstorm.cs" />
+    <Compile Include="UtilsStuff\WeatherStuff\GameCondition_Warpstorm.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\FlyerIncoming.cs" />
+    <Compile Include="UtilsStuff\JobGiver_ServitorIdle.cs" />
+    <Compile Include="UtilsStuff\LightningBoltMeshMakerOG.cs" />
+    <Compile Include="Buildings\Building_DeployableBarricade.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\ActiveFlyer.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\WeatherEvent_DeepStrike_Teleport.cs" />
+    <Compile Include="SettingsMenu\AMAMod.cs" />
+    <Compile Include="SettingsMenu\AMASettingsHelper.cs" />
+    <Compile Include="SettingsMenu\AMConstants.cs" />
+    <Compile Include="SettingsMenu\AMSettings.cs" />
+    <Compile Include="SettingsMenu\ArmourySettingsRef.cs" />
+    <Compile Include="UtilsStuff\ArtificalPawn.cs" />
+    <Compile Include="UtilsStuff\AM_MeshMaker.cs" />
+    <Compile Include="UtilsStuff\AM_MeshBolt.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\InfiltratorExtension.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\InfiltrateUtility.cs" />
+    <Compile Include="UtilsStuff\Infiltrate\Infiltrate_MapComponent.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrike_MapComponent.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrikeExtension.cs" />
+    <Compile Include="UtilsStuff\PawnsArrivalModeWorker_DeepStrike.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\DeepStrikeUtility.cs" />
+    <Compile Include="UtilsStuff\DeepStrike\TunnelSpawner.cs" />
+    <Compile Include="UtilsStuff\HediffComp_PhaseShifter.cs" />
+    <Compile Include="UtilsStuff\CompLeaper.cs" />
+    <Compile Include="Abilities\FlyingObject_JumpPack.cs" />
+    <Compile Include="UtilsStuff\HediffComp_VerbGiverExtra.cs" />
+    <Compile Include="UtilsStuff\JobDriver_AnimalRangeAttack.cs" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Fire.cs" />
+    <Compile Include="Weaponry\GunStuff\SiegeProjectile.cs" />
+    <Compile Include="UtilsStuff\HediffComp_Shield.cs" />
+    <Compile Include="UtilsStuff\ARA_AttackTargetFinder.cs" />
+    <Compile Include="UtilsStuff\HediffComp_MoveThroughCover.cs" />
+    <Compile Include="UtilsStuff\CompUseEffect_GiveTechnology.cs" />
+    <Compile Include="UtilsStuff\ScenPart_StartingAnimalofGender.cs" />
+    <Compile Include="Weaponry\GunStuff\AnimalProjectile.cs" />
+    <Compile Include="UtilsStuff\HediffGiver_StartWithBionics.cs" />
+    <Compile Include="Weaponry\CompActivatableEffect_ForceWeapon.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_ExtinguishNoCamShake.cs" />
+    <Compile Include="UtilsStuff\CompFoodPoisonProtection.cs" />
+    <Compile Include="UtilsStuff\IncidentWorker_WandererJoin.cs" />
+    <Compile Include="UtilsStuff\PlaceWorker_OnTopOfWalls.cs" />
+    <Compile Include="UtilsStuff\CompPainKiller.cs" />
+    <Compile Include="Weaponry\GunStuff\CompProperties_AddedBulletEffect.cs" />
+    <Compile Include="UtilsStuff\HediffComp_DrawImplant.cs" />
+    <Compile Include="Weaponry\CompWeapon_MeleeSpecialRules.cs" />
+    <Compile Include="UtilsStuff\CompGlowerPawn.cs" />
+    <Compile Include="DefExtentions\FactionDefExtension.cs" />
+    <Compile Include="UtilsStuff\PatchOps\PatchOperationAddOrReplace.cs" />
+    <None Include="Apparel\CompPauldronDrawer.cs.NewBak" />
+    <Compile Include="Apparel\CompApparelForceBodyType.cs" />
+    <None Include="Buildings\Fermenter\CompProperties_UniversalFermenter.cs.bak" />
+    <None Include="Buildings\Fermenter\CompUniversalFermenter.cs.bak" />
+    <None Include="Buildings\Fermenter\JobDriver_FillUniversalFermenter.cs.bak" />
+    <None Include="Buildings\Fermenter\JobDriver_TakeProductOutOfUniversalFermenter.cs.bak" />
+    <None Include="Buildings\Fermenter\Static_Bar.cs.bak" />
+    <None Include="Buildings\Fermenter\UniversalFermenterProduct.cs.bak" />
+    <None Include="Buildings\Fermenter\Utils.cs.bak" />
+    <None Include="Buildings\Fermenter\WorkGiver_FillUniversalFermenter.cs.bak" />
+    <None Include="Buildings\Fermenter\WorkGiver_TakeProductOutOfUniversalFermenter.cs.bak" />
+    <Compile Include="UtilsStuff\CompInvunerableSaveOG.cs" />
+    <Compile Include="UtilsStuff\ResearchMod_SetResearchToZero.cs" />
+    <Compile Include="ShipParts\CompPawnSpawnerOnDamaged.cs" />
+    <Compile Include="UtilsStuff\CompWarpFireOverlay.cs" />
+    <Compile Include="Apparel\HediffApparel\CompLungProtectionApparel.cs" />
+    <Compile Include="Apparel\HediffApparel\CompApparel.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_AddEyes.cs" />
+    <Compile Include="Apparel\HediffApparel\CompEyeProtectionApparel.cs" />
+    <Compile Include="UtilsStuff\HediffGiver_StartWithHediff.cs" />
+    <Compile Include="ShipParts\IncidentWorker_CrashedShip.cs" />
+    <Compile Include="ShipParts\LordJob_PawnsDefendShip.cs" />
+    <Compile Include="Weaponry\CompActivatableEffect_PowerWeapon.cs" />
+    <Compile Include="Harmony\HarmonyPatches.cs" />
+    <Compile Include="Weaponry\CompHediffWeapon.cs" />
+    <Compile Include="Weaponry\CompWargearWeapon.cs" />
+    <Compile Include="Apparel\CompWargear.cs" />
+    <Compile Include="Apparel\HediffApparel\CompHediffApparel.cs" />
+    <Compile Include="Apparel\Shieldstuff\ProtectiveEyeWear.cs" />
+    <Compile Include="Apparel\Shieldstuff\AdvShieldBelt.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_CloseCombatShieldStatus.cs" />
+    <Compile Include="Apparel\Shieldstuff\CloseCombatShield.cs" />
+    <Compile Include="Apparel\Shieldstuff\Gizmo_AdvShieldBeltStatus.cs" />
+    <Compile Include="UtilsStuff\Thing_AddsHediff.cs" />
+    <Compile Include="UtilsStuff\Thing_AddsHediffDef.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_AddBrain.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_BombNoCamShake.cs" />
+    <Compile Include="UtilsStuff\DamageWorker_FlameNoCamShake.cs" />
+    <Compile Include="Weaponry\GunStuff\EffectBullet\Projectile_BulletEffect.cs" />
+    <Compile Include="DeOf\OGBodyPartGroupDefOf.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Weaponry\GunStuff\StatDrawEntry.cs" />
+    <Compile Include="Weaponry\GunStuff\StatPart_Reliability.cs" />
+    <Compile Include="Weaponry\GunStuff\StatWorker_Reliability.cs" />
+    <Compile Include="Weaponry\GunStuff\ThingDef_GunOG.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.2.2753</Version>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
+      <Version>8.0.0</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

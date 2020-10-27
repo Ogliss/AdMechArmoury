@@ -78,7 +78,7 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-                    dropCenter = DropCellFinder.FindRaidDropCenterDistant(map);
+                    dropCenter = DropCellFinder.FindRaidDropCenterDistant_NewTemp(map, true);
                     if (RCellFinder.TryFindRandomSpotJustOutsideColony(dropCenter, map, out dropCenter))
                     {
                         InfiltrateUtility.DropThingsNear(dropCenter, map, Gen.YieldSingle<Thing>(pawns[i]), 50, true, false, true);

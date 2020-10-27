@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation MayRequire="Ogliss.AdMech.Xenobiologis" Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+  
+	<!--==================== Tyranid - Spinefist =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_Spinefist</defName>
+	<statBases>
+		<Mass>1</Mass>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.15</ShotSpread>
+		<SwayFactor>1.5</SwayFactor>
+		<Bulk>1.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_Spinefist</defaultProjectile>
+		<warmupTime>0.4</warmupTime>
+		<range>25</range>
+		<soundCast>OG_Fleshhook_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<muzzleFlashScale>0</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>36</magazineSize>
+	  <reloadTime>2</reloadTime>
+	  <ammoSet>AmmoSet_OGKroot</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootPistol</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_Spinefist"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_Spinefist"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_Spinefist</defName>
+				<label>spines</label>
+				<graphicData>
+					<texPath>Things/Projectile/SpinefistShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>4</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_SpinefistHeavy"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_SpinefistHeavy</defName>
+				<label>heavy spines</label>
+				<graphicData>
+					<texPath>Things/Projectile/SpinefistShotLrg</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>8</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Spinefist Dual =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_SpinefistDual</defName>
+	<statBases>
+		<Mass>1</Mass>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.15</ShotSpread>
+		<SwayFactor>1.5</SwayFactor>
+		<Bulk>1.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_SpinefistDual</defaultProjectile>
+		<warmupTime>0.4</warmupTime>
+		<range>25</range>
+		<soundCast>OG_Fleshhook_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<muzzleFlashScale>0</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>36</magazineSize>
+	  <reloadTime>2</reloadTime>
+	  <ammoSet>AmmoSet_OGKroot</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootPistol</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_SpinefistDual"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_SpinefistDual</defName>
+				<label>spines</label>
+				<graphicData>
+					<texPath>Things/Projectile/SpinefistShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>4</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_SpinefistHeavyDual</defName>
+				<label>heavy spines</label>
+				<graphicData>
+					<texPath>Things/Projectile/SpinefistShotLrg</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>8</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Fleshborer =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_Fleshborer</defName>
+	<statBases>
+	  <Mass>2</Mass>
+	  <RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.0</SightsEfficiency>
+	  <ShotSpread>0.15</ShotSpread>
+	  <SwayFactor>1.5</SwayFactor>
+	  <Bulk>1.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_Fleshborer</defaultProjectile>
+		<warmupTime>0.3</warmupTime>
+		<range>25</range>
+		<soundCast>OG_Devourer_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>36</magazineSize>
+	  <reloadTime>2</reloadTime>
+	  <ammoSet>AmmoSet_OGKroot</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootPistol</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_Fleshborer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_Fleshborer"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_Fleshborer</defName>
+				<label>fleshborer beetles</label>
+				<graphicData>
+					<texPath>Things/Projectile/FleshborerShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Devourer =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_Devourer</defName>
+	<statBases>
+	  <Mass>2</Mass>
+	  <RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.0</SightsEfficiency>
+	  <ShotSpread>0.15</ShotSpread>
+	  <SwayFactor>1.5</SwayFactor>
+	  <Bulk>1.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_Devourer</defaultProjectile>
+		<warmupTime>0.3</warmupTime>
+		<range>25</range>
+		<soundCast>OG_Devourer_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>36</magazineSize>
+	  <reloadTime>2</reloadTime>
+	  <ammoSet>AmmoSet_OGKroot</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootPistol</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_Devourer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_Devourer"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_Devourer</defName>
+				<label>devourer worm</label>
+				<graphicData>
+					<texPath>Things/Projectile/DevourerShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>8</damageAmountBase>
+					<armorPenetrationBase>0.16</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_DevourerBrainleech"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_DevourerBrainleech</defName>
+				<label>brainleech worm</label>
+				<graphicData>
+					<texPath>Things/Projectile/DevourerShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>18</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>75</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Barbed Strangler =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_BarbedStrangler</defName>
+	<statBases>
+	  <Mass>6</Mass>
+	  <RangedWeapon_Cooldown>2.20</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.0</SightsEfficiency>
+	  <ShotSpread>0.15</ShotSpread>
+	  <SwayFactor>1.5</SwayFactor>
+	  <Bulk>2.25</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_BarbedStrangler</defaultProjectile>
+		<warmupTime>1.3</warmupTime>
+		<range>45</range>
+		<soundCast>OG_BarbedStrangler_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
+		<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+		<burstShotCount>2</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>24</magazineSize>
+	  <reloadTime>4</reloadTime>
+	  <ammoSet>AmmoSet_OGKroot</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_BarbedStrangler"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_BarbedStrangler"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_Fleshborer</defName>
+				<label>fleshborer beetles</label>
+				<graphicData>
+					<texPath>Things/Projectile/FleshborerShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGTY_StranglerBlast</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<!--postExplosionSpawnThingDef>Warpfire</postExplosionSpawnThingDef-->
+					<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<soundExplode>OG_BarbedStranglerBlast_Sound</soundExplode>
+					<speed>75</speed>
+					<explosionRadius>2.55</explosionRadius>
+				</projectile>
+				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Venom Cannon =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_VenomCannon</defName>
+	<statBases>
+	  <Mass>2.5</Mass>
+	  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.25</SightsEfficiency>
+	  <ShotSpread>0.15</ShotSpread>
+	  <SwayFactor>1.5</SwayFactor>
+	  <Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGTY_Bullet_VenomCannon</defaultProjectile>
+		<warmupTime>1.3</warmupTime>
+		<range>45</range>
+		<burstShotCount>1</burstShotCount>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<soundCast>OG_Venomcannon_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>12</magazineSize>
+	  <reloadTime>4</reloadTime>
+	  <ammoSet>AmmoSet_OGKrootHunter</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>	
+	</FireModes>
+	<weaponTags>
+	
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_VenomCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_VenomCannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_VenomCannon</defName>
+				<label>kroot solid round</label>
+				<graphicData>
+					<texPath>Things/Projectile/VenomCannonShotSml</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>32</damageAmountBase>
+					<armorPenetrationBase>0.48</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>85</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+	<!--==================== Tyranid - Impaler Cannon =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGTY_Gun_ImpalerCannon</defName>
+	<statBases>
+	  <Mass>8.5</Mass>
+	  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.25</SightsEfficiency>
+	  <ShotSpread>0.15</ShotSpread>
+	  <SwayFactor>1.5</SwayFactor>
+	  <Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.25</recoilAmount>
+	  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+	  <hasStandardCommand>true</hasStandardCommand>
+	  <defaultProjectile>OGTY_Bullet_ImpalerCannon</defaultProjectile>
+	  <warmupTime>2.8</warmupTime>
+	  <range>38</range>
+	  <soundCast>OG_Flamer_Sound</soundCast>
+	  <soundCastTail>GunTail_Light</soundCastTail>
+	  <muzzleFlashScale>0</muzzleFlashScale>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<!--AmmoUser>
+	  <magazineSize>12</magazineSize>
+	  <reloadTime>4</reloadTime>
+	  <ammoSet>AmmoSet_OGKrootHunter</ammoSet>
+	</AmmoUser-->
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>	
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+	</weaponTags>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Gun_ImpalerCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.65</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.75</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGTY_Bullet_ImpalerCannon"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+				<defName>OGTY_Bullet_ImpalerCannon</defName>
+				<label>impaler barb</label>
+				<graphicData>
+					<texPath>Things/Projectile/ImpalerCannonShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>2.0</drawSize>			
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>50</damageAmountBase>
+					<armorPenetrationBase>0.32</armorPenetrationBase>
+					<stoppingPower>0.5</stoppingPower>
+					<speed>135</speed>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+  </operations>
+</Operation>
+
+</Patch>

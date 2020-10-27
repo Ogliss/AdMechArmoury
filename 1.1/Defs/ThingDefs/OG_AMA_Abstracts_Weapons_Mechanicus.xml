@@ -64,7 +64,7 @@
 	</ThingDef>
   	
 	<!-- ==================== Mod - Base Mechanicus Melee Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Base" Abstract="True" ParentName="OG_Weapon_Base">
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Base" ParentName="OG_Weapon_Base" Abstract="True">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
 		<thingCategories>
@@ -74,6 +74,22 @@
 		  <li>MechanicusMelee</li>
 		  <li>MechanicusWeapon</li>
 		</weaponTags>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Makeable" ParentName="OG_Mechanicus_MeleeWeapon_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -88,102 +104,100 @@
 				<li>OG_Mechanicus_Tech_Base_T1</li>
 			</researchPrerequisites>
 		</recipeMaker>
-		<inspectorTabs>
-			<li>ITab_Art</li>
-		</inspectorTabs>
-		<comps>
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-			<li Class="CompProperties_Art">
-				<nameMaker>NamerArtWeaponMelee</nameMaker>
-				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
-				<minQualityForArtistic>Excellent</minQualityForArtistic>
-			</li>
-		</comps>
-	</ThingDef>
-
-	<!-- ==================== Mod - Base Mechanicus Melee Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_PowerWeapon" Abstract="True" ParentName="OG_Mechanicus_MeleeWeapon_Base">
-		<techLevel>Industrial</techLevel>
-		<smeltable>true</smeltable>
-		<thingCategories>
-		
-		</thingCategories>
-		<recipeMaker>
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-			<workSkill>Crafting</workSkill>
-			<effectWorking>Smith</effectWorking>
-			<soundWorking>Recipe_Smith</soundWorking>
-			<recipeUsers>
-				<li>OGI_TableMachining</li>
-			</recipeUsers>
-			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-			<researchPrerequisites>
-				<li>OG_Common_Tech_Weapons_Powered</li>
-			</researchPrerequisites>
-		</recipeMaker>
-		<inspectorTabs>
-			<li>ITab_Art</li>
-		</inspectorTabs>
-		<comps>
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-			<li Class="CompProperties_Art">
-				<nameMaker>NamerArtWeaponMelee</nameMaker>
-				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
-				<minQualityForArtistic>Excellent</minQualityForArtistic>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<!-- ==================== Mod - Base Mechanicus Melee Weapon Sharp Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Sharp" ParentName="OG_Mechanicus_MeleeWeapon_Base" Abstract="True">
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Sharp" ParentName="OG_Mechanicus_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
 				<categories>
 					<li>Root</li>
 				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
 			</defaultIngredientFilter>
 		</recipeMaker>
 	  </ThingDef>
 
 	<!-- ==================== Mod - Base Mechanicus Melee Weapon Blunt Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Blunt" ParentName="OG_Mechanicus_MeleeWeapon_Base" Abstract="True">
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Blunt" ParentName="OG_Mechanicus_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
 				<categories>
 					<li>Root</li>
 				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
 			</defaultIngredientFilter>
 		</recipeMaker>
 	</ThingDef>
-	
- 	<!-- ==================== Mod - Base Mechanicus Blunt Power Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Power_Blunt" ParentName="OG_Mechanicus_PowerWeapon" Abstract="True">
-		<recipeMaker>
-			<defaultIngredientFilter>
-				<categories>
-					<li>Root</li>
-				</categories>
-			</defaultIngredientFilter>
-		</recipeMaker>
-	</ThingDef>
-   
+  
 	<!-- ==================== Mod - Base Mechanicus Sharp Quality Melee Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Sharp_Quality" Abstract="True" ParentName="OG_Mechanicus_MeleeWeapon_Sharp">
-
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Sharp_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Sharp" Abstract="True">
+		<weaponTags>
+			<li>MechanicusMeleeBasic</li>
+		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Mechanicus Blunt Melee Quality  Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Blunt_Quality" Abstract="True" ParentName="OG_Mechanicus_MeleeWeapon_Blunt">
-
+	<!-- ==================== Mod - Base Mechanicus Blunt Quality Melee Weapon Template ========================= -->
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Blunt_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Blunt" Abstract="True">
+		<weaponTags>
+			<li>MechanicusMeleeBasic</li>
+		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Base Mechanicus Blunt Melee Quality  Weapon Template ========================= -->
-	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Power_Blunt_Quality" Abstract="True" ParentName="OG_Mechanicus_MeleeWeapon_Power_Blunt">
-
+	<!-- ==================== Mod - Power Mechanicus Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+		  <li>MechanicusMeleePower</li>
+		</weaponTags>
 	</ThingDef>
-	
+
+	<!-- ==================== Mod - Power Mechanicus Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+		  <li>MechanicusMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- ==================== Mod - Force Mechanicus Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+		  <li>MechanicusMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Force Mechanicus Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OG_Mechanicus_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Mechanicus_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+		  <li>MechanicusMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+	 
 </Defs>

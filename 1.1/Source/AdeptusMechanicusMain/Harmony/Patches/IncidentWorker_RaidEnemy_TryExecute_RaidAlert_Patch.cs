@@ -25,9 +25,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (parms.faction.def.modExtensions != null)
                         {
-                            if (parms.faction.def.GetModExtension<FactionDefExtension>() != null)
+                            if (parms.faction.def.GetModExtension<FactionDefRaidSoundExtension>() != null)
                             {
-                                if (parms.faction.def.GetModExtension<FactionDefExtension>() is FactionDefExtension raidsound)
+                                if (parms.faction.def.GetModExtension<FactionDefRaidSoundExtension>() is FactionDefRaidSoundExtension raidsound)
                                 {
                                     if (raidsound.raidSound != null)
                                     {

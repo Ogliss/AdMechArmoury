@@ -28,6 +28,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //    Log.Message("skipping "+ scen.name);
                         continue;
                     }
+                    if (scenDef.defName.Contains("OG_Ork_Tek_Scenario_Test") || scenDef.defName.Contains("OG_Ork_Feral_Tribe") || scenDef.defName.Contains("OG_Eldar_Craftworld_Scenario_Test"))
+                    {
+                        //    Log.Message("skipping "+ scen.name);
+                        continue;
+                    }
                     if (scenDef.defName.Contains("OG_Astartes_"))
                     {
                         if (!SettingsHelper.latest.AllowAdeptusAstartes)

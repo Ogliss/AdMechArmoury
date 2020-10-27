@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>QX.AstraMilitarum</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						<!-- Replace Vanilla Costs for Imperial and Chaos recipes -->
+						<li Class="PatchOperationSetName">
+							  <xpath>Defs/ThingDef[starts-with(defName,'OGI_') or starts-with(defName,'OGIG_') or starts-with(defName,'OGAM_') or starts-with(defName,'OGAS_') or starts-with(defName,'OGAA_') or starts-with(defName,'OGC_') and (contains(defName, '_Gun_') or contains(defName, '_Melee_') or contains(defName, '_Apparel_') or contains(defName, '_Wargear_') or contains(defName, '_Armor_') or contains(defName, '_Armour_'))]/costList/ComponentIndustrial</xpath>
+							  <name>ImperialComponent</name>
+						</li>
+						<li Class="PatchOperationSetName">
+							  <xpath>Defs/ThingDef[starts-with(defName,'OGI_') or starts-with(defName,'OGIG_') or starts-with(defName,'OGAM_') or starts-with(defName,'OGAS_') or starts-with(defName,'OGAA_') or starts-with(defName,'OGC_') and (contains(defName, '_Gun_') or contains(defName, '_Melee_') or contains(defName, '_Apparel_') or contains(defName, '_Wargear_') or contains(defName, '_Armor_') or contains(defName, '_Armour_'))]/costList/Plasteel</xpath>
+							  <name>Ceramite</name>
+						</li>
+						<li Class="PatchOperationSetName">
+							  <xpath>Defs/ThingDef[starts-with(defName,'OGI_') or starts-with(defName,'OGIG_') or starts-with(defName,'OGAM_') or starts-with(defName,'OGAS_') or starts-with(defName,'OGAA_') or starts-with(defName,'OGC_') and (contains(defName, '_Gun_') or contains(defName, '_Melee_') or contains(defName, '_Apparel_') or contains(defName, '_Wargear_') or contains(defName, '_Armor_') or contains(defName, '_Armour_'))]/costList/Gold</xpath>
+							  <name>ImperialPowercore</name>
+						</li>
+					</operations>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+	 
+</Patch>

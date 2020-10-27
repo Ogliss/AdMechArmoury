@@ -107,14 +107,13 @@ namespace RimWorld
             }
             if (!(t.def.size == IntVec2.One))
             {
-                CellRect.CellRectIterator iterator = t.OccupiedRect().GetIterator();
-                while (!iterator.Done())
+                foreach (var iterator in t.OccupiedRect())
                 {
-                    if (iterator.Current.ContainsStaticWarpfire(t.Map))
+                    if (!iterator.ContainsStaticWarpfire(t.Map))
                     {
                         return true;
+                        break;
                     }
-                    iterator.MoveNext();
                 }
                 return false;
             }

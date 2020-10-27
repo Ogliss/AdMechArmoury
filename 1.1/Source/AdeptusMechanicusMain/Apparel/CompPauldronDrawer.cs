@@ -61,10 +61,12 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
                     bool backpack = false;
                     bool bothPauldrons = false;
                     bool leftPauldron = false;
                     bool rightPauldron = false;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 
                     ShoulderPadEntry entry = new ShoulderPadEntry(Props.PauldronEntries.RandomElementByWeight(x=> x.commonality), this);
 

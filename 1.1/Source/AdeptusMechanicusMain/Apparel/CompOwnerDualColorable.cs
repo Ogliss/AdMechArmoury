@@ -60,13 +60,13 @@ namespace AdeptusMechanicus
 					{
 					//	Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
 						return pawn.Graphic.Color;
-						return pawn.DrawColor;
+					//	return pawn.DrawColor;
 					}
 					else
 					{
 					//	Log.Message("NonHumanlike Equippable Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
 						return pawn.Drawer.renderer.graphics.nakedGraphic.color;
-						return pawn.DrawColorTwo;
+					//	return pawn.DrawColorTwo;
 					}
 				}
 				if (!this.Active)
@@ -141,8 +141,8 @@ namespace AdeptusMechanicus
 		}
 
 		// Token: 0x04000EA1 RID: 3745
-		private Color color = Color.white;
-		private Color colorTwo = Color.white;
+		private new Color color = Color.white;
+		private new Color colorTwo = Color.white;
 
 		// Token: 0x04000EA2 RID: 3746
 	}

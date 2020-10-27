@@ -10,13 +10,13 @@ namespace AdeptusMechanicus
     // Token: 0x02000020 RID: 32
     public class FactionDefExtension : DefModExtension
     {
+        public List<FactionDef> RefugeeFactions = new List<FactionDef>();
         public List<FactionTraitEntry> ForcedTraits = new List<FactionTraitEntry>();
         public List<HediffGiverSetDef> hediffGivers = new List<HediffGiverSetDef>();
         public ThingDef ActiveDropPod = DefDatabase<ThingDef>.GetNamedSilentFail("ActiveDropPod");
         public ThingDef DropPodIncoming = DefDatabase<ThingDef>.GetNamedSilentFail("DropPodIncoming");
         public DeepStrikeType DropPodOverride = DeepStrikeType.Drop;
         public string TeleportBoltTexPath = "Weather/DefaultBolt";
-        public SoundDef raidSound = null;
         public float DeepStrikeChance = 0.1f;
         public FloatRange DeepStrikeDelayMin = new FloatRange(30, 120);
         public FloatRange DeepStrikeDelayMax = new FloatRange(180, 240);

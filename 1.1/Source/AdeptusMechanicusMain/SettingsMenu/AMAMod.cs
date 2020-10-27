@@ -15,10 +15,10 @@ namespace AdeptusMechanicus.settings
         public static Harmony harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
         public AMAMod(ModContentPack content) : base(content)
         {
+            Instance = this;
             this.settings = GetSettings<AMSettings>();
             SettingsHelper.latest = this.settings;
-            Instance = this;
-            AMSettings.Instance = base.GetSettings<AMSettings>();
+            AMSettings.Instance = this.settings;
         //    var harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             AdeptusMechanicus.HarmonyInstance.HarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
@@ -142,7 +142,14 @@ namespace AdeptusMechanicus.settings
             if (settings.ShowArmourySettings)
             {
                 // Armoury mod General Special rules options menu
-                listing_GeneralSpecialRules = listing_ArmourySettings.BeginSection(MenuLengthArmouryGeneralSpecialRules);
+                if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
+                {
+                    listing_GeneralSpecialRules = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryGeneralSpecialRules);
+                }
+                else
+                {
+                    listing_GeneralSpecialRules = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryGeneralSpecialRules);
+                }
                 listing_GeneralSpecialRules.CheckboxLabeled("AMA_ShowSpecialRules".Translate() + (Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss") ? " Menu Length: " + ArmouryGeneralSpecialRules : ""), ref settings.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRulesDesc".Translate());
                 if (settings.ArmouryGeneralSpecialRules)
                 {
@@ -156,7 +163,14 @@ namespace AdeptusMechanicus.settings
                 listing_ArmourySettings.EndSection(listing_GeneralSpecialRules);
 
                 // Armoury mod Weapon Special rules options menu
-                listing_WeaponSpecialRules = listing_ArmourySettings.BeginSection(MenuLengthArmouryWeaponSpecialRules);
+                if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
+                {
+                    listing_WeaponSpecialRules = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryWeaponSpecialRules);
+                }
+                else
+                {
+                    listing_WeaponSpecialRules = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryWeaponSpecialRules);
+                }
                 listing_WeaponSpecialRules.CheckboxLabeled("AMA_ShowWeaponSpecialRules".Translate() + (Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss") ? " Menu Length: " + ArmouryWeaponSpecialRules : ""), ref settings.ShowWeaponSpecialRules, "AMA_ShowWeaponSpecialRulesDesc".Translate());
                 if (settings.ShowWeaponSpecialRules)
                 {
@@ -176,7 +190,14 @@ namespace AdeptusMechanicus.settings
                 listing_ArmourySettings.EndSection(listing_WeaponSpecialRules);
 
                 // Armoury mod Allowed Weapons options menu
-                listing_AllowedWeapons = listing_ArmourySettings.BeginSection(MenuLengthArmouryAllowedWeapons);
+                if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
+                {
+                    listing_AllowedWeapons = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryAllowedWeapons);
+                }
+                else
+                {
+                    listing_AllowedWeapons = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryAllowedWeapons);
+                }
                 listing_AllowedWeapons.CheckboxLabeled("AMA_ShowAllowedWeapons".Translate() + (Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss") ? " Menu Length: " + ArmouryAllowedWeapons : ""), ref settings.ShowAllowedWeapons, "AMA_ShowAllowedWeaponsDesc".Translate());
                 if (settings.ShowAllowedWeapons)
                 {

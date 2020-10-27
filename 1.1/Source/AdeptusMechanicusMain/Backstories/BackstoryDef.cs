@@ -100,7 +100,8 @@ namespace AdeptusMechanicus
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeGlobalResolved").SetValue(value: this.bodyTypeGlobal);
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeFemaleResolved").SetValue(value: this.bodyTypeFemale);
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeMaleResolved").SetValue(value: this.bodyTypeMale);
-            Traverse.Create(root: this.backstory).Field(name: nameof(this.skillGains)).SetValue(value: this.skillGains.ToDictionary(keySelector: i => i.defName, elementSelector: i => i.amount));
+
+            Traverse.Create(root: this.backstory).Field(name: nameof(this.skillGains)).SetValue(value: this.SkillListItems.ToDictionary(keySelector: i => i.defName, elementSelector: i => i.amount));
 
             UpdateTranslateableFields(bs: this);
 
@@ -126,7 +127,32 @@ namespace AdeptusMechanicus
                 newTitleShortFemale: bs.titleShortFemale.NullOrEmpty() ? bs.backstory.titleFemale : bs.titleShortFemale);
         }
 
-
+        public List<BackstoryDefSkillListItem> SkillListItems
+        {
+            get
+            {
+                List<BackstoryDefSkillListItem> items = new List<BackstoryDefSkillListItem>();
+                foreach (BackstoryDefSkillListItem item in skillGains)
+                {
+                    bool add = true;
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        BackstoryDefSkillListItem skill = items[i];
+                        if (items[i].defName == item.defName)
+                        {
+                            add = false;
+                            skill.amount += item.amount;
+                            break;
+                        }
+                    }
+                    if (add)
+                    {
+                        items.Add(item);
+                    }
+                }
+                return items;
+            }
+        }
 
         public struct BackstoryDefSkillListItem
         {

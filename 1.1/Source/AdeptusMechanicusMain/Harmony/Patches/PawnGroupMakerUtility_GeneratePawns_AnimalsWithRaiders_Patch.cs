@@ -20,10 +20,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int i = 0; i < pawnsInRaid; i++)
             {
                 Pawn trainer = resultingPawns[i];
-                SpawbWithAnimalsExtension ext = null;
-                if (trainer.kindDef.HasModExtension<SpawbWithAnimalsExtension>())
+                SpawnWithAnimalsExtension ext = null;
+                if (trainer.kindDef.HasModExtension<SpawnWithAnimalsExtension>())
                 {
-                    ext = trainer.kindDef.GetModExtension<SpawbWithAnimalsExtension>();
+                    ext = trainer.kindDef.GetModExtension<SpawnWithAnimalsExtension>();
                 }
                 if (ext!=null)
                 {

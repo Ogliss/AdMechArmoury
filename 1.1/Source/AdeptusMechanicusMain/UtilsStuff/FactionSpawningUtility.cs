@@ -105,6 +105,10 @@ namespace AdeptusMechanicus
 
         public static bool NeverSpawn(FactionDef faction)
         {
+            if ((!faction.canMakeRandomly && faction.requiredCountAtGameStart <= 0)  ||  faction.defName.Contains("Refugee"))
+            {
+                return true;
+            }
             switch (faction.defName)
             {
                 case "PColony": return true; // Empire mod's player faction

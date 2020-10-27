@@ -13,9 +13,17 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool Prefix(IntVec3 c, Map map, ActiveDropPodInfo info)
         {
             bool result = true;
-            if (info.innerContainer.Any(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())))
+            List<Thing> list = new List<Thing>();
+            for (int i = 0; i < info.innerContainer.Count; i++)
             {
-                List<Thing> list = info.innerContainer.Where(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())).ToList();
+                Thing t = info.innerContainer[i];
+                if (t?.Faction?.def.GetModExtension<FactionDefExtension>() != null)
+                {
+                    list.Add(t);
+                }
+            }
+            if (!list.NullOrEmpty())
+            {
                 Thing thing = list.RandomElement();
                 FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
                 if (thing.Faction.IsPlayer || extension.DropPodOverride == DeepStrikeType.Drop && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )

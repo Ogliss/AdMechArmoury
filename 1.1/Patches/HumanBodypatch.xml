@@ -4,9 +4,9 @@
 	<!-- Human Humanoid Alien Races 2.0 -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
-			<li Class="PatchOperationFindMod">
+			<li Class="PatchOperationFindModID">
 				<mods>
-					<li>Humanoid Alien Races 2.0</li>
+					<li>erdelf.HumanoidAlienRaces</li>
 				</mods>
 				<match Class="PatchOperationSequence">
 					<!-- success>Always</success-->
@@ -111,7 +111,7 @@
 									</race>
 									<alienRace>
 										<generalSettings>
-										<humanRecipeImport>true</humanRecipeImport>
+											<humanRecipeImport>true</humanRecipeImport>
 											<alienPartGenerator>
 												<!--
 												<aliencrowntypes>
@@ -132,6 +132,97 @@
 												<bodyAddons>
 												</bodyAddons>
 											</alienPartGenerator>
+											<factionRelations>
+												<li>
+													<factions>
+													   <li>PlayerColony</li>
+													   <li>PlayerTribe</li>
+													   <li>OutlanderCivil</li>
+													   <li>OutlanderRough</li>
+													   <li>TribeCivil</li>
+													   <li>TribeRough</li>
+													</factions>
+													<goodwill>
+													   <min>-100</min>
+													   <max>50</max>
+													</goodwill>
+												</li>
+												<li>
+													<factions>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Tau_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Tau_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Kroot_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Kroot_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Kroot_PlayerTribe</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Vespid_Faction</li>
+													   <!--li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Vespid_PlayerColony</li-->
+													   <!--li MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OG_Vespid_PlayerTribe</li-->
+													</factions>
+													<goodwill>
+													   <min>-100</min>
+													   <max>10</max>
+													</goodwill>
+												</li>  
+												<li>
+													<factions>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Eldar">OG_Eldar_Craftworld_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Eldar">OG_Eldar_Craftworld_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.EldarExodite">OG_Eldar_Exodite_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.EldarExodite">OG_Eldar_Player_Exodite</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.EldarHarlequin">OG_Eldar_Harlequin_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.EldarHarlequin">OG_Eldar_Player_Harlequin</li>
+													</factions>
+													<goodwill>
+													   <min>-100</min>
+													   <max>25</max>
+													</goodwill>
+												</li>
+												<li>
+													<factions>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Mechanicus_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Mechanicus_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Militarum_Cadian_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Militarum_Cadian_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Militarum_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Astartes">OG_Astartes_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Astartes">OG_AstartesNeophyte_PlayerColony</li>
+													   <li MayRequire="CptOhu.CorruptionCore">PlayerColony_IoM</li>
+													</factions>
+													<goodwill>
+													   <min>-10</min>
+													   <max>100</max>
+													</goodwill>
+												</li>
+												<li>
+													<factions>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_Tek_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_Feral_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_PlayerTribe</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_Hulk</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">OG_Ork_Rok</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.DarkEldar">OG_DarkEldar_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.DarkEldar">OG_DarkEldar_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Necrons">OG_Necron_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Necrons">OG_Necron_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tyranids">OG_Tyranid_PlayerColony</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis.Tyranids">OG_Tyranid_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Necron_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Tyranid_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Chaos_Deamon_Faction</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Ork_Hulk</li>
+													   <li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Ork_Rok</li>
+													   <li MayRequire="CptOhu.CorruptionCore">PlayerColony_Chaos</li>
+													   <li MayRequire="QX.AstraMilitarum.Factions">IG_ChaosMarineFaction</li>
+													   <li MayRequire="QX.AstraMilitarum.Factions">TraitorGuardFaction</li>
+													   <li MayRequire="QX.AstraMilitarum.Factions">TyranidFaction</li>
+													</factions>
+													<goodwill>
+													   <min>-100</min>
+													   <max>-100</max>
+													</goodwill>
+												</li>
+											</factionRelations>
 										</generalSettings>
 										<graphicPaths>
 										</graphicPaths>
@@ -148,6 +239,14 @@
 											</renamer>
 										</relationSettings>
 										<raceRestriction>
+											<researchList>
+												<li>
+													<projects>
+													</projects>
+													<apparelList>
+													</apparelList>
+												</li>
+											</researchList>
 											<apparelList>
 											</apparelList>
 											<whiteApparelList>
@@ -227,40 +326,18 @@
 							</nomatch>
 							-->
 						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AdeptusMechanicus.BackstoryDef[defName = "Child_Cardinal_World"]/forcedTraits</xpath>
-								<value>
-									<li>
-										<defName>Xenophobia</defName>
-										<degree>1</degree>
-									</li>
-								</value>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AdeptusMechanicus.BackstoryDef[defName = "Inquisitor"]/forcedTraits</xpath>
-								<value>
-									<li>
-									<defName>Xenophobia</defName>
-										<chance>40</chance>
-										<degree>1</degree>
-									</li>
-								</value>
-						</li>
-						
 					</operations>
 				</match>
 				<nomatch Class="PatchOperationSequence">
 					<success>Always</success>
 					<operations>
-						<li Class="PatchOperationTest">
-						  <xpath>Defs/ThingDef[@Name="HumanRace"]</xpath>
-						  <success>Invert</success>
-						</li>
-						<li Class="PatchOperationAttributeSet">
-						  <xpath>/Defs/ThingDef[defName = "Human"]</xpath>
-							<attribute>Name</attribute>
-							<value>HumanRace</value>
+						<li Class="PatchOperationConditional">
+							<xpath>Defs/ThingDef[@Name="HumanRace"]</xpath>
+							<nomatch Class="PatchOperationAttributeSet">
+								<xpath>/Defs/ThingDef[defName = "Human"]</xpath>
+								<attribute>Name</attribute>
+								<value>HumanRace</value>
+							</nomatch>
 						</li>
 					</operations>
 				</nomatch>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 <!-- ====================== Radium Pistol ===================== -->
- <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OG_Bullet_Base_Effect">
+<ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_RadiumPistol</defName>
     <label>radium round</label>
     <graphicData>
@@ -16,12 +16,15 @@
 		<stoppingPower>1</stoppingPower>
 		<speed>100</speed>
 	</projectile>
-	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
-	<AddHediffChance>0.35</AddHediffChance>
-	<HediffToAdd>RadiationPoisioning</HediffToAdd>
-	<CanResistHediff>true</CanResistHediff>
-	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
- </ThingDef>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffecterProjectileExtension">
+		<AddHediffChance>0.35</AddHediffChance>
+		<HediffToAdd>RadiationPoisioning</HediffToAdd>
+		<CanResistHediff>true</CanResistHediff>
+		<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+	  </li>
+	</modExtensions>
+</ThingDef>
 
  <ThingDef ParentName="OG_Mechanicus_Gun">
 	<defName>OGAM_Gun_RadiumPistol</defName>
@@ -90,18 +93,18 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
  </ThingDef>
  
 <!-- ====================== Radium Carbine ===================== -->
- <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OG_Bullet_Base_Effect">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_RadiumCarbine</defName>
     <label>radium round</label>
     <graphicData>
@@ -116,11 +119,14 @@
 		<stoppingPower>1.25</stoppingPower>
 		<speed>100</speed>
     </projectile>
-	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
-	<AddHediffChance>0.35</AddHediffChance>
-	<HediffToAdd>RadiationPoisioning</HediffToAdd>
-	<CanResistHediff>true</CanResistHediff>
-	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffecterProjectileExtension">
+		<AddHediffChance>0.35</AddHediffChance>
+		<HediffToAdd>RadiationPoisioning</HediffToAdd>
+		<CanResistHediff>true</CanResistHediff>
+		<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+	  </li>
+	</modExtensions>
  </ThingDef>
   
  <ThingDef ParentName="OG_Mechanicus_Gun">
@@ -217,18 +223,18 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
  </ThingDef>
  
 <!-- ====================== Radium Jezzail===================== -->
- <ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffect" ParentName="OG_Bullet_Base_Effect">
+ <ThingDef ParentName="BaseBullet">
 	<defName>OGAM_Bullet_RadiumJezzail</defName>
     <label>Bolt</label>
     <graphicData>
@@ -243,11 +249,14 @@
 		<stoppingPower>1.5</stoppingPower>
 		<speed>100</speed>
     </projectile>
-	<thingClass>AdeptusMechanicus.Projectile_BulletEffect</thingClass>
-	<AddHediffChance>0.5</AddHediffChance>
-	<HediffToAdd>RadiationPoisioning</HediffToAdd>
-	<CanResistHediff>true</CanResistHediff>
-	<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.EffecterProjectileExtension">
+		<AddHediffChance>0.5</AddHediffChance>
+		<HediffToAdd>RadiationPoisioning</HediffToAdd>
+		<CanResistHediff>true</CanResistHediff>
+		<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+	  </li>
+	</modExtensions>
  </ThingDef>
   
  <ThingDef ParentName="OG_Mechanicus_Gun_Special">
@@ -336,11 +345,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -435,11 +444,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -539,11 +548,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -678,11 +687,11 @@
 		</li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -821,11 +830,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -926,11 +935,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1027,11 +1036,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1141,11 +1150,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1247,11 +1256,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1355,11 +1364,11 @@
 			<Gold>4</Gold>
 		</costList>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1445,11 +1454,11 @@
 			<Gold>4</Gold>
 		</costList>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1594,11 +1603,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1714,11 +1723,11 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -1746,7 +1755,7 @@
   </ThingDef>
   
  <!-- ====================== Volkite Serpenta ===================== -->
- <ThingDef ParentName="OG_Imperial_Gun_Base">
+ <ThingDef ParentName="OG_Mechanicus_Gun_Special">
 	<defName>OGAM_Gun_VolkiteSerpenta</defName>
     <label>volkite serpenta (AM)</label>
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
@@ -1769,18 +1778,7 @@
 		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
     </statBases>
 	<recipeMaker>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Smith</soundWorking>
-		<recipeUsers>
-			<li>OGI_TableMachining</li>
-		</recipeUsers>
-		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -1828,18 +1826,18 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>true</dualWield>
         <twoHand>false</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
  </ThingDef>
  
  <!-- ====================== Volkite Charger ===================== -->
- <ThingDef ParentName="OG_Imperial_Gun_Base">
+ <ThingDef ParentName="OG_Mechanicus_Gun_Special">
     <defName>OGAM_Gun_VolkiteCharger</defName>
     <label>volkite charger (AM)</label>
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
@@ -1910,18 +1908,7 @@
       </li>
     </tools>
 	<recipeMaker>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Smith</soundWorking>
-		<recipeUsers>
-			<li>OGI_TableMachining</li>
-		</recipeUsers>
-		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -1940,18 +1927,18 @@
 		<li>OGIRanged</li>
 	</tradeTags>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
  </ThingDef>
  
  <!-- ====================== Volkite Caliver ===================== -->
- <ThingDef ParentName="OG_Imperial_Gun_Base">
+ <ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
     <defName>OGAM_Gun_VolkiteCaliver</defName>
     <label>volkite caliver (AM)</label>
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
@@ -2024,18 +2011,7 @@
       </li>
     </tools>
 	<recipeMaker>
-		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<workSkill>Crafting</workSkill>
-		<effectWorking>Smith</effectWorking>
-		<soundWorking>Recipe_Smith</soundWorking>
-		<recipeUsers>
-			<li>OGI_TableMachining</li>
-		</recipeUsers>
-		<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -2056,11 +2032,11 @@
 		<li>OGIRanged</li>
     </tradeTags>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>
@@ -2119,9 +2095,6 @@
     </statBases>
 	<recipeMaker>
 		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
 			<li>OG_Common_Tech_Weapons_Laser</li>
 		</researchPrerequisites>
 	</recipeMaker>
@@ -2196,11 +2169,11 @@
       </options>
     </colorGenerator>
     <modExtensions>
-      <li Class="DualWield.DefModextension_DefaultSettings">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
         <dualWield>false</dualWield>
         <twoHand>true</twoHand>
       </li>
-      <li Class="DualWield.DefModextension_CustomRotation">
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
         <extraRotation>0</extraRotation>
       </li>
     </modExtensions>

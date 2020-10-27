@@ -20,7 +20,7 @@ namespace AdeptusMechanicus
 
     public class CompToggleFireMode : CompWargearWeapon
     {
-        public CompProperties_ToggleFireMode Props => (CompProperties_ToggleFireMode)props;
+        public new CompProperties_ToggleFireMode Props => (CompProperties_ToggleFireMode)props;
 
         protected virtual Pawn GetUser
         {
