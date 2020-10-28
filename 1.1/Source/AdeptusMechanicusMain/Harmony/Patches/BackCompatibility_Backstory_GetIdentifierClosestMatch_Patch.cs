@@ -23,17 +23,17 @@ namespace AdeptusMechanicus.HarmonyInstance
 			{
 				return;
 			}
-			Log.Message("Find matching backstory for: " + identifier);
+		//	Log.Message("Find matching backstory for: " + identifier);
 			if (!identifier.StartsWith("OG_Imperial_") && BackstoryDatabase.allBackstories.ContainsKey("OG_Imperial_" + identifier))
 			{
 				identifier = "OG_Imperial_" + identifier;
-				Log.Message("Final matching found: " + identifier + " Using: " + "OG_Imperial_");
+			//	Log.Message("Final matching found: " + identifier + " Using: " + "OG_Imperial_");
 				return;
 			}
 			if (!identifier.StartsWith("OG_") && BackstoryDatabase.allBackstories.ContainsKey("OG_" + identifier))
 			{
 				identifier = "OG_" + identifier;
-				Log.Message("Final matching found: " + identifier + " Using: " + "OG_");
+			//	Log.Message("Final matching found: " + identifier + " Using: " + "OG_");
 				return;
 			}
 			string newIdentifier = string.Empty;
@@ -68,12 +68,12 @@ namespace AdeptusMechanicus.HarmonyInstance
 						found = BackstoryDatabase.allBackstories.Where(x => x.Key.Contains(item)).ToList();
 					}
 				}
-				if (!found.NullOrEmpty()) Log.Message(item+" found "+ found.Count+" matching");
+			//	if (!found.NullOrEmpty()) Log.Message(item+" found "+ found.Count+" matching");
 			}
 			if (!found.NullOrEmpty())
 			{
 				identifier = found.RandomElement().Key;
-				Log.Message("Final matching found: " + found.Count+" Using: "+ identifier);
+			//	Log.Message("Final matching found: " + found.Count+" Using: "+ identifier);
 				return;
 			}
 		}

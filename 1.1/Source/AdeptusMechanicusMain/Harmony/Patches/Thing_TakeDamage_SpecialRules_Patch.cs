@@ -37,7 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (dinfo.Weapon != null && act)
                     {
-                        Log.Message("Thing_TakeDamage_SpecialRules_Patch Prefix " + hitPawn + " hit by " + dinfo.Weapon);
+                //        Log.Message("Thing_TakeDamage_SpecialRules_Patch Prefix " + hitPawn + " hit by " + dinfo.Weapon);
                         Thing Weapon = null;
                         if (dinfo.Weapon.IsWeapon)
                         {
@@ -66,12 +66,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         if (Weapon == null)
                         {
-                            Log.Warning("Thing_TakeDamage_SpecialRules_Patch Prefix Failed finding Weapon:  " + dinfo.Weapon);
+                        //    Log.Warning("Thing_TakeDamage_SpecialRules_Patch Prefix Failed finding Weapon:  " + dinfo.Weapon);
                             return;
                         }
                         if (rending)
                         {
-                            Log.Message(dinfo.Weapon.LabelCap + " Is Rending");
+                    //        Log.Message(dinfo.Weapon.LabelCap + " Is Rending");
                             dinfo = GetRendingDamage(dinfo);
                         }
                         else

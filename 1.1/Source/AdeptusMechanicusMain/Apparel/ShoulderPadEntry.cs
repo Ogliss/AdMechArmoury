@@ -140,7 +140,7 @@ namespace AdeptusMechanicus
                                 {
                                     this.label = e.label;
                                 }
-                                Log.Message("ShoulderPadEntryProps found for " + Label);
+                        //        Log.Message("ShoulderPadEntryProps found for " + Label);
                                 break;
                             }
                         }
@@ -212,7 +212,7 @@ namespace AdeptusMechanicus
                         //    Log.Message("FC != null");
                             if (FC.FactionDef != null)
                             {
-                                Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
+                        //        Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
                                 FactionDefExtension e = FC.Extension;
                                 if (e != null)
                                 {
@@ -226,7 +226,7 @@ namespace AdeptusMechanicus
                                             if (Options[i].TexPath == e.factionTextureTag)
                                             {
                                                 Used = Options[i];
-                                                Log.Message("Found faction VariantTexture " + Options[i].TexPath);
+                                        //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
                                                 break;
                                             }
                                         }
@@ -254,7 +254,7 @@ namespace AdeptusMechanicus
                                 if (Options[i].TexPath == e.factionTextureTag)
                                 {
                                 //    Used = Options[i];
-                                    Log.Message("Found faction VariantTexture " + Options[i].TexPath);
+                            //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
                                     break;
                                 }
 
@@ -405,7 +405,7 @@ namespace AdeptusMechanicus
                 {
                     if (Graphic == null || (Graphic != null && !Graphic.path.Contains(apparel.Wearer.story.bodyType.defName)))
                     {
-                        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
+                //        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                         UpdatePadGraphic();
                     }
                     pauldronMaterial = Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);

@@ -1,1167 +1,1311 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-<!-- ====================== Bolt Pistol ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-	<defName>OGC_Gun_BoltPistol</defName>
-    <label>bolt pistol (C)</label>
-    <description>A Bolt Pistol is a smaller version of the Bolter in standard use by the Space Marines and other Imperial forces such as the Orders Militant of the Adepta Sororitas and certain members of the Astra Militarum and the Imperial Navy. Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium. The current standard pattern in use amongst the Space Marines is the Mark III. Bolt Pistols are also used by many other Imperial forces as well as the Chaos Space Marines. A Bolt Pistol is commonly used in conjunction with a close combat weapon by Space Marine officers, Veterans and Assault Squads to make them into melee combat specialists.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Archaon/BoltPistol</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<WorkToMake>25000</WorkToMake>
-		<!--MarketValue>1750</MarketValue-->
-		<Mass>1.2</Mass>
-		<AccuracyTouch>0.90</AccuracyTouch>
-		<AccuracyShort>0.75</AccuracyShort>
-		<AccuracyMedium>0.60</AccuracyMedium>
-		<AccuracyLong>0.50</AccuracyLong>
-		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Imperial_Tech_Weapons_Bolt</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		
-		<li>CMBoltPistol</li>
-		<li>TGBoltPistol</li>
-    </weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>25</range>
-			<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
-			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>OG_Bolt_Gun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
-<!-- ====================== Bolter ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-    <defName>OGC_Gun_BoltGun</defName>
-    <label>bolter (C)</label>
-    <description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/BoltGunA</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.1</drawSize>			
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>180000</WorkToMake>
-		<!--MarketValue>4000</MarketValue-->
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.75</AccuracyMedium>
-		<AccuracyLong>0.65</AccuracyLong>
-		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Imperial_Tech_Weapons_Bolt</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>175</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>TGBoltGun</li>
-		<li>CMBoltGun</li>
-		<li>CBoltGun</li>
-	</weaponTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
-			<warmupTime>1.00</warmupTime>
-			<range>31</range>
-			<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>OG_Bolt_Gun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<RapidFire>true</RapidFire>
-			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
-<!-- ====================== Storm Bolter ===================== --> 
- <ThingDef ParentName="OG_Chaos_Gun_Special">
-    <defName>OGC_Gun_StormBolter</defName>
-    <label>storm bolter (C)</label>
-    <description>The Storm Bolter is a double-barrelled version of the standard .75 calibre Bolter. As it is heavier and causes more recoil than a normal Bolter, it is even more rarely used than the Bolter by the regiments of the Astra Militarum. Instead, Storm Bolters are the standard weapons employed by Space Marine Terminators or as a pintle-mounted weapon on an Imperial main battle tank. Storm Bolters are also used by the Astartes of the Grey Knights Chapter as a gauntlet-mounted weapon with its feed located on the rear of their armour. The Storm Bolter also sees limited use amongst the Orders Militant of the Adepta Sororitas, where it is considered a specialist weapon, and favoured by those squads of Dominions, the Sororitas' heavy-weapons troops, who prefer to engage in mid-range, anti-infantry combat.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Archaon/StormBolter</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.1</drawSize>			
-    </graphicData>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <equippedAngleOffset>45</equippedAngleOffset>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>180000</WorkToMake>
-		<!--MarketValue>4000</MarketValue-->
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.85</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.75</AccuracyMedium>
-		<AccuracyLong>0.65</AccuracyLong>
-		<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Imperial_Tech_Weapons_Bolt</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>CStormBolter</li>
-		<li>StormBolter</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
-			<warmupTime>0.30</warmupTime>
-			<range>31</range>
-			<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>OG_Bolt_Gun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-	 
-<!-- ====================== Heavy Bolter ===================== --> 
- <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-    <defName>OGC_Gun_HeavyBolter</defName>
-    <label>heavy bolter (C)</label>
-    <description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/HeavyBolter</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<!--MarketValue>6500</MarketValue-->
-		<Mass>8.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.80</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Imperial_Tech_Weapons_Bolt</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>200</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>GunHeavy</li>
-		<li>HeavyBolter</li>
+	<!-- ====================== Bolt Pistol ===================== -->
+	 <ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_BoltPistol</defName>
+		<label>bolt pistol (C)</label>
+		<description>A Bolt Pistol is a smaller version of the Bolter in standard use by the Space Marines and other Imperial forces such as the Orders Militant of the Adepta Sororitas and certain members of the Astra Militarum and the Imperial Navy. Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium. The current standard pattern in use amongst the Space Marines is the Mark III. Bolt Pistols are also used by many other Imperial forces as well as the Chaos Space Marines. A Bolt Pistol is commonly used in conjunction with a close combat weapon by Space Marine officers, Veterans and Assault Squads to make them into melee combat specialists.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Archaon/BoltPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<!--MarketValue>1750</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Weapons_Bolt</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			
+			<li>CMBoltPistol</li>
+			<li>TGBoltPistol</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGCRanged</li>
 		</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
-			<warmupTime>3</warmupTime>
-			<range>38</range>
-			<!--<forcedMissRadius>0.5</forcedMissRadius>-->
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>OG_Bolt_Gun_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Bolter ===================== -->
+	 <ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_BoltGun</defName>
+		<label>bolter (C)</label>
+		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/BoltGunA</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>180000</WorkToMake>
+			<!--MarketValue>4000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Weapons_Bolt</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TGBoltGun</li>
+			<li>CMBoltGun</li>
+			<li>CBoltGun</li>
+		</weaponTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>1.00</warmupTime>
+				<range>31</range>
+				<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<RapidFire>true</RapidFire>
+				</li>
+			</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Storm Bolter ===================== --> 
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_StormBolter</defName>
+		<label>storm bolter (C)</label>
+		<description>The Storm Bolter is a double-barrelled version of the standard .75 calibre Bolter. As it is heavier and causes more recoil than a normal Bolter, it is even more rarely used than the Bolter by the regiments of the Astra Militarum. Instead, Storm Bolters are the standard weapons employed by Space Marine Terminators or as a pintle-mounted weapon on an Imperial main battle tank. Storm Bolters are also used by the Astartes of the Grey Knights Chapter as a gauntlet-mounted weapon with its feed located on the rear of their armour. The Storm Bolter also sees limited use amongst the Orders Militant of the Adepta Sororitas, where it is considered a specialist weapon, and favoured by those squads of Dominions, the Sororitas' heavy-weapons troops, who prefer to engage in mid-range, anti-infantry combat.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Archaon/StormBolter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>180000</WorkToMake>
+			<!--MarketValue>4000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Weapons_Bolt</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CStormBolter</li>
+			<li>StormBolter</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>0.30</warmupTime>
+				<range>31</range>
+				<!-- <forcedMissRadius>0.01</forcedMissRadius> -->
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		 
+	<!-- ====================== Heavy Bolter ===================== --> 
+	 <ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_HeavyBolter</defName>
+		<label>heavy bolter (C)</label>
+		<description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/HeavyBolter</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>125000</WorkToMake>
+			<!--MarketValue>6500</MarketValue-->
+			<Mass>8.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Weapons_Bolt</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>HeavyBolter</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>38</range>
+				<!--<forcedMissRadius>0.5</forcedMissRadius>-->
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	 </ThingDef>
 
- <!-- ====================== Las Weapons ===================== -->
- <!-- ====================== LasPistol ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-    <defName>OGC_Gun_LasPistol</defName>
-    <label>laspistol (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.\n\nThe Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasPistol</texPath>
-		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<color>(0.286,0.208,0.176)</color>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>10000</WorkToMake>
-		<!--MarketValue>250</MarketValue-->
-		<Mass>0.8</Mass>
-		<AccuracyTouch>0.70</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.70</AccuracyLong>
-		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
+	<!-- ====================== Las Weapons ===================== -->
+	<!-- ====================== LasPistol ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_LasPistol</defName>
+		<label>laspistol (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.\n\nThe Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasPistol</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.208,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>10000</WorkToMake>
+			<!--MarketValue>250</MarketValue-->
+			<Mass>0.8</Mass>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Common_Tech_Weapons_Laser</li>
 			</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>75</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		
-		<li>Pistol</li>
-		<li>ChaosPistol</li>
-		<li>ChaosGun</li>
-		<li>Laspistol</li>
-		<li>TGLasPistol</li>
-		<li>GuevesaPistol</li>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Pistol</li>
+			<li>ChaosPistol</li>
+			<li>ChaosGun</li>
+			<li>Laspistol</li>
+			<li>TGLasPistol</li>
+			<li>GuevesaPistol</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGCRanged</li>
 		</tradeTags>
 		<generateCommonality>1.0</generateCommonality>
-    <equippedStatOffsets>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Standard</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_LasPistolStd</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>25</range>
-			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<burstShotCount>2</burstShotCount>
-			<soundCast>OG_Las_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>     
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<!--DualFireMode>true</DualFireMode-->
-			<VerbEntries>
-				<li>
-				  <VerbProps>
-						<label>Standard</label>
-				  </VerbProps>
-				</li>
-				<li>
-				  <VerbProps>
-					<verbClass>Verb_Shoot</verbClass>
-					<label>Hotshot</label>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGI_Bullet_LasPistolHot</defaultProjectile>
-					<warmupTime>0.5</warmupTime>
-					<range>12</range>
-					<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-					<burstShotCount>1</burstShotCount>
-					<soundCast>OG_Las_Pistol_Sound</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>14</muzzleFlashScale>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-				  </VerbProps>
-				</li>
-			</VerbEntries>
-		</li>
-		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li> 
-	</comps>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>5</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>6</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-  
- <!-- ====================== LasGun ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-    <defName>OGC_Gun_LasGun</defName>
-    <label>lasgun (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. It is standard-issue for the Adeptus Mechanicus' cybernetic Skitarii infantry, all Astra Militarum rank-and-file infantry and most junior Astra Militarum officers. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. A Lasgun has a longer range than a Laspistol, but is nowhere near as powerful as a Lascannon nor does it possess the rapid-firing qualities of the Multi-Laser or the Hellgun. Though not as powerful as kinetic projectile weapons such as the ubiquitous Bolter, the lower cost of production, the lack of a requirement for ammunition production and resupply make the Lasgun the best choice for the large forces of the Imperial Guard. The Lasgun uses a small portable capacitor power pack to produce a focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot. The Lasgun is effective when used en masse, but considerably less effective when used alone.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun</texPath>
-		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<color>(0.286,0.208,0.176)</color>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>12500</WorkToMake>
-		<!--MarketValue>500</MarketValue-->
-		<Mass>3.2</Mass>
-		<reliability>1</reliability>
-		<AccuracyTouch>0.70</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.80</AccuracyMedium>
-		<AccuracyLong>0.70</AccuracyLong>
-		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasPistolStd</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<!--DualFireMode>true</DualFireMode-->
+				<VerbEntries>
+					<li>
+						<VerbProps>
+							<label>Standard</label>
+						</VerbProps>
+					</li>
+					<li>
+						<VerbProps>
+						<verbClass>Verb_Shoot</verbClass>
+						<label>Hotshot</label>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_LasPistolHot</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>12</range>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>OG_Las_Pistol_Sound</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						</VerbProps>
+					</li>
+				</VerbEntries>
+			</li>
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li> 
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	 <!-- ====================== LasGun ===================== -->
+	 <ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_LasGun</defName>
+		<label>lasgun (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. It is standard-issue for the Adeptus Mechanicus' cybernetic Skitarii infantry, all Astra Militarum rank-and-file infantry and most junior Astra Militarum officers. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. A Lasgun has a longer range than a Laspistol, but is nowhere near as powerful as a Lascannon nor does it possess the rapid-firing qualities of the Multi-Laser or the Hellgun. Though not as powerful as kinetic projectile weapons such as the ubiquitous Bolter, the lower cost of production, the lack of a requirement for ammunition production and resupply make the Lasgun the best choice for the large forces of the Imperial Guard. The Lasgun uses a small portable capacitor power pack to produce a focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot. The Lasgun is effective when used en masse, but considerably less effective when used alone.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.208,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>12500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.2</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ChaosGun</li>
+			<li>Lasgun</li>
+			<li>TGLasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGunStd</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Hotshot</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGunHot</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>16</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy> <!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown> <!-- Default = False, starts the current verbs cooldown when switched-->
+				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
+				
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<!--DualFireMode>true</DualFireMode-->
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+						<VerbProps>
+							<label>Standard</label>
+						</VerbProps>
+					</li>
+					<li>
+						<RapidFire>true</RapidFire>
+						<VerbProps>
+						<label>Hotshot</label>
+						</VerbProps>
+					</li>
+				</VerbEntries>
+			</li>
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li> 
+		</comps>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Las Cannon ===================== -->
+	 <ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_LasCannon</defName>
+		<label>lascannon (C)</label>
+		<description>The powerful Lascannon is a formidable Laser Weapon whose energetic shot of coherent light is capable of penetrating most armoured vehicles. It is the favourite anti-tank weapon of the Imperial Guard and is also commonly used by the Space Marines. Its high strength and armour-piercing ability make it a formidable weapon and when it is twin-linked, it becomes even more deadly. However, it is very heavy and power-consuming, and must recharge after every shot, making it a poor anti-personnel weapon. As a result, it is usually installed on tanks or Sentinel platforms, and in the Imperial Guard, two-man teams are required to operate and carry around a single Lascannon. To accommodate the increased power output, the Lascannon has become the largest man-portable form of Las-weaponry, the barrel being several times larger in diameter and length than the standard Lasgun. Space Marines also make extensive use of the Lascannon.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/LasCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.50</drawSize>			
+		</graphicData>
+		<comps> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>125000</WorkToMake>
+			<!--MarketValue>7250</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Common_Tech_Weapons_Laser</li>
 			</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>75</Steel>
-		<Plasteel>30</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>ChaosGun</li>
-		<li>Lasgun</li>
-		<li>TGLasGun</li>
-		<li>GuevesaGun</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-	<generateCommonality>1.0</generateCommonality>
-    <equippedStatOffsets>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Standard</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_LasGunStd</defaultProjectile>
-			<warmupTime>0.75</warmupTime>
-			<range>31</range>
-			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>OG_Las_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Hotshot</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_LasGunHot</defaultProjectile>
-			<warmupTime>0.75</warmupTime>
-			<range>16</range>
-			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
-			<burstShotCount>3</burstShotCount>
-			<soundCast>OG_Las_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>     
-        <li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-            <canSwitchWhileBusy>false</canSwitchWhileBusy> <!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
-            <switchStartsCooldown>true</switchStartsCooldown> <!-- Default = False, starts the current verbs cooldown when switched  -->
-			<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
-			
-		</li> 
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<!--DualFireMode>true</DualFireMode-->
-			<VerbEntries>
-				<li>
-				  <RapidFire>true</RapidFire>
-				  <VerbProps>
-						<label>Standard</label>
-				  </VerbProps>
-				</li>
-				<li>
-				  <RapidFire>true</RapidFire>
-				  <VerbProps>
-					<label>Hotshot</label>
-				  </VerbProps>
-				</li>
-			</VerbEntries>
-		</li>
-		<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li> 
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>70</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CGunHeavy</li>
+			<li>CLas</li>
+			<li>CLasCannon</li>
+			<li>CMLasCannon</li>
+			<li>TGLasCannon</li>
+		</weaponTags>
+		<tradeTags>
+				<li>OGCRanged</li>
+		
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
-<!-- ====================== Las Cannon ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-    <defName>OGC_Gun_LasCannon</defName>
-    <label>lascannon (C)</label>
-    <description>The powerful Lascannon is a formidable Laser Weapon whose energetic shot of coherent light is capable of penetrating most armoured vehicles. It is the favourite anti-tank weapon of the Imperial Guard and is also commonly used by the Space Marines. Its high strength and armour-piercing ability make it a formidable weapon and when it is twin-linked, it becomes even more deadly. However, it is very heavy and power-consuming, and must recharge after every shot, making it a poor anti-personnel weapon. As a result, it is usually installed on tanks or Sentinel platforms, and in the Imperial Guard, two-man teams are required to operate and carry around a single Lascannon. To accommodate the increased power output, the Lascannon has become the largest man-portable form of Las-weaponry, the barrel being several times larger in diameter and length than the standard Lasgun. Space Marines also make extensive use of the Lascannon.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/LasCannon</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.50</drawSize>			
-    </graphicData>
-	<comps>   
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>125000</WorkToMake>
-		<!--MarketValue>7250</MarketValue-->
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.45</AccuracyTouch>
-		<AccuracyShort>0.75</AccuracyShort>
-		<AccuracyMedium>0.90</AccuracyMedium>
-		<AccuracyLong>0.90</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Laser</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>200</Steel>
-		<Plasteel>70</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-		<Gold>4</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>CGunHeavy</li>
-		<li>CLas</li>
-		<li>CLasCannon</li>
-		<li>CMLasCannon</li>
-		<li>TGLasCannon</li>
-	</weaponTags>
-	<tradeTags>
+	<!-- ====================== Plasma shots ===================== -->
+	<!-- ====================== Plasma Pistol shot ===================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGC_Bullet_PlasmaPistol</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsaShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>0.50</explosionRadius>
+			<damageAmountBase>55</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>1.5</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+				<li Class="AdeptusMechanicus.EffectProjectileExtension">
+				<explosionMote>true</explosionMote>
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+				<ImpactMoteSize>2</ImpactMoteSize>
+				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				</li>
+				<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+				<GlowMoteSize>1.0</GlowMoteSize>
+				</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun shot Std ===================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGC_Bullet_PlasmaGun</defName>
+		<label>Plasma bolt</label>
+		<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsaShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>0.50</explosionRadius>
+			<damageAmountBase>55</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+			<GlowMoteSize>1.5</GlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun shot OC ===================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGC_Bullet_PlasmaGunOC</defName>
+		<label>Overcharged Plasma Bolt</label>
+		<description>Overcharged Plasma bolts are fired by pushing a Plasma Weapon to its limits, scything through Plasteel, Ceramite and bone as if they were nothing. Due to the increase in the enormous temperatures and deadly energies that Plasma Weapons generate when fired, makes the weapon far more prone to overheating, destabilisation and catastophic misfire.</description>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsShotLrg</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>1</explosionRadius>
+			<damageAmountBase>85</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+			<GlowMoteSize>1.5</GlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Plasma Cannon shot ===================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGC_Bullet_PlasmaCannon</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsShotLrg</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<explosionRadius>1.75</explosionRadius>
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>3</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPC_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffectProjectileExtension">
+			<explosionMote>true</explosionMote>
+			<explosionMoteSize>0.75</explosionMoteSize>
+			<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+			<ImpactMoteSize>2</ImpactMoteSize>
+			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+			<GlowMoteSize>2.5</GlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Plasma Pistol ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_PlasmaPistol</defName>
+		<label>plasma pistol (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Plasma Pistol is most commonly carried by champions of both the Chaos Space Marines and Traitor Guardsmen.\nLike other Human infantry-carried plasma weapons, Plasma Pistols are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>0.75</reliability>
+			<WorkToMake>15000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.42</AccuracyLong>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>125</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<weaponTags>
+			<li>CGun</li>
+			<li>CPlasma</li>
+			<li>CPlasmaPistol</li>
+			<li>CMPlasmaPistol</li>
+			<li>TGPlasmaPistol</li>
+		</weaponTags>
+		<tradeTags>
 			<li>OGCRanged</li>
-	
-	</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
-			<warmupTime>4</warmupTime>
-			<range>45</range>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>OG_Las_Cannon_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-  
-<!-- ====================== Plasma Pistol ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun_Special">
-	<defName>OGC_Gun_PlasmaPistol</defName>
-    <label>plasma pistol (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaPistol</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>15000</WorkToMake>
-		<!--MarketValue>2250</MarketValue-->
-		<Mass>1.2</Mass>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.42</AccuracyLong>
-		<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Plasma</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>125</Steel>
-		<Plasteel>55</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-		<Gold>2</Gold>
-    </costList>
-	<weaponTags>
-		<li>CGun</li>
-		<li>CPlasma</li>
-		<li>CPlasmaPistol</li>
-		<li>CMPlasmaPistol</li>
-		<li>TGPlasmaPistol</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_PlasmaPistol</defaultProjectile>
-			<warmupTime>0.4</warmupTime>
-			<range>25</range>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-	<comps>     
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
-					<GetsHot>true</GetsHot>
-					<HotDamageWeapon>true</HotDamageWeapon>
-					<reliability>ST</reliability>
-				</li>
-			</VerbEntries>
-		</li>
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
-<!-- ====================== Plasma Gun ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun_Special">
-	<defName>OGC_Gun_PlasmaGun</defName>
-    <label>plasma gun (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.\n\nPlasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>18000</WorkToMake>
-		<!--MarketValue>3250</MarketValue-->
-		<Mass>1.2</Mass>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.52</AccuracyLong>
-		<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Plasma</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>175</Steel>
-		<Plasteel>55</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-		<Gold>4</Gold>
-    </costList>
-	<weaponTags>
-		<li>CEliteGun</li>
-		<li>CPlasma</li>
-		<li>CPlasmaGun</li>
-		<li>CMPlasmaRifle</li>
-		<li>TGPlasmaRifle</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Standard</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
-			<warmupTime>1.25</warmupTime>
-			<range>31</range>
-			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Overcharged</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_PlasmaGunOC</defaultProjectile>
-			<warmupTime>2</warmupTime>
-			<range>31</range>
-			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-	<comps>     
-		<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-		</li>  
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
-					<RapidFire>true</RapidFire>
-					<GetsHot>true</GetsHot>
-					<HotDamageWeapon>true</HotDamageWeapon>
-					<reliability>ST</reliability>
-				</li>
-				<li>
-					<GetsHot>true</GetsHot>
-					<GetsHotCrit>true</GetsHotCrit>
-					<GetsHotCritChance>0.1</GetsHotCritChance>
-					<GetsHotCritExplosion>true</GetsHotCritExplosion>
-					<GetsHotCritExplosionChance>0.05</GetsHotCritExplosionChance>
-					<HotDamageWeapon>true</HotDamageWeapon>
-					<reliability>UR</reliability>
-				</li>
-			</VerbEntries>
-		</li>
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
+		</tradeTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaPistol</defaultProjectile>
+				<warmupTime>0.35</warmupTime>
+				<range>25</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<GetsHot>true</GetsHot>
+						<HotDamageWeapon>true</HotDamageWeapon>
+						<reliability>ST</reliability>
+					</li>
+				</VerbEntries>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>true</dualWield>
+			<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_PlasmaGun</defName>
+		<label>plasma gun (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Traitor infantry, including Chaos Space Marines, Traitor Guardsmen and well equipped Chaos Cultists.\nLike other Human infantry-carried plasma weapons, Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>0.75</reliability>
+			<WorkToMake>18000</WorkToMake>
+			<!--MarketValue>3250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.52</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<weaponTags>
+			<li>CEliteGun</li>
+			<li>CPlasma</li>
+			<li>CPlasmaGun</li>
+			<li>CMPlasmaRifle</li>
+			<li>TGPlasmaRifle</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaGun</defaultProjectile>
+				<warmupTime>1.20</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Overcharged</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaGunOC</defaultProjectile>
+				<warmupTime>2</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+						<GetsHot>true</GetsHot>
+						<HotDamageWeapon>true</HotDamageWeapon>
+						<reliability>UR</reliability>
+					</li>
+					<li>
+						<GetsHot>true</GetsHot>
+						<GetsHotCrit>true</GetsHotCrit>
+						<GetsHotCritChance>0.15</GetsHotCritChance>
+						<GetsHotCritExplosion>true</GetsHotCritExplosion>
+						<GetsHotCritExplosionChance>0.1</GetsHotCritExplosionChance>
+						<HotDamageWeapon>true</HotDamageWeapon>
+						<reliability>UR</reliability>
+					</li>
+				</VerbEntries>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
-<!-- ====================== Plasma Cannon ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-    <defName>OGC_Gun_PlasmaCannon</defName>
-    <label>plasma cannon (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is an Imperial heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaCannon</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>120000</WorkToMake>
-		<!--MarketValue>8000</MarketValue-->
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.90</AccuracyMedium>
-		<AccuracyLong>0.90</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Plasma</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>200</Steel>
-		<Plasteel>100</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-		<Gold>6</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>CGunHeavy</li>
-		<li>CPlasma</li>
-		<li>CPlasmaCannon</li>
-		<li>CMPlasmaCannon</li>
-		<li>TGPlasmaCannon</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-		<li>TGRanged</li>
-	</tradeTags>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<defaultProjectile>OGI_Bullet_PlasmaCannon</defaultProjectile>
-			<warmupTime>4</warmupTime>
-			<range>45</range>
-			<soundCast>OG_Plasma_Cannon_Sound</soundCast>
-			<burstShotCount>1</burstShotCount>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-	<comps>     
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
-					<GetsHot>true</GetsHot>
-					<GetsHotCrit>true</GetsHotCrit>
-					<GetsHotCritChance>0.25</GetsHotCritChance>
-					<GetsHotCritExplosion>true</GetsHotCritExplosion>
-					<GetsHotCritExplosionChance>0.15</GetsHotCritExplosionChance>
-					<HotDamageWeapon>true</HotDamageWeapon>
-					<reliability>UR</reliability>
-				</li>
-			</VerbEntries>
-		</li>
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
+	<!-- ====================== Plasma Cannon ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_PlasmaCannon</defName>
+		<label>plasma cannon (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is a heavy weapon that relies on plasma technology to deliver lethal blasts of superheated matter to the target. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.\nLike other Human infantry-carried plasma weapons, Plasma Cannons are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>0.9</reliability>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>8000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>2.90</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CGunHeavy</li>
+			<li>CPlasma</li>
+			<li>CPlasmaCannon</li>
+			<li>CMPlasmaCannon</li>
+			<li>TGPlasmaCannon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+			<li>TGRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>OGI_Bullet_PlasmaCannon</defaultProjectile>
+				<warmupTime>3.8</warmupTime>
+				<range>45</range>
+				<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<GetsHot>true</GetsHot>
+						<GetsHotCrit>true</GetsHotCrit>
+						<GetsHotCritChance>0.30</GetsHotCritChance>
+						<GetsHotCritExplosion>true</GetsHotCritExplosion>
+						<GetsHotCritExplosionChance>0.25</GetsHotCritExplosionChance>
+						<HotDamageWeapon>true</HotDamageWeapon>
+						<reliability>UR</reliability>
+					</li>
+				</VerbEntries>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	 </ThingDef>
 
-<!-- ====================== Metla Gun ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun_Special">
-    <defName>OGC_Gun_MeltaGun</defName>
-    <label>meltagun (C)</label>
-    <description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MeltaGun</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Autopistol</soundInteract>
-    <statBases>
-		<WorkToMake>120000</WorkToMake>
-		<!--MarketValue>6000</MarketValue-->
-		<Mass>5.2</Mass>
-		<AccuracyTouch>0.75</AccuracyTouch>
-		<AccuracyShort>0.80</AccuracyShort>
-		<AccuracyMedium>0.90</AccuracyMedium>
-		<AccuracyLong>0.90</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Melta</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>100</Plasteel>
-		<ComponentIndustrial>10</ComponentIndustrial>
-		<Gold>4</Gold>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>CEliteGun</li>
-		<li>CMetla</li>
-		<li>CMetlaGun</li>
-		<li>CMMetlaGun</li>
-		<li>TGMetlaGun</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-		<li>TGRanged</li>
-	</tradeTags>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>16</range>
-			<soundCast>OG_Melta_Sound</soundCast>
-			<burstShotCount>1</burstShotCount>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-      </li>
-    </verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
- 
-<!--==================== Traitor - Sonic Blaster =========================-->
- <ThingDef ParentName="BaseBullet">
+	<!-- ====================== Metla Gun ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_MeltaGun</defName>
+		<label>meltagun (C)</label>
+		<description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MeltaGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>6000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Melta</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CEliteGun</li>
+			<li>CMetla</li>
+			<li>CMetlaGun</li>
+			<li>CMMetlaGun</li>
+			<li>TGMetlaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+			<li>TGRanged</li>
+		</tradeTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>16</range>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<burstShotCount>1</burstShotCount>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!--==================== Traitor - Sonic Blaster =========================-->
+	 <ThingDef ParentName="BaseBullet">
 		<defName>OGC_Bullet_SonicBlaster</defName>
 		<label>Sonic Blast</label>
 		<graphicData>
@@ -1176,7 +1320,7 @@
 		</projectile>
 	</ThingDef>
 
- <ThingDef ParentName="OG_Chaos_Gun">
+	<ThingDef ParentName="OG_Chaos_Gun">
 		<defName>OGC_Gun_SonicBlaster</defName>
 		<label>sonic blaster (C)</label>
 		<description>The Sonic Blaster is a heavy Sonic Weapon that when fired unleashes wave after wave of devastating harmonics and literally rips its target apart with the power of extreme sound. The Sonic Blaster is the preferred weapon of Chaos Space Marine Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Sonic Blaster is about the same size as the Astartes' man-portable Heavy Bolter, and is wielded with both hands. There exists a slightly larger variant of the weapon that is used by Chaos Sonic Dreadnoughts, where it is twin-linked with a second Sonic Blaster to cause even more destructive results. Imperial records do not list any other known users of the Sonic Blaster, although there probably exist many more amongst the Forces of Chaos dedicated to the Prince of Pleasure.</description>
@@ -1184,13 +1328,13 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/SonicBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.050</drawSize>			
-    </graphicData>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-		<reliability>1</reliability>
+		</graphicData>
+			<soundInteract>Interact_Autopistol</soundInteract>
+			<statBases>
+			<reliability>1</reliability>
 			<WorkToMake>32000</WorkToMake>
 			<!--MarketValue>2500</MarketValue-->
-		<Mass>3.2</Mass>
+			<Mass>3.2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -1219,40 +1363,40 @@
 			</targetParams>
 			</li>
 		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<RapidFire>true</RapidFire>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<RapidFire>true</RapidFire>
+				</li>
+			</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
 			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>CBlastmaster</li>
@@ -1265,34 +1409,37 @@
 			<Plasteel>2</Plasteel>
 			<Steel>10</Steel>
 		</costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Sonic</li>
+		</researchPrerequisites>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
-<!--==================== Traitor - Blastmaster =========================-->
- <ThingDef ParentName="BaseBullet">
-		<defName>OGC_Bullet_Blastmaster</defName>
-		<label>Sonic Blast</label>
-		<graphicData>
-			<texPath>Things/Projectile/SonicShotSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGCSonic</damageDef>
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetrationBase>0.48</armorPenetrationBase>
-			<speed>100</speed>
-		</projectile>
+	<!--==================== Traitor - Blastmaster =========================-->
+	 <ThingDef ParentName="BaseBullet">
+			<defName>OGC_Bullet_Blastmaster</defName>
+			<label>Sonic Blast</label>
+			<graphicData>
+				<texPath>Things/Projectile/SonicShotSml</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<projectile>
+				<damageDef>OGCSonic</damageDef>
+				<damageAmountBase>30</damageAmountBase>
+				<armorPenetrationBase>0.48</armorPenetrationBase>
+				<speed>100</speed>
+			</projectile>
 	</ThingDef>
 
- <ThingDef ParentName="OG_Chaos_Gun_Heavy">
+	 <ThingDef ParentName="OG_Chaos_Gun_Heavy">
 		<defName>OGC_Gun_Blastmaster</defName>
 		<label>blastmaster (C)</label>
 		<description>The Blastmaster is a heavy Sonic Weapon that when fired focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects. The Blastmaster is used alongside the smaller Sonic Blaster weapon. These weapons are employed by Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Blastmaster is about the same size as the Astartes man-portable Lascannon, and is wielded with both hands.</description>
@@ -1300,20 +1447,20 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Blastmaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
-    </graphicData>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
+		</graphicData>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<!--MarketValue>5000</MarketValue-->
-		<Mass>6.4</Mass>
+			<Mass>10.4</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
 			<AccuracyShort>0.95</AccuracyShort>
 			<AccuracyMedium>0.80</AccuracyMedium>
@@ -1337,30 +1484,30 @@
 				<soundCast>OG_Hellgun_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>CSonicBlaster</li>
@@ -1373,222 +1520,224 @@
 			<Plasteel>2</Plasteel>
 			<Steel>10</Steel>
 		</costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Sonic</li>
+		</researchPrerequisites>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
- <!-- ====================== Auto Weapons ===================== -->
- <!-- ====================== AutoPistol ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-	<defName>OGC_Gun_AutoPistol</defName>
-    <label>autopistol (C)</label>
-    <description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol</texPath>
-		<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
-		<drawSize>1.0</drawSize>			
-    </graphicData>
-	<comps>    
-	<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-		<randomised>true</randomised>
-	</li>     
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>5000</WorkToMake>
-		<!--MarketValue>200</MarketValue-->
-		<Mass>0.4</Mass>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.62</AccuracyLong>
-		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-	
-	</recipeMaker>
-    <costList>
-		<Steel>50</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>1</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
+	<!-- ====================== Auto Weapons ===================== -->
+	<!-- ====================== AutoPistol ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_AutoPistol</defName>
+		<label>autopistol (C)</label>
+		<description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass>
+			<drawSize>1.0</drawSize>			
+		</graphicData>
+		<comps>	
+			<li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li>	 
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>5000</WorkToMake>
+			<!--MarketValue>200</MarketValue-->
+			<Mass>0.4</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
 		
-		<li>Pistol</li>
-		<li>ChaosPistol</li>
-		<li>ChaosGun</li>
-		<li>AutoPistol</li>
-		<li>GuevesaPistol</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
+		</recipeMaker>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Pistol</li>
+			<li>ChaosPistol</li>
+			<li>ChaosGun</li>
+			<li>AutoPistol</li>
+			<li>GuevesaPistol</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
 		<generateCommonality>1.25</generateCommonality>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_AutoPistol</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>25</range>
-			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>Shot_Autopistol</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-    <tools>
-		<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
-		</li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-		  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-			<barrellength>0.5</barrellength>
-		  </li>
-    </modExtensions>
- </ThingDef>
- 
- <!-- ====================== AutoGun ===================== -->
- <ThingDef ParentName="OG_Chaos_Gun">
-	<defName>OGC_Gun_AutoGun</defName>
-    <label>autogun (C)</label>
-	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
-    <description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/AutoGun/AutoGuna</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<color>(0.286,0.208,0.176)</color>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>5000</WorkToMake>
-		<!--MarketValue>350</MarketValue-->
-		<Mass>2</Mass>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.62</AccuracyLong>
-		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-	
-	</recipeMaker>
-    <costList>
-		<Steel>75</Steel>
-		<Plasteel>10</Plasteel>
-		<ComponentIndustrial>2</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>ChaosGun</li>
-		<li>Autogun</li>
-		<li>AutoGun</li>
-		<li>GuevesaGun</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
-		<generateCommonality>1.25</generateCommonality>
-    <equippedStatOffsets>
-	
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_AutoGun</defaultProjectile>
-			<warmupTime>0.75</warmupTime>
-			<range>31</range>
-			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
 			<li>
-				<RapidFire>true</RapidFire>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_AutoPistol</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>Shot_Autopistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
-		</VerbEntries>
-		</li> 
-	</comps>
-    <tools>
-		<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
-		</li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-	  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-        <barrellength>0.6</barrellength>
-	  </li>
-    </modExtensions>
- </ThingDef>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+				<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrellength>0.5</barrellength>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== AutoGun ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_AutoGun</defName>
+		<label>autogun (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/AutoGun/AutoGuna</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.208,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>5000</WorkToMake>
+			<!--MarketValue>350</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ChaosGun</li>
+			<li>Autogun</li>
+			<li>AutoGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+			<generateCommonality>1.25</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_AutoGun</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<RapidFire>true</RapidFire>
+				</li>
+			</VerbEntries>
+			</li> 
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+			<barrellength>0.6</barrellength>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
-<!--==================== Traitor - Reaper Autocannon =========================-->
- <ThingDef ParentName="BaseBullet">
+	<!--==================== Traitor - Reaper Autocannon =========================-->
+	<ThingDef ParentName="BaseBullet">
 		<defName>OGC_Bullet_RAutocannon</defName>
 		<label>Traitor Autocannon Bullet</label>
 		<graphicData>
 			<texPath>Things/Projectile/AutoShotLrg</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.250</drawSize>			
-    </graphicData>
-	<comps>     
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
+		</graphicData>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<projectile>
 			<damageDef>OGCRAC</damageDef>
 			<damageAmountBase>40</damageAmountBase>
@@ -1597,66 +1746,66 @@
 		</projectile>
 	</ThingDef>
 
- <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-	<defName>OGC_Gun_RAutocannon</defName>
-	<label>reaper autocannon (C)</label>
-	<description>The Reaper Autocannon is a double-barrelled variant of the standard Autocannon. The Reaper Autocannon was originally designed during the Great Crusade for use as a heavy support weapon for the Terminator Squads of the Space Marine Legions. The weapon features two barrels and is capable of a high rate of fire, but it requires the incredible strength available to those who wear Terminator Armour to be carried as an infantry-portable weapon. This is because the recoil of this weapon is too great for even Power Armour-wearing Space Marines to unleash it effectively. The weapon usually features a large blade on the end of the barrels that can be used in close combat if needed.</description>
-	<graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/ReaperAutocannon</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-	</graphicData>
-	<soundInteract>Interact_Autopistol</soundInteract>
-	<statBases>
-		<WorkToMake>42000</WorkToMake>
-		<!--MarketValue>6000</MarketValue-->
-		<Mass>9.6</Mass>
-		<AccuracyTouch>0.80</AccuracyTouch>
-		<AccuracyShort>0.70</AccuracyShort>
-		<AccuracyMedium>0.65</AccuracyMedium>
-		<AccuracyLong>0.60</AccuracyLong>
-		<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-	</statBases>
-	<equippedStatOffsets>
-		<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
-		<PsychicSensitivity>0.05</PsychicSensitivity>
-		<MoveSpeed>-0.25</MoveSpeed>
-	</equippedStatOffsets>
-	<verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGC_Bullet_RAutocannon</defaultProjectile>
-			<warmupTime>3.5</warmupTime>
-			<range>45</range>
-			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-			<burstShotCount>6</burstShotCount>
-			<soundCast>OG_Auto_Cannon_Sound</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-	</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_RAutocannon</defName>
+		<label>reaper autocannon (C)</label>
+		<description>The Reaper Autocannon is a double-barrelled variant of the standard Autocannon. The Reaper Autocannon was originally designed during the Great Crusade for use as a heavy support weapon for the Terminator Squads of the Space Marine Legions. The weapon features two barrels and is capable of a high rate of fire, but it requires the incredible strength available to those who wear Terminator Armour to be carried as an infantry-portable weapon. This is because the recoil of this weapon is too great for even Power Armour-wearing Space Marines to unleash it effectively. The weapon usually features a large blade on the end of the barrels that can be used in close combat if needed.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/ReaperAutocannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>6000</MarketValue-->
+			<Mass>9.6</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_RAutocannon</defaultProjectile>
+				<warmupTime>3.5</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Auto_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>CGunHeavy</li>
@@ -1666,257 +1815,255 @@
 		<tradeTags>
 			<li>OGCRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Common_Tech_Weapons_Heavy</li>
-			<li>HeavyTurrets</li>
-		</researchPrerequisites>
-	</recipeMaker>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Heavy</li>
+				<li>HeavyTurrets</li>
+			</researchPrerequisites>
+		</recipeMaker>
 		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<Plasteel>2</Plasteel>
 			<Steel>10</Steel>
 		</costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+			<dualWield>false</dualWield>
+			<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+			<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
- <!-- ====================== Traitor - Reaper Chaingun ===================== --> 
- <ThingDef ParentName="OG_Chaos_Gun_Heavy" Class="AdeptusMechanicus.SpinningLaserGunDef">
-    <defName>OGC_Gun_ReaperChaingun</defName>
-    <label>chaingun (C)</label>
-    <description>The Chaingun is a ballistic six-barreled, self-loading rotary heavy Autogun, effective against infantry targets and light vehicles at close to medium range. It is a medium calibre rotary Autocannon, with its 6 barrels cycled by an electric motor past a single chamber. The Assault Cannon was developed after the end of the Horus Heresy in the early 31st Millennium as a replacement for the Autocannon. Introduced during the Mark IIIA phase of Indomitus Pattern Terminator Armour development, this weapon is the standard alternative to the Heavy Flamer as a Terminator Squad's special ranged weapon. Its design has changed little in 10 Terran millennia, retaining the distinctively long, cylindrical, rotating barrels. Although it lacks the range of the Autocannon and many other Imperial heavy weapons, the Assault Cannon is a fearsome weapon when used at the close range role from which it was intended to be fired.</description>
-	<thingClass>AdeptusMechanicus.SpinningLaserGun</thingClass>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-1</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.25</drawSize>			
-    </graphicData>
-	<frames>
-		<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-1</texPath><graphicClass>Graphic_Single</graphicClass></li>
-		<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-2</texPath><graphicClass>Graphic_Single</graphicClass></li>
-		<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-3</texPath><graphicClass>Graphic_Single</graphicClass></li>
-		<!--<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-4</texPath><graphicClass>Graphic_Single</graphicClass></li>-->
-	</frames>
-	<rotationSpeed>1.0</rotationSpeed>
-    <equippedAngleOffset>45</equippedAngleOffset>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<reliability>1</reliability>
-		<WorkToMake>120000</WorkToMake>
-		<!--MarketValue>1750</MarketValue-->
-		<Mass>6</Mass>
-		<AccuracyTouch>0.60</AccuracyTouch>
-		<AccuracyShort>0.55</AccuracyShort>
-		<AccuracyMedium>0.40</AccuracyMedium>
-		<AccuracyLong>0.35</AccuracyLong>
-		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
-	</statBases>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>MultibarrelWeapons</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>75</Plasteel>
-		<ComponentIndustrial>8</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>CGunHeavy</li>
-		<li>CAssaultCannon</li>
-		<li>CChainGun</li>
-		<li>CMChainGun</li>
-		<li>TGChainGun</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGCRanged</li>
-	</tradeTags>
+	<!-- ====================== Traitor - Reaper Chaingun ===================== --> 
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy" Class="AdeptusMechanicus.SpinningLaserGunDef">
+		<defName>OGC_Gun_ReaperChaingun</defName>
+		<label>chaingun (C)</label>
+		<description>The Chaingun is a ballistic six-barreled, self-loading rotary heavy Autogun, effective against infantry targets and light vehicles at close to medium range. It is a medium calibre rotary Autocannon, with its 6 barrels cycled by an electric motor past a single chamber. The Assault Cannon was developed after the end of the Horus Heresy in the early 31st Millennium as a replacement for the Autocannon. Introduced during the Mark IIIA phase of Indomitus Pattern Terminator Armour development, this weapon is the standard alternative to the Heavy Flamer as a Terminator Squad's special ranged weapon. Its design has changed little in 10 Terran millennia, retaining the distinctively long, cylindrical, rotating barrels. Although it lacks the range of the Autocannon and many other Imperial heavy weapons, the Assault Cannon is a fearsome weapon when used at the close range role from which it was intended to be fired.</description>
+		<thingClass>AdeptusMechanicus.SpinningLaserGun</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-1</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.25</drawSize>			
+		</graphicData>
+		<frames>
+			<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-1</texPath><graphicClass>Graphic_Single</graphicClass></li>
+			<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-2</texPath><graphicClass>Graphic_Single</graphicClass></li>
+			<li><texPath>Things/Item/Equipment/WeaponRanged/Chaos/ChainGun-3</texPath><graphicClass>Graphic_Single</graphicClass></li>
+		</frames>
+		<rotationSpeed>1.0</rotationSpeed>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>1750</MarketValue-->
+			<Mass>6</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.55</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.35</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>MultibarrelWeapons</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>75</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CGunHeavy</li>
+			<li>CAssaultCannon</li>
+			<li>CChainGun</li>
+			<li>CMChainGun</li>
+			<li>TGChainGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
 		<generateCommonality>0.10</generateCommonality>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<burstShotCount>50</burstShotCount>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<soundCast>OG_Assaultcannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<Jams>true</Jams>
+					<JamsDamageWeapon>true</JamsDamageWeapon>
+					<JamDamage>3</JamDamage>
+					<reliability>ST</reliability>
+				</li>
+			</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>barrels</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Launcher ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_RocketLaucher</defName>
+		<label>missile launcher (C)</label>
+		<description>A Missile Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MissileLauncher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<WorkToMake>200000</WorkToMake>
+			<!--MarketValue>3275</MarketValue-->
+			<AccuracyTouch>0.50</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>RocketLaucher</li>
+			<li>ImperialRocketLaucher</li>
+			<li>GunHeavy</li>
+			<li>ImperialGunHeavy</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<verbs>
+			<li>
 			<verbClass>Verb_Shoot</verbClass>
+			<label>Frag</label>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
-			<warmupTime>1.5</warmupTime>
-			<range>38</range>
-			<burstShotCount>50</burstShotCount>
-			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-			<soundCast>OG_Assaultcannon_Sound</soundCast>
+			<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
+			<forcedMissRadius>2.9</forcedMissRadius>
+			<burstShotCount>1</burstShotCount>
+			<warmupTime>4.5</warmupTime>
+			<ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
+			<range>35.9</range>
+			<soundCast>InfernoCannon_Fire</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>14</muzzleFlashScale>
+			<onlyManualCast>true</onlyManualCast>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-		</li>
-    </verbs>
-	<comps>    
+			<muzzleFlashScale>14</muzzleFlashScale>
+			</li>
+		</verbs>
+		<comps> 
 		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<Jams>true</Jams>
-				<JamsDamageWeapon>true</JamsDamageWeapon>
-				<JamDamage>3</JamDamage>
-				<reliability>ST</reliability>
-			</li>
-		</VerbEntries>
-		</li> 
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li>  
-	</comps>
-	<tools>
-		<li>
-			<label>barrels</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
+			<!--DualFireMode>true</DualFireMode-->
+			<VerbEntries>
+				<li>
+					
+				</li>
+				<li>
+					<VerbProps>
+						<verbClass>Verb_Shoot</verbClass>
+						<label>Krak</label>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
+						<forcedMissRadius>2.9</forcedMissRadius>
+						<warmupTime>4.5</warmupTime>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+						<range>35.9</range>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</VerbProps>
+				</li>
+			</VerbEntries>
 		</li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
- </ThingDef>
-
-<!-- ====================== Launcher ===================== -->
-  <ThingDef ParentName="OG_Chaos_Gun_Heavy">
-    <defName>OGC_Gun_RocketLaucher</defName>
-    <label>missile launcher (C)</label>
-    <description>A Missile Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
-    <tickerType>Normal</tickerType>
-    <techLevel>Spacer</techLevel>
-    <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/Chaos/MissileLauncher</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <statBases>
-		<WorkToMake>200000</WorkToMake>
-		<!--MarketValue>3275</MarketValue-->
-		<AccuracyTouch>0.50</AccuracyTouch>
-		<AccuracyShort>0.60</AccuracyShort>
-		<AccuracyMedium>0.55</AccuracyMedium>
-		<AccuracyLong>0.40</AccuracyLong>
-      <Mass>7</Mass>
-      <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-
-	</recipeMaker>
-    <costList>
-		<Steel>150</Steel>
-		<Plasteel>15</Plasteel>
-		<ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-    <weaponTags>
-      <li>RocketLaucher</li>
-      <li>ImperialRocketLaucher</li>
-      <li>GunHeavy</li>
-      <li>ImperialGunHeavy</li>
-    </weaponTags>
-    <tradeTags>
-		<li>OGCRanged</li>
-    </tradeTags>
-		<generateCommonality>0.10</generateCommonality>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-		<label>Frag</label>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
-        <forcedMissRadius>2.9</forcedMissRadius>
-			<burstShotCount>1</burstShotCount>
-        <warmupTime>4.5</warmupTime>
-        <ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
-        <range>35.9</range>
-        <soundCast>InfernoCannon_Fire</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <onlyManualCast>true</onlyManualCast>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-        <muzzleFlashScale>14</muzzleFlashScale>
-      </li>
-    </verbs>
-	<comps>   
-	<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<!--DualFireMode>true</DualFireMode-->
-		<VerbEntries>
-			<li>
-				
-			</li>
-			<li>
-			  <VerbProps>
-					<verbClass>Verb_Shoot</verbClass>
-					<label>Krak</label>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
-					<forcedMissRadius>2.9</forcedMissRadius>
-					<warmupTime>4.5</warmupTime>
-					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-					<range>35.9</range>
-					<soundCast>InfernoCannon_Fire</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<onlyManualCast>true</onlyManualCast>
-					<stopBurstWithoutLos>false</stopBurstWithoutLos>
-					<muzzleFlashScale>14</muzzleFlashScale>
-					<targetParams>
-					  <canTargetLocations>true</canTargetLocations>
-					</targetParams>
-			  </VerbProps>
-			</li>
-		</VerbEntries>
-	</li>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>7.8</explosiveRadius>
-        <explosiveDamageType>Bomb</explosiveDamageType>
-        <requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
-      </li> 
-	  <!-- CompProperties_SlotLoadable 
+		<li Class="CompProperties_Explosive">
+			<explosiveRadius>7.8</explosiveRadius>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+		</li> 
+		<!-- CompProperties_SlotLoadable 
 		<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
 		</li>
-	  -->
-	</comps>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>11.7</power>
-        <cooldownTime>2.6</cooldownTime>
-      </li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
-  </ThingDef>
-
+		-->
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>11.7</power>
+				<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
 </Defs>

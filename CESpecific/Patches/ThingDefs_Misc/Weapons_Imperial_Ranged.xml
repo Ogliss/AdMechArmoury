@@ -1106,7 +1106,7 @@
 						</targetParams>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>25</magazineSize>
+						<magazineSize>36</magazineSize>
 						<reloadTime>2.5</reloadTime>
 						<ammoSet>AmmoSet_OGLasStd</ammoSet>
 					</AmmoUser>
@@ -1208,7 +1208,7 @@
 
 				<!-- ====================== LasGun Lucius ===================== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>OGI_Gun_LasGunLucius</defName>
+					<defName>OGI_Gun_LasGun_Lucius</defName>
 					<statBases>
 						<Mass>3.2</Mass>
 						<RangedWeapon_Cooldown>0.750</RangedWeapon_Cooldown>
@@ -1221,7 +1221,7 @@
 						<recoilAmount>0.1</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>OGI_Bullet_LasGunLucius</defaultProjectile>
+						<defaultProjectile>OGI_Bullet_LasGun_Lucius</defaultProjectile>
 						<warmupTime>1</warmupTime>
 						<range>31</range>
 						<soundCast>OG_Las_Pistol_Sound</soundCast>
@@ -1248,7 +1248,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGI_Gun_LasGun"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="OGI_Gun_LasGun_Lucius"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1273,10 +1273,10 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGI_Bullet_LasGunLucius"]</xpath>
+					<xpath>Defs/ThingDef[defName="OGI_Bullet_LasGun_Lucius"]</xpath>
 					<value>
 						<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-							<defName>OGI_Bullet_LasGunLucius</defName>
+							<defName>OGI_Bullet_LasGun_Lucius</defName>
 							<label>las blast</label>
 							<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
 							<textures>
@@ -1670,7 +1670,7 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIPlasma</damageDef>
 								<explosionRadius>0.50</explosionRadius>
-								<damageAmountBase>20</damageAmountBase>
+								<damageAmountBase>45</damageAmountBase>
 								<armorPenetrationBase>0.8</armorPenetrationBase>
 								<stoppingPower>1.5</stoppingPower>
 								<speed>75</speed>
@@ -1699,7 +1699,7 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_PlasmaGun</defName>
 					<statBases>
-						<Mass>2.25</Mass>
+						<Mass>4.5</Mass>
 						<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
@@ -1747,7 +1747,8 @@
 								</capacities>
 								<power>9</power>
 								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>barrel</label>
 								<capacities>
@@ -1756,7 +1757,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -1776,7 +1778,7 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIPlasma</damageDef>
 								<explosionRadius>1.50</explosionRadius>
-								<damageAmountBase>30</damageAmountBase>
+								<damageAmountBase>75</damageAmountBase>
 								<armorPenetrationBase>0.8</armorPenetrationBase>
 								<stoppingPower>1.5</stoppingPower>
 								<speed>75</speed>
@@ -1816,7 +1818,7 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIPlasma</damageDef>
 								<explosionRadius>0.50</explosionRadius>
-								<damageAmountBase>35</damageAmountBase>
+								<damageAmountBase>45</damageAmountBase>
 								<armorPenetrationBase>0.8</armorPenetrationBase>
 								<stoppingPower>1.5</stoppingPower>
 								<speed>75</speed>
@@ -1845,7 +1847,7 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_PlasmaCannon</defName>
 					<statBases>
-						<Mass>4.8</Mass>
+						<Mass>12.8</Mass>
 						<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
@@ -1890,7 +1892,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -1910,7 +1913,7 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIPlasmaCannon</damageDef>
 								<explosionRadius>1.75</explosionRadius>
-								<damageAmountBase>45</damageAmountBase>
+								<damageAmountBase>90</damageAmountBase>
 								<armorPenetrationBase>0.8</armorPenetrationBase>
 								<stoppingPower>3</stoppingPower>
 								<speed>55</speed>
@@ -2425,7 +2428,8 @@
 								</capacities>
 								<power>9</power>
 								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>barrel</label>
 								<capacities>
@@ -2434,7 +2438,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -2540,7 +2545,8 @@
 								</capacities>
 								<power>9</power>
 								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>barrel</label>
 								<capacities>
@@ -2549,7 +2555,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -2630,7 +2637,8 @@
 								</capacities>
 								<power>9</power>
 								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>barrel</label>
 								<capacities>
@@ -2639,7 +2647,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -2720,7 +2729,8 @@
 								</capacities>
 								<power>9</power>
 								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>barrel</label>
 								<capacities>
@@ -2729,7 +2739,8 @@
 								</capacities>
 								<power>10</power>
 								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							</li>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
 						</tools>
 					</value>
 				</li>
@@ -3578,6 +3589,603 @@
 					</value>
 				</li>
 				
+				<li Class="PatchOperationFindModID">
+					<mods>
+						<li>QX.AstraMilitarum</li>
+					</mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<!-- ====================== Std Bolt T2 ===================== -->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="OGI_Bullet_T2BoltStd"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>OGI_Bullet_T2BoltStd</defName>
+										<label>Bolt</label>
+										<description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
+										<graphicData>
+											<texPath>Things/Projectile/BoltShotSml</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<speed>135</speed>
+											<flyOverhead>false</flyOverhead>
+											<damageDef>OGIBoltStd</damageDef>
+											<damageAmountBase>30</damageAmountBase>
+											<armorPenetrationSharp>15</armorPenetrationSharp>
+											<armorPenetrationBlunt>75</armorPenetrationBlunt>
+											<stoppingPower>1</stoppingPower>
+											<soundExplode>OGIPP_Explosion</soundExplode>
+										</projectile>
+										<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+										<modExtensions>
+										  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+											<explosionMote>true</explosionMote>
+											<explosionMoteSize>0.75</explosionMoteSize>
+											<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+											<ImpactMoteSize>2</ImpactMoteSize>
+											<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+											<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+										  </li>
+										  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+											<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+											<trailMoteSize>0.35</trailMoteSize>
+											<trailerMoteInterval>3</trailerMoteInterval>
+										  </li>
+										</modExtensions>
+									</ThingDef>
+								</value>
+							</li>
+							
+							<!-- ====================== Bolter T2 ===================== -->
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>OGI_Gun_T2BoltGun</defName>
+								<statBases>
+									<Mass>3.8</Mass>
+									<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+									<SightsEfficiency>1.0</SightsEfficiency>
+									<ShotSpread>0.15</ShotSpread>
+									<SwayFactor>1.5</SwayFactor>
+									<Bulk>3.50</Bulk>
+								</statBases>
+								<Properties>
+									<recoilAmount>0.6</recoilAmount>
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>OGI_Bullet_T2BoltStd</defaultProjectile>
+									<warmupTime>0.3</warmupTime>
+									<range>31</range>
+									<soundCast>OG_Bolt_Gun_Sound</soundCast>
+									<soundCastTail>GunTail_Heavy</soundCastTail>
+									<muzzleFlashScale>14</muzzleFlashScale>
+									<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+									<burstShotCount>3</burstShotCount>
+									<targetParams>
+									  <canTargetLocations>true</canTargetLocations>
+									</targetParams>
+								</Properties>
+								<AmmoUser>
+									<magazineSize>36</magazineSize>
+									<reloadTime>4.5</reloadTime>
+									<ammoSet>AmmoSet_OGT2BoltStd</ammoSet>
+								</AmmoUser>
+								<FireModes>
+									<aiAimMode>AimedShot</aiAimMode>
+									<aiUseBurstMode>TRUE</aiUseBurstMode>	
+								</FireModes>
+								<weaponTags>
+									<li>CE_AI_AssaultWeapon</li>
+									<li>CE_AI_Rifle</li>
+								</weaponTags>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="OGI_Gun_T2BoltGun"]</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>stock</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>10</power>
+											<cooldownTime>1.6</cooldownTime>
+											<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>barrel</label>
+											<capacities>
+												<li>Blunt</li>
+												<li>Poke</li>
+											</capacities>
+											<power>12</power>
+											<cooldownTime>1.9</cooldownTime>
+											<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+										</li>
+									</tools>
+								</value>
+							</li>
+
+							<!-- ====================== Std Bolt T3 ===================== -->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="OGI_Bullet_T3BoltStd"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>OGI_Bullet_T3BoltStd</defName>
+										<label>Bolt</label>
+										<description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
+										<graphicData>
+											<texPath>Things/Projectile/BoltShotSml</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<speed>135</speed>
+											<flyOverhead>false</flyOverhead>
+											<damageDef>OGIBoltStd</damageDef>
+											<damageAmountBase>35</damageAmountBase>
+											<armorPenetrationSharp>20</armorPenetrationSharp>
+											<armorPenetrationBlunt>80</armorPenetrationBlunt>
+											<stoppingPower>1</stoppingPower>
+											<soundExplode>OGIPP_Explosion</soundExplode>
+										</projectile>
+										<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+										<modExtensions>
+										  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+											<explosionMote>true</explosionMote>
+											<explosionMoteSize>0.75</explosionMoteSize>
+											<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+											<ImpactMoteSize>2</ImpactMoteSize>
+											<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+											<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+										  </li>
+										  <li Class="AdeptusMechanicus.TrailerProjectileExtension">
+											<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+											<trailMoteSize>0.35</trailMoteSize>
+											<trailerMoteInterval>3</trailerMoteInterval>
+										  </li>
+										</modExtensions>
+									</ThingDef>
+								</value>
+							</li>
+							
+							<!-- ====================== Bolter T3 ===================== -->
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>OGI_Gun_T3BoltGun</defName>
+								<statBases>
+									<Mass>3.8</Mass>
+									<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+									<SightsEfficiency>1.0</SightsEfficiency>
+									<ShotSpread>0.15</ShotSpread>
+									<SwayFactor>1.5</SwayFactor>
+									<Bulk>3.50</Bulk>
+								</statBases>
+								<Properties>
+									<recoilAmount>0.6</recoilAmount>
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>OGI_Bullet_T3BoltStd</defaultProjectile>
+									<warmupTime>0.3</warmupTime>
+									<range>31</range>
+									<soundCast>OG_Bolt_Gun_Sound</soundCast>
+									<soundCastTail>GunTail_Heavy</soundCastTail>
+									<muzzleFlashScale>14</muzzleFlashScale>
+									<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+									<burstShotCount>3</burstShotCount>
+									<targetParams>
+									  <canTargetLocations>true</canTargetLocations>
+									</targetParams>
+								</Properties>
+								<AmmoUser>
+									<magazineSize>36</magazineSize>
+									<reloadTime>4.5</reloadTime>
+									<ammoSet>AmmoSet_OGT3BoltStd</ammoSet>
+								</AmmoUser>
+								<FireModes>
+									<aiAimMode>AimedShot</aiAimMode>
+									<aiUseBurstMode>TRUE</aiUseBurstMode>	
+								</FireModes>
+								<weaponTags>
+									<li>CE_AI_AssaultWeapon</li>
+									<li>CE_AI_Rifle</li>
+								</weaponTags>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="OGI_Gun_T3BoltGun"]</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>stock</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>9</power>
+											<cooldownTime>1.8</cooldownTime>
+											<armorPenetrationBlunt>1.630</armorPenetrationBlunt>							
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>barrel</label>
+											<capacities>
+												<li>Blunt</li>
+												<li>Poke</li>
+											</capacities>
+											<power>10</power>
+											<cooldownTime>1.9</cooldownTime>
+											<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							
+										</li>
+									</tools>
+								</value>
+							</li>
+							
+							<!--==================== Imperial Grenade Launcher =========================-->
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>Gun_ImpGrenadeLauncher</defName>
+								<statBases>
+									<Mass>6.0</Mass>
+									<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+									<SightsEfficiency>1.0</SightsEfficiency>
+									<ShotSpread>0.15</ShotSpread>
+									<SwayFactor>1.5</SwayFactor>
+									<Bulk>7.50</Bulk>
+								</statBases>
+								<Properties>
+									<recoilAmount>0.45</recoilAmount>
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>Bullet_ImpGrenade</defaultProjectile>
+									<warmupTime>4.0</warmupTime>
+									<range>30</range>
+									<soundCast>IGGrenadeLaunch</soundCast>
+									<soundCastTail>GunTail_Heavy</soundCastTail>
+									<muzzleFlashScale>12</muzzleFlashScale>
+									<ticksBetweenBurstShots>50</ticksBetweenBurstShots>
+									<burstShotCount>3</burstShotCount>
+									<targetParams>
+									  <canTargetLocations>true</canTargetLocations>
+									</targetParams>
+								</Properties>
+								<AmmoUser>
+									<magazineSize>4</magazineSize>
+									<reloadTime>4.5</reloadTime>
+									<ammoSet>AmmoSet_OGGrenadeL</ammoSet>
+								</AmmoUser>
+								<FireModes>
+									<aiAimMode>AimedShot</aiAimMode>
+								</FireModes>
+								<weaponTags>
+
+								</weaponTags>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Gun_ImpGrenadeLauncher"]</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>stock</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>9</power>
+											<cooldownTime>1.8</cooldownTime>
+											<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>barrel</label>
+											<capacities>
+												<li>Blunt</li>
+												<li>Poke</li>
+											</capacities>
+											<power>10</power>
+											<cooldownTime>1.9</cooldownTime>
+											<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+										</li>
+									</tools>
+								</value>
+							</li>
+
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="Bullet_ImpGrenade"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>Bullet_ImpGrenade</defName>
+										<label>Frag Grenade</label>
+										<description>Fragmention grenades have a large blast radius and excel at dealing with light infantry, however they have little effect against vehicals, fortifications or heavily armoured troops.</description>
+										<graphicData>
+											<texPath>Things/Projectile/Grenade</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<flyOverhead>True</flyOverhead>
+											<damageDef>OGIBomb</damageDef>
+											<damageAmountBase>20</damageAmountBase>
+											<armorPenetrationSharp>14</armorPenetrationSharp>
+											<armorPenetrationBlunt>46</armorPenetrationBlunt>
+											<explosionRadius>1.00</explosionRadius>
+											<stoppingPower>1</stoppingPower>
+											<speed>35</speed>
+											<soundExplode>OGIAC_Explosion</soundExplode>
+										</projectile>
+										<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+									</ThingDef>
+								</value>
+							</li>
+							
+							<!--li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="OGI_Bullet_LauncherGrenadeKrak"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>OGI_Bullet_LauncherGrenadeKrak</defName>
+										<label>Krak Grenade</label>
+										<description>Krak grenades high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
+										<graphicData>
+											<texPath>Things/Projectile/Grenade</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<flyOverhead>True</flyOverhead>
+											<damageDef>OGIBomb</damageDef>
+											<damageAmountBase>40</damageAmountBase>
+											<armorPenetrationBase>1</armorPenetrationBase>
+											<explosionRadius>0.50</explosionRadius>
+											<stoppingPower>5</stoppingPower>
+											<speed>35</speed>
+											<soundExplode>OGIAC_Explosion</soundExplode>
+										</projectile>
+										<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+									</ThingDef>
+								</value>
+							</li-->
+							
+							<!-- ====================== Imperial Quad Rocket Launcher ===================== -->
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>Gun_QuadRktLauncher</defName>
+								<statBases>
+									<Mass>7.0</Mass>
+									<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+									<SightsEfficiency>1.0</SightsEfficiency>
+									<ShotSpread>0.15</ShotSpread>
+									<SwayFactor>1.5</SwayFactor>
+									<Bulk>7.50</Bulk>
+								</statBases>
+								<Properties>
+									<recoilAmount>0.45</recoilAmount>
+									<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>Bullet_ImpRocket</defaultProjectile>
+									<warmupTime>4.0</warmupTime>
+									<range>50</range>
+									<soundCast>IGRocketLaunch</soundCast>
+									<soundCastTail>GunTail_Heavy</soundCastTail>
+									<muzzleFlashScale>12</muzzleFlashScale>
+									<targetParams>
+									  <canTargetLocations>true</canTargetLocations>
+									</targetParams>
+								</Properties>
+								<!--AmmoUser>
+									<magazineSize>1</magazineSize>
+									<reloadTime>8.5</reloadTime>
+									<ammoSet>AmmoSet_OGMissile</ammoSet>
+								</AmmoUser-->
+								<FireModes>
+									<aiAimMode>AimedShot</aiAimMode>
+								</FireModes>
+								<weaponTags>
+
+								</weaponTags>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Gun_QuadRktLauncher"]</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>stock</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>9</power>
+											<cooldownTime>1.8</cooldownTime>
+											<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>barrel</label>
+											<capacities>
+												<li>Blunt</li>
+												<li>Poke</li>
+											</capacities>
+											<power>10</power>
+											<cooldownTime>1.9</cooldownTime>
+											<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+										</li>
+									</tools>
+								</value>
+							</li>
+							
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="Bullet_ImpRocket"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>Bullet_ImpRocket</defName>
+										<label>frag rocket</label>
+										<description>Fragmention rockets have a large blast radius and excel at dealing with light infantry, however they have little effect against vehicals, fortifications or heavily armoured troops.</description>
+										<graphicData>
+											<texPath>Things/Projectile/ImpMissileFrag</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<damageDef>Bomb</damageDef>
+											<damageAmountBase>80</damageAmountBase>
+											<armorPenetrationSharp>22</armorPenetrationSharp>
+											<armorPenetrationBlunt>104</armorPenetrationBlunt>
+											<explosionRadius>4.8</explosionRadius>
+											<stoppingPower>2</stoppingPower>
+											<speed>50</speed>
+										</projectile>
+										<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+									</ThingDef>
+								</value>
+							</li>
+							
+							<!-- ====================== Plasma Gun ===================== -->
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>IG_Gun_T3PlasmaGun</defName>
+								<statBases>
+									<Mass>4.5</Mass>
+									<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+									<SightsEfficiency>1.0</SightsEfficiency>
+									<ShotSpread>0.15</ShotSpread>
+									<SwayFactor>1.5</SwayFactor>
+									<Bulk>2.250</Bulk>
+								</statBases>
+								<Properties>
+									<recoilAmount>0.5</recoilAmount>
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>IG_Bullet_T3PlasmaGun</defaultProjectile>
+									<warmupTime>2.6</warmupTime>
+									<range>45</range>
+									<soundCast>PlasmaGunSound</soundCast>
+									<soundCastTail>GunTail_Medium</soundCastTail>
+									<muzzleFlashScale>10</muzzleFlashScale>
+									<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+									<burstShotCount>3</burstShotCount>
+									<targetParams>
+									  <canTargetLocations>true</canTargetLocations>
+									</targetParams>
+								</Properties>
+								<AmmoUser>
+									<magazineSize>6</magazineSize>
+									<reloadTime>3.5</reloadTime>
+									<ammoSet>AmmoSet_OGIPlasmaGun</ammoSet>
+								</AmmoUser>
+								<FireModes>
+									<aiAimMode>AimedShot</aiAimMode>
+									<aiUseBurstMode>TRUE</aiUseBurstMode>	
+								</FireModes>
+								<weaponTags>
+
+								</weaponTags>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="IG_Gun_T3PlasmaGun"]</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>grip</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>9</power>
+											<cooldownTime>1.8</cooldownTime>
+											<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>barrel</label>
+											<capacities>
+												<li>Blunt</li>
+												<li>Poke</li>
+											</capacities>
+											<power>10</power>
+											<cooldownTime>1.9</cooldownTime>
+											<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+										</li>
+									</tools>
+								</value>
+							</li>
+
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="IG_Bullet_T3PlasmaGun"]</xpath>
+								<value>
+									<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+										<defName>IG_Bullet_T3PlasmaGun</defName>
+										<label>Plasma Bolt</label>
+										<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+										<graphicData>
+											<texPath>Things/Projectile/PlamsShotSml</texPath>
+											<graphicClass>Graphic_Single</graphicClass>
+										</graphicData>
+										<projectile Class="CombatExtended.ProjectilePropertiesCE">
+											<flyOverhead>false</flyOverhead>
+											<damageDef>OGIPlasma</damageDef>
+											<explosionRadius>1.50</explosionRadius>
+											<damageAmountBase>50</damageAmountBase>
+											<armorPenetrationBase>0.8</armorPenetrationBase>
+											<stoppingPower>1.5</stoppingPower>
+											<speed>75</speed>
+											<soundExplode>OGIPP_Explosion</soundExplode>
+										</projectile>
+										<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+										<modExtensions>
+										  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+											<explosionMote>true</explosionMote>
+											<explosionMoteSize>0.75</explosionMoteSize>
+											<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+											<ImpactMoteSize>2</ImpactMoteSize>
+											<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+											<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+										  </li>
+										  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+											<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+											<GlowMoteSize>1.5</GlowMoteSize>
+										  </li>
+										</modExtensions>
+									</ThingDef>
+								</value>
+							</li>
+							
+							<!--==================== Imperial  - Force Sword =========================-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="OGI_Melee_ForceSword"]/tools</xpath>
+								<value>
+									<tools>
+										<li Class="CombatExtended.ToolCE">
+											<label>handle</label>
+											<capacities>
+												<li>Blunt</li>
+											</capacities>
+											<power>8</power>
+											<cooldownTime>1.4</cooldownTime>
+											<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>blade</label>
+											<capacities>
+												<li>OG_ForceWeapon_Cut</li>
+											</capacities>
+											<power>16</power>
+											<cooldownTime>1.4</cooldownTime>
+											<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+											<extraMeleeDamages>
+												<li>
+													<def>EMP</def>
+													<amount>9</amount>
+												</li>
+											</extraMeleeDamages>
+										</li>
+										<li Class="CombatExtended.ToolCE">
+											<label>point</label>
+											<capacities>
+												<li>OG_ForceWeapon_Stab</li>
+											</capacities>
+											<power>24</power>
+											<cooldownTime>1.4</cooldownTime>
+											<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+											<extraMeleeDamages>
+												<li>
+													<def>EMP</def>
+													<amount>9</amount>
+												</li>
+											</extraMeleeDamages>
+										</li>
+									</tools>
+								</value>
+							</li>
+						</operations>
+					</match>
+				</li>
+					
 		</operations>
 	</Operation>
 

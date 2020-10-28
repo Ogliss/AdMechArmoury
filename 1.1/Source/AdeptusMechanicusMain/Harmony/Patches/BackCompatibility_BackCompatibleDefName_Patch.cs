@@ -45,6 +45,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                             newName = "OGI_Gun_BoltGun";
                         }
                     }
+                    if (defName.Contains("LasGun"))
+                    {
+                        if (defName.Contains("Lucius"))
+                        {
+                            newName = "OGI_Gun_LasGun_Lucius";
+                        }
+                    }
                     if (defName.Contains("PlasmaRifle"))
                     {
                         if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))

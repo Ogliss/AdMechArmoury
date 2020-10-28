@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
  <!-- ====================== Eversor ===================== -->
  <!-- ====================== Executioner Pistol ===================== -->
-	
 	<ThingDef ParentName="BaseBullet">
 		<defName>OGI_Bullet_Needler</defName>
 		<label>needle</label>
@@ -67,7 +65,7 @@
 		<tradeTags>
 			<li>OGIRanged</li>
 		</tradeTags>
-			<generateCommonality>1.0</generateCommonality>
+		<generateCommonality>1.0</generateCommonality>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
@@ -118,230 +116,229 @@
 			</li> 
 		</comps>
 		<modExtensions>
-		  <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>true</dualWield>
-			<twoHand>false</twoHand>
-		  </li>
-		  <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
-		  </li>
-		  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-			<barrellength>0.5</barrellength>
-		  </li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrellength>0.5</barrellength>
+			</li>
 		</modExtensions>
 	</ThingDef>
  
- <!-- ====================== Vindicare ===================== -->
- <!-- ====================== Exitus Pistol shot ===================== -->
- <ThingDef ParentName="BaseBullet">
-	<defName>OGI_Bullet_ExitusRound</defName>
-    <label>exitus round</label>
-    <graphicData>
-		<texPath>Things/Projectile/Bullet_Small</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-		<flyOverhead>false</flyOverhead>
-		<damageDef>OGIAuto</damageDef>
-		<damageAmountBase>65</damageAmountBase>
-		<stoppingPower>2</stoppingPower>
-      <armorPenetrationBase>0.48</armorPenetrationBase>
-		<speed>100</speed>
-	</projectile>
- </ThingDef>
- 
- <!-- ====================== Exitus Pistol ===================== -->
- <ThingDef ParentName="OG_Imperial_Gun">
-	<defName>OGI_Gun_ExitusPistol</defName>
-    <label>exitus pistol (I)</label>
-    <description>The Exitus Pistol is an Imperial pistol and a signature weapon of the Vindicare Temple of the Officio Assassinorum. Like its cousin the Exitus Rifle, it is a masterpiece of Adeptus Mechanicus engineering and is custom-built for the requirements of the individual assassin. The Pistol is largely a backup weapon for the Exitus Rifle and is used in the rare circumstances the assassin is discovered, cornered, or in need of rapid-fire weaponry. With a built-in silencer and capable of penetrating most armor with ease, it is has saved the lives of many Vindicare Assassins. Like its rifle counterpart, the Exitus Pistol is capable of firing a variety of specialized ammunition. These include:\nShield-Breaker Rounds - Overload the personal Force Fields of the target.\nTurbo-Penetrator Rounds - Use a two-stage charge to punch a secondary round through the thickest armor.\nHellfire Rounds - Contain virulent bio-acidic toxins that can reduce targets to ash.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ExitusPistol</texPath>
-		<graphicClass>Graphic_Single</graphicClass>			
-		<shaderType>CutoutComplex</shaderType>
-		<color>(77,77,77)</color>		
-    </graphicData>
-	<comps>
-		<!--    
-	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-	  </li> 
-		-->
-	</comps>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>80000</WorkToMake>
-		<Mass>0.4</Mass>
-		<AccuracyTouch>0.91</AccuracyTouch>
-		<AccuracyShort>0.81</AccuracyShort>
-		<AccuracyMedium>0.70</AccuracyMedium>
-		<AccuracyLong>0.62</AccuracyLong>
-		<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>OG_Assassinorum_Tech_Weapons_Vindicare</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>25</Steel>
-		<Plasteel>50</Plasteel>
-		<ComponentIndustrial>3</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>ExitusGun</li>
-		<li>ExitusPistol</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGIRanged</li>
-	</tradeTags>
-	<generateCommonality>0.05</generateCommonality>
-    <equippedStatOffsets>
-		<MoveSpeed>-0.25</MoveSpeed>
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>25</range>
-			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-			<burstShotCount>2</burstShotCount>
-			<soundCast>Shot_Autopistol</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-    <tools>
-		<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
-		</li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-		  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-			<barrellength>0.5</barrellength>
-		  </li>
-    </modExtensions>
- </ThingDef>
-
-<!-- ====================== Exitus Rifle Ammo ===================== -->
-
-<!-- ====================== Exitus Rifle ===================== -->
- <ThingDef ParentName="OG_Imperial_Gun">
-	<defName>OGI_Gun_ExitusRifle</defName>
-    <label>exitus rifle (I)</label>
-    <description>The Exitus Rifle is a specialised projectile rifle used exclusively by the Imperial Assassins of the Officio Assassinorum's Vindicare Temple. It is purpose-built for each individual Vindicare sniper. The weapon is outfitted with a variety of micro-sensors that are capable of detecting even slight changes in ambient temperature, humidity, gravity, and air pressure intended to aid the Assassin in effectively targeting his victim at long ranges.</description>
-    <graphicData>
-		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ExitusRifle</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>CutoutComplex</shaderType>
-		<color>(77,77,77)</color>		
-    </graphicData>
-    <equippedAngleOffset>45</equippedAngleOffset>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-		<WorkToMake>150000</WorkToMake>
-		<Mass>2</Mass>
-		<AccuracyTouch>0.41</AccuracyTouch>
-		<AccuracyShort>0.51</AccuracyShort>
-		<AccuracyMedium>0.60</AccuracyMedium>
-		<AccuracyLong>0.72</AccuracyLong>
-		<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
-    </statBases>
-	<recipeMaker>
-		<researchPrerequisite>OG_Assassinorum_Tech_Weapons_Vindicare</researchPrerequisite>
-	</recipeMaker>
-    <costList>
-		<Steel>50</Steel>
-		<Plasteel>60</Plasteel>
-		<ComponentIndustrial>5</ComponentIndustrial>
-    </costList>
-	<techLevel>Spacer</techLevel>
-    <weaponTags>
-		<li>ExitusGun</li>
-		<li>ExitusRifle</li>
-	</weaponTags>
-	<tradeTags>
-		<li>OGIRanged</li>
-	</tradeTags>
-	<generateCommonality>0.05</generateCommonality>
-    <equippedStatOffsets>
-	
-    </equippedStatOffsets>
-    <verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
-			<warmupTime>1.75</warmupTime>
-			<range>45</range>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</li>
-    </verbs>
-	<comps>    
-		<!--
-		<li Class="AbilitesExtended.CompProperties_AbilityItem">
-			<Abilities>
-				<li>OGI_Ability_TurboPenetrator</li>
-				<li>OGI_Ability_ShellBreaker</li>
-				<li>OGI_Ability_HellFire</li>
-			</Abilities>
-		</li> 
-		-->
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
+	<!-- ====================== Vindicare ===================== -->
+	<!-- ====================== Exitus Pistol shot ===================== -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>OGI_Bullet_ExitusRound</defName>
+		<label>exitus round</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIAuto</damageDef>
+			<damageAmountBase>65</damageAmountBase>
+			<stoppingPower>2</stoppingPower>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+	 
+	<!-- ====================== Exitus Pistol ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun">
+		<defName>OGI_Gun_ExitusPistol</defName>
+		<label>exitus pistol (I)</label>
+		<description>The Exitus Pistol is an Imperial pistol and a signature weapon of the Vindicare Temple of the Officio Assassinorum. Like its cousin the Exitus Rifle, it is a masterpiece of Adeptus Mechanicus engineering and is custom-built for the requirements of the individual assassin. The Pistol is largely a backup weapon for the Exitus Rifle and is used in the rare circumstances the assassin is discovered, cornered, or in need of rapid-fire weaponry. With a built-in silencer and capable of penetrating most armor with ease, it is has saved the lives of many Vindicare Assassins. Like its rifle counterpart, the Exitus Pistol is capable of firing a variety of specialized ammunition. These include:\nShield-Breaker Rounds - Overload the personal Force Fields of the target.\nTurbo-Penetrator Rounds - Use a two-stage charge to punch a secondary round through the thickest armor.\nHellfire Rounds - Contain virulent bio-acidic toxins that can reduce targets to ash.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ExitusPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>			
+			<shaderType>CutoutComplex</shaderType>
+			<color>(77,77,77)</color>		
+		</graphicData>
+		<comps>
+			<!--    
+		  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+		  </li> 
+			-->
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>80000</WorkToMake>
+			<Mass>0.4</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>OG_Assassinorum_Tech_Weapons_Vindicare</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<Plasteel>50</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ExitusGun</li>
+			<li>ExitusPistol</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>0.05</generateCommonality>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
 			<li>
-				<!--<RendingShot>true</RendingShot>-->
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>Shot_Autopistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
-		</VerbEntries>
-		</li> 
-	</comps>
-    <tools>
-		<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
-		</li>
-    </tools>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-		  <li Class="AdeptusMechanicus.BarrelOffsetExtension">
-			<barrellength>0.8</barrellength>
-		  </li>
-    </modExtensions>
- </ThingDef>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrellength>0.5</barrellength>
+			</li>
+		</modExtensions>
+	</ThingDef>
 
+	<!-- ====================== Exitus Rifle Ammo ===================== -->
+
+	<!-- ====================== Exitus Rifle ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun">
+		<defName>OGI_Gun_ExitusRifle</defName>
+		<label>exitus rifle (I)</label>
+		<description>The Exitus Rifle is a specialised projectile rifle used exclusively by the Imperial Assassins of the Officio Assassinorum's Vindicare Temple. It is purpose-built for each individual Vindicare sniper. The weapon is outfitted with a variety of micro-sensors that are capable of detecting even slight changes in ambient temperature, humidity, gravity, and air pressure intended to aid the Assassin in effectively targeting his victim at long ranges.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ExitusRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(77,77,77)</color>		
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>150000</WorkToMake>
+			<Mass>2</Mass>
+			<AccuracyTouch>0.41</AccuracyTouch>
+			<AccuracyShort>0.51</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.72</AccuracyLong>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>OG_Assassinorum_Tech_Weapons_Vindicare</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ExitusGun</li>
+			<li>ExitusRifle</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>0.05</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_ExitusRound</defaultProjectile>
+				<warmupTime>1.75</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>    
+			<!--
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_TurboPenetrator</li>
+					<li>OGI_Ability_ShellBreaker</li>
+					<li>OGI_Ability_HellFire</li>
+				</Abilities>
+			</li> 
+			-->
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<!--<RendingShot>true</RendingShot>-->
+				</li>
+			</VerbEntries>
+			</li> 
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrellength>0.8</barrellength>
+			</li>
+		</modExtensions>
+	</ThingDef>
 </Defs>
