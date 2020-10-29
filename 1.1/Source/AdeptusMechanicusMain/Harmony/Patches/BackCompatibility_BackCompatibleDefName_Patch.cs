@@ -45,13 +45,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                             newName = "OGI_Gun_BoltGun";
                         }
                     }
-                    if (defName.Contains("LasGun"))
-                    {
-                        if (defName.Contains("Lucius"))
-                        {
-                            newName = "OGI_Gun_LasGun_Lucius";
-                        }
-                    }
                     if (defName.Contains("PlasmaRifle"))
                     {
                         if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
@@ -82,7 +75,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         else
                         {
+                            if (defName.Contains("Lucius"))
+                            {
+                                newName = "OGI_Gun_LasGun_Lucius";
+                            }
+                            else
                             newName = "OGI_Gun_LasGun";
+                        }
+                        if (GenDefDatabase.GetDefSilentFail(defType, newName, false) == null)
+                        {
+                            newName = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("LasGun") || x.defName.Contains("Lasgun") && (!x.defName.Contains("Lucius") || (defName.Contains("Lucius") && x.defName.Contains("Lucius")))).ToList().First().defName;
                         }
                     }
                     if (defName == "IG_Melee_ChaosChainsword")
@@ -704,17 +706,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OG_Common_Tech_Weapons_Heavy";
                     }
-                    if (defName == "WRImpLasTech" || defName == "OG_Weapons_Laser_Imperial")
+                    if (defName == "WRImpLasTech" || defName == "WRLasPistol" || defName == "WRLasGun" || defName == "OG_Weapons_Laser_Imperial")
                     {
                         newName = "OG_Common_Tech_Weapons_Laser";
                     }
-                    if (defName == "WRImpBoltTech" || defName == "OG_Weapons_Bolter_Imperial")
+                    if (defName == "WRImpBoltTech" ||defName == "WRBoltGun" || defName == "OG_Weapons_Bolter_Imperial")
                     {
                         newName = "OG_Imperial_Tech_Weapons_Bolt";
                     }
-                    if (defName == "WRImpPlasmaTech" || defName == "OG_Weapons_Plasma_Imperial")
+                    if (defName == "WRImpPlasmaTech" ||defName == "WRPlasmaRifle" || defName == "OG_Weapons_Plasma_Imperial")
                     {
                         newName = "OG_Common_Tech_Weapons_Plasma";
+                    }
+                    if (defName == "WRExitusSniper")
+                    {
+                        newName = "OG_Assassinorum_Tech_Weapons_Vindicare";
                     }
                     // Imperial Reseach renames
                     if (defName == "ImperialTechBase" || defName == "OG_Tech_Base_Imperial" || defName == "OG_Imperial_Tech_Base_T1")

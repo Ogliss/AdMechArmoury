@@ -7,10 +7,16 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[defName="Gun_LasPistol" or defName = "Gun_LasGun" or defName="Gun_BoltGun" or defName="Gun_ExitusSniper" or defName="Gun_PlasmaRifle" or defName="IG_Gun_AssCan" or defName="Melee_Chainsword" or defName="Melee_PowerAxe" or defName="Melee_ThunderHammer"]</xpath>
+					<xpath>/Defs/ThingDef[defName="Gun_AutoGun" or defName="Gun_LasPistol" or defName = "Gun_LasGun" or defName="Gun_BoltGun" or defName="Gun_ExitusSniper" or defName="Gun_PlasmaRifle" or defName="IG_Gun_AssCan" or defName="Melee_Chainsword" or defName="Melee_PowerAxe" or defName="Melee_ThunderHammer"]</xpath>
 				</li>
 				<li Class="PatchOperationRemove">
 					<xpath>/Defs/ResearchProjectDef[defName="WRLasPistol" or defName="WRLasGun" or defName="WRBoltGun" or defName="WRExitusSniper" or defName="WRPlasmaRifle"]</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/TraderKindDef[defName="QXIGC_RogueTrader"]/stockGenerators/li[thingDef="Gun_AutoGun"]/thingDef</xpath>
+					  <value>
+						<thingDef>OGI_Gun_AutoGun</thingDef>
+					  </value>
 				</li>
 				<li Class="PatchOperationReplace">
 					  <xpath>/Defs/ResearchProjectDef[defName = "TRMTLasCannon" or defName = "WRWebber"]/prerequisites/li[text()="WRLasGun"]</xpath>
@@ -93,6 +99,44 @@
 								</VerbEntries>
 							</li> 
 						</comps>
+					  </value>
+				</li>
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/graphicData</xpath>
+				  <value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BolterUmbra</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.286,0.286,0.286)</color>	
+							<drawSize>1.1</drawSize>		
+						</graphicData>
+				  </value>
+				</li>
+				<li Class="PatchOperationAdd">
+					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]</xpath>
+					  <value>
+						<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BolterUmbra_Icon</uiIconPath>
+						<uiIconColor>(1,1,1,0)</uiIconColor>	
+					  </value>
+				</li>
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/graphicData</xpath>
+				  <value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BolterTigrus</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.286,0.286,0.286)</color>	
+							<drawSize>1.1</drawSize>		
+						</graphicData>
+				  </value>
+				</li>
+				<li Class="PatchOperationAdd">
+					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3BoltGun"]</xpath>
+					  <value>
+						<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BolterTigrus_Icon</uiIconPath>
+						<uiIconColor>(1,1,1,0)</uiIconColor>	
 					  </value>
 				</li>
 				<li Class="PatchOperationSetName">
