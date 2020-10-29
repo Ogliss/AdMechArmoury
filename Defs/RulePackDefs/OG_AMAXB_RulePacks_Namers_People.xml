@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RulePackDef>
+    <defName>NamerRaceNameUtility</defName>
+    <rulePack>
+      <rulesFiles>
+        <li>NameRaceNameMaleFirst->Names/RaceName_First_Male</li>
+        <li>NameRaceNameFemaleFirst->Names/RaceName_First_Female</li>
+        <li>NameRaceNameUnisexLast->Names/RaceName_Last_Unisex</li>
+        <li>NameRaceNameMaleNick->Names/RaceName_Nick_Female</li>
+        <li>NameRaceNameFemaleNick->Names/RaceName_Nick_Male</li>
+        <li>NameRaceNameUnisexNick->Names/RaceName_Nick_Unisex</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>NamerRaceNameMale</defName>
+    <include>
+      <li>NamerRaceNameUtility</li>
+	  <li>TribalWordUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=6)->[NameRaceNameMaleFirst] '[NameRaceNameMaleNick]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=5)->[NameRaceNameMaleFirst] '[NameRaceNameUnisexNick]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=4)->[NameRaceNameMaleFirst] '[AnimalBadass]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=3)->[NameRaceNameMaleFirst] '[Color]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=2)->[NameRaceNameMaleFirst] [NameRaceNameUnisexLast]</li>
+        <!-- <li>r_name(p=6)->[NamePersonMale]</li> -->
+        <li>r_name->[exoticname]</li>
+
+        <li>exoticname(p=2)->[AdjectiveBadass]</li>
+        <li>exoticname(p=2)->[PersonBadass]</li>
+        <li>exoticname->[Enemy]</li>
+        <li>exoticname->[ConceptAny]</li>
+        <li>exoticname->[Color]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>NamerRaceNameFemale</defName>
+     <include>
+      <li>NamerRaceNameUtility</li>
+	  <li>TribalWordUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=6)->[NameRaceNameFemaleFirst] '[NameRaceNameFemaleNick]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=6)->[NameRaceNameFemaleFirst] '[NameRaceNameUnisexNick]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=6)->[NameRaceNameFemaleFirst] '[AnimalBadass]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=6)->[NameRaceNameFemaleFirst] '[Color]' [NameRaceNameUnisexLast]</li>
+        <li>r_name(p=6)->[NameRaceNameFemaleFirst] [NameRaceNameUnisexLast]</li>
+        <!-- <li>r_name(p=6)->[NamePersonFemale]</li> -->
+        <li>r_name->[exoticname]</li>
+		
+        <li>exoticname(p=2)->[AdjectiveBadass]</li>
+        <li>exoticname(p=2)->[PersonBadass]</li>
+        <li>exoticname->[Enemy]</li>
+        <li>exoticname->[ConceptAny]</li>
+        <li>exoticname->[Color]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+</Defs>

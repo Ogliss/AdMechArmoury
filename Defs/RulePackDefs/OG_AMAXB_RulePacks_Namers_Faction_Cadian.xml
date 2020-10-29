@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<RulePackDef>
+		<defName>OG_NamerFaction_Militarum</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name(p=0.01)->Tanith First and Only</li>
+			<li>name->[MilitarumRegiment]</li>
+			
+			<li>MilitarumRegiment(p=0.1)->[Ordinal] [HomeWorld] [RegimentType]</li>
+			<li>MilitarumRegiment(p=0.1)->[HomeWorld] [Ordinal] [RegimentType]</li>
+			<li>MilitarumRegiment->[Ordinal] [PredefinedRegiment]</li>
+			
+			<li>RegimentType->[RegimentTypes]</li>
+			<li>RegimentType(p=0.1)->[RegimentTypes] `[AstraMilitarum_Regiment_Monikers]`</li>
+			
+			<li>RegimentTypes->[RegimentTypesCommon]</li>
+			<li>RegimentTypes(p=0.1)->[RegimentTypesUncommon]</li>
+		  </rulesStrings>
+		  <rulesRaw>
+			<li Class="Rule_File">
+				<keyword>PredefinedRegiment</keyword>
+				<path>Names/AstraMilitarum_Regiments</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>RegimentTypesCommon</keyword>
+				<path>Names/AstraMilitarum_Regiment_Types_Common</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>RegimentTypesUncommon</keyword>
+				<path>Names/AstraMilitarum_Regiment_Types_Uncommon</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>RegimentMoniker</keyword>
+				<path>Names/AstraMilitarum_Regiment_Monikers</path>
+			</li>
+			<li Class="Rule_File">
+				<keyword>HomeWorld</keyword>
+				<path>Names/HomeWorlds_Imperial</path>
+			</li>
+			<li Class="AdeptusMechanicus.Rule_Ordinal_Number">
+			  <keyword>Ordinal</keyword>
+			  <range>0~1999</range>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_NamerFaction_Militarum_Cadian</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->Cadian [Ordinal] Regiment</li>
+			<li>name->[Ordinal] Cadian Regiment</li>
+			<li>r_name->[Ordinal] Cadian Shock Troops</li>
+			<li>r_name->Cadian [Ordinal] Shock Troops</li>
+		  </rulesStrings>
+		  <rulesRaw>
+			<li Class="AdeptusMechanicus.Rule_Ordinal_Number">
+			  <keyword>Ordinal</keyword>
+			  <range>0~1999</range>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_NamerFaction_Militarum_Armageddon</defName>
+		<rulePack>
+		  <rulesStrings>
+			<li>name->[Ordinal] Armageddon Steel Legion</li>
+			<li>r_name->Armageddon [Ordinal] Ash Wastes Militia</li>
+			<li>r_name->Armageddon [Ordinal] "Ork Hunters"</li>
+		  </rulesStrings>
+		  <rulesRaw>
+			<li Class="AdeptusMechanicus.Rule_Ordinal_Number">
+			  <keyword>Ordinal</keyword>
+			  <range>0~1999</range>
+			</li>
+		  </rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>NamerOGIGBases</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[OGIGBaseNames] [OGIGBaseNum]</li>
+			</rulesStrings>
+			<rulesRaw>
+				<li Class="Rule_File">
+					<keyword>OGIGBaseNames</keyword>
+					<path>Names/OGIGBaseNames</path>
+				</li>
+				<li Class="Rule_File">
+					<keyword>OGIGBaseNum</keyword>
+					<path>Names/OGIGBaseNum</path>
+				</li>
+			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+</Defs>
