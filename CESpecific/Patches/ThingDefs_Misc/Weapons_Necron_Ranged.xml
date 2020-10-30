@@ -8,20 +8,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_GaussFlayer</defName>
 				<statBases>
-				  <Mass>4.4</Mass>
-				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <Mass>3.8</Mass>
+				  <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1.0</SightsEfficiency>
-				  <ShotSpread>0.08</ShotSpread>
-				  <SwayFactor>1.25</SwayFactor>
-				  <Bulk>9.20</Bulk>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>3.50</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>0.8</recoilAmount>
+					<recoilAmount>0.15</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_GaussFlayer</defaultProjectile>
-				  <warmupTime>1.3</warmupTime>
-				  <range>52</range>
+				  <warmupTime>0.3</warmupTime>
+				  <range>31</range>
 				  <soundCast>OG_Gauss_Flayer_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -38,8 +38,7 @@
 				</AmmoUser-->
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					<aimedBurstShotCount>4</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 				<weaponTags>
 					<li>Gun</li>
@@ -68,7 +67,7 @@
 							</capacities>
 							<power>12</power>
 							<cooldownTime>1.6</cooldownTime>
-							<armorPenetrationSharp>5.755</armorPenetrationSharp>
+							<armorPenetrationSharp>2.755</armorPenetrationSharp>
 						</li>
 					</tools>
 				</value>
@@ -109,19 +108,19 @@
 				<defName>OGN_Gun_GaussBlaster</defName>
 				<statBases>
 				  <Mass>3.8</Mass>
-				  <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+				  <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1.0</SightsEfficiency>
-				  <ShotSpread>0.09</ShotSpread>
-				  <SwayFactor>1.2</SwayFactor>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
 				  <Bulk>3.50</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>0.8</recoilAmount>
+					<recoilAmount>0.2</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
-				  <warmupTime>1.4</warmupTime>
-				  <range>52</range>
+				  <warmupTime>0.5</warmupTime>
+				  <range>31</range>
 				  <soundCast>OG_Gauss_Blaster_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -237,20 +236,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_GaussBlasterTwinLinked</defName>
 				<statBases>
-				  <Mass>5.8</Mass>
-				  <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+				  <Mass>3.8</Mass>
+				  <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1.0</SightsEfficiency>
-				  <ShotSpread>0.07</ShotSpread>
-				  <SwayFactor>1.32</SwayFactor>
-				  <Bulk>10.2</Bulk>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>3.50</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>0.88</recoilAmount>
+					<recoilAmount>0.2</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_GaussBlasterTwinLinked</defaultProjectile>
-				  <warmupTime>1.55</warmupTime>
-				  <range>52</range>
+				  <warmupTime>0.5</warmupTime>
+				  <range>31</range>
 				  <soundCast>OG_Gauss_Blaster_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -267,8 +266,7 @@
 				</AmmoUser-->
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					<aimedBurstShotCount>4</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 				<weaponTags>
 					<li>EliteGun</li>
@@ -276,10 +274,19 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussBlasterTwinLinked"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussBlasterTwinLinked"]/tools</xpath>
 				<value>
 					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>barrel blade</label>
 							<capacities>
@@ -288,7 +295,6 @@
 							</capacities>
 							<power>14</power>
 							<cooldownTime>1.6</cooldownTime>
-							<armorPenetrationSharp>4</armorPenetrationSharp>
 							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 						</li>
 					</tools>
@@ -299,20 +305,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_GaussCannon</defName>
 				<statBases>
-				  <Mass>11.8</Mass>
-				  <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-				  <SightsEfficiency>2.2</SightsEfficiency>
-				  <ShotSpread>0.08</ShotSpread>
-				  <SwayFactor>1.78</SwayFactor>
-				  <Bulk>13.50</Bulk>
+				  <Mass>3.8</Mass>
+				  <RangedWeapon_Cooldown>3.05</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.0</SightsEfficiency>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>3.50</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.2</recoilAmount>
+					<recoilAmount>0.3</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
-				  <warmupTime>2.1</warmupTime>
-				  <range>68</range>
+				  <warmupTime>0.5</warmupTime>
+				  <range>36</range>
 				  <soundCast>OG_Gauss_Cannon_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -335,8 +341,8 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannon"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannon"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -374,9 +380,9 @@
 						<seam>0</seam>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>30</damageAmountBase>
+							<damageAmountBase>18</damageAmountBase>
 						  <armorPenetrationSharp>28</armorPenetrationSharp>
-						  <armorPenetrationBlunt>64</armorPenetrationBlunt>
+						  <armorPenetrationBlunt>34</armorPenetrationBlunt>
 						</projectile>
 						<modExtensions>
 							<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -396,20 +402,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_GaussCannonHeavy</defName>
 				<statBases>
-				  <Mass>13</Mass>
-				  <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-				  <SightsEfficiency>2.25</SightsEfficiency>
-				  <ShotSpread>0.04</ShotSpread>
-				  <SwayFactor>1.88</SwayFactor>
-				  <Bulk>17</Bulk>
+				  <Mass>9</Mass>
+				  <RangedWeapon_Cooldown>3.05</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.5</SightsEfficiency>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>3.5</SwayFactor>
+				  <Bulk>14</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.3</recoilAmount>
+					<recoilAmount>0.3</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
-				  <warmupTime>2</warmupTime>
-				  <range>75</range>
+				  <warmupTime>3.5</warmupTime>
+				  <range>45</range>
 				  <soundCast>OG_Gauss_Cannon_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -432,8 +438,8 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannonHeavy"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannonHeavy"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -472,8 +478,8 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>OG_N_Gauss_Damage</damageDef>
 							<damageAmountBase>40</damageAmountBase>
-						    <armorPenetrationSharp>32</armorPenetrationSharp>
-						    <armorPenetrationBlunt>64</armorPenetrationBlunt>
+						  <armorPenetrationSharp>32</armorPenetrationSharp>
+						  <armorPenetrationBlunt>34</armorPenetrationBlunt>
 						</projectile>
 						<modExtensions>
 							<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -494,19 +500,19 @@
 				<defName>OGN_Gun_TeslaCarbine</defName>
 				<statBases>
 				  <Mass>4</Mass>
-				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1.0</SightsEfficiency>
-				  <ShotSpread>0.08</ShotSpread>
-				  <SwayFactor>1.28</SwayFactor>
-				  <Bulk>7.85</Bulk>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>5.0</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.1</recoilAmount>
+					<recoilAmount>0.2</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
-					<warmupTime>1.45</warmupTime>
-					<range>52</range>
+					<warmupTime>0.75</warmupTime>
+					<range>31</range>
 					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
@@ -626,20 +632,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
 				<statBases>
-				  <Mass>4.4</Mass>
-				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <Mass>3.8</Mass>
+				  <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1.0</SightsEfficiency>
-				  <ShotSpread>0.06</ShotSpread>
-				  <SwayFactor>1.34</SwayFactor>
-				  <Bulk>10</Bulk>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>3.50</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1</recoilAmount>
+					<recoilAmount>0.2</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_TeslaCarbineTwinLinked</defaultProjectile>
-				  <warmupTime>1.62</warmupTime>
-				  <range>52</range>
+				  <warmupTime>0.5</warmupTime>
+				  <range>31</range>
 				  <soundCast>OG_Gauss_Blaster_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -656,8 +662,7 @@
 				</AmmoUser-->
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					<aimedBurstShotCount>6</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 				<weaponTags>
 					<li>EliteGun</li>
@@ -665,8 +670,8 @@
 				</weaponTags>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="OGN_Gun_TeslaCarbineTwinLinked"]</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGN_Gun_TeslaCarbineTwinLinked"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -686,7 +691,7 @@
 							</capacities>
 							<power>14</power>
 							<cooldownTime>1.6</cooldownTime>
-							<armorPenetrationBlunt>3.755</armorPenetrationBlunt>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
@@ -729,19 +734,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_SynapticDisintergrator</defName>
 				<statBases>
-				  <Mass>10</Mass>
-				  <RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
-				  <SightsEfficiency>2.75</SightsEfficiency>
-				  <ShotSpread>0.07</ShotSpread>
+				  <Mass>6</Mass>
+				  <RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.75</SightsEfficiency>
+				  <ShotSpread>0.10</ShotSpread>
 				  <SwayFactor>2.5</SwayFactor>
-				  <Bulk>14</Bulk>
+				  <Bulk>9</Bulk>
 				</statBases>
 				<Properties>
+					<recoilAmount>0.3</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_SynapticDisintergrator</defaultProjectile>
-				  <warmupTime>2.12</warmupTime>
-				  <range>70</range>
+				  <warmupTime>2.5</warmupTime>
+				  <range>45</range>
 				  <soundCast>OG_Gauss_Cannon_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -825,19 +831,20 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OGN_Gun_ParticleBeamer</defName>
 				<statBases>
-				  <Mass>10</Mass>
-				  <RangedWeapon_Cooldown>1.45</RangedWeapon_Cooldown>
-				  <SightsEfficiency>2.75</SightsEfficiency>
-				  <ShotSpread>0.07</ShotSpread>
+				  <Mass>6</Mass>
+				  <RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.75</SightsEfficiency>
+				  <ShotSpread>0.10</ShotSpread>
 				  <SwayFactor>2.5</SwayFactor>
-				  <Bulk>14.5</Bulk>
+				  <Bulk>9</Bulk>
 				</statBases>
 				<Properties>
+					<recoilAmount>0.3</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>OGN_Bullet_SynapticDisintergrator</defaultProjectile>
-				  <warmupTime>2.1</warmupTime>
-				  <range>74</range>
+				  <warmupTime>2.5</warmupTime>
+				  <range>45</range>
 				  <soundCast>OG_Gauss_Cannon_Sound</soundCast>
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>8</muzzleFlashScale>
@@ -919,31 +926,29 @@
 			
 			<!--==================== Necron - Staff of Light =========================-->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>OGN_Gun_StaffOfLight</defName>
+				<defName>OGN_Gun_StaffOfLight</defName>
 				<statBases>
-					<SightsEfficiency>1.00</SightsEfficiency>
-					<ShotSpread>0.20</ShotSpread>
-					<SwayFactor>2.21</SwayFactor>
-					<Bulk>19.50</Bulk>
-					<Mass>3.0</Mass>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <Mass>1.8</Mass>
+				  <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.0</SightsEfficiency>
+				  <ShotSpread>0.15</ShotSpread>
+				  <SwayFactor>1.5</SwayFactor>
+				  <Bulk>1.50</Bulk>
 				</statBases>
-				
 				<Properties>
-					<recoilAmount>1.2</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_OGGaussStaff</defaultProjectile>
-					<warmupTime>0.5</warmupTime>
-					<burstShotCount>1</burstShotCount>
-					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-					<range>18</range>
-					<soundCast>GaussSound</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-					<muzzleFlashScale>8</muzzleFlashScale>
+					<recoilAmount>0.15</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>OGN_Bullet_StaffOfLight</defaultProjectile>
+				  <warmupTime>0.5</warmupTime>
+				  <range>18</range>
+				  <soundCastTail>GunTail_Light</soundCastTail>
+				  <muzzleFlashScale>8</muzzleFlashScale>
+				  <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
 					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>		
+					  <canTargetLocations>true</canTargetLocations>
+					</targetParams>
 				</Properties>
 				<!--AmmoUser>
 				  <magazineSize>15</magazineSize>
@@ -970,7 +975,7 @@
 							</capacities>
 							<power>10</power>
 							<cooldownTime>1.5</cooldownTime>
-							<armorPenetrationBlunt>2.35</armorPenetrationBlunt>	
+							<armorPenetration>0.25</armorPenetration>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
@@ -979,8 +984,7 @@
 							</capacities>
 							<power>35</power>
 							<cooldownTime>1.5</cooldownTime>
-							<armorPenetrationSharp>16.5</armorPenetrationSharp>
-							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>	
+							<armorPenetration>1.0</armorPenetration>
 						</li>
 					</tools>
 				</value>
