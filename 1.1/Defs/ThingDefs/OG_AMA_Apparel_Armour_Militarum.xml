@@ -4,248 +4,252 @@
   <!-- ========================= Imperial Guard ========================== -->
   <!-- ========================= Light Flak ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor">
-    <defName>OGIG_Apparel_LightFlakArmour</defName>
-    <label>Light flak armour</label>
-    <description>A tough fabric jacket with armor plates sewn in. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
-    <recipeMaker>
+	<defName>OGIG_Apparel_LightFlakArmour</defName>
+	<label>Light flak armour</label>
+	<description>A tough fabric jacket with armor plates sewn in. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
+	<recipeMaker>
 		<researchPrerequisites>
 			<li>FlakArmor</li>
 		</researchPrerequisites>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLight/FlakArmourLight</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+		<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		<skillRequirements>
+			<Crafting>5</Crafting>
+		</skillRequirements>
+	</recipeMaker>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLight/FlakArmourLight</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-      <drawSize>1.00</drawSize>
-    </graphicData>
-    <costList>
-      <Cloth>50</Cloth>
-      <Steel>70</Steel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-    </costList>
-    <statBases>
-      <MaxHitPoints>260</MaxHitPoints>
-      <WorkToMake>14000</WorkToMake>
-      <Mass>7</Mass>
-      <Flammability>0.6</Flammability>
-      <ArmorRating_Sharp>0.625</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.625</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.625</ArmorRating_Heat>
-      <Insulation_Cold>10.4</Insulation_Cold> <!-- like a cloth jacket -->
-      <Insulation_Heat>3</Insulation_Heat>
-      <EquipDelay>6</EquipDelay>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.06</MoveSpeed>
-    </equippedStatOffsets>
-    <apparel>
+		<drawSize>1.00</drawSize>
+	</graphicData>
+	<costList>
+		<Cloth>50</Cloth>
+		<Steel>70</Steel>
+		<ComponentIndustrial>1</ComponentIndustrial>
+	</costList>
+	<statBases>
+		<MaxHitPoints>260</MaxHitPoints>
+		<WorkToMake>14000</WorkToMake>
+		<Mass>4</Mass>
+		<Flammability>0.6</Flammability>
+		<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+		<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+		<ArmorRating_Heat>0.625</ArmorRating_Heat>
+		<Insulation_Cold>10.4</Insulation_Cold> <!-- like a cloth jacket -->
+		<Insulation_Heat>3</Insulation_Heat>
+		<EquipDelay>6</EquipDelay>
+		<Bulk MayRequire="CETeam.CombatExtended">5</Bulk>
+		<WornBulk MayRequire="CETeam.CombatExtended">6</WornBulk>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>-0.06</MoveSpeed>
+	</equippedStatOffsets>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Neck</li>
-        <li>Shoulders</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLight/FlakArmourLight</wornGraphicPath>
-      <layers>
-        <li>Middle</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGCadian</li>
-        <li>OGIGArmour</li>
-        <li>OGCadianArmour</li>
-        <li>OGIGFlak</li>
-        <li>OGCadianFlak</li>
-        <li>OGIGFlakChest</li>
-        <li>OGCadianFlakChest</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
+		<bodyPartGroups>
+			<li>Torso</li>
+			<li>Neck</li>
+			<li>Shoulders</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLight/FlakArmourLight</wornGraphicPath>
+		<layers>
+			<li>Middle</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGCadian</li>
+			<li>OGIGArmour</li>
+			<li>OGCadianArmour</li>
+			<li>OGIGFlak</li>
+			<li>OGCadianFlak</li>
+			<li>OGIGFlakChest</li>
+			<li>OGCadianFlakChest</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>Soldier</li>
+		</defaultOutfitTags>
+	</apparel>
   </ThingDef>
 
   <!-- ========================= Light Flak Greaves ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor">
-    <defName>OGIG_Apparel_CadianFlakGreaves</defName>
-    <label>cadian flak greaves</label>
-    <description>A pair of pants with armor plates sewn in. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
-    <recipeMaker>
+	<defName>OGIG_Apparel_CadianFlakGreaves</defName>
+	<label>cadian flak greaves</label>
+	<description>A pair of pants with armor plates sewn in. While it's not as good as solid armor, it offers effective protection against all manner of attacks while remaining quite comfortable.</description>
+	<recipeMaker>
 		<researchPrerequisites>
 			<li>FlakArmor</li>
 		</researchPrerequisites>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-      <skillRequirements>
-        <Crafting>5</Crafting>
-      </skillRequirements>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLightGreaves/FlakArmourLightGreaves</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.90</drawSize>
+		<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+		<skillRequirements>
+			<Crafting>5</Crafting>
+		</skillRequirements>
+	</recipeMaker>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLightGreaves/FlakArmourLightGreaves</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>0.90</drawSize>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <statBases>
-      <WorkToMake>9000</WorkToMake>
-      <MaxHitPoints>200</MaxHitPoints>
-      <Mass>4</Mass>
-      <Flammability>0.6</Flammability>
-      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.40</ArmorRating_Heat>
-      <Insulation_Cold>3.5</Insulation_Cold>
-      <Insulation_Heat>1</Insulation_Heat>
-      <EquipDelay>5</EquipDelay>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.06</MoveSpeed>
-    </equippedStatOffsets>
-    <costList>
-      <Cloth>30</Cloth>
-      <Steel>60</Steel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-    </costList>
-    <apparel>
+	</graphicData>
+	<statBases>
+		<WorkToMake>9000</WorkToMake>
+		<MaxHitPoints>200</MaxHitPoints>
+		<Mass>4</Mass>
+		<Flammability>0.6</Flammability>
+		<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+		<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+		<ArmorRating_Heat>0.40</ArmorRating_Heat>
+		<Insulation_Cold>3.5</Insulation_Cold>
+		<Insulation_Heat>1</Insulation_Heat>
+		<EquipDelay>5</EquipDelay>
+		<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+		<WornBulk MayRequire="CETeam.CombatExtended">4</WornBulk>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>-0.06</MoveSpeed>
+	</equippedStatOffsets>
+	<costList>
+		<Cloth>30</Cloth>
+		<Steel>60</Steel>
+		<ComponentIndustrial>1</ComponentIndustrial>
+	</costList>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLightGreaves/FlakArmourLightGreaves</wornGraphicPath>
-      <layers>
-        <li>Middle</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGCadian</li>
-        <li>OGIGArmour</li>
-        <li>OGCadianArmour</li>
-        <li>OGIGFlak</li>
-        <li>OGCadianFlak</li>
-        <li>OGCadianFlakLegs</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
+		<bodyPartGroups>
+			<li>Legs</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmourLightGreaves/FlakArmourLightGreaves</wornGraphicPath>
+		<layers>
+			<li>Middle</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGCadian</li>
+			<li>OGIGArmour</li>
+			<li>OGCadianArmour</li>
+			<li>OGIGFlak</li>
+			<li>OGCadianFlak</li>
+			<li>OGCadianFlakLegs</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>Soldier</li>
+		</defaultOutfitTags>
+	</apparel>
   </ThingDef>
   
   <!-- ========================= Flak Helmet ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="CadianHelmet">
-    <defName>OGIG_Apparel_CadianFlakHelmet</defName>
-    <label>cadian flak helmet</label>
-    <description>A lightweight combat helmet.</description>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_CadianFlakHelmet</defName>
+	<label>cadian flak helmet</label>
+	<description>A lightweight combat helmet.</description>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
-      <MarketValue>300</MarketValue>
-      <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.2</ArmorRating_Heat>
-    </statBases>
-    <costList>
-      <Steel>40</Steel>
-      <Plasteel>10</Plasteel>
-    </costList>
-    <equippedStatOffsets>
-      <MoveSpeed>0.0</MoveSpeed>
-    </equippedStatOffsets>
+	</graphicData>
+	<statBases>
+		<MaxHitPoints>150</MaxHitPoints>
+		<MarketValue>300</MarketValue>
+		<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+		<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+		<ArmorRating_Heat>0.2</ArmorRating_Heat>
+	</statBases>
+	<costList>
+		<Steel>40</Steel>
+		<Plasteel>10</Plasteel>
+	</costList>
+	<equippedStatOffsets>
+		<MoveSpeed>0.0</MoveSpeed>
+	</equippedStatOffsets>
 	<generateCommonality>2</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGHeadgear</li>
-        <li>OGIGBasicHelmet</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OGIArmour</li>
-      </defaultOutfitTags> 
+		<bodyPartGroups>
+			<li>UpperHead</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet</wornGraphicPath>
+		<layers>
+			<li>Overhead</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGHeadgear</li>
+			<li>OGIGBasicHelmet</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>OGIArmour</li>
+		</defaultOutfitTags> 
    </apparel>
-    <comps>
+	<comps>
 
-    </comps>
+	</comps>
   </ThingDef> 
 
   <!-- ========================= Flak Armour ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor">
-    <defName>OGIG_Apparel_FlakArmour</defName>
-    <label>imperial guard Flak Armor</label>
-    <description>Standard Issue Flak Armor for the Emperor's Hammer, it offers effective protection against all manner of attacks while remaining quite light.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
-      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_FlakArmour</defName>
+	<label>imperial guard Flak Armor</label>
+	<description>Standard Issue Flak Armor for the Emperor's Hammer, it offers effective protection against all manner of attacks while remaining quite light.</description>
+	<techLevel>Spacer</techLevel>
+	<recipeMaker>
+		<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+	</recipeMaker>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <statBases>
-      <Mass>4</Mass>
-      <WorkToMake>24000</WorkToMake>
-      <MaxHitPoints>200</MaxHitPoints>
-      <MarketValue>500</MarketValue>
-      <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.75</ArmorRating_Heat>
-      <Insulation_Cold>12</Insulation_Cold>
-      <Insulation_Heat>9</Insulation_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.12</MoveSpeed>
-      <WorkSpeedGlobal>0.0</WorkSpeedGlobal>
-    </equippedStatOffsets>
-    <costList>
-      <Steel>60</Steel>
-      <Plasteel>40</Plasteel>
-      <DevilstrandCloth>30</DevilstrandCloth>
-    </costList>
+	</graphicData>
+	<statBases>
+		<Mass>4</Mass>
+		<WorkToMake>24000</WorkToMake>
+		<MaxHitPoints>200</MaxHitPoints>
+		<MarketValue>500</MarketValue>
+		<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+		<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+		<ArmorRating_Heat>0.75</ArmorRating_Heat>
+		<Insulation_Cold>12</Insulation_Cold>
+		<Insulation_Heat>9</Insulation_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>-0.12</MoveSpeed>
+		<WorkSpeedGlobal>0.0</WorkSpeedGlobal>
+	</equippedStatOffsets>
+	<costList>
+		<Steel>60</Steel>
+		<Plasteel>40</Plasteel>
+		<DevilstrandCloth>30</DevilstrandCloth>
+	</costList>
 	<generateCommonality>2</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Neck</li>
-        <li>Shoulders</li>
-        <li>Arms</li>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</wornGraphicPath>
-      <layers>
-        <li>Middle</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGFlak</li>
-        <li>OGIGFlakChest</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
-    <comps>
-      <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+		<bodyPartGroups>
+			<li>Torso</li>
+			<li>Neck</li>
+			<li>Shoulders</li>
+			<li>Arms</li>
+			<li>Legs</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</wornGraphicPath>
+		<layers>
+			<li>Middle</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGFlak</li>
+			<li>OGIGFlakChest</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>Soldier</li>
+		</defaultOutfitTags>
+	</apparel>
+	<comps>
+		<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 			<PauldronEntries>
 				<li>
 					<shoulderPadType>Both</shoulderPadType>
@@ -258,121 +262,121 @@
 			<SouthOffset>0,0.001,0</SouthOffset>
 			<EastOffset>0,0.001,0</EastOffset>
 			<WestOffset>0,0.001,0</WestOffset>
-      </li>
-    </comps>
+		</li>
+	</comps>
   </ThingDef>
 
 
   <!-- ========================= Cadian ========================== -->
   <!-- ========================= Flak Helmet ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="IGHelmet">
-    <defName>OGIG_Apparel_BasicFlakHelm</defName>
-    <label>imperial guard helmet</label>
-    <description>A lightweight combat helmet.</description>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_BasicFlakHelm</defName>
+	<label>imperial guard helmet</label>
+	<description>A lightweight combat helmet.</description>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <costList>
-      <Steel>40</Steel>
-      <Plasteel>10</Plasteel>
-    </costList>
-    <statBases>
-      <WorkToMake>8000</WorkToMake>
-      <MaxHitPoints>120</MaxHitPoints>
-      <Mass>1.2</Mass>
-      <MarketValue>300</MarketValue>
-      <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.35</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.0</MoveSpeed>
-    </equippedStatOffsets>
+	</graphicData>
+	<costList>
+		<Steel>40</Steel>
+		<Plasteel>10</Plasteel>
+	</costList>
+	<statBases>
+		<WorkToMake>8000</WorkToMake>
+		<MaxHitPoints>120</MaxHitPoints>
+		<Mass>1.2</Mass>
+		<MarketValue>300</MarketValue>
+		<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+		<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+		<ArmorRating_Heat>0.35</ArmorRating_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>0.0</MoveSpeed>
+	</equippedStatOffsets>
 	<generateCommonality>2</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm/IG_Helm</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGHeadgear</li>
-        <li>OGIGBasicHelmet</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OGIArmour</li>
-      </defaultOutfitTags> 
+		<bodyPartGroups>
+			<li>UpperHead</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm/IG_Helm</wornGraphicPath>
+		<layers>
+			<li>Overhead</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGHeadgear</li>
+			<li>OGIGBasicHelmet</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>OGIArmour</li>
+		</defaultOutfitTags> 
    </apparel>
 	<!--
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
+	<colorGenerator Class="ColorGenerator_Options">
+		<options>
 		<li>
 			<weight>10</weight>
 			<max>(0.349,0.541,0.361)</max>
 			<min>(0.263,0.376,0.251)</min>
 		</li>
-      </options>
-    </colorGenerator>
+		</options>
+	</colorGenerator>
 	-->
-    <comps>
+	<comps>
 
-    </comps>
+	</comps>
   </ThingDef>
  
   <!-- ========================= Flak Helmet ========================== -->
   <ThingDef ParentName="IGHelmet">
-    <defName>OGIG_Apparel_GoggledFlakHelm</defName>
-    <label>imperial guard helmet (Goggled)</label>
-    <description>A lightweight combat helmet.\n\nProtective Eye Wear</description>
-    <!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gog</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_GoggledFlakHelm</defName>
+	<label>imperial guard helmet (Goggled)</label>
+	<description>A lightweight combat helmet.\n\nProtective Eye Wear</description>
+	<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gog</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <costList>
-      <Steel>40</Steel>
-      <Plasteel>20</Plasteel>
-    </costList>
-    <statBases>
-      <WorkToMake>10000</WorkToMake>
-      <MaxHitPoints>175</MaxHitPoints>
-      <MarketValue>350</MarketValue>
-      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.40</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.0</MoveSpeed>
-    </equippedStatOffsets>
+	</graphicData>
+	<costList>
+		<Steel>40</Steel>
+		<Plasteel>20</Plasteel>
+	</costList>
+	<statBases>
+		<WorkToMake>10000</WorkToMake>
+		<MaxHitPoints>175</MaxHitPoints>
+		<MarketValue>350</MarketValue>
+		<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+		<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+		<ArmorRating_Heat>0.40</ArmorRating_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>0.0</MoveSpeed>
+	</equippedStatOffsets>
 	<generateCommonality>1</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-        <li>Eyes</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gog/IG_Helm_Gog</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <tags>
-        <li>OGIGGoggledHelmet</li>
-      </tags>
+		<bodyPartGroups>
+			<li>UpperHead</li>
+			<li>Eyes</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gog/IG_Helm_Gog</wornGraphicPath>
+		<layers>
+			<li>Overhead</li>
+		</layers>
+		<tags>
+			<li>OGIGGoggledHelmet</li>
+		</tags>
    </apparel>
-    <tickerType>Normal</tickerType>
-	<comps>     
-	      <li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
-		  <Chance>1</Chance>
+	<tickerType>Normal</tickerType>
+	<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+			<Chance>1</Chance>
 		</li>
 	</comps>
   </ThingDef>
@@ -384,17 +388,17 @@
 		<label>cadian pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
 		<costList>
-		  <Steel>40</Steel>
-		  <Plasteel>10</Plasteel>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
 		</costList>
 		<statBases>
-		  <WorkToMake>8000</WorkToMake>
-		  <MaxHitPoints>120</MaxHitPoints>
-		  <Mass>1.2</Mass>
-		  <MarketValue>300</MarketValue>
-		  <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-		  <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-		  <ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<MarketValue>300</MarketValue>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -431,8 +435,8 @@
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
@@ -446,118 +450,118 @@
 		</inspectorTabs>
 	</ThingDef>
 
-    <ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
-        <defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
+	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
+			<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
 		<label>cadian pattern helmet</label>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+	</ThingDef>
 	
-    <ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
-        <defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
+			<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
 		<label>cadian pattern helmet (Goggled)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<bodyPartGroups>
 				<li>Eyes</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
 		<tickerType>Normal</tickerType>
-		<comps>     
-			  <li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
-			  <Chance>1</Chance>
+		<comps>	 
+				<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
 			</li>
 		</comps>
-    </ThingDef>
+	</ThingDef>
 	
   <!-- ========================= Cadian - Gasmask ========================== -->
   <ThingDef ParentName="IGHelmet">
-    <defName>OGIG_Apparel_GasMask</defName>
-    <label>imperial guard gas mask</label>
-    <description>A lightweight combat gas mask.\n\nProtective Eye Wear</description>
-    <!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gas_Gog</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_GasMask</defName>
+	<label>imperial guard gas mask</label>
+	<description>A lightweight combat gas mask.\n\nProtective Eye Wear</description>
+	<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gas_Gog</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <costList>
-      <Steel>20</Steel>
-      <Plasteel>10</Plasteel>
-    </costList>
-    <statBases>
-      <WorkToMake>4000</WorkToMake>
-      <MaxHitPoints>100</MaxHitPoints>
-      <MarketValue>400</MarketValue>
-      <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.1</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.05</MoveSpeed>
-      <ToxicSensitivity>-0.750</ToxicSensitivity>
+	</graphicData>
+	<costList>
+		<Steel>20</Steel>
+		<Plasteel>10</Plasteel>
+	</costList>
+	<statBases>
+		<WorkToMake>4000</WorkToMake>
+		<MaxHitPoints>100</MaxHitPoints>
+		<MarketValue>400</MarketValue>
+		<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+		<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+		<ArmorRating_Heat>0.1</ArmorRating_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>-0.05</MoveSpeed>
+		<ToxicSensitivity>-0.750</ToxicSensitivity>
 	  <PsychicSensitivity>0.10</PsychicSensitivity>
-    </equippedStatOffsets>
+	</equippedStatOffsets>
 	<generateCommonality>0.25</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups Inherit="false">
-        <li>Mouth</li>
+		<bodyPartGroups Inherit="false">
+			<li>Mouth</li>
 		<li>Neck</li>
-      </bodyPartGroups>
-      <!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gas_Gog/IG_Helm_Gas_Gog</wornGraphicPath-->	
-      <hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>			
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGHeadgear</li>
-        <li>OGIGGasmask</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OGIArmour</li>
-      </defaultOutfitTags> 
+		</bodyPartGroups>
+		<!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gas_Gog/IG_Helm_Gas_Gog</wornGraphicPath-->	
+		<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>			
+		<layers>
+			<li>Overhead</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGHeadgear</li>
+			<li>OGIGGasmask</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>OGIArmour</li>
+		</defaultOutfitTags> 
    </apparel>
-    <tickerType>Normal</tickerType>
-	<comps>     
-		  <li Class="AdeptusMechanicus.CompProperties_Wargear">
-		  </li>
-		  <li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
+	<tickerType>Normal</tickerType>
+	<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Wargear">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraDrawer">
 			<compClass>AdeptusMechanicus.CompApparelExtraDrawer</compClass>
 				<ExtrasEntries>
 					<li>
@@ -572,10 +576,10 @@
 				<SouthOffset>0,-0.005,0</SouthOffset>
 				<EastOffset>0,-0.025,0</EastOffset>
 				<WestOffset>0,-0.01,0</WestOffset>
-		  </li>  
-		  <li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
-			  <Chance>1</Chance>
-		  </li>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
 	</comps>
   </ThingDef>
 
@@ -588,17 +592,17 @@
 		<label>armageddon pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
 		<costList>
-		  <Steel>40</Steel>
-		  <Plasteel>10</Plasteel>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
 		</costList>
 		<statBases>
-		  <WorkToMake>8000</WorkToMake>
-		  <MaxHitPoints>120</MaxHitPoints>
-		  <Mass>1.2</Mass>
-		  <MarketValue>300</MarketValue>
-		  <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-		  <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-		  <ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<MarketValue>300</MarketValue>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -635,8 +639,8 @@
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
@@ -650,61 +654,61 @@
 		</inspectorTabs>
 	</ThingDef>
 
-    <ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
-        <defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
+	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
+			<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
 		<label>armageddon pattern helmet</label>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+	</ThingDef>
 	
-    <ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
-        <defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
+			<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
 		<label>armageddon pattern helmet (Goggled)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<bodyPartGroups>
 				<li>Eyes</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>88,78,45</only>
+					<weight>10</weight>
+					<only>88,78,45</only>
 				</li>
 			</options>
 		</colorGenerator>
 		<tickerType>Normal</tickerType>
-		<comps>     
-			  <li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
-			  <Chance>1</Chance>
+		<comps>	 
+				<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
 			</li>
 		</comps>
-    </ThingDef>
+	</ThingDef>
 	
 	
   <!-- ========================= Death Korps - Armour ========================== -->
@@ -714,17 +718,17 @@
 		<label>krieg pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
 		<costList>
-		  <Steel>40</Steel>
-		  <Plasteel>10</Plasteel>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
 		</costList>
 		<statBases>
-		  <WorkToMake>8000</WorkToMake>
-		  <MaxHitPoints>120</MaxHitPoints>
-		  <Mass>1.2</Mass>
-		  <MarketValue>300</MarketValue>
-		  <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-		  <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-		  <ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<MarketValue>300</MarketValue>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -761,8 +765,8 @@
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>70,70,70</only>
+					<weight>10</weight>
+					<only>70,70,70</only>
 				</li>
 			</options>
 		</colorGenerator>
@@ -776,125 +780,125 @@
 		</inspectorTabs>
 	</ThingDef>
 
-    <ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
-        <defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
+	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
+			<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
 		<label>krieg pattern helmet</label>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>70,70,70</only>
+					<weight>10</weight>
+					<only>70,70,70</only>
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+	</ThingDef>
 	
-    <ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
-        <defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_B</defName>
+	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
+			<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_B</defName>
 		<label>krieg pattern helmet (spiked)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
-		  <texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</texPath>
-		  <graphicClass>Graphic_Single</graphicClass>
-		  <shaderType>CutoutComplex</shaderType>
-		  <colorTwo>(90,50,0)</colorTwo>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-        <apparel>
+			<apparel>
 			<bodyPartGroups>
 				<li>Eyes</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</wornGraphicPath>
-        </apparel>
+			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
-				  <weight>10</weight>
-				  <only>70,70,70</only>
+					<weight>10</weight>
+					<only>70,70,70</only>
 				</li>
 			</options>
 		</colorGenerator>
 		<tickerType>Normal</tickerType>
-    </ThingDef>
+	</ThingDef>
 	
 
   <!-- ========================= Tempestus Scion ========================== -->
   <!-- ========================= Carapace Armour ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor">
-    <defName>OGIG_Apparel_TempestusScion_CarapaceArmour</defName>
-    <!--defName>OGIG_Apparel_CarapaceArmourTS</defName-->
-    <label>Tempestus Scion Carapace Armor</label>
-    <description>Carapace Armour is generally a sign of status and is mostly worn by Imperial officers and agents. Made from moulded plates of armaplas, ceramite, or other strong, light but highly resistant materials, it can cover the entire body or just selected regions of the body depending on the desired level of protection. Tempestus Scions, for example, wear full-body suits of Carapace Armour, including an Omnishield Helm with a built-in targeting and imaging array, while most rank-and-file Astra Militarum soldiers are lucky to gain access to just a simple chestplate of Flak Armour to wear over more comfortable mesh or flakweave suits. Some bodysuits have slots designed for simple carapace plates to be inserted in, so that the overall suits can be rapidly configured for as much or as little protection as desired. Damaged plates can in this way be more easily replaced without requiring the purchase of an entire new suit.</description>
-    <techLevel>Spacer</techLevel>
-    <recipeMaker>
+	<defName>OGIG_Apparel_TempestusScion_CarapaceArmour</defName>
+	<!--defName>OGIG_Apparel_CarapaceArmourTS</defName-->
+	<label>Tempestus Scion Carapace Armor</label>
+	<description>Carapace Armour is generally a sign of status and is mostly worn by Imperial officers and agents. Made from moulded plates of armaplas, ceramite, or other strong, light but highly resistant materials, it can cover the entire body or just selected regions of the body depending on the desired level of protection. Tempestus Scions, for example, wear full-body suits of Carapace Armour, including an Omnishield Helm with a built-in targeting and imaging array, while most rank-and-file Astra Militarum soldiers are lucky to gain access to just a simple chestplate of Flak Armour to wear over more comfortable mesh or flakweave suits. Some bodysuits have slots designed for simple carapace plates to be inserted in, so that the overall suits can be rapidly configured for as much or as little protection as desired. Damaged plates can in this way be more easily replaced without requiring the purchase of an entire new suit.</description>
+	<techLevel>Spacer</techLevel>
+	<recipeMaker>
 		<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 		<researchPrerequisites>
 			<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
 		</researchPrerequisites>
-    </recipeMaker>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Carapace/IG_TempestScionCarapace</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	</recipeMaker>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Carapace/IG_TempestScionCarapace</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <statBases>
-      <Mass>4</Mass>
-      <WorkToMake>24000</WorkToMake>
-      <MaxHitPoints>200</MaxHitPoints>
-      <MarketValue>500</MarketValue>
-      <ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.90</ArmorRating_Heat>
-      <Insulation_Cold>20</Insulation_Cold>
-      <Insulation_Heat>10</Insulation_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.15</MoveSpeed>
-    </equippedStatOffsets>
-    <costList>
-      <Steel>20</Steel>
-      <Plasteel>80</Plasteel>
-      <Hyperweave>10</Hyperweave>
-    </costList>
+	</graphicData>
+	<statBases>
+		<Mass>4</Mass>
+		<WorkToMake>24000</WorkToMake>
+		<MaxHitPoints>200</MaxHitPoints>
+		<MarketValue>500</MarketValue>
+		<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+		<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+		<ArmorRating_Heat>0.90</ArmorRating_Heat>
+		<Insulation_Cold>20</Insulation_Cold>
+		<Insulation_Heat>10</Insulation_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>-0.15</MoveSpeed>
+	</equippedStatOffsets>
+	<costList>
+		<Steel>20</Steel>
+		<Plasteel>80</Plasteel>
+		<Hyperweave>10</Hyperweave>
+	</costList>
 	<generateCommonality>2</generateCommonality>
-    <apparel>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>Torso</li>
-        <li>Neck</li>
-        <li>Shoulders</li>
-        <li>Arms</li>
-        <li>Legs</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Carapace/IG_TempestScionCarapace</wornGraphicPath>
-      <layers>
-        <li>Middle</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGFlak</li>
-        <li>OGIGFlakChest</li>
-        <li>EVA</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
-    <comps>
-      <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-        <compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+		<bodyPartGroups>
+			<li>Torso</li>
+			<li>Neck</li>
+			<li>Shoulders</li>
+			<li>Arms</li>
+			<li>Legs</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Carapace/IG_TempestScionCarapace</wornGraphicPath>
+		<layers>
+			<li>Middle</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGFlak</li>
+			<li>OGIGFlakChest</li>
+			<li>EVA</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>Soldier</li>
+		</defaultOutfitTags>
+	</apparel>
+	<comps>
+		<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 			<PauldronEntries>
 				<li>
 					<shoulderPadType>Both</shoulderPadType>
@@ -907,64 +911,64 @@
 			<SouthOffset>0,-0.0035,0</SouthOffset>
 			<EastOffset>0,0.35,0</EastOffset>
 			<WestOffset>0,0.35,0</WestOffset>
-      </li>
-    </comps>
+		</li>
+	</comps>
   </ThingDef>
 
   <!-- ========================= Carapace Helmet ========================== -->
   <ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="IGCarapaceHelmTS">
-    <defName>OGIG_Apparel_TempestusScion_CarapaceHelmet</defName>
-    <label>Tempestus Scion Omnishield Helmet</label>
-    <description>The Omnishield Helm is a special helmet used by Imperial Tempestus Scions. In hostile environments, a Tempestus regiment will don all-enclosing Omnishield Helms, their respmasks proof against everything from industrial pollution to fully ignited atmospheres. When sealed, they allow Tempestus Scions to operate even in airless vacuums for limited periods of time. The multi-spectral occulum that attaches via suction to the wearer's eye sockets allow him to see in low light and occluded conditions with relative ease.</description>
-    <graphicData>
-      <texPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
+	<defName>OGIG_Apparel_TempestusScion_CarapaceHelmet</defName>
+	<label>Tempestus Scion Omnishield Helmet</label>
+	<description>The Omnishield Helm is a special helmet used by Imperial Tempestus Scions. In hostile environments, a Tempestus regiment will don all-enclosing Omnishield Helms, their respmasks proof against everything from industrial pollution to fully ignited atmospheres. When sealed, they allow Tempestus Scions to operate even in airless vacuums for limited periods of time. The multi-spectral occulum that attaches via suction to the wearer's eye sockets allow him to see in low light and occluded conditions with relative ease.</description>
+	<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
 	  <color>(74,97,71)</color>
-    </graphicData>
-    <costList>
-      <Steel>40</Steel>
-      <Plasteel>10</Plasteel>
-    </costList>
-    <statBases>
-      <WorkToMake>8000</WorkToMake>
-      <MaxHitPoints>120</MaxHitPoints>
-      <Mass>1.2</Mass>
-      <MarketValue>300</MarketValue>
-      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.5</ArmorRating_Heat>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>0.0</MoveSpeed>
-    </equippedStatOffsets>
+	</graphicData>
+	<costList>
+		<Steel>40</Steel>
+		<Plasteel>10</Plasteel>
+	</costList>
+	<statBases>
+		<WorkToMake>8000</WorkToMake>
+		<MaxHitPoints>120</MaxHitPoints>
+		<Mass>1.2</Mass>
+		<MarketValue>300</MarketValue>
+		<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+		<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		<ArmorRating_Heat>0.5</ArmorRating_Heat>
+	</statBases>
+	<equippedStatOffsets>
+		<MoveSpeed>0.0</MoveSpeed>
+	</equippedStatOffsets>
 	<generateCommonality>2</generateCommonality>
-    <recipeMaker>
+	<recipeMaker>
 		<researchPrerequisites>
 			<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
 		</researchPrerequisites>
-    </recipeMaker>
-    <apparel>
+	</recipeMaker>
+	<apparel>
 	<useWornGraphicMask>true</useWornGraphicMask>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <tags>
-        <li>OGImperialGuard</li>
-        <li>OGIGArmour</li>
-        <li>OGIGHeadgear</li>
-        <li>OGIGBasicHelmet</li>
-        <li>EVA</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>OGIArmour</li>
-      </defaultOutfitTags> 
+		<bodyPartGroups>
+			<li>UpperHead</li>
+		</bodyPartGroups>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</wornGraphicPath>
+		<layers>
+			<li>Overhead</li>
+		</layers>
+		<tags>
+			<li>OGImperialGuard</li>
+			<li>OGIGArmour</li>
+			<li>OGIGHeadgear</li>
+			<li>OGIGBasicHelmet</li>
+			<li>EVA</li>
+		</tags>
+		<defaultOutfitTags>
+			<li>OGIArmour</li>
+		</defaultOutfitTags> 
    </apparel>
-		<comps>     
+		<comps>	 
 			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
 				<Chance>1</Chance>
 			</li>
