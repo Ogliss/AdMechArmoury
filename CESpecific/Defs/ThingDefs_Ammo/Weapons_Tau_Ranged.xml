@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<!--==================== Tau - Pulse round =========================-->	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_Pulse"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+						<defName>OGT_Bullet_Pulse</defName>
+						<label>Plasma Bolt</label>
+						<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+						<graphicData>
+							<texPath>Things/Projectile/PlasmaPulse</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTPlasmaPulse</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							  <armorPenetrationSharp>28</armorPenetrationSharp>
+							  <armorPenetrationBlunt>142</armorPenetrationBlunt>
+							<speed>100</speed>
+						</projectile>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+						<modExtensions>
+						  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+							<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+							<GlowMoteSize>1.5</GlowMoteSize>
+						  </li>
+						  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+							<explosionMote>true</explosionMote>
+							<explosionMoteSize>0.05</explosionMoteSize>
+							<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+							<ImpactMoteSize>1</ImpactMoteSize>
+							<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+							<ImpactGlowMoteSize>0.5</ImpactGlowMoteSize>
+						  </li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!--==================== Tau - Pulse Pistol =========================-->	
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGT_Gun_PulsePistol</defName>
+				<statBases>
+					<Mass>0.8</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.8</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.35</SwayFactor>
+					<Bulk>0.8</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>18</range>
+					<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_OGPulse</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>TPulsePistol</li>
+				</weaponTags>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_PulsePistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!--==================== Tau - Pulse Carbine =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_PulseCarbine</defName>
+			<statBases>
+			  <Mass>4</Mass>
+			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1.1</SightsEfficiency>
+			  <ShotSpread>0.09</ShotSpread>
+			  <SwayFactor>1.2</SwayFactor>
+			  <Bulk>6.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.1</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+			  <warmupTime>1.3</warmupTime>
+			  <range>44</range>
+			  <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			  <soundCastTail>GunTail_Light</soundCastTail>
+			  <muzzleFlashScale>8</muzzleFlashScale>
+			  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>8</burstShotCount>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>40</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGPulseCarbine</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+				<aimedBurstShotCount>4</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>TPulseCarbine</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_PulseCarbine"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!--==================== Tau - Pule Rifle =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_PulseRifle</defName>
+			<statBases>
+			  <Mass>2.8</Mass>
+			  <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1.2</SightsEfficiency>
+			  <ShotSpread>0.07</ShotSpread>
+			  <SwayFactor>1.22</SwayFactor>
+			  <Bulk>7.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.1</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>55</range>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>24</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGPulse</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+				<aimedBurstShotCount>2</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>EliteGun</li>
+				<li>TPulseRifle</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_PulseRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!--==================== Tau - Pulse Blaster =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_PulseBlaster</defName>
+			<statBases>
+			  <Mass>2.8</Mass>
+			  <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1.2</SightsEfficiency>
+			  <ShotSpread>0.05</ShotSpread>
+			  <SwayFactor>1.17</SwayFactor>
+			  <Bulk>8.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.8</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_PulseBlast</defaultProjectile>
+			  <warmupTime>1.4</warmupTime>
+			  <range>18</range>
+			  <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			  <soundCastTail>GunTail_Light</soundCastTail>
+			  <muzzleFlashScale>8</muzzleFlashScale>
+			  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>8</burstShotCount>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>40</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGPulseBlast</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aimedBurstShotCount>4</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>TPulseCarbine</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_PulseBlaster"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_PulseBlast"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+						<defName>OGT_Bullet_PulseBlast</defName>
+						<label>Plasma Blast</label>
+						<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+						<graphicData>
+							<texPath>Things/Projectile/PlasmaPulseSml</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTPlasmaPulse</damageDef>
+							<damageAmountBase>4</damageAmountBase>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<armorPenetrationBlunt>142</armorPenetrationBlunt>
+							<spreadMult>17.8</spreadMult>
+							<pelletCount>6</pelletCount>
+							<speed>100</speed>
+						</projectile>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+						<modExtensions>
+						  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+							<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+							<GlowMoteSize>1.5</GlowMoteSize>
+						  </li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!--==================== Tau - Rail Rifle =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_RailRifle</defName>
+			<statBases>
+			  <Mass>4.8</Mass>
+			  <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			  <SightsEfficiency>2.2</SightsEfficiency>
+			  <ShotSpread>0.03</ShotSpread>
+			  <SwayFactor>1.24</SwayFactor>
+			  <Bulk>12.50</Bulk>
+			</statBases>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_RailRifle</defaultProjectile>
+			  <warmupTime>2.5</warmupTime>
+			  <range>75</range>
+			  <soundCast>OG_Rail_Rifle_Sound</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>8</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGRailRifle</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>	
+			</FireModes>
+			<weaponTags>
+				<li>TRailRifle</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_RailRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_RailRifle"]</xpath>
+				<value>
+					<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+						<defName>OGT_Bullet_RailRifle</defName>
+						<label>railrifle slug</label>
+						<textures>
+							<li>Things/Projectile/RailgunSml2</li>
+						</textures>
+						<seam>0</seam>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTRailgun</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationSharp>50</armorPenetrationSharp>
+							<armorPenetrationBlunt>250</armorPenetrationBlunt>
+						</projectile>
+						<modExtensions>
+							<li Class="AdeptusMechanicus.EffectProjectileExtension">
+								<explosionMote>true</explosionMote>
+								<explosionMoteSize>0.5</explosionMoteSize>
+								<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+								<ImpactMoteSize>1</ImpactMoteSize>
+								<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+								<ImpactGlowMoteSize>0.5</ImpactGlowMoteSize>
+							</li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+
+			<!--==================== Tau - Ion Rifle =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_IonRifle</defName>
+			<statBases>
+			  <Mass>10.8</Mass>
+			  <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			  <SightsEfficiency>2.2</SightsEfficiency>
+			  <ShotSpread>0.04</ShotSpread>
+			  <SwayFactor>1.25</SwayFactor>
+			  <Bulk>14.50</Bulk>
+			</statBases>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_IonRifle</defaultProjectile>
+			  <warmupTime>2.5</warmupTime>
+			  <range>78</range>
+			  <soundCast>OG_Ion_Rifle_Sound</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>4</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGIonRifle</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>	
+			</FireModes>
+			<weaponTags>
+				<li>TIonRifle</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_IonRifle"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_IonRifle"]</xpath>
+				<value>
+					<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+						<defName>OGT_Bullet_IonRifle</defName>
+						<label>ion-rifle beam</label>
+						<textures>
+							<li>Things/Projectile/IonBeamSml</li>
+						</textures>
+						<seam>0</seam>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTIon</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationSharp>22</armorPenetrationSharp>
+							<armorPenetrationBlunt>38</armorPenetrationBlunt>
+							<soundExplode>OGIPP_Explosion</soundExplode>
+						</projectile>
+						<modExtensions>
+							<li Class="AdeptusMechanicus.EffectProjectileExtension">
+								<explosionMote>true</explosionMote>
+								<explosionMoteSize>0.5</explosionMoteSize>
+								<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+								<ImpactMoteSize>1</ImpactMoteSize>
+								<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+								<ImpactGlowMoteSize>0.5</ImpactGlowMoteSize>
+							</li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+
+			<!--==================== Tau - Burst Cannon =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_BurstCannon</defName>
+			<statBases>
+			  <Mass>12.8</Mass>
+			  <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			  <SightsEfficiency>2.2</SightsEfficiency>
+			  <ShotSpread>0.06</ShotSpread>
+			  <SwayFactor>1.8</SwayFactor>
+			  <Bulk>14.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.4</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_BurstCannon</defaultProjectile>
+			  <warmupTime>1.84</warmupTime>
+			  <range>44</range>
+			  <soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			  <soundCastTail>GunTail_Medium</soundCastTail>
+			  <muzzleFlashScale>10</muzzleFlashScale>
+			  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>36</burstShotCount>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>180</magazineSize>
+			  <reloadTime>5.5</reloadTime>
+			  <ammoSet>AmmoSet_OGBurstCannon</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>	
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+				<aimedBurstShotCount>13</aimedBurstShotCount>
+			</FireModes>
+			<weaponTags>
+				<li>TBurstCannon</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_BurstCannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_BurstCannon"]</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+						<defName>OGT_Bullet_BurstCannon</defName>
+						<label>Burst Pulse</label>
+						<graphicData>
+							<texPath>Things/Projectile/PlasmaPulseSml</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTPlasmaPulse</damageDef>
+							<damageAmountBase>9</damageAmountBase>
+							<explosionRadius>0.55</explosionRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>135</speed>
+							<soundExplode>OGIPP_Explosion</soundExplode>
+						</projectile>
+						<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+						<modExtensions>
+						  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+							<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+							<GlowMoteSize>1.5</GlowMoteSize>
+						  </li>
+						  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+							<explosionMote>true</explosionMote>
+							<explosionMoteSize>0.05</explosionMoteSize>
+							<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+							<ImpactMoteSize>1</ImpactMoteSize>
+							<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+							<ImpactGlowMoteSize>0.5</ImpactGlowMoteSize>
+						  </li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!--==================== Tau - Vespid Neutron Blaster =========================-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGT_Gun_NeutronBlaster</defName>
+			<statBases>
+			  <Mass>3</Mass>
+			  <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1.0</SightsEfficiency>
+			  <ShotSpread>0.15</ShotSpread>
+			  <SwayFactor>1.5</SwayFactor>
+			  <Bulk>2.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.25</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>OGT_Bullet_NeutronBlaster</defaultProjectile>
+			  <warmupTime>1.3</warmupTime>
+			  <range>38</range>
+			  <soundCast>Shot_Revolver</soundCast>
+			  <soundCastTail>GunTail_Light</soundCastTail>
+			  <muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>12</magazineSize>
+			  <reloadTime>4</reloadTime>
+			  <ammoSet>AmmoSet_OGNeutronBlaster</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>	
+			</FireModes>
+			<weaponTags>
+				<li>Gun</li>
+				<li>TNeutronBlaster</li>
+			</weaponTags>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Gun_NeutronBlaster"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetration>0.12</armorPenetration>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetration>0.15</armorPenetration>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGT_Bullet_NeutronBlaster"]</xpath>
+				<value>
+					<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
+						<defName>OGT_Bullet_NeutronBlaster</defName>
+						<label>Neutron Bolt</label>
+						<graphicData>
+							<texPath>Things/Projectile/PlasmaPulse</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGTNeutron</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+						  <armorPenetrationSharp>26</armorPenetrationSharp>
+						  <armorPenetrationBlunt>142</armorPenetrationBlunt>
+							<speed>100</speed>
+						</projectile>
+						<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+						<AddHediffChance>0.5</AddHediffChance>
+						<HediffToAdd>RadiationPoisioning</HediffToAdd>
+						<modExtensions>
+						  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+							<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+							<GlowMoteSize>1.5</GlowMoteSize>
+						  </li>
+						  <li Class="AdeptusMechanicus.EffectProjectileExtension">
+							<explosionMote>true</explosionMote>
+							<explosionMoteSize>0.05</explosionMoteSize>
+							<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+							<ImpactMoteSize>1</ImpactMoteSize>
+							<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+							<ImpactGlowMoteSize>0.5</ImpactGlowMoteSize>
+						  </li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
