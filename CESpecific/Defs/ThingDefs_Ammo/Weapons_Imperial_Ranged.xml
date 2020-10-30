@@ -22,11 +22,17 @@
 								<speed>135</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltStd</damageDef>
-								<damageAmountBase>15</damageAmountBase>
-								<explosionRadius>0.55</explosionRadius>
-								<soundExplode>OGIPP_Explosion</soundExplode>
+								<damageAmountBase>12</damageAmountBase>
+								<secondaryDamage>
+										<li>
+										<def>Bomb_Secondary</def>
+										<amount>5</amount>
+										</li>
+								  </secondaryDamage>
+								  <armorPenetrationSharp>12</armorPenetrationSharp>
+								  <armorPenetrationBlunt>64</armorPenetrationBlunt>
 							</projectile>
-							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 								<explosionMote>true</explosionMote>
@@ -62,11 +68,17 @@
 								<speed>135</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltStd</damageDef>
-								<damageAmountBase>25</damageAmountBase>
-								<explosionRadius>0.55</explosionRadius>
-								<soundExplode>OGIPP_Explosion</soundExplode>
+								<damageAmountBase>8</damageAmountBase>
+								<secondaryDamage>
+										<li>
+										<def>Bomb_Secondary</def>
+										<amount>15</amount>
+										</li>
+								  </secondaryDamage>
+								  <armorPenetrationSharp>10</armorPenetrationSharp>
+								  <armorPenetrationBlunt>56</armorPenetrationBlunt>
 							</projectile>
-							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 								<explosionMote>true</explosionMote>
@@ -101,9 +113,10 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<speed>135</speed>
 								<damageDef>OGIBoltHellfire</damageDef>
-								<damageAmountBase>20</damageAmountBase>
-								<explosionRadius>1.55</explosionRadius>
+								<damageAmountBase>30</damageAmountBase>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<soundExplode>OGIPP_Explosion</soundExplode>
+								<explosionRadius>1.5</explosionRadius>
 							</projectile>
 							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
@@ -142,8 +155,14 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltKraken</damageDef>
 								<damageAmountBase>14</damageAmountBase>
-								<armorPenetrationSharp>20</armorPenetrationSharp>
-								<armorPenetrationBlunt>58</armorPenetrationBlunt>
+								<secondaryDamage>
+										<li>
+										<def>Bomb_Secondary</def>
+										<amount>6</amount>
+										</li>
+								  </secondaryDamage>
+								<armorPenetrationSharp>22</armorPenetrationSharp>
+								<armorPenetrationBlunt>64</armorPenetrationBlunt>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
@@ -182,8 +201,14 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltVengeance</damageDef>
 								<damageAmountBase>24</damageAmountBase>
-								<armorPenetrationSharp>24</armorPenetrationSharp>
-								<armorPenetrationBlunt>58</armorPenetrationBlunt>
+								<secondaryDamage>
+										<li>
+										<def>Bomb_Secondary</def>
+										<amount>8</amount>
+										</li>
+								  </secondaryDamage>
+								<armorPenetrationSharp>26</armorPenetrationSharp>
+								<armorPenetrationBlunt>64</armorPenetrationBlunt>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
@@ -329,7 +354,11 @@
 									</tools>
 								</value>
 							</li>
-				
+
+						</operations>	
+					</nomatch>
+				</li>			
+			
 				<!-- ====================== Bolter ===================== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_BoltGun</defName>
@@ -878,11 +907,17 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<speed>135</speed>
 								<damageDef>OGIBoltStd</damageDef>
-								  <damageAmountBase>28</damageAmountBase>
-								  <explosionRadius>0.55</explosionRadius>						
-								<soundExplode>OGIPP_Explosion</soundExplode>
+								  <damageAmountBase>25</damageAmountBase>
+								  <secondaryDamage>
+										<li>
+										<def>Bomb_Secondary</def>
+										<amount>8</amount>
+										</li>
+								  </secondaryDamage>
+								  <armorPenetrationSharp>12</armorPenetrationSharp>
+								  <armorPenetrationBlunt>86</armorPenetrationBlunt>
 							</projectile>
-							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
 								  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 									<explosionMote>true</explosionMote>
@@ -917,8 +952,8 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<speed>135</speed>
 								<damageDef>OGIBoltHellfire</damageDef>
-								<damageAmountBase>28</damageAmountBase>
-								<stoppingPower>2</stoppingPower>
+								<damageAmountBase>40</damageAmountBase>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<soundExplode>OGIPP_Explosion</soundExplode>
 								<explosionRadius>2</explosionRadius>
 							</projectile>
@@ -1272,10 +1307,10 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGI_Bullet_LasGunLucius"]</xpath>
+					<xpath>Defs/ThingDef[defName="OGI_Bullet_LasGun_Lucius"]</xpath>
 					<value>
 						<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-							<defName>OGI_Bullet_LasGunLucius</defName>
+							<defName>OGI_Bullet_LasGun_Lucius</defName>
 							<label>las blast</label>
 							<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
 							<textures>
@@ -3463,7 +3498,7 @@
 								<damageAmountBase>28</damageAmountBase>
 								<explosionRadius>1.00</explosionRadius>
 								<stoppingPower>1</stoppingPower>
-								<speed>35</speed>
+								<speed>55</speed>
 								<soundExplode>OGIAC_Explosion</soundExplode>
 							</projectile>
 							<comps>
@@ -3495,7 +3530,7 @@
 								<damageAmountBase>40</damageAmountBase>
 								<explosionRadius>0.50</explosionRadius>
 								<stoppingPower>5</stoppingPower>
-								<speed>35</speed>
+								<speed>55</speed>
 								<soundExplode>OGIAC_Explosion</soundExplode>
 							</projectile>
 							<comps>
