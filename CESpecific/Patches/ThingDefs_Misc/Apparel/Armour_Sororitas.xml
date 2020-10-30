@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ========================= Adeptus Sororitas - Power Armour ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>500</MaxHitPoints>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/statBases/Mass</xpath>
+				<value>
+					<Mass>30</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</value>
+			</li>			
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>80</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
