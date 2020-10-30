@@ -115,6 +115,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OGI_Gun_ExitusRifle";
                     }
+                    if (defName == "IG_Gun_AssCan")
+                    {
+                        newName = "OGI_Gun_AssaultCannon";
+                    }
                     if (defName == "Melee_ForceSword")
                     {
                         newName = "OGI_Melee_ForceSword";

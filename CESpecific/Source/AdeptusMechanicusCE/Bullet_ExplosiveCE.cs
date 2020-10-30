@@ -33,18 +33,17 @@ namespace AdeptusMechanicus
         // Token: 0x060052C8 RID: 21192 RVA: 0x002628C0 File Offset: 0x00260CC0
         protected override void Impact(Thing hitThing)
         {
-            bool flag = hitThing is Pawn;
-            if (flag)
+            if (hitThing is Pawn)
             {
                 Vector3 drawPos = hitThing.DrawPos;
                 drawPos.y = this.ExactPosition.y;
                 this.ExactPosition = drawPos;
                 base.Position = this.ExactPosition.ToIntVec3();
             }
-            bool flag2 = this.def.projectile.explosionDelay == 0;
-            if (flag2)
+            if (this.def.projectile.explosionDelay == 0)
             {
-                base.Impact(null);
+                base.Impact(hitThing);
+                return;
             }
             else
             {
@@ -54,6 +53,7 @@ namespace AdeptusMechanicus
                 Thing launcher = this.launcher;
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, damageDef, (launcher != null) ? launcher.Faction : null);
             }
+            base.Impact(hitThing);
         }
 
         // Token: 0x04003719 RID: 14105

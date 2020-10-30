@@ -82,10 +82,52 @@
 	</RulePackDef>
 	
 	<RulePackDef>
-		<defName>NamerOGIGBases</defName>
+		<defName>OG_NamerBases_Militarum</defName>
 		<rulePack>
 			<rulesStrings>
-				<li>name->[OGIGBaseNames] [OGIGBaseNum]</li>
+				<li>r_name(p=12)->[townname_wordgen]</li>
+				<li>r_name(p=4)->[townname_combo]</li>
+				<li>r_name->[townname_near]</li>
+
+				<li>topicalnoun->[Vegetable]</li>
+				<li>topicalnoun->[Game]</li>
+				<li>topicalnoun->[BodyPart]</li>
+
+				<li>townname_combo->[topicalnoun] [TerrainFeature]</li>
+				<li>townname_combo->[topicalnoun] [OGIGBaseNames]</li>
+				<li>townname_combo->[OGIGBaseNames]'s [TerrainFeature]</li>
+				<li>townname_combo->[TerrainFeature] [OGIGBaseNames]</li>
+				<li>townname_combo(p=3)->[Character]'s [TerrainFeature]</li>
+				<li>townname_combo(p=3)->[Character]'s [OGIGBaseNames]</li>
+
+				<li>townname_near->[nearnameinitial]-at-the-[TerrainFeature]</li>
+				<li>townname_near->[nearnameinitial]-by-the-[TerrainFeature]</li>
+				<li>townname_near->[nearnameinitial]-on-the-[TerrainFeature]</li>
+				<li>nearnameinitial->[townname_wordgen]</li>
+				
+				<li>townname_wordgen(p=2)->[SylE][SylE]</li>
+				<li>townname_wordgen(p=2)->[SylE][SylE][SylE]</li>
+				<li>townname_wordgen(p=2)->[SylE][OGIGBaseNames]</li>
+				<li>townname_wordgen(p=2)->[OGIGBaseNames] [SylE][SylE]</li>
+				<li>townname_wordgen->[OGIGBaseNames] [TerrainFeature]</li>
+				<li>townname_wordgen->[OGIGBaseNames] [topicalnoun]</li>
+				
+				<li>townend->Stronghold</li>
+				<li>townend->Guard Outpost</li>
+				<li>townend->Garrison</li>
+				<li>townend->Fortress</li>
+				<li>townend->Fort</li>
+				<li>townend->Citadel</li>
+				<li>townend->Bastion</li>
+				<li>townend->Redoubt</li>
+				<li>townend->Emplacement</li>
+				<li>townend->Front</li>
+				<li>townend->Station</li>
+				<li>townend->Field</li>
+				<li>townend->Bunker</li>
+				<li>townend->Staging Ground</li>
+				<li>townend->Communications Relay</li>
+				<li>townend->Barracks</li>
 			</rulesStrings>
 			<rulesRaw>
 				<li Class="Rule_File">
@@ -99,4 +141,5 @@
 			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
+	
 </Defs>
