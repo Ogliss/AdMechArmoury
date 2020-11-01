@@ -19,20 +19,22 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>96</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltStd</damageDef>
-								<damageAmountBase>12</damageAmountBase>
-								<secondaryDamage>
-										<li>
-										<def>Bomb_Secondary</def>
-										<amount>5</amount>
-										</li>
-								  </secondaryDamage>
-								  <armorPenetrationSharp>12</armorPenetrationSharp>
-								  <armorPenetrationBlunt>64</armorPenetrationBlunt>
+								<damageAmountBase>15</damageAmountBase>
+								<explosionRadius>1</explosionRadius>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<soundExplode>OGIPP_Explosion</soundExplode>
 							</projectile>
-							<thingClass>CombatExtended.BulletCE</thingClass>
+							<comps>
+							  <li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+								  <Fragment_Small>4</Fragment_Small>
+								</fragments>
+							  </li>
+							</comps>
+							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 								<explosionMote>true</explosionMote>
@@ -65,20 +67,22 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>96</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltStd</damageDef>
-								<damageAmountBase>8</damageAmountBase>
-								<secondaryDamage>
-										<li>
-										<def>Bomb_Secondary</def>
-										<amount>15</amount>
-										</li>
-								  </secondaryDamage>
-								  <armorPenetrationSharp>10</armorPenetrationSharp>
-								  <armorPenetrationBlunt>56</armorPenetrationBlunt>
+								<damageAmountBase>20</damageAmountBase>
+								<explosionRadius>0.5</explosionRadius>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<soundExplode>OGIPP_Explosion</soundExplode>
 							</projectile>
-							<thingClass>CombatExtended.BulletCE</thingClass>
+							<comps>
+							  <li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+								  <Fragment_Small>7</Fragment_Small>
+								</fragments>
+							  </li>
+							</comps>
+							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 								<explosionMote>true</explosionMote>
@@ -111,13 +115,20 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>96</speed>
 								<damageDef>OGIBoltHellfire</damageDef>
 								<damageAmountBase>30</damageAmountBase>
+								<explosionRadius>1.5</explosionRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<soundExplode>OGIPP_Explosion</soundExplode>
-								<explosionRadius>1.5</explosionRadius>
 							</projectile>
+							<comps>
+							  <li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+								  <Fragment_Small>10</Fragment_Small>
+								</fragments>
+							  </li>
+							</comps>
 							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -151,7 +162,7 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>96</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltKraken</damageDef>
 								<damageAmountBase>14</damageAmountBase>
@@ -197,7 +208,7 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>96</speed>
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIBoltVengeance</damageDef>
 								<damageAmountBase>24</damageAmountBase>
@@ -363,12 +374,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_BoltGun</defName>
 					<statBases>
-						<Mass>3.8</Mass>
+						<Mass>7.8</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.09</ShotSpread>
 						<SwayFactor>1.28</SwayFactor>
-						<Bulk>6.50</Bulk>
+						<Bulk>15.10</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1.36</recoilAmount>
@@ -433,7 +444,7 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
 					<defName>OGI_Gun_CombiFlamer</defName>
 					<statBases>
-						<Mass>3.8</Mass>
+						<Mass>5.8</Mass>
 						<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
@@ -533,7 +544,7 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_CombiMelta</defName>
 					<statBases>
-						<Mass>3.8</Mass>
+						<Mass>5.8</Mass>
 						<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
@@ -601,7 +612,7 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_CombiPlasma</defName>
 					<statBases>
-						<Mass>3.8</Mass>
+						<Mass>5.8</Mass>
 						<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
@@ -669,10 +680,10 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_StormBolter</defName>
 					<statBases>
-						<Mass>2.6</Mass>
+						<Mass>4.6</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>0.7</SightsEfficiency>
-						<ShotSpread>0.15</ShotSpread>
+						<ShotSpread>0.1</ShotSpread>
 						<SwayFactor>1.26</SwayFactor>
 						<Bulk>2.50</Bulk>
 					</statBases>
@@ -681,7 +692,7 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
-						<warmupTime>0.3</warmupTime>
+						<warmupTime>0.8</warmupTime>
 						<range>38</range>
 						<soundCast>OG_Bolt_Gun_Sound</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -837,15 +848,15 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_HeavyBolter</defName>
 					<statBases>
-						<Mass>10.8</Mass>
+						<Mass>29.8</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.08</ShotSpread>
-						<SwayFactor>1.3</SwayFactor>
-						<Bulk>9.87</Bulk>
+						<SwayFactor>1.5</SwayFactor>
+						<Bulk>22.87</Bulk>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.65</recoilAmount>
+						<recoilAmount>1.9</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
@@ -905,19 +916,21 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>80</speed>
 								<damageDef>OGIBoltStd</damageDef>
-								  <damageAmountBase>25</damageAmountBase>
-								  <secondaryDamage>
-										<li>
-										<def>Bomb_Secondary</def>
-										<amount>8</amount>
-										</li>
-								  </secondaryDamage>
-								  <armorPenetrationSharp>12</armorPenetrationSharp>
-								  <armorPenetrationBlunt>86</armorPenetrationBlunt>
-							</projectile>
-							<thingClass>CombatExtended.BulletCE</thingClass>
+								  <damageAmountBase>20</damageAmountBase>
+								  <explosionRadius>1</explosionRadius>
+								  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								  <soundExplode>OGIPP_Explosion</soundExplode>
+								</projectile>
+								<comps>
+								  <li Class="CombatExtended.CompProperties_Fragments">
+									<fragments>
+									  <Fragment_Small>8</Fragment_Small>
+									</fragments>
+								  </li>
+								</comps>
+							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
 								  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 									<explosionMote>true</explosionMote>
@@ -950,13 +963,20 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>135</speed>
+								<speed>80</speed>
 								<damageDef>OGIBoltHellfire</damageDef>
-								<damageAmountBase>40</damageAmountBase>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<soundExplode>OGIPP_Explosion</soundExplode>
+								<damageAmountBase>20</damageAmountBase>
 								<explosionRadius>2</explosionRadius>
-							</projectile>
+								 <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								 <soundExplode>OGIPP_Explosion</soundExplode>
+								</projectile>
+								<comps>
+								  <li Class="CombatExtended.CompProperties_Fragments">
+									<fragments>
+									  <Fragment_Small>13</Fragment_Small>
+									</fragments>
+								  </li>
+								</comps>
 							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 							<modExtensions>
 								  <li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -1420,7 +1440,7 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGILas</damageDef>
 								<damageAmountBase>15</damageAmountBase>
-								<armorPenetrationSharp>26</armorPenetrationSharp>
+								<armorPenetrationSharp>28</armorPenetrationSharp>
 								<armorPenetrationBlunt>8</armorPenetrationBlunt>
 							</projectile>
 							<modExtensions>
@@ -1515,7 +1535,7 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGILas</damageDef>
 								<damageAmountBase>25</damageAmountBase>
-							  <armorPenetrationSharp>28</armorPenetrationSharp>
+							  <armorPenetrationSharp>32</armorPenetrationSharp>
 							  <armorPenetrationBlunt>10</armorPenetrationBlunt>
 							</projectile>
 							<modExtensions>
@@ -1536,12 +1556,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_LasCannon</defName>
 					<statBases>
-						<Mass>13.2</Mass>
+						<Mass>35.8</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>2.20</SightsEfficiency>
 						<ShotSpread>0.04</ShotSpread>
 						<SwayFactor>1.75</SwayFactor>
-						<Bulk>15</Bulk>
+						<Bulk>34</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1.2</recoilAmount>
@@ -1740,12 +1760,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_PlasmaGun</defName>
 					<statBases>
-						<Mass>4.5</Mass>
+						<Mass>8.8</Mass>
 						<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.1</ShotSpread>
 						<SwayFactor>1.27</SwayFactor>
-						<Bulk>7.250</Bulk>
+						<Bulk>13.250</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1.25</recoilAmount>
@@ -1886,12 +1906,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_PlasmaCannon</defName>
 					<statBases>
-						<Mass>14.8</Mass>
+						<Mass>34.5</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>2.20</SightsEfficiency>
 						<ShotSpread>0.06</ShotSpread>
 						<SwayFactor>1.8</SwayFactor>
-						<Bulk>14.70</Bulk>
+						<Bulk>24.70</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1.4</recoilAmount>
@@ -2059,9 +2079,9 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>Bullet</damageDef>
 								<damageAmountBase>7</damageAmountBase>
-								<armorPenetrationSharp>6</armorPenetrationSharp>
-								<armorPenetrationBlunt>42</armorPenetrationBlunt>
-								<speed>135</speed>
+								<armorPenetrationSharp>7</armorPenetrationSharp>
+								<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
+								<speed>168</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2151,10 +2171,9 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>Bullet</damageDef>
 								<damageAmountBase>7</damageAmountBase>
-								<stoppingPower>1</stoppingPower>
-							  <armorPenetrationSharp>8</armorPenetrationSharp>
-							  <armorPenetrationBlunt>42</armorPenetrationBlunt>
-								<speed>135</speed>
+								<armorPenetrationSharp>7</armorPenetrationSharp>
+								<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
+								<speed>168</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2165,20 +2184,20 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_HeavyStubber</defName>
 					<statBases>
-						<Mass>8.2</Mass>
+						<Mass>29.2</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.05</ShotSpread>
-						<SwayFactor>1.53</SwayFactor>
-						<Bulk>14</Bulk>
+						<SwayFactor>1.65</SwayFactor>
+						<Bulk>20</Bulk>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.3</recoilAmount>
+						<recoilAmount>1.95</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>OGI_Bullet_HeavyStubber</defaultProjectile>
-						<warmupTime>1.3</warmupTime>
-						<range>58</range>
+						<warmupTime>1.5</warmupTime>
+						<range>66</range>
 						<soundCast>Shot_Minigun</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>14</muzzleFlashScale>
@@ -2190,13 +2209,13 @@
 					</Properties>
 					<AmmoUser>
 						<magazineSize>50</magazineSize>
-						<reloadTime>4</reloadTime>
+						<reloadTime>5.5</reloadTime>
 						<ammoSet>AmmoSet_OGHeavyStubber</ammoSet>
 					</AmmoUser>
 					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-						<aiUseBurstMode>TRUE</aiUseBurstMode>	
-						<aimedBurstShotCount>12</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+                        <aiAimMode>SuppressFire</aiAimMode>	
+						<aimedBurstShotCount>8</aimedBurstShotCount>
 					</FireModes>
 					<weaponTags>
 
@@ -2234,10 +2253,9 @@
 								<flyOverhead>false</flyOverhead>
 								<damageDef>Bullet</damageDef>
 								<damageAmountBase>8</damageAmountBase>
-								<stoppingPower>1.25</stoppingPower>
-								<armorPenetrationSharp>10</armorPenetrationSharp>
-								<armorPenetrationBlunt>42</armorPenetrationBlunt>
-								<speed>100</speed>
+								<armorPenetrationSharp>14</armorPenetrationSharp>
+								<armorPenetrationBlunt>334.380</armorPenetrationBlunt>
+								<speed>178</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2248,19 +2266,19 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_AutoCannon</defName>
 					<statBases>
-						<Mass>10.4</Mass>
+						<Mass>38.4</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.08</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>15.50</Bulk>
+						<SwayFactor>1.6</SwayFactor>
+						<Bulk>37.50</Bulk>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.45</recoilAmount>
+						<recoilAmount>1.9</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>OGI_Bullet_AutoCannon</defaultProjectile>
-						<warmupTime>1.3</warmupTime>
+						<warmupTime>1.58</warmupTime>
 						<range>66</range>
 						<soundCast>OG_Auto_Cannon_Sound</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -2316,12 +2334,12 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<flyOverhead>false</flyOverhead>
 								<damageDef>OGIAuto</damageDef>
-								<explosionRadius>0.50</explosionRadius>
 								<damageAmountBase>20</damageAmountBase>
-								<speed>100</speed>
-								<soundExplode>OGIAC_Explosion</soundExplode>
+								<armorPenetrationSharp>35</armorPenetrationSharp>
+								<armorPenetrationBlunt>3849.480</armorPenetrationBlunt>
+								<speed>184</speed>
 							</projectile>
-							<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+							<thingClass>CombatExtended.BulletCE</thingClass>
 							<modExtensions>
 							  <li Class="AdeptusMechanicus.EffectProjectileExtension">
 								<explosionMote>true</explosionMote>
@@ -2340,20 +2358,20 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_AssaultCannon</defName>
 					<statBases>
-						<Mass>10.8</Mass>
+						<Mass>32.8</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.07</ShotSpread>
-						<SwayFactor>1.35</SwayFactor>
-						<Bulk>12.50</Bulk>
+						<SwayFactor>1.65</SwayFactor>
+						<Bulk>34.50</Bulk>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.5</recoilAmount>
+						<recoilAmount>2.55</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
 						<warmupTime>2</warmupTime>
-						<range>50</range>
+						<range>45</range>
 						<soundCast>OG_Assaultcannon_Sound</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>14</muzzleFlashScale>
@@ -2408,10 +2426,9 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>Bullet</damageDef>
 								<damageAmountBase>7</damageAmountBase>
-							  <armorPenetrationSharp>10</armorPenetrationSharp>
-							  <armorPenetrationBlunt>52</armorPenetrationBlunt>
-								<stoppingPower>1</stoppingPower>
-								<speed>100</speed>
+								<armorPenetrationSharp>14</armorPenetrationSharp>
+								<armorPenetrationBlunt>570.24</armorPenetrationBlunt>
+								<speed>144</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2499,13 +2516,12 @@
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGIAuto</damageDef>
-								<stoppingPower>.15</stoppingPower>
 								<damageAmountBase>8</damageAmountBase>
 								<armorPenetrationSharp>4</armorPenetrationSharp>
 								<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
 								<spreadMult>17.8</spreadMult>
 								<pelletCount>9</pelletCount>
-								<speed>100</speed>
+								<speed>72</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2525,8 +2541,9 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGIAutoRubber</damageDef>
 								<damageAmountBase>8</damageAmountBase>
-								<stoppingPower>.15</stoppingPower>
-								<armorPenetrationBlunt>0.14</armorPenetrationBlunt>
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.240</armorPenetrationBlunt>
+								<spreadMult>2</spreadMult>
 								<speed>75</speed>
 								<pelletCount>5</pelletCount>
 							</projectile>
@@ -2615,12 +2632,10 @@
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGIAuto</damageDef>
-								<damageAmountBase>4</damageAmountBase>
-								<stoppingPower>.15</stoppingPower>
+								<damageAmountBase>28</damageAmountBase>
 								<armorPenetrationSharp>6</armorPenetrationSharp>
-								<armorPenetrationBlunt>8</armorPenetrationBlunt>
-								<speed>100</speed>
-								<pelletCount>7</pelletCount>
+								<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+								<speed>110</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2706,8 +2721,7 @@
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGIAuto</damageDef>
-								<damageAmountBase>4</damageAmountBase>
-								<stoppingPower>.15</stoppingPower>
+								<damageAmountBase>5</damageAmountBase>
 								<armorPenetrationSharp>6</armorPenetrationSharp>
 								<armorPenetrationBlunt>8</armorPenetrationBlunt>
 								<speed>100</speed>
@@ -2800,11 +2814,11 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>OGIAuto</damageDef>
 								<damageAmountBase>8</damageAmountBase>
-								<stoppingPower>.15</stoppingPower>
-								<armorPenetrationSharp>6</armorPenetrationSharp>
-								<armorPenetrationBlunt>8</armorPenetrationBlunt>
-								<speed>100</speed>
-								<pelletCount>5</pelletCount>
+								<pelletCount>9</pelletCount>
+								  <armorPenetrationSharp>4</armorPenetrationSharp>
+								  <armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+								  <spreadMult>17.8</spreadMult>
+								  <speed>72</speed>
 							</projectile>
 							<thingClass>CombatExtended.BulletCE</thingClass>
 						</ThingDef>
@@ -2911,12 +2925,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_Flamer</defName>
 					<statBases>
-						<Mass>2.8</Mass>
+						<Mass>4.8</Mass>
 						<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 						<SightsEfficiency>0.5</SightsEfficiency>
 						<ShotSpread>1.5</ShotSpread>
 						<SwayFactor>0.5</SwayFactor>
-						<Bulk>3.50</Bulk>
+						<Bulk>12.50</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>0.75</recoilAmount>
@@ -3018,12 +3032,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_FlamerHeavy</defName>
 					<statBases>
-						<Mass>4.8</Mass>
+						<Mass>8.8</Mass>
 						<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
 						<SwayFactor>1.5</SwayFactor>
-						<Bulk>4.50</Bulk>
+						<Bulk>12.50</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>0.1</recoilAmount>
@@ -3124,12 +3138,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_MeltaGun</defName>
 					<statBases>
-						<Mass>2.8</Mass>
+						<Mass>7.8</Mass>
 						<RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.08</ShotSpread>
 						<SwayFactor>1.25</SwayFactor>
-						<Bulk>7.250</Bulk>
+						<Bulk>9.250</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1</recoilAmount>
@@ -3221,12 +3235,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OGI_Gun_MultiMelta</defName>
 					<statBases>
-						<Mass>5.8</Mass>
+						<Mass>22</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.06</ShotSpread>
 						<SwayFactor>1.8</SwayFactor>
-						<Bulk>9.250</Bulk>
+						<Bulk>18</Bulk>
 					</statBases>
 					<Properties>
 						<recoilAmount>1.4</recoilAmount>
@@ -3497,8 +3511,8 @@
 								<damageDef>OGIBomb</damageDef>
 								<damageAmountBase>28</damageAmountBase>
 								<explosionRadius>1.00</explosionRadius>
-								<stoppingPower>1</stoppingPower>
-								<speed>55</speed>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<speed>60</speed>
 								<soundExplode>OGIAC_Explosion</soundExplode>
 							</projectile>
 							<comps>
