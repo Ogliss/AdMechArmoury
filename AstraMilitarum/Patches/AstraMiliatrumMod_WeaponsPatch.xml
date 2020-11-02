@@ -74,6 +74,10 @@
 						</operations>
 					</match>
 				</li>
+				<li Class="PatchOperationSetName">
+					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun" or defName = "IG_Gun_T3BoltGun"]/costList/Gun_BoltGun</xpath>
+					  <name>OGI_Gun_BoltGun</name>
+				</li>
 				<li Class="PatchOperationAdd">
 					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun" or defName="IG_Gun_T3BoltGun"]</xpath>
 					  <value>
@@ -102,11 +106,17 @@
 					  </value>
 				</li>
 				
-				<!--li Class="PatchOperationReplace">
-				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/label</xpath>
-				  <value>
-						<label>Angelus Pattern Bolter (Relic)</label>
-				  </value>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/label</xpath>
+					<value>
+						<label>Umbra Pattern Bolter (T2) (I)</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/description</xpath>
+					<value>
+						<description>The Umbra Pattern is the original type of Bolter used by the Astartes of the Space Marine Legions during the Great Crusade of the 31st Millennium.</description>
+					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun"]/graphicData</xpath>
@@ -128,39 +138,9 @@
 					  </value>
 				</li>
 				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3BoltGun"]/label</xpath>
-				  <value>
-						<label>Angelus Pattern Bolter (Relic)</label>
-				  </value>
-				</li>
-				<li Class="PatchOperationReplace">
-				  <xpath>/Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/graphicData</xpath>
-				  <value>
-						<graphicData>
-							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Tigrus</texPath>
-							<graphicClass>Graphic_Single</graphicClass>
-							<shaderType>CutoutComplex</shaderType>
-							<color>(0.286,0.286,0.286)</color>	
-							<drawSize>1.1</drawSize>		
-						</graphicData>
-				  </value>
-				</li>
-				<li Class="PatchOperationAdd">
-					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3BoltGun"]</xpath>
-					  <value>
-						<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Tigrus_Icon</uiIconPath>
-						<uiIconColor>(1,1,1,1)</uiIconColor>	
-					  </value>
-				</li-->
-				
-				<li Class="PatchOperationSetName">
-					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T2BoltGun" or defName = "IG_Gun_T3BoltGun"]/costList/Gun_BoltGun</xpath>
-					  <name>OGI_Gun_BoltGun</name>
-				</li>
-				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="IG_Bullet_T2BoltGun"]</xpath>
 					  <value>
-							 <ThingDef ParentName="BaseBullet">
+							 <ThingDef ParentName="OG_Bullet_Base">
 								<defName>OGI_Bullet_T2BoltStd</defName>
 								<label>Bolt</label>
 								<description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
@@ -200,10 +180,50 @@
 							 
 					  </value>
 				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T2BoltGun"]/forcedMissRadius</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T2BoltGun"]/defaultProjectile</xpath>
+					<value>
+						<defaultProjectile>OGI_Bullet_T2BoltStd</defaultProjectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/defName</xpath>
+					<value>
+						<defName>OGI_Gun_T2BoltGun</defName>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3BoltGun"]/label</xpath>
+				  <value>
+						<label>Angelus Pattern Bolter (Relic) (I)</label>
+				  </value>
+				</li>
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/graphicData</xpath>
+				  <value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Angelus</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<drawSize>1.1</drawSize>		
+						</graphicData>
+				  </value>
+				</li>
+				<!--li Class="PatchOperationAdd">
+					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3BoltGun"]</xpath>
+					  <value>
+						<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Tigrus_Icon</uiIconPath>
+						<uiIconColor>(1,1,1,1)</uiIconColor>	
+					  </value>
+				</li-->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="IG_Bullet_T3BoltGun"]</xpath>
 					  <value>
-							 <ThingDef ParentName="BaseBullet">
+							 <ThingDef ParentName="OG_Bullet_Base">
 								<defName>OGI_Bullet_T3BoltStd</defName>
 								<label>Bolt</label>
 								<description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
@@ -239,24 +259,138 @@
 							 </ThingDef>
 					  </value>
 				</li>
-				
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T2BoltGun"]/forcedMissRadius</xpath>
-				</li>
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T3BoltGun"]/forcedMissRadius</xpath>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T2BoltGun"]/defaultProjectile</xpath>
-					<value>
-						<defaultProjectile>OGI_Bullet_T2BoltStd</defaultProjectile>
-					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/verbs/li[defaultProjectile="IG_Bullet_T3BoltGun"]/defaultProjectile</xpath>
 					<value>
 						<defaultProjectile>OGI_Bullet_T3BoltStd</defaultProjectile>
 					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/defName</xpath>
+					<value>
+						<defName>OGI_Gun_T3BoltGun</defName>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3PlasmaGun"]</xpath>
+					  <value>
+						<comps> 
+							<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<northOffset>0.0,0.0,0.0</northOffset>
+								<eastOffset>0.0,1.0,0.0</eastOffset>
+								<westOffset>0.0,0.0,0.0</westOffset>
+								<southOffset>0.0,1.0,0.0</southOffset>
+							</li>  
+							<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+								<VerbEntries>
+									<li>
+										<RapidFire>true</RapidFire>
+										<GetsHot>true</GetsHot>
+										<HotDamageWeapon>true</HotDamageWeapon>
+										<reliability>ST</reliability>
+										<VerbProps>
+											<label>Standard</label>
+										</VerbProps>
+									</li>
+								</VerbEntries>
+							</li> 
+						</comps>
+					  </value>
+				</li>
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3PlasmaGun"]/label</xpath>
+				  <value>
+						<label>Barrage Plasma Gun (Relic) (I)</label>
+				  </value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName = "IG_Gun_T3PlasmaGun"]</xpath>
+					<value>
+						<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName = "IG_Gun_T3PlasmaGun"]/statBases</xpath>
+					<value>
+						<reliability>0.9</reliability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "IG_Gun_T3PlasmaGun"]/graphicData</xpath>
+				  <value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaGun_Relic</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<drawSize>1.1</drawSize>		
+						</graphicData>
+				  </value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Bullet_T3PlasmaGun"]</xpath>
+					<value>
+						 <ThingDef ParentName="OG_Bullet_Base">
+							<defName>OGI_Bullet_T3PlasmaGun</defName>
+							<label>Plasma bolt</label>
+							<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+							<graphicData>
+								<texPath>Things/Projectile/PlamsaShotSml</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile>
+								<flyOverhead>false</flyOverhead>
+								<damageDef>OGIPlasma</damageDef>
+								<explosionRadius>1.250</explosionRadius>
+								<damageAmountBase>50</damageAmountBase>
+								<armorPenetrationBase>0.8</armorPenetrationBase>
+								<stoppingPower>2</stoppingPower>
+								<speed>55</speed>
+								<soundExplode>OGIPP_Explosion</soundExplode>
+							</projectile>
+							<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+							<modExtensions>
+								<li Class="AdeptusMechanicus.EffectProjectileExtension">
+								<explosionMote>true</explosionMote>
+								<explosionMoteSize>0.75</explosionMoteSize>
+								<ImpactMoteDef>Mote_YellowSparkFlash</ImpactMoteDef>
+								<ImpactMoteSize>2</ImpactMoteSize>
+								<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+								<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+								</li>
+								<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+									<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+									<GlowMoteSize>1.5</GlowMoteSize>
+								</li>
+							</modExtensions>
+						 </ThingDef>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T3PlasmaGun"]/verbs/li[defaultProjectile="IG_Bullet_T3PlasmaGun"]/forcedMissRadius</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T3PlasmaGun"]/verbs/li[defaultProjectile="IG_Bullet_T3PlasmaGun"]/defaultProjectile</xpath>
+					<value>
+						<defaultProjectile>OGI_Bullet_T3PlasmaGun</defaultProjectile>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T3PlasmaGun"]/defName</xpath>
+					<value>
+						<defName>OGI_Gun_T3PlasmaGun</defName>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/ThingDef[defName = "Melee_ForceSword"]/label</xpath>
+				  <value>
+						<label>force sword (I)</label>
+				  </value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Melee_ForceSword"]/tools</xpath>
@@ -403,18 +537,6 @@
 					<xpath>Defs/ThingDef[defName="Melee_ForceSword"]/defName</xpath>
 					<value>
 						<defName>OGI_Melee_ForceSword</defName>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="IG_Gun_T3BoltGun"]/defName</xpath>
-					<value>
-						<defName>OGI_Gun_T3BoltGun</defName>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/defName</xpath>
-					<value>
-						<defName>OGI_Gun_T2BoltGun</defName>
 					</value>
 				</li>
 				

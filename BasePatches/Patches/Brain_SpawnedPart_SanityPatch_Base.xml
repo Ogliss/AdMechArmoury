@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef ParentName="BodyPartNaturalBase">
+						<defName>Brain</defName>
+						<label>brain</label>
+						<description>A biological human brain. The center of all Consciousness./n/nSome Poor Soul used to use this to THINK! But now it can have a more useful purpose for the Imperium.</description>
+						<statBases>
+						  <MarketValue>900</MarketValue>
+						  <Mass>1</Mass>
+						</statBases>
+					  </ThingDef>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/description</xpath>
+				<value>
+					<description>A biological human brain. The center of all Consciousness./n/nSome Poor Soul used to use this to THINK! But now it can have a more useful purpose for the Imperium.</description>
+				</value>
+			</match>
+		</li>
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Rah's Bionics and Surgery Expansion</li>
+			</mods>
+			<match Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Brain"]/comps/li[Class="CompProperties_Rottable"]</xpath>
+				<success>Always</success>
+				<nomatch Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/ThingDef[defName="Brain"]/comps</xpath>
+							<success>Always</success>
+							<match Class="PatchOperationAdd">
+								<success>Always</success>
+								<xpath>/Defs/ThingDef[defName="Brain"]/comps</xpath>
+								<value>
+								  <li Class="CompProperties_Rottable">
+									<daysToRotStart>0.6</daysToRotStart>
+									<rotDestroys>true</rotDestroys>
+								  </li>
+								</value>
+							</match>
+							<nomatch Class="PatchOperationAdd">
+								<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+								<value>
+									<comps>
+									  <li Class="CompProperties_Rottable">
+										<daysToRotStart>0.6</daysToRotStart>
+										<rotDestroys>true</rotDestroys>
+									  </li>
+									</comps>
+								</value>
+							</nomatch>
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/ThingDef[defName="Brain"]/tickerType</xpath>
+							<success>Always</success>
+								<match Class="PatchOperationReplace">
+									<success>Always</success>
+									<xpath>/Defs/ThingDef[defName="Brain"]/tickerType</xpath>
+									<value>
+										<tickerType>Rare</tickerType>
+									</value>
+								</match>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+									<value>
+										<tickerType>Rare</tickerType>
+									</value>
+								</nomatch>
+						</li>
+					</operations>
+				</nomatch>
+			</match>
+		</li>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</match>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</nomatch>
+		</li>
+    </operations>
+  </Operation>
+
+</Patch>

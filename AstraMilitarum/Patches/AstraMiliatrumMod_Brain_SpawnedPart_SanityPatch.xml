@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationSequence">
+	<!--success>Always</success-->
+    <operations>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			<match Class="PatchOperationRemove">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			</match>
+		</li>
+		
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="IGBrain"]</xpath>
+			<match Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="IGBrain"]</xpath>
+			</match>
+		</li>
+		
+		<li Class="PatchOperationSetName">
+			  <xpath>Defs/ThingDef[@ParentName="IG_BuildingBase" or @ParentName="IG_AugmentT3"]/costList/IGBrain</xpath>
+			  <name>Brain</name>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/TraderKindDef[defName="QXIGC_RogueTrader"]/stockGenerators/li[thingDef="IGBrain"]/thingDef</xpath>
+			<value>
+				<thingDef>Brain</thingDef>
+			</value>
+		</li>
+    </operations>
+  </Operation>
+
+</Patch>

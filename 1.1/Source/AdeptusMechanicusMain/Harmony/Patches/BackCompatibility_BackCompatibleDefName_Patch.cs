@@ -45,8 +45,53 @@ namespace AdeptusMechanicus.HarmonyInstance
                             newName = "OGI_Gun_BoltGun";
                         }
                     }
+                    if (defName.Contains("IGStd"))
+                    {
+                        if (defName.Contains("ArmorMk"))
+                        {
+                            newName = "OGIG_Apparel_FlakArmour";
+                        }
+                        else
+                        if (defName.Contains("HelmetMk"))
+                        {
+                            newName = "OGIG_Apparel_CadianFlakHelmet";
+                        }
+                        else
+                        if (defName.Contains("CaraArmorMk"))
+                        {
+                            newName = "OGIG_Apparel_TempestusScion_CarapaceArmour";
+                        }
+                        else
+                        if (defName.Contains("CaraHelmetMk"))
+                        {
+                            newName = "OGIG_Apparel_TempestusScion_CarapaceHelmet";
+                        }
+                    }
+
+                    if (defName == "IGBrain")
+                    {
+                        newName = "Brain";
+                    }
+                    if (defName == "LAP_Brain" || defName == "HAA_Brain")
+                    {
+                        newName = "Brain";
+                    }
+                    if (defName == "IG_ARM_KriegHelmet")
+                    {
+                        newName = "OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A";
+                    }
+                    if (defName == "IG_ARM_KriegArmor")
+                    {
+                        newName = "OGIG_Apparel_FlakArmour";
+                    }
+                    if (defName == "IG_Gun_T3PlasmaGun")
+                    {
+                        newName = "OGI_Gun_T3PlasmaGun";
+                    }
+                    else
                     if (defName.Contains("PlasmaRifle"))
                     {
+
                         if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
                         {
                             newName = "OGC_Gun_PlasmaGun";

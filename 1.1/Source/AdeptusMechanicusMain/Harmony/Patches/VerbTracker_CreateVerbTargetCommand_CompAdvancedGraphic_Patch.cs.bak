@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection;
+using AdvancedGraphics;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -26,12 +27,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (advancedWeaponGraphic!=null)
                 {
                     __result.icon = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
+
+                    __result.defaultIconColor = ownerThing.Graphic.color;
                     // __result.IconDrawColor = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
                 }
+                /*
                 if (true)
                 {
                     __result.icon = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
                 }
+                */
             }
         }
     }

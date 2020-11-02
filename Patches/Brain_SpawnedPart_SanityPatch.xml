@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--success>Always</success-->
+	<!--Operation Class="PatchOperationFindModID">
+		<mods>
+			<li>QX.AstraMilitarum</li>
+			<li>Archaon.Primarch</li>
+		</mods>
+		<match Class="PatchOperationConditional">
+			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</match>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</nomatch>
+		</match>
+	</Operation-->
+</Patch>

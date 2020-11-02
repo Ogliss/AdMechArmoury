@@ -39,13 +39,28 @@ namespace AdeptusMechanicus
                     if (tex.NullOrEmpty())
                     {
                         tex = this.parent.Graphic.path;
+                        if (this.parent.Graphic is Graphic_SingleQuality)
+                        {
+                            Log.Message("Quality Graphic detected");
+                        }
+                        else
                         if (this.parent.TryGetComp<CompAdvancedGraphic>() != null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
                         {
                             tex = graphic.current.path;
                         }
+
                         if (tex.NullOrEmpty())
                         {
                             tex = this.parent.def.graphicData.texPath;
+                        }
+                        int idx = tex.LastIndexOf('/');
+
+                        if (idx != -1)
+                        {
+                            Log.Message(tex.Substring(0, idx));
+                            Log.Message(tex.Substring(idx + 1));
+                            tex = tex.Substring(0, idx) + "/" + this.parent.Graphic.MatSingle.mainTexture.name;
+                            Log.Message("Quality Graphic using: " + tex);
                         }
                     }
                     texPath = tex + "_Glow";

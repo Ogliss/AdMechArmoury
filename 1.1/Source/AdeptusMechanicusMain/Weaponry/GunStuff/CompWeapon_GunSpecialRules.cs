@@ -4,6 +4,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -54,6 +55,8 @@ namespace AdeptusMechanicus
                 return gunVerbs;
             }
         }
+        public GunVerbEntry ActiveVerbEntry => this.GunVerbs[this.CurMode];
+        public VerbProperties ActiveVerbProperties => FireMode?.Active ?? Equipable.PrimaryVerb.verbProps;
         public CompToggleFireMode fireMode;
         public CompToggleFireMode FireMode => fireMode ??= this.parent.TryGetComp<CompToggleFireMode>();
         public CompEquippable equipable; 
@@ -73,6 +76,25 @@ namespace AdeptusMechanicus
         public bool TyranidBurstBodySize => Props.TyranidBurstBodySize;
         public bool TwinLinked => GunVerbs[CurMode].TwinLinked;
         public bool RapidFire => GunVerbs[CurMode].RapidFire;
+        public float RapidFireReductionBase => ((ActiveVerbProperties.burstShotCount - 1) * ActiveVerbProperties.ticksBetweenBurstShots).TicksToSeconds() / 4;
+        public float RapidFireWarmupReduction
+        {
+            get
+            {
+                float warmup = ActiveVerbProperties.warmupTime;
+                float warmupreduction = (warmup / 2) + RapidFireReductionBase;
+                return (warmupreduction / warmup) * 100;
+            }
+        }
+        public float RapidFireCooldownReduction
+        {
+            get
+            {
+                float cooldown = parent.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
+                float cooldownreduction = (cooldown / 2) + RapidFireReductionBase;
+                return (cooldownreduction / cooldown) * 100;
+            }
+        }
         public bool GetsHot => GunVerbs[CurMode].GetsHot;
         public bool HotDamageWeapon => GunVerbs[CurMode].HotDamageWeapon;
         public bool GetsHotCrit => GunVerbs[CurMode].GetsHotCrit;
@@ -219,113 +241,223 @@ namespace AdeptusMechanicus
 
         public override string GetDescriptionPart()
         {
-
-            string str = string.Empty;
-            str = str + "AMA_SpecialRules".Translate();
+            StringBuilder builder = new StringBuilder(base.GetDescriptionPart());
+            builder.AppendLine("AMA_SpecialRules".Translate());
             if (FireMode!=null)
             {
-                str = str + string.Format("\nFire Modes: ");
+                builder.AppendLine();
+                builder.AppendLine(string.Format("Fire Modes: "));
                 foreach (VerbProperties mode in parent.def.Verbs)
                 {
                     if (parent.def.Verbs.IndexOf(mode) == 0)
                     {
-                        str = str + string.Format("\n Primary: {0}", mode.label ?? mode.defaultProjectile.label);
+                        builder.AppendLine(string.Format("    Primary: {0}", mode.label ?? mode.defaultProjectile.label));
                     }
                     if (parent.def.Verbs.IndexOf(mode) != 0)
                     {
-                        str = str + string.Format("\n Secondry: {0}", mode.label ?? mode.defaultProjectile.label);
+                        builder.AppendLine(string.Format("        Alternate: {0}", mode.label ?? mode.defaultProjectile.label));
                     }
                 }
-                str = str + string.Format("\n Current Mode: {0} \n", FireMode.Active.label ?? FireMode.Active.defaultProjectile.label);
+                builder.AppendLine();
+                builder.AppendLine(string.Format("Current Mode: {0}", FireMode.Active.label ?? FireMode.Active.defaultProjectile.label));
             }
+
             if (RapidFire)
             {
-                float reductionbase = ((this.GunVerbs[this.CurMode].VerbProps.burstShotCount - 1) * this.GunVerbs[this.CurMode].VerbProps.ticksBetweenBurstShots).TicksToSeconds() / 4;
-                float warmup = this.GunVerbs[this.CurMode].VerbProps.warmupTime;
+                builder.AppendLine();
+                float warmup = ActiveVerbProperties.warmupTime;
                 float cooldown = parent.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
-                float Cycle = cooldown + warmup + (reductionbase * 4);
-                float warmupreduction = (warmup / 2) + reductionbase;
-                float cooldownreduction = (cooldown / 2) + reductionbase;
-                float warmupReduction = (warmupreduction / warmup) * 100;
-                float cooldownReduction = (cooldownreduction / cooldown) * 100;
-                float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (reductionbase * 4);
-                str = str + "\n " + "AMA_RapidFire".Translate() + ": " + "AMA_RapidFireDesc".Translate(warmupReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), warmup - warmupreduction, cooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2, Cycle, newCycle) + "\n";
+                float Cycle = cooldown + warmup + (RapidFireReductionBase * 4);
+                float warmupreduction = (warmup / 2) + RapidFireReductionBase;
+                float cooldownreduction = (cooldown / 2) + RapidFireReductionBase;
+                float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (RapidFireReductionBase * 4);
+
+                builder.AppendLine("AMA_RapidFire".Translate() + ":");
+                builder.AppendLine("AMA_RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
             }
             if (GetsHot)
             {
+                builder.AppendLine();
                 string reliabilityString;
                 float failChance;
                 StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
-                str = str + string.Format("\n "+ "AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent()));
+                builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
-                    str = str + "AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label);
+                    builder.AppendLine("AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
                 }
                 if (GetsHotCrit)
                 {
-                    str = str + "AMA_GetsHotCrit".Translate((GetsHotCritChance/100).ToStringPercent());
+                    builder.Append(" "+"AMA_GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
                     if (GetsHotCritExplosion)
                     {
-                        str = str + "AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance/100).ToStringPercent());
+                        builder.AppendLine("AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
                     }
                 }
-                str = str + "\n";
             }
             if (Jams)
             {
+                builder.AppendLine();
                 string reliabilityString;
                 float failChance;
                 StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
-                str = str + string.Format("\n "+"AMA_Jams".Translate()+": "+ "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance/100).ToStringPercent()));
+                builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (JamsDamageWeapon)
                 {
-                    str = str + "AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label);
+                    builder.Append(" "+"AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label));
                 }
-                str = str + "\n";
             }
             if (TwinLinked)
             {
-                str = str + "\n "+ "AMA_TwinLinked".Translate() + ": "+ "AMA_TwinLinkedDesc".Translate();
+                builder.AppendLine();
+                builder.AppendLine("AMA_TwinLinked".Translate() + ": " + "AMA_TwinLinkedDesc".Translate());
             }
             if (Multishot)
             {
-                str = str + string.Format("\n "+ "AMA_Scatter".Translate() + ": "+ "AMA_ScatterDesc".Translate(ScattershotCount));
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Scatter".Translate() + ": " + "AMA_ScatterDesc".Translate(ScattershotCount)));
             }
             if (Rending)
             {
-                str = str + string.Format("\n "+ "AMA_Rending_Shot".Translate() + ": "+ "AMA_Rending_ShotDesc".Translate(RendingChance));
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Rending_Shot".Translate() + ": " + "AMA_Rending_ShotDesc".Translate(RendingChance)));
             }
             if (MeltaWeapon)
             {
-                str = str + string.Format("\n "+ "AMA_Melta".Translate() + ": "+ "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) +" \n");
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Melta".Translate() + ": " + "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
             }
             if (VolkiteWeapon)
             {
-                str = str + string.Format("\n " + "AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n");
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
             }
             if (ConversionWeapon)
             {
-                str = str + string.Format("\n " + "AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate() + " \n");
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate()));
             }
             if (HaywireWeapon)
             {
-                str = str + string.Format("\n " + "AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate() + " \n");
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate()));
             }
             /*
             if (GaussWeapon)
             {
-                str = str + "\n Gauss Weapon";
-                str = str + string.Format("\n " + "AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate() +" \n");
+                builder.AppendLine();
+                builder.AppendLine("Gauss Weapon:");
+                builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
             }
             */
             if (TeslaWeapon)
             {
-                str = str + "\n Tesla Weapon";
-                str = str + string.Format("\n " + "AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate() + " \n");
+                builder.AppendLine();
+                builder.AppendLine("Tesla Weapon:");
+                builder.AppendLine(string.Format("AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate()));
             }
-            return str;
-            return base.GetDescriptionPart();
+            return builder.ToString();
         }
+
+        public void buildRulesString(ref StringBuilder builder, GunVerbEntry mode)
+        {
+            VerbProperties ActiveVerbProperties = mode.VerbProps;
+            if (RapidFire)
+            {
+                builder.AppendLine();
+                float warmup = ActiveVerbProperties.warmupTime;
+                float cooldown = parent.GetStatValue(StatDefOf.RangedWeapon_Cooldown);
+                float Cycle = cooldown + warmup + (RapidFireReductionBase * 4);
+                float warmupreduction = (warmup / 2) + RapidFireReductionBase;
+                float cooldownreduction = (cooldown / 2) + RapidFireReductionBase;
+                float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (RapidFireReductionBase * 4);
+
+                builder.AppendLine("AMA_RapidFire".Translate() + ":");
+                builder.AppendLine("AMA_RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
+            }
+            if (GetsHot)
+            {
+                builder.AppendLine();
+                string reliabilityString;
+                float failChance;
+                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                if (HotDamageWeapon)
+                {
+                    builder.AppendLine("AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
+                }
+                if (GetsHotCrit)
+                {
+                    builder.Append(" " + "AMA_GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
+                    if (GetsHotCritExplosion)
+                    {
+                        builder.AppendLine("AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
+                    }
+                }
+            }
+            if (Jams)
+            {
+                builder.AppendLine();
+                string reliabilityString;
+                float failChance;
+                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                if (JamsDamageWeapon)
+                {
+                    builder.Append(" " + "AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label));
+                }
+            }
+            if (TwinLinked)
+            {
+                builder.AppendLine();
+                builder.AppendLine("AMA_TwinLinked".Translate() + ": " + "AMA_TwinLinkedDesc".Translate());
+            }
+            if (Multishot)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Scatter".Translate() + ": " + "AMA_ScatterDesc".Translate(ScattershotCount)));
+            }
+            if (Rending)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Rending_Shot".Translate() + ": " + "AMA_Rending_ShotDesc".Translate(RendingChance)));
+            }
+            if (MeltaWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Melta".Translate() + ": " + "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
+            }
+            if (VolkiteWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
+            }
+            if (ConversionWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate()));
+            }
+            if (HaywireWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine(string.Format("AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate()));
+            }
+            /*
+            if (GaussWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine("Gauss Weapon:");
+                builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
+            }
+            */
+            if (TeslaWeapon)
+            {
+                builder.AppendLine();
+                builder.AppendLine("Tesla Weapon:");
+                builder.AppendLine(string.Format("AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate()));
+            }
+        }
+
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {

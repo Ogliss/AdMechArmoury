@@ -134,7 +134,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (__instance.EquipmentSource != null)
             {
                 ThingWithComps gun = __instance.EquipmentSource;
-                CompEquippable compeq = gun.TryGetComp<CompEquippable>();
+                CompEquippable compeq = __instance.EquipmentCompSource;
                 CompWeapon_GunSpecialRules GunExt = gun.TryGetComp<CompWeapon_GunSpecialRules>();
                 if (GunExt!=null)
                 {

@@ -6,6 +6,12 @@
 		<operations>
 		
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_Bullet_Base"]/thingClass</xpath>
+				<value>
+				  <thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="AdeptusMechanicusBeamGraphic"]/thingClass</xpath>
 				<value>
 				  <thingClass>AdeptusMechanicus.LaserBeamGraphicCE</thingClass>
@@ -14,7 +20,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="OG_Bullet_LaserBase"]</xpath>
 				<value>
-				  <ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="BaseBullet">
+				  <ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="OG_Bullet_Base">
 					<thingClass>AdeptusMechanicus.LaserBeamCE</thingClass>
 					<drawOffscreen>true</drawOffscreen>
 					<beamGraphic>AdeptusMechanicusBeamGraphic</beamGraphic>
