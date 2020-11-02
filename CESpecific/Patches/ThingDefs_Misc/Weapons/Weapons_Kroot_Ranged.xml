@@ -44,7 +44,7 @@
           	</capacities>
           	<power>7</power>
           	<cooldownTime>1.6</cooldownTime>
- 		<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+ 	 	<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
         </li>
 		<li Class="CombatExtended.ToolCE">
 			<label>limb blades</label>
@@ -64,7 +64,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGK_Bullet_Solid"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGK_Bullet_Solid</defName>
 				<label>kroot solid round</label>
 				<graphicData>
@@ -85,7 +85,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGK_Bullet_Pulse"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGK_Bullet_Pulse</defName>
 				<label>kroot pulse round</label>
 				<graphicData>
@@ -171,7 +171,7 @@
 					</capacities>
 					<power>18</power>
 					<cooldownTime>1.4</cooldownTime>
-					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>				
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>barrel blade</label>
@@ -256,40 +256,40 @@
 
 	<!--==================== Kroot - Hunting Rifle =========================-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>OGK_Gun_KrootHunterRifle</defName>
-		<statBases>
-			<Mass>2.5</Mass>
-			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.25</SightsEfficiency>
-			<ShotSpread>0.04</ShotSpread>
-			<SwayFactor>1.88</SwayFactor>
-			<Bulk>12.50</Bulk>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGK_Bullet_HunterSolid</defaultProjectile>
-			<warmupTime>1.6</warmupTime>
-			<range>55</range>
-			<soundCast>Shot_Revolver</soundCast>
-				<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>12</magazineSize>
-		<reloadTime>4</reloadTime>
-		<ammoSet>AmmoSet_OGKrootHunter</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>	
-		</FireModes>
-		<weaponTags>
-			<li>Gun</li>
-			<li>TKrootRifle</li>
-		</weaponTags>
+	<defName>OGK_Gun_KrootHunterRifle</defName>
+	<statBases>
+	  <Mass>4.5</Mass>
+	  <RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+	  <SightsEfficiency>1.25</SightsEfficiency>
+	  <ShotSpread>0.04</ShotSpread>
+	  <SwayFactor>1.88</SwayFactor>
+	  <Bulk>12.50</Bulk>
+	</statBases>
+	<Properties>
+	  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+	  <hasStandardCommand>true</hasStandardCommand>
+	  <defaultProjectile>OGK_Bullet_HunterSolid</defaultProjectile>
+	  <warmupTime>1.6</warmupTime>
+	  <range>55</range>
+	  <soundCast>Shot_Revolver</soundCast>
+	  <soundCastTail>GunTail_Light</soundCastTail>
+	  <muzzleFlashScale>8</muzzleFlashScale>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+	  <magazineSize>12</magazineSize>
+	  <reloadTime>4</reloadTime>
+	  <ammoSet>AmmoSet_OGKrootHunter</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>	
+	</FireModes>
+	<weaponTags>
+		<li>Gun</li>
+		<li>TKrootRifle</li>
+	</weaponTags>
 	</li>
 
 	<li Class="PatchOperationReplace">
@@ -303,7 +303,8 @@
 					</capacities>
 					<power>18</power>
 					<cooldownTime>1.4</cooldownTime>
-					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>				</li>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>barrel blade</label>
 					<capacities>
@@ -320,7 +321,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGK_Bullet_HunterSolid"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGK_Bullet_HunterSolid</defName>
 				<label>kroot solid round</label>
 				<graphicData>
@@ -341,7 +342,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGK_Bullet_HunterPulse"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGK_Bullet_HunterPulse</defName>
 				<label>kroot pulse round</label>
 				<graphicData>

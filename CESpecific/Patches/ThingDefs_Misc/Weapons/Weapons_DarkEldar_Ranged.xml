@@ -7,7 +7,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Splinter"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_Splinter</defName>
 				<label>splinter shard</label>
 				<graphicData>
@@ -18,9 +18,8 @@
 					<flyOverhead>false</flyOverhead>
 					<damageDef>OGESplinter</damageDef>
 					<damageAmountBase>4</damageAmountBase>
-					<stoppingPower>3</stoppingPower>
-				  <armorPenetrationSharp>26</armorPenetrationSharp>
-				  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>26</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 					<speed>135</speed>
 				</projectile>
 				<thingClass>CombatExtended.BulletCE</thingClass>
@@ -32,7 +31,7 @@
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_ToxicSplinter"]</xpath>
 		<value>
 		
-			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="OG_Bullet_Base">
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_ToxicSplinter</defName>
 				<label>toxic splinter shard</label>
 				<graphicData>
@@ -43,8 +42,8 @@
 					<damageDef>OGDEStinger</damageDef>
 					<speed>135</speed>
 					<damageAmountBase>4</damageAmountBase>
-				  <armorPenetrationSharp>28</armorPenetrationSharp>
-				  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 				</projectile>
 				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
 				<AddHediffChance>0.1</AddHediffChance>
@@ -61,10 +60,10 @@
     <defName>OGDE_Gun_SplinterPistol</defName>
     <statBases>
       <Mass>1.2</Mass>
-      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.27</SwayFactor>
       <Bulk>1.50</Bulk>
     </statBases>
     <Properties>
@@ -73,7 +72,7 @@
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
       <warmupTime>0.3</warmupTime>
-      <range>25</range>
+      <range>18</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -91,6 +90,7 @@
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
+		<aimedBurstShotCount>4</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -129,19 +129,19 @@
     <defName>OGDE_Gun_SplinterRifle</defName>
     <statBases>
       <Mass>3.8</Mass>
-      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>3.50</Bulk>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.2</SwayFactor>
+      <Bulk>8.20</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.3</recoilAmount>
+		<recoilAmount>1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>31</range>
+      <warmupTime>1.1</warmupTime>
+      <range>46</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -159,6 +159,7 @@
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
+		<aimedBurstShotCount>8</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -197,19 +198,19 @@
     <defName>OGDE_Gun_Shardcarbine</defName>
     <statBases>
       <Mass>3.8</Mass>
-      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>3.50</Bulk>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>1.28</SwayFactor>
+      <Bulk>8.20</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.3</recoilAmount>
+		<recoilAmount>1.3</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>28</range>
+      <warmupTime>1.1</warmupTime>
+      <range>40</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -227,6 +228,7 @@
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
+		<aimedBurstShotCount>8</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -264,20 +266,20 @@
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_SplinterCannon</defName>
     <statBases>
-      <Mass>3.8</Mass>
-      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>3.50</Bulk>
+      <Mass>17.8</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.2</SightsEfficiency>
+      <ShotSpread>0.11</ShotSpread>
+      <SwayFactor>1.7</SwayFactor>
+      <Bulk>18.50</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.3</recoilAmount>
+		<recoilAmount>1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_SplinterCannon</defaultProjectile>
       <warmupTime>1.3</warmupTime>
-      <range>36</range>
+      <range>65</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -295,6 +297,7 @@
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
+		<aimedBurstShotCount>8</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -331,7 +334,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_SplinterCannon"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_SplinterCannon</defName>
 				<label>splinter shard</label>
 				<graphicData>
@@ -343,8 +346,8 @@
 					<damageDef>OGESplinter</damageDef>
 					<damageAmountBase>8</damageAmountBase>
 					<stoppingPower>3</stoppingPower>
-				  <armorPenetrationSharp>28</armorPenetrationSharp>
-				  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 					<speed>135</speed>
 				</projectile>
 				<thingClass>CombatExtended.BulletCE</thingClass>
@@ -355,7 +358,7 @@
 	<li Class="PatchOperationAdd">
 		<xpath>Defs</xpath>
 		<value>
-			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="OG_Bullet_Base">
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_SplinterCannonToxic</defName>
 				<label>toxic splinter shard</label>
 				<graphicData>
@@ -366,8 +369,8 @@
 					<damageDef>OGDEStinger</damageDef>
 					<speed>135</speed>
 					<damageAmountBase>8</damageAmountBase>
-				  <armorPenetrationSharp>28</armorPenetrationSharp>
-				  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 				</projectile>
 				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
 				<AddHediffChance>0.1</AddHediffChance>
@@ -382,20 +385,20 @@
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_DisintergratorCannon</defName>
     <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
+      <Mass>22.4</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.2</SightsEfficiency>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.75</SwayFactor>
+      <Bulk>32.50</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.5</recoilAmount>
+		<recoilAmount>1.1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_DisintergratorCannon</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>45</range>
+      <warmupTime>2.4</warmupTime>
+      <range>62</range>
       <soundCast>OG_Starcannon_Sound</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>10</muzzleFlashScale>
@@ -440,7 +443,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_DisintergratorCannon"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_DisintergratorCannon</defName>
 				<label>Disintergrator Bolt</label>
 				<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
@@ -451,10 +454,10 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<flyOverhead>false</flyOverhead>
 					<damageDef>OGEPlas</damageDef>
-					<damageAmountBase>35</damageAmountBase>
-				  <armorPenetrationSharp>28</armorPenetrationSharp>
-				  <armorPenetrationBlunt>134</armorPenetrationBlunt>
-					<stoppingPower>1.5</stoppingPower>
+					<damageAmountBase>50</damageAmountBase>
+					<explosionRadius>1.5</explosionRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<soundExplode>OGIPP_Explosion</soundExplode>
 					<speed>135</speed>
 				</projectile>
 				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
@@ -490,10 +493,9 @@
 				<seam>0</seam>
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGELance</damageDef>
-					<damageAmountBase>22</damageAmountBase>
-				  <armorPenetrationSharp>24</armorPenetrationSharp>
-				  <armorPenetrationBlunt>134</armorPenetrationBlunt>
-					<soundExplode>OGIPP_Explosion</soundExplode>
+					<damageAmountBase>20</damageAmountBase>
+					<armorPenetrationSharp>22</armorPenetrationSharp>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</projectile>
 				<modExtensions>
 					<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -514,19 +516,19 @@
     <defName>OGDE_Gun_BlastPistol</defName>
     <statBases>
       <Mass>1.5</Mass>
-      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
       <ShotSpread>0.15</ShotSpread>
       <SwayFactor>1.5</SwayFactor>
       <Bulk>1.50</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.15</recoilAmount>
+		<recoilAmount>1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
-      <warmupTime>0.3</warmupTime>
-      <range>25</range>
+      <warmupTime>0.5</warmupTime>
+      <range>18</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -578,20 +580,20 @@
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_Blaster</defName>
     <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+      <Mass>3.2</Mass>
+      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>2.50</Bulk>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>1.2</SwayFactor>
+      <Bulk>7</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.3</recoilAmount>
+		<recoilAmount>1.1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>28</range>
+      <warmupTime>1</warmupTime>
+      <range>54</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -608,6 +610,7 @@
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
+		<aimedBurstShotCount>7</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -645,20 +648,20 @@
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_Darklance</defName>
     <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
+      <Mass>8.8</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+      <SightsEfficiency>2.2</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.75</SwayFactor>
+      <Bulk>12</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.5</recoilAmount>
+		<recoilAmount>1.2</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
-      <warmupTime>2.5</warmupTime>
-      <range>36</range>
+      <warmupTime>1.35</warmupTime>
+      <range>65</range>
       <soundCast>OG_Brightlance_Sound</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>10</muzzleFlashScale>
@@ -701,20 +704,20 @@
   <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>OGDE_Gun_HaywireBlaster</defName>
     <statBases>
-      <Mass>2.6</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <Mass>16.6</Mass>
+      <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>2.80</Bulk>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>1.38</SwayFactor>
+      <Bulk>28</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.5</recoilAmount>
+		<recoilAmount>1.1</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_HaywireBlaster</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>28</range>
+      <warmupTime>1.58</warmupTime>
+      <range>42</range>
       <soundCast>OG_Deathspinner_Sound</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>10</muzzleFlashScale>
@@ -774,9 +777,9 @@
 				<seam>0</seam>
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGIArc</damageDef>
-					<damageAmountBase>25</damageAmountBase>
-				  <armorPenetrationSharp>22</armorPenetrationSharp>
-				  <armorPenetrationBlunt>104</armorPenetrationBlunt>
+					<damageAmountBase>18</damageAmountBase>
+					<armorPenetrationSharp>22</armorPenetrationSharp>
+					<armorPenetrationBlunt>64</armorPenetrationBlunt>
 					<soundExplode>OGIPP_Explosion</soundExplode>
 				</projectile>
 				<modExtensions>
@@ -807,8 +810,8 @@
 				<seam>0</seam>
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGIMelta</damageDef>
-					<damageAmountBase>55</damageAmountBase>
-					<armorPenetrationBase>10.0</armorPenetrationBase>
+					<damageAmountBase>60</damageAmountBase>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 					<explosionRadius>0.50</explosionRadius>
 					<soundExplode>OGIFL_Explosion</soundExplode>
 				</projectile>
@@ -831,19 +834,18 @@
     <defName>OGDE_Gun_FusionPistol</defName>
     <statBases>
       <Mass>1.8</Mass>
-      <RangedWeapon_Cooldown>2.26</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
+      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.1</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
       <Bulk>1.90</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.25</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
-      <warmupTime>0.3</warmupTime>
-      <range>16</range>
+      <warmupTime>1.8</warmupTime>
+      <range>8</range>
       <soundCast>OG_Melta_Sound</soundCast>
       <soundCastTail>GunTail_Heavy</soundCastTail>
       <muzzleFlashScale>10</muzzleFlashScale>
@@ -860,7 +862,8 @@
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>		
+		<aiUseBurstMode>TRUE</aiUseBurstMode>	
+		<aimedBurstShotCount>3</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 		<li>Gun</li>
@@ -890,18 +893,18 @@
     <defName>OGDE_Gun_HeatLance</defName>
     <statBases>
       <Mass>3.8</Mass>
-      <RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>3.50</Bulk>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.25</SwayFactor>
+      <Bulk>8.250</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.5</recoilAmount>
+		<recoilAmount>1.25</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
-      <warmupTime>1.75</warmupTime>
+      <warmupTime>2.75</warmupTime>
       <range>28</range>
       <soundCast>OG_Melta_Sound</soundCast>
       <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -955,19 +958,19 @@
     <defName>OGDE_Gun_Shredder</defName>
     <statBases>
       <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
       <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
+      <Bulk>9.50</Bulk>
     </statBases>
     <Properties>
-		<recoilAmount>0.5</recoilAmount>
+		<recoilAmount>1.34</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Shredder</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>36</range>
+      <warmupTime>1.1</warmupTime>
+      <range>45</range>
       <soundCast>OG_Deathspinner_Sound</soundCast>
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>10</muzzleFlashScale>
@@ -1020,7 +1023,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Shredder"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_Shredder</defName>
 				<label>monofilament mesh</label>
 				<graphicData>
@@ -1031,9 +1034,8 @@
 					<flyOverhead>false</flyOverhead>
 					<damageDef>OGDEShredder</damageDef>
 					<damageAmountBase>29</damageAmountBase>
-					<stoppingPower>1</stoppingPower>
-				  <armorPenetrationSharp>28</armorPenetrationSharp>
-				  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
 					<speed>135</speed>
 				</projectile>
 				<thingClass>CombatExtended.BulletCE</thingClass>
@@ -1046,10 +1048,10 @@
     <defName>OGDE_Gun_StingerPistol</defName>
     <statBases>
       <Mass>1.2</Mass>
-      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
+      <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.8</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.27</SwayFactor>
       <Bulk>1.50</Bulk>
     </statBases>
     <Properties>
@@ -1058,7 +1060,7 @@
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>OGDE_Bullet_Stinger</defaultProjectile>
       <warmupTime>0.3</warmupTime>
-      <range>25</range>
+      <range>18</range>
       <soundCast>OG_Splinter_Sound</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>8</muzzleFlashScale>
@@ -1075,6 +1077,7 @@
     </AmmoUser>
     <FireModes>
     	<aiAimMode>AimedShot</aiAimMode>
+		<aimedBurstShotCount>4</aimedBurstShotCount>
     </FireModes>
     <weaponTags>
 	
@@ -1112,7 +1115,7 @@
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Stinger"]</xpath>
 		<value>
 		
-			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="OG_Bullet_Base">
+			<ThingDef Class="AdeptusMechanicus.ThingDef_BulletEffectCE" ParentName="BaseBullet">
 				<defName>OGDE_Bullet_Stinger</defName>
 				<label>needle</label>
 				<graphicData>
@@ -1123,8 +1126,8 @@
 					<damageDef>OGDEStinger</damageDef>
 					<speed>135</speed>
 					<damageAmountBase>1</damageAmountBase>
-				  <armorPenetrationSharp>18</armorPenetrationSharp>
-				  <armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</projectile>
 				<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
 				<AddHediffChance>0.5</AddHediffChance>
