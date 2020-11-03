@@ -103,7 +103,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                             }
                         }
-                        CompApparelExtraDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraDrawer;
+                        CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
                         if (ExtraDrawer != null)
                         {
                             Vector3 drawAt = vector;

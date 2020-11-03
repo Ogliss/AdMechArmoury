@@ -39,7 +39,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 float failChance;
                 AbilitesExtended.StatPart_Reliability.GetReliability(__instance.verbProperties, out reliabilityString, out failChance);
                 failChance = GetsHot ? (failChance / 10) : (failChance / 100);
-                Rand.PopState();
+                Rand.PushState();
                 bool fails = Rand.Chance(failChance);
                 Rand.PopState();
                 if (fails)
@@ -325,7 +325,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             Rand.PushState();
             bool f2 = !Rand.Chance(shotReport.PassCoverChance);
-            Rand.PushState();
+            Rand.PopState();
             if (currentTarget.Thing != null && currentTarget.Thing.def.category == ThingCategory.Pawn && f2)
             {
                 ProjectileHitFlags projectileHitFlags3 = ProjectileHitFlags.NonTargetWorld;

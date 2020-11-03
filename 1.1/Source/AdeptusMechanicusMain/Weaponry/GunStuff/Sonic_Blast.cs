@@ -26,7 +26,7 @@ namespace AdeptusMechanicus
 				{
 					if (!cellThingsFiltered.Contains(item) && item.def.useHitPoints || item is Pawn)
 					{
-						Log.Message("checking " + item);
+					//	Log.Message("checking " + item);
 						Impact(item);
 						cellThingsFiltered.Add(item);
 					}

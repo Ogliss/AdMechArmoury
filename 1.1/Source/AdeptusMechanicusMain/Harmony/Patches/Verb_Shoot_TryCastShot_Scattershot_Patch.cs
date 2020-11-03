@@ -30,7 +30,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return true;
             }
-            Traverse traverse = Traverse.Create(__instance);
+        //    Traverse traverse = Traverse.Create(__instance);
             LocalTargetInfo currentTarget = __instance.CurrentTarget;
             bool canHitNonTargetPawnsNow = (bool)Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
             for (int i = 0; i < ext.projectileCount; i++)
@@ -112,7 +112,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
             Rand.PushState();
             bool f1 = !Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture);
-            Rand.PushState();
+            Rand.PopState();
             if (f1)
             {
                 shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget);
@@ -128,7 +128,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             Rand.PushState();
             bool f2 = !Rand.Chance(shotReport.PassCoverChance);
-            Rand.PushState();
+            Rand.PopState();
             if (currentTarget.Thing != null && currentTarget.Thing.def.category == ThingCategory.Pawn && f2)
             {
                 ProjectileHitFlags projectileHitFlags3 = ProjectileHitFlags.NonTargetWorld;

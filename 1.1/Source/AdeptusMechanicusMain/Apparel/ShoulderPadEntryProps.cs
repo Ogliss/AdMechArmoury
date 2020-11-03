@@ -11,7 +11,6 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class ShoulderPadEntryProps
     {
-        public Apparel apparel;
         public ShoulderPadType shoulderPadType;
         public ShaderTypeDef shaderType;
         public bool bodyspecificTextures = true;

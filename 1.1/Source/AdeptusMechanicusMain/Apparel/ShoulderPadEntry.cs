@@ -111,7 +111,7 @@ namespace AdeptusMechanicus
             {
                 if (graphic == null)
                 {
-                    UpdatePadGraphic();
+                    UpdateGraphic();
                 }
                 return graphic;
             }
@@ -149,7 +149,7 @@ namespace AdeptusMechanicus
                 return props;
             }
         }
-        public void UpdatePadGraphic()
+        public void UpdateGraphic()
         {
             if (Drawer?.pawn == null)
             {
@@ -406,7 +406,7 @@ namespace AdeptusMechanicus
                     if (Graphic == null || (Graphic != null && !Graphic.path.Contains(apparel.Wearer.story.bodyType.defName)))
                     {
                 //        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
-                        UpdatePadGraphic();
+                        UpdateGraphic();
                     }
                     pauldronMaterial = Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
                     return true;
@@ -423,6 +423,7 @@ namespace AdeptusMechanicus
             return false;
 
         }
+
         public bool CheckPauldronRotation(Rot4 bodyFacing)
         {
             if (shoulderPadType == ShoulderPadType.Left && bodyFacing == Rot4.East)

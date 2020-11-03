@@ -21,7 +21,7 @@ namespace AdeptusMechanicus
 				return;
 			}
 			this.data = extData;
-			Log.Message("Graphic_MultiMask Init");
+		//	Log.Message("Graphic_MultiMask Init");
 			this.path = req.path;
 			this.shaderParameters = req.shaderParameters;
 			this.color = req.color;
@@ -91,7 +91,7 @@ namespace AdeptusMechanicus
 			string mask = extData.maskKey + extData.MaskSelector;
 			if (shader.SupportsMaskTex())
 			{
-				Log.Message(path + mask + "_northm");
+			//	Log.Message(path + mask + "_northm");
 				array2[0] = ContentFinder<Texture2D>.Get(path + mask + "_northm", true);
 				array2[1] = ContentFinder<Texture2D>.Get(path + mask + "_eastm", true);
 				array2[2] = ContentFinder<Texture2D>.Get(path + mask + "_southm", true);
@@ -140,7 +140,7 @@ namespace AdeptusMechanicus
 			}
 			else
 			{
-				Log.Message("No Mask Support " + path + mask + "_northm");
+			//	Log.Message("No Mask Support " + path + mask + "_northm");
 			}
 			for (int i = 0; i < this.mats.Length; i++)
 			{
@@ -158,7 +158,7 @@ namespace AdeptusMechanicus
 		// Token: 0x0600159E RID: 5534 RVA: 0x0007F177 File Offset: 0x0007D377
 		public override Graphic GetColoredVersion(Shader newShader, Color newColor, Color newColorTwo)
 		{
-			Log.Message("Graphic_MultiMask GetColoredVersion");
+		//	Log.Message("Graphic_MultiMask GetColoredVersion");
 			Graphic_MultiMask graphic_ = GraphicDatabase.Get<Graphic_MultiMask>(this.path, newShader, this.drawSize, newColor, newColorTwo, this.data) as Graphic_MultiMask;
 			
 			return graphic_;
@@ -182,7 +182,7 @@ namespace AdeptusMechanicus
 		private void UpdateMats()
 		{
 			ExtendedGraphicData extData = this.data as ExtendedGraphicData;
-			Log.Message("Graphic_MultiMask UpdateMats");
+		//	Log.Message("Graphic_MultiMask UpdateMats");
 			Texture2D[] array = new Texture2D[this.mats.Length];
 			array[0] = ContentFinder<Texture2D>.Get(path + "_north", false);
 			array[1] = ContentFinder<Texture2D>.Get(path + "_east", false);

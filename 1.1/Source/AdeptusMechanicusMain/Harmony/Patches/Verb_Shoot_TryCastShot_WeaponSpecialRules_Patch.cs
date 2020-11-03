@@ -316,7 +316,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             Rand.PushState();
             bool f1 = !Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture);
-            Rand.PushState();
+            Rand.PopState();
             if (f1)
             {
                 shootLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget);

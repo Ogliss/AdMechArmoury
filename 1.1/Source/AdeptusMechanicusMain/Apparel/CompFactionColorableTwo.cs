@@ -27,21 +27,21 @@ namespace AdeptusMechanicus
             {
                 if (faction == null && ActiveFaction)
                 {
-					Log.Message("chached faction null, checking apparel");
+				//	Log.Message("chached faction null, checking apparel");
                     if (Apparel != null)
 					{
-						Log.Message("chached faction null, checking wearer");
+					//	Log.Message("chached faction null, checking wearer");
 						if (Apparel.Wearer != null)
 						{
-							Log.Message("chached faction null, checking wearer faction");
+						//	Log.Message("chached faction null, checking wearer faction");
 							if (Apparel.Wearer.Faction != null && Apparel.Wearer.Faction != Faction.OfPlayer)
                             {
 								faction = Apparel.Wearer.Faction.def;
-								Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
+							//	Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
 								FactionDefExtension Extension = faction?.GetModExtension<FactionDefExtension>() ?? null;
                                 if (Extension != null)
 								{
-									Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
+								//	Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
 									if (Extension.factionColor.HasValue)
 									{
 										this.Color = Extension.factionColor.Value;

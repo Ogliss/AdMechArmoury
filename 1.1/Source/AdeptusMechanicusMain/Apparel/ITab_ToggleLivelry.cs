@@ -215,7 +215,7 @@ namespace AdeptusMechanicus
                     {
                         
                         e.activeOption = e.DefaultOption;
-                        e.UpdatePadGraphic();
+                        e.UpdateGraphic();
                         
 
                     }, MenuOptionPriority.Default, null, null, 0f, null, null),
@@ -234,7 +234,7 @@ namespace AdeptusMechanicus
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
                                 e.Used = variant;
-                                e.UpdatePadGraphic();
+                                e.UpdateGraphic();
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),
                             payload = variant
@@ -286,7 +286,7 @@ namespace AdeptusMechanicus
                         */
                         e.Used = e.DefaultOption;
                         e.faction = e.DefaultOption.factionDef;
-                        e.UpdatePadGraphic();
+                        e.UpdateGraphic();
 
                     }, MenuOptionPriority.Default, null, null, 0f, null, null),
                     payload = e.DefaultOption
@@ -354,7 +354,7 @@ namespace AdeptusMechanicus
                                 e.faction = variant.factionDef;
                                 e.Used = variant;
                                 //    Log.Message("Update PadGraphic");
-                                e.UpdatePadGraphic();
+                                e.UpdateGraphic();
 
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),

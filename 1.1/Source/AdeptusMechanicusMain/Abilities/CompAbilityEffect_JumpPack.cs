@@ -26,17 +26,17 @@ namespace AdeptusMechanicus
 
 		public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
 		{
-			Log.Message("Try use JumpPack");
+		//	Log.Message("Try use JumpPack");
 			if (target.IsValid)
 			{
 				AbilitesExtended.EquipmentAbility equipmentAbility = this.parent as AbilitesExtended.EquipmentAbility;
 
 				if (parent.CooldownTicksRemaining > 0)
 				{
-					Log.Message("jump disabled ");
+				//	Log.Message("jump disabled ");
 					return;
 				}
-				Log.Message("jumping");
+			//	Log.Message("jumping");
 				this.parent.StartCooldown(equipmentAbility.CooldownTicksLeft);
 				Jump(target);
 			}
@@ -108,7 +108,7 @@ namespace AdeptusMechanicus
 					CasterPawn.DeSpawn(DestroyMode.Vanish);
 					if (target.HasThing)
 					{
-						Log.Message("jumping at " + target.Thing.LabelShortCap);
+					//	Log.Message("jumping at " + target.Thing.LabelShortCap);
 						flyingObject_Leap.Launch(this.CasterPawn, target, this.CasterPawn);
 					}
 					flyingObject_Leap.Launch(this.CasterPawn, target.Cell, this.CasterPawn);

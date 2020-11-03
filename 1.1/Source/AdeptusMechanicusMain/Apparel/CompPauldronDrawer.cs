@@ -377,7 +377,7 @@ namespace AdeptusMechanicus
                         if (Entry.Graphic==null || (Entry.Graphic != null && !Entry.Graphic.path.Contains(pawn.story.bodyType.defName)))
                         {
                         //    Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
-                            Entry.UpdatePadGraphic();
+                            Entry.UpdateGraphic();
                         }
                         pauldronMaterial = Entry.Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
                         return true;
@@ -483,7 +483,7 @@ namespace AdeptusMechanicus
                         for (int i = 0; i < this.activeEntries.Count; i++)
                         {
                             //	Log.Message("Entry drawer " + (i2 + 1));
-                            this.activeEntries[i].UpdatePadGraphic();
+                            this.activeEntries[i].UpdateGraphic();
                         }
                     }
                 }

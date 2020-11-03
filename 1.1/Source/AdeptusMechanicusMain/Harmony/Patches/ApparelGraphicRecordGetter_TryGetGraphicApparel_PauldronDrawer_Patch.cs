@@ -74,32 +74,32 @@ namespace AdeptusMechanicus.HarmonyInstance
                             }
                             else
                             {
-								Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
+							//	Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
                             }
 						}
 					}
                     if (factionColors.Active)
 					{
-						Log.Message("factionColors.Active");
+					//	Log.Message("factionColors.Active");
 						colorOne = factionColors.Color;
 						apparel.SetColorOne(colorOne);
 					}
                     if (factionColors.ActiveTwo)
 					{
-						Log.Message("factionColors.ActiveTwo");
+					//	Log.Message("factionColors.ActiveTwo");
 						colorTwo = factionColors.ColorTwo;
 						apparel.SetColorTwo(colorTwo);
 					}
                     if (factionColors.Extension != null)
 					{
-						Log.Message("factionColors.Extension != null");
+					//	Log.Message("factionColors.Extension != null");
 						if (factionColors.ActiveTwo || factionColors.Active)
 						{
                             if (!factionColors.Extension.factionMaskTag.NullOrEmpty())
 							{
-								Log.Message("factionColors.factionMaskTag");
+							//	Log.Message("factionColors.factionMaskTag");
 								msk = "m_" + factionColors.Extension.factionMaskTag;
-								Log.Message("factionMaskTag: "+msk);
+							//	Log.Message("factionMaskTag: "+msk);
 							}
 						}
 					}
@@ -158,7 +158,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 				newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
 
-				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
 			}
 			/*
             for (int i = 0; i < apparel.AllComps.Count; i++)

@@ -8,40 +8,40 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="OG_Bullet_Base"]/thingClass</xpath>
 				<value>
-				  <thingClass>CombatExtended.BulletCE</thingClass>
+					<thingClass>CombatExtended.BulletCE</thingClass>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="AdeptusMechanicusBeamGraphic"]/thingClass</xpath>
 				<value>
-				  <thingClass>AdeptusMechanicus.LaserBeamGraphicCE</thingClass>
+					<thingClass>AdeptusMechanicus.LaserBeamGraphicCE</thingClass>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="OG_Bullet_LaserBase"]</xpath>
 				<value>
-				  <ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="OG_Bullet_Base">
+					<ThingDef Abstract="True" Name="OG_Bullet_LaserBase" ParentName="OG_Bullet_Base">
 					<thingClass>AdeptusMechanicus.LaserBeamCE</thingClass>
 					<drawOffscreen>true</drawOffscreen>
 					<beamGraphic>AdeptusMechanicusBeamGraphic</beamGraphic>
-				   
+					 
 					<graphicData>
-					  <graphicClass>Graphic_Single</graphicClass>
-					  <texPath>Things/Projectile/LasShotLrg</texPath>
-					  <shaderType>TransparentPostLight</shaderType>
-					  <drawSize>1.5</drawSize>
+						<graphicClass>Graphic_Single</graphicClass>
+						<texPath>Things/Projectile/LasShotLrg</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<drawSize>1.5</drawSize>
 					</graphicData>
 					
 					<explosionEffect>AdeptusMechanicusLaserImpact</explosionEffect>
 					<hitLivingEffect>AdeptusMechanicusLaserLivingImpact</hitLivingEffect>
 					
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>Bomb</damageDef>
-					  <speed>200</speed>
+						<damageDef>Bomb</damageDef>
+						<speed>200</speed>
 					</projectile>
 					
 					<seam>0.25</seam>
-				  </ThingDef>
+					</ThingDef>
 				</value>
 			</li>
 

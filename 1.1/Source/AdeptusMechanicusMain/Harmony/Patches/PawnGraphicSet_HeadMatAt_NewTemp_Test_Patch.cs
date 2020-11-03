@@ -21,11 +21,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             Pawn pawn = __instance.pawn;
             if (pawn.apparel.AnyApparel)
             {
-                if (pawn.apparel.WornApparel.Any(x => x.TryGetComp<CompApparelExtraDrawer>() !=null))
+                if (pawn.apparel.WornApparel.Any(x => x.TryGetComp<CompApparelExtraPartDrawer>() !=null))
                 {
                     foreach (var item in pawn.apparel.WornApparel)
                     {
-                        CompApparelExtraDrawer extraDrawer = item.TryGetComp<CompApparelExtraDrawer>();
+                        CompApparelExtraPartDrawer extraDrawer = item.TryGetComp<CompApparelExtraPartDrawer>();
                         if (extraDrawer !=null && extraDrawer.hidesHead)
                         {
                             __result = AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle;

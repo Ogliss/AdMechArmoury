@@ -9,9 +9,13 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
-    public class CompProperties_ApparelExtraDrawer : CompProperties
+    public class CompProperties_ApparelExtraPartDrawer : CompProperties
     {
-        public List<ExtraPartEntry> ExtrasEntries;
+        public CompProperties_ApparelExtraPartDrawer()
+        {
+            this.compClass = typeof(CompApparelExtraPartDrawer);
+        }
+        public List<ExtraApparelPartProps> ExtrasEntries;
         public float ExtraPartEntryChance = 0.5f;
         public int order = 0;
         public Vector3 NorthOffset = new Vector3();
@@ -19,20 +23,16 @@ namespace AdeptusMechanicus
         public Vector3 EastOffset = new Vector3();
         public Vector3 WestOffset = new Vector3();
         public ApparelLayerDef ApparelLayer = null;
-        public CompProperties_ApparelExtraDrawer()
-        {
-            this.compClass = typeof(CompApparelExtraDrawer);
-        }
 
     }
     [StaticConstructorOnStartup]
-    public class CompApparelExtraDrawer : ThingComp
+    public class CompApparelExtraPartDrawer : ThingComp
     {
-        public CompProperties_ApparelExtraDrawer Props
+        public CompProperties_ApparelExtraPartDrawer Props
         {
             get
             {
-                return this.props as CompProperties_ApparelExtraDrawer;
+                return this.props as CompProperties_ApparelExtraPartDrawer;
             }
         }
 
@@ -56,8 +56,8 @@ namespace AdeptusMechanicus
         private bool pauldronInitialized = false;
 #pragma warning restore IDE0052 // Remove unread private members
 
-        public ExtraPartEntry extraPartEntry;
-        public ExtraPartEntry ExtraPartEntry
+        public ExtraApparelPartProps extraPartEntry;
+        public ExtraApparelPartProps ExtraPartEntry
         {
             get
             {
@@ -65,10 +65,10 @@ namespace AdeptusMechanicus
                 {
                     if (extraPartEntry == null)
                     {
-                        extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
+                        extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
 
 
-                        this.shader = ShaderDatabase.LoadShader(extraPartEntry.shaderType.shaderPath);
+                        this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
                         this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
                         this.ExtraUseBodyOffset = extraPartEntry.UseBodytypeOffsets;
                         pauldronInitialized = true;
@@ -105,7 +105,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                this.graphicPath = ExtraPartEntry.extraTexPath;
+                this.graphicPath = ExtraPartEntry.graphicData.texPath;
                 return graphicPath;
             }
         }
@@ -133,9 +133,9 @@ namespace AdeptusMechanicus
             {
                 if (ExtraPartEntry != null)
                 {
-                    if (ExtraPartEntry.PrimaryColor != Color.white)
+                    if (ExtraPartEntry.overridePrimaryColor.HasValue)
                     {
-                        return ExtraPartEntry.PrimaryColor;
+                        return ExtraPartEntry.overridePrimaryColor.Value;
                     }
                     if (ExtraPartEntry.UsePrimaryColor)
                     {
@@ -144,9 +144,9 @@ namespace AdeptusMechanicus
                     else
                     if (ExtraPartEntry.UseSecondaryColor)
                     {
-                        if (ExtraPartEntry.SecondaryColor != Color.white)
+                        if (ExtraPartEntry.overrideSecondaryColor.HasValue)
                         {
-                            return ExtraPartEntry.SecondaryColor;
+                            return ExtraPartEntry.overrideSecondaryColor.Value;
                         }
                         return this.parent.DrawColorTwo;
                     }
@@ -187,7 +187,7 @@ namespace AdeptusMechanicus
         //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
         }
         
-        public Vector3 GetAltitudeOffset(Rot4 rotation, ExtraPartEntry partEntry)
+        public Vector3 GetAltitudeOffset(Rot4 rotation, ExtraApparelPartProps partEntry)
         {
             Vector3 offset = new Vector3();
             if (!partEntry.hidesBody)
@@ -242,7 +242,7 @@ namespace AdeptusMechanicus
             return offset;
         }
 
-        public Vector3 NorthOffset(ExtraPartEntry Entry)
+        public Vector3 NorthOffset(ExtraApparelPartProps Entry)
         {
             if (Entry.NorthOffset != Vector3.zero)
             {
@@ -251,7 +251,7 @@ namespace AdeptusMechanicus
             return this.Props.NorthOffset;
         }
 
-        public Vector3 SouthOffset(ExtraPartEntry Entry)
+        public Vector3 SouthOffset(ExtraApparelPartProps Entry)
         {
             if (Entry.SouthOffset != Vector3.zero)
             {
@@ -260,7 +260,7 @@ namespace AdeptusMechanicus
             return this.Props.SouthOffset;
         }
 
-        public Vector3 EastOffset(ExtraPartEntry Entry)
+        public Vector3 EastOffset(ExtraApparelPartProps Entry)
         {
             if (Entry.EastOffset != Vector3.zero)
             {
@@ -269,7 +269,7 @@ namespace AdeptusMechanicus
             return this.Props.EastOffset;
         }
 
-        public Vector3 WestOffset(ExtraPartEntry Entry)
+        public Vector3 WestOffset(ExtraApparelPartProps Entry)
         {
             if (Entry.WestOffset != Vector3.zero)
             {
@@ -300,9 +300,9 @@ namespace AdeptusMechanicus
             base.PostSpawnSetup(respawningAfterLoad);
             if (!this.Props.ExtrasEntries.NullOrEmpty())
             {
-                extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraPartEntry x) => x.commonality);
-                this.graphicPath = extraPartEntry.extraTexPath;
-                this.shader = ShaderDatabase.LoadShader(extraPartEntry.shaderType.shaderPath);
+                extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                this.graphicPath = extraPartEntry.graphicData.texPath;
+                this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
                 this.ExtraUseBodyOffset = extraPartEntry.UseBodytypeOffsets;
             }
@@ -353,36 +353,6 @@ namespace AdeptusMechanicus
                 return ret;
             }
         }
-    }
-    
-    [StaticConstructorOnStartup]
-    public class ExtraPartEntry
-    {
-        public bool hidesHair = false;
-        public bool hidesHead = false;
-        public bool hidesBody = false;
-        public BodyTypeDef forcedBodyType = null;
-        public bool OnHead;
-        public bool UseBodytypeOffsets;
-        public bool UseHeadOffsets;
-        public ShaderTypeDef shaderType;
-        public string extraTexPath;
-        public int commonality;
-        public bool UsePrimaryColor;
-        public Color PrimaryColor = Color.white;
-        public bool UseSecondaryColor;
-        public Color SecondaryColor = Color.white;
-        public bool UseFactionTextures;
-        public int order = 1;
-        public int sublayer = 0;
-        public bool northtop = false;
-        public Vector2 drawSize = new Vector2(1, 1);
-        public Vector3 NorthOffset = new Vector3();
-        public Vector3 SouthOffset = new Vector3();
-        public Vector3 EastOffset = new Vector3();
-        public Vector3 WestOffset = new Vector3();
-        // Token: 0x0400006D RID: 109
-        private bool validated = false;
     }
 
 }
