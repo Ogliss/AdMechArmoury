@@ -193,14 +193,14 @@ namespace AdeptusMechanicus
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
             DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "bodyType", xmlRoot.Name);
-            this.offset = (Vector2)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector2));
+            this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
         }
 
         // Token: 0x040000F9 RID: 249
         public BodyTypeDef bodyType;
 
         // Token: 0x040000FA RID: 250
-        public Vector2 offset = Vector2.zero;
+        public Vector3 offset = Vector3.zero;
     }
 
     // Token: 0x0200002C RID: 44
@@ -211,14 +211,14 @@ namespace AdeptusMechanicus
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
             this.crownType = xmlRoot.Name;
-            this.offset = (Vector2)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector2));
+            this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
         }
 
         // Token: 0x040000FB RID: 251
         public string crownType;
 
         // Token: 0x040000FC RID: 252
-        public Vector2 offset = Vector2.zero;
+        public Vector3 offset = Vector3.zero;
     }
 
 }

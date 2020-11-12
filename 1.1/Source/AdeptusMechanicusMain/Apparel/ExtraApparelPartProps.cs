@@ -1,5 +1,7 @@
-﻿using RimWorld;
+﻿using JetBrains.Annotations;
+using RimWorld;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using Verse;
 
@@ -11,8 +13,7 @@ namespace AdeptusMechanicus
         public GraphicData graphicData;
         public BodyTypeDef forcedBodyType = null;
         public bool OnHead;
-        public bool UseBodytypeOffsets;
-        public bool UseHeadOffsets;
+        public bool UseBodytypeTextures;
         public int commonality;
         public Vector2 drawSize = new Vector2(1, 1);
 
@@ -36,15 +37,16 @@ namespace AdeptusMechanicus
         public Color? overrideSecondaryColor;
         public int order = 1;
         public int sublayer = 0;
+        public ApparelAddonOffsets offsets;
         public Vector3 NorthOffset = new Vector3();
         public Vector3 SouthOffset = new Vector3();
         public Vector3 EastOffset = new Vector3();
         public Vector3 WestOffset = new Vector3();
         public Vector2 size = new Vector2(1.5f, 1.5f);
 
-        public PauldronTextureOption activeOption;
-        public List<PauldronTextureOption> options = new List<PauldronTextureOption>();
-        public PauldronTextureOption defaultOption = new PauldronTextureOption(null, "Blank");
+        public TextureOption activeOption;
+        public List<TextureOption> options = new List<TextureOption>();
+        public TextureOption defaultOption = new TextureOption(null, new GraphicData());
 
 
         public Graphic Graphic(Apparel thing)
@@ -76,6 +78,75 @@ namespace AdeptusMechanicus
 
         private Graphic graphic;
         private GraphicMeshSet meshSet;
+    }
+    // Token: 0x02000031 RID: 49
+    public class ApparelAddonOffsets
+    {
+        public Vector3 offset;
+        public Vector2 size;
+        // Token: 0x04000103 RID: 259
+        public OffsetRotation south;
+
+        // Token: 0x04000104 RID: 260
+        public OffsetRotation north;
+
+        // Token: 0x04000105 RID: 261
+        public OffsetRotation east;
+
+        // Token: 0x04000106 RID: 262
+        public OffsetRotation west;
+    }
+
+    // Token: 0x02000032 RID: 50
+    public class OffsetRotation
+    {
+        // Token: 0x04000107 RID: 263
+        public List<OffsetBodyType> portraitBodyTypes;
+
+        // Token: 0x04000108 RID: 264
+        public List<OffsetBodyType> bodyTypes;
+
+        // Token: 0x04000109 RID: 265
+        public List<OffsetCrownType> portraitCrownTypes;
+
+        // Token: 0x0400010A RID: 266
+        public List<OffsetCrownType> crownTypes;
+    }
+
+    // Token: 0x02000033 RID: 51
+    public class OffsetBodyType
+    {
+        // Token: 0x060000F4 RID: 244 RVA: 0x0000B9D6 File Offset: 0x00009BD6
+        [UsedImplicitly]
+        public void LoadDataFromXmlCustom(XmlNode xmlRoot)
+        {
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "bodyType", xmlRoot.Name, null, null);
+            this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
+        }
+
+        // Token: 0x0400010B RID: 267
+        public BodyTypeDef bodyType;
+
+        // Token: 0x0400010C RID: 268
+        public Vector3 offset = Vector3.zero;
+    }
+
+    // Token: 0x02000034 RID: 52
+    public class OffsetCrownType
+    {
+        // Token: 0x060000F6 RID: 246 RVA: 0x0000BA23 File Offset: 0x00009C23
+        [UsedImplicitly]
+        public void LoadDataFromXmlCustom(XmlNode xmlRoot)
+        {
+            this.crownType = xmlRoot.Name;
+            this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
+        }
+
+        // Token: 0x0400010D RID: 269
+        public string crownType;
+
+        // Token: 0x0400010E RID: 270
+        public Vector3 offset = Vector3.zero;
     }
 
 }

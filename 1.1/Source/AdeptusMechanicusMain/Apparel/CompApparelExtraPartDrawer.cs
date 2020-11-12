@@ -23,6 +23,7 @@ namespace AdeptusMechanicus
         public Vector3 EastOffset = new Vector3();
         public Vector3 WestOffset = new Vector3();
         public ApparelLayerDef ApparelLayer = null;
+        public bool onHead = false;
 
     }
     [StaticConstructorOnStartup]
@@ -44,7 +45,7 @@ namespace AdeptusMechanicus
         const float _SubOffsetFactor = 0.0001f;
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
         public Shader shader = ShaderDatabase.Cutout;
-        public bool ExtraUseBodyOffset; 
+        public bool ExtraUseBodyTexture; 
         public bool ExtraUseHeadOffset; 
         private bool useSecondaryColor;
         public bool hidesHair => Props.ExtrasEntries.Any(x=> x.hidesHair);
@@ -56,7 +57,8 @@ namespace AdeptusMechanicus
         private bool pauldronInitialized = false;
 #pragma warning restore IDE0052 // Remove unread private members
 
-        public ExtraApparelPartProps extraPartEntry;
+        private ExtraApparelPartProps extraPartEntry;
+        private int extraPartEntryint;
         public ExtraApparelPartProps ExtraPartEntry
         {
             get
@@ -65,13 +67,22 @@ namespace AdeptusMechanicus
                 {
                     if (extraPartEntry == null)
                     {
-                        extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                        if (extraPartEntryint == -1)
+                        {
+                            Rand.PushState();
+                            extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                            Rand.PopState();
+                            extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
 
-
-                        this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
-                        this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
-                        this.ExtraUseBodyOffset = extraPartEntry.UseBodytypeOffsets;
-                        pauldronInitialized = true;
+                            this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
+                            this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
+                            this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
+                            pauldronInitialized = true;
+                        }
+                        else
+                        {
+                            extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
+                        }
                     }
                 }
                 else
@@ -90,7 +101,7 @@ namespace AdeptusMechanicus
                 if (_Graphic == null)
                 {
                     string path = GraphicPath;
-                    if (ExtraUseBodyOffset && !onHead)
+                    if (ExtraUseBodyTexture && !onHead)
                     {
                         path += "_" + pawn.story.bodyType.ToString();
                     }
@@ -183,11 +194,12 @@ namespace AdeptusMechanicus
             base.PostExposeData();
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
             Scribe_Values.Look<string>(ref this.graphicPath, "extragraphicPath", null, false);
-            Scribe_Values.Look<bool>(ref this.ExtraUseBodyOffset, "UseBodyOffset", false);
+            Scribe_Values.Look<bool>(ref this.ExtraUseBodyTexture, "UseBodyOffset", false);
+            Scribe_Values.Look<int>(ref this.extraPartEntryint, "extraPartEntryint", -1);
         //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
         }
         
-        public Vector3 GetAltitudeOffset(Rot4 rotation, ExtraApparelPartProps partEntry)
+        public Vector3 GetOffset(Rot4 rotation, ExtraApparelPartProps partEntry)
         {
             Vector3 offset = new Vector3();
             if (!partEntry.hidesBody)
@@ -196,8 +208,7 @@ namespace AdeptusMechanicus
                 offset.y = offset.y + (_SubOffsetFactor * partEntry.sublayer);
             }
 
-            bool flag = Find.Selector.SingleSelectedThing == pawn && Prefs.DevMode && DebugSettings.godMode;
-            if (!onHead)
+            if (!onHead || Props.onHead)
             {
                 offset.y += _BodyOffset;
                 if (rotation == Rot4.North)
@@ -234,10 +245,6 @@ namespace AdeptusMechanicus
                 else
                     offset.y += _HeadOffset;
             }
-            if (flag)
-            {
-                //    Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.pawn.Label, parent.def.label, direction, offset, pawn.Drawer.DrawPos.y));
-            }
 
             return offset;
         }
@@ -246,7 +253,7 @@ namespace AdeptusMechanicus
         {
             if (Entry.NorthOffset != Vector3.zero)
             {
-                return Entry.NorthOffset;
+                return Entry.NorthOffset + this.Props.NorthOffset;
             }
             return this.Props.NorthOffset;
         }
@@ -255,7 +262,7 @@ namespace AdeptusMechanicus
         {
             if (Entry.SouthOffset != Vector3.zero)
             {
-                return Entry.SouthOffset;
+                return Entry.SouthOffset + this.Props.SouthOffset;
             }
             return this.Props.SouthOffset;
         }
@@ -264,7 +271,7 @@ namespace AdeptusMechanicus
         {
             if (Entry.EastOffset != Vector3.zero)
             {
-                return Entry.EastOffset;
+                return Entry.EastOffset + this.Props.EastOffset;
             }
             return this.Props.EastOffset;
         }
@@ -273,7 +280,7 @@ namespace AdeptusMechanicus
         {
             if (Entry.WestOffset != Vector3.zero)
             {
-                return Entry.WestOffset;
+                return Entry.WestOffset + this.Props.WestOffset;
             }
             return this.Props.WestOffset;
         }
@@ -304,7 +311,7 @@ namespace AdeptusMechanicus
                 this.graphicPath = extraPartEntry.graphicData.texPath;
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
-                this.ExtraUseBodyOffset = extraPartEntry.UseBodytypeOffsets;
+                this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
             }
             pauldronInitialized = true;
 
@@ -315,6 +322,10 @@ namespace AdeptusMechanicus
         {
             get
             {
+                if (Props.onHead)
+                {
+                    return true;
+                }
                 if (!_OnHeadCache.ContainsKey(parent.def.defName))
                 {
                     List<BodyPartRecord> parts = pawn.RaceProps.body.AllParts.Where(parent.def.apparel.CoversBodyPart).ToList();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000020 RID: 32
+    // AdeptusMechanicus.ApparelRestrictionDefExtension
     public class ApparelRestrictionDefExtension : DefModExtension
     {
         public bool Any = false;
@@ -14,6 +14,12 @@ namespace AdeptusMechanicus
         public List<TraitDef> TraitDefs = new List<TraitDef>();
         public Gender gender = Gender.None;
         public BodyTypeDef forcedBodytype = null;
+        public List<RaceSpecificTexturePath> raceSpecifics = new List<RaceSpecificTexturePath>();
 
+    }
+    public struct RaceSpecificTexturePath
+    {
+        public string raceDef;
+        public string texPath;
     }
 }

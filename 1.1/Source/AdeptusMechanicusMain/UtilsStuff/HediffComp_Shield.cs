@@ -18,6 +18,12 @@ namespace AdeptusMechanicus
         public float EnergyShieldRechargeRate;
         public float DrawX = 1f;
         public float DrawY = 1f;
+        public bool allowRanged = false;
+        public bool allowMelee = true;
+        public bool blockRanged = true;
+        public bool blockMelee = false;
+        public bool brokenByEMP = true;
+
     }
     // Token: 0x02000706 RID: 1798
     [StaticConstructorOnStartup]
@@ -142,13 +148,13 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
-            if (dinfo.Def == DamageDefOf.EMP)
+            if (dinfo.Def == DamageDefOf.EMP && Props.brokenByEMP)
             {
                 this.energy = 0f;
                 this.Break();
                 return false;
             }
-            if (true)
+            if ((dinfo.Def.isRanged && Props.blockRanged) || (!dinfo.Def.isRanged && Props.blockMelee))
             {
                 this.energy -= dinfo.Amount * this.EnergyLossPerDamage;
                 if (this.energy < 0f)
@@ -161,7 +167,7 @@ namespace AdeptusMechanicus
                 }
                 return true;
             }
-            //return false;
+            return false;
         }
 
         // Token: 0x0600273E RID: 10046 RVA: 0x0012AC38 File Offset: 0x00129038

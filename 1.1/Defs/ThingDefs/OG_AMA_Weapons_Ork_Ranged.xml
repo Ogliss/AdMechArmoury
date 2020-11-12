@@ -129,7 +129,7 @@
 		<description>A Slugga is the Ork equivalent of a Space Marine Bolt Pistol. It is usually paired with a Choppa, and mobs of Boyz who carry the two are called Slugga Boyz. Due to the ramshackle nature of Ork weaponry, every Slugga is different, but most if not all Sluggas are semi-automatic, large calibre side arms. Though not as sophisticated as most other weapons used in the Imperium, Sluggas are no less effective than other, more advanced side arms when used correctly. As far as the melee-focused Ork holding it is concerned, the effectiveness of a Slugga is of little importance, as long as it is big and makes a loud noise when it fires.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Slugga</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -231,7 +231,10 @@
 		<description>A Shoota is a kinetic, ballistic weapon used by the Orks that is chosen not for its efficiency but for the amount of noise it makes and the amount of damage it can do. The best Shootas are deafening and deadly in equal measure. Like the Slugga, Shootas are not very accurate. This suits the Orks just fine since they seem less interested in accuracy than in causing damage and raising a ruckus. The noise of a Shoota will give Orks a morale boost and can cause enemies to lose their morale and retreat from the overpowering noise of dozens of Shootas. None the less, mobs of Shoota Boyz make up for their lack of accuracy with the sheer volume of fire directed at their targets.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Shoota</texPath>
-			<graphicClass>Graphic_Single</graphicClass>		
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<!--color>(255,231,0)</color-->
+			<color>(183,175,0)</color>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -1113,23 +1116,26 @@
 	<!-- ====================== Ork - Burna ===================== -->
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGO_Bullet_Burna</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
 		<label>flames</label>
 		<tickerType>Normal</tickerType>
 		<graphicData>
 			<texPath>Things/Projectile/FlamerFire</texPath>
-			<graphicClass>Graphic_Flicker</graphicClass>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<modExtensions>
 			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-			<ticksPerFrame>15</ticksPerFrame>
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>3</projectileCount>
 			</li>
 		</modExtensions>
-		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
 		<projectile>
 				<flyOverhead>false</flyOverhead>
 				<damageDef>OGFlamer</damageDef>
-				<damageAmountBase>1</damageAmountBase>
+				<damageAmountBase>2</damageAmountBase>
 				<armorPenetrationBase>0.16</armorPenetrationBase>
 				<explosionRadius>0.75</explosionRadius>
 				<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
@@ -1146,20 +1152,23 @@
 	<ThingDef ParentName="OG_Ork_Gun_Special">
 		<defName>OGO_Gun_Burna</defName>
 		<label>burna (O)</label>
-		<description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
+		<description>A Burna is a stripped-down version of a typical Flamer Weapon utilised by the Orks. Flame has an undeniable appeal to the Greenskin race. These "Burnas" are long, stripped-down Flamers able to spray great gouts of oily flame, and are linked to a sloshing tank of volatile Promethium slung over their shoulder. Ork Boyz can modify their Burnas with special nozzles and valves that can be switched to force out a fierce blue tongue of fire instead of a cloud of orange flame. This "cuttin' flame" is powerful enough to slice through any material up to and including a metal bulkhead. In battle, Burnas prove extremely useful, as they can be utilised to flush out enemies hiding in ruined buildings and woods. When facing heavily armoured opponents such as Space Marines, Burna Boyz can simply switch to their cuttin' flames and use their Burnas to slice apart the foe.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Burna</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<!--color>(255,231,0)</color-->
+			<color>(183,175,0)</color>
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<WorkToMake>120000</WorkToMake>
 			<!--MarketValue>1875</MarketValue-->
 			<Mass>3.2</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.45</AccuracyShort>
-			<AccuracyMedium>0.15</AccuracyMedium>
-			<AccuracyLong>0.10</AccuracyLong>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
 			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedStatOffsets>
@@ -1188,15 +1197,15 @@
 		<tradeTags>
 			<li>OGORanged</li>
 		</tradeTags>
-		<generateCommonality>0.20</generateCommonality>
+		<generateCommonality>0.10</generateCommonality>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
 				<warmupTime>0.5</warmupTime>
-				<range>12</range>
-				<burstShotCount>24</burstShotCount>
+				<range>14</range>
+				<burstShotCount>12</burstShotCount>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 				<soundCast>OG_Flamer_Sound</soundCast>
@@ -1208,21 +1217,21 @@
 			</li>
 		</verbs>
 		<comps>	
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
+			<!--li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
 						<Multishot>true</Multishot>
 						<ScattershotCount>1</ScattershotCount>
-				</li>
-			</VerbEntries>
-			</li> 
+					</li>
+				</VerbEntries>
+			</li--> 
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
 				<westOffset>0.0,0.0,0.0</westOffset>
 				<southOffset>0.0,1.0,0.0</southOffset>
 			</li>  
-				<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<altitudeLayer>MoteOverhead</altitudeLayer>
 				<!--
@@ -1235,43 +1244,47 @@
 					<texPath>Things/Item/Equipment/WeaponRanged/Ork/BurnaFlame</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
 					<shaderType>TransparentPostLight</shaderType>
+					<color>(143,075,0)</color>
 				</graphicData>			
-				</li>
+			</li>
 		</comps>
 		<tools>
 			<li>
-			<label>cutting torch</label>
-			<capacities>
-				<li>OG_PowerWeapon_Cut</li>
-			</capacities>
-			<power>12</power>
-			<cooldownTime>1.8</cooldownTime>
+				<label>cutting torch</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
 			<li>
-			<label>stock</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>9</power>
-			<cooldownTime>1.8</cooldownTime>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
 			<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-				<li>Poke</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>false</dualWield>
-			<twoHand>true</twoHand>
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrellength>0.6</barrellength>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -1279,19 +1292,22 @@
 	<!-- ====================== Ork - Scorcha ===================== -->
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGO_Bullet_Scorcha</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
 		<label>flames</label>
 		<tickerType>Normal</tickerType>
 		<graphicData>
 			<texPath>Things/Projectile/FlamerFire</texPath>
-			<graphicClass>Graphic_Flicker</graphicClass>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<modExtensions>
 			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-			<ticksPerFrame>15</ticksPerFrame>
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>5</projectileCount>
 			</li>
 		</modExtensions>
-		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
 		<projectile>
 				<flyOverhead>false</flyOverhead>
 				<damageDef>OGFlamer</damageDef>
@@ -1373,14 +1389,14 @@
 			</li>
 		</verbs>
 		<comps>	
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<!--li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 				<VerbEntries>
 					<li>
 						<Multishot>true</Multishot>
 						<ScattershotCount>2</ScattershotCount>
 					</li>
 				</VerbEntries>
-			</li> 
+			</li--> 
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>

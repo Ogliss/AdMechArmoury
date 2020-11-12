@@ -956,6 +956,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = defName + "_Body";
                     }
                 }
+                if (defType == typeof(LifeStageDef))
+                {
+                    newName = "OG_Lifestage_";
+                    if (defName.Contains("Orkoid"))
+                    {
+                        newName += "Ork_";
+                        newName = Regex.Replace(defName, "Orkoid", newName);
+                    }
+                }
                 if (defType == typeof(ScenarioDef))
                 {
                     if (defName == "OG_Militarum_Start")

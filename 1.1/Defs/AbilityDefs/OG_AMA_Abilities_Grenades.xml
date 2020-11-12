@@ -536,10 +536,10 @@
 		</comps>
 	</AbilitesExtended.EquipmentAbilityDef>
  
-  <!-- ======================== Eldar - Grenade Launcher Ability ================================== -->
+	<!-- ======================== Eldar - Grenade Launcher Ability ================================== -->
 <!--
- <ThingDef ParentName="BaseGrenadeProjectile">
-   <defName>Projectile_OGEGrenadeL</defName>
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGEGrenadeL</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Grenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -553,7 +553,7 @@
 			<speed>35</speed>
 			<flyOverhead>false</flyOverhead>
 		</projectile>
- </ThingDef>
+	</ThingDef>
 
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGE_Ability_Launch</defName>
@@ -588,16 +588,19 @@
 			<clamorRadius>0</clamorRadius>
 			</li>
 		</comps>
- </AbilitesExtended.EquipmentAbilityDef>
+	</AbilitesExtended.EquipmentAbilityDef>
  -->
  
- <!-- ======================== Ork - Grenade Ability ================================== -->
-<!-- ======================== Ork - Frag Grenade Ability ================================== -->
+	<!-- ======================== Ork - Grenade Ability ================================== -->
+	<!-- ======================== Ork - Frag Grenade Ability ================================== -->
 	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>Projectile_OGOGrenadeFrag</defName>
+		<defName>OGO_Projectile_Stikkbomb_Frag</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/OrkFragStikkBomb</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRotating</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(199,199,46)</color>
 		</graphicData>
 		<projectile>
 			<damageDef>OGGrenadeFrag</damageDef>
@@ -613,7 +616,7 @@
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGO_Ability_ThrowFrag</defName>
         <label>Lob Frag</label>
-        <iconPath>Things/Projectile/OrkFragStikkBomb</iconPath>
+        <iconPath>Things/Projectile/StikkBomb</iconPath>
         <description>Lobs a Frag Stikkbomb.</description>
         <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
@@ -621,7 +624,7 @@
             <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
 			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-			<defaultProjectile>Projectile_OGOGrenadeFrag</defaultProjectile>
+			<defaultProjectile>OGO_Projectile_Stikkbomb_Frag</defaultProjectile>
             <warmupTime>2.4</warmupTime>
             <burstShotCount>1</burstShotCount>
             <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
@@ -629,7 +632,6 @@
 			<forcedMissRadius>1.9</forcedMissRadius>
             <soundCast>ThrowGrenade</soundCast>
             <muzzleFlashScale>0</muzzleFlashScale>
-            
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
@@ -645,12 +647,15 @@
 		</comps>
 	</AbilitesExtended.EquipmentAbilityDef>
  
-<!-- ======================== Ork - Krak Grenade Ability ================================== -->
+	<!-- ======================== Ork - Krak Grenade Ability ================================== -->
 	<ThingDef ParentName="BaseGrenadeProjectile">
 		<defName>Projectile_OGOGrenadeKrak</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/OrkKrakStikkBomb</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRotating</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(183,075,0)</color>
 		</graphicData>
 		<projectile>
 			<damageDef>OGGrenadeKrak</damageDef>
@@ -666,7 +671,7 @@
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGO_Ability_ThrowKrak</defName>
         <label>Lob Krak</label>
-        <iconPath>Things/Projectile/OrkKrakStikkBomb</iconPath>
+        <iconPath>Things/Projectile/StikkBomb</iconPath>
         <description>Lobs a Krak Stikkbomb.</description>
         <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>
@@ -702,7 +707,7 @@
 	<ThingDef ParentName="BaseGrenadeProjectile">
 		<defName>Projectile_OGOGrenadeMelta</defName>
 		<graphicData>
-			<texPath>Things/Projectile/OrkTankbustaBomb</texPath>
+			<texPath>Things/Projectile/TankbustaBomb</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile>
@@ -719,7 +724,7 @@
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGO_Ability_ThrowMelta</defName>
         <label>Lob Tankbusta</label>
-        <iconPath>Things/Projectile/OrkTankbustaBomb</iconPath>
+        <iconPath>Things/Projectile/TankbustaBomb</iconPath>
         <description>Lobs a Tankbusta Bomb.</description>
         <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
 		<cooldown>30</cooldown>

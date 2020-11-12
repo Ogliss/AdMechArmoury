@@ -6,8 +6,13 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x0200031C RID: 796
-    public class CompFactionColorableTwo : CompColorableTwo
+	public class CompProperties_FactionColorable : CompProperties
+    {
+
+    }
+
+	// Token: 0x0200031C RID: 796
+	public class CompFactionColorableTwo : CompColorableTwo
 	{
 		public virtual bool ActiveFaction
         {

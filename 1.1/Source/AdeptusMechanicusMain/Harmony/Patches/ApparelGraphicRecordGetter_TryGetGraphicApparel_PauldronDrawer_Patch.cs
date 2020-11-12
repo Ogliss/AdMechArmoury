@@ -42,7 +42,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 			{
 				string comptype = "CompColorableTwo Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				string msg = string.Empty;
-				string msk = string.Empty;
+				string msk = "m";
 				CompFactionColorableTwo factionColors = compColorable as CompFactionColorableTwo;
 				Color colorOne = compColorable.Color;
 				Color colorTwo = compColorable.ColorTwo;
@@ -98,7 +98,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             if (!factionColors.Extension.factionMaskTag.NullOrEmpty())
 							{
 							//	Log.Message("factionColors.factionMaskTag");
-								msk = "m_" + factionColors.Extension.factionMaskTag;
+								msk = msk +"_" + factionColors.Extension.factionMaskTag;
 							//	Log.Message("factionMaskTag: "+msk);
 							}
 						}
@@ -158,7 +158,54 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 				newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
 
-			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+				//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			}
+			if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
+			{
+				if (apparel.def.GetModExtension<ApparelRestrictionDefExtension>() is ApparelRestrictionDefExtension apparelExt)
+				{
+					Log.Message("is ApparelRestrictionDefExtension apparelExt");
+					if (!apparelExt.raceSpecifics.NullOrEmpty())
+					{
+						Log.Message("ApparelRestrictionDefExtension raceSpecifics apparel.Wearer?: "+ apparel.Wearer);
+						foreach (var item in apparelExt.raceSpecifics)
+						{
+							ThingDef RaceDef = DefDatabase<ThingDef>.GetNamedSilentFail(item.raceDef);
+                            if (RaceDef == null)
+                            {
+								continue;
+                            }
+							Log.Message("ApparelRestrictionDefExtension raceSpecifics apparel.Wearer: " + apparel.Wearer.def);
+							Log.Message("ApparelRestrictionDefExtension raceSpecifics item.raceDef: " + RaceDef);
+							if (RaceDef == apparel.Wearer.def)
+							{
+								Log.Message("ApparelRestrictionDefExtension raceDef == apparel.Wearer.def");
+								if (!item.texPath.NullOrEmpty())
+								{
+									Log.Message("ApparelRestrictionDefExtension for: "+ item.raceDef + " texPath:" + item.texPath);
+									string path;
+									if (apparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead || PawnRenderer.RenderAsPack(apparel) || apparel.def.apparel.wornGraphicPath == BaseContent.PlaceholderImagePath)
+									{
+										path = apparel.def.apparel.wornGraphicPath + "_" + item.texPath;
+									}
+									else
+									{
+										path = apparel.def.apparel.wornGraphicPath + "_" + item.texPath + "_" + bodyType.defName;
+									}
+									Shader shader = ShaderDatabase.Cutout;
+									if (apparel.def.apparel.useWornGraphicMask)
+									{
+										shader = ShaderDatabase.CutoutComplex;
+									}
+									Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, apparel.def.graphicData.drawSize, rec.graphic.color, rec.graphic.colorTwo);
+									rec = new ApparelGraphicRecord(graphic, apparel);
+
+								}
+								break;
+							}
+						}
+					}
+				}
 			}
 			/*
             for (int i = 0; i < apparel.AllComps.Count; i++)

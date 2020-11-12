@@ -109,15 +109,29 @@ namespace AdeptusMechanicus.HarmonyInstance
                             Vector3 drawAt = vector;
                             if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
                             {
-                                if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, bodyFacing, out Material extraMat))
+                                bool onHead = ExtraDrawer.onHead;
+                                Rot4 facing = onHead ? headfacing : bodyFacing;
+                                if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                 {
-                                    if (ExtraDrawer.onHead)
+                                    if (onHead)
                                     {
-                                        drawAt = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                        Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                        drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
+                                        
                                     }
-                                    drawAt += quat * ExtraDrawer.GetAltitudeOffset(bodyFacing, ExtraDrawer.ExtraPartEntry);
-                                    Material material = OverrideMaterialIfNeeded(extraMat, pawn);
-                                    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
+                                    else
+                                    {
+                                        drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                    }
+                                    GenDraw.DrawMeshNowOrLater
+                                        (
+                                            // pauldronMesh,
+                                            GetPawnMesh(portrait, pawn, facing, !onHead),
+                                            drawAt,
+                                            quat,
+                                            OverrideMaterialIfNeeded(extraMat, pawn),
+                                            portrait
+                                        );
                                     //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                 }
                             }

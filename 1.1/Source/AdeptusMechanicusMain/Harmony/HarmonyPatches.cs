@@ -66,9 +66,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("hasSpaceSuit"), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
         }
 
-        private static void SOSSpaceSuitPostfix_Flesh_Construct(Pawn thePawn, ref bool __result)
+        private static void SOSSpaceSuitPostfix_Flesh_Construct(Pawn pawn, ref bool __result)
         {
-            if (thePawn.RaceProps.FleshType.defName.Contains("OG_Flesh_Construct"))
+            if (pawn.RaceProps.FleshType.defName.Contains("OG_Flesh_Construct"))
             {
                 __result = true;
             }
