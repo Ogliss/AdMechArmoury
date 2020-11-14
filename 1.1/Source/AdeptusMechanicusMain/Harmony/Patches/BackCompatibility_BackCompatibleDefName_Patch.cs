@@ -965,6 +965,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = Regex.Replace(defName, "Orkoid", newName);
                     }
                 }
+                if (defType == typeof(HairDef))
+                {
+                    if (defName.Contains("OG"))
+                    {
+                        newName = Regex.Replace(defName, "OG", "");
+                    }
+                }
                 if (defType == typeof(ScenarioDef))
                 {
                     if (defName == "OG_Militarum_Start")

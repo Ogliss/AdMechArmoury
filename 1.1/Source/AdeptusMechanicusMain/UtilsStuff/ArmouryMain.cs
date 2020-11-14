@@ -86,7 +86,11 @@ namespace AdeptusMechanicus
             IEnumerable<RecipeDef> humanRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x=> x.AllRecipeUsers.Contains(ThingDefOf.Human));
             foreach (RecipeDef item in humanRecipes)
             {
-            //    Log.Message("Checking Human recipes " + item);
+                if (item.recipeUsers.NullOrEmpty())
+                {
+                    item.recipeUsers = new List<ThingDef>();
+                }
+                //    Log.Message("Checking Human recipes " + item);
                 if (mechanicus != null)
                 {
                     //    Log.Message("ArmouryMain 1 mechanicus");
@@ -105,6 +109,37 @@ namespace AdeptusMechanicus
                         //    Log.Message("Adding " + item + " to astartes");
                             item.recipeUsers.Add(astartes);
                         //    Log.Message("Added " + item + " to astartes");
+                        }
+                    }
+                }
+                if (AdeptusIntergrationUtil.enabled_GeneSeed)
+                {
+                    ThingDef GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
+                    if (GeneseedAstartes != null)
+                    {
+                        if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
+                        {
+                            if (!item.AllRecipeUsers.Contains(GeneseedAstartes))
+                            {
+                                //    Log.Message("ArmouryMain 1 astartes");
+                                //    Log.Message("Adding " + item + " to astartes");
+                                item.recipeUsers.Add(GeneseedAstartes);
+                                //    Log.Message("Added " + item + " to astartes");
+                            }
+                        }
+                    }
+                    ThingDef GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes");
+                    if (GeneseedCustodes != null)
+                    {
+                        if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
+                        {
+                            if (!item.AllRecipeUsers.Contains(GeneseedCustodes))
+                            {
+                                //    Log.Message("ArmouryMain 1 astartes");
+                                //    Log.Message("Adding " + item + " to astartes");
+                                item.recipeUsers.Add(GeneseedCustodes);
+                                //    Log.Message("Added " + item + " to astartes");
+                            }
                         }
                     }
                 }
@@ -209,6 +244,15 @@ namespace AdeptusMechanicus
             if (ogryn != null) races.Add(ogryn);
             if (ratlin != null) races.Add(ratlin);
             if (beastman != null) races.Add(beastman);
+
+            if (AdeptusIntergrationUtil.enabled_GeneSeed)
+            {
+                AlienRace.ThingDef_AlienRace GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine") as AlienRace.ThingDef_AlienRace;
+                AlienRace.ThingDef_AlienRace GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes") as AlienRace.ThingDef_AlienRace;
+                if (GeneseedAstartes != null) races.Add(GeneseedAstartes);
+                if (GeneseedCustodes != null) races.Add(GeneseedCustodes);
+            }
+
             if (!races.NullOrEmpty())
             {
                 List<string> Tags = new List<string>() { "I", "C" };

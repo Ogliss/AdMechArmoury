@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Gas -->
+  
+  <ThingDef Class="AdeptusMechanicus.Thing_AddAcidDamageDef" ParentName="BaseGas">
+    <defName>AcidGas</defName>
+    <label>corrosive gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.5,0.8,0.3,0.6)</color>
+    </graphicData>
+<!--	<tickerType>Rare</tickerType> -->
+	<thingClass>AdeptusMechanicus.Thing_AddAcidDamage</thingClass>
+    <gas>
+      <expireSeconds>
+        <min>50</min>
+        <max>60</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+		
+    </gas>
+  </ThingDef>
+  
+  <ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>ToxicGas</defName>
+    <label>toxic gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.1,0.8,0.5,0.4)</color>
+    </graphicData>
+<!--	<tickerType>Rare</tickerType> -->
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>ToxicGas</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.11</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>50</min>
+        <max>60</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+		
+    </gas>
+  </ThingDef>
+  
+    <ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>RageGas</defName>
+    <label>rage gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.9,0.3,0.1,0.4)</color>
+    </graphicData>
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>RageGas</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.08</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+		
+    </gas>
+  </ThingDef>
+  
+<ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>TearGas</defName>
+    <label>tear gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.7,0.7,0.8,0.4)</color>
+    </graphicData>
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>TearGas</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.08</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+    </gas>
+</ThingDef>
+
+<ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>SleepGas</defName>
+    <label>sleep gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.1,0.3,0.8,0.4)</color>
+    </graphicData>
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>SleepGas</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.1</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+    </gas>
+</ThingDef>
+
+<ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>FearGas</defName>
+    <label>fear gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(1.0,0.75,0.0,0.4)</color>
+    </graphicData>
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>FearGas</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.1</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>false</blockTurretTracking>
+      <accuracyPenalty>0.3</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+    </gas>
+</ThingDef>
+
+	<ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+		<defName>HallucinogenGas</defName>
+		<label>hallucinogen gas</label>
+		<graphicData>
+			<texPath>Things/Gas/Puff</texPath>
+			<drawSize>2.5</drawSize>
+			<color>(0.40,0.75,0.0,0.4)</color>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+		<addHediff>HallucinogenGas</addHediff>
+		<hediffAddChance>1.0</hediffAddChance>
+		<hediffSeverity>0.3</hediffSeverity>
+		<onlyAffectLungs>true</onlyAffectLungs> 
+		<gas>
+			<expireSeconds>
+			<min>35</min>
+			<max>50</max>
+			</expireSeconds>
+			<blockTurretTracking>false</blockTurretTracking>
+			<accuracyPenalty>0.3</accuracyPenalty>
+			<rotationSpeed>10</rotationSpeed>
+		</gas>
+	</ThingDef>
+			
+<!--
+<ThingDef Class="AdeptusMechanicus.Thing_AddsHediffDef" ParentName="BaseGas">
+    <defName>MetamorphosGas</defName>
+    <label>metamorphos gas</label>
+    <graphicData>
+      <texPath>Things/Gas/Puff</texPath>
+      <drawSize>2.5</drawSize>
+      <color>(0.1,0.3,0.8,0.4)</color>
+    </graphicData>
+	<thingClass>AdeptusMechanicus.Thing_AddsHediff</thingClass>
+	<addHediff>DeathSpawn</addHediff>
+	<hediffAddChance>1.0</hediffAddChance>
+    <hediffSeverity>0.15</hediffSeverity>
+	<onlyAffectLungs>true</onlyAffectLungs> 
+    <gas>
+      <expireSeconds>
+        <min>35</min>
+        <max>50</max>
+      </expireSeconds>
+      <blockTurretTracking>true</blockTurretTracking>
+      <accuracyPenalty>0.4</accuracyPenalty>
+      <rotationSpeed>10</rotationSpeed>
+    </gas>
+</ThingDef>
+  -->
+</Defs>

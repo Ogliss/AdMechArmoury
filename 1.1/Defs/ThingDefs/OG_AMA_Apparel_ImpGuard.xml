@@ -3,7 +3,7 @@
 
 	<!-- ========================= Imperial Guard / Astra Militarum - Apparel ========================== -->	
 	<!-- ========================= Militarum - Trenchcoat Base ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel" Name="OG_Imperial_Trenchcoat_Base" Abstract="True">
+	<ThingDef ParentName="OG_Imperial_Apparel_NoStuffColour" Name="OG_Imperial_Trenchcoat_Base" Abstract="True">
 		<description>A long trenchcoat coat for blocking the sun and grit of the outdoors.</description>
 		<label>trenchcoat</label>
 		<techLevel>Spacer</techLevel>
@@ -24,6 +24,7 @@
 			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 		</statBases>
 		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
 			<researchPrerequisite>ComplexClothing</researchPrerequisite>
 		</recipeMaker>
 		<costList>
@@ -425,7 +426,6 @@
 			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<color>(183,148,92)</color>
 			<colorTwo>(45,32,24)</colorTwo>
 		</graphicData>
 		<statBases>
@@ -449,6 +449,10 @@
 			<DevilstrandCloth>30</DevilstrandCloth>
 		</costList>
 		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</wornGraphicPath>
@@ -471,6 +475,14 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>183,148,92</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<comps>
 			<!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
 			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
@@ -589,7 +601,6 @@
 			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-		<color>(75,75,75)</color>
 		<colorTwo>(45,32,24)</colorTwo>
 		</graphicData>
 		<!--statBases>
@@ -608,6 +619,10 @@
 			<WorkSpeedGlobal>0.0</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</wornGraphicPath>
@@ -620,6 +635,14 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>75,75,75</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<comps>
 		
 		</comps>
