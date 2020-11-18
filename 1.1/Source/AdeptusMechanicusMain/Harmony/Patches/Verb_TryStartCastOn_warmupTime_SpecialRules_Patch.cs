@@ -21,7 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix, HarmonyPriority(200)]
         public static void Prefix(ref Verb __instance, LocalTargetInfo castTarg, ref float __state)
         {
-            if (AdeptusIntergrationUtil.enabled_CombatExtended)
+            if (AdeptusIntergrationUtility.enabled_CombatExtended)
             {
                 if (!CE(__instance))
                 {

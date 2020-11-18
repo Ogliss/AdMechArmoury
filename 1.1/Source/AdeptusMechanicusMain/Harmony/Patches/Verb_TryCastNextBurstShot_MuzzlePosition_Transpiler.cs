@@ -56,7 +56,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     Vector3 offsetOffHand = default(Vector3);
                     float offHandAngle = aimAngle;
                     float mainHandAngle = aimAngle;
-                    Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.CasterPawn, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
+                    Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
                     if (DualWeapon) Log.Message("Throwing flash for "+ compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using "+(!compOversized.FirstAttack ? "OffHand" : "MainHand")+ " FirstAttack: " + compOversized.FirstAttack);
                     origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
                     // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);

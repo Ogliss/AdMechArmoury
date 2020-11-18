@@ -112,7 +112,7 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                if (AdeptusIntergrationUtil.enabled_GeneSeed)
+                if (AdeptusIntergrationUtility.enabled_GeneSeed)
                 {
                     ThingDef GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
                     if (GeneseedAstartes != null)
@@ -177,7 +177,7 @@ namespace AdeptusMechanicus
                                           where TechHediffItems.Any(z=> x.IsIngredient(z)) && x.targetsBodyPart
                                           select x;
             //    Log.Message("ArmouryMain 4");
-            if (AdeptusIntergrationUtil.enabled_AlienRaces)
+            if (AdeptusIntergrationUtility.enabled_AlienRaces)
             {
                 AlienRaces();
             }
@@ -245,7 +245,7 @@ namespace AdeptusMechanicus
             if (ratlin != null) races.Add(ratlin);
             if (beastman != null) races.Add(beastman);
 
-            if (AdeptusIntergrationUtil.enabled_GeneSeed)
+            if (AdeptusIntergrationUtility.enabled_GeneSeed)
             {
                 AlienRace.ThingDef_AlienRace GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine") as AlienRace.ThingDef_AlienRace;
                 AlienRace.ThingDef_AlienRace GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes") as AlienRace.ThingDef_AlienRace;

@@ -363,7 +363,7 @@ namespace AdeptusMechanicus
         {
             pauldronMaterial = null;
             pauldronMesh = !onHead ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing) : MeshPool.humanlikeHeadSet.MeshAt(bodyFacing);
-            if (AdeptusIntergrationUtil.enabled_AlienRaces)
+            if (AdeptusIntergrationUtility.enabled_AlienRaces)
             {
                 pauldronMesh = GetPauldronMesh(portrait, pawn, bodyFacing, !onHead);
             }

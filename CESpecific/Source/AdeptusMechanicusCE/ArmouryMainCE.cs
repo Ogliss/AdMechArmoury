@@ -50,7 +50,7 @@ namespace AdeptusMechanicus
                     if (td.IsWeaponUsingProjectiles || td.IsRangedWeapon)
                     {
                         ThingDef Weapon = td;
-                        if (AdeptusIntergrationUtil.enabled_CombatExtended && Weapon.IsRangedWeapon)
+                        if (AdeptusIntergrationUtility.enabled_CombatExtended && Weapon.IsRangedWeapon)
                         {
                             if (Weapon.comps.Any(x => x.GetType().ToString().Contains("CompProperties_AmmoUser")))
                             {

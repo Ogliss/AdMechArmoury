@@ -49,7 +49,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         break;
                     }
                 }
-                if (AdeptusIntergrationUtil.enabled_AlienRaces)
+                if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
                     float alienage = AlienAdult(pawn);
                     if (alienage > -1f)

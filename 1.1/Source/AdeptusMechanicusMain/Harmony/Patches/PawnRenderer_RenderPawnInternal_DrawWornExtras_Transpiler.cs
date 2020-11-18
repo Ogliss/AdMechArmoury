@@ -55,7 +55,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (pawn.apparel != null && pawn.apparel.WornApparelCount > 0)
             {
                 
-                if (AdeptusIntergrationUtil.enabled_AlienRaces)
+                if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
                     AlienRacesPatch(pawn, bodyFacing, out size, portrait);
                 }
@@ -238,7 +238,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static Mesh GetPawnMesh(bool portrait, Pawn pawn, Rot4 facing, bool wantsBody)
         {
 
-            if (AdeptusIntergrationUtil.enabled_AlienRaces)
+            if (AdeptusIntergrationUtility.enabled_AlienRaces)
             {
                 return GetAlienPawnMesh(portrait, pawn, facing, wantsBody);
             }

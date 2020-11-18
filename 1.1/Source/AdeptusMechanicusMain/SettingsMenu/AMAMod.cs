@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.settings
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             AdeptusMechanicus.HarmonyInstance.HarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
 
-            if (AdeptusIntergrationUtil.enabled_rooloDualWield)
+            if (AdeptusIntergrationUtility.enabled_rooloDualWield)
             {
                 /*
                 harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("CompOversizedWeapon.HarmonyCompOversizedWeapon", "CompOversizedWeapon"), "DrawEquipmentAimingPreFix", null, null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PreFix", null), new HarmonyMethod(Main.patchType, "DrawEquipmentAiming_DualWield_OverSized_PostFix", null));
@@ -41,7 +41,7 @@ namespace AdeptusMechanicus.settings
                 //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("AdeptusMechanicus.HarmonyCompActivatableEffect", "AdeptusMechanicus"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(HarmonyPatch), "DrawEquipmentAimingPostFix_OverSized_Activatable_PreFix", null));
 
             }
-            if (AdeptusIntergrationUtil.enabled_ResearchPal)
+            if (AdeptusIntergrationUtility.enabled_ResearchPal)
             {
             //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
             }
@@ -274,7 +274,7 @@ namespace AdeptusMechanicus.settings
             {
                 settings.AllowTyranid = false;
             }
-            if (AdeptusIntergrationUtil.enabled_MagosXenobiologis)
+            if (AdeptusIntergrationUtility.enabled_MagosXenobiologis)
             {
                 bool XBOptions = settings.ShowXenobiologisSettings;
                 bool XBRaceOptions = settings.ShowAllowedRaceSettings;
@@ -465,7 +465,7 @@ namespace AdeptusMechanicus.settings
                 float num = 0;
                 num += Length(Options, 1, lineheight, 8, showRaces ? 1 : 0);
                 num += MenuLengthXenobiologisRacesImperialOptions;
-                if (AdeptusIntergrationUtil.enabled_AdeptusAstartes && Options && settings.AllowAdeptusAstartes)
+                if (AdeptusIntergrationUtility.enabled_AdeptusAstartes && Options && settings.AllowAdeptusAstartes)
                 {
                     num += MenuLengthXenobiologisRacesAstartes + 8;
                 }
@@ -491,7 +491,7 @@ namespace AdeptusMechanicus.settings
         {
             get
             {
-                if (AdeptusIntergrationUtil.enabled_AdeptusAstartes)
+                if (AdeptusIntergrationUtility.enabled_AdeptusAstartes)
                 {
                     bool showXB = settings.ShowXenobiologisSettings;
                     bool showRaces = settings.ShowAllowedRaceSettings;
@@ -515,7 +515,7 @@ namespace AdeptusMechanicus.settings
         {
             get
             {
-                if (AdeptusIntergrationUtil.enabled_AdeptusAstartes)
+                if (AdeptusIntergrationUtility.enabled_AdeptusAstartes)
                 {
                     bool showXB = settings.ShowXenobiologisSettings;
                     bool showRaces = settings.ShowAllowedRaceSettings;

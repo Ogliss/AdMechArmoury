@@ -18,7 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static Dictionary<Thing, int> AlternatingFireTracker = new Dictionary<Thing, int>();
         static HarmonyPatches()
         {
-            if (AdeptusIntergrationUtil.enabled_SOS2)
+            if (AdeptusIntergrationUtility.enabled_SOS2)
             {
                 //   SOSConstructPatch();
             }
