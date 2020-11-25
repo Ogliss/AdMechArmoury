@@ -143,7 +143,7 @@ namespace AdeptusMechanicus.settings
         // Tyranid Settings
 
         public bool ShowTyranid = false;
-        public bool AllowTyranid = false;
+        public bool AllowTyranid = true;
         public bool AllowTyranidInfestation = false;
 
         public AMSettings()
@@ -244,20 +244,24 @@ namespace AdeptusMechanicus.settings
             // Orkz Playable Race Extras
             Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.05f);
             Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", string.Empty);
+            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 0.5f);
+            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.35f);
             Scribe_Values.Look(ref this.FungusSnotChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.15f);
+            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.25f);
             Scribe_Values.Look(ref this.FungusGrotChanceBuffer, "AMO_FungusGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.075f);
+            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.15f);
             Scribe_Values.Look(ref this.FungusOrkChanceBuffer, "AMO_FungusOrkChanceBuffer", string.Empty);
 
             Scribe_Values.Look(ref this.CocoonSpawnChance, "AMO_CocoonSpawnChance", 0.25f);
             Scribe_Values.Look(ref this.CocoonSpawnChanceBuffer, "AMO_CocoonSpawnChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonSnotChance, "AMO_CocoonSnotChance", 0.5f);
+            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 0.15f);
+            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
+            Scribe_Values.Look(ref this.CocoonSnotChance, "AMO_CocoonSnotChance", 0.2f);
             Scribe_Values.Look(ref this.CocoonSnotChanceBuffer, "AMO_CocoonSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonGrotChance, "AMO_CocoonGrotChance", 0.25f);
+            Scribe_Values.Look(ref this.CocoonGrotChance, "AMO_CocoonGrotChance", 0.35f);
             Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.15f);
+            Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.25f);
             Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
         }
 

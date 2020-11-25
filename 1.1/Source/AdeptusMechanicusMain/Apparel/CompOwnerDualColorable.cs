@@ -10,16 +10,14 @@ namespace AdeptusMechanicus
 	{
 		public FactionDef faction;
 
-		private bool triedweapon = false;
 		private CompEquippable equippable;
 		public CompEquippable Equippable
 		{
 			get
 			{
-                if (equippable == null && !triedweapon)
+                if (equippable == null && this.parent.def.IsWeapon)
                 {
 					equippable = this.parent.TryGetComp<CompEquippable>();
-					triedweapon = true;
 				}
 				return equippable ?? null;
 			}
@@ -58,15 +56,16 @@ namespace AdeptusMechanicus
 				{
 					if (pawn.RaceProps.Humanlike)
 					{
-					//	Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
+						Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
 						return pawn.Graphic.Color;
 					//	return pawn.DrawColor;
 					}
 					else
 					{
-					//	Log.Message("NonHumanlike Equippable Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
+						Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColor);
+						Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
 						return pawn.Drawer.renderer.graphics.nakedGraphic.color;
-					//	return pawn.DrawColorTwo;
+						//	return pawn.DrawColorTwo;
 					}
 				}
 				if (!this.Active)
@@ -96,12 +95,13 @@ namespace AdeptusMechanicus
 				{
 					if (pawn.RaceProps.Humanlike)
 					{
-					//	Log.Message("Humanlike Equippable ColorTwo " + pawn.DrawColorTwo);
+						Log.Message("Humanlike Equippable ColorTwo " + pawn.DrawColorTwo);
 						return pawn.DrawColorTwo;
 					}
 					else
 					{
-					//	Log.Message("NonHumanlikeEquippable ColorTwo " + pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo);
+						Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColorTwo);
+						Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo);
 						return pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo;
 						return pawn.DrawColorTwo;
 					}

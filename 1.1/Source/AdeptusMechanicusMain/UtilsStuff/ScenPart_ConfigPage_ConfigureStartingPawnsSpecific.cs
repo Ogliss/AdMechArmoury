@@ -13,6 +13,7 @@ namespace AdeptusMechanicus
 		public override void ExposeData()
 		{
 			base.ExposeData();
+			Scribe_Values.Look(ref this.pawnCount, "pawnses");
 		}
 
 		// Token: 0x06004D9E RID: 19870 RVA: 0x001A4D6E File Offset: 0x001A2F6E

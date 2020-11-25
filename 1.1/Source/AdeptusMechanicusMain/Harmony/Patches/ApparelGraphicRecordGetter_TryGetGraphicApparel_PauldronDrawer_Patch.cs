@@ -164,10 +164,8 @@ namespace AdeptusMechanicus.HarmonyInstance
 			{
 				if (apparel.def.GetModExtension<ApparelRestrictionDefExtension>() is ApparelRestrictionDefExtension apparelExt)
 				{
-					Log.Message("is ApparelRestrictionDefExtension apparelExt");
 					if (!apparelExt.raceSpecifics.NullOrEmpty())
 					{
-						Log.Message("ApparelRestrictionDefExtension raceSpecifics apparel.Wearer?: "+ apparel.Wearer);
 						foreach (var item in apparelExt.raceSpecifics)
 						{
 							ThingDef RaceDef = DefDatabase<ThingDef>.GetNamedSilentFail(item.raceDef);
@@ -175,14 +173,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
 								continue;
                             }
-							Log.Message("ApparelRestrictionDefExtension raceSpecifics apparel.Wearer: " + apparel.Wearer.def);
-							Log.Message("ApparelRestrictionDefExtension raceSpecifics item.raceDef: " + RaceDef);
 							if (RaceDef == apparel.Wearer.def)
 							{
-								Log.Message("ApparelRestrictionDefExtension raceDef == apparel.Wearer.def");
 								if (!item.texPath.NullOrEmpty())
 								{
-									Log.Message("ApparelRestrictionDefExtension for: "+ item.raceDef + " texPath:" + item.texPath);
 									string path;
 									if (apparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead || PawnRenderer.RenderAsPack(apparel) || apparel.def.apparel.wornGraphicPath == BaseContent.PlaceholderImagePath)
 									{

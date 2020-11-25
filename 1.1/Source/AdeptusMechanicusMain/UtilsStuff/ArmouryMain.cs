@@ -216,6 +216,7 @@ namespace AdeptusMechanicus
             }
         }
 
+        [MayRequireAlienRaces]
         public static void AlienRaces()
         {
             AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
@@ -338,106 +339,142 @@ namespace AdeptusMechanicus
             }
         }
 
-        public static void RestrictRecipes(AlienRace.ThingDef_AlienRace race, List<RecipeDef> things)
+        [MayRequireAlienRaces]
+        public static void RestrictRecipes(ThingDef race, List<RecipeDef> things)
         {
-            race.alienRace.raceRestriction.recipeList.AddRange(things);
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.recipeList.AddRange(things);
             foreach (RecipeDef def in things)
             {
                 if (!AlienRace.RaceRestrictionSettings.recipeRestrictionDict.ContainsKey(key: def))
                 {
                     AlienRace.RaceRestrictionSettings.recipeRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
                 }
-                if (!AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Contains(race))
+                if (!AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Contains(alien))
                 {
-                    AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
+                    AlienRace.RaceRestrictionSettings.recipeRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }
 
-        public static void RestrictBuildings(AlienRace.ThingDef_AlienRace race, List<ThingDef> things)
+        [MayRequireAlienRaces]
+        public static void RestrictBuildings(ThingDef race, List<ThingDef> things)
         {
 
-            race.alienRace.raceRestriction.buildingList.AddRange(things);
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.buildingList.AddRange(things);
             foreach (ThingDef def in things)
             {
                 if (!AlienRace.RaceRestrictionSettings.buildingRestrictionDict.ContainsKey(key: def))
                 {
                     AlienRace.RaceRestrictionSettings.buildingRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
                 }
-                if (!AlienRace.RaceRestrictionSettings.buildingRestrictionDict[key: def].Contains(race))
+                if (!AlienRace.RaceRestrictionSettings.buildingRestrictionDict[key: def].Contains(alien))
                 {
-                    AlienRace.RaceRestrictionSettings.buildingRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
+                    AlienRace.RaceRestrictionSettings.buildingRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }
 
-        public static void RestrictResearch(AlienRace.ThingDef_AlienRace race, List<ResearchProjectDef> list)
+        [MayRequireAlienRaces]
+        public static void RestrictResearch(ThingDef race, List<ResearchProjectDef> list)
         {
-            if (race.alienRace.raceRestriction.researchList.NullOrEmpty())
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
             {
-                race.alienRace.raceRestriction.researchList = new List<AlienRace.ResearchProjectRestrictions>();
-                race.alienRace.raceRestriction.researchList.Add(new AlienRace.ResearchProjectRestrictions());
-                race.alienRace.raceRestriction.researchList[0].projects = new List<ResearchProjectDef>();
-                race.alienRace.raceRestriction.researchList[0].apparelList = new List<ThingDef>();
+                return;
             }
-            race.alienRace.raceRestriction.researchList[0].projects.AddRange(list);
+            if (alien.alienRace.raceRestriction.researchList.NullOrEmpty())
+            {
+                alien.alienRace.raceRestriction.researchList = new List<AlienRace.ResearchProjectRestrictions>();
+                alien.alienRace.raceRestriction.researchList.Add(new AlienRace.ResearchProjectRestrictions());
+                alien.alienRace.raceRestriction.researchList[0].projects = new List<ResearchProjectDef>();
+                alien.alienRace.raceRestriction.researchList[0].apparelList = new List<ThingDef>();
+            }
+            alien.alienRace.raceRestriction.researchList[0].projects.AddRange(list);
             foreach (ResearchProjectDef def in list)
             {
                 if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
                 {
                     List<AlienRace.ThingDef_AlienRace> l2 = new List<AlienRace.ThingDef_AlienRace>();
-                    l2.Add(race);
+                    l2.Add(alien);
                     AlienRace.RaceRestrictionSettings.researchRestrictionDict.Add(key: def, value: l2);
                 }
                 else
                 {
-                    if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Contains(race))
+                    if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Contains(alien))
                     {
-                        AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: race);
+                        AlienRace.RaceRestrictionSettings.researchRestrictionDict[key: def].Add(item: alien);
                     }
                 }
             }
         }
-        
-        public static void RestrictWeapons(AlienRace.ThingDef_AlienRace race, List<ThingDef> list)
+
+        [MayRequireAlienRaces]
+        public static void RestrictWeapons(ThingDef race, List<ThingDef> list)
         {
-            race.alienRace.raceRestriction.weaponList.AddRange(list);
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.weaponList.AddRange(list);
             foreach (ThingDef def in list)
             {
                 if (!AlienRace.RaceRestrictionSettings.weaponRestrictionDict.ContainsKey(key: def))
                     AlienRace.RaceRestrictionSettings.weaponRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
-                if (!AlienRace.RaceRestrictionSettings.weaponRestrictionDict[key: def].Contains(race))
+                if (!AlienRace.RaceRestrictionSettings.weaponRestrictionDict[key: def].Contains(alien))
                 {
-                    AlienRace.RaceRestrictionSettings.weaponRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
+                    AlienRace.RaceRestrictionSettings.weaponRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }
-        
-        public static void RestrictPlants(AlienRace.ThingDef_AlienRace race, List<ThingDef> list)
+
+        [MayRequireAlienRaces]
+        public static void RestrictPlants(ThingDef race, List<ThingDef> list)
         {
-            race.alienRace.raceRestriction.plantList.AddRange(list);
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.plantList.AddRange(list);
             foreach (ThingDef def in list)
             {
                 if (!AlienRace.RaceRestrictionSettings.plantRestrictionDict.ContainsKey(key: def))
                     AlienRace.RaceRestrictionSettings.plantRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
-                if (!AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Contains(race))
+                if (!AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Contains(alien))
                 {
-                    AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
+                    AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }
-        
-        public static void RestrictApparel(AlienRace.ThingDef_AlienRace race, List<ThingDef> list)
+
+        [MayRequireAlienRaces]
+        public static void RestrictApparel(ThingDef race, List<ThingDef> list)
         {
-            race.alienRace.raceRestriction.apparelList.AddRange(list);
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.apparelList.AddRange(list);
             foreach (ThingDef def in list)
             {
                 if (!AlienRace.RaceRestrictionSettings.apparelRestrictionDict.ContainsKey(key: def))
 
                     AlienRace.RaceRestrictionSettings.apparelRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
-                if (!AlienRace.RaceRestrictionSettings.apparelRestrictionDict[key: def].Contains(race))
+                if (!AlienRace.RaceRestrictionSettings.apparelRestrictionDict[key: def].Contains(alien))
                 {
-                    AlienRace.RaceRestrictionSettings.apparelRestrictionDict[key: def].Add(item: race as AlienRace.ThingDef_AlienRace);
+                    AlienRace.RaceRestrictionSettings.apparelRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }

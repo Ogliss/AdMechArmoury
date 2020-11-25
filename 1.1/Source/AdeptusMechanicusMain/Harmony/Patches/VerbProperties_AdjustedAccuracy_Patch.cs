@@ -32,7 +32,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
             */
-            Log.Message("Postfix AdjustedAccuracy " + __instance.defaultProjectile.label + " fired by " + equipment.LabelCap + "\nwarmup " + __instance.warmupTime + /*" Cooldown " + __instance.AdjustedCooldown(__instance, __instance.CasterPawn) +*/ " Ticks between shots " + __instance.ticksBetweenBurstShots);
+        //    Log.Message("Postfix AdjustedAccuracy " + __instance.defaultProjectile.label + " fired by " + equipment.LabelCap + "\nwarmup " + __instance.warmupTime + /*" Cooldown " + __instance.AdjustedCooldown(__instance, __instance.CasterPawn) +*/ " Ticks between shots " + __instance.ticksBetweenBurstShots);
 
         }
     }
