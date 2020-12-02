@@ -111,6 +111,7 @@ namespace AdeptusMechanicus
             {
                 if (graphic == null)
                 {
+                //    Log.Message("Graphic UpdatieGraphic");
                     UpdateGraphic();
                 }
                 return graphic;
@@ -267,7 +268,34 @@ namespace AdeptusMechanicus
             }
             if (bodyspecificTextures)
             {
-                path += "_" + pawn.story.bodyType.ToString();
+                string body;
+                if (pawn.story.bodyType.ToString().Contains("Female"))
+                {
+                    body = "Female";
+                }
+                else
+                if (pawn.story.bodyType.ToString().Contains("Male"))
+                {
+                    body = "Male";
+                }
+                else
+                if (pawn.story.bodyType.ToString().Contains("Fat"))
+                {
+                    body = "Fat";
+                }
+                else
+                if (pawn.story.bodyType.ToString().Contains("Thin"))
+                {
+                    body = "Thin";
+                }
+                else
+                if (pawn.story.bodyType.ToString().Contains("Hulk"))
+                {
+                    body = "Hulk";
+                }
+                else body = pawn.story.bodyType.ToString();
+            //    Log.Message("bodyspecificTextures: "+ path + "_" + body);
+                path += "_" + body;
             }
 
         //    Log.Message(path + " Shader: " + shader.name + "Colour: " + Drawer.mainColorFor(this) + " Colour: " + Drawer.secondaryColorFor(this));
@@ -389,7 +417,14 @@ namespace AdeptusMechanicus
             this.size = size;
             pauldronMaterial = null;
             offset = OffsetFor(bodyFacing);
-
+            if (pawn.InBed())
+            {
+                if (!Drawer.onHead || (Props.drawInBed.HasValue && Props.drawInBed.Value == false))
+                {
+                    pauldronMesh = null;
+                    return false;
+                }
+            }
             pauldronMesh = this.MeshSet.MeshAt(bodyFacing);
             if (pauldronMesh == null)
             {
@@ -403,7 +438,7 @@ namespace AdeptusMechanicus
             {
                 if (this.CheckPauldronRotation(bodyFacing))
                 {
-                    if (Graphic == null || (Graphic != null && !Graphic.path.Contains(apparel.Wearer.story.bodyType.defName)))
+                    if (Graphic == null || (Graphic != null && pawn != apparel.Wearer))
                     {
                 //        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                         UpdateGraphic();
@@ -478,11 +513,24 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref this.size, "size");
             Scribe_Defs.Look(ref this.faction, "faction");
             Scribe_References.Look(ref this.apparel, "apparel");
-        //    Scribe_References.Look(ref this.drawer, "drawer");
+            //    Scribe_References.Look(ref this.drawer, "drawer");
+            Scribe_References.Look(ref this.wearer, "lastWearer");
             Scribe_Deep.Look<PauldronTextureOption>(ref this.activeOption, "activeOption", this.defaultOption);
         //    Scribe_Collections.Look<PauldronTextureOption>(ref this.options, "Options", LookMode.Deep);
         }
 
+        private Pawn wearer;
+        public Pawn pawn
+        {
+            get
+            {
+                if (wearer == null)
+                {
+                    wearer = this.apparel.Wearer;
+                }
+                return wearer;
+            }
+        }
         private ShoulderPadEntryProps props;
         public Vector2 size;
         public Apparel apparel;

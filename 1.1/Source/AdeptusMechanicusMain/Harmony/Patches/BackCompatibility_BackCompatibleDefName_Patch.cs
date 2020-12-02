@@ -25,6 +25,16 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName == "OGK_Apparel_TribalKroot")
+                    {
+                        __result = "OGK_Apparel_Tribalwear";
+                        return;
+                    }
+                    if (defName == "Apparel_TribalKrootHeaddress")
+                    {
+                        __result = "OGK_Apparel_TribalHeaddress";
+                        return;
+                    }
                     if (defName.Contains("BoltGun"))
                     {
                         if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
@@ -293,7 +303,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     else
                     if (defName.Contains("Snotling"))
                     {
-                        newName ="OG_Ork_Snotling";
+                        newName ="OG_Snotling";
                     }
 
                     if (defName.Contains("OG_Knarloc_Kroot"))
@@ -935,9 +945,29 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 if (defType == typeof(HediffDef))
                 {
+                    if (defName == "PlasmaBurn")
+                    {
+                        newName = "OG_Hediff_PlasmaBurn";
+                    }
+                    if (defName == "RadiationPoisioning")
+                    {
+                        newName = "OG_Hediff_RadiationPoisioning";
+                    }
+                    if (defName == "FWPsychicShock")
+                    {
+                        newName = "OG_Hediff_FWPsychicShock";
+                    }
+                    if (defName == "Regenerated_Part_OG")
+                    {
+                        newName = "OG_Hediff_Regenerated_Part";
+                    }
+                    if (defName == "Regenerating_Part_OG")
+                    {
+                        newName = "OG_Hediff_Regenerating_Part";
+                    }
                     if (defName == "HyperactiveNymuneOrgan")
                     {
-                        newName ="OG_Kroot_Mutation_HyperactiveNymuneOrgan";
+                        newName = "OG_Kroot_Mutation_HyperactiveNymuneOrgan";
                     }
                     if (defName.Contains("OG_Hediff_AstartesOrgans_"))
                     {
@@ -947,6 +977,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         else
                             newName = Regex.Replace(defName, "OG_Hediff_AstartesOrgans_", "OG_Zygote_Hediff_");
+                    }
+                }
+                if (defType == typeof(DamageDef))
+                {
+                    if (defName == "OGForceStrike")
+                    {
+                        newName = "OG_ForceStrike";
+                    }
+                }
+                if (defType == typeof(GameConditionDef))
+                {
+                    if (defName == "OG_Warpstorm")
+                    {
+                        newName = "OG_Condition_Warpstorm";
                     }
                 }
                 if (defType == typeof(BodyDef))
@@ -1004,6 +1048,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName == "OG_Kroot_Lost_Tribe")
                     {
                         newName = "OGAM_Scenario_Kroot_LostTribe";
+                    }
+                }
+
+                if (defType == typeof(RecipeDef))
+                {
+                    if (defName == "Make_OGK_Apparel_TribalKroot")
+                    {
+                        __result = "Make_OGK_Apparel_Tribalwear";
+                        return;
+                    }
+                    if (defName == "Make_Apparel_TribalKrootHeaddress")
+                    {
+                        __result = "Make_OGK_Apparel_TribalHeaddress";
+                        return;
                     }
                 }
                 if (!newName.NullOrEmpty())

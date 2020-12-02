@@ -15,6 +15,17 @@ namespace AdeptusMechanicus.HarmonyInstance
         static void Postfix(ref IEnumerable<Pawn> __result, PawnGroupMakerParms parms, bool warnOnZeroResults = true)
         {
             Faction faction = parms.faction;
+            
+            if (faction == null)
+            {
+                Log.Message("Faction null");
+                return;
+            }
+            if (__result.EnumerableNullOrEmpty())
+            {
+                Log.Message("no pawns");
+                return;
+            }
             List<Pawn> resultingPawns = __result.ToList();
             int pawnsInRaid = resultingPawns.Count;
             for (int i = 0; i < pawnsInRaid; i++)

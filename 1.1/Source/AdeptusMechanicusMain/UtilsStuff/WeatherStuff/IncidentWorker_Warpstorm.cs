@@ -12,7 +12,7 @@ namespace RimWorld
         protected override bool CanFireNowSub(IncidentParms parms)
         {
             Map map = (Map)parms.target;
-            return !map.gameConditionManager.ConditionIsActive(OGGameConditionDefOf.OG_Warpstorm);
+            return !map.gameConditionManager.ConditionIsActive(OGGameConditionDefOf.OG_Condition_Warpstorm);
         }
 
         // Token: 0x06000E55 RID: 3669 RVA: 0x0006B33C File Offset: 0x0006973C
@@ -20,7 +20,7 @@ namespace RimWorld
         {
             Map map = (Map)parms.target;
             int duration = Mathf.RoundToInt(this.def.durationDays.RandomInRange * 60000f);
-            GameCondition_Warpstorm gameCondition_Warpstorm = (GameCondition_Warpstorm)GameConditionMaker.MakeCondition(OGGameConditionDefOf.OG_Warpstorm, duration);
+            GameCondition_Warpstorm gameCondition_Warpstorm = (GameCondition_Warpstorm)GameConditionMaker.MakeCondition(OGGameConditionDefOf.OG_Condition_Warpstorm, duration);
             map.gameConditionManager.RegisterCondition(gameCondition_Warpstorm);
             base.SendStandardLetter(this.def.letterLabel, GameConditionDefOf.Flashstorm.letterText, this.def.letterDef, parms, new TargetInfo());
             if (map.weatherManager.curWeather.rainRate > 0.1f)

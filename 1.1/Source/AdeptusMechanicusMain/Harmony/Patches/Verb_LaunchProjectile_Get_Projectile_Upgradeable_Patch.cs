@@ -12,59 +12,59 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance.EquipmentSource != null)
             {
-                if (!__instance.EquipmentSource.AllComps.NullOrEmpty())
+                CompUpgradeableProjectile upgradeableProjectile = __instance.EquipmentSource.TryGetComp<CompUpgradeableProjectile>();
+                if (upgradeableProjectile != null && __instance.verbProps.defaultProjectile == __result)
                 {
-                    if (__instance.EquipmentSource.GetComp<CompUpgradeableProjectile>() != null && __instance.verbProps.defaultProjectile == __result)
+                    bool inFaction = __instance.CasterPawn?.Faction != null;
+                    bool playerFaction = false;
+                    if (inFaction)
                     {
-                        if (__instance.EquipmentSource.GetComp<CompUpgradeableProjectile>() is CompUpgradeableProjectile upgradeableProjectile)
+                        playerFaction = __instance.CasterPawn.Faction == Faction.OfPlayer;
+                        if (playerFaction)
                         {
-                            if (__instance.CasterPawn.Faction != null)
+                            if (upgradeableProjectile.researchDef != null)
                             {
-                                bool flag = upgradeableProjectile.researchDef != null;
-                                if (flag)
+                                if (upgradeableProjectile.researchDef.IsFinished)
                                 {
-                                    if (__instance.CasterPawn.Faction == Faction.OfPlayer && upgradeableProjectile.researchDef.IsFinished)
-                                    {
-                                        __result = upgradeableProjectile.projectileDef;
-                                        return;
-                                    }
+                                    __result = upgradeableProjectile.projectileDef;
                                 }
-                                else
-                                {
-                                    if (upgradeableProjectile.factionDefs.Contains(__instance.CasterPawn.Faction.def))
-                                    {
-                                        __result = upgradeableProjectile.projectileDef;
-                                        return;
-                                    }
-                                }
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            if (upgradeableProjectile.factionDefs.Contains(__instance.CasterPawn.Faction.def))
+                            {
+                                __result = upgradeableProjectile.projectileDef;
+                                return;
                             }
                         }
                     }
-                    /*
-                    if (__instance.EquipmentSource.GetComp<CompSlotLoadable.CompSlotLoadable>() != null && __instance.verbProps.defaultProjectile == __result)
-                    {
-                    //    log.message(string.Format("{0} CompSlotLoadable != null", __instance.EquipmentSource));
-                        if (__instance.EquipmentSource.GetComp<CompSlotLoadable.CompSlotLoadable>() is CompSlotLoadable.CompSlotLoadable slotLoadable)
-                        {
-                            if (!slotLoadable.Slots.NullOrEmpty())
-                            {
-                            //    log.message(string.Format("{0} Slots, Occupied: {1} Empty: {2}, Total: {3}", __instance.EquipmentSource, slotLoadable.Slots.FindAll(x => x.SlotOccupant != null).Count, slotLoadable.Slots.FindAll(x => x.SlotOccupant == null).Count, slotLoadable.Slots.Count));
-                                foreach (CompSlotLoadable.SlotLoadable slot in slotLoadable.Slots.FindAll(x => x.SlotOccupant != null))
-                                {
-                                    CompSlotLoadable.CompSlottedBonus slottedBonus = slot.SlotOccupant.TryGetComp<CompSlotLoadable.CompSlottedBonus>();
-                                //    log.message(string.Format("{0}'s Slot at {1} with: {2} slottedBonus: {3}", __instance.EquipmentSource, slotLoadable.Slots.IndexOf(slot), slot.SlotOccupant, slottedBonus!=null));
-                                    if (slottedBonus != null)
-                                    {
-                                    //    log.message(string.Format("{0} slottedBonus: {1}", __instance.EquipmentSource, slottedBonus));
-                                        __result = slottedBonus.Props.projectileReplacer;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    */
                 }
+                /*
+                if (__instance.EquipmentSource.GetComp<CompSlotLoadable.CompSlotLoadable>() != null && __instance.verbProps.defaultProjectile == __result)
+                {
+                //    log.message(string.Format("{0} CompSlotLoadable != null", __instance.EquipmentSource));
+                    if (__instance.EquipmentSource.GetComp<CompSlotLoadable.CompSlotLoadable>() is CompSlotLoadable.CompSlotLoadable slotLoadable)
+                    {
+                        if (!slotLoadable.Slots.NullOrEmpty())
+                        {
+                        //    log.message(string.Format("{0} Slots, Occupied: {1} Empty: {2}, Total: {3}", __instance.EquipmentSource, slotLoadable.Slots.FindAll(x => x.SlotOccupant != null).Count, slotLoadable.Slots.FindAll(x => x.SlotOccupant == null).Count, slotLoadable.Slots.Count));
+                            foreach (CompSlotLoadable.SlotLoadable slot in slotLoadable.Slots.FindAll(x => x.SlotOccupant != null))
+                            {
+                                CompSlotLoadable.CompSlottedBonus slottedBonus = slot.SlotOccupant.TryGetComp<CompSlotLoadable.CompSlottedBonus>();
+                            //    log.message(string.Format("{0}'s Slot at {1} with: {2} slottedBonus: {3}", __instance.EquipmentSource, slotLoadable.Slots.IndexOf(slot), slot.SlotOccupant, slottedBonus!=null));
+                                if (slottedBonus != null)
+                                {
+                                //    log.message(string.Format("{0} slottedBonus: {1}", __instance.EquipmentSource, slottedBonus));
+                                    __result = slottedBonus.Props.projectileReplacer;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                */
             }
         }
     }

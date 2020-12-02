@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (AdeptusIntergrationUtility.enabled_SOS2)
             {
-                //   SOSConstructPatch();
+                SOSConstructPatch();
             }
             if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
             {

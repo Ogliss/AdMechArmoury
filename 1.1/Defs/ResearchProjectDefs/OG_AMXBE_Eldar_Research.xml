@@ -1,39 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar/DarkEldar Research =========================OG-->
-
-	<ResearchProjectDef>
+	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Research =========================OG-->
+	<ResearchProjectDef Name="OG_Eldar_ReseachBase" Abstract="True">
 		<tab>OGAMA_RTab</tab>
-		<defName>OG_Aeldari_Tech_Base</defName>
-		<label>Aeldari</label>
-		<description>The Eldar, or Aeldari as they were known in the Aeldari Lexicon before the fall of their lost realm, or the Asuryani (followers of Asuryan) as they refer to themselves, are an ancient humanoid alien species whose vast empire once extended the width and breadth of the known galaxy.
-
-The Aeldari Empire was without equal, and they counted themselves masters of the stars. But millennia ago, the Aeldari's overweening pride and their fall into hedonistic practices led to a cataclysm that all but eradicated their kind and led to the birth of the Chaos God Slaanesh.</description>
-		<baseCost>500</baseCost>
-		<prerequisites>
-		
-		</prerequisites>
-		<techLevel>Spacer</techLevel>
-		<researchViewX>0.00</researchViewX>
-		<researchViewY>7.50</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>OGE_TableMachining</li>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
 	</ResearchProjectDef>
 	
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Research =========================OG-->
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Eldar_Tech_Base_T1</defName>
 		<label>Craftworld Eldar</label>
 		<description>The Aeldari who fled their ancient empire in the Craftworlds eventually called themselves the "Asuryani" since their culture was redefined by their decision to pursue the Asuryani Path that they believed had been laid out for them by the chief Aeldari god, the Phoenix King Asuryan.</description>
 		<baseCost>500</baseCost>
 		<prerequisites>
-			<li>OG_Aeldari_Tech_Base</li>
+			<!--li>OG_Aeldari_Tech_Base</li-->
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>1.00</researchViewX>
 		<researchViewY>7.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Eldar_Tech_Base_T2</defName>
 		<label>The Eldar Path</label>
@@ -47,7 +38,7 @@ The Aeldari Empire was without equal, and they counted themselves masters of the
 		<researchViewY>7.00</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Eldar_Tech_Base_T3</defName>
 		<label>Infinity Circuit</label>

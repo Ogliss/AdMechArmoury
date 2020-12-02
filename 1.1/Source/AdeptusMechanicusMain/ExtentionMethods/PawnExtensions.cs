@@ -16,7 +16,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             {
                 foreach (LifeStageAge item in pawn.RaceProps.lifeStageAges)
                 {
-                    if (item.def.reproductive)
+                    if (item.def.reproductive || item.def.defName.Contains("Adult") || item == pawn.RaceProps.lifeStageAges.Last())
                     {
                         adultage = item.minAge;
                         break;

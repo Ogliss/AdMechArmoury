@@ -113,11 +113,16 @@ namespace AdeptusMechanicus
             }
         }
 
+        private Pawn wearer;
         public Pawn pawn
         {
             get
             {
-                return this.apparel.Wearer;
+                if (wearer == null)
+                {
+                    wearer = this.apparel.Wearer;
+                }
+                return wearer;
             }
         }
 
@@ -270,7 +275,8 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
             Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
-            Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep); 
+            Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep);
+            Scribe_References.Look(ref this.wearer, "lastWearer");
         }
 
         public Vector3 GetOffsetFor(Rot4 rotation, bool northtop)
@@ -374,8 +380,9 @@ namespace AdeptusMechanicus
                 {
                     if (this.CheckPauldronRotation(bodyFacing, Entry.shoulderPadType))
                     {
-                        if (Entry.Graphic==null || (Entry.Graphic != null && !Entry.Graphic.path.Contains(pawn.story.bodyType.defName)))
+                        if (Entry.Graphic==null || (Entry.Graphic != null && pawn != apparel.Wearer))
                         {
+                        //    Log.Message("pawn = Wearer" + (pawn != apparel.Wearer));
                         //    Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                             Entry.UpdateGraphic();
                         }

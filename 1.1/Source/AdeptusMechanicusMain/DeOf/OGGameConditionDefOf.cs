@@ -12,6 +12,6 @@ namespace AdeptusMechanicus
             DefOfHelper.EnsureInitializedInCtor(typeof(OGGameConditionDefOf));
         }
         // Token: 0x04001FCD RID: 8141
-        public static GameConditionDef OG_Warpstorm;
+        public static GameConditionDef OG_Condition_Warpstorm;
     }
 }

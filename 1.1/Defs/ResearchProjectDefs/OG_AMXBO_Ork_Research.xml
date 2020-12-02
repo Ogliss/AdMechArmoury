@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Research Ork Tech =========================OG-->
+	<!--OG==================== Adeptus Mechanicus Armoury Mod - Research Greenskins =========================OG-->
 
-	<ResearchProjectDef>
+	
+	<ResearchProjectDef Name="OG_Ork_ReseachBase" Abstract="True">
+		<tab>OGAMA_RTab</tab>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>OGO_TableMachining</li>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Ork_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Ork_Tech_Base_T1</defName>
 		<label>Orkish Kulture</label>
@@ -21,7 +31,7 @@
 		<researchViewY>11.0</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_Ork_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Ork_Tech_Base_T2</defName>
 		<label>Mek Tek</label>
@@ -39,7 +49,7 @@
 		<researchViewY>11.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_Ork_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_Ork_Tech_Base_T3</defName>
 		<label>Big Mek Brainz</label>

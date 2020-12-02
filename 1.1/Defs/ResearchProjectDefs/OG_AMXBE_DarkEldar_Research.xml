@@ -3,7 +3,16 @@
 
 	<!--OG==================== Adeptus Mechanicus Armoury Mod -Dark Eldar Research =========================OG-->
 
-	<ResearchProjectDef>
+	<ResearchProjectDef Name="OG_DarkEldar_ReseachBase" Abstract="True">
+		<tab>OGAMA_RTab</tab>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>OGDE_TableMachining</li>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_DarkEldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_DarkEldar_Tech_Base_T1</defName>
 		<label>The Dark Kin</label>
@@ -12,14 +21,14 @@
 However, they were often referred to by outsiders as "Dark Eldar," a term which they rarely used for themselves and which was first coined by Asdrubael Vect from the Aeldari phrase "Eladrith Ynneas."</description>
 		<baseCost>500</baseCost>
 		<prerequisites>
-			<li>OG_Aeldari_Tech_Base</li>
+			<!--li>OG_Aeldari_Tech_Base</li-->
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>1.00</researchViewX>
 		<researchViewY>8.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_DarkEldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_DarkEldar_Tech_Base_T2</defName>
 		<label>The Path of Damnation</label>
@@ -33,7 +42,7 @@ However, they were often referred to by outsiders as "Dark Eldar," a term which 
 		<researchViewY>8.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
+	<ResearchProjectDef ParentName="OG_DarkEldar_ReseachBase">
 		<tab>OGAMA_RTab</tab>
 		<defName>OG_DarkEldar_Tech_Base_T3</defName>
 		<label>The Damned</label>

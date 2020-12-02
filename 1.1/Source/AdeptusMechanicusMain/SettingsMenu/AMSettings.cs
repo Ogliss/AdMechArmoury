@@ -111,26 +111,26 @@ namespace AdeptusMechanicus.settings
 
         // Playable Orkz Settings
 
-        public float FungusSpawnChance = 0.05f;
+        public float FungusSpawnChance;
         public string FungusSpawnChanceBuffer;
-        public float FungusSquigChance = 1f;
+        public float FungusSquigChance;
         public string FungusSquigChanceBuffer;
-        public float FungusSnotChance = 0.35f;
+        public float FungusSnotChance;
         public string FungusSnotChanceBuffer;
-        public float FungusGrotChance = 0.15f;
+        public float FungusGrotChance;
         public string FungusGrotChanceBuffer;
-        public float FungusOrkChance = 0.075f;
+        public float FungusOrkChance;
         public string FungusOrkChanceBuffer;
 
-        public float CocoonSpawnChance = 0.25f;
+        public float CocoonSpawnChance;
         public string CocoonSpawnChanceBuffer;
-        public float CocoonSquigChance = 1f;
+        public float CocoonSquigChance;
         public string CocoonSquigChanceBuffer;
-        public float CocoonSnotChance = 0.5f;
+        public float CocoonSnotChance;
         public string CocoonSnotChanceBuffer;
-        public float CocoonGrotChance = 0.25f;
+        public float CocoonGrotChance;
         public string CocoonGrotChanceBuffer;
-        public float CocoonOrkChance = 0.15f;
+        public float CocoonOrkChance;
         public string CocoonOrkChanceBuffer;
 
         // Necron Settings
@@ -244,24 +244,24 @@ namespace AdeptusMechanicus.settings
             // Orkz Playable Race Extras
             Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.05f);
             Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 0.5f);
-            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.35f);
+            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 1f);
+            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSquigChanceBuffer", string.Empty);
+            Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.75f);
             Scribe_Values.Look(ref this.FungusSnotChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.25f);
+            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.2f);
             Scribe_Values.Look(ref this.FungusGrotChanceBuffer, "AMO_FungusGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.15f);
+            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.1f);
             Scribe_Values.Look(ref this.FungusOrkChanceBuffer, "AMO_FungusOrkChanceBuffer", string.Empty);
 
             Scribe_Values.Look(ref this.CocoonSpawnChance, "AMO_CocoonSpawnChance", 0.25f);
             Scribe_Values.Look(ref this.CocoonSpawnChanceBuffer, "AMO_CocoonSpawnChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 0.15f);
-            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
+            Scribe_Values.Look(ref this.CocoonSquigChance, "AMO_CocoonSquigChance", 0.15f);
+            Scribe_Values.Look(ref this.CocoonSquigChanceBuffer, "AMO_CocoonSquigChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.CocoonSnotChance, "AMO_CocoonSnotChance", 0.2f);
             Scribe_Values.Look(ref this.CocoonSnotChanceBuffer, "AMO_CocoonSnotChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.CocoonGrotChance, "AMO_CocoonGrotChance", 0.35f);
             Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.25f);
+            Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.3f);
             Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
         }
 

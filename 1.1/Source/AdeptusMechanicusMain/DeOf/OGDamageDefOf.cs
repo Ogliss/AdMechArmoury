@@ -21,7 +21,7 @@ namespace AdeptusMechanicus
         public static DamageDef OG_Power_Blunt;
         public static DamageArmorCategoryDef OG_PowerWeapon;
 
-        public static DamageDef OGForceStrike;
+        public static DamageDef OG_ForceStrike;
         public static DamageDef OG_Force_Cut;
         public static DamageDef OG_Force_Stab;
         public static DamageDef OG_Force_Blunt;

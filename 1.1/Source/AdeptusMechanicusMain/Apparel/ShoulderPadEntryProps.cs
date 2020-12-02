@@ -14,6 +14,7 @@ namespace AdeptusMechanicus
         public ShoulderPadType shoulderPadType;
         public ShaderTypeDef shaderType;
         public bool bodyspecificTextures = true;
+        public bool? drawInBed;
         public string padTexPath;
         public string label;
         public int commonality;

@@ -10,9 +10,28 @@
 		<statBases>
 			<Mass>40.0</Mass>
 		</statBases>
-	<minifiedDef>MinifiedThing</minifiedDef>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<comps>
+		  <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<shortCircuitInRain>true</shortCircuitInRain>
+			<basePowerConsumption>350</basePowerConsumption>
+		  </li>
+		  <li Class="CompProperties_Flickable"/>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>5</glowRadius>
+			<glowColor>(73,123,138,0)</glowColor>
+		  </li>
+		  <li Class="CompProperties_AffectedByFacilities">
+			<linkableFacilities>
+				<li>ToolCabinet</li>
+				<li>ToolCabinetShelf</li>
+			</linkableFacilities>
+		  </li>
+		  <li Class="CompProperties_Breakdownable"/>
+		</comps>
 	</ThingDef>
-
+	
   <ThingDef ParentName="OG_BenchBase">
     <defName>OGI_TableMachining</defName>
     <label>Imperial machining table</label>
@@ -59,22 +78,7 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
@@ -135,22 +139,7 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
@@ -165,7 +154,43 @@
     </placeWorkers>
   </ThingDef>
 
-  <ThingDef ParentName="OG_BenchBase">
+	<ThingDef Name="OG_BenchBase_Xeno" ParentName="BuildingBase" Abstract="True">
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.20</staticSunShadowHeight>
+		<thingCategories>
+			<li>BuildingsProduction</li>
+		</thingCategories>
+		<statBases>
+			<Mass>40.0</Mass>
+		</statBases>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<comps>
+		  <li Class="CompProperties_Power">
+			<compClass>CompPowerTrader</compClass>
+			<shortCircuitInRain>true</shortCircuitInRain>
+			<basePowerConsumption>350</basePowerConsumption>
+		  </li>
+		  <li Class="CompProperties_Flickable"/>
+		  <li Class="CompProperties_Glower">
+			<glowRadius>5</glowRadius>
+			<glowColor>(73,123,138,0)</glowColor>
+		  </li>
+		  <li Class="CompProperties_AffectedByFacilities">
+			<linkableFacilities>
+				<li>ToolCabinet</li>
+				<li>ToolCabinetShelf</li>
+			</linkableFacilities>
+		  </li>
+		  <li Class="CompProperties_Facility">
+			<!--statOffsets>
+			  <ResearchSpeedFactor>0.1</ResearchSpeedFactor>
+			</statOffsets-->
+			<maxSimultaneous>4</maxSimultaneous>
+		  </li>
+		</comps>
+	</ThingDef>
+	
+  <ThingDef ParentName="OG_BenchBase_Xeno">
     <defName>OGE_TableMachining</defName>
     <label>Eldar crafting supplies</label>
     <description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -211,29 +236,14 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
     <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>OG_Eldar_Tech_Base_T1</li>
+    <researchPrerequisites Inherit="False">
+      <!--li>OG_Eldar_Tech_Base_T1</li-->
     </researchPrerequisites>
     <designationHotKey>Misc7</designationHotKey>
     <placeWorkers>
@@ -244,7 +254,7 @@
     </thingSetMakerTags>
   </ThingDef>
   
-  <ThingDef ParentName="OG_BenchBase">
+  <ThingDef ParentName="OG_BenchBase_Xeno">
     <defName>OGDE_TableMachining</defName>
     <label>Dark Eldar crafting supplies</label>
     <description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -290,29 +300,14 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
     <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>OG_DarkEldar_Tech_Base_T1</li>
+    <researchPrerequisites Inherit="False">
+      <!--li>OG_DarkEldar_Tech_Base_T1</li-->
     </researchPrerequisites>
     <designationHotKey>Misc7</designationHotKey>
     <placeWorkers>
@@ -323,7 +318,7 @@
     </thingSetMakerTags>
   </ThingDef>
   
-  <ThingDef ParentName="OG_BenchBase">
+  <ThingDef ParentName="OG_BenchBase_Xeno">
     <defName>OGO_TableMachining</defName>
     <label>Ork crafting supplies</label>
     <description>An orkish work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -369,30 +364,14 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-          <li>ToolCabinetShelf</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
     <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>OG_Ork_Tech_Base_T1</li>
+    <researchPrerequisites Inherit="False">
+      <!--li>OG_Ork_Tech_Base_T1</li-->
     </researchPrerequisites>
     <designationHotKey>Misc7</designationHotKey>
     <placeWorkers>
@@ -403,7 +382,7 @@
     </thingSetMakerTags>
   </ThingDef>
 
-  <ThingDef ParentName="OG_BenchBase">
+  <ThingDef ParentName="OG_BenchBase_Xeno">
     <defName>OGT_TableMachining</defName>
     <label>Tau crafting supplies</label>
     <description>A tau work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -449,29 +428,14 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <comps>
-      <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
-        <shortCircuitInRain>true</shortCircuitInRain>
-        <basePowerConsumption>350</basePowerConsumption>
-      </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Glower">
-        <glowRadius>5</glowRadius>
-        <glowColor>(73,123,138,0)</glowColor>
-      </li>
-      <li Class="CompProperties_AffectedByFacilities">
-        <linkableFacilities>
-          <li>ToolCabinet</li>
-        </linkableFacilities>
-      </li>
-      <li Class="CompProperties_Breakdownable"/>
+	
     </comps>
     <building>
       <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
     </building>
     <constructEffect>ConstructMetal</constructEffect>
-    <researchPrerequisites>
-      <li>OG_Tau_Tech_Base_T1</li>
+    <researchPrerequisites Inherit="False">
+	
     </researchPrerequisites>
     <designationHotKey>Misc7</designationHotKey>
     <placeWorkers>

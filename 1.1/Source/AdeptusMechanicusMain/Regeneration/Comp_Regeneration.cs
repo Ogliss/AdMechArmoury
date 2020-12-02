@@ -196,7 +196,7 @@ namespace AdeptusMechanicus
         }
         public void TryRegrowBodyparts()
         {
-            using (IEnumerator<BodyPartRecord> enumerator = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, OGHediffDefOf.Regenerating_Part_OG, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
+            using (IEnumerator<BodyPartRecord> enumerator = this.pawn.GetFirstMatchingBodyparts(this.pawn.RaceProps.body.corePart, HediffDefOf.MissingBodyPart, OGHediffDefOf.OG_Hediff_Regenerating_Part, (Hediff hediff) => hediff is Hediff_AddedPart).GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
@@ -210,7 +210,7 @@ namespace AdeptusMechanicus
                     {
                         float num = hediff2.Part.def.GetMaxHealth(pawn) / 100;
                         this.pawn.health.RemoveHediff(hediff2);
-                        this.pawn.health.AddHediff(OGHediffDefOf.Regenerating_Part_OG, part, null, null);
+                        this.pawn.health.AddHediff(OGHediffDefOf.OG_Hediff_Regenerating_Part, part, null, null);
 
                         if (Props.useFood)
                         {

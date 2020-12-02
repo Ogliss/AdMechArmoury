@@ -101,7 +101,7 @@ namespace AdeptusMechanicus
                 if (_Graphic == null)
                 {
                     string path = GraphicPath;
-                    if (ExtraUseBodyTexture && !onHead)
+                    if (ExtraUseBodyTexture && !onHead && !ExtraPartEntry.OnHead && !Props.onHead)
                     {
                         path += "_" + pawn.story.bodyType.ToString();
                     }
@@ -208,7 +208,7 @@ namespace AdeptusMechanicus
                 offset.y = offset.y + (_SubOffsetFactor * partEntry.sublayer);
             }
 
-            if (!onHead || Props.onHead)
+            if (!onHead || !Props.onHead || !ExtraPartEntry.OnHead)
             {
                 offset.y += _BodyOffset;
                 if (rotation == Rot4.North)
@@ -289,6 +289,11 @@ namespace AdeptusMechanicus
         public bool ShouldDrawExtra(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material extraMaterial)
         {
             extraMaterial = null;
+            if (pawn.InBed() && !onHead)
+            {
+                extraMaterial = null;
+                return false;
+            }
             if (pawn.needs != null && pawn.story != null)
             {
                 if (this.Graphic != null)
@@ -322,10 +327,6 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (Props.onHead)
-                {
-                    return true;
-                }
                 if (!_OnHeadCache.ContainsKey(parent.def.defName))
                 {
                     List<BodyPartRecord> parts = pawn.RaceProps.body.AllParts.Where(parent.def.apparel.CoversBodyPart).ToList();
