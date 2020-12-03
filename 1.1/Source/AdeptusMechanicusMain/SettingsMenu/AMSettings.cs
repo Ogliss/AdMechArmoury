@@ -242,15 +242,15 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true && AMSettings.Instance.AllowOrkWeapons);
 
             // Orkz Playable Race Extras
-            Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.05f);
+            Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.025f);
             Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 1f);
             Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSquigChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.75f);
+            Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.85f);
             Scribe_Values.Look(ref this.FungusSnotChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.2f);
+            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.1f);
             Scribe_Values.Look(ref this.FungusGrotChanceBuffer, "AMO_FungusGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.1f);
+            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.05f);
             Scribe_Values.Look(ref this.FungusOrkChanceBuffer, "AMO_FungusOrkChanceBuffer", string.Empty);
 
             Scribe_Values.Look(ref this.CocoonSpawnChance, "AMO_CocoonSpawnChance", 0.25f);
