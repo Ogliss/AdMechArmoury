@@ -41,7 +41,7 @@ namespace AdeptusMechanicus
                         tex = this.parent.Graphic.path;
                         if (this.parent.Graphic is Graphic_SingleQuality)
                         {
-                            Log.Message("Quality Graphic detected");
+                            if (Prefs.DevMode) Log.Message("Quality Graphic detected");
                         }
                         else
                         if (this.parent.TryGetComp<CompAdvancedGraphic>() != null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
@@ -57,10 +57,10 @@ namespace AdeptusMechanicus
 
                         if (idx != -1)
                         {
-                            Log.Message(tex.Substring(0, idx));
-                            Log.Message(tex.Substring(idx + 1));
+                        //    if (Prefs.DevMode) Log.Message(tex.Substring(0, idx));
+                        //    if (Prefs.DevMode) Log.Message(tex.Substring(idx + 1));
                             tex = tex.Substring(0, idx) + "/" + this.parent.Graphic.MatSingle.mainTexture.name;
-                            Log.Message("Quality Graphic using: " + tex);
+                        //    if (Prefs.DevMode) Log.Message("Quality Graphic using: " + tex);
                         }
                     }
                     texPath = tex + "_Glow";

@@ -59,7 +59,7 @@ namespace AdeptusMechanicus
                     int distance = Find.WorldGrid.TraversalDistanceBetween(tileId, playerSettlement.Tile, false, minDistance);
                     var objects = Find.WorldObjects.ObjectsAt(tileId).ToArray();
                     if (objects.Length > 0)
-                        Log.Message($"Tile: {tileId} has {objects.Select(o => o.Label).ToCommaList(true)}.");
+                        if (Prefs.DevMode) Log.Message($"Tile: {tileId} has {objects.Select(o => o.Label).ToCommaList(true)}.");
                     if (distance < minDistance) return false;
                 }
                 return true;
@@ -98,7 +98,7 @@ namespace AdeptusMechanicus
                 relations.RemoveAll(r => r?.other == null || r.other == faction);
             }
 
-            Log.Message($"Marking faction {faction.Name} as hidden.");
+            if (Prefs.DevMode) Log.Message($"Marking faction {faction.Name} as hidden.");
             faction.defeated = true;
             //faction.hidden = true;
         }

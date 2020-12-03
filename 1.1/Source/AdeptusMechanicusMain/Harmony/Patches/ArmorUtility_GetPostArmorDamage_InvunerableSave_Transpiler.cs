@@ -73,13 +73,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (value < num2)
                 {
                     damAmount = 0f;
-                    Log.Message("Damage negated by Inv save");
+                    if (Prefs.DevMode) Log.Message("Damage negated by Inv save");
                     return;
                 }
                 if (value < ap)
                 {
                     damAmount = (float)GenMath.RoundRandom(damAmount / 2f);
-                    Log.Message("Damage halved by Inv save");
+                    if (Prefs.DevMode) Log.Message("Damage halved by Inv save");
                 }
             }
         }

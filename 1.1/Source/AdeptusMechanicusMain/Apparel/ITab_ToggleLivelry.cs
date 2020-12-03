@@ -115,7 +115,7 @@ namespace AdeptusMechanicus
                             {
                                 if (entry.Options.NullOrEmpty())
                                 {
-                                    Log.Message(entry.Label + " no options");
+                                    if (Prefs.DevMode) Log.Message(entry.Label + " no options");
                                     continue;
                                 }
                             }

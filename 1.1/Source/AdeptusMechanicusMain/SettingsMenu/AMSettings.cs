@@ -70,6 +70,12 @@ namespace AdeptusMechanicus.settings
         public bool AllowChaosDeamonicIncursion = true;
         public bool AllowChaosDeamonicInfestation = true;
 
+        // End times intergration
+
+        public bool EndTimesIntergrateDeamons = true;
+        public bool EndTimesIntergrateDeamonsGreat = true;
+        public bool EndTimesIntergrateDeamonsSmall = true;
+
         // Playable Chaos Settings
 
         // Eldar Settings
@@ -196,6 +202,9 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.AllowChaosDeamons, "AMXB_AllowChaosDeamons", true);
             Scribe_Values.Look(ref this.AllowChaosDeamonicIncursion, "AMXB_AllowChaosDeamonicIncursion", true);
             Scribe_Values.Look(ref this.AllowChaosDeamonicInfestation, "AMXB_AllowChaosDeamonicInfestation", true);
+            Scribe_Values.Look(ref this.EndTimesIntergrateDeamons, "AMXB_EndTimesChaosDeamonIntergration", true);
+            Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsGreat, "AMXB_EndTimesChaosDeamonIntergration_GreatPortal", true);
+            Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsSmall, "AMXB_EndTimesChaosDeamonIntergration_SmallPortal", true);
             Scribe_Values.Look(ref this.ShowDarkEldar, "AMXB_ShowDarkEldar", false);
             Scribe_Values.Look(ref this.AllowDarkEldar, "AMXB_AllowDarkEldar", false && AMSettings.Instance.AllowDarkEldarWeapons);
             Scribe_Values.Look(ref this.ShowEldar, "AMXB_ShowEldar", false);

@@ -36,7 +36,7 @@ namespace AdeptusMechanicus
                 relations.RemoveAll(r => r?.other == null || r.other == faction);
             }
 
-            Log.Message($"Marking faction {faction.Name} as hidden.");
+            if (Prefs.DevMode) Log.Message($"Marking faction {faction.Name} as hidden.");
             faction.defeated = true;
             //faction.hidden = true;
         }

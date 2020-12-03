@@ -86,6 +86,8 @@ namespace AdeptusMechanicus
         public static bool enabled_ChjAndroids;
         public static bool enabled_AndroidTiers;
 
+        public static bool enabled_EndTimesWithGuns;
+
 
         static AdeptusIntergrationUtility()
         {
@@ -125,8 +127,9 @@ namespace AdeptusMechanicus
             enabled_AvP = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Ogliss.AlienVsPredator");
             enabled_ChjAndroids = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "ChJees.Androids");
             enabled_AndroidTiers = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Atlas.AndroidTiers");
+            enabled_EndTimesWithGuns = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "SickBoyWi.TheEndTimes.WithGuns");
 
-         }
+        }
 
         public static bool isAvPSynth(PawnKindDef pawn)
         {

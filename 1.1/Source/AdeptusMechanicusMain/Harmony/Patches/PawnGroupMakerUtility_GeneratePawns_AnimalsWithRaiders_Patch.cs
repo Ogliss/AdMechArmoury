@@ -18,12 +18,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             
             if (faction == null)
             {
-                Log.Message("Faction null");
+            //    if (Prefs.DevMode) Log.Message("Faction null");
                 return;
             }
             if (__result.EnumerableNullOrEmpty())
             {
-                Log.Message("no pawns");
+            //    if (Prefs.DevMode) Log.Message("no pawns");
                 return;
             }
             List<Pawn> resultingPawns = __result.ToList();
