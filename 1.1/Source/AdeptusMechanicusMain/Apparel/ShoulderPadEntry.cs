@@ -18,15 +18,28 @@ namespace AdeptusMechanicus
 
         public ShoulderPadEntry(ShoulderPadEntryProps entry, CompPauldronDrawer drawer)
         {
+            UpdateProps(entry);
+            this.drawer = drawer;
+            this.apparel = drawer.apparel;
+        }
+
+        public void UpdateProps(ShoulderPadEntryProps entry)
+        {
             this.props = entry;
             this.label = entry.label;
             this.shoulderPadType = entry.shoulderPadType;
             this.shaderType = entry.shaderType;
             this.bodyspecificTextures = entry.bodyspecificTextures;
             this.padTexPath = entry.padTexPath;
-            this.label = entry.label;
+            if (!entry.label.NullOrEmpty())
+            {
+                this.label = entry.label;
+            }
             this.commonality = entry.commonality;
-            this.northtop = entry.northtop;
+            this.northalt = entry.northtop;
+            this.southalt = entry.southtop;
+            this.eastalt = entry.easttop;
+            this.westalt = entry.westtop;
             this.UseFactionTextures = entry.UseFactionTextures;
             this.UseFactionColors = entry.UseFactionColors;
             this.UseVariableTextures = entry.UseVariableTextures;
@@ -41,34 +54,79 @@ namespace AdeptusMechanicus
                 this.defaultOption = entry.defaultOption;
                 this.activeOption = entry.defaultOption;
             }
-            this.drawer = drawer;
-            this.apparel = drawer.apparel;
         }
 
+        public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
+        private const float YOffset_Utility_South = 0.006122449f;
+        private const float YOffset_Shell = 0.021428572f + MinClippingDistance;
+        private const float YOffset_Head = 0.0244897958f + MinClippingDistance;
+        private const float YOffset_Utility = 0.02755102f + MinClippingDistance;
+        private const float YOffset_OnHead = 0.0306122452f + MinClippingDistance;
+        private const float YOffset_PostHead = 0.03367347f + MinClippingDistance;
+        private const float YOffset_CarriedThing = 0.0367346928f + MinClippingDistance;
         public Shader Shader => shaderType.Shader;
         public Vector3 NorthOffset => this.Props.NorthOffset;
         public Vector3 SouthOffset => this.Props.SouthOffset;
         public Vector3 EastOffset => this.Props.EastOffset;
         public Vector3 WestOffset => this.Props.WestOffset;
+        public float altOffet(string alt)
+        {
+            switch (alt)
+            {
+                case "Shell":
+                    return YOffset_Shell;
+                case "Head":
+                    return YOffset_Head;
+                case "Utility":
+                    return YOffset_Utility;
+                case "OnHead":
+                    return YOffset_OnHead;
+                case "PostHead":
+                    return YOffset_PostHead;
+                case "CarriedThing":
+                    return YOffset_CarriedThing;
+                case "Utility_South":
+                    return YOffset_Utility_South;
+                default:
+                    if (alt.NullOrEmpty())
+                    {
+                        return 0f;
+                    }
+                    return YOffset_Shell;
+            }
+        }
         public Vector3 OffsetFor(Rot4 rot)
         {
             Vector3 vector = new Vector3();
+            string alt = string.Empty;
             if (rot == Rot4.North)
             {
-                return NorthOffset;
+                vector = NorthOffset;
+                vector.y += altOffet(northalt);
+                alt = northalt;
             }
+            else
             if (rot == Rot4.South)
             {
-                return SouthOffset;
+                vector = SouthOffset;
+                vector.y += altOffet(southalt);
+                alt = northalt;
             }
+            else
             if (rot == Rot4.East)
             {
-                return EastOffset;
+                vector = EastOffset;
+                vector.y += altOffet(eastalt);
+                alt = northalt;
             }
+            else
             if (rot == Rot4.West)
             {
-                return WestOffset;
+                vector = WestOffset;
+                vector.y += altOffet(westalt);
+                alt = northalt;
             }
+        //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
         }
         public CompPauldronDrawer Drawer
@@ -136,12 +194,8 @@ namespace AdeptusMechanicus
                             ShoulderPadEntryProps e = Drawer.Props.PauldronEntries[i];
                             if ((this.padTexPath == e.padTexPath && this.shoulderPadType == e.shoulderPadType) || (!this.label.NullOrEmpty() && !e.label.NullOrEmpty() && this.label == e.label))
                             {
-                                props = e;
-                                if (!e.label.NullOrEmpty())
-                                {
-                                    this.label = e.label;
-                                }
-                        //        Log.Message("ShoulderPadEntryProps found for " + Label);
+                                UpdateProps(e);
+                                //        Log.Message("ShoulderPadEntryProps found for " + Label);
                                 break;
                             }
                         }
@@ -156,6 +210,17 @@ namespace AdeptusMechanicus
             {
                 Graphic = null;
                 return;
+            }
+            if (apparel.Wearer == null)
+            {
+                Drawer.pawn = null;
+                Graphic = null;
+                return;
+            }
+            if (Drawer.pawn != apparel.Wearer)
+            {
+                Log.Message("Old Wearer: "+ Drawer.pawn + "new Wearer: "+ apparel.Wearer);
+                Drawer.pawn = apparel.Wearer;
             }
             Pawn pawn = Drawer.pawn;
             Shader shader = this.Shader;
@@ -412,12 +477,12 @@ namespace AdeptusMechanicus
             return AlienRace.HarmonyPatches.GetPawnMesh(portrait, pawn, facing, body);
         }
 
-        public bool ShouldDrawEntry(bool portrait, Rot4 bodyFacing, Vector2 size, out Graphic pauldronMaterial, out Mesh pauldronMesh, out Vector3 offset)
+        public bool ShouldDrawEntry(bool portrait, Rot4 bodyFacing, Vector2 size, bool renderBody, out Graphic pauldronMaterial, out Mesh pauldronMesh, out Vector3 offset)
         {
             this.size = size;
             pauldronMaterial = null;
             offset = OffsetFor(bodyFacing);
-            if (pawn.InBed())
+            if (!renderBody)
             {
                 if (!Drawer.onHead || (Props.drawInBed.HasValue && Props.drawInBed.Value == false))
                 {
@@ -500,7 +565,10 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref this.padTexPath, "padTexPath", string.Empty);
             Scribe_Values.Look(ref this.label, "label", string.Empty);
             Scribe_Values.Look(ref this.commonality, "commonality", 1);
-            Scribe_Values.Look(ref this.northtop, "northtop", false);
+            Scribe_Values.Look(ref this.northalt, "northalt", "PostHead");
+            Scribe_Values.Look(ref this.southalt, "southalt", "Shell");
+            Scribe_Values.Look(ref this.eastalt, "eastalt", "Shell");
+            Scribe_Values.Look(ref this.westalt, "westalt", "Shell");
             Scribe_Values.Look(ref this.UseFactionTextures, "UseFactionTextures", false);
             Scribe_Values.Look(ref this.UseFactionColors, "UseFactionColors", false);
             Scribe_Values.Look(ref this.UseVariableTextures, "UseVariableTextures", false);
@@ -540,7 +608,10 @@ namespace AdeptusMechanicus
         public string padTexPath;
         private string label;
         public int commonality;
-        public bool northtop = false;
+        public string northalt = "Shell";
+        public string southalt = "Shell";
+        public string eastalt = "Shell";
+        public string westalt = "Shell";
         public bool UseFactionTextures = false;
         public bool UseFactionColors = false;
         public bool UseVariableTextures;

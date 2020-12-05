@@ -888,13 +888,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "OG_Tau_Tech_Apparel_Armour_T1";
                     }
-                    if (defName == "TauDroneTech")
+                    if (defName == "TauDroneTech" || defName == "OG_Tau_Tech_Wargear_Drone")
                     {
-                        newName = "OG_Tau_Tech_Wargear_Drone";
+                        newName = "OG_Tau_Tech_Apparel_Wargear_Drone";
                     }
-                    if (defName == "TauShieldTech")
+                    if (defName == "TauShieldTech" || defName == "OG_Tau_Tech_Wargear_Shield")
                     {
-                        newName = "OG_Tau_Tech_Wargear_Shield";
+                        newName = "OG_Tau_Tech_Apparel_Wargear_Shield";
                     }
 
                     // Ork Reseach renames

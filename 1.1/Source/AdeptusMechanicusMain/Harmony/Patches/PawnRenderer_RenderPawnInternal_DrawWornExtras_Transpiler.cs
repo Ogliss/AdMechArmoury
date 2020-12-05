@@ -30,6 +30,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 CodeInstruction instruction = instructionList[index: i];
                 if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(Graphics), name: nameof(Graphics.DrawMesh), parameters: new []{typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(Int32)})) && (i+1) < instructionList.Count /* && instructionList[index: i + 1].opcode == OpCodes.Brtrue_S*/)
                 {
+                    
                     yield return instruction; // portrait
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
@@ -38,7 +39,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 4); // bodyfacing
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 9); //invisible
                     yield return new CodeInstruction(opcode: OpCodes.Ldloc_1);             // Mesh
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 5); // bodyfacing
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 5); // headfacing
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);
                     yield return new CodeInstruction(opcode: OpCodes.Call,    operand: typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
 
                     instruction = new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 7);
@@ -48,7 +50,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        public static void DrawAddons( bool portrait, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, bool invisible, Mesh mesh, Rot4 headfacing)
+        public static void DrawAddons( bool portrait, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, bool invisible, Mesh mesh, Rot4 headfacing, bool renderBody)
         {
             if (invisible) return;
             Vector2 size  = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
@@ -89,17 +91,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 {
                                     Log.Warning("Warning! Drawer null");
                                 }
-                                if (entry.ShouldDrawEntry(portrait, bodyFacing, size, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                 {
-                                    GenDraw.DrawMeshNowOrLater
-                                        (
-                                            // pauldronMesh,
-                                            GetPawnMesh(portrait, pawn, bodyFacing, !Pauldron.onHead),
-                                            center + (quat * offset),
-                                            quat,
-                                            OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                            portrait
-                                        );
+                                    if (Pauldron.onHead || renderBody)
+                                    {
+                                        GenDraw.DrawMeshNowOrLater
+                                            (
+                                                // pauldronMesh,
+                                                GetPawnMesh(portrait, pawn, bodyFacing, !Pauldron.onHead),
+                                                center + (quat * offset),
+                                                quat,
+                                                OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                portrait
+                                            );
+                                    }
                                 }
                             }
                         }
@@ -113,25 +118,28 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 Rot4 facing = onHead ? headfacing : bodyFacing;
                                 if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                 {
-                                    if (onHead )
+                                    if (onHead || renderBody)
                                     {
-                                        Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
-                                        drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
-                                        
+                                        if (onHead)
+                                        {
+                                            Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                            drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
+
+                                        }
+                                        else
+                                        {
+                                            drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                        }
+                                        GenDraw.DrawMeshNowOrLater
+                                            (
+                                                // pauldronMesh,
+                                                GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                drawAt,
+                                                quat,
+                                                OverrideMaterialIfNeeded(extraMat, pawn),
+                                                portrait
+                                            );
                                     }
-                                    else
-                                    {
-                                        drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
-                                    }
-                                    GenDraw.DrawMeshNowOrLater
-                                        (
-                                            // pauldronMesh,
-                                            GetPawnMesh(portrait, pawn, facing, !onHead),
-                                            drawAt,
-                                            quat,
-                                            OverrideMaterialIfNeeded(extraMat, pawn),
-                                            portrait
-                                        );
                                     //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                 }
                             }

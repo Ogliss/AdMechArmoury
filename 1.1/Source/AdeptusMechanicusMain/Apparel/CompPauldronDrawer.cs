@@ -124,6 +124,10 @@ namespace AdeptusMechanicus
                 }
                 return wearer;
             }
+            set
+            {
+                wearer = value;
+            }
         }
 
        
@@ -365,6 +369,7 @@ namespace AdeptusMechanicus
         {
             return AlienRace.HarmonyPatches.GetPawnMesh(portrait, pawn, facing, body);
         }
+        /*
         public bool ShouldDrawPauldron(bool portrait, Rot4 bodyFacing, Vector2 size, ShoulderPadEntry Entry, out Graphic pauldronMaterial, out Mesh pauldronMesh)
         {
             pauldronMaterial = null;
@@ -380,8 +385,10 @@ namespace AdeptusMechanicus
                 {
                     if (this.CheckPauldronRotation(bodyFacing, Entry.shoulderPadType))
                     {
-                        if (Entry.Graphic==null || (Entry.Graphic != null && pawn != apparel.Wearer))
+                        Log.Message("pawn "+pawn + " Wearer "+ apparel.Wearer);
+                        if (Entry.Graphic==null || pawn != apparel.Wearer)
                         {
+                            wearer = apparel.Wearer;
                         //    Log.Message("pawn = Wearer" + (pawn != apparel.Wearer));
                         //    Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                             Entry.UpdateGraphic();
@@ -402,7 +409,7 @@ namespace AdeptusMechanicus
             return false;
 
         }
-        public Vector2 size;
+        */
         public bool CheckPauldronRotation(Rot4 bodyFacing, ShoulderPadType shoulderPadType)
         {
             if (shoulderPadType == ShoulderPadType.Left && bodyFacing == Rot4.East)
@@ -518,10 +525,11 @@ namespace AdeptusMechanicus
             return "CompPauldronDrawer_" + parent.thingIDNumber;
         }
 
+
         public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
         const float _HeadOffset = 0.02734375f + MinClippingDistance;
-        const float _HairOffset = 035f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
-        const float _BodyOffset = 0.0234375f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
+        const float _HairOffset = 0244897958f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
+        const float _BodyOffset = 0.021428572f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
         const float _OffsetFactor = 0.001f;
         const float _SubOffsetFactor = 0.0001f;
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
@@ -534,6 +542,7 @@ namespace AdeptusMechanicus
         //    public FactionDef FactionDef;
         public int entryInd = -1;
 
+        public Vector2 size;
         public List<ShoulderPadEntry> activeEntries;
         public static string UpdateString = "UPDATEPADGRAPHICS";
     }

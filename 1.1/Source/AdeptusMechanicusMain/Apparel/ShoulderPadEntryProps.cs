@@ -18,7 +18,10 @@ namespace AdeptusMechanicus
         public string padTexPath;
         public string label;
         public int commonality;
-        public bool northtop = false;
+        public string northtop;
+        public string southtop;
+        public string easttop;
+        public string westtop;
         public bool UseFactionTextures = false;
         public bool UseFactionColors = false;
         public bool UseVariableTextures;
