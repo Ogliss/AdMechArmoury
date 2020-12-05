@@ -87,6 +87,7 @@ namespace AdeptusMechanicus
         public static bool enabled_AndroidTiers;
 
         public static bool enabled_EndTimesWithGuns;
+        public static bool enabled_RBFishing;
 
 
         static AdeptusIntergrationUtility()
@@ -128,6 +129,7 @@ namespace AdeptusMechanicus
             enabled_ChjAndroids = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "ChJees.Androids");
             enabled_AndroidTiers = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Atlas.AndroidTiers");
             enabled_EndTimesWithGuns = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "SickBoyWi.TheEndTimes.WithGuns");
+            enabled_RBFishing = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "firefoxpdm.RainbeausFishing");
 
         }
 
