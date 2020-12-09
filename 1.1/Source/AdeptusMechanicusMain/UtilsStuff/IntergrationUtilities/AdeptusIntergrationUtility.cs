@@ -50,6 +50,7 @@ namespace AdeptusMechanicus
         */
 
         public static bool enabled_AstraCore;
+        public static bool enabled_AstraServoSkulls;
         public static bool enabled_AstraFactions;
         public static bool enabled_AstraTurrets;
 
@@ -95,6 +96,7 @@ namespace AdeptusMechanicus
             enabled_AstraCore = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum"));
             enabled_AstraFactions = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum.Factions"));
             enabled_AstraTurrets = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum.Turrets"));
+            enabled_AstraServoSkulls = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("QX.AstraMilitarum.ServoSkull"));
 
             enabled_GeneSeed = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AliceTries.GeneSeed"));
 

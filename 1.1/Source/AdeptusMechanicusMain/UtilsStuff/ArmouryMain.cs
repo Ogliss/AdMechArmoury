@@ -253,6 +253,10 @@ namespace AdeptusMechanicus
                 if (GeneseedAstartes != null) races.Add(GeneseedAstartes);
                 if (GeneseedCustodes != null) races.Add(GeneseedCustodes);
             }
+            if (AdeptusIntergrationUtility.enabled_AstraServoSkulls)
+            {
+                races.AddRange(DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> (x.defName.Contains("IG_Serv_ServoSkull") && x.defName.Contains("_Race")) || (x.defName.Contains("IG_Serv_Servitor") && x.defName.Contains("_Race"))));
+            }
 
             if (!races.NullOrEmpty())
             {
@@ -265,33 +269,33 @@ namespace AdeptusMechanicus
         }
 
         [MayRequireAlienRaces]
-        public static void DoRacialRestrictionsFor(ThingDef race, string Tag, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null)
+        public static void DoRacialRestrictionsFor(ThingDef race, string Tag, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null, List<ThingDef> animals = null)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
             List<string> Tags = new List<string>();
             Tags.Add(Tag);
-            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants);
+            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants, animals);
         }
 
         [MayRequireAlienRaces]
-        public static void DoRacialRestrictionsFor(ThingDef race, List<string> Tags, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null)
+        public static void DoRacialRestrictionsFor(ThingDef race, List<string> Tags, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null, List<ThingDef> animals = null)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
-            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants);
+            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants, animals);
         }
 
         [MayRequireAlienRaces]
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, string Tag, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, string Tag, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null, List<ThingDef> animals = null)
         {
             List<string> Tags = new List<string>();
             Tags.Add(Tag);
-            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants);
+            DoRacialRestrictionsFor(races, Tags, researches, apparel, weapons, plants, animals);
         }
 
         [MayRequireAlienRaces]
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> Tags, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> Tags, List<ResearchProjectDef> researches = null, List<ThingDef> apparel = null, List<ThingDef> weapons = null, List<ThingDef> plants = null, List<ThingDef> animals = null)
         {
             foreach (ThingDef race in races)
             {
@@ -334,7 +338,12 @@ namespace AdeptusMechanicus
                         msg += "\n" + plants.Count + " Plants";
                         RestrictPlants(alien, plants);
                     }
-                //    Log.Message(msg);
+                    if (!animals.NullOrEmpty())
+                    {
+                        msg += "\n" + animals.Count + " Animals";
+                        RestrictAnimals(alien, animals);
+                    }
+                    Log.Message(msg);
                 }
             }
         }
@@ -454,6 +463,26 @@ namespace AdeptusMechanicus
                 if (!AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Contains(alien))
                 {
                     AlienRace.RaceRestrictionSettings.plantRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
+                }
+            }
+        }
+        
+        [MayRequireAlienRaces]
+        public static void RestrictAnimals(ThingDef race, List<ThingDef> list)
+        {
+            AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
+            if (alien == null)
+            {
+                return;
+            }
+            alien.alienRace.raceRestriction.petList.AddRange(list);
+            foreach (ThingDef def in list)
+            {
+                if (!AlienRace.RaceRestrictionSettings.tameRestrictionDict.ContainsKey(key: def))
+                    AlienRace.RaceRestrictionSettings.tameRestrictionDict.Add(key: def, value: new List<AlienRace.ThingDef_AlienRace>());
+                if (!AlienRace.RaceRestrictionSettings.tameRestrictionDict[key: def].Contains(alien))
+                {
+                    AlienRace.RaceRestrictionSettings.tameRestrictionDict[key: def].Add(item: alien as AlienRace.ThingDef_AlienRace);
                 }
             }
         }
