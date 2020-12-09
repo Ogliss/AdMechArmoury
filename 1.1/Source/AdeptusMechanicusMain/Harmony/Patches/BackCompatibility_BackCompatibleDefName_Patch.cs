@@ -35,6 +35,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = "OGK_Apparel_TribalHeaddress";
                         return;
                     }
+                    if (defName == "OGIG_Apparel_LightFlakArmour")
+                    {
+                        __result = "OGIG_Apparel_FlakArmourLight";
+                        return;
+                    }
+                    if (defName == "OGIG_Apparel_CadianFlakGreaves")
+                    {
+                        __result = "OGIG_Apparel_FlakArmourLightGreaves";
+                        return;
+                    }
                     if (defName.Contains("BoltGun"))
                     {
                         if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))

@@ -399,7 +399,7 @@ namespace RimWorld
             }
             Rand.PushState();
             bool startfire = Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(intVec, base.Map));
-            Rand.PushState();
+            Rand.PopState();
             if (startfire)
             {
                 if (!flag)

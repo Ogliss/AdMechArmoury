@@ -63,7 +63,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void SOSConstructPatch()
         {
-            AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("hasSpaceSuit"), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
+         //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
         }
 
         private static void SOSSpaceSuitPostfix_Flesh_Construct(Pawn pawn, ref bool __result)

@@ -1,6 +1,7 @@
 ﻿using AdeptusMechanicus.HarmonyInstance;
 using HarmonyLib;
 using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -56,14 +57,14 @@ namespace AdeptusMechanicus
             }
         }
 
-        public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
+        public const float MinClippingDistance = 0.0015f;   // Minimum space between layers to avoid z-fighting
         private const float YOffset_Utility_South = 0.006122449f;
         private const float YOffset_Shell = 0.021428572f + MinClippingDistance;
         private const float YOffset_Head = 0.0244897958f + MinClippingDistance;
         private const float YOffset_Utility = 0.02755102f + MinClippingDistance;
         private const float YOffset_OnHead = 0.0306122452f + MinClippingDistance;
         private const float YOffset_PostHead = 0.03367347f + MinClippingDistance;
-        private const float YOffset_CarriedThing = 0.0367346928f + MinClippingDistance;
+        private const float YOffset_CarriedThing = 0.0367346928f - MinClippingDistance;
         public Shader Shader => shaderType.Shader;
         public Vector3 NorthOffset => this.Props.NorthOffset;
         public Vector3 SouthOffset => this.Props.SouthOffset;
@@ -71,8 +72,10 @@ namespace AdeptusMechanicus
         public Vector3 WestOffset => this.Props.WestOffset;
         public float altOffet(string alt)
         {
-            switch (alt)
+            switch (alt.CapitalizeFirst())
             {
+                case "Utility_South":
+                    return YOffset_Utility_South;
                 case "Shell":
                     return YOffset_Shell;
                 case "Head":
@@ -85,8 +88,6 @@ namespace AdeptusMechanicus
                     return YOffset_PostHead;
                 case "CarriedThing":
                     return YOffset_CarriedThing;
-                case "Utility_South":
-                    return YOffset_Utility_South;
                 default:
                     if (alt.NullOrEmpty())
                     {
@@ -99,34 +100,36 @@ namespace AdeptusMechanicus
         {
             Vector3 vector = new Vector3();
             string alt = string.Empty;
+            float altOffset = 0f;
             if (rot == Rot4.North)
             {
                 vector = NorthOffset;
-                vector.y += altOffet(northalt);
+                altOffset = altOffet(northalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.South)
             {
                 vector = SouthOffset;
-                vector.y += altOffet(southalt);
+                altOffset = altOffet(southalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.East)
             {
                 vector = EastOffset;
-                vector.y += altOffet(eastalt);
+                altOffset = altOffet(eastalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.West)
             {
                 vector = WestOffset;
-                vector.y += altOffet(westalt);
+                altOffset = altOffet(westalt);
                 alt = northalt;
             }
-        //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
+            vector.y += Math.Min(altOffset, YOffset_CarriedThing);
+            //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
         }
         public CompPauldronDrawer Drawer
@@ -503,7 +506,7 @@ namespace AdeptusMechanicus
             {
                 if (this.CheckPauldronRotation(bodyFacing))
                 {
-                    if (Graphic == null || (Graphic != null && pawn != apparel.Wearer))
+                    if (Graphic == null || (Graphic != null && Drawer.pawn != apparel.Wearer))
                     {
                 //        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                         UpdateGraphic();
@@ -582,11 +585,11 @@ namespace AdeptusMechanicus
             Scribe_Defs.Look(ref this.faction, "faction");
             Scribe_References.Look(ref this.apparel, "apparel");
             //    Scribe_References.Look(ref this.drawer, "drawer");
-            Scribe_References.Look(ref this.wearer, "lastWearer");
+        //    Scribe_References.Look(ref this.wearer, "lastWearer");
             Scribe_Deep.Look<PauldronTextureOption>(ref this.activeOption, "activeOption", this.defaultOption);
         //    Scribe_Collections.Look<PauldronTextureOption>(ref this.options, "Options", LookMode.Deep);
         }
-
+        /*
         private Pawn wearer;
         public Pawn pawn
         {
@@ -599,6 +602,7 @@ namespace AdeptusMechanicus
                 return wearer;
             }
         }
+        */
         private ShoulderPadEntryProps props;
         public Vector2 size;
         public Apparel apparel;
