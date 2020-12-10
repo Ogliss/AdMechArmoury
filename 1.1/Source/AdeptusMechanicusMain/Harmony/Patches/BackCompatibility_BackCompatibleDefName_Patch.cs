@@ -1003,6 +1003,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = "OG_Condition_Warpstorm";
                     }
                 }
+                if (defType == typeof(WorkGiverDef))
+                {
+                    if (defName == "DoBillsImperialMachining" || defName == "DoBillsOrkMachining" || defName == "DoBillsTauMachining" || defName == "DoBillsEldarMachining")
+                    {
+                        newName = "DoBillsMachiningTable";
+                    }
+                }
                 if (defType == typeof(BodyDef))
                 {
                     if (defName.Contains("Kroot") || defName.Contains("Tau") || defName.Contains("Vespid"))

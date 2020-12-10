@@ -343,7 +343,7 @@ namespace AdeptusMechanicus
                         msg += "\n" + animals.Count + " Animals";
                         RestrictAnimals(alien, animals);
                     }
-                    Log.Message(msg);
+                //    Log.Message(msg);
                 }
             }
         }
