@@ -205,6 +205,7 @@
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <rotatable>true</rotatable>
+	<clearBuildingArea>false</clearBuildingArea>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>0.7</Flammability>
@@ -255,6 +256,9 @@
     <researchPrerequisites>
       <li>GunTurrets</li>
     </researchPrerequisites>
+    <placeWorkers>
+      <li>AdeptusMechanicus.PlaceWorker_OnTopOfLowWalls</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="BaseWeaponTurret">
@@ -298,8 +302,7 @@
   <ThingDef ParentName="OGI_Turret">
     <defName>OGI_Turret_HeavyBolter_Manual</defName>
     <label>pintle-mounted heavy bolter</label>
-    <description>A mounted storm bolter turret. Requires a gunner.</description>
-    <thingClass>Building_TurretGun</thingClass>
+    <description>A mounted heavy bolter turret. Requires a gunner.</description>
     <graphicData>
       <texPath>Things/Building/Imperial/Security/PintleMount_Base</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -362,6 +365,9 @@
     <researchPrerequisites>
       <li>GunTurrets</li>
     </researchPrerequisites>
+    <placeWorkers>
+      <li>AdeptusMechanicus.PlaceWorker_OnTopOfLowWalls</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="BaseWeaponTurret">
@@ -385,10 +391,9 @@
     <verbs>
       <li>
 		<verbClass>Verb_Shoot</verbClass>
-		<label>Heavy Bolter (Standard)</label>
 		<hasStandardCommand>true</hasStandardCommand>
 		<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
-		<warmupTime>3</warmupTime>
+		<warmupTime>0.00</warmupTime>
 		<range>38</range>
 		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 		<burstShotCount>6</burstShotCount>

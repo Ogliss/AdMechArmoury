@@ -33,7 +33,7 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
         }
 
-
+        /*
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
         {
             foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
@@ -42,15 +42,15 @@ namespace AdeptusMechanicus
             }
 
             if (!def.supportsColors) yield break;
-            /*
+            
             foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
             {
                 if (o != null) yield return o;
             }
-            */
+            
             yield break;
         }
-
+    */
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {

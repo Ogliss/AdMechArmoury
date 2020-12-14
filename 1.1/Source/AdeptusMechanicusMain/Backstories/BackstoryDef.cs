@@ -39,6 +39,7 @@ namespace AdeptusMechanicus
         public IntRange chronoAgeRange;
         public List<ThingDefCountRangeClass> forcedItems = new List<ThingDefCountRangeClass>();
         public Backstory backstory;
+        public string nameMaker;
 
         public class ChancedTraitEntry
         {
@@ -94,9 +95,13 @@ namespace AdeptusMechanicus
                     this.requiredWorkTags.ForEach(action: tag => wt |= tag);
                     return wt;
                 })()
+                
             };
             Rand.PopState();
-
+            if (!this.nameMaker.NullOrEmpty())
+            {
+                Traverse.Create(root: this.backstory).Field(name: "nameMaker").SetValue(value: this.nameMaker);
+            }
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeGlobalResolved").SetValue(value: this.bodyTypeGlobal);
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeFemaleResolved").SetValue(value: this.bodyTypeFemale);
             Traverse.Create(root: this.backstory).Field(name: "bodyTypeMaleResolved").SetValue(value: this.bodyTypeMale);

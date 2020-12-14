@@ -132,24 +132,27 @@ namespace AdeptusMechanicus.HarmonyInstance
                             newName = "OGI_Gun_LasPistol";
                         }
                     }
-                    if (defName.Contains("LasGun"))
+                    if (defName.Contains("LasGun") || defName.Contains("Lasgun"))
                     {
-                        if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
+                        if (!defName.Contains("Bullet"))
                         {
-                            newName = "OGC_Gun_LasGun";
-                        }
-                        else
-                        {
-                            if (defName.Contains("Lucius"))
+                            if (defName.Contains("Gun_CM") || defName.Contains("Gun_TG"))
                             {
-                                newName = "OGI_Gun_LasGun_Lucius";
+                                newName = "OGC_Gun_LasGun";
                             }
                             else
-                            newName = "OGI_Gun_LasGun";
-                        }
-                        if (GenDefDatabase.GetDefSilentFail(defType, newName, false) == null)
-                        {
-                            newName = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("LasGun") || x.defName.Contains("Lasgun") && (!x.defName.Contains("Lucius") || (defName.Contains("Lucius") && x.defName.Contains("Lucius")))).ToList().First().defName;
+                            {
+                                if (defName.Contains("Lucius"))
+                                {
+                                    newName = "OGI_Gun_LasGun_Lucius";
+                                }
+                                else
+                                    newName = "OGI_Gun_LasGun";
+                            }
+                            if (GenDefDatabase.GetDefSilentFail(defType, newName, false) == null)
+                            {
+                                newName = DefDatabase<ThingDef>.AllDefs.Where(x => x.defName.Contains("LasGun") || x.defName.Contains("Lasgun") && (!x.defName.Contains("Lucius") || (defName.Contains("Lucius") && x.defName.Contains("Lucius"))) && !x.defName.Contains("Bullet")).ToList().First().defName;
+                            }
                         }
                     }
                     if (defName == "IG_Melee_ChaosChainsword")

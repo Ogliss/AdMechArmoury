@@ -15,7 +15,7 @@ using RimWorld.QuestGen;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     // QuestNode_Root_Hospitality_Refugee
-    [HarmonyPatch(typeof(QuestGen_Pawns), "GeneratePawn", new Type[] {typeof(Quest),  typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool)})]
+//    [HarmonyPatch(typeof(QuestGen_Pawns), "GeneratePawn", new Type[] {typeof(Quest),  typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool)})]
     public static class QuestGen_Pawns_GeneratePawn_Refugee_Patch
     {
         public static void Prefix(ref PawnKindDef kindDef)

@@ -3,19 +3,97 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<!--success>Always</success-->
-			<!--=============== Auto turrets ===============-->
+			<!--=============== Base turrets ===============-->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[@Name="OGI_HeavyTurret"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[@Name="OGI_HeavyTurret" or @Name="OGI_Turret"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[@Name="OGI_HeavyLaserTurret"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[@Name="OGI_HeavyLaserTurret" or @Name="OGI_LaserTurret"]/thingClass</xpath>
 				<value>
 					<thingClass>AdeptusMechanicus.Building_LaserGunCE</thingClass>
 				</value>
 			</li>
+			<!--=============== Manual turrets ===============-->
+			<!--=============== Pintle-Mounted Heavy Bolter ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_HeavyBolter</defName>
+				<statBases>
+					<Mass>12.6</Mass>
+					<RangedWeapon_Cooldown>3.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.26</SwayFactor>
+					<Bulk>22.87</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.85</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+					<warmupTime>0.95</warmupTime>
+					<range>56</range>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>120</magazineSize>
+					<reloadTime>7.5</reloadTime>
+					<ammoSet>AmmoSet_OGBoltHeavy</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			<!--=============== Pintle-Mounted Storm Bolter ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_StormBolter</defName>
+				<statBases>
+					<Mass>4.6</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.26</SwayFactor>
+					<Bulk>5.50</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.6</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+					<warmupTime>0.8</warmupTime>
+					<range>38</range>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>36</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_OGBoltStd</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			<!--=============== Auto turrets ===============-->
 			<!--=============== Quad Heavy Stubber turret ===============-->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName = "OGI_Turret_QuadHeavyStubber_Auto"]/researchPrerequisites/li[text()="HeavyTurrets"]</xpath>

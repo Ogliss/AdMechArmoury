@@ -9,18 +9,24 @@ using System.Linq;
 using AdeptusMechanicus;
 using DualWield;
 using AdeptusMechanicus.settings;
+using RimWorld.QuestGen;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [StaticConstructorOnStartup]
     public static class HarmonyPatches
     {
-        public static Dictionary<Thing, int> AlternatingFireTracker = new Dictionary<Thing, int>();
         static HarmonyPatches()
         {
             if (AdeptusIntergrationUtility.enabled_SOS2)
             {
                 SOSConstructPatch();
+            }
+
+            MethodInfo QuestGen_Pawns_ = AccessTools.TypeByName("RimWorld.QuestGen.QuestGen_Pawns").GetMethod("GeneratePawn", new Type[] { typeof(Quest), typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool) });
+            if (QuestGen_Pawns_ != null)
+            {
+                QuestGen_Pawns_GeneratePawn_Patch();
             }
             if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
             {
@@ -63,7 +69,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void SOSConstructPatch()
         {
-         //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
+            //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
         }
 
         private static void SOSSpaceSuitPostfix_Flesh_Construct(Pawn pawn, ref bool __result)
@@ -95,6 +101,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             }, null), null, new HarmonyMethod(typeof(EquipmentUtility_CanEquip_Restricted_Patch).GetMethod("Postfix")));
         }
 
+        public static void QuestGen_Pawns_GeneratePawn_Patch()
+        {
+            AMAMod.harmony.Patch(AccessTools.Method(typeof(QuestGen_Pawns), "GeneratePawn", new Type[] { typeof(Quest), typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool) }, null), new HarmonyMethod(typeof(QuestGen_Pawns_GeneratePawn_Refugee_Patch), "Prefix", null), null, null);
+        }
         /*
         public static void OverrideMaterialIfNeeded()
         {
