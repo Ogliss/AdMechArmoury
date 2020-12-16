@@ -118,10 +118,18 @@ namespace AdeptusMechanicus
         {
             string result = base.GetInspectString();
 
-            if (!isCharged)
+            if (power.PowerNet != null)
             {
-                result += "\n";
-                result += "LaserTurretNotCharged".Translate();
+                if (power.PowerNet.batteryComps.NullOrEmpty())
+                {
+                    result += "\n";
+                    result += "AMA_LaserTurretNoBatteries".Translate();
+                }
+                if (!isCharged)
+                {
+                    result += "\n";
+                    result += "AMA_LaserTurretNotCharged".Translate();
+                }
             }
 
             return result;
