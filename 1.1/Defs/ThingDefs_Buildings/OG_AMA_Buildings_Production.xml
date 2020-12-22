@@ -1,16 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<ThingDef Name="OG_BenchBase" ParentName="BuildingBase" Abstract="True">
+  <ThingDef Name="OG_BenchBase" ParentName="BuildingBase" Abstract="True">
+    <canOverlapZones>false</canOverlapZones>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
+    <statBases>
+      <Mass>20</Mass>
+    </statBases>
+    <interactionCellIcon>DiningChair</interactionCellIcon>
+    <comps>
+      <li>
+        <compClass>CompReportWorkSpeed</compClass>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_ReportWorkSpeedPenalties</li>
+    </placeWorkers>
+    <building>
+      <buildingTags>
+        <li>Production</li>
+      </buildingTags>
+    </building>
+  </ThingDef>
+  
+	<ThingDef Name="OG_TableMachining_Base" ParentName="OG_BenchBase" Abstract="True">
 		<castEdgeShadows>true</castEdgeShadows>
 		<staticSunShadowHeight>0.20</staticSunShadowHeight>
-		<thingCategories>
-			<li>BuildingsProduction</li>
-		</thingCategories>
 		<statBases>
 			<Mass>40.0</Mass>
 		</statBases>
-		<minifiedDef>MinifiedThing</minifiedDef>
 		<comps>
 		  <li Class="CompProperties_Power">
 			<compClass>CompPowerTrader</compClass>
@@ -32,7 +54,7 @@
 		</comps>
 	</ThingDef>
 	
-  <ThingDef ParentName="OG_BenchBase">
+  <ThingDef ParentName="OG_TableMachining_Base">
     <defName>OGI_TableMachining</defName>
     <label>Imperial machining table</label>
     <description>An imperial work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -93,7 +115,7 @@
     </placeWorkers>
   </ThingDef>
 
-  <ThingDef ParentName="OG_BenchBase">
+  <ThingDef ParentName="OG_TableMachining_Base">
     <defName>OGC_TableMachining</defName>
     <label>warp tainted machining table</label>
     <description>An tainted imperial work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -154,16 +176,12 @@
     </placeWorkers>
   </ThingDef>
 
-	<ThingDef Name="OG_BenchBase_Xeno" ParentName="BuildingBase" Abstract="True">
+	<ThingDef Name="OG_TableMachining_Base_Xeno" ParentName="OG_BenchBase" Abstract="True">
 		<castEdgeShadows>true</castEdgeShadows>
 		<staticSunShadowHeight>0.20</staticSunShadowHeight>
-		<thingCategories>
-			<li>BuildingsProduction</li>
-		</thingCategories>
 		<statBases>
 			<Mass>40.0</Mass>
 		</statBases>
-		<minifiedDef>MinifiedThing</minifiedDef>
 		<comps>
 		  <li Class="CompProperties_Power">
 			<compClass>CompPowerTrader</compClass>
@@ -190,7 +208,7 @@
 		</comps>
 	</ThingDef>
 	
-  <ThingDef ParentName="OG_BenchBase_Xeno">
+  <ThingDef ParentName="OG_TableMachining_Base_Xeno">
     <defName>OGE_TableMachining</defName>
     <label>Eldar crafting supplies</label>
     <description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -254,7 +272,7 @@
     </thingSetMakerTags>
   </ThingDef>
   
-  <ThingDef ParentName="OG_BenchBase_Xeno">
+  <ThingDef ParentName="OG_TableMachining_Base_Xeno">
     <defName>OGDE_TableMachining</defName>
     <label>Dark Eldar crafting supplies</label>
     <description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -318,7 +336,7 @@
     </thingSetMakerTags>
   </ThingDef>
   
-  <ThingDef ParentName="OG_BenchBase_Xeno">
+  <ThingDef ParentName="OG_TableMachining_Base_Xeno">
     <defName>OGO_TableMachining</defName>
     <label>Ork crafting supplies</label>
     <description>An orkish work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
@@ -382,7 +400,7 @@
     </thingSetMakerTags>
   </ThingDef>
 
-  <ThingDef ParentName="OG_BenchBase_Xeno">
+  <ThingDef ParentName="OG_TableMachining_Base_Xeno">
     <defName>OGT_TableMachining</defName>
     <label>Tau crafting supplies</label>
     <description>A tau work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>

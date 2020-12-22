@@ -3,6 +3,7 @@ using AdeptusMechanicus.HarmonyInstance;
 using HarmonyLib;
 using RimWorld;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -16,9 +17,9 @@ namespace AdeptusMechanicus.settings
         public AMAMod(ModContentPack content) : base(content)
         {
             Instance = this;
-            this.settings = GetSettings<AMSettings>();
-            SettingsHelper.latest = this.settings;
-            AMSettings.Instance = this.settings;
+            AMMod.settings = GetSettings<AMSettings>();
+            SettingsHelper.latest = AMMod.settings;
+            AMSettings.Instance = AMMod.settings;
         //    var harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             AdeptusMechanicus.HarmonyInstance.HarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
@@ -46,6 +47,19 @@ namespace AdeptusMechanicus.settings
             //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
             }
 
+            var allPatches = content.Patches as List<PatchOperation>;
+            foreach (var patch in Patches)
+            {
+                if (settings.PatchDisabled[patch] == false)
+                {
+                    if (Prefs.DevMode) Log.Message("RemoveAll XML Patch: " + patch.label);
+                    allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
+                }
+                else
+                {
+                    if (Prefs.DevMode) Log.Message("Running XML Patch: " + patch.label);
+                }
+            }
             if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
         }
 
@@ -300,7 +314,7 @@ namespace AdeptusMechanicus.settings
 
         public override void PostModOptions(Listing_Standard listing_Main, Rect inRect, float width, float menuLength)
         {
-            this.settings.Write();
+            AMMod.settings.Write();
         }
 
         public float Length(bool setting, float lines, float lineheight, float offset = 8, float linesfallback = 1, float offsetfallback = 0)

@@ -8,7 +8,6 @@ using Verse.AI;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    //Because of the way patching work, tamed animal are saviour and smarter at shooting than wild one
     [HarmonyPatch(typeof(JobGiver_AIFightEnemy), "TryGiveJob")]
     public static class JobGiver_AIFightEnemy_TryGiveJob_RangedVerb_Patch
     {
@@ -17,26 +16,51 @@ namespace AdeptusMechanicus.HarmonyInstance
         //    Log.Warning(string.Format("Tame animal job detected: {0}", pawn.LabelCap));
             
             if (pawn.RaceProps.Humanlike)
-                return true;
-            if (pawn.equipment!=null)
+                return HumanUser(ref __instance, ref __result, ref pawn);
+            bool player = pawn.Faction == Faction.OfPlayerSilentFail;
+            bool hasRangedVerb = false;
+            List<Verb> verbList = pawn.verbTracker.AllVerbs;
+            List<Verb> rangeList = new List<Verb>();
+            if (pawn.equipment?.Primary?.def.IsMeleeWeapon != null)
             {
-                if (pawn.equipment.Primary != null)
+                //    Log.Message(string.Format("Melee weapon user detected: {0}", pawn.LabelCap));
+                AbilitesExtended.CompAbilityItem abilityItem = pawn.equipment?.Primary.TryGetComp<AbilitesExtended.CompAbilityItem>();
+                if (abilityItem !=null)
                 {
-                    if (pawn.equipment.PrimaryEq != null)
+                    if (abilityItem.Props.Abilities.NullOrEmpty())
                     {
-
-                        if (pawn.equipment.PrimaryEq.verbTracker.PrimaryVerb.verbProps.range>1.5)
+                        return true;
+                    }
+                    else
+                    {
+                        Log.Message(string.Format("Melee weapon user with CompAbilityItem detected: User: {0}, Weapon {1}", pawn.LabelCap, abilityItem.parent.LabelCap));
+                        for (int i = 0; i < abilityItem.Props.Abilities.Count; i++)
                         {
-                            return true;
+                            AbilitesExtended.EquipmentAbilityDef def = abilityItem.Props.Abilities[i] as AbilitesExtended.EquipmentAbilityDef;
+                            Log.Message(string.Format("Checking: {0}, {1}", def.LabelCap, i));
+                            if (def != null && pawn.abilities.abilities.Any(x=> x.def == def))
+                            {
+                                AbilitesExtended.EquipmentAbility ability = pawn.abilities.abilities.First(x=> x.def == def) as AbilitesExtended.EquipmentAbility;
+                                if (ability!=null)
+                                {
+                                    Log.Message(string.Format("ability for: {0}, found {1}", def.LabelCap, ability));
+                                    if (ability.CanCast && ability.verb.GetType() == typeof(AbilitesExtended.Verb_ShootEquipment))
+                                    {
+                                        rangeList.Add(ability.verb);
+                                        Log.Message(string.Format("ability detected: {0}, Weapon {1}", ability.verb.ReportLabel, abilityItem.parent.LabelCap));
+                                        hasRangedVerb = true;
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }
+                else
+                {
+                    return true;
+                }
             }
-            bool hasRangedVerb = false;
-
-
-            List<Verb> verbList = pawn.verbTracker.AllVerbs;
-            List<Verb> rangeList = new List<Verb>();
             for (int i = 0; i < verbList.Count; i++)
             {
                 //    Log.Warning("Checkity");
@@ -247,5 +271,18 @@ namespace AdeptusMechanicus.HarmonyInstance
             return false;
         }
 
+
+        public static bool HumanUser(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)
+        {
+            return true;
+        }
+        public static bool ToolUser(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)
+        {
+            return true;
+        }
+        public static bool AnimalUser(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)
+        {
+            return true;
+        }
     }
 }

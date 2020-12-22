@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000991 RID: 2449
     public class GameCondition_PlanetConquest : GameCondition

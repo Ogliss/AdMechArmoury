@@ -10,6 +10,7 @@ namespace AdeptusMechanicus.settings
 {
     public class AMSettings : ModSettings
     {
+        public static AMSettings Instance;
         // Armoury Settings;
         public bool ShowArmourySettings = true;
 
@@ -152,12 +153,13 @@ namespace AdeptusMechanicus.settings
         public bool AllowTyranid = true;
         public bool AllowTyranidInfestation = false;
 
+        private Dictionary<string, bool> _scribeHelper;
+        public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => true);
         public AMSettings()
         {
             AMSettings.Instance = this;
         }
 
-        public static AMSettings Instance;
 
         public override void ExposeData()
         {
@@ -272,6 +274,36 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
             Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.3f);
             Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
+
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                // create the data structure we're going to save.
+                _scribeHelper = PatchDisabled.ToDictionary(
+                    // delegate to transform a dict item into a key, we want the file property of the old key. ( PatchDescription => string )
+                    k => k.Key.file,
+
+                    // same for the value, which is just the value. ( bool => bool )
+                    v => v.Value);
+            }
+            Scribe_Collections.Look(ref _scribeHelper, "patches", LookMode.Value, LookMode.Value);
+
+            // finally, when the scribe finishes, we need to transform this back to a data structure we understand.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                // for each stored patch, update the value in our dictionary.
+                if (!_scribeHelper.EnumerableNullOrEmpty())
+                {
+                    foreach (var storedPatch in _scribeHelper)
+                    {
+                        var index = AMAMod.Patches.FindIndex(p => p.file == storedPatch.Key);
+                        if (index >= 0) // match found
+                        {
+                            var patch = AMAMod.Patches[index];
+                            PatchDisabled[patch] = storedPatch.Value;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -281,6 +313,19 @@ namespace AdeptusMechanicus.settings
         public virtual void ExposeData()
         {
 
+        }
+    }
+    public struct PatchDescription
+    {
+        public string file;
+        public string label;
+        public string tooltip;
+
+        public PatchDescription(string file, string label, string tooltip = null)
+        {
+            this.file = file;
+            this.label = label;
+            this.tooltip = tooltip;
         }
     }
 }

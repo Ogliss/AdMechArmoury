@@ -11,11 +11,11 @@ namespace AdeptusMechanicus.settings
     public class AMMod : Mod
     {
         public static AMMod Instance;
-        public AMSettings settings;
+        public static AMSettings settings;
         public AMMod(ModContentPack content) : base(content)
         {
-            this.settings = GetSettings<AMSettings>();
-            SettingsHelper.latest = this.settings;
+            AMMod.settings = GetSettings<AMSettings>();
+            SettingsHelper.latest = AMMod.settings;
             AMMod.Instance = this;
             AMSettings.Instance = base.GetSettings<AMSettings>();
         }
@@ -59,7 +59,36 @@ namespace AdeptusMechanicus.settings
             Text.Anchor = anchor;
             Widgets.TextFieldNumeric(rect3, ref val, ref buffer, min, max);
         }
-        
+
+
+        // create a list of all the patches we want to make controllable.
+        /*
+        public static List<PatchDescription> Patches = new List<PatchDescription>
+        {
+
+            new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "AstraMiliatrumMod_ArmourPatch".Translate(), "AstraMiliatrumMod_ArmourPatchTip".Translate()),
+            new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "AstraMiliatrumMod_WeaponsPatch".Translate(), "AstraMiliatrumMod_WeaponsPatchTip".Translate())
+
+        };
+        */
+        private static List<PatchDescription> patches;
+        public static List<PatchDescription> Patches
+        {
+            get
+            {
+                if (patches.NullOrEmpty())
+                {
+                    patches = new List<PatchDescription>();
+                    if (AdeptusIntergrationUtility.enabled_AstraCore)
+                    {
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active"));
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "Astra Miliatrum Weapons Patch", "Removes the Astra Militarum versions of dupped Weapons when active"));
+                    }
+                }
+                return patches;
+            }
+        }
+
         private Vector2 pos = new Vector2(0f, 0f);
         private Vector2 pos2 = new Vector2(0f, 0f);
 
@@ -68,5 +97,5 @@ namespace AdeptusMechanicus.settings
             base.WriteSettings();
         }
     }
-    
+
 }
