@@ -144,28 +144,39 @@ namespace AdeptusMechanicus
         // Token: 0x0600273D RID: 10045 RVA: 0x0012AB98 File Offset: 0x00128F98
         public virtual bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
-            if (this.ShieldState == null || this.ShieldState != ShieldState.Active)
+            if (this.ShieldState != ShieldState.Active)
             {
                 return false;
             }
-            if (dinfo.Def == DamageDefOf.EMP && Props.brokenByEMP)
+            if (dinfo.Def == null)
             {
-                this.energy = 0f;
-                this.Break();
                 return false;
             }
-            if ((dinfo.Def.isRanged && Props.blockRanged) || (!dinfo.Def.isRanged && Props.blockMelee))
+            if (Pawn.Map == null)
             {
-                this.energy -= dinfo.Amount * this.EnergyLossPerDamage;
-                if (this.energy < 0f)
+                return false;
+            }
+            if (Props != null)
+            {
+                if (dinfo.Def == DamageDefOf.EMP && Props.brokenByEMP)
                 {
+                    this.energy = 0f;
                     this.Break();
+                    return false;
                 }
-                else
+                if ((dinfo.Def.isRanged && Props.blockRanged) || (!dinfo.Def.isRanged && Props.blockMelee))
                 {
-                    this.AbsorbedDamage(dinfo);
+                    this.energy -= dinfo.Amount * this.EnergyLossPerDamage;
+                    if (this.energy < 0f)
+                    {
+                        this.Break();
+                    }
+                    else
+                    {
+                        this.AbsorbedDamage(dinfo);
+                    }
+                    return true;
                 }
-                return true;
             }
             return false;
         }
