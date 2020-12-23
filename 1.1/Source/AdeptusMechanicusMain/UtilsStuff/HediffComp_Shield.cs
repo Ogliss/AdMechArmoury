@@ -144,7 +144,7 @@ namespace AdeptusMechanicus
         // Token: 0x0600273D RID: 10045 RVA: 0x0012AB98 File Offset: 0x00128F98
         public virtual bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
-            if (this.ShieldState != ShieldState.Active)
+            if (this.ShieldState == null || this.ShieldState != ShieldState.Active)
             {
                 return false;
             }
