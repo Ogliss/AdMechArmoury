@@ -14,28 +14,22 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (!___pawn.Spawned || ___pawn.Map == null)
                 {
-                    if (___pawn.holdingOwner != null) Log.Message(___pawn + " is held by "+ ___pawn.holdingOwner + ", skipping");
-                    else Log.Message(___pawn + " not spawned, skipping");
                     return true;
                 }
-                else Log.Message(___pawn + " spawned, checking damage");
                 for (int i = 0; i < ___pawn.health.hediffSet.hediffs.Count; i++)
                 {
                     Hediff item = ___pawn.health.hediffSet.hediffs[i];
                     if (item != null)
                     {
-                        Log.Message(___pawn + " checking " + item);
                         HediffComp_Shield _Shield = item.TryGetComp<HediffComp_Shield>();
                         if (_Shield != null)
                         {
-                            Log.Message(___pawn + " " + item + " Is _Shield");
                             absorbed = _Shield.CheckPreAbsorbDamage(dinfo);
                             return false;
                         }
                         HediffComp_PhaseShifter _Shifter = item.TryGetComp<HediffComp_PhaseShifter>();
                         if (_Shifter != null)
                         {
-                            Log.Message(___pawn + " " + item + " Is _Shifter");
                             if (dinfo.Def.isExplosive)
                             {
                                 absorbed = !_Shifter.isPhasedIn;
