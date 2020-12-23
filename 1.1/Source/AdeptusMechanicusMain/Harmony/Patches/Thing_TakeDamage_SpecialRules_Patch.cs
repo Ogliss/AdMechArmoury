@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix(Thing __instance, ref DamageInfo dinfo)
         {
-            if (!__instance.Spawned)
+            if (!__instance.Spawned || __instance.Map == null)
             {
                 return;
             }

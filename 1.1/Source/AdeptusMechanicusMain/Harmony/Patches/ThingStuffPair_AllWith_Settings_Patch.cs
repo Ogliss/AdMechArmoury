@@ -22,6 +22,44 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(ref List<ThingStuffPair> __result)
         {
             List<ThingStuffPair> list = new List<ThingStuffPair>();
+
+            if (!AMAMod.settings.AllowImperialWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGI_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowMechanicusWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGAM_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowEldarWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGE_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowDarkEldarWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGDE_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowChaosWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGC_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowTauWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGT_") || x.thing.defName.Contains("OGK_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowOrkWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGO_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowNecronWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGN_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (!AMAMod.settings.AllowTyranidWeapons)
+            {
+                list.RemoveAll(x => (x.thing.defName.Contains("OGTY_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            /*
             foreach (ThingStuffPair item in __result)
             {
                 if (item.thing.defName.Contains("OGI_Gun_") || item.thing.defName.Contains("OGI_Melee_"))
@@ -90,6 +128,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 list.Add(item);
             //    log.message("Allowed "+item.thing.LabelCap);
             }
+            */
             __result = list;
         }
     }
