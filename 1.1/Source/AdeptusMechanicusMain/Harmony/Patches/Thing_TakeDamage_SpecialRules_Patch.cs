@@ -20,6 +20,10 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix(Thing __instance, ref DamageInfo dinfo)
         {
+            if (!__instance.Spawned)
+            {
+                return;
+            }
             bool rending = AMSettings.Instance.AllowRendingMeleeEffect && dinfo.Def.rendingWeapon();
             bool power = dinfo.Def.powerWeapon();
             bool force = dinfo.Def.forceWeapon();

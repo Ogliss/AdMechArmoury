@@ -19,24 +19,20 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             Map map = Find.CurrentMap;
 
-            if (map != null)
+            if (map != null && c.InBounds(map))
             {
                 List<Thing> list = map.thingGrid.ThingsListAt(c);
                 list = list.FindAll(x => x is Building_DeployableBarricade);
                 for (int j = 0; j < list.Count; j++)
                 {
-                    Building_DeployableBarricade barricade = null;
-                    if (c.InBounds(map))// && perceivedStatic)
+                    Building_DeployableBarricade barricade = list[j] as Building_DeployableBarricade;
+                    if (barricade != null)
                     {
-                        barricade = (list[j] as Building_DeployableBarricade);
-                        if (barricade != null)
+                        //    Log.Message(string.Format("barricade CalculatedCostAt found perceivedStatic: {0}, c: {1}, prevCell: {2}, Toggled: {3}, __result: {4}", perceivedStatic, c, prevCell, barricade.Toggled, __result));
+                        if (barricade.Toggled)
                         {
-                            //    Log.Message(string.Format("barricade CalculatedCostAt found perceivedStatic: {0}, c: {1}, prevCell: {2}, Toggled: {3}, __result: {4}", perceivedStatic, c, prevCell, barricade.Toggled, __result));
-                            if (barricade.Toggled)
-                            {
-                                __result += barricade.deployed.deployedpathCost;
-                                //   Log.Message(string.Format("barricade CalculatedCostAt set to : {1}, @: {0}", c, __result));
-                            }
+                            __result += barricade.deployed.deployedpathCost;
+                            //   Log.Message(string.Format("barricade CalculatedCostAt set to : {1}, @: {0}", c, __result));
                         }
                     }
                 }

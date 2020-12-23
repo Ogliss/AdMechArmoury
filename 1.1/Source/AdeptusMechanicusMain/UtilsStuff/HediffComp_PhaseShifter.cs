@@ -30,12 +30,6 @@ namespace AdeptusMechanicus
         }
         public int phasedNotifcationTick = 0;
         public List<ThingWithComps> phasedfor = new List<ThingWithComps>();
-        TargetScanFlags targetScanFlags = TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat;
-        // Token: 0x0600046F RID: 1135 RVA: 0x0002C322 File Offset: 0x0002A722
-        protected virtual bool ExtraTargetValidator(Pawn pawn, Thing target)
-        {
-            return true;
-        }
 
         public override void CompPostTick(ref float severityAdjustment)
         {

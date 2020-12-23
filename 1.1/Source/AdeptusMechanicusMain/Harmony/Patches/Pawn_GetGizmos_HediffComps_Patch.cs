@@ -19,12 +19,12 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance == null)
             {
-                Log.Warning("ApparelGizmosFromComps cannot access Apparel.");
+                Log.Warning("HediffGizmosFromComps cannot access Apparel.");
                 return;
             }
             if (__result == null)
             {
-                Log.Warning("ApparelGizmosFromComps creating new list.");
+                Log.Warning("HediffGizmosFromComps creating new list.");
                 return;
             }
 
