@@ -98,27 +98,36 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void Postfix(Thing __instance, ref DamageInfo dinfo)
         {
+            Pawn p = __instance as Pawn;
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix Started");
             bool force = AMSettings.Instance.AllowForceWeaponEffect && dinfo.Def.forceWeapon();
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 1");
+            Pawn Attacker = dinfo.Instigator as Pawn;
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 2");
+            Pawn hitPawn = __instance as Pawn;
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3");
             if (__instance != null && force)
             {
-                if (dinfo.Instigator != null)
+                if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 1");
+                if (Attacker == null || hitPawn == null)
                 {
-                    Pawn Attacker = dinfo.Instigator as Pawn;
-                    Pawn hitPawn = __instance as Pawn;
-                    if (Attacker == null || hitPawn == null)
-                    {
-                        return;
-                    }
-                    if (dinfo.Weapon != null)
-                    {
-                        if (force)
-                        {
-                            dinfo = GetForceDamage(dinfo, Attacker, hitPawn);
-                        }
-                    }
+                    if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 1 1");
+                    return;
                 }
+                if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 2");
+                if (dinfo.Weapon != null)
+                {
+                    if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 2 1");
+                    if (force)
+                    {
+                        if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 2 1 1");
+                        dinfo = GetForceDamage(dinfo, Attacker, hitPawn);
+                        if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 2 1 2");
+                    }
+                    if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 2 2");
+                }
+                if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix 3 3");
             }
-            Pawn p = __instance as Pawn;
             if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix Completed");
         }
 
