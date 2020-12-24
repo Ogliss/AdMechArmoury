@@ -92,7 +92,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            Log.Message("Thing_TakeDamage_SpecialRules_Patch Prefix Completed");
+            Pawn p = __instance as Pawn;
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Prefix Completed");
         }
 
         public static void Postfix(Thing __instance, ref DamageInfo dinfo)
@@ -117,7 +118,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix Completed");
+            Pawn p = __instance as Pawn;
+            if (p != null && p.RaceProps.Humanlike) Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix Completed");
         }
 
         public static DamageInfo GetPowerDamage(DamageInfo cloneSource)
