@@ -92,6 +92,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
+            Log.Message("Thing_TakeDamage_SpecialRules_Patch Prefix Completed");
         }
 
         public static void Postfix(Thing __instance, ref DamageInfo dinfo)
@@ -116,6 +117,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
+            Log.Message("Thing_TakeDamage_SpecialRules_Patch Postfix Completed");
         }
 
         public static DamageInfo GetPowerDamage(DamageInfo cloneSource)
