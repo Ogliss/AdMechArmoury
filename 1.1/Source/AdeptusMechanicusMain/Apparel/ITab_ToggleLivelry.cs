@@ -48,11 +48,11 @@ namespace AdeptusMechanicus
                 return SelThing.TryGetComp<CompPauldronDrawer>();
             }
         }
-        private CompFactionColorableTwo Colorable
+        private CompColorableTwoFaction Colorable
         {
             get
             {
-                return SelThing.TryGetComp<CompFactionColorableTwo>();
+                return SelThing.TryGetComp<CompColorableTwoFaction>();
             }
         }
 
@@ -149,7 +149,7 @@ namespace AdeptusMechanicus
         }
         
         // RimWorld.CharacterCardUtility
-        public void DrawCard(Rect rect, ThingWithComps selectedThing, CompFactionColorableTwo Colorable)
+        public void DrawCard(Rect rect, ThingWithComps selectedThing, CompColorableTwoFaction Colorable)
         {
             GUI.BeginGroup(rect);
 
@@ -366,16 +366,16 @@ namespace AdeptusMechanicus
             yield break;
         }
         
-        public void DrawFactionColorsButton(Rect rect, CompFactionColorableTwo comp, bool paintable)
+        public void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
             Rect rect2 = rect.LeftHalf().RightHalf();
             rect2.width *= 2;
 
             Rect rect3 = rect.RightHalf().RightHalf();
-            Widgets.Dropdown<CompFactionColorableTwo, FactionDef>(rect2, comp,
-                (CompFactionColorableTwo sp) => comp.FactionDef,
-                new Func<CompFactionColorableTwo, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
+            Widgets.Dropdown<CompColorableTwoFaction, FactionDef>(rect2, comp,
+                (CompColorableTwoFaction sp) => comp.FactionDef,
+                new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
                 comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None", null, null, null, delegate ()
                 {
                 //    entry.Drawer = comp;
@@ -384,7 +384,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x060046EB RID: 18155 RVA: 0x0017FE99 File Offset: 0x0017E099
-        private IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompFactionColorableTwo e)
+        private IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompColorableTwoFaction e)
         {
             if (e.FactionDef != null)
             {

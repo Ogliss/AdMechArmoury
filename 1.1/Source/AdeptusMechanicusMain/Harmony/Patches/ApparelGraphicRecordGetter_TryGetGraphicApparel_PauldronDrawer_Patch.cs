@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				string comptype = "CompColorableTwo Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				string msg = string.Empty;
 				string msk = "m";
-				CompFactionColorableTwo factionColors = compColorable as CompFactionColorableTwo;
+				CompColorableTwoFaction factionColors = compColorable as CompColorableTwoFaction;
 				Color colorOne = compColorable.Color;
 				Color colorTwo = compColorable.ColorTwo;
 				if (factionColors != null)

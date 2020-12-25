@@ -275,7 +275,7 @@ namespace AdeptusMechanicus
                     if (UseFactionTextures)
                     {
                     //    Log.Message("UseFactionTextures");
-                        CompFactionColorableTwo FC = Drawer.Colours as CompFactionColorableTwo;
+                        CompColorableTwoFaction FC = Drawer.Colours as CompColorableTwoFaction;
                         if (FC != null)
                         {
                         //    Log.Message("FC != null");
@@ -380,7 +380,7 @@ namespace AdeptusMechanicus
             Color color = Drawer.mainColorFor(this);
             Color colorTwo = Drawer.secondaryColorFor(this);
             graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, size, color, colorTwo);
-            CompFactionColorableTwo factionColors = Drawer.Colours as CompFactionColorableTwo;
+            CompColorableTwoFaction factionColors = Drawer.Colours as CompColorableTwoFaction;
             if (factionColors != null)
             {
                 Texture texture;

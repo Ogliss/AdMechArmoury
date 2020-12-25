@@ -160,7 +160,7 @@ namespace AdeptusMechanicus
                 }
                 if (entry.UseFactionColors)
                 {
-                    CompFactionColorableTwo colours = Colours as CompFactionColorableTwo;
+                    CompColorableTwoFaction colours = Colours as CompColorableTwoFaction;
                     if (colours != null)
                     {
                         if (colours.Active)
@@ -217,7 +217,7 @@ namespace AdeptusMechanicus
                 }
                 if (entry.UseFactionColors)
                 {
-                    CompFactionColorableTwo colours = Colours as CompFactionColorableTwo;
+                    CompColorableTwoFaction colours = Colours as CompColorableTwoFaction;
                     if (colours != null)
                     {
                         //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " UseFactionColors");
