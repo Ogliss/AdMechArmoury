@@ -13,6 +13,7 @@ namespace AdeptusMechanicus
         }
         public static readonly TraitDef FastLearner;
         public static readonly TraitDef Nimble;
+        public static readonly TraitDef Masochist;
 
     }
 }

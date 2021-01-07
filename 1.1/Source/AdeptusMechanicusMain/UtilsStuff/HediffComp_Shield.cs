@@ -181,6 +181,18 @@ namespace AdeptusMechanicus
             return false;
         }
 
+        public override void CompPostMake()
+        {
+            Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostMake");
+            base.CompPostMake();
+        }
+
+        public override void CompPostPostAdd(DamageInfo? dinfo)
+        {
+            Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostPostAdd");
+            base.CompPostPostAdd(dinfo);
+        }
+
         // Token: 0x0600273E RID: 10046 RVA: 0x0012AC38 File Offset: 0x00129038
         public virtual void KeepDisplaying()
         {
@@ -262,6 +274,7 @@ namespace AdeptusMechanicus
         {
             return !(verb is Verb_LaunchProjectile) || ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
         }
+
 
         // Token: 0x04001621 RID: 5665
         public float energy;

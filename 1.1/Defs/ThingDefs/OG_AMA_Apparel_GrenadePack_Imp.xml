@@ -2,6 +2,66 @@
 <Defs>
 	<!-- ========================= Imperial - Wargear S 3 ========================== -->
     <!-- ========================= Imperial - Grenade Packs	========================== -->
+
+    <!-- ========================= Imperial - Blind Grenades	========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable">
+		<defName>OGI_GrenadePack_Blind</defName>
+		<label>Blind grenade pack (I)</label>
+		<description>A Blind Grenade, also called a Baffler Grenade, is an Imperial grenade that explodes with a burst of dense, dark grey smoke including infrared bafﬂers and broadband electromagnetic spectrum chaff.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpPhotonGrenades</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>0.2</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<costList>
+			<Steel>10</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Base_T0</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<comps>  
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
+				<Abilities>
+					<li>OGI_Ability_ThrowPhoton</li>
+				</Abilities>
+			</li>
+		</comps>
+		
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<bodyPartGroups>
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers>
+				<li>BeltWargear3</li>
+			</layers>
+			<tags>
+				<li>OGIWargear</li>
+				<li>OGIGrens</li>
+				<li>OGIGrenPhoton</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrens</li>
+		</tradeTags>
+	</ThingDef>
+		
     <!-- ========================= Imperial - Frag Grenades	========================== -->
 	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable">
 		<defName>OGI_GrenadePack_Frag</defName>
@@ -13,17 +73,18 @@
 		</graphicData>
 		
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>100</MaxHitPoints>
 			<WorkToMake>25000</WorkToMake>
-			<Mass>1.2</Mass>
+			<Mass>0.3</Mass>
 		</statBases>
 		<equippedStatOffsets>
 		
 		</equippedStatOffsets>
 		<costList>
-			<Steel>40</Steel>
-			<Plasteel>4</Plasteel>
+			<Steel>30</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 		<researchPrerequisites>
@@ -74,17 +135,18 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>100</MaxHitPoints>
 			<WorkToMake>25000</WorkToMake>
-			<Mass>1.2</Mass>
+			<Mass>0.35</Mass>
 		</statBases>
 		<equippedStatOffsets>
 		
 		</equippedStatOffsets>
 		<costList>
-			<Steel>40</Steel>
-			<Plasteel>4</Plasteel>
+			<Steel>20</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 		<researchPrerequisites>
@@ -124,13 +186,72 @@
 		</tradeTags>
 	</ThingDef>
 
+    <!-- ========================= Imperial - Rad Grenades	========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable">
+		<defName>OGI_GrenadePack_Rad</defName>
+		<label>Rad grenade pack (I)</label>
+		<description>A Rad Grenade is a potent and dangerous radioactive anti-personnel weapon used by the military forces of the Imperium of Man.\n\nRad Grenades detonate in a shower of tiny, radioactively-contaminated fragments. Each fragment's ionising radioactive emissions have only a millisecond half-life, ensuring that the wielder can charge in without exposing themself to radioactive contamination.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpRadGrenades</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>0.5</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<costList>
+			<Steel>20</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Base_T0</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<comps>  
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
+				<Abilities>
+					<li>OGI_Ability_ThrowRad</li>
+				</Abilities>
+			</li>
+		</comps>
+		
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<bodyPartGroups>
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers>
+				<li>BeltWargear3</li>
+			</layers>
+			<tags>
+				<li>OGIWargear</li>
+				<li>OGIGrens</li>
+				<li>OGIGrenRad</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrens</li>
+		</tradeTags>
+	</ThingDef>
+		
     <!-- ========================= Imperial - Melta Bomb	========================== -->
 	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable">
 		<defName>OGI_GrenadePack_Melta</defName>
 		<label>melta bomb pack (I)</label>
 		<description>a pack of melta bombs.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpMeltaBomb</texPath>
+			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpMeltaBombs</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
@@ -181,21 +302,21 @@
 			<li>OGIGrens</li>
 		</tradeTags>
 	</ThingDef>
-
-			<!--
-			<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
-			<hediffDef>FragGrenadeThrowerHeDiff</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
-			<partsToAffect>
-				<li>A_BODYPARTDEF_HERE</li>
-				<li>A_BODYPARTDEF_HERE</li>
-				<li>A_BODYPARTDEF_HERE</li>
-			</partsToAffect>
-			<groupsToAffect>
-				<li>A_BODYPARTGROUPDEF_HERE</li>
-				<li>A_BODYPARTGROUPDEF_HERE</li>
-				<li>A_BODYPARTGROUPDEF_HERE</li>
-			</groupsToAffect>
-			</li>
-			-->
+	
+	<!--
+	<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
+	<hediffDef>FragGrenadeThrowerHeDiff</hediffDef>
+	<severityBasedOnDurability>false</severityBasedOnDurability>
+	<partsToAffect>
+		<li>A_BODYPARTDEF_HERE</li>
+		<li>A_BODYPARTDEF_HERE</li>
+		<li>A_BODYPARTDEF_HERE</li>
+	</partsToAffect>
+	<groupsToAffect>
+		<li>A_BODYPARTGROUPDEF_HERE</li>
+		<li>A_BODYPARTGROUPDEF_HERE</li>
+		<li>A_BODYPARTGROUPDEF_HERE</li>
+	</groupsToAffect>
+	</li>
+	-->
 </Defs>

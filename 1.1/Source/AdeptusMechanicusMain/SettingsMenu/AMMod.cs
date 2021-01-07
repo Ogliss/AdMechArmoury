@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.settings
 
         }
 
-        public virtual void ModOptions(ref Listing_Standard listing_Main, Rect rect, Rect inRect, float num, float num2)
+        public virtual void ModOptions(ref Listing_Standard listing_Main, Rect rect, Rect inRect, float width, ref float menuLength)
         {
 
         }

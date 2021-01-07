@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ========================= Light Flak ========================== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLight"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLight"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>3.25</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLight"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLight"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>25</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Fabric</li>
+					</stuffCategories>
+					<costStuffCount>70</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLight"]/equippedStatOffsets</xpath>
+			</li>
+		
+			<!-- ========================= Light Flak Greaves ========================== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLightGreaves"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>3</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLightGreaves"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLightGreaves"]/statBases/ArmorRating_Heat</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLightGreaves"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>15</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Fabric</li>
+					</stuffCategories>
+					<costStuffCount>50</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_FlakArmourLightGreaves"]/equippedStatOffsets</xpath>
+			</li>
+
+			<!-- ========================= Cadian -  Flak Helmet ========================== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_CadianFlakHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_CadianFlakHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>3</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_CadianFlakHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- ========================= Imperial Guard - Flak Armour ========================== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/statBases</xpath>
+				<value>
+				<Bulk>12</Bulk>
+				<WornBulk>10</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/statBases/MaxHitPoints</xpath>
+				<value>
+				<MaxHitPoints>225</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/statBases/Mass</xpath>
+				<value>
+				<Mass>5</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+				<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="OGIG_Apparel_FlakArmour"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>10</CarryWeight>
+					<CarryBulk>8</CarryBulk>
+				</value>
+			</li>
+
+			<!-- ========================= Cadian ========================== -->
+			<!-- ========================= Imperial Guard - Flak Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_BasicFlakHelm"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_BasicFlakHelm"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_BasicFlakHelm"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>8</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_BasicFlakHelm"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
+			<!-- ========================= Imperial Guard - Flak Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GoggledFlakHelm"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GoggledFlakHelm"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GoggledFlakHelm"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>8.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GoggledFlakHelm"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
+			<!-- ========================= Imperial Guard - Flak Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Cadia_FlakHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Cadia_FlakHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Cadia_FlakHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Cadia_FlakHelmet"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+		
+			<!-- ========================= Imperial Guard - Gas Mask ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GasMask"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GasMask"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GasMask"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+				</value>
+			</li>
+			<!-- Miscellaneous -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GasMask"]/equippedStatOffsets</xpath>
+				<value>
+					<AimingAccuracy>-0.1</AimingAccuracy>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_GasMask"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>StrappedHead</li>
+					</layers>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName = "OGIG_Apparel_GasMask"]</xpath>
+				<value>
+					<li Class="CombatExtended.ApparelHediffExtension">
+						<hediff>WearingGasMask</hediff>
+					</li>
+				</value>
+			</li>
+
+			<!-- ========================= Steel Leigon - Flak Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Armageddon_FlakHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Armageddon_FlakHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Armageddon_FlakHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Armageddon_FlakHelmet"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
+			<!-- ========================= Death Korps - Flak Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Krieg_FlakHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Krieg_FlakHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Krieg_FlakHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_Krieg_FlakHelmet"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+		
+			<!-- ========================= Imperial Guard - Carapace Armour ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceArmour"]/statBases</xpath>
+				<value>
+					<Bulk>80</Bulk>
+					<WornBulk>18</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceArmour"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceArmour"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceArmour"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>23</ArmorRating_Blunt>
+				</value>
+			</li>			
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceArmour"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========================= Imperial Guard - Carapace Helmet ========================== -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1.1</WornBulk>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>11.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>23</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGIG_Apparel_TempestusScion_CarapaceHelmet"]/apparel/layers</xpath>
+				<value>
+					<layers>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+					<li>MiddleHead</li>
+					<li>Overhead</li>
+					</layers>
+				</value>
+			</li>	
+		</operations>
+	</Operation>
+
+</Patch>

@@ -215,6 +215,10 @@ namespace AdeptusMechanicus
                     {
                         
                         e.activeOption = e.DefaultOption;
+                        if (e.UseFactionColors)
+                        {
+                            SetApparelColours(e, e.DefaultOption);
+                        }
                         e.UpdateGraphic();
                         
 
@@ -234,6 +238,10 @@ namespace AdeptusMechanicus
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
                                 e.Used = variant;
+                                if (e.UseFactionColors)
+                                {
+                                    SetApparelColours(e, variant);
+                                }
                                 e.UpdateGraphic();
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),
@@ -243,6 +251,32 @@ namespace AdeptusMechanicus
                 }
             }
             yield break;
+        }
+
+
+        public void SetApparelColours(ShoulderPadEntry e, PauldronTextureOption variant)
+        {
+
+            Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+            Color color = graphic.Color;
+            Color colorTwo = graphic.ColorTwo;
+
+            graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+            e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
+            {
+                if (variant.Color.HasValue)
+                {
+                    color = variant.Color.Value;
+                }
+                if (variant.ColorTwo.HasValue)
+                {
+                    colorTwo = variant.ColorTwo.Value;
+                }
+            }
+
+            graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+
+            e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
         }
 
         public void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)

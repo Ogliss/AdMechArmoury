@@ -147,12 +147,18 @@ namespace AdeptusMechanicus.HarmonyInstance
             IntVec3 pos = pawn.Position;
             Map map = pawn.Map;
             Building_Bed bed = null;
+            Rot4 rot = pawn.Rotation;
+            bool spawned = pawn.Map != null;
             bool selected = Find.Selector.SelectedPawns.Contains(pawn);
             bool drafted = pawn.Drafted;
             bool inBed = pawn.InBed();
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-            pawn.DeSpawn();
-            GenSpawn.Spawn(pawn, pos, map);
+            if (spawned)
+            {
+                pawn.DeSpawn();
+                GenSpawn.Spawn(pawn, pos, map);
+                pawn.Rotation = rot;
+            }
             if (drafted)
             {
                 pawn.drafter.Drafted = true;

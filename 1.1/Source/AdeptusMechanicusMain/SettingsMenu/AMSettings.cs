@@ -18,7 +18,7 @@ namespace AdeptusMechanicus.settings
         public bool AllowDeepStrike = true;
         public bool AllowInfiltrate = true;
 
-        public bool ShowWeaponSpecialRules = false;
+        public bool ShowAllowedWeaponSpecialRules = false;
         public bool AllowRapidFire = true;
         public bool AllowGetsHot = true;
         public bool AllowJams = true;
@@ -41,8 +41,8 @@ namespace AdeptusMechanicus.settings
 
         // Xenobiologis Settings
 
-        public bool ShowXenobiologisSettings = true;
-        public bool ShowAllowedRaceSettings = true;
+        public bool ShowXenobiologisSettings = false;
+        public bool ShowAllowedRaceSettings = false;
         public bool ForceRelations = true;
 
         // Imperium Settings
@@ -169,7 +169,7 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.AllowDeepStrike, "AMA_AllowRapidFire", true);
             Scribe_Values.Look(ref this.AllowInfiltrate, "AMA_AllowGetsHot", true);
 
-            Scribe_Values.Look(ref this.ShowWeaponSpecialRules, "AMA_ShowWeaponSpecialRules", false);
+            Scribe_Values.Look(ref this.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRules", false);
             Scribe_Values.Look(ref this.AllowRapidFire, "AMA_AllowRapidFire", true);
             Scribe_Values.Look(ref this.AllowGetsHot, "AMA_AllowGetsHot", true);
             Scribe_Values.Look(ref this.AllowJams, "AMA_AllowJams", true);
@@ -189,7 +189,9 @@ namespace AdeptusMechanicus.settings
             Scribe_Values.Look(ref this.AllowOrkWeapons, "AMA_AllowOrkWeapons", true);
             Scribe_Values.Look(ref this.AllowNecronWeapons, "AMA_AllowNecronWeapons", true);
             Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", false);
-            
+
+            Scribe_Values.Look(ref this.ShowXenobiologisSettings, "AMXB_ShowXenobiologisSettings", true);
+            Scribe_Values.Look(ref this.ShowAllowedRaceSettings, "AMXB_ShowAllowedRaceSettings", true);
             Scribe_Values.Look(ref this.ForceRelations, "AMXB_ForceRelations", true);
             Scribe_Values.Look(ref this.ShowImperium, "AMXB_ShowImperium", false);
             Scribe_Values.Look(ref this.AllowAdeptusAstartes, "AMXB_AllowAdeptusAstartes", false && AMSettings.Instance.AllowImperialWeapons);

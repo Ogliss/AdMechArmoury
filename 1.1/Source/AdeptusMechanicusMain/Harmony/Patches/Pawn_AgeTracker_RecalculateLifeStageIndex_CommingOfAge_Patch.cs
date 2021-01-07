@@ -17,7 +17,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
     public static class Pawn_AgeTracker_RecalculateLifeStageIndex_CommingOfAge_Patch
     {
-        public static FieldInfo pawn = typeof(Pawn_AgeTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
         [HarmonyPostfix]
         public static void Post_RecalculateLifeStageIndex(Pawn ___pawn)
         {
@@ -29,8 +28,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (isAdult(___pawn))
                         {
-                            List<BackstoryCategoryFilter> backstoryCategoryFiltersFor = PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.GetBackstoryCategoryFiltersFor(___pawn, ___pawn.Faction.def);
-                            PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.FillBackstorySlotShuffled(___pawn, BackstorySlot.Adulthood, ref ___pawn.story.adulthood, ___pawn.story.childhood, backstoryCategoryFiltersFor, ___pawn.Faction.def);
+                            List<BackstoryCategoryFilter> backstoryCategoryFiltersFor = PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.GetBackstoryCategoryFiltersFor(___pawn, ___pawn.Faction?.def ?? null);
+                            PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.FillBackstorySlotShuffled(___pawn, BackstorySlot.Adulthood, ref ___pawn.story.adulthood, ___pawn.story.childhood, backstoryCategoryFiltersFor, ___pawn.Faction?.def ?? null);
                         }
                     }
                 }

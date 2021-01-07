@@ -21,46 +21,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool hasRangedVerb = false;
             List<Verb> verbList = pawn.verbTracker.AllVerbs;
             List<Verb> rangeList = new List<Verb>();
-            if (pawn.equipment?.Primary?.def.IsMeleeWeapon != null)
-            {
-                //    Log.Message(string.Format("Melee weapon user detected: {0}", pawn.LabelCap));
-                AbilitesExtended.CompAbilityItem abilityItem = pawn.equipment?.Primary.TryGetComp<AbilitesExtended.CompAbilityItem>();
-                if (abilityItem !=null)
-                {
-                    if (abilityItem.Props.Abilities.NullOrEmpty())
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        Log.Message(string.Format("Melee weapon user with CompAbilityItem detected: User: {0}, Weapon {1}", pawn.LabelCap, abilityItem.parent.LabelCap));
-                        for (int i = 0; i < abilityItem.Props.Abilities.Count; i++)
-                        {
-                            AbilitesExtended.EquipmentAbilityDef def = abilityItem.Props.Abilities[i] as AbilitesExtended.EquipmentAbilityDef;
-                            Log.Message(string.Format("Checking: {0}, {1}", def.LabelCap, i));
-                            if (def != null && pawn.abilities.abilities.Any(x=> x.def == def))
-                            {
-                                AbilitesExtended.EquipmentAbility ability = pawn.abilities.abilities.First(x=> x.def == def) as AbilitesExtended.EquipmentAbility;
-                                if (ability!=null)
-                                {
-                                    Log.Message(string.Format("ability for: {0}, found {1}", def.LabelCap, ability));
-                                    if (ability.CanCast && ability.verb.GetType() == typeof(AbilitesExtended.Verb_ShootEquipment))
-                                    {
-                                        rangeList.Add(ability.verb);
-                                        Log.Message(string.Format("ability detected: {0}, Weapon {1}", ability.verb.ReportLabel, abilityItem.parent.LabelCap));
-                                        hasRangedVerb = true;
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-                else
-                {
-                    return true;
-                }
-            }
             for (int i = 0; i < verbList.Count; i++)
             {
                 //    Log.Warning("Checkity");
@@ -274,6 +234,28 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static bool HumanUser(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)
         {
+            if (pawn.abilities != null)
+            {
+                bool hasRangedVerb = false;
+                List<Verb> rangeList = new List<Verb>();
+                foreach (Ability ability in pawn.abilities.abilities)
+                {
+                    AbilitesExtended.EquipmentAbility equipmentAbility = ability as AbilitesExtended.EquipmentAbility;
+                    if (equipmentAbility != null)
+                    {
+                        if (equipmentAbility.CanCast && equipmentAbility.verb.verbProps.range < 1.5f)
+                        {
+                            Log.Message("Adding " + equipmentAbility.def.LabelCap + "to " + pawn + "");
+                            rangeList.Add(equipmentAbility.verb);
+                            hasRangedVerb = true;
+                        }
+                    }
+                }
+                if (!rangeList.NullOrEmpty() && hasRangedVerb)
+                {
+                    Log.Message("found " + rangeList.Count + " eqabilities for " + pawn);
+                }
+            }
             return true;
         }
         public static bool ToolUser(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)

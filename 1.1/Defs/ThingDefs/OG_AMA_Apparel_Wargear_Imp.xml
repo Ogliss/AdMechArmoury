@@ -146,7 +146,7 @@
     <description>A Combat Shield is piece of defensive equipment utilised mainly by the forces of the Adeptus Astartes, Combat Shields are usually fabricated from plasteel, and incorporate a form of technology very similar to that of Imperial Power Weapons in the form of a miniaturised power generator which, when activated, emits a field of disruptive energy around the face and circumference of the shield. A Combat Shield is a compromise between flexibility and defence, trading the stronger field and physical protection a Storm Shield's size offers for a free hand.\n\nCombat Shields Protect against melee attacks Only</description>
     <thingClass>AdeptusMechanicus.CloseCombatShield</thingClass>
     <graphicData>
-      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_CombatShield_Icon</texPath>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_CombatShield__Icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
@@ -235,13 +235,19 @@
     <description>A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection. The Storm Shield is a much larger and rarer version of the Combat Shield and is usually used by only the most decorated of Astartes, often Vanguard Veterans or Veterans wearing Terminator Armour. Unlike the Combat Shield, which is attached to the user's arm and thus allows the hands to remain free, the Storm Shield is heavier and needs to be carried in one hand.\n\nCombat Shields Protect against melee attacks Only</description>
     <thingClass>AdeptusMechanicus.CloseCombatShield</thingClass>
     <graphicData>
-      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_StormShield_Icon</texPath>
+      <texPath>Things/Item/Equipment/Wargear/Imperial/Wargear_StormShield__Icon</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
     </graphicData>
-	<comps>     
-		    <li Class="AdeptusMechanicus.CompProperties_Wargear">
-		</li>
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		    <li Class="AdeptusMechanicus.CompProperties_Wargear"/>
 			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
 				<ExtrasEntries>
 					<li>
@@ -261,7 +267,7 @@
 				<EastOffset>0,-0.05,0</EastOffset>
 				<WestOffset>0,0.01,0</WestOffset>
 			</li>
-	</comps>
+		</comps>
     <tickerType>Normal</tickerType>
     <statBases>
       <WorkToMake>12000</WorkToMake>
@@ -305,15 +311,21 @@
 				<li>OGEnergyShield</li>
 			</tags>
     </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>RGB(77,77,77)</only>
-
-        </li>
-      </options>
-    </colorGenerator>
+	<colorGenerator Class="AdeptusMechanicus.TwoColorGenerator_Options">
+		<options>
+			<li>
+				<only>45,32,24</only>
+			</li>
+			<li>
+				<only>45,32,24</only>
+			</li>
+		</options>
+		<optionsTwo>
+			<li>
+				<only>85,85,85</only>
+			</li>
+		</optionsTwo>
+	</colorGenerator>
     <generateCommonality>0.05</generateCommonality>
   </ThingDef>
  
@@ -461,27 +473,6 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<tickerType>Normal</tickerType>
-		<comps>
-			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
-				<ExtrasEntries>
-					<li>
-						<graphicData>
-							<texPath>Things/Item/Equipment/Wargear/Imperial/ServoSkull/OGIServoSkull</texPath>
-							<!--graphicClass>Graphic_Single</graphicClass-->
-							<shaderType>CutoutComplex</shaderType>
-							<!--colorTwo>(255,255,255)</colorTwo>
-							<color>255,255,209</color-->
-						</graphicData>
-						<UseBodytypeTextures>false</UseBodytypeTextures>
-						<commonality>10</commonality>
-					</li>
-				</ExtrasEntries>
-				<NorthOffset>0,0.5,0</NorthOffset>
-				<SouthOffset>0,0.001,0</SouthOffset>
-				<EastOffset>0,0.35,0</EastOffset>
-				<WestOffset>0,-0.35,0</WestOffset>
-			</li>
-		</comps>
 		<statBases>
 			<MarketValue>1500</MarketValue>
 			<MaxHitPoints>500</MaxHitPoints>
@@ -541,6 +532,27 @@
 				<li>HospitalServoSkull</li>
 			</tags>
 		</apparel>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
+				<ExtrasEntries>
+					<li>
+						<graphicData>
+							<texPath>Things/Item/Equipment/Wargear/Imperial/ServoSkull/OGIServoSkull</texPath>
+							<!--graphicClass>Graphic_Single</graphicClass-->
+							<shaderType>CutoutComplex</shaderType>
+							<!--colorTwo>(255,255,255)</colorTwo>
+							<color>255,255,209</color-->
+						</graphicData>
+						<UseBodytypeTextures>false</UseBodytypeTextures>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,0.5,0</NorthOffset>
+				<SouthOffset>0,0.001,0</SouthOffset>
+				<EastOffset>0,0.35,0</EastOffset>
+				<WestOffset>0,-0.35,0</WestOffset>
+			</li>
+		</comps>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 			<li>
@@ -577,6 +589,27 @@
 				<li>InquisitorServoSkull</li>
 			</tags>
 		</apparel>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
+				<ExtrasEntries>
+					<li>
+						<graphicData>
+							<texPath>Things/Item/Equipment/Wargear/Imperial/ServoSkull/OGIServoSkull</texPath>
+							<!--graphicClass>Graphic_Single</graphicClass-->
+							<shaderType>CutoutComplex</shaderType>
+							<!--colorTwo>(255,255,255)</colorTwo>
+							<color>255,255,209</color-->
+						</graphicData>
+						<UseBodytypeTextures>false</UseBodytypeTextures>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,0.5,0</NorthOffset>
+				<SouthOffset>0,0.001,0</SouthOffset>
+				<EastOffset>0,0.35,0</EastOffset>
+				<WestOffset>0,-0.35,0</WestOffset>
+			</li>
+		</comps>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 			<li>
@@ -616,6 +649,27 @@
 				<li>MechanicusServoSkull</li>
 			</tags>
 		</apparel>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
+				<ExtrasEntries>
+					<li>
+						<graphicData>
+							<texPath>Things/Item/Equipment/Wargear/Imperial/ServoSkull/OGIServoSkull</texPath>
+							<!--graphicClass>Graphic_Single</graphicClass-->
+							<shaderType>CutoutComplex</shaderType>
+							<!--colorTwo>(255,255,255)</colorTwo>
+							<color>255,255,209</color-->
+						</graphicData>
+						<UseBodytypeTextures>false</UseBodytypeTextures>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,0.5,0</NorthOffset>
+				<SouthOffset>0,0.001,0</SouthOffset>
+				<EastOffset>0,0.35,0</EastOffset>
+				<WestOffset>0,-0.35,0</WestOffset>
+			</li>
+		</comps>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 			<li>

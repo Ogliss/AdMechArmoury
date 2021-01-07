@@ -53,7 +53,10 @@ namespace AdeptusMechanicus
             if (this.UseFactionTextures || this.UseVariableTextures)
             {
                 this.defaultOption = entry.defaultOption;
-                this.activeOption = entry.defaultOption;
+                if (activeOption == null)
+                {
+                    this.activeOption = entry.defaultOption;
+                }
             }
         }
 
@@ -366,7 +369,6 @@ namespace AdeptusMechanicus
                 path += "_" + body;
             }
 
-        //    Log.Message(path + " Shader: " + shader.name + "Colour: " + Drawer.mainColorFor(this) + " Colour: " + Drawer.secondaryColorFor(this));
             Texture2D tex = ContentFinder<Texture2D>.Get(path+"_south", false);
             Graphic graphic;
             if (tex == null && (UseFactionTextures || UseVariableTextures))
@@ -419,7 +421,37 @@ namespace AdeptusMechanicus
                     }
                 }
             }
+            Log.Message(this.Label + " " + graphic.path + " Shader: " + graphic.Shader.name + "Colour: " + graphic.Color + " Colour: " + graphic.ColorTwo);
+
+            if (!this.Drawer.apparel.def.apparel.wornGraphicPath.NullOrEmpty())
+            {
+                SetApparelColours();
+            }
             Graphic = graphic;
+        }
+
+        public void SetApparelColours()
+        {
+
+            Graphic graphic = this.Drawer.apparel.DefaultGraphic;
+            Color color = this.Drawer.apparel.DrawColor;
+            Color colorTwo = this.Drawer.apparel.DrawColorTwo;
+
+            graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+            //    this.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
+            if (this.activeOption != null)
+            {
+                if (activeOption.Color.HasValue)
+                {
+                    color = activeOption.Color.Value;
+                }
+                if (activeOption.ColorTwo.HasValue)
+                {
+                    colorTwo = activeOption.ColorTwo.Value;
+                }
+                graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+                this.Drawer.apparel.SetColors(color, colorTwo, true, activeOption?.factionDef ?? null, graphic);
+            }
         }
 
         public PauldronTextureOption Used

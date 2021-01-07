@@ -31,14 +31,14 @@ namespace AdeptusMechanicus
                 TriggerEffect(effect, IntVec3.FromVector3(position));
             }
             */
-            TriggerEffect(effect, IntVec3.FromVector3(position));
+            TriggerEffect(effect, position);
         }
 
-        void TriggerEffect(EffecterDef effect, IntVec3 dest)
+        void TriggerEffect(EffecterDef effect, Vector3 dest)
         {
             if (effect == null) return;
 
-            var targetInfo = new TargetInfo(dest, Map, false);
+            var targetInfo = new TargetInfo(dest.ToIntVec3(), Map, false);
 
             Effecter effecter = effect.Spawn();
             effecter.Trigger(targetInfo, targetInfo);

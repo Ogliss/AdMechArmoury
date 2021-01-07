@@ -1,5 +1,201 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+	<!--==================== Imperial - Catachan Fang =========================-->
+	<ThingDef ParentName="OG_Imperial_MeleeWeapon_Sharp_Quality">
+		<defName>OGI_Melee_CatachanFang</defName>
+		<label>catachan fang (I)</label>
+		<description>Measuring up to 20 inches of gleaming steel, the Catachan Fang is the most common type of Catachan Knife used by the Catachan regiments. Equally useful for cutting your way through jungle or a deviant Aeldari, the Catachan Fang is renowned throughout thousands of star systems. This knife is also used for settling disputes between Catachans. Usually, one knife is placed in the centre of a fighting pit and the combatants must each strive to get hold of the knife. The duel ends when one fighter draws blood, though this can often mean death as well.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/CatachanKnife/Knife_CatachanFang</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<uiIconScale>1.2</uiIconScale>
+		<costStuffCount>50</costStuffCount>
+		<weaponTags>
+		  <li>OGICatachanMelee</li>
+		  <li>CatachanFang</li>
+		</weaponTags>
+		<statBases>
+		  <WorkToMake>12000</WorkToMake>
+		  <Mass>0.85</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">3.4</Bulk>
+			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.25</MeleeCounterParryBonus>
+		</statBases>
+		<equippedAngleOffset>-65</equippedAngleOffset>
+		<stuffCategories>
+		  <li>Metallic</li>
+		</stuffCategories>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>point</label>
+			<capacities>
+			  <li>Stab</li>
+			</capacities>
+			<power>16</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>edge</label>
+			<capacities>
+			  <li>Cut</li>
+			</capacities>
+			<power>16</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		</tools>
+		<recipeMaker>
+		  <researchPrerequisite>Smithing</researchPrerequisite>
+		  <skillRequirements>
+			<Crafting>3</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
+	<!--==================== Imperial - Catachan - Night Reaper =========================-->
+	<ThingDef ParentName="OG_Imperial_MeleeWeapon_Sharp_Quality">
+		<defName>OGI_Melee_NightReaper</defName>
+		<label>night reaper (I)</label>
+		<description>Smaller than other typical designs, the blackened blade of the Night Reaper is especially suitable for infiltration and night missions when light reflecting from a blade can mean the difference between life and death. The blade itself is triangular, so any wound caused by the Night Reaper is unlikely to clot or heal. Catachans are also known to poison these knives using one of the many animal and plant venoms or toxins native to their inhospitable planet.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/CatachanKnife/Knife_NightReaper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<uiIconScale>1.25</uiIconScale>
+		<weaponTags>
+		  <li>OGICatachanMelee</li>
+		  <li>CatachanNightReaper</li>
+		</weaponTags>
+		<costStuffCount>50</costStuffCount>
+		<statBases>
+		  <WorkToMake>5000</WorkToMake>
+		  <Mass>1.1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">3.4</Bulk>
+			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.25</MeleeCounterParryBonus>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+		  <li>Metallic</li>
+		</stuffCategories>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			  <li>Poke</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>tip</label>
+			<capacities>
+			  <li>Stab</li>
+			</capacities>
+			<power>15</power>
+			<cooldownTime>2</cooldownTime>
+			<extraMeleeDamages>
+			  <li>
+				<def>OG_Toxic_Stab</def>
+				<amount>10</amount>
+				<chance>0.5</chance>
+			  </li>
+			</extraMeleeDamages>
+		  </li>
+		  <li>
+			<label>edge</label>
+			<capacities>
+			  <li>Cut</li>
+			</capacities>
+			<power>15</power>
+			<cooldownTime>2</cooldownTime>
+			<extraMeleeDamages>
+			  <li>
+				<def>OG_Toxic_Cut</def>
+				<amount>10</amount>
+				<chance>0.5</chance>
+			  </li>
+			</extraMeleeDamages>
+		  </li>
+		</tools>
+		<recipeMaker>
+		  <researchPrerequisite>Smithing</researchPrerequisite>
+		  <skillRequirements>
+			<Crafting>3</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!--==================== Imperial - Catachan - Devil's Claw =========================-->
+	<ThingDef ParentName="OG_Imperial_MeleeWeapon_Sharp_Quality">
+		<defName>OGI_Melee_DevilsClaw</defName>
+		<label>devil's claw (I)</label>
+		<description>Named after the fearsome predator known as the Catachan Devil of the fearsome Catachan jungles, this is the largest type of the traditional knives of Catachan. Anywhere between three and four feet long, the Devil's Claw is closer to a short sword than a knife. It is used mainly on the battlefield in close quarters and it has even achieved a fearsome reputation amongst the Orks, who call it "Da Cutta." The blade itself is hollow and half-filled with mercury to give it greater swinging power. Power Swords wielded by senior members of the Catachan regiments are often identical in design to the Devil's Claw.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Imperial/CatachanKnife/Knife_DevilsClaw</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<weaponTags>
+		  <li>OGICatachanMelee</li>
+		  <li>CatachanDevilsClaw</li>
+		</weaponTags>
+		<costStuffCount>100</costStuffCount>
+		<thingSetMakerTags><li>RewardStandardQualitySuper</li></thingSetMakerTags>
+		<statBases>
+		  <WorkToMake>18000</WorkToMake>
+		  <Mass>2</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">3.4</Bulk>
+			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.25</MeleeCounterParryBonus>
+		</statBases>
+		<equippedAngleOffset>-65</equippedAngleOffset>
+		<stuffCategories>
+		  <li>Metallic</li>
+		</stuffCategories>
+		<tools>
+		  <li>
+			<label>handle</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2</cooldownTime>
+		  </li>
+		  <li>
+			<label>point</label>
+			<capacities>
+			  <li>Stab</li>
+			</capacities>
+			<power>23</power>
+			<cooldownTime>2.6</cooldownTime>
+		  </li>
+		  <li>
+			<label>edge</label>
+			<capacities>
+			  <li>Cut</li>
+			</capacities>
+			<power>23</power>
+			<cooldownTime>2.6</cooldownTime>
+		  </li>
+		</tools>
+		<recipeMaker>
+		  <researchPrerequisite>LongBlades</researchPrerequisite>
+		  <skillRequirements>
+			<Crafting>5</Crafting>
+		  </skillRequirements>
+		</recipeMaker>
+	</ThingDef>
+
 	<!--==================== Imperial - Chain Sword =========================-->
 	<ThingDef ParentName="OG_Imperial_MeleeWeapon_Sharp_Quality">
 		<defName>OGI_Melee_ChainSword</defName>

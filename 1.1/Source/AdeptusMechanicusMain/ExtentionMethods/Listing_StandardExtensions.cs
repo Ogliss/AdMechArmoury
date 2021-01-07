@@ -43,9 +43,10 @@ namespace AdeptusMechanicus.ExtensionMethods
         }
 
         // Token: 0x06001B47 RID: 6983 RVA: 0x000A6A5C File Offset: 0x000A4C5C
-        public static Listing_Standard BeginSection(this Listing_Standard L, float height, bool hidesection = false, int type = 0)
+        public static Listing_Standard BeginSection(this Listing_Standard L, Listing_Standard listing, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4)
         {
-            Rect rect = L.GetRect(height + 8f);
+
+            Rect rect = L.GetRect(listing.MaxColumnHeightSeen + sectionBorder + bottomBorder);
             if (!hidesection)
             {
                 switch (type)
@@ -68,10 +69,71 @@ namespace AdeptusMechanicus.ExtensionMethods
                 }
             }
             Listing_Standard listing_Standard = new Listing_Standard();
-            listing_Standard.Begin(rect.ContractedBy(4f));
+            Rect rect2 = new Rect(rect.x + sectionBorder, rect.y + sectionBorder, rect.width - sectionBorder * 2f, rect.height - (sectionBorder + bottomBorder));
+
+            listing_Standard.Begin(rect2);
+            return listing_Standard;
+        }
+        
+        // Token: 0x06001B47 RID: 6983 RVA: 0x000A6A5C File Offset: 0x000A4C5C
+        public static Listing_Standard BeginSection(this Listing_Standard L, float height, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4)
+        {
+            Rect rect = L.GetRect(height + sectionBorder + bottomBorder);
+            if (!hidesection)
+            {
+                switch (type)
+                {
+                    case 1:
+                        Widgets.DrawWindowBackground(rect);
+                        break;
+                    case 2:
+                        Widgets.DrawWindowBackgroundTutor(rect);
+                        break;
+                    case 3:
+                        Widgets.DrawOptionUnselected(rect);
+                        break;
+                    case 4:
+                        Widgets.DrawOptionSelected(rect);
+                        break;
+                    default:
+                        Widgets.DrawMenuSection(rect);
+                        break;
+                }
+            }
+            Listing_Standard listing_Standard = new Listing_Standard();
+            Rect rect2 = new Rect(rect.x + sectionBorder, rect.y + sectionBorder, rect.width - sectionBorder * 2f, rect.height - (sectionBorder + bottomBorder));
+
+            listing_Standard.Begin(rect2);
             return listing_Standard;
         }
 
+        public static bool ButtonText(this Listing_Standard listing_Standard, string label, ref bool setting, string highlightTag = null)
+        {
+            Rect rect = listing_Standard.GetRect(30);
+            if (Widgets.ButtonText(rect, label, true, true, true))
+            {
+                setting = !setting;
+            }
+            if (highlightTag != null)
+            {
+                UIHighlighter.HighlightOpportunity(rect, highlightTag);
+            }
+            listing_Standard.Gap(listing_Standard.verticalSpacing);
+            return setting;
+        }
+        public static bool ButtonText(this Listing_Standard listing_Standard, Rect rect, string label, ref bool setting, string highlightTag = null)
+        {
+            if (Widgets.ButtonText(rect, label, true, true, true))
+            {
+                setting = !setting;
+            }
+            if (highlightTag != null)
+            {
+                UIHighlighter.HighlightOpportunity(rect, highlightTag);
+            }
+            listing_Standard.Gap(listing_Standard.verticalSpacing);
+            return setting;
+        }
         public static void CheckboxLabeled(this Listing_Standard listing_Standard, string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false)
         {
             float lineHeight = Text.LineHeight;

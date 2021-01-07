@@ -97,6 +97,94 @@
     <plantDamageFactor>4</plantDamageFactor>
   </DamageDef>
   
+	<!--==================== Rad Base Damage Type =========================-->
+  <DamageDef Name="OGGrenadeRad">
+    <defName>OGGrenadeRad</defName>
+    <label>rad grenade</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+	<deathMessage>{0} has been killed by a grenade.</deathMessage>
+    <hediff>OGGrenadeRadHediff</hediff>
+    <hediffSolid>OGGrenadeRadHediffSolid</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>10</defaultDamage>
+    <defaultStoppingPower>0.5</defaultStoppingPower>
+    <defaultArmorPenetration>0.10</defaultArmorPenetration>
+    <buildingDamageFactor>2</buildingDamageFactor>
+    <plantDamageFactor>2</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_EMP</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+    <additionalHediffs>
+      <li>
+        <hediff>OG_Hediff_RadiationPoisioning</hediff>
+        <severityPerDamageDealt>0.01</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+  
+  <HediffDef ParentName="InjuryBase">
+    <defName>OGGrenadeRadHediff</defName>
+    <label>shredded</label>
+    <labelNoun>a shredded wound</labelNoun>
+    <description>A part of the body has been shredded and torn.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="AdeptusMechanicus.HediffCompProperties_Irradiator">
+        <infectionChance>0.65</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>shredded scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.06</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Torn off</destroyedLabel>
+      <destroyedOutLabel>Torn out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+  
+  <HediffDef ParentName="InjuryBase">
+    <defName>OGGrenadeRadHediffSolid</defName>
+    <label>crack</label>
+    <labelNoun>a crack wound</labelNoun>
+    <description>A crack.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>set</labelTendedWell>
+        <labelTendedWellInner>set</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>permanent crack</permanentLabel>
+      </li>
+      <li Class="AdeptusMechanicus.HediffCompProperties_Irradiator">
+        <infectionChance>0.65</infectionChance>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.01</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <destroyedLabel>Shattered</destroyedLabel>
+    </injuryProps>
+  </HediffDef>
+
 	<!--==================== Melta Grenade/Bomb Damage Type =========================-->
   <DamageDef Name="OGGrenadeMelta">
     <defName>OGGrenadeMelta</defName>
@@ -138,7 +226,7 @@
 	<explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
 	<soundExplosion>Explosion_EMP</soundExplosion>
 	<combatLogRules>Damage_EMP</combatLogRules>
-		<armorCategory>Heat</armorCategory>
+		<!--armorCategory>Heat</armorCategory-->
 	<defaultArmorPenetration>1</defaultArmorPenetration>
     <additionalHediffs>
       <li>

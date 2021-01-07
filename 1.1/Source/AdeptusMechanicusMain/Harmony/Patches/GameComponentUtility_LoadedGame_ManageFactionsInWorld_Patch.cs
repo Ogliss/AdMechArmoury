@@ -86,7 +86,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (faction.defName.Contains("Harlequin"))
                         return SettingsHelper.latest.AllowEldarHarlequinn;
                 }
-                if (faction.defName.Contains("OG_Dark_Eldar_"))
+                if (faction.defName.Contains("OG_DarkEldar_"))
                     return SettingsHelper.latest.AllowDarkEldar;
                 if (faction.defName.Contains("OG_Kroot_"))
                     return SettingsHelper.latest.AllowKroot;
@@ -149,7 +149,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (faction.defName.Contains("Harlequin"))
                         return !SettingsHelper.latest.AllowEldarHarlequinn;
                 }
-                if (faction.defName.Contains("OG_Dark_Eldar_"))
+                if (faction.defName.Contains("OG_DarkEldar_"))
                     return !SettingsHelper.latest.AllowDarkEldar;
                 if (faction.defName.Contains("OG_Kroot_"))
                     return !SettingsHelper.latest.AllowKroot;

@@ -14,6 +14,92 @@ namespace AdeptusMechanicus
     // Token: 0x0200031C RID: 796
     public class CompColorableTwoFaction : CompColorableTwo
 	{
+		public override Color Color
+		{
+			get
+			{
+                //	Log.Message(this.parent.LabelCap + " CompColorableTwo color active: " + active);
+                if (this.FactionActive && this.ActiveFaction)
+				{
+					return this.factioncolor;
+				}
+
+				return base.Color;
+				if (!this.active)
+				{
+					return this.parent.def.graphicData.color;
+				}
+				return this.color;
+			}
+			set
+			{
+				if (value == this.color)
+				{
+					return;
+				}
+				this.active = true;
+				this.color = value;
+				//	Log.Message(this.parent.LabelCap + " CompColorableTwo color set: " + value);
+				this.parent.Notify_ColorChanged();
+			}
+		}
+
+		public override Color ColorTwo
+		{
+			get
+			{
+				//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo active: " + ActiveTwo);
+				if (this.FactionActiveTwo && this.ActiveFaction)
+				{
+					return this.factioncolorTwo;
+				}
+				return base.ColorTwo;
+				if (!this.activeTwo)
+				{
+					return this.parent.def.graphicData.colorTwo;
+				}
+				return this.colorTwo;
+			}
+			set
+			{
+				if (value == this.colorTwo)
+				{
+					return;
+				}
+				this.ActiveTwo = true;
+				this.colorTwo = value;
+				//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo set: " + value);
+				this.parent.Notify_ColorChanged();
+			}
+		}
+
+		// Token: 0x170004CD RID: 1229
+		// (get) Token: 0x06001743 RID: 5955 RVA: 0x00085558 File Offset: 0x00083758
+		public virtual bool FactionActive
+		{
+			get
+			{
+				return this.factionactive;
+			}
+			set
+			{
+				this.factionactive = value;
+			}
+		}
+
+		public virtual bool FactionActiveTwo
+		{
+			get
+			{
+				return this.factionactiveTwo;
+			}
+			set
+			{
+
+				this.factionactiveTwo = value;
+			}
+		}
+
 		public virtual bool ActiveFaction
         {
             get
@@ -49,11 +135,23 @@ namespace AdeptusMechanicus
 								//	Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
 									if (Extension.factionColor.HasValue)
 									{
-										this.Color = Extension.factionColor.Value;
+										this.factionactive = true;
+										this.factioncolor = Extension.factionColor.Value;
+									}
+                                    else
+									{
+										this.factionactive = false;
+										this.factioncolor = Color.white;
 									}
 									if (Extension.factionColorTwo.HasValue)
 									{
-										this.ColorTwo = Extension.factionColorTwo.Value;
+										this.factionactiveTwo = true;
+										this.factioncolorTwo = Extension.factionColorTwo.Value;
+									}
+                                    else
+									{
+										this.factionactiveTwo = false;
+										this.factioncolorTwo = Color.white;
 									}
 								}
 							}
@@ -78,10 +176,20 @@ namespace AdeptusMechanicus
 						if (Extension.factionColor.HasValue)
 						{
 							this.Color = Extension.factionColor.Value;
+							this.factionactive = true;
+						}
+                        else
+                        {
+							this.FactionActive = false;
 						}
 						if (Extension.factionColorTwo.HasValue)
 						{
 							this.ColorTwo = Extension.factionColorTwo.Value;
+							this.factionactiveTwo = true;
+						}
+                        else
+						{
+							this.FactionActiveTwo = false;
 						}
 					}
 					this.ActiveFaction = true;
@@ -89,8 +197,8 @@ namespace AdeptusMechanicus
                 else
                 {
 					this.ActiveFaction = false;
-					this.Active = false;
-					this.ActiveTwo = false;
+					this.FactionActive = false;
+					this.FactionActiveTwo = false;
                 }
 
 			}
@@ -125,11 +233,11 @@ namespace AdeptusMechanicus
 				return factionsC;
 			}
 		}
+		/*
 		public override void Initialize(CompProperties props)
 		{
 			this.props = props;
-			/*
-            if (Apparel != null)
+			if (Apparel != null)
 			{
 				Log.Message(this.parent + " is Apparel");
 				if (Apparel.Wearer != null)
@@ -139,14 +247,14 @@ namespace AdeptusMechanicus
 					{
 						Log.Message(this.parent + " Wearer Faction is "+ Apparel.Wearer.Faction.def.defName);
 						if (Apparel.Wearer.Faction != RimWorld.Faction.OfPlayer)
-                        {
+						{
 							faction = Apparel.Wearer.Faction.def;
 							Log.Message(this.parent + " FactionDef set to Wearer faction " + this.faction.defName);
 
 						}
-                    }
-                }
-            }
+					}
+				}
+			}
 			if (FactionDef != null)
 			{
 				FactionDefExtension extension = FactionDef.GetModExtension<FactionDefExtension>();
@@ -167,31 +275,67 @@ namespace AdeptusMechanicus
 			else
 			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators))
 			{
-                if (!this.active)
+				if (!this.active)
 				{
 					this.Color = this.parent.def.colorGenerator.NewRandomizedColor();
 					this.active = true;
 					Log.Message(this.parent + " Primary Color set to NewRandomizedColor " + this.Color);
 				}
-                if (!this.activeTwo)
+				if (!this.activeTwo)
 				{
 					this.ColorTwo = this.parent.def.colorGenerator.NewRandomizedColor();
 					this.activeTwo = true;
 					Log.Message(this.parent + " Secondry Color set to NewRandomizedColor " + this.ColorTwo);
 				}
 			}
-			*/
+			base.Initialize(props);
 		}
+		*/
 
 		// Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
 		public override void PostExposeData()
 		{
-			base.PostExposeData();
 			Scribe_Defs.Look<FactionDef>(ref this.faction, "faction");
 			Scribe_Values.Look<bool>(ref this.activeFaction, "activeFaction");
+			if ((Scribe.mode == LoadSaveMode.Saving && this.factionactive) || Scribe.mode != LoadSaveMode.Saving)
+			{
+				Scribe_Values.Look<Color>(ref this.factioncolor, "factioncolor", default(Color), false);
+				Scribe_Values.Look<bool>(ref this.factionactive, "factioncolorActive", false, false);
+			}
+			if ((Scribe.mode == LoadSaveMode.Saving && this.factionactiveTwo) || Scribe.mode != LoadSaveMode.Saving)
+			{
+				Scribe_Values.Look<Color>(ref this.factioncolorTwo, "factioncolorTwo", default(Color), false);
+				Scribe_Values.Look<bool>(ref this.factionactiveTwo, "factioncolorActiveTwo", false, false);
+			}
 		}
+
+		// Token: 0x06001746 RID: 5958 RVA: 0x00085618 File Offset: 0x00083818
+		public override void PostSplitOff(Thing piece)
+		{
+			base.PostSplitOff(piece);
+			if (this.factionactive)
+			{
+				if (this.factioncolor != null && this.factioncolor != Color.white)
+				{
+					piece.SetColor(this.factioncolor, true);
+				}
+				if (this.factioncolorTwo != null && this.factioncolorTwo != Color.white)
+				{
+					piece.SetColorTwo(this.factioncolorTwo, true);
+				}
+			}
+		}
+
 		protected FactionDef faction;
 		protected bool activeFaction;
+
+		// Token: 0x04000EA1 RID: 3745
+		protected Color factioncolor = Color.white;
+		protected Color factioncolorTwo = Color.white;
+
+		// Token: 0x04000EA2 RID: 3746
+		protected bool factionactive;
+		protected bool factionactiveTwo;
 	}
 
 }

@@ -508,14 +508,18 @@ namespace AdeptusMechanicus
             }
         }
         
-        public static Listing_Standard BeginSection_OnePointTwo(ref Listing_Standard listing_Main, float f)
+        public static Listing_Standard BeginSection_OnePointTwo(ref Listing_Standard listing_Main, float f, float sectionBorder = 4f, float bottomBorder = 4f)
         {
-            return listing_Main.BeginSection_NewTemp(f);
+            return listing_Main.BeginSection_NewTemp(f, sectionBorder, bottomBorder);
         }
+
         public static Listing_Standard BeginSection_OnePointOne(ref Listing_Standard listing_Main, float f)
         {
-            return listing_Main.BeginSection_NewTemp(f);
+#pragma warning disable CS0612 // Type or member is obsolete
+            return listing_Main.BeginSection(f);
+#pragma warning restore CS0612 // Type or member is obsolete
         }
+
         public static void CopyFields<T>(T source, T destination)
         {
             var fields = source.GetType().GetFields();

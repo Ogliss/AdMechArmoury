@@ -7,7 +7,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(Projectile), "Tick")]
     public static class Projectile_Tick_Trailer_Patch
     {
-        [HarmonyPostfix]
         public static void Postfix(Projectile __instance, int ___ticksToImpact)
         {
             if (__instance != null)

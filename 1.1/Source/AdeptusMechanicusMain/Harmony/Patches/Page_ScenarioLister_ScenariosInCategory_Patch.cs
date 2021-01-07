@@ -97,7 +97,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
 
-                    if (scenDef.defName.Contains("OG_Dark_Eldar_"))
+                    if (scenDef.defName.Contains("OG_DarkEldar_"))
                     {
                         if (!SettingsHelper.latest.AllowDarkEldar)
                         {

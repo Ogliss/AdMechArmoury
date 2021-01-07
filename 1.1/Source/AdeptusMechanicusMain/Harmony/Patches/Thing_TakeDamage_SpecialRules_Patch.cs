@@ -12,6 +12,7 @@ using System.Reflection;
 using UnityEngine;
 using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.settings;
+using System.Runtime.InteropServices;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -20,6 +21,11 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix(Thing __instance, ref DamageInfo dinfo)
         {
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return;
+            }
             if (__instance == null || !__instance.Spawned || __instance.Map == null)
             {
                 return;
@@ -96,6 +102,10 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void Postfix(Thing __instance, ref DamageInfo dinfo)
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return;
+            }
             bool force = AMSettings.Instance.AllowForceWeaponEffect && dinfo.Def.forceWeapon();
             Pawn Attacker = dinfo.Instigator as Pawn;
             Pawn hitPawn = __instance as Pawn;

@@ -132,7 +132,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             }
                         }
                     }
-                    if (factionDef.defName.Contains("OG_Dark_Eldar_"))
+                    if (factionDef.defName.Contains("OG_DarkEldar_"))
                     {
                         if (!SettingsHelper.latest.AllowDarkEldar)
                         {

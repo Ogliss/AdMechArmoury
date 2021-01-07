@@ -15,7 +15,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
 		// Token: 0x060008F6 RID: 2294 RVA: 0x0004A904 File Offset: 0x00048B04
 		[HarmonyPostfix]
-		public static void Postfix(Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
+		public static void Postfix(ref Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
 		{
 			/*
 			bool Pauldron = apparel.TryGetComp<CompPauldronDrawer>() != null;
@@ -40,7 +40,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 			CompColorableTwo compColorable = apparel.TryGetComp<CompColorableTwo>();
 			if (compColorable!=null)
 			{
-				string comptype = "CompColorableTwo Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
+				string comptype = compColorable.GetType().Name;
 				string msg = string.Empty;
 				string msk = "m";
 				CompColorableTwoFaction factionColors = compColorable as CompColorableTwoFaction;
@@ -66,7 +66,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     if (entry.faction !=null && entry.UseFactionTextures || entry.UseFactionColors)
 									{
 										factionColors.FactionDef = entry.faction;
-										msg += (" entry for Non Player Pawn using FactionDef " + factionColors.FactionDef);
+										msg += (" entry for Player Pawn using FactionDef " + factionColors.FactionDef);
 										break;
 									}
 
@@ -80,13 +80,13 @@ namespace AdeptusMechanicus.HarmonyInstance
 					}
                     if (factionColors.Active)
 					{
-					//	Log.Message("factionColors.Active");
-						colorOne = factionColors.Color;
+						Log.Message("factionColors.Active");
+					//	colorOne = factionColors.Color;
 						apparel.SetColorOne(colorOne);
 					}
                     if (factionColors.ActiveTwo)
 					{
-					//	Log.Message("factionColors.ActiveTwo");
+						Log.Message("factionColors.ActiveTwo");
 						colorTwo = factionColors.ColorTwo;
 						apparel.SetColorTwo(colorTwo);
 					}
@@ -104,8 +104,21 @@ namespace AdeptusMechanicus.HarmonyInstance
 						}
 					}
 					// msg
-					comptype = "CompFactionColorableTwo Active: " + factionColors.Active + ", ActiveTwo: " + factionColors.ActiveTwo;
+                    if (factionColors.ActiveFaction)
+                    {
+						comptype += "FactionActive: " + factionColors.FactionActive + ", FactionActiveTwo: " + factionColors.FactionActiveTwo;
+					}
+                    else
+					{
+						comptype += "Active: " + factionColors.Active + ", ActiveTwo: " + factionColors.ActiveTwo;
+					}
 				}
+				else
+				{
+					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
+				}
+				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+				Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
 				Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
 				Texture texture;
 				if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
