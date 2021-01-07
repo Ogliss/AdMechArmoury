@@ -118,6 +118,10 @@ namespace AdeptusMechanicus
             {
                 if (faction == null && ActiveFaction)
                 {
+                    if (ActiveFaction)
+                    {
+
+                    }
 				//	Log.Message("chached faction null, checking apparel");
                     if (Apparel != null)
 					{
@@ -191,15 +195,13 @@ namespace AdeptusMechanicus
 						{
 							this.FactionActiveTwo = false;
 						}
+						this.ActiveFaction = true;
+						return;
 					}
-					this.ActiveFaction = true;
 				}
-                else
-                {
-					this.ActiveFaction = false;
-					this.FactionActive = false;
-					this.FactionActiveTwo = false;
-                }
+				this.ActiveFaction = false;
+				this.FactionActive = false;
+				this.FactionActiveTwo = false;
 
 			}
         }

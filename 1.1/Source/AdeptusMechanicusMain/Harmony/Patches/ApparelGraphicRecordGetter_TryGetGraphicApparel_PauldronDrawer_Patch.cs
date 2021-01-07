@@ -80,13 +80,13 @@ namespace AdeptusMechanicus.HarmonyInstance
 					}
                     if (factionColors.Active)
 					{
-						Log.Message("factionColors.Active");
+					//	Log.Message("factionColors.Active");
 					//	colorOne = factionColors.Color;
 						apparel.SetColorOne(colorOne);
 					}
                     if (factionColors.ActiveTwo)
 					{
-						Log.Message("factionColors.ActiveTwo");
+					//	Log.Message("factionColors.ActiveTwo");
 						colorTwo = factionColors.ColorTwo;
 						apparel.SetColorTwo(colorTwo);
 					}
@@ -117,8 +117,8 @@ namespace AdeptusMechanicus.HarmonyInstance
 				{
 					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				}
-				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
-				Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
+			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			//	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
 				Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
 				Texture texture;
 				if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())

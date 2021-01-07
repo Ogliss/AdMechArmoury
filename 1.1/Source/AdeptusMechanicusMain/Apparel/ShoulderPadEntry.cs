@@ -421,8 +421,8 @@ namespace AdeptusMechanicus
                     }
                 }
             }
-            Log.Message(this.Label + " " + graphic.path + " Shader: " + graphic.Shader.name + "Colour: " + graphic.Color + " Colour: " + graphic.ColorTwo);
-
+            //    Log.Message(this.Label + " " + graphic.path + " Shader: " + graphic.Shader.name + "Colour: " + graphic.Color + " Colour: " + graphic.ColorTwo);
+            
             if (!this.Drawer.apparel.def.apparel.wornGraphicPath.NullOrEmpty())
             {
                 SetApparelColours();

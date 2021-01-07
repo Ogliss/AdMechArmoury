@@ -11,15 +11,46 @@ using AdeptusMechanicus;
 namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
-    public class ArmouryMain
+    public static class ArmouryMain
     {
+        public static IEnumerable<RecipeDef> humanRecipes;
         public static IEnumerable<ThingDef> TechHediffItems; 
         public static IEnumerable<RecipeDef> TechHediffRecipes;
-        public static List<ResearchProjectDef> ReseachImperial => DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Imperial_Tech_")).ToList();
-        public static List<ResearchProjectDef> ReseachMechanicus => DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Mechanicus_Tech_")).ToList();
-        public static List<ResearchProjectDef> ReseachChaos => DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Chaos_Tech_")).ToList();
+        public static List<ResearchProjectDef> ReseachImperial = new List<ResearchProjectDef>();
+        public static List<ResearchProjectDef> ReseachMechanicus = new List<ResearchProjectDef>();
+        public static List<ResearchProjectDef> ReseachChaos = new List<ResearchProjectDef>();
+        public static List<ScenarioDef> scenariosTesting = new List<ScenarioDef>();
+        public static List<FactionDef> factionColours = new List<FactionDef>();
+        public static ThingDef mechanicus;
+        public static ThingDef astartes;
+        public static ThingDef ogryn;
+        public static ThingDef ratlin;
+        public static ThingDef beastman;
+        public static ThingDef GeneseedAstartes;
+        public static ThingDef GeneseedCustodes;
+
         static ArmouryMain()
         {
+            humanRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x => x.AllRecipeUsers.Contains(ThingDefOf.Human));
+            TechHediffRecipes = from x in DefDatabase<RecipeDef>.AllDefs
+                                where TechHediffItems.Any(z => x.IsIngredient(z)) && x.targetsBodyPart
+                                select x;
+            TechHediffItems = from x in DefDatabase<ThingDef>.AllDefs
+                              where x.isTechHediff && x.BaseMarketValue > 0
+                              select x;
+            ReseachImperial = DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Imperial_Tech_")).ToList();
+            ReseachMechanicus = DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Mechanicus_Tech_")).ToList();
+            ReseachChaos = DefDatabase<ResearchProjectDef>.AllDefs.Where(x => x.defName.Contains("OG_Chaos_Tech_")).ToList();
+            scenariosTesting = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.StartsWith("OGAM_TestScenario_")).ToList();
+            mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus");
+            astartes = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Astartes");
+            ogryn = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ogryn");
+            ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling");
+            beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman");
+            GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
+            GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes");
+            factionColours = DefDatabase<FactionDef>.AllDefs.Where(x => x.GetModExtension<FactionDefExtension>()?.factionColor != null || x.GetModExtension<FactionDefExtension>()?.factionColorTwo != null).ToList();
+            Log.Message("factions with colours: "+ factionColours.Count);
             /*
             Log.Message("AppDomain.CurrentDomain.GetAssemblies():\n" + System.AppDomain.CurrentDomain.GetAssemblies().Join(delimiter: "\n"));
             Log.Message("GenTypes.AllActiveAssemblies:\n" + Traverse.Create(typeof(GenTypes)).Property<IEnumerable<System.Reflection.Assembly>>("AllActiveAssemblies").Value.Join(delimiter: "\n"));
@@ -27,7 +58,6 @@ namespace AdeptusMechanicus
             //    Log.Message("ArmouryMain ");
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x=> x.defName.Contains("OGAM_TestScenario_")))
             {
-                List<ScenarioDef> scenariosTesting = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.defName.StartsWith("OGAM_TestScenario_")).ToList();
                 foreach (ScenarioDef ScenDef in scenariosTesting)
                 {
                     if (ScenDef.defName.Contains("Imperial"))
@@ -77,13 +107,7 @@ namespace AdeptusMechanicus
                 }
             }
             //    Log.Message("ArmouryMain 0");
-            ThingDef mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus");
-            ThingDef astartes = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Astartes");
-            ThingDef ogryn = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ogryn");
-            ThingDef ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling");
-            ThingDef beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman");
             //    Log.Message("ArmouryMain 1");
-            IEnumerable<RecipeDef> humanRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x=> x.AllRecipeUsers.Contains(ThingDefOf.Human));
             foreach (RecipeDef item in humanRecipes)
             {
                 if (item.recipeUsers.NullOrEmpty())
@@ -114,7 +138,6 @@ namespace AdeptusMechanicus
                 }
                 if (AdeptusIntergrationUtility.enabled_GeneSeed)
                 {
-                    ThingDef GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
                     if (GeneseedAstartes != null)
                     {
                         if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
@@ -128,7 +151,6 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
-                    ThingDef GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes");
                     if (GeneseedCustodes != null)
                     {
                         if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
@@ -169,13 +191,7 @@ namespace AdeptusMechanicus
                 }
             }
             //    Log.Message("ArmouryMain 2");
-            TechHediffItems = from x in DefDatabase<ThingDef>.AllDefs
-                     where x.isTechHediff && x.BaseMarketValue > 0
-                     select x;
             //    Log.Message("ArmouryMain 3");
-            TechHediffRecipes = from x in DefDatabase<RecipeDef>.AllDefs
-                                          where TechHediffItems.Any(z=> x.IsIngredient(z)) && x.targetsBodyPart
-                                          select x;
             //    Log.Message("ArmouryMain 4");
             if (AdeptusIntergrationUtility.enabled_AlienRaces)
             {

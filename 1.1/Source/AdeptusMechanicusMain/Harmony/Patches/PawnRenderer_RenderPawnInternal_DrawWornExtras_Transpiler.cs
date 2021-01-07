@@ -98,7 +98,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         GenDraw.DrawMeshNowOrLater
                                             (
                                                 // pauldronMesh,
-                                                GetPawnMesh(portrait, pawn, bodyFacing, !Pauldron.onHead),
+                                                GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
                                                 center + (quat * offset),
                                                 quat,
                                                 OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),

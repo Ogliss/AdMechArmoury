@@ -33,6 +33,7 @@ namespace AdeptusMechanicus
         public Color? overrideSecondaryColor;
         public int order = 1;
         public int sublayer = 0;
+        public bool flipWest = false;
         public Vector3 NorthOffset = new Vector3();
         public Vector3 SouthOffset = new Vector3();
         public Vector3 EastOffset = new Vector3();
