@@ -10,6 +10,11 @@ namespace AdeptusMechanicus.settings
 {
     public class AMSettings : ModSettings
     {
+        public AMSettings()
+        {
+            AMSettings.Instance = this;
+        }
+
         public static AMSettings Instance;
         // Armoury Settings;
         public bool ShowArmourySettings = true;
@@ -153,12 +158,13 @@ namespace AdeptusMechanicus.settings
         public bool AllowTyranid = true;
         public bool AllowTyranidInfestation = false;
 
-        private Dictionary<string, bool> _scribeHelper;
+        private Dictionary<string, bool> _CompatabilityPatchesScribeHelper;
+        private Dictionary<string, bool> _ImperialRaceScribeHelper;
+        private Dictionary<string, bool> _MechanicusRaceScribeHelper;
         public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => true);
-        public AMSettings()
-        {
-            AMSettings.Instance = this;
-        }
+        public Dictionary<ThingDef, bool> ImperialRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human") || p.defName.Contains("Abhuman") || p.defName.Contains("Astartes") || p.defName.Contains("Custodes"));
+        public Dictionary<ThingDef, bool> MechanicusRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Mechanicus"));
+        public Dictionary<ThingDef, bool> RaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human"));
 
 
         public override void ExposeData()
@@ -280,22 +286,49 @@ namespace AdeptusMechanicus.settings
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 // create the data structure we're going to save.
-                _scribeHelper = PatchDisabled.ToDictionary(
+                _CompatabilityPatchesScribeHelper = PatchDisabled.ToDictionary(
                     // delegate to transform a dict item into a key, we want the file property of the old key. ( PatchDescription => string )
                     k => k.Key.file,
 
                     // same for the value, which is just the value. ( bool => bool )
                     v => v.Value);
             }
-            Scribe_Collections.Look(ref _scribeHelper, "patches", LookMode.Value, LookMode.Value);
-
+            Scribe_Collections.Look(ref _CompatabilityPatchesScribeHelper, "patches", LookMode.Value, LookMode.Value);
             // finally, when the scribe finishes, we need to transform this back to a data structure we understand.
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // for each stored patch, update the value in our dictionary.
-                if (!_scribeHelper.EnumerableNullOrEmpty())
+                if (!_CompatabilityPatchesScribeHelper.EnumerableNullOrEmpty())
                 {
-                    foreach (var storedPatch in _scribeHelper)
+                    foreach (var storedPatch in _CompatabilityPatchesScribeHelper)
+                    {
+                        var index = AMAMod.Patches.FindIndex(p => p.file == storedPatch.Key);
+                        if (index >= 0) // match found
+                        {
+                            var patch = AMAMod.Patches[index];
+                            PatchDisabled[patch] = storedPatch.Value;
+                        }
+                    }
+                }
+            }
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                // create the data structure we're going to save.
+                _CompatabilityPatchesScribeHelper = PatchDisabled.ToDictionary(
+                    // delegate to transform a dict item into a key, we want the file property of the old key. ( PatchDescription => string )
+                    k => k.Key.file,
+
+                    // same for the value, which is just the value. ( bool => bool )
+                    v => v.Value);
+            }
+            Scribe_Collections.Look(ref _CompatabilityPatchesScribeHelper, "patches", LookMode.Value, LookMode.Value);
+            // finally, when the scribe finishes, we need to transform this back to a data structure we understand.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                // for each stored patch, update the value in our dictionary.
+                if (!_CompatabilityPatchesScribeHelper.EnumerableNullOrEmpty())
+                {
+                    foreach (var storedPatch in _CompatabilityPatchesScribeHelper)
                     {
                         var index = AMAMod.Patches.FindIndex(p => p.file == storedPatch.Key);
                         if (index >= 0) // match found

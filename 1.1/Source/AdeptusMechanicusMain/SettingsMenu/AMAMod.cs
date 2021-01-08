@@ -223,6 +223,10 @@ namespace AdeptusMechanicus.settings
                         }
                         
                     }
+                    if (AdeptusIntergrationUtility.enabled_AlienRaces)
+                    {
+
+                    }
                 }
                 return num;
             }
@@ -326,6 +330,10 @@ namespace AdeptusMechanicus.settings
 
             }
             listing_ArmouryIntergration.EndSection(listing_General);
+            if (AdeptusIntergrationUtility.enabled_AlienRaces)
+            {
+
+            }
             listing_Main.EndSection(listing_ArmouryIntergration);
         }
         private float intergrationMenuInc = 0f;

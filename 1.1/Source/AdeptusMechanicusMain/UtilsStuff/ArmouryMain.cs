@@ -26,8 +26,8 @@ namespace AdeptusMechanicus
         public static ThingDef ogryn;
         public static ThingDef ratlin;
         public static ThingDef beastman;
-        public static ThingDef GeneseedAstartes;
-        public static ThingDef GeneseedCustodes;
+        public static ThingDef geneseedAstartes;
+        public static ThingDef geneseedCustodes;
 
         static ArmouryMain()
         {
@@ -47,8 +47,8 @@ namespace AdeptusMechanicus
             ogryn = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ogryn");
             ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling");
             beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman");
-            GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
-            GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes");
+            geneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine");
+            geneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes");
             factionColours = DefDatabase<FactionDef>.AllDefs.Where(x => x.GetModExtension<FactionDefExtension>()?.factionColor != null || x.GetModExtension<FactionDefExtension>()?.factionColorTwo != null).ToList();
             Log.Message("factions with colours: "+ factionColours.Count);
             /*
@@ -138,28 +138,28 @@ namespace AdeptusMechanicus
                 }
                 if (AdeptusIntergrationUtility.enabled_GeneSeed)
                 {
-                    if (GeneseedAstartes != null)
+                    if (geneseedAstartes != null)
                     {
                         if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
                         {
-                            if (!item.AllRecipeUsers.Contains(GeneseedAstartes))
+                            if (!item.AllRecipeUsers.Contains(geneseedAstartes))
                             {
                                 //    Log.Message("ArmouryMain 1 astartes");
                                 //    Log.Message("Adding " + item + " to astartes");
-                                item.recipeUsers.Add(GeneseedAstartes);
+                                item.recipeUsers.Add(geneseedAstartes);
                                 //    Log.Message("Added " + item + " to astartes");
                             }
                         }
                     }
-                    if (GeneseedCustodes != null)
+                    if (geneseedCustodes != null)
                     {
                         if (!item.AllRecipeUsers.EnumerableNullOrEmpty())
                         {
-                            if (!item.AllRecipeUsers.Contains(GeneseedCustodes))
+                            if (!item.AllRecipeUsers.Contains(geneseedCustodes))
                             {
                                 //    Log.Message("ArmouryMain 1 astartes");
                                 //    Log.Message("Adding " + item + " to astartes");
-                                item.recipeUsers.Add(GeneseedCustodes);
+                                item.recipeUsers.Add(geneseedCustodes);
                                 //    Log.Message("Added " + item + " to astartes");
                             }
                         }
@@ -213,22 +213,24 @@ namespace AdeptusMechanicus
                     if (td == Weapon)
                     {
                         hasweapon = true;
+                        break;
                     }
                 }
-                if (!hasweapon)
+                if (hasweapon)
                 {
-                    ScenPart_StartingThing_Define StartingThing = new ScenPart_StartingThing_Define() { def = ScenPartDefOf.StartingThing_Defined };
-                    if (Weapon.MadeFromStuff)
-                    {
-                        ThingDef stuffdef = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.IsStuff && Weapon.stuffCategories.Any(y=> x.stuffProps.categories.Contains(y))).RandomElement();
-                        if (stuffdef!=null)
-                        {
-                            StartingThing.ThingDefStuff = stuffdef;
-                        }
-                    }
-                    StartingThing.ThingDef = Weapon;
-                    parts.Add(StartingThing);
+                    continue;
                 }
+                ScenPart_StartingThing_Define StartingThing = new ScenPart_StartingThing_Define() { def = ScenPartDefOf.StartingThing_Defined };
+                if (Weapon.MadeFromStuff)
+                {
+                    ThingDef stuffdef = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.IsStuff && Weapon.stuffCategories.Any(y => x.stuffProps.categories.Contains(y))).RandomElement();
+                    if (stuffdef != null)
+                    {
+                        StartingThing.ThingDefStuff = stuffdef;
+                    }
+                }
+                StartingThing.ThingDef = Weapon;
+                parts.Add(StartingThing);
             }
         }
 
@@ -244,10 +246,10 @@ namespace AdeptusMechanicus
                 projects.AddRange(ReseachChaos);
                 DoRacialRestrictionsFor(Human, Tags, projects);
             }
-            AlienRace.ThingDef_AlienRace Mechanicus = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Human_Mechanicus") as AlienRace.ThingDef_AlienRace;
-            AlienRace.ThingDef_AlienRace ogryn = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ogryn") as AlienRace.ThingDef_AlienRace;
-            AlienRace.ThingDef_AlienRace ratlin = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Ratling") as AlienRace.ThingDef_AlienRace;
-            AlienRace.ThingDef_AlienRace beastman = DefDatabase<ThingDef>.GetNamedSilentFail("OG_Abhuman_Beastman") as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace Mechanicus = mechanicus as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace Ogryn = ogryn as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace Ratlin = ratlin as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace Beastman = beastman as AlienRace.ThingDef_AlienRace;
             if (Mechanicus != null)
             {
                 List<string> Tags = new List<string>() { "I", "AM", "C" };
@@ -258,14 +260,14 @@ namespace AdeptusMechanicus
                 DoRacialRestrictionsFor(Mechanicus, Tags, projects);
             }
             List<ThingDef> races = new List<ThingDef>();
-            if (ogryn != null) races.Add(ogryn);
-            if (ratlin != null) races.Add(ratlin);
-            if (beastman != null) races.Add(beastman);
+            if (Ogryn != null) races.Add(Ogryn);
+            if (Ratlin != null) races.Add(Ratlin);
+            if (Beastman != null) races.Add(Beastman);
 
             if (AdeptusIntergrationUtility.enabled_GeneSeed)
             {
-                AlienRace.ThingDef_AlienRace GeneseedAstartes = DefDatabase<ThingDef>.GetNamedSilentFail("AstarteSpaceMarine") as AlienRace.ThingDef_AlienRace;
-                AlienRace.ThingDef_AlienRace GeneseedCustodes = DefDatabase<ThingDef>.GetNamedSilentFail("AdaptusCustodes") as AlienRace.ThingDef_AlienRace;
+                AlienRace.ThingDef_AlienRace GeneseedAstartes = geneseedAstartes as AlienRace.ThingDef_AlienRace;
+                AlienRace.ThingDef_AlienRace GeneseedCustodes = geneseedCustodes as AlienRace.ThingDef_AlienRace;
                 if (GeneseedAstartes != null) races.Add(GeneseedAstartes);
                 if (GeneseedCustodes != null) races.Add(GeneseedCustodes);
             }
