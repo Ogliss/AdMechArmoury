@@ -7,7 +7,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000020 RID: 32
+    // AdeptusMechanicus.FactionDefExtension
     public class FactionDefExtension : DefModExtension
     {
         public List<FactionDef> RefugeeFactions = new List<FactionDef>();

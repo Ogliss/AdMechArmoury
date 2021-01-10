@@ -48,6 +48,14 @@ namespace AdeptusMechanicus
                 return SelThing.TryGetComp<CompPauldronDrawer>();
             }
         }
+
+        private CompApparelExtraPartDrawer Extra
+        {
+            get
+            {
+                return SelThing.TryGetComp<CompApparelExtraPartDrawer>();
+            }
+        }
         private CompColorableTwoFaction Colorable
         {
             get
@@ -66,14 +74,17 @@ namespace AdeptusMechanicus
             }
             else labelKey = Drawer.Props.labelKey; //"UM_TabToggleDef";//.Translate();
             var rect = new Rect(17f, 17f, ITab_ToggleLivelry.CardSize().x, ITab_ToggleLivelry.CardSize().y);
-            if (Drawer == null)
+            if (Colorable != null)
             {
                 this.DrawCard(rect, selected, Colorable);
             }
-            else
+            /*
+            if (Drawer != null)
             {
-                this.DrawCard(rect, selected, Drawer);
+                Rect r = Colorable == null ? rect.ContractedBy(4) : rect.BottomPart(0.5f).ContractedBy(4);
+                this.DrawCard(r, selected, Drawer);
             }
+            */
         }
 
         // RimWorld.CharacterCardUtility
@@ -153,7 +164,7 @@ namespace AdeptusMechanicus
         {
             GUI.BeginGroup(rect);
 
-            if (Colorable != null)
+            if (Colorable != null && Colorable.Props != null)
             {
                 var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
                 var y = rect.y;
@@ -163,20 +174,28 @@ namespace AdeptusMechanicus
                 Widgets.Label(rect2, selectedThing.def.LabelCap);
                 Text.Font = GameFont.Small;
                 Widgets.ListSeparator(ref y, rect2.width, "Faction Colors: ");
+                if (!Colorable.Props.Key.NullOrEmpty())
+                {
 
-                List<FactionDef> factions = new List<FactionDef>();
-                for (int i = 0; i < DefDatabase<FactionDef>.AllDefsListForReading.Count; i++)
-                {
-                    if (DefDatabase<FactionDef>.AllDefsListForReading[i].HasModExtension<FactionDefExtension>())
+                    List<FactionDef> factions = new List<FactionDef>();
+                    for (int i = 0; i < DefDatabase<FactionDef>.AllDefsListForReading.Count; i++)
                     {
-                        factions.Add(DefDatabase<FactionDef>.AllDefsListForReading[i]);
+                        FactionDef f = DefDatabase<FactionDef>.AllDefsListForReading[i];
+                        FactionDefExtension extension = f.GetModExtension<FactionDefExtension>();
+                        if (f.defName.Contains(Colorable.Props.Key) && extension != null)
+                        {
+                            if (extension.factionColor.HasValue)
+                            {
+                                factions.Add(f);
+                            }
+                        }
                     }
-                }
-                if (!factions.NullOrEmpty())
-                {
-                    var rect3 = new Rect(0f, y, rect.width, 20f);
-                    DrawFactionColorsButton(rect3, Colorable, false);
-                    y += rect2.height;
+                    if (!factions.NullOrEmpty())
+                    {
+                        var rect3 = new Rect(0f, y, rect.width, 20f);
+                        DrawFactionColorsButton(rect3, Colorable, false);
+                        y += rect2.height;
+                    }
                 }
 
             }
@@ -426,12 +445,14 @@ namespace AdeptusMechanicus
                 {
                     option = new FloatMenuOption("None", delegate ()
                     {
+                        /*
                         Graphic graphic = e.parent.DefaultGraphic;
                         Color color = graphic.Color;
                         Color colorTwo = graphic.ColorTwo;
 
                         graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
                         e.parent.SetColors(color, colorTwo, true, null, graphic);
+                        */
                         /*
                         e.drawer.apparel.SetColorOne(color);
                         e.drawer.apparel.SetColorTwo(colorTwo);
@@ -440,11 +461,20 @@ namespace AdeptusMechanicus
                         subgraphic.SetValue(e.drawer.apparel, graphic);
                         */
                         e.FactionDef = null;
+                        Graphic graphic = e.parent.DefaultGraphic;
+                        Color color = e.Color;
+                        Color colorTwo = e.ColorTwo;
+
+                        graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+
+                        e.parent.SetColors(color, colorTwo, true, e.FactionDef, graphic);
+
 
                     }, MenuOptionPriority.Default, null, null, 0f, null, null),
                     payload = null
                 };
             }
+            string key = e.Props.Key;
             using (List<FactionDef>.Enumerator enumerator = e.ColouredDefs.OrderBy(x => x.label).ToList().GetEnumerator())
             {
                 while (enumerator.MoveNext())
@@ -452,7 +482,7 @@ namespace AdeptusMechanicus
                     FactionDef variant = enumerator.Current;
                     FactionDefExtension ext = enumerator.Current.GetModExtension<FactionDefExtension>();
 
-                    if (e.FactionDef != variant)
+                    if (e.FactionDef != variant && variant.defName.Contains(key))
                     {
                         if (ext == null)
                         {
@@ -466,6 +496,7 @@ namespace AdeptusMechanicus
                         {
                             option = new FloatMenuOption((string)variant.LabelCap ?? variant.fixedName, delegate ()
                             {
+                                /*
                                 Graphic graphic = e.parent.Graphic;
                             //    graphic.path += "_" + variant.TexPath;
                                 Color color = graphic.Color;
@@ -492,6 +523,7 @@ namespace AdeptusMechanicus
                                     }
                                     graphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
                                 }
+                                */
 
                                 /*
                                 e.drawer.apparel.SetColorOne(color);
@@ -504,6 +536,13 @@ namespace AdeptusMechanicus
                                 //    Log.Message("set active");
 
                                 e.FactionDef = variant;
+                                Graphic graphic = e.parent.DefaultGraphic;
+                                Color color = e.Color;
+                                Color colorTwo = e.ColorTwo;
+
+                                graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
+
+                                e.parent.SetColors(color, colorTwo, true, e.FactionDef, graphic);
 
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),

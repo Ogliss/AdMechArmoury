@@ -597,6 +597,7 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/DemiKlaive</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.25</drawSize>
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
@@ -668,6 +669,12 @@
 			<deactivateSound>Deactivate</deactivateSound>
 			-->			
 			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
 		</comps>
 		<recipeMaker>
 			<recipeUsers>
@@ -712,6 +719,7 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/Klaive</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.5</drawSize>
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
@@ -745,12 +753,34 @@
 				<label>blade</label>
 				<capacities>
 					<li>OG_PowerWeapon_Cut</li>
-					<li>OG_PowerWeapon_Stab</li>
 				</capacities>
 				<power>27</power>
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<recipeMaker>
 			<recipeUsers>
 			
@@ -985,7 +1015,7 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/DarkEldar/Hellglaive</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<drawSize>1.250</drawSize>			
+			<drawSize>1.350</drawSize>			
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<soundInteract>Interact_BeatFire</soundInteract>

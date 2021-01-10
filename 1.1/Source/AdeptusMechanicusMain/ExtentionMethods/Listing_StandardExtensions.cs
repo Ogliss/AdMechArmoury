@@ -4,11 +4,24 @@ using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace AdeptusMechanicus.ExtensionMethods
 {
     public static class Listing_StandardExtensions
     {
+        public static Listing_Standard BeginSection_OnePointTwo(this Listing_Standard listing_Main, float f, float sectionBorder = 4f, float bottomBorder = 4f)
+        {
+            return listing_Main.BeginSection_NewTemp(f, sectionBorder, bottomBorder);
+        }
+
+        public static Listing_Standard BeginSection_OnePointOne(this Listing_Standard listing_Main, float f)
+        {
+            #pragma warning disable CS0612 // Type or member is obsolete
+            return listing_Main.BeginSection(f);
+            #pragma warning restore CS0612 // Type or member is obsolete
+        }
+
         public static bool ButtonTextLine(this Listing_Standard L, string label, string highlightTag = null)
         {
             Rect rect = L.GetRect(Text.LineHeight);
@@ -24,22 +37,8 @@ namespace AdeptusMechanicus.ExtensionMethods
         // Token: 0x06001B7B RID: 7035 RVA: 0x000A80E6 File Offset: 0x000A62E6
         public static void TextFieldNumericLabeled<T>(this Listing_Standard L, string label, ref T val, ref string buffer, float min = 0f, float max = 1E+09f, string tooltip = null, float textpart = 0.75f, float boxpart = 0.25f) where T : struct
         {
-            TextFieldNumericLabeled<T>(L.GetRect(Text.LineHeight), label, ref val, ref buffer, min, max, tooltip, textpart, boxpart);
+            AdeptusWidgets.TextFieldNumericLabeled<T>(L.GetRect(Text.LineHeight), label, ref val, ref buffer, min, max, tooltip, textpart, boxpart);
             L.Gap(L.verticalSpacing);
-        }
-        public static void TextFieldNumericLabeled<T>(Rect rect, string label, ref T val, ref string buffer, float min = 0f, float max = 1E+09f, string tooltip = null, float textpart = 0.75f, float boxpart = 0.25f) where T : struct
-        {
-            Rect rect2 = rect.LeftPart(textpart).Rounded();
-            Rect rect3 = rect.RightPart(boxpart).Rounded();
-            TextAnchor anchor = Text.Anchor;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(rect2, label);
-            if (tooltip != null)
-            {
-                TooltipHandler.TipRegion(rect2, tooltip);
-            }
-            Text.Anchor = anchor;
-            Widgets.TextFieldNumeric(rect3, ref val, ref buffer, min, max);
         }
 
         // Token: 0x06001B47 RID: 6983 RVA: 0x000A6A5C File Offset: 0x000A4C5C
@@ -134,7 +133,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             listing_Standard.Gap(listing_Standard.verticalSpacing);
             return setting;
         }
-        public static void CheckboxLabeled(this Listing_Standard listing_Standard, string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false)
+        public static void CheckboxLabeled(this Listing_Standard listing_Standard, string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false)
         {
             float lineHeight = Text.LineHeight;
             Rect rect = listing_Standard.GetRect(lineHeight);
@@ -146,7 +145,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 }
                 if (!tooltip.NullOrEmpty()) TooltipHandler.TipRegion(rect, tooltip);
             }
-            Widgets.CheckboxLabeled(rect, label, ref checkOn, disabled, null, null, false);
+            AdeptusWidgets.CheckboxLabeled(rect, label, ref checkOn, disabled, texChecked, texUnchecked, placeCheckboxNearText);
             listing_Standard.Gap(listing_Standard.verticalSpacing);
         }
 

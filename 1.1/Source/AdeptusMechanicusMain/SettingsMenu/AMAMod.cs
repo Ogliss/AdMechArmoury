@@ -14,7 +14,7 @@ namespace AdeptusMechanicus.settings
     public class AMAMod : AMMod
     {
         public static Harmony harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
-        
+
         public AMAMod(ModContentPack content) : base(content)
         {
             Instance = this;
@@ -23,7 +23,6 @@ namespace AdeptusMechanicus.settings
             AMSettings.Instance = AMMod.settings;
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             HarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
-
             /*
             if (AdeptusIntergrationUtility.enabled_rooloDualWield)
             {
@@ -246,7 +245,7 @@ namespace AdeptusMechanicus.settings
             listing_Armoury = listing_Main.BeginSection(listing_ArmouryLength, false, 3, 4, 0);
             // Armoury mod General Special rules options menu
             Listing_Standard listing_GeneralSpecialRules = listing_Armoury.BeginSection(listing_GeneralSpecialRulesLength, false, 3, 4, 0);
-            listing_GeneralSpecialRules.CheckboxLabeled("AMA_ShowSpecialRules".Translate() + (Dev ? " Menu Length: " + listing_GeneralSpecialRules.CurHeight : ""), ref settings.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRulesDesc".Translate());
+            listing_GeneralSpecialRules.CheckboxLabeled("AMA_ShowSpecialRules".Translate() + (Dev ? " Menu Length: " + listing_GeneralSpecialRules.CurHeight : ""), ref settings.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex);
             if (settings.ArmouryGeneralSpecialRules)
             {
                 Listing_Standard listing_General = listing_GeneralSpecialRules.BeginSection(listing_GeneralSpecialRulesContents, true, 0, 4, 0);
@@ -260,7 +259,7 @@ namespace AdeptusMechanicus.settings
             // Armoury mod Weapon Special rules options menu
 
             Listing_Standard listing_WeaponSpecialRules = listing_Armoury.BeginSection(listing_WeaponSpecialRulesLength, false, 3, 4, 0);
-            listing_WeaponSpecialRules.CheckboxLabeled("AMA_ShowWeaponSpecialRules".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryWeaponSpecialRules + " " + ArmouryWeaponSpecialRules : ""), ref settings.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRulesDesc".Translate());
+            listing_WeaponSpecialRules.CheckboxLabeled("AMA_ShowWeaponSpecialRules".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryWeaponSpecialRules + " " + ArmouryWeaponSpecialRules : ""), ref settings.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex);
             if (settings.ShowAllowedWeaponSpecialRules)
             {
                 Listing_Standard listing_General = listing_WeaponSpecialRules.BeginSection(listing_WeaponSpecialRulesContents, true);
@@ -279,7 +278,7 @@ namespace AdeptusMechanicus.settings
             listing_Armoury.EndSection(listing_WeaponSpecialRules);
             // Armoury mod Allowed Weapons options menu
             Listing_Standard listing_AllowedWeapons = listing_Armoury.BeginSection(listing_AllowedWeaponRulesLength, false, 3, 4, 0);
-            listing_AllowedWeapons.CheckboxLabeled("AMA_ShowAllowedWeapons".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryAllowedWeapons + " " + ArmouryAllowedWeapons : ""), ref settings.ShowAllowedWeapons, "AMA_ShowAllowedWeaponsDesc".Translate());
+            listing_AllowedWeapons.CheckboxLabeled("AMA_ShowAllowedWeapons".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryAllowedWeapons + " " + ArmouryAllowedWeapons : ""), ref settings.ShowAllowedWeapons, "AMA_ShowAllowedWeaponsDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex);
             if (settings.ShowAllowedWeapons)
             {
                 Listing_Standard listing_General = listing_AllowedWeapons.BeginSection(listing_AllowedWeaponRulesContents, true);
@@ -626,11 +625,11 @@ namespace AdeptusMechanicus.settings
                 // Armoury mod General Special rules options menu
                 if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
                 {
-                    listing_GeneralSpecialRules = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryGeneralSpecialRules);
+                    listing_GeneralSpecialRules = listing_ArmourySettings.BeginSection_OnePointTwo(MenuLengthArmouryGeneralSpecialRules);
                 }
                 else
                 {
-                    listing_GeneralSpecialRules = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryGeneralSpecialRules);
+                    listing_GeneralSpecialRules = listing_ArmourySettings.BeginSection_OnePointOne(MenuLengthArmouryGeneralSpecialRules);
                 }
                 listing_GeneralSpecialRules.CheckboxLabeled("AMA_ShowSpecialRules".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryGeneralSpecialRules + " " + ArmouryGeneralSpecialRules : ""), ref settings.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRulesDesc".Translate());
                 if (settings.ArmouryGeneralSpecialRules)
@@ -647,11 +646,11 @@ namespace AdeptusMechanicus.settings
                 // Armoury mod Weapon Special rules options menu
                 if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
                 {
-                    listing_WeaponSpecialRules = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryWeaponSpecialRules);
+                    listing_WeaponSpecialRules = listing_ArmourySettings.BeginSection_OnePointTwo(MenuLengthArmouryWeaponSpecialRules);
                 }
                 else
                 {
-                    listing_WeaponSpecialRules = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryWeaponSpecialRules);
+                    listing_WeaponSpecialRules = listing_ArmourySettings.BeginSection_OnePointOne(MenuLengthArmouryWeaponSpecialRules);
                 }
                 listing_WeaponSpecialRules.CheckboxLabeled("AMA_ShowWeaponSpecialRules".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryWeaponSpecialRules + " " + ArmouryWeaponSpecialRules : ""), ref settings.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRulesDesc".Translate());
                 if (settings.ShowAllowedWeaponSpecialRules)
@@ -674,11 +673,11 @@ namespace AdeptusMechanicus.settings
                 // Armoury mod Allowed Weapons options menu
                 if (AccessTools.GetMethodNames(typeof(Listing_Standard)).Contains("BeginSection_NewTemp"))
                 {
-                    listing_AllowedWeapons = ArmouryMain.BeginSection_OnePointTwo(ref listing_ArmourySettings, MenuLengthArmouryAllowedWeapons);
+                    listing_AllowedWeapons = listing_ArmourySettings.BeginSection_OnePointTwo(MenuLengthArmouryAllowedWeapons);
                 }
                 else
                 {
-                    listing_AllowedWeapons = ArmouryMain.BeginSection_OnePointOne(ref listing_ArmourySettings, MenuLengthArmouryAllowedWeapons);
+                    listing_AllowedWeapons = listing_ArmourySettings.BeginSection_OnePointOne(MenuLengthArmouryAllowedWeapons);
                 }
                 listing_AllowedWeapons.CheckboxLabeled("AMA_ShowAllowedWeapons".Translate() + (Dev ? " Menu Length: " + MenuLengthArmouryAllowedWeapons + " " + ArmouryAllowedWeapons : ""), ref settings.ShowAllowedWeapons, "AMA_ShowAllowedWeaponsDesc".Translate());
                 if (settings.ShowAllowedWeapons)

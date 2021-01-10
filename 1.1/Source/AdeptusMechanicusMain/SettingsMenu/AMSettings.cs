@@ -170,118 +170,134 @@ namespace AdeptusMechanicus.settings
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref this.ShowArmourySettings, "AMA_ShowArmourySettings", false);
-            Scribe_Values.Look(ref this.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRules", false);
-            Scribe_Values.Look(ref this.AllowDeepStrike, "AMA_AllowRapidFire", true);
-            Scribe_Values.Look(ref this.AllowInfiltrate, "AMA_AllowGetsHot", true);
 
-            Scribe_Values.Look(ref this.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRules", false);
-            Scribe_Values.Look(ref this.AllowRapidFire, "AMA_AllowRapidFire", true);
-            Scribe_Values.Look(ref this.AllowGetsHot, "AMA_AllowGetsHot", true);
-            Scribe_Values.Look(ref this.AllowJams, "AMA_AllowJams", true);
-            Scribe_Values.Look(ref this.AllowMultiShot, "AMA_AllowMultiShot", true);
-            Scribe_Values.Look(ref this.AllowUserEffects, "AMA_AllowUserEffects", true);
-            Scribe_Values.Look(ref this.AllowForceWeaponEffect, "AMA_AllowForceWeaponEffect", true);
-            Scribe_Values.Look(ref this.AllowRendingMeleeEffect, "AMA_AllowRendingMeleeEffect", true);
-            Scribe_Values.Look(ref this.AllowRendingRangedEffect, "AMA_AllowRendingRangedEffect", true);
+            // Armoury Data
+            {
+                Scribe_Values.Look(ref this.ShowArmourySettings, "AMA_ShowArmourySettings", false);
+                Scribe_Values.Look(ref this.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRules", false);
+                Scribe_Values.Look(ref this.AllowDeepStrike, "AMA_AllowRapidFire", true);
+                Scribe_Values.Look(ref this.AllowInfiltrate, "AMA_AllowGetsHot", true);
 
-            Scribe_Values.Look(ref this.ShowAllowedWeapons, "AMA_ShowAllowedWeapons", false);
-            Scribe_Values.Look(ref this.AllowImperialWeapons, "AMA_AllowImperialWeapons", true);
-            Scribe_Values.Look(ref this.AllowMechanicusWeapons, "AMA_AllowMechanicusWeapons", true);
-            Scribe_Values.Look(ref this.AllowChaosWeapons, "AMA_AllowChaosWeapons", true);
-            Scribe_Values.Look(ref this.AllowEldarWeapons, "AMA_AllowEldarWeapons", true);
-            Scribe_Values.Look(ref this.AllowDarkEldarWeapons, "AMA_AllowDarkEldarWeapons", true);
-            Scribe_Values.Look(ref this.AllowTauWeapons, "AMA_AllowTauWeapons", true);
-            Scribe_Values.Look(ref this.AllowOrkWeapons, "AMA_AllowOrkWeapons", true);
-            Scribe_Values.Look(ref this.AllowNecronWeapons, "AMA_AllowNecronWeapons", true);
-            Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", false);
+                Scribe_Values.Look(ref this.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRules", false);
+                Scribe_Values.Look(ref this.AllowRapidFire, "AMA_AllowRapidFire", true);
+                Scribe_Values.Look(ref this.AllowGetsHot, "AMA_AllowGetsHot", true);
+                Scribe_Values.Look(ref this.AllowJams, "AMA_AllowJams", true);
+                Scribe_Values.Look(ref this.AllowMultiShot, "AMA_AllowMultiShot", true);
+                Scribe_Values.Look(ref this.AllowUserEffects, "AMA_AllowUserEffects", true);
+                Scribe_Values.Look(ref this.AllowForceWeaponEffect, "AMA_AllowForceWeaponEffect", true);
+                Scribe_Values.Look(ref this.AllowRendingMeleeEffect, "AMA_AllowRendingMeleeEffect", true);
+                Scribe_Values.Look(ref this.AllowRendingRangedEffect, "AMA_AllowRendingRangedEffect", true);
 
-            Scribe_Values.Look(ref this.ShowXenobiologisSettings, "AMXB_ShowXenobiologisSettings", true);
-            Scribe_Values.Look(ref this.ShowAllowedRaceSettings, "AMXB_ShowAllowedRaceSettings", true);
-            Scribe_Values.Look(ref this.ForceRelations, "AMXB_ForceRelations", true);
-            Scribe_Values.Look(ref this.ShowImperium, "AMXB_ShowImperium", false);
-            Scribe_Values.Look(ref this.AllowAdeptusAstartes, "AMXB_AllowAdeptusAstartes", false && AMSettings.Instance.AllowImperialWeapons);
-            Scribe_Values.Look(ref this.AllowAdeptusMechanicus, "AMXB_AllowAdeptusMechanicus", true && AMSettings.Instance.AllowMechanicusWeapons);
-            Scribe_Values.Look(ref this.AllowAdeptusMilitarum, "AMXB_AllowAdeptusMilitarum", true && AMSettings.Instance.AllowImperialWeapons);
-            Scribe_Values.Look(ref this.AllowAdeptusSororitas, "AMXB_AllowAdeptusSororitas", false && AMSettings.Instance.AllowImperialWeapons);
-            Scribe_Values.Look(ref this.ShowChaos, "AMXB_ShowChaos", false && AMSettings.Instance.AllowChaosWeapons);
-            Scribe_Values.Look(ref this.AllowChaosMarine, "AMXB_AllowChaosMarine", false && AMSettings.Instance.AllowChaosWeapons);
-            Scribe_Values.Look(ref this.AllowChaosGuard, "AMXB_AllowChaosGuard", false && AMSettings.Instance.AllowChaosWeapons);
-            Scribe_Values.Look(ref this.AllowChaosMechanicus, "AMXB_AllowChaosMechanicus", false && AMSettings.Instance.AllowChaosWeapons);
-            Scribe_Values.Look(ref this.AllowWarpstorm, "AMXB_AllowWarpstorm", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamons, "AMXB_AllowChaosDeamons", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamonicIncursion, "AMXB_AllowChaosDeamonicIncursion", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamonicInfestation, "AMXB_AllowChaosDeamonicInfestation", true);
-            Scribe_Values.Look(ref this.EndTimesIntergrateDeamons, "AMXB_EndTimesChaosDeamonIntergration", true);
-            Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsGreat, "AMXB_EndTimesChaosDeamonIntergration_GreatPortal", true);
-            Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsSmall, "AMXB_EndTimesChaosDeamonIntergration_SmallPortal", true);
-            Scribe_Values.Look(ref this.ShowDarkEldar, "AMXB_ShowDarkEldar", false);
-            Scribe_Values.Look(ref this.AllowDarkEldar, "AMXB_AllowDarkEldar", false && AMSettings.Instance.AllowDarkEldarWeapons);
-            Scribe_Values.Look(ref this.ShowEldar, "AMXB_ShowEldar", false);
-            Scribe_Values.Look(ref this.AllowEldarCraftworld, "AMXB_AllowEldarCraftworld", true && AMSettings.Instance.AllowEldarWeapons);
-            Scribe_Values.Look(ref this.AllowEldarExodite, "AMXB_AllowEldarExodite", false && AMSettings.Instance.AllowEldarWeapons);
-            Scribe_Values.Look(ref this.AllowEldarHarlequinn, "AMXB_AllowEldarHarlequinn", false && AMSettings.Instance.AllowEldarWeapons);
-            Scribe_Values.Look(ref this.AllowEldarWraithguard, "AMXB_AllowEldarWraithguard", true && AMSettings.Instance.AllowEldarWeapons);
-            Scribe_Values.Look(ref this.ShowTau, "AMXB_ShowTau", false);
-            Scribe_Values.Look(ref this.AllowTau, "AMXB_AllowTau", true && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.AllowGueVesaAuxiliaries, "AMXB_AllowGueVesaAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.AllowKrootAuxiliaries, "AMXB_AllowKrootAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.AllowKroot, "AMXB_AllowKroot", true && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.AllowVespidAuxiliaries, "AMXB_AllowVespidAuxiliaries", false && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.AllowVespid, "AMXB_AllowVespid", false && AMSettings.Instance.AllowTauWeapons);
-            Scribe_Values.Look(ref this.ShowNecron, "AMXB_ShowNecron", true);
-            Scribe_Values.Look(ref this.AllowNecron, "AMXB_AllowNecron", true && AMSettings.Instance.AllowNecronWeapons);
-            Scribe_Values.Look(ref this.AllowNecronMonolith, "AMXB_AllowNecronMonolith", true && AMSettings.Instance.AllowNecronWeapons);
-            Scribe_Values.Look(ref this.AllowNecronWellBeBack, "AMXB_AllowNecronWellBeBack", true && AMSettings.Instance.AllowNecronWeapons);
-            Scribe_Values.Look(ref this.ShowTyranid, "AMXB_ShowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
-            Scribe_Values.Look(ref this.AllowTyranid, "AMXB_AllowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
-            Scribe_Values.Look(ref this.AllowTyranidInfestation, "AMXB_AllowTyranidInfestation", false && AMSettings.Instance.AllowTyranidWeapons && AMSettings.Instance.AllowTyranid);
+                Scribe_Values.Look(ref this.ShowAllowedWeapons, "AMA_ShowAllowedWeapons", false);
+                Scribe_Values.Look(ref this.AllowImperialWeapons, "AMA_AllowImperialWeapons", true);
+                Scribe_Values.Look(ref this.AllowMechanicusWeapons, "AMA_AllowMechanicusWeapons", true);
+                Scribe_Values.Look(ref this.AllowChaosWeapons, "AMA_AllowChaosWeapons", true);
+                Scribe_Values.Look(ref this.AllowEldarWeapons, "AMA_AllowEldarWeapons", true);
+                Scribe_Values.Look(ref this.AllowDarkEldarWeapons, "AMA_AllowDarkEldarWeapons", true);
+                Scribe_Values.Look(ref this.AllowTauWeapons, "AMA_AllowTauWeapons", true);
+                Scribe_Values.Look(ref this.AllowOrkWeapons, "AMA_AllowOrkWeapons", true);
+                Scribe_Values.Look(ref this.AllowNecronWeapons, "AMA_AllowNecronWeapons", true);
+                Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", false);
+            }
             
+            // Xenobiologis Data
+            {
+                Scribe_Values.Look(ref this.ShowXenobiologisSettings, "AMXB_ShowXenobiologisSettings", true);
+                Scribe_Values.Look(ref this.ShowAllowedRaceSettings, "AMXB_ShowAllowedRaceSettings", true);
+                Scribe_Values.Look(ref this.ForceRelations, "AMXB_ForceRelations", true);
+                Scribe_Values.Look(ref this.ShowImperium, "AMXB_ShowImperium", false);
+                Scribe_Values.Look(ref this.AllowAdeptusAstartes, "AMXB_AllowAdeptusAstartes", false && AMSettings.Instance.AllowImperialWeapons);
+                Scribe_Values.Look(ref this.AllowAdeptusMechanicus, "AMXB_AllowAdeptusMechanicus", true && AMSettings.Instance.AllowMechanicusWeapons);
+                Scribe_Values.Look(ref this.AllowAdeptusMilitarum, "AMXB_AllowAdeptusMilitarum", true && AMSettings.Instance.AllowImperialWeapons);
+                Scribe_Values.Look(ref this.AllowAdeptusSororitas, "AMXB_AllowAdeptusSororitas", false && AMSettings.Instance.AllowImperialWeapons);
+                Scribe_Values.Look(ref this.ShowChaos, "AMXB_ShowChaos", false && AMSettings.Instance.AllowChaosWeapons);
+                Scribe_Values.Look(ref this.AllowChaosMarine, "AMXB_AllowChaosMarine", false && AMSettings.Instance.AllowChaosWeapons);
+                Scribe_Values.Look(ref this.AllowChaosGuard, "AMXB_AllowChaosGuard", false && AMSettings.Instance.AllowChaosWeapons);
+                Scribe_Values.Look(ref this.AllowChaosMechanicus, "AMXB_AllowChaosMechanicus", false && AMSettings.Instance.AllowChaosWeapons);
+                Scribe_Values.Look(ref this.AllowWarpstorm, "AMXB_AllowWarpstorm", true);
+                Scribe_Values.Look(ref this.AllowChaosDeamons, "AMXB_AllowChaosDeamons", true);
+                Scribe_Values.Look(ref this.AllowChaosDeamonicIncursion, "AMXB_AllowChaosDeamonicIncursion", true);
+                Scribe_Values.Look(ref this.AllowChaosDeamonicInfestation, "AMXB_AllowChaosDeamonicInfestation", true);
+                Scribe_Values.Look(ref this.EndTimesIntergrateDeamons, "AMXB_EndTimesChaosDeamonIntergration", true);
+                Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsGreat, "AMXB_EndTimesChaosDeamonIntergration_GreatPortal", true);
+                Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsSmall, "AMXB_EndTimesChaosDeamonIntergration_SmallPortal", true);
+                Scribe_Values.Look(ref this.ShowDarkEldar, "AMXB_ShowDarkEldar", false);
+                Scribe_Values.Look(ref this.AllowDarkEldar, "AMXB_AllowDarkEldar", false && AMSettings.Instance.AllowDarkEldarWeapons);
+                Scribe_Values.Look(ref this.ShowEldar, "AMXB_ShowEldar", false);
+                Scribe_Values.Look(ref this.AllowEldarCraftworld, "AMXB_AllowEldarCraftworld", true && AMSettings.Instance.AllowEldarWeapons);
+                Scribe_Values.Look(ref this.AllowEldarExodite, "AMXB_AllowEldarExodite", false && AMSettings.Instance.AllowEldarWeapons);
+                Scribe_Values.Look(ref this.AllowEldarHarlequinn, "AMXB_AllowEldarHarlequinn", false && AMSettings.Instance.AllowEldarWeapons);
+                Scribe_Values.Look(ref this.AllowEldarWraithguard, "AMXB_AllowEldarWraithguard", true && AMSettings.Instance.AllowEldarWeapons);
+                Scribe_Values.Look(ref this.ShowTau, "AMXB_ShowTau", false);
+                Scribe_Values.Look(ref this.AllowTau, "AMXB_AllowTau", true && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowGueVesaAuxiliaries, "AMXB_AllowGueVesaAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowKrootAuxiliaries, "AMXB_AllowKrootAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowKroot, "AMXB_AllowKroot", true && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowVespidAuxiliaries, "AMXB_AllowVespidAuxiliaries", false && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowVespid, "AMXB_AllowVespid", false && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.ShowNecron, "AMXB_ShowNecron", true);
+                Scribe_Values.Look(ref this.AllowNecron, "AMXB_AllowNecron", true && AMSettings.Instance.AllowNecronWeapons);
+                Scribe_Values.Look(ref this.AllowNecronMonolith, "AMXB_AllowNecronMonolith", true && AMSettings.Instance.AllowNecronWeapons);
+                Scribe_Values.Look(ref this.AllowNecronWellBeBack, "AMXB_AllowNecronWellBeBack", true && AMSettings.Instance.AllowNecronWeapons);
+                Scribe_Values.Look(ref this.ShowTyranid, "AMXB_ShowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
+                Scribe_Values.Look(ref this.AllowTyranid, "AMXB_AllowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
+                Scribe_Values.Look(ref this.AllowTyranidInfestation, "AMXB_AllowTyranidInfestation", false && AMSettings.Instance.AllowTyranidWeapons && AMSettings.Instance.AllowTyranid);
+
+            }
             // Astartes Data
-            Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_AstarteEasyMode", false);
-            Scribe_Values.Look(ref this.AstartesAgeMatters, "AMAA_AstartesAgeMatters", true);
-            Scribe_Values.Look(ref this.AstartesMaleOnly, "AMAA_AstartesMaleOnly", true);
-            Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
+            {
+                Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_AstarteEasyMode", false);
+                Scribe_Values.Look(ref this.AstartesAgeMatters, "AMAA_AstartesAgeMatters", true);
+                Scribe_Values.Look(ref this.AstartesMaleOnly, "AMAA_AstartesMaleOnly", true);
+                Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
 
-            // Astartes Playable Race Extras
-            Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
-            Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
-            Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
-            Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
-            Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
-            Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
+                // Astartes Playable Race Extras
+                Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
+                Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
+                Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
+                Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
+                Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
+                Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
+            }
+
+
             // Tau Data
+            {
 
-            // Tau Playable Race Extras
+                // Tau Playable Race Extras
+
+            }
 
             // Ork Data
-            Scribe_Values.Look(ref this.ShowOrk, "AMXB_AllowOrk", true);
-            Scribe_Values.Look(ref this.AllowOrkTek, "AMXB_AllowOrkTek", true && AMSettings.Instance.AllowOrkWeapons);
-            Scribe_Values.Look(ref this.AllowOrkFeral, "AMXB_AllowOrkFeral", true && AMSettings.Instance.AllowOrkWeapons);
-            Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true && AMSettings.Instance.AllowOrkWeapons);
+            {
+                Scribe_Values.Look(ref this.ShowOrk, "AMXB_AllowOrk", true);
+                Scribe_Values.Look(ref this.AllowOrkTek, "AMXB_AllowOrkTek", true && AMSettings.Instance.AllowOrkWeapons);
+                Scribe_Values.Look(ref this.AllowOrkFeral, "AMXB_AllowOrkFeral", true && AMSettings.Instance.AllowOrkWeapons);
+                Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true && AMSettings.Instance.AllowOrkWeapons);
 
-            // Orkz Playable Race Extras
-            Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.025f);
-            Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 1f);
-            Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSquigChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.85f);
-            Scribe_Values.Look(ref this.FungusSnotChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.1f);
-            Scribe_Values.Look(ref this.FungusGrotChanceBuffer, "AMO_FungusGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.05f);
-            Scribe_Values.Look(ref this.FungusOrkChanceBuffer, "AMO_FungusOrkChanceBuffer", string.Empty);
+                // Orkz Playable Race Extras
+                Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.025f);
+                Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 1f);
+                Scribe_Values.Look(ref this.FungusSquigChanceBuffer, "AMO_FungusSquigChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.FungusSnotChance, "AMO_FungusSnotChance", 0.85f);
+                Scribe_Values.Look(ref this.FungusSnotChanceBuffer, "AMO_FungusSnotChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.FungusGrotChance, "AMO_FungusGrotChance", 0.1f);
+                Scribe_Values.Look(ref this.FungusGrotChanceBuffer, "AMO_FungusGrotChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.FungusOrkChance, "AMO_FungusOrkChance", 0.05f);
+                Scribe_Values.Look(ref this.FungusOrkChanceBuffer, "AMO_FungusOrkChanceBuffer", string.Empty);
 
-            Scribe_Values.Look(ref this.CocoonSpawnChance, "AMO_CocoonSpawnChance", 0.25f);
-            Scribe_Values.Look(ref this.CocoonSpawnChanceBuffer, "AMO_CocoonSpawnChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonSquigChance, "AMO_CocoonSquigChance", 0.15f);
-            Scribe_Values.Look(ref this.CocoonSquigChanceBuffer, "AMO_CocoonSquigChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonSnotChance, "AMO_CocoonSnotChance", 0.2f);
-            Scribe_Values.Look(ref this.CocoonSnotChanceBuffer, "AMO_CocoonSnotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonGrotChance, "AMO_CocoonGrotChance", 0.35f);
-            Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
-            Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.3f);
-            Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.CocoonSpawnChance, "AMO_CocoonSpawnChance", 0.25f);
+                Scribe_Values.Look(ref this.CocoonSpawnChanceBuffer, "AMO_CocoonSpawnChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.CocoonSquigChance, "AMO_CocoonSquigChance", 0.15f);
+                Scribe_Values.Look(ref this.CocoonSquigChanceBuffer, "AMO_CocoonSquigChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.CocoonSnotChance, "AMO_CocoonSnotChance", 0.2f);
+                Scribe_Values.Look(ref this.CocoonSnotChanceBuffer, "AMO_CocoonSnotChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.CocoonGrotChance, "AMO_CocoonGrotChance", 0.35f);
+                Scribe_Values.Look(ref this.CocoonGrotChanceBuffer, "AMO_CocoonGrotChanceBuffer", string.Empty);
+                Scribe_Values.Look(ref this.CocoonOrkChance, "AMO_CocoonOrkChance", 0.3f);
+                Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
+            }
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {
@@ -311,6 +327,7 @@ namespace AdeptusMechanicus.settings
                     }
                 }
             }
+            /*
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 // create the data structure we're going to save.
@@ -339,6 +356,7 @@ namespace AdeptusMechanicus.settings
                     }
                 }
             }
+            */
         }
 
 

@@ -8,12 +8,18 @@ namespace AdeptusMechanicus
 {
 	public class CompProperties_FactionColorable : CompProperties
     {
+		public string Key = string.Empty;
 
-    }
+		public CompProperties_FactionColorable()
+		{
+			compClass = typeof(CompColorableTwoFaction);
+		}
+	}
 
     // Token: 0x0200031C RID: 796
     public class CompColorableTwoFaction : CompColorableTwo
 	{
+		public CompProperties_FactionColorable Props => this.props as CompProperties_FactionColorable;
 		public override Color Color
 		{
 			get
@@ -165,7 +171,7 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-					if (ActiveFaction) Log.Message("chached faction " + faction.LabelCap);
+					if (ActiveFaction) Log.Message("chached faction " + faction.LabelCap +" Faction Colour Active: " +ActiveFaction + " Colour: "+FactionActive+ " " +factioncolor +" ColourTwo: " + FactionActiveTwo + " " + factioncolorTwo);
 				}
 				return faction;
 			}
@@ -174,12 +180,12 @@ namespace AdeptusMechanicus
 				faction = value;
                 if (faction != null)
 				{
-					FactionDefExtension Extension = faction?.GetModExtension<FactionDefExtension>() ?? null;
+					FactionDefExtension Extension = faction.GetModExtension<FactionDefExtension>();
 					if (Extension != null)
 					{
 						if (Extension.factionColor.HasValue)
 						{
-							this.Color = Extension.factionColor.Value;
+							this.factioncolor = Extension.factionColor.Value;
 							this.factionactive = true;
 						}
                         else
@@ -188,7 +194,7 @@ namespace AdeptusMechanicus
 						}
 						if (Extension.factionColorTwo.HasValue)
 						{
-							this.ColorTwo = Extension.factionColorTwo.Value;
+							this.factioncolorTwo = Extension.factionColorTwo.Value;
 							this.factionactiveTwo = true;
 						}
                         else
@@ -196,6 +202,7 @@ namespace AdeptusMechanicus
 							this.FactionActiveTwo = false;
 						}
 						this.ActiveFaction = true;
+						Log.Message("set faction " + faction.LabelCap + " Colour: " + factioncolor + " ColourTwo: " + factioncolorTwo);
 						return;
 					}
 				}
@@ -235,7 +242,8 @@ namespace AdeptusMechanicus
 				return factionsC;
 			}
 		}
-		/*
+
+        /*
 		public override void Initialize(CompProperties props)
 		{
 			this.props = props;
@@ -294,8 +302,8 @@ namespace AdeptusMechanicus
 		}
 		*/
 
-		// Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
-		public override void PostExposeData()
+        // Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
+        public override void PostExposeData()
 		{
 			Scribe_Defs.Look<FactionDef>(ref this.faction, "faction");
 			Scribe_Values.Look<bool>(ref this.activeFaction, "activeFaction");
