@@ -430,7 +430,7 @@ namespace AdeptusMechanicus.settings
             if (AdeptusIntergrationUtility.enabled_MagosXenobiologis)
             {
                 string labelXB = "AMXB_ModName".Translate() + " Settings";
-                string tooltipXB = "AMA_ShowSpecialRulesDesc".Translate();
+                string tooltipXB = "AMXB_ShowOptionsDesc".Translate();
                 if (Dev)
                 {
                     labelXB = "AMXB_ModName".Translate() + " Menu Length: " + MenuLengthXenobiologis + " Total Length: " + MenuLengthXenobiologisTotal  + " Race Menu Length: " + MenuLengthXenobiologisRaces +" " + settings.ShowXenobiologisSettings + " CurInc: " + XenobiologisMenuInc;
@@ -469,8 +469,8 @@ namespace AdeptusMechanicus.settings
             }
             if (showArmouryIntergrationMenu)
             {
-                string labelI = "AMA_IntergrationOptions".Translate() + " Settings";
-                string tooltipI = "AMA_ShowSpecialRulesDesc".Translate();
+                string labelI = "AMA_IntergrationOptions".Translate();
+                string tooltipI = "AMA_IntergrationOptionsDesc".Translate();
                 if (Dev)
                 {
                     labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + listing_ArmouryIntergrationContents + " Total Length: " + listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + intergrationMenuInc;

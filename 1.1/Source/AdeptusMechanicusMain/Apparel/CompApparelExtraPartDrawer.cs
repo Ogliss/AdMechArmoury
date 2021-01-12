@@ -23,6 +23,9 @@ namespace AdeptusMechanicus
         public Vector3 EastOffset = new Vector3();
         public Vector3 WestOffset = new Vector3();
         public ApparelLayerDef ApparelLayer = null;
+        public bool hidesHair = false;
+        public bool hidesHead = false;
+        public bool hidesBody = false;
         public bool onHead = false;
 
     }
@@ -48,9 +51,9 @@ namespace AdeptusMechanicus
         public bool ExtraUseBodyTexture; 
         public bool ExtraUseHeadOffset; 
         private bool useSecondaryColor;
-        public bool hidesHair => Props.ExtrasEntries.Any(x=> x.hidesHair);
-        public bool hidesHead => Props.ExtrasEntries.Any(x => x.hidesHead);
-        public bool hidesBody => Props.ExtrasEntries.Any(x => x.hidesBody);
+        public bool hidesHair => Props.hidesHair || Props.ExtrasEntries.Any(x=> x.hidesHair);
+        public bool hidesHead => Props.hidesHead || Props.ExtrasEntries.Any(x => x.hidesHead);
+        public bool hidesBody => Props.hidesBody || Props.ExtrasEntries.Any(x => x.hidesBody);
         public BodyTypeDef forcedBodyType => Props.ExtrasEntries.First(x => x.forcedBodyType!=null)?.forcedBodyType;
         //    private bool useFactionTextures = false;
 #pragma warning disable IDE0052 // Remove unread private members

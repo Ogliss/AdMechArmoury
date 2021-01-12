@@ -117,60 +117,65 @@ namespace AdeptusMechanicus.HarmonyInstance
 				{
 					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				}
-			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
-			//	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
-				Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
-				Texture texture;
-				if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
-				{
-					if (!msk.NullOrEmpty())
+				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+                //	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
+                if (rec.graphic != null)
+                {
+					Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
+					Texture texture;
+					if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
 					{
-						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_east" + msk, false);
+						if (!msk.NullOrEmpty())
+						{
+							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_east" + msk, false);
+							if (texture != null)
+							{
+								newgraphic.MatEast.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+							}
+							newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_west" + msk, false);
+							if (texture != null)
+							{
+								newgraphic.MatWest.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+							}
+							newgraphic.MatWest.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_south" + msk, false);
+							if (texture != null)
+							{
+								newgraphic.MatSouth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+							}
+							newgraphic.MatSouth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+
+							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_north" + msk, false);
+							if (texture != null)
+							{
+								newgraphic.MatNorth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+							}
+							newgraphic.MatNorth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
+							/*
+							ExtendedGraphicData newdata = new ExtendedGraphicData();
+							newdata.graphicClass = typeof(Graphic_MultiMask);
+							Log.Message("ExtendedGraphicData");
+							newdata.texPath = rec.graphic.path;
+							newdata.MaskSelector = msk;
+							newdata.maskKey = olddata.maskKey;
+							newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
+							*/
+						}
+						rec = new ApparelGraphicRecord(newgraphic, apparel);
+					}
+					if (!rec.graphic.path.NullOrEmpty())
+					{
+						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + msk, false);
 						if (texture != null)
 						{
-							newgraphic.MatEast.SetTexture(ShaderPropertyIDs.MaskTex, texture);
+							newgraphic.MatSingle.SetTexture(ShaderPropertyIDs.MaskTex, texture);
 						}
 						newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_west" + msk, false);
-						if (texture != null)
-						{
-							newgraphic.MatWest.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-						}
-						newgraphic.MatWest.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_south" + msk, false);
-						if (texture != null)
-						{
-							newgraphic.MatSouth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-						}
-						newgraphic.MatSouth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_north" + msk, false);
-                        if (texture != null)
-						{
-							newgraphic.MatNorth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-						}
-						newgraphic.MatNorth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-						/*
-						ExtendedGraphicData newdata = new ExtendedGraphicData();
-						newdata.graphicClass = typeof(Graphic_MultiMask);
-						Log.Message("ExtendedGraphicData");
-						newdata.texPath = rec.graphic.path;
-						newdata.MaskSelector = msk;
-						newdata.maskKey = olddata.maskKey;
-						newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
-						*/
 					}
-					rec = new ApparelGraphicRecord(newgraphic, apparel);
 				}
-				texture = ContentFinder<Texture2D>.Get(rec.graphic.path +msk, false);
-				if (texture != null)
-				{
-					newgraphic.MatSingle.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-				}
-				newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
 				//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
 			}
 			if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())

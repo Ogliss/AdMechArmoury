@@ -117,6 +117,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             {
                 UIHighlighter.HighlightOpportunity(rect, highlightTag);
             }
+            if (!highlightTag.NullOrEmpty()) TooltipHandler.TipRegion(rect, highlightTag);
             listing_Standard.Gap(listing_Standard.verticalSpacing);
             return setting;
         }
