@@ -106,12 +106,20 @@ namespace AdeptusMechanicus.settings
 
         private float menu = 0;
         private float armouryMenuInc = 0f;
-        private float intergrationMenuInc = 0f;
         public float XenobiologisMenuInc = 0f;
+        private float intergrationMenuInc = 0f;
 
         public void IntergrationMenu()
         {
+            if (AdeptusIntergrationUtility.enabled_AlienRaces && Dev)
+            {
+                Listing_StandardExpanding listing_AlienRacesIntergration = listing_Main.BeginSection(120);
+                Listing_StandardExpanding listing_ImperialRacesIntergration = listing_AlienRacesIntergration.BeginSection(100);
 
+                listing_AlienRacesIntergration.EndSection(listing_ImperialRacesIntergration);
+
+                listing_Main.EndSection(listing_AlienRacesIntergration);
+            }
             Listing_StandardExpanding listing_ArmouryIntergration = listing_Main.BeginSection(listing_ArmouryIntergrationLength, false, 3);
             //   listing_ArmouryIntergration = listing_Main.BeginSection(MenuLengthIntergration, false, 0);
             listing_ArmouryIntergration.Label("Changes to these settings require a restart to take effect." + (Dev ? " patchesCount: " + patchesCount : ""));
@@ -133,12 +141,9 @@ namespace AdeptusMechanicus.settings
 
             }
             listing_ArmouryIntergration.EndSection(listing_General);
-            if (AdeptusIntergrationUtility.enabled_AlienRaces)
-            {
-
-            }
             listing_Main.EndSection(listing_ArmouryIntergration);
         }
+
         public virtual void PreModOptions(Listing_StandardExpanding listing_Main, Rect inRect, float width, ref float menuLength, string label)
         {
             if (Dev)

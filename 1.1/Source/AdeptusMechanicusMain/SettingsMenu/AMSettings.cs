@@ -246,18 +246,16 @@ namespace AdeptusMechanicus.settings
             }
             // Astartes Data
             {
+                Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
+                Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
+                Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
+                Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
+                // Astartes Playable Race Extras
                 Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_AstarteEasyMode", false);
                 Scribe_Values.Look(ref this.AstartesAgeMatters, "AMAA_AstartesAgeMatters", true);
                 Scribe_Values.Look(ref this.AstartesMaleOnly, "AMAA_AstartesMaleOnly", true);
                 Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
 
-                // Astartes Playable Race Extras
-                Scribe_Values.Look(ref this.ShowAstartes, "AMAA_ShowAstartes", true);
-                Scribe_Values.Look(ref this.AstartePunchingFactor, "AMAA_AstartePunchingFactor", 1f);
-                Scribe_Values.Look(ref this.AstarteSplitFactor, "AMAA_AstarteSplitFactor", 1f);
-                Scribe_Values.Look(ref this.AstarteScale, "AMAA_AstarteScale", 1f);
-                Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
-                Scribe_Values.Look(ref this.AstarteEasyMode, "AMAA_Astartesetting2", false);
             }
 
 
@@ -271,9 +269,9 @@ namespace AdeptusMechanicus.settings
             // Ork Data
             {
                 Scribe_Values.Look(ref this.ShowOrk, "AMXB_AllowOrk", true);
-                Scribe_Values.Look(ref this.AllowOrkTek, "AMXB_AllowOrkTek", true && AMSettings.Instance.AllowOrkWeapons);
-                Scribe_Values.Look(ref this.AllowOrkFeral, "AMXB_AllowOrkFeral", true && AMSettings.Instance.AllowOrkWeapons);
-                Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true && AMSettings.Instance.AllowOrkWeapons);
+                Scribe_Values.Look(ref this.AllowOrkTek, "AMXB_AllowOrkTek", true);
+                Scribe_Values.Look(ref this.AllowOrkFeral, "AMXB_AllowOrkFeral", true);
+                Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true);
 
                 // Orkz Playable Race Extras
                 Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.025f);
@@ -299,6 +297,14 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.CocoonOrkChanceBuffer, "AMO_CocoonOrkChanceBuffer", string.Empty);
             }
 
+            if (Scribe.mode == LoadSaveMode.LoadingVars || Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (!ImperialRaceKeyPairs.EnumerableNullOrEmpty())
+                {
+                    ImperialRaceKeyPairs.RemoveAll(x => x.Key == null);
+                }
+            }
+            Scribe_Collections.Look<ThingDef, bool>(ref this.ImperialRaceKeyPairs, "ImperialRaceKeyPairs"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 // create the data structure we're going to save.

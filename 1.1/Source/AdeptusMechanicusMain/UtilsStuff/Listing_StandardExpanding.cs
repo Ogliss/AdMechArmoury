@@ -86,6 +86,7 @@ namespace AdeptusMechanicus
 		public Listing_StandardExpanding BeginSection(float height, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null)
 		{
 			Rect rect = this.GetRect(height + sectionBorder + bottomBorder);
+			this.frameRect = rect;
 			if (parent != null)
 			{
 				parent.listingRect.height += rect.height;
@@ -114,7 +115,6 @@ namespace AdeptusMechanicus
 			}
 			Listing_StandardExpanding listing_Standard = new Listing_StandardExpanding();
 			Rect rect2 = new Rect(rect.x + sectionBorder, rect.y + sectionBorder, rect.width - sectionBorder * 2f, rect.height - (sectionBorder + bottomBorder));
-
 			listing_Standard.Begin(rect2);
 			return listing_Standard;
 		}
@@ -122,6 +122,7 @@ namespace AdeptusMechanicus
 		public Listing_StandardExpanding BeginSection(float height, out Rect frane, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null, bool extend = false)
 		{
 			frane = this.GetRect(height + sectionBorder + bottomBorder, null, extend);
+			this.frameRect = frane;
 			if (parent != null)
 			{
 				parent.curY += frane.height;
@@ -158,6 +159,7 @@ namespace AdeptusMechanicus
 		public Listing_StandardExpanding BeginSection(float height, out Rect frane, out Rect contents, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null, bool extend = false)
 		{
 			frane = this.GetRect(height + sectionBorder + bottomBorder, null, extend);
+			this.frameRect = frane;
 			if (parent != null)
 			{
 				parent.curY += frane.height;
@@ -313,11 +315,19 @@ namespace AdeptusMechanicus
 		{
             if (this.curY > this.listingRect.height)
 			{
+
 				listingRect.height = this.curY;
 			}
 		}
+		
+        public void ExtendRec(float f)
+		{
+			listingRect.height += f;
+			frameRect.height += f;
+		}
 
 		public new Rect listingRect;
+		public Rect frameRect;
 
 		// Token: 0x040010AA RID: 4266
 		private GameFont font;
