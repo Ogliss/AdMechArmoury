@@ -114,6 +114,11 @@ namespace AdeptusMechanicus
             }
         }
 
+        public void UpdateGraphic()
+        {
+            _Graphic = null;
+        }
+
         public string graphicPath;
         public string GraphicPath
         {

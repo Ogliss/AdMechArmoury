@@ -35,7 +35,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (scenDef.defName.Contains("OG_Astartes_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusAstartes)
+                        if (!AMAMod.settings.AllowAdeptusAstartes)
                         {
                             continue;
                         }
@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Mechanicus_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusMechanicus)
+                        if (!AMAMod.settings.AllowAdeptusMechanicus)
                         {
                             continue;
                         }
@@ -51,7 +51,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Militarum_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusMilitarum)
+                        if (!AMAMod.settings.AllowAdeptusMilitarum)
                         {
                             continue;
                         }
@@ -59,7 +59,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Sororitas_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusSororitas)
+                        if (!AMAMod.settings.AllowAdeptusSororitas)
                         {
                             continue;
                         }
@@ -67,7 +67,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Choas_Deamons_"))
                     {
-                        if (!SettingsHelper.latest.AllowChaosDeamons)
+                        if (!AMAMod.settings.AllowChaosDeamons)
                         {
                             continue;
                         }
@@ -75,7 +75,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Choas_Guard_"))
                     {
-                        if (!SettingsHelper.latest.AllowChaosGuard)
+                        if (!AMAMod.settings.AllowChaosGuard)
                         {
                             continue;
                         }
@@ -83,7 +83,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Choas_Marine_"))
                     {
-                        if (!SettingsHelper.latest.AllowChaosMarine)
+                        if (!AMAMod.settings.AllowChaosMarine)
                         {
                             continue;
                         }
@@ -91,7 +91,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Choas_Mechanicus_"))
                     {
-                        if (!SettingsHelper.latest.AllowChaosMechanicus)
+                        if (!AMAMod.settings.AllowChaosMechanicus)
                         {
                             continue;
                         }
@@ -99,7 +99,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_DarkEldar_"))
                     {
-                        if (!SettingsHelper.latest.AllowDarkEldar)
+                        if (!AMAMod.settings.AllowDarkEldar)
                         {
                             continue;
                         }
@@ -109,21 +109,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (scenDef.defName.Contains("Craftworld"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarCraftworld)
+                            if (!AMAMod.settings.AllowEldarCraftworld)
                             {
                                 continue;
                             }
                         }
                         if (scenDef.defName.Contains("Exodite"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarExodite)
+                            if (!AMAMod.settings.AllowEldarExodite)
                             {
                                 continue;
                             }
                         }
                         if (scenDef.defName.Contains("Harlequinn"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarHarlequinn)
+                            if (!AMAMod.settings.AllowEldarHarlequinn)
                             {
                                 continue;
                             }
@@ -132,7 +132,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Tau_"))
                     {
-                        if (!SettingsHelper.latest.AllowTau)
+                        if (!AMAMod.settings.AllowTau)
                         {
                             continue;
                         }
@@ -140,7 +140,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Kroot_"))
                     {
-                        if (!SettingsHelper.latest.AllowKroot)
+                        if (!AMAMod.settings.AllowKroot)
                         {
                             continue;
                         }
@@ -148,7 +148,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (scenDef.defName.Contains("OG_Vespid_"))
                     {
-                        if (!SettingsHelper.latest.AllowVespidAuxiliaries)
+                        if (!AMAMod.settings.AllowVespidAuxiliaries)
                         {
                             continue;
                         }
@@ -158,14 +158,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (scenDef.defName.Contains("Tek"))
                         {
-                            if (!SettingsHelper.latest.AllowOrkTek)
+                            if (!AMAMod.settings.AllowOrkTek)
                             {
                                 continue;
                             }
                         }
                         if (scenDef.defName.Contains("Feral"))
                         {
-                            if (!SettingsHelper.latest.AllowOrkFeral)
+                            if (!AMAMod.settings.AllowOrkFeral)
                             {
                                 continue;
                             }

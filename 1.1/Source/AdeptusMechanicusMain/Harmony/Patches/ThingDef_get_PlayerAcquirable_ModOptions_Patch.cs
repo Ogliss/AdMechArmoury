@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (__instance.defName.Contains("OGI_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowImperialWeapons)
+                    if (!AMAMod.settings.AllowImperialWeapons)
                     {
                         __result = false;
                     }
@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGAM_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowMechanicusWeapons)
+                    if (!AMAMod.settings.AllowMechanicusWeapons)
                     {
                         __result = false;
                     }
@@ -41,7 +41,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGE_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowEldarWeapons)
+                    if (!AMAMod.settings.AllowEldarWeapons)
                     {
                         __result = false;
                     }
@@ -49,7 +49,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGDE_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowDarkEldarWeapons)
+                    if (!AMAMod.settings.AllowDarkEldarWeapons)
                     {
                         __result = false;
                     }
@@ -57,7 +57,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGC_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowChaosWeapons)
+                    if (!AMAMod.settings.AllowChaosWeapons)
                     {
                         __result = false;
                     }
@@ -65,7 +65,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGT_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowTauWeapons)
+                    if (!AMAMod.settings.AllowTauWeapons)
                     {
                         __result = false;
                     }
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGO_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowOrkWeapons)
+                    if (!AMAMod.settings.AllowOrkWeapons)
                     {
                         __result = false;
                     }
@@ -81,7 +81,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGN_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowNecronWeapons)
+                    if (!AMAMod.settings.AllowNecronWeapons)
                     {
                         __result = false;
                     }
@@ -89,7 +89,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 else
                 if (__instance.defName.Contains("OGTY_") && (__instance.defName.Contains("_Melee_") || __instance.defName.Contains("_Gun_")))
                 {
-                    if (!SettingsHelper.latest.AllowTyranidWeapons)
+                    if (!AMAMod.settings.AllowTyranidWeapons)
                     {
                         __result = false;
                     }

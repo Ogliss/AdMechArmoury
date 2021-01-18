@@ -79,21 +79,31 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //    Log.Warning("Thing_TakeDamage_SpecialRules_Patch Prefix Failed finding Weapon:  " + dinfo.Weapon);
                             return;
                         }
-                        if (rending)
+                        OgsCompActivatableEffect.CompActivatableEffect activatableEffect = Weapon.TryGetComp<OgsCompActivatableEffect.CompActivatableEffect>();
+                        bool? activeEffect = null;
+                        if (activatableEffect != null)
                         {
-                    //        Log.Message(dinfo.Weapon.LabelCap + " Is Rending");
-                            dinfo = GetRendingDamage(dinfo);
+                            activeEffect = activatableEffect.IsActiveNow;
                         }
-                        else
-                        if (power || force)
+                        if (!activeEffect.HasValue || activeEffect.Value)
                         {
-                            dinfo = GetPowerDamage(dinfo);
-                            return;
-                        }
-                        else if (witchblade)
-                        {
-                            dinfo = GetWitchbladeDamage(dinfo);
-                            return;
+                            Log.Message(dinfo.Weapon.LabelCap + " activeEffect");
+                            if (rending)
+                            {
+                                //        Log.Message(dinfo.Weapon.LabelCap + " Is Rending");
+                                dinfo = GetRendingDamage(dinfo);
+                            }
+                            else
+                            if (power || force)
+                            {
+                                dinfo = GetPowerDamage(dinfo);
+                                return;
+                            }
+                            else if (witchblade)
+                            {
+                                dinfo = GetWitchbladeDamage(dinfo);
+                                return;
+                            }
                         }
                     }
                 }

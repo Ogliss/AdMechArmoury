@@ -16,17 +16,13 @@ namespace AdeptusMechanicus
     public class CompAlwaysActivatableEffect : CompActivatableEffect
     {
 
+        public override bool IsActiveNow => base.IsActiveNow && GetPawn != null;
         private Graphic graphicInt;
-        private OgsCompActivatableEffect.CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
-
         public bool PowerWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_PowerWeapon_")));
         public bool RendingWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_RendingWeapon_")));
         public bool ForceWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_ForceWeapon_")));
         public bool Witchblade => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_WitchbladeWeapon_")));
         public override bool CanActivate() => GetPawn != null && GetPawn.Spawned && GetPawn.Map != null;
-
-        private CompAdvancedGraphic advancedGraphic;
-        public CompAdvancedGraphic AdvancedGraphic;
 
         private string texPath;
         public string TexPath
@@ -116,18 +112,8 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (GetPawn!=null && !GetPawn.IsColonist)
             {
-                this.currentState = CompActivatableEffect.State.Activated;
+                Activate();
             }
-        }
-
-        public override void Activate()
-        {
-            base.Activate();
-        }
-        
-        public override void Deactivate()
-        {
-            base.Deactivate();
         }
 
         public override string CompInspectStringExtra()

@@ -30,15 +30,13 @@
 				<li>OG_Imperial_Tech_Base_T2</li>
 			</researchPrerequisites>
 		</recipeMaker-->
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGI_Ability_ThrowPsyk</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrensSpecial</li>
+			<li>OGIGrenPsyk</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -53,13 +51,43 @@
 				<li>OGIGrenPsyk</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIGrensSpecial</li>
-			<li>OGIGrenPsyk</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw psyk-out grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Psyk</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowPsyk</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 		
     <!-- ========================= Imperial - Vortex Bomb	========================== -->
@@ -88,14 +116,13 @@
 			<li>OG_Common_Tech_Weapons_Special</li>
 		</researchPrerequisites>
 		</recipeMaker-->
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<Abilities>
-					<li>OGI_Ability_ThrowVortex</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrensSpecial</li>
+			<li>OGIGrenVortex</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -110,13 +137,43 @@
 				<li>OGIGrenVortex</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIGrensSpecial</li>
-			<li>OGIGrenVortex</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw vortex grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Vortex</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowVortex</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 	
 </Defs>

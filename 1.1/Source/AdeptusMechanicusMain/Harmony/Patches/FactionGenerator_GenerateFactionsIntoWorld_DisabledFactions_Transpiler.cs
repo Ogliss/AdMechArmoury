@@ -57,21 +57,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (factionDef.defName.Contains("OG_Mechanicus_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusMechanicus)
+                        if (!AMAMod.settings.AllowAdeptusMechanicus)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Militarum_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusMilitarum)
+                        if (!AMAMod.settings.AllowAdeptusMilitarum)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Sororitas_"))
                     {
-                        if (!SettingsHelper.latest.AllowAdeptusSororitas)
+                        if (!AMAMod.settings.AllowAdeptusSororitas)
                         {
                             continue;
                         }
@@ -80,28 +80,28 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (factionDef.defName.Contains("Deamon"))
                         {
-                            if (!SettingsHelper.latest.AllowChaosDeamons)
+                            if (!AMAMod.settings.AllowChaosDeamons)
                             {
                                 continue;
                             }
                         }
                         if (factionDef.defName.Contains("Marine"))
                         {
-                            if (!SettingsHelper.latest.AllowChaosMarine)
+                            if (!AMAMod.settings.AllowChaosMarine)
                             {
                                 continue;
                             }
                         }
                         if (factionDef.defName.Contains("Guard"))
                         {
-                            if (!SettingsHelper.latest.AllowChaosGuard)
+                            if (!AMAMod.settings.AllowChaosGuard)
                             {
                                 continue;
                             }
                         }
                         if (factionDef.defName.Contains("Mechanicus"))
                         {
-                            if (!SettingsHelper.latest.AllowChaosMechanicus)
+                            if (!AMAMod.settings.AllowChaosMechanicus)
                             {
                                 continue;
                             }
@@ -112,21 +112,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (factionDef.defName.Contains("Craftworld"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarCraftworld)
+                            if (!AMAMod.settings.AllowEldarCraftworld)
                             {
                                 continue;
                             }
                         }
                         if (factionDef.defName.Contains("Exodite"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarExodite)
+                            if (!AMAMod.settings.AllowEldarExodite)
                             {
                                 continue;
                             }
                         }
                         if (factionDef.defName.Contains("Harlequin"))
                         {
-                            if (!SettingsHelper.latest.AllowEldarHarlequinn)
+                            if (!AMAMod.settings.AllowEldarHarlequinn)
                             {
                                 continue;
                             }
@@ -134,21 +134,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (factionDef.defName.Contains("OG_DarkEldar_"))
                     {
-                        if (!SettingsHelper.latest.AllowDarkEldar)
+                        if (!AMAMod.settings.AllowDarkEldar)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Kroot_"))
                     {
-                        if (!SettingsHelper.latest.AllowKroot)
+                        if (!AMAMod.settings.AllowKroot)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Tau_"))
                     {
-                        if (!SettingsHelper.latest.AllowTau)
+                        if (!AMAMod.settings.AllowTau)
                         {
                             continue;
                         }
@@ -156,28 +156,28 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (factionDef.defName.Contains("OG_Necron_"))
                     {
-                        if (!SettingsHelper.latest.AllowNecron)
+                        if (!AMAMod.settings.AllowNecron)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Ork_Tek_"))
                     {
-                        if (!SettingsHelper.latest.AllowOrkTek)
+                        if (!AMAMod.settings.AllowOrkTek)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Ork_Feral_"))
                     {
-                        if (!SettingsHelper.latest.AllowOrkFeral)
+                        if (!AMAMod.settings.AllowOrkFeral)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Ork_Hulk") || factionDef.defName.Contains("OG_Ork_Rok"))
                     {
-                        if (!SettingsHelper.latest.AllowOrkRok || !SettingsHelper.latest.AllowOrkTek)
+                        if (!AMAMod.settings.AllowOrkRok || !AMAMod.settings.AllowOrkTek)
                         {
                             continue;
                         }
@@ -185,14 +185,14 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (factionDef.defName.Contains("OG_Tyranid_") || factionDef.defName.Contains("OG_Genestealer_Cult"))
                     {
-                        if (!SettingsHelper.latest.AllowTyranid)
+                        if (!AMAMod.settings.AllowTyranid)
                         {
                             continue;
                         }
                     }
                     if (factionDef.defName.Contains("OG_Vespid_") || factionDef.defName.Contains("OG_Vespid_Feral_"))
                     {
-                        if (!SettingsHelper.latest.AllowVespid)
+                        if (!AMAMod.settings.AllowVespid)
                         {
                             continue;
                         }

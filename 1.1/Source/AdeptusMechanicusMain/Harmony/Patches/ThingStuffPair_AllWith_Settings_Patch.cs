@@ -65,63 +65,63 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (item.thing.defName.Contains("OGI_Gun_") || item.thing.defName.Contains("OGI_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowImperialWeapons)
+                    if (!AMAMod.settings.AllowImperialWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGAM_Gun_") || item.thing.defName.Contains("OGAM_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowMechanicusWeapons)
+                    if (!AMAMod.settings.AllowMechanicusWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGE_Gun_") || item.thing.defName.Contains("OGE_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowEldarWeapons)
+                    if (!AMAMod.settings.AllowEldarWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGDE_Gun_") || item.thing.defName.Contains("OGDE_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowDarkEldarWeapons)
+                    if (!AMAMod.settings.AllowDarkEldarWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGC_Gun_") || item.thing.defName.Contains("OGC_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowChaosWeapons)
+                    if (!AMAMod.settings.AllowChaosWeapons)
                     {
                         continue;
                     }
                 }
                 if ((item.thing.defName.Contains("OGT_") || item.thing.defName.Contains("OGK_")) && (item.thing.defName.Contains("_Gun_") || item.thing.defName.Contains("_Melee_")))
                 {
-                    if (!SettingsHelper.latest.AllowTauWeapons)
+                    if (!AMAMod.settings.AllowTauWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGO_Gun_") || item.thing.defName.Contains("OGO_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowOrkWeapons)
+                    if (!AMAMod.settings.AllowOrkWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGN_Gun_") || item.thing.defName.Contains("OGN_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowNecronWeapons)
+                    if (!AMAMod.settings.AllowNecronWeapons)
                     {
                         continue;
                     }
                 }
                 if (item.thing.defName.Contains("OGTY_Gun_") || item.thing.defName.Contains("OGTY_Melee_"))
                 {
-                    if (!SettingsHelper.latest.AllowTyranidWeapons)
+                    if (!AMAMod.settings.AllowTyranidWeapons)
                     {
                         continue;
                     }

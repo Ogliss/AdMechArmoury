@@ -14,23 +14,23 @@ namespace AdeptusMechanicus.settings
         public static AMSettings settings;
         public AMMod(ModContentPack content) : base(content)
         {
-            AMMod.settings = GetSettings<AMSettings>();
-            SettingsHelper.latest = AMMod.settings;
+            AMAMod.settings = GetSettings<AMSettings>();
+            AMAMod.settings = AMAMod.settings;
             AMMod.Instance = this;
             AMSettings.Instance = base.GetSettings<AMSettings>();
         }
         
-        public virtual void PreModOptions(Listing_Standard listing_Main, Rect inRect, float num, ref float num2, string Label)
+        public virtual void PreModOptions(Listing_StandardExpanding listing_Main, Rect inRect, float num, ref float num2, string Label)
         {
 
         }
 
-        public virtual void ModOptions(ref Listing_Standard listing_Main, Rect rect, Rect inRect, float width, ref float menuLength)
+        public virtual void ModOptions(ref Listing_StandardExpanding listing_Main, Rect rect, Rect inRect, float width, ref float menuLength)
         {
 
         }
 
-        public virtual void PostModOptions(Listing_Standard listing_Main, Rect inRect, float num, float num2)
+        public virtual void PostModOptions(Listing_StandardExpanding listing_Main, Rect inRect, float num, float num2)
         {
 
         }

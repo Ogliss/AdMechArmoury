@@ -108,6 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Abilities\FlyingObject_JumpPack.cs.bak" />
+    <Compile Include="Apparel\Class1.cs" />
+    <Compile Include="Apparel\Class2.cs" />
+    <Compile Include="Apparel\CompWargearUseable.cs" />
+    <Compile Include="Apparel\Command_ApparelWargear.cs" />
     <Compile Include="Apparel\TextureOption.cs" />
     <Compile Include="Apparel\ExtraApparelPartProps.cs" />
     <Compile Include="Apparel\Graphic_MultiMask.cs" />
@@ -142,10 +146,10 @@
     <Compile Include="DeOf\OGStatDefOf.cs" />
     <Compile Include="DeOf\OGTaleDefOf.cs" />
     <Compile Include="DeOf\OGThingDefOf.cs" />
+    <Compile Include="ExtentionMethods\Listing_StandardExtensions.cs" />
     <Compile Include="ExtentionMethods\DamageDefExtensions.cs" />
     <Compile Include="ExtentionMethods\RacePropertiesExtensions.cs" />
     <Compile Include="ExtentionMethods\ThingDefExtensions.cs" />
-    <Compile Include="ExtentionMethods\Listing_StandardExtensions.cs" />
     <Compile Include="ExtentionMethods\Pawn_AbilityTrackerExtensions.cs" />
     <Compile Include="ExtentionMethods\MapExtensions.cs" />
     <Compile Include="ExtentionMethods\ThingExtensions.cs" />
@@ -156,6 +160,7 @@
     <None Include="Harmony\Patches\Pawn_PathFollower_PawnCanOccupy_Floater_Patch.cs.bak" />
     <Compile Include="Harmony\CompWearable.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch - Copy %282%29.cs" />
+    <Compile Include="Harmony\Patches\Ext_Pawn_TryStartOffHandAttack_DualWield_Patch.cs" />
     <Compile Include="Harmony\Patches\RaceProperties_get_IsFlesh_Name_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnWeaponGenerator_Reset_WeaponRestriction_Patch.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch - Copy.cs" />
@@ -174,6 +179,8 @@
     <Compile Include="Harmony\Patches\Pawn_PathFollower_PatherTick_HeavyWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingWithComps_DrawColor_CompColorableTwo_Patch.cs" />
     <Compile Include="Harmony\Patches\VerbProperties_AdjustedAccuracy_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_TryStartCastOn_CompWargearUseable_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verb_LaunchProjectileStatic_ValidateTarget_CompWargearUseable_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
@@ -181,6 +188,7 @@
     <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
     <Compile Include="Recipes\Class1.cs" />
     <None Include="SettingsMenu\Class1.cs.bak" />
+    <Compile Include="SettingsMenu\ArmouryMenus.cs" />
     <Compile Include="SettingsMenu\Dialog_CompatabilityPatches.cs" />
     <Compile Include="UtilsStuff\Attributes\MayRequireXenobiologis.cs" />
     <Compile Include="UtilsStuff\Attributes\MayRequireAlienRaces.cs" />
@@ -189,8 +197,37 @@
     <Compile Include="UtilsStuff\Attributes\MayRequireCorruptionCore.cs" />
     <Compile Include="UtilsStuff\Attributes\MayRequireAstraFactions.cs" />
     <Compile Include="UtilsStuff\Attributes\MayRequireAstraCore.cs" />
-    <Compile Include="UtilsStuff\Class1.cs" />
+    <Compile Include="UtilsStuff\Listing_StandardExpanding.cs" />
     <Compile Include="UtilsStuff\AdeptusWidgets.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_EndTimesWithGuns.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_ARimworldOfMagic.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_ChJdroids.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AvP.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_GasTrap.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_SaveOurShip2.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AndroidTiers.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_RunAndGun.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_DualWield.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_ResearchPal.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_CombatExtended.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AstraServoSkulls.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AstraTurrets.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AstraFactions.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_AstraCore.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_GeneSeed.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Sororitas.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Militarum.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Mechanicus.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Xenobiologis.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Astartes.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Tyranid.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Necron.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Orkz.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Tau.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_DarkEldar.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Eldar.cs" />
+    <Compile Include="UtilsStuff\IntergrationUtilities\Integration_Chaos.cs" />
     <Compile Include="UtilsStuff\MultiplayerCompatibilityUtility.cs" />
     <Compile Include="UtilsStuff\DebugTools\AdMechDebugActionsMisc.cs" />
     <Compile Include="UtilsStuff\Hediffs\HediffComps\HediffComp_Irradiator.cs" />
@@ -259,6 +296,7 @@
     <Compile Include="UtilsStuff\PatchOps\PatchOperationGameVersion.cs" />
     <Compile Include="UtilsStuff\PatchOps\PatchOperationFindModID.cs" />
     <Compile Include="UtilsStuff\PawnGraphicSet_Invisible.cs" />
+    <Compile Include="UtilsStuff\TexButton.cs" />
     <Compile Include="UtilsStuff\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
     <Compile Include="Weaponry\Class1.cs" />
     <Compile Include="Weaponry\GunStuff\Class1.cs" />
@@ -316,7 +354,7 @@
     <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
     <Compile Include="UtilsStuff\DamageWorkers\DamageWorker_WarpFlameNoCamShake.cs" />
     <Compile Include="UtilsStuff\PatchOps\PatchOperationPlayerName.cs" />
-    <Compile Include="SettingsMenu\AMMod.cs" />
+    <None Include="SettingsMenu\AMMod.cs.bak" />
     <Compile Include="UtilsStuff\Warpfire.cs" />
     <Compile Include="UtilsStuff\WarpfireUtility.cs" />
     <Compile Include="UtilsStuff\WarpSpark.cs" />
@@ -406,10 +444,8 @@
     <Compile Include="UtilsStuff\DeepStrike\ActiveFlyer.cs" />
     <Compile Include="UtilsStuff\DeepStrike\WeatherEvent_DeepStrike_Teleport.cs" />
     <Compile Include="SettingsMenu\AMAMod.cs" />
-    <Compile Include="SettingsMenu\AMASettingsHelper.cs" />
     <Compile Include="SettingsMenu\AMConstants.cs" />
     <Compile Include="SettingsMenu\AMSettings.cs" />
-    <Compile Include="SettingsMenu\ArmourySettingsRef.cs" />
     <Compile Include="UtilsStuff\ArtificalPawn.cs" />
     <Compile Include="UtilsStuff\AM_MeshMaker.cs" />
     <Compile Include="UtilsStuff\AM_MeshBolt.cs" />

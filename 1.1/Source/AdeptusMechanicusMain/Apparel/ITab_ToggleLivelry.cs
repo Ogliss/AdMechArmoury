@@ -74,17 +74,26 @@ namespace AdeptusMechanicus
             }
             else labelKey = Drawer.Props.labelKey; //"UM_TabToggleDef";//.Translate();
             var rect = new Rect(17f, 17f, ITab_ToggleLivelry.CardSize().x, ITab_ToggleLivelry.CardSize().y);
+
+            var ts = Text.CalcSize(selected.def.LabelCap).x;
+            var y = rect.y;
+            var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
+            y += rect2.height;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(rect2, selected.def.LabelCap);
+
             if (Colorable != null)
             {
-                this.DrawCard(rect, selected, Colorable);
+                Rect r = Colorable == null ? rect.ContractedBy(4) : rect.TopPart(0.25f).ContractedBy(4);
+                this.DrawCard(r, selected, Colorable);
             }
-            /*
+            
             if (Drawer != null)
             {
-                Rect r = Colorable == null ? rect.ContractedBy(4) : rect.BottomPart(0.5f).ContractedBy(4);
+                Rect r = Colorable == null ? rect.ContractedBy(4) : rect.BottomPart(0.75f).ContractedBy(4);
                 this.DrawCard(r, selected, Drawer);
             }
-            */
+            
         }
 
         // RimWorld.CharacterCardUtility
@@ -111,11 +120,9 @@ namespace AdeptusMechanicus
                     var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
                     var y = rect.y;
                     var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
-                    y += rect2.height;
-                    Text.Font = GameFont.Medium;
-                    Widgets.Label(rect2, selectedThing.def.LabelCap);
                     Text.Font = GameFont.Small;
-                    Widgets.ListSeparator(ref y, rect2.width, "Customiseable Parts: "+ (string)(!Drawer.activeEntries.EnumerableNullOrEmpty() ? ""+Drawer.activeEntries.Count : ""));
+                    int parts = Drawer.activeEntries.Where(x => !x.Options.NullOrEmpty()).Count();
+                    Widgets.ListSeparator(ref y, rect2.width, "Customiseable Parts: "+ (string)(!Drawer.activeEntries.EnumerableNullOrEmpty() ? ""+ parts : ""));
 
 
                     if (!Drawer.activeEntries.EnumerableNullOrEmpty())
@@ -169,9 +176,7 @@ namespace AdeptusMechanicus
                 var ts = Text.CalcSize(selectedThing.def.LabelCap).x;
                 var y = rect.y;
                 var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
-                y += rect2.height;
-                Text.Font = GameFont.Medium;
-                Widgets.Label(rect2, selectedThing.def.LabelCap);
+            //    y += rect2.height;
                 Text.Font = GameFont.Small;
                 Widgets.ListSeparator(ref y, rect2.width, "Faction Colors: ");
                 if (!Colorable.Props.Key.NullOrEmpty())

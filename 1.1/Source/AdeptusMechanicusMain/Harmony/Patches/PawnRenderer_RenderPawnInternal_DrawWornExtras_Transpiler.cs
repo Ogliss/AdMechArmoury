@@ -70,6 +70,96 @@ namespace AdeptusMechanicus.HarmonyInstance
                 for (int wa = 0; wa < worn.Count; wa++)
                 {
                     Apparel apparel = worn[wa];
+                    ApparelComposite composite = apparel as ApparelComposite;
+                    if (composite != null)
+                    {
+                        if (!composite.Pauldrons.NullOrEmpty())
+                        {
+                            for (int i = 0; i < composite.Pauldrons.Count; i++)
+                            {
+                                CompPauldronDrawer Pauldron = composite.Pauldrons[i] as CompPauldronDrawer;
+                                if (Pauldron != null)
+                                {
+                                    Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                                    if (Pauldron.activeEntries.NullOrEmpty())
+                                    {
+                                        Pauldron.Initialize();
+                                    }
+                                    foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
+                                    {
+                                        //    entry.Drawer = Pauldron;
+                                        if (entry.apparel == null)
+                                        {
+                                            entry.apparel = apparel;
+                                        }
+                                        if (entry.Drawer == null)
+                                        {
+                                            Log.Warning("Warning! Drawer null");
+                                        }
+                                        if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                        {
+                                            if (Pauldron.onHead || renderBody)
+                                            {
+                                                GenDraw.DrawMeshNowOrLater
+                                                    (
+                                                        // pauldronMesh,
+                                                        GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                        center + (quat * offset),
+                                                        quat,
+                                                        OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                        portrait
+                                                    );
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (!composite.Extras.NullOrEmpty())
+                        {
+                            for (int i = 0; i < composite.Extras.Count; i++)
+                            {
+
+                                CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i] as CompApparelExtraPartDrawer;
+                                if (ExtraDrawer != null)
+                                {
+                                    Vector3 drawAt = vector;
+                                    if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
+                                    {
+                                        bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
+                                        Rot4 facing = onHead ? headfacing : bodyFacing;
+                                        if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
+                                        {
+                                            if (onHead || renderBody)
+                                            {
+                                                if (onHead)
+                                                {
+                                                    Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                                    drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
+
+                                                }
+                                                else
+                                                {
+                                                    drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                                }
+                                                GenDraw.DrawMeshNowOrLater
+                                                    (
+                                                        // pauldronMesh,
+                                                        GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                        drawAt,
+                                                        quat,
+                                                        OverrideMaterialIfNeeded(extraMat, pawn),
+                                                        portrait
+                                                    );
+                                            }
+                                            //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
                     for (int i = 0; i < apparel.AllComps.Count; i++)
                     {
                         CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;

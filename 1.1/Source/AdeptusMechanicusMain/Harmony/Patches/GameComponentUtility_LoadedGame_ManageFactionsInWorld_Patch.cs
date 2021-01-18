@@ -48,7 +48,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 if (faction.defName.Contains("OG_Astartes_"))
                 {
-                    if (!SettingsHelper.latest.AllowAdeptusAstartes)
+                    if (!AMAMod.settings.AllowAdeptusAstartes)
                     {
                         return false;
                     }
@@ -61,52 +61,52 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
                 if (faction.defName.Contains("OG_Mechanicus_"))
-                    return SettingsHelper.latest.AllowAdeptusMechanicus;
+                    return AMAMod.settings.AllowAdeptusMechanicus;
                 if (faction.defName.Contains("OG_Militarum_"))
-                    return SettingsHelper.latest.AllowAdeptusMilitarum;
+                    return AMAMod.settings.AllowAdeptusMilitarum;
                 if (faction.defName.Contains("OG_Sororitas_"))
-                    return SettingsHelper.latest.AllowAdeptusSororitas;
+                    return AMAMod.settings.AllowAdeptusSororitas;
                 if (faction.defName.Contains("OG_Chaos_"))
                 {
                     if (faction.defName.Contains("Deamon"))
-                        return SettingsHelper.latest.AllowChaosDeamons;
+                        return AMAMod.settings.AllowChaosDeamons;
                     if (faction.defName.Contains("Marine"))
-                        return SettingsHelper.latest.AllowChaosMarine;
+                        return AMAMod.settings.AllowChaosMarine;
                     if (faction.defName.Contains("Guard"))
-                        return SettingsHelper.latest.AllowChaosGuard;
+                        return AMAMod.settings.AllowChaosGuard;
                     if (faction.defName.Contains("Mechanicus"))
-                        return SettingsHelper.latest.AllowChaosMechanicus;
+                        return AMAMod.settings.AllowChaosMechanicus;
                 }
                 if (faction.defName.Contains("OG_Eldar_"))
                 {
                     if (faction.defName.Contains("Craftworld"))
-                        return SettingsHelper.latest.AllowEldarCraftworld;
+                        return AMAMod.settings.AllowEldarCraftworld;
                     if (faction.defName.Contains("Exodite"))
-                        return SettingsHelper.latest.AllowEldarExodite;
+                        return AMAMod.settings.AllowEldarExodite;
                     if (faction.defName.Contains("Harlequin"))
-                        return SettingsHelper.latest.AllowEldarHarlequinn;
+                        return AMAMod.settings.AllowEldarHarlequinn;
                 }
                 if (faction.defName.Contains("OG_DarkEldar_"))
-                    return SettingsHelper.latest.AllowDarkEldar;
+                    return AMAMod.settings.AllowDarkEldar;
                 if (faction.defName.Contains("OG_Kroot_"))
-                    return SettingsHelper.latest.AllowKroot;
+                    return AMAMod.settings.AllowKroot;
                 if (faction.defName.Contains("OG_Tau_"))
-                    return SettingsHelper.latest.AllowTau;
+                    return AMAMod.settings.AllowTau;
                 if (faction.defName.Contains("OG_Necron_"))
-                    return SettingsHelper.latest.AllowNecron;
+                    return AMAMod.settings.AllowNecron;
                 if (faction.defName.Contains("OG_Ork_"))
                 {
                     if (faction.defName.Contains("OG_Ork_Tek_"))
-                        return SettingsHelper.latest.AllowOrkTek;
+                        return AMAMod.settings.AllowOrkTek;
                     if (faction.defName.Contains("OG_Ork_Feral_"))
-                        return SettingsHelper.latest.AllowOrkFeral;
+                        return AMAMod.settings.AllowOrkFeral;
                     if (faction.defName.Contains("OG_Ork_Hulk") || faction.defName.Contains("OG_Ork_Rok"))
-                        return SettingsHelper.latest.AllowOrkRok;
+                        return AMAMod.settings.AllowOrkRok;
                 }
                 if (faction.defName.Contains("OG_Tyranid_") || faction.defName.Contains("OG_Genestealer_Cult"))
-                    return SettingsHelper.latest.AllowTyranid;
+                    return AMAMod.settings.AllowTyranid;
                 if (faction.defName.Contains("OG_Vespid_"))
-                    return SettingsHelper.latest.AllowVespid;
+                    return AMAMod.settings.AllowVespid;
                 return true;
             }
             
@@ -122,54 +122,54 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (FactionSpawningUtility.NeverSpawn(faction)) return false;
 
                 if (faction.defName.Contains("OG_Astartes_"))
-                    return !SettingsHelper.latest.AllowAdeptusAstartes;
+                    return !AMAMod.settings.AllowAdeptusAstartes;
                 if (faction.defName.Contains("OG_Mechanicus_"))
-                    return !SettingsHelper.latest.AllowAdeptusMechanicus;
+                    return !AMAMod.settings.AllowAdeptusMechanicus;
                 if (faction.defName.Contains("OG_Militarum_"))
-                    return !SettingsHelper.latest.AllowAdeptusMilitarum;
+                    return !AMAMod.settings.AllowAdeptusMilitarum;
                 if (faction.defName.Contains("OG_Sororitas_"))
-                    return !SettingsHelper.latest.AllowAdeptusSororitas;
+                    return !AMAMod.settings.AllowAdeptusSororitas;
                 if (faction.defName.Contains("OG_Chaos_"))
                 {
                     if (faction.defName.Contains("Deamon"))
-                        return !SettingsHelper.latest.AllowChaosDeamons;
+                        return !AMAMod.settings.AllowChaosDeamons;
                     if (faction.defName.Contains("Marine"))
-                        return !SettingsHelper.latest.AllowChaosMarine;
+                        return !AMAMod.settings.AllowChaosMarine;
                     if (faction.defName.Contains("Guard"))
-                        return !SettingsHelper.latest.AllowChaosGuard;
+                        return !AMAMod.settings.AllowChaosGuard;
                     if (faction.defName.Contains("Mechanicus"))
-                        return !SettingsHelper.latest.AllowChaosMechanicus;
+                        return !AMAMod.settings.AllowChaosMechanicus;
                 }
                 if (faction.defName.Contains("OG_Eldar_"))
                 {
                     if (faction.defName.Contains("Craftworld"))
-                        return !SettingsHelper.latest.AllowEldarCraftworld;
+                        return !AMAMod.settings.AllowEldarCraftworld;
                     if (faction.defName.Contains("Exodite"))
-                        return !SettingsHelper.latest.AllowEldarExodite;
+                        return !AMAMod.settings.AllowEldarExodite;
                     if (faction.defName.Contains("Harlequin"))
-                        return !SettingsHelper.latest.AllowEldarHarlequinn;
+                        return !AMAMod.settings.AllowEldarHarlequinn;
                 }
                 if (faction.defName.Contains("OG_DarkEldar_"))
-                    return !SettingsHelper.latest.AllowDarkEldar;
+                    return !AMAMod.settings.AllowDarkEldar;
                 if (faction.defName.Contains("OG_Kroot_"))
-                    return !SettingsHelper.latest.AllowKroot;
+                    return !AMAMod.settings.AllowKroot;
                 if (faction.defName.Contains("OG_Tau_"))
-                    return !SettingsHelper.latest.AllowTau;
+                    return !AMAMod.settings.AllowTau;
                 if (faction.defName.Contains("OG_Necron_"))
-                    return !SettingsHelper.latest.AllowNecron;
+                    return !AMAMod.settings.AllowNecron;
                 if (faction.defName.Contains("OG_Ork_"))
                 {
                     if (faction.defName.Contains("OG_Ork_Tek_"))
-                        return !SettingsHelper.latest.AllowOrkTek;
+                        return !AMAMod.settings.AllowOrkTek;
                     if (faction.defName.Contains("OG_Ork_Feral_"))
-                        return !SettingsHelper.latest.AllowOrkFeral;
+                        return !AMAMod.settings.AllowOrkFeral;
                     if (faction.defName.Contains("OG_Ork_Hulk") || faction.defName.Contains("OG_Ork_Rok"))
-                        return !SettingsHelper.latest.AllowOrkRok;
+                        return !AMAMod.settings.AllowOrkRok;
                 }
                 if (faction.defName.Contains("OG_Tyranid_") || faction.defName.Contains("OG_Genestealer_Cult"))
-                    return !SettingsHelper.latest.AllowTyranid;
+                    return !AMAMod.settings.AllowTyranid;
                 if (faction.defName.Contains("OG_Vespid_"))
-                    return !SettingsHelper.latest.AllowVespid;
+                    return !AMAMod.settings.AllowVespid;
                 return true;
             }
             

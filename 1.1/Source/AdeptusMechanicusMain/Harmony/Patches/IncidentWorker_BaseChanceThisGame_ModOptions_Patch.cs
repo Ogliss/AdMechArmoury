@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             IncidentDef incidentDef = __instance.def;
             if (incidentDef.defName.Contains("OGN_MonolithAppears"))
             {
-                if (!SettingsHelper.latest.AllowNecronMonolith)
+                if (!AMAMod.settings.AllowNecronMonolith)
                 {
                     __result = 0f;
                 }
@@ -32,21 +32,21 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (incidentDef.defName.Contains("Warpstorm_Deamonic"))
                 {
-                    if (!SettingsHelper.latest.AllowWarpstorm)
+                    if (!AMAMod.settings.AllowWarpstorm)
                     {
                         __result = 0f;
                     }
                 }
                 if (incidentDef.defName.Contains("Deamonic_Incursion"))
                 {
-                    if (!SettingsHelper.latest.AllowChaosDeamonicIncursion)
+                    if (!AMAMod.settings.AllowChaosDeamonicIncursion)
                     {
                         __result = 0f;
                     }
                 }
                 if (incidentDef.defName.Contains("Daemonic_Infestation"))
                 {
-                    if (!SettingsHelper.latest.AllowChaosDeamonicInfestation)
+                    if (!AMAMod.settings.AllowChaosDeamonicInfestation)
                     {
                         __result = 0f;
                     }
@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (incidentDef.defName.Contains("OG_Ork_Rok_Crash"))
             {
-                if (!SettingsHelper.latest.AllowOrkRok)
+                if (!AMAMod.settings.AllowOrkRok)
                 {
                     __result = 0f;
                 }

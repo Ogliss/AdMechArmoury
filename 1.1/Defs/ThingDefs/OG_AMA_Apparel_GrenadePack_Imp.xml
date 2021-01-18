@@ -31,15 +31,12 @@
 				<li>OG_Imperial_Tech_Base_T0</li>
 			</researchPrerequisites>
 		</recipeMaker>
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGI_Ability_ThrowPhoton</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrens</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -54,12 +51,43 @@
 				<li>OGIGrenPhoton</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIGrens</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw blind grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Photon</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowPhoton</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 		
     <!-- ========================= Imperial - Frag Grenades	========================== -->
@@ -91,17 +119,13 @@
 			<li>OG_Common_Tech_Weapons_Special</li>
 		</researchPrerequisites>
 		</recipeMaker>
-    <tickerType>Normal</tickerType>
-		<comps>  
-		
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGI_Ability_ThrowFrag</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIWargear</li>
+			<li>OGIGrens</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -116,13 +140,43 @@
 				<li>OGIGrenFrag</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIWargear</li>
-			<li>OGIGrens</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw frag grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Frag</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowFrag</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 	
     <!-- ========================= Imperial - Krak Grenades	========================== -->
@@ -149,20 +203,18 @@
 			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
-		<researchPrerequisites>
-			<li MayRequire="QX.AstraMilitarum">WRKrakGrenade</li>
-			<li>OG_Common_Tech_Weapons_Special</li>
-		</researchPrerequisites>
+			<researchPrerequisites>
+				<li MayRequire="QX.AstraMilitarum">WRKrakGrenade</li>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGI_Ability_ThrowKrak</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIWargear</li>
+			<li>OGIGrens</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -177,13 +229,43 @@
 				<li>OGIGrenKrak</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIWargear</li>
-			<li>OGIGrens</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw krak grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Krak</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowKrak</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 
     <!-- ========================= Imperial - Rad Grenades	========================== -->
@@ -214,15 +296,12 @@
 				<li>OG_Imperial_Tech_Base_T0</li>
 			</researchPrerequisites>
 		</recipeMaker>
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGI_Ability_ThrowRad</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrens</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -237,12 +316,43 @@
 				<li>OGIGrenRad</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIGrens</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw rad grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Rad</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowRad</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 		
     <!-- ========================= Imperial - Melta Bomb	========================== -->
@@ -267,19 +377,18 @@
 			<Plasteel>4</Plasteel>
 		</costList>
 		<recipeMaker>
-		<researchPrerequisites>
-			<li MayRequire="QX.AstraMilitarum">IG_ImpBlastCharge</li>
-			<li>OG_Common_Tech_Weapons_Special</li>
-		</researchPrerequisites>
+			<researchPrerequisites>
+				<li MayRequire="QX.AstraMilitarum">IG_ImpBlastCharge</li>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
 		</recipeMaker>
-		<comps>  
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<Abilities>
-					<li>OGI_Ability_ThrowMelta</li>
-				</Abilities>
-			</li>
-		</comps>
-		
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIWargear</li>
+			<li>OGIGrens</li>
+		</tradeTags>
 		<apparel>
 			<careIfWornByCorpse>false</careIfWornByCorpse>
 			<bodyPartGroups>
@@ -294,29 +403,43 @@
 				<li>OGIGrenMelta</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>OGIGrens</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGIWargear</li>
-			<li>OGIGrens</li>
-		</tradeTags>
+		<verbs>
+			<li>
+				<label>throw melta grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Melta</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowMelta</li>
+				</Abilities>
+			</li>
+		</comps-->
 	</ThingDef>
 	
-	<!--
-	<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
-	<hediffDef>FragGrenadeThrowerHeDiff</hediffDef>
-	<severityBasedOnDurability>false</severityBasedOnDurability>
-	<partsToAffect>
-		<li>A_BODYPARTDEF_HERE</li>
-		<li>A_BODYPARTDEF_HERE</li>
-		<li>A_BODYPARTDEF_HERE</li>
-	</partsToAffect>
-	<groupsToAffect>
-		<li>A_BODYPARTGROUPDEF_HERE</li>
-		<li>A_BODYPARTGROUPDEF_HERE</li>
-		<li>A_BODYPARTGROUPDEF_HERE</li>
-	</groupsToAffect>
-	</li>
-	-->
 </Defs>

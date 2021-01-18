@@ -17,9 +17,9 @@ namespace AdeptusMechanicus.ExtensionMethods
 
         public static Listing_Standard BeginSection_OnePointOne(this Listing_Standard listing_Main, float f)
         {
-            #pragma warning disable CS0612 // Type or member is obsolete
+#pragma warning disable CS0612 // Type or member is obsolete
             return listing_Main.BeginSection(f);
-            #pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning restore CS0612 // Type or member is obsolete
         }
 
         public static bool ButtonTextLine(this Listing_Standard L, string label, string highlightTag = null)
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             listing_Standard.Begin(rect2);
             return listing_Standard;
         }
-        
+
         // Token: 0x06001B47 RID: 6983 RVA: 0x000A6A5C File Offset: 0x000A4C5C
         public static Listing_Standard BeginSection(this Listing_Standard L, float height, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4)
         {

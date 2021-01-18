@@ -210,6 +210,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             return false;
         }
         */
+
         public static bool isPsyker(this Pawn pawn)
         {
             return pawn.isPsyker(out int Level);
@@ -228,6 +229,12 @@ namespace AdeptusMechanicus.ExtensionMethods
 
             if (pawn.RaceProps.Humanlike)
             {
+                if (pawn.HasPsylink)
+                {
+                    Level = pawn.psychicEntropy.Psylink.level;
+                    result = true;
+                }
+                else
                 if (pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_ImplantWithLevel)))
                 {
                     Level = (pawn.health.hediffSet.hediffs.First(x => x.GetType() == typeof(Hediff_ImplantWithLevel)) as Hediff_ImplantWithLevel).level;

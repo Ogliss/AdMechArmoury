@@ -20,8 +20,6 @@ namespace AdeptusMechanicus
 
     public class CompForceWeaponActivatableEffect : CompAlwaysActivatableEffect
     {
-
-        private OgsCompActivatableEffect.CompActivatableEffect.State currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
         public new CompProperties_ForceWeaponActivatableEffect Props => this.props as CompProperties_ForceWeaponActivatableEffect;
         public CompWeapon_MeleeSpecialRules specialRules
         {
@@ -86,13 +84,6 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
-            /*
-            if (specialRules == null)
-            {
-                Log.Warning(parent.LabelCap+ " is a Force weapons without a specialRules comp");
-                return false;
-            }
-            */
             if (Equippable.PrimaryVerb == null)
             {
                 return false;
@@ -142,19 +133,10 @@ namespace AdeptusMechanicus
             base.Initialize();
             if (GetPawn!=null && GetPawn.isPsyker(out int level))
             {
-                this.currentState = OgsCompActivatableEffect.CompActivatableEffect.State.Activated;
+                this.Activate();
             }
         }
 
-        public override void Activate()
-        {
-            base.Activate();
-        }
-
-        public override void Deactivate()
-        {
-            base.Deactivate();
-        }
         public override string CompInspectStringExtra()
         {
             string str = "Special Rules:";

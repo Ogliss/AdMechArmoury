@@ -101,6 +101,23 @@ namespace AdeptusMechanicus
             int.TryParse(Widgets.TextField(rect4, fRange.max.ToString()), out fRange.max);
         }
 
+        public static Rect VertFillableBar(Rect rect, float fillPercent, Texture2D fillTex, Texture2D bgTex, bool doBorder)
+        {
+            if (doBorder)
+            {
+                GUI.DrawTexture(rect, BaseContent.BlackTex);
+                rect = rect.ContractedBy(3f);
+            }
+            if (bgTex != null)
+            {
+                GUI.DrawTexture(rect, bgTex);
+            }
+            Rect result = rect;
+            rect.height *= fillPercent;
+            GUI.DrawTexture(rect, fillTex);
+            return result;
+        }
+
         public static readonly Texture2D RangeMatch = ContentFinder<Texture2D>.Get("UI/Buttons/Dev/RangeMatch", true);
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
     }

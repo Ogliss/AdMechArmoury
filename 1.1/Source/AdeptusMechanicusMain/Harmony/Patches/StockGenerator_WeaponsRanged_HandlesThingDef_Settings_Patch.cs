@@ -24,63 +24,63 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             if (td.defName.Contains("OGI_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowImperialWeapons)
+                if (!AMAMod.settings.AllowImperialWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGAM_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowMechanicusWeapons)
+                if (!AMAMod.settings.AllowMechanicusWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGE_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowEldarWeapons)
+                if (!AMAMod.settings.AllowEldarWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGDE_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowDarkEldarWeapons)
+                if (!AMAMod.settings.AllowDarkEldarWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGC_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowChaosWeapons)
+                if (!AMAMod.settings.AllowChaosWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGT_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowTauWeapons)
+                if (!AMAMod.settings.AllowTauWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGO_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowOrkWeapons)
+                if (!AMAMod.settings.AllowOrkWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGN_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowNecronWeapons)
+                if (!AMAMod.settings.AllowNecronWeapons)
                 {
                     __result = false;
                 }
             }
             if (td.defName.Contains("OGTY_Gun_"))
             {
-                if (!SettingsHelper.latest.AllowTyranidWeapons)
+                if (!AMAMod.settings.AllowTyranidWeapons)
                 {
                     __result = false;
                 }
