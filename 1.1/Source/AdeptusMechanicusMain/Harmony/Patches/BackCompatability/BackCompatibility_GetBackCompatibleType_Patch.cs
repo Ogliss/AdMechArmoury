@@ -46,6 +46,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                     __result = type;
                 }
             }
+            if (providedClassName.Contains("AdeptusMechanicus.Verb_ShootEquipment"))
+            {
+                string name = "AbilitesExtended.Verb_ShootEquipment";
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type!=null)
+                {
+                    __result = type;
+                }
+            }
         }
     }
 

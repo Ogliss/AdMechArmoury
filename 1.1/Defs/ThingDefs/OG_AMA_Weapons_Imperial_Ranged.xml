@@ -2384,7 +2384,7 @@
 <!-- ====================== Kantrael Pattern ===================== -->
 <ThingDef ParentName="OG_Imperial_LasGun">
 	<defName>OGI_Gun_LasGun_Kantrael</defName>
-	<label>kantrael pattern lasrifle (I)</label>
+	<label>kantrael pattern lasgun (I)</label>
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.</description>
 	<graphicData>
@@ -2521,7 +2521,7 @@
 <!-- ====================== Triplex Pattern ===================== -->
 <ThingDef ParentName="OG_Imperial_LasGun">
 	<defName>OGI_Gun_LasGun_Triplex</defName>
-	<label>triplex pattern lasrifle (I)</label>
+	<label>triplex pattern lasgun (I)</label>
 	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 	<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.</description>
 	<graphicData>
@@ -2652,7 +2652,7 @@
 </ThingDef>
 
 <!-- ====================== Lascarbines ===================== -->
-<!-- ====================== Locke Pattern  ===================== -->
+<!-- ====================== Locke Pattern ===================== -->
 <ThingDef ParentName="OG_Imperial_LasGun">
 	<defName>OGI_Gun_LasGun_Locke</defName>
 	<label>locke pattern lascarbine (I)</label>
@@ -3826,7 +3826,7 @@
 			<li Class="AdeptusMechanicus.EffectProjectileExtension">
 			<explosionMote>true</explosionMote>
 			<explosionMoteSize>0.75</explosionMoteSize>
-			<ImpactMoteDef>Mote_JumpFlame</ImpactMoteDef>
+			<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
 			<ImpactMoteSize>2</ImpactMoteSize>
 			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
@@ -3863,7 +3863,7 @@
 		<li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
-		<ImpactMoteDef>Mote_JumpFlame</ImpactMoteDef>
+		<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
 		<ImpactMoteSize>2</ImpactMoteSize>
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
@@ -3900,7 +3900,7 @@
 		<li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
-		<ImpactMoteDef>Mote_JumpFlame</ImpactMoteDef>
+		<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
 		<ImpactMoteSize>2</ImpactMoteSize>
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
@@ -3935,8 +3935,8 @@
 		<li Class="AdeptusMechanicus.EffectProjectileExtension">
 		<explosionMote>true</explosionMote>
 		<explosionMoteSize>0.75</explosionMoteSize>
-		<ImpactMoteDef>Mote_JumpFlame</ImpactMoteDef>
-		<ImpactMoteSize>2</ImpactMoteSize>
+		<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
+		<ImpactMoteSize>2.5</ImpactMoteSize>
 		<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
 		<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 		</li>
@@ -4427,10 +4427,7 @@
 		<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
 		<drawSize>1.0</drawSize>			
 	</graphicData>
-	<comps>		
-	<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-		<randomised>true</randomised>
-	</li-->		
+	<comps>			
 	</comps>
 	<soundInteract>Interact_Rifle</soundInteract>
 	<statBases>
@@ -6443,6 +6440,14 @@
 		<armorPenetrationBase>0.14</armorPenetrationBase>
 		<speed>35</speed>
 	</projectile>
+	<modExtensions>
+		<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+		<AddHediffChance>0.35</AddHediffChance>
+		<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+		<CanResistHediff>true</CanResistHediff>
+		<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+		</li>
+	</modExtensions>
  </ThingDef>
   
  <ThingDef ParentName="OG_Imperial_Gun_Special">
@@ -6818,7 +6823,7 @@
 <!-- ====================== Ripper Pistol ===================== -->
 <ThingDef ParentName="OG_Imperial_Gun">
 	<defName>OGI_Gun_RipperPistol</defName>
-	<label>ripperpistol (I)</label>
+	<label>ripper pistol (I)</label>
 	<description>The Ripper Pistol is a modified Imperial Autopistol that is the favoured personal weapon of those, including Rogue Traders, who venture onto hostile Jungle Worlds and Death Worlds like Catachan. It fires specially designed armour-piercing rounds containing a vicious cocktail of venomous chemicals.\n\nIt is designed so that if the vicious impact of the bullet does not kill the target, the poisons flooding into its bloodstream will, and thus can bring down the largest opponents in a single shot. Often, a Ripper Pistol is the final word in terminal close encounters. As this weapon is designed to be used with a specific type of ammunition, it may not be equipped with any other unusual rounds.\n\nThe Ripper Pistol was made famous in the annals of the Astra Militarum by the Catachan Jungle Fighter Sly Marbo, the so-called "One Man Army," who uses one as his favourite sidearm.</description>
 	<graphicData>
 		<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RipperPistol</texPath>

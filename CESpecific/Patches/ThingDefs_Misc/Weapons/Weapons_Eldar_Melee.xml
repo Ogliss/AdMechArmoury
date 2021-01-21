@@ -2,7 +2,7 @@
 <Patch>
 
 <Operation Class="PatchOperationSequence">
-  <success>Always</success>
+  <!--success>Always</success-->
   <operations>
 	<!--==================== Eldar  - Scorpion Chainsword =========================-->
 	<li Class="PatchOperationReplace">
@@ -34,7 +34,8 @@
 					</capacities>
 					<power>20</power>
 					<cooldownTime>1.4</cooldownTime>
-					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.8</armorPenetrationSharp>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>point</label>
@@ -43,7 +44,8 @@
 					</capacities>
 					<power>30</power>
 					<cooldownTime>2</cooldownTime>
-					<armorPenetrationSharp>0.55</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+					<armorPenetrationSharp>18.8</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>
@@ -79,7 +81,8 @@
 					</capacities>
 					<power>40</power>
 					<cooldownTime>1.75</cooldownTime>
-					<armorPenetrationSharp>0.55</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.8</armorPenetrationSharp>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>point</label>
@@ -88,7 +91,8 @@
 					</capacities>
 					<power>20</power>
 					<cooldownTime>2.5</cooldownTime>
-					<armorPenetrationSharp>0.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.7</armorPenetrationBlunt>
+					<armorPenetrationSharp>18.8</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>
@@ -577,34 +581,6 @@
 	</li>
 
  	<!--==================== Eldar  - Singing Spear =========================--> 
-    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>Melee_SingingSpear</defName>
-    <statBases>
-        <SightsEfficiency>1.0</SightsEfficiency>
-        <ShotSpread>0.11</ShotSpread>
-        <SwayFactor>1.2</SwayFactor>
-        <Bulk>5.1</Bulk> 
-	</statBases>
-    <Properties>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>SingingSpear_Thrown</defaultProjectile>
-        <warmupTime>4.0</warmupTime>
-        <range>20</range>
-        <soundCast>Interact_BeatFire</soundCast>
-	</Properties>
-    
-    <FireModes>
-        <aiAimMode>AimedShot</aiAimMode>
-	</FireModes>
-    <weaponTags>
-		<li>ESingingSpear</li>
-		<li>EPsykerMelee</li>
-		<li>EArmoury</li>
-	</weaponTags>
-    
-  </li>
-	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Melee_SingingSpear"]/tools</xpath>
 		<value>
@@ -639,6 +615,54 @@
 			</tools>
 		</value>
 	</li>
+	<!--==================== Eldar - Singing Spear Thrown =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGE_Thrown_SingingSpear"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+				<defName>OGE_Thrown_SingingSpear</defName>
+				<label>small Shuriken</label>
+				<graphicData>
+					<texPath>Things/Projectile/SingingSpear_Thrown</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>OG_Power_Stab</damageDef>
+					<speed>45</speed>
+					<damageAmountBase>30</damageAmountBase>
+					<armorPenetrationSharp>9999</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+		</value>
+	</li>
+	
+    <!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>OGE_Melee_SingingSpear</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>5.1</Bulk> 
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGE_Thrown_SingingSpear</defaultProjectile>
+			<warmupTime>4.0</warmupTime>
+			<range>20</range>
+			<soundCast>Interact_BeatFire</soundCast>
+		</Properties>
+		
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>ESingingSpear</li>
+			<li>EPsykerMelee</li>
+			<li>EArmoury</li>
+		</weaponTags>
+    </li-->
 	
   </operations>
 </Operation>

@@ -50,7 +50,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 if (__instance.def.HasModExtension<EffecterProjectileExtension>())
                 {
-                    __instance.def.GetModExtension<EffecterProjectileExtension>().ApplyEffect(hitThing);
+                    for (int i = 0; i < __instance.def.modExtensions.Count; i++)
+                    {
+                        EffecterProjectileExtension ext = __instance.def.modExtensions[i] as EffecterProjectileExtension;
+                        if (ext != null)
+                        {
+                            ext.ApplyEffect(hitThing);
+                        }
+
+                    }
+                //    __instance.def.GetModExtension<EffecterProjectileExtension>().ApplyEffect(hitThing);
                 }
 
             }

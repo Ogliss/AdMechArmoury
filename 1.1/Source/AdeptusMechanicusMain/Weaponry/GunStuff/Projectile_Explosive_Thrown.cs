@@ -11,13 +11,20 @@ namespace AdeptusMechanicus
 	// AdeptusMechanicus.Projectile_Explosive_Thrown
 	class Projectile_Explosive_Thrown : Projectile_Explosive
     {
-
+		private int rotinc = 0;
+		private int rotrate = Rand.Range(-3, 3);
+		private int heightinc = Rand.Range(-1, 3);
 		// Token: 0x06001651 RID: 5713 RVA: 0x00081EDC File Offset: 0x000800DC
 		public override void Draw()
 		{
 			float num = this.ArcHeightFactor * GenMath.InverseParabola(this.DistanceCoveredFraction);
 			Vector3 drawPos = this.DrawPos;
+
 			Vector3 position = drawPos + new Vector3(0f, 0f, 1f) * num;
+			if (this.ticksToImpact > 0 && !Find.TickManager.Paused)
+			{
+				this.rotinc += rotrate;
+			}
 			if (this.def.projectile.shadowSize > 0f)
 			{
 				this.DrawShadow(drawPos, num);
@@ -29,14 +36,16 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				return Quaternion.LookRotation((this.destination - this.origin).Yto0());
+				// Time.deltaTime
+
+				return Quaternion.LookRotation((this.destination - this.origin).Yto0().RotatedBy(rotinc));
 			}
 		}
 		private float ArcHeightFactor
 		{
 			get
 			{
-				float num = this.def.projectile.arcHeightFactor;
+				float num = this.def.projectile.arcHeightFactor + heightinc;
 				float num2 = (this.destination - this.origin).MagnitudeHorizontalSquared();
 				if (num * num > num2 * 0.2f * 0.2f)
 				{

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
-using Verse.AI;
-using Verse.AI.Group;
 using HarmonyLib;
-using Verse.Sound;
-using AdeptusMechanicus;
-using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 
 namespace AdeptusMechanicus.HarmonyInstance
@@ -21,7 +12,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(Pawn __instance, Vector3 drawLoc)
         {
             CompFloating floater = __instance.TryGetComp<CompFloating>();
-            if (floater!=null)
+            if (floater != null && !__instance.Dead && !__instance.Downed && __instance.Awake())
             {
             //    Log.Message("DrawAt patch for floater " + __instance);
                 if (floater.Props.useShadow)

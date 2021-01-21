@@ -55,20 +55,14 @@ namespace AdeptusMechanicus
             Graphics.DrawMesh(this.boltMesh, this.origin, this.direction, FadedMaterialPool.FadedVersionOf(this.mat, (float)magnitude), 0);
         }
         
-
-        // Token: 0x040006B3 RID: 1715
         private IntVec3 hitThing;
 
-        // Token: 0x040006B4 RID: 1716
         private Vector3 origin;
 
-        // Token: 0x040006B5 RID: 1717
         private Mesh boltMesh;
 
-        // Token: 0x040006B6 RID: 1718
         private Quaternion direction;
 
-        // Token: 0x040006B7 RID: 1719
         private Material mat;
     }
 }

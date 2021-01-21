@@ -25,6 +25,26 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName == "OGDE_Melee_WytchKnife")
+                    {
+                        __result = "OGDE_Melee_WychKnife";
+                        return;
+                    }
+                    if (defName == "OGDE_Gun_Shardcarbine")
+                    {
+                        __result = "OGDE_Gun_ShardCarbine";
+                        return;
+                    }
+                    if (defName == "OGDE_Gun_DisintergratorCannon")
+                    {
+                        __result = "OGDE_Gun_DisintegratorCannon";
+                        return;
+                    }
+                    if (defName == "OGDE_Bullet_DisintergratorCannon")
+                    {
+                        __result = "OGDE_Bullet_DisintegratorCannon";
+                        return;
+                    }
                     if (defName == "OGK_Apparel_TribalKroot")
                     {
                         __result = "OGK_Apparel_Tribalwear";
@@ -410,6 +430,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
 
+                    if (defName == "Meat_OG_Tau_GunDrone")
+                    {
+                        newName = "Steel";
+                    }
                     if (defName == "OG_Human_Imperial" || defName == "OG_Human_ELT")
                     {
                         newName = "Human";

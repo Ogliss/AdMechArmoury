@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdeptusMechanicus.AirStrikes;
 using AdeptusMechanicus.HarmonyInstance;
 using RimWorld;
 using RimWorld.Planet;
@@ -27,6 +28,22 @@ namespace Verse
 		}
 		*/
 
+		// Verse.DebugToolsSpawning
+		[DebugAction("General", "Call Air Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void CallAirstrikeOf()
+		{
+			List<FloatMenuOption> list = new List<FloatMenuOption>();
+			foreach (AirStrikeDef StrikeDef in DefDatabase<AirStrikeDef>.AllDefs)
+			{
+				AirStrikeDef localStrike = StrikeDef;
+				list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
+				{
+					Util_Spaceship.SpawnStrikeShip(Find.CurrentMap, UI.MouseCell(), localStrike);
+				}, MenuOptionPriority.Default, null, null, 0f, null, null));
+			}
+			Find.WindowStack.Add(new FloatMenu(list));
+		}
+		
 		// Verse.DebugToolsSpawning
 		[DebugAction("General", "Destroy All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void DestroyAllThingsOf()

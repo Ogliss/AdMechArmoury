@@ -116,6 +116,10 @@
     <Compile Include="Apparel\ExtraApparelPartProps.cs" />
     <Compile Include="Apparel\Graphic_MultiMask.cs" />
     <Compile Include="Apparel\ShoulderPadEntryProps.cs" />
+    <Compile Include="AirStrikes\SpaceshipKind.cs" />
+    <Compile Include="AirStrikes\AirStrikeDef.cs" />
+    <Compile Include="AirStrikes\WeaponDef.cs" />
+    <Compile Include="AirStrikes\Util_Spaceship.cs" />
     <Compile Include="Comps_Colourable\CompColorableTwo.cs" />
     <Compile Include="Comps_Colourable\CompColorableTwoUtility.cs" />
     <Compile Include="Comps_Colourable\CompColorableTwoOwner.cs" />
@@ -158,6 +162,8 @@
     <Compile Include="ExtentionMethods\Extensions.cs" />
     <Compile Include="ExtentionMethods\VerbExtensions.cs" />
     <None Include="Harmony\Patches\Pawn_PathFollower_PawnCanOccupy_Floater_Patch.cs.bak" />
+    <Compile Include="AirStrikes\FlyingSpaceship.cs" />
+    <Compile Include="AirStrikes\FlyingSpaceshipAirStrike.cs" />
     <Compile Include="Harmony\CompWearable.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch - Copy %282%29.cs" />
     <Compile Include="Harmony\Patches\Ext_Pawn_TryStartOffHandAttack_DualWield_Patch.cs" />
@@ -168,7 +174,7 @@
     <Compile Include="Harmony\Patches\Corpse_IngestibleNow_Construct_Patch.cs" />
     <Compile Include="Harmony\Patches\StartingPawnUtility_RegenerateStartingPawnInPlace_SpecificStartingPawns_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingDef_get_PlayerAcquirable_ModOptions_Patch.cs" />
-    <Compile Include="Harmony\Patches\BackCompatibility_Backstory_GetIdentifierClosestMatch_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_Backstory_GetIdentifierClosestMatch_Patch.cs" />
     <Compile Include="Harmony\Patches\ArmorUtility_GetPostArmorDamage_InvunerableSave_Transpiler.cs" />
     <Compile Include="Harmony\Patches\FactionGenerator_NewGeneratedFactionWithRelations_Refugee_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_Impact_ProjectileExtension_Patches.cs" />
@@ -187,7 +193,6 @@
     <Compile Include="Harmony\Patches\Projectile_Launch_MuzzlePosition_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
     <Compile Include="Recipes\Class1.cs" />
-    <None Include="SettingsMenu\Class1.cs.bak" />
     <Compile Include="SettingsMenu\IntergrationMenus.cs" />
     <Compile Include="SettingsMenu\ArmouryMenus.cs" />
     <Compile Include="SettingsMenu\Dialog_CompatabilityPatches.cs" />
@@ -299,8 +304,9 @@
     <Compile Include="UtilsStuff\PawnGraphicSet_Invisible.cs" />
     <Compile Include="UtilsStuff\TexButton.cs" />
     <Compile Include="UtilsStuff\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
-    <Compile Include="Weaponry\Class1.cs" />
-    <Compile Include="Weaponry\GunStuff\Class1.cs" />
+    <Compile Include="Weaponry\Verb_MeleeAttackDamage_Polearm.cs" />
+    <None Include="Weaponry\GunStuff\ArcingBullet.bak" />
+    <Compile Include="Weaponry\GunStuff\Projectile_Explosive_Thrown.cs" />
     <Compile Include="Weaponry\GunStuff\Graphic_Cycle.cs" />
     <Compile Include="Weaponry\CompReliability.cs" />
     <Compile Include="Weaponry\GunStuff\ArcingBullet.cs" />
@@ -312,7 +318,7 @@
     <Compile Include="Weaponry\GunStuff\Sonic_Blast.cs" />
     <Compile Include="Weaponry\GunStuff\CompWeapon_GunSpecialRules.cs" />
     <None Include="_HumanlikeOrdersUtility.cs.bak" />
-    <None Include="Harmony\Patches\BackCompatibility_GameLoadingVars_Patch.cs.bak" />
+    <None Include="Harmony\Patches\BackCompatability\BackCompatibility_GameLoadingVars_Patch.cs.bak" />
     <Compile Include="Backstories\BackstoryDef.cs" />
     <Compile Include="DefExtentions\ResearchDefExtensions.cs" />
     <Compile Include="DefExtentions\BackstoryExtensions.cs" />
@@ -324,7 +330,7 @@
     <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch.cs" />
     <Compile Include="Harmony\Patches\ApparelProperties_LastLayer_ShellExtra_Patch.cs" />
-    <Compile Include="Harmony\Patches\BackCompatibility_GetBackCompatibleType_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_GetBackCompatibleType_Patch.cs" />
     <Compile Include="Harmony\Patches\AgeInjuryUtility_RandomHediffsToGainOnBirthday_RejuveTreatment_Patch.cs" />
     <Compile Include="Harmony\Patches\HediffGiver_RandomAgeCurved_OnIntervalPassed_RejuveTreatment_Patch.cs" />
     <None Include="Harmony\Patches\OutfitDatabase_GenerateStartingOutfits_Patch.cs.bak" />
@@ -339,7 +345,7 @@
     <Compile Include="Harmony\Patches\PawnGenerator_GenerateInitialHediffs_StartWithHediff_Patch.cs" />
     <Compile Include="Harmony\Patches\FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_GetGizmos_WeaponGizmoGetter_Patch.cs" />
-    <Compile Include="Harmony\Patches\BackCompatibility_BackCompatibleDefName_Patch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
     <None Include="Harmony\Patches\Projectile_Impact_TeslaWeapon_Patch.cs.bak" />
@@ -355,7 +361,6 @@
     <Compile Include="UtilsStuff\HediffComp_DamageOverTime.cs" />
     <Compile Include="UtilsStuff\DamageWorkers\DamageWorker_WarpFlameNoCamShake.cs" />
     <Compile Include="UtilsStuff\PatchOps\PatchOperationPlayerName.cs" />
-    <None Include="SettingsMenu\AMMod.cs.bak" />
     <Compile Include="UtilsStuff\Warpfire.cs" />
     <Compile Include="UtilsStuff\WarpfireUtility.cs" />
     <Compile Include="UtilsStuff\WarpSpark.cs" />
@@ -533,5 +538,6 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
