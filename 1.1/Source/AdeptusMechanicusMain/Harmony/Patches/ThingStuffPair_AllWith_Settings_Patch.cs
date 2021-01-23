@@ -59,7 +59,8 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 __result.RemoveAll(x => (x.thing.defName.Contains("OGTY_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
             }
-            
+        //    __result.RemoveAll(x=> !Find.World.GetComponent<RelicTracker>().CanSpawn(x.thing));
+
             /*
             foreach (ThingStuffPair item in __result)
             {

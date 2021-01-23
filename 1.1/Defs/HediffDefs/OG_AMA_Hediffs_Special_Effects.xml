@@ -2,7 +2,7 @@
 <Defs>
 <!-- ==================== Base HeDiffs ========================= -->
 	<HediffDef Name="OGSpecialBadHeDiff" Abstract="True">
-	<description>description</description>
+		<description>description</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 		<everCurableByItem>false</everCurableByItem>
@@ -15,7 +15,7 @@
 	</HediffDef>
 	
 	<HediffDef Name="OGSpecialGoodHeDiff" Abstract="True">
-	<description>description</description>
+		<description>description</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.5, 0.5, 0.9)</defaultLabelColor>
 		<everCurableByItem>false</everCurableByItem>
@@ -97,11 +97,38 @@
   <HediffDef ParentName="OGSpecialGoodHeDiff">
     <defName>OGU_HeDiff_Webbed</defName>
     <label>webbed</label>
-    <labelNoun>web</labelNoun>
+    <labelNoun>a sticky web</labelNoun>
     <stages>
       <li>
-        <label>initial</label>
-        <becomeVisible>false</becomeVisible>
+        <statFactors>
+          <MoveSpeed>-0.25</MoveSpeed>
+          <MeleeHitChance>-0.25</MeleeHitChance>
+          <MeleeDodgeChance>-0.25</MeleeDodgeChance>
+        </statFactors>
+      </li>
+      <li>
+		<minSeverity>0.25</minSeverity>
+        <statFactors>
+          <MoveSpeed>-0.5</MoveSpeed>
+          <MeleeHitChance>-0.5</MeleeHitChance>
+          <MeleeDodgeChance>-0.5</MeleeDodgeChance>
+        </statFactors>
+      </li>
+      <li>
+		<minSeverity>0.5</minSeverity>
+        <statFactors>
+          <MoveSpeed>-0.75</MoveSpeed>
+          <MeleeHitChance>-0.75</MeleeHitChance>
+          <MeleeDodgeChance>-0.75</MeleeDodgeChance>
+        </statFactors>
+      </li>
+      <li>
+		<minSeverity>0.75</minSeverity>
+        <statFactors>
+          <MoveSpeed>-1</MoveSpeed>
+          <MeleeHitChance>-1</MeleeHitChance>
+          <MeleeDodgeChance>-1</MeleeDodgeChance>
+        </statFactors>
       </li>
     </stages>
     <comps>

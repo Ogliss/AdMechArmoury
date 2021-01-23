@@ -23,6 +23,11 @@ namespace AdeptusMechanicus.HarmonyInstance
 			{
 				return;
 			}
+            if (identifier == "OG_Ork_Smart_Child")
+            {
+				identifier = "OG_Ork_Smart_Child";
+				return;
+			}
 		//	Log.Message("Find matching backstory for: " + identifier);
 			if (!identifier.StartsWith("OG_Imperial_") && BackstoryDatabase.allBackstories.ContainsKey("OG_Imperial_" + identifier))
 			{

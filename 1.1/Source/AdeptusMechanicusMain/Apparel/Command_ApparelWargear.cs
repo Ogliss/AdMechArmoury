@@ -5,6 +5,7 @@ using Verse;
 namespace AdeptusMechanicus
 {
 	// Token: 0x02000DCC RID: 3532
+	[StaticConstructorOnStartup]
 	public class Command_ApparelWargear : Command_VerbTarget
 	{
 		// Token: 0x060056B5 RID: 22197 RVA: 0x001D03F0 File Offset: 0x001CE5F0

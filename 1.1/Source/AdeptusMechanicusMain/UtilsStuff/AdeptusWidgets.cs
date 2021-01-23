@@ -10,6 +10,7 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public class AdeptusWidgets
     {
 

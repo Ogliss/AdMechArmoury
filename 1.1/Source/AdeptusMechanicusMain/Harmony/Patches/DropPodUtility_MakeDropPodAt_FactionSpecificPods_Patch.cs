@@ -26,11 +26,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 Thing thing = list.RandomElement();
                 FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
-                if (thing.Faction.IsPlayer || extension.DropPodOverride == DeepStrikeType.Drop && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )
+                if (thing.Faction.IsPlayer || extension.DropPodOverride == DeepStrikeType.DropPod && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )
                 {
                     return result;
                 }
-                if (extension.DropPodOverride == DeepStrikeType.Drop)
+                if (extension.DropPodOverride == DeepStrikeType.DropPod)
                 {
                     DeepStrikeUtility.MakeDropPodAt(c, map, info, extension);
                     result = false;

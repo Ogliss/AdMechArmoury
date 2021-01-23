@@ -49,7 +49,7 @@ namespace AdeptusMechanicus
             string str = string.Empty;
             foreach (var item in strike.members)
             {
-                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Drop)
+                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.DropPod)
                 {
                     Droppers.Add(item);
                 }
@@ -69,7 +69,7 @@ namespace AdeptusMechanicus
             List<Pawn> pawns = new List<Pawn>();
             if (!Droppers.NullOrEmpty())
             {
-                str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop) : ", "+ DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.Drop);
+                str += str == string.Empty ? DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.DropPod) : ", "+ DeepStrikeUtility.DeepstrikeArrivalmode(DeepStrikeType.DropPod);
                 pawns.AddRange(Droppers);
                 ArriveDropPod(Droppers);
                 Droppers.Clear();
@@ -107,7 +107,7 @@ namespace AdeptusMechanicus
                 IntVec3 dropCenter;
                 if (DropCellFinder.TryFindRaidDropCenterClose(out dropCenter, map))
                 {
-                    DeepStrikeUtility.DropThingsNear(dropCenter, map, Gen.YieldSingle<Thing>(pawns[i]), 50, false, false, true, DeepStrikeType.Drop);
+                    DeepStrikeUtility.DropThingsNear(dropCenter, map, Gen.YieldSingle<Thing>(pawns[i]), 50, false, false, true, DeepStrikeType.DropPod);
                 }
             }
             Droppers.Clear();

@@ -99,13 +99,13 @@ namespace AdeptusMechanicus
 						if (!this.active)
 						{
 							this.Color = generator.NewRandomizedColor();
-							Log.Message(this + " getting new random colour " + this.Color + " for " + this.parent);
+						//	Log.Message(this + " getting new random colour " + this.Color + " for " + this.parent);
 						}
 					}
 					if (!this.activeTwo && !twoColor.optionsTwo.NullOrEmpty())
 					{
 						this.ColorTwo = twoColor.NewRandomizedColorTwo();
-						Log.Message(this + " getting new random colourtwo " + this.ColorTwo + " for " + this.parent);
+					//	Log.Message(this + " getting new random colourtwo " + this.ColorTwo + " for " + this.parent);
 					}
 				}
                 else

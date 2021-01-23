@@ -9,6 +9,7 @@ using Verse;
 namespace AdeptusMechanicus
 {
 	// AdeptusMechanicus.Projectile_Explosive_Thrown
+	[StaticConstructorOnStartup]
 	class Projectile_Explosive_Thrown : Projectile_Explosive
     {
 		private int rotinc = 0;

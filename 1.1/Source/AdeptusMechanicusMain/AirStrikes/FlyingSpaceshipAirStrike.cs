@@ -90,7 +90,8 @@ namespace AdeptusMechanicus.AirStrikes
 			this.spaceshipMatrix.SetTRS(this.DrawPos + Altitudes.AltIncVect, this.spaceshipExactRotation.ToQuat(), this.spaceshipScale);
 			Graphics.DrawMesh(MeshPool.plane10, this.spaceshipMatrix, this.spaceshipTexture, 0);
 			this.spaceshipShadowMatrix.SetTRS(this.ShadowDrawPos + Altitudes.AltIncVect, this.spaceshipExactRotation.ToQuat(), this.spaceshipShadowScale);
-			Graphics.DrawMesh(MeshPool.plane10, this.spaceshipShadowMatrix, FadedMaterialPool.FadedVersionOf(this.spaceshipShadowTexture, 0.4f * GenCelestial.CurShadowStrength(base.Map)), 0);
+			Graphics.DrawMesh(MeshPool.plane10, this.spaceshipShadowMatrix, FadedMaterialPool.FadedVersionOf(this.spaceshipShadowTexture, 0.75f * GenCelestial.CurShadowStrength(base.Map)), 0);
+
 		}
 
 		// Token: 0x0600013B RID: 315 RVA: 0x0000B5A0 File Offset: 0x000097A0

@@ -171,7 +171,7 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-					if (ActiveFaction) Log.Message("chached faction " + faction.LabelCap +" Faction Colour Active: " +ActiveFaction + " Colour: "+FactionActive+ " " +factioncolor +" ColourTwo: " + FactionActiveTwo + " " + factioncolorTwo);
+				//	if (ActiveFaction) Log.Message("chached faction " + faction.LabelCap +" Faction Colour Active: " +ActiveFaction + " Colour: "+FactionActive+ " " +factioncolor +" ColourTwo: " + FactionActiveTwo + " " + factioncolorTwo);
 				}
 				return faction;
 			}
@@ -202,7 +202,7 @@ namespace AdeptusMechanicus
 							this.FactionActiveTwo = false;
 						}
 						this.ActiveFaction = true;
-						Log.Message("set faction " + faction.LabelCap + " Colour: " + factioncolor + " ColourTwo: " + factioncolorTwo);
+					//	Log.Message("set faction " + faction.LabelCap + " Colour: " + factioncolor + " ColourTwo: " + factioncolorTwo);
 						return;
 					}
 				}

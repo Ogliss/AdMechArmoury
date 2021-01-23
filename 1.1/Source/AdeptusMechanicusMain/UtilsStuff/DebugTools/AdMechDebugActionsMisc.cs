@@ -33,12 +33,13 @@ namespace Verse
 		private static void CallAirstrikeOf()
 		{
 			List<FloatMenuOption> list = new List<FloatMenuOption>();
+			IntVec3 cell = UI.MouseCell();
 			foreach (AirStrikeDef StrikeDef in DefDatabase<AirStrikeDef>.AllDefs)
 			{
 				AirStrikeDef localStrike = StrikeDef;
 				list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
 				{
-					Util_Spaceship.SpawnStrikeShip(Find.CurrentMap, UI.MouseCell(), localStrike);
+					Util_Spaceship.SpawnStrikeShip(Find.CurrentMap, cell, localStrike);
 				}, MenuOptionPriority.Default, null, null, 0f, null, null));
 			}
 			Find.WindowStack.Add(new FloatMenu(list));
