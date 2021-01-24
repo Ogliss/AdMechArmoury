@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Humanoid Alien Races 2.0 - Add notXenophobistTowards field to Humans -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>Humanoid Alien Races 2.0</li>
+					<li>erdelf.HumanoidAlienRaces</li>
+				</mods>
+				<match Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/notXenophobistTowards</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings</xpath>
+						<value>
+							<notXenophobistTowards>
+								<li>Human</li>
+								<li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Human_Mechanicus</li>
+								<li MayRequire="Ogliss.AdMech.Xenobiologis">OG_Abhuman_Ratlin</li>
+								<li MayRequire="Ogliss.AdMech.Astartes">OG_Human_Astartes</li>
+								<li MayRequire="Ogliss.AliceTries.GeneSeed">AstarteAdaptusCore</li>
+								<li MayRequire="Ogliss.AliceTries.GeneSeed">AstarteSpaceMarine</li>
+								<li MayRequire="Ogliss.AliceTries.GeneSeed">AdaptusCustodes</li>
+							</notXenophobistTowards>
+						</value>
+					</nomatch>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+	
+</Patch>

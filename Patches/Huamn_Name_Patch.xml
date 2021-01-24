@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Adds Name attribute to Human race if missing -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="HumanRace"]</xpath>
+		<nomatch Class="PatchOperationAttributeSet">
+			<xpath>/Defs/ThingDef[defName = "Human"]</xpath>
+			<attribute>Name</attribute>
+			<value>HumanRace</value>
+		</nomatch>
+	</Operation>
+	 
+</Patch>

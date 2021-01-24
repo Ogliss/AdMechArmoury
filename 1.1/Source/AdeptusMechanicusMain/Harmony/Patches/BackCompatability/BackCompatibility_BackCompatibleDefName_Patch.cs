@@ -434,6 +434,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = "Steel";
                     }
+                    if (defName == "OG_Abhuman_Ratling")
+                    {
+                        newName = "OG_Abhuman_Ratlin";
+                    }
+                    if (defName == "Corpse_OG_Abhuman_Ratling")
+                    {
+                        newName = "Corpse_OG_Abhuman_Ratlin";
+                    }
                     if (defName == "OG_Human_Imperial" || defName == "OG_Human_ELT")
                     {
                         newName = "Human";

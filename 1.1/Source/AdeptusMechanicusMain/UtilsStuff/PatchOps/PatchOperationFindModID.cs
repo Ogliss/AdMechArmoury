@@ -13,9 +13,16 @@ namespace Verse
 			bool flag = false;
 			for (int i = 0; i < this.mods.Count; i++)
 			{
+				if (ModLister.HasActiveModWithName(this.mods[i]))
+				{
+					flag = true;
+					Log.Message("Found Named " + this.mods[i]);
+					break;
+				}
 				if (ModLister.GetActiveModWithIdentifier(this.mods[i]) != null)
 				{
 					flag = true;
+					Log.Message("Found ID " + this.mods[i]);
 					break;
 				}
 			}
