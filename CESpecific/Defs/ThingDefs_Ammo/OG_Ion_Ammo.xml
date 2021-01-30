@@ -15,7 +15,7 @@
 		<defName>AmmoSet_OGIonRifle</defName>
 		<label>Ion charge</label>
 		<ammoTypes>
-			<Ammo_OGIonRifle>OGT_Bullet_IonRifle</Ammo_OGIonRifle>
+			<OG_Ammo_IonRifle>OGT_Bullet_IonRifle</OG_Ammo_IonRifle>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -37,7 +37,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGIonRifleBase">
-		<defName>Ammo_OGIonRifle</defName>
+		<defName>OG_Ammo_IonRifle</defName>
 		<label>Ion cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Ion</texPath>
@@ -50,7 +50,7 @@
 	</ThingDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGIonRifle</defName>
+		<defName>MakeOG_Ammo_IonRifle</defName>
 		<label>make small Ion capacitor x70</label>
 		<description>Craft 70 small Ion capacitor.</description>
 		<jobString>Making small Ion capacitor.</jobString>
@@ -79,34 +79,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGIonRifle>70</Ammo_OGIonRifle>
+			<OG_Ammo_IonRifle>70</OG_Ammo_IonRifle>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
-
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGIonRifle" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/IonBeamSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OGTIon</damageDef>
-			<speed>135</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGIonRifle">
-		<defName>Bullet_OGIonRifle</defName>
-		<label>Ion Rifle Beam</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>45</damageAmountBase>
-			<explosionRadius>0.75</explosionRadius>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef-->
 
 </Defs>

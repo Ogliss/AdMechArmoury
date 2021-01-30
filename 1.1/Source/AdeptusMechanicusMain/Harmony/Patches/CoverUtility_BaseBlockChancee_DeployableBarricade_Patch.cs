@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
+using AdeptusMechanicus;
 using HarmonyLib;
 using Verse.Sound;
 

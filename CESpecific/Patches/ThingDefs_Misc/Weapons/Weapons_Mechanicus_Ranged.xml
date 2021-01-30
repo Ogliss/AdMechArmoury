@@ -2,50 +2,47 @@
 <Patch>
 
 <Operation Class="PatchOperationSequence">
-  <!--success>Always</success-->
-  <operations>
+	<!--success>Always</success-->
+	<operations>
 <!-- ====================== Radium Pistol ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_RadiumPistol</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.25</SwayFactor>
-      <Bulk>2.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_RadiumPistol</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.8</SightsEfficiency>
+		<ShotSpread>0.15</ShotSpread>
+		<SwayFactor>1.25</SwayFactor>
+		<Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>0.25</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_RadiumPistol</defaultProjectile>
-      <warmupTime>0.3</warmupTime>
-      <range>22</range>
-      <soundCast>Shot_ChargeBlaster</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_RadiumPistol</defaultProjectile>
+		<warmupTime>0.3</warmupTime>
+		<range>22</range>
+		<soundCast>Shot_ChargeBlaster</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
 		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <burstShotCount>6</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>12</magazineSize>
-      <reloadTime>4</reloadTime>
-      <ammoSet>AmmoSet_OGRadiumPistol</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>6</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>12</magazineSize>
+		<reloadTime>4</reloadTime>
+		<ammoSet>AmmoSet_OGRadiumPistol</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
 		<aimedBurstShotCount>3</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_RadiumPistol"]/tools</xpath>
 		<value>
@@ -89,47 +86,44 @@
 			</ThingDef>
 		</value>
 	</li>
-  
-<!-- ====================== Radium Carbine ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_RadiumCarbine</defName>
-    <statBases>
-      <Mass>3.8</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.09</ShotSpread>
-      <SwayFactor>1.25</SwayFactor>
-      <Bulk>8.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>1.25</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_RadiumCarbine</defaultProjectile>
-      <warmupTime>1</warmupTime>
-      <range>38</range>
-      <soundCast>Shot_ChargeBlaster</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <burstShotCount>16</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>20</magazineSize>
-      <reloadTime>4.5</reloadTime>
-      <ammoSet>AmmoSet_OGRadiumCarbine</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
 	
-    </weaponTags>
-  </li>
+<!-- ====================== Radium Carbine ===================== -->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_RadiumCarbine</defName>
+	<statBases>
+		<Mass>3.8</Mass>
+		<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.09</ShotSpread>
+		<SwayFactor>1.25</SwayFactor>
+		<Bulk>8.50</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>1.25</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_RadiumCarbine</defaultProjectile>
+		<warmupTime>1</warmupTime>
+		<range>38</range>
+		<soundCast>Shot_ChargeBlaster</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		<burstShotCount>16</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>20</magazineSize>
+		<reloadTime>4.5</reloadTime>
+		<ammoSet>AmmoSet_OGRadiumCarbine</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>	
+	</FireModes>
+	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_RadiumCarbine"]/tools</xpath>
@@ -157,7 +151,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Bullet_RadiumCarbine"]</xpath>
 		<value>
@@ -184,47 +178,44 @@
 			</ThingDef>
 		</value>
 	</li>
-  
-<!-- ====================== Radium Jezzail===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_RadiumJezzail</defName>
-    <statBases>
-      <Mass>4.1</Mass>
-      <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.02</ShotSpread>
-      <SwayFactor>1.7</SwayFactor>
-      <Bulk>12.50</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_RadiumJezzail</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>55</range>
-      <soundCast>Shot_ChargeBlaster</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-		<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
-        <burstShotCount>2</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>10</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGRadiumJezzail</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
 	
-    </weaponTags>
-  </li>
-  
+<!-- ====================== Radium Jezzail===================== -->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_RadiumJezzail</defName>
+	<statBases>
+		<Mass>4.1</Mass>
+		<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.02</ShotSpread>
+		<SwayFactor>1.7</SwayFactor>
+		<Bulk>12.50</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_RadiumJezzail</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>55</range>
+		<soundCast>Shot_ChargeBlaster</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+		<burstShotCount>2</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>10</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGRadiumJezzail</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>	
+	</FireModes>
+	</li>
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_RadiumJezzail"]/tools</xpath>
 		<value>
@@ -251,7 +242,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Bullet_RadiumJezzail"]</xpath>
 		<value>
@@ -278,19 +269,19 @@
 			</ThingDef>
 		</value>
 	</li>
-  
+	
 <!-- ====================== Macro Stubber ===================== --> 
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_MacroStubber</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.7</SightsEfficiency>
-      <ShotSpread>0.17</ShotSpread>
-      <SwayFactor>1.26</SwayFactor>
-      <Bulk>2.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_MacroStubber</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.7</SightsEfficiency>
+		<ShotSpread>0.17</ShotSpread>
+		<SwayFactor>1.26</SwayFactor>
+		<Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>0.25</recoilAmount>
 		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		<hasStandardCommand>true</hasStandardCommand>
@@ -301,25 +292,22 @@
 		<soundCastTail>GunTail_Heavy</soundCastTail>
 		<muzzleFlashScale>14</muzzleFlashScale>
 		<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
-        <targetParams>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
 			<canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>21</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGMacroStubber</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>21</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGMacroStubber</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_MacroStubber"]/tools</xpath>
 		<value>
@@ -361,47 +349,44 @@
 	</li>
 	
 <!-- ====================== Stub Carbine ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_StubCarbine</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.08</ShotSpread>
-      <SwayFactor>1.28</SwayFactor>
-      <Bulk>6.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_StubCarbine</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.08</ShotSpread>
+		<SwayFactor>1.28</SwayFactor>
+		<Bulk>6.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.12</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_StubCarbine</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>36</range>
-      <soundCast>Shot_MachinePistol</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_StubCarbine</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>36</range>
+		<soundCast>Shot_MachinePistol</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
 		<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-        <burstShotCount>16</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>32</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGStubCarbine</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>16</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>32</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGStubCarbine</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
 		<aimedBurstShotCount>8</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_StubCarbine"]/tools</xpath>
 		<value>
@@ -427,7 +412,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Bullet_StubCarbine"]</xpath>
 		<value>
@@ -487,9 +472,6 @@
 		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
 	</FireModes>
-	<weaponTags>
-
-	</weaponTags>
 	</li>
 
 	<li Class="PatchOperationReplace">
@@ -594,9 +576,6 @@
 		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
 	</FireModes>
-	<weaponTags>
-
-	</weaponTags>
 	</li>
 		
 	<li Class="PatchOperationReplace">
@@ -729,12 +708,8 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aiUseBurstMode>TRUE</aiUseBurstMode>		
 		</FireModes>
-		<weaponTags>
-			<li>Gun</li>
-			<li>RadiumPistol</li>
-		</weaponTags>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_ArcPistol"]/tools</xpath>
 		<value>
@@ -751,7 +726,7 @@
 			</tools>
 		</value>
 	</li>
-    
+	
 	<!-- ====================== Arc Rifle ===================== -->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>OGAM_Gun_ArcRifle</defName>
@@ -788,11 +763,8 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aiUseBurstMode>TRUE</aiUseBurstMode>	
 		</FireModes>
-		<weaponTags>
-
-		</weaponTags>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_ArcRifle"]/tools</xpath>
 		<value>
@@ -819,44 +791,41 @@
 			</tools>
 		</value>
 	</li>
-  
-<!-- ====================== Galvanic Rifle ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_GalvanicRifle</defName>
-    <statBases>
-      <Mass>5.4</Mass>
-      <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.03</ShotSpread>
-      <SwayFactor>1.65</SwayFactor>
-      <Bulk>13.30</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>55</range>
-      <soundCast>Shot_ChargeRifle</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>1</magazineSize>
-      <reloadTime>1</reloadTime>
-      <ammoSet>AmmoSet_OGGalvanicRifle</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
 	
-    </weaponTags>
-  </li>
-  
+<!-- ====================== Galvanic Rifle ===================== -->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_GalvanicRifle</defName>
+	<statBases>
+		<Mass>5.4</Mass>
+		<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.03</ShotSpread>
+		<SwayFactor>1.65</SwayFactor>
+		<Bulk>13.30</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>55</range>
+		<soundCast>Shot_ChargeRifle</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>1</magazineSize>
+		<reloadTime>1</reloadTime>
+		<ammoSet>AmmoSet_OGGalvanicRifle</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_GalvanicRifle"]/tools</xpath>
 		<value>
@@ -882,7 +851,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Bullet_GalvanicRifle"]</xpath>
 		<value>
@@ -897,8 +866,8 @@
 					<flyOverhead>false</flyOverhead>
 					<damageDef>OGIGalvanic</damageDef>
 					<damageAmountBase>24</damageAmountBase>
-					  <armorPenetrationSharp>16</armorPenetrationSharp>
-					  <armorPenetrationBlunt>80</armorPenetrationBlunt>
+						<armorPenetrationSharp>16</armorPenetrationSharp>
+						<armorPenetrationBlunt>80</armorPenetrationBlunt>
 					<speed>168</speed>
 				</projectile>
 				<thingClass>CombatExtended.BulletCE</thingClass>
@@ -907,43 +876,40 @@
 	</li>
 	
 <!-- ====================== Transuranic Arquebus ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_TransuranicArquebus</defName>
-    <statBases>
-      <Mass>5.8</Mass>
-      <RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.6</SightsEfficiency>
-      <ShotSpread>0.05</ShotSpread>
-      <SwayFactor>1.65</SwayFactor>
-      <Bulk>15.50</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_TransuranicArquebus</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>75</range>
-      <soundCast>Shot_ChargeRifle</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>1</magazineSize>
-      <reloadTime>0.5</reloadTime>
-      <ammoSet>AmmoSet_OGTransuranicArquebus</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_TransuranicArquebus</defName>
+	<statBases>
+		<Mass>5.8</Mass>
+		<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.6</SightsEfficiency>
+		<ShotSpread>0.05</ShotSpread>
+		<SwayFactor>1.65</SwayFactor>
+		<Bulk>15.50</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_TransuranicArquebus</defaultProjectile>
+		<warmupTime>1.3</warmupTime>
+		<range>75</range>
+		<soundCast>Shot_ChargeRifle</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>1</magazineSize>
+		<reloadTime>0.5</reloadTime>
+		<ammoSet>AmmoSet_OGTransuranicArquebus</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_TransuranicArquebus"]/tools</xpath>
 		<value>
@@ -975,8 +941,8 @@
 					<flyOverhead>false</flyOverhead>
 					<damageDef>OGITransuranic</damageDef>
 					<damageAmountBase>30</damageAmountBase>
-   					  <armorPenetrationSharp>28</armorPenetrationSharp>
-					  <armorPenetrationBlunt>80</armorPenetrationBlunt>
+	 						<armorPenetrationSharp>28</armorPenetrationSharp>
+						<armorPenetrationBlunt>80</armorPenetrationBlunt>
 					<speed>178</speed>
 				</projectile>
 				<thingClass>CombatExtended.BulletCE</thingClass>
@@ -1019,43 +985,40 @@
 	</li>
 			
 <!-- ==================== Phospur Serpenta ========================= -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_PhosphorSerpenta</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.7</SightsEfficiency>
-      <ShotSpread>0.18</ShotSpread>
-      <SwayFactor>1.25</SwayFactor>
-      <Bulk>2.50</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
-      <warmupTime>0.6</warmupTime>
-      <range>16</range>
-      <soundCast>Shot_Revolver</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>12</magazineSize>
-      <reloadTime>4</reloadTime>
-      <ammoSet>AmmoSet_OGPhosphor</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_PhosphorSerpenta</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.7</SightsEfficiency>
+		<ShotSpread>0.18</ShotSpread>
+		<SwayFactor>1.25</SwayFactor>
+		<Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+		<warmupTime>0.6</warmupTime>
+		<range>16</range>
+		<soundCast>Shot_Revolver</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>12</magazineSize>
+		<reloadTime>4</reloadTime>
+		<ammoSet>AmmoSet_OGPhosphor</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>		
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_PhosphorSerpenta"]/tools</xpath>
 		<value>
@@ -1072,48 +1035,45 @@
 			</tools>
 		</value>
 	</li>
-  	
+		
 <!-- ==================== Phospur Blaster ========================= -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_PhosphorBlastPistol</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.18</ShotSpread>
-      <SwayFactor>1.3</SwayFactor>
-      <Bulk>2.50</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
-      <warmupTime>0.6</warmupTime>
-      <range>18</range>
-      <soundCast>Shot_Revolver</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_PhosphorBlastPistol</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.18</ShotSpread>
+		<SwayFactor>1.3</SwayFactor>
+		<Bulk>2.50</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+		<warmupTime>0.6</warmupTime>
+		<range>18</range>
+		<soundCast>Shot_Revolver</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
 		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <burstShotCount>6</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>12</magazineSize>
-      <reloadTime>4</reloadTime>
-      <ammoSet>AmmoSet_OGPhosphor</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>6</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>12</magazineSize>
+		<reloadTime>4</reloadTime>
+		<ammoSet>AmmoSet_OGPhosphor</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
 		<aimedBurstShotCount>3</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_PhosphorBlastPistol"]/tools</xpath>
 		<value>
@@ -1130,49 +1090,46 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 <!-- ====================== Cognis Flamer ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_FlamerCognis</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.35</SwayFactor>
-      <Bulk>8</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_FlamerCognis</defName>
+	<statBases>
+		<Mass>4.8</Mass>
+		<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.15</ShotSpread>
+		<SwayFactor>1.35</SwayFactor>
+		<Bulk>8</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>0.05</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_FlamerCognis</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>18</range>
-      <soundCast>OG_Flamer_Sound</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_FlamerCognis</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>18</range>
+		<soundCast>OG_Flamer_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
 		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <burstShotCount>36</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>140</magazineSize>
-      <reloadTime>6.5</reloadTime>
-      <ammoSet>AmmoSet_OGFlamerCognis</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>36</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>140</magazineSize>
+		<reloadTime>6.5</reloadTime>
+		<ammoSet>AmmoSet_OGFlamerCognis</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
 		<aimedBurstShotCount>10</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_FlamerCognis"]/tools</xpath>
 		<value>
@@ -1236,46 +1193,43 @@
 	</li>
 				
  <!-- ====================== Mitralock ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGAM_Gun_Mitralock</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.09</ShotSpread>
-      <SwayFactor>1.3</SwayFactor>
-      <Bulk>8.70</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGAM_Gun_Mitralock</defName>
+	<statBases>
+		<Mass>4.8</Mass>
+		<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.09</ShotSpread>
+		<SwayFactor>1.3</SwayFactor>
+		<Bulk>8.70</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.2</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGAM_Bullet_Mitralock</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>40</range>
-      <soundCast>Shot_Shotgun</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGAM_Bullet_Mitralock</defaultProjectile>
+		<warmupTime>1.3</warmupTime>
+		<range>40</range>
+		<soundCast>Shot_Shotgun</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
 		<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>36</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGLasBlast</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>36</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGLasBlast</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Gun_Mitralock"]/tools</xpath>
 		<value>
@@ -1302,7 +1256,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGAM_Bullet_Mitralock"]</xpath>
 		<value>
@@ -1351,8 +1305,8 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGIVolkite</damageDef>
 					<damageAmountBase>35</damageAmountBase>
-					  <armorPenetrationSharp>18</armorPenetrationSharp>
-					  <armorPenetrationBlunt>48</armorPenetrationBlunt>
+						<armorPenetrationSharp>18</armorPenetrationSharp>
+						<armorPenetrationBlunt>48</armorPenetrationBlunt>
 				</projectile>
 				<modExtensions>
 					<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -1403,11 +1357,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 				<aiUseBurstMode>FALSE</aiUseBurstMode>		
 			</FireModes>
-			<weaponTags>
-				<li>CE_Sidearm</li>
-				<li>CE_AI_Pistol</li>
-				<li>CE_OneHandedWeapon</li>
-			</weaponTags>
 		</li>
 
 		<li Class="PatchOperationReplace">
@@ -1463,10 +1412,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
-			<weaponTags>
-				<li>CE_AI_AssaultWeapon</li>
-				<li>CE_AI_Rifle</li>
-			</weaponTags>
 		</li>
 
 		<li Class="PatchOperationReplace">
@@ -1533,9 +1478,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 				<aimedBurstShotCount>3</aimedBurstShotCount>
 			</FireModes>
-			<weaponTags>
-
-			</weaponTags>
 		</li>
 
 		<li Class="PatchOperationReplace">
@@ -1591,9 +1533,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
-			<weaponTags>
-
-			</weaponTags>
 		</li>
 
 		<li Class="PatchOperationReplace">
@@ -1645,7 +1584,7 @@
 		</value>
 	</li>
 
-  </operations>
+	</operations>
 </Operation>
 
 </Patch>

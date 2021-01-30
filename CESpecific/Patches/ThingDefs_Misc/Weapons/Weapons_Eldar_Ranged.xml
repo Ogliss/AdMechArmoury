@@ -2,13 +2,13 @@
 <Patch>
 
 <Operation Class="PatchOperationSequence">
-  <!--success>Always</success-->
-  <operations>
+	<!--success>Always</success-->
+	<operations>
 	<!--==================== Eldar - Shuriken =========================-->
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_Shuriken"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
 				<defName>OGE_Bullet_Shuriken</defName>
 				<label>small Shuriken</label>
 				<graphicData>
@@ -26,47 +26,44 @@
 		</value>
 	</li>
 	<!--==================== Eldar - Shuriken Pistol =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_ShurikenPistol</defName>
-    <statBases>
-      <Mass>1.2</Mass>
-      <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.17</ShotSpread>
-      <SwayFactor>1.27</SwayFactor>
-      <Bulk>1.25</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_ShurikenPistol</defName>
+	<statBases>
+		<Mass>1.2</Mass>
+		<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.8</SightsEfficiency>
+		<ShotSpread>0.17</ShotSpread>
+		<SwayFactor>1.27</SwayFactor>
+		<Bulk>1.25</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>0.15</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
-      <warmupTime>0.3</warmupTime>
-      <range>18</range>
-      <soundCast>OG_Shuriken_Sound</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>8</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+		<warmupTime>0.3</warmupTime>
+		<range>18</range>
+		<soundCast>OG_Shuriken_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
 		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-        <burstShotCount>8</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>40</magazineSize>
-      <reloadTime>2</reloadTime>
-      <ammoSet>AmmoSet_OGShuriken</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>8</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>40</magazineSize>
+		<reloadTime>2</reloadTime>
+		<ammoSet>AmmoSet_OGShuriken</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
 		<aimedBurstShotCount>4</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenPistol"]/tools</xpath>
 		<value>
@@ -95,46 +92,43 @@
 	</li>
 	
 	<!--==================== Eldar - Shuriken Catapult =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_ShurikenCatapult</defName>
-    <statBases>
-      <Mass>3.2</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.09</ShotSpread>
-      <SwayFactor>1.28</SwayFactor>
-      <Bulk>8.20</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_ShurikenCatapult</defName>
+	<statBases>
+		<Mass>3.2</Mass>
+		<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.09</ShotSpread>
+		<SwayFactor>1.28</SwayFactor>
+		<Bulk>8.20</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>42</range>
-      <soundCast>OG_Shuriken_Sound</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>8</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>42</range>
+		<soundCast>OG_Shuriken_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
 		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-        <burstShotCount>14</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>70</magazineSize>
-      <reloadTime>4.5</reloadTime>
-      <ammoSet>AmmoSet_OGShuriken</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>14</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>70</magazineSize>
+		<reloadTime>4.5</reloadTime>
+		<ammoSet>AmmoSet_OGShuriken</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
 		<aimedBurstShotCount>7</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
-	
-    </weaponTags>
-  </li>
+	</FireModes>
+	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCatapult"]/tools</xpath>
@@ -164,46 +158,43 @@
 	</li>
 	
 	<!--==================== Eldar - Avenger Shuriken Catapult =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_ShurikenCatapultAvenger</defName>
-    <statBases>
-      <Mass>3.5</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.09</ShotSpread>
-      <SwayFactor>1.28</SwayFactor>
-      <Bulk>8.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_ShurikenCatapultAvenger</defName>
+	<statBases>
+		<Mass>3.5</Mass>
+		<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.09</ShotSpread>
+		<SwayFactor>1.28</SwayFactor>
+		<Bulk>8.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.3</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>44</range>
-      <soundCast>OG_Shuriken_Sound</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>8</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+		<warmupTime>1.1</warmupTime>
+		<range>44</range>
+		<soundCast>OG_Shuriken_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
 		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-        <burstShotCount>14</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>70</magazineSize>
-      <reloadTime>4.5</reloadTime>
-      <ammoSet>AmmoSet_OGShuriken</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>14</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>70</magazineSize>
+		<reloadTime>4.5</reloadTime>
+		<ammoSet>AmmoSet_OGShuriken</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
 		<aimedBurstShotCount>7</aimedBurstShotCount>
-    </FireModes>
-    <weaponTags>
-	
-    </weaponTags>
-  </li>
+	</FireModes>
+	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCatapultAvenger"]/tools</xpath>
@@ -233,45 +224,42 @@
 	</li>
 	
 	<!--==================== Eldar - Shuriken Cannon =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_ShurikenCannon</defName>
-    <statBases>
-      <Mass>20.3</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.2</SightsEfficiency>
-      <ShotSpread>0.11</ShotSpread>
-      <SwayFactor>1.7</SwayFactor>
-      <Bulk>23.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_ShurikenCannon</defName>
+	<statBases>
+		<Mass>20.3</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.2</SightsEfficiency>
+		<ShotSpread>0.11</ShotSpread>
+		<SwayFactor>1.7</SwayFactor>
+		<Bulk>23.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_ShurikenCannon</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>65</range>
-      <soundCast>OG_Shuriken_Sound</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>8</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_ShurikenCannon</defaultProjectile>
+		<warmupTime>1.3</warmupTime>
+		<range>65</range>
+		<soundCast>OG_Shuriken_Sound</soundCast>
+		<soundCastTail>GunTail_Light</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
 		<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-        <burstShotCount>21</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>70</magazineSize>
-      <reloadTime>4.5</reloadTime>
-      <ammoSet>AmmoSet_OGShurikenHeavy</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>21</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>70</magazineSize>
+		<reloadTime>4.5</reloadTime>
+		<ammoSet>AmmoSet_OGShurikenHeavy</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
-    </FireModes>
-    <weaponTags>
-	
-    </weaponTags>
-  </li>
+	</FireModes>
+	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_ShurikenCannon"]/tools</xpath>
@@ -303,7 +291,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_ShurikenCannon"]</xpath>
 		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGAuto">
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
 				<defName>OGE_Bullet_ShurikenCannon</defName>
 				<label>Shuriken</label>
 				<graphicData>
@@ -322,46 +310,43 @@
 	</li>
 
  	<!--==================== Eldar - Starcannon =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_Starcannon</defName>
-    <statBases>
-      <Mass>28.8</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.2</SightsEfficiency>
-      <ShotSpread>0.08</ShotSpread>
-      <SwayFactor>1.75</SwayFactor>
-      <Bulk>30.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_Starcannon</defName>
+	<statBases>
+		<Mass>28.8</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.2</SightsEfficiency>
+		<ShotSpread>0.08</ShotSpread>
+		<SwayFactor>1.75</SwayFactor>
+		<Bulk>30.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.1</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Starcannon</defaultProjectile>
-      <warmupTime>1.8</warmupTime>
-      <range>62</range>
-      <soundCast>OG_Starcannon_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Starcannon</defaultProjectile>
+		<warmupTime>1.8</warmupTime>
+		<range>62</range>
+		<soundCast>OG_Starcannon_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
 		<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>24</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGEPlasma</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>24</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGEPlasma</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_Starcannon"]/tools</xpath>
 		<value>
@@ -429,43 +414,40 @@
 	</li>
 					
 	<!--==================== Eldar - Wraithcannon =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_Wraithcannon</defName>
-    <statBases>
-      <Mass>9.5</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.1</SightsEfficiency>
-      <ShotSpread>0.05</ShotSpread>
-      <SwayFactor>1.36</SwayFactor>
-      <Bulk>10.30</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_Wraithcannon</defName>
+	<statBases>
+		<Mass>9.5</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.1</SightsEfficiency>
+		<ShotSpread>0.05</ShotSpread>
+		<SwayFactor>1.36</SwayFactor>
+		<Bulk>10.30</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.42</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>24</range> <!-- You Do NOT want this weapon to have long range, its supposed to be shotgun esque range, it has the capacity to KILL Any target in one hit(it literally deletes them and their corpse on a random roll) -->
-      <soundCast>OG_Wraithcannon_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>24</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGDistort</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
+		<warmupTime>1.5</warmupTime>
+		<range>24</range> <!-- You Do NOT want this weapon to have long range, its supposed to be shotgun esque range, it has the capacity to KILL Any target in one hit(it literally deletes them and their corpse on a random roll) -->
+		<soundCast>OG_Wraithcannon_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>24</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGDistort</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_Wraithcannon"]/tools</xpath>
 		<value>
@@ -532,44 +514,41 @@
 	</li>
 
 	<!-- ====================== Eldar - Lasbalster ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_LasBlaster</defName>
-    <statBases>
-      <Mass>2.8</Mass>
-      <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.07</ShotSpread>
-      <SwayFactor>1.2</SwayFactor>
-      <Bulk>7.0</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_LasBlaster</defName>
+	<statBases>
+		<Mass>2.8</Mass>
+		<RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.07</ShotSpread>
+		<SwayFactor>1.2</SwayFactor>
+		<Bulk>7.0</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.1</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
-      <warmupTime>1</warmupTime>
-      <range>58</range>
-      <soundCast>OG_Melta_Sound</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>140</magazineSize>
-      <reloadTime>2.5</reloadTime>
-      <ammoSet>AmmoSet_OGLasE</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
+		<warmupTime>1</warmupTime>
+		<range>58</range>
+		<soundCast>OG_Melta_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>140</magazineSize>
+		<reloadTime>2.5</reloadTime>
+		<ammoSet>AmmoSet_OGLasE</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_LasBlaster"]/tools</xpath>
 		<value>
@@ -629,42 +608,39 @@
 	</li>
 
 	<!--==================== Eldar - Range Longrifle =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_RangerLongrifle</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>1.30</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.40</SightsEfficiency>
-      <ShotSpread>0.04</ShotSpread>
-      <SwayFactor>1.7</SwayFactor>
-      <Bulk>11.50</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGI_Bullet_LongLas</defaultProjectile>
-      <warmupTime>1.6</warmupTime>
-      <range>75</range>
-      <soundCast>OG_RangerLongrifle_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>5</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGRangerLR</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_RangerLongrifle</defName>
+	<statBases>
+		<Mass>4.8</Mass>
+		<RangedWeapon_Cooldown>1.30</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.40</SightsEfficiency>
+		<ShotSpread>0.04</ShotSpread>
+		<SwayFactor>1.7</SwayFactor>
+		<Bulk>11.50</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGI_Bullet_LongLas</defaultProjectile>
+		<warmupTime>1.6</warmupTime>
+		<range>75</range>
+		<soundCast>OG_RangerLongrifle_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>5</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGRangerLR</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_RangerLongrifle"]/tools</xpath>
 		<value>
@@ -691,7 +667,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_RangerLR"]</xpath>
 		<value>
@@ -706,8 +682,8 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGILas</damageDef>
 					<damageAmountBase>22</damageAmountBase>
-					  <armorPenetrationSharp>28</armorPenetrationSharp>
-					  <armorPenetrationBlunt>10</armorPenetrationBlunt>
+						<armorPenetrationSharp>28</armorPenetrationSharp>
+						<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</projectile>
 				<modExtensions>
 					<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -723,45 +699,42 @@
 		</value>
 	</li>
 
-	<!--==================== Eldar - Prism Rifle =========================-->  
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_PrismRifle</defName>
-    <statBases>
-      <Mass>5.8</Mass>
-      <RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.0</SightsEfficiency>
-      <ShotSpread>0.05</ShotSpread>
-      <SwayFactor>1.7</SwayFactor>
-      <Bulk>12.50</Bulk>
-    </statBases>
-    <Properties>
+	<!--==================== Eldar - Prism Rifle =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_PrismRifle</defName>
+	<statBases>
+		<Mass>5.8</Mass>
+		<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.0</SightsEfficiency>
+		<ShotSpread>0.05</ShotSpread>
+		<SwayFactor>1.7</SwayFactor>
+		<Bulk>12.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_PrismRifleFocused</defaultProjectile>
-      <warmupTime>1.8</warmupTime>
-      <range>72</range>
-      <soundCast>OG_Brightlance_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_PrismRifleFocused</defaultProjectile>
+		<warmupTime>1.8</warmupTime>
+		<range>72</range>
+		<soundCast>OG_Brightlance_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
 		<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>4</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGPrism</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>4</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGPrism</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_PrismRifle"]/tools</xpath>
 		<value>
@@ -779,7 +752,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_PrismRifleFocused"]</xpath>
 		<value>
@@ -794,8 +767,8 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<damageDef>OGELance</damageDef>
 					<damageAmountBase>25</damageAmountBase>
-					  <armorPenetrationSharp>24</armorPenetrationSharp>
-					  <armorPenetrationBlunt>10</armorPenetrationBlunt>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</projectile>
 				<modExtensions>
 					<li Class="AdeptusMechanicus.EffectProjectileExtension">
@@ -844,42 +817,39 @@
 	</li>
 
 	<!--==================== Eldar - Brightlance =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_Brightlance</defName>
-    <statBases>
-      <Mass>8.8</Mass>
-      <RangedWeapon_Cooldown>1.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.2</SightsEfficiency>
-      <ShotSpread>0.04</ShotSpread>
-      <SwayFactor>1.75</SwayFactor>
-      <Bulk>12</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
-      <warmupTime>2.55</warmupTime>
-      <range>75</range>
-      <soundCast>OG_Brightlance_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>4</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGBrightlance</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_Brightlance</defName>
+	<statBases>
+		<Mass>8.8</Mass>
+		<RangedWeapon_Cooldown>1.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.2</SightsEfficiency>
+		<ShotSpread>0.04</ShotSpread>
+		<SwayFactor>1.75</SwayFactor>
+		<Bulk>12</Bulk>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
+		<warmupTime>2.55</warmupTime>
+		<range>75</range>
+		<soundCast>OG_Brightlance_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>4</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGBrightlance</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_Brightlance"]/tools</xpath>
 		<value>
@@ -963,43 +933,40 @@
 	</li>
 	
 	<!-- ====================== Eldar - Fusion Gun ===================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_FusionGun</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.08</ShotSpread>
-      <SwayFactor>1.25</SwayFactor>
-      <Bulk>8.50</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_FusionGun</defName>
+	<statBases>
+		<Mass>4.8</Mass>
+		<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.08</ShotSpread>
+		<SwayFactor>1.25</SwayFactor>
+		<Bulk>8.50</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.26</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
-      <warmupTime>2.55</warmupTime>
-      <range>16</range>
-      <soundCast>OG_Melta_Sound</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>1</magazineSize>
-      <reloadTime>2</reloadTime>
-      <ammoSet>AmmoSet_OGEMelta</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
+		<warmupTime>2.55</warmupTime>
+		<range>16</range>
+		<soundCast>OG_Melta_Sound</soundCast>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>1</magazineSize>
+		<reloadTime>2</reloadTime>
+		<ammoSet>AmmoSet_OGEMelta</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_FusionGun"]/tools</xpath>
 		<value>
@@ -1026,48 +993,45 @@
 			</tools>
 		</value>
 	</li>
-  
-	<!--==================== Eldar - Deathspinner =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_Deathspinner</defName>
-    <statBases>
-      <Mass>8.6</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.07</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>10.80</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.5</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>55</range>
-      <soundCast>OG_Deathspinner_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-		<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>48</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGEMonofillament</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>
-    </FireModes>
-    <weaponTags>
 	
-    </weaponTags>
-  </li>
-  
+	<!--==================== Eldar - Deathspinner =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_Deathspinner</defName>
+	<statBases>
+		<Mass>8.6</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.07</ShotSpread>
+		<SwayFactor>1.5</SwayFactor>
+		<Bulk>10.80</Bulk>
+	</statBases>
+	<Properties>
+		<recoilAmount>0.5</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
+		<warmupTime>1.5</warmupTime>
+		<range>55</range>
+		<soundCast>OG_Deathspinner_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+		<burstShotCount>3</burstShotCount>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>48</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGEMonofillament</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+		<aiUseBurstMode>TRUE</aiUseBurstMode>
+	</FireModes>
+	</li>
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_Deathspinner"]/tools</xpath>
 		<value>
@@ -1094,7 +1058,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_Deathspinner"]</xpath>
 		<value>
@@ -1119,17 +1083,17 @@
 	</li>
 	
 	<!--==================== Eldar - Reaper Launcher =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_ReaperLauncher</defName>
-    <statBases>
-      <Mass>12</Mass>
-      <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.16</SightsEfficiency>
-      <ShotSpread>0.2</ShotSpread>
-      <SwayFactor>1.68</SwayFactor>
-      <Bulk>14.80</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_ReaperLauncher</defName>
+	<statBases>
+		<Mass>12</Mass>
+		<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.16</SightsEfficiency>
+		<ShotSpread>0.2</ShotSpread>
+		<SwayFactor>1.68</SwayFactor>
+		<Bulk>14.80</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.2</recoilAmount>
 		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		<hasStandardCommand>true</hasStandardCommand>
@@ -1141,24 +1105,21 @@
 		<soundCast>OG_Starcannon_Sound</soundCast>
 		<soundCastTail>GunTail_Medium</soundCastTail>
 		<muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>48</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGEMonofillament</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>48</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGEMonofillament</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>
-    </FireModes>
-    <weaponTags>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_ReaperLauncher"]/tools</xpath>
 		<value>
@@ -1185,7 +1146,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_ReaperLauncher"]</xpath>
 		<value>
@@ -1227,43 +1188,40 @@
 	
 	<!--==================== Harlequin Ranged Weapons =========================-->
 	<!--==================== Harlequin Eldar - Neuro disruptor =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_NeuroDisruptor</defName>
-    <statBases>
-      <Mass>0.8</Mass>
-      <RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>0.80</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_NeuroDisruptor</defName>
+	<statBases>
+		<Mass>0.8</Mass>
+		<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		<SightsEfficiency>1.0</SightsEfficiency>
+		<ShotSpread>0.15</ShotSpread>
+		<SwayFactor>1.5</SwayFactor>
+		<Bulk>0.80</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>0.6</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
-      <warmupTime>0.3</warmupTime>
-      <range>20</range>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
+		<warmupTime>0.3</warmupTime>
+		<range>20</range>
 		<soundCast>OG_Shuriken_Sound</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>5</magazineSize>
-      <reloadTime>2.5</reloadTime>
-      <ammoSet>AmmoSet_OGNeuralDisruptor</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+		<soundCastTail>GunTail_Heavy</soundCastTail>
+		<muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>5</magazineSize>
+		<reloadTime>2.5</reloadTime>
+		<ammoSet>AmmoSet_OGNeuralDisruptor</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_NeuroDisruptor"]/tools</xpath>
 		<value>
@@ -1322,43 +1280,40 @@
 	</li>
 	
 	<!--==================== Eldar - Haywire Cannon =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGE_Gun_HaywireCannon</defName>
-    <statBases>
-      <Mass>18.6</Mass>
-      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-      <SightsEfficiency>2.2</SightsEfficiency>
-      <ShotSpread>0.04</ShotSpread>
-      <SwayFactor>1.75</SwayFactor>
-      <Bulk>20.80</Bulk>
-    </statBases>
-    <Properties>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGE_Gun_HaywireCannon</defName>
+	<statBases>
+		<Mass>18.6</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>2.2</SightsEfficiency>
+		<ShotSpread>0.04</ShotSpread>
+		<SwayFactor>1.75</SwayFactor>
+		<Bulk>20.80</Bulk>
+	</statBases>
+	<Properties>
 		<recoilAmount>1.35</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
-      <warmupTime>1.42</warmupTime>
-      <range>56</range>
-      <soundCast>OG_Deathspinner_Sound</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>48</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGArcE</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
+		<warmupTime>1.42</warmupTime>
+		<range>56</range>
+		<soundCast>OG_Deathspinner_Sound</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>10</muzzleFlashScale>
+		<targetParams>
+			<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>48</magazineSize>
+		<reloadTime>3.5</reloadTime>
+		<ammoSet>AmmoSet_OGArcE</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aiAimMode>AimedShot</aiAimMode>
+	</FireModes>
+	</li>
 	
-    </weaponTags>
-  </li>
-  
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Gun_HaywireCannon"]/tools</xpath>
 		<value>
@@ -1385,7 +1340,7 @@
 			</tools>
 		</value>
 	</li>
-  
+	
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGE_Bullet_HaywireCannon"]</xpath>
 		<value>
@@ -1417,7 +1372,7 @@
 		</value>
 	</li>
 	
-  </operations>
+	</operations>
 </Operation>
 
 </Patch>

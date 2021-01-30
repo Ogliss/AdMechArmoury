@@ -22,4 +22,22 @@
 			</nomatch>
 		</match>
 	</Operation-->
+	<!--Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Brain"]/statBases/Mass</xpath>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</match>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
+				<value>
+					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+				</value>
+			</nomatch>
+		</match>
+	</Operation-->
 </Patch>

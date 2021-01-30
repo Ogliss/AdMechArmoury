@@ -2,50 +2,47 @@
 <Patch>
 
 <Operation Class="PatchOperationSequence">
-  <!--success>Always</success-->
-  <operations>
-  
+	<!--success>Always</success-->
+	<operations>
+	
 	<!--==================== Kroot - Recurve Bow =========================-->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGK_Bow_Recurve</defName>
-    <statBases>
-      <SightsEfficiency>0.6</SightsEfficiency>
-      <ShotSpread>1</ShotSpread>
-      <SwayFactor>2</SwayFactor>
-      <Bulk>4.00</Bulk>
-      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
-      <warmupTime>1.2</warmupTime>
-      <range>32</range>
-      <soundCast>Bow_Recurve</soundCast>
-    </Properties>
-    <AmmoUser>
-      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
-    </AmmoUser>
-    <FireModes />
-    <weaponTags>
-      <li>CE_Bow</li>
-    </weaponTags>
-    <researchPrerequisite>RecurveBow</researchPrerequisite>
-    <AllowWithRunAndGun>false</AllowWithRunAndGun>
-  </li>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OGK_Bow_Recurve</defName>
+	<statBases>
+		<SightsEfficiency>0.6</SightsEfficiency>
+		<ShotSpread>1</ShotSpread>
+		<SwayFactor>2</SwayFactor>
+		<Bulk>4.00</Bulk>
+		<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+	</statBases>
+	<Properties>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+		<warmupTime>1.2</warmupTime>
+		<range>32</range>
+		<soundCast>Bow_Recurve</soundCast>
+	</Properties>
+	<AmmoUser>
+		<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+	</AmmoUser>
+	<FireModes />
+	<researchPrerequisite>RecurveBow</researchPrerequisite>
+	<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</li>
 
-  <li Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="OGK_Bow_Recurve"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          	<capacities>
-            	<li>Blunt</li>
-          	</capacities>
-          	<power>7</power>
-          	<cooldownTime>1.6</cooldownTime>
+	<li Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="OGK_Bow_Recurve"]/tools</xpath>
+	<value>
+		<tools>
+		<li Class="CombatExtended.ToolCE">
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.6</cooldownTime>
  	 	<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-        </li>
+		</li>
 		<li Class="CombatExtended.ToolCE">
 			<label>limb blades</label>
 			<capacities>
@@ -56,9 +53,9 @@
 			<cooldownTime>1.4</cooldownTime>
 			<armorPenetrationSharp>0.65</armorPenetrationSharp>
 		</li>
-      </tools>
-    </value>
-  </li>
+		</tools>
+	</value>
+	</li>
 
 	<!--==================== Kroot - rounds =========================-->	
 	<li Class="PatchOperationReplace">
@@ -154,10 +151,6 @@
 		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>		
 	</FireModes>
-	<weaponTags>
-		<li>Gun</li>
-		<li>TKrootPistol</li>
-	</weaponTags>
 	</li>
 
 	<li Class="PatchOperationReplace">
@@ -222,10 +215,6 @@
 		<aiAimMode>AimedShot</aiAimMode>
 		<aiUseBurstMode>TRUE</aiUseBurstMode>		
 	</FireModes>
-	<weaponTags>
-		<li>Gun</li>
-		<li>TKrootRifle</li>
-	</weaponTags>
 	</li>
 
 	<li Class="PatchOperationReplace">
@@ -286,10 +275,6 @@
 	<FireModes>
 		<aiAimMode>AimedShot</aiAimMode>	
 	</FireModes>
-	<weaponTags>
-		<li>Gun</li>
-		<li>TKrootRifle</li>
-	</weaponTags>
 	</li>
 
 	<li Class="PatchOperationReplace">
@@ -375,7 +360,7 @@
 		</value>
 	</li>
 		
-  </operations>
+	</operations>
 </Operation>
 
 </Patch>

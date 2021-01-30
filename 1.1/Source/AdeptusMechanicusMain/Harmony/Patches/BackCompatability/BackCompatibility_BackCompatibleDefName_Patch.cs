@@ -25,6 +25,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message(string.Format("Checking for replacement for {0} Type: {1}", defName, defType));
                 if (defType == typeof(ThingDef))
                 {
+                    if (defName.Contains("Ammo_OG"))
+                    {
+                        newName = defName.Replace("Ammo_OG", "OG_Ammo_");
+                    }
                     if (defName == "OGDE_Melee_WytchKnife")
                     {
                         __result = "OGDE_Melee_WychKnife";
@@ -1105,6 +1109,11 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 if (defType == typeof(RecipeDef))
                 {
+
+                    if (defName.Contains("Ammo_OG"))
+                    {
+                        newName = defName.Replace("Ammo_OG", "OG_Ammo_");
+                    }
                     if (defName == "Make_OGK_Apparel_TribalKroot")
                     {
                         __result = "Make_OGK_Apparel_Tribalwear";

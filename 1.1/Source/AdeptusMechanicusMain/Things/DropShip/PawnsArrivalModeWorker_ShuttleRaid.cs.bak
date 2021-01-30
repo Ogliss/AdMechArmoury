@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using HarmonyLib;
+using RimWorld;
+using Verse;
+namespace AvP
+{
+    public class PawnsArrivalModeWorker_ShuttleRaid : PawnsArrivalModeWorker
+    {
+
+        public static void SendAway(Thing shuttle, bool dropEverything)
+        {
+            CompVertibird compShuttle = shuttle.TryGetComp<CompVertibird>();
+            CompTransporter compTransporter = shuttle.TryGetComp<CompTransporter>();
+            if (shuttle.Spawned)
+            {
+                if (dropEverything && compTransporter.LoadingInProgressOrReadyToLaunch)
+                {
+                    compTransporter.CancelLoad();
+                }
+                if (!compTransporter.LoadingInProgressOrReadyToLaunch)
+                {
+                    TransporterUtility.InitiateLoading(Gen.YieldSingle<CompTransporter>(compTransporter));
+                }
+                compShuttle.Send();
+                return;
+            }
+            if (shuttle.ParentHolder is Thing)// && ((Thing)shuttle.ParentHolder).def == ThingDef.Named("VertibirdIncoming"))
+            {
+                compShuttle.leaveASAP = true;
+            }
+        }
+        public override void Arrive(List<Pawn> pawns, IncidentParms parms)
+        {
+            Map map = (Map)parms.target;
+            while (pawns.Any())
+            {
+                var group = pawns.Take(8);
+                pawns = pawns.Skip(8).ToList();
+                IntVec3 dropCenter = DropCellFinder.RandomDropSpot(map);
+                var shuttle = ThingMaker.MakeThing(ThingDef.Named("Vertibird"), null);
+                var comp = shuttle.TryGetComp<CompVertibird>();
+                var compTransporter = ThingCompUtility.TryGetComp<CompTransporter>(shuttle);
+                foreach (Pawn pawn in group)
+                {
+                    compTransporter.innerContainer.TryAdd(pawn, 1);
+                }
+
+                GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(ThingDef.Named("VertibirdIncoming"), shuttle),
+                        dropCenter, map, ThingPlaceMode.Near, null, null, default(Rot4));
+                comp.requiredColonistCount = 0;
+                SendAway(shuttle, true);
+            }
+        }
+        public override bool TryResolveRaidSpawnCenter(IncidentParms parms)
+        {
+            parms.podOpenDelay = 0;
+            parms.spawnRotation = Rot4.Random;
+            return true;
+        }
+    }
+}
+

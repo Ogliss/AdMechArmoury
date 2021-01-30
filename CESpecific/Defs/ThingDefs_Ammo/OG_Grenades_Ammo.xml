@@ -28,8 +28,8 @@
 		<defName>AmmoSet_OGGrenadeL</defName>
 		<label>Ogryn Grenades</label>
 		<ammoTypes>
-			<Ammo_OGGrenadeFragL>OGI_Bullet_OgrynGauntletGrenadeFrag</Ammo_OGGrenadeFragL>
-			<Ammo_OGGrenadeKrakL>OGI_Bullet_OgrynGauntletGrenadeKrak</Ammo_OGGrenadeKrakL>
+			<OG_Ammo_GrenadeFragL>OGI_Bullet_OgrynGauntletGrenadeFrag</OG_Ammo_GrenadeFragL>
+			<OG_Ammo_GrenadeKrakL>OGI_Bullet_OgrynGauntletGrenadeKrak</OG_Ammo_GrenadeKrakL>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -53,7 +53,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGrenadeBase">
-		<defName>Ammo_OGGrenadeFragL</defName>
+		<defName>OG_Ammo_GrenadeFragL</defName>
 		<label>ogryn frag grenade</label>
 		<graphicData>
 			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
@@ -73,7 +73,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGrenadeBase">
-		<defName>Ammo_OGGrenadeKrakL</defName>
+		<defName>OG_Ammo_GrenadeKrakL</defName>
 		<label>ogryn krak grenade</label>
 		<graphicData>
 			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
@@ -91,49 +91,10 @@
 				</li>
 		</comps>
 	</ThingDef>
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Name="BaseOGGrenade" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/Grenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<speed>35</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseOGGrenade">
-		<defName>OGI_Bullet_OgrynGauntletGrenadeFrag</defName>
-		<label>Ogryn grenade</label>
-		<projectile>
-			<explosionRadius>1.550</explosionRadius>
-			<damageDef>OGIBomb</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-			<soundExplode>OGIAC_Explosion</soundExplode>
-			<armorPenetrationBase>1</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseOGGrenade">
-		<defName>OGI_Bullet_OgrynGauntletGrenadeKrak</defName>
-		<label>Ogryn grenade</label>
-		<projectile>
-			<explosionRadius>1.0</explosionRadius>
-			<damageDef>OGIBomb</damageDef>
-			<damageAmountBase>40</damageAmountBase>
-			<soundExplode>OGIAC_Explosion</soundExplode>
-			<armorPenetrationBase>3</armorPenetrationBase>
-		</projectile>
-	</ThingDef-->
-
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGGrenadeFragL</defName>
+		<defName>MakeOG_Ammo_GrenadeFragL</defName>
 		<label>make Frag grenades x50 (L)</label>
 		<description>Craft 50 Frag grenades (L).</description>
 		<jobString>Making Ogryn grenades (L).</jobString>
@@ -171,13 +132,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGGrenadeFragL>20</Ammo_OGGrenadeFragL>
+			<OG_Ammo_GrenadeFragL>20</OG_Ammo_GrenadeFragL>
 		</products>
 		<researchPrerequisite>OG_Common_Tech_Weapons_Special</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGGrenadeKrakL</defName>
+		<defName>MakeOG_Ammo_GrenadeKrakL</defName>
 		<label>make krak grenades (L) x50</label>
 		<description>Craft 50 krak grenades (L).</description>
 		<jobString>Making krak grenades (L).</jobString>
@@ -215,7 +176,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGGrenadeKrakL>20</Ammo_OGGrenadeKrakL>
+			<OG_Ammo_GrenadeKrakL>20</OG_Ammo_GrenadeKrakL>
 		</products>
 		<researchPrerequisite>OG_Common_Tech_Weapons_Special</researchPrerequisite>
 	</RecipeDef>

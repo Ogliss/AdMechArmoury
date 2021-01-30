@@ -15,7 +15,7 @@
 		<defName>AmmoSet_OGWebber</defName>
 		<label>Webber charge</label>
 		<ammoTypes>
-			<Ammo_OGWebber>OGI_Bullet_Webber</Ammo_OGWebber>
+			<OG_Ammo_Webber>OGI_Bullet_Webber</OG_Ammo_Webber>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -37,7 +37,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGWebberBase">
-		<defName>Ammo_OGWebber</defName>
+		<defName>OG_Ammo_Webber</defName>
 		<label>Webber cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Ion</texPath>
@@ -50,38 +50,38 @@
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_OGWebber</defName>
-    <label>make Webber cartridge x90</label>
-    <description>Craft 90 Webber cartridges.</description>
-    <jobString>Making Webber cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Plasteel</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Plasteel</li>
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_OGWebber>30</Ammo_OGWebber>
-    </products>
-  </RecipeDef>
-  
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_Webber</defName>
+		<label>make Webber cartridge x90</label>
+		<description>Craft 90 Webber cartridges.</description>
+		<jobString>Making Webber cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Webber>30</OG_Ammo_Webber>
+		</products>
+	</RecipeDef>
+	
 </Defs>

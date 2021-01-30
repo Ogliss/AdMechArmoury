@@ -14,7 +14,7 @@
 		<defName>AmmoSet_OGArc</defName>
 		<label>Arc charge</label>
 		<ammoTypes>
-			<Ammo_OGArc>Bullet_OGZappKannon</Ammo_OGArc>
+			<OG_Ammo_Arc>OGAM_Bullet_ArcBolt</OG_Ammo_Arc>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 		
@@ -22,7 +22,7 @@
 		<defName>AmmoSet_OGArcE</defName>
 		<label>Haywire charge</label>
 		<ammoTypes>
-			<Ammo_OGArcE>OGE_Bullet_HaywireCannon</Ammo_OGArcE>
+			<OG_Ammo_ArcE>OGE_Bullet_HaywireCannon</OG_Ammo_ArcE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -30,7 +30,7 @@
 		<defName>AmmoSet_OGArcDE</defName>
 		<label>Haywire charge</label>
 		<ammoTypes>
-			<Ammo_OGArcE>OGDE_Bullet_HaywireBlaster</Ammo_OGArcE>
+			<OG_Ammo_ArcE>OGDE_Bullet_HaywireBlaster</OG_Ammo_ArcE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 		
@@ -38,8 +38,8 @@
 		<defName>AmmoSet_OGArcOrk</defName>
 		<label>Zapp charge</label>
 		<ammoTypes>
-			<Ammo_OGArcOrk>Bullet_OGZappKannon</Ammo_OGArcOrk>
-			<Ammo_OGArc>Bullet_OGZappKannon</Ammo_OGArc>
+			<OG_Ammo_ArcOrk>OGO_Bullet_ZappKannon</OG_Ammo_ArcOrk>
+			<OG_Ammo_Arc>OGO_Bullet_ZappKannon</OG_Ammo_Arc>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 			
@@ -61,7 +61,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
-		<defName>Ammo_OGArcOrk</defName>
+		<defName>OG_Ammo_ArcOrk</defName>
 		<label>Zapp cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
@@ -74,7 +74,7 @@
 	</ThingDef>
 			
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGArcOrk</defName>
+		<defName>MakeOG_Ammo_ArcOrk</defName>
 		<label>make Zapp Powa pack x30</label>
 		<description>Craft 30 Zapp Powa packs.</description>
 		<jobString>Making Zapp Powa packs.</jobString>
@@ -103,13 +103,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGArcOrk>30</Ammo_OGArcOrk>
+			<OG_Ammo_ArcOrk>30</OG_Ammo_ArcOrk>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
-		<defName>Ammo_OGArc</defName>
+		<defName>OG_Ammo_Arc</defName>
 		<label>Arc cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
@@ -122,7 +122,7 @@
 	</ThingDef>
 		
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGArc</defName>
+		<defName>MakeOG_Ammo_Arc</defName>
 		<label>make Arc power pack 70</label>
 		<description>Craft 70 Arc power packs.</description>
 		<jobString>Making Arc power packs.</jobString>
@@ -151,13 +151,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGArc>70</Ammo_OGArc>
+			<OG_Ammo_Arc>70</OG_Ammo_Arc>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
-		<defName>Ammo_OGArcE</defName>
+		<defName>OG_Ammo_ArcE</defName>
 		<label>Haywire cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
@@ -170,7 +170,7 @@
 	</ThingDef>
 		
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGArcE</defName>
+		<defName>MakeOG_Ammo_ArcE</defName>
 		<label>make Haywire pack 70</label>
 		<description>Craft 70 Haywire packs.</description>
 		<jobString>Making Haywire packs.</jobString>
@@ -199,45 +199,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGArcE>70</Ammo_OGArcE>
+			<OG_Ammo_ArcE>70</OG_Ammo_ArcE>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
 		
-		<!-- ================== Projectiles ================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGArc" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/LightningBolt</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OGIArc</damageDef>
-			<speed>105</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGArc">
-		<defName>Bullet_OGArc</defName>
-		<label>Arc</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>5</damageAmountBase>
-			<explosionRadius>0.55</explosionRadius>
-			<armorPenetrationBase>1.95</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGArc">
-		<defName>Bullet_OGZappKannon</defName>
-		<label>Zapp</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>75</damageAmountBase>
-			<explosionRadius>0.55</explosionRadius>
-			<armorPenetrationBase>0.95</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
 </Defs>

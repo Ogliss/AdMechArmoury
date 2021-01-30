@@ -15,7 +15,7 @@
 		<defName>AmmoSet_OGGalvanicRifle</defName>
 		<label>Galvanic charge</label>
 		<ammoTypes>
-			<Ammo_OGGalvanicRifle>OGAM_Bullet_GalvanicRifle</Ammo_OGGalvanicRifle>
+			<OG_Ammo_GalvanicRifle>OGAM_Bullet_GalvanicRifle</OG_Ammo_GalvanicRifle>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -37,7 +37,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGalvanicRifleBase">
-		<defName>Ammo_OGGalvanicRifle</defName>
+		<defName>OG_Ammo_GalvanicRifle</defName>
 		<label>Galvanic cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
@@ -50,7 +50,7 @@
 	</ThingDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGGalvanicRifle</defName>
+		<defName>MakeOG_Ammo_GalvanicRifle</defName>
 		<label>make small Galvanic capacitor x70</label>
 		<description>Craft 70 small Galvanic capacitor.</description>
 		<jobString>Making small Galvanic capacitor.</jobString>
@@ -79,34 +79,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGGalvanicRifle>70</Ammo_OGGalvanicRifle>
+			<OG_Ammo_GalvanicRifle>70</OG_Ammo_GalvanicRifle>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
-
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGGalvanicRifle" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/GalvanicBeamSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OGTGalvanic</damageDef>
-			<speed>135</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGGalvanicRifle">
-		<defName>Bullet_OGGalvanicRifle</defName>
-		<label>Galvanic Rifle Beam</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>45</damageAmountBase>
-			<explosionRadius>0.75</explosionRadius>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef-->
 
 </Defs>

@@ -53,12 +53,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
             //Log.Warning("Range verb detected");
-            Thing target = (Thing)AMA_AttackTargetFinder.BestAttackTarget((IAttackTargetSearcher)pawn, TargetScanFlags.NeedThreat | TargetScanFlags.NeedReachable, (Predicate<Thing>)(x =>
+            Thing target = (Thing)AdeptusAttackTargetFinder.BestAttackTarget((IAttackTargetSearcher)pawn, TargetScanFlags.NeedThreat | TargetScanFlags.NeedReachable, (Predicate<Thing>)(x =>
              x is Pawn || x is Building), 0.0f, 9999, new IntVec3(), float.MaxValue, false);
 
             //Seek thing hiding in embrasure.
             if (target == null)
-                target = (Thing)AMA_AttackTargetFinder.BestAttackTarget((IAttackTargetSearcher)pawn, TargetScanFlags.NeedThreat, (Predicate<Thing>)(x =>
+                target = (Thing)AdeptusAttackTargetFinder.BestAttackTarget((IAttackTargetSearcher)pawn, TargetScanFlags.NeedThreat, (Predicate<Thing>)(x =>
             x is Pawn || x is Building), 0.0f, 9999, new IntVec3(), float.MaxValue, false);
             //Use normal manhunter
             //Can't check for target if it doesn't exist duh
@@ -77,7 +77,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             Thing shootable = null;
             if (target == null)
             {
-                shootable = (Thing)AMA_AttackTargetFinder.BestShootTargetFromCurrentPosition(pawn, (Predicate<Thing>)(x =>
+                shootable = (Thing)AdeptusAttackTargetFinder.BestShootTargetFromCurrentPosition(pawn, (Predicate<Thing>)(x =>
                  x is Pawn || x is Building), rangeVerb.verbProps.range, rangeVerb.verbProps.minRange, TargetScanFlags.NeedThreat | TargetScanFlags.NeedLOSToPawns | TargetScanFlags.LOSBlockableByGas);
 
                 //Log.Warning("Shootable found, " + shootable);
@@ -126,7 +126,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (!targetInSight)
             {
                 //Log.Warning("No target");
-                shootable = (Thing)AMA_AttackTargetFinder.BestShootTargetFromCurrentPosition(pawn, (Predicate<Thing>)(x =>
+                shootable = (Thing)AdeptusAttackTargetFinder.BestShootTargetFromCurrentPosition(pawn, (Predicate<Thing>)(x =>
                  x is Pawn || x is Building), rangeVerb.verbProps.range, rangeVerb.verbProps.minRange, TargetScanFlags.NeedThreat | TargetScanFlags.NeedLOSToPawns | TargetScanFlags.LOSBlockableByGas);
             }
 

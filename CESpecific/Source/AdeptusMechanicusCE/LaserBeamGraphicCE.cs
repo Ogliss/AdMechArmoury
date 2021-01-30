@@ -118,7 +118,7 @@ namespace AdeptusMechanicus
                 float distance = Vector3.Distance(a, b);
                 for (int i = 0; i < projDef.ArcCount; i++)
                 {
-                    meshes.Add(LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance));
+                    meshes.Add(AdeptusLightningBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance));
                 }
             //    this.mesh = LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), def.LightningVariance);
             }
@@ -197,7 +197,7 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
-                    meshes[i] = Find.TickManager.Paused || meshes[i] != null && Static ? meshes[i] : LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)));
+                    meshes[i] = Find.TickManager.Paused || meshes[i] != null && Static ? meshes[i] : AdeptusLightningBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)));
                     Graphics.DrawMesh(this.meshes[i], b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
 
                 }

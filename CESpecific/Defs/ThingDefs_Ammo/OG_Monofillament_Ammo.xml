@@ -23,7 +23,7 @@
 		<defName>AmmoSet_OGEMonofillament</defName>
 		<label>Monofilament spool</label>
 		<ammoTypes>
-			<Ammo_OGMonofillament>OGE_Bullet_Deathspinner</Ammo_OGMonofillament>
+			<OG_Ammo_Monofillament>OGE_Bullet_Deathspinner</OG_Ammo_Monofillament>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -31,7 +31,7 @@
 		<defName>AmmoSet_OGDEMonofillament</defName>
 		<label>Monofilament spool</label>
 		<ammoTypes>
-			<Ammo_OGMonofillament>OGDE_Bullet_Shredder</Ammo_OGMonofillament>
+			<OG_Ammo_Monofillament>OGDE_Bullet_Shredder</OG_Ammo_Monofillament>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -53,7 +53,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMonofillamentBase">
-		<defName>Ammo_OGMonofillament</defName>
+		<defName>OG_Ammo_Monofillament</defName>
 		<label>Monofilament spool cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/FuelCell/Foam</texPath>
@@ -65,8 +65,8 @@
 		<ammoClass>OGMonofillamentAC</ammoClass>
 	</ThingDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGMonofillament</defName>
+	<RecipeDef ParentName="AmmoRecipeBase" Name="OG_MakeAmmo_Monofillament">
+		<defName>MakeOG_Ammo_Monofillament</defName>
 		<label>make Monofilament spool cartridge x100</label>
 		<description>Craft 100 Monofilament spool cartridges.</description>
 		<jobString>Making Monofilament spool cartridges.</jobString>
@@ -95,30 +95,17 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGMonofillament>100</Ammo_OGMonofillament>
+			<OG_Ammo_Monofillament>100</OG_Ammo_Monofillament>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>
+	
+	<RecipeDef ParentName="OG_MakeAmmo_Monofillament">
+		<defName>MakeOG_Ammo_E_Monofillament</defName>
+	</RecipeDef>
 
-	<!-- ================== Projectiles ================== -->
-	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGMonofillament" ParentName="OG_Bullet_Base" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/DeathspinnerShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGEDeathspinner</damageDef>
-			<speed>135</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGMonofillament">
-		<defName>Bullet_OGMonofillament</defName>
-		<label>Monofilament Mesh</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>29</damageAmountBase>
-			<armorPenetrationBase>1.95</armorPenetrationBase>
-		</projectile>
-	</ThingDef-->
+	<RecipeDef ParentName="OG_MakeAmmo_Monofillament">
+		<defName>MakeOG_Ammo_DE_Monofillament</defName>
+	</RecipeDef>
 
 </Defs>

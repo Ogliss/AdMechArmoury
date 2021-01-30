@@ -61,7 +61,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             map.DeepStrike().strikeMaxDelay = parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks();
                             int delay = Rand.RangeInclusive(parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks(), parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks());
                             Rand.PopState();
-                            DeepStrikeEntry strikeEntry = new DeepStrikeEntry(parms.faction, delay);
+                            DeepStrike strikeEntry = new DeepStrike(parms.faction, delay);
                             strikeEntry.AddPawns(DeepStrikers);
                             map.DeepStrike().Strikes.Add(strikeEntry);
                             

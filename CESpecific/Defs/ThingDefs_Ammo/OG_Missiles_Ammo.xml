@@ -28,8 +28,8 @@
 		<defName>AmmoSet_OGMissile</defName>
 		<label>Missiles</label>
 		<ammoTypes>
-			<Ammo_OGMissileFrag>OGI_Bullet_RocketFrag</Ammo_OGMissileFrag>
-			<Ammo_OGMissileKrak>OGI_Bullet_RocketKrak</Ammo_OGMissileKrak>
+			<OG_Ammo_MissileFrag>OGI_Bullet_RocketFrag</OG_Ammo_MissileFrag>
+			<OG_Ammo_MissileKrak>OGI_Bullet_RocketKrak</OG_Ammo_MissileKrak>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -37,7 +37,7 @@
 		<defName>AmmoSet_OGEMissile</defName>
 		<label>Missiles</label>
 		<ammoTypes>
-			<Ammo_OGMissileFrag>OGI_Bullet_RocketFrag</Ammo_OGMissileFrag>
+			<OG_Ammo_MissileFrag>OGI_Bullet_RocketFrag</OG_Ammo_MissileFrag>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -45,7 +45,7 @@
 		<defName>AmmoSet_OGTMissile</defName>
 		<label>Missiles</label>
 		<ammoTypes>
-			<Ammo_OGMissileFrag>OGT_Bullet_Missile</Ammo_OGMissileFrag>
+			<OG_Ammo_MissileFrag>OGT_Bullet_Missile</OG_Ammo_MissileFrag>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -53,7 +53,7 @@
 		<defName>AmmoSet_OGOMissile</defName>
 		<label>Missiles</label>
 		<ammoTypes>
-			<Ammo_OGMissileKrak>OGO_Bullet_RokkitKrak</Ammo_OGMissileKrak>
+			<OG_Ammo_MissileKrak>OGO_Bullet_RokkitKrak</OG_Ammo_MissileKrak>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -61,8 +61,8 @@
 		<defName>AmmoSet_OGKombiShootaRokkit</defName>
 		<label>Shoota/Burna</label>
 		<ammoTypes>
-			<Ammo_OGAuto>OGO_Bullet_Shoota</Ammo_OGAuto>
-			<Ammo_OGMissileKrak>OGO_Bullet_RokkitKrak</Ammo_OGMissileKrak>
+			<OG_Ammo_Auto>OGO_Bullet_Shoota</OG_Ammo_Auto>
+			<OG_Ammo_MissileKrak>OGO_Bullet_RokkitKrak</OG_Ammo_MissileKrak>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -86,7 +86,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMissileBase">
-		<defName>Ammo_OGMissileFrag</defName>
+		<defName>OG_Ammo_MissileFrag</defName>
 		<label>frag missile</label>
 		<graphicData>
 			<texPath>Things/Item/ImpMissileFrag</texPath>
@@ -106,7 +106,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMissileBase">
-		<defName>Ammo_OGMissileKrak</defName>
+		<defName>OG_Ammo_MissileKrak</defName>
 		<label>krak missile</label>
 		<graphicData>
 			<texPath>Things/Item/ImpMissileKrak</texPath>
@@ -124,59 +124,11 @@
 			</li>
 		</comps>
 	</ThingDef>
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Name="BaseOGMissile" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/AutoShotLrg</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<speed>35</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseOGMissile">
-		<defName>OGI_Bullet_RocketFrag</defName>
-		<label>frag missile</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpMissileFrag</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<damageDef>OGIBomb</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<explosionRadius>4.8</explosionRadius>
-			<soundExplode>OGIAC_Explosion</soundExplode>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseOGMissile">
-		<defName>OGI_Bullet_RocketKrak</defName>
-		<label>krak missile</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpMissileKrak</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile>
-			<damageDef>OGIBomb</damageDef>
-			<damageAmountBase>70</damageAmountBase>
-			<explosionRadius>1.5</explosionRadius>
-			<armorPenetrationBase>3</armorPenetrationBase>
-			<soundExplode>OGIAC_Explosion</soundExplode>
-		</projectile>
-	</ThingDef-->
-
+	
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGMissileFrag</defName>
+		<defName>MakeOG_Ammo_MissileFrag</defName>
 		<label>make frag missiles x50 (L)</label>
 		<description>Craft 50 frag missiles (L).</description>
 		<jobString>Making frag missiles (L).</jobString>
@@ -214,13 +166,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGMissileFrag>20</Ammo_OGMissileFrag>
+			<OG_Ammo_MissileFrag>20</OG_Ammo_MissileFrag>
 		</products>
 		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGMissileKrak</defName>
+		<defName>MakeOG_Ammo_MissileKrak</defName>
 		<label>make krak missiles (L) x50</label>
 		<description>Craft 50 krak missiles (L).</description>
 		<jobString>Making krak missiles (L).</jobString>
@@ -258,7 +210,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGMissileKrak>20</Ammo_OGMissileKrak>
+			<OG_Ammo_MissileKrak>20</OG_Ammo_MissileKrak>
 		</products>
 		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
 	</RecipeDef>

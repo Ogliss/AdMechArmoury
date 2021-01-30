@@ -21,7 +21,7 @@
 		<defName>AmmoSet_OGDistort</defName>
 		<label>Distort charge</label>
 		<ammoTypes>
-			<Ammo_OGDistort>OGE_Bullet_Wraithcannon</Ammo_OGDistort>
+			<OG_Ammo_Distort>OGE_Bullet_Wraithcannon</OG_Ammo_Distort>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -43,7 +43,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGDistortBase">
-		<defName>Ammo_OGDistort</defName>
+		<defName>OG_Ammo_Distort</defName>
 		<label>Distort cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Ion</texPath>
@@ -54,31 +54,9 @@
 		</statBases>
 		<ammoClass>Charged</ammoClass>
 	</ThingDef>
-
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGDistort" ParentName="OG_Bullet_Base" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/WraithcannonShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OG_E_Distortion_Damage</damageDef>
-			<speed>135</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGDistort">
-		<defName>OGE_Bullet_Wraithcannon</defName>
-		<label>Distortion Blast</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBase>5.00</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
-
+	
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGDistort</defName>
+		<defName>MakeOG_Ammo_Distort</defName>
 		<label>make Distort cartridge x60</label>
 		<description>Craft 60 Distort cartridges.</description>
 		<jobString>Making Distort cartridges.</jobString>
@@ -107,7 +85,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGDistort>60</Ammo_OGDistort>
+			<OG_Ammo_Distort>60</OG_Ammo_Distort>
 		</products>
 		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
 	</RecipeDef>

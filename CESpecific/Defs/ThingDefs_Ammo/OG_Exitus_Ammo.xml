@@ -8,8 +8,8 @@
 		<defName>AmmoSet_OGExecutionerPistol</defName>
 		<label>Executioner Pistol</label>
 		<ammoTypes>
-			<Ammo_OGBoltStd>OGI_Bullet_BoltStd</Ammo_OGBoltStd>
-			<Ammo_OGNeedle>OGI_Bullet_Needler</Ammo_OGNeedle>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<OG_Ammo_Needle>OGI_Bullet_Needler</OG_Ammo_Needle>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -28,7 +28,7 @@
 		<defName>AmmoSet_OGExitusRifle</defName>
 		<label>Exitus shells</label>
 		<ammoTypes>
-			<Ammo_OGAutocannon>OGI_Bullet_ExitusRound</Ammo_OGAutocannon>
+			<OG_Ammo_Exitus>OGI_Bullet_ExitusRound</OG_Ammo_Exitus>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -36,7 +36,7 @@
 		<defName>AmmoSet_OGExitusPistol</defName>
 		<label>Exitus shells</label>
 		<ammoTypes>
-			<Ammo_OGAuto>OGI_Bullet_ExitusRound</Ammo_OGAuto>
+			<OG_Ammo_Exitus>OGI_Bullet_ExitusRound</OG_Ammo_Exitus>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -58,7 +58,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGExitusBase">
-		<defName>Ammo_OGExitus</defName>
+		<defName>OG_Ammo_Exitus</defName>
 		<label>Exitus shell</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
@@ -73,9 +73,9 @@
 
 	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_OGExitus</defName>
-		<label>make Exitus cartridge x70</label>
-		<description>Craft 70 Exitus cartridges.</description>
+		<defName>MakeOG_Ammo_Exitus</defName>
+		<label>make Exitus cartridge x30</label>
+		<description>Craft 30 Exitus cartridges.</description>
 		<jobString>Making Exitus cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -102,7 +102,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_OGExitus>70</Ammo_OGExitus>
+			<OG_Ammo_Exitus>30</OG_Ammo_Exitus>
 		</products>
 		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
 	</RecipeDef>

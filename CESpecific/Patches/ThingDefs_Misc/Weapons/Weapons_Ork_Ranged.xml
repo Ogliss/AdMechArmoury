@@ -2,1394 +2,1333 @@
 <Patch>
 
 <Operation Class="PatchOperationSequence">
-  <!--success>Always</success-->
-  <operations>
-	<!-- ==================== Grot - Blasta ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_GrotBlasta</defName>
-    <statBases>
-      <Mass>0.8</Mass>
-      <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.2</SightsEfficiency>
-      <ShotSpread>0.35</ShotSpread>
-      <SwayFactor>2.5</SwayFactor>
-      <Bulk>0.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_GrotBlasta</defaultProjectile>
-		<warmupTime>0.2</warmupTime>
-		<range>22</range>
-		<burstShotCount>1</burstShotCount>
-		<soundCast>OG_Ork_Shot_Slugga</soundCast>
-		<soundCastTail>GunTail_Light</soundCastTail>
-		<muzzleFlashScale>4</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>24</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGGrotBlasta</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-	
-    </weaponTags>
-  </li>
-  
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_GrotBlasta"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>6</power>
-					<cooldownTime>1.8</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_GrotBlasta"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_GrotBlasta</defName>
-				<label>blasta slug</label>
-				<graphicData>
-					<texPath>Things/Projectile/Bullet_Small</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>6</damageAmountBase>
-					<armorPenetrationSharp>6</armorPenetrationSharp>
-					<armorPenetrationBlunt>42</armorPenetrationBlunt>
-					<speed>55</speed>
-				</projectile>
-			</ThingDef>
-		</value>
-	</li>
-	
-	<!-- ==================== Ork - Slugga ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_Slugga</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.75</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_Slugga</defaultProjectile>
-		<warmupTime>0.2</warmupTime>
-		<range>26</range>
-		<burstShotCount>1</burstShotCount>
-		<soundCast>OG_Ork_Shot_Slugga</soundCast>
-		<soundCastTail>GunTail_Light</soundCastTail>
-		<muzzleFlashScale>8</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>24</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGSlugga</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-		<li>Gun</li>
-		<li>OSlugga</li>
-    </weaponTags>
-  </li>
-  
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_Slugga"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_Slugga"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_Slugga</defName>
-				<label>slugga slug</label>
-				<graphicData>
-					<texPath>Things/Projectile/Bullet_Small</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>15</damageAmountBase>
-					<armorPenetrationSharp>6</armorPenetrationSharp>
-					<armorPenetrationBlunt>42</armorPenetrationBlunt>
-					<speed>75</speed>
-				</projectile>
-			</ThingDef>
-		</value>
-	</li>
-	
-	<!-- ==================== Ork - Shoota ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_Shoota</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
-		<warmupTime>1</warmupTime>
-		<range>31</range>
-		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-		<burstShotCount>6</burstShotCount>
-		<soundCast>OG_Ork_Shot_Shoota</soundCast>
-		<soundCastTail>GunTail_Medium</soundCastTail>
-		<muzzleFlashScale>9</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>36</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGShoota</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-		<li>Gun</li>
-		<li>OShoota</li>
-    </weaponTags>
-  </li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_Shoota"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_Shoota</defName>
-				<label>shoota slug</label>
-				<graphicData>
-					<texPath>Things/Projectile/Bullet_Small</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>9</damageAmountBase>
-					<armorPenetrationSharp>6</armorPenetrationSharp>
-					<armorPenetrationBlunt>42</armorPenetrationBlunt>
-					<speed>75</speed>
-				</projectile>
-			</ThingDef>
-		</value>
-	</li>
-	
-	<!-- ==================== Ork - Twin Linked Shoota ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_TwinLinkedShoota</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
-		<warmupTime>0.5</warmupTime>
-		<range>31</range>
-		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-		<burstShotCount>6</burstShotCount>
-		<soundCast>OG_Ork_Shot_Shoota</soundCast>
-		<soundCastTail>GunTail_Light</soundCastTail>
-		<muzzleFlashScale>8</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>48</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGShoota</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-	
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_TwinLinkedShoota"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<!-- ==================== Ork - Big Shoota ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_BigShoota</defName>
-    <statBases>
-      <Mass>12.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>7.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.55</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_BigShoota</defaultProjectile>
-		<warmupTime>1.5</warmupTime>
-		<range>38</range>
-		<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-		<burstShotCount>36</burstShotCount>
-		<soundCast>OG_Ork_Shot_Big_Shoota</soundCast>
-		<soundCastTail>GunTail_Medium</soundCastTail>
-		<muzzleFlashScale>10</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>180</magazineSize>
-      <reloadTime>4.5</reloadTime>
-      <ammoSet>AmmoSet_OGBigShoota</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-		<li>Gun</li>
-		<li>OBigShoota</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_BigShoota"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_BigShoota"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_BigShoota</defName>
-				<label>big shoota slug</label>
-				<graphicData>
-					<texPath>Things/Projectile/Bullet_Small</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>9</damageAmountBase>
-					<armorPenetrationSharp>7</armorPenetrationSharp>
-					<armorPenetrationBlunt>42</armorPenetrationBlunt>
-					<speed>75</speed>
-				</projectile>
-			</ThingDef>
-		</value>
-	</li>
-	
-	<!-- ==================== Ork - Snazzgun ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_Snazzgun</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_Snazzgun</defaultProjectile>
-		<warmupTime>1.5</warmupTime>
-		<range>38</range>
-		<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-		<burstShotCount>13</burstShotCount>
-		<soundCast>Shot_Revolver</soundCast>
-		<soundCastTail>GunTail_Medium</soundCastTail>
-		<muzzleFlashScale>10</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>52</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGSnazz</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-		<aiUseBurstMode>TRUE</aiUseBurstMode>	
-    </FireModes>
-    <weaponTags>
-		<li>EliteGun</li>
-		<li>OSnazzgun</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_Snazzgun"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_Snazzgun"]</xpath>
-		<value>
-			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-				<defName>OGO_Bullet_Snazzgun</defName>
-				<label>snazzgun slug</label>
-				<textures>
-					<li>Things/Projectile/RailgunSml</li>
-				</textures>
-				<seam>0</seam>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>15</damageAmountBase>
-					<armorPenetrationSharp>8</armorPenetrationSharp>
-					<armorPenetrationBlunt>42</armorPenetrationBlunt>
-					<stoppingPower>1.00</stoppingPower>
-				</projectile>
-				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-						<explosionMote>true</explosionMote>
-						<explosionMoteSize>0.25</explosionMoteSize>
-						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-						<ImpactMoteSize>1</ImpactMoteSize>
-						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
-					</li>
-				</modExtensions>
-			</ThingDef>
-		</value>
-	</li>
-
-	<!-- ==================== Ork - Zapp Kannon ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_ZappKannon</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGO_Bullet_ZappKannon</defaultProjectile>
-		<warmupTime>1.5</warmupTime>
-		<range>45</range>
-		<burstShotCount>1</burstShotCount>
-		<soundCast>OG_Ork_Shot_Zapp_Cannon</soundCast>
-		<soundCastTail>GunTail_Medium</soundCastTail>
-		<muzzleFlashScale>10</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>8</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGArcOrk</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-		<li>HeavyGun</li>
-		<li>OZappKannon</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_ZappKannon"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_ZappKannon"]</xpath>
-		<value>
-			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-				<defName>OGO_Bullet_ZappKannon</defName>
-				<label>zapp kannon blast</label>
-				<textures>
-					<li>Things/Projectile/LightningBolt</li>
-				</textures>
-				<seam>0</seam>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>OGILas</damageDef>
-					<explosionRadius>0.55</explosionRadius>
-					<damageAmountBase>58</damageAmountBase>
-					<armorPenetrationSharp>36</armorPenetrationSharp>
-					<armorPenetrationBlunt>62</armorPenetrationBlunt>
-				</projectile>
-				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-						<explosionMote>true</explosionMote>
-						<explosionMoteSize>0.25</explosionMoteSize>
-						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-						<ImpactMoteSize>1</ImpactMoteSize>
-						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
-					</li>
-				</modExtensions>
-			</ThingDef>
-		</value>
-	</li>
-
-	<!-- ==================== Ork - Dakka Deffgun ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_DeffgunDakka</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
-		<warmupTime>2.5</warmupTime>
-		<range>38</range>
-		<burstShotCount>60</burstShotCount>
-		<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-		<soundCast>OG_Ork_Shot_Deffgun_Dakka</soundCast>
-		<soundCastTail>GunTail_Heavy</soundCastTail>
-		<muzzleFlashScale>14</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>6</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGAssaultCannon</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-		<li>HeavyGun</li>
-		<li>OPlasmaDeffgun</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunDakka"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<!--li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_Shoota</defName>
-				<label>shoota slug</label>
-				<graphicData>
-					<texPath>Things/Projectile/Bullet_Small</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Bullet</damageDef>
-					<damageAmountBase>9</damageAmountBase>
-					<armorPenetrationBase>0.16</armorPenetrationBase>
-					<speed>75</speed>
-				</projectile>
-			</ThingDef>
-		</value>
-	</li-->
-	
-	<!-- ==================== Ork - Beamy Deffgun ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_DeffgunBeamy</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
-		<warmupTime>4</warmupTime>
-		<range>45</range>
-		<burstShotCount>1</burstShotCount>
-		<soundCast>OG_Las_Cannon_Sound</soundCast>
-		<soundCastTail>GunTail_Heavy</soundCastTail>
-		<muzzleFlashScale>14</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>6</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGLasCannon</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-		<li>HeavyGun</li>
-		<li>OPlasmaDeffgun</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunBeamy"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<!-- ==================== Ork - Plasma Deffgun ========================== -->
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>OGO_Gun_DeffgunPlasma</defName>
-    <statBases>
-      <Mass>4.8</Mass>
-      <RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.15</ShotSpread>
-      <SwayFactor>1.5</SwayFactor>
-      <Bulk>4.50</Bulk>
-    </statBases>
-    <Properties>
-		<recoilAmount>0.45</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>OGO_Bullet_PlasmaDeffgun</defaultProjectile>
-      <warmupTime>1.5</warmupTime>
-      <range>38</range>
-      <soundCast>Shot_Revolver</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>10</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>6</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_OGOPlasma</ammoSet>
-    </AmmoUser>
-    <FireModes>
-    	<aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-		<li>HeavyGun</li>
-		<li>OPlasmaDeffgun</li>
-    </weaponTags>
-  </li>
-	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunPlasma"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>grip</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="OGO_Bullet_PlasmaDeffgun"]</xpath>
-		<value>
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-				<defName>OGO_Bullet_PlasmaDeffgun</defName>
-				<label>Deffun blast</label>
-				<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
-				<graphicData>
-					<texPath>Things/Projectile/PlamsShotLrg</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<flyOverhead>false</flyOverhead>
-					<damageDef>OGIPlasmaCannon</damageDef>
-					<explosionRadius>1.75</explosionRadius>
-					<damageAmountBase>38</damageAmountBase>
-					<armorPenetrationBase>0.68</armorPenetrationBase>
-					<speed>55</speed>
-					<soundExplode>OGIPC_Explosion</soundExplode>
-				</projectile>
-				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
-				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-					<explosionMote>true</explosionMote>
-					<explosionMoteSize>0.75</explosionMoteSize>
-					<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-					<ImpactMoteSize>2</ImpactMoteSize>
-					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
-					</li>
-					<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-					<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-					<GlowMoteSize>2.5</GlowMoteSize>
-					</li>
-				</modExtensions>
-			</ThingDef>
-		</value>
-	</li>
+	<!--success>Always</success-->
+	<operations>
+		<!-- ==================== Grot - Blasta ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_GrotBlasta</defName>
+			<statBases>
+				<Mass>0.8</Mass>
+				<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.2</SightsEfficiency>
+				<ShotSpread>0.35</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>0.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_GrotBlasta</defaultProjectile>
+				<warmupTime>0.2</warmupTime>
+				<range>22</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Slugga</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>4</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>24</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGGrotBlasta</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
 		
-				<!-- ====================== Burna ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>OGO_Gun_Burna</defName>
-					<statBases>
-						<Mass>2.8</Mass>
-						<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
-						<SightsEfficiency>0.5</SightsEfficiency>
-						<ShotSpread>0.5</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>3.50</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>0.1</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
-						<warmupTime>0.5</warmupTime>
-						<range>16</range>
-						<soundCast>OG_Flamer_Sound</soundCast>
-						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-						<burstShotCount>12</burstShotCount>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>54</magazineSize>
-						<reloadTime>6.5</reloadTime>
-						<ammoSet>AmmoSet_OGBurna</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-						<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					</FireModes>
-					<weaponTags>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_GrotBlasta"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-					</weaponTags>
-				</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_GrotBlasta"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_GrotBlasta</defName>
+					<label>blasta slug</label>
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>6</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>42</armorPenetrationBlunt>
+						<speed>55</speed>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ==================== Ork - Slugga ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_Slugga</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.75</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Slugga</defaultProjectile>
+				<warmupTime>0.2</warmupTime>
+				<range>26</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Slugga</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>24</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGSlugga</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_Slugga"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Gun_Burna"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>cutting torch</label>
-								<capacities>
-									<li>OG_PowerWeapon_Cut</li>
-								</capacities>
-								<power>12</power>
-								<cooldownTime>1.8</cooldownTime>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>stock</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>9</power>
-								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>10</power>
-								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Slugga"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_Slugga</defName>
+					<label>slugga slug</label>
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>15</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>42</armorPenetrationBlunt>
+						<speed>75</speed>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ==================== Ork - Shoota ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_Shoota</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGShoota</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Bullet_Burna"]</xpath>
-					<value>
-						<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-							<defName>OGO_Bullet_Burna</defName>
-							<label>flames</label>
-							<graphicData>
-								<texPath>Things/Projectile/FlamerFire</texPath>
-								<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
-								<shaderType>TransparentPostLight</shaderType>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<flyOverhead>false</flyOverhead>
-								<damageDef>OGFlamer</damageDef>
-								<damageAmountBase>2</damageAmountBase>
-								<armorPenetrationBase>0.16</armorPenetrationBase>
-								<explosionRadius>0.75</explosionRadius>
-								<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-								<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-								<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-								<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
-								<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
-								<stoppingPower>0.75</stoppingPower>
-								<speed>20</speed>
-								<soundExplode>OGIFL_Explosion</soundExplode>
-								<pelletCount>8</pelletCount>
-								<spreadMult>20.8</spreadMult>
-							</projectile>
-							<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
-							<modExtensions>
-								<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-								<ticksPerFrame>15</ticksPerFrame>
-								</li>
-							</modExtensions>
-						</ThingDef>
-					</value>
-				</li>
-				
-				<!-- ====================== Scorcha ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>OGO_Gun_Scorcha</defName>
-					<statBases>
-						<Mass>4.8</Mass>
-						<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
-						<SightsEfficiency>1.0</SightsEfficiency>
-						<ShotSpread>0.15</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>4.50</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>0.1</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>OGO_Bullet_Scorcha</defaultProjectile>
-						<warmupTime>1.5</warmupTime>
-						<range>24</range>
-						<soundCast>OG_Flamer_Sound</soundCast>
-						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-						<burstShotCount>36</burstShotCount>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>140</magazineSize>
-						<reloadTime>6.5</reloadTime>
-						<ammoSet>AmmoSet_OGScorcha</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-						<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					</FireModes>
-					<weaponTags>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_Shoota"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-					</weaponTags>
-				</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_Shoota</defName>
+					<label>shoota slug</label>
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>9</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>42</armorPenetrationBlunt>
+						<speed>75</speed>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ==================== Ork - Twin Linked Shoota ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_TwinLinkedShoota</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>48</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGShoota</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_TwinLinkedShoota"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Gun_Scorcha"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>stock</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>9</power>
-								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>10</power>
-								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
+		<!-- ==================== Ork - Big Shoota ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_BigShoota</defName>
+			<statBases>
+				<Mass>12.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>7.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.55</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_BigShoota</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<burstShotCount>36</burstShotCount>
+				<soundCast>OG_Ork_Shot_Big_Shoota</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>180</magazineSize>
+				<reloadTime>4.5</reloadTime>
+				<ammoSet>AmmoSet_OGBigShoota</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_BigShoota"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Bullet_Scorcha"]</xpath>
-					<value>
-						<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-							<defName>OGO_Bullet_Scorcha</defName>
-							<label>flames</label>
-							<graphicData>
-								<texPath>Things/Projectile/FlamerFire</texPath>
-								<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
-								<shaderType>TransparentPostLight</shaderType>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<flyOverhead>false</flyOverhead>
-								<damageDef>OGFlamer</damageDef>
-								<damageAmountBase>2</damageAmountBase>
-								<armorPenetrationBase>0.33</armorPenetrationBase>
-								<explosionRadius>1.550</explosionRadius>
-								<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-								<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-								<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-								<stoppingPower>0.75</stoppingPower>
-								<speed>20</speed>
-								<soundExplode>OGIFL_Explosion</soundExplode>
-								<pelletCount>5</pelletCount>
-								<spreadMult>25.8</spreadMult>
-							</projectile>
-							<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
-							<modExtensions>
-								<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-								<ticksPerFrame>15</ticksPerFrame>
-								</li>
-							</modExtensions>
-						</ThingDef>
-					</value>
-				</li>
-				
-				<!-- ====================== Rokkit Launcha ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>OGO_Gun_RokkitLaucha</defName>
-					<statBases>
-						<Mass>4.8</Mass>
-						<RangedWeapon_Cooldown>2.50</RangedWeapon_Cooldown>
-						<SightsEfficiency>1.0</SightsEfficiency>
-						<ShotSpread>0.15</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>4.50</Bulk>
-					</statBases>
-					<Properties>
-						<recoilAmount>0.45</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<label>Krak</label>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
-						<!--forcedMissRadius>2.9</forcedMissRadius-->
-						<warmupTime>4.5</warmupTime>
-						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-						<range>35.9</range>
-						<burstShotCount>1</burstShotCount>
-						<soundCast>InfernoCannon_Fire</soundCast>
-						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<onlyManualCast>true</onlyManualCast>
-						<stopBurstWithoutLos>false</stopBurstWithoutLos>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>1</magazineSize>
-						<reloadTime>8.5</reloadTime>
-						<ammoSet>AmmoSet_OGOMissile</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-					</FireModes>
-					<weaponTags>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_BigShoota"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_BigShoota</defName>
+					<label>big shoota slug</label>
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>9</damageAmountBase>
+						<armorPenetrationSharp>7</armorPenetrationSharp>
+						<armorPenetrationBlunt>42</armorPenetrationBlunt>
+						<speed>75</speed>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ==================== Ork - Snazzgun ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_Snazzgun</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Snazzgun</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+				<burstShotCount>13</burstShotCount>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>52</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGSnazz</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_Snazzgun"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-					</weaponTags>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Gun_RokkitLaucha"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>stock</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>9</power>
-								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>10</power>
-								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Bullet_RokkitKrak"]</xpath>
-					<value>
-						<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-							<defName>OGO_Bullet_RokkitKrak</defName>
-							<label>krak rokkit</label>
-							<description>Krak Rokkits high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
-							<graphicData>
-								<texPath>Things/Projectile/ImpMissileKrak</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>70</damageAmountBase>
-								<armorPenetrationSharp>22</armorPenetrationSharp>
-								<armorPenetrationBlunt>104</armorPenetrationBlunt>
-								<explosionRadius>1.5</explosionRadius>
-								<stoppingPower>4</stoppingPower>
-								<speed>50</speed>
-							</projectile>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-						</ThingDef>
-					</value>
-				</li>
-					
-				<!-- ====================== Kombi Weapons ===================== -->
-				<!-- ====================== Kombi-Burna ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
-					<defName>OGO_Gun_KombiBurna</defName>
-					<statBases>
-						<Mass>3.8</Mass>
-						<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
-						<SightsEfficiency>1.0</SightsEfficiency>
-						<ShotSpread>0.15</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>3.50</Bulk>
-					</statBases>
-					<Properties>
-						<li>
-							<recoilAmount>0.25</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<label>Shoota</label>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
-							<warmupTime>0.5</warmupTime>
-							<range>31</range>
-							<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-							<burstShotCount>6</burstShotCount>
-							<soundCast>OG_Ork_Shot_Shoota</soundCast>
-							<soundCastTail>GunTail_Light</soundCastTail>
-							<muzzleFlashScale>8</muzzleFlashScale>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Snazzgun"]</xpath>
+			<value>
+				<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+					<defName>OGO_Bullet_Snazzgun</defName>
+					<label>snazzgun slug</label>
+					<textures>
+						<li>Things/Projectile/RailgunSml</li>
+					</textures>
+					<seam>0</seam>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>15</damageAmountBase>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<armorPenetrationBlunt>42</armorPenetrationBlunt>
+						<stoppingPower>1.00</stoppingPower>
+					</projectile>
+					<modExtensions>
+						<li Class="AdeptusMechanicus.EffectProjectileExtension">
+							<explosionMote>true</explosionMote>
+							<explosionMoteSize>0.25</explosionMoteSize>
+							<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
+							<ImpactMoteSize>1</ImpactMoteSize>
+							<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+							<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 						</li>
-						<li>
-							<recoilAmount>0.1</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<label>Burna</label>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
-							<warmupTime>0.5</warmupTime>
-							<range>16</range>
-							<soundCast>OG_Flamer_Sound</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<muzzleFlashScale>14</muzzleFlashScale>
-							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-							<burstShotCount>12</burstShotCount>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</li>
+
+		<!-- ==================== Ork - Zapp Kannon ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_ZappKannon</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_ZappKannon</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Zapp_Cannon</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>8</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGArcOrk</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_ZappKannon"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_ZappKannon"]</xpath>
+			<value>
+				<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+					<defName>OGO_Bullet_ZappKannon</defName>
+					<label>zapp kannon blast</label>
+					<textures>
+						<li>Things/Projectile/LightningBolt</li>
+					</textures>
+					<seam>0</seam>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>OGILas</damageDef>
+						<explosionRadius>0.55</explosionRadius>
+						<damageAmountBase>58</damageAmountBase>
+						<armorPenetrationSharp>36</armorPenetrationSharp>
+						<armorPenetrationBlunt>62</armorPenetrationBlunt>
+					</projectile>
+					<modExtensions>
+						<li Class="AdeptusMechanicus.EffectProjectileExtension">
+							<explosionMote>true</explosionMote>
+							<explosionMoteSize>0.25</explosionMoteSize>
+							<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
+							<ImpactMoteSize>1</ImpactMoteSize>
+							<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+							<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 						</li>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>36</magazineSize>
-						<reloadTime>4.5</reloadTime>
-						<ammoSet>AmmoSet_OGKombiShootaBurna</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-						<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					</FireModes>
-					<weaponTags>
-						<!--li>CE_Sidearm</li-->
-						<!--li>CE_AI_Pistol</li-->
-						<!--li>CE_OneHandedWeapon</li-->
-						<!--li>CE_AI_AssaultWeapon</li-->
-						<!--li>CE_AI_Rifle</li-->
-						<!--li>CE_SMG</li-->
-						<!--li>CE_AI_Launcher</li-->
-						<!--li>CE_MachineGun</li-->
-						<!--li>CE_AI_Suppressive</li-->
-					</weaponTags>
-				</li>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Gun_KombiBurna"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>stock</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>9</power>
-								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>10</power>
-								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
+		<!-- ==================== Ork - Dakka Deffgun ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_DeffgunDakka</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>38</range>
+				<burstShotCount>60</burstShotCount>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<soundCast>OG_Ork_Shot_Deffgun_Dakka</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGAssaultCannon</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunDakka"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-				<!-- ====================== Kombi-Rokkit ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
-					<defName>OGO_Gun_KombiRokkit</defName>
-					<statBases>
-						<Mass>3.8</Mass>
-						<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
-						<SightsEfficiency>1.0</SightsEfficiency>
-						<ShotSpread>0.15</ShotSpread>
-						<SwayFactor>1.5</SwayFactor>
-						<Bulk>3.50</Bulk>
-					</statBases>
-					<Properties>
-						<li>
-							<recoilAmount>0.25</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<label>Shoota</label>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
-							<warmupTime>0.5</warmupTime>
-							<range>31</range>
-							<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-							<burstShotCount>6</burstShotCount>
-							<soundCast>OG_Ork_Shot_Shoota</soundCast>
-							<soundCastTail>GunTail_Light</soundCastTail>
-							<muzzleFlashScale>8</muzzleFlashScale>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
+		<!--li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_Shoota</defName>
+					<label>shoota slug</label>
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>9</damageAmountBase>
+						<armorPenetrationBase>0.16</armorPenetrationBase>
+						<speed>75</speed>
+					</projectile>
+				</ThingDef>
+			</value>
+		</li-->
+		
+		<!-- ==================== Ork - Beamy Deffgun ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_DeffgunBeamy</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGLasCannon</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunBeamy"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- ==================== Ork - Plasma Deffgun ========================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_DeffgunPlasma</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_PlasmaDeffgun</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>3.5</reloadTime>
+				<ammoSet>AmmoSet_OGOPlasma</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunPlasma"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.6</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_PlasmaDeffgun"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_PlasmaDeffgun</defName>
+					<label>Deffun blast</label>
+					<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+					<graphicData>
+						<texPath>Things/Projectile/PlamsShotLrg</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>OGIPlasmaCannon</damageDef>
+						<explosionRadius>1.75</explosionRadius>
+						<damageAmountBase>38</damageAmountBase>
+						<armorPenetrationBase>0.68</armorPenetrationBase>
+						<speed>55</speed>
+						<soundExplode>OGIPC_Explosion</soundExplode>
+					</projectile>
+					<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+					<modExtensions>
+						<li Class="AdeptusMechanicus.EffectProjectileExtension">
+						<explosionMote>true</explosionMote>
+						<explosionMoteSize>0.75</explosionMoteSize>
+						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
+						<ImpactMoteSize>2</ImpactMoteSize>
+						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
+						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
 						</li>
-						<li>
-							<recoilAmount>0.1</recoilAmount>
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<label>Burna</label>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
-							<!--forcedMissRadius>2.9</forcedMissRadius-->
-							<warmupTime>4.5</warmupTime>
-							<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-							<range>35.9</range>
-							<burstShotCount>1</burstShotCount>
-							<soundCast>InfernoCannon_Fire</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<onlyManualCast>true</onlyManualCast>
-							<stopBurstWithoutLos>false</stopBurstWithoutLos>
-							<muzzleFlashScale>14</muzzleFlashScale>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
+						<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+						<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
+						<GlowMoteSize>2.5</GlowMoteSize>
 						</li>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>36</magazineSize>
-						<reloadTime>4.5</reloadTime>
-						<ammoSet>AmmoSet_OGKombiShootaRokkit</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
-						<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					</FireModes>
-					<weaponTags>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ====================== Burna ===================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_Burna</defName>
+			<statBases>
+				<Mass>2.8</Mass>
+				<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.5</SightsEfficiency>
+				<ShotSpread>0.5</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>3.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.1</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>16</range>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>12</burstShotCount>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>54</magazineSize>
+				<reloadTime>6.5</reloadTime>
+				<ammoSet>AmmoSet_OGBurna</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
 
-					</weaponTags>
-				</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_Burna"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>cutting torch</label>
+						<capacities>
+							<li>OG_PowerWeapon_Cut</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1.8</cooldownTime>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OGO_Gun_KombiRokkit"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>stock</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>9</power>
-								<cooldownTime>1.8</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>10</power>
-								<cooldownTime>1.9</cooldownTime>
-								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Burna"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_Burna</defName>
+					<label>flames</label>
+					<graphicData>
+						<texPath>Things/Projectile/FlamerFire</texPath>
+						<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>OGFlamer</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<armorPenetrationBase>0.16</armorPenetrationBase>
+						<explosionRadius>0.75</explosionRadius>
+						<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+						<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+						<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
+						<stoppingPower>0.75</stoppingPower>
+						<speed>20</speed>
+						<soundExplode>OGIFL_Explosion</soundExplode>
+						<pelletCount>8</pelletCount>
+						<spreadMult>20.8</spreadMult>
+					</projectile>
+					<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
+					<modExtensions>
+						<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+						<ticksPerFrame>15</ticksPerFrame>
+						</li>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ====================== Scorcha ===================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_Scorcha</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.1</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Scorcha</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>24</range>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>36</burstShotCount>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>140</magazineSize>
+				<reloadTime>6.5</reloadTime>
+				<ammoSet>AmmoSet_OGScorcha</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_Scorcha"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_Scorcha"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_Scorcha</defName>
+					<label>flames</label>
+					<graphicData>
+						<texPath>Things/Projectile/FlamerFire</texPath>
+						<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>OGFlamer</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<armorPenetrationBase>0.33</armorPenetrationBase>
+						<explosionRadius>1.550</explosionRadius>
+						<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+						<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+						<stoppingPower>0.75</stoppingPower>
+						<speed>20</speed>
+						<soundExplode>OGIFL_Explosion</soundExplode>
+						<pelletCount>5</pelletCount>
+						<spreadMult>25.8</spreadMult>
+					</projectile>
+					<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
+					<modExtensions>
+						<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+						<ticksPerFrame>15</ticksPerFrame>
+						</li>
+					</modExtensions>
+				</ThingDef>
+			</value>
+		</li>
+		
+		<!-- ====================== Rokkit Launcha ===================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>OGO_Gun_RokkitLaucha</defName>
+			<statBases>
+				<Mass>4.8</Mass>
+				<RangedWeapon_Cooldown>2.50</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>4.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>0.45</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+				<!--forcedMissRadius>2.9</forcedMissRadius-->
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>8.5</reloadTime>
+				<ammoSet>AmmoSet_OGOMissile</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_RokkitLaucha"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Bullet_RokkitKrak"]</xpath>
+			<value>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+					<defName>OGO_Bullet_RokkitKrak</defName>
+					<label>krak rokkit</label>
+					<description>Krak Rokkits high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
+					<graphicData>
+						<texPath>Things/Projectile/ImpMissileKrak</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>70</damageAmountBase>
+						<armorPenetrationSharp>22</armorPenetrationSharp>
+						<armorPenetrationBlunt>104</armorPenetrationBlunt>
+						<explosionRadius>1.5</explosionRadius>
+						<stoppingPower>4</stoppingPower>
+						<speed>50</speed>
+					</projectile>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</ThingDef>
+			</value>
+		</li>
+			
+		<!-- ====================== Kombi Weapons ===================== -->
+		<!-- ====================== Kombi-Burna ===================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
+			<defName>OGO_Gun_KombiBurna</defName>
+			<statBases>
+				<Mass>3.8</Mass>
+				<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>3.50</Bulk>
+			</statBases>
+			<Properties>
+				<li>
+					<recoilAmount>0.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<label>Shoota</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>31</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<soundCast>OG_Ork_Shot_Shoota</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
 				</li>
+				<li>
+					<recoilAmount>0.1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<label>Burna</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>16</range>
+					<soundCast>OG_Flamer_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>12</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>4.5</reloadTime>
+				<ammoSet>AmmoSet_OGKombiShootaBurna</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_KombiBurna"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- ====================== Kombi-Rokkit ===================== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
+			<defName>OGO_Gun_KombiRokkit</defName>
+			<statBases>
+				<Mass>3.8</Mass>
+				<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.15</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>3.50</Bulk>
+			</statBases>
+			<Properties>
+				<li>
+					<recoilAmount>0.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<label>Shoota</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>31</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<soundCast>OG_Ork_Shot_Shoota</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+				<li>
+					<recoilAmount>0.1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<label>Burna</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+					<!--forcedMissRadius>2.9</forcedMissRadius-->
+					<warmupTime>4.5</warmupTime>
+					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					<range>35.9</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>4.5</reloadTime>
+				<ammoSet>AmmoSet_OGKombiShootaRokkit</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>	
+			</FireModes>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="OGO_Gun_KombiRokkit"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 	
-  </operations>
+	</operations>
 </Operation>
 
 </Patch>
