@@ -92,7 +92,6 @@ namespace AdeptusMechanicus.AirStrikes
 			this.spaceshipShadowMatrix.SetTRS(this.ShadowDrawPos + Altitudes.AltIncVect, this.spaceshipExactRotation.ToQuat(), this.spaceshipShadowScale);
 			Graphics.DrawMesh(MeshPool.plane10, this.spaceshipShadowMatrix, FadedMaterialPool.FadedVersionOf(this.spaceshipShadowTexture, 0.75f * GenCelestial.CurShadowStrength(base.Map)), 0);
 
-			this.Comps_PostDraw();
 		}
 
 		// Token: 0x0600013B RID: 315 RVA: 0x0000B5A0 File Offset: 0x000097A0
@@ -116,7 +115,6 @@ namespace AdeptusMechanicus.AirStrikes
 			if (flag)
 			{
 				AirStrikeIncoming.airStrikeSound.PlayOneShot(new TargetInfo(this.targetPosition, base.Map, false));
-				base.GetComp<RimWorld.CompOrbitalBeam>().StartAnimation(this.airStrikeDef.ticksBeforeOverflightInitialValue, 10, 180);
 			}
 			for (int i = 0; i < this.airStrikeDef.weapons.Count; i++)
 			{
