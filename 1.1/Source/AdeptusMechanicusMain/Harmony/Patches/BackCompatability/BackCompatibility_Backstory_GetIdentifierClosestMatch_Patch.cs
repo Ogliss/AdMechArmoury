@@ -25,7 +25,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 			}
             if (identifier == "OG_Ork_Smart_Child")
             {
-				identifier = "OG_Ork_Smart_Child";
+				identifier = "OG_Ork_Odd_Child";
 				return;
 			}
 		//	Log.Message("Find matching backstory for: " + identifier);

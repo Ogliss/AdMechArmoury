@@ -275,7 +275,7 @@
 
   <!-- ========================= Cadian ========================== -->
   <!-- ========================= Flak Helmet ========================== -->
-  <ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="IGHelmet">
+  <!--ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="IGHelmet">
 	<defName>OGIG_Apparel_BasicFlakHelm</defName>
 	<label>imperial guard helmet</label>
 	<description>A lightweight combat helmet.</description>
@@ -321,28 +321,16 @@
 			<li>OGIArmour</li>
 		</defaultOutfitTags> 
    </apparel>
-	<!--
-	<colorGenerator Class="ColorGenerator_Options">
-		<options>
-		<li>
-			<weight>10</weight>
-			<max>(0.349,0.541,0.361)</max>
-			<min>(0.263,0.376,0.251)</min>
-		</li>
-		</options>
-	</colorGenerator>
-	-->
 	<comps>
 
 	</comps>
-  </ThingDef>
+  </ThingDef-->
  
   <!-- ========================= Flak Helmet ========================== -->
-  <ThingDef ParentName="IGHelmet">
+  <!--ThingDef ParentName="IGHelmet">
 	<defName>OGIG_Apparel_GoggledFlakHelm</defName>
 	<label>imperial guard helmet (Goggled)</label>
 	<description>A lightweight combat helmet.\n\nProtective Eye Wear</description>
-	<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
 	<graphicData>
 		<texPath>Things/Item/Apparel/Imperial/IG/IG_Helm/IG_Helm_Gog</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -385,7 +373,7 @@
 			<Chance>1</Chance>
 		</li>
 	</comps>
-  </ThingDef>
+  </ThingDef-->
   
   <!-- ========================= Cadian - Armour ========================== -->
   <!-- ========================= Cadian - Flak Helmet ========================== -->
@@ -480,7 +468,7 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
-			<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+		<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
 		<label>cadian pattern helmet (Goggled)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
@@ -489,13 +477,13 @@
 			<shaderType>CutoutComplex</shaderType>
 			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-			<apparel>
+		<apparel>
 			<bodyPartGroups>
 				<li>Eyes</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
-			</apparel>
+		</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
 				<li>
@@ -506,7 +494,7 @@
 		</colorGenerator>
 		<tickerType>Normal</tickerType>
 		<comps>	 
-				<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
 				<Chance>1</Chance>
 			</li>
 		</comps>

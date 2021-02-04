@@ -2,13 +2,13 @@
 <Defs>
 <!-- ==================== Base HeDiffs ========================= -->
 	<DamageDef Name="OGStunBase" Abstract="True">
-    <description>description</description>
+		<description>description</description>
 		<harmsHealth>false</harmsHealth>
 		<makesBlood>false</makesBlood>
 	</DamageDef>
 
 	<HediffDef Name="OGAffectorBase" Abstract="True">
-    <description>description</description>
+		<description>description</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 	</HediffDef>
@@ -20,12 +20,14 @@
 		<initialSeverity>2</initialSeverity>
 		<makesAlert>false</makesAlert>
 		<comps>
-				<li Class="HediffCompProperties_Disappears">
-					<disappearsAfterTicks>
-						<min>1500</min>
-						<max>6000</max>
-					</disappearsAfterTicks>
-				</li>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>1500</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="AdeptusMechanicus.HediffCompProperties_ForceIncap">
+			</li>
 		</comps>
 		<stages>
 			<li>
@@ -33,7 +35,7 @@
 				<capMods>
 				<li>
 					<capacity>Consciousness</capacity>
-					<offset>-0.30</offset>
+					<setMax>0.20</setMax>
 				</li>
 				</capMods>
 			</li>
@@ -47,33 +49,35 @@
 		<makesAlert>false</makesAlert>
 		<makesSickThought>true</makesSickThought>
 		<comps>
-				<li Class="HediffCompProperties_Disappears">
-					<disappearsAfterTicks>
-						<min>1000</min>
-						<max>6000</max>
-					</disappearsAfterTicks>
-				</li>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>1000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="AdeptusMechanicus.HediffCompProperties_ForceIncap">
+			</li>
 		</comps>
 		<stages>
-        <li>
-          <minSeverity>1</minSeverity>
-          <label>minor</label>
-          <painFactor>1.1</painFactor>
-            <capMods>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>minor</label>
+				<painFactor>1.1</painFactor>
+				<capMods>
 					<li>
 						<capacity>Moving</capacity>
 						<offset>-0.02</offset>
 					</li>
-              <li>
-                <capacity>Manipulation</capacity>
-                <offset>-0.02</offset>
-              </li>
-            </capMods>
-        </li>
-        <li>
-          <minSeverity>5</minSeverity>
-          <label>severe</label>
-          <painFactor>1.2</painFactor>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.02</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>5</minSeverity>
+				<label>severe</label>
+				<painFactor>1.2</painFactor>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -94,16 +98,10 @@
 					</li>
 				</hediffGivers>
 			</li>
-        <li>
-          <minSeverity>7.5</minSeverity>
-          <label>extreme</label>
-          <painFactor>1.4</painFactor>
-        <mentalStateGivers>
-          <li>
-            <mentalState>WanderConfused</mentalState>
-            <mtbDays>4</mtbDays>
-          </li>
-        </mentalStateGivers>
+			<li>
+				<minSeverity>7.5</minSeverity>
+				<label>extreme</label>
+				<painFactor>1.4</painFactor>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
@@ -117,29 +115,35 @@
 				<hediffGivers>
 					<li Class="HediffGiver_Random">
 						<hediff>BrainDamageSevere</hediff>
-						<mtbDays>0.25</mtbDays>
+						<mtbDays>2</mtbDays>
 						<partsToAffect>
 							<li>Brain</li>
 						</partsToAffect>
 					</li>
 					<li Class="HediffGiver_Random">
 						<hediff>HeartAttack</hediff>
-						<mtbDays>0.5</mtbDays>
+						<mtbDays>0.75</mtbDays>
 						<partsToAffect>
 							<li>Heart</li>
 						</partsToAffect>
 					</li>
 				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>4</mtbDays>
+					</li>
+				</mentalStateGivers>
 			</li>
 		</stages>
-			<injuryProps>
-				<painPerSeverity>1.12</painPerSeverity>
-				<averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
-				<bleedRate>0</bleedRate>
-				<canMerge>true</canMerge>
-				<destroyedLabel>Destroyed</destroyedLabel>
-				<destroyedOutLabel>Fried</destroyedOutLabel>
-			</injuryProps>
+		<injuryProps>
+			<painPerSeverity>1.12</painPerSeverity>
+			<averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
+			<bleedRate>0</bleedRate>
+			<canMerge>true</canMerge>
+			<destroyedLabel>Destroyed</destroyedLabel>
+			<destroyedOutLabel>Fried</destroyedOutLabel>
+		</injuryProps>
 	</HediffDef>
 
 <!-- Injuries -->
@@ -155,9 +159,11 @@
     <scenarioCanAdd>true</scenarioCanAdd>
     <taleOnVisible>ToxicityRevealed</taleOnVisible>
     <comps>
-      <li Class="HediffCompProperties_Immunizable">
-        <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
-      </li>
+		<li Class="HediffCompProperties_Immunizable">
+			<severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+		</li>
+		<li Class="AdeptusMechanicus.HediffCompProperties_ForceIncap">
+		</li>
     </comps>
     <stages>
       <li>
@@ -269,8 +275,8 @@
     </stages>
   </HediffDef>
 
-<!-- ==================== Radiation HeDiff ========================= -->
-  <HediffDef>
+	<!-- ==================== Radiation HeDiff ========================= -->
+	<HediffDef>
 		<defName>OG_Hediff_RadiationPoisioning</defName>
 		<description>description</description>
 		<hediffClass>HediffWithComps</hediffClass>
@@ -283,6 +289,8 @@
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.025</severityPerDay>
+			</li>
+			<li Class="AdeptusMechanicus.HediffCompProperties_ForceIncap">
 			</li>
 		</comps>
 		<stages>
@@ -386,7 +394,7 @@
 				</hediffGivers>
 			</li>
 		</stages>
-  </HediffDef>
+	</HediffDef>
 
 <!-- ==================== Brain Damage HeDiffs ========================= -->
 <!-- ==================== Moderate ========================= -->
@@ -415,68 +423,70 @@
 
 	<!-- ==================== Psychic Shock HeDiff ========================= -->
 	<HediffDef ParentName="DiseaseBase">
-    <defName>OG_Hediff_FWPsychicShock</defName>
+		<defName>OG_Hediff_FWPsychicShock</defName>
 		<description>description</description>
-    <label>psychic shock</label>
-    <labelNoun>a psychic shock</labelNoun>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>
-          <min>1500</min>
-          <max>7500</max>
-        </disappearsAfterTicks>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <capMods>
-          <li>
-            <capacity>Consciousness</capacity>
-            <setMax>0.1</setMax>
-          </li>
-        </capMods>
-      </li>
-    </stages>
-			<injuryProps>
-				<bleedRate>0</bleedRate>
-				<canMerge>true</canMerge>
-			</injuryProps>
-  </HediffDef>
+		<label>psychic shock</label>
+		<labelNoun>a psychic shock</labelNoun>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>1500</min>
+					<max>7500</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="AdeptusMechanicus.HediffCompProperties_ForceIncap">
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<injuryProps>
+			<bleedRate>0</bleedRate>
+			<canMerge>true</canMerge>
+		</injuryProps>
+	</HediffDef>
 
 	<HediffDef ParentName="DiseaseBase">
-    <defName>PsychicInterfearance</defName>
+		<defName>PsychicInterfearance</defName>
 		<description>description</description>
-    <label>psychic Interfearance</label>
-    <labelNoun>psychic Interfearance</labelNoun>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>
-          <min>1500</min>
-          <max>7500</max>
-        </disappearsAfterTicks>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <capMods>
-          <li>
-            <capacity>Consciousness</capacity>
-			<offset>-0.10</offset>
-          </li>
-			<li>
-            <capacity>Moving</capacity>
-            <offset>-0.10</offset>
+		<label>psychic Interfearance</label>
+		<labelNoun>psychic Interfearance</labelNoun>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+				  <min>1500</min>
+				  <max>7500</max>
+				</disappearsAfterTicks>
 			</li>
+		</comps>
+		<stages>
 			<li>
-            <capacity>Manipulation</capacity>
-            <offset>-0.10</offset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.10</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
 			</li>
-        </capMods>
-      </li>
-    </stages>
-			<injuryProps>
-				<bleedRate>0</bleedRate>
-				<canMerge>true</canMerge>
-			</injuryProps>
-  </HediffDef>
+		</stages>
+		<injuryProps>
+			<bleedRate>0</bleedRate>
+			<canMerge>true</canMerge>
+		</injuryProps>
+	</HediffDef>
 </Defs>

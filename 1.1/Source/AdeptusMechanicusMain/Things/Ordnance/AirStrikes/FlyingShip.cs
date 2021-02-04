@@ -78,7 +78,7 @@ namespace AdeptusMechanicus.AirStrikes
 					this.baseSpaceshipScale = FlyingShip.supplySpaceshipScale;
 					break;
 				default:
-					Log.ErrorOnce("MiningCo. Spaceship: unhandled SpaceshipKind (" + this.spaceshipKind.ToString() + ").", 123456784, false);
+					Log.ErrorOnce("Adeptus Airstrike: unhandled ShipKind (" + this.spaceshipKind.ToString() + ").", 123456784, false);
 					break;
 			}
             if (strikeDef != null && spaceshipKind == ShipKind.Airstrike)

@@ -55,6 +55,21 @@ namespace AdeptusMechanicus
         private static void CallOrbitalstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
+            foreach (OrbitalStrikeDef StrikeDef in DefDatabase<OrbitalStrikeDef>.AllDefs)
+            {
+                OrbitalStrikeDef localStrike = StrikeDef;
+                list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
+                {
+                    OrdnanceUtility.StartTargeting(localStrike, Find.CurrentMap);
+                }, MenuOptionPriority.Default, null, null, 0f, null, null));
+            }
+            Find.WindowStack.Add(new FloatMenu(list));
+        }
+        /*
+        [DebugAction("Spawning", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void CallOrbitalstrikeOf()
+        {
+            List<FloatMenuOption> list = new List<FloatMenuOption>();
             IntVec3 cell = UI.MouseCell();
             foreach (OrbitalStrikeDef StrikeDef in DefDatabase<OrbitalStrikeDef>.AllDefs)
             {
@@ -66,7 +81,7 @@ namespace AdeptusMechanicus
             }
             Find.WindowStack.Add(new FloatMenu(list));
         }
-
+        */
         // Token: 0x060018BD RID: 6333 RVA: 0x0008E204 File Offset: 0x0008C404
         [DebugAction("Spawning", "Spawn via Deep Strike...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallDeepstrikeOf()

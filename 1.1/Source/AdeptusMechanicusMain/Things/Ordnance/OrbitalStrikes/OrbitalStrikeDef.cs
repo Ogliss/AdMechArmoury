@@ -21,8 +21,11 @@ namespace AdeptusMechanicus.OrbitalStrikes
 		public float ammoResupplyDays = 1f;
 		public float roofThinCollapseChance = 0.75f;
 		public float roofThickCollapseChance = 0.25f;
+		public float timeBetweenSalvos = 5f;
 		public int bombardmentSalvoSize = 10;
 		public int bombardmentSalvoTicksBetweenShots = 18;
+		public int lanceSalvoSize = 10;
+		public int lanceBeamWidth = 8;
 		public float impactAreaRadius = 15f;
 		public FloatRange explosionRadiusRange = new FloatRange(6f, 8f);
 		public int randomFireRadius = 25;

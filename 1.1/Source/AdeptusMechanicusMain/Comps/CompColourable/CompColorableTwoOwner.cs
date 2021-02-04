@@ -56,14 +56,14 @@ namespace AdeptusMechanicus
 				{
 					if (pawn.RaceProps.Humanlike)
 					{
-						Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
+					//	Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
 						return pawn.Graphic.Color;
 					//	return pawn.DrawColor;
 					}
 					else
 					{
-						Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColor);
-						Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
+					//	Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColor);
+					//	Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
 						return pawn.Drawer.renderer.graphics.nakedGraphic.color;
 						//	return pawn.DrawColorTwo;
 					}
@@ -95,13 +95,13 @@ namespace AdeptusMechanicus
 				{
 					if (pawn.RaceProps.Humanlike)
 					{
-						Log.Message("Humanlike Equippable ColorTwo " + pawn.DrawColorTwo);
+					//	Log.Message("Humanlike Equippable ColorTwo " + pawn.DrawColorTwo);
 						return pawn.DrawColorTwo;
 					}
 					else
 					{
-						Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColorTwo);
-						Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo);
+					//	Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColorTwo);
+					//	Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo);
 						return pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo;
 						return pawn.DrawColorTwo;
 					}

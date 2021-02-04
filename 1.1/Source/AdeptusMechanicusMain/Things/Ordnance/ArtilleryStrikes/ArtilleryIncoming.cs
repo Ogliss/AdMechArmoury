@@ -130,7 +130,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 			else
 			if (this.def.skyfaller.CausesExplosion)
 			{
-				Log.Message("CausesExplosion");
+			//	Log.Message("CausesExplosion");
 				GenExplosion.DoExplosion(base.Position, base.Map, this.def.skyfaller.explosionRadius, this.def.skyfaller.explosionDamage, null, GenMath.RoundRandom((float)this.def.skyfaller.explosionDamage.defaultDamage * this.def.skyfaller.explosionDamageFactor), -1f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false, null, (!this.def.skyfaller.damageSpawnedThings) ? this.innerContainer.ToList<Thing>() : null);
 			}
 		//	this.SpawnThings();
@@ -179,10 +179,11 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 			{
 				drawLoc.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
 			}
-			this.Graphic.Draw(drawLoc, flip ? this.Rotation.Opposite : this.Rotation, this, num);
-			this.DrawDropSpotShadow();
+		//	this.Graphic.Draw(drawLoc, flip ? this.Rotation.Opposite : this.Rotation, this, (base.Position.ToVector3Shifted() - drawLoc).ToAngleFlat());
+
+			Graphics.DrawMesh(MeshPool.GridPlane(this.def.graphicData.drawSize), drawLoc, Quaternion.LookRotation((base.Position.ToVector3Shifted() - drawLoc).Yto0()), this.def.DrawMatSingle, 0);
+
 		}
-		// Token: 0x0600165C RID: 5724 RVA: 0x000825F8 File Offset: 0x000807F8
 		protected virtual void Explode()
 		{
 			Map map = base.Map;

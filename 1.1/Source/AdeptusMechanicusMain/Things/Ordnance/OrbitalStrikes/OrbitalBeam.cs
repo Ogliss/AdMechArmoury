@@ -12,12 +12,13 @@ namespace AdeptusMechanicus.OrbitalStrikes
 	{
 		public override void StartStrike()
 		{
+			salvos++;
 			base.StartStrike();
 			float effectRange = Beam != null ? Beam.Props.width * 3 : 90f;
-			MakePowerBeamMote(effectLoc, base.Map, effectRange, this.duration.TicksToSeconds());
+			powerBeamMote = MakePowerBeamMote(effectLoc, base.Map, effectRange, this.duration.TicksToSeconds());
 		}
-
-		IntVec3 effectLoc => base.targetLoc != default(IntVec3) ? base.targetLoc : base.Position;
+		protected Mote powerBeamMote;
+		protected IntVec3 effectLoc => base.targetLoc != default(IntVec3) ? base.targetLoc : base.Position;
 		private RimWorld.CompOrbitalBeam beam;
 		public RimWorld.CompOrbitalBeam Beam
         {
@@ -40,6 +41,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			{
 				return;
 			}
+            if (powerBeamMote != null)
+            {
+				powerBeamMote.exactPosition = DrawPos;
+			}
 			for (int i = 0; i < 4; i++)
 			{
 				this.StartRandomFireAndDoFlameDamage();
@@ -48,7 +53,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 
 
 
-		private void StartRandomFireAndDoFlameDamage()
+		protected void StartRandomFireAndDoFlameDamage()
 		{
 			float effectRange = Beam != null ? Beam.Props.width * 2 : 15f;
 			IntVec3 c = (from x in GenRadial.RadialCellsAround(effectLoc, effectRange, true)
@@ -71,11 +76,12 @@ namespace AdeptusMechanicus.OrbitalStrikes
 					battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_PowerBeam, this.instigator as Pawn);
 					Find.BattleLog.Add(battleLogEntry_DamageTaken);
 				}
-				OrbitalBeam.tmpThings[i].TakeDamage(new DamageInfo(DamageDefOf.Flame, (float)num, 0f, -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
+				OrbitalBeam.tmpThings[i].TakeDamage(new DamageInfo(strikeDef.ordnance.projectile.damageDef, (float)num, strikeDef.ordnance.projectile.GetArmorPenetration(this), -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
 			}
 			OrbitalBeam.tmpThings.Clear();
 		}
-		public static void MakePowerBeamMote(IntVec3 cell, Map map, float scale, float duration)
+
+		public static Mote MakePowerBeamMote(IntVec3 cell, Map map, float scale, float duration)
 		{
 			Mote mote = (Mote)ThingMaker.MakeThing(ThingDefOf.Mote_PowerBeam, null);
 			mote.exactPosition = cell.ToVector3Shifted();
@@ -83,8 +89,31 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			mote.rotationRate = 1.2f;
 			mote.solidTimeOverride = duration;
 			GenSpawn.Spawn(mote, cell, map, WipeMode.Vanish);
+			return mote;
 		}
 
+		private void GetNextExplosionCell()
+		{
+			this.nextTargetCell = (from x in GenRadial.RadialCellsAround(base.Position, this.impactAreaRadius, true)
+									  where x.InBounds(base.Map)
+									  select x).RandomElementByWeight((IntVec3 x) => OrbitalBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position) / this.impactAreaRadius));
+		}
+		public override void ExposeData()
+        {
+            base.ExposeData();
+			Scribe_Values.Look<float>(ref this.beamWidth, "beamWidth", 5f, false);
+			Scribe_Values.Look<IntVec3>(ref this.nextTargetCell, "nextTargetCell", default(IntVec3), false);
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			{
+				if (!this.nextTargetCell.IsValid)
+				{
+				//	this.GetNextExplosionCell();
+				}
+			}
+		}
+
+		public float beamWidth = 5f;
+		private IntVec3 nextTargetCell = IntVec3.Invalid;
 		private static readonly IntRange FlameDamageAmountRange = new IntRange(65, 100);
 		private static readonly IntRange CorpseFlameDamageAmountRange = new IntRange(5, 10);
 		private static List<Thing> tmpThings = new List<Thing>();

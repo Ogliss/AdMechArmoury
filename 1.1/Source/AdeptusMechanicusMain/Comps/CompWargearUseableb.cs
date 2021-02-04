@@ -177,7 +177,7 @@ namespace AdeptusMechanicus
 		{
 			if (Wearer != null)
 			{
-				Log.Message(this + " Tick on " + this.parent + " worn by " + Wearer.Name);
+			//	Log.Message(this + " Tick on " + this.parent + " worn by " + Wearer.Name);
 			}
 			base.CompTick();
 		}

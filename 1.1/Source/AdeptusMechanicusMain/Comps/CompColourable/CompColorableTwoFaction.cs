@@ -243,66 +243,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-        /*
-		public override void Initialize(CompProperties props)
-		{
-			this.props = props;
-			if (Apparel != null)
-			{
-				Log.Message(this.parent + " is Apparel");
-				if (Apparel.Wearer != null)
-				{
-					Log.Message(this.parent + " is Worn Apparel");
-					if (Apparel.Wearer.Faction != null)
-					{
-						Log.Message(this.parent + " Wearer Faction is "+ Apparel.Wearer.Faction.def.defName);
-						if (Apparel.Wearer.Faction != RimWorld.Faction.OfPlayer)
-						{
-							faction = Apparel.Wearer.Faction.def;
-							Log.Message(this.parent + " FactionDef set to Wearer faction " + this.faction.defName);
-
-						}
-					}
-				}
-			}
-			if (FactionDef != null)
-			{
-				FactionDefExtension extension = FactionDef.GetModExtension<FactionDefExtension>();
-				if (extension != null)
-				{;
-					if (extension.factionColor.HasValue)
-					{
-						this.Color = extension.factionColor.Value;
-						Log.Message(this.parent + " Primary Color set to factionColor " + this.Color);
-					}
-					if (extension.factionColorTwo.HasValue)
-					{
-						this.ColorTwo = extension.factionColorTwo.Value;
-						Log.Message(this.parent + " Secondry Color set to factionColorTwo " + this.ColorTwo);
-					}
-				}
-			}
-			else
-			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators))
-			{
-				if (!this.active)
-				{
-					this.Color = this.parent.def.colorGenerator.NewRandomizedColor();
-					this.active = true;
-					Log.Message(this.parent + " Primary Color set to NewRandomizedColor " + this.Color);
-				}
-				if (!this.activeTwo)
-				{
-					this.ColorTwo = this.parent.def.colorGenerator.NewRandomizedColor();
-					this.activeTwo = true;
-					Log.Message(this.parent + " Secondry Color set to NewRandomizedColor " + this.ColorTwo);
-				}
-			}
-			base.Initialize(props);
-		}
-		*/
-
-        // Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
         public override void PostExposeData()
 		{
 			Scribe_Defs.Look<FactionDef>(ref this.faction, "faction");

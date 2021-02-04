@@ -21,7 +21,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>OG_Mote_BoltTrailPuff</defName>
     <graphicData>
-      <texPath>Things/Mote/BolterSmokePuff</texPath>
+      <texPath>Things/Mote/Smoke/BolterPuff</texPath>
       <drawSize>0.5</drawSize>
     </graphicData>
     <altitudeLayer>MoteOverhead</altitudeLayer>
@@ -93,7 +93,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>Mote_PlasmaGlow</defName>
     <graphicData>
-      <texPath>Things/Mote/PlasmaGlow</texPath>
+      <texPath>Things/Mote/Glow/Plasma</texPath>
       <shaderType>MoteGlow</shaderType>
     </graphicData>
     <altitudeLayer>MoteOverhead</altitudeLayer>
@@ -108,7 +108,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>Mote_OG_NecronLightningGlow</defName>
     <graphicData>
-      <texPath>Things/Mote/NecronLightningGlow</texPath>
+      <texPath>Things/Mote/Glow/NecronLightning</texPath>
       <shaderType>MoteGlow</shaderType>
     </graphicData>
     <altitudeLayer>MoteOverhead</altitudeLayer>
@@ -124,7 +124,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>OG_Mote_WarpFireGlow</defName>
     <graphicData>
-      <texPath>Things/Mote/WarpfireGlow</texPath>
+      <texPath>Things/Mote/Glow/Warpfire</texPath>
       <shaderType>MoteGlow</shaderType>
     </graphicData>
     <altitudeLayer>MoteOverhead</altitudeLayer>
@@ -138,7 +138,7 @@
   <ThingDef ParentName="MoteBase" Name="Mote_MicroSparksWarp">
     <defName>OG_Mote_MicroSparksWarp</defName>
     <graphicData>
-      <texPath>Things/Mote/MicroSparksWarp</texPath>
+      <texPath>Things/Mote/Spark/MicroWarp</texPath>
       <shaderType>MoteGlow</shaderType>
     </graphicData>
     <altitudeLayer>MoteOverhead</altitudeLayer>
@@ -202,7 +202,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>Mote_BoltBlast</defName>
     <graphicData>
-      <texPath>Things/Mote/Blast_Bolt</texPath>
+      <texPath>Things/Mote/Blast/Bolt</texPath>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <altitudeLayer>Projectile</altitudeLayer>
@@ -215,7 +215,7 @@
   <ThingDef ParentName="MoteBase">
     <defName>Mote_BoltBlastGlow</defName>
     <graphicData>
-      <texPath>Things/Mote/Blast_Bolt</texPath>
+      <texPath>Things/Mote/Blast/Bolt</texPath>
       <shaderType>MoteGlow</shaderType>
       <color>(1,0.6,0.6,0.3)</color>
     </graphicData>
@@ -243,20 +243,20 @@
   <ThingDef ParentName="MoteBase">
     <defName>OG_Mote_PlasmaImpact</defName>
     <graphicData>
-      <texPath>Things/Mote/Blast_Plasma</texPath>
+      <texPath>Things/Mote/Blast/Plasma</texPath>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <altitudeLayer>Projectile</altitudeLayer>
     <mote>
-      <solidTime>0.1</solidTime>
-      <fadeOutTime>0.025</fadeOutTime>
+      <solidTime>0.2</solidTime>
+      <fadeOutTime>0.10</fadeOutTime>
       <growthRate>-4</growthRate>
     </mote>
   </ThingDef>
   <ThingDef ParentName="MoteBase">
     <defName>OG_Mote_PlasmaBlastGlow</defName>
     <graphicData>
-      <texPath>Things/Mote/Blast_Plasma</texPath>
+      <texPath>Things/Mote/Blast/Plasma</texPath>
       <shaderType>MoteGlow</shaderType>
       <color>(0.651,0.78,0.3)</color>
     </graphicData>
@@ -277,6 +277,65 @@
       <solidTime>0.2</solidTime>
       <fadeOutTime>0.2</fadeOutTime>
       <growthRate>1.2</growthRate>
+    </mote>
+  </ThingDef>
+
+  <ThingDef Name="VisualSupport" Abstract="True">
+    <thingClass>MoteThrown</thingClass>
+    <label>Mote</label>
+    <category>Mote</category>
+    <graphicData>
+      <graphicClass>Graphic_Mote</graphicClass>
+      <shaderType>Mote</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteLow</altitudeLayer>
+    <tickerType>Normal</tickerType>
+    <useHitPoints>false</useHitPoints>
+    <isSaveable>false</isSaveable>
+    <rotatable>false</rotatable>
+  </ThingDef>
+
+  <!--====== EMP Weather Motes ======-->
+
+  <ThingDef ParentName="VisualSupport" Name="EMP_Sparks">
+    <defName>EMP_Sparks</defName>
+    <graphicData>
+      <texPath>Things/Mote/Spark/EMP</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>4.75</fadeInTime>
+      <solidTime>0.5</solidTime>
+      <fadeOutTime>4.65</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <ThingDef ParentName="VisualSupport" Name="Mote_EMPSmoke">
+    <defName>Mote_EMPSmoke</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke/EMP</texPath>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>1.2</fadeInTime>
+      <solidTime>3</solidTime>
+      <fadeOutTime>3.2</fadeOutTime>
+      <growthRate>0.025</growthRate>
+    </mote>
+  </ThingDef>
+
+  <ThingDef ParentName="VisualSupport">
+    <defName>EMPGlow</defName>
+    <graphicData>
+      <texPath>Things/Mote/Glow/EMP</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.08</fadeInTime>
+      <solidTime>0.08</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
     </mote>
   </ThingDef>
 

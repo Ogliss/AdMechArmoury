@@ -11,6 +11,22 @@ namespace AdeptusMechanicus.OrbitalStrikes
     // AdeptusMechanicus.OrbitalStrikes.OrbitalStrike
     public class OrbitalStrike : ThingWithComps
 	{
+		protected int MaxSalvos
+		{
+			get
+			{
+				return strikeDef.salvoCount;
+			}
+		}
+		
+		protected int RemainingSalvos
+		{
+			get
+			{
+				return MaxSalvos - salvos;
+			}
+		}
+
 		protected int TicksPassed
 		{
 			get
@@ -27,17 +43,6 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			}
 		}
 
-		public override void ExposeData()
-		{
-			base.ExposeData();
-			Scribe_References.Look<Thing>(ref this.instigator, "instigator", false);
-			Scribe_Defs.Look<ThingDef>(ref this.weaponDef, "weaponDef");
-			Scribe_Defs.Look<OrbitalStrikeDef>(ref this.strikeDef, "strikeDef");
-			Scribe_Values.Look<int>(ref this.duration, "duration", 0, false);
-			Scribe_Values.Look<float>(ref this.angle, "angle", 0f, false);
-			Scribe_Values.Look<int>(ref this.startTick, "startTick", 0, false);
-			Scribe_Values.Look<IntVec3>(ref this.targetLoc, "targetLoc", default(IntVec3), false);
-		}
 
 		public override void Draw()
 		{
@@ -46,13 +51,24 @@ namespace AdeptusMechanicus.OrbitalStrikes
 
 		public virtual void StartStrike()
 		{
+			salvos++;
 			if (!base.Spawned)
 			{
 				Log.Error("Called StartStrike() on unspawned thing.", false);
 				return;
 			}
-			this.angle = OrbitalStrike.AngleRange.RandomInRange;
+			this.cooldownTicks = strikeDef.timeBetweenSalvos.SecondsToTicks();
+            if (RemainingSalvos>0)
+			{
+				this.warmupTicks = strikeDef.warmupTicks;
+			}
+            if (this.angle == 0)
+            {
+				this.angle = OrbitalStrike.AngleRange.RandomInRange;
+			}
+			
 			this.startTick = Find.TickManager.TicksGame;
+			this.ThrowDebugText("Starting "+ strikeDef.LabelCap + "",base.Position);
 			CompAffectsSky comp = base.GetComp<CompAffectsSky>();
 			if (comp != null)
 			{
@@ -65,7 +81,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			}
 		}
 
-		public virtual bool HitRoof(IntVec3 c)
+		public bool HitRoof(IntVec3 c)
         {
 			RoofDef roofDef = base.Map.roofGrid.RoofAt(c);
 			if (roofDef != null)
@@ -116,13 +132,24 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			}
 			return false;
 		}
+		/*
+		protected virtual Vector3 NextExactPosition(float deltaTime)
+		{
+			return this.exactPosition + this.velocity * deltaTime;
+		}
 
+		// Token: 0x06001638 RID: 5688 RVA: 0x00081554 File Offset: 0x0007F754
+		public void SetVelocity(float angle, float speed)
+		{
+			this.velocity = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward * speed;
+		}
+		*/
 		private void ThrowDebugText(string text, IntVec3 c)
 		{
 			if (DebugViewSettings.drawShooting)
 			{
 				MoteMaker.ThrowText(c.ToVector3Shifted(), base.Map, text, -1f);
-				Log.Message("loc: "+c.ToVector3Shifted() +" "+ text);
+			//	Log.Message("loc: "+c.ToVector3Shifted() +" "+ text);
 			}
 		}
 		public override void Tick()
@@ -130,23 +157,58 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			base.Tick();
 			if (this.TicksPassed >= this.duration)
 			{
-				this.Destroy(DestroyMode.Vanish);
+                if (salvos >= MaxSalvos)
+				{
+					this.Destroy(DestroyMode.Vanish);
+				}
+                else
+                {
+
+                }
 			}
 		}
 
+		public override void ExposeData()
+		{
+			base.ExposeData();
+			Scribe_References.Look<Thing>(ref this.instigator, "instigator", false);
+			Scribe_Defs.Look<ThingDef>(ref this.weaponDef, "weaponDef");
+			Scribe_Defs.Look<OrbitalStrikeDef>(ref this.strikeDef, "strikeDef");
+			Scribe_Values.Look<int>(ref this.warmupTicks, "warmupTicks", 0, false);
+			Scribe_Values.Look<int>(ref this.duration, "duration", 0, false);
+			Scribe_Values.Look<int>(ref this.cooldownTicks, "cooldownTicks", 0, false);
+			Scribe_Values.Look<int>(ref this.salvos, "salvos", 0, false);
+			Scribe_Values.Look<float>(ref this.angle, "angle", 0f, false);
+			Scribe_Values.Look<int>(ref this.startTick, "startTick", 0, false);
+			Scribe_Values.Look<IntVec3>(ref this.targetLoc, "targetLoc", default(IntVec3), false);
+			Scribe_Values.Look<IntVec3>(ref this.nexttargetLoc, "nexttargetLoc", default(IntVec3), false);
+			Scribe_Collections.Look<IntVec3>(ref this.targetLocs, "targetLocs", LookMode.Value, Array.Empty<object>());
+			if (!this.nexttargetLoc.IsValid)
+			{
+			//	this.GetNextExplosionCell();
+			}
+			if (this.targetLocs == null)
+			{
+				this.targetLocs = new List<IntVec3>();
+			}
+		}
 		public float impactAreaRadius = 15f;
 		public FloatRange explosionRadiusRange = new FloatRange(6f, 8f);
 		public int randomFireRadius = 25;
 		public int bombIntervalTicks = 18;
 		public int warmupTicks = 60;
 		public int explosionCount = 30;
+		public List<IntVec3> targetLocs;
 		public IntVec3 targetLoc;
+		public IntVec3 nexttargetLoc;
 		public int duration;
+		public int cooldownTicks;
+		public int salvos;
 		public Thing instigator;
 		public ThingDef weaponDef;
 		public OrbitalStrikeDef strikeDef;
-		private float angle;
-		private int startTick;
+		protected float angle;
+		protected int startTick;
 		private static readonly FloatRange AngleRange = new FloatRange(-12f, 12f);
 		private const int SkyColorFadeInTicks = 30;
 		private const int SkyColorFadeOutTicks = 15;

@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         bool arc = true;// Rand.Chance(0.167f);
                         if (arc)
                         {
-                            Arc(__instance, ___launcher, hitPawn);
+                            Projectile_Impact_ProjectileExtension_Patches.Arc(__instance, ___launcher, hitPawn);
                         }
                     }
                     if (__instance.def.projectile.damageDef == OGDamageDefOf.OG_E_Distortion_Damage)
@@ -44,7 +44,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (explode)
                         {
                             MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AMA_Distorting_Shot".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);
-                            WarpRift(__instance, ___launcher, hitPawn);
+                            Projectile_Impact_ProjectileExtension_Patches.WarpRift(__instance, ___launcher, hitPawn);
                         }
                     }
                 }
@@ -65,7 +65,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (__instance.def.HasModExtension<EffectProjectileExtension>())
             {
-                EffectProjectileExtension(__instance, vector, hitThing);
+                Projectile_Impact_ProjectileExtension_Patches.EffectProjectileExtension(__instance, vector, hitThing);
             }
         }
 

@@ -29,19 +29,10 @@ namespace AdeptusMechanicus
 
 		public bool requiresPsyker = false;
 		public bool forbbidenPsyker = false;
-		// Token: 0x04003026 RID: 12326
 		public float Cooldown = 1;
-
-		// Token: 0x04003027 RID: 12327
 		public bool displayGizmoWhileUndrafted = true;
-
-		// Token: 0x04003028 RID: 12328
 		public bool displayGizmoWhileDrafted = true;
-
-		// Token: 0x04003029 RID: 12329
 		public KeyBindingDef hotKey;
-
-		// Token: 0x0400302A RID: 12330
 		public SoundDef soundReload;
 
 	}
@@ -89,8 +80,7 @@ namespace AdeptusMechanicus
 				return Props.Cooldown.SecondsToTicks();
 			}
         }
-		// Token: 0x17000F42 RID: 3906
-		// (get) Token: 0x0600569A RID: 22170 RVA: 0x001CFDD0 File Offset: 0x001CDFD0
+
 		public Pawn Wearer
 		{
 			get
@@ -104,8 +94,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x17000F43 RID: 3907
-		// (get) Token: 0x0600569B RID: 22171 RVA: 0x00087C7B File Offset: 0x00085E7B
 		public List<VerbProperties> VerbProperties
 		{
 			get
@@ -114,8 +102,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x17000F44 RID: 3908
-		// (get) Token: 0x0600569C RID: 22172 RVA: 0x00087C8D File Offset: 0x00085E8D
 		public List<Tool> Tools
 		{
 			get
@@ -124,8 +110,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x17000F45 RID: 3909
-		// (get) Token: 0x0600569D RID: 22173 RVA: 0x0016A3ED File Offset: 0x001685ED
 		public ImplementOwnerTypeDef ImplementOwnerTypeDef
 		{
 			get
@@ -134,8 +118,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x17000F46 RID: 3910
-		// (get) Token: 0x0600569E RID: 22174 RVA: 0x001CFDD8 File Offset: 0x001CDFD8
 		public Thing ConstantCaster
 		{
 			get
@@ -144,20 +126,15 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x0600569F RID: 22175 RVA: 0x001CFDE0 File Offset: 0x001CDFE0
 		public string UniqueVerbOwnerID()
 		{
-			return "Reloadable_" + this.parent.ThingID;
+			return "Wargear_" + this.parent.ThingID;
 		}
-
-		// Token: 0x060056A0 RID: 22176 RVA: 0x001CFDF7 File Offset: 0x001CDFF7
 		public bool VerbsStillUsableBy(Pawn p)
 		{
 			return this.Wearer == p;
 		}
 
-		// Token: 0x17000F47 RID: 3911
-		// (get) Token: 0x060056A1 RID: 22177 RVA: 0x001CFE02 File Offset: 0x001CE002
 		public VerbTracker VerbTracker
 		{
 			get
@@ -170,8 +147,7 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x17000F49 RID: 3913
-		// (get) Token: 0x060056A3 RID: 22179 RVA: 0x001CFE40 File Offset: 0x001CE040
+
 		public List<Verb> AllVerbs
 		{
 			get
@@ -180,24 +156,19 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x060056A4 RID: 22180 RVA: 0x001CFE4D File Offset: 0x001CE04D
 		public override void PostPostMake()
 		{
 			base.PostPostMake();
 		}
-
-		// Token: 0x060056A7 RID: 22183 RVA: 0x001CFEA4 File Offset: 0x001CE0A4
 		public override void PostExposeData()
 		{
 			base.PostExposeData();
-			Scribe_Values.Look<int>(ref this.lastUseTick, "remainingCharges", -999, false);
+			Scribe_Values.Look<int>(ref this.lastUseTick, "lastUseTick", -999, false);
 			Scribe_Deep.Look<VerbTracker>(ref this.verbTracker, "verbTracker", new object[]
 			{
 				this
 			});
 		}
-
-		// Token: 0x060056A8 RID: 22184 RVA: 0x001CFF08 File Offset: 0x001CE108
 		public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
 		{
 			foreach (Gizmo gizmo in base.CompGetWornGizmosExtra())
@@ -219,8 +190,6 @@ namespace AdeptusMechanicus
 			}
 			yield break;
 		}
-
-		// Token: 0x060056A9 RID: 22185 RVA: 0x001CFF18 File Offset: 0x001CE118
 		private Command_ApparelWargear CreateVerbTargetCommand(Thing gear, Verb verb)
 		{
 			Command_ApparelWargear command_Reloadable = new Command_ApparelWargear(this);
@@ -256,8 +225,6 @@ namespace AdeptusMechanicus
 			}
 			return command_Reloadable;
 		}
-
-		// Token: 0x060056AA RID: 22186 RVA: 0x001D00D8 File Offset: 0x001CE2D8
 		public string DisabledReason(int minNeeded, int maxNeeded)
 		{
 			string result = string.Empty;
@@ -269,7 +236,7 @@ namespace AdeptusMechanicus
 		public void UsedOnce()
 		{
 			lastUseTick = Find.TickManager.TicksGame;
-			Log.Message("Used at " + lastUseTick);
+		//	Log.Message("Used at " + lastUseTick);
 		}
 
 		// Token: 0x0400302C RID: 12332

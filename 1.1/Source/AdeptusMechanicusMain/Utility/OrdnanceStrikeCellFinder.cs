@@ -77,6 +77,7 @@ namespace AdeptusMechanicus
 			{
 				return false;
 			}
+			/*
 			if (!DropCellFinder.CanPhysicallyDropInto(c, map, canRoofPunch, allowIndoors))
 			{
 				if (DebugViewSettings.drawDestSearch)
@@ -85,6 +86,7 @@ namespace AdeptusMechanicus
 				}
 				return false;
 			}
+			*/
 			if (Current.ProgramState == ProgramState.Playing && !allowFogged && c.Fogged(map))
 			{
 				return false;

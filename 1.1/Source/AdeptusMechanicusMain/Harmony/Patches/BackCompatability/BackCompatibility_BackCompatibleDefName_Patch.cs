@@ -34,6 +34,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = "OGDE_Melee_WychKnife";
                         return;
                     }
+                    if (defName == "OGIG_Apparel_BasicFlakHelm")
+                    {
+                        __result = "OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp";
+                        return;
+                    }
+                    if (defName == "OGIG_Apparel_GoggledFlakHelm")
+                    {
+                        __result = "OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown";
+                        return;
+                    }
                     if (defName == "OGDE_Gun_Shardcarbine")
                     {
                         __result = "OGDE_Gun_ShardCarbine";

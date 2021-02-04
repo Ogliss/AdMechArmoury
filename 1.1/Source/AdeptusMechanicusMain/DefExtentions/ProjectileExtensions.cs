@@ -123,10 +123,12 @@ namespace AdeptusMechanicus
         // Token: 0x060051CE RID: 20942 RVA: 0x001B90BC File Offset: 0x001B72BC
         public void ThrowMote(Vector3 loc, Map map, ThingDef explosionMoteDef, float explosionSize, Color color, SoundDef sound, ThingDef ImpactMoteDef, float ImpactMoteSize, ThingDef ImpactGlowMoteDef, float ImpactGlowMoteSize, Thing hitThing = null)
         {
+            /*
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
+            */
             Rand.PushState();
             float rotationRate = Rand.Range(-30f, 30f);
             float VelocityAngel = (float)Rand.Range(0, 360);

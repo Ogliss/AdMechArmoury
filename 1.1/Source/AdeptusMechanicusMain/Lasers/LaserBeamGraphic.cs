@@ -19,8 +19,6 @@ namespace AdeptusMechanicus
         public Matrix4x4 drawingMatrix = default(Matrix4x4);
         Material materialBeam;
         Mesh mesh;
-        Mesh meshb;
-        Mesh meshc;
         Thing launcher;
         ThingDef equipmentDef;
         public List<Mesh> meshes = new List<Mesh>();
@@ -35,6 +33,7 @@ namespace AdeptusMechanicus
             base.ExposeData();
 
             Scribe_Values.Look(ref ticks, "ticks");
+            Scribe_Values.Look(ref ticksToDetonation, "ticksToDetonation");
             Scribe_Values.Look(ref colorIndex, "colorIndex");
             Scribe_Values.Look(ref a, "a");
             Scribe_Values.Look(ref b, "b");

@@ -47,7 +47,7 @@ namespace AdeptusMechanicus
 				StartingPawnUtility.ClearAllStartingPawns();
                 foreach (var item in kinds)
 				{
-					Log.Message("Generating "+item);
+				//	Log.Message("Generating "+item);
 					Find.GameInitData.startingAndOptionalPawns.Add(SpecificStartingPawnUtility.NewGeneratedStartingPawn(item));
 				}
 				num++;
@@ -62,7 +62,7 @@ namespace AdeptusMechanicus
 			{
 				foreach (var item in kinds)
 				{
-					Log.Message("Generating " + item);
+				//	Log.Message("Generating " + item);
 					Find.GameInitData.startingAndOptionalPawns.Add(SpecificStartingPawnUtility.NewGeneratedStartingPawn(item));
 				}
 			}

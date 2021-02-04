@@ -41,6 +41,72 @@ namespace AdeptusMechanicus
 			}
 		}
 
+		public static void StartTargeting(Def def, Map map = null)
+		{
+			TargetingParameters targetingParameters = new TargetingParameters();
+			targetingParameters.canTargetLocations = true;
+			targetingParameters.canTargetSelf = true;
+			targetingParameters.canTargetFires = true;
+			targetingParameters.canTargetItems = true;
+			AirStrikeDef airStrike = def as AirStrikeDef;
+			ArtilleryStrikeDef artilleryStrike = def as ArtilleryStrikeDef;
+			OrbitalStrikeDef orbitalStrike = def as OrbitalStrikeDef;
+			if (airStrike != null)
+			{
+				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
+				{
+					SpawnAirStrike(map, x.Cell, airStrike);
+				}, null, delegate
+				{
+					if (map != null && Find.Maps.Contains(map))
+					{
+						Current.Game.CurrentMap = map;
+					}
+				}, CompLaunchable.TargeterMouseAttachment);
+			}
+			else
+            if (artilleryStrike != null)
+			{
+				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
+				{
+					SpawnArtilleryStrike(map, x.Cell, artilleryStrike);
+				}, null, delegate
+				{
+					if (map != null && Find.Maps.Contains(map))
+					{
+						Current.Game.CurrentMap = map;
+					}
+				}, CompLaunchable.TargeterMouseAttachment);
+			}
+			else
+			if (orbitalStrike != null)
+			{
+				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
+				{
+					SpawnOrbitalStrike(map, x.Cell, orbitalStrike);
+				}, null, delegate
+				{
+					if (map != null && Find.Maps.Contains(map))
+					{
+						Current.Game.CurrentMap = map;
+					}
+				}, CompLaunchable.TargeterMouseAttachment);
+			}
+		}
+
+		/*
+		private void BeginCallBombardment(Pawn caller, Faction faction, Map map, bool free)
+		{
+			TargetingParameters targetingParameters = new TargetingParameters();
+			targetingParameters.canTargetLocations = true;
+			targetingParameters.canTargetSelf = true;
+			targetingParameters.canTargetFires = true;
+			targetingParameters.canTargetItems = true;
+
+			targetingParameters.validator = ((TargetInfo target) => !target.Cell.Fogged(map));
+			Find.Targeter.BeginTargeting(this, null);
+		}
+		*/
 		public static void SpawnOrbitalStrike(Map map, IntVec3 targetPosition, OrbitalStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false)
 		{
 			ThingDef weapon = StrikeDef.ordnance;
@@ -55,7 +121,6 @@ namespace AdeptusMechanicus
 			}
 			AdeptusMechanicus.OrbitalStrikes.OrbitalStrike orbitalStrike = (AdeptusMechanicus.OrbitalStrikes.OrbitalStrike)GenSpawn.Spawn(StrikeDef.strikeType, strikeLoc, map, WipeMode.Vanish);
 			orbitalStrike.instigator = instigator;
-			orbitalStrike.duration = StrikeDef.duration;
 			orbitalStrike.weaponDef = weaponDef;
 			orbitalStrike.strikeDef = StrikeDef;
 			orbitalStrike.targetLoc = targetPosition;
@@ -67,6 +132,7 @@ namespace AdeptusMechanicus
 			orbitalStrike.explosionCount = StrikeDef.bombardmentSalvoSize;
 			if (StrikeDef.instantStrike || StrikeDef.strikeType == OrbitalLanceStrike)
 			{
+				orbitalStrike.duration = StrikeDef.duration;
 				orbitalStrike.StartStrike();
 			}
 		}
@@ -99,5 +165,65 @@ namespace AdeptusMechanicus
 			flyingSpaceshipAirStrike.InitializeAirStrikeData(targetPosition, StrikeDef);
 		}
 
+		public static bool MTBEventOccurs(float mtb, float mtbUnit, float checkDuration)
+		{
+			if (mtb == float.PositiveInfinity)
+			{
+				return false;
+			}
+			if (mtb <= 0f)
+			{
+				Log.Error("MTBEventOccurs with mtb=" + mtb, false);
+				return true;
+			}
+			if (mtbUnit <= 0f)
+			{
+				Log.Error("MTBEventOccurs with mtbUnit=" + mtbUnit, false);
+				return false;
+			}
+			if (checkDuration <= 0f)
+			{
+				Log.Error("MTBEventOccurs with checkDuration=" + checkDuration, false);
+				return false;
+			}
+			double num = (double)checkDuration / ((double)mtb * (double)mtbUnit);
+		//	Log.Message(num+" = (double)" + checkDuration+" / ((double)"+mtb+" * (double)"+mtbUnit+")");
+			if (num <= 0.0)
+			{
+				Log.Error(string.Concat(new object[]
+				{
+					"chancePerCheck is ",
+					num,
+					". mtb=",
+					mtb,
+					", mtbUnit=",
+					mtbUnit,
+					", checkDuration=",
+					checkDuration
+				}), false);
+				return false;
+			}
+			double num2 = 1.0;
+			float rand;
+			if (num < 0.0001)
+			{
+			//	Log.Message(num + " < 0.0001");
+				while (num < 0.0001)
+				{
+				//	Log.Message(num + " < 0.0001");
+					num *= 8.0;
+					num2 /= 8.0;
+				}
+				rand = Rand.Value;
+				if ((double)rand > num2)
+				{
+				//	Log.Message(rand + " > " + num2);
+					return false;
+				}
+			}
+			rand = Rand.Value;
+		//	Log.Message(rand + " < " + num+" : "+ ((double)rand < num));
+			return (double)rand < num;
+		}
 	}
 }
