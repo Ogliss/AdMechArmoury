@@ -3300,14 +3300,25 @@
 	</ThingDef>
 
 	<!-- ====================== Hellgun shot===================== -->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGI_Bullet_Hellgun</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserBeam</thingClass>
 		<label>las blast</label>
 		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<!--color>(187,33,0,255)</color-->	
+		</graphicData>
 		<textures>
+			<!--li>Things/Projectile/LasbeamB</li-->
+			<!--li>Things/Projectile/LasShotLrg</li-->
 			<li>Things/Projectile/LasShotLrg</li>
 		</textures>
-		<seam>0</seam>
+		<beamGraphic>AdeptusMechanicusBeamGraphicB</beamGraphic>
+		<lifetime>20</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.1</impulse> <!-- the solidity of the beam -->
+		<beamWidth>0.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<projectile>
 			<damageDef>OGILas</damageDef>
 			<damageAmountBase>13</damageAmountBase>
@@ -3428,7 +3439,7 @@
 	<ThingDef ParentName="OG_Imperial_Gun_Special">
 		<defName>OGI_Gun_Hellgun</defName>
 		<label>hellgun (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<description>A Hellgun, also called a Hot-shot Lasgun, is a pattern of Imperial Lasgun that possesses a more advanced and powerful laser generation system intended to provide more potent laser fire on-target. This makes the Hellgun superior in both range and power output compared to the standard-issue Lasgun. However, the higher power output requires superior quality power cells or the use of a separate backpack power supply, and the more complex inner workings of the weapon require more time and resources to manufacture than the standard Lasgun. This makes it more costly to field and so it is not generally issued to the average soldier of most Astra Militarum regiments.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Hellgun</texPath>
@@ -3439,7 +3450,6 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<generateCommonality>0.650</generateCommonality>
 		<statBases>
-			<reliability>1</reliability>
 			<WorkToMake>60000</WorkToMake>
 			<!--MarketValue>1500</MarketValue-->
 			<Mass>3.2</Mass>

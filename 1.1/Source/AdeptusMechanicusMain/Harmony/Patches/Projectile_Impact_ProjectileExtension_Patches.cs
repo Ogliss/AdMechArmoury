@@ -10,6 +10,7 @@ using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.ExtensionMethods
 {
-    public static class ThingExtensions
+    public static class ShieldThingExtensions
     {
         public static bool IsShielded(this Thing thing)
         {
