@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using Verse;
 
@@ -8,9 +9,9 @@ namespace AdeptusMechanicus
     {
         public override void TransformValue(StatRequest req, ref float val)
         {
-            if (req.HasThing && req.Thing.TryGetComp<CompWeapon_GunSpecialRules>()!=null)
+            if (req.HasThing && req.Thing.TryGetCompFast<CompWeapon_GunSpecialRules>()!=null)
             {
-                CompWeapon_GunSpecialRules gun = req.Thing.TryGetComp<CompWeapon_GunSpecialRules>();
+                CompWeapon_GunSpecialRules gun = req.Thing.TryGetCompFast<CompWeapon_GunSpecialRules>();
                 string reliabilityString;
                 float jamsOn;
                 GetReliability(gun, out reliabilityString, out jamsOn);
@@ -68,6 +69,19 @@ namespace AdeptusMechanicus
             return result;
         }
 
+        public static void GetReliability(AdvancedVerbProperties verbEntry, Thing gun, out string rel, out float jamsOn)
+        {
+            rel = string.Empty;
+            jamsOn = JamChance(verbEntry, gun);
+            if (jamsOn < 0.25)
+                rel = "Extremely Reliable";
+            else if (jamsOn < 0.5)
+                rel = "Very Reliable";
+            else if (jamsOn < 1)
+                rel = "Standard";
+            else
+                rel = "Unreliable";
+        }
         public static void GetReliability(GunVerbEntry verbEntry, Thing gun, out string rel, out float jamsOn)
         {
             rel = string.Empty;
@@ -99,6 +113,31 @@ namespace AdeptusMechanicus
         /// </summary>
         /// <param name="verbEntry">The gun object</param>
         /// <returns>floating point number representing the jam chance</returns>
+        public static float JamChance(AdvancedVerbProperties verbEntry, Thing gun)
+        {
+            float result = 0f;
+            switch (verbEntry.reliability)
+            {
+                case Reliability.UR:
+                    result = 50f;
+                    break;
+                case Reliability.ST:
+                    result = 30f;
+                    break;
+                case Reliability.VR:
+                    result = 10f;
+                    break;
+                default:
+                    return 0;
+            }
+            if (gun != null)
+            {
+                result += GetQualityFactor(gun);
+                result = result * 100 / gun.HitPoints / 100;
+            }
+            result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
+            return result;
+        }
         public static float JamChance(GunVerbEntry verbEntry, Thing gun)
         {
             float result = 0f;
@@ -127,7 +166,7 @@ namespace AdeptusMechanicus
         public static float JamChance(CompWeapon_GunSpecialRules gun)
         {
             float result = 0f;
-            switch (gun.reliability)
+            switch (gun.Reliability)
             {
                 case Reliability.UR:
                     result = 30f;

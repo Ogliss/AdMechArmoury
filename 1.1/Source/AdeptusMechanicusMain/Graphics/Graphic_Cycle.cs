@@ -20,7 +20,7 @@ namespace AdeptusMechanicus
 				return this.subGraphics[i].MatSingle;
 			}
 		}
-		public Graphic[] graphics => this.subGraphics;
+		public Graphic[] Graphics => this.subGraphics;
 		// Token: 0x0600151B RID: 5403 RVA: 0x0007C0A8 File Offset: 0x0007A2A8
 		public override void DrawWorker(Vector3 loc, Rot4 rot, ThingDef thingDef, Thing thing, float extraRotation)
 		{
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus
 			Vector3 s = new Vector3(num5, 1f, num5);
 			Matrix4x4 matrix = default(Matrix4x4);
 			matrix.SetTRS(vector, Quaternion.identity, s);
-			Graphics.DrawMesh(MeshPool.plane10, matrix, graphic.MatSingle, 0);
+            UnityEngine.Graphics.DrawMesh(MeshPool.plane10, matrix, graphic.MatSingle, 0);
 		}
 
 		// Token: 0x0600151C RID: 5404 RVA: 0x0007C254 File Offset: 0x0007A454

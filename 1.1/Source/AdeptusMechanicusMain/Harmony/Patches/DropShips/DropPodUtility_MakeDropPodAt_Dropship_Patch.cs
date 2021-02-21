@@ -2,6 +2,7 @@
 using Verse;
 using HarmonyLib;
 using System;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -16,7 +17,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    CompTransporter comp2 = null;
             for (int index = 0; index < info.innerContainer.Count; index++)
             {
-                if (info.innerContainer[index].TryGetComp<CompDropship>() != null)
+                if (info.innerContainer[index].TryGetCompFast<CompDropship>() != null)
                 {
                     dropship = info.innerContainer[index];
                     string defName = dropship.def.defName;
@@ -25,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     activeDropPod.Contents = info;
                     EnsureInBounds(ref c, info.innerContainer[index].def, map);
                     info.innerContainer.Remove(dropship);
-                    cargo = dropship.TryGetComp<CompDropship>();
+                    cargo = dropship.TryGetCompFast<CompDropship>();
                     cargo.Transporter.innerContainer = info.innerContainer;
                     SkyfallerMaker.SpawnSkyfaller(ThingDef.Named(defName + "_Incoming"), dropship, c, map);
                     return false;

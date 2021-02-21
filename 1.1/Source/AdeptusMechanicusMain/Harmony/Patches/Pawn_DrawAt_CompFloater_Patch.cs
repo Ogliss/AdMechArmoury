@@ -2,6 +2,7 @@
 using Verse;
 using HarmonyLib;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -11,7 +12,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix(Pawn __instance, Vector3 drawLoc)
         {
-            CompFloating floater = __instance.TryGetComp<CompFloating>();
+            CompFloating floater = __instance.TryGetCompFast<CompFloating>();
             if (floater != null && !__instance.Dead && !__instance.Downed && __instance.Awake())
             {
             //    Log.Message("DrawAt patch for floater " + __instance);

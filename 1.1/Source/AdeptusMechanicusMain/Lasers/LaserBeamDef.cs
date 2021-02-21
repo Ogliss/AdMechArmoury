@@ -6,18 +6,8 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public class LaserBeamDecoration
-    {
-        public ThingDef mote;
-        public float spacing = 1.0f;
-        public float initialOffset = 0;
-        public float speed = 1.0f;
-        public float speedJitter;
-        public float speedJitterOffset;
-
-    }
 
     public class LaserBeamDef : ThingDef
     {
@@ -26,29 +16,49 @@ namespace AdeptusMechanicus
 
         public int lifetime = 30;
         public int flickerFrameTime = 5;
+        public int impactReflection = -1;
         public float impulse = 4.0f;
+        public SimpleCurve impulseCurve;
 
         public float beamWidth = 1.0f;
+        public float flareWidth = -1f;
+        public float flareWidthMod = 1f;
+        public float flareLength = -1f;
+        public float flareLengthMod = 1f;
+        public float flareOpacityMod = 1f;
         public float shieldDamageMultiplier = 0.5f;
         public float seam = -1f;
-        
+
         public float causefireChance = -1f;
         public bool canExplode = false;
-        
+        public float penetrateChance = -1f;
+        public float penetrateDamageFalloff = -1f;
+        public float penetrateAPFalloff = -1f;
+        public int maxPenetrations = -1;
+
 
         public bool LightningBeam = false;
+
+        public SimpleCurve lightningArcWidthDistCurve;
+        public SimpleCurve lightningArcWidthTimeCurve;
+        public SimpleCurve lightningArcVarianceDistCurve;
+        public SimpleCurve lightningArcVarianceTimeCurve;
+        public int LightningFrameTime = 15;
         public float LightningVariance = 3f;
         public bool StaticLightning = true;
         public int ArcCount = 1;
 
         public List<LaserBeamDecoration> decorations;
 
+        public int effecterLifetime = 60;
         public EffecterDef explosionEffect;
         public EffecterDef hitLivingEffect;
         public ThingDef beamGraphic;
+        public string flareMatPath;
+        public Material flareMat;
 
         public List<string> textures;
-        public List<Material> materials = new List<Material> ();
+        public List<Material> materials = new List<Material>();
 
         public float AddHediffChance = 0.00f; //The default chance of adding a hediff.
         public HediffDef HediffToAdd = null;
@@ -73,7 +83,7 @@ namespace AdeptusMechanicus
                     for (int ii = 0; ii < list.Count; ii++)
                     {
 
-                        materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, ShaderDatabase.TransparentPostLight));
+                        materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                     }
                 }
             }
@@ -81,8 +91,12 @@ namespace AdeptusMechanicus
             {
                 for (int i = 0; i < textures.Count; i++)
                 {
-                    materials.Add(MaterialPool.MatFrom(textures[i], ShaderDatabase.TransparentPostLight));
+                    materials.Add(MaterialPool.MatFrom(textures[i], this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                 }
+            }
+            if (!flareMatPath.NullOrEmpty())
+            {
+                flareMat = MaterialPool.MatFrom(flareMatPath, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
             }
         }
 
@@ -91,7 +105,8 @@ namespace AdeptusMechanicus
             if (materials.Count == 0 && textures.Count != 0)
                 CreateGraphics();
 
-            if (materials.Count == 0) {
+            if (materials.Count == 0)
+            {
                 return null;
             }
 

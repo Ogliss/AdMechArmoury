@@ -12,6 +12,7 @@ using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
 using CombatExtended;
+using AdeptusMechanicus.Lasers;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -20,8 +21,8 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static bool Prefix(ref Verb_ShootCE __instance)
         {
-        //    Log.Warning("CE_TryCastShot_WeaponSpecialRules_Patch WarmupComplete ");
-            GunVerbEntry entry = __instance.SpecialRules();
+            //    Log.Warning("CE_TryCastShot_WeaponSpecialRules_Patch WarmupComplete ");
+            AdvancedVerbProperties entry = __instance.SpecialRules();
             if (entry==null)
             {
             //    Log.Message("no SpecialRules detected");
@@ -33,9 +34,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool Multishot = entry.Multishot;
             int ScattershotCount = entry.ScattershotCount;
             bool UserEffect = entry.EffectsUser;
-            HediffDef UserHediff = entry.UserEffect;
-            float AddHediffChance = entry.EffectsUserChance;
-            List<string> Immunitylist = entry.UserEffectImmuneList;
+            HediffDef UserHediff = entry.userEffect;
+            float AddHediffChance = entry.effectsUserChance;
+            List<string> Immunitylist = entry.userEffectImmuneList;
             string msg = string.Format("");
             string reliabilityString;
             float failChance;

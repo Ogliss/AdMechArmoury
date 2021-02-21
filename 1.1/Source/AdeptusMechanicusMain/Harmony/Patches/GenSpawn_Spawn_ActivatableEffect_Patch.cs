@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -27,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (p.equipment.Primary != null)
                 {
-                    if (p.equipment.Primary.TryGetComp<CompPowerWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetComp<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
+                    if (p.equipment.Primary.TryGetCompFast<CompPowerWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetCompFast<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
                     {
                         bool flag = compPowerWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
                         if (flag)
@@ -35,7 +36,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             compPowerWeapon.TryActivate();
                         }
                     }
-                    if (p.equipment.Primary.TryGetComp<CompForceWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetComp<CompForceWeaponActivatableEffect>() is CompForceWeaponActivatableEffect compForceWeapon)
+                    if (p.equipment.Primary.TryGetCompFast<CompForceWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetCompFast<CompForceWeaponActivatableEffect>() is CompForceWeaponActivatableEffect compForceWeapon)
                     {
                         bool flag = compForceWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
                         if (flag)
@@ -44,14 +45,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                     /*
-                    if (p.equipment.Primary.TryGetComp<CompAbilityItem>() != null && p.equipment.Primary.TryGetComp<CompAbilityItem>() is CompAbilityItem compAbilityItem)
+                    if (p.equipment.Primary.TryGetCompFast<CompAbilityItem>() != null && p.equipment.Primary.TryGetCompFast<CompAbilityItem>() is CompAbilityItem compAbilityItem)
                     {
                         foreach (var item in compAbilityItem.Abilities)
                         {
-                            bool flag = !p.TryGetComp<CompAbilityUser>().AbilityData.TemporaryWeaponPowers.Contains(item);
+                            bool flag = !p.TryGetCompFast<CompAbilityUser>().AbilityData.TemporaryWeaponPowers.Contains(item);
                             if (flag)
                             {
-                                p.TryGetComp<CompAbilityUser>().AddWeaponAbility(item.Def);
+                                p.TryGetCompFast<CompAbilityUser>().AddWeaponAbility(item.Def);
                             }
                         }
                     }

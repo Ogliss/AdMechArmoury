@@ -19,12 +19,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     return;
                 }
             }
-            if (__instance.health.hediffSet.hediffs.Any(x=>x.TryGetComp<HediffComp_VerbGiver>()!=null))
+            if (__instance.health.hediffSet.hediffs.Any(x=>x.TryGetCompFast<HediffComp_VerbGiver>()!=null))
             {
                 foreach (HediffWithComps hdc in __instance.health.hediffSet.hediffs.Where(x=> x.def.HasComp(typeof(HediffComp_VerbGiver))))
                 {
                     Log.Warning(string.Format("hdc: {0}", hdc.Label));
-                    HediffComp_VerbGiver _VerbGiver = hdc.TryGetComp<HediffComp_VerbGiver>();
+                    HediffComp_VerbGiver _VerbGiver = hdc.TryGetCompFast<HediffComp_VerbGiver>();
                     if (_VerbGiver.Props.verbs!=null)
                     {
                         foreach (VerbProperties verb in _VerbGiver.Props.verbs)

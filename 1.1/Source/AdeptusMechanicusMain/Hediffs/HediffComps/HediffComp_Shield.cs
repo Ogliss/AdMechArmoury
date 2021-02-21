@@ -206,12 +206,12 @@ namespace AdeptusMechanicus
             this.impactAngleVect = Vector3Utility.HorizontalVectorFromAngle(dinfo.Angle);
             Vector3 loc = Pawn.TrueCenter() + this.impactAngleVect.RotatedBy(180f) * 0.5f;
             float num = Mathf.Min(10f, 2f + dinfo.Amount / 10f);
-            MoteMaker.MakeStaticMote(loc, Pawn.Map, ThingDefOf.Mote_ExplosionFlash, num);
+            AdeptusMoteMaker.MakeStaticMote(loc, Pawn.Map, ThingDefOf.Mote_ExplosionFlash, num);
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
                 Rand.PushState();
-                MoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
+                AdeptusMoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
                 Rand.PopState();
             }
             this.lastAbsorbDamageTick = Find.TickManager.TicksGame;
@@ -222,12 +222,12 @@ namespace AdeptusMechanicus
         public virtual void Break()
         {
             SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(Pawn.Position, Pawn.Map, false));
-            MoteMaker.MakeStaticMote(Pawn.TrueCenter(), Pawn.Map, ThingDefOf.Mote_ExplosionFlash, 12f);
+            AdeptusMoteMaker.MakeStaticMote(Pawn.TrueCenter(), Pawn.Map, ThingDefOf.Mote_ExplosionFlash, 12f);
             for (int i = 0; i < 6; i++)
             {
                 Rand.PushState();
                 Vector3 loc = Pawn.TrueCenter() + Vector3Utility.HorizontalVectorFromAngle((float)Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
-                MoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
+                AdeptusMoteMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
                 Rand.PopState();
             }
             this.energy = 0f;
@@ -240,7 +240,7 @@ namespace AdeptusMechanicus
             if (Pawn.Spawned)
             {
                 SoundDefOf.EnergyShield_Reset.PlayOneShot(new TargetInfo(Pawn.Position, Pawn.Map, false));
-                MoteMaker.ThrowLightningGlow(Pawn.TrueCenter(), Pawn.Map, 3f);
+                AdeptusMoteMaker.ThrowLightningGlow(Pawn.TrueCenter(), Pawn.Map, 3f);
             }
             this.ticksToReset = -1;
             this.energy = this.EnergyOnReset;

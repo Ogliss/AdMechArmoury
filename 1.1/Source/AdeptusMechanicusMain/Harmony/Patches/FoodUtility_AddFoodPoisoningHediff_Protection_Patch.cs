@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -18,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool Pre_AddFoodPoisoningHediff_CompCheck(Pawn pawn, Thing ingestible, FoodPoisonCause cause)
         {
         //    Log.Message(string.Format("checkin if {0} can get food poisioning from {1} because {2}", pawn.Name, ingestible, cause));
-            CompFoodPoisonProtection compFood = pawn.TryGetComp<CompFoodPoisonProtection>();
+            CompFoodPoisonProtection compFood = pawn.TryGetCompFast<CompFoodPoisonProtection>();
             if (compFood!=null)
             {
                 if (!compFood.Props.Poisonable)

@@ -103,6 +103,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>DESplinterPistol</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -128,7 +129,7 @@
 		</modExtensions>
 	</ThingDef>
 
-	<!--==================== Dark Eldar - Splinter  Rifle =========================-->
+	<!--==================== Dark Eldar - Splinter Rifle =========================-->
 	<ThingDef ParentName="OG_DarkEldar_Gun">
 		<defName>OGDE_Gun_SplinterRifle</defName>
 		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
@@ -210,6 +211,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>DESplinterRifle</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -317,6 +319,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>DESplinterRifle</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -422,6 +425,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>DESplinterCannon</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -464,16 +468,15 @@
 		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-				<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-				<GlowMoteSize>1.5</GlowMoteSize>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
 			</li>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-				<explosionMote>true</explosionMote>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
 				<explosionMoteSize>0.65</explosionMoteSize>
-				<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
-				<ImpactMoteSize>2</ImpactMoteSize>
-				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -543,6 +546,7 @@
 		<weaponTags>
 			<li>DEDisintegratorCannon</li>
 			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestPlasma</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -569,7 +573,7 @@
 	</ThingDef>
 
 	<!--==================== Dark Eldar - Darklight Weapons - Blast Pistol, Blaster, Darklance =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGDE_Bullet_Darklance</defName>
 		<label>darklight beam</label>
 		<textures>
@@ -649,6 +653,7 @@
 		<weaponTags>
 			<li>DEBlastPistol</li>
 			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -733,14 +738,15 @@
 			<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-			<techLevel>Spacer</techLevel>
-			<weaponTags>
-				<li>DEBlaster</li>
-				<li>DEHeavyGun</li>
-			</weaponTags>
-			<tradeTags>
-				<li>OGDERanged</li>
-			</tradeTags>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEBlaster</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
 		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Common_Tech_Weapons_Laser</li>
@@ -826,6 +832,7 @@
 		<weaponTags>
 			<li>DEDarklance</li>
 			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -852,7 +859,7 @@
 	</ThingDef>
 
 	<!--==================== Dark Eldar - Haywire Blaster =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGDE_Bullet_HaywireBlaster</defName>
 		<label>haywire blast</label>
 		<textures>
@@ -931,6 +938,7 @@
 		<weaponTags>
 			<li>DEHaywireBlaster</li>
 			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -957,7 +965,7 @@
 	</ThingDef>
 	
 	<!--==================== Dark Eldar - Fusion Pistol & Heatlance ===================== -->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGDE_Bullet_FusionBeam</defName>
 		<label>fusion beam</label>
 		<textures>
@@ -1036,6 +1044,7 @@
 		<weaponTags>
 			<li>DEFusionGun</li>
 			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestMelta</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -1125,6 +1134,7 @@
 		<weaponTags>
 			<li>DEHeatlance</li>
 			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestMelta</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -1230,6 +1240,7 @@
 		<weaponTags>
 			<li>DEDeathspinner</li>
 			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>
@@ -1342,6 +1353,8 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>DEStingerPistol</li>
+			<li>OgsWeaponTestShuriken</li>
+			<li>OgsWeaponTestToxic</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGDERanged</li>

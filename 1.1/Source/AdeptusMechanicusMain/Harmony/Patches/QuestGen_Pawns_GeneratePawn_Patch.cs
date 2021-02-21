@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (kindDef == PawnKindDefOf.Refugee)
             {
                 Faction ofPlayer = Faction.OfPlayer;
-                FactionDefExtension extension = ofPlayer.def.GetModExtension<FactionDefExtension>();
+                FactionDefExtension extension = ofPlayer.def.GetModExtensionFast<FactionDefExtension>();
                 if (extension != null && !extension.RefugeeFactions.NullOrEmpty())
                 {
                     //    Log.Message(string.Format("{0}", ofPlayer.def.defName));

@@ -17,20 +17,11 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(ResearchProjectDef), "get_PrerequisitesCompleted")]
     public static class ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch
     {
-        /*
-        [HarmonyPrefix]
-        public static void Pre_(ResearchProjectDef __instance, ref bool __result)
-        {
-            
-        }
-        */
-
-        [HarmonyPostfix]
-        public static void Post_(ResearchProjectDef __instance, ref bool __result)
+        public static void Postfix(ResearchProjectDef __instance, ref bool __result)
         {
             if (__instance.HasModExtension<AnyPrerequisiteResearchExtension>())
             {
-                AnyPrerequisiteResearchExtension ext = __instance.GetModExtension<AnyPrerequisiteResearchExtension>();
+                AnyPrerequisiteResearchExtension ext = __instance.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
                 if (!ext.RequiredResearch.NullOrEmpty())
                 {
                     if (ext.AnyRequiredResearchCompleted)

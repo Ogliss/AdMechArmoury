@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -19,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (eq!=null)
             {
-                OgsCompActivatableEffect.CompActivatableEffect comp = eq.TryGetComp<OgsCompActivatableEffect.CompActivatableEffect>();
+                OgsCompActivatableEffect.CompActivatableEffect comp = eq.TryGetCompFast<OgsCompActivatableEffect.CompActivatableEffect>();
                 bool flag = __instance != null && comp != null && comp.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Activated;
                 if (flag)
                 {

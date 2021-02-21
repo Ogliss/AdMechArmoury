@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -22,8 +23,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                 bool flag1 = (!A.apparel.tags.Contains("OGEnergyShield") || !B.apparel.tags.Contains("OGEnergyShield"));
                 __result = A != B && flag1;
             }
-            ApparelRestrictionDefExtension extA = A.GetModExtension<ApparelRestrictionDefExtension>();
-            ApparelRestrictionDefExtension extB = A.GetModExtension<ApparelRestrictionDefExtension>();
+            ApparelRestrictionDefExtension extA = A.GetModExtensionFast<ApparelRestrictionDefExtension>();
+            ApparelRestrictionDefExtension extB = A.GetModExtensionFast<ApparelRestrictionDefExtension>();
             bool restricted = extA != null || extB != null;
             if (restricted)
             {

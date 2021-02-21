@@ -79,7 +79,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //    Log.Warning("Thing_TakeDamage_SpecialRules_Patch Prefix Failed finding Weapon:  " + dinfo.Weapon);
                             return;
                         }
-                        OgsCompActivatableEffect.CompActivatableEffect activatableEffect = Weapon.TryGetComp<OgsCompActivatableEffect.CompActivatableEffect>();
+                        OgsCompActivatableEffect.CompActivatableEffect activatableEffect = Weapon.TryGetCompFast<OgsCompActivatableEffect.CompActivatableEffect>();
                         bool? activeEffect = null;
                         if (activatableEffect != null)
                         {
@@ -238,14 +238,14 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                             Weapon = Caster.equipment.Primary;
                         }
-                        CompWeapon_MeleeSpecialRules WeaponRules = Weapon.TryGetComp<CompWeapon_MeleeSpecialRules>();
-                        CompForceWeaponActivatableEffect compForce = Weapon.TryGetComp<CompForceWeaponActivatableEffect>();
+                        CompWeapon_MeleeSpecialRules WeaponRules = Weapon.TryGetCompFast<CompWeapon_MeleeSpecialRules>();
+                        CompForceWeaponActivatableEffect compForce = Weapon.TryGetCompFast<CompForceWeaponActivatableEffect>();
                         if (WeaponRules != null || compForce != null)
                         {
                             if (WeaponRules?.ForceWeapon ?? compForce != null)
                             {
                                 bool requiresPsyker = WeaponRules?.ForceEffectRequiresPsyker ?? compForce.ForceEffectRequiresPsyker;
-                                bool casterPsychiclySensitive = Caster.RaceProps.Humanlike ? Caster.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) || Caster.story.traits.HasTrait(DefDatabase<TraitDef>.GetNamedSilentFail("Psyker")) : false;
+                                bool casterPsychiclySensitive = Caster.RaceProps.Humanlike && (Caster.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) || Caster.story.traits.HasTrait(DefDatabase<TraitDef>.GetNamedSilentFail("Psyker")));
                                 bool Activate = false;
                                 if ((casterPsychiclySensitive || !requiresPsyker) && target.def.category == ThingCategory.Pawn && target is Pawn Victim)
                                 {
@@ -253,7 +253,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     if ((casterPsychiclySensitiveDegree >= 1 || !requiresPsyker))
                                     {
                                         float? casterPsychicSensitivity = Caster.GetStatValue(StatDefOf.PsychicSensitivity, true) * 100f;
-                                        bool targetPsychiclySensitive = Victim.RaceProps.Humanlike ? Victim.story.traits.HasTrait(TraitDefOf.PsychicSensitivity) : false;
+                                        bool targetPsychiclySensitive = Victim.RaceProps.Humanlike && Victim.story.traits.HasTrait(TraitDefOf.PsychicSensitivity);
                                         float? targetPsychicSensitivity = Victim.GetStatValue(StatDefOf.PsychicSensitivity, true) * 100f;
                                         if (targetPsychiclySensitive == true)
                                         {

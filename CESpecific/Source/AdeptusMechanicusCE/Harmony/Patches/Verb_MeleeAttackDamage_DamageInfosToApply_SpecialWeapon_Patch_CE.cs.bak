@@ -109,8 +109,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                 //    log.message(Caster.NameShortColored + " Level " + Level + " Mult " + Mult);
                     if (__instance.EquipmentSource != null)
                     {
-                        CompWeapon_MeleeSpecialRules WeaponRules = __instance.EquipmentSource.TryGetComp<CompWeapon_MeleeSpecialRules>();
-                        CompForceWeaponActivatableEffect compForce = __instance.EquipmentSource.TryGetComp<CompForceWeaponActivatableEffect>();
+                        CompWeapon_MeleeSpecialRules WeaponRules = __instance.EquipmentSource.TryGetCompFast<CompWeapon_MeleeSpecialRules>();
+                        CompForceWeaponActivatableEffect compForce = __instance.EquipmentSource.TryGetCompFast<CompForceWeaponActivatableEffect>();
                         if (WeaponRules != null || compForce != null)
                         {
                             if (WeaponRules?.ForceWeapon ?? compForce!=null)

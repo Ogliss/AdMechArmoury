@@ -55,7 +55,7 @@ namespace AdeptusMechanicus
             {
                 GenTemperature.PushHeat(explosion.Position, explosion.Map, this.def.explosionHeatEnergyPerCell * (float)cellsToAffect.Count);
             }
-            MoteMaker.MakeStaticMote(explosion.Position, explosion.Map, ThingDefOf.Mote_ExplosionFlash, explosion.radius * 6f);
+            AdeptusMoteMaker.MakeStaticMote(explosion.DrawPos, explosion.Map, ThingDefOf.Mote_ExplosionFlash, explosion.radius * 6f);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -50,7 +51,7 @@ namespace RimWorld
             float points = Mathf.Max(parms.points * 0.9f, 300f);
             Thing thing = ThingMaker.MakeThing(shipPartDef);
             Building building_CrashedShipPart = (Building)thing;
-            CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetComp<CompPawnSpawnerOnDamaged>();
+            CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetCompFast<CompPawnSpawnerOnDamaged>();
             thing.SetFaction(faction, null);
             List<Pawn> list2 = PawnGroupMakerUtility.GeneratePawns(new PawnGroupMakerParms
             {
@@ -66,7 +67,7 @@ namespace RimWorld
             DropPodUtility.DropThingsNear(intVec, map, list2.Cast<Thing>());
             foreach (Pawn item in list2)
             {
-                item.TryGetComp<CompCanBeDormant>()?.ToSleep();
+                item.TryGetCompFast<CompCanBeDormant>()?.ToSleep();
             }
             list.AddRange(list2.Select((Pawn p) => new TargetInfo(p)));
             GenSpawn.Spawn(SkyfallerMaker.MakeSkyfaller(ThingDefOf.CrashedShipPartIncoming, thing), intVec, map);

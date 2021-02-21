@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix(Pawn pawn, IntVec3 c, ref int __result)
         {
-            if ((pawn.Map != null) && (pawn.TryGetComp<CompFloating>() != null))
+            if ((pawn.Map != null) && (pawn.TryGetCompFast<CompFloating>() != null))
             {
-                CompFloating floating = pawn.TryGetComp<CompFloating>();
+                CompFloating floating = pawn.TryGetCompFast<CompFloating>();
                 if (floating != null)
                 {
                     //    Log.Message(pawn + " has CompFloating isFloater: "+ floating.Props.isFloater+ " canCrossWater: " + floating.Props.canCrossWater);
@@ -79,7 +80,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
                 {
                     Hediff hediff = pawn.health.hediffSet.hediffs[i];
-                    HediffComp_MoveThroughCover throughCover = hediff.TryGetComp<HediffComp_MoveThroughCover>();
+                    HediffComp_MoveThroughCover throughCover = hediff.TryGetCompFast<HediffComp_MoveThroughCover>();
                     if (throughCover != null)
                     {
                         if (!throughCover.Active)

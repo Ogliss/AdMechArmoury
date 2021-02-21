@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.Sound;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
     public class Building_LaserGun : Building_TurretGun, IBeamColorThing
     {
@@ -77,7 +77,7 @@ namespace AdeptusMechanicus
 
             int ticksLeft = burstWarmupTicksLeft;
             base.Tick();
-            if (burstWarmupTicksLeft == def.building.turretBurstWarmupTime.SecondsToTicks() - 1 && ticksLeft == burstWarmupTicksLeft+1)
+            if (burstWarmupTicksLeft == def.building.turretBurstWarmupTime.SecondsToTicks() - 1 && ticksLeft == burstWarmupTicksLeft + 1)
             {
                 if (AttackVerb.verbProps.soundAiming != null)
                 {
@@ -118,18 +118,10 @@ namespace AdeptusMechanicus
         {
             string result = base.GetInspectString();
 
-            if (power.PowerNet != null)
+            if (!isCharged)
             {
-                if (power.PowerNet.batteryComps.NullOrEmpty())
-                {
-                    result += "\n";
-                    result += "AMA_LaserTurretNoBatteries".Translate();
-                }
-                if (!isCharged)
-                {
-                    result += "\n";
-                    result += "AMA_LaserTurretNotCharged".Translate();
-                }
+                result += "\n";
+                result += "LaserTurretNotCharged".Translate();
             }
 
             return result;

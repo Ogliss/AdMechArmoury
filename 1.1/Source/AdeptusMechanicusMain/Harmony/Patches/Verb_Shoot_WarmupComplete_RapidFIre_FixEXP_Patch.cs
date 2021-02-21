@@ -19,13 +19,13 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class Verb_Shoot_WarmupComplete_RapidFIre_FixEXP_Patch
     {
         [HarmonyPrefix]
-        public static void Prefix(ref Verb_Shoot __instance, ref float __state)
+        public static void Prefix(ref Verb_Shoot __instance, ref float? __state)
         {
             __state = __instance.verbProps.warmupTime;
-            GunVerbEntry entry = __instance.SpecialRules();
+            AdvancedVerbProperties entry = __instance.SpecialRules();
             if (entry != null)
             {
-                if (__instance.RapidFire(__state, out bool InRange, out float modified))
+                if (__instance.RapidFire(__state.Value, out bool InRange, out float modified))
                 {
                     if (InRange)
                     {
@@ -37,12 +37,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
 
         [HarmonyPostfix]
-        public static void Postfix(ref Verb_Shoot __instance, float __state)
+        public static void Postfix(ref Verb_Shoot __instance, float? __state)
         {
-            GunVerbEntry entry = __instance.SpecialRules();
-            if (entry != null)
+            if (__state.HasValue)
             {
-                __instance.verbProps.warmupTime = __state;
+                __instance.verbProps.warmupTime = __state.Value;
             //    Log.Message("Postfix original warmup " + __state + " " + __instance.verbProps.label + " fired by " + __instance.CasterPawn.LabelShortCap + "\nwarmup " + __instance.verbProps.warmupTime + " Cooldown " + __instance.verbProps.AdjustedCooldown(__instance, __instance.CasterPawn) + " Burst " + ((__instance.verbProps.burstShotCount - 1) * __instance.verbProps.ticksBetweenBurstShots).TicksToSeconds());
             }
         }

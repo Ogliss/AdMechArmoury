@@ -31,6 +31,7 @@ namespace AdeptusMechanicus
                 //    Log.Message("thingForGraphic == "+ thingForGraphic.LabelShortCap);
                 }
                 return thingForGraphic.Graphic;
+                /*
                 Thing thing = this.Contents.innerContainer.First(x => x.def.category == ThingCategory.Pawn);
                 Pawn pawn = thing as Pawn;
                 pawn.Rotation = Rot4.West;
@@ -42,7 +43,7 @@ namespace AdeptusMechanicus
                 {
                     return pawn.Corpse.Graphic;
                 }
-
+                */
                 //return pawn.Drawer.renderer.graphics.nakedGraphic.GetShadowlessGraphic();
             }
         }

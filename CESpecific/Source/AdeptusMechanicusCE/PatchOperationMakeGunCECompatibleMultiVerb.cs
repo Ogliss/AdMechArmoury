@@ -142,7 +142,8 @@ namespace CombatExtended
 			}
             foreach (XmlNode item in this.Properties.node.ChildNodes)
 			{
-				xmlElement.AppendChild(this.CreateListElementAndPopulate(xml, item, "CombatExtended.VerbPropertiesCE"));
+
+				xmlElement.AppendChild(this.CreateListElementAndPopulate(xml, item, "AdeptusMechanicusCE.AdvancedVerbPropertiesCE"));
 			}
 		}
 

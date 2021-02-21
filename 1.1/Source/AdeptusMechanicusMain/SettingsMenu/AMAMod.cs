@@ -85,9 +85,9 @@ namespace AdeptusMechanicus.settings
         public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
         public override string SettingsCategory() => "AM_ModSeries".Translate();
         public string ModLoaded() => "Mods Loaded: " + "AMA_ModName".Translate();
-        public int patchesCount => Patches.Count % 2 == 0 ? Patches.Count / 2 : Patches.Count / 2 + 1;
-        private float listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + listing_ArmouryIntergrationContents + intergrationMenuInc;
-        private float listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, patchesCount, lineheight, 0, 0);
+        public int PatchesCount => Patches.Count % 2 == 0 ? Patches.Count / 2 : Patches.Count / 2 + 1;
+        private float Listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + Listing_ArmouryIntergrationContents + intergrationMenuInc;
+        private float Listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, PatchesCount, lineheight, 0, 0);
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Rect inRect1 = inRect.TopPart(0.05f);
@@ -120,10 +120,10 @@ namespace AdeptusMechanicus.settings
 
                 listing_Main.EndSection(listing_AlienRacesIntergration);
             }
-            Listing_StandardExpanding listing_ArmouryIntergration = listing_Main.BeginSection(listing_ArmouryIntergrationLength, false, 3);
+            Listing_StandardExpanding listing_ArmouryIntergration = listing_Main.BeginSection(Listing_ArmouryIntergrationLength, false, 3);
             //   listing_ArmouryIntergration = listing_Main.BeginSection(MenuLengthIntergration, false, 0);
-            listing_ArmouryIntergration.Label("Changes to these settings require a restart to take effect." + (Dev ? " patchesCount: " + patchesCount : ""));
-            Listing_StandardExpanding listing_General = listing_ArmouryIntergration.BeginSection(listing_ArmouryIntergrationContents, true);
+            listing_ArmouryIntergration.Label("Changes to these settings require a restart to take effect." + (Dev ? " patchesCount: " + PatchesCount : ""));
+            Listing_StandardExpanding listing_General = listing_ArmouryIntergration.BeginSection(Listing_ArmouryIntergrationContents, true);
             listing_General.ColumnWidth *= 0.488f;
             bool flag = false;
             for (int i = 0; i < Patches.Count; i++)
@@ -162,7 +162,7 @@ namespace AdeptusMechanicus.settings
                 }
                 menuLength += inc;
                 string tooltip = "Original menuLength: " + menuLength;
-                tooltip += "\nMenuLengthIntergration: " + listing_ArmouryIntergrationContents + " Total: " + listing_ArmouryIntergrationLength + " Show Menu: " + showArmouryIntergrationMenu + " Show Options: " + showArmouryIntergrationOptions;
+                tooltip += "\nMenuLengthIntergration: " + Listing_ArmouryIntergrationContents + " Total: " + Listing_ArmouryIntergrationLength + " Show Menu: " + showArmouryIntergrationMenu + " Show Options: " + showArmouryIntergrationOptions;
                 tooltip += "\nMainSectionLength: " + listing_Main.CurHeight;
                 tooltip += "\nMaxColumnHeightSeen: " + listing_Main.MaxColumnHeightSeen;
                 TooltipHandler.TipRegion(inRect.ContractedBy(4), tooltip);
@@ -219,7 +219,7 @@ namespace AdeptusMechanicus.settings
                 string tooltipI = "AMA_IntergrationOptionsDesc".Translate();
                 if (Dev)
                 {
-                    labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + listing_ArmouryIntergrationContents + " Total Length: " + listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + intergrationMenuInc;
+                    labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + Listing_ArmouryIntergrationContents + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + intergrationMenuInc;
                 }
                 if (listing_Main.ButtonText(labelI, ref showArmouryIntergrationOptions, Dev, ref intergrationMenuInc, tooltipI))
                 {

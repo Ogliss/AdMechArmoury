@@ -192,12 +192,14 @@ namespace AdeptusMechanicus
 		}
 		private Command_ApparelWargear CreateVerbTargetCommand(Thing gear, Verb verb)
 		{
-			Command_ApparelWargear command_Reloadable = new Command_ApparelWargear(this);
-			command_Reloadable.defaultDesc = gear.def.description;
-			command_Reloadable.hotKey = this.Props.hotKey;
-			command_Reloadable.defaultLabel = verb.verbProps.label;
-			command_Reloadable.verb = verb;
-			if (verb.verbProps.defaultProjectile != null && verb.verbProps.commandIcon == null)
+            Command_ApparelWargear command_Reloadable = new Command_ApparelWargear(this)
+            {
+                defaultDesc = gear.def.description,
+                hotKey = this.Props.hotKey,
+                defaultLabel = verb.verbProps.label,
+                verb = verb
+            };
+            if (verb.verbProps.defaultProjectile != null && verb.verbProps.commandIcon == null)
 			{
 				command_Reloadable.icon = verb.verbProps.defaultProjectile.uiIcon;
 				command_Reloadable.iconAngle = verb.verbProps.defaultProjectile.uiIconAngle;

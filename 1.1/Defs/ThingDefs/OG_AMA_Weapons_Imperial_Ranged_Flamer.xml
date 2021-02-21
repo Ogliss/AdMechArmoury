@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ====================== Flamers ===================== -->
+	<!-- ====================== Hand Flamer ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_FlamerHand</defName>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>2</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>0.75</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>15</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Imperial_Gun">
+		<defName>OGI_Gun_FlamerHand</defName>
+		<label>hand flamer (I)</label>
+		<description>Hand Flamers are a smaller and more compact version of the standard pattern Flamer that is still capable of unleashing large blasts of flame, but is good for only a few shots before the fuel canister must be swapped out..\n\nAdepta Sororitas Seraphim units are notable users of Hand Flamers, and commonly employ them in pairs.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/FlamerHand</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>7500</WorkToMake>
+			<!--MarketValue>350</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Flame</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Pistol</li>
+			<li>ImperialPistol</li>
+			<li>ImperialGun</li>
+			<li>ImperialHandFlamer</li>
+			<li>GuevesaPistol</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+			<generateCommonality>1.0</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_FlamerHand</defaultProjectile>
+				<warmupTime>0.25</warmupTime>
+				<range>8</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<muzzleFlashScale>5</muzzleFlashScale>
+				<barrelLength>0.45</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Flamer ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_Flamer</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>3</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>2</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>0.75</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>15</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Imperial_Gun_Special">
+		<defName>OGI_Gun_Flamer</defName>
+		<label>flamer (I)</label>
+		<description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Flamer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<!--MarketValue>875</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Flame</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialEliteGun</li>
+			<li>KrootGun</li>
+			<li>ImperialFlamer</li>
+			<li>Flamer</li>
+			<li>OGIGFlamer</li>
+			<li>GuevesaSpecialGun</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+			<generateCommonality>0.10</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>14</range>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<color>(143,075,0)</color>
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+	<!-- ====================== Heavy Flamer ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_FlamerHeavy</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBase>0.33</armorPenetrationBase>
+			<explosionRadius>1.050</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>20</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>5</projectileCount>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Imperial_Gun_Special">
+		<defName>OGI_Gun_FlamerHeavy</defName>
+		<label>heavy flamer (I)</label>
+		<description>A Heavy Flamer is a larger, more powerful version of the standard Flamer, capable of projecting hotter and denser flames. This means that Heavy Flamers possess better armour-piercing capabilities than standard Flamers.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/FlamerHeavy</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<!--MarketValue>2300</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Flame</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialHeavyGun</li>
+			<li>ImperialHeavyFlamer</li>
+			<li>HeavyFlamer</li>
+			<li>GuevesaHeavyGun</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+			<generateCommonality>0.20</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_FlamerHeavy</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>16</range>
+				<burstShotCount>24</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<!--li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<Multishot>true</Multishot>
+						<ScattershotCount>4</ScattershotCount>
+					</li>
+				</VerbEntries>
+			</li--> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<color>(143,075,0)</color>
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+</Defs>

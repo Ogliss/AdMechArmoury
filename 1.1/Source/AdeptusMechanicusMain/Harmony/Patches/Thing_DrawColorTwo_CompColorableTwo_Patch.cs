@@ -1,6 +1,7 @@
 ﻿using Verse;
 using HarmonyLib;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -13,7 +14,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             ThingWithComps thing = __instance as ThingWithComps;
             if (thing != null)
             {
-                CompColorableTwo colorableTwo = thing.TryGetComp<CompColorableTwo>();
+                CompColorableTwo colorableTwo = thing.TryGetCompFast<CompColorableTwo>();
                 if (colorableTwo != null && colorableTwo.ActiveTwo)
                 {
                     __result = colorableTwo.ColorTwo;

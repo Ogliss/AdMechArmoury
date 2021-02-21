@@ -12,6 +12,6 @@ namespace AdeptusMechanicus
     {
         public string maskKey;
         public string MaskSelector;
-
+        public int ticksPerFrame = 15;
     }
 }

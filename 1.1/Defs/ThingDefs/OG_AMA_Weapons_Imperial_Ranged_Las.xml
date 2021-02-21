@@ -1,0 +1,1897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ====================== Las shots ===================== -->
+	<!-- ====================== Las STD shot ===================== -->
+	<ThingDef Abstract="True" Name="OGI_Bullet_Las_Base" ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<label>las blast</label>
+		<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(187,33,0,255)</color>
+			<colorTwo>(255,150,0,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Lasbeam</li>
+		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<lifetime>20</lifetime>
+		<seam>0</seam>
+		<impulse>0.25</impulse>
+		<beamWidth>0.75</beamWidth>
+		<flareLength>2</flareLength>
+		<!--flareWidth>0.5</flareWidth-->
+		<flareWidthMod>0.5</flareWidthMod>
+		<!--flareLengthMod>0.250</flareLengthMod-->
+	</ThingDef>
+	
+	<!-- ====================== Las Hot shot ===================== -->
+	<ThingDef Abstract="True" Name="OGI_Bullet_Las_Hot" ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<label>las blast hotshot</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour, it does half the weapons effective range.</description>
+		<graphicData>
+			<color>(187,33,0,255)</color>
+			<colorTwo>(187,158,255,255)</colorTwo>	
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/LasbeamHot</li>
+		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<lifetime>30</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>1.0</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>2</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>0.650</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+	</ThingDef>
+	  
+	<!-- ====================== Las Pistol STD shot ===================== -->
+	<!-- ====================== R:12 S:3 AP:- ====================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Base" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasPistolStd</defName>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Las Pistol Hot shot ===================== -->
+	<!-- ====================== R:6 S:3 AP:3 ====================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Hot" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasPistolHot</defName>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.66</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Las Weapons ===================== -->
+	<!-- ====================== LasPistol ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasPistol</defName>
+		<label>laspistol (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Laspistol is the pistol version of the Lasgun and like that weapon fires a coherent beam of energetic photons that can burn through most materials. The Laspistol is powered by a miniature power pack that is usually placed within the grip. The Laspistol is used most often by officers or Commissars of the Imperial Guard in conjunction with a close combat weapon, often a Chainsword or Power Sword. The Laspistol was specifically intended to allow the user to fire one-handed and wield a melee weapon in the other hand. The Laspistol is also a favoured weapon of Tech-priest Enginseers and Sanctioned Psykers.\n\nThe Laspistol is capable of producing the same amount of damage in a skilled user's hands as the Lasgun, yet it has drastically reduced range as compared to its variant rifle form. The Laspistol lacks the Lasgun's selective fire options, having only the ability to fire single shots.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasPistol</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>
+		<barrelLength>0.45</barrelLength>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>10000</WorkToMake>
+			<!--MarketValue>250</MarketValue-->
+			<Mass>0.8</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.50</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>45</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Pistol</li>
+			<li>ImperialPistol</li>
+			<li>ImperialGun</li>
+			<li>Laspistol</li>
+			<li>LasPistol</li>
+			<li>GuevesaPistol</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasPistolStd</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.45</barrelLength>
+				<bulletOffset>-0.3</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+		
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Las Gun shot ===================== -->
+	<!-- ====================== R:12 S:3 AP:- RF ====================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Base" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasGun</defName>
+		<beamWidth>1.5</beamWidth>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Las Gun Hot shot ===================== -->
+	<!-- ====================== R:18 S:3 AP:3 RF ====================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Hot" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasGun_Hot</defName>
+		<beamWidth>1.5</beamWidth>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationBase>0.66</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Las Gun - Base ===================== -->
+	<ThingDef Name="OG_Imperial_LasGun" ParentName="OG_Imperial_Gun" Abstract="True">
+		<label>lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>47500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.5</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>7</Crafting>
+			</skillRequirements>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>Lasgun</li>
+			<li>LasGun</li>
+			<li>ImperialGun</li>
+			<li>ImperialLasgun</li>
+			<li>ImperialLasGun</li>
+			<li>GuevesaGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Lasguns ===================== -->
+	<!-- ====================== M-Galaxy Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Galaxy</defName>
+		<label>m-galaxy pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.
+		
+		Although thousands of variant models, marks and patterns exist the standard Lasgun pattern used by the Imperial Guard is the M35 "M-Galaxy" Lasgun, first put into use in 2546.789.M35.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Galaxy</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Galaxy</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>2.3</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>Lasgun</li>
+			<li>LasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<canSwitchWhileBusy>false</canSwitchWhileBusy>
+				<!-- Default = False, starts the current verbs cooldown when switched  -->
+				<switchStartsCooldown>true</switchStartsCooldown>
+				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
+			</li> 
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Kantrael Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Kantrael</defName>
+		<label>kantrael pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Kantrael</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Kantrael</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>47500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.0</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>Lasgun</li>
+			<li>LasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.85</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Hotshot</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun_Hot</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>16</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.85</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<canSwitchWhileBusy>false</canSwitchWhileBusy>
+				<!-- Default = False, starts the current verbs cooldown when switched  -->
+				<switchStartsCooldown>true</switchStartsCooldown>
+				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
+			</li> 
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+		
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Triplex Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Triplex</defName>
+		<label>triplex pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Triplex</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Triplex</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.25</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<recipeMaker>
+				<researchPrerequisites>
+				
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>Lasgun</li>
+			<li>TriplexLasGun</li>
+		</weaponTags>
+		<generateCommonality>1.0</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.85</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Hotshot</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun_Hot</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>16</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<canSwitchWhileBusy>false</canSwitchWhileBusy>
+				<!-- Default = False, starts the current verbs cooldown when switched  -->
+				<switchStartsCooldown>true</switchStartsCooldown>
+				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
+			</li> 
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+		
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Lascarbines ===================== -->
+	<!-- ====================== Locke Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Locke</defName>
+		<label>locke pattern lascarbine (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart. It will often possess a folding stock. However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun.\n\nThe Locke Pattern is A lighter, cut down variant of the Lascarbine that is commonly deployed amoungst PDF regiments, local milita, which possesses a shorter barrel-length than the standard Lasgun, decreasing its range but making it easier to use in enclosed spaces, to save on manufacturing costs the variable power setting has been removed and it is limited to single shot, this also makes it light enought that it can be fired in one hand.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Locke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Locke</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<Mass>2.0</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.85</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>LasCarbine</li>
+			<li>LockeLasCarbine</li>
+			<li>Gun</li>
+		</weaponTags>
+		<generateCommonality>1.0</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>30</range>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<barrelLength>0.7</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.5</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+	  
+	<!-- ====================== Catachan Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Catachan</defName>
+		<label>MKIV "Catachan" lascarbine (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart. It will often possess a folding stock. However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun.
+		
+		The Mark iV "Catachan" Lascarbine, has less cowling than the M36 and is therefore lighter and easier to carry, it also has a slightly reduced effective range and an increased rate of fire, which in the dense jungle environs frequented by Catachan regiments.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Catachan</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Catachan</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>35000</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>2.1</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<costList>
+			<Steel>70</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>LasCarbine</li>
+			<li>CatachanLasCarbine</li>
+			<li>CatachanGun</li>
+		</weaponTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.65</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<canSwitchWhileBusy>false</canSwitchWhileBusy>
+				<!-- Default = False, starts the current verbs cooldown when switched  -->
+				<switchStartsCooldown>true</switchStartsCooldown>
+				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
+			</li> 
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Voss Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Voss</defName>
+		<label>voss pattern lascarbine (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart. It will often possess a folding stock. However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun.
+		
+		The Voss Pattern Lascarbine, has less cowling than the M36 and is therefore lighter and easier to carry, it also has a slightly reduced effective range and an increased rate of fire, which in the dense jungle environs frequented by Catachan regiments.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Voss</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Voss</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_SMG</soundInteract>
+		<recipeMaker>
+			<researchPrerequisite>GasOperation</researchPrerequisite>
+			<skillRequirements>
+			<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<thingSetMakerTags><li>RewardStandardQualitySuper</li></thingSetMakerTags>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>1.75</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>75</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>27</range>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>LasCarbine</li>
+			<li>VossLasCarbine</li>
+			<li>SteelLegionGun</li>
+		</weaponTags>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<!-- ====================== Lasrifles ===================== -->
+	<!-- ====================== Las Rifle shot===================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Base" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasRifle</defName>
+		<beamWidth>2</beamWidth>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Lucius shot===================== -->
+	<ThingDef ParentName="OGI_Bullet_Las_Hot" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasRifle_Hot</defName>
+		<beamWidth>1.0</beamWidth>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.24</armorPenetrationBase>
+			<stoppingPower>1.35</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Lucius Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Lucius</defName>
+		<label>lucius pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasrifle is a rifle form of the standard Imperial Lasgun that is more cumbersome to carry and to aim than its smaller counterpart. It will often possess a folding stock. However, as a result of these modifications, a Lasrifle has a longer range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun.\n\nLucius Pattern Lasguns operate in the 21 megathoule range, it discharges a more powerful shot, but drains the power pack at an increased rate. This also puts a great strain on the weapon, limiting the rate of fire and requiring such features as additional heat sink rings lining the exterior of the barrel increasing its weight further.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Lucius</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+					</li>
+				</VerbEntries>
+			</li>
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<barrelLength>1.0</barrelLength>
+		<statBases>
+			<WorkToMake>45500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.5</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>1.750</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisites>
+			
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>LasRifle</li>
+			<li>LuciusLasRifle</li>
+			<li>KriegGun</li>
+		</weaponTags>
+		<generateCommonality>1.0</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasRifle_Hot</defaultProjectile>
+				<warmupTime>1.25</warmupTime>
+				<range>34</range>
+				<burstShotCount>1</burstShotCount>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+					</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+		
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Mars Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Mars</defName>
+		<label>martian pattern lasrifle (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.\n\nVostroya Pattern Lasguns operate in the 21 megathoule range, it discharges a more powerful shot, but drains the power pack at an increased rate. This also puts a great strain on the weapon, limiting the rate of fire and requiring such features as additional heat sink rings lining the exterior of the barrel.
+		
+		.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Mars</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(1,1,1)</colorTwo>
+		</graphicData>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Mars</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<barrelLength>1.0</barrelLength>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>50500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>2.5</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<costStuffCount>75</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+		</stuffCategories>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>Lasgun</li>
+			<li>LasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasRifle</defaultProjectile>
+				<warmupTime>0.85</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<range>36</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+					</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+		
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Vostroya Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Vostroya</defName>
+		<label>vostroya pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.\n\nVostroya Pattern Lasguns operate in the 21 megathoule range, it discharges a more powerful shot, but drains the power pack at an increased rate. This also puts a great strain on the weapon, limiting the rate of fire and requiring such features as additional heat sink rings lining the exterior of the barrel.
+		
+		.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Vostroya</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(1,1,1)</colorTwo>
+		</graphicData>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Vostroya</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>52500</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>3.5</Mass>
+			<reliability>1</reliability>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<costStuffCount>75</costStuffCount>
+		<stuffCategories>
+			<li>Woody</li>
+		</stuffCategories>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>Lasgun</li>
+			<li>LasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasRifle</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<range>34</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+					</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+		
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Hellgun shot===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_Hellgun</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserBeam</thingClass>
+		<label>las blast</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(187,33,0,255)</color>
+			<colorTwo>(187,158,255,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/LasbeamC</li>
+		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>20</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>0.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>1.5</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>2.5</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== HellPistol ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_HellPistol</defName>
+		<label>hellpistol (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Hellpistol, also known as a Hot-shot Laspistol, corresponds to the Laspistol the same way the Hellgun corresponds to the Lasgun -- it is a more deadly weapon and only slightly heavier than the Laspistol. However, it is also more expensive in terms of the materials and manpower required to manufacture it. Hellpistols are usually found in the company of elite Imperial Guard Grenadier or Storm Trooper Sergeants, although higher-ranking Imperial Guard officers also have access to this weapon by virtue of their higher grade.\n\nThe standard Laspistol can be considered a semi-automatic weapon in which one pull of the trigger produces one shot, whilst the Hellpistol is fully automatic in the sense that it will continuously fire high-powered las beams as long as the trigger is depressed.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/HellPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<barrelLength>0.750</barrelLength>
+		<statBases>
+			<WorkToMake>10000</WorkToMake>
+			<!--MarketValue>250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.50</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Hellpistol</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Hellgun</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<bulletOffset>-0.05</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+		
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>grip</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Hellgun ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_Hellgun</defName>
+		<label>hellgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A Hellgun, also called a Hot-shot Lasgun, is a pattern of Imperial Lasgun that possesses a more advanced and powerful laser generation system intended to provide more potent laser fire on-target. This makes the Hellgun superior in both range and power output compared to the standard-issue Lasgun. However, the higher power output requires superior quality power cells or the use of a separate backpack power supply, and the more complex inner workings of the weapon require more time and resources to manufacture than the standard Lasgun. This makes it more costly to field and so it is not generally issued to the average soldier of most Astra Militarum regiments.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Hellgun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<generateCommonality>0.650</generateCommonality>
+		<barrelLength>1.0</barrelLength>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<!--MarketValue>1500</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>105</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Hellgun</li>
+			<li>GuevesaAdvGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Hellgun</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>35</range>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>OG_Hellgun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.05</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+		
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Long Las shot ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LongLas</defName>
+		<label>las blast</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(250,73,0,255)</color>
+			<colorTwo>(187,158,255,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Lasbeam</li>
+		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>20</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>2</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>2</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>0.250</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>55</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>1.5</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>true</useGraphicColor>
+				<explosionMoteDef>OG_Mote_Blast</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BlastGlow</impactMoteDef>
+				<impactMoteSize>0.45</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Long-Las ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LongLas</defName>
+		<label>long-las (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>Favoured by Imperial Guard Sharpshooters, the Long-Las, originally known as the "Sniper Variant Lasgun," is a specially modified version of the standard Lasgun constructed for increased range and accuracy. In addition to the redoubtable Lasgun's many variants, there are certain types of weapons that exhibit differences enough to be considered seperate weapons. One such weapon is the Sniper Variant Lasgun, better known as the Long-Las. Such weapons are only ever issued to those Guardsmen of the Astra Militarum who have displayed a flair for marksmanship, stealth operations and scout movement, for such weapons are difficult to produce and require more training and intelligence to utilise properly.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LongLas</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>	
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<generateCommonality>0.10</generateCommonality>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>62500</WorkToMake>
+			<!--MarketValue>1750</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>105</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialEliteGun</li>
+			<li>LongLas</li>
+			<li>ImperialLongLas</li>
+			<li>ImperialSniperRifle</li>
+			<li>GuevesaAdvGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LongLas</defaultProjectile>
+				<warmupTime>2</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Long_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.95</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>		
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Las Cannon shot ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LasCannon</defName>
+		<label>las blast</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(100,200,255,255)</color>
+			<colorTwo>(200,200,255,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/LasbeamHeavy</li>
+		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>40</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.3</impulse> <!-- the solidity of the beam -->
+		<beamWidth>2.5</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>3</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.00</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<projectile>
+			<damageDef>OGILasC</damageDef>
+			<explosionRadius>0.75</explosionRadius>
+			<damageAmountBase>75</damageAmountBase>
+			<stoppingPower>4</stoppingPower>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Las Cannon ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasCannon</defName>
+		<label>lascannon (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The powerful Lascannon is a formidable Laser Weapon whose energetic shot of coherent light is capable of penetrating most armoured vehicles. It is the favourite anti-tank weapon of the Imperial Guard and is also commonly used by the Space Marines. Its high strength and armour-piercing ability make it a formidable weapon and when it is twin-linked, it becomes even more deadly. However, it is very heavy and power-consuming, and must recharge after every shot, making it a poor anti-personnel weapon. As a result, it is usually installed on tanks or Sentinel platforms, and in the Imperial Guard, two-man teams are required to operate and carry around a single Lascannon. To accommodate the increased power output, the Lascannon has become the largest man-portable form of Las-weaponry, the barrel being several times larger in diameter and length than the standard Lasgun. Space Marines also make extensive use of the Lascannon.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>	
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<barrelLength>1.5</barrelLength>
+		<comps>		
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>125000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Laser</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>70</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>ImperialGunHeavy</li>
+			<li>LasCannon</li>
+			<li>ImperialLasCannon</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<only>RGBA(1.00,1.00,1.00,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.95,0.95,0.95,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.90,0.90,0.90,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.85,0.85,0.85,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.80,0.80,0.80,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.75,0.75,0.75,1)</only>
+				</li>
+				<li>
+					<only>RGBA(0.70,0.70,0.70,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+</Defs>

@@ -104,12 +104,12 @@ namespace AdeptusMechanicus
 			Color color = this.Props.color;
 			color.a *= num3;
 			CompOrbitalBeam2.MatPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
-			Matrix4x4 matrix = default(Matrix4x4);
+			Matrix4x4 matrix = default;
 			matrix.SetTRS(a2 + a * this.BeamEndHeight * 0.5f + b, Quaternion.Euler(0f, this.angle, 0f), new Vector3(this.Props.width, 1f, num));
 			Graphics.DrawMesh(MeshPool.plane10, matrix, CompOrbitalBeam2.BeamMat, 0, null, 0, CompOrbitalBeam2.MatPropertyBlock);
 			Vector3 pos = drawPos + b;
 			pos.y = AltitudeLayer.MetaOverlays.AltitudeFor();
-			Matrix4x4 matrix2 = default(Matrix4x4);
+			Matrix4x4 matrix2 = default;
 			matrix2.SetTRS(pos, Quaternion.Euler(0f, this.angle, 0f), new Vector3(this.Props.width, 1f, this.BeamEndHeight));
 			Graphics.DrawMesh(MeshPool.plane10, matrix2, CompOrbitalBeam2.BeamEndMat, 0, null, 0, CompOrbitalBeam2.MatPropertyBlock);
 		}

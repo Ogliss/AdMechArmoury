@@ -3,6 +3,7 @@ using System.Linq;
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -17,7 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int i = 0; i < info.innerContainer.Count; i++)
             {
                 Thing t = info.innerContainer[i];
-                if (t?.Faction?.def.GetModExtension<FactionDefExtension>() != null)
+                if (t?.Faction?.def.GetModExtensionFast<FactionDefExtension>() != null)
                 {
                     list.Add(t);
                 }
@@ -25,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (!list.NullOrEmpty())
             {
                 Thing thing = list.RandomElement();
-                FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
+                FactionDefExtension extension = thing.Faction.def.GetModExtensionFast<FactionDefExtension>();
                 if (thing.Faction.IsPlayer || extension.DropPodOverride == DeepStrikeType.DropPod && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )
                 {
                     return result;

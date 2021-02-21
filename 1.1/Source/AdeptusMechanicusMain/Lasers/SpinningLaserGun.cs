@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public class SpinningLaserGun : SpinningLaserGunBase
+   public class SpinningLaserGun : SpinningLaserGunBase
     {
-        bool IsBrusting(Pawn pawn)
+        public bool IsBrusting(Pawn pawn)
         {
             if (pawn.CurrentEffectiveVerb == null) return false;
             return pawn.CurrentEffectiveVerb.Bursting;

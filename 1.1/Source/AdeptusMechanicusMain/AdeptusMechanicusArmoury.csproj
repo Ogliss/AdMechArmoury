@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
@@ -108,30 +110,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Abilities\FlyingObject_JumpPack.cs.bak" />
+    <Compile Include="Backstories\BackstorySettings.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
+    <Compile Include="Comps\WeaponComps\GunComps\CompProperties_ToggleFireMode.cs" />
+    <Compile Include="DefExtentions\BarrelOffsetExtension.cs" />
+    <Compile Include="DefExtentions\EffecterProjectileExtension.cs" />
+    <Compile Include="DefExtentions\ProjectileVFXExtension.cs" />
+    <Compile Include="DefExtentions\GlowerProjectileExtension.cs" />
+    <Compile Include="DefExtentions\IMuzzlePosition.cs" />
+    <Compile Include="DefExtentions\ScattershotProjectileExtension.cs" />
+    <Compile Include="ExtentionMethods\FastGetCompsExtensions.cs" />
+    <Compile Include="ExtentionMethods\MuzzlePositionExtensions.cs" />
+    <Compile Include="Harmony\Patches\Projectile_Launch_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\Verb_LaunchProjectile_TryCastShot_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\VerbProperties_GetHitChanceFactor_AdvancedVerbProperties_Patch.cs" />
+    <Compile Include="Harmony\Patches\VerbProperties_DrawRadiusRing_DrawExtraRadiusRings_Patch.cs" />
+    <Compile Include="Harmony\Patches\ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\Thing_SpawnSetup_NewThingClass_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_HealthTracker_CheckForStateChange_HediffComp_ForceIncap_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_ForceIncap.cs" />
-    <Compile Include="Lasers\New\Building_LaserGun.cs" />
-    <Compile Include="Lasers\New\Building_LaserGunDef.cs" />
-    <Compile Include="Lasers\New\IBeamColorThing.cs" />
-    <Compile Include="Lasers\New\IDrawnWeaponWithRotation.cs" />
-    <Compile Include="Lasers\New\JobDriver_ChangeLaserColor.cs" />
-    <Compile Include="Lasers\New\LaserBeam.cs" />
-    <Compile Include="Lasers\New\LaserBeamDecoration.cs" />
-    <Compile Include="Lasers\New\LaserBeamDef.cs" />
-    <Compile Include="Lasers\New\LaserBeamGraphic.cs" />
-    <Compile Include="Lasers\New\LaserColor.cs" />
-    <Compile Include="Lasers\New\LaserGun.cs" />
-    <Compile Include="Lasers\New\LaserGunDef.cs" />
-    <Compile Include="Lasers\New\LightningLaserBoltMeshMaker.cs" />
-    <Compile Include="Lasers\New\MeshMakerLaser.cs" />
-    <Compile Include="Lasers\New\MoteLaserDectoration.cs" />
-    <Compile Include="Lasers\New\SpinningLaserGun.cs" />
-    <Compile Include="Lasers\New\SpinningLaserGunBase.cs" />
-    <Compile Include="Lasers\New\SpinningLaserGunDef.cs" />
-    <Compile Include="Lasers\New\SpinningLaserGunTurret.cs" />
-    <Compile Include="Lasers\New\ThingExtensions.cs" />
-    <Compile Include="Things\Class1.cs" />
+    <Compile Include="Lasers\Building_LaserGun.cs" />
+    <Compile Include="Lasers\Building_LaserGunDef.cs" />
+    <Compile Include="Lasers\IDrawnWeaponWithRotation.cs" />
+    <Compile Include="Lasers\JobDriver_ChangeLaserColor.cs" />
+    <Compile Include="Lasers\LaserBeam.cs" />
+    <Compile Include="Lasers\LaserBeamDecoration.cs" />
+    <Compile Include="Lasers\LaserBeamDef.cs" />
+    <Compile Include="Lasers\LaserBeamGraphic.cs" />
+    <Compile Include="Lasers\LaserColor.cs" />
+    <Compile Include="Lasers\LaserGun.cs" />
+    <Compile Include="Lasers\LaserGunDef.cs" />
+    <Compile Include="Lasers\LightningLaserBoltMeshMaker.cs" />
+    <Compile Include="Lasers\MeshMakerLaser.cs" />
+    <Compile Include="Lasers\MoteLaserDectoration.cs" />
+    <Compile Include="Lasers\SpinningLaserGun.cs" />
+    <Compile Include="Lasers\SpinningLaserGunBase.cs" />
+    <Compile Include="Lasers\SpinningLaserGunDef.cs" />
+    <Compile Include="Lasers\SpinningLaserGunTurret.cs" />
+    <Compile Include="Lasers\ThingExtensions.cs" />
+    <Compile Include="Things\WarpRift.cs" />
     <Compile Include="Things\Ordnance\Class1.cs" />
     <Compile Include="Things\Ordnance\OrbitalStrikes\OrbitalStrike.cs" />
     <Compile Include="Things\Ordnance\OrbitalStrikes\OrbitalBeam.cs" />
@@ -141,7 +158,9 @@
     <Compile Include="Things\Ordnance\OrbitalStrikes\OrbitalStrikeDef.cs" />
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeDef.cs" />
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeMaker.cs" />
+    <Compile Include="Things\Projectile\TrailThrower.cs" />
     <Compile Include="Utility\AdeptusLightningBoltMeshPool.cs" />
+    <Compile Include="Utility\AlienRaceUtility.cs" />
     <Compile Include="Utility\OrdnanceStrikeCellFinder.cs" />
     <Compile Include="Utility\OrdnanceUtility.cs" />
     <Compile Include="Comps\CompWargearUseableb.cs" />
@@ -159,7 +178,7 @@
     <Compile Include="Things\DropShip\ShipKind.cs" />
     <Compile Include="Things\Ordnance\AirStrikes\AirStrikeDef.cs" />
     <Compile Include="Things\Ordnance\AirStrikes\WeaponDef.cs" />
-    <Compile Include="Backstories\Class1.cs" />
+    <Compile Include="Backstories\BackstoryTagItem.cs" />
     <Compile Include="Comps\CompColourable\CompColorableTwo.cs" />
     <Compile Include="Comps\CompColourable\CompColorableTwoUtility.cs" />
     <Compile Include="Comps\CompColourable\CompColorableTwoOwner.cs" />
@@ -194,7 +213,7 @@
     <Compile Include="DefExtentions\FactionDefRaidSoundExtension.cs" />
     <Compile Include="DefExtentions\SpawnWithAnimalsExtension.cs" />
     <Compile Include="DefExtentions\EquipmentOffsetExtension.cs" />
-    <Compile Include="DefExtentions\ProjectileExtensions.cs" />
+    <Compile Include="DefExtentions\TrailerProjectileExtension.cs" />
     <Compile Include="DefExtentions\ToolUserPskyerDefExtension.cs" />
     <Compile Include="DeOf\OGTraitDefOf.cs" />
     <Compile Include="DeOf\OGDamageDefOf.cs" />
@@ -221,13 +240,13 @@
     <None Include="Harmony\Patches\Pawn_PathFollower_PawnCanOccupy_Floater_Patch.cs.bak" />
     <Compile Include="Things\Ordnance\AirStrikes\FlyingShip.cs" />
     <Compile Include="Things\Ordnance\AirStrikes\AirStrikeIncoming.cs" />
-    <Compile Include="Harmony\CompWearable.cs" />
-    <Compile Include="Harmony\Patches\ABlankPatch - Copy %282%29.cs" />
+    <Compile Include="Comps\CompWearable.cs" />
+    <Compile Include="Harmony\Patches\RelationsUtility_TryDevelopBondRelation_Restricted_Patch.cs" />
     <Compile Include="Harmony\Patches\Ext_Pawn_TryStartOffHandAttack_DualWield_Patch.cs" />
     <Compile Include="Harmony\Patches\RaceProperties_get_IsFlesh_Name_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnWeaponGenerator_Reset_WeaponRestriction_Patch.cs" />
     <Compile Include="Harmony\Patches\LordToil_Siege_SetAsBuilder_Name_Patch.cs" />
-    <Compile Include="Harmony\Patches\Class1.cs" />
+    <Compile Include="Harmony\Patches\GenRecipe_MakeRecipeProducts_Patch.cs" />
     <Compile Include="Harmony\Patches\Corpse_IngestibleNow_Construct_Patch.cs" />
     <Compile Include="Harmony\Patches\StartingPawnUtility_RegenerateStartingPawnInPlace_SpecificStartingPawns_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingDef_get_PlayerAcquirable_ModOptions_Patch.cs" />
@@ -247,8 +266,7 @@
     <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
-    <Compile Include="Harmony\Patches\Projectile_Launch_MuzzlePosition_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_Scattershot_Patch.cs" />
+    <None Include="Harmony\Patches\Verb_Shoot_TryCastShot_Scattershot_Patch.cs.bak" />
     <Compile Include="Hediffs\Class1.cs" />
     <Compile Include="Hediffs\HediffComps\Class1.cs" />
     <Compile Include="Recipes\Class1.cs" />
@@ -266,7 +284,7 @@
     <Compile Include="Things\DropShip\IDropShip.cs" />
     <Compile Include="Things\DropShip\DropShipUtility.cs" />
     <Compile Include="Things\DropShip\DropShipActive.cs" />
-    <None Include="Lasers\New\LightningLaserBoltMeshPool.cs.bak" />
+    <None Include="Lasers\LightningLaserBoltMeshPool.cs.bak" />
     <None Include="Things\DropShip\CompDropship.cs.bak" />
     <Compile Include="Things\DropShip\DropShipTraveling.cs" />
     <Compile Include="Things\DropShip\CompDropship.cs" />
@@ -360,11 +378,9 @@
     <Compile Include="Harmony\Patches\Projectile_Draw_ProjectileGlow_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_ApparelTracker_Notify_ApparelAdded_CompHediffApparel_Patch.cs" />
     <Compile Include="Harmony\Patches\IncidentWorker_BaseChanceThisGame_ModOptions_Patch.cs" />
-    <None Include="Harmony\Patches\Projectile_Impact_ImpactSFX_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\StockGenerator_WeaponsRanged_HandlesThingDef_Settings_Patch.cs" />
     <Compile Include="Harmony\Patches\StockGenerator_WeaponsMelee_HandlesThingDef_Settings_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingStuffPair_AllWith_Settings_Patch.cs" />
-    <None Include="Harmony\Patches\ApparelProperties_LastLayer_ShellExtra_Patch.cs - Copy.bak" />
     <Compile Include="Harmony\Patches\Thing_TakeDamage_SpecialRules_Patch.cs" />
     <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_CompAdvancedGraphic_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
@@ -375,7 +391,6 @@
     <None Include="Harmony\Patches\Thing_get_DefaultGraphic_CompColorable_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\ApparelGraphicRecordGetter_TryGetGraphicApparel_PauldronDrawer_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_PathFollower_CostToMoveIntoCell_Floater_MoveThroughCover_Patch.cs" />
-    <None Include="Harmony\Patches\Verb_UseEquipment_HighlightFieldRadiusAroundTarget_CustomExplosiveProjectile_Patch.cs.bak" />
     <Compile Include="Utility\AdeptusConstants.cs" />
     <Compile Include="FactionController\FactionSpawningState.cs" />
     <Compile Include="Comps\CompFloating.cs" />
@@ -387,6 +402,8 @@
     <Compile Include="Graphics\GraphicSets\PawnGraphicSet_Invisible.cs" />
     <Compile Include="Utility\TexButton.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
+    <Compile Include="Verbs\AdvancedVerbProperties.cs" />
+    <Compile Include="Verbs\RangeCategory.cs" />
     <Compile Include="Verbs\Verb_MeleeAttackDamage_Polearm.cs" />
     <None Include="Things\Projectile\ArcingBullet.bak" />
     <Compile Include="Things\Projectile\Projectile_Explosive_Thrown.cs" />
@@ -411,8 +428,7 @@
     <Compile Include="Harmony\Patches\MainTabWindow_Research_DrawResearchPrereqs_AnyOneOf_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.cs" />
     <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch.cs" />
-    <Compile Include="Harmony\Patches\ABlankPatch.cs" />
-    <Compile Include="Harmony\Patches\ApparelProperties_LastLayer_ShellExtra_Patch.cs" />
+    <Compile Include="Harmony\Patches\Graphic_Collection_Init_Test_Patch.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_GetBackCompatibleType_Patch.cs" />
     <Compile Include="Harmony\Patches\AgeInjuryUtility_RandomHediffsToGainOnBirthday_RejuveTreatment_Patch.cs" />
     <Compile Include="Harmony\Patches\HediffGiver_RandomAgeCurved_OnIntervalPassed_RejuveTreatment_Patch.cs" />
@@ -431,7 +447,6 @@
     <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
-    <None Include="Harmony\Patches\Projectile_Impact_TeslaWeapon_Patch.cs.bak" />
     <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\VerbTracker_PrimaryVerb_Patch.cs" />
     <None Include="Regeneration\Hediff_Regeneration.cs.bak" />
@@ -452,26 +467,9 @@
     <Compile Include="Things\Projectile\Projectile_Anim.cs" />
     <Compile Include="Things\Projectile\Projectile_Plasma.cs" />
     <Compile Include="Things\Projectile\Projectile_Trailer.cs" />
-    <Compile Include="Lasers\Building_LaserGun.cs" />
-    <Compile Include="Lasers\Building_LaserGunDef.cs" />
     <Compile Include="Lasers\IBeamColorThing.cs" />
-    <Compile Include="Lasers\IDrawnWeaponWithRotation.cs" />
-    <Compile Include="Lasers\JobDriver_ChangeLaserColor.cs" />
-    <Compile Include="Lasers\LaserBeam.cs" />
-    <Compile Include="Lasers\LaserBeamColoring.cs" />
-    <Compile Include="Lasers\LaserBeamDef.cs" />
-    <Compile Include="Lasers\LaserBeamGraphic.cs" />
-    <Compile Include="Lasers\LaserGun.cs" />
-    <Compile Include="Lasers\LaserGunDef.cs" />
-    <Compile Include="Lasers\MeshMakerLaser.cs" />
-    <Compile Include="Lasers\MoteLaserDectoration.cs" />
     <Compile Include="Harmony\Patches\PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch.cs" />
     <Compile Include="Harmony\Patches\TuretTop_DrawTurret_LaserTurret_Patch.cs" />
-    <Compile Include="Lasers\SpinningLaserGun.cs" />
-    <Compile Include="Lasers\SpinningLaserGunBase.cs" />
-    <Compile Include="Lasers\SpinningLaserGunDef.cs" />
-    <Compile Include="Lasers\SpinningLaserGunTurret.cs" />
-    <Compile Include="Lasers\ThingExtensions.cs" />
     <Compile Include="Comps\CompApparelExtraPart\CompApparelExtraPartDrawer.cs" />
     <Compile Include="Apparel\PsychicShield.cs" />
     <Compile Include="Gizmos\Gizmo_PsychicShieldStatus.cs" />
@@ -489,7 +487,6 @@
     <Compile Include="Harmony\Patches\DropPodUtility_MakeDropPodAt_FactionSpecificPods_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_HealthTracker_PreApplyDamage_HediffComp_Shield_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_GetArmorPenetration_Rending_Patch.cs" />
-    <None Include="Harmony\Patches\Projectile_Impact_DistortWeapon_Patch.cs.bak" />
     <None Include="Harmony\Patches\RecipeDef_AvailableNow_ExtraPrerequisite_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\PawnGenerator_GenerateTraits_FactionDefExtension_Patch.cs" />
     <None Include="Harmony\Patches\PawnGroupKindWorker_Trader_GenerateCarriers_Patches.cs.bak" />

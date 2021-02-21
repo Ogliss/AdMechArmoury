@@ -63,19 +63,19 @@ namespace AdeptusMechanicus.ExtensionMethods
 
             if (kindDefFlag)
             {
-                Extension = pawn.kindDef.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.kindDef.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (raceDefFlag)
             {
-                Extension = pawn.def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.def.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (hediffFlag)
             {
-                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (apparelFlag)
             {
-                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtensionFast<DeepStrikeExtension>();
             }
             return kindDefFlag || apparelFlag || hediffFlag || raceDefFlag;
         }
@@ -90,19 +90,19 @@ namespace AdeptusMechanicus.ExtensionMethods
 
             if (kindDefFlag)
             {
-                Extension = pawn.kindDef.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.kindDef.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (raceDefFlag)
             {
-                Extension = pawn.def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.def.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (hediffFlag)
             {
-                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtensionFast<DeepStrikeExtension>();
             }
             if (apparelFlag)
             {
-                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtension<DeepStrikeExtension>();
+                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<DeepStrikeExtension>()).Single().def.GetModExtensionFast<DeepStrikeExtension>();
             }
             return Extension;
         }
@@ -136,19 +136,19 @@ namespace AdeptusMechanicus.ExtensionMethods
 
             if (kindDefFlag)
             {
-                Extension = pawn.kindDef.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.kindDef.GetModExtensionFast<InfiltratorExtension>();
             }
             if (raceDefFlag)
             {
-                Extension = pawn.def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.def.GetModExtensionFast<InfiltratorExtension>();
             }
             if (hediffFlag)
             {
-                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtensionFast<InfiltratorExtension>();
             }
             if (apparelFlag)
             {
-                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtensionFast<InfiltratorExtension>();
             }
             return kindDefFlag || apparelFlag || hediffFlag || raceDefFlag;
         }
@@ -162,19 +162,19 @@ namespace AdeptusMechanicus.ExtensionMethods
             bool raceDefFlag = pawn.def.HasModExtension<InfiltratorExtension>();
             if (kindDefFlag)
             {
-                Extension = pawn.kindDef.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.kindDef.GetModExtensionFast<InfiltratorExtension>();
             }
             if (raceDefFlag)
             {
-                Extension = pawn.def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.def.GetModExtensionFast<InfiltratorExtension>();
             }
             if (hediffFlag)
             {
-                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.health.hediffSet.hediffs.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtensionFast<InfiltratorExtension>();
             }
             if (apparelFlag)
             {
-                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtension<InfiltratorExtension>();
+                Extension = pawn.apparel.WornApparel.Where(x => x.def.HasModExtension<InfiltratorExtension>()).Single().def.GetModExtensionFast<InfiltratorExtension>();
             }
             return Extension;
         }
@@ -193,7 +193,7 @@ namespace AdeptusMechanicus.ExtensionMethods
         {
             bool flag1 = pawn.equipment != null;
             bool flag2 = pawn.equipment.Primary != null;
-            bool flag3 = pawn.equipment.Primary.TryGetComp<CompAbilityItem>() != null;
+            bool flag3 = pawn.equipment.Primary.TryGetCompFast<CompAbilityItem>() != null;
             return flag1 && flag2 && flag3;
         }
 
@@ -201,7 +201,7 @@ namespace AdeptusMechanicus.ExtensionMethods
         {
             bool flag1 = pawn.apparel != null;
             bool flag2 = pawn.apparel.WornApparel != null;
-            bool flag3 = pawn.apparel.WornApparel.Any(x=> x.TryGetComp<CompAbilityItem>() != null);
+            bool flag3 = pawn.apparel.WornApparel.Any(x=> x.TryGetCompFast<CompAbilityItem>() != null);
             return flag1 && flag2 && flag3;
         }
 
@@ -263,12 +263,12 @@ namespace AdeptusMechanicus.ExtensionMethods
                 ToolUserPskyerDefExtension extension = null;
                 if (pawn.def.HasModExtension<ToolUserPskyerDefExtension>())
                 {
-                    extension = pawn.def.GetModExtension<ToolUserPskyerDefExtension>();
+                    extension = pawn.def.GetModExtensionFast<ToolUserPskyerDefExtension>();
                 }
                 else
                 if (pawn.kindDef.HasModExtension<ToolUserPskyerDefExtension>())
                 {
-                    extension = pawn.kindDef.GetModExtension<ToolUserPskyerDefExtension>();
+                    extension = pawn.kindDef.GetModExtensionFast<ToolUserPskyerDefExtension>();
                 }
                 if (extension != null)
                 {

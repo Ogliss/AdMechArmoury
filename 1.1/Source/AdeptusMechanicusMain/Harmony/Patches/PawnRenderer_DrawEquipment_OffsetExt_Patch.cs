@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -19,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Prefix(Pawn ___pawn, ref Vector3 rootLoc)
         {
             Rot4 rot = ___pawn.Rotation;
-            EquipmentOffsetExtension extension = ___pawn.def.GetModExtension<EquipmentOffsetExtension>();
+            EquipmentOffsetExtension extension = ___pawn.def.GetModExtensionFast<EquipmentOffsetExtension>();
             if (extension != null)
             {
                 if (rot == Rot4.East)

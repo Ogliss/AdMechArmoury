@@ -13,6 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection.Emit;
 using UnityEngine;
 using OgsCompOversizedWeapon;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -56,15 +57,24 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static void ThrowMuzzleFlash(IntVec3 cell, Map map, ThingDef moteDef, float scale, Verb verb)
         {
+            if (verb.GetProjectile() as Lasers.LaserBeamDef != null)
+            {
+                return;
+            }
             if (verb.EquipmentSource != null)
             {
                 if (verb.verbProps.range > 1.48f)
                 {
                     ThingDef mote = moteDef;
+                    OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<CompOversizedWeapon>();
+                    CompEquippable equippable = verb.EquipmentCompSource;
                     Vector3 origin = verb.CasterIsPawn ? verb.CasterPawn.Drawer.DrawPos : verb.Caster.DrawPos;
-                    OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetComp<OgsCompOversizedWeapon.CompOversizedWeapon>();
-                    CompEquippable equippable = verb.EquipmentSource.TryGetComp<CompEquippable>();
-                    float aimAngle = (verb.CurrentTarget.CenterVector3 - origin).AngleFlat();
+                    Vector3 a = verb.CurrentTarget.CenterVector3;
+                    float aimAngle = 0f;
+                    if ((a - origin).MagnitudeHorizontalSquared() > 0.001f)
+                    {
+                        aimAngle = (a - origin).AngleFlat();
+                    }
                     if (compOversized != null)
                     {
                         bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
@@ -73,45 +83,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                         float offHandAngle = aimAngle;
                         float mainHandAngle = aimAngle;
                         Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
-                        if (DualWeapon) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
+                    //    if (DualWeapon && AMAMod.Dev) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
                         origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
                         // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
                         if (compOversized.Props.isDualWeapon) compOversized.FirstAttack = !compOversized.FirstAttack;
                     }
-                    if (verb.EquipmentSource.def.HasModExtension<BarrelOffsetExtension>())
-                    {
-                        BarrelOffsetExtension ext = verb.EquipmentSource.def.GetModExtension<BarrelOffsetExtension>();
-                        EffectProjectileExtension ext2 = verb.GetProjectile().HasModExtension<EffectProjectileExtension>() ? verb.GetProjectile().GetModExtension<EffectProjectileExtension>() : null;
-                        float offset = ext.barrellength;
-                        origin += (verb.CurrentTarget.CenterVector3 - origin).normalized * (verb.EquipmentSource.def.graphic.drawSize.magnitude * (offset));
-                        if (ext2 != null && ext2.muzzleFlare)
-                        {
-                            ThingDef muzzleFlaremote = DefDatabase<ThingDef>.GetNamed(!ext2.muzzleSmokeDef.NullOrEmpty() ? ext2.muzzleFlareDef : "Mote_SparkFlash");
-                            MoteMaker.MakeStaticMote(origin, map, muzzleFlaremote, ext2.muzzleFlareSize);
-                        }
-                        else if (ext.muzzleFlare)
-                        {
-                            ThingDef muzzleFlaremote = DefDatabase<ThingDef>.GetNamed(!ext.muzzleSmokeDef.NullOrEmpty() ? ext.muzzleFlareDef : "Mote_SparkFlash");
-                            MoteMaker.MakeStaticMote(origin, map, muzzleFlaremote, ext.muzzleFlareSize);
-                        }
-                        if (ext2 != null && ext2.muzzleSmoke)
-                        {
-                            string muzzleSmokemote = !ext2.muzzleSmokeDef.NullOrEmpty() ? ext2.muzzleSmokeDef : "OG_Mote_SmokeTrail";
-                            TrailThrower.ThrowSmoke(origin, ext2.muzzleSmokeSize, map, muzzleSmokemote);
-                        }
-                        else if (ext.muzzleSmoke)
-                        {
-                            string muzzleSmokemote = !ext.muzzleSmokeDef.NullOrEmpty() ? ext.muzzleSmokeDef : "OG_Mote_SmokeTrail";
-                            TrailThrower.ThrowSmoke(origin, ext.muzzleSmokeSize, map, muzzleSmokemote);
-                        }
-                    }
-                    MoteMaker.MakeStaticMote(origin, map, mote, scale);
+
+                    origin = verb.MuzzlePositionFor(aimAngle, true);
+                    origin.y = verb.GetProjectile().Altitude;
+                    AdeptusMoteMaker.MakeStaticMote(origin, map, mote, scale);
                     return;
                 }
             }
 
             {
-                MoteMaker.MakeStaticMote(cell.ToVector3Shifted(), map, moteDef, scale);
+                AdeptusMoteMaker.MakeStaticMote(cell.ToVector3Shifted(), map, moteDef, scale);
             }
         }   
     }

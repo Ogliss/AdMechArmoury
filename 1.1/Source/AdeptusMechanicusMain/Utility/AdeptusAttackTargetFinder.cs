@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,7 +99,7 @@ namespace AdeptusMechanicus
                 }
                 if (searcherThing.def.race != null && searcherThing.def.race.intelligence >= Intelligence.Humanlike)
                 {
-                    CompExplosive compExplosive = thing.TryGetComp<CompExplosive>();
+                    CompExplosive compExplosive = thing.TryGetCompFast<CompExplosive>();
                     if (compExplosive != null && compExplosive.wickStarted)
                     {
                         return false;

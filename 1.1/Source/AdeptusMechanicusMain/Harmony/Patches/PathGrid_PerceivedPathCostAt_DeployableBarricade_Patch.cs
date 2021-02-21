@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //    Log.Message(string.Format("barricade PerceivedPathCostAt found loc: {0}, Status: {1}, __result: {2}", loc, barricade.Toggled, __result));
                         if (barricade.Toggled)
                         {
-                            __result += barricade.deployed.deployedpathCost;
+                            __result += barricade.Deployed.deployedpathCost;
                             //    Log.Message(string.Format("barricade PerceivedPathCostAt set to : {1}, @: {0}", loc, __result));
                         }
                     }

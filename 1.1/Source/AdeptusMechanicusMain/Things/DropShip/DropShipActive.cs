@@ -1,4 +1,5 @@
 ﻿using AdeptusMechanicus;
+using AdeptusMechanicus.ExtensionMethods;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace AdeptusMechanicus
     // Token: 0x02001596 RID: 5526
     public class DropShipActive : ActiveDropPod, IActiveDropPod, IThingHolder
 	{
-		public Thing dropship => this.contents.innerContainer.FirstOrFallback(x=> x.TryGetComp<CompDropship>()!=null);
-		public CompDropship cargo => dropship?.TryGetComp<CompDropship>();
+		public Thing Dropship => this.contents.innerContainer.FirstOrFallback(x=> x.TryGetCompFast<CompDropship>()!=null);
+		public CompDropship Cargo => Dropship?.TryGetCompFast<CompDropship>();
 		/*
 		public new ActiveDropPodInfo Contents
 		{
@@ -33,18 +34,18 @@ namespace AdeptusMechanicus
 			{
 				this.DeSpawn(DestroyMode.Vanish);
 			}
-			if (dropship != null)
+			if (Dropship != null)
 			{
-				this.contents.innerContainer.Remove(dropship);
+				this.contents.innerContainer.Remove(Dropship);
 			}
 			else return;
-			GenSpawn.Spawn(dropship, base.Position, map, this.contents.setRotation.Value, this.contents.spawnWipeMode.Value, false);
+			GenSpawn.Spawn(Dropship, base.Position, map, this.contents.setRotation.Value, this.contents.spawnWipeMode.Value, false);
 			for (int i = this.contents.innerContainer.Count - 1; i >= 0; i--)
 			{
 				Thing thing = this.contents.innerContainer[i];
-				if (dropship.TryGetComp<CompTransporter>() !=null )
+				if (Dropship.TryGetCompFast<CompTransporter>() !=null )
 				{
-					CompDropship transporter = dropship.TryGetComp<CompDropship>();
+					CompDropship transporter = Dropship.TryGetCompFast<CompDropship>();
 					transporter.Transporter.innerContainer.TryAddOrTransfer(thing);
 				}
 

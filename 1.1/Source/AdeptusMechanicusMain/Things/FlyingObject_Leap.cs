@@ -89,7 +89,7 @@ namespace AdeptusMechanicus
             if (flag)
             {
                 Rand.PushState();
-                MoteMaker.ThrowDustPuff(this.pawn.Position, this.pawn.Map, Rand.Range(1.2f, 1.8f));
+                AdeptusMoteMaker.ThrowDustPuff(this.pawn.DrawPos, this.pawn.Map, Rand.Range(1.2f, 1.8f));
                 Rand.PopState();
             }
         }
@@ -151,7 +151,7 @@ namespace AdeptusMechanicus
                 if (flag3)
                 {
                     Rand.PushState();
-                    MoteMaker.ThrowDustPuff(base.Position, base.Map, Rand.Range(0.6f, 0.8f));
+                    AdeptusMoteMaker.ThrowDustPuff(base.DrawPos, base.Map, Rand.Range(0.6f, 0.8f));
                     Rand.PopState();
                 }
                 bool flag4 = this.ticksToImpact <= 0;

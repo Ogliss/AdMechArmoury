@@ -65,7 +65,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 				CellRect cellRect = this.OccupiedRect();
 				for (int i = 0; i < cellRect.Area * this.def.skyfaller.motesPerCell; i++)
 				{
-					MoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
+					AdeptusMoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
 				}
 			}
 			if (this.def.skyfaller.reversed)
@@ -138,7 +138,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 			CellRect cellRect = this.OccupiedRect();
 			for (int i = 0; i < cellRect.Area * this.def.skyfaller.motesPerCell; i++)
 			{
-				MoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
+				AdeptusMoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
 			}
 			if (this.def.skyfaller.MakesShrapnel)
 			{

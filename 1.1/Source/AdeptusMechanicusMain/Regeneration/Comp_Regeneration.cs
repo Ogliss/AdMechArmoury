@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,7 +146,7 @@ namespace AdeptusMechanicus
                     Rand.PopState();
                     if (flag2 && canHeal && chance < Props.sealWoundsChance)
                     {
-                        HediffComp_TendDuration hediffComp_TendDuration = HediffUtility.TryGetComp<HediffComp_TendDuration>(hediffWithComps);
+                        HediffComp_TendDuration hediffComp_TendDuration = hediffWithComps.TryGetCompFast<HediffComp_TendDuration>();
                         hediffComp_TendDuration.tendQuality = 0f;
                         hediffComp_TendDuration.tendTicksLeft = Find.TickManager.TicksGame;
                         this.pawn.health.Notify_HediffChanged(hediff);

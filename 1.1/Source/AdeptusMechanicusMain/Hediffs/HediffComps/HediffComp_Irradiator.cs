@@ -1,4 +1,5 @@
 ﻿using System;
+using AdeptusMechanicus.ExtensionMethods;
 using RimWorld;
 using Verse;
 
@@ -65,7 +66,7 @@ namespace AdeptusMechanicus
 			*/
 			this.ticksUntilIrradiate = HealthTuning.InfectionDelayRange.RandomInRange;
 			return;
-			this.ticksUntilIrradiate = -2;
+		//	this.ticksUntilIrradiate = -2;
 		}
 
 		// Token: 0x060010C9 RID: 4297 RVA: 0x0005FCD8 File Offset: 0x0005DED8
@@ -117,7 +118,7 @@ namespace AdeptusMechanicus
 				return;
 			}*/
 			float num = 1f;
-			HediffComp_TendDuration hediffComp_TendDuration = this.parent.TryGetComp<HediffComp_TendDuration>();
+			HediffComp_TendDuration hediffComp_TendDuration = this.parent.TryGetCompFast<HediffComp_TendDuration>();
 			if (hediffComp_TendDuration != null && hediffComp_TendDuration.IsTended)
 			{
 			//	num *= this.infectionChanceFactorFromTendRoom;

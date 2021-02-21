@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Verse;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -9,17 +10,24 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(PawnGraphicSet __instance, ref Material __result)
         {
             Pawn pawn = __instance.pawn;
+            if (pawn == null || !pawn.RaceProps.Humanlike)
+            {
+                return;
+            }
             if (pawn.apparel.AnyApparel)
             {
-                if (pawn.apparel.WornApparel.Any(x => x.TryGetComp<CompApparelExtraPartDrawer>() != null))
+                if (pawn.apparel.WornApparel.Any(x => x.def.HasComp(typeof(CompApparelExtraPartDrawer))))
                 {
                     foreach (var item in pawn.apparel.WornApparel)
                     {
-                        CompApparelExtraPartDrawer extraDrawer = item.TryGetComp<CompApparelExtraPartDrawer>();
-                        if (extraDrawer != null && extraDrawer.hidesHair)
+                        if (item.def.HasComp(typeof(CompApparelExtraPartDrawer)))
                         {
-                            __result = AMConstants.InvisibleGraphics(pawn).hairGraphic.MatSingle;
-                            return;
+                            CompApparelExtraPartDrawer extraDrawer = item.TryGetCompFast<CompApparelExtraPartDrawer>();
+                            if (extraDrawer != null && extraDrawer.hidesHair)
+                            {
+                                __result = AMConstants.InvisibleGraphics(pawn).hairGraphic.MatSingle;
+                                return;
+                            }
                         }
                     }
                 }

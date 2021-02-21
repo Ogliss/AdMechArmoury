@@ -19,7 +19,7 @@ namespace AdeptusMechanicus
                 }
             }
             return true;
-
+            /*
             bool flag = GridsUtility.GetThingList(loc, map).FirstOrDefault((Thing x) => x.def.defName.Contains("Wall") || x.def.defName.Contains("Smoothed")) != null;
             AcceptanceReport result;
             if (flag)
@@ -31,6 +31,7 @@ namespace AdeptusMechanicus
                 result = new AcceptanceReport(Translator.Translate("AM_PlaceWorker_OnTopOfWalls"));
             }
             return result;
+            */
         }
     }
 }

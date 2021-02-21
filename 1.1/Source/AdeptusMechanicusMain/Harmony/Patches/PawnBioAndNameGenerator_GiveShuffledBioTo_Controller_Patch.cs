@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -18,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static void Prefix(Pawn pawn, FactionDef factionType, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
-            BackstoryExtension Ext = pawn.kindDef.GetModExtension<BackstoryExtension>();
+            BackstoryExtension Ext = pawn.kindDef.GetModExtensionFast<BackstoryExtension>();
             if (Ext != null)
             {
                 List<BackstoryCategoryFilter> Categories = new List<BackstoryCategoryFilter>();
@@ -37,7 +38,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix(Pawn pawn, FactionDef factionType, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
-            BackstoryExtension Ext = pawn.kindDef.GetModExtension<BackstoryExtension>();
+            BackstoryExtension Ext = pawn.kindDef.GetModExtensionFast<BackstoryExtension>();
             if (Ext != null)
             {
                 string msg = pawn + "("+ pawn.KindLabel+")" + " of " + factionType + " Childhood: " + pawn.story.childhood.identifier;

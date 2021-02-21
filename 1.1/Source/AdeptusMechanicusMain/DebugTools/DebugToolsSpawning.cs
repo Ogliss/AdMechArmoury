@@ -5,6 +5,7 @@ using System.Text;
 using AdeptusMechanicus;
 using AdeptusMechanicus.AirStrikes;
 using AdeptusMechanicus.ArtilleryStrikes;
+using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.OrbitalStrikes;
 using RimWorld;
 using RimWorld.Planet;
@@ -154,12 +155,12 @@ namespace AdeptusMechanicus
                         list2.Add(new FloatMenuOption("Incoming", delegate ()
                         {
                             Thing Dropship = ThingMaker.MakeThing(localDef, null);
-                            CompDropship compDropship = Dropship.TryGetComp<CompDropship>();
+                            CompDropship compDropship = Dropship.TryGetCompFast<CompDropship>();
                             if (compDropship != null)
                             {
                                 compDropship.Refuelable.Refuel(compDropship.Refuelable.TargetFuelLevel);
                             }
-                            GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(Incomingdef, Dropship), cell, Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+                            GenPlace.TryPlaceThing(SkyfallerMaker.MakeSkyfaller(Incomingdef, Dropship), cell, Find.CurrentMap, ThingPlaceMode.Near, null, null, default);
                         }, MenuOptionPriority.Default, null, null, 0f, null, null));
                     }
                     ThingDef Crasheddef = DefDatabase<ThingDef>.GetNamedSilentFail(localDef.defName + "_Crashed");
@@ -171,7 +172,7 @@ namespace AdeptusMechanicus
                             list2.Add(new FloatMenuOption("Crashing", delegate ()
                             {
                                 Thing Dropship = ThingMaker.MakeThing(Crasheddef, null);
-                                CompDropship compDropship = Dropship.TryGetComp<CompDropship>();
+                                CompDropship compDropship = Dropship.TryGetCompFast<CompDropship>();
                                 if (compDropship != null)
                                 {
                                     compDropship.Refuelable.Refuel(compDropship.Refuelable.TargetFuelLevel);
@@ -183,7 +184,7 @@ namespace AdeptusMechanicus
                     list2.Add(new FloatMenuOption("Stationary", delegate ()
                     {
                         Thing Dropship = ThingMaker.MakeThing(localDef, null);
-                        CompDropship compDropship = Dropship.TryGetComp<CompDropship>();
+                        CompDropship compDropship = Dropship.TryGetCompFast<CompDropship>();
                         if (compDropship != null)
                         {
                             compDropship.Refuelable.Refuel(compDropship.Refuelable.TargetFuelLevel);

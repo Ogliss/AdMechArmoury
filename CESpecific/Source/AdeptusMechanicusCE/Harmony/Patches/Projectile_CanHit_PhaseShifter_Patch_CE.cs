@@ -11,6 +11,7 @@ using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
 using CombatExtended;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -25,12 +26,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Pawn hitPawn = thing as Pawn;
                 if (hitPawn != null)
                 {
-                    if (hitPawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_PhaseShifter>() != null))
+                    if (hitPawn.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_PhaseShifter>() != null))
                     {
-                        List<Hediff> list = hitPawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_PhaseShifter>() != null);
+                        List<Hediff> list = hitPawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_PhaseShifter>() != null);
                         foreach (Hediff item in list)
                         {
-                            HediffComp_PhaseShifter _Shifter = item.TryGetComp<HediffComp_PhaseShifter>();
+                            HediffComp_PhaseShifter _Shifter = item.TryGetCompFast<HediffComp_PhaseShifter>();
                             if (_Shifter != null)
                             {
                                 if (_Shifter.phasedfor.Contains(__instance))

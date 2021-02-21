@@ -13,7 +13,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="OGI_HeavyLaserTurret" or @Name="OGI_LaserTurret"]/thingClass</xpath>
 				<value>
-					<thingClass>AdeptusMechanicus.Building_LaserGunCE</thingClass>
+					<thingClass>AdeptusMechanicus.Lasers.Building_LaserGunCE</thingClass>
 				</value>
 			</li>
 			<!--=============== Manual turrets ===============-->
@@ -305,7 +305,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
-					<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
 						<defName>OGI_Bullet_LasCannonDual</defName>
 							<label>las blast</label>
 							<description>A high power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
@@ -321,13 +321,12 @@
 							<pelletCount>2</pelletCount>
 						</projectile>
 						<modExtensions>
-							<li Class="AdeptusMechanicus.EffectProjectileExtension">
-								<explosionMote>true</explosionMote>
+							<li Class="AdeptusMechanicus.ProjectileVFX">
 								<explosionMoteSize>0.75</explosionMoteSize>
-								<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-								<ImpactMoteSize>2</ImpactMoteSize>
-								<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-								<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+								<impactMoteSize>2</impactMoteSize>
+								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+								<impactGlowMoteSize>2.5</impactGlowMoteSize>
 							</li>
 						</modExtensions>
 					</ThingDef>
@@ -355,7 +354,7 @@
 						<!--li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="OGI_HeavyLaserTurret"]/thingClass</xpath>
 							<value>
-								<thingClass>AdeptusMechanicus.Building_LaserGunCE</thingClass>
+								<thingClass>AdeptusMechanicus.Lasers.Building_LaserGunCE</thingClass>
 							</value>
 						</li-->
 						<!--=============== Remove CompProperties_Explosive from turrets ===============-->

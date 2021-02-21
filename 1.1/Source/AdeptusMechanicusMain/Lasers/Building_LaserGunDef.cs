@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
     public class Building_LaserGunDef : ThingDef
     {

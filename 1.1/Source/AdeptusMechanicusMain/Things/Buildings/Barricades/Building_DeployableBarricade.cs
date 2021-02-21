@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using Verse;
 
 namespace AdeptusMechanicus
@@ -7,11 +8,11 @@ namespace AdeptusMechanicus
     {
         private Graphic graphicDeployedInt;
 
-        public DeployableBarricadeExtension deployed
+        public DeployableBarricadeExtension Deployed
         {
             get
             {
-                return this.def.GetModExtension<DeployableBarricadeExtension>();
+                return this.def.GetModExtensionFast<DeployableBarricadeExtension>();
             }
         }
 
@@ -25,9 +26,9 @@ namespace AdeptusMechanicus
                 }
                 if (this.graphicDeployedInt == null)
                 {
-                    if (this.deployed != null)
+                    if (this.Deployed != null)
                     {
-                        this.graphicDeployedInt = this.deployed.deployedgraphicData.GraphicColoredFor(this);
+                        this.graphicDeployedInt = this.Deployed.deployedgraphicData.GraphicColoredFor(this);
                     }
                 }
                 return this.graphicDeployedInt;
@@ -38,7 +39,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return _Flickable.SwitchIsOn;
+                return Flickable.SwitchIsOn;
             }
             set
             {
@@ -46,11 +47,11 @@ namespace AdeptusMechanicus
             }
         }
 
-        public CompFlickable _Flickable
+        public CompFlickable Flickable
         {
             get
             {
-                return this.TryGetComp<CompFlickable>();
+                return this.TryGetCompFast<CompFlickable>();
             }
         }
 
@@ -58,7 +59,7 @@ namespace AdeptusMechanicus
         {
             if (this.Toggled)
             {
-                return (ushort)deployed.deployedpathCost;
+                return (ushort)Deployed.deployedpathCost;
             }
             return base.PathFindCostFor(p);
         }
@@ -67,7 +68,7 @@ namespace AdeptusMechanicus
         {
             if (this.Toggled)
             {
-                return (ushort)deployed.deployedpathCost;
+                return (ushort)Deployed.deployedpathCost;
             }
             return base.PathWalkCostFor(p);
         }

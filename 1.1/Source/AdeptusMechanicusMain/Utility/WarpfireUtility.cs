@@ -1,4 +1,5 @@
 ﻿using AdeptusMechanicus;
+using AdeptusMechanicus.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace RimWorld
         // Token: 0x06002654 RID: 9812 RVA: 0x001238C9 File Offset: 0x00121CC9
         public static bool CanEverAttachWarpfire(this Thing t)
         {
-            return !t.Destroyed && t.FlammableNow && t.def.category == ThingCategory.Pawn && t.TryGetComp<CompAttachBase>() != null;
+            return !t.Destroyed && t.FlammableNow && t.def.category == ThingCategory.Pawn && t.TryGetCompFast<CompAttachBase>() != null;
         }
 
         // Token: 0x06002655 RID: 9813 RVA: 0x00123908 File Offset: 0x00121D08
@@ -112,7 +113,6 @@ namespace RimWorld
                     if (!iterator.ContainsStaticWarpfire(t.Map))
                     {
                         return true;
-                        break;
                     }
                 }
                 return false;

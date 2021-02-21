@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using OgsCompActivatableEffect;
 using AdvancedGraphics;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus
 {
@@ -40,7 +41,7 @@ namespace AdeptusMechanicus
                             if (Prefs.DevMode) Log.Message("Quality Graphic detected");
                         }
                         else
-                        if (this.parent.TryGetComp<CompAdvancedGraphic>() != null && this.parent.TryGetComp<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
+                        if (this.parent.TryGetCompFast<CompAdvancedGraphic>() != null && this.parent.TryGetCompFast<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
                         {
                             tex = graphic.current.path;
                         }
@@ -143,7 +144,7 @@ namespace AdeptusMechanicus
         {
 
             string str = string.Empty;
-            CompWeapon_MeleeSpecialRules m = parent.TryGetComp<CompWeapon_MeleeSpecialRules>();
+            CompWeapon_MeleeSpecialRules m = parent.TryGetCompFast<CompWeapon_MeleeSpecialRules>();
             CompEquippable c = parent.GetComp<CompEquippable>();
             if (RendingWeapon)
             {

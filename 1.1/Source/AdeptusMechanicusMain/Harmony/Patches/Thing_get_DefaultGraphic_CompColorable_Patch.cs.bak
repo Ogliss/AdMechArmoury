@@ -28,12 +28,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //    return;
                 }
 
-                CompColorableTwo colorableTwo = __instance.TryGetComp<CompColorableTwo>();
+                CompColorableTwo colorableTwo = __instance.TryGetCompFast<CompColorableTwo>();
                 if (colorableTwo != null)
                 {
                     Color colorOne = colorableTwo.Color;
                     Color colorTwo = colorableTwo.ColorTwo;
-                    CompFactionColorableTwo factionColorable = __instance.TryGetComp<CompFactionColorableTwo>();
+                    CompFactionColorableTwo factionColorable = __instance.TryGetCompFast<CompFactionColorableTwo>();
                     if (factionColorable != null)
                     {
                         if (factionColorable.Active)

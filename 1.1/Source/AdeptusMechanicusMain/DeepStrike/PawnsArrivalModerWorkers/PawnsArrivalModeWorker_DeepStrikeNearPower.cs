@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
@@ -12,7 +13,7 @@ namespace AdeptusMechanicus
             Map map = (Map)parms.target;
             for (int i = 0; i < pawns.Count; i++)
             {
-                IntVec3 dropCenter = map.listerBuildings.allBuildingsColonist.FindAll(x => x.TryGetComp<CompPowerPlant>() != null).RandomElement().Position;
+                IntVec3 dropCenter = map.listerBuildings.allBuildingsColonist.FindAll(x => x.TryGetCompFast<CompPowerPlant>() != null).RandomElement().Position;
                 DeepStrikeUtility.DropThingsNear(dropCenter, map, Gen.YieldSingle<Thing>(pawns[i]), parms.podOpenDelay, true, false, true);
             }
         }

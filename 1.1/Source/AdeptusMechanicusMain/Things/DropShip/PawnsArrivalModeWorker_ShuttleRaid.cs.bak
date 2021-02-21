@@ -13,8 +13,8 @@ namespace AvP
 
         public static void SendAway(Thing shuttle, bool dropEverything)
         {
-            CompVertibird compShuttle = shuttle.TryGetComp<CompVertibird>();
-            CompTransporter compTransporter = shuttle.TryGetComp<CompTransporter>();
+            CompVertibird compShuttle = shuttle.TryGetCompFast<CompVertibird>();
+            CompTransporter compTransporter = shuttle.TryGetCompFast<CompTransporter>();
             if (shuttle.Spawned)
             {
                 if (dropEverything && compTransporter.LoadingInProgressOrReadyToLaunch)
@@ -42,8 +42,8 @@ namespace AvP
                 pawns = pawns.Skip(8).ToList();
                 IntVec3 dropCenter = DropCellFinder.RandomDropSpot(map);
                 var shuttle = ThingMaker.MakeThing(ThingDef.Named("Vertibird"), null);
-                var comp = shuttle.TryGetComp<CompVertibird>();
-                var compTransporter = ThingCompUtility.TryGetComp<CompTransporter>(shuttle);
+                var comp = shuttle.TryGetCompFast<CompVertibird>();
+                var compTransporter = ThingCompUtility.TryGetCompFast<CompTransporter>(shuttle);
                 foreach (Pawn pawn in group)
                 {
                     compTransporter.innerContainer.TryAdd(pawn, 1);

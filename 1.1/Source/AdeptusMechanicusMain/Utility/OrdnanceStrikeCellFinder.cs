@@ -30,7 +30,7 @@ namespace AdeptusMechanicus
 				{
 					return false;
 				}
-				return map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly) ? true : false;
+				return map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly);
 			};
 			if ((allowIndoors & canRoofPunch) && centerRoom != null && !centerRoom.PsychologicallyOutdoors)
 			{

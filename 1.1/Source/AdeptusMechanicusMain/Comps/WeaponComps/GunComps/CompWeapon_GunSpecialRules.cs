@@ -58,9 +58,9 @@ namespace AdeptusMechanicus
         public GunVerbEntry ActiveVerbEntry => this.GunVerbs[this.CurMode];
         public VerbProperties ActiveVerbProperties => FireMode?.Active ?? Equipable.PrimaryVerb.verbProps;
         public CompToggleFireMode fireMode;
-        public CompToggleFireMode FireMode => fireMode ??= this.parent.TryGetComp<CompToggleFireMode>();
+        public CompToggleFireMode FireMode => fireMode ??= this.parent.TryGetCompFast<CompToggleFireMode>();
         public CompEquippable equipable; 
-        public CompEquippable Equipable => equipable ??= this.parent.TryGetComp<CompEquippable>(); 
+        public CompEquippable Equipable => equipable ??= this.parent.TryGetCompFast<CompEquippable>(); 
         public override bool GizmosOnEquip => FireMode != null;
         public int CurMode => FireMode != null ? FireMode.fireMode : 0;
         public bool HeavyWeapon => Props.HeavyWeapon;
@@ -103,7 +103,7 @@ namespace AdeptusMechanicus
         public bool JamsDamageWeapon => GunVerbs[CurMode].JamsDamageWeapon;
         public bool EffectsUser => GunVerbs[CurMode].EffectsUser;
         public bool Rending => GunVerbs[CurMode].Rending;
-        public Reliability reliability =>  GunVerbs[CurMode].reliability;
+        public Reliability Reliability => GunVerbs[CurMode].reliability;
         public float HotDamage => GunVerbs[CurMode].HotDamage;
         public float GetsHotCritChance => GunVerbs[CurMode].GetsHotCritChance;
         public float GetsHotCritExplosionChance => GunVerbs[CurMode].GetsHotCritExplosionChance;
@@ -113,12 +113,12 @@ namespace AdeptusMechanicus
         public StatDef ResistEffectStat => GunVerbs[CurMode].ResistEffectStat;
         public HediffDef UserEffect=> GunVerbs[CurMode].UserEffect;
         public List<string> UserEffectImmuneList =>  GunVerbs[CurMode].UserEffectImmuneList;
-        public ResearchProjectDef requiredResearch => GunVerbs[CurMode].requiredResearch;
+        public ResearchProjectDef RequiredResearch => GunVerbs[CurMode].requiredResearch;
         public bool Multishot => Equipable != null && Equipable.PrimaryVerb.GetProjectile().HasModExtension<ScattershotProjectileExtension>();
         // public bool Multishot => Props.VerbEntries[CurMode].Multishot || Props.VerbEntries[CurMode].VerbProps.defaultProjectile.HasModExtension<ScattershotProjectileExtension>();
 
-        // public int ScattershotCount => GunVerbs[CurMode].VerbProps.defaultProjectile.GetModExtension<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
-        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtension<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
+        // public int ScattershotCount => GunVerbs[CurMode].VerbProps.defaultProjectile.GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
+        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
         public bool MeltaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Melta();
         public bool VolkiteWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Volkite();
         public bool GaussWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Gauss();
@@ -159,13 +159,6 @@ namespace AdeptusMechanicus
         {
             base.PostExposeData();
             Scribe_Values.Look(ref this.lastmovedTick, "WeaponSpecialRuleslastmovedTick", 0);
-        }
-        public Reliability Reliability
-        {
-            get
-            {
-                return this.reliability;
-            }
         }
 
         public override string CompInspectStringExtra()
@@ -359,7 +352,7 @@ namespace AdeptusMechanicus
             return builder.ToString();
         }
 
-        public void buildRulesString(ref StringBuilder builder, GunVerbEntry mode)
+        public void BuildRulesString(ref StringBuilder builder, GunVerbEntry mode)
         {
             VerbProperties ActiveVerbProperties = mode.VerbProps;
             if (RapidFire)

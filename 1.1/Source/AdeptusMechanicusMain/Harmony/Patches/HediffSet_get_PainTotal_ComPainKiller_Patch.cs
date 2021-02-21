@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -22,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance.pawn!=null)
             {
-                if (__instance.pawn.TryGetComp<CompPainKiller>()!=null && __instance.pawn.TryGetComp<CompPainKiller>() is CompPainKiller painkill)
+                if (__instance.pawn.TryGetCompFast<CompPainKiller>()!=null && __instance.pawn.TryGetCompFast<CompPainKiller>() is CompPainKiller painkill)
                 {
                     //    Log.Message("activeing pankiller comp");
                     __result = Mathf.Clamp(__result * painkill.Props.painOffset, 0f, 1f);

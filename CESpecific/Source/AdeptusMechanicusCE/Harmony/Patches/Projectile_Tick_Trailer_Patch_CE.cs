@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 //    TrailThrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
 
-                                TrailThrower.ThrowSmoke(__instance.DrawPos, trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+                                TrailThrower.ThrowSmokeTrail(__instance.DrawPos, trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
                             }
                         }
                     }

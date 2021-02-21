@@ -43,7 +43,7 @@ public static class Projectile_Impact_Necron_Wraith_Patch
             Pawn hitPawn = hitThing as Pawn;
             if (hitPawn != null)
             {
-                CompPhaseShifter shifter = hitPawn.TryGetComp<CompPhaseShifter>();
+                CompPhaseShifter shifter = hitPawn.TryGetCompFast<CompPhaseShifter>();
                 if (shifter !=null)
                 {
                 //    log.message("Phase Shifted");

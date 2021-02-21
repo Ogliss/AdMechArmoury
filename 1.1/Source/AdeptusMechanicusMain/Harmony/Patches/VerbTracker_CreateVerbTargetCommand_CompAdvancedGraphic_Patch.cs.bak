@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance != null)
             {
-                CompAdvancedGraphic advancedWeaponGraphic = ownerThing.TryGetComp<CompAdvancedGraphic>();
+                CompAdvancedGraphic advancedWeaponGraphic = ownerThing.TryGetCompFast<CompAdvancedGraphic>();
                 if (advancedWeaponGraphic!=null)
                 {
                     __result.icon = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;

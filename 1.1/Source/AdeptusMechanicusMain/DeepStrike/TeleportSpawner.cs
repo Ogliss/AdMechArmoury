@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace AdeptusMechanicus
     }
     public class TeleportSpawner : ThingWithComps, IThingHolder
     {
-        public TeleportSpawnerExtension Ext => this.def.HasModExtension<TeleportSpawnerExtension>() ? this.def.GetModExtension<TeleportSpawnerExtension>() : null;
+        public TeleportSpawnerExtension Ext => this.def.GetModExtensionFast<TeleportSpawnerExtension>() ?? null;
         public FactionDefExtension extFaction;
         public TeleportSpawner()
         {

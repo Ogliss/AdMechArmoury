@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -35,7 +36,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (pawn.Faction.def.HasModExtension<FactionDefExtension>())
                     {
-                        if (pawn.Faction.def.GetModExtension<FactionDefExtension>() is FactionDefExtension Forced)
+                        if (pawn.Faction.def.GetModExtensionFast<FactionDefExtension>() is FactionDefExtension Forced && Forced != null)
                         {
                             if (pawn.RaceProps.Humanlike)
                             {

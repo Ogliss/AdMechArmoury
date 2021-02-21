@@ -26,13 +26,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return true;
             }
-            if (pawn.health.hediffSet.hediffs.Any(x=> x.TryGetComp<HediffComp_RejuvTreatment>()!=null))
+            if (pawn.health.hediffSet.hediffs.Any(x=> x.TryGetCompFast<HediffComp_RejuvTreatment>()!=null))
             {
                 float increase = 0f;
-                List<Hediff> rejuvTreatments = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_RejuvTreatment>() != null);
+                List<Hediff> rejuvTreatments = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_RejuvTreatment>() != null);
                 foreach (Hediff hd in rejuvTreatments)
                 {
-                    HediffComp_RejuvTreatment rejuvTreatment = hd.TryGetComp<HediffComp_RejuvTreatment>();
+                    HediffComp_RejuvTreatment rejuvTreatment = hd.TryGetCompFast<HediffComp_RejuvTreatment>();
                     increase += rejuvTreatment.LifeExpectancyIncrease;
                 }
                 if (increase!=0)

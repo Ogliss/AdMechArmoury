@@ -26,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     if (thing.def.HasModExtension<ApparelRestrictionDefExtension>())
                     {
-                        ApparelRestrictionDefExtension defExtension = thing.def.GetModExtension<ApparelRestrictionDefExtension>();
+                        ApparelRestrictionDefExtension defExtension = thing.def.GetModExtensionFast<ApparelRestrictionDefExtension>();
                         if (defExtension != null)
                         {
                             bool gender = defExtension.gender == Gender.None || pawn.gender == defExtension.gender;

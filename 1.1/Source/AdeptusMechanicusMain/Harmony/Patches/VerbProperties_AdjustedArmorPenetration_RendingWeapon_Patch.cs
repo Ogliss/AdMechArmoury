@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                         if (equipment != null)
                         {
-                            CompWeapon_MeleeSpecialRules _MeleeSpecialRules = equipment?.TryGetComp<CompWeapon_MeleeSpecialRules>();
+                            CompWeapon_MeleeSpecialRules _MeleeSpecialRules = equipment?.TryGetCompFast<CompWeapon_MeleeSpecialRules>();
                             if (_MeleeSpecialRules != null)
                             {
                                 RendingChance = _MeleeSpecialRules.RendingChance;

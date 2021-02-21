@@ -25,7 +25,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                CompWeapon_MeleeSpecialRules _MeleeSpecialRules = this.parent.TryGetComp<CompWeapon_MeleeSpecialRules>();
+                CompWeapon_MeleeSpecialRules _MeleeSpecialRules = this.parent.TryGetCompFast<CompWeapon_MeleeSpecialRules>();
                 if (_MeleeSpecialRules!=null)
                 {
                     return _MeleeSpecialRules;
@@ -74,7 +74,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return this.parent.TryGetComp<CompEquippable>() ?? null;
+                return this.parent.TryGetCompFast<CompEquippable>() ?? null;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -56,8 +57,10 @@ namespace AdeptusMechanicus
         {
             get
             {
-                List<CompTransporter> result = new List<CompTransporter>();
-                result.Add(this.parent.TryGetComp<CompTransporter>());
+                List<CompTransporter> result = new List<CompTransporter>
+                {
+                    this.parent.TryGetCompFast<CompTransporter>()
+                };
                 return result;//this.Transporter.TransportersInGroup(this.parent.Map);
             }
         }
@@ -294,8 +297,10 @@ namespace AdeptusMechanicus
             IEnumerable<IThingHolder> pods = this.TransportersInGroup.Cast<IThingHolder>();
             if (car != null)
             {
-                List<Caravan> rliss = new List<Caravan>();
-                rliss.Add(car);
+                List<Caravan> rliss = new List<Caravan>
+                {
+                    car
+                };
                 pods = rliss.Cast<IThingHolder>();
 
             }
@@ -329,7 +334,7 @@ namespace AdeptusMechanicus
             {
                 if (worldObjects[i].Tile == tile)
                 {
-                    IEnumerable<FloatMenuOption> nowre = getFM(worldObjects[i], pods, this, car);
+                    IEnumerable<FloatMenuOption> nowre = GetFM(worldObjects[i], pods, this, car);
                     if (nowre.ToList().Count < 1)
                     {
                         yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate
@@ -359,7 +364,7 @@ namespace AdeptusMechanicus
             yield break;
         }
 
-        public static IEnumerable<FloatMenuOption> getFM(WorldObject wobj, IEnumerable<IThingHolder> ih, CompDropship comp, Caravan car)
+        public static IEnumerable<FloatMenuOption> GetFM(WorldObject wobj, IEnumerable<IThingHolder> ih, CompDropship comp, Caravan car)
         {
             if (wobj is Caravan)
             {
@@ -811,7 +816,7 @@ namespace AdeptusMechanicus
                 float amount = Mathf.Max(FuelNeededToLaunchAtDist((float)num), 1f);
                 if (FuelingPortSource != null)
                 {
-                    FuelingPortSource.TryGetComp<CompRefuelable>().ConsumeFuel(amount);
+                    FuelingPortSource.TryGetCompFast<CompRefuelable>().ConsumeFuel(amount);
                 }
 
 
@@ -829,7 +834,7 @@ namespace AdeptusMechanicus
                         if (pinv.innerContainer[i].def == USCMDefOf.AvP_USCM_DropshipUD4L)
                         {
                             dropship = pinv.innerContainer[i];
-                            dropship1 = dropship.TryGetComp<CompUSCMDropship>();
+                            dropship1 = dropship.TryGetCompFast<CompUSCMDropship>();
                             pinv.innerContainer[i].holdingOwner.Remove(pinv.innerContainer[i]);
 
                             break;
@@ -960,7 +965,7 @@ namespace AdeptusMechanicus
                 {
                     for (int i = 0; i < transportersInGroup.Count; i++)
                     {
-                        CompDropship dropship = transportersInGroup[i].parent.TryGetComp<CompDropship>();
+                        CompDropship dropship = transportersInGroup[i].parent.TryGetCompFast<CompDropship>();
                         if (!dropship.FuelingPortSourceHasAnyFuel)
                         {
                             return false;

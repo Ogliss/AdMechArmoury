@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdeptusMechanicus.ExtensionMethods;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 		public static void Postfix(ref Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
 		{
 			/*
-			bool Pauldron = apparel.TryGetComp<CompPauldronDrawer>() != null;
+			bool Pauldron = apparel.TryGetCompFast<CompPauldronDrawer>() != null;
 			if (Pauldron)
 			{
 			//	Log.Message("Updating pad graphics for "+apparel.LabelShortCap);
@@ -37,7 +38,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 			}
 			*/
-			CompColorableTwo compColorable = apparel.TryGetComp<CompColorableTwo>();
+			CompColorableTwo compColorable = apparel.TryGetCompFast<CompColorableTwo>();
 			if (compColorable!=null)
 			{
 				string comptype = compColorable.GetType().Name;
@@ -57,7 +58,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 						}
                         else
 						{
-							CompPauldronDrawer pauldrons = apparel.TryGetComp<CompPauldronDrawer>();
+							CompPauldronDrawer pauldrons = apparel.TryGetCompFast<CompPauldronDrawer>();
                             if (pauldrons != null)
                             {
                                 for (int i = 0; i < pauldrons.activeEntries.Count; i++)
@@ -180,7 +181,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 			}
 			if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
 			{
-				if (apparel.def.GetModExtension<ApparelRestrictionDefExtension>() is ApparelRestrictionDefExtension apparelExt)
+				if (apparel.def.GetModExtensionFast<ApparelRestrictionDefExtension>() is ApparelRestrictionDefExtension apparelExt)
 				{
 					if (!apparelExt.raceSpecifics.NullOrEmpty())
 					{

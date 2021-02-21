@@ -40,7 +40,7 @@ namespace AdeptusMechanicus
             get
             {
                 List<CompTransporter> result = new List<CompTransporter>();
-                result.Add(this.parent.TryGetComp<CompTransporter>());
+                result.Add(this.parent.TryGetCompFast<CompTransporter>());
                 return result;//this.Transporter.TransportersInGroup(this.parent.Map);
             }
         }
@@ -709,17 +709,17 @@ namespace AdeptusMechanicus
                 Building fuelingPortSource = this.FuelingPortSource;//compTransporter.Launchable.FuelingPortSource;
                 if (fuelingPortSource != null)
                 {
-                    fuelingPortSource.TryGetComp<CompRefuelable>().ConsumeFuel(amount);
+                    fuelingPortSource.TryGetCompFast<CompRefuelable>().ConsumeFuel(amount);
                 }
                 ThingOwner directlyHeldThings = compTransporter.GetDirectlyHeldThings();
 
                 Thing dropship = ThingMaker.MakeThing(this.parent.def);
                 dropship.SetFactionDirect(Faction.OfPlayer);
 
-                CompRefuelable compr = dropship.TryGetComp<CompRefuelable>();
+                CompRefuelable compr = dropship.TryGetCompFast<CompRefuelable>();
                 Type tcr = compr.GetType();
                 FieldInfo finfos = tcr.GetField("fuel", BindingFlags.NonPublic | BindingFlags.Instance);
-                finfos.SetValue(compr, fuelingPortSource.TryGetComp<CompRefuelable>().Fuel);
+                finfos.SetValue(compr, fuelingPortSource.TryGetCompFast<CompRefuelable>().Fuel);
 
                 dropship.stackCount = 1;
                 directlyHeldThings.TryAddOrTransfer(dropship);
@@ -750,7 +750,7 @@ namespace AdeptusMechanicus
                 float amount = Mathf.Max(FuelNeededToLaunchAtDist((float)num), 1f);
                 if (FuelingPortSource != null)
                 {
-                    FuelingPortSource.TryGetComp<CompRefuelable>().ConsumeFuel(amount);
+                    FuelingPortSource.TryGetCompFast<CompRefuelable>().ConsumeFuel(amount);
                 }
 
 
@@ -768,7 +768,7 @@ namespace AdeptusMechanicus
                         if (pinv.innerContainer[i].def == USCMDefOf.AvP_USCM_DropshipUD4L)
                         {
                             dropship = pinv.innerContainer[i];
-                            dropship1 = dropship.TryGetComp<CompUSCMDropship>();
+                            dropship1 = dropship.TryGetCompFast<CompUSCMDropship>();
                             pinv.innerContainer[i].holdingOwner.Remove(pinv.innerContainer[i]);
 
                             break;
@@ -899,7 +899,7 @@ namespace AdeptusMechanicus
                 {
                     for (int i = 0; i < transportersInGroup.Count; i++)
                     {
-                        CompDropship dropship = transportersInGroup[i].parent.TryGetComp<CompDropship>();
+                        CompDropship dropship = transportersInGroup[i].parent.TryGetCompFast<CompDropship>();
                         if (!dropship.FuelingPortSourceHasAnyFuel)
                         {
                             return false;

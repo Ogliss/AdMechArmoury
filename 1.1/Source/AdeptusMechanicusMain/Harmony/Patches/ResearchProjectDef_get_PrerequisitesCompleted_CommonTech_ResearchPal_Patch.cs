@@ -29,7 +29,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance.HasModExtension<AnyPrerequisiteResearchExtension>())
             {
-                AnyPrerequisiteResearchExtension ext = __instance.GetModExtension<AnyPrerequisiteResearchExtension>();
+                AnyPrerequisiteResearchExtension ext = __instance.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
                 if (!ext.RequiredResearch.NullOrEmpty())
                 {
                     if (ext.AnyRequiredResearchCompleted)

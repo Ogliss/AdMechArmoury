@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace AdeptusMechanicus
             if (DropshipDef != null && method == PlayerPawnsArriveMethod.DropPods)
             {
                 Thing ship = ThingMaker.MakeThing(this.DropshipDef);
-                CompDropship dropship = ship.TryGetComp<CompDropship>();
+                CompDropship dropship = ship.TryGetCompFast<CompDropship>();
                 if (dropship != null)
                 {
 

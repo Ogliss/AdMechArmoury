@@ -4,6 +4,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System;
 using RimWorld.Planet;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -19,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 for (int i = 0; i < info.innerContainer.Count; i++)
                 {
                     Thing dropship = info.innerContainer[i];
-                    CompDropship comp = dropship.TryGetComp<CompDropship>();
+                    CompDropship comp = dropship.TryGetCompFast<CompDropship>();
                     if (comp != null)
                     {
                         //    Log.Message(string.Format("pods: {0}", info.innerContainer.ContentsString));

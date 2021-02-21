@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
             //    __result = false;
 
-                ApparelRestrictionDefExtension defExtension = apparel.GetModExtension<ApparelRestrictionDefExtension>();
+                ApparelRestrictionDefExtension defExtension = apparel.GetModExtensionFast<ApparelRestrictionDefExtension>();
                 if (defExtension!=null)
                 {
                     bool gender = defExtension.gender == Gender.None || p.gender == defExtension.gender;

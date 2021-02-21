@@ -309,7 +309,7 @@ namespace AdeptusMechanicus
                     for (int i = 0; i < 3; i++)
                     {
                         Rand.PushState();
-                        MoteMaker.ThrowDustPuff(exactPosition, base.Map, Rand.Range(0.3f, 0.6f));
+                        AdeptusMoteMaker.ThrowDustPuff(exactPosition, base.Map, Rand.Range(0.3f, 0.6f));
                         Rand.PopState();
                     }
                 }

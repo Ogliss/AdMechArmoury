@@ -25,10 +25,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (__result.EquipmentSource!=null)
             {
                 ThingWithComps weapon = __result.EquipmentSource;
-                CompEquippable equippable = weapon.TryGetComp<CompEquippable>();
+                CompEquippable equippable = weapon.TryGetCompFast<CompEquippable>();
                 if (equippable!=null)
                 {
-                    CompWeapon_GunSpecialRules GunExt = weapon.TryGetComp<CompWeapon_GunSpecialRules>();
+                    CompWeapon_GunSpecialRules GunExt = weapon.TryGetCompFast<CompWeapon_GunSpecialRules>();
                     if (GunExt!=null)
                     {
                         __result = equippable.AllVerbs[GunExt.CurrentMode];
@@ -39,15 +39,99 @@ namespace AdeptusMechanicus.HarmonyInstance
     }
     */
     [HarmonyPatch(typeof(CompEquippable), "get_PrimaryVerb")]
-    public static class VerbTracker_PrimaryVerb_Patch
+    public class CompEquippable_PrimaryVerb_Patch
     {
-        [HarmonyPostfix]
-        public static void Postfix(ref CompEquippable __instance, ref Verb __result)
+        private static void Postfix(CompEquippable __instance, ref Verb __result)
         {
-            if (__instance.parent.TryGetComp<CompToggleFireMode>() != null)
+            var comp = __instance.parent.TryGetCompFast<CompToggleFireMode>();
+            if (comp != null)
             {
-                __result.verbProps = __instance.parent.TryGetComp<CompToggleFireMode>().Active;
+                __result.verbProps = __instance.parent.TryGetCompFast<CompToggleFireMode>().Active;
+                __result = comp.ActiveVerb;
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(VerbUtility), "HarmsHealth")]
+    public class HarmsHealth_Patch
+    {
+        public static void Postfix(Verb verb, ref bool __result)
+        {
+            if (!__result)
+            {
+                CompToggleFireMode comp = verb.EquipmentSource.GetComp<CompToggleFireMode>();
+                if (comp != null)
+                {
+                    foreach (var verb2 in comp.Equippable.AllVerbs)
+                    {
+                        if (verb2.GetDamageDef()?.harmsHealth ?? false)
+                        {
+                            __result = true;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(VerbTracker), "GetVerbsCommands")]
+    public class CreateVerbTargetCommand_Patch
+    {
+        private static void Postfix(VerbTracker __instance, ref IEnumerable<Command> __result)
+        {
+            var list = __result.ToList();
+            CompEquippable compEquippable = __instance.directOwner as CompEquippable;
+            var comp = compEquippable.parent.TryGetCompFast<CompToggleFireMode>();
+            if (comp != null)
+            {
+                list.RemoveAll(x => x is Command_VerbTarget verbTarget && verbTarget.verb != comp.ActiveVerb);
+                __result = list;
+            }
+        }
+    }
+
+
+    [HarmonyPatch(typeof(Pawn), "GetGizmos")]
+    public class Pawn_GetGizmos_Patch
+    {
+        private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
+        {
+            Pawn_EquipmentTracker equipment = __instance.equipment;
+            if (equipment != null)
+            {
+                ThingWithComps primary = equipment.Primary;
+                if (primary != null)
+                {
+                    CompToggleFireMode comp = primary.GetComp<CompToggleFireMode>();
+                    if (comp != null)
+                    {
+                        if (GizmoGetter(comp).Count<Gizmo>() > 0)
+                        {
+                            if (__instance != null)
+                            {
+                                if (__instance.Faction == Faction.OfPlayer)
+                                {
+                                    __result = __result.Concat(GizmoGetter(comp));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<Gizmo> GizmoGetter(CompToggleFireMode CompToggleFireMode)
+        {
+            bool gizmosOnEquip = CompToggleFireMode.GizmosOnEquip;
+            if (gizmosOnEquip)
+            {
+                foreach (Gizmo current in CompToggleFireMode.EquippedGizmos())
+                {
+                    yield return current;
+                }
+            }
+            yield break;
         }
     }
 }

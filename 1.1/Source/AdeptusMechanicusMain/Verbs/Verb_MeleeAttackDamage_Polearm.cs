@@ -69,7 +69,7 @@ namespace AdeptusMechanicus
 					}
 					if (this.verbProps.impactMote != null)
 					{
-						MoteMaker.MakeStaticMote(drawPos, map, this.verbProps.impactMote, 1f);
+						AdeptusMoteMaker.MakeStaticMote(drawPos, map, this.verbProps.impactMote, 1f);
 					}
 					BattleLogEntry_MeleeCombat battleLogEntry_MeleeCombat = this.CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, true);
 					result = true;
@@ -124,6 +124,7 @@ namespace AdeptusMechanicus
 
 		public override bool CanHitTarget(LocalTargetInfo targ)
 		{
+			this.verbProps.range = 2f;
 			return this.caster != null && this.caster.Spawned && (targ == this.caster || this.CanHitTargetFrom(this.caster.Position, targ));
 		}
 
@@ -134,9 +135,8 @@ namespace AdeptusMechanicus
 			{
 				return this.targetParams.canTargetSelf;
 			}
-			ShootLine shootLine;
-			return !this.ApparelPreventsShooting(root, targ) && this.TryFindShootLineFromTo(root, targ, out shootLine);
-		}
+            return !this.ApparelPreventsShooting(root, targ) && this.TryFindShootLineFromTo(root, targ, out ShootLine shootLine);
+        }
 		public new bool TryFindShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
 		{
 			Log.Message("Verb_MeleeAttackDamage_Polearm TryFindShootLineFromTo");
@@ -168,13 +168,12 @@ namespace AdeptusMechanicus
 			}
 			if (this.CasterIsPawn)
 			{
-				IntVec3 dest;
-				if (this.CanHitFromCellIgnoringRange(root, targ, out dest))
-				{
-					resultingLine = new ShootLine(root, dest);
-					return true;
-				}
-				ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), this.caster.Map, Verb_MeleeAttackDamage_Polearm.tempLeanShootSources);
+                if (this.CanHitFromCellIgnoringRange(root, targ, out IntVec3 dest))
+                {
+                    resultingLine = new ShootLine(root, dest);
+                    return true;
+                }
+                ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), this.caster.Map, Verb_MeleeAttackDamage_Polearm.tempLeanShootSources);
 				for (int i = 0; i < Verb_MeleeAttackDamage_Polearm.tempLeanShootSources.Count; i++)
 				{
 					IntVec3 intVec = Verb_MeleeAttackDamage_Polearm.tempLeanShootSources[i];
@@ -189,13 +188,12 @@ namespace AdeptusMechanicus
 			{
 				foreach (IntVec3 intVec2 in this.caster.OccupiedRect())
 				{
-					IntVec3 dest;
-					if (this.CanHitFromCellIgnoringRange(intVec2, targ, out dest))
-					{
-						resultingLine = new ShootLine(intVec2, dest);
-						return true;
-					}
-				}
+                    if (this.CanHitFromCellIgnoringRange(intVec2, targ, out IntVec3 dest))
+                    {
+                        resultingLine = new ShootLine(intVec2, dest);
+                        return true;
+                    }
+                }
 			}
 			resultingLine = new ShootLine(root, targ.Cell);
 			return false;
@@ -303,7 +301,36 @@ namespace AdeptusMechanicus
 			{
 				return true;
 			}
-			return peMode == PathEndMode.Touch && TouchPathEndModeUtility.IsAdjacentOrInsideAndAllowedToTouch(start, target, map);
+			return peMode == PathEndMode.Touch && IsAdjacentOrInsideAndAllowedToTouch(start, target, map);
+		}
+		// Token: 0x0600289D RID: 10397 RVA: 0x000EEC98 File Offset: 0x000ECE98
+		public bool IsAdjacentOrInsideAndAllowedToTouch(IntVec3 root, LocalTargetInfo target, Map map)
+		{
+			IntVec3 bl;
+			IntVec3 tl;
+			IntVec3 tr;
+			IntVec3 br;
+			GetAdjacentCorners(target, out bl, out tl, out tr, out br);
+			return root.AdjacentTo8WayOrInside(target) && !TouchPathEndModeUtility.IsAdjacentCornerAndNotAllowed(root, bl, tl, tr, br, map);
+		}
+		// Token: 0x06000193 RID: 403 RVA: 0x0000751D File Offset: 0x0000571D
+		public void GetAdjacentCorners(LocalTargetInfo target, out IntVec3 BL, out IntVec3 TL, out IntVec3 TR, out IntVec3 BR)
+		{
+			if (target.HasThing)
+			{
+				GetAdjacentCorners(target.Thing.OccupiedRect(), out BL, out TL, out TR, out BR);
+				return;
+			}
+			GetAdjacentCorners(CellRect.SingleCell(target.Cell), out BL, out TL, out TR, out BR);
+		}
+
+		// Token: 0x06000194 RID: 404 RVA: 0x00007558 File Offset: 0x00005758
+		private void GetAdjacentCorners(CellRect rect, out IntVec3 BL, out IntVec3 TL, out IntVec3 TR, out IntVec3 BR)
+		{
+			BL = new IntVec3(rect.minX - (int)this.verbProps.range, 0, rect.minZ - (int)this.verbProps.range);
+			TL = new IntVec3(rect.minX - (int)this.verbProps.range, 0, rect.maxZ + (int)this.verbProps.range);
+			TR = new IntVec3(rect.maxX + (int)this.verbProps.range, 0, rect.maxZ + (int)this.verbProps.range);
+			BR = new IntVec3(rect.maxX + (int)this.verbProps.range, 0, rect.minZ - (int)this.verbProps.range);
 		}
 		// Token: 0x06006808 RID: 26632 RVA: 0x00244A11 File Offset: 0x00242C11
 		private float GetNonMissChance(LocalTargetInfo target)

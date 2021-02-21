@@ -75,7 +75,7 @@ namespace AdeptusMechanicus
         {
             for (int i = 0; i < 6; i++)
             {
-                MoteMaker.ThrowDustPuff(base.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), base.Map, 1.2f);
+                AdeptusMoteMaker.ThrowDustPuff(base.Position.ToVector3Shifted() + Gen.RandomHorizontalVector(1f), base.Map, 1.2f);
             }
         //    MoteMaker.ThrowLightningGlow(base.Position.ToVector3Shifted(), base.Map, 2f);
             GenClamor.DoClamor(this, 15f, ClamorDefOf.Impact);
@@ -88,7 +88,7 @@ namespace AdeptusMechanicus
             CellRect cellRect = this.OccupiedRect();
             for (int i = 0; i < cellRect.Area * this.def.skyfaller.motesPerCell; i++)
             {
-                MoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
+                AdeptusMoteMaker.ThrowDustPuff(cellRect.RandomVector3, base.Map, 2f);
             }
             if (this.def.skyfaller.MakesShrapnel)
             {

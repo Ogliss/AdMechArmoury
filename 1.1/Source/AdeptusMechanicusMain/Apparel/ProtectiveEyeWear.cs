@@ -66,12 +66,12 @@ namespace AdeptusMechanicus
             SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(base.Wearer.Position, base.Wearer.Map, false));
 
             float num = Mathf.Min(10f, 2f + (float)dinfo.Amount / 10f);
-            MoteMaker.MakeStaticMote(base.Wearer.Position, base.Wearer.Map, ThingDefOf.Mote_ExplosionFlash, num);
+            AdeptusMoteMaker.MakeStaticMote(base.Wearer.DrawPos, base.Wearer.Map, ThingDefOf.Mote_ExplosionFlash, num);
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
                 Rand.PushState();
-                MoteMaker.ThrowDustPuff(base.Wearer.Position, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                AdeptusMoteMaker.ThrowDustPuff(base.Wearer.DrawPos, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
                 Rand.PopState();
             }
         }

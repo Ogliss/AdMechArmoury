@@ -1,4 +1,5 @@
 ﻿// RimWorld.DeepStrikeCellFinder
+using AdeptusMechanicus.ExtensionMethods;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ public static class DeepStrikeCellFinder
 		list.AddRange(collection);
 		list.RemoveAll(delegate (Building b)
 		{
-			CompPowerTrader compPowerTrader = b.TryGetComp<CompPowerTrader>();
+			CompPowerTrader compPowerTrader = b.TryGetCompFast<CompPowerTrader>();
 			return compPowerTrader != null && !compPowerTrader.PowerOn;
 		});
 		Predicate<IntVec3> validator = (IntVec3 c) => IsGoodDropSpot(c, map, allowFogged: false, canRoofPunch: false);
@@ -102,7 +103,7 @@ public static class DeepStrikeCellFinder
 				{
 					if (list[j].Faction != null && list[j].Faction.HostileTo(faction))
 					{
-						CompSendSignalOnPawnProximity compSendSignalOnPawnProximity = list[j].TryGetComp<CompSendSignalOnPawnProximity>();
+						CompSendSignalOnPawnProximity compSendSignalOnPawnProximity = list[j].TryGetCompFast<CompSendSignalOnPawnProximity>();
 						if (compSendSignalOnPawnProximity != null && c.InHorDistOf(list[j].Position, compSendSignalOnPawnProximity.Props.radius + 10f))
 						{
 							return false;
@@ -219,7 +220,7 @@ public static class DeepStrikeCellFinder
 			{
 				return false;
 			}
-			return map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly) ? true : false;
+			return map.reachability.CanReach(center, c, PathEndMode.OnCell, TraverseMode.PassDoors, Danger.Deadly);
 		};
 		if ((allowIndoors & canRoofPunch) && centerRoom != null && !centerRoom.PsychologicallyOutdoors)
 		{

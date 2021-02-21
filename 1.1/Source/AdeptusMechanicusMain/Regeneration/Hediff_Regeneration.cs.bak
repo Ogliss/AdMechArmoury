@@ -51,7 +51,7 @@ namespace AdeptusMechanicus
                     bool flag2 = hediffWithComps != null;
                     if (flag2)
                     {
-                        HediffComp_TendDuration hediffComp_TendDuration = HediffUtility.TryGetComp<HediffComp_TendDuration>(hediffWithComps);
+                        HediffComp_TendDuration hediffComp_TendDuration = HediffUtility.TryGetCompFast<HediffComp_TendDuration>(hediffWithComps);
                         hediffComp_TendDuration.tendQuality = 2f;
                         hediffComp_TendDuration.tendTicksLeft = Find.TickManager.TicksGame;
                         this.pawn.health.Notify_HediffChanged(hediff);

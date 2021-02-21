@@ -5,10 +5,10 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-
-    public class LaserGun :ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation
+    // 	AdeptusMechanicus.Lasers.LaserGun
+    public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotation, IMuzzlePosition
     {
         new public LaserGunDef def => base.def as LaserGunDef ?? LaserGunDef.defaultObj;
 
@@ -18,17 +18,29 @@ namespace AdeptusMechanicus
             set { beamColorIndex = value; }
         }
 
+        private ThingDef _muzzleFlareDef;
+        private ThingDef _muzzleSmokeDef;
+        public float BarrelOffset => def.barrelOffset;
+        public float BarrelLength => def.barrelLength;
+        public float BulletOffset => def.bulletOffset;
+        public float MuzzleSmokeSize => def.muzzleSmokeSizeRange?.RandomInRange ?? def.muzzleSmokeSize;
+        public float MuzzleFlareSize => def.muzzleFlareSizeRange?.RandomInRange ?? def.muzzleFlareSize;
+        public ThingDef MuzzleFlareDef => _muzzleFlareDef ??= !def.muzzleFlareDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamedSilentFail(def.muzzleFlareDef) : null;
+        public ThingDef MuzzleSmokeDef => _muzzleSmokeDef ??= !def.muzzleSmokeDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamedSilentFail(def.muzzleSmokeDef) : null;
+
         int ticksPreviously = 0;
         public float RotationOffset
         {
-            get {
+            get
+            {
                 int ticks = Find.TickManager.TicksGame;
                 UpdateRotationOffset(ticks - ticksPreviously);
                 ticksPreviously = ticks;
 
                 return rotationOffset;
             }
-            set {
+            set
+            {
                 rotationOffset = value;
                 rotationSpeed = 0;
             }
@@ -40,7 +52,7 @@ namespace AdeptusMechanicus
 
             Scribe_Values.Look<int>(ref beamColorIndex, "beamColorIndex", -1, false);
         }
-        
+
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
         {
             foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
@@ -66,13 +78,15 @@ namespace AdeptusMechanicus
 
             if (rotationOffset > 0)
             {
-                rotationOffset -= rotationSpeed;
-                if (rotationOffset < 0) rotationOffset = 0;
+                if (rotationOffset > 180) rotationOffset += rotationSpeed;
+                else rotationOffset -= rotationSpeed;
+                if (rotationOffset < 0 || rotationOffset > 360) rotationOffset = 0;
             }
             else if (rotationOffset < 0)
             {
-                rotationOffset += rotationSpeed;
-                if (rotationOffset > 0) rotationOffset = 0;
+                if (rotationOffset < -180) rotationOffset -= rotationSpeed;
+                else rotationOffset += rotationSpeed;
+                if (rotationOffset > 0 || rotationOffset < -360) rotationOffset = 0;
             }
 
             rotationSpeed += ticks * 0.01f;

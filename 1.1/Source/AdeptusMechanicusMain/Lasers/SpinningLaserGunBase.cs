@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public abstract class SpinningLaserGunBase : ThingDef_GunOG
+    public abstract class SpinningLaserGunBase : LaserGun
     {
         public enum State
         {

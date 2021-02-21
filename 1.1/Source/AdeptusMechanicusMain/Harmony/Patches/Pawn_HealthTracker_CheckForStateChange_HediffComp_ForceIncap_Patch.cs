@@ -3,6 +3,7 @@ using Verse;
 using HarmonyLib;
 using System.Runtime.InteropServices;
 using RimWorld;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -17,7 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
 
                 }
-                HediffComp_ForceIncap forceIncap = hediff.TryGetComp<HediffComp_ForceIncap>();
+                HediffComp_ForceIncap forceIncap = hediff.TryGetCompFast<HediffComp_ForceIncap>();
                 if (forceIncap != null)
                 {
                     Rand.PushState();

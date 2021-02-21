@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public class MoteLaserDectoration : MoteThrown
+    class MoteLaserDectoration : MoteThrown
     {
         public LaserBeamGraphic beam;
         public float baseSpeed;
@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                Speed = (float) (baseSpeed + speedJitter * Math.Sin(Math.PI * (Find.TickManager.TicksGame*18f + speedJitterOffset) / 180.0));
+                Speed = (float)(baseSpeed + speedJitter * Math.Sin(Math.PI * (Find.TickManager.TicksGame * 18f + speedJitterOffset) / 180.0));
 
                 if (beam != null) return beam.Opacity;
                 return base.Alpha;

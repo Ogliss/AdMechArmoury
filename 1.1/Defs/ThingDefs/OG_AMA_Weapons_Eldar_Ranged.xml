@@ -79,6 +79,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenPistol</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -168,6 +169,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EShurikenCatapult</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -258,6 +260,7 @@
 		<weaponTags>
 			<li>EShurikenCatapultA</li>
 			<li>EEliteGun</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -363,6 +366,7 @@
 		<weaponTags>
 			<li>EShurikenCannon</li>
 			<li>EHeavyGun</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -396,6 +400,7 @@
 		<graphicData>
 			<texPath>Things/Projectile/PlamsShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
 		</graphicData>
 		<projectile>
 			<damageDef>OGEPlas</damageDef>
@@ -406,16 +411,15 @@
 		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-				<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-				<GlowMoteSize>1.5</GlowMoteSize>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
 			</li>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-				<explosionMote>true</explosionMote>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
 				<explosionMoteSize>0.75</explosionMoteSize>
-				<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
-				<ImpactMoteSize>2</ImpactMoteSize>
-				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -485,6 +489,7 @@
 		<weaponTags>
 			<li>EStarcannon</li>
 			<li>EHeavyGun</li>
+			<li>OgsWeaponTestPlasma</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -511,19 +516,86 @@
 	</ThingDef>
 
 	<!--==================== Eldar - Wraithcannon =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_Wraithcannon</defName>
 		<label>wraithcannon blast</label>
-		<textures>
-			<li>Things/Projectile/Wraithcannon_Beam</li>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(150,30,255,255)</color> <!-- default bolt colour -->
+		</graphicData>
+		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
+			<li>Things/Projectile/LightningBeam</li>
 		</textures>
+		<flareMatPath>Other/BeamGlowB</flareMatPath>
+		<lifetime>30</lifetime>
 		<seam>0</seam>
-		<lifetime>45</lifetime>
+		<impulseCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.75)</li>
+				<li>(1, 0.25)</li>
+			</points>
+		</impulseCurve>
 		<LightningBeam>true</LightningBeam>
-		<StaticLightning>true</StaticLightning>
-		<LightningVariance>1.5</LightningVariance>
-		<beamWidth>0.05</beamWidth>
+		<StaticLightning>false</StaticLightning>
 		<ArcCount>3</ArcCount>
+		<!--impactReflection>3</impactReflection-->
+		<flareLength>0.25</flareLength>
+		<!--flareWidth>0.25</flareWidth-->
+		<flareWidthMod>1.50</flareWidthMod>	
+		<!--flareLengthMod>0.250</flareLengthMod-->
+		
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.5)</li>
+				<li>(0.1, 0.750)</li>
+				<li>(0.9, 0.750)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime>
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+    	<decorations>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
+				<spacing>1</spacing>
+				<initialOffset>0</initialOffset>
+				<speed>0.0</speed>
+				<speedJitter>0.0</speedJitter>
+				<speedJitterOffset>0</speedJitterOffset>
+			</li>
+			<!--li>
+				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
+				<spacing>1</spacing>
+				<initialOffset>0.3</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.45</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li-->
+    	</decorations>
 		<projectile>
 			<damageDef>OG_E_Distortion_Damage</damageDef>
 			<armorPenetrationBase>1</armorPenetrationBase>
@@ -532,12 +604,22 @@
 			<explosionRadius>2.25</explosionRadius>
 			<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_DistortBlast</explosionMoteDef>
+				<explosionMoteSize>3</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>5</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special">
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_Wraithcannon</defName>
 		<label>wraithcannon (E)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<description>An Eldar Wraithcannon is basically a smaller, more portable version of the D-Cannon. It is used by the Eldar Wraithguard to great effect as a strong, armour-piercing weapon since no amount of armour can protect a foe from this dimension-warping attack. It functions by opening a small rift into the Warp into which the enemy is sucked.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/WraithCannon</texPath>
@@ -545,6 +627,7 @@
 			<drawSize>1.50</drawSize>			
 		</graphicData>
 		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<barrelLength>1.150</barrelLength>
 		<comps>   
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
@@ -609,6 +692,7 @@
 		<weaponTags>
 			<li>EWraithcannon</li>
 			<li>EGhostGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -635,13 +719,36 @@
 	</ThingDef>
 
 	<!-- ====================== Lasbalster ===================== -->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_LasBlaster</defName>
 		<label>las blast</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(255,33,50,255)</color>
+			<colorTwo>(200,158,200,255)</colorTwo>
+		</graphicData>
 		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
 			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Lasbeam</li>
 		</textures>
-		<seam>0</seam>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>20</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>0.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>1.5</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>2.5</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<projectile>
 			<damageDef>OGILas</damageDef>
 			<damageAmountBase>20</damageAmountBase>
@@ -650,9 +757,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_LasBlaster</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>lasblaster (E)</label>
 		<description>The Lasblaster is an Eldar Laser Weapon utilised exclusively by Swooping Hawks Aspect Warriors. Eldar lasers use psychically grown crystals to refine their already intense bursts to their optimum potency. Many Eldar consider Laser Weapons the most elegant of all, exulting in the fact that their technological mastery extends even to light itself. These include the Swooping Hawks Aspect Warriors, who have transformed the practice of pinpoint laser fire into an art in itself. Their Exarchs lead them in this deadly technique, utilising sustained fusillades of deadly light to overwhelm their foes. The Lasblaster is lower in strength than other Eldar weapons but has a range advantage that suits it to assault troops.</description>
 		<graphicData>
@@ -686,6 +793,7 @@
 		<weaponTags>
 			<li>ELasblaster</li>
 			<li>EEliteGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -755,13 +863,36 @@
 	</ThingDef>
 
 	<!-- ==================== Eldar - Range Longrifle =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_RangerLR</defName>
 		<label>Longrifle Round</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(255,200,255,255)</color>
+			<colorTwo>(200,200,255,255)</colorTwo>
+		</graphicData>
 		<textures>
-			<li>Things/Projectile/RailgunSml</li>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Lasbeam</li>
 		</textures>
-		<seam>0</seam>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>20</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>2</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>2</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>0.50</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<projectile>
 			<damageDef>OGTRailgun</damageDef>
 			<damageAmountBase>59</damageAmountBase>
@@ -769,9 +900,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_RangerLongrifle</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>longrifle (E)</label>
 		<description>The Ranger Long Rifle is the favoured weapon of Eldar Rangers and Pathfinders. It is a long-barrelled rifle, superficially similar to the Imperial Sniper Rifle and Imperial Long-Las Rifle, that fires energy bolts capable of piercing most armour when aimed correctly. Unlike the mass-produced weapons of the Imperium, these potent Eldar weapons are hand-grown by Bonesingers with specific attention paid to the eyesight and grip, creating a weapon perfectly adapted to its user. The Ranger Long Rifle uses a Gyrostatic Arm to keep the weapon stable, dispensing with the clumsy bipods that must be used by the lesser races with their Sniper Rifles. The Gyrostatic Arm also all but eliminates recoil. Whereas the artificial crystals used by Imperial laser–technology struggle to maintain a focused beam over long distances, the psychically-grown crystals used by Eldar laser weapons are able to focus a tight beam of coherent light over a much greater distance, allowing a skilled user to punch through weak points in armour at great distances.</description>
 		<graphicData>
@@ -779,6 +910,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
+		<barrelLength>1.25</barrelLength>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>50000</WorkToMake>
@@ -833,6 +965,7 @@
 		<weaponTags>
 			<li>ERangerLongrifle</li>
 			<li>EEliteGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -859,7 +992,7 @@
 	</ThingDef>
 	
 	<!--==================== Eldar - Prism Rifle =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_PrismRifleFocused</defName>
 		<label>prism beam</label>
 		<textures>
@@ -873,7 +1006,7 @@
 		</projectile>
 	</ThingDef>
   
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_PrismRifleDispersed</defName>
 		<label>prism beam</label>
 		<textures>
@@ -889,9 +1022,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_PrismRifle</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>prism rifle (E)</label>
 		<description>The Prism Rifle is an Eldar energy weapon and the primary weapon of the Shadow Spectres Aspect Warriors. The Prism Rifle is an antiquated weapon, an artifact lost to most of the remaining Eldar race. Using the same technology as the far larger Prism Cannon, each rifle is connected to a single targeting matrix, known as the Ghostlight. Through it each rifle's energy pulse converges into a single beam of bright light that can tear apart tanks and larger targets with ease.</description>
 		<graphicData>
@@ -974,6 +1107,7 @@
 		<weaponTags>
 			<li>EPrismRifle</li>
 			<li>EHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1001,13 +1135,36 @@
 	</ThingDef>
 	
 	<!--==================== Eldar - Brightlance =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_Brightlance</defName>
 		<label>brightlance beam</label>
+		<description>A high power lance beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(100,200,255,255)</color>
+			<colorTwo>(200,200,255,255)</colorTwo>
+		</graphicData>
 		<textures>
-			<li>Things/Projectile/IonBeamSml</li>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/LasbeamHeavy</li>
 		</textures>
-		<seam>0</seam>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<lifetime>40</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.1</impulse> <!-- the solidity of the beam -->
+		<beamWidth>2.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>3</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.00</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<projectile>
 			<damageDef>OGELance</damageDef>
 			<damageAmountBase>75</damageAmountBase>
@@ -1015,9 +1172,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_Brightlance</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>brightlance (E)</label>
 		<description>The Bright Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Bright Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
 		<graphicData>
@@ -1025,7 +1182,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.250</drawSize>			
 		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
 		<equippedAngleOffset>45</equippedAngleOffset>
+		<barrelLength>1.5</barrelLength>
 		<comps>     
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
@@ -1034,7 +1193,6 @@
 				<southOffset>0.0,1.0,0.0</southOffset>
 			</li>  
 		</comps>
-		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
 			<WorkToMake>65000</WorkToMake>
@@ -1081,6 +1239,7 @@
 		<weaponTags>
 			<li>EBrightlance</li>
 			<li>EHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1108,7 +1267,7 @@
 	</ThingDef>
 
 	<!-- ====================== Eldar - Fusion Gun ===================== -->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_FusionGun</defName>
 		<label>fusion blast</label>
 		<textures>
@@ -1124,9 +1283,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_FusionGun</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>fusion gun (E)</label>
 		<description>The Eldar possess an unsurpassed mastery of heat-based weapons, and take savage delight in the devastation they create. They utilise a deadly Melta Weapon known as a Fusion Gun, a weapon that is unique to the Aspect Warriors known as Fire Dragons amongst the Eldar. Though it can only be used at short range, it possesses a sophisticated targetting system, as befits high status troops like Aspect Warriors. Like most Eldar technology, the weapon is psychically activated, its resonant Wraithbone construction being sensitive to the Eldar's innately psychic mind. A Fire Dragons' Fusion Gun is linked to its targetter via its handle.</description>
 		<graphicData>
@@ -1189,6 +1348,7 @@
 		<weaponTags>
 			<li>EFusionGun</li>
 			<li>EEliteGun</li>
+			<li>OgsWeaponTestMelta</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1295,6 +1455,7 @@
 		<weaponTags>
 			<li>EDeathspinner</li>
 			<li>EEliteGun</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1339,13 +1500,12 @@
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
 		<modExtensions>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-				<explosionMote>true</explosionMote>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
 				<explosionMoteSize>0.5</explosionMoteSize>
-				<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-				<ImpactMoteSize>1</ImpactMoteSize>
-				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
 				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
@@ -1428,6 +1588,7 @@
 		<weaponTags>
 			<li>EReaperLauncher</li>
 			<li>EHeavyGun</li>
+			<li>OgsWeaponTestBolt</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1456,7 +1617,7 @@
 
 	<!--==================== Harlequin Ranged Weapons =========================-->
 	<!--==================== Harlequin Eldar - Neuro disruptor =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_NeuroDisruptor</defName>
 		<label>disruptor blast</label>
 		<textures>
@@ -1470,9 +1631,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_NeuroDisruptor</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>neuro disruptor (E)</label>
 		<description>Neuro Disruptors are elegant psychocrystalline weapons that fire beams of energy capable of burning away nervous tissue in an agonising instant. Armour offers no protection from these weapons, for it is simply bypassed altogether. Indeed, foes hit by a neuro disruptor show no outward sign of injury, excepting their sudden, violent convulsions as they tumble to the floor.</description>
 		<graphicData>
@@ -1535,6 +1696,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>ENeuroDisruptor</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
@@ -1564,7 +1726,7 @@
 	</ThingDef>
 	
 	<!-- ==================== Harlequin Eldar - Haywire Cannon ========================= -->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_HaywireCannon</defName>
 		<label>haywire blast</label>
 		<textures>
@@ -1578,10 +1740,10 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.LaserGunDef">
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_HaywireCannon</defName>
 		<label>haywire cannon (E)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<description>Haywire Cannons are Eldar weapons mainly used by Harlequins. These are long-barrelled weapons so lightweight that can be fired even when moving. Crackling blasts of electromagnetic energy leap from the forked projector-vanes of the Haywire Blaster with every shot. Capable of scrambling even the most robust electrical systems, a single hit from such a weapon can leave enemy tanks and aircraft powerless and at the mercy of the Harlequins' wrath.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/HarlequinHaywireCannon</texPath>
@@ -1642,6 +1804,7 @@
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>EHaywireBlaster</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>

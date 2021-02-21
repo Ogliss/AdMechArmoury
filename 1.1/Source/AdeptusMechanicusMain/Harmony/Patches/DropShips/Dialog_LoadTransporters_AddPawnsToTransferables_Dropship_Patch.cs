@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System;
 using RimWorld.Planet;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -16,7 +17,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             Traverse tv = Traverse.Create(__instance);
             foreach (CompTransporter lpc in ___transporters)
             {
-                if (lpc.parent.TryGetComp<CompDropship>() != null)
+                if (lpc.parent.TryGetCompFast<CompDropship>() != null)
                 {
                     Map map = tv.Field("map").GetValue<Map>();
                     List<Pawn> list = CaravanFormingUtility.AllSendablePawns(map, true, true, true, true);

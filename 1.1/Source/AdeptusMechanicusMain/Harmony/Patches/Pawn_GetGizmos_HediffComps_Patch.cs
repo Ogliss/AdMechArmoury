@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -34,7 +35,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int o = 0; o < __instance.health.hediffSet.hediffs.Count; o++)
             {
                 HediffComp_Shield _Shield;
-                if ((_Shield = __instance.health.hediffSet.hediffs[o].TryGetComp<HediffComp_Shield>()) != null)
+                if ((_Shield = __instance.health.hediffSet.hediffs[o].TryGetCompFast<HediffComp_Shield>()) != null)
                 {
                     foreach (Gizmo gizmo in _Shield.GetShieldGizmos())
                     {
@@ -43,7 +44,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 /*
                 HediffComp_VerbGiverExtra _VerbGiverExtra;
-                if ((_VerbGiverExtra = __instance.health.hediffSet.hediffs[o].TryGetComp<HediffComp_VerbGiverExtra>()) != null)
+                if ((_VerbGiverExtra = __instance.health.hediffSet.hediffs[o].TryGetCompFast<HediffComp_VerbGiverExtra>()) != null)
                 {
                     foreach (Gizmo gizmo in _VerbGiverExtra.GetVerbsCommands())
                     {

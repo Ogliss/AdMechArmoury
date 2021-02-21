@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using AdeptusMechanicus.ExtensionMethods;
 using RimWorld;
 using Verse;
 
 namespace AdeptusMechanicus
 {
-    public class CompProperties_ToggleFireMode : CompProperties_WargearWeapon
-    {
-        public CompProperties_ToggleFireMode()
-        {
-            this.compClass = typeof(CompToggleFireMode);
-        }
-        public ResearchProjectDef requiredResearch;
-        public bool canSwitchWhileBusy = false;
-        public bool switchStartsCooldown = false;
-        public string InspectLabelKey = string.Empty;
-    }
-
     public class CompToggleFireMode : CompWargearWeapon
     {
-        public new CompProperties_ToggleFireMode Props => (CompProperties_ToggleFireMode)props;
+        public new CompProperties_ToggleFireMode Props => props as CompProperties_ToggleFireMode;
 
         protected virtual Pawn GetUser
         {
@@ -38,8 +26,8 @@ namespace AdeptusMechanicus
         }
 
         protected virtual bool IsHeld => (GetUser != null);
+        public CompEquippable Equippable => equippable ??= parent.TryGetCompFast<CompEquippable>();
         public CompEquippable equippable;
-        public CompEquippable Equippable => equippable ??= parent.TryGetComp<CompEquippable>();
         public Pawn lastUser;
         public override bool GizmosOnEquip => true;
         public bool Toggled = false;
@@ -77,22 +65,45 @@ namespace AdeptusMechanicus
             }
         }
 
+        public Verb ActiveVerb
+        {
+            get
+            {
+                Verb result;
+                if (this.parent != null && this.parent != null)
+                {
+                    result = Equippable.AllVerbs[this.fireMode];
+                    result.verbProps = Active;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+        }
+
         public FloatMenu MakeModeMenu()
         {
-            List<FloatMenuOption> floatMenu = new List<FloatMenuOption>();
-            foreach (VerbProperties item in parent.def.Verbs)
+            List<FloatMenuOption> list = new List<FloatMenuOption>();
+            using (List<VerbProperties>.Enumerator enumerator = this.parent.def.Verbs.GetEnumerator())
             {
-                if (fireMode != parent.def.Verbs.IndexOf(item))
+                while (enumerator.MoveNext())
                 {
-                    floatMenu.Add(new FloatMenuOption(item.label, delegate ()
+                    VerbProperties item = enumerator.Current;
+                    bool flag = this.fireMode != this.parent.def.Verbs.IndexOf(item);
+                    if (flag)
                     {
-                        this.SwitchFireMode(parent.def.Verbs.IndexOf(item));
-                    }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                        list.Add(new FloatMenuOption(item.label, delegate ()
+                        {
+                            this.SwitchFireMode(this.parent.def.Verbs.IndexOf(item));
+                        }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                    }
                 }
             }
-
-            return new FloatMenu(floatMenu);
+            return new FloatMenu(list);
         }
+
         public override IEnumerable<Gizmo> EquippedGizmos()
         {
             bool flag = Find.Selector.SingleSelectedThing == GetUser;
@@ -125,5 +136,10 @@ namespace AdeptusMechanicus
             yield break;
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<int>(ref fireMode, "fireMode", 0);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,11 +32,13 @@ namespace AdeptusMechanicus
 				}
 
 				return base.Color;
+				/*
 				if (!this.active)
 				{
 					return this.parent.def.graphicData.color;
 				}
 				return this.color;
+				*/
 			}
 			set
 			{
@@ -60,11 +63,13 @@ namespace AdeptusMechanicus
 					return this.factioncolorTwo;
 				}
 				return base.ColorTwo;
+				/*
 				if (!this.activeTwo)
 				{
 					return this.parent.def.graphicData.colorTwo;
 				}
 				return this.colorTwo;
+				*/
 			}
 			set
 			{
@@ -139,7 +144,7 @@ namespace AdeptusMechanicus
                             {
 								faction = Apparel.Wearer.Faction.def;
 							//	Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
-								FactionDefExtension Extension = faction?.GetModExtension<FactionDefExtension>() ?? null;
+								FactionDefExtension Extension = faction?.GetModExtensionFast<FactionDefExtension>() ?? null;
                                 if (Extension != null)
 								{
 								//	Log.Message("chached faction null, checking " + faction.LabelCap + "for FactionDefExtension");
@@ -180,7 +185,7 @@ namespace AdeptusMechanicus
 				faction = value;
                 if (faction != null)
 				{
-					FactionDefExtension Extension = faction.GetModExtension<FactionDefExtension>();
+					FactionDefExtension Extension = faction.GetModExtensionFast<FactionDefExtension>();
 					if (Extension != null)
 					{
 						if (Extension.factionColor.HasValue)
@@ -213,7 +218,7 @@ namespace AdeptusMechanicus
 			}
         }
 		public Apparel Apparel => this.parent as Apparel;
-		public FactionDefExtension Extension => FactionDef?.GetModExtension<FactionDefExtension>() ?? null;
+		public FactionDefExtension Extension => FactionDef?.GetModExtensionFast<FactionDefExtension>() ?? null;
 
 		public List<FactionDef> ColouredDefs
         {
@@ -233,7 +238,7 @@ namespace AdeptusMechanicus
 				for (int i = 0; i < factions.Count; i++)
 				{
 					FactionDef f = factions[i];
-					FactionDefExtension e = f.GetModExtension<FactionDefExtension>();
+					FactionDefExtension e = f.GetModExtensionFast<FactionDefExtension>();
 					if (e.factionColor.HasValue || e.factionColorTwo.HasValue || !e.factionMaskTag.NullOrEmpty() || !e.factionTextureTag.NullOrEmpty())
 					{
 						factionsC.Add(f);
@@ -249,12 +254,12 @@ namespace AdeptusMechanicus
 			Scribe_Values.Look<bool>(ref this.activeFaction, "activeFaction");
 			if ((Scribe.mode == LoadSaveMode.Saving && this.factionactive) || Scribe.mode != LoadSaveMode.Saving)
 			{
-				Scribe_Values.Look<Color>(ref this.factioncolor, "factioncolor", default(Color), false);
+				Scribe_Values.Look<Color>(ref this.factioncolor, "factioncolor", default, false);
 				Scribe_Values.Look<bool>(ref this.factionactive, "factioncolorActive", false, false);
 			}
 			if ((Scribe.mode == LoadSaveMode.Saving && this.factionactiveTwo) || Scribe.mode != LoadSaveMode.Saving)
 			{
-				Scribe_Values.Look<Color>(ref this.factioncolorTwo, "factioncolorTwo", default(Color), false);
+				Scribe_Values.Look<Color>(ref this.factioncolorTwo, "factioncolorTwo", default, false);
 				Scribe_Values.Look<bool>(ref this.factionactiveTwo, "factioncolorActiveTwo", false, false);
 			}
 		}

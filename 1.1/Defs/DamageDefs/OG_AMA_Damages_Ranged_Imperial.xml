@@ -2,54 +2,56 @@
 <Defs>
 	<!--==================== Imperial Damage Types =========================-->
 	
-  <DamageDef>
-    <defName>OGBullet_SX</defName>
-    <label>bullet</label>
-	<workerClass>AdeptusMechanicus.DamageWorker_AddInjuryStrengthX</workerClass>
-    <externalViolence>true</externalViolence>
-    <deathMessage>{0} has been shot to death.</deathMessage>
-    <hediff>Gunshot</hediff>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-    <impactSoundType>Bullet</impactSoundType>
-    <armorCategory>Sharp</armorCategory>
-    <overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
-    <isRanged>true</isRanged>
-    <makesAnimalsFlee>true</makesAnimalsFlee>
-  </DamageDef>
+	<DamageDef>
+		<defName>OGBullet_SX</defName>
+		<label>bullet</label>
+		<workerClass>AdeptusMechanicus.DamageWorker_AddInjuryStrengthX</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been shot to death.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+		<isRanged>true</isRanged>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+	</DamageDef>
 
 	<!--==================== Flamer Damage Type =========================-->
 	<DamageDef ParentName="OGLocalRangedInjuryBaseFlameNoCamShake">
-    <defName>OGFlamer</defName>
-    <label>flame</label>
-    <hasForcefulImpact>false</hasForcefulImpact>
-    <makesBlood>false</makesBlood>
-    <canInterruptJobs>false</canInterruptJobs>
-    <externalViolence>true</externalViolence>
-    <deathMessage>{0} was purified with by Fire!</deathMessage>
-    <hediff>Burn</hediff>
-    <armorCategory>Heat</armorCategory>
-    <minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>10</defaultDamage>
-    <defaultArmorPenetration>0</defaultArmorPenetration>
-    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
-    <explosionCellMote>Mote_BlastFlame</explosionCellMote>
-    <explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
-    <explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
-    <soundExplosion>Explosion_Flame</soundExplosion>
-    <combatLogRules>Damage_Flame</combatLogRules>
-    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
-  </DamageDef>
+		<defName>OGFlamer</defName>
+		<label>flame</label>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<makesBlood>false</makesBlood>
+		<canInterruptJobs>false</canInterruptJobs>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was purified with by Fire!</deathMessage>
+		<hediff>Burn</hediff>
+		<armorCategory>Heat</armorCategory>
+		<minDamageToFragment>15</minDamageToFragment>
+		<defaultDamage>10</defaultDamage>
+		<defaultArmorPenetration>0</defaultArmorPenetration>
+		<explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
+		<explosionCellMote>Mote_BlastFlame</explosionCellMote>
+		<explosionColorCenter>(1, 0.7, 0.7)</explosionColorCenter>
+		<explosionColorEdge>(1, 1, 0.7)</explosionColorEdge>
+		<soundExplosion>Explosion_Flame</soundExplosion>
+		<combatLogRules>Damage_Flame</combatLogRules>
+		<canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+	</DamageDef>
   
 	<!--==================== Plasma Damage Type =========================-->
 	<DamageDef ParentName="PlasmaInjuryNoCamShake">
 		<defName>OGIPlasma</defName>
 		<label>plasma</label>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
+		<damageEffecter>AdeptusMechanicusLaserImpact</damageEffecter>
 		<defaultDamage>0</defaultDamage>
-		<buildingDamageFactor>1</buildingDamageFactor>
+		<buildingDamageFactor>1.25</buildingDamageFactor>
+		<plantDamageFactor>5</plantDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
-		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionHeatEnergyPerCell>25</explosionHeatEnergyPerCell>
+		<!--explosionCellMote>Mote_BlastDry</explosionCellMote-->
 		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
@@ -62,10 +64,11 @@
 		<label>plasma cannon</label>
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<defaultDamage>45</defaultDamage>
-		<buildingDamageFactor>1</buildingDamageFactor>
+		<buildingDamageFactor>1.5</buildingDamageFactor>
+		<plantDamageFactor>5</plantDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
-		<explosionCellMote>Mote_BlastDry</explosionCellMote>
+		<explosionHeatEnergyPerCell>50</explosionHeatEnergyPerCell>
+		<!--explosionCellMote>Mote_BlastDry</explosionCellMote-->
 		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
 		<soundExplosion>OGIPC_Explosion</soundExplosion>
@@ -79,6 +82,7 @@
 		<deathMessage>{0} has been given the Emperors Justice.</deathMessage>
 		<defaultDamage>10</defaultDamage>
 		<buildingDamageFactor>5</buildingDamageFactor>
+		<plantDamageFactor>5</plantDamageFactor>
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>500</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastFlame</explosionCellMote>
@@ -134,8 +138,8 @@
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
-		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
-		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<explosionColorCenter>(225,33,0,255)</explosionColorCenter>
+		<explosionColorEdge>(225,150,0,255)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
 		<defaultArmorPenetration>1</defaultArmorPenetration>
 	</DamageDef>
@@ -219,7 +223,7 @@
 		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
 		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
 		<explosionCellMote>Mote_BlastDry</explosionCellMote>
-		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorCenter>(1, 0.5, 0.3, 0.1)</explosionColorCenter>
 		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
 		<soundExplosion>OGIPP_Explosion</soundExplosion>
 	</DamageDef>

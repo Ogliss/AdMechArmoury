@@ -2,6 +2,7 @@
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -19,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             else
             {
-                bloodReplacer = __instance.InnerPawn.TryGetComp<CompButcherBloodReplacer>();
+                bloodReplacer = __instance.InnerPawn.TryGetCompFast<CompButcherBloodReplacer>();
                 if (bloodReplacer!=null)
                 {
                     if (bloodReplacer.bloodDef != null)

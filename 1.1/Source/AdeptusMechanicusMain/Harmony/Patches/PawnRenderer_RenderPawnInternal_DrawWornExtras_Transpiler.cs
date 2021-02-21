@@ -317,7 +317,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             Vector2 d;
             if (alienDef != null)
             {
-                AlienRace.AlienPartGenerator.AlienComp comp = pawn.TryGetComp<AlienRace.AlienPartGenerator.AlienComp>();
+                AlienRace.AlienPartGenerator.AlienComp comp = pawn.TryGetCompFast<AlienRace.AlienPartGenerator.AlienComp>();
                 if (comp != null)
                 {
                 //    d = (portrait ? comp.alienPortraitGraphics.bodySet.MeshAt(bodyFacing).bounds.size : comp.alienGraphics.bodySet.MeshAt(bodyFacing).bounds.size);

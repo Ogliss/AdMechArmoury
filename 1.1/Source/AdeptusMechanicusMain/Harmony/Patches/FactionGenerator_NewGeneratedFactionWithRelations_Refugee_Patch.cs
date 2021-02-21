@@ -24,7 +24,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (facDef == FactionDefOf.OutlanderRefugee)
                 {
                     Faction ofPlayer = Faction.OfPlayer;
-                    FactionDefExtension extension = ofPlayer.def.GetModExtension<FactionDefExtension>();
+                    FactionDefExtension extension = ofPlayer.def.GetModExtensionFast<FactionDefExtension>();
                     if (extension != null && !extension.RefugeeFactions.NullOrEmpty())
                     {
                         List<FactionDef> list = extension.RefugeeFactions;

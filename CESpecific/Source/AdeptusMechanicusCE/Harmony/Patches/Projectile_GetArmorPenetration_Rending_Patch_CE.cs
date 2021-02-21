@@ -11,6 +11,7 @@ using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
 using CombatExtended;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -36,7 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             //    Log.Warning(string.Format("caster.equipment != null"));
                             Launcher = caster.equipment.Primary;
                             //    Log.Warning(string.Format("Launcher = caster.equipment.Primary"));
-                            CompWeapon_GunSpecialRules _GunSpecialRules = Launcher.TryGetComp<CompWeapon_GunSpecialRules>();
+                            CompWeapon_GunSpecialRules _GunSpecialRules = Launcher.TryGetCompFast<CompWeapon_GunSpecialRules>();
                             if (_GunSpecialRules != null)
                             {
                                 //    Log.Warning(string.Format("_GunSpecialRules != null"));
@@ -47,10 +48,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                         else
                         {
                             //    Log.Warning(string.Format("caster.equipment == null"));
-                            if (caster.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null))
+                            if (caster.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null))
                             {
                                 //    Log.Warning(string.Format("HediffComp_VerbGiverExtra: {0}", ___launcher));
-                                HediffComp_VerbGiverExtra _VGE = caster.health.hediffSet.hediffs.Find(x => x.TryGetComp<HediffComp_VerbGiverExtra>() is HediffComp_VerbGiverExtra z && z.verbTracker.AllVerbs.Any(y => y.verbProps.defaultProjectile == __instance.def)).TryGetComp<HediffComp_VerbGiverExtra>();
+                                HediffComp_VerbGiverExtra _VGE = caster.health.hediffSet.hediffs.Find(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() is HediffComp_VerbGiverExtra z && z.verbTracker.AllVerbs.Any(y => y.verbProps.defaultProjectile == __instance.def)).TryGetCompFast<HediffComp_VerbGiverExtra>();
                                 if (_VGE != null)
                                 {
                                     //    Log.Warning(string.Format("_VGE != null: {0}", _VGE.parent.LabelCap));
@@ -224,10 +225,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             else
             {
-                CompExplosiveCE compExplosiveCE = __instance.TryGetComp<CompExplosiveCE>();
+                CompExplosiveCE compExplosiveCE = __instance.TryGetCompFast<CompExplosiveCE>();
                 if (compExplosiveCE == null)
                 {
-                    CompFragments compFragments = __instance.TryGetComp<CompFragments>();
+                    CompFragments compFragments = __instance.TryGetCompFast<CompFragments>();
                     if (compFragments != null)
                     {
                         compFragments.Throw(vector, __instance.Map, launcher, 1f);
@@ -345,7 +346,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
-            CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
+            CompSuppressable compSuppressable = pawn.TryGetCompFast<CompSuppressable>();
             bool flag2;
             if (compSuppressable != null)
             {

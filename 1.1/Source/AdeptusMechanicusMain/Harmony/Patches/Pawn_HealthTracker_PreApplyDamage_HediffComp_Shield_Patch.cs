@@ -2,13 +2,14 @@
 using Verse;
 using HarmonyLib;
 using System.Runtime.InteropServices;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Pawn_HealthTracker), "PreApplyDamage", null)]
     public static class Pawn_HealthTracker_PreApplyDamage_HediffCompShield_Patch
     {
-        public static List<Pawn> shieldedPawns;
+        public static List<HediffDef> shieldHediffs;
         // Token: 0x060011D5 RID: 4565 RVA: 0x000EC6D0 File Offset: 0x000EA8D0
         public static void Postfix(Pawn ___pawn, ref DamageInfo dinfo, ref bool absorbed)
         {
@@ -16,10 +17,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return;
             }
-            if (shieldedPawns == null)
+            if (shieldHediffs == null)
             {
-                Log.Message("Pawn_HealthTracker_PreApplyDamage_HediffCompShield_Patch pawns is null, setting to empty");
-                shieldedPawns = new List<Pawn>();
+                if (AMAMod.Dev) Log.Message("Pawn_HealthTracker_PreApplyDamage_HediffCompShield_Patch shieldHediffs is null, Populating");
+                shieldHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_Shield)) || x.HasComp(typeof(HediffComp_PhaseShifter)));
+                if (AMAMod.Dev) Log.Message("Pawn_HealthTracker_PreApplyDamage_HediffCompShield_Patch shieldHediffs Populated: "+ shieldHediffs.Count);
             }
             if (dinfo.Def != null && ___pawn != null && !___pawn.Downed)
             {
@@ -27,10 +29,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     return;
                 }
-            //    else Log.Message(___pawn + " spawned, checking damage");
-                for (int i = 0; i < ___pawn.health.hediffSet.hediffs.Count; i++)
+                //    else Log.Message(___pawn + " spawned, checking damage");
+                for (int i = 0; i < shieldHediffs.Count; i++)
                 {
-                    HediffWithComps item = ___pawn.health.hediffSet.hediffs[i] as HediffWithComps;
+                    HediffWithComps item = ___pawn.health.hediffSet.GetFirstHediffOfDef(shieldHediffs[i]) as HediffWithComps;
                     if (item != null)
                     {
                         if (item.comps.NullOrEmpty())
@@ -41,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             HediffComp comp = item.comps[ii];
                             //    Log.Message(___pawn + " checking " + item);
-                        //    HediffComp_Shield _Shield = item.TryGetComp<HediffComp_Shield>();
+                            //    HediffComp_Shield _Shield = item.TryGetCompFast<HediffComp_Shield>();
                             HediffComp_Shield _Shield = comp as HediffComp_Shield;
                             if (_Shield != null)
                             {
@@ -53,7 +55,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 //    Log.Message(___pawn + " " + item + " Is Not _Shield");
                             }
-                        //    HediffComp_PhaseShifter _Shifter = item.TryGetComp<HediffComp_PhaseShifter>();
+                            //    HediffComp_PhaseShifter _Shifter = item.TryGetCompFast<HediffComp_PhaseShifter>();
                             HediffComp_PhaseShifter _Shifter = comp as HediffComp_PhaseShifter;
                             if (_Shifter != null)
                             {
@@ -65,10 +67,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                             }
                         }
-                    //    else Log.Message(___pawn + " " + item + " Is Not _Shifter");
                     }
                 }
-
             }
         }
     }

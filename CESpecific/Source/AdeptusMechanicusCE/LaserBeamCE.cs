@@ -6,6 +6,7 @@ using Verse;
 using System.Collections.Generic;
 using Verse.Sound;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.Lasers;
 using CombatExtended;
 
 namespace AdeptusMechanicus
@@ -21,10 +22,10 @@ namespace AdeptusMechanicus
         
         void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
         {
-            if (this.def.HasModExtension<EffectProjectileExtension>())
+            if (this.def.HasModExtension<ProjectileVFX>())
             {
-                EffectProjectileExtension ext = this.def.GetModExtension<EffectProjectileExtension>();
-                ext.ThrowMote(position, this.Map, this.def.projectile.damageDef.explosionCellMote, ext.explosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ThingDef.Named(ext.ImpactMoteDef) ?? null, ext.ImpactMoteSizeRange?.RandomInRange ?? ext.ImpactMoteSize, ThingDef.Named(ext.ImpactGlowMoteDef) ?? null, ext.ImpactGlowMoteSizeRange?.RandomInRange ?? ext.ImpactGlowMoteSize, hitThing);
+                ProjectileVFX ext = this.def.GetModExtension<ProjectileVFX>();
+                ext.ImpactEffects(position, this.Map, ext.ExplosionMoteDef ?? this.def.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef,  ext.ImpactGlowMoteSize, hitThing);
             }
             /*
             else

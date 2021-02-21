@@ -8,6 +8,7 @@ using Verse.AI;
 using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -25,14 +26,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (parms.faction.def.modExtensions != null)
                         {
-                            if (parms.faction.def.GetModExtension<FactionDefRaidSoundExtension>() != null)
+                            FactionDefRaidSoundExtension raidsound = parms.faction.def.GetModExtensionFast<FactionDefRaidSoundExtension>();
+                            if (raidsound != null)
                             {
-                                if (parms.faction.def.GetModExtension<FactionDefRaidSoundExtension>() is FactionDefRaidSoundExtension raidsound)
+                                if (raidsound.raidSound != null)
                                 {
-                                    if (raidsound.raidSound != null)
-                                    {
-                                        raidsound.raidSound.PlayOneShotOnCamera();
-                                    }
+                                    raidsound.raidSound.PlayOneShotOnCamera();
                                 }
                             }
                         }

@@ -6,80 +6,80 @@ using Verse;
 using System.Collections.Generic;
 using Verse.Sound;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public class LaserBeam : Projectile
+    public class LaserBeam : Bullet
     {
         public new LaserBeamDef def => base.def as LaserBeamDef;
-
-        public override void Draw()
+        public override void Draw() { /*if (AMAMod.Dev) Log.Message(this.Label);*/ }
+        public virtual new Vector3 destination
         {
-
+            get => base.destination;
+            set => base.destination = value;
         }
         
-        void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
+        public virtual new Vector3 origin
+        {
+            get => base.origin;
+            set => base.origin = value;
+        }
+        Effecter effecter;
+        Thing hitThing;
+        /*
+        public void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
         {
             if (this.def.HasModExtension<EffectProjectileExtension>())
             {
-                EffectProjectileExtension ext = this.def.GetModExtension<EffectProjectileExtension>();
-                ext.ThrowMote(position, this.Map, this.def.projectile.damageDef.explosionCellMote, ext.explosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ThingDef.Named(ext.ImpactMoteDef) ?? null, ext.ImpactMoteSizeRange?.RandomInRange ?? ext.ImpactMoteSize, ThingDef.Named(ext.ImpactGlowMoteDef) ?? null, ext.ImpactGlowMoteSizeRange?.RandomInRange ?? ext.ImpactGlowMoteSize, hitThing);
+                EffectProjectileExtension ext = this.def.GetModExtensionFast<EffectProjectileExtension>();
+                ext.DoEffects(position, this.Map, ext.ExplosionMoteDef ?? this.def.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
             }
-            /*
-            else
-            {
-                TriggerEffect(effect, IntVec3.FromVector3(position));
-            }
-            */
-            TriggerEffect(effect, position);
-        }
-
-        void TriggerEffect(EffecterDef effect, Vector3 dest)
-        {
             if (effect == null) return;
-
-            var targetInfo = new TargetInfo(dest.ToIntVec3(), Map, false);
-
-            Effecter effecter = effect.Spawn();
-            effecter.Trigger(targetInfo, targetInfo);
-            effecter.Cleanup();
+            var targetInfo = hitThing != null ? new TargetInfo(hitThing) : new TargetInfo(IntVec3.FromVector3(position), Map, false);
+            if (hitThing != null) effecter = effect.Spawn(hitThing, hitThing.Map);
+            else effecter = effect.Spawn();
+            effecter.offset = (position - targetInfo.CenterVector3);
+            effecter.ticksLeft = this.def.effecterLifetime;
+            effecter.Trigger(targetInfo, null);
+            //    effecter.Cleanup();
         }
+        */
 
-        void SpawnBeam(Vector3 a, Vector3 b)
+        public void SpawnBeam(Vector3 a, Vector3 b, Thing hitThing = null)
         {
             LaserBeamGraphic graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
             if (graphic == null) return;
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = def;
-            graphic.Setup(launcher, a, b);
+            Pawn pawn = launcher as Pawn;
+            graphic.Setup(launcher, a, b, pawn?.equipment?.PrimaryEq?.PrimaryVerb, hitThing, effecter, def.explosionEffect);
             GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
         }
 
-        void SpawnBeamReflections(Vector3 a, Vector3 b, int count)
+        public void SpawnBeamReflections(Vector3 a, Vector3 b, int count)
         {
             for (int i = 0; i < count; i++)
             {
                 Vector3 dir = (b - a).normalized;
                 Rand.PushState();
-                Vector3 c = b - dir.RotatedBy(Rand.Range(-22.5f,22.5f)) * Rand.Range(1f,4f);
+                Vector3 c = b - dir.RotatedBy(Rand.Range(-22.5f, 22.5f)) * Rand.Range(1f, 4f);
                 Rand.PopState();
-
                 SpawnBeam(b, c);
             }
         }
-    //    public new ThingDef equipmentDef => base.equipmentDef
-        public new Vector3 destination => base.destination;
-        public new Vector3 origin => base.origin;
 
         protected override void Impact(Thing hitThing)
         {
+            this.hitThing = hitThing;
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
 
+            Pawn pawn = launcher as Pawn;
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 dir = (destination - origin).normalized;
             dir.y = 0;
 
-            Vector3 a = origin + dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
             Vector3 b;
             if (hitThing == null)
             {
@@ -103,24 +103,25 @@ namespace AdeptusMechanicus
                 b.z += Rand.Range(-0.5f, 0.5f);
                 Rand.PopState();
             }
+            destination = b;
 
-            a.y = b.y = def.Altitude;
+            /*a.y =*/ b.y = def.Altitude;
 
-            SpawnBeam(a, b);
-            /*
-            bool createsExplosion = this.def.projectile.explosionRadius>0f;
-            if (createsExplosion)
+        //    SpawnBeam(a, b);
+            
+            if (this.def.projectile.explosionRadius > 0f)
             {
                 this.Explode(hitThing, false);
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher.Faction);
             }
-            */
-            Pawn pawn = launcher as Pawn;
+            /*
             IDrawnWeaponWithRotation weapon = null;
             if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
-            if (weapon == null) {
+            if (weapon == null)
+            {
                 Building_LaserGun turret = launcher as Building_LaserGun;
-                if (turret != null) {
+                if (turret != null)
+                {
                     weapon = turret.gun as IDrawnWeaponWithRotation;
                 }
             }
@@ -129,13 +130,9 @@ namespace AdeptusMechanicus
                 float angle = (b - a).AngleFlat() - (intendedTarget.CenterVector3 - a).AngleFlat();
                 weapon.RotationOffset = (angle + 180) % 360 - 180;
             }
-
-
-
-
+            */
             if (hitThing == null)
             {
-                TriggerEffect(def.explosionEffect, b);
                 Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
                 Rand.PopState();
@@ -161,49 +158,125 @@ namespace AdeptusMechanicus
                 {
                     hitThing.TryAttachFire(0.01f);
                 }
-                TriggerEffect(def.explosionEffect, b, hitThing);
+                AddeEffects(hitThing);
             }
-            if (def.HediffToAdd!=null)
-            {
-                AddedEffect(hitThing);
-            }
+            //    TriggerEffect(def.explosionEffect, b, hitThing);
             Map map = base.Map;
-            base.Impact(hitThing);
-            if (this.EquipmentDef==null)
+            IntVec3 position = base.Position;
+            GenClamor.DoClamor(this, 2.1f, ClamorDefOf.Impact);
+            this.Destroy(DestroyMode.Vanish);
+            if (this.EquipmentDef == null)
             {
                 this.equipmentDef = this.launcher.def;
             }
-        //    Log.Message("BattleLogEntry_RangedImpact launcher: " + this.launcher + ", hitThing: " + hitThing + ", intendedTarget: " + this.intendedTarget.Thing + ", equipmentDef: " + this.equipmentDef + ", def: " + this.def+ ", targetCoverDef: " + this.targetCoverDef);
             BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, this.equipmentDef, this.def, this.targetCoverDef);
             Find.BattleLog.Add(battleLogEntry_RangedImpact);
+            this.NotifyImpact(hitThing, map, position);
             if (hitThing != null)
             {
-                DamageDef damageDef = this.def.projectile.damageDef;
-                float amount = DamageAmount;
-                float armorPenetration = ArmorPenetration;
-                float y = this.ExactRotation.eulerAngles.y;
-                Thing launcher = this.launcher;
-                ThingDef equipmentDef = this.equipmentDef;
-                DamageInfo dinfo = new DamageInfo(damageDef, amount, armorPenetration, y, launcher, null, equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
+                DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, (float)this.DamageAmount, this.ArmorPenetration, this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
                 hitThing.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_RangedImpact);
-                Pawn hitPawn = hitThing as Pawn;
-                if (hitPawn != null && hitPawn.stances != null && hitPawn.BodySize <= this.def.projectile.StoppingPower + 0.001f)
+                if (pawn != null && pawn.stances != null && pawn.BodySize <= this.def.projectile.StoppingPower + 0.001f)
                 {
-                    hitPawn.stances.StaggerFor(95);
+                    pawn.stances.StaggerFor(95);
                 }
+                if (this.def.projectile.extraDamages == null)
+                {
+                    return;
+                }
+                using List<ExtraDamage>.Enumerator enumerator = this.def.projectile.extraDamages.GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    ExtraDamage extraDamage = enumerator.Current;
+                    if (Rand.Chance(extraDamage.chance))
+                    {
+                        DamageInfo dinfo2 = new DamageInfo(extraDamage.def, extraDamage.amount, extraDamage.AdjustedArmorPenetration(), this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
+                        hitThing.TakeDamage(dinfo2).AssociateWithLog(battleLogEntry_RangedImpact);
+                    }
+                }
+                return;
             }
-            else
+            SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
+            if (base.Position.GetTerrain(map).takeSplashes)
             {
-                SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
-                MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
-                if (base.Position.GetTerrain(map).takeSplashes)
-                {
-                    MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
-                }
+                MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
+                return;
             }
+            //    AdeptusMoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
         }
 
-        public new float DamageAmount
+        public virtual void Explode(Thing hitThing, bool destroy = false)
+        {
+            Map map = base.Map;
+            IntVec3 intVec = (hitThing != null) ? hitThing.PositionHeld : this.destination.ToIntVec3();
+            if (destroy)
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+            bool flag = this.def.projectile.explosionEffect != null;
+            if (flag)
+            {
+                Effecter effecter = this.def.projectile.explosionEffect.Spawn();
+                effecter.Trigger(new TargetInfo(intVec, map, false), new TargetInfo(intVec, map, false));
+                effecter.Cleanup();
+            }
+            IntVec3 center = intVec;
+            Map map2 = map;
+            float explosionRadius = this.def.projectile.explosionRadius;
+            DamageDef damageDef = this.def.projectile.damageDef;
+            Thing launcher = this.launcher;
+            int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
+            SoundDef soundExplode = this.def.projectile.soundExplode;
+            ThingDef equipmentDef = this.equipmentDef;
+            ThingDef def = this.def;
+            ThingDef postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
+            float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
+            int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
+            ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
+            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
+        }
+
+
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+
+            Vector3 b = destination;
+           /* a.y = */b.y = def.Altitude;
+            SpawnBeam(origin, b, hitThing);
+            IDrawnWeaponWithRotation weapon = null;
+            Pawn pawn = launcher as Pawn;
+            if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
+            if (weapon == null)
+            {
+                Building_LaserGun turret = launcher as Building_LaserGun;
+                if (turret != null)
+                {
+                    weapon = turret.gun as IDrawnWeaponWithRotation;
+                }
+            }
+            if (weapon != null)
+            {
+                float angle = (b - origin).AngleFlat() - (intendedTarget.CenterVector3 - origin).AngleFlat();
+                weapon.RotationOffset = (angle + 180) % 360 - 180;
+            }
+            /*
+            if (this.def.impactReflection > 0)
+            {
+                Vector3 dir = (this.ExactRotation.eulerAngles - origin).normalized;
+                Rand.PushState();
+                for (int i = 0; i < this.def.impactReflection; i++)
+                {
+                    Vector3 c = ExactPosition - dir.RotatedBy(Rand.Range(-35.5f, 35.5f)) * Rand.Range(-1.5f, 1.5f);// 0.8f;
+                    SpawnBeam(b, c);
+                }
+                Rand.PopState();
+            }
+            */
+
+            base.DeSpawn(mode);
+        }
+        #region Methods
+        public new virtual float DamageAmount
         {
             get
             {
@@ -239,11 +312,33 @@ namespace AdeptusMechanicus
             }
         }
 
-        public new float ArmorPenetration
+        public new virtual float ArmorPenetration
         {
             get
             {
-                if (this.def.projectile.Volkite())
+                
+                if (this.def.projectile.Melta())
+                {
+                    //    Log.Message("Melta Blast");
+                    Pawn pawn = launcher as Pawn;
+                    if (pawn != null)
+                    {
+                        IDrawnWeaponWithRotation weapon = null;
+                        if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
+                        if (weapon != null)
+                        {
+                            if (origin != null && destination != null)
+                            {
+                                float distance = Vector3.Distance(origin, destination);
+                                if (distance > ((ThingWithComps)weapon).def.Verbs.Find(x => x.defaultProjectile == this.def).range / 2)
+                                {
+                                    return base.ArmorPenetration * 2;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (this.def.projectile.Volkite())
                 {
                     //    Log.Message("Volkite Blast");
                     Pawn pawn = launcher as Pawn;
@@ -266,50 +361,52 @@ namespace AdeptusMechanicus
                     }
 
                 }
+                
                 return base.ArmorPenetration;
             }
         }
 
-        // Token: 0x060000FB RID: 251 RVA: 0x00009248 File Offset: 0x00007448
-        protected virtual void Explode(Thing hitThing, bool destroy = false)
+        public void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
         {
-            Map map = base.Map;
-            IntVec3 intVec = (hitThing != null) ? hitThing.PositionHeld : this.destination.ToIntVec3();
-            if (destroy)
+            BulletImpactData impactData = new BulletImpactData
             {
-                this.Destroy(DestroyMode.Vanish);
-            }
-            bool flag = this.def.projectile.explosionEffect != null;
-            if (flag)
+                bullet = this,
+                hitThing = hitThing,
+                impactPosition = position
+            };
+            if (hitThing != null)
             {
-                Effecter effecter = this.def.projectile.explosionEffect.Spawn();
-                effecter.Trigger(new TargetInfo(intVec, map, false), new TargetInfo(intVec, map, false));
-                effecter.Cleanup();
+                hitThing.Notify_BulletImpactNearby(impactData);
             }
-            IntVec3 center = intVec;
-            Map map2 = map;
-            float explosionRadius = this.def.projectile.explosionRadius;
-            DamageDef damageDef = this.def.projectile.damageDef;
-            Thing launcher = this.launcher;
-            int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
-            SoundDef soundExplode = this.def.projectile.soundExplode;
-            ThingDef equipmentDef = this.equipmentDef;
-            ThingDef def = this.def;
-            ThingDef postExplosionSpawnThingDef = this.def.projectile.postExplosionSpawnThingDef;
-            float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
-            int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
-            ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
-            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
+            int num = 9;
+            for (int i = 0; i < num; i++)
+            {
+                IntVec3 c = position + GenRadial.RadialPattern[i];
+                if (c.InBounds(map))
+                {
+                    List<Thing> thingList = c.GetThingList(map);
+                    for (int j = 0; j < thingList.Count; j++)
+                    {
+                        if (thingList[j] != hitThing)
+                        {
+                            thingList[j].Notify_BulletImpactNearby(impactData);
+                        }
+                    }
+                }
+            }
         }
 
-
-        protected void AddedEffect(Thing hitThing)
+        public Vector3 Velocity(float angle)
         {
-            if (def != null && hitThing != null && hitThing is Pawn hitPawn)
+            return Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward;
+        }
+        protected virtual void AddeEffects(Thing hitThing)
+        {
+            if (def != null && def.HediffToAdd != null && hitThing != null && hitThing is Pawn hitPawn)
             {
                 Rand.PushState();
                 var rand = Rand.Value; // This is a random percentage between 0% and 100%
-                Rand.PopState();
+
                 StatDef ResistHediffStat = def.ResistHediffStat;
                 float AddHediffChance = def.AddHediffChance;
                 float ResistHediffChance = def.ResistHediffChance;
@@ -332,9 +429,7 @@ namespace AdeptusMechanicus
                 {
 
                     var effectOnPawn = hitPawn?.health?.hediffSet?.GetFirstHediffOfDef(def.HediffToAdd);
-                    Rand.PushState();
                     var randomSeverity = Rand.Range(0.15f, 0.30f);
-                    Rand.PopState();
                     if (effectOnPawn != null)
                     {
                         //If they already have plague, add a random range to its severity.
@@ -357,7 +452,9 @@ namespace AdeptusMechanicus
                     MoteMaker.ThrowText(hitThing.PositionHeld.ToVector3(), hitThing.MapHeld, "TST_PlagueBullet_FailureMote".Translate(Def.AddHediffChance), 12f);
                     */
                 }
+                Rand.PopState();
             }
         }
+        #endregion Methods
     }
 }

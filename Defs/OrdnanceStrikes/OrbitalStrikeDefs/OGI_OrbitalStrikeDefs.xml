@@ -45,18 +45,17 @@
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
 		<modExtensions>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-			<explosionMote>true</explosionMote>
-			<explosionMoteSize>0.75</explosionMoteSize>
-			<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-			<ImpactMoteSize>2</ImpactMoteSize>
-			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
-			<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
-			<trailMoteSize>0.35</trailMoteSize>
-			<trailerMoteInterval>3</trailerMoteInterval>
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.35</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -93,17 +92,34 @@
 			<soundExplode>OGIPC_Explosion</soundExplode>
 		</projectile>
 		<modExtensions>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-				<explosionMote>true</explosionMote>
-				<explosionMoteSize>0.75</explosionMoteSize>
-				<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
-				<ImpactMoteSize>2.5</ImpactMoteSize>
-				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>2.25</impactGlowMoteSize>
 			</li>
 			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-				<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-				<GlowMoteSize>2.5</GlowMoteSize>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>2</glowMoteSize>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_PlasmaTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>2</trailMoteSize>
+				<trailerMoteInterval>2</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksTrail</trailMoteDef>
+				<trailMoteSize>0.350</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -121,7 +137,7 @@
 		<strikeType>OG_IncomingOrbitalLanceStrike</strikeType>
 	</Def>
 
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGI_Bullet_LanceStrike</defName>
 		<label>lance blast</label>
 		<description>A Starship class laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
@@ -138,13 +154,12 @@
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
 		<modExtensions>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-				<explosionMote>true</explosionMote>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
 				<explosionMoteSize>0.75</explosionMoteSize>
-				<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-				<ImpactMoteSize>2</ImpactMoteSize>
-				<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-				<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 		</modExtensions>
 	</ThingDef>

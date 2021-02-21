@@ -29,8 +29,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                     GlowerProjectileExtension glower = __instance.def.GetModExtension<GlowerProjectileExtension>();
                     if (glower != null)
                     {
-                        Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed(glower.GlowMoteDef).graphicData.drawSize * glower.GlowMoteSize);
-                        Graphics.DrawMesh(mesh2, __instance.DrawPos, __instance.ExactRotation, DefDatabase<ThingDef>.GetNamed(glower.GlowMoteDef).graphic.MatSingle, 0);
+                        glower.Glow(__instance, __instance.ExactRotation);
+                        /*
+                        Mesh mesh2 = MeshPool.GridPlane(glower.GlowMoteDef.graphicData.drawSize * glower.GlowMoteSize);
+                        Graphics.DrawMesh(mesh2, __instance.DrawPos, __instance.ExactRotation, glower.GlowMoteDef.graphic.MatSingle, 0);
+                        */
                     }
                 }
             }

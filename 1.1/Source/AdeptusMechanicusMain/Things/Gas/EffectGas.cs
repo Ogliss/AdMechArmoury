@@ -9,7 +9,7 @@ namespace AdeptusMechanicus
     // Token: 0x02000006 RID: 6
     public class EffectGas : Gas
     {
-        public AdeptusGasProperties gasProperties => this.def.gas as AdeptusGasProperties;
+        public AdeptusGasProperties GasProps => this.def.gas as AdeptusGasProperties;
         public object cachedLabelMouseover { get; private set; }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -47,7 +47,7 @@ namespace AdeptusMechanicus
         {
             if (!base.Destroyed)
             {
-                if (gasProperties?.addHediff != null)
+                if (GasProps?.addHediff != null)
                 {
                     List<Thing> thingList = GridsUtility.GetThingList(base.Position, base.Map);
                     for (int i = 0; i < thingList.Count; i++)
@@ -56,7 +56,7 @@ namespace AdeptusMechanicus
                         if (pawn != null && !this.touchingPawns.Contains(pawn))
                         {
                             this.touchingPawns.Add(pawn);
-                            this.addHediffToPawn(pawn, gasProperties.addHediff, gasProperties.hediffAddChance, gasProperties.hediffSeverity, gasProperties.onlyAffectLungs);
+                            this.AddHediffToPawn(pawn, GasProps.addHediff, GasProps.hediffAddChance, GasProps.hediffSeverity, GasProps.onlyAffectLungs);
                         }
                     }
                     for (int j = 0; j < this.touchingPawns.Count; j++)
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06000026 RID: 38 RVA: 0x00002F9C File Offset: 0x0000119C
-        public void damageEntities(Thing e, int amt)
+        public void DamageEntities(Thing e, int amt)
         {
             DamageInfo damageInfo = new DamageInfo(DamageDefOf.Burn, (float)amt, 0f, -1f, null, null, null, 0, null);
             if (e != null)
@@ -83,7 +83,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06000027 RID: 39 RVA: 0x00002FDC File Offset: 0x000011DC
-        public void damageBuildings(int amt)
+        public void DamageBuildings(int amt)
         {
             IntVec3 intVec = GenAdj.RandomAdjacentCell8Way(this);
             if (GenGrid.InBounds(intVec, base.Map))
@@ -99,7 +99,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06000028 RID: 40 RVA: 0x00003048 File Offset: 0x00001248
-        public void addHediffToPawn(Pawn p, HediffDef _heddiff, float _addhediffChance, float _hediffseverity, bool onlylungs)
+        public void AddHediffToPawn(Pawn p, HediffDef _heddiff, float _addhediffChance, float _hediffseverity, bool onlylungs)
         {
             bool EyeProtection = false;
             bool LungProtection = false;
@@ -176,7 +176,7 @@ namespace AdeptusMechanicus
                                     else
                                     {
                                         HediffSet hediffSet = health.hediffSet;
-                                        hediff2 = ((hediffSet != null) ? hediffSet.GetFirstHediffOfDef(_heddiff, false) : null);
+                                        hediff2 = (hediffSet?.GetFirstHediffOfDef(_heddiff, false));
                                     }
                                 }
                                 Hediff hediff3 = hediff2;
@@ -213,7 +213,7 @@ namespace AdeptusMechanicus
                         else
                         {
                             HediffSet hediffSet2 = health2.hediffSet;
-                            hediff4 = ((hediffSet2 != null) ? hediffSet2.GetFirstHediffOfDef(_heddiff, false) : null);
+                            hediff4 = (hediffSet2?.GetFirstHediffOfDef(_heddiff, false));
                         }
                     }
                     Hediff hediff5 = hediff4;

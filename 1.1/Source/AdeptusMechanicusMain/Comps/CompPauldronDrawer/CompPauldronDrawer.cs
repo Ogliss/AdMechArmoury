@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -140,7 +141,7 @@ namespace AdeptusMechanicus
                 if (colours == null && !colortest)
                 {
                     colortest = true;
-                    colours = this.apparel.TryGetComp<CompColorable>();
+                    colours = this.apparel.TryGetCompFast<CompColorable>();
                 }
                 return colours;
             }

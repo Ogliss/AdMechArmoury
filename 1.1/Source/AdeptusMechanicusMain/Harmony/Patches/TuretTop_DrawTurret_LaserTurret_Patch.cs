@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.Lasers;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;

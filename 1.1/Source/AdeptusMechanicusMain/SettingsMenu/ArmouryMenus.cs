@@ -16,15 +16,15 @@ namespace AdeptusMechanicus
         private static Listing_StandardExpanding listing_Menu = new Listing_StandardExpanding();
         private static Listing_StandardExpanding listing_Races = new Listing_StandardExpanding();
         private static Listing_StandardExpanding listing_General = new Listing_StandardExpanding();
-        private static float listing_GeneralSpecialRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ArmouryGeneralSpecialRules, 2, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
-        private static float listing_GeneralSpecialRulesContents => AMAMod.Instance.Length(settings.ArmouryGeneralSpecialRules, 1, AMAMod.lineheight, 0, 0);
-        private static float listing_WeaponSpecialRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowAllowedWeaponSpecialRules, 5, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
-        private static float listing_WeaponSpecialRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeaponSpecialRules, 4, AMAMod.lineheight, 0, 0);
-        private static float listing_AllowedWeaponRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowAllowedWeapons, 4, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
-        private static float listing_AllowedWeaponRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeapons, 3, AMAMod.lineheight, 0, 0);
+        private static float Listing_GeneralSpecialRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ArmouryGeneralSpecialRules, 2, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
+        private static float Listing_GeneralSpecialRulesContents => AMAMod.Instance.Length(settings.ArmouryGeneralSpecialRules, 1, AMAMod.lineheight, 0, 0);
+        private static float Listing_WeaponSpecialRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowAllowedWeaponSpecialRules, 5, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
+        private static float Listing_WeaponSpecialRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeaponSpecialRules, 4, AMAMod.lineheight, 0, 0);
+        private static float Listing_AllowedWeaponRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowAllowedWeapons, 4, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
+        private static float Listing_AllowedWeaponRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeapons, 3, AMAMod.lineheight, 0, 0);
 
-        private static float listing_ArmouryLength => (settings.ShowArmourySettings ? 16 : 0) + listing_ArmouryContents + armouryMenuInc;
-        private static float listing_ArmouryContents => listing_GeneralSpecialRulesLength + listing_WeaponSpecialRulesLength + listing_AllowedWeaponRulesLength;
+        private static float Listing_ArmouryLength => (settings.ShowArmourySettings ? 16 : 0) + Listing_ArmouryContents + armouryMenuInc;
+        private static float Listing_ArmouryContents => Listing_GeneralSpecialRulesLength + Listing_WeaponSpecialRulesLength + Listing_AllowedWeaponRulesLength;
         private static float armouryMenuInc = 0f;
         private static float listing_MenuLength = 0f;
         private static float listing_MenuMax = 0f;
@@ -34,15 +34,15 @@ namespace AdeptusMechanicus
             listing_Menu.maxOneColumn = true;
             // Armoury Mod Options
         //    listing_Menu = listing_Main.BeginSection(listing_ArmouryLength, false, 3, 4, 0); 
-            listing_Menu = listing_Main.BeginSection(listing_ArmouryLength, false, 3, 4, 0);
+            listing_Menu = listing_Main.BeginSection(Listing_ArmouryLength, false, 3, 4, 0);
 
 
             // Armoury mod General Special rules options menu
             {
-                Listing_StandardExpanding listing = listing_Menu.BeginSection(listing_GeneralSpecialRulesLength, false, 3, 4, 0);
+                Listing_StandardExpanding listing = listing_Menu.BeginSection(Listing_GeneralSpecialRulesLength, false, 3, 4, 0);
                 if (listing.CheckboxLabeled("AMA_ShowSpecialRules".Translate(), ref settings.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex))
                 {
-                    Listing_StandardExpanding listing_General = listing.BeginSection(listing_GeneralSpecialRulesContents, true, 0, 4, 0);
+                    Listing_StandardExpanding listing_General = listing.BeginSection(Listing_GeneralSpecialRulesContents, true, 0, 4, 0);
                     listing_General.ColumnWidth *= 0.488f;
                     listing_General.CheckboxLabeled("AMA_AllowDeepStrike".Translate(), ref settings.AllowDeepStrike, "AMA_AllowDeepStrikeDesc".Translate());
                     listing_General.NewColumn();
@@ -55,10 +55,10 @@ namespace AdeptusMechanicus
             }
             // Armoury mod Weapon Special rules options menu
             {
-                Listing_StandardExpanding listing = listing_Menu.BeginSection(listing_WeaponSpecialRulesLength, false, 3, 4, 0);
+                Listing_StandardExpanding listing = listing_Menu.BeginSection(Listing_WeaponSpecialRulesLength, false, 3, 4, 0);
                 if (listing.CheckboxLabeled("AMA_ShowWeaponSpecialRules".Translate(), ref settings.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex))
                 {
-                    Listing_StandardExpanding listing_General = listing.BeginSection(listing_WeaponSpecialRulesContents, true);
+                    Listing_StandardExpanding listing_General = listing.BeginSection(Listing_WeaponSpecialRulesContents, true);
                     listing_General.ColumnWidth *= 0.488f;
                     listing_General.CheckboxLabeled("AMA_AllowRapidFire".Translate(), ref settings.AllowRapidFire, "AMA_AllowRapidFireDesc".Translate());
                     listing_General.CheckboxLabeled("AMA_AllowGetsHot".Translate(), ref settings.AllowGetsHot, "AMA_AllowGetsHotDesc".Translate());
@@ -77,10 +77,10 @@ namespace AdeptusMechanicus
             }
             // Armoury mod Allowed Weapons options menu
             {
-                Listing_StandardExpanding listing = listing_Menu.BeginSection(listing_AllowedWeaponRulesLength, false, 3, 4, 0);
+                Listing_StandardExpanding listing = listing_Menu.BeginSection(Listing_AllowedWeaponRulesLength, false, 3, 4, 0);
                 if (listing.CheckboxLabeled("AMA_ShowAllowedWeapons".Translate(), ref settings.ShowAllowedWeapons, "AMA_ShowAllowedWeaponsDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex))
                 {
-                    Listing_StandardExpanding listing_General = listing.BeginSection(listing_AllowedWeaponRulesContents, true);
+                    Listing_StandardExpanding listing_General = listing.BeginSection(Listing_AllowedWeaponRulesContents, true);
                     listing_General.ColumnWidth *= 0.32f;
                     listing_General.CheckboxLabeled("AMA_AllowImperialWeapons".Translate(), ref settings.AllowImperialWeapons, "AMA_AllowImperialWeaponsDesc".Translate());
                     listing_General.CheckboxLabeled("AMA_AllowMechanicusWeapons".Translate(), ref settings.AllowMechanicusWeapons, "AMA_AllowMechanicusWeaponsDesc".Translate());

@@ -14,8 +14,8 @@ namespace AdeptusMechanicus
         private static AMAMod mod = AMAMod.Instance;
         private static bool Dev => AMAMod.Dev;
         private static Listing_StandardExpanding listing_Menu = new Listing_StandardExpanding();
-        private static float listing_ArmouryIntergrationLength => mod.Length(showArmouryIntergrationOptions, 1, AMAMod.lineheight, 8, 0) + mod.Length(showArmouryIntergrationOptions, mod.patchesCount, AMAMod.lineheight, 0, 0) + Inc;
-        private static float listing_ArmouryIntergrationContents => mod.Length(showArmouryIntergrationOptions, mod.patchesCount, AMAMod.lineheight, 0, 0);
+        private static float Listing_ArmouryIntergrationLength => mod.Length(showArmouryIntergrationOptions, 1, AMAMod.lineheight, 8, 0) + mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0) + Inc;
+        private static float Listing_ArmouryIntergrationContents => mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0);
 
         private static float Inc = 0f;
         private static float listing_MenuLength = 0f;
@@ -31,9 +31,9 @@ namespace AdeptusMechanicus
             if (Dev)
             {
                 Log.Message("showArmouryIntergrationOptions "+ showArmouryIntergrationOptions);
-                Log.Message("mod.patchesCount " + mod.patchesCount);
+                Log.Message("mod.patchesCount " + mod.PatchesCount);
                 Log.Message("AMAMod.lineheight " + AMAMod.lineheight);
-                labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + mod.Length(showArmouryIntergrationOptions, mod.patchesCount, AMAMod.lineheight, 0, 0) + " Total Length: " + listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + Inc;
+                labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0) + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + Inc;
             }
 
             listing_Menu.maxOneColumn = true;

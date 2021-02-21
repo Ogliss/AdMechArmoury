@@ -44,7 +44,7 @@ namespace RimWorld
                 }
                 Building building_CrashedShipPart = (Building)ThingMaker.MakeThing(this.def.mechClusterBuilding, null);
 
-                CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetComp<CompPawnSpawnerOnDamaged>();
+                CompPawnSpawnerOnDamaged damaged = building_CrashedShipPart.TryGetCompFast<CompPawnSpawnerOnDamaged>();
                 Faction faction = damaged.faction ?? Faction.OfMechanoids;
                 building_CrashedShipPart.SetFaction(faction, null);
                 building_CrashedShipPart.GetComp<CompPawnSpawnerOnDamaged>().pointsLeft = Mathf.Max(parms.points * 0.9f, 300f);

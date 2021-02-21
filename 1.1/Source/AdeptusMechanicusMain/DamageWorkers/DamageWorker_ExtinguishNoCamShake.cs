@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AdeptusMechanicus;
+using System.Collections.Generic;
 using Verse;
 
 namespace RimWorld
@@ -30,7 +31,7 @@ namespace RimWorld
             {
                 GenTemperature.PushHeat(explosion.Position, explosion.Map, this.def.explosionHeatEnergyPerCell * (float)cellsToAffect.Count);
             }
-            MoteMaker.MakeStaticMote(explosion.Position, explosion.Map, ThingDefOf.Mote_ExplosionFlash, explosion.radius * 6f);
+            AdeptusMoteMaker.MakeStaticMote(explosion.DrawPos, explosion.Map, ThingDefOf.Mote_ExplosionFlash, explosion.radius * 6f);
         }
         
         // Token: 0x04003371 RID: 13169

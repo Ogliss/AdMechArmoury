@@ -32,7 +32,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     pawnsN = pawns.FindAll(x => !x.canDeepStrike() && !x.canInfiltrate());
 
                     Rand.PushState();
-                    bool DeepStrike = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeChance : 0f)));
+                    bool DeepStrike = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtensionFast<FactionDefExtension>().DeepStrikeChance : 0f)));
                     Rand.PopState();
                     if (!pawns.FindAll(x => x.canDeepStrike()).NullOrEmpty() && DeepStrike)
                     {
@@ -57,9 +57,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (!DeepStrikers.NullOrEmpty())
                         {
                             Rand.PushState();
-                            map.DeepStrike().strikeMinDelay = parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks();
-                            map.DeepStrike().strikeMaxDelay = parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks();
-                            int delay = Rand.RangeInclusive(parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks(), parms.faction.def.GetModExtension<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks());
+                            map.DeepStrike().strikeMinDelay = parms.faction.def.GetModExtensionFast<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks();
+                            map.DeepStrike().strikeMaxDelay = parms.faction.def.GetModExtensionFast<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks();
+                            int delay = Rand.RangeInclusive(parms.faction.def.GetModExtensionFast<FactionDefExtension>().DeepStrikeDelayMin.RandomInRange.SecondsToTicks(), parms.faction.def.GetModExtensionFast<FactionDefExtension>().DeepStrikeDelayMax.RandomInRange.SecondsToTicks());
                             Rand.PopState();
                             DeepStrike strikeEntry = new DeepStrike(parms.faction, delay);
                             strikeEntry.AddPawns(DeepStrikers);
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         pawnsN.Concat(pawns.FindAll(x => x.canDeepStrike()));
                     }
                     Rand.PushState();
-                    bool Infiltrate = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtension<FactionDefExtension>().InfiltrateChance : 0f)));
+                    bool Infiltrate = (Rand.Chance((parms.faction.def.HasModExtension<FactionDefExtension>() ? parms.faction.def.GetModExtensionFast<FactionDefExtension>().InfiltrateChance : 0f)));
                     Rand.PopState();
                     if (!pawns.FindAll(x => x.canInfiltrate()).NullOrEmpty() && Infiltrate)
                     {
@@ -102,8 +102,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 map.Infiltrate().GetDirectlyHeldThings().TryAdd(p, false);
                             }
                             map.Infiltrate().raidLastTick = Find.TickManager.TicksGame;
-                            map.Infiltrate().strikeMinDelay = parms.faction.def.GetModExtension<FactionDefExtension>().InfiltrateDelayMin.RandomInRange.SecondsToTicks();
-                            map.Infiltrate().strikeMaxDelay = parms.faction.def.GetModExtension<FactionDefExtension>().InfiltrateDelayMax.RandomInRange.SecondsToTicks();
+                            map.Infiltrate().strikeMinDelay = parms.faction.def.GetModExtensionFast<FactionDefExtension>().InfiltrateDelayMin.RandomInRange.SecondsToTicks();
+                            map.Infiltrate().strikeMaxDelay = parms.faction.def.GetModExtensionFast<FactionDefExtension>().InfiltrateDelayMax.RandomInRange.SecondsToTicks();
                         }
                         //    Log.Message(string.Format("Post Arrive_DSI pawns: {0}", pawns.Count));
                     }

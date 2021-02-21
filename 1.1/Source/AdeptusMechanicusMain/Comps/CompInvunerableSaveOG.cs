@@ -40,12 +40,12 @@ namespace AdeptusMechanicus
                 Vector3 impactAngleVect = Vector3Utility.HorizontalVectorFromAngle(dinfo.Angle);
                 Vector3 loc = base.parent.TrueCenter() + impactAngleVect.RotatedBy(180f) * 0.5f;
                 float num = Mathf.Min(10f, 2f + (float)dinfo.Amount / 10f);
-                MoteMaker.MakeStaticMote(loc, base.parent.Map, ThingDefOf.Mote_ExplosionFlash, num);
+                AdeptusMoteMaker.MakeStaticMote(loc, base.parent.Map, ThingDefOf.Mote_ExplosionFlash, num);
                 int num2 = (int)num;
                 for (int i = 0; i < num2; i++)
                 {
                     Rand.PushState();
-                    MoteMaker.ThrowDustPuff(loc, base.parent.Map, Rand.Range(0.8f, 1.2f));
+                    AdeptusMoteMaker.ThrowDustPuff(loc, base.parent.Map, Rand.Range(0.8f, 1.2f));
                     float angle = (float)Rand.Range(0, 360);
                     Rand.PopState();
                     float num3 = Mathf.Lerp(1.2f, 1.55f, 2f);
@@ -59,7 +59,7 @@ namespace AdeptusMechanicus
                         num3 -= num5;
                     }
                     Vector3 s = new Vector3(num3, 1f, num3);
-                    Matrix4x4 matrix = default(Matrix4x4);
+                    Matrix4x4 matrix = default;
                     matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                     Graphics.DrawMesh(MeshPool.plane10, matrix, CompInvunerableSaveOGStatic.BubbleMat, 0);
                 }

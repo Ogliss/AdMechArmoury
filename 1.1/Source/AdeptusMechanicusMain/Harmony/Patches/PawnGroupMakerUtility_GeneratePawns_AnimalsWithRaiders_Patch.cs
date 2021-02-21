@@ -34,7 +34,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 SpawnWithAnimalsExtension ext = null;
                 if (trainer.kindDef.HasModExtension<SpawnWithAnimalsExtension>())
                 {
-                    ext = trainer.kindDef.GetModExtension<SpawnWithAnimalsExtension>();
+                    ext = trainer.kindDef.GetModExtensionFast<SpawnWithAnimalsExtension>();
                 }
                 if (ext!=null)
                 {

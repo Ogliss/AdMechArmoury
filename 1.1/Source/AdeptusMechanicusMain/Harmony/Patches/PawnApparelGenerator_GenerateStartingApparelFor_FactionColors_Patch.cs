@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             foreach (Apparel thing in pawn.apparel.WornApparel)
             {
-                CompColorableTwoFaction FactionColorable = thing.TryGetComp<CompColorableTwoFaction>();
+                CompColorableTwoFaction FactionColorable = thing.TryGetCompFast<CompColorableTwoFaction>();
                 if (FactionColorable != null && pawn.Faction !=null)
                 {
                     FactionColorable.FactionDef = pawn.Faction.def;

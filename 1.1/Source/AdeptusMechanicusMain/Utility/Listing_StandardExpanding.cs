@@ -307,11 +307,11 @@ namespace AdeptusMechanicus
 
 		public override void End()
 		{
-			extendRec();
+			ExtendRec();
 			base.End();
 		}
 
-        public void extendRec()
+        public void ExtendRec()
 		{
             if (this.curY > this.listingRect.height)
 			{

@@ -24,7 +24,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance.EquipmentSource != null)
             {
-                CompAdvancedGraphic advancedWeaponGraphic = __instance.EquipmentSource.TryGetComp<CompAdvancedGraphic>();
+                CompAdvancedGraphic advancedWeaponGraphic = __instance.EquipmentSource.TryGetCompFast<CompAdvancedGraphic>();
                 if (advancedWeaponGraphic != null)
                 {
                     __result = __instance.EquipmentSource.Graphic.MatSingleFor(__instance.EquipmentSource).mainTexture as Texture2D;

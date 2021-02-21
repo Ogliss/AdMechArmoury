@@ -4,7 +4,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000033 RID: 51
+    // AdeptusMechanicus.PlaceWorker_OnTopOfLowWalls
     public class PlaceWorker_OnTopOfLowWalls : PlaceWorker
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
@@ -20,6 +20,14 @@ namespace AdeptusMechanicus
                 return base.AllowsPlacing(checkingDef, loc, rot, map, thingToIgnore, thing);
             }
             return result;
+        }
+        public override bool ForceAllowPlaceOver(BuildableDef other)
+        {
+            if (other.defName.Contains("Sandbag") || other.defName.Contains("Barricade") || other.graphic.data.linkFlags.HasFlag(LinkFlags.Barricades) || other.graphic.data.linkFlags.HasFlag(LinkFlags.Sandbags))
+            {
+                return true;
+            }
+            return base.ForceAllowPlaceOver(other);
         }
     }
 }

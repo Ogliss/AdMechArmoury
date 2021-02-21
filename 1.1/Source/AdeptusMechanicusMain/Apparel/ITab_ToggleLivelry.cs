@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return SelThing.TryGetComp<CompPauldronDrawer>();
+                return SelThing.TryGetCompFast<CompPauldronDrawer>();
             }
         }
 
@@ -53,14 +54,14 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return SelThing.TryGetComp<CompApparelExtraPartDrawer>();
+                return SelThing.TryGetCompFast<CompApparelExtraPartDrawer>();
             }
         }
         private CompColorableTwoFaction Colorable
         {
             get
             {
-                return SelThing.TryGetComp<CompColorableTwoFaction>();
+                return SelThing.TryGetCompFast<CompColorableTwoFaction>();
             }
         }
 
@@ -186,7 +187,7 @@ namespace AdeptusMechanicus
                     for (int i = 0; i < DefDatabase<FactionDef>.AllDefsListForReading.Count; i++)
                     {
                         FactionDef f = DefDatabase<FactionDef>.AllDefsListForReading[i];
-                        FactionDefExtension extension = f.GetModExtension<FactionDefExtension>();
+                        FactionDefExtension extension = f.GetModExtensionFast<FactionDefExtension>();
                         if (f.defName.Contains(Colorable.Props.Key) && extension != null)
                         {
                             if (extension.factionColor.HasValue)
@@ -370,7 +371,7 @@ namespace AdeptusMechanicus
                                 //    e.faction = variant.factionDef;
                                     if (variant.factionDef.HasModExtension<FactionDefExtension>())
                                     {
-                                        FactionDefExtension extension = variant.factionDef.GetModExtension<FactionDefExtension>();
+                                        FactionDefExtension extension = variant.factionDef.GetModExtensionFast<FactionDefExtension>();
                                         if (extension.factionColor != null)
                                         {
                                             color = extension.factionColor.Value;
@@ -485,7 +486,7 @@ namespace AdeptusMechanicus
                 while (enumerator.MoveNext())
                 {
                     FactionDef variant = enumerator.Current;
-                    FactionDefExtension ext = enumerator.Current.GetModExtension<FactionDefExtension>();
+                    FactionDefExtension ext = enumerator.Current.GetModExtensionFast<FactionDefExtension>();
 
                     if (e.FactionDef != variant && variant.defName.Contains(key))
                     {

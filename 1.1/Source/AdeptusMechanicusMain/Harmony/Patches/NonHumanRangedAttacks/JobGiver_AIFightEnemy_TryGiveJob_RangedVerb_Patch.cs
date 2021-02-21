@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AbilitesExtended;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -51,13 +52,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //Log.Warning("Added Ranged Verb");
                 }
             }
-            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null))
+            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null))
             {
-                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null);
+                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null);
 
                 foreach (Hediff item in list)
                 {
-                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetComp<HediffComp_VerbGiverExtra>();
+                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetCompFast<HediffComp_VerbGiverExtra>();
                     if (_VerbGiver != null)
                     {
                         for (int i = 0; i < _VerbGiver.verbTracker.AllVerbs.Count; i++)
@@ -294,13 +295,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //Log.Warning("Added Ranged Verb");
                 }
             }
-            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null))
+            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null))
             {
-                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null);
+                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null);
 
                 foreach (Hediff item in list)
                 {
-                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetComp<HediffComp_VerbGiverExtra>();
+                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetCompFast<HediffComp_VerbGiverExtra>();
                     if (_VerbGiver != null)
                     {
                         for (int i = 0; i < _VerbGiver.verbTracker.AllVerbs.Count; i++)
@@ -508,13 +509,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //Log.Warning("Added Ranged Verb");
                 }
             }
-            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null))
+            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null))
             {
-                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_VerbGiverExtra>() != null);
+                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null);
 
                 foreach (Hediff item in list)
                 {
-                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetComp<HediffComp_VerbGiverExtra>();
+                    HediffComp_VerbGiverExtra _VerbGiver = item.TryGetCompFast<HediffComp_VerbGiverExtra>();
                     if (_VerbGiver != null)
                     {
                         for (int i = 0; i < _VerbGiver.verbTracker.AllVerbs.Count; i++)

@@ -157,7 +157,7 @@ namespace AdeptusMechanicus
 			{
 				if (thing.Faction==Faction.OfPlayer)
 				{
-					CompPauldronDrawer drawer = thing.TryGetComp<CompPauldronDrawer>();
+					CompPauldronDrawer drawer = thing.TryGetCompFast<CompPauldronDrawer>();
 					if (drawer != null)
 					{
 						if (!drawer.factiongTag.NullOrEmpty())
@@ -169,7 +169,7 @@ namespace AdeptusMechanicus
 				}
 				if (thing.Faction.def.HasModExtension<FactionDefExtension>())
 				{
-					FactionDefExtension extension = thing.Faction.def.GetModExtension<FactionDefExtension>();
+					FactionDefExtension extension = thing.Faction.def.GetModExtensionFast<FactionDefExtension>();
 					if (!extension.factionTextureTag.NullOrEmpty())
 					{
 						graphic = this.subGraphics.First(x=> x.path.Contains(extension.factionTextureTag));

@@ -4,7 +4,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    public class GunVerbEntry: IExposable
+    public class GunVerbEntry
     {
         public bool RapidFire = false;
 
@@ -44,13 +44,8 @@ namespace AdeptusMechanicus
 
         public int ScattershotCount = 0;
         public ResearchProjectDef requiredResearch = null;
-        public float originalWarmup = -1;
         public VerbProperties VerbProps;
         public List<string> UserEffectImmuneList = new List<string>();
 
-        public void ExposeData()
-        {
-            Scribe_Values.Look<float>(ref this.originalWarmup, "originalWarmup", -1f);
-        }
     }
 }

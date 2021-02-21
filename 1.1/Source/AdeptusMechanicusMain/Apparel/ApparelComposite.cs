@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus
 {
@@ -29,7 +30,7 @@ namespace AdeptusMechanicus
                 factionColours = value;
             }
         }
-        FactionDefExtension Extension => FactionColours !=null && FactionColours.HasModExtension<FactionDefExtension>() ? FactionColours?.GetModExtension<FactionDefExtension>() : null;
+        FactionDefExtension Extension => FactionColours !=null ? (FactionColours?.GetModExtensionFast<FactionDefExtension>() ?? null) : null;
 
         private List<CompPauldronDrawer> pauldrons;
         public List<CompPauldronDrawer> Pauldrons

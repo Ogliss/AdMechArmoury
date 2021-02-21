@@ -1,4 +1,5 @@
-﻿using AdeptusMechanicus.HarmonyInstance;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.HarmonyInstance;
 using HarmonyLib;
 using RimWorld;
 using System;
@@ -73,7 +74,7 @@ namespace AdeptusMechanicus
         public Vector3 SouthOffset => this.Props.SouthOffset;
         public Vector3 EastOffset => this.Props.EastOffset;
         public Vector3 WestOffset => this.Props.WestOffset;
-        public float altOffet(string alt)
+        public float AltOffet(string alt)
         {
             switch (alt.CapitalizeFirst())
             {
@@ -107,28 +108,28 @@ namespace AdeptusMechanicus
             if (rot == Rot4.North)
             {
                 vector = NorthOffset;
-                altOffset = altOffet(northalt);
+                altOffset = AltOffet(northalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.South)
             {
                 vector = SouthOffset;
-                altOffset = altOffet(southalt);
+                altOffset = AltOffet(southalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.East)
             {
                 vector = EastOffset;
-                altOffset = altOffet(eastalt);
+                altOffset = AltOffet(eastalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.West)
             {
                 vector = WestOffset;
-                altOffset = altOffet(westalt);
+                altOffset = AltOffet(westalt);
                 alt = northalt;
             }
             vector.y += Math.Min(altOffset, YOffset_CarriedThing);
@@ -143,7 +144,7 @@ namespace AdeptusMechanicus
                 {
                     if (apparel != null)
                     {
-                        drawer = apparel.TryGetComp<CompPauldronDrawer>();
+                        drawer = apparel.TryGetCompFast<CompPauldronDrawer>();
                     }
                 }
                 return drawer;
@@ -236,7 +237,7 @@ namespace AdeptusMechanicus
                 bool notPlayer = pawn.Faction != null && (pawn.Faction != Faction.OfPlayer);
                 if (notPlayer)
                 {
-                    FactionDefExtension ext = pawn.Faction.def.HasModExtension<FactionDefExtension>() ? pawn.Faction.def.GetModExtension<FactionDefExtension>() : null;
+                    FactionDefExtension ext = pawn.Faction.def.HasModExtension<FactionDefExtension>() ? pawn.Faction.def.GetModExtensionFast<FactionDefExtension>() : null;
                     bool factionTextures = UseFactionTextures && ext?.factionTextureTag != null;
                     if (factionTextures)
                     {
@@ -314,7 +315,7 @@ namespace AdeptusMechanicus
                             {
                                 FactionDef f = factions[i];
 
-                                FactionDefExtension e = f.HasModExtension<FactionDefExtension>() ? f.GetModExtension<FactionDefExtension>() : null;
+                                FactionDefExtension e = f.HasModExtension<FactionDefExtension>() ? f.GetModExtensionFast<FactionDefExtension>() : null;
                                 if (e == null)
                                 {
                                     continue;

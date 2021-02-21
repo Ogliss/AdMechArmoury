@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using UnityEngine;
 using Verse;
@@ -17,13 +18,13 @@ namespace AdeptusMechanicus
 			{
                 if (equippable == null && this.parent.def.IsWeapon)
                 {
-					equippable = this.parent.TryGetComp<CompEquippable>();
+					equippable = this.parent.TryGetCompFast<CompEquippable>();
 				}
 				return equippable ?? null;
 			}
 		}
 
-		public Pawn pawn
+		public Pawn Pawn
 		{
 			get
 			{
@@ -52,19 +53,19 @@ namespace AdeptusMechanicus
 			{
 			//	Log.Message("CompOwnerDualColorable Color ");
 				
-				if (pawn != null)
+				if (Pawn != null)
 				{
-					if (pawn.RaceProps.Humanlike)
+					if (Pawn.RaceProps.Humanlike)
 					{
 					//	Log.Message("Humanlike Equippable Color " + pawn.Graphic.Color);
-						return pawn.Graphic.Color;
+						return Pawn.Graphic.Color;
 					//	return pawn.DrawColor;
 					}
 					else
 					{
 					//	Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColor);
 					//	Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.color);
-						return pawn.Drawer.renderer.graphics.nakedGraphic.color;
+						return Pawn.Drawer.renderer.graphics.nakedGraphic.color;
 						//	return pawn.DrawColorTwo;
 					}
 				}
@@ -91,19 +92,19 @@ namespace AdeptusMechanicus
 			get
 			{
 			//	Log.Message("CompOwnerDualColorable ColorTwo ");
-				if (pawn != null)
+				if (Pawn != null)
 				{
-					if (pawn.RaceProps.Humanlike)
+					if (Pawn.RaceProps.Humanlike)
 					{
 					//	Log.Message("Humanlike Equippable ColorTwo " + pawn.DrawColorTwo);
-						return pawn.DrawColorTwo;
+						return Pawn.DrawColorTwo;
 					}
 					else
 					{
 					//	Log.Message("NonHumanlike DrawColor Color " + pawn.DrawColorTwo);
 					//	Log.Message("NonHumanlike nakedGraphic Color " + pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo);
-						return pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo;
-						return pawn.DrawColorTwo;
+						return Pawn.Drawer.renderer.graphics.nakedGraphic.colorTwo;
+					//	return Pawn.DrawColorTwo;
 					}
 				}
 				if (!this.ActiveTwo)

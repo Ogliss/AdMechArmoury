@@ -54,7 +54,7 @@ namespace AdeptusMechanicus
             Graphic_Cycle graphic = base.Graphic as Graphic_Cycle;
             if (graphic != null)
             {
-                subGraphics = graphic.graphics;
+                subGraphics = graphic.Graphics;
             //    Log.Message(string.Format("Subgraphics: {0}", subGraphics.Length));
             }
 

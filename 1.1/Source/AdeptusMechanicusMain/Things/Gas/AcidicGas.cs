@@ -8,7 +8,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AcidicGas
     public class AcidicGas : Gas
     {
-        public AdeptusGasProperties gasProperties => this.def.gas as AdeptusGasProperties;
+        public AdeptusGasProperties GasProps => this.def.gas as AdeptusGasProperties;
         public object cachedLabelMouseover { get; private set; }
 
         // Token: 0x06000019 RID: 25 RVA: 0x000027B3 File Offset: 0x000009B3
@@ -62,9 +62,9 @@ namespace AdeptusMechanicus
                         {
                             this.touchingThings.Add(thing);
                             Rand.PushState();
-                            this.damageEntities(thing, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                            this.DamageEntities(thing, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
                             Rand.PopState();
-                            MoteMaker.ThrowDustPuff(thing.Position, base.Map, 0.2f);
+                            AdeptusMoteMaker.ThrowDustPuff(thing.DrawPos, base.Map, 0.2f);
                         }
                         bool flag3 = pawn != null;
                         if (flag3)
@@ -73,8 +73,8 @@ namespace AdeptusMechanicus
                             bool flag4 = !pawn.RaceProps.Animal;
                             if (flag4)
                             {
-                                this.addAcidDamage(pawn);
-                                MoteMaker.ThrowDustPuff(pawn.Position, base.Map, 0.2f);
+                                this.AddAcidDamage(pawn);
+                                AdeptusMoteMaker.ThrowDustPuff(pawn.DrawPos, base.Map, 0.2f);
                             }
                         }
                     }
@@ -92,7 +92,7 @@ namespace AdeptusMechanicus
                         bool flag6 = !pawn2.RaceProps.Animal;
                         if (flag6)
                         {
-                            this.addAcidDamage(pawn2);
+                            this.AddAcidDamage(pawn2);
                         }
                     }
                 }
@@ -107,31 +107,31 @@ namespace AdeptusMechanicus
                     else
                     {
                         Rand.PushState();
-                        this.damageEntities(thing2, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                        this.DamageEntities(thing2, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
                         Rand.PopState();
                     }
                 }
                 Rand.PushState();
-                this.damageBuildings(Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
+                this.DamageBuildings(Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
                 Rand.PopState();
                 this.cachedLabelMouseover = null;
             }
         }
 
         // Token: 0x0600001C RID: 28 RVA: 0x00002AD4 File Offset: 0x00000CD4
-        public void damageEntities(Thing e, int amt)
+        public void DamageEntities(Thing e, int amt)
         {
             DamageInfo damageInfo = new DamageInfo(DamageDefOf.Burn, (float)amt, 0f, -1f, null, null, null, 0, null);
             bool flag = e != null;
             if (flag)
             {
                 e.TakeDamage(damageInfo);
-                MoteMaker.ThrowDustPuff(e.Position, base.Map, 0.2f);
+                AdeptusMoteMaker.ThrowDustPuff(e.DrawPos, base.Map, 0.2f);
             }
         }
 
         // Token: 0x0600001D RID: 29 RVA: 0x00002B28 File Offset: 0x00000D28
-        public void damageBuildings(int amt)
+        public void DamageBuildings(int amt)
         {
             IntVec3 intVec = GenAdj.RandomAdjacentCell8Way(this);
             bool flag = GenGrid.InBounds(intVec, base.Map);
@@ -145,13 +145,13 @@ namespace AdeptusMechanicus
                 if (flag4)
                 {
                     firstBuilding.TakeDamage(damageInfo);
-                    MoteMaker.ThrowDustPuff(firstBuilding.Position, base.Map, 0.2f);
+                    AdeptusMoteMaker.ThrowDustPuff(firstBuilding.DrawPos, base.Map, 0.2f);
                 }
             }
         }
 
         // Token: 0x0600001E RID: 30 RVA: 0x00002BAC File Offset: 0x00000DAC
-        public void addAcidDamage(Pawn p)
+        public void AddAcidDamage(Pawn p)
         {
             List<BodyPartRecord> list = new List<BodyPartRecord>();
             List<Apparel> wornApparel = p.apparel.WornApparel;
@@ -188,7 +188,7 @@ namespace AdeptusMechanicus
             }
             for (int j = 0; j < wornApparel.Count; j++)
             {
-                this.damageEntities(wornApparel[j], num);
+                this.DamageEntities(wornApparel[j], num);
             }
             for (int k = 0; k < list.Count; k++)
             {

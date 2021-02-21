@@ -55,7 +55,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
 
             }
-            if (__instance.def.HasModExtension<EffectProjectileExtension>())
+            if (__instance.def.HasModExtension<ProjectileVFX>())
             {
                 EffectProjectileExtension(__instance, vector, hitThing);
             }
@@ -169,10 +169,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 vector = b;
                 */
             }
-            if (__instance.def.HasModExtension<EffectProjectileExtension>())
+            if (__instance.def.HasModExtension<ProjectileVFX>())
             {
-                EffectProjectileExtension effects = __instance.def.GetModExtension<EffectProjectileExtension>();
-                effects.ThrowMote(vector, __instance.Map, __instance.def.projectile.damageDef.explosionCellMote, effects.explosionMoteSize, __instance.def.projectile.damageDef.explosionColorCenter, __instance.def.projectile.damageDef.soundExplosion, ThingDef.Named(effects.ImpactMoteDef) ?? null, effects.ImpactMoteSizeRange?.RandomInRange ?? effects.ImpactMoteSize, ThingDef.Named(effects.ImpactGlowMoteDef) ?? null, effects.ImpactGlowMoteSizeRange?.RandomInRange ?? effects.ImpactGlowMoteSize, hitThing);
+                ProjectileVFX effects = __instance.def.GetModExtension<ProjectileVFX>();
+                effects.ImpactEffects(vector, __instance.Map, effects.ExplosionMoteDef ?? __instance.def.projectile.damageDef.explosionCellMote, effects.ExplosionMoteSize, __instance.def.projectile.damageDef.explosionColorCenter, __instance.def.projectile.damageDef.soundExplosion, effects.ImpactMoteDef, effects.ImpactMoteSize, effects.ImpactGlowMoteDef, effects.ImpactGlowMoteSize, hitThing);
             }
         }
     }

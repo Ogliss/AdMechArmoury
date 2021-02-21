@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace AdeptusMechanicus
             foreach (List<Thing> list in thingsGroups)
             {
                 List<Thing> list2 = list.Where(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())).ToList();
-                FactionDefExtension extension = list2.NullOrEmpty() ? null : list2.RandomElement().Faction.def.GetModExtension<FactionDefExtension>();
+                FactionDefExtension extension = list2.NullOrEmpty() ? null : list2.RandomElement().Faction.def.GetModExtensionFast<FactionDefExtension>();
                 IntVec3 intVec;
                 if (!DropCellFinder.TryFindDropSpotNear(dropCenter, map, out intVec, true, canRoofPunch) || !scatters)
                 {

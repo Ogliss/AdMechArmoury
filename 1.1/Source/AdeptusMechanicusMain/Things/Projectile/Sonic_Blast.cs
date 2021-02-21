@@ -79,7 +79,7 @@ namespace AdeptusMechanicus
 				MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)base.DamageAmount) * 1f, 4f);
 				return;
 			}
-			MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+			AdeptusMoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
 		}
 		// Token: 0x060015F7 RID: 5623 RVA: 0x0007FB24 File Offset: 0x0007DD24
 

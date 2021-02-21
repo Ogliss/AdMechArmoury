@@ -3,6 +3,7 @@ using Verse;
 using UnityEngine;
 using HarmonyLib;
 using System.Collections.Generic;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -13,24 +14,27 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(PawnGraphicSet __instance, ref List<Material> __result)
         {
             Pawn pawn = __instance.pawn;
-            if (!pawn.RaceProps.Humanlike)
+            if (pawn == null || !pawn.RaceProps.Humanlike)
             {
                 return;
             }
             if (pawn.apparel.AnyApparel)
             {
-                if (pawn.apparel.WornApparel.Any(x => x.TryGetComp<CompApparelExtraPartDrawer>() != null))
+                if (pawn.apparel.WornApparel.Any(x => x.def.HasComp(typeof(CompApparelExtraPartDrawer))))
                 {
                     foreach (var item in pawn.apparel.WornApparel)
                     {
-                        CompApparelExtraPartDrawer extraDrawer = item.TryGetComp<CompApparelExtraPartDrawer>();
-                        if (extraDrawer != null && extraDrawer.hidesBody)
+                        if (item.def.HasComp(typeof(CompApparelExtraPartDrawer)))
                         {
-                            for (int i = 0; i < __result.Count; i++)
+                            CompApparelExtraPartDrawer extraDrawer = item.TryGetCompFast<CompApparelExtraPartDrawer>();
+                            if (extraDrawer != null && extraDrawer.hidesBody)
                             {
-                                __result[i] = AMConstants.InvisibleGraphics(pawn).nakedGraphic.MatSingle;
+                                for (int i = 0; i < __result.Count; i++)
+                                {
+                                    __result[i] = AMConstants.InvisibleGraphics(pawn).nakedGraphic.MatSingle;
+                                }
+                                return;
                             }
-                            return;
                         }
                     }
                 }

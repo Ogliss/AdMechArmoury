@@ -11,40 +11,19 @@ namespace AdeptusMechanicus.ExtensionMethods
 
     public static class VerbExtensions
     {
-        public static GunVerbEntry SpecialRules(this Verb verb)
+        public static AdvancedVerbProperties SpecialRules(this Verb verb)
         {
-            GunVerbEntry entry = null;
-            if (verb.verbProps.LaunchesProjectile)
-            {
-                if (verb.EquipmentSource != null)
-                {
-                    CompWeapon_GunSpecialRules GunExt = verb.EquipmentSource.TryGetComp<CompWeapon_GunSpecialRules>();
-                    if (GunExt != null)
-                    {
-                        entry = GunExt.GunVerbs[GunExt.CurMode];
-                    }
-                }
-                if (verb.HediffCompSource != null && !verb.IsMeleeAttack)
-                {
-                //    Log.Message("ownerVerb.HediffCompSource");
-                    HediffComp_VerbGiverExtra _VGE = verb.HediffCompSource as HediffComp_VerbGiverExtra;
-                    if (_VGE!=null)
-                    {
-                        entry = _VGE.Props.verbEntrys[_VGE.VerbProperties.IndexOf(verb.verbProps)] ?? entry;
-                    }
-                }
-            }
-            return entry;
+            return verb.verbProps as AdvancedVerbProperties;
         }
 
         public static bool RapidFire(this Verb verb, float num, out bool InRange, out float modifier)
         {
             modifier = num;
             InRange = false;
-            bool result = verb.SpecialRules() != null && verb.SpecialRules().RapidFire && AMSettings.Instance.AllowRapidFire;
+            bool result = verb.SpecialRules() != null && verb.SpecialRules().rapidFire && AMSettings.Instance.AllowRapidFire;
             if (result)
             {
-                InRange = verb.SpecialRules().RapidFire && verb.CurrentTarget.Cell.InHorDistOf(verb.Caster.Position, verb.verbProps.range / 2);
+                InRange = verb.SpecialRules().rapidFire && verb.CurrentTarget.Cell.InHorDistOf(verb.Caster.Position, verb.verbProps.range * verb.SpecialRules().rapidFireRange);
                 if (InRange)
                 {
                     float reduction = ((verb.verbProps.burstShotCount - 1) * verb.verbProps.ticksBetweenBurstShots).TicksToSeconds() / 4;
@@ -70,11 +49,11 @@ namespace AdeptusMechanicus.ExtensionMethods
             bool result = verb.SpecialRules() != null && verb.SpecialRules().EffectsUser && AMSettings.Instance.AllowUserEffects;
             if (result)
             {
-                Effect = verb.SpecialRules().UserEffect;
-                ResistStat = verb.SpecialRules().ResistEffectStat;
-                Chance = verb.SpecialRules().EffectsUserChance;
-                ImmuneList = verb.SpecialRules().UserEffectImmuneList;
-                if (verb.SpecialRules().UserEffectImmuneList.Contains(verb.caster.def.defName) || verb.caster == null || !verb.CasterIsPawn)
+                Effect = verb.SpecialRules().userEffect;
+                ResistStat = verb.SpecialRules().resistEffectStat;
+                Chance = verb.SpecialRules().effectsUserChance;
+                ImmuneList = verb.SpecialRules().userEffectImmuneList;
+                if (verb.SpecialRules().userEffectImmuneList.Contains(verb.caster.def.defName) || verb.caster == null || !verb.CasterIsPawn)
                 {
                     return false;
                 }
@@ -107,13 +86,13 @@ namespace AdeptusMechanicus.ExtensionMethods
 
         public static bool GetsHot(this Verb verb)
         {
-            bool result = verb.SpecialRules() != null && verb.SpecialRules().GetsHot;
+            bool result = verb.SpecialRules() != null && verb.SpecialRules().getsHot;
             return result;
         }
 
         public static bool GetsHot(this Verb verb,out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out bool canDamageWeapon, out float extraWeaponDamage)
         {
-            GunVerbEntry entry = verb.SpecialRules();
+            AdvancedVerbProperties entry = verb.SpecialRules();
             bool GetsHot = false;
             if (entry == null || !AMSettings.Instance.AllowGetsHot)
             {
@@ -126,13 +105,13 @@ namespace AdeptusMechanicus.ExtensionMethods
             //    Log.Message("no SpecialRules detected");
                 return GetsHot;
             }
-            GetsHot = entry.GetsHot;
+            GetsHot = entry.getsHot;
             GetsHotCrit = entry.GetsHotCrit;
-            GetsHotCritChance = entry.GetsHotCritChance;
+            GetsHotCritChance = entry.getsHotCritChance;
             GetsHotCritExplosion = entry.GetsHotCritExplosion;
-            GetsHotCritExplosionChance = entry.GetsHotCritExplosionChance;
+            GetsHotCritExplosionChance = entry.getsHotCritExplosionChance;
             canDamageWeapon = entry.HotDamageWeapon;
-            extraWeaponDamage = entry.HotDamage;
+            extraWeaponDamage = entry.hotDamage;
             return GetsHot;
         }
 
@@ -143,7 +122,7 @@ namespace AdeptusMechanicus.ExtensionMethods
         }
         public static bool Jams(this Verb verb, out bool canDamageWeapon, out float extraWeaponDamage)
         {
-            GunVerbEntry entry = verb.SpecialRules();
+            AdvancedVerbProperties entry = verb.SpecialRules();
             bool Jams = false;
             if (entry == null || !AMSettings.Instance.AllowJams)
             {
@@ -154,7 +133,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             Jams = entry.Jams;
             canDamageWeapon = entry.JamsDamageWeapon;
-            extraWeaponDamage = entry.JamDamage;
+            extraWeaponDamage = entry.jamDamage;
             return Jams;
         }
 

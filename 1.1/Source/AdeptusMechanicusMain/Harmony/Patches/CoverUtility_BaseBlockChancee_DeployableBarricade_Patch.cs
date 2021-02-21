@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (Barricade.Toggled)
                 {
-                    __result += Barricade.deployed.deployedfillPercent;
+                    __result += Barricade.Deployed.deployedfillPercent;
                 }
             }
         }

@@ -32,7 +32,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             barricade = (list[j] as Building_DeployableBarricade);
                             if (barricade != null)
                             {
-                                if (barricade.Toggled && barricade.deployed.deployedpassability != Traversability.Standable)
+                                if (barricade.Toggled && barricade.Deployed.deployedpassability != Traversability.Standable)
                                 {
                                     __result = false;
                                 }

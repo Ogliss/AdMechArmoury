@@ -16,7 +16,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if ((___pawn.Map != null) && (__instance.MovingNow) && ___pawn.equipment?.Primary != null)
             {
-                ___pawn.equipment.Primary.BroadcastCompSignal(CompWeapon_GunSpecialRules.HeavyWeaponMovedSignal);
+                ___pawn.equipment.Primary.BroadcastCompSignal("Moving");
             }
         }
     }

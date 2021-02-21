@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Prefix(ref Verb_ShootCE __instance, ref float __state)
         {
             __state = __instance.verbProps.warmupTime;
-            GunVerbEntry entry = __instance.SpecialRules();
+            AdvancedVerbProperties entry = __instance.SpecialRules();
             if (entry != null)
             {
                 if (__instance.RapidFire(__state, out bool InRange, out float modified))
@@ -38,7 +38,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void Postfix(ref Verb_ShootCE __instance, float __state)
         {
-            GunVerbEntry entry = __instance.SpecialRules();
+            AdvancedVerbProperties entry = __instance.SpecialRules();
             if (entry != null)
             {
                 __instance.verbProps.warmupTime = __state;

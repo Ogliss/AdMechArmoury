@@ -212,6 +212,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			base.Comps_PostDraw();
 		}
 		/*
+		// distanceFromCenter controls the size
 		private void DrawTornadoPart(float distanceFromCenter, float initialAngle, float speedMultiplier, float colorMultiplier)
 		{
 			int ticksGame = Find.TickManager.TicksGame;
@@ -219,8 +220,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			float num2 = 25f * speedMultiplier * num;
 			float num3 = (initialAngle + (float)ticksGame * num2) % 360f;
 			Vector2 vector = this.realPosition.Moved(num3, this.AdjustedDistanceFromCenter(distanceFromCenter));
+			// 
 			vector.y += distanceFromCenter * 4f;
 			vector.y += GlassingBeam.ZOffsetBias;
+
 			Vector3 a = new Vector3(vector.x, AltitudeLayer.Weather.AltitudeFor() + 0.042857144f * Rand.Range(0f, 1f), vector.y);
 			float num4 = distanceFromCenter * 3f;
 			float num5 = 1f;

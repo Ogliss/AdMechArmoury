@@ -7,6 +7,8 @@ using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.settings;
+using AdeptusMechanicus.Lasers;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -163,6 +165,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
+
             if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot || TwinLinked)
             {
                 Traverse traverse = Traverse.Create(__instance);
@@ -182,6 +185,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
 
             }
+
             if (UserEffect && AMSettings.Instance.AllowUserEffects)
             {
                 if (__instance.caster.def.category == ThingCategory.Pawn)
@@ -267,7 +271,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             Thing launcher = __instance.caster;
             Thing equipment = __instance.EquipmentSource;
-            CompMannable compMannable = __instance.caster.TryGetComp<CompMannable>();
+            CompMannable compMannable = __instance.caster.TryGetCompFast<CompMannable>();
             if (compMannable != null && compMannable.ManningPawn != null)
             {
                 launcher = compMannable.ManningPawn;
@@ -306,7 +310,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             ShotReport shotReport = ShotReport.HitReportFor(__instance.caster, __instance, currentTarget);
             Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
-            ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
+            ThingDef targetCoverDef = randomCoverToMissInto?.def;
             Rand.PushState();
             bool f1 = !Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture);
             Rand.PopState();

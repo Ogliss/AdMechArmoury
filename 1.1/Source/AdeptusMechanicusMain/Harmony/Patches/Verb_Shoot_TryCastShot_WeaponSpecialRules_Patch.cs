@@ -11,6 +11,7 @@ using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.Lasers;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -21,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool Prefix(ref Verb_Shoot __instance, MethodBase __originalMethod)
         {
             //    Log.Warning("TryCastShot");
-            GunVerbEntry entry = __instance.SpecialRules();
+            AdvancedVerbProperties entry = __instance.SpecialRules();
             if (entry==null)
             {
             //    Log.Message("no SpecialRules detected");
@@ -29,23 +30,20 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             bool canDamageWeapon;
             float extraWeaponDamage;
-            bool TwinLinked = entry.TwinLinked;
-            bool Multishot = entry.Multishot;
-            int ScattershotCount = entry.ScattershotCount;
             bool UserEffect = entry.EffectsUser;
-            HediffDef UserHediff = entry.UserEffect;
-            float AddHediffChance = entry.EffectsUserChance;
-            List<string> Immunitylist = entry.UserEffectImmuneList;
+            HediffDef UserHediff = entry.userEffect;
+            float AddHediffChance = entry.effectsUserChance;
+            List<string> Immunitylist = entry.userEffectImmuneList;
             string msg = string.Format("");
             string reliabilityString;
-            float failChance;
+            float failChance = 0;
             
-            StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out reliabilityString, out failChance);
-            failChance = (__instance.GetsHot()) ? (failChance / 10) : (failChance / 100);
             bool failed = false;
             if (__instance.GetsHot() || __instance.Jams())
             {
-            //    Log.Message("failChance: "+failChance);
+                StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out reliabilityString, out failChance);
+                failChance = (__instance.GetsHot()) ? (failChance / 10) : (failChance / 100);
+                //    Log.Message("failChance: "+failChance);
                 Rand.PushState();
                 failed = Rand.Chance(failChance);
                 Rand.PopState();
@@ -136,7 +134,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             if (__instance.HediffCompSource != null)
                             {
                                 /*
-                                if (__instance.HediffCompSource.parent.Part..HitPoints - (int)extraWeaponDamage >= 0)
+                                if (__instance.HediffCompSource.parent.Part.HitPoints - (int)extraWeaponDamage >= 0)
                                 {
                                     __instance.HediffCompSource.HitPoints = __instance.HediffCompSource.HitPoints - (int)extraWeaponDamage;
                                 }
@@ -161,7 +159,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     if (__instance.EquipmentSource != null)
                     {
-                        SpinningLaserGun spinner = (SpinningLaserGun)__instance.EquipmentSource;
+                        SpinningLaserGun spinner = __instance.EquipmentSource as SpinningLaserGun;
                         if (spinner != null)
                         {
                             spinner.state = SpinningLaserGunBase.State.Idle;
@@ -170,24 +168,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     return false;
 
-                }
-            }
-            if (__instance.MultiShot() || __instance.TwinLinked())
-            {
-                Traverse traverse = Traverse.Create(__instance);
-                LocalTargetInfo currentTarget = __instance.CurrentTarget;
-                bool canHitNonTargetPawnsNow = (bool)Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
-                //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
-                if (__instance.MultiShot(out ScattershotCount))
-                {
-                    for (int i = 0; i < ScattershotCount; i++)
-                    {
-                        TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
-                    }
-                }
-                else
-                {
-                    TryCastExtraShot(ref __instance, currentTarget, canHitNonTargetPawnsNow);
                 }
             }
             if (__instance.UserEffect(out float Chance, out HediffDef Effect, out StatDef ResistStat, out List<string> ImmuneList))
@@ -216,7 +196,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 if (!Immunityflag)
                 {
-
                     Rand.PushState();
                     var rand = Rand.Value; // This is a random percentage between 0% and 100%
                     Rand.PopState();
@@ -273,7 +252,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             Thing launcher = __instance.caster;
             Thing equipment = __instance.EquipmentSource;
-            CompMannable compMannable = __instance.caster.TryGetComp<CompMannable>();
+            CompMannable compMannable = __instance.caster.TryGetCompFast<CompMannable>();
             if (compMannable != null && compMannable.ManningPawn != null)
             {
                 launcher = compMannable.ManningPawn;
@@ -312,7 +291,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             ShotReport shotReport = ShotReport.HitReportFor(__instance.caster, __instance, currentTarget);
             Thing randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
-            ThingDef targetCoverDef = (randomCoverToMissInto == null) ? null : randomCoverToMissInto.def;
+            ThingDef targetCoverDef = randomCoverToMissInto?.def;
 
             Rand.PushState();
             bool f1 = !Rand.Chance(shotReport.AimOnTargetChance_IgnoringPosture);

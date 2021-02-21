@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return this.TryGetComp<CompFlickable>();
+                return this.TryGetCompFast<CompFlickable>();
             }
         }
 
@@ -20,7 +20,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return this.TryGetComp<CompPowerTrader>();
+                return this.TryGetCompFast<CompPowerTrader>();
             }
         }
 

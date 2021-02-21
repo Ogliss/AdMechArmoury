@@ -1,50 +1,106 @@
-﻿using System;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
-    public class LaserBeamGraphic :Thing
+    [StaticConstructorOnStartup]
+    class LaserBeamGraphic : Thing
     {
+        #region Vars
         public LaserBeamDef projDef;
-
+        float beamWidth;
+        float beamLength;
+        float flareWidth = -1f;
+        float flareWidthMod = 1f;
+        float flareLength = -1f;
+        float flareLengthMod = 1f;
         int ticks;
         int colorIndex = 2;
         Vector3 a;
         Vector3 b;
 
-        public Matrix4x4 drawingMatrix = default(Matrix4x4);
+        public Matrix4x4 drawingMatrixBeam = default(Matrix4x4);
+        public Matrix4x4 drawingMatrixFlare = default(Matrix4x4);
         Material materialBeam;
         Mesh mesh;
         Thing launcher;
+        Verb verb;
+        Thing hitThing;
         ThingDef equipmentDef;
         public List<Mesh> meshes = new List<Mesh>();
-
-
-        public float Opacity => (float)Math.Sin(Math.Pow(1.0 - 1.0 * ticks / projDef.lifetime, projDef.impulse) * Math.PI);
-        public bool Lightning => projDef.LightningBeam;
-        public bool Static => projDef.StaticLightning;
+        public List<Material> mats = new List<Material>();
+        EffecterDef effecterDef;
+        Effecter effecter;
         public int ticksToDetonation;
         public override void ExposeData()
         {
             base.ExposeData();
 
+            Scribe_Values.Look(ref beamWidth, "beamWidth");
+            Scribe_Values.Look(ref beamLength, "beamLength");
+            Scribe_Values.Look(ref flareWidth, "flareWidth");
+            Scribe_Values.Look(ref flareWidthMod, "flareWidthMod");
+            Scribe_Values.Look(ref flareLength, "flareLength");
+            Scribe_Values.Look(ref flareLengthMod, "flareLengthMod");
             Scribe_Values.Look(ref ticks, "ticks");
-            Scribe_Values.Look(ref ticksToDetonation, "ticksToDetonation");
             Scribe_Values.Look(ref colorIndex, "colorIndex");
             Scribe_Values.Look(ref a, "a");
             Scribe_Values.Look(ref b, "b");
             Scribe_Defs.Look(ref projDef, "projectileDef");
+            Scribe_Defs.Look(ref effecterDef, "effecterDef");
+            Scribe_References.Look(ref launcher, "launcher");
+            Scribe_References.Look(ref verb, "weapon");
+            Scribe_References.Look(ref hitThing, "hitThing");
         }
+#endregion Vars
+       
+        public void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
+        {
+            if (effect == null) return;
+            var targetInfo = hitThing ?? new TargetInfo(IntVec3.FromVector3(position), launcher.Map, false);
+            effecter = effect.Spawn();
+            effecter.offset = (position - targetInfo.CenterVector3);
+            effecter.ticksLeft = this.projDef.effecterLifetime;
+            effecter.Trigger(targetInfo, null);
+            //    effecter.Cleanup();
+        }
+
+
+
+        public float Lifetime => Mathf.InverseLerp(0, projDef.lifetime, ticks);
+        public float Opacity => (float)Math.Sin(Math.Pow(Lifetime, projDef.impulseCurve?.Evaluate(Lifetime) ?? projDef.impulse) * Math.PI);
+        public float ArcOpacity => (float)Math.Sin(Math.Pow(1.0 - 1.0 * ticks / projDef.lifetime, projDef.impulse) * Math.PI);
+        public bool Lightning => projDef.LightningBeam;
+        public bool Static => projDef.StaticLightning;
 
         public override void Tick()
         {
-            if (def==null || ticks++ > projDef.lifetime)
+            if (def == null || (ticks++ > projDef.lifetime && (effecter == null || this.effecter.ticksLeft <= 0)))
             {
+                if (effecter != null)
+                {
+                    effecter.Cleanup();
+                }
                 Destroy(DestroyMode.Vanish);
+            }
+            if (effecter != null)
+            {
+                if (this.effecter.ticksLeft > 0)
+                {
+                    var targetInfo = hitThing ?? new TargetInfo(IntVec3.FromVector3(b), launcher.Map, false);
+                    effecter.EffectTick(targetInfo, targetInfo);
+                    effecter.ticksLeft--;
+                }
+                else
+                {
+                    this.effecter.Cleanup();
+                }
             }
             if (this.ticksToDetonation > 0)
             {
@@ -68,58 +124,132 @@ namespace AdeptusMechanicus
             {
                 colorIndex = gun.BeamColor;
             }
-            if (gun !=null)
+            if (gun != null)
             {
                 this.equipmentDef = pawn.equipment.Primary.def;
             }
         }
 
-        public void Setup(Thing launcher, Vector3 origin, Vector3 destination)
+        public void Setup(Thing launcher, Vector3 origin, Vector3 destination, Verb verb = null, Thing hitThing = null, Effecter effecter = null, EffecterDef effecterDef = null)
         {
             //SetColor(launcher);
             this.launcher = launcher;
-            a = origin;
-            b = destination;
+            this.verb = verb;
+            this.a = origin;
+            this.b = destination;
+            this.hitThing = hitThing ?? null;
+            this.effecter = effecter ?? null;
+            this.effecterDef = effecterDef ?? null;
+
+            ThingDef mote = ThingDefOf.Mote_ShotFlash;
+            Map map = verb.Caster.Map;
+            Vector3 dir = (destination - origin).normalized;
+            dir.y = 0;
+
+            Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
+            {
+                a = origin += dir * (barrelLength * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
+                a.y += 0.0367346928f;
+                if (flareDef != null)
+                {
+                    MoteThrown m = AdeptusMoteMaker.MakeStaticMote(a, map, flareDef, flareSize) as MoteThrown;
+                    if (m != null)
+                    {
+                        m.solidTimeOverride = this.Lifetime;
+                        m.exactRotation = Rand.Range(0, 350);
+                    }
+                }
+                if (smokeDef != null)
+                {
+                    AdeptusMoteMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
+                }
+            }
+            AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
+            if (effecter == null)
+            {
+                TriggerEffect(effecterDef, b, hitThing);
+            }
+            ProjectileVFX ext = this.projDef.GetModExtensionFast<ProjectileVFX>();
+            if (ext != null && destination.InBounds(launcher.Map))
+            {
+                Vector3 pos = destination;
+                ThingDef explosionMoteDef = ext.ExplosionMoteDef ?? projDef.projectile.damageDef.explosionCellMote ?? null;
+                SoundDef sound = projDef.projectile.damageDef.soundExplosion;
+                Color? color = ext.useGraphicColor ? projDef.graphic.color : (ext.useGraphicColorTwo ? projDef.graphic.colorTwo : projDef.projectile.damageDef.explosionColorCenter);
+                float scale = ext.scaleWithProjectile ? projDef.graphic.drawSize.magnitude : 1f;
+                ext.ImpactEffects(pos, map, explosionMoteDef, ext.ExplosionMoteSize * scale, color, sound, ext.ImpactMoteDef, ext.ImpactMoteSize * scale, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize * scale, hitThing);
+            //    ext.ImpactEffects(destination, launcher.Map, ext.ExplosionMoteDef ?? this.projDef.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.projDef.projectile.damageDef.explosionColorCenter, this.projDef.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
+            }
         }
 
         public void SetupDrawing()
         {
             if (mesh != null) return;
 
-            materialBeam = projDef.GetBeamMaterial(colorIndex) ?? def.graphicData.Graphic.MatSingle;
+            materialBeam = projDef.GetBeamMaterial(colorIndex) ?? LaserBeamGraphic.BeamMat;
 
-            if (this.def.graphicData != null)
+            if (this.projDef.graphicData != null)
             {
-                if (this.def.graphicData.graphicClass != null)
+                if (this.projDef.graphicData.graphicClass != null)
                 {
-                    if (this.def.graphicData.graphicClass == typeof(Graphic_Random))
+                    if (this.projDef.graphicData.graphicClass == typeof(Graphic_Flicker))
                     {
-                        materialBeam = projDef.GetBeamMaterial(0) ?? def.graphicData.Graphic.MatSingle;
+                        //    Log.Message("Graphic_Flicker get mat for arc " + (i + 1));
+                        materialBeam = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(materialBeam) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(materialBeam) + 1 : 0)) ?? projDef.graphicData.Graphic.MatSingle;
+                    }
+                    if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
+                    {
+                        materialBeam = projDef.GetBeamMaterial(0) ?? projDef.graphicData.Graphic.MatSingle;
                     }
                 }
             }
-            float beamWidth = projDef.beamWidth;
+            beamWidth = projDef.beamWidth;
+            flareWidth = projDef.flareWidth;
+            flareWidthMod = projDef.flareWidthMod;
+            flareLength = projDef.flareLength;
+            flareLengthMod = projDef.flareLengthMod;
             Quaternion rotation = Quaternion.LookRotation(b - a);
             Vector3 dir = (b - a).normalized;
-            float length = (b - a).magnitude;
+            beamLength = (b - a).magnitude;
 
-            Vector3 drawingScale = new Vector3(beamWidth, 1f, length);
+            Vector3 drawingScale = new Vector3(beamWidth, 1f, beamLength);
             Vector3 drawingPosition = (a + b) / 2;
-            drawingMatrix.SetTRS(drawingPosition, rotation, drawingScale);
-
+        //    drawingPosition.y = AltitudeLayer.MetaOverlays.AltitudeFor();
+            drawingMatrixBeam.SetTRS(drawingPosition, rotation, drawingScale);
+            if (flareWidth == -1)
+            {
+                flareWidth = beamWidth * flareWidthMod;
+            }
+            if (flareLength == -1)
+            {
+                flareLength = beamLength * flareLengthMod;
+            }
+            Quaternion rotationFlare = Quaternion.LookRotation(a - b);
+            Vector3 drawingScaleFlare = new Vector3(flareWidth, 1f, flareLength);
+            Vector3 drawingPositionFlare = a + (dir * flareLength) /2; //FlarePos(a,b, 0.1f);
+            drawingMatrixFlare.SetTRS(drawingPositionFlare, rotationFlare, drawingScaleFlare);
             float textureRatio = 1.0f * materialBeam.mainTexture.width / materialBeam.mainTexture.height;
             float seamTexture = projDef.seam < 0 ? textureRatio : projDef.seam;
             float capLength = beamWidth / textureRatio / 2f * seamTexture;
-            float seamGeometry = length <= capLength * 2 ? 0.5f : capLength * 2 / length;
+            float seamGeometry = beamLength <= capLength * 2 ? 0.5f : capLength * 2 / beamLength;
 
             if (Lightning)
             {
                 float distance = Vector3.Distance(a, b);
                 for (int i = 0; i < projDef.ArcCount; i++)
                 {
-                    meshes.Add(AdeptusLightningBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance));
+                    if (projDef.lightningArcVarianceDistCurve != null && projDef.lightningArcWidthDistCurve != null)
+                    {
+                        meshes.Add(LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.lightningArcVarianceDistCurve, projDef.lightningArcWidthDistCurve, projDef.lightningArcVarianceTimeCurve, projDef.lightningArcWidthTimeCurve, i == 0 ? 0f : 0.5f, projDef.capSize));
+                    }
+                    else
+                    {
+                        meshes.Add(LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance, beamWidth, i * 0.1f, projDef.capSize));
+                    }
+                    mats.Add(projDef.GetBeamMaterial(i) ?? LaserBeamGraphic.BeamMat);
                 }
-            //    this.mesh = LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), def.LightningVariance);
+                //    this.mesh = LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), def.LightningVariance);
             }
             else
             {
@@ -127,16 +257,101 @@ namespace AdeptusMechanicus
             }
         }
 
+        public override void Draw()
+        {
+            SetupDrawing();
+
+            float opacity = Lightning ? Opacity : Opacity;
+            Color color = projDef.graphicData.color;
+            Color colorTwo = projDef.graphicData.colorTwo;
+            color.a *= opacity;
+            colorTwo.a *= (opacity * projDef.flareOpacityMod);
+            LaserBeamGraphic.BeamMatPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
+            LaserBeamGraphic.FlareMatPropertyBlock.SetColor(ShaderPropertyIDs.Color, colorTwo);
+            LaserBeamGraphic.FlareMatPropertyBlock.SetColor(ShaderPropertyIDs.ColorTwo, color);
+            if (Lightning)
+            {
+                Vector3 vector;
+                vector.x = (float)b.x;
+                vector.y = (float)b.y;
+                vector.z = (float)b.z;
+                float distance = Vector3.Distance(a, b);
+
+                for (int i = 0; i < projDef.ArcCount; i++)
+                {
+                    if (this.projDef.graphicData != null)
+                    {
+                        if (this.projDef.graphicData.graphicClass != null)
+                        {
+                            if (!Find.TickManager.Paused && Find.TickManager.TicksGame % this.projDef.flickerFrameTime == 0)
+                            {
+                                if (this.projDef.graphicData.graphicClass == typeof(Graphic_Flicker))
+                                {
+                                //    Log.Message("Graphic_Flicker get mat for arc " + (i + 1));
+                                    mats[i] = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(mats[i]) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(mats[i]) + 1 : 0)) ?? projDef.graphicData.Graphic.MatSingle;
+                                }
+                                if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
+                                {
+                                //    Log.Message("Graphic_Random get mat for arc " + (i + 1));
+                                    mats[i] = this.projDef.materials.RandomElement() ?? projDef.graphicData.Graphic.MatSingle;
+                                }
+                            }
+                        }
+                    }
+                    float mult = Mathf.InverseLerp(projDef.lifetime, 0f, ticks);
+                    //    if (Find.TickManager.TicksGame % this.projDef.flickerFrameTime != 0)  Log.Message("Mult for Arc "+(i+1)+" : "+mult);
+                    if (projDef.lightningArcVarianceDistCurve != null && projDef.lightningArcWidthDistCurve != null)
+                    {
+                        meshes[i] = Find.TickManager.Paused || Find.TickManager.TicksGame % this.projDef.LightningFrameTime != 0 || meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.lightningArcVarianceDistCurve, projDef.lightningArcWidthDistCurve, projDef.lightningArcVarianceTimeCurve, projDef.lightningArcWidthTimeCurve, i == 0 ? 0f : 0.5f, projDef.capSize);
+                    }
+                    else
+                    {
+                        meshes[i] = Find.TickManager.Paused || Find.TickManager.TicksGame % this.projDef.LightningFrameTime != 0 || meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance, beamWidth * mult, i == 0 ? 0f : 0.5f, projDef.capSize);
+                    }
+                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(mats[i], opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
+                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(projDef.flareMat ?? FlareMat, opacity * 0.5f), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
+
+                }
+            }
+            else
+            {
+                if (this.projDef.graphicData != null)
+                {
+                    if (this.projDef.graphicData.graphicClass != null)
+                    {
+                        if (!Find.TickManager.Paused && Find.TickManager.TicksGame % this.projDef.flickerFrameTime == 0)
+                        {
+                            if (this.projDef.graphicData.graphicClass == typeof(Graphic_Flicker))
+                            {
+                                Log.Message("Graphic_Flicker get mat for beam ");
+                                materialBeam = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(materialBeam) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(materialBeam) + 1 : 0)) ?? projDef.graphicData.Graphic.MatSingle;
+                            }
+                            if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
+                            {
+                                Log.Message("Graphic_Random get mat for beam ");
+                                materialBeam = projDef.GetBeamMaterial(0) ?? projDef.graphicData.Graphic.MatSingle;
+                            }
+                        }
+                    }
+                }
+                Graphics.DrawMesh(mesh, drawingMatrixBeam, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock);
+                Graphics.DrawMesh(mesh, drawingMatrixFlare, projDef.flareMat ?? FlareMat, 0, null, 0,  LaserBeamGraphic.FlareMatPropertyBlock);
+                //    Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
+            }
+        }
+        Vector3 DectorationPos(Vector3 origin, Vector3 destin, float t) => new Vector3(Mathf.Lerp(origin.x, destin.x, t), Mathf.Lerp(origin.y, destin.y, t), Mathf.Lerp(origin.z, destin.z, t));
+         
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
 
-            if (def==null || projDef.decorations == null || respawningAfterLoad) return;
+            if (def == null || projDef.decorations == null || respawningAfterLoad) return;
 
             foreach (var decoration in projDef.decorations)
             {
-                float spacing = decoration.spacing * projDef.beamWidth;
-                float initalOffset = decoration.initialOffset * projDef.beamWidth;
+                float scale = decoration.scale > 0 ? decoration.scale : projDef.lightningArcWidthDistCurve?.Evaluate(Lifetime) ?? projDef.beamWidth;
+                float spacing = decoration.spacing * scale;
+                float initalOffset = decoration.initialOffset * scale;
 
                 Vector3 dir = (b - a).normalized;
                 float angle = (b - a).AngleFlat();
@@ -152,7 +367,7 @@ namespace AdeptusMechanicus
 
                     moteThrown.beam = this;
                     moteThrown.airTimeLeft = projDef.lifetime;
-                    moteThrown.Scale = projDef.beamWidth;
+                    moteThrown.Scale = scale;
                     moteThrown.exactRotation = angle;
                     moteThrown.exactPosition = position;
                     moteThrown.SetVelocity(angle, decoration.speed);
@@ -168,57 +383,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        public override void Draw()
-        {
-            SetupDrawing();
-
-            float opacity = Opacity;
-            if (Lightning)
-            {
-                Vector3 vector;
-                vector.x = (float)b.x;
-                vector.y = (float)b.y;
-                vector.z = (float)b.z;
-                float distance = Vector3.Distance(a, b);
-
-                for (int i = 0; i < projDef.ArcCount; i++)
-                {
-                    if (this.def.graphicData != null)
-                    {
-                        if (this.def.graphicData.graphicClass != null)
-                        {
-                            if (this.def.graphicData.graphicClass == typeof(Graphic_Flicker))
-                            {
-                                if (!Find.TickManager.Paused && Find.TickManager.TicksGame % this.projDef.flickerFrameTime == 0)
-                                {
-                                    materialBeam = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(materialBeam) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(materialBeam) + 1 : 0)) ?? def.graphicData.Graphic.MatSingle;
-                                }
-                            }
-                        }
-                    }
-                    meshes[i] = Find.TickManager.Paused || meshes[i] != null && Static ? meshes[i] : AdeptusLightningBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)));
-                    Graphics.DrawMesh(this.meshes[i], b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
-
-                }
-            }
-            else
-            {
-                if (this.def.graphicData != null)
-                {
-                    if (this.def.graphicData.graphicClass != null)
-                    {
-                        if (this.def.graphicData.graphicClass == typeof(Graphic_Flicker))
-                        {
-                            if (!Find.TickManager.Paused && Find.TickManager.TicksGame % this.projDef.flickerFrameTime == 0)
-                            {
-                                materialBeam = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(materialBeam) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(materialBeam) + 1 : 0)) ?? def.graphicData.Graphic.MatSingle;
-                            }
-                        }
-                    }
-                }
-                Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
-            }
-        }
         protected virtual void Explode()
         {
             Map map = base.Map;
@@ -246,5 +410,9 @@ namespace AdeptusMechanicus
             GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
         }
 
+        private static readonly Material BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+        private static readonly Material FlareMat = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+        private static readonly MaterialPropertyBlock FlareMatPropertyBlock = new MaterialPropertyBlock();
+        private static readonly MaterialPropertyBlock BeamMatPropertyBlock = new MaterialPropertyBlock();
     }
 }

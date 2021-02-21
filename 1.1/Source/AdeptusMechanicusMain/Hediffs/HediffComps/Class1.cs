@@ -56,7 +56,6 @@ namespace AdeptusMechanicus
 				List<Tool>.Enumerator enumerator2 = default(List<Tool>.Enumerator);
 			}
 			yield break;
-			yield break;
 		}
 
 		// Token: 0x04000C79 RID: 3193

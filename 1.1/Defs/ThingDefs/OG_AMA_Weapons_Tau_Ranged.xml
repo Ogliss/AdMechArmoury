@@ -17,16 +17,15 @@
 		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-			<GlowMoteSize>1.5</GlowMoteSize>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
 			</li>
-			<li Class="AdeptusMechanicus.EffectProjectileExtension">
-			<explosionMote>true</explosionMote>
-			<explosionMoteSize>0.75</explosionMoteSize>
-			<ImpactMoteDef>OG_Mote_PlasmaImpact</ImpactMoteDef>
-			<ImpactMoteSize>0.5</ImpactMoteSize>
-			<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-			<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>0.5</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -55,7 +54,7 @@
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
@@ -65,30 +64,30 @@
 				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>grip</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>6</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>7</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>TPulsePistol</li>
@@ -97,25 +96,25 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>10</Steel>
-		<OGT_Fiotak>2</OGT_Fiotak>
-		<OGT_Component>1</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>true</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>10</Steel>
+			<OGT_Fiotak>2</OGT_Fiotak>
+			<OGT_Component>1</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Tau - Pulse Carbine =========================-->
@@ -142,7 +141,7 @@
 			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
 		</equippedStatOffsets>
-		<comps>  
+		<comps>	 
 			<li Class="AbilitesExtended.CompProperties_AbilityItem">
 				<Abilities>
 					<li>OGT_Ability_LaunchPhoton</li>
@@ -150,7 +149,7 @@
 			</li>
 		</comps>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
@@ -161,62 +160,62 @@
 				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>TPulseCarbine</li>
 			<li>TBasicGun</li>
 			<li>TPathfinderGun</li>
-		<li>KrootGun</li>
+			<li>KrootGun</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>25</Steel>
-		<OGT_Fiotak>10</OGT_Fiotak>
-		<OGT_Component>2</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<OGT_Fiotak>10</OGT_Fiotak>
+			<OGT_Component>2</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Tau - Pule Rifle =========================-->
@@ -228,7 +227,7 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PulseRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		<drawSize>1.000</drawSize>			
-    </graphicData>
+	</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -246,8 +245,9 @@
 			<PsychicSensitivity>-0.05</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
 				<warmupTime>1.3</warmupTime>
@@ -262,43 +262,35 @@
 				</targetParams>
 			</li>
 		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
+		<comps>	    
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
 			<li>
-				<RapidFire>true</RapidFire>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
-		</VerbEntries>
-		</li> 
-		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-		</li>  
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			
 			<li>KrootGun</li>
 			<li>TPulseRifle</li>
 			<li>TBasicGun</li>
@@ -306,28 +298,28 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>45</Steel>
-		<OGT_Fiotak>20</OGT_Fiotak>
-		<OGT_Component>5</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>45</Steel>
+			<OGT_Fiotak>20</OGT_Fiotak>
+			<OGT_Component>5</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!--==================== Tau - Pulse Blaster =========================-->
@@ -345,11 +337,11 @@
 			<speed>75</speed>
 		</projectile>
 	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
-    <modExtensions>
-      <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-        <GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-        <GlowMoteSize>1.5</GlowMoteSize>
-      </li>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+		<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+		<glowMoteSize>1.5</glowMoteSize>
+	  </li>
 	</modExtensions>
 	</ThingDef>
 	
@@ -377,7 +369,7 @@
 			<PsychicSensitivity>-0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_PulseBlast</defaultProjectile>
@@ -392,35 +384,28 @@
 				</targetParams>
 			</li>
 		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
+		<comps>	   
+		
+		</comps>
+		<tools>
 			<li>
-				<Multishot>true</Multishot>
-				<ScattershotCount>8</ScattershotCount>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
-		</VerbEntries>
-		</li> 
-	</comps>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>TPulseBlaster</li>
@@ -429,46 +414,46 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>30</Steel>
-		<OGT_Fiotak>10</OGT_Fiotak>
-		<OGT_Component>3</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>30</Steel>
+			<OGT_Fiotak>10</OGT_Fiotak>
+			<OGT_Component>3</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Tau - Rail Rifle =========================-->
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGT_Bullet_RailRifle</defName>
-    <label>railrifle slug</label>
-    
-    <textures>
-      <li>Things/Projectile/RailgunSml2</li>
-    </textures>
-    <seam>0</seam>
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGT_Bullet_RailRifle</defName>
+		<label>railrifle slug</label>
+		
+		<textures>
+		  <li>Things/Projectile/RailgunSml2</li>
+		</textures>
+		<seam>0</seam>
 
-    <projectile>
-		<damageDef>OGTRailgun</damageDef>
-		<damageAmountBase>60</damageAmountBase>
-		<armorPenetrationBase>0.68</armorPenetrationBase>
-    </projectile>
-  </ThingDef>
+		<projectile>
+			<damageDef>OGTRailgun</damageDef>
+			<damageAmountBase>60</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef ParentName="OG_Tau_Gun_Special">
 		<defName>OGT_Gun_RailRifle</defName>
@@ -477,17 +462,17 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Tau/RailRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>1.250</drawSize>			
-    </graphicData>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-		</li>  
-	</comps>
+		<comps>		
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
@@ -505,7 +490,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_RailRifle</defaultProjectile>
@@ -515,30 +500,30 @@
 				<soundCast>OG_Rail_Rifle_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>1.8</cooldownTime>
-      </li>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>TRailRifle</li>
@@ -548,48 +533,48 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Tau_Tech_Weapons_Railgun</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>45</Steel>
-		<OGT_Fiotak>35</OGT_Fiotak>
-		<OGT_Component>6</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_Railgun</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>45</Steel>
+			<OGT_Fiotak>35</OGT_Fiotak>
+			<OGT_Component>6</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!--==================== Tau - Ion Rifle =========================-->
-  <ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.LaserBeamDef">
-    <defName>OGT_Bullet_IonRifle</defName>
-    <label>ion-rifle beam</label>
-    
-    <textures>
-      <li>Things/Projectile/IonBeamSml</li>
-    </textures>
-    <seam>0</seam>
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGT_Bullet_IonRifle</defName>
+		<label>ion-rifle beam</label>
+		
+		<textures>
+		  <li>Things/Projectile/IonBeamSml</li>
+		</textures>
+		<seam>0</seam>
 
-    <projectile>
-		<damageDef>OGTIon</damageDef>
-		<explosionRadius>0.75</explosionRadius>
-		<damageAmountBase>45</damageAmountBase>
-		<armorPenetrationBase>0.86</armorPenetrationBase>
-		<soundExplode>OGIPP_Explosion</soundExplode>
-    </projectile>
-  </ThingDef>
+		<projectile>
+			<damageDef>OGTIon</damageDef>
+			<explosionRadius>0.75</explosionRadius>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef ParentName="OG_Tau_Gun_Heavy">
 		<defName>OGT_Gun_IonRifle</defName>
@@ -601,7 +586,7 @@
 			<drawSize>1.250</drawSize>			
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-		<comps>   
+		<comps>	  
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
@@ -626,7 +611,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_IonRifle</defaultProjectile>
@@ -643,31 +628,31 @@
 		</verbs>
 		<tools>
 			<li>
-			<label>stock</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>9</power>
-			<cooldownTime>1.8</cooldownTime>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
 			<li>
-			<label>barrel</label>
-			<capacities>
-				<li>Blunt</li>
-				<li>Poke</li>
-			</capacities>
-			<power>10</power>
-			<cooldownTime>1.9</cooldownTime>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-			<techLevel>Spacer</techLevel>
-			<weaponTags>
-				<li>TIonRifle</li>
-				<li>THeavyGun</li>
-			</weaponTags>
-			<tradeTags>
-				<li>OGTRanged</li>
-			</tradeTags>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TIonRifle</li>
+			<li>THeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
 		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Tau_Tech_Weapons_Ion</li>
@@ -681,11 +666,11 @@
 		</costList>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>false</dualWield>
-			<twoHand>true</twoHand>
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
+				<extraRotation>0</extraRotation>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -707,8 +692,8 @@
 		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<modExtensions>
 		  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
-			<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-			<GlowMoteSize>1.5</GlowMoteSize>
+			<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+			<glowMoteSize>1.5</glowMoteSize>
 		  </li>
 		</modExtensions>
 	</ThingDef>
@@ -720,20 +705,20 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Tau/BurstCannon</texPath>
 			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
-		<drawSize>1.150</drawSize>			
-    </graphicData>
+			<drawSize>1.150</drawSize>			
+		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-	<comps>     
-		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-		</li>  
-		<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-			<randomised>true</randomised>
-		</li-->   
-	</comps>
+		<comps>		
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li-->	  
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
@@ -751,7 +736,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_BurstCannon</defaultProjectile>
@@ -762,22 +747,22 @@
 				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-    <tools>
-      <li>
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-          <li>Poke</li>
-        </capacities>
-        <power>10</power>
-        <cooldownTime>1.9</cooldownTime>
-      </li>
-    </tools>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>TBurstCannon</li>
@@ -786,28 +771,28 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
-		<researchPrerequisites>
-			<!--li>OG_Common_Tech_Weapons_Laser</li-->
-			<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-			<!--li>OG_Common_Tech_Weapons_Flame</li-->
-			<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-		</researchPrerequisites>
-	</recipeMaker>
-    <costList>
-		<Steel>55</Steel>
-		<OGT_Fiotak>35</OGT_Fiotak>
-		<OGT_Component>8</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>true</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>55</Steel>
+			<OGT_Fiotak>35</OGT_Fiotak>
+			<OGT_Component>8</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!--==================== Tau - Vespid Neutrino Blaster =========================-->
@@ -859,7 +844,14 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<rapidFire>true</rapidFire>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Vespid</li>
+				</userEffectImmuneList>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGT_Bullet_NeutronBlaster</defaultProjectile>
@@ -870,36 +862,22 @@
 				<soundCast>Shot_Revolver</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-	<comps>    
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-		<VerbEntries>
-			<li>
-				<RapidFire>true</RapidFire>
-				<EffectsUser>true</EffectsUser>
-				<EffectsUserChance>0.15</EffectsUserChance>
-				<ResistEffectStat>ToxicSensitivity</ResistEffectStat>
-				<UserEffect>OG_Hediff_RadiationPoisioning</UserEffect>
-				<UserEffectImmuneList>
-				<li>Vespid</li>
-				</UserEffectImmuneList>
-			</li>
-		</VerbEntries>
-		</li> 
-		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<northOffset>0.0,0.0,0.0</northOffset>
-			<eastOffset>0.0,1.0,0.0</eastOffset>
-			<westOffset>0.0,0.0,0.0</westOffset>
-			<southOffset>0.0,1.0,0.0</southOffset>
-		</li>  
-	</comps>
-    <tools>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
 
-    </tools>
+		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			
@@ -909,24 +887,24 @@
 		<tradeTags>
 			<li>OGTRanged</li>
 		</tradeTags>
-	<recipeMaker>
+		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Vespid_Tech_Base_T1</li>
 			</researchPrerequisites> 
-	</recipeMaker>
-    <costList>
-		<Steel>75</Steel>
-		<OGT_Fiotak>15</OGT_Fiotak>
-		<OGT_Component>8</OGT_Component>
-    </costList>
-    <modExtensions>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-        <dualWield>false</dualWield>
-        <twoHand>false</twoHand>
-      </li>
-      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-        <extraRotation>0</extraRotation>
-      </li>
-    </modExtensions>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<OGT_Fiotak>15</OGT_Fiotak>
+			<OGT_Component>8</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
 	</ThingDef>
 </Defs>

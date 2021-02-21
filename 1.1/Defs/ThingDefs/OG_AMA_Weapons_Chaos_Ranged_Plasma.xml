@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ====================== Plasma shots ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaHuman" Name="OG_Bullet_Base_PlasmaChaos" Abstract="True">
+		<graphicData>
+			<color>157,59,188,255</color>
+			<colorTwo>157,59,188,200</colorTwo>
+		</graphicData>
+	</ThingDef>
+	<!-- ====================== Plasma Pistol shot ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaChaos">
+		<defName>OGC_Bullet_PlasmaPistol</defName>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<damageAmountBase>55</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>1.5</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>0.35</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>0.675</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>0.725</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun shot Std ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaChaos">
+		<defName>OGC_Bullet_PlasmaGun</defName>
+		<label>Plasma bolt</label>
+		<graphicData>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>0.50</explosionRadius>
+			<damageAmountBase>55</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>1.25</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun shot OC ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaChaos">
+		<defName>OGC_Bullet_PlasmaGunOC</defName>
+		<label>Overcharged Plasma Bolt</label>
+		<description>Overcharged Plasma bolts are fired by pushing a Plasma Weapon to its limits, scything through Plasteel, Ceramite and bone as if they were nothing. Due to the increase in the enormous temperatures and deadly energies that Plasma Weapons generate when fired, makes the weapon far more prone to overheating, destabilisation and catastophic misfire.</description>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaShotLrg</texPath>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>1</explosionRadius>
+			<damageAmountBase>85</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>1.25</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.25</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Plasma Pistol ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_PlasmaPistol</defName>
+		<label>plasma pistol (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Plasma Pistol is most commonly carried by champions of both the Chaos Space Marines and Traitor Guardsmen.\nLike other Human infantry-carried plasma weapons, Plasma Pistols are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>0.75</reliability>
+			<WorkToMake>15000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.42</AccuracyLong>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>125</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<weaponTags>
+			<li>CGun</li>
+			<li>CPlasma</li>
+			<li>CPlasmaPistol</li>
+			<li>CMPlasmaPistol</li>
+			<li>TGPlasmaPistol</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma</label>
+				<getsHot>true</getsHot>
+				<hotDamage>5</hotDamage>
+				<reliability>ST</reliability>
+				<defaultCooldownTime>1.75</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaPistol</defaultProjectile>
+				<warmupTime>0.4</warmupTime>
+				<range>25</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Plasma Gun ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special">
+		<defName>OGC_Gun_PlasmaGun</defName>
+		<label>plasma gun (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Traitor infantry, including Chaos Space Marines, Traitor Guardsmen and well equipped Chaos Cultists.\nLike other Human infantry-carried plasma weapons, Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>0.75</reliability>
+			<WorkToMake>18000</WorkToMake>
+			<!--MarketValue>3250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.52</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<weaponTags>
+			<li>CEliteGun</li>
+			<li>CPlasma</li>
+			<li>CPlasmaGun</li>
+			<li>CMPlasmaRifle</li>
+			<li>TGPlasmaRifle</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma</label>
+				<rapidFire>true</rapidFire>
+				<getsHot>true</getsHot>
+				<hotDamage>10</hotDamage>
+				<reliability>ST</reliability>
+				<defaultCooldownTime>1.75</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaGun</defaultProjectile>
+				<warmupTime>1.25</warmupTime>
+				<range>31</range>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma (Overcharged)</label>
+				<getsHot>true</getsHot>
+				<getsHotCritChance>0.1</getsHotCritChance>
+				<getsHotCritExplosionChance>0.05</getsHotCritExplosionChance>
+				<hotDamage>15</hotDamage>
+				<reliability>UR</reliability>
+				<defaultCooldownTime>2.25</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaGunOC</defaultProjectile>
+				<warmupTime>2</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Plasma Cannon shot ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaChaos">
+		<defName>OGC_Bullet_PlasmaCannon</defName>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaShotLrg</texPath>
+			<drawSize>2.25</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<explosionRadius>1.75</explosionRadius>
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>3</stoppingPower>
+			<soundExplode>OGIPC_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>2.25</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Plasma Cannon ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_PlasmaCannon</defName>
+		<label>plasma cannon (C)</label>
+		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+		<description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is a heavy weapon that relies on Imperial plasma technology to deliver lethal blasts of superheated matter to the target. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.\nLike other Human infantry-carried plasma weapons, Plasma Cannons are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>0.9</reliability>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>8000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>2.90</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CGunHeavy</li>
+			<li>CPlasma</li>
+			<li>CPlasmaCannon</li>
+			<li>CMPlasmaCannon</li>
+			<li>TGPlasmaCannon</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+			<li>TGRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma (Overcharged)</label>
+				<getsHot>true</getsHot>
+				<getsHotCritChance>0.25</getsHotCritChance>
+				<getsHotCritExplosionChance>0.15</getsHotCritExplosionChance>
+				<hotDamage>15</hotDamage>
+				<reliability>UR</reliability>
+				<accuracyTouch>0.25</accuracyTouch>
+				<accuracyShort>0.70</accuracyShort>
+				<accuracyMedium>0.75</accuracyMedium>
+				<accuracyLong>0.52</accuracyLong>
+				<defaultCooldownTime>2.25</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_PlasmaCannon</defaultProjectile>
+				<warmupTime>3.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	 </ThingDef>
+
+</Defs>

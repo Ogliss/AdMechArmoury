@@ -254,7 +254,7 @@ namespace AdeptusMechanicus.AirStrikes
 					{
 						weaponDef.soundCastDef.PlayOneShot(new TargetInfo(vector.ToIntVec3(), base.Map, false));
 					}
-					MoteMaker.MakeStaticMote(vector, base.Map, ThingDefOf.Mote_ShotFlash, 10f);
+					AdeptusMoteMaker.MakeStaticMote(vector, base.Map, ThingDefOf.Mote_ShotFlash, 10f);
 					Pawn pawn = null;
 					bool flag8 = weaponDef.targetAcquireRange > 0f;
 					if (flag8)

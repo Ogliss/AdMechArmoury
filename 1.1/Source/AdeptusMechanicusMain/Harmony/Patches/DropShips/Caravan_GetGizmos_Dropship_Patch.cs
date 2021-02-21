@@ -10,6 +10,7 @@ using System.Linq;
 using Verse.AI.Group;
 using RimWorld.Planet;
 using UnityEngine;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -26,7 +27,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 for (int i = 0; i < pinv.innerContainer.Count; i++)
                 {
                     Thing dropship = pawn.inventory.innerContainer[i];
-                    CompDropship comp = dropship.TryGetComp<CompDropship>();
+                    CompDropship comp = dropship.TryGetCompFast<CompDropship>();
                     if (comp != null)
                     {
                         masss += (pinv.innerContainer[i].def.BaseMass * pinv.innerContainer[i].stackCount);
@@ -37,9 +38,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                         launch.alsoClickIfOtherInGroupClicked = false;
                         launch.action = delegate
                         {
-                            float maxmass = pinv.innerContainer[i].TryGetComp<CompTransporter>().Props.massCapacity;
+                            float maxmass = pinv.innerContainer[i].TryGetCompFast<CompTransporter>().Props.massCapacity;
                             if (masss <= maxmass)
-                                pinv.innerContainer[i].TryGetComp<CompDropship>().WorldStartChoosingDestination(__instance);
+                                pinv.innerContainer[i].TryGetCompFast<CompDropship>().WorldStartChoosingDestination(__instance);
                             else
                                 Messages.Message("TooBigTransportersMassUsage".Translate() + "(" + (maxmass - masss) + "KG)", MessageTypeDefOf.RejectInput, false);
                         };
@@ -56,7 +57,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             bool hasAddFuel = false;
                             int fcont = 0;
-                            CompRefuelable comprf = pinv.innerContainer[i].TryGetComp<CompRefuelable>();
+                            CompRefuelable comprf = pinv.innerContainer[i].TryGetCompFast<CompRefuelable>();
                             List<Thing> list = CaravanInventoryUtility.AllInventoryItems(__instance);
                             //pinv.innerContainer.Count
                             for (int j = 0; j < list.Count; j++)
@@ -118,9 +119,9 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                         Gizmo_MapRefuelableFuelStatus fuelStat = new Gizmo_MapRefuelableFuelStatus
                         {
-                            nowFuel = pinv.innerContainer[i].TryGetComp<CompRefuelable>().Fuel,
-                            maxFuel = pinv.innerContainer[i].TryGetComp<CompRefuelable>().Props.fuelCapacity,
-                            compLabel = pinv.innerContainer[i].TryGetComp<CompRefuelable>().Props.FuelGizmoLabel
+                            nowFuel = pinv.innerContainer[i].TryGetCompFast<CompRefuelable>().Fuel,
+                            maxFuel = pinv.innerContainer[i].TryGetCompFast<CompRefuelable>().Props.fuelCapacity,
+                            compLabel = pinv.innerContainer[i].TryGetCompFast<CompRefuelable>().Props.FuelGizmoLabel
 
                         };
 

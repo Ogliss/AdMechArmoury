@@ -19,8 +19,8 @@ namespace AdeptusMechanicus
     {
         public CompProperties_UpgradeableProjectile Props => (CompProperties_UpgradeableProjectile)props;
 
-        public ThingDef projectileDef => Props.projectileDef;
-        public ResearchProjectDef researchDef
+        public ThingDef ProjectileDef => Props.projectileDef;
+        public ResearchProjectDef ResearchDef
         {
             get
             {
@@ -32,7 +32,7 @@ namespace AdeptusMechanicus
                 return null;
             }
         }
-        public List<FactionDef> factionDefs
+        public List<FactionDef> FactionDefs
         {
             get
             {

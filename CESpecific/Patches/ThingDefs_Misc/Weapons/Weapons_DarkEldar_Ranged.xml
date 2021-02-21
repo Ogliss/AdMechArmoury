@@ -444,17 +444,16 @@
 				</projectile>
 				<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
 				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-					<explosionMote>true</explosionMote>
+					<li Class="AdeptusMechanicus.ProjectileVFX">
 					<explosionMoteSize>0.75</explosionMoteSize>
-					<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-					<ImpactMoteSize>2</ImpactMoteSize>
-					<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-					<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+					<impactMoteSize>2</impactMoteSize>
+					<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+					<impactGlowMoteSize>2.5</impactGlowMoteSize>
 					</li>
 					<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-					<GlowMoteDef>Mote_PlasmaGlow</GlowMoteDef>
-					<GlowMoteSize>1.5</GlowMoteSize>
+					<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+					<glowMoteSize>1.5</glowMoteSize>
 					</li>
 				</modExtensions>
 			</ThingDef>
@@ -465,7 +464,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_Darklance"]</xpath>
 		<value>
-			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+			<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
 				<defName>OGDE_Bullet_Darklance</defName>
 				<label>mitralock blast</label>
 				<description>A focused pinpoint laser beam which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
@@ -480,13 +479,12 @@
 					<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</projectile>
 				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-						<explosionMote>true</explosionMote>
-						<explosionMoteSize>0.25</explosionMoteSize>
-						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-						<ImpactMoteSize>1</ImpactMoteSize>
-						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					<li Class="AdeptusMechanicus.ProjectileVFX">
+						
+						<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+						<impactMoteSize>1</impactMoteSize>
+						<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+						<impactGlowMoteSize>2.5</impactGlowMoteSize>
 					</li>
 				</modExtensions>
 			</ThingDef>
@@ -738,7 +736,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_HaywireBlaster"]</xpath>
 		<value>
-			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+			<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
 				<defName>OGDE_Bullet_HaywireBlaster</defName>
 				<label>haywire blast</label>
 				<textures>
@@ -753,13 +751,12 @@
 					<soundExplode>OGIPP_Explosion</soundExplode>
 				</projectile>
 				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-						<explosionMote>true</explosionMote>
-						<explosionMoteSize>0.25</explosionMoteSize>
-						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-						<ImpactMoteSize>1</ImpactMoteSize>
-						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+					<li Class="AdeptusMechanicus.ProjectileVFX">
+						
+						<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+						<impactMoteSize>1</impactMoteSize>
+						<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+						<impactGlowMoteSize>2.5</impactGlowMoteSize>
 					</li>
 				</modExtensions>
 			</ThingDef>
@@ -770,7 +767,7 @@
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="OGDE_Bullet_FusionBeam"]</xpath>
 		<value>
-			<ThingDef Class="AdeptusMechanicus.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+			<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
 				<defName>OGDE_Bullet_FusionBeam</defName>
 				<label>melta blast</label>
 				<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
@@ -786,13 +783,13 @@
 					<soundExplode>OGIFL_Explosion</soundExplode>
 				</projectile>
 				<modExtensions>
-					<li Class="AdeptusMechanicus.EffectProjectileExtension">
-						<explosionMote>true</explosionMote>
+					<li Class="AdeptusMechanicus.ProjectileVFX">
+						
 						<explosionMoteSize>0.5</explosionMoteSize>
-						<ImpactMoteDef>Mote_BoltBlast</ImpactMoteDef>
-						<ImpactMoteSize>1</ImpactMoteSize>
-						<ImpactGlowMoteDef>Mote_ExplosionFlash</ImpactGlowMoteDef>
-						<ImpactGlowMoteSize>2.5</ImpactGlowMoteSize>
+						<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+						<impactMoteSize>1</impactMoteSize>
+						<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+						<impactGlowMoteSize>2.5</impactGlowMoteSize>
 					</li>
 				</modExtensions>
 			</ThingDef>

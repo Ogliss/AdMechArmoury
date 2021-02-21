@@ -27,12 +27,12 @@ namespace AdeptusMechanicus.HarmonyInstance
 				if (pawn.RaceProps.Humanlike)
 				{
 					float increase = 0f;
-					List<Hediff> rejuvTreatments = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetComp<HediffComp_RejuvTreatment>() != null);
+					List<Hediff> rejuvTreatments = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_RejuvTreatment>() != null);
 					if (!rejuvTreatments.NullOrEmpty())
 					{
 						foreach (Hediff hd in rejuvTreatments)
 						{
-							HediffComp_RejuvTreatment rejuvTreatment = hd.TryGetComp<HediffComp_RejuvTreatment>();
+							HediffComp_RejuvTreatment rejuvTreatment = hd.TryGetCompFast<HediffComp_RejuvTreatment>();
 							if (rejuvTreatment!=null)
 							{
 								increase += rejuvTreatment.LifeExpectancyIncrease;

@@ -9,6 +9,7 @@ using Verse.Sound;
 using CombatExtended;
 using System.Linq;
 using HarmonyLib;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace CompTurretCE
 {
@@ -25,8 +26,8 @@ namespace CompTurretCE
 		public CompTurret.CompTurret turret;
 		public CompTurretGun turretGun => turret as CompTurretGun ?? ReloadableCompSource as CompTurretGun;
 
-		public float barrellength => turretGun.Props.barrellength;
-		public float offset => turretGun.Props.projectileOffset;
+        public float Barrellength => turretGun.Props.barrellength;
+        public float Offset => turretGun.Props.projectileOffset;
 		public override Thing Caster
 		{
 			get
@@ -55,7 +56,7 @@ namespace CompTurretCE
 					//	Log.Message("turretGun == null, trying building");
 						if (this.caster is Building)
 						{
-							turret = caster.TryGetComp<CompTurret.CompTurret>();
+							turret = caster.TryGetCompFast<CompTurret.CompTurret>();
 						}
 					}
 					if (this.turretGun != null)
@@ -166,7 +167,7 @@ namespace CompTurretCE
 							MoteMaker.ThrowText(Caster.Position.ToVector3(), Caster.Map, turretGun.Props.messageQuaterRemaningWarning.Translate(EquipmentSource.LabelCap, Caster.LabelShortCap, remaining), 3f);
 						}
 					}
-					muzzlePos = MuzzlePosition(this.Caster, this.currentTarget, offset);
+					muzzlePos = MuzzlePosition(this.Caster, this.currentTarget, Offset);
 				}
 			}
 		//	if (base.TryCastShot())
@@ -433,7 +434,7 @@ namespace CompTurretCE
 				}
 				if (this.verbProps.consumeFuelPerShot > 0f)
 				{
-					CompRefuelable compRefuelable = this.caster.TryGetComp<CompRefuelable>();
+					CompRefuelable compRefuelable = this.caster.TryGetCompFast<CompRefuelable>();
 					if (compRefuelable != null)
 					{
 						compRefuelable.ConsumeFuel(this.verbProps.consumeFuelPerShot);
@@ -463,7 +464,7 @@ namespace CompTurretCE
 				}
 				if (this.castCompleteCallback != null)
 				{
-					this.castCompleteCallback();
+					castCompleteCallback();
 				}
 			}
 		}
@@ -538,12 +539,11 @@ namespace CompTurretCE
 
 		public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
 		{
-			ShootLine shootLine;
-			if (targ.Thing != null && targ.Thing == this.Caster)
-			{
-				return this.targetParams.canTargetSelf;
-			}
-			return !this.ApparelPreventsShooting(root, targ) && this.TryFindShootLineFromTo(root, targ, out shootLine);
+            if (targ.Thing != null && targ.Thing == this.Caster)
+            {
+                return this.targetParams.canTargetSelf;
+            }
+            return !this.ApparelPreventsShooting(root, targ) && this.TryFindShootLineFromTo(root, targ, out ShootLine shootLine);
 		}
 
 		private bool CausesTimeSlowdown(LocalTargetInfo castTarg)
@@ -595,13 +595,12 @@ namespace CompTurretCE
 			}
 			if (this.CasterIsPawn)
 			{
-				IntVec3 dest;
-				if (this.CanHitFromCellIgnoringRange(root, targ, out dest))
-				{
-					resultingLine = new ShootLine(root, dest);
-					return true;
-				}
-				ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), this.Caster.Map, Verb_ShootCompMountedCE.tempLeanShootSources);
+                if (this.CanHitFromCellIgnoringRange(root, targ, out IntVec3 dest))
+                {
+                    resultingLine = new ShootLine(root, dest);
+                    return true;
+                }
+                ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), this.Caster.Map, Verb_ShootCompMountedCE.tempLeanShootSources);
 				for (int i = 0; i < Verb_ShootCompMountedCE.tempLeanShootSources.Count; i++)
 				{
 					IntVec3 intVec = Verb_ShootCompMountedCE.tempLeanShootSources[i];
@@ -617,13 +616,12 @@ namespace CompTurretCE
 				IntVec2 size = new IntVec2(Caster.def.size.x + 1, Caster.def.size.z + 1);
 				foreach (IntVec3 intVec2 in GenAdj.OccupiedRect(Caster.Position, Caster.Rotation, size))
 				{
-					IntVec3 dest;
-					if (this.CanHitFromCellIgnoringRange(intVec2, targ, out dest))
-					{
-						resultingLine = new ShootLine(intVec2, dest);
-						return true;
-					}
-				}
+                    if (this.CanHitFromCellIgnoringRange(intVec2, targ, out IntVec3 dest))
+                    {
+                        resultingLine = new ShootLine(intVec2, dest);
+                        return true;
+                    }
+                }
 			}
 			resultingLine = new ShootLine(root, targ.Cell);
 			return false;

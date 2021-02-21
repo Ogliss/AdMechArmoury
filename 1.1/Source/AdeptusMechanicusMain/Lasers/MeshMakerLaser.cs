@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
     public static class MeshMakerLaser
     {

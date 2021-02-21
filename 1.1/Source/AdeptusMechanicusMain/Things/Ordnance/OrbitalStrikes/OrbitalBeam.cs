@@ -15,10 +15,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			salvos++;
 			base.StartStrike();
 			float effectRange = Beam != null ? Beam.Props.width * 3 : 90f;
-			powerBeamMote = MakePowerBeamMote(effectLoc, base.Map, effectRange, this.duration.TicksToSeconds());
+			powerBeamMote = MakePowerBeamMote(EffectLoc, base.Map, effectRange, this.duration.TicksToSeconds());
 		}
 		protected Mote powerBeamMote;
-		protected IntVec3 effectLoc => base.targetLoc != default(IntVec3) ? base.targetLoc : base.Position;
+		protected IntVec3 EffectLoc => base.targetLoc != default(IntVec3) ? base.targetLoc : base.Position;
 		private RimWorld.CompOrbitalBeam beam;
 		public RimWorld.CompOrbitalBeam Beam
         {
@@ -56,9 +56,9 @@ namespace AdeptusMechanicus.OrbitalStrikes
 		protected void StartRandomFireAndDoFlameDamage()
 		{
 			float effectRange = Beam != null ? Beam.Props.width * 2 : 15f;
-			IntVec3 c = (from x in GenRadial.RadialCellsAround(effectLoc, effectRange, true)
+			IntVec3 c = (from x in GenRadial.RadialCellsAround(EffectLoc, effectRange, true)
 						 where x.InBounds(base.Map)
-						 select x).RandomElementByWeight((IntVec3 x) => 1f - Mathf.Min(x.DistanceTo(effectLoc) / effectRange, 1f) + 0.05f);
+						 select x).RandomElementByWeight((IntVec3 x) => 1f - Mathf.Min(x.DistanceTo(EffectLoc) / effectRange, 1f) + 0.05f);
             if (base.HitRoof(c))
             {
 				return;

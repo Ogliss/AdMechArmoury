@@ -6,7 +6,7 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
     public class JobDriver_ChangeLaserColor : JobDriver
     {

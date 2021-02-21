@@ -19,17 +19,25 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(PawnGraphicSet __instance, ref Material __result)
         {
             Pawn pawn = __instance.pawn;
+            if (pawn == null || !pawn.RaceProps.Humanlike)
+            {
+                return;
+            }
             if (pawn.apparel.AnyApparel)
             {
-                if (pawn.apparel.WornApparel.Any(x => x.TryGetComp<CompApparelExtraPartDrawer>() !=null))
+                if (pawn.apparel.WornApparel.Any(x => x.def.HasComp(typeof(CompApparelExtraPartDrawer))))
                 {
                     foreach (var item in pawn.apparel.WornApparel)
                     {
-                        CompApparelExtraPartDrawer extraDrawer = item.TryGetComp<CompApparelExtraPartDrawer>();
-                        if (extraDrawer !=null && extraDrawer.hidesHead)
+                        if (item.def.HasComp(typeof(CompApparelExtraPartDrawer)))
                         {
-                            __result = AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle;
-                            return;
+                            CompApparelExtraPartDrawer extraDrawer = item.TryGetCompFast<CompApparelExtraPartDrawer>();
+                            if (extraDrawer != null && extraDrawer.hidesHead)
+                            {
+                                __result.SetTexture(AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle.name, AMConstants.InvisibleGraphics(pawn).headGraphic.MatSingle.mainTexture);
+                                __result.shader = ShaderDatabase.Cutout;
+                                return;
+                            }
                         }
                     }
                 }

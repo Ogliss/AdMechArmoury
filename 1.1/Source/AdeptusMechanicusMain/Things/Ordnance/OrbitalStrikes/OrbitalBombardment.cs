@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.OrbitalStrikes
 {
@@ -86,10 +87,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
 					ThingDef def = this.def;
 
 					Vector3 vector = targetCell.ToVector3ShiftedWithAltitude(AltitudeLayer.Skyfaller);
-					if (this.projectiles[i].ordnance.HasModExtension<EffectProjectileExtension>())
+					if (this.projectiles[i].ordnance.HasModExtension<ProjectileVFX>())
 					{
-						EffectProjectileExtension effects = this.projectiles[i].ordnance.GetModExtension<EffectProjectileExtension>();
-						effects.ThrowMote(vector, map, this.projectiles[i].ordnance.projectile.damageDef.explosionCellMote, randomInRange, this.projectiles[i].ordnance.projectile.damageDef.explosionColorCenter, this.projectiles[i].ordnance.projectile.damageDef.soundExplosion, ThingDef.Named(effects.ImpactMoteDef) ?? null, randomInRange, ThingDef.Named(effects.ImpactGlowMoteDef) ?? null, randomInRange);
+						ProjectileVFX effects = this.projectiles[i].ordnance.GetModExtensionFast<ProjectileVFX>();
+						effects.ImpactEffects(vector, map, effects.ExplosionMoteDef ?? this.projectiles[i].ordnance.projectile.damageDef.explosionCellMote, randomInRange, this.projectiles[i].ordnance.projectile.damageDef.explosionColorCenter, this.projectiles[i].ordnance.projectile.damageDef.soundExplosion, effects.ImpactMoteDef, randomInRange, effects.ImpactGlowMoteDef, randomInRange);
 					}
 					GenExplosion.DoExplosion(targetCell, map, randomInRange, bomb, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, false, null, 0f, 1, 0f, false, null, null);
 					this.projectiles.RemoveAt(i);
@@ -280,8 +281,40 @@ namespace AdeptusMechanicus.OrbitalStrikes
 				Vector3 pos = this.targetCell.ToVector3() + Velocity(-Angle) * Mathf.Lerp(StartZ, 0f, 1f - (float)this.lifeTime / (float)this.maxLifeTime);
 				pos.z += 1.25f;
 				pos.y = AltitudeLayer.MetaOverlays.AltitudeFor();
+				if (ordnance.HasModExtension<TrailerProjectileExtension>())
+				{
+					for (int i = 0; i < ordnance.modExtensions.Count; i++)
+					{
+						TrailerProjectileExtension trailer = ordnance.modExtensions[i] as TrailerProjectileExtension;
+						if (trailer != null)
+						{
+							if (lifeTime % trailer.trailerMoteInterval == 0)
+							{
+								for (int ii = 0; ii < trailer.motesThrown; ii++)
+								{
+									//    Trail1Thrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+
+									//    TrailThrower.ThrowSmokeTrail(__instance.DrawPos, trailer.trailMoteSize * DistanceCoveredFraction(___origin, ___destination, ___ticksToImpact, __instance.def.projectile.SpeedTilesPerTick), __instance.Map, trailer.trailMoteDef, __instance);
+									Color? DC = null;
+									if (trailer.useGraphicColor)
+									{
+										DC = ordnance.graphicData.color;
+									}
+									else
+									if (trailer.useGraphicColorTwo)
+									{
+										DC = ordnance.graphicData.colorTwo;
+									}
+									TrailThrower.ThrowSprayTrail(pos, map, pos, this.targetCell.ToVector3(), trailer.trailMoteDef, trailer.trailMoteSize * Scale, 240, ordnance.projectile.SpeedTilesPerTick, DC);
+								}
+							}
+						}
+					}
+				}
+				/*
 				AdeptusMoteMaker.ThrowLightningBolt(pos, map);
 				AdeptusMoteMaker.ThrowEMPLightningGlow(pos, map, 1.25f);
+				*/
 			}
 			/*
 			protected virtual Vector3 NextExactPosition(float deltaTime)
@@ -306,11 +339,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
 					Graphics.DrawMesh(MeshPool.plane10, matrix, material, 0);
 					if (ordnance.HasModExtension<GlowerProjectileExtension>())
 					{
-						GlowerProjectileExtension glower = ordnance.GetModExtension<GlowerProjectileExtension>();
+						GlowerProjectileExtension glower = ordnance.GetModExtensionFast<GlowerProjectileExtension>();
 						if (glower != null)
 						{
-							Mesh mesh2 = MeshPool.GridPlane(DefDatabase<ThingDef>.GetNamed(glower.GlowMoteDef).graphicData.drawSize * glower.GlowMoteSize);
-							Graphics.DrawMesh(mesh2, pos, Quaternion.Euler(0f, Angle, 0f), DefDatabase<ThingDef>.GetNamed(glower.GlowMoteDef).graphic.MatSingle, 0);
+							glower.Glow(material, pos, Quaternion.Euler(0f, Angle, 0f));
 						}
 					}
 				}

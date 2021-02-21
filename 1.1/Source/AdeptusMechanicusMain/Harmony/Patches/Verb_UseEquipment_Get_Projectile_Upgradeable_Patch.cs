@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -21,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__instance.EquipmentSource != null)
             {
-                CompUpgradeableProjectile upgradeableProjectile = __instance.EquipmentSource.TryGetComp<CompUpgradeableProjectile>();
+                CompUpgradeableProjectile upgradeableProjectile = __instance.EquipmentSource.TryGetCompFast<CompUpgradeableProjectile>();
                 if (upgradeableProjectile != null && __instance.verbProps.defaultProjectile == __result)
                 {
                     bool inFaction = __instance.CasterPawn?.Faction != null;
@@ -31,20 +32,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                         playerFaction = __instance.CasterPawn.Faction == Faction.OfPlayer;
                         if (playerFaction)
                         {
-                            if (upgradeableProjectile.researchDef != null)
+                            if (upgradeableProjectile.ResearchDef != null)
                             {
-                                if (upgradeableProjectile.researchDef.IsFinished)
+                                if (upgradeableProjectile.ResearchDef.IsFinished)
                                 {
-                                    __result = upgradeableProjectile.projectileDef;
+                                    __result = upgradeableProjectile.ProjectileDef;
                                 }
                             }
                             return;
                         }
                         else
                         {
-                            if (upgradeableProjectile.factionDefs.Contains(__instance.CasterPawn.Faction.def))
+                            if (upgradeableProjectile.FactionDefs.Contains(__instance.CasterPawn.Faction.def))
                             {
-                                __result = upgradeableProjectile.projectileDef;
+                                __result = upgradeableProjectile.ProjectileDef;
                                 return;
                             }
                         }
@@ -61,7 +62,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         //    log.message(string.Format("{0} Slots, Occupied: {1} Empty: {2}, Total: {3}", __instance.EquipmentSource, slotLoadable.Slots.FindAll(x => x.SlotOccupant != null).Count, slotLoadable.Slots.FindAll(x => x.SlotOccupant == null).Count, slotLoadable.Slots.Count));
                             foreach (CompSlotLoadable.SlotLoadable slot in slotLoadable.Slots.FindAll(x => x.SlotOccupant != null))
                             {
-                                CompSlotLoadable.CompSlottedBonus slottedBonus = slot.SlotOccupant.TryGetComp<CompSlotLoadable.CompSlottedBonus>();
+                                CompSlotLoadable.CompSlottedBonus slottedBonus = slot.SlotOccupant.TryGetCompFast<CompSlotLoadable.CompSlottedBonus>();
                             //    log.message(string.Format("{0}'s Slot at {1} with: {2} slottedBonus: {3}", __instance.EquipmentSource, slotLoadable.Slots.IndexOf(slot), slot.SlotOccupant, slottedBonus!=null));
                                 if (slottedBonus != null)
                                 {

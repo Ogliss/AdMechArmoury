@@ -63,7 +63,7 @@ namespace AdeptusMechanicus
         {
             for (int i = 0; i < pawns.Count; i++)
             {
-                //    IntVec3 dropCenter = map.listerBuildings.allBuildingsColonist.FindAll(x => x.TryGetComp<CompPowerPlant>() != null).RandomElement().Position;
+                //    IntVec3 dropCenter = map.listerBuildings.allBuildingsColonist.FindAll(x => x.TryGetCompFast<CompPowerPlant>() != null).RandomElement().Position;
                 IntVec3 dropCenter;
                 if (DropCellFinder.TryFindRaidDropCenterClose(out dropCenter, map))
                 {
