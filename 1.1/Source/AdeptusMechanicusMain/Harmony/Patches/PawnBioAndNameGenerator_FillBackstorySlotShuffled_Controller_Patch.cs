@@ -18,7 +18,8 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static bool Prefix(Pawn pawn, BackstorySlot slot, ref Backstory backstory, Backstory backstoryOtherSlot, List<BackstoryCategoryFilter> backstoryCategories, FactionDef factionType)
         {
-            if (pawn.def.defName.StartsWith("OG_"))
+            bool act = pawn.def.modContentPack.Name.Contains("Adeptus Mechanicus");
+            if (act || pawn.def.defName.StartsWith("OG_") || pawn.kindDef.defName.StartsWith("OG_") || pawn.kindDef.defName.Contains("_OG_"))
             {
                 FillBackstorySlotShuffled(pawn, slot, ref backstory, backstoryOtherSlot, backstoryCategories, factionType);
                 return false;
@@ -27,16 +28,14 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static bool FillBackstorySlotShuffled(Pawn pawn, BackstorySlot slot, ref Backstory backstory, Backstory backstoryOtherSlot, List<BackstoryCategoryFilter> backstoryCategories, FactionDef factionType)
         {
-            if (pawn.def.defName.StartsWith("OG_"))
+            bool act = pawn.def.modContentPack.Name.Contains("Adeptus Mechanicus");
+            if (act || pawn.def.defName.StartsWith("OG_") || pawn.kindDef.defName.StartsWith("OG_") || pawn.kindDef.defName.Contains("_OG_"))
             {
-            //    log.message(pawn.NameShortColored + " is " +pawn.def + " in " + pawn.Faction);
                 BackstoryCategoryFilter backstoryCategoryFilter = backstoryCategories.RandomElementByWeight((BackstoryCategoryFilter c) => c.commonality);
                 if (backstoryCategoryFilter == null)
                 {
 
-                //    log.message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == null");
                     backstoryCategoryFilter = PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.FallbackCategoryGroup;
-                //    log.message(pawn.def + " in " + pawn.Faction + " backstoryCategoryFilter == " + backstoryCategoryFilter);
                 }
                 List<string> lista = new List<string>();
                 foreach (BackstoryCategoryFilter filter in backstoryCategories)
@@ -53,20 +52,41 @@ namespace AdeptusMechanicus.HarmonyInstance
                       where slot != BackstorySlot.Adulthood || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables)
                       select bs).TryRandomElementByWeight(new Func<Backstory, float>(PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.BackstorySelectionWeight), out backstory))
                 {
-                //    log.message(string.Format("backstoryCategories: {0}, used backstoryCategoryFilter: {1}", lista.ToCommaList(), backstoryCategoryFilter.categories.ToCommaList()));
-                    Log.Error(string.Concat(new object[]
+                    Log.Warning(string.Concat(new object[]
                     {
-                    "No shuffled ",
-                    slot,
-                    " found for ",
-                    pawn.ToStringSafe<Pawn>(),
-                    " of ",
-                    factionType.ToStringSafe<FactionDef>(),
-                    ". Choosing random."
-                    }), false);
-                    backstory = (from kvp in BackstoryDatabase.allBackstories
-                                 where kvp.Value.slot == slot
-                                 select kvp).RandomElement<KeyValuePair<string, Backstory>>().Value;
+                        "low number of backstories ",
+                        slot,
+                        " categories used ",
+                        backstoryCategoryFilter.categories.ToCommaList(),
+                        " found for ",
+                        pawn.ToStringSafe<Pawn>(),
+                        " of ",
+                        factionType.ToStringSafe<FactionDef>(),
+                        ". trying random."
+                    }));
+                    KeyValuePair<string, Backstory> b;
+                    if (!BackstoryDatabase.allBackstories.Where( bs => backstoryCategoryFilter.categories.Any(cat => bs.Value.spawnCategories.Contains(cat)) && bs.Value.slot == slot && (slot != BackstorySlot.Adulthood || !bs.Value.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables))).TryRandomElementByWeight < KeyValuePair<string, Backstory>>(new Func<KeyValuePair<string, Backstory>, float>(PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.BackstorySelectionWeight), out b))
+                    {
+                        Log.Error(string.Concat(new object[]
+                        {
+                        "No shuffled ",
+                        slot,
+                        " categories used ",
+                        backstoryCategoryFilter.categories.ToCommaList(),
+                        " found for ",
+                        pawn.ToStringSafe<Pawn>(),
+                        " of ",
+                        factionType.ToStringSafe<FactionDef>(),
+                        ". Choosing random."
+                        }), false);
+                        backstory = (from kvp in BackstoryDatabase.allBackstories
+                                        where kvp.Value.slot == slot
+                                        select kvp).RandomElement<KeyValuePair<string, Backstory>>().Value;
+                    }
+                    else
+                    {
+                        backstory = b.Value;
+                    }
                 }
                 return false;
             }
@@ -124,6 +144,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         };
 
         // Token: 0x06001503 RID: 5379 RVA: 0x000A3B95 File Offset: 0x000A1F95
+        public static float BackstorySelectionWeight(KeyValuePair<string, Backstory> bs)
+        {
+            return PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.SelectionWeightFactorFromWorkTagsDisabled(bs.Value.workDisables);
+        }
         public static float BackstorySelectionWeight(Backstory bs)
         {
             return PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.SelectionWeightFactorFromWorkTagsDisabled(bs.workDisables);

@@ -12,7 +12,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static void Prefix(ref Thing __instance, Map map, bool respawningAfterLoad)
         {
-            if (__instance.def.modContentPack != null)
+            if (__instance?.def?.modContentPack != null && respawningAfterLoad)
             {
                 ThingWithComps original = __instance as ThingWithComps;
                 if (original != null)
@@ -25,24 +25,33 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Pawn_InventoryTracker inventoryTracker = pawn.inventory;
                         if (equipmentTracker != null)
                         {
-                            for (int i = 0; i < equipmentTracker.AllEquipmentListForReading.Count; i++)
+                            if (!equipmentTracker.AllEquipmentListForReading.NullOrEmpty())
                             {
-                                equipmentTracker.AllEquipmentListForReading[i] = ReplacedThing(equipmentTracker.AllEquipmentListForReading[i]) as ThingWithComps;
+                                for (int i = 0; i < equipmentTracker.AllEquipmentListForReading.Count; i++)
+                                {
+                                    equipmentTracker.AllEquipmentListForReading[i] = ReplacedThing(equipmentTracker.AllEquipmentListForReading[i]) as ThingWithComps;
+                                }
                             }
                         }
                         if (apparelTracker != null)
                         {
-                            for (int i = 0; i < apparelTracker.WornApparel.Count; i++)
+                            if (!apparelTracker.WornApparel.NullOrEmpty())
                             {
-                                apparelTracker.WornApparel[i] = ReplacedThing(apparelTracker.WornApparel[i]) as Apparel;
+                                for (int i = 0; i < apparelTracker.WornApparel.Count; i++)
+                                {
+                                    apparelTracker.WornApparel[i] = ReplacedThing(apparelTracker.WornApparel[i]) as Apparel;
+                                }
                             }
                         }
                         if (inventoryTracker != null)
                         {
-                            for (int i = inventoryTracker.GetDirectlyHeldThings().Count-1; i > 0; i--)
+                            if (!inventoryTracker.GetDirectlyHeldThings().NullOrEmpty())
                             {
-                                inventoryTracker.GetDirectlyHeldThings().RemoveAt(i);
-                                inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps));
+                                for (int i = inventoryTracker.GetDirectlyHeldThings().Count - 1; i > 0; i--)
+                                {
+                                    inventoryTracker.GetDirectlyHeldThings().RemoveAt(i);
+                                    inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps));
+                                }
                             }
                         }
                     }
@@ -60,41 +69,49 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static Thing ReplacedThing(ThingWithComps original)
         {
-            if (original.GetType() != original.def.thingClass && original.def.modContentPack.Name.Contains("Adeptus Mechanicus"))
+            bool actionRequired = original.GetType() != original.def.thingClass;
+            if (actionRequired)
             {
-                Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
-                Thing thing = ThingMaker.MakeThing(original.def, original.Stuff);
-                thing.Position = original.Position;
-                CompQuality quality = original.TryGetCompFast<CompQuality>();
-                if (quality != null)
+                Log.Message("original.GetType("+ original.GetType()+ ") != original.def.thingClass("+ original.def.thingClass+")");
+                bool act = original.def.modContentPack.Name.Contains("Adeptus Mechanicus");
+                if (act)
                 {
-                    quality.parent = thing as ThingWithComps;
-                }
-                CompArt art = original.TryGetCompFast<CompArt>();
-                if (art != null)
-                {
-                    art.parent = thing as ThingWithComps;
-                }
-                thing.thingIDNumber = original.thingIDNumber;
-                IThingHolder holder = original.ParentHolder;
-                CompEquippable equippable = original.TryGetCompFast<CompEquippable>();
-                if (equippable != null)
-                {
-                    Thing user = equippable.VerbTracker.PrimaryVerb.Caster;
-                    Pawn p = user as Pawn;
-                    if (p != null)
+                    Log.Message("act");
+                    Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
+                    Thing thing = ThingMaker.MakeThing(original.def, original.Stuff);
+                    thing.Position = original.Position;
+                    CompQuality quality = original.TryGetCompFast<CompQuality>();
+                    if (quality != null)
                     {
-                        p.equipment.Remove(original);
-                        p.equipment.AddEquipment(thing as ThingWithComps);
+                        quality.parent = thing as ThingWithComps;
                     }
+                    CompArt art = original.TryGetCompFast<CompArt>();
+                    if (art != null)
+                    {
+                        art.parent = thing as ThingWithComps;
+                    }
+                    thing.thingIDNumber = original.thingIDNumber;
+                    IThingHolder holder = original.ParentHolder;
+                    CompEquippable equippable = original.TryGetCompFast<CompEquippable>();
+                    if (equippable != null)
+                    {
+                        Thing user = equippable.VerbTracker.PrimaryVerb.Caster;
+                        Pawn p = user as Pawn;
+                        if (p != null)
+                        {
+                            p.equipment.Remove(original);
+                            p.equipment.AddEquipment(thing as ThingWithComps);
+                        }
+                    }
+                    else
+                    if (holder != null)
+                    {
+                        holder.GetDirectlyHeldThings().Remove(original);
+                        holder.GetDirectlyHeldThings().TryAdd(thing);
+                    }
+                    return thing;
+
                 }
-                else
-                if (holder != null)
-                {
-                    holder.GetDirectlyHeldThings().Remove(original);
-                    holder.GetDirectlyHeldThings().TryAdd(thing);
-                }
-                return thing;
             }
             return original;
         }
