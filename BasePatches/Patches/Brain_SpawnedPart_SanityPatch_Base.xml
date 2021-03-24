@@ -26,13 +26,54 @@
 			</nomatch>
 			<match Class="PatchOperationSequence">
 				<operations>
-					<li Class="PatchOperationReplace">
+				
+					<li Class="PatchOperationConditional">
+						<xpath>/Defs/ThingDef[defName="Brain"]/description</xpath>
+						<match Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="Brain"]/description</xpath>
+							<value>
+								<description>A biological human brain. The center of all Consciousness./n/nSome Poor Soul used to use this to THINK! But now it can have a more useful purpose for the Imperium.</description>
+							</value>
+						</match>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+							<value>
+								<description>A biological human brain. The center of all Consciousness./n/nSome Poor Soul used to use this to THINK! But now it can have a more useful purpose for the Imperium.</description>
+							</value>
+						</nomatch>
+					</li>
+					<!--
+					
+					<li Class="AdeptusMechanicus.PatchOperationAddOrReplace">
 						<xpath>/Defs/ThingDef[defName="Brain"]/description</xpath>
 						<value>
 							<description>A biological human brain. The center of all Consciousness./n/nSome Poor Soul used to use this to THINK! But now it can have a more useful purpose for the Imperium.</description>
 						</value>
 					</li>
-					<li Class="PatchOperationReplace">
+					-->
+					<li Class="PatchOperationConditional">
+						<xpath>/Defs/ThingDef[defName="Brain"]/graphicData</xpath>
+						<match Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="Brain"]/graphicData</xpath>
+							<value>
+								<graphicData>
+									<texPath>Things/Item/Health/Brain</texPath>
+									<graphicClass>Graphic_Single</graphicClass>
+								</graphicData>
+							</value>
+						</match>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+							<value>
+								<graphicData>
+									<texPath>Things/Item/Health/Brain</texPath>
+									<graphicClass>Graphic_Single</graphicClass>
+								</graphicData>
+							</value>
+						</nomatch>
+					</li>
+					<!--
+					<li Class="AdeptusMechanicus.PatchOperationAddOrReplace">
 						<xpath>/Defs/ThingDef[defName="Brain"]/graphicData</xpath>
 						<value>
 							<graphicData>
@@ -41,6 +82,26 @@
 							</graphicData>
 						</value>
 					</li>
+					-->
+					<!--
+					
+					<li Class="AdeptusMechanicus.PatchOperationAddOrReplace">
+						<xpath>/Defs/ThingDef[defName="Brain"]/graphicData/texPath</xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Item/Health/Brain</texPath>
+							</graphicData>
+						</value>
+					</li>
+					<li Class="AdeptusMechanicus.PatchOperationAddOrReplace">
+						<xpath>/Defs/ThingDef[defName="Brain"]/graphicData/graphicClass</xpath>
+						<value>
+							<graphicData>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+					-->
 				</operations>
 			</match>
 		</li>
