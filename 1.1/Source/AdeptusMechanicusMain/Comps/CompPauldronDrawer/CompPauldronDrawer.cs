@@ -155,7 +155,7 @@ namespace AdeptusMechanicus
                 {
                     if (entry.Used.Color.HasValue)
                     {
-                      Log.Message("mainColorFor "+ entry.shoulderPadType + " activeOption: " + entry.Used.Label + " Color: "+ entry.Used.Color.Value);
+                    //    Log.Message("mainColorFor "+ entry.shoulderPadType + " activeOption: " + entry.Used.Label + " Color: "+ entry.Used.Color.Value);
                         return entry.Used.Color.Value;
                     }
                 }
@@ -166,7 +166,7 @@ namespace AdeptusMechanicus
                     {
                         if (colours.Active)
                         {
-                            Log.Message("mainColorFor " + entry.shoulderPadType + " UseFactionColors");
+                         //   Log.Message("mainColorFor " + entry.shoulderPadType + " UseFactionColors");
                             return colours.Color;
                         }
                     }
@@ -186,21 +186,21 @@ namespace AdeptusMechanicus
                 }
                 if (entry.overridePrimaryColor.HasValue)
                 {
-                    Log.Message("mainColorFor " + entry.shoulderPadType + " overridePrimaryColor");
+                //    Log.Message("mainColorFor " + entry.shoulderPadType + " overridePrimaryColor");
                     return entry.overridePrimaryColor.Value;
                 }
                 if (entry.UseSecondaryColorAsPrimary)
                 {
                     if (entry.overrideSecondaryColor.HasValue)
                     {
-                        Log.Message("mainColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
+                    //    Log.Message("mainColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
                         return entry.overrideSecondaryColor.Value;
                     }
-                    Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColorTwo");
+                //    Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColorTwo");
                     return this.parent.DrawColorTwo;
                 }
             }
-            Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColor");
+        //    Log.Message("mainColorFor " + entry.shoulderPadType + " DrawColor");
             return this.parent.DrawColor;
         }
         

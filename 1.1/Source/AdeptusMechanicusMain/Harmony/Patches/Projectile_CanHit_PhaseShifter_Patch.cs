@@ -25,9 +25,9 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (phaseHediffs == null)
             {
-                if (AMAMod.Dev) Log.Message("Projectile_CanHit_PhaseShifter_Patch phaseHediffs is null, Populating");
+            //    if (AMAMod.Dev) Log.Message("Projectile_CanHit_PhaseShifter_Patch phaseHediffs is null, Populating");
                 phaseHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_PhaseShifter)));
-                if (AMAMod.Dev) Log.Message("Projectile_CanHit_PhaseShifter_Patch phaseHediffs Populated: " + phaseHediffs.Count);
+            //    if (AMAMod.Dev) Log.Message("Projectile_CanHit_PhaseShifter_Patch phaseHediffs Populated: " + phaseHediffs.Count);
             }
             if (thing != null)
             {

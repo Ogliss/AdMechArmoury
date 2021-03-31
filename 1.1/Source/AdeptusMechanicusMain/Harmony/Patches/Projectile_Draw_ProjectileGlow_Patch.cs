@@ -14,6 +14,7 @@ using UnityEngine;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    [StaticConstructorOnStartup]
     [HarmonyPatch(typeof(Projectile), "Draw")]
     public static class Projectile_Draw_ProjectileGlow_Patch
     {

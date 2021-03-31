@@ -11,6 +11,7 @@ using Verse.AI.Group;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public class DropShipLeaving : DropPodLeaving, IActiveDropPod, IThingHolder
     {
 		public new ActiveDropPodInfo Contents

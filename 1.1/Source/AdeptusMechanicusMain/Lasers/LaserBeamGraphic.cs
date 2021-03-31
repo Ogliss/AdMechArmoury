@@ -323,12 +323,12 @@ namespace AdeptusMechanicus.Lasers
                         {
                             if (this.projDef.graphicData.graphicClass == typeof(Graphic_Flicker))
                             {
-                                Log.Message("Graphic_Flicker get mat for beam ");
+                            //    Log.Message("Graphic_Flicker get mat for beam ");
                                 materialBeam = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(materialBeam) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(materialBeam) + 1 : 0)) ?? projDef.graphicData.Graphic.MatSingle;
                             }
                             if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
                             {
-                                Log.Message("Graphic_Random get mat for beam ");
+                            //    Log.Message("Graphic_Random get mat for beam ");
                                 materialBeam = projDef.GetBeamMaterial(0) ?? projDef.graphicData.Graphic.MatSingle;
                             }
                         }

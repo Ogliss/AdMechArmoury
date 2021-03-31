@@ -396,10 +396,6 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
-        public Vector3 Velocity(float angle)
-        {
-            return Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward;
-        }
         protected virtual void AddeEffects(Thing hitThing)
         {
             if (def != null && def.HediffToAdd != null && hitThing != null && hitThing is Pawn hitPawn)
