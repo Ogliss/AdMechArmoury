@@ -53,7 +53,10 @@ namespace AdeptusMechanicus.Lasers
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = def;
             Pawn pawn = launcher as Pawn;
-            graphic.Setup(launcher, a, b, pawn?.equipment?.PrimaryEq?.PrimaryVerb, hitThing, effecter, def.explosionEffect);
+            Building_TurretGun turretGun = launcher as Building_TurretGun;
+
+            Verb verb = pawn?.equipment?.PrimaryEq?.PrimaryVerb ?? turretGun?.AttackVerb;
+            graphic.Setup(launcher, a, b, verb, hitThing, effecter, def.explosionEffect);
             GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
         }
 

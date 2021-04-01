@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AdeptusMechanicus.Lasers;
+using AdeptusMechanicus.settings;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -147,8 +148,20 @@ namespace AdeptusMechanicus.ExtensionMethods
             smokeSize = 0;
             string rstring = "\nbarrelLength: {0} barrelOffset: {1}\nflareDef: {2} flareSize: {3}\nsmokeDef: {4} smokeSize: {5}";
             StringBuilder builder = new StringBuilder();
+            if (verb == null)
+            {
+                Log.Error("Cannot find Muzzle position, Verb is Null");
+                return result;
+
+            }
+            if (verb.verbProps == null)
+            {
+                Log.Error("Cannot find Muzzle position, verbProps are null");
+                return result;
+            }
             if ((m = verb.verbProps as IMuzzlePosition) != null)
             {
+            //    Log.Message("m = verbProps");
                 result = true;
                 barrelLength = m.BarrelLength;
                 barrelOffset = m.BarrelOffset;
@@ -160,8 +173,10 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             else
             {
+            //    Log.Message("m != verbProps");
                 if ((m = verb.EquipmentSource as IMuzzlePosition) != null)
                 {
+                //    Log.Message("m = EquipmentSource");
                     result = true;
                     barrelLength = m.BarrelLength;
                     barrelOffset = m.BarrelOffset;
@@ -173,6 +188,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 }
                 if ((m = verb.EquipmentSource?.def.GetModExtensionFast<BarrelOffsetExtension>()) != null)
                 {
+                //    Log.Message("m = BarrelOffsetExtension");
                     result = true;
                     barrelLength = m.BarrelLength;
                     barrelOffset = m.BarrelOffset;
@@ -185,6 +201,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             if ((m = verb.GetProjectile().GetModExtensionFast<ProjectileVFX>()) != null)
             {
+            //    Log.Message("m = ProjectileVFX");
                 result = true;
                 barrelLength += m.BarrelLength;
                 barrelOffset += m.BarrelOffset;
@@ -194,9 +211,16 @@ namespace AdeptusMechanicus.ExtensionMethods
                 smokeSize = m.MuzzleSmokeSize > 0 ? m.MuzzleSmokeSize : smokeSize;
                 builder.AppendLine("m = " + verb + " Verb GetProjectile" + string.Format(rstring, barrelLength, barrelOffset, flareDef, flareSize, smokeDef, smokeSize));
             }
-            if (builder.Length > 0)
+            if (AMAMod.Dev)
             {
-            //    Log.Message(builder.ToString());
+                if (m == null)
+                {
+                    Log.Message("No Muzzle found for verb: " + verb?.ToString() ?? "NULL");
+                }
+                if (builder.Length > 0)
+                {
+                    Log.Message(builder.ToString());
+                }
             }
             return result;
         }
@@ -204,6 +228,17 @@ namespace AdeptusMechanicus.ExtensionMethods
         public static Vector3 MuzzlePositionFor(this Verb verb, float aimAngle, bool throwMotes = false)
         {
             Vector3 origin = verb.CasterIsPawn ? verb.CasterPawn.Drawer.DrawPos : verb.Caster.DrawPos;
+            if (verb == null)
+            {
+                Log.Error("Cannot find Muzzle position, Verb is Null");
+                return origin;
+
+            }
+            if (verb.verbProps == null)
+            {
+                Log.Error("Cannot find Muzzle position, verbProps are null");
+                return origin;
+            }
             Map map = verb.Caster.Map;
             if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
             {

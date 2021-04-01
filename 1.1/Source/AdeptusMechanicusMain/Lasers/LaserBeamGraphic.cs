@@ -140,32 +140,34 @@ namespace AdeptusMechanicus.Lasers
             this.hitThing = hitThing ?? null;
             this.effecter = effecter ?? null;
             this.effecterDef = effecterDef ?? null;
-
             ThingDef mote = ThingDefOf.Mote_ShotFlash;
-            Map map = verb.Caster.Map;
+            Map map = verb?.Caster?.Map ?? launcher.Map;
             Vector3 dir = (destination - origin).normalized;
             dir.y = 0;
 
             Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
-            if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
+            if (verb != null)
             {
-                a = origin += dir * (barrelLength * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
-                a.y += 0.0367346928f;
-                if (flareDef != null)
+                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
                 {
-                    MoteThrown m = AdeptusMoteMaker.MakeStaticMote(a, map, flareDef, flareSize) as MoteThrown;
-                    if (m != null)
+                    a = origin += dir * (barrelLength * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
+                    a.y += 0.0367346928f;
+                    if (flareDef != null)
                     {
-                        m.solidTimeOverride = this.Lifetime;
-                        m.exactRotation = Rand.Range(0, 350);
+                        MoteThrown m = AdeptusMoteMaker.MakeStaticMote(a, map, flareDef, flareSize) as MoteThrown;
+                        if (m != null)
+                        {
+                            m.solidTimeOverride = this.Lifetime;
+                            m.exactRotation = Rand.Range(0, 350);
+                        }
+                    }
+                    if (smokeDef != null)
+                    {
+                        AdeptusMoteMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
                     }
                 }
-                if (smokeDef != null)
-                {
-                    AdeptusMoteMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
-                }
+                AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
             }
-            AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
             if (effecter == null)
             {
                 TriggerEffect(effecterDef, b, hitThing);

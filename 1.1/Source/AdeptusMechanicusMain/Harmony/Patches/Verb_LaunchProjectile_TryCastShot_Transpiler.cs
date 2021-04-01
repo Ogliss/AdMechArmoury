@@ -69,6 +69,15 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (projectile2.def.HasModExtension<ScattershotProjectileExtension>())
             {
                 ScattershotProjectileExtension ext = projectile2.def.GetModExtensionFast<ScattershotProjectileExtension>();
+                LaserBeam beam = projectile2 as LaserBeam;
+                if (beam != null)
+                {
+
+                }
+                else
+                {
+
+                }
                 for (int i = 0; i < ext.projectileCount; i++)
                 {
                     Projectile projectile3 = (Projectile)GenSpawn.Spawn(projectile2.def, shootLine.Source, launcher.Map, WipeMode.Vanish);
