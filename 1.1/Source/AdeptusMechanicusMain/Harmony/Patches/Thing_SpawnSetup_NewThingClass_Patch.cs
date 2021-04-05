@@ -49,8 +49,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 for (int i = inventoryTracker.GetDirectlyHeldThings().Count - 1; i > 0; i--)
                                 {
+                                    Thing replace = ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps);
                                     inventoryTracker.GetDirectlyHeldThings().RemoveAt(i);
-                                    inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps));
+                                    inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(replace as ThingWithComps));
                                 }
                             }
                         }

@@ -627,7 +627,6 @@
 			<drawSize>1.50</drawSize>			
 		</graphicData>
 		<!--equippedAngleOffset>45</equippedAngleOffset-->
-		<barrelLength>1.150</barrelLength>
 		<comps>   
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
@@ -654,7 +653,7 @@
 			<MoveSpeed>-0.35</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
@@ -664,6 +663,8 @@
 				<soundCast>OG_Wraithcannon_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -765,6 +766,7 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/LasBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.150</drawSize>			
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
@@ -802,7 +804,7 @@
 		
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_LasBlaster</defaultProjectile>
@@ -813,6 +815,8 @@
 				<soundCast>OG_Hellgun_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -820,11 +824,11 @@
 		</verbs>
 		<comps>    
 			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
-					<RapidFire>true</RapidFire>
-				</li>
-			</VerbEntries>
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+					</li>
+				</VerbEntries>
 			</li> 
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
@@ -908,9 +912,9 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/RangerLongrifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>		
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-		<barrelLength>1.25</barrelLength>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>50000</WorkToMake>
@@ -927,7 +931,7 @@
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_RangerLR</defaultProjectile>
@@ -937,6 +941,8 @@
 				<soundCast>OG_RangerLongrifle_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.00</barrelLength>
+				<barrelOffset>0.21</barrelOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -980,6 +986,14 @@
 			<Plasteel>15</Plasteel>
 			<OGE_Wraithbone>18</OGE_Wraithbone>
 		</costList>
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -995,9 +1009,17 @@
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_PrismRifleFocused</defName>
 		<label>prism beam</label>
+		<graphicData>
+			<color>(50,200,255,255)</color>
+			<colorTwo>(200,200,255,255)</colorTwo>
+		</graphicData>
 		<textures>
 			<li>Things/Projectile/IonBeamSml</li>
 		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<beamWidth>1.75</beamWidth>
+		<flareLength>0.5</flareLength>
+		<flareWidthMod>1.50</flareWidthMod>
 		<seam>0</seam>
 		<projectile>
 			<damageDef>OGELance</damageDef>
@@ -1009,9 +1031,14 @@
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_PrismRifleDispersed</defName>
 		<label>prism beam</label>
+		<graphicData>
+			<color>(100,255,255,255)</color>
+			<colorTwo>(255,200,255,255)</colorTwo>
+		</graphicData>
 		<textures>
 			<li>Things/Projectile/IonBeamSml</li>
 		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
 		<seam>0</seam>
 		<projectile>
 			<explosionRadius>1.50</explosionRadius>
@@ -1061,7 +1088,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<label>Focused</label>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
@@ -1076,7 +1103,7 @@
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
 			</li>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<label>Dispersed</label>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
@@ -1144,16 +1171,6 @@
 			<colorTwo>(200,200,255,255)</colorTwo>
 		</graphicData>
 		<textures>
-			<!--li>Things/Projectile/GreenBolt</li>
-			<li>Things/Projectile/LasbeamC</li>
-			<li>Things/Projectile/Lasbeam</li>
-			<li>Things/Projectile/LasbeamB</li>
-			<li>Things/Projectile/Laser</li>
-			<li>Things/Projectile/LasShotLrg</li>
-			<li>Things/Projectile/LasCShot</li>
-			<li>Things/Projectile/BlueBeamGlow</li>
-			<li>Things/Projectile/GalvanicRifleShot</li>
-			<li>Things/Projectile/DarkLightShot</li-->
 			<li>Things/Projectile/LasbeamHeavy</li>
 		</textures>
 		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
@@ -1184,7 +1201,6 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<equippedAngleOffset>45</equippedAngleOffset>
-		<barrelLength>1.5</barrelLength>
 		<comps>     
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
@@ -1210,7 +1226,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Brightlance</defaultProjectile>
@@ -1220,6 +1236,8 @@
 				<soundCast>OG_Brightlance_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.5</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -1310,7 +1328,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_FusionGun</defaultProjectile>
@@ -1320,6 +1338,8 @@
 				<soundCast>OG_Melta_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -1620,10 +1640,23 @@
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_NeuroDisruptor</defName>
 		<label>disruptor blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,155,75)</color>	
+		</graphicData>
 		<textures>
 			<li>Things/Projectile/SonicShotSml</li>
 		</textures>
 		<seam>0</seam>
+		<lifetime>15</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.15</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>true</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningVariance>0.5</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		
 		<projectile>
 			<damageDef>OGENeuroDisruptor</damageDef>
 			<damageAmountBase>1</damageAmountBase>
@@ -1658,7 +1691,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_NeuroDisruptor</defaultProjectile>
@@ -1669,6 +1702,8 @@
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.5</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -1729,15 +1764,96 @@
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_Bullet_HaywireCannon</defName>
 		<label>haywire blast</label>
-		<textures>
-			<li>Things/Projectile/HaywireBlast</li>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,255,255)</color> <!-- default bolt colour -->
+		</graphicData>
+		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
+			<!--li>Things/Projectile/AnimLightning</li-->
 		</textures>
-		<seam>0</seam>
+		<lifetime>30</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>10</impulse> <!-- the solidity of the beam -->
+		<impulseCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.75)</li>
+				<li>(1, 0)</li>
+			</points>
+		</impulseCurve>
+		<beamWidth>0.125</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<LightningBeam>true</LightningBeam> <!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning> <!-- use single mesh per arc if true -->
+		<LightningVariance>1.5</LightningVariance> <!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount> <!-- number of lightning bolts drawn per shot -->
+		<impactReflection>3</impactReflection> <!-- number of lightning bolts drawn -->
+		<flareLength>0.25</flareLength>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.25</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.50</flareWidthMod>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
 		<projectile>
-			<damageDef>OGIArc</damageDef>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+			<extraDamages>
+				<li>
+					<def>EMP</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>1</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>1</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>0.5</chance>
+				</li>
+			</extraDamages>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>Mote_YellowSparkFlash</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
@@ -1776,7 +1892,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_HaywireCannon</defaultProjectile>
@@ -1786,6 +1902,8 @@
 				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>

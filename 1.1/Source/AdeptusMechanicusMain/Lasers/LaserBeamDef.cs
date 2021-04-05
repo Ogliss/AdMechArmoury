@@ -55,7 +55,8 @@ namespace AdeptusMechanicus.Lasers
         public EffecterDef hitLivingEffect;
         public ThingDef beamGraphic;
         public string flareMatPath;
-        public Material flareMat;
+        public ShaderTypeDef flareShaderType;
+        public Material flareMat; 
 
         public List<string> textures;
         public List<Material> materials = new List<Material>();
@@ -96,8 +97,9 @@ namespace AdeptusMechanicus.Lasers
             }
             if (!flareMatPath.NullOrEmpty())
             {
-                flareMat = MaterialPool.MatFrom(flareMatPath, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
+                flareMat = MaterialPool.MatFrom(flareMatPath, this.flareShaderType?.Shader ?? this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
             }
+
         }
 
         public Material GetBeamMaterial(int index)

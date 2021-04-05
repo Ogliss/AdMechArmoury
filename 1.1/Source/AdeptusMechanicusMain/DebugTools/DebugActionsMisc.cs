@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
     public static class DebugActionsMisc
 	{
 		/*
-		[DebugAction("General", null, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Adeptus Mechanicus: General", null, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void DestroyAllStrangeFungus()
 		{
 			foreach (Thing thing in Find.CurrentMap.listerThings.AllThings.ToList<Thing>())
@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
 		*/
 
 		// Verse.DebugToolsSpawning
-		[DebugAction("General", "Destroy All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Adeptus Mechanicus: General", "Destroy All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void DestroyAllThingsOf()
 		{
 			List<DebugMenuOption> list = new List<DebugMenuOption>();
@@ -54,7 +54,7 @@ namespace AdeptusMechanicus
 		}
 		
 		// Verse.DebugToolsSpawning
-		[DebugAction("General", "Swap Body Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Adeptus Mechanicus: General", "Swap Body Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void SwapBodyType()
 		{
 			List<DebugMenuOption> list = new List<DebugMenuOption>();
@@ -87,7 +87,7 @@ namespace AdeptusMechanicus
 		}
 
 		// Verse.DebugToolsSpawning
-		[DebugAction("General", "Replace All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Adeptus Mechanicus: General", "Replace All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void ReplaceAllThingsOf()
 		{
 			List<DebugMenuOption> list = new List<DebugMenuOption>();

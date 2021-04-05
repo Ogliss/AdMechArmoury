@@ -311,7 +311,7 @@ namespace AdeptusMechanicus.Lasers
                         meshes[i] = Find.TickManager.Paused || Find.TickManager.TicksGame % this.projDef.LightningFrameTime != 0 || meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance, beamWidth * mult, i == 0 ? 0f : 0.5f, projDef.capSize);
                     }
                     Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(mats[i], opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
-                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(projDef.flareMat ?? FlareMat, opacity * 0.5f), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
+                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(projDef.flareMat ?? FlareMat, opacity * 0.5f), 0, null, 0, LaserBeamGraphic.FlareMatPropertyBlock, 0);
 
                 }
             }

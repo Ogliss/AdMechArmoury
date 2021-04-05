@@ -576,11 +576,25 @@
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGDE_Bullet_Darklance</defName>
 		<label>darklight beam</label>
+		<graphicData>
+			<!--shaderType>MoteGlow</shaderType-->
+			<shaderType>Cutout</shaderType>
+			<color>(255,175,155,255)</color>	
+			<colorTwo>(75,0,0,255)</colorTwo>	
+		</graphicData>
 		<textures>
-			<li>Things/Projectile/DarkLightShot</li>
+			<li>Things/Projectile/Beam_Darklight</li>
 		</textures>
-		<seam>0</seam>
-
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<flareShaderType>MoteGlow</flareShaderType>
+		<lifetime>40</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>3.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>3</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.00</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<projectile>
 			<damageDef>OGELance</damageDef>
 			<damageAmountBase>75</damageAmountBase>
@@ -589,8 +603,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGDE_Gun_BlastPistol</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>blast pistol (DE)</label>
 		<description>A smaller hand-held version of the Blaster is known as the Blast Pistol. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
 		<graphicData>
@@ -624,7 +639,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
@@ -634,6 +649,8 @@
 				<soundCast>OG_Darklance_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -679,8 +696,9 @@
 		</modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGDE_Gun_Blaster</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>blaster (DE)</label>
 		<description>A Blaster is a smaller, lightweight version of a Dark Lance, which includes a semi-liquid stabilizer like that found in the Dark Eldar Splinter Cannon. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
 		<graphicData>
@@ -713,7 +731,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
@@ -723,6 +741,8 @@
 				<soundCast>OG_Darklance_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.0</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -768,8 +788,9 @@
 		</modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGDE_Gun_Darklance</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
 		<label>darklance (DE)</label>
 		<description>The Dark Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Dark Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
 		<graphicData>
@@ -803,7 +824,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
@@ -813,6 +834,8 @@
 				<soundCast>OG_Darklance_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.0</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -859,19 +882,84 @@
 	</ThingDef>
 
 	<!--==================== Dark Eldar - Haywire Blaster =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGDE_Bullet_HaywireBlaster</defName>
 		<label>haywire blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,255,255)</color>	
+		</graphicData>
 		<textures>
-			<li>Things/Projectile/HaywireBlast</li>
+			<li>Things/Projectile/AnimLightning</li>
 		</textures>
-		<seam>0</seam>
+		<lifetime>44</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<flickerFrameTime>6</flickerFrameTime>	<!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam>	<!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.25</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningFrameTime>30</LightningFrameTime>	<!-- this is how many ticks the beam should be drawn for -->
+		<LightningVariance>2</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<impactReflection>3</impactReflection>	<!-- number of lightning bolts drawn -->
+		
+		<flareLength>0.25</flareLength>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.25</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>5.50</flareWidthMod>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+			
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+    	<decorations>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>-0.1</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.55</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>0.3</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.45</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+    	</decorations>
 		<projectile>
 			<damageDef>OGIArc</damageDef>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBase>0.84</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+			<extraDamages>
+				<li>
+					<def>EMP</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>1</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>0.5</chance>
+				</li>
+			</extraDamages>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>Mote_YellowSparkFlash</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
@@ -909,7 +997,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_HaywireBlaster</defaultProjectile>
@@ -1006,13 +1094,13 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
 				<warmupTime>1.75</warmupTime>
 				<range>18</range>
-					<burstShotCount>1</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<soundCast>OG_Melta_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
@@ -1096,13 +1184,13 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
 				<warmupTime>1.75</warmupTime>
 				<range>28</range>
-					<burstShotCount>1</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<soundCast>OG_Melta_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
