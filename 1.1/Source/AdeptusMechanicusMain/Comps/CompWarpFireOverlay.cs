@@ -2,9 +2,9 @@
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200024D RID: 589
+    // AdeptusMechanicus.CompProperties_WarpFireOverlay
     public class CompProperties_WarpFireOverlay : CompProperties
     {
         // Token: 0x06000AAF RID: 2735 RVA: 0x00055935 File Offset: 0x00053D35
@@ -27,7 +27,8 @@ namespace RimWorld
         // Token: 0x040004AA RID: 1194
         public Vector3 offset = new Vector3();
     }
-    // Token: 0x0200073A RID: 1850
+
+    // AdeptusMechanicus.CompWarpFireOverlay
     [StaticConstructorOnStartup]
     public class CompWarpFireOverlay : ThingComp
     {

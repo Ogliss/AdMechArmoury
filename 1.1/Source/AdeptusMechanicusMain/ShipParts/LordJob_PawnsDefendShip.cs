@@ -1,8 +1,9 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 using Verse.AI.Group;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x02000175 RID: 373
     public class LordJob_PawnsDefendShip : LordJob

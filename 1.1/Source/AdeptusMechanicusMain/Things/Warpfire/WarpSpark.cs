@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x02000702 RID: 1794
+    // AdeptusMechanicus.Warpfire
     public class WarpSpark : Projectile
     {
         // Token: 0x0600272B RID: 10027 RVA: 0x0012A5A4 File Offset: 0x001289A4

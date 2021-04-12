@@ -1,10 +1,11 @@
 ﻿using AdeptusMechanicus;
+using RimWorld;
 using System;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x0200045E RID: 1118
     [StaticConstructorOnStartup]

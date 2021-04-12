@@ -1,9 +1,10 @@
 ﻿
+using RimWorld;
 using System;
 using Verse;
 using Verse.AI;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x020001BE RID: 446
     public class ThinkNode_ConditionalReachedLifeStage : ThinkNode_Conditional

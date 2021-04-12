@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using AdeptusMechanicus;
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
 using Verse.Sound;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200025A RID: 602
+    // AdeptusMechanicus.CompProperties_PawnSpawnerOnDamaged
     public class CompProperties_PawnSpawnerOnDamaged : CompProperties
     {
         // Token: 0x06000AC8 RID: 2760 RVA: 0x000562D4 File Offset: 0x000546D4
@@ -32,7 +33,7 @@ namespace RimWorld
         public Faction faction => Find.FactionManager.FirstFactionOfDef(Faction);
     }
 
-    // Token: 0x02000769 RID: 1897
+    // AdeptusMechanicus.CompPawnSpawnerOnDamaged
     public class CompPawnSpawnerOnDamaged : ThingComp
     {
         public CompProperties_PawnSpawnerOnDamaged Props => (CompProperties_PawnSpawnerOnDamaged)props;

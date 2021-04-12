@@ -1,16 +1,17 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200025F RID: 607
+    // AdeptusMechanicus.CompProperties_GiveTech
     public class CompProperties_GiveTech : CompProperties_UseEffect
     {
         // Token: 0x040004DB RID: 1243
         public ResearchProjectDef TechtoGive;
     }
 
-    // Token: 0x0200078F RID: 1935
+    // AdeptusMechanicus.CompProperties_GiveTech
     public class CompUseEffect_GiveTechnology : CompUseEffect
     {
         public CompProperties_GiveTech Props

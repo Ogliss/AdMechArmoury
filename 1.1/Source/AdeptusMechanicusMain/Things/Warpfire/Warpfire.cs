@@ -1,13 +1,13 @@
-﻿using AdeptusMechanicus;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x020006E8 RID: 1768
+    // AdeptusMechanicus.Warpfire
     public class Warpfire : Fire
     {
         // Token: 0x170005C7 RID: 1479

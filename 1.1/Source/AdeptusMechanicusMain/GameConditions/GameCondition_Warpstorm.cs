@@ -1,11 +1,12 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200031C RID: 796
+    // AdeptusMechanicus.GameCondition_Warpstorm
     public class GameCondition_Warpstorm : GameCondition
     {
         // Token: 0x06000D8E RID: 3470 RVA: 0x00066BFC File Offset: 0x00064FFC

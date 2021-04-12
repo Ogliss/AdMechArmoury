@@ -1,4 +1,5 @@
 ﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI.Group;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x0200034F RID: 847
     public class IncidentWorker_CrashedShip : IncidentWorker

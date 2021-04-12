@@ -1,11 +1,12 @@
 ﻿using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
     // Token: 0x020006E9 RID: 1769
     public static class WarpfireUtility

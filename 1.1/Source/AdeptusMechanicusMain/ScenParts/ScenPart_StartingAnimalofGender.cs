@@ -1,12 +1,13 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200066B RID: 1643
+    // AdeptusMechanicus.ScenPart_StartingAnimalofGender
     public class ScenPart_StartingAnimalofGender : ScenPart
     {
         // Token: 0x06002238 RID: 8760 RVA: 0x00101BAC File Offset: 0x000FFFAC

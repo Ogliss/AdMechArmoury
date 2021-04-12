@@ -1,11 +1,12 @@
 ﻿using AdeptusMechanicus;
+using RimWorld;
 using System;
 using UnityEngine;
 using Verse;
 
-namespace RimWorld
+namespace AdeptusMechanicus
 {
-    // Token: 0x0200033C RID: 828
+    // AdeptusMechanicus.IncidentWorker_Warpstorm
     public class IncidentWorker_Warpstorm : IncidentWorker
     {
         // Token: 0x06000E54 RID: 3668 RVA: 0x0006B310 File Offset: 0x00069710
