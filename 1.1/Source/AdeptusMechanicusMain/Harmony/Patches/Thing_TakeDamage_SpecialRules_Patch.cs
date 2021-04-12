@@ -21,11 +21,12 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix(Thing __instance, ref DamageInfo dinfo)
         {
-
+            /*
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 return;
             }
+            */
             if (__instance == null || !__instance.Spawned || __instance.Map == null)
             {
                 return;

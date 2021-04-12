@@ -47,6 +47,9 @@ namespace AdeptusMechanicus
         public float bulletOffset = 0.2f;
         public float laserOffset = -0.4f;
 
+        public bool muzzleFlareRotates = true;
+        public Color muzzleFlareColor = Color.white;
+        public Color muzzleFlareColorTwo = Color.white;
         public string muzzleFlareDef = "Mote_SparkFlash";
         public float muzzleFlareSize = -1f;
         private ThingDef _muzzleFlareDef;

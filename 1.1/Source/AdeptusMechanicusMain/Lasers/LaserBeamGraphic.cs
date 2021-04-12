@@ -146,19 +146,30 @@ namespace AdeptusMechanicus.Lasers
             dir.y = 0;
 
             Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            
             if (verb != null)
             {
-                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
+                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
                 {
-                    a = origin += dir * (barrelLength * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
+                    a = origin -= dir * (barrelOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
                     a.y += 0.0367346928f;
                     if (flareDef != null)
                     {
                         MoteThrown m = AdeptusMoteMaker.MakeStaticMote(a, map, flareDef, flareSize) as MoteThrown;
                         if (m != null)
                         {
-                            m.solidTimeOverride = this.Lifetime;
-                            m.exactRotation = Rand.Range(0, 350);
+                            m.solidTimeOverride = projDef.lifetime;
+                            AdvancedVerbProperties properties = verb.verbProps as AdvancedVerbProperties;
+                            if (properties == null || properties.muzzleFlareRotates)
+                            {
+                                if (properties != null)
+                                {
+                                    m.instanceColor = properties.muzzleFlareColor;
+                                }
+                                Rand.PushState();
+                                m.exactRotation = Rand.Range(0, 350);
+                                Rand.PopState();
+                            }
                         }
                     }
                     if (smokeDef != null)
@@ -168,6 +179,8 @@ namespace AdeptusMechanicus.Lasers
                 }
                 AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
             }
+            
+
             if (effecter == null)
             {
                 TriggerEffect(effecterDef, b, hitThing);
@@ -211,7 +224,8 @@ namespace AdeptusMechanicus.Lasers
             flareWidthMod = projDef.flareWidthMod;
             flareLength = projDef.flareLength;
             flareLengthMod = projDef.flareLengthMod;
-            Quaternion rotation = Quaternion.LookRotation(b - a);
+            Quaternion rotation = Quaternion.LookRotation(a - b);
+        //    Quaternion rotation = Quaternion.LookRotation(b - a);
             Vector3 dir = (b - a).normalized;
             beamLength = (b - a).magnitude;
 
@@ -236,7 +250,7 @@ namespace AdeptusMechanicus.Lasers
             float capLength = beamWidth / textureRatio / 2f * seamTexture;
             float seamGeometry = beamLength <= capLength * 2 ? 0.5f : capLength * 2 / beamLength;
 
-            if (Lightning)
+            if (Lightning && meshes.Count < projDef.ArcCount * (Static ? 1 :  (projDef.lifetime/projDef.LightningFrameTime)))
             {
                 float distance = Vector3.Distance(a, b);
                 for (int i = 0; i < projDef.ArcCount; i++)
@@ -263,11 +277,10 @@ namespace AdeptusMechanicus.Lasers
         {
             SetupDrawing();
 
-            float opacity = Lightning ? Opacity : Opacity;
             Color color = projDef.graphicData.color;
             Color colorTwo = projDef.graphicData.colorTwo;
-            color.a *= opacity;
-            colorTwo.a *= (opacity * projDef.flareOpacityMod);
+            color.a *= Opacity;
+            colorTwo.a *= (Opacity * projDef.flareOpacityMod);
             LaserBeamGraphic.BeamMatPropertyBlock.SetColor(ShaderPropertyIDs.Color, color);
             LaserBeamGraphic.FlareMatPropertyBlock.SetColor(ShaderPropertyIDs.Color, colorTwo);
             LaserBeamGraphic.FlareMatPropertyBlock.SetColor(ShaderPropertyIDs.ColorTwo, color);
@@ -292,7 +305,7 @@ namespace AdeptusMechanicus.Lasers
                                 //    Log.Message("Graphic_Flicker get mat for arc " + (i + 1));
                                     mats[i] = projDef.GetBeamMaterial((this.projDef.materials.IndexOf(mats[i]) + 1 < this.projDef.materials.Count ? this.projDef.materials.IndexOf(mats[i]) + 1 : 0)) ?? projDef.graphicData.Graphic.MatSingle;
                                 }
-                                if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
+                                else if (this.projDef.graphicData.graphicClass == typeof(Graphic_Random))
                                 {
                                 //    Log.Message("Graphic_Random get mat for arc " + (i + 1));
                                     mats[i] = this.projDef.materials.RandomElement() ?? projDef.graphicData.Graphic.MatSingle;
@@ -302,16 +315,19 @@ namespace AdeptusMechanicus.Lasers
                     }
                     float mult = Mathf.InverseLerp(projDef.lifetime, 0f, ticks);
                     //    if (Find.TickManager.TicksGame % this.projDef.flickerFrameTime != 0)  Log.Message("Mult for Arc "+(i+1)+" : "+mult);
-                    if (projDef.lightningArcVarianceDistCurve != null && projDef.lightningArcWidthDistCurve != null)
+                    if (!Find.TickManager.Paused && Find.TickManager.TicksGame % this.projDef.LightningFrameTime == 0)
                     {
-                        meshes[i] = Find.TickManager.Paused || Find.TickManager.TicksGame % this.projDef.LightningFrameTime != 0 || meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.lightningArcVarianceDistCurve, projDef.lightningArcWidthDistCurve, projDef.lightningArcVarianceTimeCurve, projDef.lightningArcWidthTimeCurve, i == 0 ? 0f : 0.5f, projDef.capSize);
+                        if (projDef.lightningArcVarianceDistCurve != null && projDef.lightningArcWidthDistCurve != null)
+                        {
+                            meshes[i] = meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.lightningArcVarianceDistCurve, projDef.lightningArcWidthDistCurve, projDef.lightningArcVarianceTimeCurve, projDef.lightningArcWidthTimeCurve, i == 0 ? 0f : 0.5f, projDef.capSize);
+                        }
+                        else
+                        {
+                            meshes[i] = meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance, beamWidth * mult, i == 0 ? 0f : 0.5f, projDef.capSize);
+                        }
                     }
-                    else
-                    {
-                        meshes[i] = Find.TickManager.Paused || Find.TickManager.TicksGame % this.projDef.LightningFrameTime != 0 || meshes[i] != null && Static ? meshes[i] : LightningLaserBoltMeshMaker.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), projDef.LightningVariance, beamWidth * mult, i == 0 ? 0f : 0.5f, projDef.capSize);
-                    }
-                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(mats[i], opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
-                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(projDef.flareMat ?? FlareMat, opacity * 0.5f), 0, null, 0, LaserBeamGraphic.FlareMatPropertyBlock, 0);
+                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(mats[i], Opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock, 0);
+                    Graphics.DrawMesh(this.meshes[i], this.b, Quaternion.LookRotation((vector - this.a).normalized), FadedMaterialPool.FadedVersionOf(projDef.flareMat ?? FlareMat, Opacity * 0.5f), 0, null, 0, LaserBeamGraphic.FlareMatPropertyBlock, 0);
 
                 }
             }
@@ -336,7 +352,7 @@ namespace AdeptusMechanicus.Lasers
                         }
                     }
                 }
-                Graphics.DrawMesh(mesh, drawingMatrixBeam, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock);
+                Graphics.DrawMesh(mesh, drawingMatrixBeam, FadedMaterialPool.FadedVersionOf(materialBeam, Opacity), 0, null, 0, LaserBeamGraphic.BeamMatPropertyBlock);
                 Graphics.DrawMesh(mesh, drawingMatrixFlare, projDef.flareMat ?? FlareMat, 0, null, 0,  LaserBeamGraphic.FlareMatPropertyBlock);
                 //    Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
             }

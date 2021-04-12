@@ -118,7 +118,7 @@ namespace AdeptusMechanicus
         // public bool Multishot => Props.VerbEntries[CurMode].Multishot || Props.VerbEntries[CurMode].VerbProps.defaultProjectile.HasModExtension<ScattershotProjectileExtension>();
 
         // public int ScattershotCount => GunVerbs[CurMode].VerbProps.defaultProjectile.GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
-        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
+        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext && ext.projectileCount.HasValue ? ext.projectileCount.Value : 0;
         public bool MeltaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Melta();
         public bool VolkiteWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Volkite();
         public bool GaussWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Gauss();

@@ -57,10 +57,12 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static void ThrowMuzzleFlash(IntVec3 cell, Map map, ThingDef moteDef, float scale, Verb verb)
         {
+            
             if (verb.GetProjectile() as Lasers.LaserBeamDef != null)
             {
                 return;
             }
+            
             if (verb.EquipmentSource != null)
             {
                 if (verb.verbProps.range > 1.48f)

@@ -127,7 +127,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 origin += new Vector3(0f + offset, 0f, 0.4f + length).RotatedBy(aimAngle);
 
 
-                origin.y += 0.0367346928f;
+                origin.y -= 0.0367346928f;
 
             }
             return origin;
@@ -136,12 +136,13 @@ namespace AdeptusMechanicus.ExtensionMethods
         #endregion ThingExtensions
 
         #region VerbExtensions
-        public static bool Muzzle(this Verb verb, out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize)
+        public static bool Muzzle(this Verb verb, out float barrelLength, out float barrelOffset, out float bulletOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize)
         {
             bool result = false;
             IMuzzlePosition m;
             barrelLength = 0;
             barrelOffset = 0;
+            bulletOffset = 0;
             flareDef = null;
             flareSize = 0;
             smokeDef = null;
@@ -165,6 +166,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 result = true;
                 barrelLength = m.BarrelLength;
                 barrelOffset = m.BarrelOffset;
+                bulletOffset = m.BulletOffset;
                 flareDef ??= m.MuzzleFlareDef;
                 flareSize = m.MuzzleFlareSize > 0 ? m.MuzzleFlareSize : flareSize;
                 smokeDef ??= m.MuzzleSmokeDef;
@@ -180,6 +182,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                     result = true;
                     barrelLength = m.BarrelLength;
                     barrelOffset = m.BarrelOffset;
+                    bulletOffset = m.BulletOffset;
                     flareDef ??= m.MuzzleFlareDef;
                     flareSize = m.MuzzleFlareSize > 0 ? m.MuzzleFlareSize : flareSize;
                     smokeDef ??= m.MuzzleSmokeDef;
@@ -192,6 +195,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                     result = true;
                     barrelLength = m.BarrelLength;
                     barrelOffset = m.BarrelOffset;
+                    bulletOffset = m.BulletOffset;
                     flareDef ??= m.MuzzleFlareDef;
                     flareSize = m.MuzzleFlareSize > 0 ? m.MuzzleFlareSize : flareSize;
                     smokeDef ??= m.MuzzleSmokeDef;
@@ -205,6 +209,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 result = true;
                 barrelLength += m.BarrelLength;
                 barrelOffset += m.BarrelOffset;
+                bulletOffset = m.BulletOffset;
                 flareDef ??= m.MuzzleFlareDef;
                 flareSize = m.MuzzleFlareSize > 0 ? m.MuzzleFlareSize : flareSize;
                 smokeDef ??= m.MuzzleSmokeDef;
@@ -213,13 +218,13 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             if (AMAMod.Dev)
             {
-                if (m == null)
-                {
-                    Log.Message("No Muzzle found for verb: " + verb?.ToString() ?? "NULL");
-                }
                 if (builder.Length > 0)
                 {
                     Log.Message(builder.ToString());
+                }
+                else
+                {
+                    Log.Message("No Muzzle found for verb: " + verb?.ToString() ?? "NULL");
                 }
             }
             return result;
@@ -240,7 +245,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 return origin;
             }
             Map map = verb.Caster.Map;
-            if (verb.Muzzle(out float barrelLength, out float barrelOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
+            if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
             {
                 float length = barrelLength;
                 float offset = -barrelOffset;
@@ -261,6 +266,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 
                 if (throwMotes)
                 {
+                    Rand.PushState();
                     if (flareDef != null && flareSize > 0)
                     {
                         AdeptusMoteMaker.MakeStaticMote(origin, map, flareDef, flareSize, null, Rand.Range(0, 360));
@@ -269,6 +275,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                     {
                         AdeptusMoteMaker.ThrowSmoke(origin, smokeSize, map, smokeDef, null, Rand.Range(0, 360));
                     }
+                    Rand.PopState();
                 }
             }
             return origin;

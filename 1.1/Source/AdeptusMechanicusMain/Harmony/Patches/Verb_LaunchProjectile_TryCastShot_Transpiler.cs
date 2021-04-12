@@ -66,19 +66,23 @@ namespace AdeptusMechanicus.HarmonyInstance
                 weapon.RotationOffset = (angle + 180) % 360 - 180;
             }
             projectile2.Launch(launcher, origin, usedTarget, intendedTarget, hitFlags, equipment, targetCoverDef);
-            if (projectile2.def.HasModExtension<ScattershotProjectileExtension>())
+            int extras = 0;
+            AdvancedVerbProperties Props = instance.verbProps as AdvancedVerbProperties;
+            if (Props != null)
+            {
+                extras = Props.ScattershotCount;
+            }
+            else
             {
                 ScattershotProjectileExtension ext = projectile2.def.GetModExtensionFast<ScattershotProjectileExtension>();
-                LaserBeam beam = projectile2 as LaserBeam;
-                if (beam != null)
+                if (ext != null && ext.projectileCount.HasValue)
                 {
-
+                    extras = ext.projectileCount.Value;
                 }
-                else
-                {
-
-                }
-                for (int i = 0; i < ext.projectileCount; i++)
+            }
+            if (extras > 0)
+            {
+                for (int i = 0; i < extras; i++)
                 {
                     Projectile projectile3 = (Projectile)GenSpawn.Spawn(projectile2.def, shootLine.Source, launcher.Map, WipeMode.Vanish);
                     projectile3.Launch(launcher, origin, usedTarget, intendedTarget, hitFlags, equipment, targetCoverDef);
