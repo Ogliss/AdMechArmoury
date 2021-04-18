@@ -15,7 +15,7 @@
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>10000</WorkToMake>
+			<WorkToMake>6500</WorkToMake>
 			<!--MarketValue>250</MarketValue-->
 			<Mass>0.8</Mass>
 			<AccuracyTouch>0.70</AccuracyTouch>
@@ -112,7 +112,7 @@
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>12500</WorkToMake>
+			<WorkToMake>42500</WorkToMake>
 			<!--MarketValue>500</MarketValue-->
 			<Mass>3.2</Mass>
 			<reliability>1</reliability>
@@ -203,6 +203,8 @@
 		</tools>
 		<comps>	 
 			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
 				<canSwitchWhileBusy>false</canSwitchWhileBusy> <!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
 				<switchStartsCooldown>true</switchStartsCooldown> <!-- Default = False, starts the current verbs cooldown when switched-->
 				<InspectLabelKey>AMA_Hotshot</InspectLabelKey>
@@ -236,17 +238,9 @@
 		</graphicData>
 		<!--equippedAngleOffset>45</equippedAngleOffset-->
 		<barrelLength>1.35</barrelLength>
-		<comps> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>125000</WorkToMake>
+			<WorkToMake>77500</WorkToMake>
 			<!--MarketValue>7250</MarketValue-->
 			<Mass>5.2</Mass>
 			<AccuracyTouch>0.45</AccuracyTouch>
@@ -307,6 +301,17 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

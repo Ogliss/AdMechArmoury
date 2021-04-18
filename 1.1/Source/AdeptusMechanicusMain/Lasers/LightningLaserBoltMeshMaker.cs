@@ -237,7 +237,7 @@ namespace AdeptusMechanicus.Lasers
             Vector3[] array = new Vector3[LightningLaserBoltMeshMaker.verts2D.Count];
             for (int i = 0; i < array.Length; i++)
             {
-                float w = i == array.Length - 1 ? 0 : Mathf.Lerp(0, f, Mathf.InverseLerp(0, array.Length, i));
+                float w = i == array.Length - 1 ? 0 : Mathf.Lerp(f, 0, Mathf.InverseLerp(0, array.Length, i));
                 array[i] = new Vector3(LightningLaserBoltMeshMaker.verts2D[i].x, w, LightningLaserBoltMeshMaker.verts2D[i].y);
             }
             float num = 0f;

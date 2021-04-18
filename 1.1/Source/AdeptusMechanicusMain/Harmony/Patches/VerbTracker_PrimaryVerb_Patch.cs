@@ -46,7 +46,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             var comp = __instance.parent.TryGetCompFast<CompToggleFireMode>();
             if (comp != null)
             {
-                __result.verbProps = __instance.parent.TryGetCompFast<CompToggleFireMode>().Active;
+                __result.verbProps = __instance.parent.TryGetCompFast<CompToggleFireMode>().ActiveProps;
                 __result = comp.ActiveVerb;
             }
         }

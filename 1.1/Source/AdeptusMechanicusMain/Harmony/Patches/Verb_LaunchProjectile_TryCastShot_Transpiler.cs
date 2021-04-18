@@ -67,7 +67,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             projectile2.Launch(launcher, origin, usedTarget, intendedTarget, hitFlags, equipment, targetCoverDef);
             int extras = 0;
-            AdvancedVerbProperties Props = instance.verbProps as AdvancedVerbProperties;
+            IAdvancedVerb Props = instance.verbProps as IAdvancedVerb;
             if (Props != null)
             {
                 extras = Props.ScattershotCount;
@@ -115,6 +115,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             if ((destination - result).MagnitudeHorizontalSquared() > 0.001f)
             {
                 aimAngle = (destination - result).AngleFlat();
+            }
+            IDrawnWeaponWithRotation rotation = equipment as IDrawnWeaponWithRotation;
+            if (rotation != null)
+            {
+                //    Log.Message(gunOG + " is IDrawnWeaponWithRotation with RotationOffset: "+ gunOG.RotationOffset);
+                aimAngle += rotation.RotationOffset;
             }
             if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
             {

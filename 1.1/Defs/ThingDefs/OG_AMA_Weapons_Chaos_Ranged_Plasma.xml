@@ -92,7 +92,6 @@
 	<ThingDef ParentName="OG_Chaos_Gun_Special">
 		<defName>OGC_Gun_PlasmaPistol</defName>
 		<label>plasma pistol (C)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Plasma Pistol is most commonly carried by champions of both the Chaos Space Marines and Traitor Guardsmen.\nLike other Human infantry-carried plasma weapons, Plasma Pistols are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaPistol</texPath>
@@ -155,14 +154,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -182,6 +173,16 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>true</dualWield>
@@ -197,7 +198,6 @@
 	<ThingDef ParentName="OG_Chaos_Gun_Special">
 		<defName>OGC_Gun_PlasmaGun</defName>
 		<label>plasma gun (C)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Traitor infantry, including Chaos Space Marines, Traitor Guardsmen and well equipped Chaos Cultists.\nLike other Human infantry-carried plasma weapons, Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaGun</texPath>
@@ -206,7 +206,7 @@
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<reliability>0.75</reliability>
-			<WorkToMake>18000</WorkToMake>
+			<WorkToMake>48000</WorkToMake>
 			<!--MarketValue>3250</MarketValue-->
 			<Mass>1.2</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
@@ -284,16 +284,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	 
-			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -313,6 +303,16 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -356,7 +356,6 @@
 	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
 		<defName>OGC_Gun_PlasmaCannon</defName>
 		<label>plasma cannon (C)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is a heavy weapon that relies on Imperial plasma technology to deliver lethal blasts of superheated matter to the target. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.\nLike other Human infantry-carried plasma weapons, Plasma Cannons are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and explode, wounding or even killing the wielder.\n\nThe Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/PlasmaCannon</texPath>
@@ -366,7 +365,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>0.9</reliability>
-			<WorkToMake>120000</WorkToMake>
+			<WorkToMake>82000</WorkToMake>
 			<!--MarketValue>8000</MarketValue-->
 			<Mass>5.2</Mass>
 			<AccuracyTouch>0.75</AccuracyTouch>
@@ -431,17 +430,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	 
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			
-			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>barrel</label>
@@ -452,6 +440,17 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

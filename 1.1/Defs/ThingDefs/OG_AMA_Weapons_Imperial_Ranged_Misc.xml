@@ -39,7 +39,7 @@
 		</graphicData>
 		<soundInteract>Interact_Shotgun</soundInteract>
 		<statBases>
-			<WorkToMake>12000</WorkToMake>
+			<WorkToMake>28000</WorkToMake>
 			<Mass>3.4</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.60</AccuracyShort>
@@ -62,7 +62,7 @@
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_Webber</defaultProjectile>
 				<warmupTime>0.9</warmupTime>
-			<burstShotCount>1</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<range>15.9</range>
 				<soundCast>InfernoCannon_Fire</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -161,8 +161,28 @@
 			<color>(0.208,0.286,0.176)</color>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
+		<tickerType>Normal</tickerType>
+		<generateCommonality>0.25</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Heavy</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>45</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>OgrynGrenadeGauntlet</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
 		<statBases>
-			<WorkToMake>35000</WorkToMake>
+			<WorkToMake>45000</WorkToMake>
 			<!--MarketValue>1150</MarketValue-->
 			<Mass>7</Mass>
 			<AccuracyTouch>0.60</AccuracyTouch>
@@ -171,16 +191,6 @@
 			<AccuracyLong>0.50</AccuracyLong>
 			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
 		</statBases>
-		<recipeMaker>
-				<researchPrerequisites>
-					<li>OG_Common_Tech_Weapons_Heavy</li>
-				</researchPrerequisites>
-		</recipeMaker>
-		<costList>
-		<Steel>100</Steel>
-		<Plasteel>45</Plasteel>
-		<ComponentIndustrial>6</ComponentIndustrial>
-		</costList>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
@@ -217,45 +227,14 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps> 
-				<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-					<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
-					<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
-			</li>	
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-				<!--DualFireMode>true</DualFireMode-->
-				<HeavyWeapon>true</HeavyWeapon>
-				<VerbEntries>
-					<li>
-							<VerbProps>
-								<label>Frag</label>
-							</VerbProps>
-					</li>
-					<li>
-						<VerbProps>
-							<label>Krak</label>
-						</VerbProps>
-					</li>
-				</VerbEntries>
-			</li>
-		</comps>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-		<li>GunHeavy</li>
-		<li>OgrynGrenadeGauntlet</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGIRanged</li>
-		</tradeTags>
-		<generateCommonality>0.25</generateCommonality>
 		<tools>
 			<li>
-			<label>stock</label>
-			<capacities>
-				<li>Blunt</li>
-			</capacities>
-			<power>9</power>
-			<cooldownTime>1.4</cooldownTime>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.4</cooldownTime>
 			</li>
 			<li>
 				<label>barrel</label>
@@ -266,6 +245,24 @@
 				<cooldownTime>1.4</cooldownTime>
 			</li>
 		</tools>
+		<comps> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li>	
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -274,9 +271,9 @@
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
 				<extraRotation>0</extraRotation>
 			</li>
-				<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
 				<barrelLength>0.6</barrelLength>
-				</li>
+			</li>
 		</modExtensions>
 	</ThingDef>
 
@@ -294,8 +291,7 @@
 		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<damageDef>Bomb</damageDef>
-			<!-- Use default damage from explosion def -->
-				<damageAmountBase>70</damageAmountBase>
+			<damageAmountBase>70</damageAmountBase>
 			<armorPenetrationBase>0.84</armorPenetrationBase>
 			<explosionRadius>1.5</explosionRadius>
 			<stoppingPower>4</stoppingPower>
@@ -303,10 +299,10 @@
 		</projectile>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
-			<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
-			<trailMoteSize>0.75</trailMoteSize>
-			<trailerMoteInterval>3</trailerMoteInterval>
-			<motesThrown>3</motesThrown>
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.75</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -324,19 +320,18 @@
 		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<damageDef>Bomb</damageDef>
-				<damageAmountBase>35</damageAmountBase>
+			<damageAmountBase>35</damageAmountBase>
 			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<!-- Use default damage from explosion def -->
 			<explosionRadius>4.8</explosionRadius>
 			<stoppingPower>2</stoppingPower>
 			<speed>50</speed>
 		</projectile>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
-			<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
-			<trailMoteSize>0.75</trailMoteSize>
-			<trailerMoteInterval>3</trailerMoteInterval>
-			<motesThrown>3</motesThrown>
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.75</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -346,24 +341,14 @@
 		<defName>OGI_Gun_RocketLaucher</defName>
 		<label>missile launcher (I)</label>
 		<description>A Missile Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
-		<tickerType>Normal</tickerType>
-		<techLevel>Spacer</techLevel>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MissileLauncher</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<color>(0.286,0.286,0.286)</color>	
 		</graphicData>
-		<statBases>
-			<WorkToMake>100000</WorkToMake>
-			<!--MarketValue>3275</MarketValue-->
-			<AccuracyTouch>0.50</AccuracyTouch>
-			<AccuracyShort>0.60</AccuracyShort>
-			<AccuracyMedium>0.55</AccuracyMedium>
-			<AccuracyLong>0.40</AccuracyLong>
-			<Mass>7</Mass>
-			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
-		</statBases>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 
 		</recipeMaker>
@@ -380,14 +365,24 @@
 		<tradeTags>
 			<li>OGIRanged</li>
 		</tradeTags>
-			<generateCommonality>0.10</generateCommonality>
+		<generateCommonality>0.10</generateCommonality>
+		<statBases>
+			<WorkToMake>75000</WorkToMake>
+			<!--MarketValue>3275</MarketValue-->
+			<AccuracyTouch>0.50</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+		</statBases>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-			<label>Frag</label>
+				<label>Frag</label>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
-			<burstShotCount>1</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<forcedMissRadius>2.9</forcedMissRadius>
 				<warmupTime>4.5</warmupTime>
 				<ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
@@ -401,36 +396,25 @@
 				</targetParams>
 			</li>
 			<li>
-			<verbClass>Verb_Shoot</verbClass>
-			<label>Krak</label>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
-			<forcedMissRadius>2.9</forcedMissRadius>
-			<burstShotCount>1</burstShotCount>
-			<warmupTime>4.5</warmupTime>
-			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-			<range>35.9</range>
-			<soundCast>InfernoCannon_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<onlyManualCast>true</onlyManualCast>
-			<stopBurstWithoutLos>false</stopBurstWithoutLos>
-			<muzzleFlashScale>14</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
-		<comps>  
-				<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-					<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
-					<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
-			</li>  
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>7.8</explosiveRadius>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
-			</li> 
-		</comps>
 		<tools>
 			<li>
 				<label>barrel</label>
@@ -441,6 +425,24 @@
 				<cooldownTime>2.6</cooldownTime>
 			</li>
 		</tools>
+		<comps>  
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li>  
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -449,9 +451,9 @@
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
 				<extraRotation>0</extraRotation>
 			</li>
-				<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
 				<barrelLength>1</barrelLength>
-				</li>
+			</li>
 		</modExtensions>
 	</ThingDef>
 

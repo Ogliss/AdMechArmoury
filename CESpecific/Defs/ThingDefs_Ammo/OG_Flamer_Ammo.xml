@@ -12,7 +12,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGFlamerHand</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGI_Bullet_FlamerHand</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -20,7 +20,7 @@
 	
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGFlamer</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGI_Bullet_Flamer</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -28,7 +28,7 @@
 		
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGFlamerHeavy</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGI_Bullet_FlamerHeavy</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -36,7 +36,7 @@
 		
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGBurna</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGO_Bullet_Burna</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -44,7 +44,7 @@
 		
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGScorcha</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGO_Bullet_Scorcha</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -52,18 +52,9 @@
 		
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGFlamerCognis</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGAM_Bullet_FlamerCognis</OG_Ammo_Flamer>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-		
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_OGCombiBoltFlamer</defName>
-		<label>Bolter/Flamer</label>
-		<ammoTypes>
-			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
-			<OG_Ammo_Flamer>OGI_Bullet_Flamer</OG_Ammo_Flamer>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -78,7 +69,7 @@
 	
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGPhosphor</defName>
-		<label>Flamethrower ammo</label>
+		<label>promethium gel</label>
 		<ammoTypes>
 			<OG_Ammo_Flamer>OGAM_Bullet_PhosphorSml</OG_Ammo_Flamer>
 		</ammoTypes>
@@ -103,7 +94,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGFlamerBase">
 		<defName>OG_Ammo_Flamer</defName>
-		<label>Flamethrower cartridge</label>
+		<label>promethium gel canister</label>
 		<graphicData>
 			<texPath>Things/Ammo/FuelCell/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -117,9 +108,9 @@
 	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_Flamer</defName>
-		<label>make OFlamer x50</label>
-		<description>Craft 50 Flamer cartridges.</description>
-		<jobString>Making Flamer cartridges.</jobString>
+		<label>promethium gel canister x150</label>
+		<description>Craft 150 promethium gel canisters.</description>
+		<jobString>Making promethium gel canisters.</jobString>
 		<workAmount>15000</workAmount>
 		<ingredients>
 			<li>
@@ -128,35 +119,27 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>FSX</li>
+						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
-				<li>FSX</li>
-				<li>ComponentIndustrial</li>
+				<li>Prometheum</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_Flamer>5</OG_Ammo_Flamer>
+			<OG_Ammo_Flamer>150</OG_Ammo_Flamer>
 		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Flame</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>

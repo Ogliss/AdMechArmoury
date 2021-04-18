@@ -3,9 +3,8 @@ using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.Sound;
-using AdeptusMechanicus.Lasers;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Lasers
 {
     // AdeptusMechanicus.Building_LaserGunCE
     public class Building_LaserGunCE : Building_TurretGunCE, IBeamColorThing

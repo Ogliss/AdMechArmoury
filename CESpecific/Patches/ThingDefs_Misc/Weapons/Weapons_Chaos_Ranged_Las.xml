@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ====================== Chaos Ranged ===================== -->
+			<!-- ====================== Las Weapons ===================== -->
+			<!-- ====================== LasPistol ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+				<defName>OGC_Gun_LasPistol</defName>
+				<statBases>
+					<Mass>0.8</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>0.50</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_LasPistolStd</defaultProjectile>
+					<warmupTime>0.7</warmupTime>
+					<range>21</range>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OG_Las_Pistol_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<barrelLength>0.45</barrelLength>
+					<bulletOffset>-0.3</bulletOffset>
+					<recoilAmount>0.1</recoilAmount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>1.5</reloadTime>
+					<ammoSet>AmmoSet_OGLasStd</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGC_Gun_LasPistol"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- ====================== LasGun ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+				<defName>OGC_Gun_LasGun</defName>
+				<statBases>
+					<Mass>2.8</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>2.50</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+					<warmupTime>1.35</warmupTime>
+					<range>45</range>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<burstShotCount>5</burstShotCount>
+					<soundCast>OG_Las_Pistol_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<recoilAmount>0.1</recoilAmount>
+					<barrelLength>0.8</barrelLength>
+					<bulletOffset>-0.25</bulletOffset>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>25</magazineSize>
+					<reloadTime>2.5</reloadTime>
+					<ammoSet>AmmoSet_OGLasStd</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGC_Gun_LasGun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>							
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>						
+						</li>
+					</tools>
+				</value>
+			</li>
+				
+			<!-- ==================== Traitor - Las Cannon ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+				<defName>OGC_Gun_LasCannon</defName>
+				<statBases>
+					<Mass>32</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.2</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.75</SwayFactor>
+					<Bulk>28</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+					<warmupTime>3.18</warmupTime>
+					<range>75</range>
+					<soundCast>OG_Las_Cannon_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<recoilAmount>0.2</recoilAmount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_OGLasCannon</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OGC_Gun_LasCannon"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>

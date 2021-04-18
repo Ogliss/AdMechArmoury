@@ -38,7 +38,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGalvanicRifleBase">
 		<defName>OG_Ammo_GalvanicRifle</defName>
-		<label>Galvanic cartridge</label>
+		<label>galvanice shell</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -51,37 +51,48 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_GalvanicRifle</defName>
-		<label>make small Galvanic capacitor x70</label>
-		<description>Craft 70 small Galvanic capacitor.</description>
-		<jobString>Making small Galvanic capacitor.</jobString>
+		<label>make galvanice shell x150</label>
+		<description>Craft 150 galvanice shells.</description>
+		<jobString>Making galvanice shells.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>Plasteel</li>
+						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>ComponentIndustrial</li>
+						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
+				<li>Steel</li>
 				<li>Plasteel</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_GalvanicRifle>70</OG_Ammo_GalvanicRifle>
+			<OG_Ammo_GalvanicRifle>150</OG_Ammo_GalvanicRifle>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 </Defs>

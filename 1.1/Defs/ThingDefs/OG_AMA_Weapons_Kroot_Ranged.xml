@@ -164,16 +164,6 @@
 				<barrelLength>0.45</barrelLength>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
-				<projectileDef>OGK_Bullet_Pulse</projectileDef>
-				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
-				<factions>
-					<li>OG_Tau_Faction</li>
-					<li>TauFaction</li>
-				</factions>
-			</li> 
-		</comps>
 		<tools>
 			<li>
 				<label>stock blade</label>
@@ -213,6 +203,16 @@
 			<Plasteel>5</Plasteel>
 			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
+				<projectileDef>OGK_Bullet_Pulse</projectileDef>
+				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
+				<factions>
+					<li>OG_Tau_Faction</li>
+					<li>TauFaction</li>
+				</factions>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>true</dualWield>
@@ -227,7 +227,6 @@
 	<!--==================== Kroot - Kroot Rifle =========================-->
 	<ThingDef ParentName="OG_Kroot_Gun">
 		<defName>OGK_Gun_KrootRifle</defName>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<label>Kroot Rifle</label>
 		<description>The Kroot Rifle is the basic weapon used by the Kroot. It works by firing a solid slug propelled by a chemical reaction, although it was adapted by the Tau to fire Pulse rounds to make it the equivalent to the Boltgun. It is armed with blades near the muzzle and stock and are a throwback to earlier Kroot Fighting Staves, allowing them to use their incredible speed to tear their opponents to pieces in close combat. It is still quite bulky however, and so is not ever combined with another weapon, although it doesn't often need to be.</description>
 		<graphicData>
@@ -271,15 +270,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
-				<projectileDef>OGK_Bullet_Pulse</projectileDef>
-				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
-				<factions>
-					<li>OG_Tau_Faction</li>
-				</factions>
-			</li> 
-		</comps>
 		<tools>
 			<li>
 				<label>stock blade</label>
@@ -321,6 +311,17 @@
 			<Plasteel>15</Plasteel>
 			<ComponentIndustrial>3</ComponentIndustrial>
 		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
+				<projectileDef>OGK_Bullet_Pulse</projectileDef>
+				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
+				<factions>
+					<li>OG_Tau_Faction</li>
+				</factions>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -388,8 +389,28 @@
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>Kroot</li>
+			<li>KrootEliteGun</li>
+			<li>TKrootHuntingRifle</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+			<li>OGKRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Kroot_Tech_Base_T3</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>55</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
 		<statBases>
-		<reliability>1</reliability>
 			<WorkToMake>42000</WorkToMake>
 			<MarketValue>1750</MarketValue>
 			<Mass>3</Mass>
@@ -419,16 +440,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
-				<projectileDef>OGK_Bullet_HunterPulse</projectileDef>
-				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
-				<factions>
-					<li>OG_Tau_Faction</li>
-					<li>TauFaction</li>
-				</factions>
-			</li> 
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -447,27 +458,16 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>Kroot</li>
-			<li>KrootEliteGun</li>
-			<li>TKrootHuntingRifle</li>
-			<li>OgsWeaponTestAuto</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGTRanged</li>
-			<li>OGKRanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<researchPrerequisites>
-				<li>OG_Kroot_Tech_Base_T3</li>
-			</researchPrerequisites>
-		</recipeMaker>
-		<costList>
-			<Steel>55</Steel>
-			<Plasteel>25</Plasteel>
-			<ComponentIndustrial>5</ComponentIndustrial>
-		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_UpgradeableProjectile">
+				<projectileDef>OGK_Bullet_HunterPulse</projectileDef>
+				<researchDef>OG_Tau_Tech_Weapons_PlasmaPulse</researchDef>
+				<factions>
+					<li>OG_Tau_Faction</li>
+					<li>TauFaction</li>
+				</factions>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

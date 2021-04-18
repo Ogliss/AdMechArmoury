@@ -515,132 +515,35 @@
 		</modExtensions>
 	</ThingDef>
 
-	<!--==================== Eldar - Wraithcannon =========================-->
-	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
-		<defName>OGE_Bullet_Wraithcannon</defName>
-		<label>wraithcannon blast</label>
+	<!--==================== Eldar - Deathspinner =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGE_Bullet_Deathspinner</defName>
+		<label>Monofilament Mesh</label>
 		<graphicData>
-			<shaderType>MoteGlow</shaderType>
-			<color>(150,30,255,255)</color> <!-- default bolt colour -->
+			<texPath>Things/Projectile/DeathspinnerShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
-			<li>Things/Projectile/LightningBeam</li>
-		</textures>
-		<flareMatPath>Other/BeamGlowB</flareMatPath>
-		<lifetime>30</lifetime>
-		<seam>0</seam>
-		<impulseCurve>
-			<points>
-				<li>(0, 0.25)</li>
-				<li>(0.5, 0.75)</li>
-				<li>(1, 0.25)</li>
-			</points>
-		</impulseCurve>
-		<LightningBeam>true</LightningBeam>
-		<StaticLightning>false</StaticLightning>
-		<ArcCount>3</ArcCount>
-		<!--impactReflection>3</impactReflection-->
-		<flareLength>0.25</flareLength>
-		<!--flareWidth>0.25</flareWidth-->
-		<flareWidthMod>1.50</flareWidthMod>	
-		<!--flareLengthMod>0.250</flareLengthMod-->
-		
-		<lightningArcWidthDistCurve>
-			<points>
-				<li>(0, 0.5)</li>
-				<li>(0.1, 0.750)</li>
-				<li>(0.9, 0.750)</li>
-				<li>(1, 0.125)</li>
-			</points>
-		</lightningArcWidthDistCurve>
-		<lightningArcWidthTimeCurve>
-			<points>
-				<li>(0, 0.25)</li>
-				<li>(0.5, 1.5)</li>
-				<li>(1, 0.5)</li>
-			</points>
-		</lightningArcWidthTimeCurve>
-		<lightningArcVarianceDistCurve>
-			<points>
-				<li>(0, 1.5)</li>
-				<li>(0.1, 1.5)</li>
-				<li>(0.9, 1.5)</li>
-				<li>(1, 0.0)</li>
-			</points>
-		</lightningArcVarianceDistCurve>
-		<lightningArcVarianceTimeCurve>
-			<points>
-				<li>(0, 0)</li>
-				<li>(0.5, 1.5)</li>
-				<li>(1, 1)</li>
-			</points>
-		</lightningArcVarianceTimeCurve>
-		<effecterLifetime>120</effecterLifetime>
-		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
-		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
-    	<decorations>
-			<li>
-				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
-				<spacing>1</spacing>
-				<initialOffset>0</initialOffset>
-				<speed>0.0</speed>
-				<speedJitter>0.0</speedJitter>
-				<speedJitterOffset>0</speedJitterOffset>
-			</li>
-			<!--li>
-				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
-				<spacing>1</spacing>
-				<initialOffset>0.3</initialOffset>
-				<speed>1.0</speed>
-				<speedJitter>0.45</speedJitter>
-				<speedJitterOffset>90</speedJitterOffset>
-			</li-->
-    	</decorations>
 		<projectile>
-			<damageDef>OG_E_Distortion_Damage</damageDef>
-			<armorPenetrationBase>1</armorPenetrationBase>
-			<damageAmountBase>30</damageAmountBase>
-			<explosionDamageFalloff>true</explosionDamageFalloff>
-			<explosionRadius>2.25</explosionRadius>
-			<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
+			<damageDef>OGEDeathspinner</damageDef>
+			<damageAmountBase>29</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
 		</projectile>
-		<modExtensions>
-			<li Class="AdeptusMechanicus.ProjectileVFX">
-				<explosionMoteDef>OG_Mote_DistortBlast</explosionMoteDef>
-				<explosionMoteSize>3</explosionMoteSize>
-				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
-				<impactMoteSize>5</impactMoteSize>
-				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-				<impactGlowMoteSize>2.5</impactGlowMoteSize>
-			</li>
-		</modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
-		<defName>OGE_Gun_Wraithcannon</defName>
-		<label>wraithcannon (E)</label>
-		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
-		<description>An Eldar Wraithcannon is basically a smaller, more portable version of the D-Cannon. It is used by the Eldar Wraithguard to great effect as a strong, armour-piercing weapon since no amount of armour can protect a foe from this dimension-warping attack. It functions by opening a small rift into the Warp into which the enemy is sucked.</description>
+	<ThingDef ParentName="OG_Eldar_Gun_Special">
+		<defName>OGE_Gun_Deathspinner</defName>
+		<label>deathspinner (E)</label>
+		<description>A Death Spinner is the standard weapon used by the Eldar Aspect Warriors known as the Warp Spiders. They are deadly weapons that use mono-filament threads to rip through a target's body. The Death Spinner is a part of a whole family of Eldar weapons that use mono-filament technology. All these weapons, including the massive Doomweaver Cannon mounted on super-heavy Eldar gravity tanks and the Harlequin's Kiss used by the Harlequins, work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/WraithCannon</texPath>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DeathSpinner</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.50</drawSize>			
 		</graphicData>
-		<!--equippedAngleOffset>45</equippedAngleOffset-->
-		<comps>   
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<reliability>1</reliability>
-			<WorkToMake>55000</WorkToMake>
-			<MarketValue>6500</MarketValue>
-			<Mass>3.5</Mass>
+			<WorkToMake>35000</WorkToMake>
+			<MarketValue>2250</MarketValue>
+			<Mass>2.75</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
@@ -650,21 +553,20 @@
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.35</MoveSpeed>
+			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
-				<warmupTime>1.00</warmupTime>
-				<range>18</range>
-				<burstShotCount>1</burstShotCount>
-				<soundCast>OG_Wraithcannon_Sound</soundCast>
+				<defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Deathspinner_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
-				<barrelLength>1</barrelLength>
-				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -691,22 +593,156 @@
 		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>EWraithcannon</li>
-			<li>EGhostGun</li>
-			<li>OgsWeaponTestLaser</li>
+			<li>EDeathspinner</li>
+			<li>EEliteGun</li>
+			<li>OgsWeaponTestShuriken</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>OG_Eldar_Tech_Weapons_Vortex</li>
+				<li>OG_Aeldari_Tech_Weapons_Monofilament</li>
 			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<OGE_Component>6</OGE_Component>
-			<Plasteel>10</Plasteel>
-			<OGE_Wraithbone>30</OGE_Wraithbone>
+			<Plasteel>20</Plasteel>
+			<OGE_Wraithbone>15</OGE_Wraithbone>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Eldar - Reaper Launcher =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGE_Bullet_ReaperLauncher</defName>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<label>reaper nissile</label>
+		<graphicData>
+			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGEPlas</damageDef>
+			<explosionRadius>1.00</explosionRadius>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.7</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+			</li>
+		</modExtensions>
+	</ThingDef>	
+
+	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
+		<defName>OGE_Gun_ReaperLauncher</defName>
+		<label>reaper launcher (E)</label>
+		<description>A Reaper Launcher is a unique heavy weapon utilised exclusively by the Aeldari Dark Reapers Aspect Warriors. With this deadly weapon the Dark Reapers are the undisputed masters of delivering death from afar. This long-barrelled Missile Launcher can create a blistering firestorm with a single salvo. The armour-piercing missiles it fires are powerful enough to take down all but the most heavily protected foe.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DarkReaperLauncher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<MarketValue>5750</MarketValue>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_ReaperLauncher</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Starcannon_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<Multishot>true</Multishot>
+					<ScattershotCount>2</ScattershotCount>
+				</li>
+			</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EReaperLauncher</li>
+			<li>EHeavyGun</li>
+			<li>OgsWeaponTestBolt</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<li>OG_Eldar_Tech_Base_T3</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<OGE_Component>8</OGE_Component>
+			<Plasteel>25</Plasteel>
+			<OGE_Wraithbone>35</OGE_Wraithbone>
 		</costList>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
@@ -1395,35 +1431,132 @@
 		</modExtensions>
 	</ThingDef>
 
-	<!--==================== Eldar - Deathspinner =========================-->
-	<ThingDef ParentName="OG_Bullet_Base">
-		<defName>OGE_Bullet_Deathspinner</defName>
-		<label>Monofilament Mesh</label>
+	<!--==================== Eldar - Wraithcannon =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGE_Bullet_Wraithcannon</defName>
+		<label>wraithcannon blast</label>
 		<graphicData>
-			<texPath>Things/Projectile/DeathspinnerShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<color>(150,30,255,255)</color> <!-- default bolt colour -->
 		</graphicData>
+		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
+			<li>Things/Projectile/LightningBeam</li>
+		</textures>
+		<flareMatPath>Other/BeamGlowB</flareMatPath>
+		<lifetime>30</lifetime>
+		<seam>0</seam>
+		<impulseCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.75)</li>
+				<li>(1, 0.25)</li>
+			</points>
+		</impulseCurve>
+		<LightningBeam>true</LightningBeam>
+		<StaticLightning>false</StaticLightning>
+		<ArcCount>3</ArcCount>
+		<!--impactReflection>3</impactReflection-->
+		<flareLength>0.25</flareLength>
+		<!--flareWidth>0.25</flareWidth-->
+		<flareWidthMod>1.50</flareWidthMod>	
+		<!--flareLengthMod>0.250</flareLengthMod-->
+		
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.5)</li>
+				<li>(0.1, 0.750)</li>
+				<li>(0.9, 0.750)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime>
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+    	<decorations>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
+				<spacing>1</spacing>
+				<initialOffset>0</initialOffset>
+				<speed>0.0</speed>
+				<speedJitter>0.0</speedJitter>
+				<speedJitterOffset>0</speedJitterOffset>
+			</li>
+			<!--li>
+				<mote>AdeptusMechanicus_Mote_LaserEMP</mote>
+				<spacing>1</spacing>
+				<initialOffset>0.3</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.45</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li-->
+    	</decorations>
 		<projectile>
-			<damageDef>OGEDeathspinner</damageDef>
-			<damageAmountBase>29</damageAmountBase>
-			<armorPenetrationBase>0.68</armorPenetrationBase>
-			<speed>135</speed>
+			<damageDef>OG_E_Distortion_Damage</damageDef>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+			<explosionRadius>2.25</explosionRadius>
+			<soundExplode>MeleeHit_Metal_ThunderHammer</soundExplode>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_DistortBlast</explosionMoteDef>
+				<explosionMoteSize>3</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>5</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
-	<ThingDef ParentName="OG_Eldar_Gun_Special">
-		<defName>OGE_Gun_Deathspinner</defName>
-		<label>deathspinner (E)</label>
-		<description>A Death Spinner is the standard weapon used by the Eldar Aspect Warriors known as the Warp Spiders. They are deadly weapons that use mono-filament threads to rip through a target's body. The Death Spinner is a part of a whole family of Eldar weapons that use mono-filament technology. All these weapons, including the massive Doomweaver Cannon mounted on super-heavy Eldar gravity tanks and the Harlequin's Kiss used by the Harlequins, work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
+	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGE_Gun_Wraithcannon</defName>
+		<label>wraithcannon (E)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>An Eldar Wraithcannon is basically a smaller, more portable version of the D-Cannon. It is used by the Eldar Wraithguard to great effect as a strong, armour-piercing weapon since no amount of armour can protect a foe from this dimension-warping attack. It functions by opening a small rift into the Warp into which the enemy is sucked.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DeathSpinner</texPath>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/WraithCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.50</drawSize>			
 		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>35000</WorkToMake>
-			<MarketValue>2250</MarketValue>
-			<Mass>2.75</Mass>
+			<reliability>1</reliability>
+			<WorkToMake>55000</WorkToMake>
+			<MarketValue>6500</MarketValue>
+			<Mass>3.5</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.70</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
@@ -1433,20 +1566,21 @@
 		<equippedStatOffsets>
 			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>-0.25</MoveSpeed>
+			<MoveSpeed>-0.35</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
-				<warmupTime>1.5</warmupTime>
-				<range>28</range>
-				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
-				<soundCast>OG_Deathspinner_Sound</soundCast>
+				<defaultProjectile>OGE_Bullet_Wraithcannon</defaultProjectile>
+				<warmupTime>1.00</warmupTime>
+				<range>18</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Wraithcannon_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -1473,156 +1607,22 @@
 		</tools>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
-			<li>EDeathspinner</li>
-			<li>EEliteGun</li>
-			<li>OgsWeaponTestShuriken</li>
+			<li>EWraithcannon</li>
+			<li>EGhostGun</li>
+			<li>OgsWeaponTestLaser</li>
 		</weaponTags>
 		<tradeTags>
 			<li>OGERanged</li>
 		</tradeTags>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>OG_Aeldari_Tech_Weapons_Monofilament</li>
+				<li>OG_Eldar_Tech_Weapons_Vortex</li>
 			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<OGE_Component>6</OGE_Component>
-			<Plasteel>20</Plasteel>
-			<OGE_Wraithbone>15</OGE_Wraithbone>
-		</costList>
-		<modExtensions>
-			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-				<dualWield>false</dualWield>
-				<twoHand>true</twoHand>
-			</li>
-			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-				<extraRotation>0</extraRotation>
-			</li>
-		</modExtensions>
-	</ThingDef>
-
-	<!--==================== Eldar - Reaper Launcher =========================-->
-	<ThingDef ParentName="OG_Bullet_Base">
-		<defName>OGE_Bullet_ReaperLauncher</defName>
-		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
-		<label>reaper nissile</label>
-		<graphicData>
-			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<flyOverhead>false</flyOverhead>
-			<damageDef>OGEPlas</damageDef>
-			<explosionRadius>1.00</explosionRadius>
-			<damageAmountBase>35</damageAmountBase>
-			<armorPenetrationBase>0.68</armorPenetrationBase>
-			<speed>135</speed>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-		<modExtensions>
-			<li Class="AdeptusMechanicus.ProjectileVFX">
-				<explosionMoteSize>0.5</explosionMoteSize>
-				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-				<impactMoteSize>1</impactMoteSize>
-				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-				<impactGlowMoteSize>2.5</impactGlowMoteSize>
-			</li>
-			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
-				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
-				<trailMoteSize>0.7</trailMoteSize>
-				<trailerMoteInterval>3</trailerMoteInterval>
-			</li>
-		</modExtensions>
-	</ThingDef>	
-
-	<ThingDef ParentName="OG_Eldar_Gun_Heavy">
-		<defName>OGE_Gun_ReaperLauncher</defName>
-		<label>reaper launcher (E)</label>
-		<description>A Reaper Launcher is a unique heavy weapon utilised exclusively by the Aeldari Dark Reapers Aspect Warriors. With this deadly weapon the Dark Reapers are the undisputed masters of delivering death from afar. This long-barrelled Missile Launcher can create a blistering firestorm with a single salvo. The armour-piercing missiles it fires are powerful enough to take down all but the most heavily protected foe.</description>
-		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DarkReaperLauncher</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.250</drawSize>			
-		</graphicData>
-		<equippedAngleOffset>45</equippedAngleOffset>
-		<soundInteract>Interact_Autopistol</soundInteract>
-		<statBases>
-			<WorkToMake>60000</WorkToMake>
-			<MarketValue>5750</MarketValue>
-			<Mass>4</Mass>
-			<AccuracyTouch>0.30</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.70</AccuracyMedium>
-			<AccuracyLong>0.65</AccuracyLong>
-			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<PsychicSensitivity>0.15</PsychicSensitivity>
-		</equippedStatOffsets>
-		<verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGE_Bullet_ReaperLauncher</defaultProjectile>
-				<warmupTime>3</warmupTime>
-				<range>45</range>
-				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
-				<soundCast>OG_Starcannon_Sound</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>10</muzzleFlashScale>
-				<targetParams>
-					<canTargetLocations>true</canTargetLocations>
-				</targetParams>
-			</li>
-		</verbs>
-		<comps>    
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<VerbEntries>
-				<li>
-					<Multishot>true</Multishot>
-					<ScattershotCount>2</ScattershotCount>
-				</li>
-			</VerbEntries>
-			</li> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
-		<tools>
-			<li>
-				<label>barrel</label>
-				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>1.9</cooldownTime>
-			</li>
-		</tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>EReaperLauncher</li>
-			<li>EHeavyGun</li>
-			<li>OgsWeaponTestBolt</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGERanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<researchPrerequisites>
-				<!--li>OG_Common_Tech_Weapons_Laser</li-->
-				<li>OG_Eldar_Tech_Base_T3</li>
-			</researchPrerequisites>
-		</recipeMaker>
-		<costList>
-			<OGE_Component>8</OGE_Component>
-			<Plasteel>25</Plasteel>
-			<OGE_Wraithbone>35</OGE_Wraithbone>
+			<Plasteel>10</Plasteel>
+			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">

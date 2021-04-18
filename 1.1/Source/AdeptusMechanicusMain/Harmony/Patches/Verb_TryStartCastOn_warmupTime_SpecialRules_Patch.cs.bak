@@ -16,7 +16,7 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus.HarmonyInstance
 // Verb.TryStartCastOn(LocalTargetInfo LocalTargetInfo bool bool)
 {// LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true
-    [HarmonyPatch(typeof(Verb), "TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
+//    [HarmonyPatch(typeof(Verb), "TryStartCastOn", new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool) })]
     public static class Verb_TryStartCastOn_warmupTime_SpecialRules_Patch
     {
         [HarmonyPrefix, HarmonyPriority(200)]

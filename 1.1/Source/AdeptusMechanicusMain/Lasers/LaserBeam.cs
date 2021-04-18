@@ -27,24 +27,6 @@ namespace AdeptusMechanicus.Lasers
         }
         Effecter effecter;
         Thing hitThing;
-        /*
-        public void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
-        {
-            if (this.def.HasModExtension<EffectProjectileExtension>())
-            {
-                EffectProjectileExtension ext = this.def.GetModExtensionFast<EffectProjectileExtension>();
-                ext.DoEffects(position, this.Map, ext.ExplosionMoteDef ?? this.def.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.def.projectile.damageDef.explosionColorCenter, this.def.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
-            }
-            if (effect == null) return;
-            var targetInfo = hitThing != null ? new TargetInfo(hitThing) : new TargetInfo(IntVec3.FromVector3(position), Map, false);
-            if (hitThing != null) effecter = effect.Spawn(hitThing, hitThing.Map);
-            else effecter = effect.Spawn();
-            effecter.offset = (position - targetInfo.CenterVector3);
-            effecter.ticksLeft = this.def.effecterLifetime;
-            effecter.Trigger(targetInfo, null);
-            //    effecter.Cleanup();
-        }
-        */
 
         public void SpawnBeam(Vector3 a, Vector3 b, Thing hitThing = null)
         {

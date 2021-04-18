@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static bool Prefix(VerbProperties __instance, Thing equipment, float dist, ref float __result)
         {
-            AdvancedVerbProperties verbProperties = __instance as AdvancedVerbProperties;
+            IAdvancedVerb verbProperties = __instance as IAdvancedVerb;
             if (verbProperties !=null)
             {
                 __result = verbProperties.GetHitChanceFactor(equipment, dist);

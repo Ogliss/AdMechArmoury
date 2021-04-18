@@ -4,7 +4,7 @@
 	<!-- ==================== Tau Transuranic ========================== -->
 	<ThingCategoryDef>
 		<defName>AmmoOGTransuranicArquebus</defName>
-		<label>Transuranic charge</label>
+		<label>transuranic shell</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 	</ThingCategoryDef>
@@ -13,7 +13,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGTransuranicArquebus</defName>
-		<label>Transuranic charge</label>
+		<label>transuranic shell</label>
 		<ammoTypes>
 			<OG_Ammo_TransuranicArquebus>OGAM_Bullet_TransuranicArquebus</OG_Ammo_TransuranicArquebus>
 		</ammoTypes>
@@ -22,7 +22,7 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="OGTransuranicArquebusBase" ParentName="AmmoBase" Abstract="True">
-		<description>Transuranic ammo</description>
+		<description>transuranic shells</description>
 		<statBases>
 			<Mass>0.01</Mass>
 			<Bulk>0.02</Bulk>
@@ -38,7 +38,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGTransuranicArquebusBase">
 		<defName>OG_Ammo_TransuranicArquebus</defName>
-		<label>Transuranic cartridge</label>
+		<label>transuranic shell</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -51,62 +51,48 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_TransuranicArquebus</defName>
-		<label>make small Transuranic capacitor x70</label>
-		<description>Craft 70 small Transuranic capacitor.</description>
-		<jobString>Making small Transuranic capacitor.</jobString>
+		<label>make transuranic shell x150</label>
+		<description>Craft 150 transuranic shells.</description>
+		<jobString>Making transuranic shells.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>Plasteel</li>
+						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>ComponentIndustrial</li>
+						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
+				<li>Steel</li>
 				<li>Plasteel</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_TransuranicArquebus>70</OG_Ammo_TransuranicArquebus>
+			<OG_Ammo_TransuranicArquebus>150</OG_Ammo_TransuranicArquebus>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+		</researchPrerequisites>
 	</RecipeDef>
-
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGTransuranicArquebus" ParentName="OG_Bullet_Base" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/TransuranicBeamSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OGTTransuranic</damageDef>
-			<speed>135</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGTransuranicArquebus">
-		<defName>Bullet_OGTransuranicArquebus</defName>
-		<label>Transuranic Arquebus Beam</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>45</damageAmountBase>
-			<explosionRadius>0.75</explosionRadius>
-			<armorPenetrationBase>3.0</armorPenetrationBase>
-			<soundExplode>OGIPP_Explosion</soundExplode>
-		</projectile>
-	</ThingDef-->
 
 </Defs>

@@ -4,8 +4,24 @@
 	<Operation Class="PatchOperationSequence">
 		<!--success>Always</success-->
 		<operations>
+			<!--==================== Necron - Gauss Base  =========================-->
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[@Name="OGN_Bullet_LaserGauss"]</xpath>
+				<attribute>Class</attribute>
+				<value>AdeptusMechanicus.Lasers.LaserBeamDefCE</value>
+			</li>
 			<!--==================== Necron - Gauss Flayer =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_GaussFlayer</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Gauss_Damage</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_GaussFlayer</defName>
 				<statBases>
 					<Mass>4.4</Mass>
@@ -18,15 +34,25 @@
 				<Properties>
 					<recoilAmount>0.8</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_GaussFlayer</defaultProjectile>
 					<warmupTime>1.3</warmupTime>
 					<range>52</range>
+					<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+					<burstShotCount>4</burstShotCount>
 					<soundCast>OG_Gauss_Flayer_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
-					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-					<burstShotCount>8</burstShotCount>
+					<barrelLength>0.90</barrelLength>
+					<bulletOffset>0.10</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -42,7 +68,6 @@
 					<aimedBurstShotCount>4</aimedBurstShotCount>
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussFlayer"]/tools</xpath>
 				<value>
@@ -70,37 +95,18 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_GaussFlayer"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_GaussFlayer</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>8</damageAmountBase>
-							<armorPenetrationSharp>20</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
 			<!--==================== Necron - Gause Blaster =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_GaussBlaster</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Gauss_Damage</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_GaussBlaster</defName>
 				<statBases>
 					<Mass>5.8</Mass>
@@ -113,15 +119,25 @@
 				<Properties>
 					<recoilAmount>0.8</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
 					<warmupTime>1.4</warmupTime>
 					<range>52</range>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<burstShotCount>8</burstShotCount>
 					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<burstShotCount>12</burstShotCount>
+					<barrelLength>1.00</barrelLength>
+					<bulletOffset>-0.20</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -136,7 +152,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussBlaster"]/tools</xpath>
 				<value>
@@ -164,66 +179,8 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_GaussBlaster"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_GaussBlaster</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>12</damageAmountBase>
-							<armorPenetrationSharp>20</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
 			<!--==================== Necron - Twin-Linked Gause Blaster =========================-->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_GaussBlasterTwinLinked</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>12</damageAmountBase>
-							<armorPenetrationSharp>20</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_GaussBlasterTwinLinked</defName>
 				<statBases>
 					<Mass>8.8</Mass>
@@ -236,15 +193,28 @@
 				<Properties>
 					<recoilAmount>0.88</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
+					<scattershotCount>1</scattershotCount>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGN_Bullet_GaussBlasterTwinLinked</defaultProjectile>
+					<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
+					<!--defaultProjectile>OGN_Bullet_GaussBlasterTwinLinked</defaultProjectile-->
 					<warmupTime>1.55</warmupTime>
 					<range>52</range>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<burstShotCount>8</burstShotCount>
 					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<burstShotCount>12</burstShotCount>
+					<barrelLength>1.00</barrelLength>
+					<barrelOffset>0.10</barrelOffset>
+					<bulletOffset>-0.1</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -260,16 +230,15 @@
 					<aimedBurstShotCount>4</aimedBurstShotCount>
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussBlasterTwinLinked"]</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>barrel blade</label>
+							<label>barrel</label>
 							<capacities>
-								<li>OG_RendingWeapon_Cut</li>
-								<li>OG_RendingWeapon_Stab</li>
+								<li>Blunt</li>
+								<li>Poke</li>
 							</capacities>
 							<power>14</power>
 							<cooldownTime>1.6</cooldownTime>
@@ -281,7 +250,17 @@
 			</li>
 			
 			<!--==================== Necron - Gauss Cannon =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_GaussCannon</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Gauss_Damage</damageDef>
+					<damageAmountBase>30</damageAmountBase>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>64</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_GaussCannon</defName>
 				<statBases>
 					<Mass>24</Mass>
@@ -294,13 +273,25 @@
 				<Properties>
 					<recoilAmount>1.2</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
 					<warmupTime>2.1</warmupTime>
-					<range>68</range>
+					<range>55</range>
+					<burstShotCount>1</burstShotCount>
 					<soundCast>OG_Gauss_Cannon_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
+					<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+					<muzzleFlareRotates>false</muzzleFlareRotates>
+					<barrelLength>0.95</barrelLength>
+					<bulletOffset>-0.15</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -315,7 +306,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannon"]</xpath>
 				<value>
@@ -343,37 +333,18 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_GaussCannon"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_GaussCannon</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>30</damageAmountBase>
-							<armorPenetrationSharp>28</armorPenetrationSharp>
-							<armorPenetrationBlunt>64</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-			
 			<!--==================== Necron - Heavy Gauss Cannon =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_GaussCannonHeavy</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Gauss_Damage</damageDef>
+					<damageAmountBase>40</damageAmountBase>
+					<armorPenetrationSharp>32</armorPenetrationSharp>
+					<armorPenetrationBlunt>64</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_GaussCannonHeavy</defName>
 				<statBases>
 					<Mass>34</Mass>
@@ -386,13 +357,25 @@
 				<Properties>
 					<recoilAmount>1.3</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
 					<warmupTime>2</warmupTime>
 					<range>75</range>
+					<burstShotCount>1</burstShotCount>
 					<soundCast>OG_Gauss_Cannon_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
+					<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+					<muzzleFlareRotates>false</muzzleFlareRotates>
+					<barrelLength>1.00</barrelLength>
+					<bulletOffset>-0.00</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -407,7 +390,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_GaussCannonHeavy"]</xpath>
 				<value>
@@ -435,37 +417,34 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_GaussCannonHeavy"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_GaussCannonHeavy</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>40</damageAmountBase>
-								<armorPenetrationSharp>32</armorPenetrationSharp>
-								<armorPenetrationBlunt>64</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
+			<!--==================== Necron - Telsa Base  =========================-->
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<Name>OGN_Bullet_LaserTesla</Name>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 			</li>
 			
 			<!--==================== Necron - Telsa Carbine =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_TeslaCarbine</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Tesla_Damage</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_TeslaCarbine_Arc</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Tesla_Damage</damageDef>
+					<damageAmountBase>12</damageAmountBase>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_TeslaCarbine</defName>
 				<statBases>
 					<Mass>29</Mass>
@@ -478,15 +457,26 @@
 				<Properties>
 					<recoilAmount>1.1</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
 					<warmupTime>1.45</warmupTime>
-					<range>52</range>
+					<range>48</range>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
 					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<burstShotCount>3</burstShotCount>
+					<barrelLength>0.9</barrelLength>
+					<barrelOffset>-0.20</barrelOffset>
+					<bulletOffset>-0.25</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -501,7 +491,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_TeslaCarbine"]/tools</xpath>
 				<value>
@@ -529,70 +518,8 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_TeslaCarbine"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_TeslaCarbine</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/TeslaBoltGreen</li>
-						</textures>
-						<seam>0</seam>
-						<LightningBeam>true</LightningBeam>
-						<StaticLightning>false</StaticLightning>
-						<ArcCount>3</ArcCount>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Tesla_Damage</damageDef>
-							<damageAmountBase>12</damageAmountBase>
-							<armorPenetrationSharp>28</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_TeslaCarbine_Arc"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_TeslaCarbine_Arc</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/TeslaBoltGreen</li>
-						</textures>
-						<seam>0</seam>
-						<LightningBeam>true</LightningBeam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Tesla_Damage</damageDef>
-							<damageAmountBase>12</damageAmountBase>
-							<armorPenetrationSharp>28</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
 			<!--==================== Necron - Twin-Linked Telsa Carbine =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
 				<statBases>
 					<Mass>32.4</Mass>
@@ -605,15 +532,27 @@
 				<Properties>
 					<recoilAmount>1</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<scattershotCount>1</scattershotCount>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGN_Bullet_TeslaCarbineTwinLinked</defaultProjectile>
+					<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
 					<warmupTime>1.62</warmupTime>
-					<range>52</range>
+					<range>48</range>
+					<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
 					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<burstShotCount>12</burstShotCount>
+					<barrelLength>1</barrelLength>
+					<barrelOffset>-0.25</barrelOffset>
+					<bulletOffset>-0.25</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -629,7 +568,6 @@
 					<aimedBurstShotCount>6</aimedBurstShotCount>
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_TeslaCarbineTwinLinked"]</xpath>
 				<value>
@@ -657,40 +595,18 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_TeslaCarbineTwinLinked</defName>
-						<label>guass blast</label>
-						<textures>
-							<li>Things/Projectile/TeslaBoltGreen</li>
-						</textures>
-						<seam>0</seam>
-						<LightningBeam>true</LightningBeam>
-						<StaticLightning>false</StaticLightning>
-						<ArcCount>3</ArcCount>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Tesla_Damage</damageDef>
-							<damageAmountBase>12</damageAmountBase>
-							<armorPenetrationSharp>28</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
 			<!--==================== Necron - Synaptic Disintegrator =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_SynapticDisintegrator</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Particle_Damage</damageDef>
+					<damageAmountBase>40</damageAmountBase>
+					<armorPenetrationSharp>35</armorPenetrationSharp>
+					<armorPenetrationBlunt>48</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_SynapticDisintegrator</defName>
 				<statBases>
 					<Mass>34</Mass>
@@ -702,13 +618,29 @@
 				</statBases>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rending>true</rending>
+					<rapidFire>true</rapidFire>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>OGN_Bullet_SynapticDisintegrator</defaultProjectile>
 					<warmupTime>2.12</warmupTime>
 					<range>70</range>
+					<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
 					<soundCast>OG_Gauss_Cannon_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
+					<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+					<muzzleFlareRotates>false</muzzleFlareRotates>
+					<muzzleFlareColor>(75,233,0,150)</muzzleFlareColor>
+					<barrelLength>1.0</barrelLength>
+					<barrelOffset>-0.00</barrelOffset>
+					<bulletOffset>-0.0</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -723,7 +655,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_SynapticDisintegrator"]/tools</xpath>
 				<value>
@@ -751,37 +682,18 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_SynapticDisintegrator"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_SynapticDisintegrator</defName>
-						<label>disintergrator blast</label>
-						<textures>
-							<li>Things/Projectile/ParticleBeam</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Particle_Damage</damageDef>
-							<damageAmountBase>40</damageAmountBase>
-							<armorPenetrationSharp>35</armorPenetrationSharp>
-							<armorPenetrationBlunt>48</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
+			<!--==================== Necron - Particle Beamer =========================-->
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_ParticleBeamer</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Particle_Damage</damageDef>
+					<damageAmountBase>18</damageAmountBase>
+					<armorPenetrationSharp>35</armorPenetrationSharp>
+					<armorPenetrationBlunt>48</armorPenetrationBlunt>
+				</projectile>
 			</li>
-			
-			<!--==================== Necron - Synaptic Disintegrator =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 				<defName>OGN_Gun_ParticleBeamer</defName>
 				<statBases>
 					<Mass>22</Mass>
@@ -793,13 +705,26 @@
 				</statBases>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<rapidFire>true</rapidFire>
+					<rending>true</rending>
+					<effectsUserChance>0.15</effectsUserChance>
+					<resistEffectStat>ToxicSensitivity</resistEffectStat>
+					<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+					<userEffectImmuneList>
+						<li>Necron</li>
+					</userEffectImmuneList>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGN_Bullet_SynapticDisintegrator</defaultProjectile>
+					<defaultProjectile>OGN_Bullet_ParticleBeamer</defaultProjectile>
 					<warmupTime>2.1</warmupTime>
 					<range>74</range>
-					<soundCast>OG_Gauss_Cannon_Sound</soundCast>
+					<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OG_Gauss_Blaster_Sound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
+					<barrelLength>0.9</barrelLength>
+					<barrelOffset>-0.25</barrelOffset>
+					<bulletOffset>-0.0</bulletOffset>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -814,7 +739,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_ParticleBeamer"]/tools</xpath>
 				<value>
@@ -842,37 +766,18 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_ParticleBeamer"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_ParticleBeamer</defName>
-						<label>particle beam</label>
-						<textures>
-							<li>Things/Projectile/ParticleBeam</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Particle_Damage</damageDef>
-							<damageAmountBase>18</damageAmountBase>
-							<armorPenetrationSharp>35</armorPenetrationSharp>
-							<armorPenetrationBlunt>48</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-			
 			<!--==================== Necron - Staff of Light =========================-->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGN_Bullet_StaffOfLight</defName>
+				<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+				<projectile>
+					<damageDef>OG_N_Gauss_Damage</damageDef>
+					<damageAmountBase>20</damageAmountBase>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<armorPenetrationBlunt>34</armorPenetrationBlunt>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGN_Gun_StaffOfLight</defName>
 				<statBases>
 					<SightsEfficiency>1.00</SightsEfficiency>
@@ -890,7 +795,7 @@
 					<defaultProjectile>OGN_Bullet_StaffOfLight</defaultProjectile>
 					<warmupTime>0.5</warmupTime>
 					<burstShotCount>1</burstShotCount>
-					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
 					<range>18</range>
 					<soundCast>GaussSound</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
@@ -909,7 +814,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>		
 				</FireModes>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="OGN_Gun_StaffOfLight"]/tools</xpath>
 				<value>
@@ -937,35 +841,6 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="OGN_Bullet_StaffOfLight"]</xpath>
-				<value>
-					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-						<defName>OGN_Bullet_StaffOfLight</defName>
-						<label>light blast</label>
-						<textures>
-							<li>Things/Projectile/GaussBoltSml</li>
-						</textures>
-						<seam>0</seam>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>OG_N_Gauss_Damage</damageDef>
-							<damageAmountBase>20</damageAmountBase>
-							<armorPenetrationSharp>28</armorPenetrationSharp>
-							<armorPenetrationBlunt>34</armorPenetrationBlunt>
-						</projectile>
-						<modExtensions>
-							<li Class="AdeptusMechanicus.ProjectileVFX">
-								<explosionMoteSize>0.25</explosionMoteSize>
-								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-								<impactMoteSize>1</impactMoteSize>
-								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-								<impactGlowMoteSize>2.5</impactGlowMoteSize>
-							</li>
-						</modExtensions>
-					</ThingDef>
-				</value>
-			</li>
-
 		</operations>
 	</Operation>
 

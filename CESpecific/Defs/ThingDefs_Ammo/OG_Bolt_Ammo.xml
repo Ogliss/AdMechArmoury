@@ -70,7 +70,42 @@
 			<OG_Ammo_BoltHeavyHellfire>OGI_Bullet_HeavyBoltHellfire</OG_Ammo_BoltHeavyHellfire>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGCombiBoltFlamer</defName>
+		<label>Bolter/Flamer</label>
+		<ammoTypes>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<OG_Ammo_Flamer>OGI_Bullet_Flamer</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGICombiBoltPlasma</defName>
+		<label>Bolter/Plasma (Imperial)</label>
+		<ammoTypes>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<OG_Ammo_IPlasma>OGI_Bullet_PlasmaGun</OG_Ammo_IPlasma>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGCombiBoltMelta</defName>
+		<label>Bolter/Melta</label>
+		<ammoTypes>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<OG_Ammo_Melta>OGI_Bullet_Melta</OG_Ammo_Melta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGICombiBoltGrav</defName>
+		<label>Bolter/Grav (Imperial)</label>
+		<ammoTypes>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<!--OG_Ammo_IPlasma>OGI_Bullet_PlasmaGun</OG_Ammo_IPlasma-->
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="OGBoltBase" ParentName="AmmoBase" Abstract="True">
@@ -104,37 +139,57 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltStd</defName>
-		<label>make standard Bolt cartridge x30</label>
-		<description>Craft 30 BoltStd shells.</description>
-		<jobString>Making BoltStd shells.</jobString>
+		<label>make standard Bolt cartridge x200</label>
+		<description>Craft 200 standard Bolts.</description>
+		<jobString>Making standard Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltStd>30</OG_Ammo_BoltStd>
+			<OG_Ammo_BoltStd>200</OG_Ammo_BoltStd>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Dragonfire Bolt ===================== -->
@@ -153,37 +208,57 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltDragonfire</defName>
-		<label>make Dragonfire Bolt cartridge x30</label>
-		<description>Craft 30 Dragonfire Bolt shells.</description>
-		<jobString>Making Dragonfire Bolt shells.</jobString>
+		<label>make Dragonfire Bolt cartridge x150</label>
+		<description>Craft 150 Dragonfire Bolts.</description>
+		<jobString>Making Dragonfire Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltDragonfire>30</OG_Ammo_BoltDragonfire>
+			<OG_Ammo_BoltDragonfire>150</OG_Ammo_BoltDragonfire>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Hellfire Bolt ===================== -->
@@ -207,32 +282,52 @@
 		<jobString>Making Hellfire Bolt shells.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<OG_Ammo_BoltHellfire>30</OG_Ammo_BoltHellfire>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Kraken Bolt ===================== -->
@@ -251,37 +346,57 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltKraken</defName>
-		<label>make Kraken Bolt cartridge x30</label>
-		<description>Craft 30 Kraken Bolt shells.</description>
+		<label>make Kraken Bolt cartridge x100</label>
+		<description>Craft 100 Kraken Bolt shells.</description>
 		<jobString>Making Kraken Bolt shells.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltKraken>30</OG_Ammo_BoltKraken>
+			<OG_Ammo_BoltKraken>100</OG_Ammo_BoltKraken>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Vengeance Bolt ===================== -->
@@ -300,37 +415,57 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltVengeance</defName>
-		<label>make Vengeance Bolt cartridge x30</label>
-		<description>Craft 30 Vengeance Bolt shells.</description>
-		<jobString>Making Vengeance Bolt shells.</jobString>
+		<label>make Vengeance Bolt cartridge x75</label>
+		<description>Craft 75 Vengeance Bolts.</description>
+		<jobString>Making Vengeance Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltVengeance>30</OG_Ammo_BoltVengeance>
+			<OG_Ammo_BoltVengeance>75</OG_Ammo_BoltVengeance>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Stalker Bolt ===================== -->
@@ -349,37 +484,48 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltStalker</defName>
-		<label>make stalker Bolt cartridge x30</label>
-		<description>Craft 30 stalker Bolt shells.</description>
-		<jobString>Making stalker Bolt shells.</jobString>
+		<label>make stalker Bolt cartridge x200</label>
+		<description>Craft 200 stalker Bolts.</description>
+		<jobString>Making stalker Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltStalker>30</OG_Ammo_BoltStalker>
+			<OG_Ammo_BoltStalker>200</OG_Ammo_BoltStalker>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Std Heavy Bolt ===================== -->
@@ -398,37 +544,57 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltHeavyStd</defName>
-		<label>make heavy Bolt cartridge x50</label>
-		<description>Craft 50 heavy Bolt shells.</description>
-		<jobString>Making heavy Bolt shells.</jobString>
+		<label>make heavy Bolt cartridge x510</label>
+		<description>Craft 150 heavy Bolts.</description>
+		<jobString>Making heavy Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltHeavyStd>30</OG_Ammo_BoltHeavyStd>
+			<OG_Ammo_BoltHeavyStd>150</OG_Ammo_BoltHeavyStd>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<!-- ====================== Hellfire Heavy Bolt ===================== -->
@@ -447,37 +613,117 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_BoltHeavyHellfire</defName>
-		<label>make heavy Hellfire Bolt cartridge x50</label>
-		<description>Craft 50 heavy Hellfire Bolt shells.</description>
-		<jobString>Making heavy Hellfire Bolt shells.</jobString>
+		<label>make heavy Hellfire Bolt cartridge x150</label>
+		<description>Craft 150 heavy Hellfire Bolts.</description>
+		<jobString>Making heavy Hellfire Bolts.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>5</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_BoltHeavyHellfire>10</OG_Ammo_BoltHeavyHellfire>
+			<OG_Ammo_BoltHeavyHellfire>150</OG_Ammo_BoltHeavyHellfire>
 		</products>
-		<researchPrerequisite>OG_Imperial_Tech_Weapons_Bolt</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<!-- ====================== Metal Storm Heavy Bolt ===================== -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGBoltBase">
+		<defName>OG_Ammo_BoltHeavyMetalStorm</defName>
+		<label>Heavy Metal Storm Bolt</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGBoltAC</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_BoltHeavyMetalStorm</defName>
+		<label>make heavy Metal Storm Bolt x150</label>
+		<description>Craft 150 heavy Metal Storm Bolts.</description>
+		<jobString>Making heavy Metal Storm Bolts.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>130</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_BoltHeavyMetalStorm>150</OG_Ammo_BoltHeavyMetalStorm>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Weapons_Bolt</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 </Defs>

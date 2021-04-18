@@ -11,6 +11,7 @@ using Verse.AI;
 
 namespace AdeptusMechanicus
 {
+
     public class CompProperties_Weapon_GunSpecialRules : CompProperties_WargearWeapon
     {
         public CompProperties_Weapon_GunSpecialRules()
@@ -27,36 +28,9 @@ namespace AdeptusMechanicus
     public class CompWeapon_GunSpecialRules : CompWargearWeapon
     {
         public new CompProperties_Weapon_GunSpecialRules Props => (CompProperties_Weapon_GunSpecialRules)props;
-
-        public List<GunVerbEntry> VerbEntries => Props.VerbEntries;
-        public List<GunVerbEntry> gunVerbs;
-        public List<GunVerbEntry> GunVerbs
-        {
-            get
-            {
-                if (this.gunVerbs.NullOrEmpty())
-                {
-                    this.gunVerbs = new List<GunVerbEntry>();
-                }
-                foreach (VerbProperties verb in this.parent.def.Verbs)
-                {
-                    int index = this.parent.def.Verbs.IndexOf(verb);
-
-                    if (VerbEntries[index] == null)
-                    {
-                        VerbEntries.Add(new GunVerbEntry());
-                    }
-                    if (VerbEntries[index].VerbProps==null)
-                    {
-                        VerbEntries[index].VerbProps = verb;
-                    }
-                    gunVerbs.Add(VerbEntries[index]);
-                }
-                return gunVerbs;
-            }
-        }
-        public GunVerbEntry ActiveVerbEntry => this.GunVerbs[this.CurMode];
-        public VerbProperties ActiveVerbProperties => FireMode?.Active ?? Equipable.PrimaryVerb.verbProps;
+        public Verb ActiveVerb => FireMode?.ActiveVerb ?? Equipable.PrimaryVerb;
+        public VerbProperties ActiveVerbProperties => FireMode?.ActiveProps ?? Equipable.PrimaryVerb.verbProps;
+        public IAdvancedVerb AdvancedVerb => ActiveVerbProperties as IAdvancedVerb;
         public CompToggleFireMode fireMode;
         public CompToggleFireMode FireMode => fireMode ??= this.parent.TryGetCompFast<CompToggleFireMode>();
         public CompEquippable equipable; 
@@ -74,8 +48,8 @@ namespace AdeptusMechanicus
             }
         }
         public bool TyranidBurstBodySize => Props.TyranidBurstBodySize;
-        public bool TwinLinked => GunVerbs[CurMode].TwinLinked;
-        public bool RapidFire => GunVerbs[CurMode].RapidFire;
+        public bool TwinLinked => AdvancedVerb?.ScattershotCount == 1f;
+        public bool RapidFire => AdvancedVerb?.RapidFire ?? false;
         public float RapidFireReductionBase => ((ActiveVerbProperties.burstShotCount - 1) * ActiveVerbProperties.ticksBetweenBurstShots).TicksToSeconds() / 4;
         public float RapidFireWarmupReduction
         {
@@ -95,36 +69,36 @@ namespace AdeptusMechanicus
                 return (cooldownreduction / cooldown) * 100;
             }
         }
-        public bool GetsHot => GunVerbs[CurMode].GetsHot;
-        public bool HotDamageWeapon => GunVerbs[CurMode].HotDamageWeapon;
-        public bool GetsHotCrit => GunVerbs[CurMode].GetsHotCrit;
-        public bool GetsHotCritExplosion => GunVerbs[CurMode].GetsHotCritExplosion;
-        public bool Jams => GunVerbs[CurMode].Jams;
-        public bool JamsDamageWeapon => GunVerbs[CurMode].JamsDamageWeapon;
-        public bool EffectsUser => GunVerbs[CurMode].EffectsUser;
-        public bool Rending => GunVerbs[CurMode].Rending;
-        public Reliability Reliability => GunVerbs[CurMode].reliability;
-        public float HotDamage => GunVerbs[CurMode].HotDamage;
-        public float GetsHotCritChance => GunVerbs[CurMode].GetsHotCritChance;
-        public float GetsHotCritExplosionChance => GunVerbs[CurMode].GetsHotCritExplosionChance;
-        public float JamDamage => GunVerbs[CurMode].JamDamage;
-        public float EffectsUserChance => GunVerbs[CurMode].EffectsUserChance;
-        public float RendingChance => GunVerbs[CurMode].RendingChance;
-        public StatDef ResistEffectStat => GunVerbs[CurMode].ResistEffectStat;
-        public HediffDef UserEffect=> GunVerbs[CurMode].UserEffect;
-        public List<string> UserEffectImmuneList =>  GunVerbs[CurMode].UserEffectImmuneList;
-        public ResearchProjectDef RequiredResearch => GunVerbs[CurMode].requiredResearch;
-        public bool Multishot => Equipable != null && Equipable.PrimaryVerb.GetProjectile().HasModExtension<ScattershotProjectileExtension>();
+        public bool GetsHot => AdvancedVerb?.GetsHot ?? false;
+        public bool HotDamageWeapon => AdvancedVerb?.HotDamageWeapon ?? false;
+        public bool GetsHotCrit => AdvancedVerb?.GetsHotCrit ?? false;
+        public bool GetsHotCritExplosion => AdvancedVerb?.GetsHotCritExplosion ?? false;
+        public bool Jams => AdvancedVerb?.Jams ?? false;
+        public bool JamsDamageWeapon => AdvancedVerb?.JamsDamageWeapon ?? false;
+        public bool EffectsUser => AdvancedVerb?.EffectsUser ?? false;
+        public bool Rending => AdvancedVerb?.Rending ?? false;
+        public Reliability Reliability => AdvancedVerb?.Reliability ?? Reliability.NA;
+        public float HotDamage => AdvancedVerb?.HotDamage ?? 0f;
+        public float GetsHotCritChance => AdvancedVerb?.GetsHotCritChance ?? 0f;
+        public float GetsHotCritExplosionChance => AdvancedVerb?.GetsHotCritExplosionChance ?? 0f;
+        public float JamDamage => AdvancedVerb?.JamDamage ?? 0f;
+        public float EffectsUserChance => AdvancedVerb?.EffectsUserChance ?? 0f;
+        public float RendingChance => AdvancedVerb?.RendingChance ?? 0f;
+        public StatDef ResistEffectStat => AdvancedVerb?.ResistEffectStat;
+        public HediffDef UserEffect=> AdvancedVerb?.UserEffect;
+        public List<string> UserEffectImmuneList => AdvancedVerb?.UserEffectImmuneList;
+        public ResearchProjectDef RequiredResearch => AdvancedVerb?.RequiredResearch;
+        public bool Multishot => (ActiveVerb?.GetProjectile()?.HasModExtension<ScattershotProjectileExtension>() ?? false) || (AdvancedVerb?.Multishot ?? false);
         // public bool Multishot => Props.VerbEntries[CurMode].Multishot || Props.VerbEntries[CurMode].VerbProps.defaultProjectile.HasModExtension<ScattershotProjectileExtension>();
 
         // public int ScattershotCount => GunVerbs[CurMode].VerbProps.defaultProjectile.GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext ? ext.projectileCount : 0;
-        public int ScattershotCount => Multishot && Equipable != null && Equipable.PrimaryVerb.GetProjectile().GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext && ext.projectileCount.HasValue ? ext.projectileCount.Value : 0;
-        public bool MeltaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Melta();
-        public bool VolkiteWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Volkite();
-        public bool GaussWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Gauss();
-        public bool HaywireWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Haywire();
-        public bool TeslaWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Tesla();
-        public bool ConversionWeapon => Equipable != null && Equipable.PrimaryVerb.GetProjectile().projectile.Conversion();
+        public int ScattershotCount => Multishot && ActiveVerb?.GetProjectile()?.GetModExtensionFast<ScattershotProjectileExtension>() as ScattershotProjectileExtension is ScattershotProjectileExtension ext && ext.projectileCount.HasValue ? ext.projectileCount.Value : 0;
+        public bool MeltaWeapon => ActiveVerb?.GetProjectile()?.projectile.Melta() ?? false;
+        public bool VolkiteWeapon => ActiveVerb?.GetProjectile()?.projectile.Volkite() ?? false;
+        public bool GaussWeapon => ActiveVerb?.GetProjectile()?.projectile.Gauss() ?? false;
+        public bool HaywireWeapon => ActiveVerb?.GetProjectile()?.projectile.Haywire() ?? false;
+        public bool TeslaWeapon => ActiveVerb?.GetProjectile()?.projectile.Tesla() ?? false;
+        public bool ConversionWeapon => ActiveVerb?.GetProjectile()?.projectile.Conversion() ?? false;
         public int LastMovedTick
         {
             get
@@ -219,12 +193,10 @@ namespace AdeptusMechanicus
             {
                 str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Haywire".Translate().ToString() : str2 + ", " + "AMA_Haywire".Translate().ToString();
             }
-            /*
             if (GaussWeapon)
             {
                 str2 = str2.NullOrEmpty() ? str2 + " "+ "AMA_Gauss".Translate().ToString() : str2 + ", "+ "AMA_RapidFire".Translate().ToString();
             }
-            */
             if (TeslaWeapon)
             {
                 str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Tesla".Translate().ToString() : str2 + ", " + "AMA_Tesla".Translate().ToString();
@@ -252,7 +224,7 @@ namespace AdeptusMechanicus
                     }
                 }
                 builder.AppendLine();
-                builder.AppendLine(string.Format("Current Mode: {0}", FireMode.Active.label ?? FireMode.Active.defaultProjectile.label));
+                builder.AppendLine(string.Format("Current Mode: {0}", FireMode.ActiveProps.label ?? FireMode.ActiveProps.defaultProjectile.label));
             }
 
             if (RapidFire)
@@ -313,6 +285,11 @@ namespace AdeptusMechanicus
             if (Rending)
             {
                 builder.AppendLine();
+                if (GaussWeapon)
+                {
+                    builder.AppendLine("Gauss Weapon:");
+                //    builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
+                }
                 builder.AppendLine(string.Format("AMA_Rending_Shot".Translate() + ": " + "AMA_Rending_ShotDesc".Translate(RendingChance)));
             }
             if (MeltaWeapon)
@@ -335,14 +312,6 @@ namespace AdeptusMechanicus
                 builder.AppendLine();
                 builder.AppendLine(string.Format("AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate()));
             }
-            /*
-            if (GaussWeapon)
-            {
-                builder.AppendLine();
-                builder.AppendLine("Gauss Weapon:");
-                builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
-            }
-            */
             if (TeslaWeapon)
             {
                 builder.AppendLine();

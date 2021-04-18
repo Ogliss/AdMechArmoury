@@ -18,7 +18,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGMelta</defName>
-		<label>Melta charge</label>
+		<label>pyrum-petrol</label>
 		<ammoTypes>
 			<OG_Ammo_Melta>OGI_Bullet_Melta</OG_Ammo_Melta>
 		</ammoTypes>
@@ -26,7 +26,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGDEMelta</defName>
-		<label>Melta charge</label>
+		<label>pyrum-petrol</label>
 		<ammoTypes>
 			<OG_Ammo_Melta>OGDE_Bullet_FusionBeam</OG_Ammo_Melta>
 		</ammoTypes>
@@ -34,24 +34,15 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGEMelta</defName>
-		<label>Melta charge</label>
+		<label>pyrum-petrol</label>
 		<ammoTypes>
 			<OG_Ammo_Melta>OGE_Bullet_FusionGun</OG_Ammo_Melta>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_OGCombiBoltMelta</defName>
-		<label>Bolter/Melta</label>
-		<ammoTypes>
-			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
-			<OG_Ammo_Melta>OGI_Bullet_Melta</OG_Ammo_Melta>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
+	
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGMultiMelta</defName>
-		<label>Melta charge</label>
+		<label>pyrum-petrol</label>
 		<ammoTypes>
 			<OG_Ammo_Melta>OGI_Bullet_MultiMelta</OG_Ammo_Melta>
 		</ammoTypes>
@@ -76,7 +67,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMeltaBase">
 		<defName>OG_Ammo_Melta</defName>
-		<label>Melta cartridge</label>
+		<label>pyrum-petrol canister</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Concentrated</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -90,25 +81,33 @@
 	<!-- ================== Recipes ================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_Melta</defName>
-		<label>make Melta cartridge x20</label>
-		<description>Craft 20 Melta cartridges.</description>
-		<jobString>Making Melta cartridges.</jobString>
+		<label>make pyrum-petrol canister x100</label>
+		<description>Craft 100 pyrum-petrol canisters.</description>
+		<jobString>Making pyrum-petrol canisters.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>Plasteel</li>
+						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>10</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>ComponentIndustrial</li>
+						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -118,9 +117,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_Melta>20</OG_Ammo_Melta>
+			<OG_Ammo_Melta>100</OG_Ammo_Melta>
 		</products>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Special</researchPrerequisite>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Melta</researchPrerequisite>
 	</RecipeDef>
 
 </Defs>

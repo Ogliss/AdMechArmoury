@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool Prefix(ref Verb_Shoot __instance, MethodBase __originalMethod)
         {
             //    Log.Warning("TryCastShot");
-            AdvancedVerbProperties entry = __instance.SpecialRules();
+            IAdvancedVerb entry = __instance.SpecialRules();
             if (entry==null)
             {
             //    Log.Message("no SpecialRules detected");
@@ -31,9 +31,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool canDamageWeapon;
             float extraWeaponDamage;
             bool UserEffect = entry.EffectsUser;
-            HediffDef UserHediff = entry.userEffect;
-            float AddHediffChance = entry.effectsUserChance;
-            List<string> Immunitylist = entry.userEffectImmuneList;
+            HediffDef UserHediff = entry.UserEffect;
+            float AddHediffChance = entry.EffectsUserChance;
+            List<string> Immunitylist = entry.UserEffectImmuneList;
             string msg = string.Format("");
             string reliabilityString;
             float failChance = 0;

@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using Verse;
 
 namespace AdeptusMechanicus.ExtensionMethods
 {
@@ -24,6 +25,26 @@ namespace AdeptusMechanicus.ExtensionMethods
                     return (T)extension;
             }
             return default(T);
+        }
+        public static List<T> GetModExtensionsFast<T>(this Def def) where T : DefModExtension
+        {
+            List<T> results = new List<T>();
+            if (def.modExtensions == null)
+            {
+            //    results.Add(default(T));
+                return results;
+            }
+
+            var type = typeof(T);
+            var extensions = def.modExtensions;
+            for (int i = 0, count = extensions.Count; i < count; i++)
+            {
+                var extension = extensions[i];
+                if (extension.GetType() == type)
+                    results.Add((T)extension);
+                //    return (T)extension;
+            }
+            return results;
         }
         
         // Token: 0x060017F8 RID: 6136 RVA: 0x0008820C File Offset: 0x0008640C

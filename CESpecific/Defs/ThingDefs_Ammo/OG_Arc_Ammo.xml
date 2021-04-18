@@ -80,37 +80,48 @@
 		<jobString>Making Zapp Powa packs.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Silver</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<OG_Ammo_ArcOrk>30</OG_Ammo_ArcOrk>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
 	</RecipeDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
 		<defName>OG_Ammo_Arc</defName>
-		<label>Arc cartridge</label>
+		<label>perma-capacitor</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -123,37 +134,48 @@
 		
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_Arc</defName>
-		<label>make Arc power pack 70</label>
-		<description>Craft 70 Arc power packs.</description>
-		<jobString>Making Arc power packs.</jobString>
+		<label>make perma-capacitor x100</label>
+		<description>Craft 100 perma-capacitors.</description>
+		<jobString>Making perma-capacitors.</jobString>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Plasteel</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>ComponentIndustrial</li>
-				</thingDefs>
-			</filter>
-			<count>3</count>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Plasteel</li>
-			<li>ComponentIndustrial</li>
+				<li>Plasteel</li>
+				<li>Silver</li>
+				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_Arc>70</OG_Ammo_Arc>
+			<OG_Ammo_Arc>100</OG_Ammo_Arc>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
 	</RecipeDef>
 		
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
@@ -201,7 +223,9 @@
 		<products>
 			<OG_Ammo_ArcE>70</OG_Ammo_ArcE>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
 	</RecipeDef>
 		
 </Defs>

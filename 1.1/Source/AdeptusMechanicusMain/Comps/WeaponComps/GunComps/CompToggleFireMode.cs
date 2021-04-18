@@ -38,7 +38,7 @@ namespace AdeptusMechanicus
             fireMode = x;
             if (Props.switchStartsCooldown)
             {
-                this.GetUser.stances.SetStance(new Stance_Cooldown(this.Active.AdjustedCooldownTicks(this.Equippable.PrimaryVerb, this.GetUser), null, this.Equippable.PrimaryVerb));
+                this.GetUser.stances.SetStance(new Stance_Cooldown(this.ActiveProps.AdjustedCooldownTicks(this.Equippable.PrimaryVerb, this.GetUser), null, this.Equippable.PrimaryVerb));
             }
         }
 
@@ -50,10 +50,16 @@ namespace AdeptusMechanicus
                 lastUser = GetUser;
             }
         }
-        public VerbProperties Active
+        public bool Active => parent.def.Verbs.Count > 1 && Equippable.AllVerbs.Count > 1;
+
+        public VerbProperties ActiveProps
         {
             get
             {
+                if (fireMode >= parent.def.Verbs.Count)
+                {
+                    fireMode = 0;
+                }
                 if (parent != null && parent is ThingWithComps)
                 {
                     return parent.def.Verbs[fireMode];
@@ -69,11 +75,15 @@ namespace AdeptusMechanicus
         {
             get
             {
+                if (fireMode >= Equippable.AllVerbs.Count)
+                {
+                    fireMode = 0;
+                }
                 Verb result;
                 if (this.parent != null && this.parent != null)
                 {
                     result = Equippable.AllVerbs[this.fireMode];
-                    result.verbProps = Active;
+                    result.verbProps = ActiveProps;
                 }
                 else
                 {
@@ -107,13 +117,13 @@ namespace AdeptusMechanicus
         public override IEnumerable<Gizmo> EquippedGizmos()
         {
             bool flag = Find.Selector.SingleSelectedThing == GetUser;
-            if (flag && GetUser.Drafted && GetUser.Faction == Faction.OfPlayer)
+            if (flag && GetUser.Drafted && GetUser.Faction == Faction.OfPlayer && Active)
             {
                 int num = 700000101;
                 Command_Action command_Action = new Command_Action()
                 {
-                    icon = Active.defaultProjectile.uiIcon,
-                    defaultLabel = "Firemode: " + Active.label,
+                    icon = ActiveProps.defaultProjectile.uiIcon,
+                    defaultLabel = "Firemode: " + ActiveProps.label,
                     defaultDesc = "Switch mode.",
                     hotKey = KeyBindingDefOf.Misc10,
                     activateSound = SoundDefOf.Click,
@@ -127,9 +137,19 @@ namespace AdeptusMechanicus
                 {
                     command_Action.Disable("CannotOrderNonControlled".Translate());
                 }
-                else if (GetUser.stances.curStance.StanceBusy && !Props.canSwitchWhileBusy)
+                else if (ActiveVerb.WarmingUp || ActiveVerb.Bursting && !Props.canSwitchWhileBusy)
                 {
-                    command_Action.Disable("Is Busy");
+                    string disabled = string.Empty;
+                    if (ActiveVerb.WarmingUp)
+                    {
+                        disabled += " Aiming";
+                    }
+                    else
+                    if (ActiveVerb.Bursting)
+                    {
+                        disabled += " Shooting";
+                    }
+                    command_Action.Disable("Is Busy" + disabled);
                 }
                 yield return command_Action;
             }

@@ -10,6 +10,8 @@ using HarmonyLib;
 using Verse.Sound;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using System.Reflection;
+using System.Reflection.Emit;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {

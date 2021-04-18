@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<!-- ====================== Bolts ===================== -->
-	<ThingDef ParentName="OG_Bullet_Base" Name="OG_Bullet_Base_Bolt" Abstract="True">
+	<ThingDef Abstract="True" Name="OG_Bullet_Base_Bolt" ParentName="OG_Bullet_Base">
 		<label>Bolt</label>
 		<description>Standard Bolter ammunition utilises a mass-reactive fuse, designed to penetrate the target before detonating within, maximizing damage to the target and leaving little chance for survival.</description>
 		<graphicData>
@@ -188,7 +188,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>27500</WorkToMake>
+			<WorkToMake>17500</WorkToMake>
 			<!--MarketValue>750</MarketValue-->
 			<Mass>3.5</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -290,7 +290,7 @@
 			<Mass>7</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyMedium>0.50</AccuracyMedium>
 			<AccuracyLong>0.35</AccuracyLong>
 			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
 		</statBases>
@@ -385,44 +385,6 @@
 		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
 		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
 		<soundInteract>Interact_Rifle</soundInteract>
-		<statBases>
-			<reliability>1</reliability>
-			<WorkToMake>90000</WorkToMake>
-			<!--MarketValue>3000</MarketValue-->
-			<Mass>7</Mass>
-			<AccuracyTouch>0.85</AccuracyTouch>
-			<AccuracyShort>0.90</AccuracyShort>
-			<AccuracyMedium>0.80</AccuracyMedium>
-			<AccuracyLong>0.70</AccuracyLong>
-			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-		</statBases>
-		<comps> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,-1.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,-1.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li> 
-		</comps>
-		<tools>
-			<li>
-				<label>stock</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>9</power>
-				<cooldownTime>1.8</cooldownTime>
-			</li>
-			<li>
-				<label>barrel</label>
-				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>1.9</cooldownTime>
-			</li>
-		</tools>
 		<recipeMaker>
 			<researchPrerequisites>
 				<li>OG_Imperial_Tech_Weapons_Bolt</li>
@@ -446,33 +408,46 @@
 		<tradeTags>
 			<li>OGIRanged</li>
 		</tradeTags>
-		<colorGenerator Class="ColorGenerator_Options">
-			<options>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>50000</WorkToMake>
+			<!--MarketValue>3000</MarketValue-->
+			<Mass>7</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<tools>
 			<li>
-				<only>RGBA(1.00,1.00,1.00,1)</only>
-			</li>
-			<!--
-			<li>
-				<only>RGBA(0.95,0.95,0.95,1)</only>
-			</li>
-			<li>
-				<only>RGBA(0.90,0.90,0.90,1)</only>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
 			</li>
 			<li>
-				<only>RGBA(0.85,0.85,0.85,1)</only>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
 			</li>
-			<li>
-				<only>RGBA(0.80,0.80,0.80,1)</only>
+		</tools>
+		<comps> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 			</li>
-			<li>
-				<only>RGBA(0.75,0.75,0.75,1)</only>
-			</li>
-			<li>
-				<only>RGBA(0.70,0.70,0.70,1)</only>
-			</li>
-			-->
-			</options>
-		</colorGenerator>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,-1.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,-1.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -567,7 +542,6 @@
 	<ThingDef ParentName="OG_Imperial_Gun_Special">
 		<defName>OGI_Gun_BoltGunSternguard</defName>
 		<label>sternguard bolter (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts. The Bolter is a weapon synonymous with the Adeptus Astartes, and rightly so. However, although the Space Marines are its primary users, the Bolter finds itself in use in military organisations throughout the Imperium. The weapon is fearsome, with explosive rounds capable of ripping through or blowing apart a foe. The Chaos Space Marines of the Traitor Legions were issued their Legions' Bolters before the Horus Heresy, and therefore use generally older variants than the patterns available to present-day Loyalist Space Marines.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Sternguard</texPath>
@@ -775,7 +749,7 @@
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>115000</WorkToMake>
+			<WorkToMake>65000</WorkToMake>
 			<!--MarketValue>4000</MarketValue-->
 			<Mass>10.5</Mass>
 			<AccuracyTouch>0.85</AccuracyTouch>
@@ -902,26 +876,25 @@
 		</projectile>
 	</ThingDef>
 	  
-  <ThingDef ParentName="MoteBase">
-    <defName>OG_Mote_GiantExplosion</defName>
-    <graphicData>
-      <texPath>Things/Mote/PowerBeam</texPath>
-      <shaderType>MoteGlow</shaderType>
-    </graphicData>
-    <altitudeLayer>MoteOverhead</altitudeLayer>
-    <drawOffscreen>true</drawOffscreen>
-    <mote>
-      <fadeInTime>0.01</fadeInTime>
-      <solidTime>0</solidTime>
-      <fadeOutTime>0.4</fadeOutTime>
-      <growthRate>32</growthRate>
-    </mote>
-  </ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_GiantExplosion</defName>
+		<graphicData>
+			<texPath>Things/Mote/PowerBeam</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<drawOffscreen>true</drawOffscreen>
+		<mote>
+			<fadeInTime>0.01</fadeInTime>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.4</fadeOutTime>
+			<growthRate>32</growthRate>
+		</mote>
+	</ThingDef>
   
 	<ThingDef ParentName="OG_Imperial_Bolter_Base">
 		<defName>OGI_Gun_CombiFlamer</defName>
 		<label>combi-flamer (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>Combi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA standard Bolter with a Flamer attached to the side, useful for close combat.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_CombiFlamer</texPath>
@@ -932,8 +905,7 @@
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<reliability>1</reliability>
-			<WorkToMake>95000</WorkToMake>
+			<WorkToMake>75000</WorkToMake>
 			<!--MarketValue>1500</MarketValue-->
 			<Mass>7</Mass> <!-- needs to be higher -->
 			<AccuracyTouch>0.85</AccuracyTouch>
@@ -1012,6 +984,25 @@
 				</targetParams>
 			</li>
 		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
 		<comps>  
 			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
 				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
@@ -1038,25 +1029,6 @@
 				</Abilities>
 			</li-->
 		</comps>
-		<tools>
-			<li>
-				<label>stock</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>9</power>
-				<cooldownTime>1.8</cooldownTime>
-			</li>
-			<li>
-				<label>barrel</label>
-				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>1.9</cooldownTime>
-			</li>
-		</tools>
 		<modExtensions>
 		</modExtensions>
 	</ThingDef>
@@ -1065,7 +1037,6 @@
 	<ThingDef ParentName="OG_Imperial_Bolter_Base">
 		<defName>OGI_Gun_CombiMelta</defName>
 		<label>combi-melta (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>Combi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA standard Bolter with a Meltagun attached to its side, used as an anti-armour weapon.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_CombiMelta</texPath>
@@ -1077,7 +1048,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>125000</WorkToMake>
+			<WorkToMake>95000</WorkToMake>
 			<!--MarketValue>1750</MarketValue-->
 			<Mass>7</Mass> <!-- needs to be higher -->
 			<AccuracyTouch>0.85</AccuracyTouch>
@@ -1187,7 +1158,6 @@
 	<ThingDef ParentName="OG_Imperial_Bolter_Base">
 		<defName>OGI_Gun_CombiPlasma</defName>
 		<label>combi-plasma (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>Combi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA Standard Bolter with a Plasma Gun attached that is useful for a variety of tactical necessities.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_CombiPlasma</texPath>
@@ -1200,7 +1170,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>120000</WorkToMake>
+			<WorkToMake>85000</WorkToMake>
 			<!--MarketValue>1625</MarketValue-->
 			<Mass>7</Mass> <!-- needs to be higher -->
 			<AccuracyTouch>0.85</AccuracyTouch>
@@ -1346,7 +1316,6 @@
 	<ThingDef ParentName="OG_Imperial_Bolter_Base">
 		<defName>OGI_Gun_CombiGrav</defName>
 		<label>combi-grav (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>Combi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA Standard Bolter with a Grav Gun attached that is useful for a variety of tactical necessities.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_CombiGrav</texPath>
@@ -1359,7 +1328,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>130000</WorkToMake>
+			<WorkToMake>95000</WorkToMake>
 			<!--MarketValue>1625</MarketValue-->
 			<Mass>7</Mass> <!-- needs to be higher -->
 			<AccuracyTouch>0.85</AccuracyTouch>
@@ -1472,9 +1441,9 @@
 		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
-			<trailMoteDef>OG_Mote_BoltTrail</trailMoteDef>
-			<trailMoteSize>0.35</trailMoteSize>
-			<trailerMoteInterval>3</trailerMoteInterval>
+				<trailMoteDef>OG_Mote_BoltTrail</trailMoteDef>
+				<trailMoteSize>0.35</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -1492,7 +1461,7 @@
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>90000</WorkToMake>
+			<WorkToMake>75000</WorkToMake>
 			<!--MarketValue>5000</MarketValue-->
 			<Mass>9.2</Mass>
 			<AccuracyTouch>0.45</AccuracyTouch>
@@ -1672,7 +1641,6 @@
 	<ThingDef ParentName="OG_Imperial_Gun_Heavy">
 		<defName>OGI_Gun_HeavyBolter</defName>
 		<label>heavy bolter (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>A Heavy Bolter is a powerful Bolt Weapon that is used for anti-infantry and fire support roles, and is also known as the "Backbreaker" or the "Bruiser" because of its great weight and the amount of damage it can deal. Unlike the Boltgun, it is relatively common in Imperial Guard armies and is also often used by the Space Marines. Heavy Bolters have a high rate of fire and are relatively cheap to field. A Heavy Bolter can also be mounted on the cupola pintle-mounts of a wide variety of Imperial armoured vehicles, as well as act as an anti-personnel weapon by Imperial fixed defences, including strongholds and other fortifications.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Heavy</texPath>
@@ -1685,7 +1653,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>145000</WorkToMake>
+			<WorkToMake>77500</WorkToMake>
 			<!--MarketValue>6500</MarketValue-->
 			<Mass>15</Mass>
 			<AccuracyTouch>0.75</AccuracyTouch>

@@ -5,13 +5,13 @@
 
 	<CombatExtended.AmmoCategoryDef>
 		<defName>OGLasAC</defName>
-		<label>Las Charge</label>
+		<label>LasCharge</label>
 		<description>Focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects.</description>
 	</CombatExtended.AmmoCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>AmmoOGLas</defName>
-		<label>Las charges</label>
+		<label>LasCharges</label>
 		<parent>AmmoAdvanced</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 	</ThingCategoryDef>
@@ -20,7 +20,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGLasStd</defName>
-		<label>Las charge (Imperial)</label>
+		<label>LasCharge (Imperial)</label>
 		<ammoTypes>
 			<OG_Ammo_LasStd>OGI_Bullet_LasGun</OG_Ammo_LasStd>
 			<OG_Ammo_LasStd>OGI_Bullet_LasGun_Hot</OG_Ammo_LasStd>
@@ -29,15 +29,15 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGLasHot</defName>
-		<label>Las charge Hot (Imperial)</label>
+		<label>Hotshot LasCharge (Imperial)</label>
 		<ammoTypes>
-			<OG_Ammo_LasStd>OGI_Bullet_Hellgun</OG_Ammo_LasStd>
+			<OG_Ammo_LasHot>OGI_Bullet_Hellgun</OG_Ammo_LasHot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGLasLong</defName>
-		<label>LongLas charge (Imperial)</label>
+		<label>LongLasCharge (Imperial)</label>
 		<ammoTypes>
 			<OG_Ammo_LasStd>OGI_Bullet_LongLas</OG_Ammo_LasStd>
 		</ammoTypes>
@@ -53,17 +53,17 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGLasCannon</defName>
-		<label>Heavy Las charge (Imperial)</label>
+		<label>Heavy LasCharge (Imperial)</label>
 		<ammoTypes>
-			<OG_Ammo__LasCannon>OGI_Bullet_LasCannon</OG_Ammo__LasCannon>
+			<OG_Ammo_LasCannon>OGI_Bullet_LasCannon</OG_Ammo_LasCannon>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_OGConversionBeamer</defName>
-		<label>Heavy Las charge (Imperial)</label>
+		<label>Heavy LasCharge (Imperial)</label>
 		<ammoTypes>
-			<OG_Ammo__LasCannon>OGAM_Bullet_ConversionBeamer</OG_Ammo__LasCannon>
+			<OG_Ammo_LasCannon>OGAM_Bullet_ConversionBeamer</OG_Ammo_LasCannon>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -134,21 +134,8 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
-		<defName>OG_Ammo__LasCannon</defName>
-		<label>Heavy Las charge (Imperial)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Charged/Large</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.95</MarketValue>
-		</statBases>
-		<ammoClass>OGLasAC</ammoClass>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
 		<defName>OG_Ammo_LasStd</defName>
-		<label>Las charge (Imperial)</label>
+		<label>LasCharge (Imperial)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -160,8 +147,34 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+		<defName>OG_Ammo_LasHot</defName>
+		<label>Hotshot LasCharge (Imperial)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGLasAC</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
+		<defName>OG_Ammo_LasCannon</defName>
+		<label>Heavy LasCharge (Imperial)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Large</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGLasAC</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGLasChargeBase">
 		<defName>OG_Ammo_LasE</defName>
-		<label>Las charge (Eldar)</label>
+		<label>LasCharge (Eldar)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/Regular</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -187,10 +200,10 @@
 
 	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeOG_Ammo__LasCannon</defName>
-		<label>make Lascannon cartridge (I) x40</label>
-		<description>Craft 40 Lascannon cartridges.</description>
-		<jobString>Making Lascannon cartridges.</jobString>
+		<defName>MakeOG_Ammo_LasStd</defName>
+		<label>make LasCharge (I) x500</label>
+		<description>Craft 500 LasCharges.</description>
+		<jobString>Making LasCharges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -198,12 +211,141 @@
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_LasStd>500</OG_Ammo_LasStd>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_LasHot</defName>
+		<label>make Hotshot LasCharge (I) x100</label>
+		<description>Craft 100 Hotshot LasCharges.</description>
+		<jobString>Making Hotshot LasCharges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Silver</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_LasHot>100</OG_Ammo_LasHot>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_LasCannon</defName>
+		<label>make Heavy LasCharge (I) x50</label>
+		<description>Craft 50 Heavy LasCharges.</description>
+		<jobString>Making Heavy LasCharges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Silver</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_LasCannon>50</OG_Ammo_LasCannon>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_LasE</defName>
+		<label>make LasCharge (E) x180</label>
+		<description>Craft 180 LasCharges.</description>
+		<jobString>Making LasCharges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
 				<count>3</count>
@@ -216,9 +358,11 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo__LasCannon>40</OG_Ammo__LasCannon>
+			<OG_Ammo_LasE>180</OG_Ammo_LasE>
 		</products>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -253,77 +397,9 @@
 		<products>
 			<OG_Ammo_LasLanceE>40</OG_Ammo_LasLanceE>
 		</products>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeOG_Ammo_LasStd</defName>
-		<label>make Las cartridge (I) x180</label>
-		<description>Craft 180 Las cartridges.</description>
-		<jobString>Making Las cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-					<li>Plasteel</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-					<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Plasteel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<OG_Ammo_LasStd>180</OG_Ammo_LasStd>
-		</products>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeOG_Ammo_LasE</defName>
-		<label>make Las cartridge (E) x180</label>
-		<description>Craft 180 Las cartridges.</description>
-		<jobString>Making Las cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-					<li>Plasteel</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-					<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Plasteel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<OG_Ammo_LasE>180</OG_Ammo_LasE>
-		</products>
-		<researchPrerequisite>OG_Common_Tech_Weapons_Laser</researchPrerequisite>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Laser</li>
+		</researchPrerequisites>
 	</RecipeDef>
 
 </Defs>

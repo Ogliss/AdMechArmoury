@@ -69,20 +69,7 @@ namespace AdeptusMechanicus
             return result;
         }
 
-        public static void GetReliability(AdvancedVerbProperties verbEntry, Thing gun, out string rel, out float jamsOn)
-        {
-            rel = string.Empty;
-            jamsOn = JamChance(verbEntry, gun);
-            if (jamsOn < 0.25)
-                rel = "Extremely Reliable";
-            else if (jamsOn < 0.5)
-                rel = "Very Reliable";
-            else if (jamsOn < 1)
-                rel = "Standard";
-            else
-                rel = "Unreliable";
-        }
-        public static void GetReliability(GunVerbEntry verbEntry, Thing gun, out string rel, out float jamsOn)
+        public static void GetReliability(IAdvancedVerb verbEntry, Thing gun, out string rel, out float jamsOn)
         {
             rel = string.Empty;
             jamsOn = JamChance(verbEntry, gun);
@@ -113,10 +100,35 @@ namespace AdeptusMechanicus
         /// </summary>
         /// <param name="verbEntry">The gun object</param>
         /// <returns>floating point number representing the jam chance</returns>
-        public static float JamChance(AdvancedVerbProperties verbEntry, Thing gun)
+        public static float JamChance(Reliability verbEntry, Thing gun)
         {
             float result = 0f;
-            switch (verbEntry.reliability)
+            switch (verbEntry)
+            {
+                case Reliability.UR:
+                    result = 50f;
+                    break;
+                case Reliability.ST:
+                    result = 30f;
+                    break;
+                case Reliability.VR:
+                    result = 10f;
+                    break;
+                default:
+                    return 0;
+            }
+            if (gun != null)
+            {
+                result += GetQualityFactor(gun);
+                result = result * 100 / gun.HitPoints / 100;
+            }
+            result = (float)(Math.Truncate((double)result * 100.0) / 100.0);
+            return result;
+        }
+        public static float JamChance(IAdvancedVerb verbEntry, Thing gun)
+        {
+            float result = 0f;
+            switch (verbEntry.Reliability)
             {
                 case Reliability.UR:
                     result = 50f;

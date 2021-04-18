@@ -60,24 +60,12 @@ namespace AdeptusMechanicus.Lasers
         }
 #endregion Vars
        
-        public void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
-        {
-            if (effect == null) return;
-            var targetInfo = hitThing ?? new TargetInfo(IntVec3.FromVector3(position), launcher.Map, false);
-            effecter = effect.Spawn();
-            effecter.offset = (position - targetInfo.CenterVector3);
-            effecter.ticksLeft = this.projDef.effecterLifetime;
-            effecter.Trigger(targetInfo, null);
-            //    effecter.Cleanup();
-        }
-
-
-
         public float Lifetime => Mathf.InverseLerp(0, projDef.lifetime, ticks);
         public float Opacity => (float)Math.Sin(Math.Pow(Lifetime, projDef.impulseCurve?.Evaluate(Lifetime) ?? projDef.impulse) * Math.PI);
         public float ArcOpacity => (float)Math.Sin(Math.Pow(1.0 - 1.0 * ticks / projDef.lifetime, projDef.impulse) * Math.PI);
         public bool Lightning => projDef.LightningBeam;
         public bool Static => projDef.StaticLightning;
+
 
         public override void Tick()
         {
@@ -112,6 +100,16 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
+        public void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
+        {
+            if (effect == null) return;
+            var targetInfo = hitThing ?? new TargetInfo(IntVec3.FromVector3(position), launcher.Map, false);
+            effecter = effect.Spawn();
+            effecter.offset = (position - targetInfo.CenterVector3);
+            effecter.ticksLeft = this.projDef.effecterLifetime;
+            effecter.Trigger(targetInfo, null);
+            //    effecter.Cleanup();
+        }
         void SetColor(Thing launcher)
         {
             IBeamColorThing gun = null;
@@ -159,12 +157,12 @@ namespace AdeptusMechanicus.Lasers
                         if (m != null)
                         {
                             m.solidTimeOverride = projDef.lifetime;
-                            AdvancedVerbProperties properties = verb.verbProps as AdvancedVerbProperties;
-                            if (properties == null || properties.muzzleFlareRotates)
+                            IAdvancedVerb properties = verb.verbProps as IAdvancedVerb;
+                            if (properties == null || properties.MuzzleFlareRotates)
                             {
                                 if (properties != null)
                                 {
-                                    m.instanceColor = properties.muzzleFlareColor;
+                                    m.instanceColor = properties.MuzzleFlareColor;
                                 }
                                 Rand.PushState();
                                 m.exactRotation = Rand.Range(0, 350);
@@ -179,8 +177,6 @@ namespace AdeptusMechanicus.Lasers
                 }
                 AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
             }
-            
-
             if (effecter == null)
             {
                 TriggerEffect(effecterDef, b, hitThing);
@@ -357,8 +353,7 @@ namespace AdeptusMechanicus.Lasers
                 //    Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
             }
         }
-        Vector3 DectorationPos(Vector3 origin, Vector3 destin, float t) => new Vector3(Mathf.Lerp(origin.x, destin.x, t), Mathf.Lerp(origin.y, destin.y, t), Mathf.Lerp(origin.z, destin.z, t));
-         
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);

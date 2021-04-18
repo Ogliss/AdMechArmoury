@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<!-- ====================== Base Human Plasma shot ===================== -->
-	<ThingDef ParentName="OG_Bullet_Base" Name="OG_Bullet_Base_PlasmaHuman" Abstract="True">
+	<ThingDef Name="OG_Bullet_Base_PlasmaHuman" ParentName="OG_Bullet_Base" Abstract="True">
 		<label>Plasma Bolt</label>
 		<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
 		<graphicData>
@@ -81,7 +81,6 @@
 	<ThingDef ParentName="OG_Imperial_Gun">
 		<defName>OGI_Gun_PlasmaPistol</defName>
 		<label>plasma pistol (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Pistol is the smallest variant in the Plasma Weapons family. Each shot from a plasma pistol contains all the destructive fury of a larger Plasma Gun, although with a reduced range and rate of fire. The Traitor Legions have long made use of larger plasma weapons containing hydrogen fuel in a higher quantum state, making them both more powerful and more dangerous to wield. The Plasma Pistol is most commonly carried by officers of both the Space Marines and the Imperial Guard. Aside from individual Imperial officers, some specialized assault troops such as Assault Marines are also sometimes armed with Plasma Pistols.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaPistol</texPath>
@@ -92,7 +91,7 @@
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>30000</WorkToMake>
+			<WorkToMake>17500</WorkToMake>
 			<!--MarketValue>450</MarketValue-->
 			<Mass>1.2</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
@@ -124,7 +123,7 @@
 		<tradeTags>
 			<li>OGIRanged</li>
 		</tradeTags>
-			<generateCommonality>0.30</generateCommonality>
+		<generateCommonality>0.30</generateCommonality>
 		<verbs>
 			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
@@ -148,14 +147,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -175,6 +166,16 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>true</dualWield>
@@ -251,7 +252,6 @@
 	<ThingDef ParentName="OG_Imperial_Gun_Special">
 		<defName>OGI_Gun_PlasmaGun</defName>
 		<label>plasma gun (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Gun is a rifle-sized Plasma Weapon common to many of the armed forces of the Imperium of Man. It is classified as a special weapon and is carried by a variety of Imperial infantry, including Space Marines, Imperial Guardsmen and Storm Troopers. Like other infantry-carried plasma weapons, Imperial Plasma Guns are more powerful than plasma weapons used by xenos races but far more unstable as they have a chance to malfunction and even explode, wounding or even killing the wielder.\n\nPlasma Weapons make use of hydrogen fuel suspended in a liquid state in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into the plasma state of matter which is held in the core by powerful magnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. For this reason Plasma Weapons are sometimes colloquially called "Sun Guns" by the common population of the Imperium. Plasma Weapons tax their cooling systems considerably, and the Space Marines push the limits of their own resilience by using hydrogen in a higher quantum state than standard Imperial patterns.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaGun</texPath>
@@ -265,7 +265,7 @@
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>48000</WorkToMake>
+			<WorkToMake>53000</WorkToMake>
 			<!--MarketValue>825</MarketValue-->
 			<Mass>2.25</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
@@ -275,9 +275,9 @@
 			<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
-				<researchPrerequisites>
-					<li>OG_Common_Tech_Weapons_Plasma</li>
-				</researchPrerequisites>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Steel>175</Steel>
@@ -345,19 +345,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	
-				<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
-					<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
-					<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
-				<InspectLabelKey>AMA_Overcharged</InspectLabelKey>
-			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -377,6 +364,21 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+				<InspectLabelKey>AMA_Overcharged</InspectLabelKey>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -420,7 +422,6 @@
 	<ThingDef ParentName="OG_Imperial_Gun_Heavy">
 		<defName>OGI_Gun_PlasmaCannon</defName>
 		<label>plasma cannon (I)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>The Plasma Cannon, also sometimes called the Heavy Plasma Gun, is a heavy weapon that relies Imperial on plasma technology to deliver lethal blasts of superheated matter to the target. Plasma Weapons work by using hydrogen fuel suspended in a cryogenic state, in either fuel flasks or backpack containers. As the fuel is fed into the miniature fusion core inside the weapon, the hydrogen energises into plasma which is held in the core of the weapon by powerful electromagnetic containment fields. When fired, the fields dilate open and the plasma is ejected via a linear magnetic accelerator as a bolt of superheated matter akin to a solar flare in appearance and temperature. This bolt will explode on impact and can generate the destructive heat of a small sun. For this reason, Plasma Weapons are sometimes called “Sun Guns” by the common Imperial population.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCannonN</texPath>
@@ -432,7 +433,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>140000</WorkToMake>
+			<WorkToMake>87500</WorkToMake>
 			<!--MarketValue>4000</MarketValue-->
 			<Mass>5.2</Mass>
 			<AccuracyTouch>0.75</AccuracyTouch>
@@ -442,9 +443,9 @@
 			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
-				<researchPrerequisites>
-					<li>OG_Common_Tech_Weapons_Plasma</li>
-				</researchPrerequisites>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<costList>
 			<Steel>200</Steel>
@@ -492,14 +493,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<tools>
 			<li>
 				<label>barrel</label>
@@ -510,6 +503,17 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

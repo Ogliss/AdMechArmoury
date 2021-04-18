@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix(VerbProperties __instance, IntVec3 center)
         {
-            AdvancedVerbProperties verbProperties = __instance as AdvancedVerbProperties;
+            IAdvancedVerb verbProperties = __instance as IAdvancedVerb;
             if (verbProperties !=null)
             {
                 verbProperties.DrawExtraRadiusRings(center);

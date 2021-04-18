@@ -1,5 +1,6 @@
 ﻿using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.Lasers;
 using CombatExtended;
 using RimWorld;
 using System;
@@ -10,78 +11,102 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace AdeptusMechanicusCE
+namespace AdeptusMechanicus
 {
-    // AdeptusMechanicusCE.AdvancedVerbPropertiesCE
-    public class AdvancedVerbPropertiesCE : VerbPropertiesCE, IMuzzlePosition
+    // AdeptusMechanicus.AdvancedVerbPropertiesCE
+    public class AdvancedVerbPropertiesCE : VerbPropertiesCE, IMuzzlePosition, IAdvancedVerb
     {
-        public float heavyWeaponSetupTime = -1f;
+        private float heavyWeaponSetupTime = -1f;
 
-        public Reliability reliability = Reliability.NA;
+        private Reliability reliability = Reliability.NA;
 
-        public bool rapidFire = false;
-        public float rapidFireRange = 0.55f;
+        private bool rapidFire = false;
+        private float rapidFireRange = 0.55f;
 
-        public bool bodySizeBurst = false;
-        public float bodySizeBurstModifier = 1f;
+        private bool bodySizeBurst = false;
+        private float bodySizeBurstModifier = 1f;
 
-        public float hotDamage = 0f;
-        public float getsHotCritChance = 0f;
-        public float getsHotCritExplosionChance = 0f;
+        private float hotDamage = 0f;
+        private float getsHotCritChance = 0f;
+        private float getsHotCritExplosionChance = 0f;
 
-        public bool getsHot = false;
+        private bool getsHot = false;
 
-        public float jamDamage = 0f;
-        public float extraCooldown = 0f;
+        private float jamDamage = 0f;
+        private float extraCooldown = 0f;
 
-        public float effectsUserChance = 0f;
-        public StatDef resistEffectStat = null;
-        public HediffDef userEffect = null;
+        private float effectsUserChance = 0f;
+        private StatDef resistEffectStat = null;
+        private HediffDef userEffect = null;
 
-        public bool rending = false;
-        public float rendingChance = 0.167f;
+        private bool rending = false;
+        private float rendingChance = 0.167f;
 
-        public int scattershotCount = 0;
-        public ResearchProjectDef requiredResearch = null;
-        public List<string> userEffectImmuneList = new List<string>();
-        public float barrelLength = 1f;
-        public float barrelOffset = 0f;
-        public float bulletOffset = 0.2f;
-        public float laserOffset = -0.4f;
+        private int scattershotCount = 0;
+        private ResearchProjectDef requiredResearch = null;
+        private List<string> userEffectImmuneList = new List<string>();
+        private float barrelLength = 1f;
+        private float barrelOffset = 0f;
+        private float bulletOffset = 0.2f;
+        private float laserOffset = -0.4f;
 
-        public string muzzleFlareDef = "Mote_SparkFlash";
-        public float muzzleFlareSize = -1f;
+        private bool muzzleFlareRotates = true;
+        private Color muzzleFlareColor = Color.white;
+        private Color muzzleFlareColorTwo = Color.white;
+        private string muzzleFlareDef = "Mote_SparkFlash";
+        private float muzzleFlareSize = -1f;
         private ThingDef _muzzleFlareDef;
-        public FloatRange? muzzleFlareSizeRange;
+        private FloatRange? muzzleFlareSizeRange;
 
-        public string muzzleSmokeDef = "OG_Mote_SmokeTrail";
-        public float muzzleSmokeSize = 0.35f;
+        private string muzzleSmokeDef = "OG_Mote_SmokeTrail";
+        private float muzzleSmokeSize = 0.35f;
         private ThingDef _muzzleSmokeDef;
-        public FloatRange? muzzleSmokeSizeRange;
+        private FloatRange? muzzleSmokeSizeRange;
 
         public bool gizmosOnEquip = true;
-
-        public int ScattershotCount => defaultProjectile?.GetModExtension<ScattershotProjectileExtension>()?.projectileCount ?? scattershotCount;
-        public bool Jams => reliability != Reliability.NA;
-        public bool JamsDamageWeapon => jamDamage > 0;
-        public bool HotDamageWeapon => hotDamage > 0f;
-        public bool GetsHotCrit => getsHotCritChance > 0f;
-        public bool GetsHotCritExplosion => getsHotCritExplosionChance > 0f;
+        #region IMuzzleposition
         public float BarrelOffset => barrelOffset;
         public float BarrelLength => barrelLength;
         public float BulletOffset => defaultProjectile as LaserBeamDefCE == null ? bulletOffset : bulletOffset + laserOffset;
         public float MuzzleSmokeSize => muzzleSmokeSizeRange?.RandomInRange ?? muzzleSmokeSize;
         public float MuzzleFlareSize => muzzleFlareSizeRange?.RandomInRange ?? (muzzleFlareSize > 0 ? muzzleFlareSize : muzzleFlashScale * 0.25f);
         public ThingDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(muzzleFlareDef) : null;
+        public bool MuzzleFlareRotates => muzzleFlareRotates;
+        public Color MuzzleFlareColor => muzzleFlareColor;
+        public Color MuzzleFlareColorTwo => muzzleFlareColorTwo;
         public ThingDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(muzzleSmokeDef) : null;
+        #endregion
 
+        #region IAdvancedVerb    
+        public bool RapidFire => rapidFire;
+        public float RapidFireRange => rapidFireRange;
+        public Reliability Reliability => reliability;
+        public int ScattershotCount => defaultProjectile?.GetModExtensionFast<ScattershotProjectileExtension>()?.projectileCount ?? scattershotCount;
+        public bool Jams => reliability != Reliability.NA;
+        public bool JamsDamageWeapon => jamDamage > 0;
+        public float JamDamage => jamDamage;
+        public bool GetsHot => getsHot;
+        public bool HotDamageWeapon => hotDamage > 0f;
+        public float HotDamage => hotDamage;
+        public bool GetsHotCrit => getsHotCritChance > 0f;
+        public float GetsHotCritChance => getsHotCritChance;
+        public bool GetsHotCritExplosion => getsHotCritExplosionChance > 0f;
+        public float GetsHotCritExplosionChance => getsHotCritExplosionChance;
+        public bool Rending => rending;
+        public float RendingChance => rendingChance;
         public bool EffectsUser => effectsUserChance > 0 && userEffect != null;
+        public float EffectsUserChance => effectsUserChance;
+        public HediffDef UserEffect => userEffect;
+        public StatDef ResistEffectStat => resistEffectStat;
+        public List<string> UserEffectImmuneList => userEffectImmuneList;
         public bool TwinLinked => ScattershotCount == 1;
         public bool Multishot => ScattershotCount > 1;
         public bool HeavyWeapon => heavyWeaponSetupTime > 0;
-
-        public int LastMovedTick { get; set; }
+        public float HeavyWeaponSetupTime => heavyWeaponSetupTime;
+        public ResearchProjectDef RequiredResearch => requiredResearch;
         public int ticksHere => Find.TickManager.TicksGame - LastMovedTick;
+        public int LastMovedTick { get; set; }
+        #endregion
 
         //    public new float warmupTime { get => base.warmupTime; set => base.warmupTime = value; }
         public new float AdjustedCooldown(Verb ownerVerb, Pawn attacker)
@@ -162,7 +187,7 @@ namespace AdeptusMechanicusCE
             return Mathf.Clamp(value, 0.01f, 1f);
         }
         // Token: 0x0600055E RID: 1374 RVA: 0x0001AE90 File Offset: 0x00019090
-        private float AdjustedAccuracy(RangeCategory cat, Thing equipment)
+        public float AdjustedAccuracy(RangeCategory cat, Thing equipment)
         {
             if (equipment != null)
             {

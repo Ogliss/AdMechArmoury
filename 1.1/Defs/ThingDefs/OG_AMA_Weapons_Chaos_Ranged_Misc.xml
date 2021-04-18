@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!-- ====================== Metla Gun ===================== -->
-	<ThingDef ParentName="OG_Chaos_Gun_Special">
+	<ThingDef ParentName="OG_Chaos_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGC_Gun_MeltaGun</defName>
 		<label>meltagun (C)</label>
 		<description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
@@ -11,13 +11,13 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>120000</WorkToMake>
+			<WorkToMake>50000</WorkToMake>
 			<!--MarketValue>6000</MarketValue-->
 			<Mass>5.2</Mass>
 			<AccuracyTouch>0.75</AccuracyTouch>
-			<AccuracyShort>0.80</AccuracyShort>
-			<AccuracyMedium>0.90</AccuracyMedium>
-			<AccuracyLong>0.90</AccuracyLong>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.45</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
 			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
@@ -45,16 +45,17 @@
 			<li>TGRanged</li>
 		</tradeTags>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
-				<warmupTime>0.5</warmupTime>
+				<warmupTime>0.25</warmupTime>
 				<range>16</range>
-				<soundCast>OG_Melta_Sound</soundCast>
 				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Melta_Sound</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -79,6 +80,16 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -118,7 +129,7 @@
 			<soundInteract>Interact_Autopistol</soundInteract>
 			<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>43000</WorkToMake>
 			<!--MarketValue>2500</MarketValue-->
 			<Mass>3.2</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -149,21 +160,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	
-			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-				<VerbEntries>
-					<li>
-						<RapidFire>true</RapidFire>
-					</li>
-				</VerbEntries>
-			</li> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -199,6 +195,16 @@
 		<researchPrerequisites>
 			<li>OG_Common_Tech_Weapons_Sonic</li>
 		</researchPrerequisites>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -226,7 +232,7 @@
 		</projectile>
 	</ThingDef>
 
-	 <ThingDef ParentName="OG_Chaos_Gun_Heavy">
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
 		<defName>OGC_Gun_Blastmaster</defName>
 		<label>blastmaster (C)</label>
 		<description>The Blastmaster is a heavy Sonic Weapon that when fired focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects. The Blastmaster is used alongside the smaller Sonic Blaster weapon. These weapons are employed by Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Blastmaster is about the same size as the Astartes man-portable Lascannon, and is wielded with both hands.</description>
@@ -235,17 +241,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.250</drawSize>			
 		</graphicData>
-		<comps>	 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>32000</WorkToMake>
+			<WorkToMake>57000</WorkToMake>
 			<!--MarketValue>5000</MarketValue-->
 			<Mass>10.4</Mass>
 			<AccuracyTouch>0.90</AccuracyTouch>
@@ -311,6 +309,17 @@
 		<researchPrerequisites>
 			<li>OG_Common_Tech_Weapons_Sonic</li>
 		</researchPrerequisites>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -334,7 +343,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<WorkToMake>200000</WorkToMake>
+			<WorkToMake>70000</WorkToMake>
 			<!--MarketValue>3275</MarketValue-->
 			<AccuracyTouch>0.50</AccuracyTouch>
 			<AccuracyShort>0.60</AccuracyShort>
@@ -381,46 +390,25 @@
 				</targetParams>
 				<muzzleFlashScale>14</muzzleFlashScale>
 			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
 		</verbs>
-		<comps> 
-		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
-			<!--DualFireMode>true</DualFireMode-->
-			<VerbEntries>
-				<li>
-					
-				</li>
-				<li>
-					<VerbProps>
-						<verbClass>Verb_Shoot</verbClass>
-						<label>Krak</label>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
-						<forcedMissRadius>2.9</forcedMissRadius>
-						<warmupTime>4.5</warmupTime>
-						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-						<range>35.9</range>
-						<soundCast>InfernoCannon_Fire</soundCast>
-						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<onlyManualCast>true</onlyManualCast>
-						<stopBurstWithoutLos>false</stopBurstWithoutLos>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-					</VerbProps>
-				</li>
-			</VerbEntries>
-		</li>
-		<li Class="CompProperties_Explosive">
-			<explosiveRadius>7.8</explosiveRadius>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
-		</li> 
-		<!-- CompProperties_SlotLoadable 
-		<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
-		</li>
-		-->
-		</comps>
 		<tools>
 			<li>
 				<label>barrel</label>
@@ -431,6 +419,24 @@
 				<cooldownTime>2.6</cooldownTime>
 			</li>
 		</tools>
+		<comps> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li> 
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

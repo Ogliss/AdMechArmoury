@@ -34,6 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AdvancedVerbPropertiesCE.cs" />
+    <Compile Include="Harmony\Patches\Verb_LaunchProjectile_TryCastShot_Transpiler.cs" />
+    <Compile Include="PatchOperationMakeGunCECompatibleAdv.cs" />
     <Compile Include="Verb_ShootCompMountedCE.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch.cs" />
     <Compile Include="Building_LaserGunCE.cs" />
@@ -57,9 +59,8 @@
     <Compile Include="LaserBeamGraphicCE.cs" />
     <Compile Include="ArmouryMainCE.cs" />
     <Compile Include="MoteLaserDectorationCE.cs" />
-    <Compile Include="PatchOperationMakeGunCECompatibleMultiVerb.cs" />
+    <Compile Include="PatchOperationMakeProjectileCECompatible.cs" />
     <Compile Include="Projectile_AnimCE.cs" />
-    <Compile Include="Projectile_BulletEffectCE.cs" />
     <Compile Include="Projectile_FireCE.cs" />
     <Compile Include="Projectile_GrowerCE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,10 @@
   <ItemGroup>
     <Reference Include="1CompActivatableEffect">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompActivatableEffect\bin\Debug\1CompActivatableEffect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="1CompOversizedWeapon">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompOversizedWeapon\bin\Debug\1CompOversizedWeapon.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="AdeptusMechanicusArmoury">

@@ -5,7 +5,17 @@
 	<!--success>Always</success-->
 	<operations>
 		<!-- ==================== Grot - Blasta ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_GrotBlasta</defName>
+			<projectile>
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>6</damageAmountBase>
+				<armorPenetrationSharp>6</armorPenetrationSharp>
+				<armorPenetrationBlunt>42</armorPenetrationBlunt>
+				<speed>55</speed>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_GrotBlasta</defName>
 			<statBases>
 				<Mass>0.8</Mass>
@@ -40,7 +50,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_GrotBlasta"]/tools</xpath>
 			<value>
@@ -68,29 +77,18 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_GrotBlasta"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_GrotBlasta</defName>
-					<label>blasta slug</label>
-					<graphicData>
-						<texPath>Things/Projectile/Bullet_Small</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>6</damageAmountBase>
-						<armorPenetrationSharp>6</armorPenetrationSharp>
-						<armorPenetrationBlunt>42</armorPenetrationBlunt>
-						<speed>55</speed>
-					</projectile>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ==================== Ork - Slugga ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_Slugga</defName>
+			<projectile>
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<armorPenetrationSharp>6</armorPenetrationSharp>
+				<armorPenetrationBlunt>42</armorPenetrationBlunt>
+				<speed>75</speed>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_Slugga</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -125,7 +123,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_Slugga"]/tools</xpath>
 			<value>
@@ -153,29 +150,18 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Slugga"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_Slugga</defName>
-					<label>slugga slug</label>
-					<graphicData>
-						<texPath>Things/Projectile/Bullet_Small</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>15</damageAmountBase>
-						<armorPenetrationSharp>6</armorPenetrationSharp>
-						<armorPenetrationBlunt>42</armorPenetrationBlunt>
-						<speed>75</speed>
-					</projectile>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ==================== Ork - Shoota ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_Shoota</defName>
+			<projectile>
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>9</damageAmountBase>
+				<armorPenetrationSharp>6</armorPenetrationSharp>
+				<armorPenetrationBlunt>42</armorPenetrationBlunt>
+				<speed>75</speed>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_Shoota</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -211,7 +197,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_Shoota"]/tools</xpath>
 			<value>
@@ -239,29 +224,8 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_Shoota</defName>
-					<label>shoota slug</label>
-					<graphicData>
-						<texPath>Things/Projectile/Bullet_Small</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>9</damageAmountBase>
-						<armorPenetrationSharp>6</armorPenetrationSharp>
-						<armorPenetrationBlunt>42</armorPenetrationBlunt>
-						<speed>75</speed>
-					</projectile>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ==================== Ork - Twin Linked Shoota ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_TwinLinkedShoota</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -297,7 +261,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_TwinLinkedShoota"]/tools</xpath>
 			<value>
@@ -326,7 +289,17 @@
 		</li>
 
 		<!-- ==================== Ork - Big Shoota ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_BigShoota</defName>
+			<projectile>
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>9</damageAmountBase>
+				<armorPenetrationSharp>7</armorPenetrationSharp>
+				<armorPenetrationBlunt>42</armorPenetrationBlunt>
+				<speed>75</speed>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_BigShoota</defName>
 			<statBases>
 				<Mass>12.8</Mass>
@@ -362,7 +335,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_BigShoota"]/tools</xpath>
 			<value>
@@ -390,29 +362,19 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_BigShoota"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_BigShoota</defName>
-					<label>big shoota slug</label>
-					<graphicData>
-						<texPath>Things/Projectile/Bullet_Small</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>9</damageAmountBase>
-						<armorPenetrationSharp>7</armorPenetrationSharp>
-						<armorPenetrationBlunt>42</armorPenetrationBlunt>
-						<speed>75</speed>
-					</projectile>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ==================== Ork - Snazzgun ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_Snazzgun</defName>
+			<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+			<projectile>
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<armorPenetrationBlunt>42</armorPenetrationBlunt>
+				<stoppingPower>1.00</stoppingPower>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_Snazzgun</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -448,7 +410,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_Snazzgun"]/tools</xpath>
 			<value>
@@ -476,38 +437,19 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Snazzgun"]</xpath>
-			<value>
-				<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-					<defName>OGO_Bullet_Snazzgun</defName>
-					<label>snazzgun slug</label>
-					<textures>
-						<li>Things/Projectile/RailgunSml</li>
-					</textures>
-					<seam>0</seam>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>15</damageAmountBase>
-						<armorPenetrationSharp>8</armorPenetrationSharp>
-						<armorPenetrationBlunt>42</armorPenetrationBlunt>
-						<stoppingPower>1.00</stoppingPower>
-					</projectile>
-					<modExtensions>
-						<li Class="AdeptusMechanicus.ProjectileVFX">
-							<explosionMoteSize>0.25</explosionMoteSize>
-							<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-							<impactMoteSize>1</impactMoteSize>
-							<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-							<impactGlowMoteSize>2.5</impactGlowMoteSize>
-						</li>
-					</modExtensions>
-				</ThingDef>
-			</value>
-		</li>
-
 		<!-- ==================== Ork - Zapp Kannon ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_ZappKannon</defName>
+			<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+			<projectile>
+				<damageDef>OGILas</damageDef>
+				<explosionRadius>0.55</explosionRadius>
+				<damageAmountBase>58</damageAmountBase>
+				<armorPenetrationSharp>36</armorPenetrationSharp>
+				<armorPenetrationBlunt>62</armorPenetrationBlunt>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_ZappKannon</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -541,7 +483,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_ZappKannon"]/tools</xpath>
 			<value>
@@ -569,38 +510,18 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_ZappKannon"]</xpath>
-			<value>
-				<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
-					<defName>OGO_Bullet_ZappKannon</defName>
-					<label>zapp kannon blast</label>
-					<textures>
-						<li>Things/Projectile/LightningBolt</li>
-					</textures>
-					<seam>0</seam>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>OGILas</damageDef>
-						<explosionRadius>0.55</explosionRadius>
-						<damageAmountBase>58</damageAmountBase>
-						<armorPenetrationSharp>36</armorPenetrationSharp>
-						<armorPenetrationBlunt>62</armorPenetrationBlunt>
-					</projectile>
-					<modExtensions>
-						<li Class="AdeptusMechanicus.ProjectileVFX">
-							<explosionMoteSize>0.25</explosionMoteSize>
-							<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-							<impactMoteSize>1</impactMoteSize>
-							<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-							<impactGlowMoteSize>2.5</impactGlowMoteSize>
-						</li>
-					</modExtensions>
-				</ThingDef>
-			</value>
-		</li>
-
 		<!-- ==================== Ork - Dakka Deffgun ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<!--li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_DakkaDeffgun</defName>
+			<projectile>
+				<damageDef>OGILas</damageDef>
+				<explosionRadius>0.55</explosionRadius>
+				<damageAmountBase>58</damageAmountBase>
+				<armorPenetrationSharp>36</armorPenetrationSharp>
+				<armorPenetrationBlunt>62</armorPenetrationBlunt>
+			</projectile>
+		</li-->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_DeffgunDakka</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -635,7 +556,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunDakka"]/tools</xpath>
 			<value>
@@ -663,28 +583,19 @@
 			</value>
 		</li>
 
-		<!--li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Shoota"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_Shoota</defName>
-					<label>shoota slug</label>
-					<graphicData>
-						<texPath>Things/Projectile/Bullet_Small</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bullet</damageDef>
-						<damageAmountBase>9</damageAmountBase>
-						<armorPenetrationBase>0.16</armorPenetrationBase>
-						<speed>75</speed>
-					</projectile>
-				</ThingDef>
-			</value>
-		</li-->
-		
 		<!-- ==================== Ork - Beamy Deffgun ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<!--li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_BeamyDeffgun</defName>
+			<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
+			<projectile>
+				<damageDef>OGILas</damageDef>
+				<explosionRadius>0.55</explosionRadius>
+				<damageAmountBase>58</damageAmountBase>
+				<armorPenetrationSharp>36</armorPenetrationSharp>
+				<armorPenetrationBlunt>62</armorPenetrationBlunt>
+			</projectile>
+		</li-->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_DeffgunBeamy</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -718,7 +629,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunBeamy"]/tools</xpath>
 			<value>
@@ -747,7 +657,20 @@
 		</li>
 
 		<!-- ==================== Ork - Plasma Deffgun ========================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_PlasmaDeffgun</defName>
+			<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+			<projectile>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>OGIPlasmaCannon</damageDef>
+				<explosionRadius>1.75</explosionRadius>
+				<damageAmountBase>38</damageAmountBase>
+				<armorPenetrationBase>0.68</armorPenetrationBase>
+				<speed>55</speed>
+				<soundExplode>OGIPC_Explosion</soundExplode>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_DeffgunPlasma</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -780,7 +703,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 			</FireModes>
 		</li>
-		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_DeffgunPlasma"]/tools</xpath>
 			<value>
@@ -807,48 +729,30 @@
 				</tools>
 			</value>
 		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_PlasmaDeffgun"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_PlasmaDeffgun</defName>
-					<label>Deffun blast</label>
-					<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
-					<graphicData>
-						<texPath>Things/Projectile/PlamsShotLrg</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>OGIPlasmaCannon</damageDef>
-						<explosionRadius>1.75</explosionRadius>
-						<damageAmountBase>38</damageAmountBase>
-						<armorPenetrationBase>0.68</armorPenetrationBase>
-						<speed>55</speed>
-						<soundExplode>OGIPC_Explosion</soundExplode>
-					</projectile>
-					<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
-					<modExtensions>
-						<li Class="AdeptusMechanicus.ProjectileVFX">
-						
-						<explosionMoteSize>0.75</explosionMoteSize>
-						<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
-						<impactMoteSize>2</impactMoteSize>
-						<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-						<impactGlowMoteSize>2.5</impactGlowMoteSize>
-						</li>
-						<li Class="AdeptusMechanicus.GlowerProjectileExtension">
-						<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
-						<glowMoteSize>2.5</glowMoteSize>
-						</li>
-					</modExtensions>
-				</ThingDef>
-			</value>
-		</li>
 		
 		<!-- ====================== Burna ===================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_Burna</defName>
+			<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
+			<projectile>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>OGFlamer</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationBase>0.16</armorPenetrationBase>
+				<explosionRadius>0.75</explosionRadius>
+				<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
+				<stoppingPower>0.75</stoppingPower>
+				<speed>20</speed>
+				<soundExplode>OGIFL_Explosion</soundExplode>
+				<pelletCount>8</pelletCount>
+				<spreadMult>20.8</spreadMult>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_Burna</defName>
 			<statBases>
 				<Mass>2.8</Mass>
@@ -884,7 +788,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_Burna"]/tools</xpath>
 			<value>
@@ -920,46 +823,27 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Burna"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_Burna</defName>
-					<label>flames</label>
-					<graphicData>
-						<texPath>Things/Projectile/FlamerFire</texPath>
-						<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
-						<shaderType>TransparentPostLight</shaderType>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>OGFlamer</damageDef>
-						<damageAmountBase>2</damageAmountBase>
-						<armorPenetrationBase>0.16</armorPenetrationBase>
-						<explosionRadius>0.75</explosionRadius>
-						<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-						<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
-						<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
-						<stoppingPower>0.75</stoppingPower>
-						<speed>20</speed>
-						<soundExplode>OGIFL_Explosion</soundExplode>
-						<pelletCount>8</pelletCount>
-						<spreadMult>20.8</spreadMult>
-					</projectile>
-					<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
-					<modExtensions>
-						<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-						<ticksPerFrame>15</ticksPerFrame>
-						</li>
-					</modExtensions>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ====================== Scorcha ===================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_Scorcha</defName>
+			<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
+			<projectile>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>OGFlamer</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationBase>0.33</armorPenetrationBase>
+				<explosionRadius>1.550</explosionRadius>
+				<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+				<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<stoppingPower>0.75</stoppingPower>
+				<speed>20</speed>
+				<soundExplode>OGIFL_Explosion</soundExplode>
+				<pelletCount>5</pelletCount>
+				<spreadMult>25.8</spreadMult>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_Scorcha</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -995,7 +879,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_Scorcha"]/tools</xpath>
 			<value>
@@ -1023,44 +906,21 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_Scorcha"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_Scorcha</defName>
-					<label>flames</label>
-					<graphicData>
-						<texPath>Things/Projectile/FlamerFire</texPath>
-						<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
-						<shaderType>TransparentPostLight</shaderType>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>OGFlamer</damageDef>
-						<damageAmountBase>2</damageAmountBase>
-						<armorPenetrationBase>0.33</armorPenetrationBase>
-						<explosionRadius>1.550</explosionRadius>
-						<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
-						<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-						<stoppingPower>0.75</stoppingPower>
-						<speed>20</speed>
-						<soundExplode>OGIFL_Explosion</soundExplode>
-						<pelletCount>5</pelletCount>
-						<spreadMult>25.8</spreadMult>
-					</projectile>
-					<thingClass>AdeptusMechanicus.Projectile_FireCE</thingClass>
-					<modExtensions>
-						<li Class="AnimatedProjectile.AnimatedProjectileExtension">
-						<ticksPerFrame>15</ticksPerFrame>
-						</li>
-					</modExtensions>
-				</ThingDef>
-			</value>
-		</li>
-		
 		<!-- ====================== Rokkit Launcha ===================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+			<defName>OGO_Bullet_RokkitKrak</defName>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+			<projectile>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>70</damageAmountBase>
+				<armorPenetrationSharp>22</armorPenetrationSharp>
+				<armorPenetrationBlunt>104</armorPenetrationBlunt>
+				<explosionRadius>1.5</explosionRadius>
+				<stoppingPower>4</stoppingPower>
+				<speed>50</speed>
+			</projectile>
+		</li>
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_RokkitLaucha</defName>
 			<statBases>
 				<Mass>4.8</Mass>
@@ -1099,7 +959,6 @@
 				<aiAimMode>AimedShot</aiAimMode>
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_RokkitLaucha"]/tools</xpath>
 			<value>
@@ -1126,35 +985,10 @@
 				</tools>
 			</value>
 		</li>
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="OGO_Bullet_RokkitKrak"]</xpath>
-			<value>
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
-					<defName>OGO_Bullet_RokkitKrak</defName>
-					<label>krak rokkit</label>
-					<description>Krak Rokkits high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
-					<graphicData>
-						<texPath>Things/Projectile/ImpMissileKrak</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>70</damageAmountBase>
-						<armorPenetrationSharp>22</armorPenetrationSharp>
-						<armorPenetrationBlunt>104</armorPenetrationBlunt>
-						<explosionRadius>1.5</explosionRadius>
-						<stoppingPower>4</stoppingPower>
-						<speed>50</speed>
-					</projectile>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</ThingDef>
-			</value>
-		</li>
-			
+	
 		<!-- ====================== Kombi Weapons ===================== -->
 		<!-- ====================== Kombi-Burna ===================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_KombiBurna</defName>
 			<statBases>
 				<Mass>3.8</Mass>
@@ -1210,7 +1044,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_KombiBurna"]/tools</xpath>
 			<value>
@@ -1239,7 +1072,7 @@
 		</li>
 
 		<!-- ====================== Kombi-Rokkit ===================== -->
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleMultiVerb">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 			<defName>OGO_Gun_KombiRokkit</defName>
 			<statBases>
 				<Mass>3.8</Mass>
@@ -1298,7 +1131,6 @@
 				<aiUseBurstMode>TRUE</aiUseBurstMode>	
 			</FireModes>
 		</li>
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="OGO_Gun_KombiRokkit"]/tools</xpath>
 			<value>

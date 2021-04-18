@@ -11,6 +11,7 @@ using Verse.Sound;
 using System.Reflection;
 using UnityEngine;
 using CombatExtended;
+using AdeptusMechanicus.Lasers;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {

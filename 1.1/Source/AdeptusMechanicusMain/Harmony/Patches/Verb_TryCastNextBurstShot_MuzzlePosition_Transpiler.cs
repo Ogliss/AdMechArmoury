@@ -63,6 +63,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                 return;
             }
             
+            if (verb.GetProjectile().GetType().ToString().Contains("Lasers.LaserBeamDef"))
+            {
+                return;
+            }
+            
             if (verb.EquipmentSource != null)
             {
                 if (verb.verbProps.range > 1.48f)

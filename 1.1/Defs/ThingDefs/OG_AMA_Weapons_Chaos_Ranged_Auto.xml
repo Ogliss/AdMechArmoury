@@ -16,7 +16,7 @@
 		</comps>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<WorkToMake>5000</WorkToMake>
+			<WorkToMake>5500</WorkToMake>
 			<!--MarketValue>200</MarketValue-->
 			<Mass>0.4</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
@@ -93,7 +93,6 @@
 	<ThingDef ParentName="OG_Chaos_Gun">
 		<defName>OGC_Gun_AutoGun</defName>
 		<label>autogun (C)</label>
-		<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
 		<description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/AutoGun</texPath>
@@ -104,7 +103,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>5000</WorkToMake>
+			<WorkToMake>41000</WorkToMake>
 			<!--MarketValue>350</MarketValue-->
 			<Mass>2</Mass>
 			<AccuracyTouch>0.91</AccuracyTouch>
@@ -157,6 +156,8 @@
 			</li>
 		</verbs>
 		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+			</li>
 		</comps>
 		<tools>
 			<li>
@@ -182,7 +183,7 @@
 	<!--==================== Reaper Autocannon =========================-->
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGC_Bullet_RAutocannon</defName>
-		<label>Traitor Autocannon Bullet</label>
+		<label>Traitor Autocannon bullet</label>
 		<graphicData>
 			<texPath>Things/Projectile/AutoShotLrg</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -206,7 +207,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>42000</WorkToMake>
+			<WorkToMake>62000</WorkToMake>
 			<!--MarketValue>6000</MarketValue-->
 			<Mass>9.6</Mass>
 			<AccuracyTouch>0.80</AccuracyTouch>
@@ -258,6 +259,17 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
 			<li>CGunHeavy</li>
@@ -311,7 +323,7 @@
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
-			<WorkToMake>120000</WorkToMake>
+			<WorkToMake>640000</WorkToMake>
 			<!--MarketValue>1750</MarketValue-->
 			<Mass>6</Mass>
 			<AccuracyTouch>0.60</AccuracyTouch>
@@ -349,9 +361,9 @@
 		<verbs>
 			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
-				<hasStandardCommand>true</hasStandardCommand>
 				<jamDamage>3</jamDamage>
 				<reliability>ST</reliability>
+				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_AssaultCannon</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
 				<range>38</range>
@@ -366,14 +378,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>barrels</label>
@@ -384,6 +388,17 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

@@ -96,9 +96,9 @@ namespace AdeptusMechanicus.ExtensionMethods
                     builder.AppendLine("m = " + thing.Label + " EffectProjectileExtension" + string.Format(rstring, barrelLength, barrelOffset, flareDef, flareSize, smokeDef, smokeSize));
                 }
             }
-            if (builder.Length > 0)
+            if (builder.Length > 0 && MechanicusDebugViewSettings.drawMuzzlePosition)
             {
-            //    Log.Message(builder.ToString());
+                Log.Message(builder.ToString());
             }
             return result;
         }
@@ -216,7 +216,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                 smokeSize = m.MuzzleSmokeSize > 0 ? m.MuzzleSmokeSize : smokeSize;
                 builder.AppendLine("m = " + verb + " Verb GetProjectile" + string.Format(rstring, barrelLength, barrelOffset, flareDef, flareSize, smokeDef, smokeSize));
             }
-            if (AMAMod.Dev)
+            if (MechanicusDebugViewSettings.drawMuzzlePosition)
             {
                 if (builder.Length > 0)
                 {

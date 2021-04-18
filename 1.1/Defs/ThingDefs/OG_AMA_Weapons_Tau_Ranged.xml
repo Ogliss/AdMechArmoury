@@ -253,7 +253,7 @@
 				<warmupTime>1.3</warmupTime>
 				<range>36</range>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<burstShotCount>4</burstShotCount>
+				<burstShotCount>3</burstShotCount>
 				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
@@ -262,7 +262,9 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	    
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>    
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
@@ -354,6 +356,27 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TPulseBlaster</li>
+			<li>TBasicGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>30</Steel>
+			<OGT_Fiotak>10</OGT_Fiotak>
+			<OGT_Component>3</OGT_Component>
+		</costList>
 		<statBases>
 			<WorkToMake>32000</WorkToMake>
 			<!--MarketValue>1500</MarketValue-->
@@ -384,9 +407,6 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>	   
-		
-		</comps>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -406,27 +426,10 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-		<techLevel>Spacer</techLevel>
-		<weaponTags>
-			<li>TPulseBlaster</li>
-			<li>TBasicGun</li>
-		</weaponTags>
-		<tradeTags>
-			<li>OGTRanged</li>
-		</tradeTags>
-		<recipeMaker>
-			<researchPrerequisites>
-				<!--li>OG_Common_Tech_Weapons_Laser</li-->
-				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
-				<!--li>OG_Common_Tech_Weapons_Flame</li-->
-				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
-			</researchPrerequisites>
-		</recipeMaker>
-		<costList>
-			<Steel>30</Steel>
-			<OGT_Fiotak>10</OGT_Fiotak>
-			<OGT_Component>3</OGT_Component>
-		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -465,14 +468,6 @@
 			<drawSize>1.250</drawSize>			
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-		<comps>		
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
@@ -546,6 +541,17 @@
 			<OGT_Fiotak>35</OGT_Fiotak>
 			<OGT_Component>6</OGT_Component>
 		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -587,6 +593,9 @@
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<comps>	  
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
 			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<northOffset>0.0,0.0,0.0</northOffset>
 				<eastOffset>0.0,1.0,0.0</eastOffset>
@@ -621,9 +630,9 @@
 				<soundCast>OG_Ion_Rifle_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
 		<tools>

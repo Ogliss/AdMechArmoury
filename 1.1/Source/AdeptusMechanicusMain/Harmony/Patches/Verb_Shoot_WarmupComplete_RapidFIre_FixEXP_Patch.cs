@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Prefix(ref Verb_Shoot __instance, ref float? __state)
         {
             __state = __instance.verbProps.warmupTime;
-            AdvancedVerbProperties entry = __instance.SpecialRules();
+            IAdvancedVerb entry = __instance.SpecialRules();
             if (entry != null)
             {
                 if (__instance.RapidFire(__state.Value, out bool InRange, out float modified))
