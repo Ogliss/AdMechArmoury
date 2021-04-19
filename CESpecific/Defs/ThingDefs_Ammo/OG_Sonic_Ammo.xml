@@ -64,68 +64,39 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeOG_Ammo_Sonic</defName>
-		<label>make small Sonic capacitor x70</label>
-		<description>Craft 70 small Sonic capacitor.</description>
-		<jobString>Making small Sonic capacitor.</jobString>
+		<label>make Sonic capacitor x250</label>
+		<description>Craft 250 Sonic capacitor.</description>
+		<jobString>Making Sonic capacitor.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>Plasteel</li>
+						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>10</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-					<li>ComponentIndustrial</li>
+						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>1</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Plasteel</li>
+				<li>Steel</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<OG_Ammo_Sonic>70</OG_Ammo_Sonic>
+			<OG_Ammo_Sonic>250</OG_Ammo_Sonic>
 		</products>
-		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Sonic</li>
+		</researchPrerequisites>
 	</RecipeDef>
-
-	<!-- ================== Projectiles ================== -->
-
-	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGSonic" ParentName="OG_Bullet_Base" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/SonicShotSml</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>OGCSonic</damageDef>
-			<speed>100</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGSonic">
-		<defName>OGC_Bullet_SonicBlaster</defName>
-		<label>Sonic Blast</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>15</damageAmountBase>
-			<armorPenetrationBase>1.0</armorPenetrationBase>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGSonic">
-		<defName>OGC_Bullet_Blastmaster</defName>
-		<label>Sonic Blast</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetrationBase>2.0</armorPenetrationBase>
-		</projectile>
-	</ThingDef-->
 
 </Defs>

@@ -15,6 +15,8 @@
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>500</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.30</ArmorRating_Heat>
@@ -37,7 +39,7 @@
 		<costList>
 			<Steel>40</Steel>
 			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentIndustrial>4</ComponentIndustrial>
 		</costList>
 		<recipeMaker>
 			
@@ -50,6 +52,8 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
+				<li MayRequire="CETeam.CombatExtended">Hands</li>
+				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<layers>
 				<li>Shell</li>
@@ -107,10 +111,12 @@
 			<colorTwo>(0,174,17)</colorTwo>
 		</graphicData>
 		<statBases>
-			<Mass>1</Mass>
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>250</MaxHitPoints>
 			<WorkToMake>20000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
 			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.15</ArmorRating_Heat>
@@ -139,6 +145,7 @@
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestHood/TechPriestHood</wornGraphicPath>
 			<layers>
 				<li>Overhead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 			</layers>
 			<tags>
 				<li>AMTechPriestHood</li>
@@ -185,18 +192,22 @@
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>500</MaxHitPoints>
 			<WorkToMake>60000</WorkToMake>
+			<Mass>30</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">80</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">12</WornBulk>
 			<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.70</ArmorRating_Heat>
 			<Insulation_Heat>30</Insulation_Heat>
 			<Insulation_Cold>30</Insulation_Cold>
-			<Mass>4</Mass>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.03</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
 			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<CarryWeight MayRequire="CETeam.CombatExtended">50</CarryWeight>
+			<CarryBulk MayRequire="CETeam.CombatExtended">8</CarryBulk>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>100</Steel>
@@ -212,6 +223,8 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
+				<li MayRequire="CETeam.CombatExtended">Hands</li>
+				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/SkitariiLegionnaireArmour</wornGraphicPath>
@@ -282,10 +295,12 @@
 		<label>Skitarii Legionnaire Helmet</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
 		<statBases>
-			<Mass>1</Mass>
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.20</ArmorRating_Heat>
@@ -298,6 +313,7 @@
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			<ToxicSensitivity>-0.75</ToxicSensitivity>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>50</Steel>
@@ -313,6 +329,9 @@
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -412,10 +431,12 @@
 		<label>Skitarii Primus Helmet</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
 		<statBases>
-			<Mass>1</Mass>
 			<MarketValue>500</MarketValue>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Sharp>0.36</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.36</ArmorRating_Heat>
@@ -428,6 +449,7 @@
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			<ToxicSensitivity>-0.75</ToxicSensitivity>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>50</Steel>
@@ -444,6 +466,9 @@
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</wornGraphicPath>
 			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
