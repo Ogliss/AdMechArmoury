@@ -7,72 +7,72 @@ using Verse;
 
 namespace CombatExtended
 {
-	// Token: 0x0200000E RID: 14
 	public class PatchOperationMakeGunCECompatibleAdv : PatchOperation
 	{
-		// Token: 0x06000061 RID: 97 RVA: 0x0000517C File Offset: 0x0000357C
 		protected override bool ApplyWorker(XmlDocument xml)
 		{
 			bool result = false;
-			if (this.defName.NullOrEmpty())
+			if (this.defName.NullOrEmpty() && this.Name.NullOrEmpty())
 			{
-				return false;
+				result = false;
 			}
-			IEnumerator enumerator = xml.SelectNodes("Defs/ThingDef[defName=\"" + this.defName + "\"]").GetEnumerator();
-			try
+			else
 			{
-				while (enumerator.MoveNext())
+				string search = this.defName.NullOrEmpty() ? "@Name" : "defName";
+				string s = this.defName.NullOrEmpty() ? this.Name : this.defName;
+				IEnumerator enumerator = xml.SelectNodes("Defs/ThingDef["+ search +"=\"" + s + "\"]").GetEnumerator();
+				try
 				{
-					object obj = enumerator.Current;
-					result = true;
-					XmlNode xmlNode = obj as XmlNode;
-					bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
-					if (flag != null && flag.Value)
+					while (enumerator.MoveNext())
 					{
-						this.AddOrReplaceStatBases(xml, xmlNode);
+						object obj = enumerator.Current;
+						result = true;
+						XmlNode xmlNode = obj as XmlNode;
+						bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
+						if (flag != null && flag.Value)
+						{
+							this.AddOrReplaceStatBases(xml, xmlNode);
+						}
+						bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
+						if (flag2 != null && flag2.Value)
+						{
+							this.AddOrReplaceCostList(xml, xmlNode);
+						}
+						if (this.Properties != null && this.Properties.node.HasChildNodes)
+						{
+							this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
+						}
+						if (this.AmmoUser != null || this.FireModes != null)
+						{
+							this.AddOrReplaceCompsCE(xml, xmlNode);
+						}
+						if (this.weaponTags != null && this.weaponTags.node.HasChildNodes)
+						{
+							this.AddOrReplaceWeaponTags(xml, xmlNode);
+						}
+						if (this.researchPrerequisite != null)
+						{
+							this.AddOrReplaceResearchPrereq(xml, xmlNode);
+						}
+						if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
+						{
+							this.AddRunAndGunExtension(xml, xmlNode);
+						}
+						this.ReplaceCompsOversized(xml, xmlNode);
 					}
-					bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
-					if (flag2 != null && flag2.Value)
-					{
-						this.AddOrReplaceCostList(xml, xmlNode);
-					}
-					if (this.Properties != null && this.Properties.node.HasChildNodes)
-					{
-						this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
-					}
-					if (this.AmmoUser != null || this.FireModes != null)
-					{
-						this.AddOrReplaceCompsCE(xml, xmlNode);
-					}
-					if (this.weaponTags != null && this.weaponTags.node.HasChildNodes)
-					{
-						this.AddOrReplaceWeaponTags(xml, xmlNode);
-					}
-					if (this.researchPrerequisite != null)
-					{
-						this.AddOrReplaceResearchPrereq(xml, xmlNode);
-					}
-					if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
-					{
-						this.AddRunAndGunExtension(xml, xmlNode);
-					}
-					this.ReplaceCompsOversized(xml, xmlNode);
 				}
-			}
-			finally
-			{
-				IDisposable disposable;
-				if ((disposable = (enumerator as IDisposable)) != null)
+				finally
 				{
-					disposable.Dispose();
+					IDisposable disposable;
+					if ((disposable = (enumerator as IDisposable)) != null)
+					{
+						disposable.Dispose();
+					}
 				}
 			}
 			return result;
 		}
 
-
-
-		// Token: 0x06000062 RID: 98 RVA: 0x00005364 File Offset: 0x00003764
 		private bool GetOrCreateNode(XmlDocument xml, XmlNode xmlNode, string name, out XmlElement output)
 		{
 			XmlNodeList xmlNodeList = xmlNode.SelectNodes(name);
@@ -86,7 +86,6 @@ namespace CombatExtended
 			return true;
 		}
 
-		// Token: 0x06000063 RID: 99 RVA: 0x000053AC File Offset: 0x000037AC
 		private XmlElement CreateListElementAndPopulate(XmlDocument xml, XmlNode reference, string type = null)
 		{
 			XmlElement xmlElement = xml.CreateElement("li");
@@ -98,7 +97,6 @@ namespace CombatExtended
 			return xmlElement;
 		}
 
-		// Token: 0x06000064 RID: 100 RVA: 0x000053E4 File Offset: 0x000037E4
 		private void Populate(XmlDocument xml, XmlNode reference, ref XmlElement destination, bool overrideExisting = false)
 		{
 			IEnumerator enumerator = reference.GetEnumerator();
@@ -146,7 +144,6 @@ namespace CombatExtended
 			}
 		}
 
-		// Token: 0x06000065 RID: 101 RVA: 0x000054C4 File Offset: 0x000038C4
 		private void AddOrReplaceVerbPropertiesCE(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -187,10 +184,11 @@ namespace CombatExtended
 					}
 				}
 			}
-			string log = string.Empty;
 			if (multiverb)
 			{
-                if (multiverbCE)
+				string mismatchedVerbCount = "Warning: Multiverb CE patch Mismatched Verb Count for {0}, Patch has {1} verbs, Def has {2} verbs, Only converting Primary Verb. If this is intentional add <warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount> to its patch";
+
+				if (multiverbCE)
 				{
                     if (this.Properties.node.ChildNodes.Count == adv.Count)
 					{
@@ -203,10 +201,8 @@ namespace CombatExtended
 						}
 						return;
 					}
-					log = ", " + (this.Properties.node.ChildNodes.Count > adv.Count ? "Patch has " + (this.Properties.node.ChildNodes.Count - adv.Count) + " more verbs than Def" : "Def has " + (adv.Count - this.Properties.node.ChildNodes.Count) + " more verbs than Patch");
 				}
-				else log = ", Patch only defines a single verb, Def has  " + (adv.Count - 1) + " more verbs";
-				Log.Warning("Warning: Multiverb CE patch incomplete for " + this.defName + log);
+				if (warnOnMismatchedVerbCount) Log.Warning(string.Format(mismatchedVerbCount, this.defName, adv.Count, multiverbCE ? this.Properties.node.ChildNodes.Count : 1));
 			}
 			{
 				XmlNode item = this.Properties.node;
@@ -216,7 +212,6 @@ namespace CombatExtended
 			}
 		}
 
-		// Token: 0x06000066 RID: 102 RVA: 0x00005570 File Offset: 0x00003970
 		private void AddOrReplaceCompsCE(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -262,8 +257,6 @@ namespace CombatExtended
 			}
 		}
 
-
-		// Token: 0x06000067 RID: 103 RVA: 0x000055E0 File Offset: 0x000039E0
 		private void AddOrReplaceWeaponTags(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -271,7 +264,6 @@ namespace CombatExtended
 			this.Populate(xml, this.weaponTags.node, ref xmlElement, false);
 		}
 
-		// Token: 0x06000068 RID: 104 RVA: 0x00005614 File Offset: 0x00003A14
 		private void AddOrReplaceStatBases(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -301,7 +293,6 @@ namespace CombatExtended
 			this.Populate(xml, this.statBases.node, ref xmlElement, true);
 		}
 
-		// Token: 0x06000069 RID: 105 RVA: 0x000056B4 File Offset: 0x00003AB4
 		private void AddOrReplaceCostList(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -313,7 +304,6 @@ namespace CombatExtended
 			this.Populate(xml, this.costList.node, ref xmlElement, false);
 		}
 
-		// Token: 0x0600006A RID: 106 RVA: 0x000056F8 File Offset: 0x00003AF8
 		private void AddOrReplaceResearchPrereq(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -329,7 +319,6 @@ namespace CombatExtended
 			}
 		}
 
-		// Token: 0x0600006B RID: 107 RVA: 0x0000576C File Offset: 0x00003B6C
 		private void AddRunAndGunExtension(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
@@ -342,32 +331,17 @@ namespace CombatExtended
 			xmlElement2.AppendChild(xmlElement3);
 		}
 
-		// Token: 0x0400002D RID: 45
+		bool warnOnMismatchedVerbCount = true;
+		public string Name;
 		public string defName;
 		public string verbPropertiesClass = "CombatExtended.VerbPropertiesCE";
-
-		// Token: 0x0400002E RID: 46
 		public bool AllowWithRunAndGun = true;
-
-		// Token: 0x0400002F RID: 47
 		public XmlContainer statBases;
-
-		// Token: 0x04000030 RID: 48
 		public XmlContainer Properties;
-
-		// Token: 0x04000031 RID: 49
 		public XmlContainer AmmoUser;
-
-		// Token: 0x04000032 RID: 50
 		public XmlContainer FireModes;
-
-		// Token: 0x04000033 RID: 51
 		public XmlContainer weaponTags;
-
-		// Token: 0x04000034 RID: 52
 		public XmlContainer costList;
-
-		// Token: 0x04000035 RID: 53
 		public XmlContainer researchPrerequisite;
 	}
 }

@@ -29,7 +29,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (instruction.opcode == OpCodes.Ldfld && instruction.OperandIs(warmupTime))
                 {
                     yield return instruction;
-                    Log.Message("Verb TryStartCastOn: Patching at..."+ i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                //    Log.Message("Verb TryStartCastOn: Patching at..."+ i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // Verb
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);              // LocalTargetInfo
                     instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(Verb_TryStartCastOn_warmupTime_Transpiler).GetMethod("AdjustedWarmup"));

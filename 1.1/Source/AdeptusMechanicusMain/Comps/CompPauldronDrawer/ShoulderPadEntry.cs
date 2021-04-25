@@ -220,13 +220,16 @@ namespace AdeptusMechanicus
             }
             if (apparel.Wearer == null)
             {
-                Drawer.pawn = null;
+                if (Drawer != null)
+                {
+                    Drawer.pawn = null;
+                }
                 Graphic = null;
                 return;
             }
             if (Drawer.pawn != apparel.Wearer)
             {
-                Log.Message("Old Wearer: "+ Drawer.pawn + "new Wearer: "+ apparel.Wearer);
+            //    Log.Message("Old Wearer: "+ Drawer.pawn + "new Wearer: "+ apparel.Wearer);
                 Drawer.pawn = apparel.Wearer;
             }
             Pawn pawn = Drawer.pawn;
@@ -241,7 +244,7 @@ namespace AdeptusMechanicus
                     bool factionTextures = UseFactionTextures && ext?.factionTextureTag != null;
                     if (factionTextures)
                     {
-                    //    Log.Message("using factionTextureTag " + ext.factionTextureTag);
+                        //    Log.Message("using factionTextureTag " + ext.factionTextureTag);
                         for (int i = 0; i < Options.Count; i++)
                         {
                             if (Options[i].TexPath == ext.factionTextureTag)
@@ -278,21 +281,21 @@ namespace AdeptusMechanicus
                 {
                     if (UseFactionTextures)
                     {
-                    //    Log.Message("UseFactionTextures");
-                        CompColorableTwoFaction FC = Drawer.Colours as CompColorableTwoFaction;
-                        if (FC != null)
+                        //    Log.Message("UseFactionTextures");
+                    //    CompColorableTwoFaction FC = Drawer.Colours as CompColorableTwoFaction;
+                        if (Drawer.Colours is CompColorableTwoFaction FC)
                         {
-                        //    Log.Message("FC != null");
+                            //    Log.Message("FC != null");
                             if (FC.FactionDef != null)
                             {
-                        //        Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
+                                //        Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
                                 FactionDefExtension e = FC.Extension;
                                 if (e != null)
                                 {
-                                 //   Log.Message("FactionDefExtension != null");
+                                    //   Log.Message("FactionDefExtension != null");
                                     if (!Options.NullOrEmpty())
                                     {
-                                    //    Log.Message("Options: " + Options.Count);
+                                        //    Log.Message("Options: " + Options.Count);
                                         for (int i = 0; i < Options.Count; i++)
                                         {
                                         //    Log.Message("checking " + e.factionTextureTag + " Vs " + Options[i].TexPath + " = " + (Options[i].TexPath == e.factionTextureTag));
@@ -309,26 +312,42 @@ namespace AdeptusMechanicus
                         }
                         else
                         {
-                        //    Log.Message("FC == null");
+                            //    Log.Message("FC == null");
                             List<FactionDef> factions = DefDatabase<FactionDef>.AllDefsListForReading;
+                        //    Log.Message("UpdateGraphic() 4 1 B 1 1 B 2 factions: "+ factions.Count);
                             for (int i = 0; i < factions.Count; i++)
                             {
+                            //    Log.Message("UpdateGraphic() 4 1 B 1 1 B 2 faction: " + i);
                                 FactionDef f = factions[i];
 
+                            //    Log.Message("UpdateGraphic() 4 1 B 1 1 B 2 faction: " + f);
                                 FactionDefExtension e = f.HasModExtension<FactionDefExtension>() ? f.GetModExtensionFast<FactionDefExtension>() : null;
+                            //    Log.Message("UpdateGraphic() 4 1 B 1 1 B 2 faction: " + (e == null));
                                 if (e == null)
                                 {
+                                //    Log.Message("e == null");
                                     continue;
                                 }
                                 if (e.factionTextureTag.NullOrEmpty())
                                 {
+                                //    Log.Message("factionTextureTag == null");
                                     continue;
                                 }
-                                if (Options[i].TexPath == e.factionTextureTag)
+
+                                if (!Options.NullOrEmpty())
                                 {
-                                //    Used = Options[i];
-                            //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
-                                    break;
+                                //    Log.Message("UpdateGraphic() 4 1 B 1 1 A 1 1 1");
+                                    //    Log.Message("Options: " + Options.Count);
+                                    for (int ii = 0; ii < Options.Count; ii++)
+                                    {
+                                        //    Log.Message("checking " + e.factionTextureTag + " Vs " + Options[i].TexPath + " = " + (Options[i].TexPath == e.factionTextureTag));
+                                        if (Options[ii].TexPath == e.factionTextureTag)
+                                        {
+                                            faction = f;
+                                            //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
+                                            break;
+                                        }
+                                    }
                                 }
 
                             }
@@ -423,7 +442,7 @@ namespace AdeptusMechanicus
                 }
             }
             //    Log.Message(this.Label + " " + graphic.path + " Shader: " + graphic.Shader.name + "Colour: " + graphic.Color + " Colour: " + graphic.ColorTwo);
-            
+
             if (!this.Drawer.apparel.def.apparel.wornGraphicPath.NullOrEmpty())
             {
                 SetApparelColours();

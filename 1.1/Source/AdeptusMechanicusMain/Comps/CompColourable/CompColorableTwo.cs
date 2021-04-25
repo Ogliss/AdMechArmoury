@@ -1,5 +1,7 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.settings;
+using RimWorld;
 using System;
+using System.Text;
 using UnityEngine;
 using Verse;
 
@@ -167,6 +169,18 @@ namespace AdeptusMechanicus
 				}
 			}
 		}
+		public override string CompInspectStringExtra()
+		{
+			if (AMAMod.Dev)
+			{
+				StringBuilder builder = new StringBuilder("Two Colour comp: " + this.parent.LabelCap);
+				builder.AppendLine("color: " + color + " Active: " + active);
+				builder.AppendLine("colorTwo: " + colorTwo + " Active: " + activeTwo);
+				return builder.ToString();
+			}
+			return base.CompInspectStringExtra();
+		}
+
 
 		// Token: 0x04000EA1 RID: 3745
 		protected Color color = Color.white;

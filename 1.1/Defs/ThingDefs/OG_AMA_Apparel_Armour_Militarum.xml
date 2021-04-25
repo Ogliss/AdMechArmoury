@@ -18,7 +18,6 @@
 			<researchPrerequisites>
 				<li>FlakArmor</li>
 			</researchPrerequisites>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 			<skillRequirements>
 				<Crafting>5</Crafting>
 			</skillRequirements>
@@ -43,7 +42,8 @@
 			<EquipDelay>6</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>-0.06</MoveSpeed>
+			<MoveSpeed>-0.04</MoveSpeed>
+			<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
@@ -108,7 +108,8 @@
 			<EquipDelay>5</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>-0.06</MoveSpeed>
+			<MoveSpeed>-0.04</MoveSpeed>
+			<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
 		</equippedStatOffsets>
 		<costList>
 			<Cloth>30</Cloth>
@@ -200,10 +201,6 @@
 		<defName>OGIG_Apparel_FlakArmour</defName>
 		<label>imperial guard Flak Armor</label>
 		<description>Standard Issue Flak Armor for the Emperor's Hammer, it offers effective protection against all manner of attacks while remaining quite light.</description>
-		<techLevel>Spacer</techLevel>
-		<recipeMaker>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-		</recipeMaker>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -671,9 +668,7 @@
 		<defName>OGIG_Apparel_TempestusScion_CarapaceArmour</defName>
 		<label>Tempestus Scion Carapace Armor</label>
 		<description>Carapace Armour is generally a sign of status and is mostly worn by Imperial officers and agents. Made from moulded plates of armaplas, ceramite, or other strong, light but highly resistant materials, it can cover the entire body or just selected regions of the body depending on the desired level of protection. Tempestus Scions, for example, wear full-body suits of Carapace Armour, including an Omnishield Helm with a built-in targeting and imaging array, while most rank-and-file Astra Militarum soldiers are lucky to gain access to just a simple chestplate of Flak Armour to wear over more comfortable mesh or flakweave suits. Some bodysuits have slots designed for simple carapace plates to be inserted in, so that the overall suits can be rapidly configured for as much or as little protection as desired. Damaged plates can in this way be more easily replaced without requiring the purchase of an entire new suit.</description>
-		<techLevel>Spacer</techLevel>
 		<recipeMaker>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 			<researchPrerequisites>
 				<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
 			</researchPrerequisites>
@@ -699,10 +694,14 @@
 			<EquipDelay>8</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
+			<CarryWeight MayRequire="CETeam.CombatExtended">30</CarryWeight>
+			<CarryBulk MayRequire="CETeam.CombatExtended">10</CarryBulk>
 			<MoveSpeed>-0.15</MoveSpeed>
+			<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>20</Steel>
+			<Steel>80</Steel>
 			<Plasteel>80</Plasteel>
 			<Hyperweave>10</Hyperweave>
 		</costList>
@@ -774,7 +773,6 @@
 		<statBases>
 			<WorkToMake>8000</WorkToMake>
 			<MaxHitPoints>120</MaxHitPoints>
-			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
 			<Bulk MayRequire="CETeam.CombatExtended">5</Bulk>
 			<WornBulk MayRequire="CETeam.CombatExtended">1.1</WornBulk>
@@ -783,7 +781,12 @@
 			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>0.0</MoveSpeed>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.05</AimingAccuracy>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<generateCommonality>2</generateCommonality>
 		<recipeMaker>

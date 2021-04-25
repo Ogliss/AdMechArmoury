@@ -22,6 +22,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static IEnumerable<HediffGiver_Birthday> RandomHediffsToGainOnBirthday_RejuveTreatment_Postfix(IEnumerable<HediffGiver_Birthday> __result, Pawn pawn, int age)
 		{
+            if (__result.EnumerableNullOrEmpty())
+            {
+				yield break;
+            }
 			if (pawn != null)
 			{
 				if (pawn.RaceProps.Humanlike)

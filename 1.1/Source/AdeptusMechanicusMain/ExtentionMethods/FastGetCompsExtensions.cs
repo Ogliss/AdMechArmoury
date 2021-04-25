@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Verse;
 
 namespace AdeptusMechanicus.ExtensionMethods
@@ -59,16 +60,14 @@ namespace AdeptusMechanicus.ExtensionMethods
         }
         private static T GetCompFast<T>(this ThingWithComps thing) where T : ThingComp
         {
-            var type = typeof(T);
             var comps = thing.AllComps;
             for (int i = 0, count = comps.Count; i < count; i++)
             {
-                var comp = comps[i];
-                if (comp.GetType() == type)
-                    return (T)comp;
+                if (comps[i] is T desiredCompType) return desiredCompType;
             }
             return null;
         }
+        
 
         public static T TryGetCompFast<T>(this Hediff hd) where T : HediffComp
         {

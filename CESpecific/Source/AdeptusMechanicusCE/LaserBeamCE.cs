@@ -9,6 +9,8 @@ using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.Lasers;
 using CombatExtended;
 using HarmonyLib;
+using System.Reflection;
+using System.Linq;
 
 namespace AdeptusMechanicus.Lasers
 {
@@ -141,7 +143,6 @@ namespace AdeptusMechanicus.Lasers
                 if (hitThing is Pawn && shielded)
                 {
                 //    weaponDamageMultiplier *= def.shieldDamageMultiplier;
-
                     SpawnBeamReflections(a, b, 5);
                 }
 
@@ -157,46 +158,233 @@ namespace AdeptusMechanicus.Lasers
                     AddeEffects(hitThing);
                 }
             }
-            // TriggerEffect(def.explosionEffect, b, hitThing);
             Map map = base.Map;
-            base.Impact(hitThing);
-            /*
-            if (this.equipmentDef==null)
+            this.BulletImpact(hitThing);
+        }
+
+        protected void BulletImpact(Thing hitThing)
+        {
+            bool flag = this.launcher is AmmoThing;
+            Map map = base.Map;
+            LogEntry_DamageResult logEntry_DamageResult = null;
+            if (!flag && (this.logMisses || hitThing is Pawn || hitThing is Building_Turret))
             {
-                this.equipmentDef = this.launcher.def;
+                this.LogImpact(hitThing, out logEntry_DamageResult);
             }
-            BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, this.equipmentDef, this.def, null);
-            Find.BattleLog.Add(battleLogEntry_RangedImpact);
             if (hitThing != null)
             {
-                DamageDef damageDef = this.def.projectile.damageDef;
-                float amount = DamageAmount;
-                float armorPenetration = ArmorPenetration;
-                float y = this.ExactRotation.eulerAngles.y;
-                Thing launcher = this.launcher;
-                ThingDef equipmentDef = this.equipmentDef;
-                DamageInfo dinfo = new DamageInfo(damageDef, amount, armorPenetration, y, launcher, null, equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget);
-                hitThing.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_RangedImpact);
-                Pawn hitPawn = hitThing as Pawn;
-                if (hitPawn != null && hitPawn.stances != null && hitPawn.BodySize <= this.def.projectile.StoppingPower + 0.001f)
+                DamageDefExtensionCE damageDefExtensionCE = this.def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
+                ProjectilePropertiesCE projectilePropertiesCE = (ProjectilePropertiesCE)this.def.projectile;
+                DamageInfo damageInfo = new DamageInfo(this.def.projectile.damageDef, this.DamageAmount, this.ArmorPenetration, this.ExactRotation.eulerAngles.y, this.launcher, null, this.def, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                BodyPartDepth depth = damageDefExtensionCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
+                BodyPartHeight collisionBodyHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(this.ExactPosition.y);
+                damageInfo.SetBodyRegion(collisionBodyHeight, depth);
+                bool harmOnlyOutsideLayers = damageDefExtensionCE.harmOnlyOutsideLayers;
+                if (harmOnlyOutsideLayers)
                 {
-                    hitPawn.stances.StaggerFor(95);
+                    damageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                }
+                Pawn pawn = (hitThing as Pawn);
+                if (pawn != null)
+                {
+                    logEntry_DamageResult = new BattleLogEntry_DamageTaken(pawn, LaserBeamCE.CookOff, null);
+                    Find.BattleLog.Add(logEntry_DamageResult);
+                }
+                try
+                {
+                    hitThing.TakeDamage(damageInfo).AssociateWithLog(logEntry_DamageResult);
+                    if (!(hitThing is Pawn) && projectilePropertiesCE != null && !projectilePropertiesCE.secondaryDamage.NullOrEmpty<SecondaryDamage>())
+                    {
+                        foreach (SecondaryDamage secondaryDamage in projectilePropertiesCE.secondaryDamage)
+                        {
+                            bool destroyed = hitThing.Destroyed;
+                            if (destroyed)
+                            {
+                                break;
+                            }
+                            DamageInfo dinfo = secondaryDamage.GetDinfo(damageInfo);
+                            hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry_DamageResult);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("CombatExtended :: BulletCE impacting thing " + hitThing.LabelCap + " of def " + hitThing.def.LabelCap + " added by mod " + hitThing.def.modContentPack.Name + ". See following stacktrace for information.", false);
+                    throw ex;
+                }
+                finally
+                {
+                    this.ProjectileImpact(hitThing);
                 }
             }
             else
             {
                 SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
-                if (base.Position.GetTerrain(map).takeSplashes)
+                bool castShadow = this.castShadow;
+                if (castShadow)
                 {
-                    MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(1f, null)) * 1f, 4f);
+                    MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                    bool takeSplashes = base.Position.GetTerrain(map).takeSplashes;
+                    if (takeSplashes)
+                    {
+                        MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(this.launcher, null)) * 1f, 4f);
+                    }
                 }
-                //    AdeptusMoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                this.ProjectileImpact(null);
             }
-            */
+            this.NotifyImpact(hitThing, map, base.Position);
+        }
+        protected void ProjectileImpact(Thing hitThing)
+        {
+            List<Thing> list = new List<Thing>();
+            bool flag = base.Position.IsValid && this.def.projectile.preExplosionSpawnChance > 0f && this.def.projectile.preExplosionSpawnThingDef != null && (Controller.settings.EnableAmmoSystem || !(this.def.projectile.preExplosionSpawnThingDef is AmmoDef)) && Rand.Value < this.def.projectile.preExplosionSpawnChance;
+            if (flag)
+            {
+                ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
+                bool flag2 = preExplosionSpawnThingDef.IsFilth && base.Position.Walkable(base.Map);
+                if (flag2)
+                {
+                    FilthMaker.TryMakeFilth(base.Position, base.Map, preExplosionSpawnThingDef, 1, FilthSourceFlags.None);
+                }
+                else
+                {
+                    bool reuseNeolithicProjectiles = Controller.settings.ReuseNeolithicProjectiles;
+                    if (reuseNeolithicProjectiles)
+                    {
+                        Thing thing = ThingMaker.MakeThing(preExplosionSpawnThingDef, null);
+                        thing.stackCount = 1;
+                        thing.SetForbidden(true, false);
+                        GenPlace.TryPlaceThing(thing, base.Position, base.Map, ThingPlaceMode.Near, null, null, default(Rot4));
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, thing, OpportunityType.GoodToKnow);
+                        list.Add(thing);
+                    }
+                }
+            }
+            Vector3 vector = (hitThing != null) ? hitThing.DrawPos : this.ExactPosition;
+            bool flag3 = !vector.ToIntVec3().IsValid;
+            if (flag3)
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+            else
+            {
+                CompExplosiveCE compExplosiveCE = this.TryGetComp<CompExplosiveCE>();
+                if (compExplosiveCE == null)
+                {
+                    CompFragments compFragments = this.TryGetComp<CompFragments>();
+                    if (compFragments != null)
+                    {
+                        compFragments.Throw(vector, base.Map, this.launcher, 1f);
+                    }
+                }
+                if (compExplosiveCE != null || this.def.projectile.explosionRadius > 0f)
+                {
+                    Pawn pawn = hitThing as Pawn;
+                    if (pawn != null && pawn.Dead)
+                    {
+                        list.Add(pawn.Corpse);
+                    }
+                    List<Pawn> list2 = new List<Pawn>();
+                    float? direction = new float?(this.origin.AngleTo(this.Vec2Position(-1f)));
+                    if (this.def.projectile.explosionRadius > 0f)
+                    {
+                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), base.Map, this.def.projectile.explosionRadius, this.def.projectile.damageDef, this.launcher, (int)this.DamageAmount, GenExplosionCE.GetExplosionAP(this.def.projectile), this.def.projectile.soundExplode, this.equipmentDef, this.def, null, this.def.projectile.postExplosionSpawnThingDef, this.def.projectile.postExplosionSpawnChance, this.def.projectile.postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, this.def.projectile.preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff, direction, list, vector.y, 1f, false, null);
+                        if (vector.y < 3f)
+                        {
+                            list2.AddRange(GenRadial.RadialDistinctThingsAround(vector.ToIntVec3(), base.Map, 3f + this.def.projectile.explosionRadius, true).OfType<Pawn>());
+                        }
+                    }
+                    if (compExplosiveCE != null)
+                    {
+                        compExplosiveCE.Explode(this, vector, base.Map, 1f, direction, list);
+                        if (vector.y < 3f)
+                        {
+                            list2.AddRange(GenRadial.RadialDistinctThingsAround(vector.ToIntVec3(), base.Map, 3f + (compExplosiveCE.props as CompProperties_ExplosiveCE).explosiveRadius, true).OfType<Pawn>());
+                        }
+                    }
+                    foreach (Pawn pawn2 in list2)
+                    {
+                        this.ApplySuppression(pawn2);
+                    }
+                }
+                this.Destroy(DestroyMode.Vanish);
+            }
         }
 
-
-        // Token: 0x060000FB RID: 251 RVA: 0x00009248 File Offset: 0x00007448
+        private void ApplySuppression(Pawn pawn)
+        {
+            ShieldBelt shieldBelt = null;
+            bool humanlike = pawn.RaceProps.Humanlike;
+            if (humanlike)
+            {
+                List<Apparel> wornApparel = pawn.apparel.WornApparel;
+                for (int i = 0; i < wornApparel.Count; i++)
+                {
+                    ShieldBelt shieldBelt2 = wornApparel[i] as ShieldBelt;
+                    bool flag = shieldBelt2 != null;
+                    if (flag)
+                    {
+                        shieldBelt = shieldBelt2;
+                        break;
+                    }
+                }
+            }
+            CompSuppressable compSuppressable = pawn.TryGetComp<CompSuppressable>();
+            bool flag2;
+            if (compSuppressable != null)
+            {
+                Faction faction = pawn.Faction;
+                Thing thing = this.launcher;
+                if (faction != ((thing != null) ? thing.Faction : null))
+                {
+                    flag2 = (shieldBelt == null || shieldBelt.ShieldState == ShieldState.Resetting);
+                    goto IL_93;
+                }
+            }
+            flag2 = false;
+            IL_93:
+            bool flag3 = flag2;
+            if (flag3)
+            {
+                this.suppressionAmount = (float)this.def.projectile.GetDamageAmount(1f, null);
+                ProjectilePropertiesCE projectilePropertiesCE = this.def.projectile as ProjectilePropertiesCE;
+                float num = (projectilePropertiesCE != null) ? projectilePropertiesCE.armorPenetrationSharp : 0f;
+                float num2 = (num <= 0f) ? 0f : (1f - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor, true) * 0.5f / num, 0f, 1f));
+                this.suppressionAmount *= num2;
+                compSuppressable.AddSuppression(this.suppressionAmount, this.OriginIV3);
+            }
+        }
+        private Vector2 Vec2Position(float ticks = -1f)
+        {
+            bool flag = ticks < 0f;
+            if (flag)
+            {
+                ticks = this.fTicks;
+            }
+            return Vector2.Lerp(this.origin, this.Destination, ticks / this.StartingTicksToImpact);
+        }
+        private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
+        {
+            ThingDef weaponDef = this.equipmentDef ?? ThingDef.Named("Gun_Autopistol");
+            logEntry = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, weaponDef, this.def, null);
+            bool flag = this.launcher is AmmoThing;
+            if (flag)
+            {
+                Find.BattleLog.Add(logEntry);
+            }
+        }
+        public static RulePackDef CookOff
+        {
+            get
+            {
+                RulePackDef result;
+                if ((result = LaserBeamCE.cookOffDamageEvent) == null)
+                {
+                    result = (LaserBeamCE.cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff", true));
+                }
+                return result;
+            }
+        }
         protected virtual void Explode(Thing hitThing, bool destroy = false)
         {
             Map map = base.Map;
@@ -380,6 +568,7 @@ namespace AdeptusMechanicus.Lasers
         {
             get
             {
+                float result = this.def.projectile.GetDamageAmount(1f, null);
                 if (this.def.projectile.Melta())
                 {
                     //    Log.Message("Melta Blast");
@@ -395,7 +584,7 @@ namespace AdeptusMechanicus.Lasers
                                 float distance = Vector3.Distance(origin, destination);
                                 if (distance > ((ThingWithComps)weapon).def.Verbs.Find(x => x.defaultProjectile == this.def).range / 2)
                                 {
-                                    return this.def.projectile.GetDamageAmount(1f, null) * 2;
+                                    return result * 2;
                                 }
                             }
                         }
@@ -406,9 +595,9 @@ namespace AdeptusMechanicus.Lasers
                 {
                     //    Log.Message("Conversion Blast");
                     float distance = Vector3.Distance(origin, destination);
-                    return this.def.projectile.GetDamageAmount(1f, null) + distance;
+                    return result + distance;
                 }
-                return this.def.projectile.GetDamageAmount(1f, null);
+                return result;
             }
         }
 
@@ -417,6 +606,7 @@ namespace AdeptusMechanicus.Lasers
             get
             {
                 ProjectilePropertiesCE projectilePropertiesCE = (ProjectilePropertiesCE)this.def.projectile;
+                float result = (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt;
                 if (this.def.projectile.Volkite())
                 {
                     //    Log.Message("Volkite Blast");
@@ -433,14 +623,14 @@ namespace AdeptusMechanicus.Lasers
                                 if (distance > ((ThingWithComps)weapon).def.Verbs[0].range / 2)
                                 {
 
-                                    return (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt / distance;
+                                    return result / distance;
                                 }
                             }
                         }
                     }
 
                 }
-                return (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt;
+                return result;
             }
         }
         public void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
@@ -597,5 +787,8 @@ namespace AdeptusMechanicus.Lasers
             }
         }
         #endregion Methods
+        private float suppressionAmount;
+        private static RulePackDef cookOffDamageEvent = null;
+        private static readonly FieldInfo bulletLauncher = typeof(Bullet).GetField("launcher", BindingFlags.Instance | BindingFlags.NonPublic);
     }
 }

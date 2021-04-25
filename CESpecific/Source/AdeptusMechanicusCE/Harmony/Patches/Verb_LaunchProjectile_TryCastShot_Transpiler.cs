@@ -67,6 +67,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 Log.Message("gunDrawExtension");
             }
+            else
             if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
             {
                 OgsCompOversizedWeapon.CompOversizedWeapon compOversized = equipment.TryGetCompFast<OgsCompOversizedWeapon.CompOversizedWeapon>();

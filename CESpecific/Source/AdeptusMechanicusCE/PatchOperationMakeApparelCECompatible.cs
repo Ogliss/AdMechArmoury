@@ -12,84 +12,89 @@ namespace CombatExtended
 		protected override bool ApplyWorker(XmlDocument xml)
 		{
 			bool result = false;
-			if (this.defName.NullOrEmpty())
+			if (this.defName.NullOrEmpty() && this.Name.NullOrEmpty())
 			{
-				return false;
+				result = false;
 			}
-			IEnumerator enumerator = xml.SelectNodes("Defs/ThingDef[defName=\"" + this.defName + "\"]").GetEnumerator();
-			try
+			else
 			{
-				while (enumerator.MoveNext())
+				string search = this.defName.NullOrEmpty() ? "@Name" : "defName";
+				string s = this.defName.NullOrEmpty() ? this.Name : this.defName;
+				IEnumerator enumerator = xml.SelectNodes("Defs/ThingDef[" + search + "=\"" + s + "\"]").GetEnumerator();
+				try
 				{
-					object obj = enumerator.Current;
-					result = true;
-					XmlNode xmlNode = obj as XmlNode;
-					bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
-					if (flag != null && flag.Value)
+					while (enumerator.MoveNext())
 					{
-						this.AddOrReplaceStatBases(xml, xmlNode);
-					}
-					bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
-					if (flag2 != null && flag2.Value)
-					{
-						this.AddOrReplaceCostList(xml, xmlNode);
-					}
-					if (this.stuffCost != null && this.stuffCost.node.HasChildNodes)
-					{
-						XmlNode stuffCategories = this.stuffCost.node.SelectSingleNode("stuffCategories");
-						if (stuffCategories != null)
+						object obj = enumerator.Current;
+						result = true;
+						XmlNode xmlNode = obj as XmlNode;
+						bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
+						if (flag != null && flag.Value)
 						{
-							this.AddOrReplaceStuffCategories(xml, xmlNode, stuffCategories);
+							this.AddOrReplaceStatBases(xml, xmlNode);
 						}
-						XmlNode costStuffCount = this.stuffCost.node.SelectSingleNode("costStuffCount");
-                        if (costStuffCount != null)
+						bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
+						if (flag2 != null && flag2.Value)
 						{
-							this.AddOrReplaceCostStuffCount(xml, xmlNode, costStuffCount);
+							this.AddOrReplaceCostList(xml, xmlNode);
 						}
-					}
-					if (this.equippedStatOffsets != null)
-					{
-                        if (this.equippedStatOffsets.node.HasChildNodes)
+						if (this.stuffCost != null && this.stuffCost.node.HasChildNodes)
 						{
-							this.AddOrReplaceEquippedStatOffsets(xml, xmlNode);
-						}
-                        else
-                        {
-							XmlElement xmlElement;
-							this.GetOrCreateNode(xml, xmlNode, "equippedStatOffsets", out xmlElement);
-							if (xmlElement.HasChildNodes)
+							XmlNode stuffCategories = this.stuffCost.node.SelectSingleNode("stuffCategories");
+							if (stuffCategories != null)
 							{
-								xmlElement.RemoveAll();
+								this.AddOrReplaceStuffCategories(xml, xmlNode, stuffCategories);
+							}
+							XmlNode costStuffCount = this.stuffCost.node.SelectSingleNode("costStuffCount");
+							if (costStuffCount != null)
+							{
+								this.AddOrReplaceCostStuffCount(xml, xmlNode, costStuffCount);
 							}
 						}
+						if (this.equippedStatOffsets != null)
+						{
+							if (this.equippedStatOffsets.node.HasChildNodes)
+							{
+								this.AddOrReplaceEquippedStatOffsets(xml, xmlNode);
+							}
+							else
+							{
+								XmlElement xmlElement;
+								this.GetOrCreateNode(xml, xmlNode, "equippedStatOffsets", out xmlElement);
+								if (xmlElement.HasChildNodes)
+								{
+									xmlElement.RemoveAll();
+								}
+							}
+						}
+						if (this.Properties != null && this.Properties.node.HasChildNodes)
+						{
+							this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
+						}
+						if (this.tags != null && this.tags.node.HasChildNodes)
+						{
+							this.AddOrReplaceWeaponTags(xml, xmlNode);
+						}
+						if (this.researchPrerequisite != null)
+						{
+							this.AddOrReplaceResearchPrereq(xml, xmlNode);
+						}
+						/*
+						if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
+						{
+							this.AddRunAndGunExtension(xml, xmlNode);
+						}
+						*/
+						this.ReplaceCompsOversized(xml, xmlNode);
 					}
-					if (this.Properties != null && this.Properties.node.HasChildNodes)
-					{
-						this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
-					}
-					if (this.tags != null && this.tags.node.HasChildNodes)
-					{
-						this.AddOrReplaceWeaponTags(xml, xmlNode);
-					}
-					if (this.researchPrerequisite != null)
-					{
-						this.AddOrReplaceResearchPrereq(xml, xmlNode);
-					}
-					/*
-					if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
-					{
-						this.AddRunAndGunExtension(xml, xmlNode);
-					}
-					*/
-					this.ReplaceCompsOversized(xml, xmlNode);
 				}
-			}
-			finally
-			{
-				IDisposable disposable;
-				if ((disposable = (enumerator as IDisposable)) != null)
+				finally
 				{
-					disposable.Dispose();
+					IDisposable disposable;
+					if ((disposable = (enumerator as IDisposable)) != null)
+					{
+						disposable.Dispose();
+					}
 				}
 			}
 			return result;
@@ -386,6 +391,7 @@ namespace CombatExtended
 			xmlElement2.AppendChild(xmlElement3);
 		}
 
+		public string Name;
 		public string defName;
 		public string verbPropertiesClass = "CombatExtended.VerbPropertiesCE";
 		public XmlContainer statBases;

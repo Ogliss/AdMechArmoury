@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Reflection;
@@ -12,8 +13,8 @@ namespace AdeptusMechanicus
 	{
 		public static void SetColors(this Thing t, Color newColorOne, Color? newColorTwo = null, bool setFaction = false, FactionDef factionDef = null, Graphic graphic = null, bool reportFailure = true)
 		{
-			ThingWithComps thingWithComps = t as ThingWithComps;
-			if (thingWithComps == null)
+			ThingWithComps twc = t as ThingWithComps;
+			if (twc == null)
 			{
 				if (reportFailure)
 				{
@@ -28,8 +29,8 @@ namespace AdeptusMechanicus
 			}
             if (setFaction)
 			{
-				CompColorableTwoFaction comp = thingWithComps.GetComp<CompColorableTwoFaction>();
-				if (comp != null)
+				CompColorableTwoFaction comp = twc.TryGetCompFast<CompColorableTwoFaction>();
+				if (comp != null && factionDef != null)
 				{
 					comp.FactionDef = factionDef;
                     if (graphic != null)

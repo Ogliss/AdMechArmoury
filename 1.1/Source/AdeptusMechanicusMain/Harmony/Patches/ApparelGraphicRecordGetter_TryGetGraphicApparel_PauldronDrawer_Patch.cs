@@ -41,12 +41,14 @@ namespace AdeptusMechanicus.HarmonyInstance
 			CompColorableTwo compColorable = apparel.TryGetCompFast<CompColorableTwo>();
 			if (compColorable!=null)
 			{
+				Log.Message("CompColorableTwo "+ apparel);
 				string comptype = compColorable.GetType().Name;
 				string msg = string.Empty;
 				string msk = "m";
 				CompColorableTwoFaction factionColors = compColorable as CompColorableTwoFaction;
 				Color colorOne = compColorable.Color;
 				Color colorTwo = compColorable.ColorTwo;
+				
 				if (factionColors != null)
 				{
                     if (apparel.Wearer.Faction != null)
@@ -54,35 +56,42 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (apparel.Wearer.Faction != Faction.OfPlayer)
 						{
 							factionColors.FactionDef = apparel.Wearer.Faction?.def;
-							msg += (" entry for Non Player Pawn using FactionDef " + factionColors.FactionDef);
+							msg += " entry for Non Player Pawn using FactionDef " + factionColors.FactionDef;
 						}
                         else
 						{
-							CompPauldronDrawer pauldrons = apparel.TryGetCompFast<CompPauldronDrawer>();
-                            if (pauldrons != null)
-                            {
-                                for (int i = 0; i < pauldrons.activeEntries.Count; i++)
-                                {
-									ShoulderPadEntry entry = pauldrons.activeEntries[i];
-                                    if (entry.faction !=null && entry.UseFactionTextures || entry.UseFactionColors)
-									{
-										factionColors.FactionDef = entry.faction;
-										msg += (" entry for Player Pawn using FactionDef " + factionColors.FactionDef);
-										break;
-									}
-
-								}
-                            }
+							if (factionColors.FactionDef != null)
+							{
+								msg += " entry for Player Pawn using FactionDef " + factionColors.FactionDef;
+							}
                             else
-                            {
-							//	Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
-                            }
+							{
+								CompPauldronDrawer pauldrons = apparel.TryGetCompFast<CompPauldronDrawer>();
+								if (pauldrons != null)
+								{
+									for (int i = 0; i < pauldrons.activeEntries.Count; i++)
+									{
+										ShoulderPadEntry entry = pauldrons.activeEntries[i];
+										if (entry.faction != null && entry.UseFactionTextures || entry.UseFactionColors)
+										{
+											factionColors.FactionDef = entry.faction;
+											msg += " entry for Player Pawn using FactionDef " + factionColors.FactionDef;
+											break;
+										}
+
+									}
+								}
+								else
+								{
+									//	Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
+								}
+							}
 						}
 					}
                     if (factionColors.Active)
 					{
 					//	Log.Message("factionColors.Active");
-					//	colorOne = factionColors.Color;
+						colorOne = factionColors.Color;
 						apparel.SetColorOne(colorOne);
 					}
                     if (factionColors.ActiveTwo)
@@ -91,7 +100,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 						colorTwo = factionColors.ColorTwo;
 						apparel.SetColorTwo(colorTwo);
 					}
-                    if (factionColors.Extension != null)
+					if (factionColors.Extension != null)
 					{
 					//	Log.Message("factionColors.Extension != null");
 						if (factionColors.ActiveTwo || factionColors.Active)
@@ -118,7 +127,8 @@ namespace AdeptusMechanicus.HarmonyInstance
 				{
 					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				}
-			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+				
+				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
                 //	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
                 if (rec.graphic != null)
                 {

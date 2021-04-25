@@ -78,6 +78,7 @@ namespace AdeptusMechanicus
         public static bool enabled_rooloRunAndGun;
 
         public static bool enabled_RimWorldOfMagic;
+        public static bool enabled_RimAtomics;
         public static bool enabled_SOS2;
         public static bool enabled_SRTS;
 
@@ -121,6 +122,7 @@ namespace AdeptusMechanicus
             enabled_rooloRunAndGun = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Roolo.RunAndGun");
 
             enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Torann.ARimworldOfMagic");
+            enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Dubwise.Rimatomics");
             enabled_SOS2 = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "kentington.saveourship2");
             //    enabled_SRTS = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Torann.ARimworldOfMagic");
 

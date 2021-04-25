@@ -4,25 +4,23 @@
 		<!--success>Always</success-->
 		<operations>
 	
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OG_Apparel_Tribal_Cloak"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<Bulk>4</Bulk>
-						<WornBulk>1</WornBulk>
-						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="OG_Apparel_Cloak"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<Bulk>4</Bulk>
-						<WornBulk>1</WornBulk>
-						<StuffEffectMultiplierArmor>4.2</StuffEffectMultiplierArmor>
-					</value>
-				</li>
+			<li Class="CombatExtended.PatchOperationMakeApparelCECompatible">
+				<defName>OG_Apparel_Tribal_Cloak</defName>
+				<statBases>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+				</statBases>
+			</li>
 			
-
+			<li Class="CombatExtended.PatchOperationMakeApparelCECompatible">
+				<defName>OG_Apparel_Cloak</defName>
+				<statBases>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<StuffEffectMultiplierArmor>4.2</StuffEffectMultiplierArmor>
+				</statBases>
+			</li>
 
 		</operations>
 	</Operation>

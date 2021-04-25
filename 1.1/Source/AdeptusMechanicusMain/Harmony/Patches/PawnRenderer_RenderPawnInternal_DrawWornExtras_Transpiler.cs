@@ -22,7 +22,6 @@ namespace AdeptusMechanicus.HarmonyInstance
         private static readonly Type patchType = typeof(HarmonyPatches);
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-
             List<CodeInstruction> instructionList = instructions.ToList();
 
             for (int i = 0; i < instructionList.Count; i++)
@@ -30,7 +29,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 CodeInstruction instruction = instructionList[index: i];
                 if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(Graphics), name: nameof(Graphics.DrawMesh), parameters: new []{typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(Int32)})) && (i+1) < instructionList.Count /* && instructionList[index: i + 1].opcode == OpCodes.Brtrue_S*/)
                 {
-                    
                     yield return instruction; // portrait
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
@@ -41,8 +39,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     yield return new CodeInstruction(opcode: OpCodes.Ldloc_1);             // Mesh
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 5); // headfacing
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);
-                    yield return new CodeInstruction(opcode: OpCodes.Call,    operand: typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
-
+                    yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
                     instruction = new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 7);
                 }
 

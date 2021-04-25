@@ -1,7 +1,9 @@
 ﻿using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.settings;
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using Verse;
 
@@ -17,7 +19,6 @@ namespace AdeptusMechanicus
 		}
 	}
 
-    // Token: 0x0200031C RID: 796
     public class CompColorableTwoFaction : CompColorableTwo
 	{
 		public CompProperties_FactionColorable Props => this.props as CompProperties_FactionColorable;
@@ -30,15 +31,7 @@ namespace AdeptusMechanicus
 				{
 					return this.factioncolor;
 				}
-
 				return base.Color;
-				/*
-				if (!this.active)
-				{
-					return this.parent.def.graphicData.color;
-				}
-				return this.color;
-				*/
 			}
 			set
 			{
@@ -57,19 +50,11 @@ namespace AdeptusMechanicus
 		{
 			get
 			{
-				//	Log.Message(this.parent.LabelCap + " CompColorableTwo colorTwo active: " + ActiveTwo);
 				if (this.FactionActiveTwo && this.ActiveFaction)
 				{
 					return this.factioncolorTwo;
 				}
 				return base.ColorTwo;
-				/*
-				if (!this.activeTwo)
-				{
-					return this.parent.def.graphicData.colorTwo;
-				}
-				return this.colorTwo;
-				*/
 			}
 			set
 			{
@@ -84,8 +69,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x170004CD RID: 1229
-		// (get) Token: 0x06001743 RID: 5955 RVA: 0x00085558 File Offset: 0x00083758
 		public virtual bool FactionActive
 		{
 			get
@@ -281,7 +264,23 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		protected FactionDef faction;
+        public override string CompInspectStringExtra()
+        {
+            if (AMAMod.Dev)
+            {
+				StringBuilder builder = new StringBuilder("Faction Colour comp.");
+				builder.AppendLine();
+				builder.AppendLine("color: " + color + " Active: " + active + ".");
+				builder.AppendLine("colorTwo: " + colorTwo + " Active: " + activeTwo + ".");
+				builder.AppendLine("faction: " + (faction?.LabelCap.ToString() ?? "Null") + " activeFaction: " + activeFaction + ".");
+				builder.AppendLine("factioncolor: " + factioncolor + " Active: " + factionactive + ".");
+				builder.AppendLine("factioncolorTwo: " + factioncolorTwo + " Active: " + factionactiveTwo+".");
+				return builder.ToString();
+			}
+            return base.CompInspectStringExtra();
+        }
+
+        protected FactionDef faction;
 		protected bool activeFaction;
 
 		// Token: 0x04000EA1 RID: 3745

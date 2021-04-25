@@ -83,23 +83,45 @@
 					<Bulk>2.50</Bulk>
 				</statBases>
 				<Properties>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<rapidFire>true</rapidFire>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
-					<warmupTime>1.35</warmupTime>
-					<range>45</range>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<burstShotCount>5</burstShotCount>
-					<soundCast>OG_Las_Pistol_Sound</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>10</muzzleFlashScale>
-					<recoilAmount>0.1</recoilAmount>
-					<barrelLength>0.8</barrelLength>
-					<bulletOffset>-0.25</bulletOffset>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
+					<li>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<label>Standard</label>
+						<rapidFire>true</rapidFire>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+						<warmupTime>1.35</warmupTime>
+						<range>45</range>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>OG_Las_Pistol_Sound</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>10</muzzleFlashScale>
+						<recoilAmount>0.1</recoilAmount>
+						<barrelLength>0.8</barrelLength>
+						<bulletOffset>-0.25</bulletOffset>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+					<li>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<label>Hotshot</label>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_LasGun_Hot</defaultProjectile>
+						<warmupTime>1.35</warmupTime>
+						<range>35</range>
+						<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+						<burstShotCount>4</burstShotCount>
+						<soundCast>OG_Las_Pistol_Sound</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>10</muzzleFlashScale>
+						<recoilAmount>0.1</recoilAmount>
+						<barrelLength>0.8</barrelLength>
+						<bulletOffset>-0.25</bulletOffset>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>25</magazineSize>
@@ -109,7 +131,7 @@
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
 					<aiUseBurstMode>TRUE</aiUseBurstMode>	
-					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
 				</FireModes>
 			</li>
 			<li Class="PatchOperationReplace">

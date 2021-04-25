@@ -112,7 +112,6 @@
 		<tradeability>Sellable</tradeability>
 		<statBases>
 			<WorkToMake>5000</WorkToMake>
-			<MarketValue>100</MarketValue>
 			<Mass>0.25</Mass>
 			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.22</StuffEffectMultiplierInsulation_Cold>
@@ -149,7 +148,7 @@
 	<ThingDef ParentName="OG_Imperial_Apparel_Headgear" Name="FieldHat">
 		<defName>OGIG_Apparel_FieldCap</defName>
 		<label>field cap</label>
-		<description>A hat worn by Imperial officers.</description>
+		<description>A hat worn by lower ranking Imperial officers.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/IG_Fieldcap/IG_FieldCap</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -162,18 +161,19 @@
 		</stuffCategories>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
-			<MarketValue>300</MarketValue>
 			<WorkToMake>1800</WorkToMake>
-			<Mass>0.14</Mass>
+			<Mass>0.05</Mass>
 			<StuffEffectMultiplierArmor>0.21</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.15</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.45</StuffEffectMultiplierInsulation_Heat>
-			<EquipDelay>0.8</EquipDelay>
+			<EquipDelay>0.4</EquipDelay>
 			<Bulk MayRequire="CETeam.CombatExtended">0.3</Bulk>
 			<WornBulk MayRequire="CETeam.CombatExtended">0.4</WornBulk>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>0.0</MoveSpeed>
+			<SocialImpact>0.025</SocialImpact>
+			<MentalBreakThreshold>-0.025</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<generateCommonality>2</generateCommonality>
 		<apparel>
@@ -233,6 +233,9 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
+		<costList>
+			<Gold>1</Gold>
+		</costList>
 		<costStuffCount>30</costStuffCount>
 		<stuffCategories>
 			<li>Fabric</li>
@@ -252,6 +255,8 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>0.0</MoveSpeed>
+			<SocialImpact>0.05</SocialImpact>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<generateCommonality>1</generateCommonality>
 		<apparel>
@@ -313,7 +318,6 @@
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
-			<MarketValue>350</MarketValue>
 			<WorkToMake>2100</WorkToMake>
 			<Mass>0.15</Mass>
 			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
@@ -324,8 +328,13 @@
 			<WornBulk MayRequire="CETeam.CombatExtended">0.75</WornBulk>
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>0.0</MoveSpeed>
+			<SocialImpact>0.05</SocialImpact>
+			<PainShockThreshold>0.05</PainShockThreshold>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
+		<costList>
+			<Gold>2</Gold>
+		</costList>
 		<costStuffCount>35</costStuffCount>
 		<stuffCategories>
 			<li>Fabric</li>
@@ -363,7 +372,7 @@
 	</ThingDef>
 
 	<!-- ========================= Imperial Guard - Commissar Jacket ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel">
+	<ThingDef ParentName="OG_Imperial_Trenchcoat_Base">
 		<defName>OGIG_Apparel_CommissarJacket</defName>
 		<description>The official coat of the Imperial Commissars.</description>
 		<label>Commissar Jacket</label>
@@ -391,11 +400,15 @@
 			-->
 		</statBases>
 		<equippedStatOffsets>
-			<MoveSpeed>-0.04</MoveSpeed>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<SocialImpact>0.1</SocialImpact>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<costList>
-			<Steel>20</Steel>
-			<Plasteel>40</Plasteel>
+			<Steel>10</Steel>
+			<Gold>5</Gold>
+			<Plasteel>10</Plasteel>
 		</costList>
 		<costStuffCount>120</costStuffCount>
 		<stuffCategories>
@@ -448,7 +461,6 @@
 			<!--Mass>4</Mass>
 			<WorkToMake>24000</WorkToMake>
 			<MaxHitPoints>200</MaxHitPoints>
-			<MarketValue>500</MarketValue>
 			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.1</ArmorRating_Heat>
@@ -520,7 +532,7 @@
 
 	<!-- ========================= Steel Leigon - Gas Mask ========================== -->
 	<ThingDef ParentName="OG_Imperial_Apparel_Headgear">
-		<defName>OGIG_Apparel_Armageddon_GasMask</defName>
+		<defName>OGIG_Apparel_Armageddon_Gasmask</defName>
 		<label>armageddon pattern rebreather</label>
 		<description>Designed to keep the wearer alive in even the most noxious atmosphere, this rebreather consists of a mask (often shaped like a skull for senior officers) connected by hose to a small air supply. A character wearing an Armageddon Pattern Rebreather is immune to the effects of gases and issues of air quality, and can even survive underwater at limited depths. The air canister lasts for two full hours before requiring replacement.\n\nProtective Gear: Gas</description>
 		<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
@@ -537,7 +549,7 @@
 		<statBases>
 			<WorkToMake>4000</WorkToMake>
 			<MaxHitPoints>100</MaxHitPoints>
-			<MarketValue>400</MarketValue>
+			<!--MarketValue>400</MarketValue-->
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
@@ -563,6 +575,7 @@
 			</bodyPartGroups>	
 			<layers>
 				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
 				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
@@ -717,6 +730,7 @@
 			</bodyPartGroups>		
 			<layers>
 				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
 				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
