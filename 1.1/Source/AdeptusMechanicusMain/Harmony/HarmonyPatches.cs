@@ -235,11 +235,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     return;
                 }
-                ThingStuffPair thingStuffPair;
                 IEnumerable<ThingStuffPair> matchingWeapons = workingWeapons.Where((ThingStuffPair tsp) =>
                 tsp.thing.CanBeOffHand() &&
                 !tsp.thing.IsTwoHand());
-                if (matchingWeapons != null && matchingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
+                if (matchingWeapons != null && matchingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out ThingStuffPair thingStuffPair))
                 {
                     ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
                     PawnGenerator.PostProcessGeneratedGear(thingWithComps, pawn);

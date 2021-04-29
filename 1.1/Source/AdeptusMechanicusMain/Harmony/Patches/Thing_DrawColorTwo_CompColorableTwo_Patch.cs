@@ -20,6 +20,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                     __result = colorableTwo.ColorTwo;
                     return;
                 }
+                if (colorableTwo is CompColorableTwoFaction colorableFaction && colorableFaction.FactionActiveTwo)
+                {
+                    __result = colorableFaction.ColorTwo;
+                    return;
+                }
             }
         }
     }

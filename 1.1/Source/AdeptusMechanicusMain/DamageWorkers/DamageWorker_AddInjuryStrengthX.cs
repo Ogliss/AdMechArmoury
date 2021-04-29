@@ -165,13 +165,11 @@ namespace AdeptusMechanicus
 			}
 			dinfo.SetHitPart(exactPartFromDamageInfo);
 			float num = dinfo.Amount;
-			bool flag = !dinfo.InstantPermanentInjury && !dinfo.IgnoreArmor;
 			bool deflectedByMetalArmor = false;
-			if (flag)
+			if (!dinfo.InstantPermanentInjury && !dinfo.IgnoreArmor)
 			{
 				DamageDef def = dinfo.Def;
-				bool diminishedByMetalArmor;
-				num = ArmorUtility.GetPostArmorDamage(pawn, num, dinfo.ArmorPenetrationInt, dinfo.HitPart, ref def, out deflectedByMetalArmor, out diminishedByMetalArmor);
+				num = ArmorUtility.GetPostArmorDamage(pawn, num, dinfo.ArmorPenetrationInt, dinfo.HitPart, ref def, out deflectedByMetalArmor, out bool diminishedByMetalArmor);
 				dinfo.Def = def;
 				if (num < dinfo.Amount)
 				{

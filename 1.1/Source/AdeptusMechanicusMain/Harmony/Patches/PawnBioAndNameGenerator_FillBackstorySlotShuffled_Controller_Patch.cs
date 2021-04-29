@@ -64,8 +64,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         factionType.ToStringSafe<FactionDef>(),
                         ". trying random."
                     }));
-                    KeyValuePair<string, Backstory> b;
-                    if (!BackstoryDatabase.allBackstories.Where( bs => backstoryCategoryFilter.categories.Any(cat => bs.Value.spawnCategories.Contains(cat)) && bs.Value.slot == slot && (slot != BackstorySlot.Adulthood || !bs.Value.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables))).TryRandomElementByWeight < KeyValuePair<string, Backstory>>(new Func<KeyValuePair<string, Backstory>, float>(PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.BackstorySelectionWeight), out b))
+                    if (!BackstoryDatabase.allBackstories.Where(bs => backstoryCategoryFilter.categories.Any(cat => bs.Value.spawnCategories.Contains(cat)) && bs.Value.slot == slot && (slot != BackstorySlot.Adulthood || !bs.Value.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.childhood.workDisables))).TryRandomElementByWeight<KeyValuePair<string, Backstory>>(new Func<KeyValuePair<string, Backstory>, float>(PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.BackstorySelectionWeight), out KeyValuePair<string, Backstory> b))
                     {
                         Log.Error(string.Concat(new object[]
                         {
@@ -80,8 +79,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                         ". Choosing random."
                         }), false);
                         backstory = (from kvp in BackstoryDatabase.allBackstories
-                                        where kvp.Value.slot == slot
-                                        select kvp).RandomElement<KeyValuePair<string, Backstory>>().Value;
+                                     where kvp.Value.slot == slot
+                                     select kvp).RandomElement<KeyValuePair<string, Backstory>>().Value;
                     }
                     else
                     {

@@ -84,7 +84,6 @@ namespace AdeptusMechanicus
             this.sustainer.Maintain();
             Vector3 vector = base.Position.ToVector3Shifted();
             TargetInfo localTarget = new TargetInfo(this);
-            IntVec3 c;
             Rand.PushState();
             if (Rand.MTBEventOccurs(FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors), null, null, out IntVec3 result) && !filthTypes.NullOrEmpty())
             {
@@ -122,7 +121,7 @@ namespace AdeptusMechanicus
                     }
                 }
             }
-            if (Rand.MTBEventOccurs(TeleportSpawner.FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TeleportSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out c, 999999))
+            if (Rand.MTBEventOccurs(TeleportSpawner.FilthSpawnMTB, 1f, 1.TicksToSeconds()) && CellFinder.TryFindRandomReachableCellNear(base.Position, base.Map, TeleportSpawner.FilthSpawnRadius, TraverseParms.For(TraverseMode.NoPassClosedDoors, Danger.Deadly, false), null, null, out IntVec3 c, 999999))
             {
                 FilthMaker.TryMakeFilth(c, base.Map, TeleportSpawner.filthTypes.RandomElement<ThingDef>(), 1);
             }

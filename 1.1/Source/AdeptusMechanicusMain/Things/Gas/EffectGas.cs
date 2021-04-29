@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AdeptusMechanicus.ExtensionMethods;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -110,28 +111,19 @@ namespace AdeptusMechanicus
             {
                 Hediff hediff = HediffMaker.MakeHediff(_heddiff, p, null);
                 hediff.Severity = _hediffseverity;
-                CompLungProtection clp;
-                clp = p.GetComp<CompLungProtection>();
-                if (clp != null)
+                if (GasmaskUtility.WearingGasmask(p, out Apparel apparel, out CompLungProtectionApparel comp))
                 {
-                    LungProtection = true;
+                    hediff.Severity *= comp.Reduction;
                 }
-                CompEyeProtection cep;
-                foreach (var a in p.apparel.WornApparel)
-                {
-                    if (a.def.apparel.tags.Contains("GasMask"))
-                    {
 
-                    }
-                }
+                CompEyeProtection cep;
 
                 cep = p.GetComp<CompEyeProtection>();
                 if (cep != null)
                 {
                     EyeProtection = true;
                 }
-                bool flag2 = onlylungs && p.health.capacities.CapableOf(PawnCapacityDefOf.Breathing);
-                if (flag2)
+                if (onlylungs && p.health.capacities.CapableOf(PawnCapacityDefOf.Breathing))
                 {
                     if (!LungProtection)
                     {

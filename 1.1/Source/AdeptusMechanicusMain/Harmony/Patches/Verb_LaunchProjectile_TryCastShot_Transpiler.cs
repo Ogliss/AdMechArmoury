@@ -110,6 +110,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static Vector3 MuzzlePosition(Vector3 DrawPos, Verb_LaunchProjectile instance, Thing equipment, Thing launcher)
         {
             Vector3 result = DrawPos;
+            if (equipment == null)
+            {
+                return result;
+            }
             Vector3 destination = instance.CurrentTarget.Cell.ToVector3Shifted();
             float aimAngle = 0f;
             if ((destination - result).MagnitudeHorizontalSquared() > 0.001f)

@@ -10,7 +10,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Postfix(Projectile __instance, int ___ticksToImpact, Vector3 ___origin, Vector3 ___destination)
         {
-            if (__instance != null)
+            if (__instance != null && false)
             {
                 if (__instance.def.HasModExtension<TrailerProjectileExtension>() && __instance.Map != null)
                 {

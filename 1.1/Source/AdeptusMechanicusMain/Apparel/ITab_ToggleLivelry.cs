@@ -179,7 +179,7 @@ namespace AdeptusMechanicus
                 var rect2 = new Rect(rect.width / 2 - ts + SpacingOffset, y, rect.width, HeaderSize);
             //    y += rect2.height;
                 Text.Font = GameFont.Small;
-                Widgets.ListSeparator(ref y, rect2.width, "Faction Colors: ");
+                Widgets.ListSeparator(ref y, rect2.width, "Colours: ");
                 if (!Colorable.Props.Key.NullOrEmpty())
                 {
 
@@ -200,6 +200,14 @@ namespace AdeptusMechanicus
                     {
                         var rect3 = new Rect(0f, y, rect.width, 20f);
                         DrawFactionColorsButton(rect3, Colorable, false);
+                        y += rect2.height;
+                    }
+                    if (!factions.NullOrEmpty())
+                    {
+                        var rect3 = new Rect(0f, y, rect.width, 20f);
+                        var rect3R = rect3.RightHalf();
+                        var rect3L = rect3.LeftHalf();
+
                         y += rect2.height;
                     }
                 }
@@ -240,10 +248,12 @@ namespace AdeptusMechanicus
                     {
                         
                         e.activeOption = e.DefaultOption;
+                        /*
                         if (e.UseFactionColors)
                         {
                             SetApparelColours(e, e.DefaultOption);
                         }
+                        */
                         e.UpdateGraphic();
                         
 
@@ -263,10 +273,12 @@ namespace AdeptusMechanicus
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
                                 e.Used = variant;
+                                /*
                                 if (e.UseFactionColors)
                                 {
                                     SetApparelColours(e, variant);
                                 }
+                                */
                                 e.UpdateGraphic();
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),
@@ -335,8 +347,8 @@ namespace AdeptusMechanicus
                         Color colorTwo = graphic.ColorTwo;
 
                         graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
-                        e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
                         /*
+                        e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
                         e.drawer.apparel.SetColorOne(color);
                         e.drawer.apparel.SetColorTwo(colorTwo);
                         FieldInfo subgraphic = typeof(Thing).GetField("graphicInt", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
@@ -399,8 +411,8 @@ namespace AdeptusMechanicus
 
                                 graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
 
-                                e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
                                 /*
+                                e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
                                 e.drawer.apparel.SetColorOne(color);
                                 e.drawer.apparel.SetColorTwo(colorTwo);
 
@@ -428,6 +440,8 @@ namespace AdeptusMechanicus
         public void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
+            Widgets.Label(rect1, "Faction Presets: ");
+
             Rect rect2 = rect.LeftHalf().RightHalf();
             rect2.width *= 2;
 

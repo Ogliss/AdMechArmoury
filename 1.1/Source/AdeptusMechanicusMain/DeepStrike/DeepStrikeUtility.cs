@@ -77,8 +77,7 @@ namespace AdeptusMechanicus
             {
                 List<Thing> list2 = list.Where(x => x.def.thingClass == typeof(Pawn) && (x.Faction != null && x.Faction.def.HasModExtension<FactionDefExtension>())).ToList();
                 FactionDefExtension extension = list2.NullOrEmpty() ? null : list2.RandomElement().Faction.def.GetModExtensionFast<FactionDefExtension>();
-                IntVec3 intVec;
-                if (!DropCellFinder.TryFindDropSpotNear(dropCenter, map, out intVec, true, canRoofPunch) || !scatters)
+                if (!DropCellFinder.TryFindDropSpotNear(dropCenter, map, out IntVec3 intVec, true, canRoofPunch) || !scatters)
                 {
                     if (scatters)
                     {

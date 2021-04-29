@@ -9,7 +9,7 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [StaticConstructorOnStartup]
-    public class ShoulderPadEntryProps
+    public class ShoulderPadProperties
     {
         public ShoulderPadType shoulderPadType;
         public ShaderTypeDef shaderType;
@@ -23,7 +23,7 @@ namespace AdeptusMechanicus
         public string easttop;
         public string westtop;
         public bool UseFactionTextures = false;
-        public bool UseFactionColors = false;
+        public bool UseFactionColors = true;
         public bool UseVariableTextures;
         public bool UsePrimaryColor = true;
         public bool UseSecondaryColorAsPrimary = false;

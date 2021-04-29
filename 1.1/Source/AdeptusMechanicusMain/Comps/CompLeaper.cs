@@ -275,8 +275,7 @@ namespace AdeptusMechanicus
         private bool CanHitTargetFrom(IntVec3 pawn, LocalTargetInfo target)
         {
             bool flag = target.IsValid && target.CenterVector3.InBounds(this.Pawn.Map) && !target.Cell.Fogged(this.Pawn.Map) && target.Cell.Walkable(this.Pawn.Map);
-            ShootLine shootLine;
-            return flag && this.TryFindShootLineFromTo(pawn, target, out shootLine);
+            return flag && this.TryFindShootLineFromTo(pawn, target, out ShootLine shootLine);
         }
 
         // Token: 0x06000622 RID: 1570 RVA: 0x00058854 File Offset: 0x00056A54

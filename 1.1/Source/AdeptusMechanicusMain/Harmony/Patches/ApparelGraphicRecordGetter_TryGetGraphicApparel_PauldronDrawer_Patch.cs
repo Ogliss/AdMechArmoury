@@ -41,7 +41,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 			CompColorableTwo compColorable = apparel.TryGetCompFast<CompColorableTwo>();
 			if (compColorable!=null)
 			{
-				Log.Message("CompColorableTwo "+ apparel);
+			//	Log.Message("CompColorableTwo "+ apparel);
 				string comptype = compColorable.GetType().Name;
 				string msg = string.Empty;
 				string msk = "m";
@@ -66,6 +66,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 							}
                             else
 							{
+								/*
 								CompPauldronDrawer pauldrons = apparel.TryGetCompFast<CompPauldronDrawer>();
 								if (pauldrons != null)
 								{
@@ -85,6 +86,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 								{
 									//	Log.Message("CompFactionColorableTwo Player Pawn no CompPauldronDrawer");
 								}
+								*/
 							}
 						}
 					}
@@ -128,7 +130,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				}
 				
-				Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
                 //	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
                 if (rec.graphic != null)
                 {

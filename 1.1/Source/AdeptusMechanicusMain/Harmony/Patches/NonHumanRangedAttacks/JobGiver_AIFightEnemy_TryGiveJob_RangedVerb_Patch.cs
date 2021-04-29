@@ -179,9 +179,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                 };
                 return false;
             }
-            IntVec3 dest;
+
             bool canShootCondition = false;
-        //    Log.Warning("Try casting");
+            //    Log.Warning("Try casting");
 
             //Animals with training seek cover
             /*
@@ -204,7 +204,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 locus = pawn.Position,
                 maxRangeFromLocus = Traverse.Create(__instance).Method("GetFlagRadius", pawn).GetValue<float>(),
                 maxRegions = 50
-            }, out dest);
+            }, out IntVec3 dest);
 
             if (!canShootCondition)
             {
@@ -422,7 +422,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 };
                 return false;
             }
-            IntVec3 dest;
             bool canShootCondition = false;
             //    Log.Warning("Try casting");
 
@@ -447,7 +446,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 locus = pawn.Position,
                 maxRangeFromLocus = Traverse.Create(__instance).Method("GetFlagRadius", pawn).GetValue<float>(),
                 maxRegions = 50
-            }, out dest);
+            }, out IntVec3 dest);
 
             if (!canShootCondition)
             {
@@ -636,7 +635,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 };
                 return false;
             }
-            IntVec3 dest;
             bool canShootCondition = false;
             //    Log.Warning("Try casting");
 
@@ -661,7 +659,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 locus = pawn.Position,
                 maxRangeFromLocus = Traverse.Create(__instance).Method("GetFlagRadius", pawn).GetValue<float>(),
                 maxRegions = 50
-            }, out dest);
+            }, out IntVec3 dest);
 
             if (!canShootCondition)
             {

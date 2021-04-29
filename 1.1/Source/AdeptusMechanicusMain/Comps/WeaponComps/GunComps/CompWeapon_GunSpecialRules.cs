@@ -243,9 +243,7 @@ namespace AdeptusMechanicus
             if (GetsHot)
             {
                 builder.AppendLine();
-                string reliabilityString;
-                float failChance;
-                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
                 builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
@@ -263,9 +261,7 @@ namespace AdeptusMechanicus
             if (Jams)
             {
                 builder.AppendLine();
-                string reliabilityString;
-                float failChance;
-                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
                 builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (JamsDamageWeapon)
                 {
@@ -340,9 +336,7 @@ namespace AdeptusMechanicus
             if (GetsHot)
             {
                 builder.AppendLine();
-                string reliabilityString;
-                float failChance;
-                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
                 builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
@@ -360,9 +354,7 @@ namespace AdeptusMechanicus
             if (Jams)
             {
                 builder.AppendLine();
-                string reliabilityString;
-                float failChance;
-                StatPart_Reliability.GetReliability(this, out reliabilityString, out failChance);
+                StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
                 builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (JamsDamageWeapon)
                 {

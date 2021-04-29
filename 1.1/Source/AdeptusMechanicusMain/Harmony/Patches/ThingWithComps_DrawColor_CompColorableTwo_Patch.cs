@@ -14,11 +14,19 @@ namespace AdeptusMechanicus.HarmonyInstance
             ThingWithComps thing = __instance as ThingWithComps;
             if (thing != null)
             {
-                CompColorableTwo colorable = thing.TryGetCompFast<CompColorableTwo>();
-                if (colorable != null && colorable.Active)
+                CompColorableTwo colorableTwo = thing.TryGetCompFast<CompColorableTwo>();
+                if (colorableTwo != null && colorableTwo.Active)
                 {
-                    __result = colorable.Color;
-                    return;
+                    if (colorableTwo.Active)
+                    {
+                        __result = colorableTwo.Color;
+                        return;
+                    }
+                    if (colorableTwo is CompColorableTwoFaction colorableFaction && colorableFaction.FactionActiveTwo)
+                    {
+                        __result = colorableFaction.ColorTwo;
+                        return;
+                    }
                 }
             }
         }

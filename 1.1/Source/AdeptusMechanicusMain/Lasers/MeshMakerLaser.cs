@@ -31,8 +31,7 @@ namespace AdeptusMechanicus.Lasers
             int geometrySeamIndex = (int)(sv / 0.5f * geometrySeamPrecision);
             int index = geometrySeamIndex + (textureSeamPrecision + 1) * geometrySeamPrecision;
 
-            Mesh mesh;
-            if (cachedMeshes.TryGetValue(index, out mesh))
+            if (cachedMeshes.TryGetValue(index, out Mesh mesh))
             {
                 return mesh;
             }

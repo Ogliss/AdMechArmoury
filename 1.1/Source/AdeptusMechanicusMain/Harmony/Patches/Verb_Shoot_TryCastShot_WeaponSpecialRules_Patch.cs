@@ -28,20 +28,17 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    Log.Message("no SpecialRules detected");
                 return true;
             }
-            bool canDamageWeapon;
-            float extraWeaponDamage;
             bool UserEffect = entry.EffectsUser;
             HediffDef UserHediff = entry.UserEffect;
             float AddHediffChance = entry.EffectsUserChance;
             List<string> Immunitylist = entry.UserEffectImmuneList;
             string msg = string.Format("");
-            string reliabilityString;
             float failChance = 0;
-            
+
             bool failed = false;
             if (__instance.GetsHot() || __instance.Jams())
             {
-                StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out reliabilityString, out failChance);
+                StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out string reliabilityString, out failChance);
                 failChance = (__instance.GetsHot()) ? (failChance / 10) : (failChance / 100);
                 //    Log.Message("failChance: "+failChance);
                 Rand.PushState();
@@ -49,7 +46,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Rand.PopState();
             //    Log.Message("failed: "+failed);
             }
-            if (__instance.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out canDamageWeapon, out extraWeaponDamage))
+            if (__instance.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out bool canDamageWeapon, out float extraWeaponDamage))
             {
                 if (failed)
                 {
@@ -236,9 +233,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return false;
             }
-            ShootLine shootLine;
-            bool flag = __instance.TryFindShootLineFromTo(__instance.caster.Position, currentTarget, out shootLine);
-            if (__instance.verbProps.stopBurstWithoutLos && !flag)
+            if (__instance.verbProps.stopBurstWithoutLos && !__instance.TryFindShootLineFromTo(__instance.caster.Position, currentTarget, out ShootLine shootLine))
             {
                 return false;
             }

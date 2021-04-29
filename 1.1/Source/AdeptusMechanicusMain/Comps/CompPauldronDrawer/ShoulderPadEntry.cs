@@ -18,14 +18,14 @@ namespace AdeptusMechanicus
         {
         }
 
-        public ShoulderPadEntry(ShoulderPadEntryProps entry, CompPauldronDrawer drawer)
+        public ShoulderPadEntry(ShoulderPadProperties entry, CompPauldronDrawer drawer)
         {
             UpdateProps(entry);
             this.drawer = drawer;
             this.apparel = drawer.apparel;
         }
 
-        public void UpdateProps(ShoulderPadEntryProps entry)
+        public void UpdateProps(ShoulderPadProperties entry)
         {
             this.props = entry;
             this.label = entry.label;
@@ -187,18 +187,18 @@ namespace AdeptusMechanicus
             }
         }
 
-        public ShoulderPadEntryProps Props
+        public ShoulderPadProperties Props
         {
             get
             {
                 if (props == null)
                 {
-                    props = new ShoulderPadEntryProps();
+                    props = new ShoulderPadProperties();
                     if (Drawer != null)
                     {
                         for (int i = 0; i < Drawer.Props.PauldronEntries.Count; i++)
                         {
-                            ShoulderPadEntryProps e = Drawer.Props.PauldronEntries[i];
+                            ShoulderPadProperties e = Drawer.Props.PauldronEntries[i];
                             if ((this.padTexPath == e.padTexPath && this.shoulderPadType == e.shoulderPadType) || (!this.label.NullOrEmpty() && !e.label.NullOrEmpty() && this.label == e.label))
                             {
                                 UpdateProps(e);
@@ -357,6 +357,7 @@ namespace AdeptusMechanicus
 
                 path = padTexPath + "/" + Used.TexPath;
             }
+
             if (bodyspecificTextures)
             {
                 string body;
@@ -402,8 +403,7 @@ namespace AdeptusMechanicus
             Color color = Drawer.mainColorFor(this);
             Color colorTwo = Drawer.secondaryColorFor(this);
             graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, size, color, colorTwo);
-            CompColorableTwoFaction factionColors = Drawer.Colours as CompColorableTwoFaction;
-            if (factionColors != null)
+            if (Drawer.Colours is CompColorableTwoFaction factionColors)
             {
                 Texture texture;
                 if (factionColors.ActiveFaction)
@@ -442,11 +442,12 @@ namespace AdeptusMechanicus
                 }
             }
             //    Log.Message(this.Label + " " + graphic.path + " Shader: " + graphic.Shader.name + "Colour: " + graphic.Color + " Colour: " + graphic.ColorTwo);
-
+            /*
             if (!this.Drawer.apparel.def.apparel.wornGraphicPath.NullOrEmpty())
             {
                 SetApparelColours();
             }
+            */
             Graphic = graphic;
         }
 
@@ -655,7 +656,7 @@ namespace AdeptusMechanicus
             }
         }
         */
-        private ShoulderPadEntryProps props;
+        private ShoulderPadProperties props;
         public Vector2 size;
         public Apparel apparel;
         public ShoulderPadType shoulderPadType;

@@ -197,8 +197,7 @@ namespace AdeptusMechanicus
             //    Log.Message(string.Format("parent Spawned: {0}", this.parent.Spawned));
             if (this.lord == null)
             {
-                IntVec3 invalid;
-                if (!CellFinder.TryFindRandomCellNear(this.parent.Position, this.parent.Map, 5, (IntVec3 c) => c.Standable(this.parent.Map) && this.parent.Map.reachability.CanReach(c, this.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)), out invalid, -1))
+                if (!CellFinder.TryFindRandomCellNear(this.parent.Position, this.parent.Map, 5, (IntVec3 c) => c.Standable(this.parent.Map) && this.parent.Map.reachability.CanReach(c, this.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)), out IntVec3 invalid, -1))
                 {
                     Log.Error("Found no place for Pawns to defend " + this, false);
                     invalid = IntVec3.Invalid;
@@ -210,11 +209,10 @@ namespace AdeptusMechanicus
             {
                 while (this.pointsLeft > 0f)
                 {
-                    PawnGenOption kindOption;
                     PawnKindDef kind;
                     if (!(from opt in PawnKinds
                           where opt.kind.combatPower <= this.pointsLeft
-                          select opt).TryRandomElementByWeight((PawnGenOption x) => x.selectionWeight, out kindOption))
+                          select opt).TryRandomElementByWeight((PawnGenOption x) => x.selectionWeight, out PawnGenOption kindOption))
                     {
                         if (PawnKinds.NullOrEmpty())
                         {
@@ -228,10 +226,9 @@ namespace AdeptusMechanicus
                         kind = kindOption.kind;
                     }
                     //    Log.Message(string.Format("try spawn 3"));
-                    IntVec3 center;
                     if (!(from cell in GenAdj.CellsAdjacent8Way(this.parent)
                           where this.CanSpawnPawnAt(cell)
-                          select cell).TryRandomElement(out center))
+                          select cell).TryRandomElement(out IntVec3 center))
                     {
                         break;
                     }

@@ -11,7 +11,7 @@ namespace AdeptusMechanicus
 {
     public class CompProperties_PauldronDrawer : CompProperties
     {
-        public List<ShoulderPadEntryProps> PauldronEntries;
+        public List<ShoulderPadProperties> PauldronEntries;
         public float PauldronEntryChance = 1f;
         public int order = 0;
         public Vector3 NorthOffset = new Vector3();
@@ -206,25 +206,59 @@ namespace AdeptusMechanicus
         
         public Color secondaryColorFor(ShoulderPadEntry entry)
         {
+            Color secondary = apparel.DrawColorTwo;
+            string log = (pawn != null ? pawn.NameShortColored.ToString() + "'s " : string.Empty) +parent.LabelCap+ " secondaryColorFor " + entry.shoulderPadType;
             if (entry != null)
             {
+                if (entry.UsePrimaryColorAsSecondary)
+                {
+                    log += " UsePrimaryColorAsSecondary";
+                }
                 if (!entry.Options.NullOrEmpty())
                 {
                     if (entry.Used.ColorTwo != null)
                     {
-                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " activeOption");
-                        return entry.Used.ColorTwo.Value;
+                        secondary = entry.UsePrimaryColorAsSecondary ? entry.Used.Color.Value : entry.Used.ColorTwo.Value;
+                        log += " activeOption: "+ secondary;
+                        Log.Message(log);
+                        return secondary;
                     }
+                }
+                if (entry.overrideSecondaryColor.HasValue)
+                {
+                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
+                    secondary = entry.overrideSecondaryColor.Value;
+                    log += " overrideSecondaryColor: " + secondary;
+                    Log.Message(log);
+                    return secondary;
+                }
+                if (entry.UsePrimaryColorAsSecondary)
+                {
+                    log += " UsePrimaryColorAsSecondary";
+                    if (entry.overridePrimaryColor.HasValue)
+                    {
+                        //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overridePrimaryColor");
+                        secondary = entry.overrideSecondaryColor.Value;
+                        log += " overridePrimaryColor: " + secondary;
+                        Log.Message(log);
+                        return secondary;
+                    }
+                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColor");
+                    secondary = this.parent.DrawColor;
+                    log += " DrawColor: " + secondary;
+                    Log.Message(log);
+                    return this.parent.DrawColor;
                 }
                 if (entry.UseFactionColors)
                 {
-                    CompColorableTwoFaction colours = Colours as CompColorableTwoFaction;
-                    if (colours != null)
+                    if (Colours is CompColorableTwoFaction colours)
                     {
-                        //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " UseFactionColors");
-                        if (colours.ActiveTwo)
+                        if (colours.FactionActiveTwo)
                         {
-                            return colours.ColorTwo;
+                            secondary = entry.UsePrimaryColorAsSecondary ? colours.Color : colours.ColorTwo;
+                            log += " UseFactionColors: " + secondary;
+                            Log.Message(log);
+                            return secondary;
                         }
                     }
                     /*
@@ -241,24 +275,11 @@ namespace AdeptusMechanicus
                     }
                     */
                 }
-                if (entry.overrideSecondaryColor.HasValue)
-                {
-                //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
-                    return entry.overrideSecondaryColor.Value;
-                }
-                if (entry.UsePrimaryColorAsSecondary)
-                {
-                    if (entry.overridePrimaryColor.HasValue)
-                    {
-                    //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overridePrimaryColor");
-                        return entry.overridePrimaryColor.Value;
-                    }
-                //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColor");
-                    return this.parent.DrawColor;
-                }
             }
-        //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColorTwo");
-            return apparel.DrawColorTwo;
+            //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColorTwo");
+            log += " DrawColorTwo: " + secondary;
+            Log.Message(log);
+            return secondary;
         }
         /*
         public override string TransformLabel(string label)
@@ -466,8 +487,7 @@ namespace AdeptusMechanicus
                         _OnHeadCache.Add(parent.def.defName, false);
                     }
                 }
-                bool ret;
-                _OnHeadCache.TryGetValue(parent.def.defName, out ret);  // is there a better way? Dictionary.Item isn't there.  Didn't bother with try/catch as by now it should have the key.
+                _OnHeadCache.TryGetValue(parent.def.defName, out bool ret);  // is there a better way? Dictionary.Item isn't there.  Didn't bother with try/catch as by now it should have the key.
                 return ret;
             }
         }
@@ -477,7 +497,7 @@ namespace AdeptusMechanicus
             {
                 if (type == ShoulderPadType.Both)
                 {
-                    return type.ToString() + " Pauldrons";
+                    return "Pauldrons";
                 }
                 return type.ToString() + " Pauldron";
             }

@@ -81,10 +81,8 @@ namespace AdeptusMechanicus.ExtensionMethods
 					ingester
 				});
 			}
-			int num;
-			float result;
-			corpse.IngestedCalculateAmounts(ingester, targetPart, out num, out result);
-			/*
+            corpse.IngestedCalculateAmounts(ingester, targetPart, out int num, out float result);
+            /*
 			MethodInfo dynMethod = thing.GetType().GetMethod("IngestedCalculateAmounts",
 			BindingFlags.NonPublic | BindingFlags.Instance);
 			object[] parameters = new object[] { ingester, nutritionWanted, null, null };
@@ -94,7 +92,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 			result = (float)parameters[3];
 			//	thing.IngestedCalculateAmounts(ingester, nutritionWanted, out num, out result);
 			*/
-			if (!ingester.Dead && ingester.needs.joy != null && Mathf.Abs(thing.def.ingestible.joy) > 0.0001f && num > 0)
+            if (!ingester.Dead && ingester.needs.joy != null && Mathf.Abs(thing.def.ingestible.joy) > 0.0001f && num > 0)
 			{
 				JoyKindDef joyKind = (thing.def.ingestible.joyKind != null) ? thing.def.ingestible.joyKind : JoyKindDefOf.Gluttonous;
 				ingester.needs.joy.GainJoy((float)num * thing.def.ingestible.joy, joyKind);
