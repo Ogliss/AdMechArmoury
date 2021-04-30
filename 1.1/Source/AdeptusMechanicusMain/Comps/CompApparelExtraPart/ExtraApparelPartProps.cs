@@ -29,12 +29,10 @@ namespace AdeptusMechanicus
         public bool UseFactionTextures = false;
         public bool UseFactionColors = false;
         public bool UseVariableTextures;
-        public bool UsePrimaryColor = true;
+        public bool useParentPrimaryColor = true;
         public bool UseSecondaryColorAsPrimary = false;
-        public Color? overridePrimaryColor;
-        public bool UseSecondaryColor = true;
+        public bool useParentSecondaryColor = true;
         public bool UsePrimaryColorAsSecondary = false;
-        public Color? overrideSecondaryColor;
         public int order = 1;
         public int sublayer = 0;
         public ApparelAddonOffsets offsets;
@@ -47,7 +45,15 @@ namespace AdeptusMechanicus
         public TextureOption activeOption;
         public List<TextureOption> options = new List<TextureOption>();
         public TextureOption defaultOption = new TextureOption(null, new GraphicData());
+        public QualityCategory minQuality = QualityCategory.Awful;
+        public QualityCategory maxQuality = QualityCategory.Legendary;
 
+        public bool AcceptableForQuality(QualityCategory quality)
+        {
+            bool result = minQuality <= quality && maxQuality >= quality;
+            Log.Message("quality: "+ quality + " minQuality: " + minQuality + " maxQuality: " + maxQuality + "result: "+ result);
+            return result;
+        }
 
         public Graphic Graphic(Apparel thing)
         {
@@ -79,7 +85,7 @@ namespace AdeptusMechanicus
         private Graphic graphic;
         private GraphicMeshSet meshSet;
     }
-    // Token: 0x02000031 RID: 49
+
     public class ApparelAddonOffsets
     {
         public Vector3 offset;
@@ -97,7 +103,6 @@ namespace AdeptusMechanicus
         public OffsetRotation west;
     }
 
-    // Token: 0x02000032 RID: 50
     public class OffsetRotation
     {
         // Token: 0x04000107 RID: 263
@@ -113,10 +118,8 @@ namespace AdeptusMechanicus
         public List<OffsetCrownType> crownTypes;
     }
 
-    // Token: 0x02000033 RID: 51
     public class OffsetBodyType
     {
-        // Token: 0x060000F4 RID: 244 RVA: 0x0000B9D6 File Offset: 0x00009BD6
         [UsedImplicitly]
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
@@ -124,10 +127,8 @@ namespace AdeptusMechanicus
             this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
         }
 
-        // Token: 0x0400010B RID: 267
         public BodyTypeDef bodyType;
 
-        // Token: 0x0400010C RID: 268
         public Vector3 offset = Vector3.zero;
     }
 

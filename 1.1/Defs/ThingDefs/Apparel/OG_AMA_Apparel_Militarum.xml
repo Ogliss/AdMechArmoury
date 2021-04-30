@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ========================= Imperial Guard / Astra Militarum - Apparel ========================== -->	
+	<!-- ========================= Militarum - Trenchcoat Base ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_NoStuffColour" Name="OG_Imperial_Trenchcoat_Base" Abstract="True">
+		<description>A long trenchcoat coat for blocking the sun and grit of the outdoors.</description>
+		<label>trenchcoat</label>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.05</drawSize>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>10000</WorkToMake>
+			<Mass>2</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.60</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.85</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>3</EquipDelay>
+			<Bulk MayRequire="CETeam.CombatExtended">7.5</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+		</statBases>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Steel>20</Steel>
+		</costList>
+		<costStuffCount>80</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<apparel>
+			<wornGraphicPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</wornGraphicPath>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>IndustrialAdvanced</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Worker</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>Apparel</li>
+		</thingCategories>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<only>(0.33,0.33,0.33)</only>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.65,0.65,0.65)</only>
+			</li>
+			<li>
+				<weight>30</weight>
+				<only>(0.4,0.3,0.15)</only>
+			</li>
+			<li>
+				<weight>6</weight>
+				<min>(0.3,0.3,0.3)</min>
+				<max>(0.5,0.5,0.5)</max>
+			</li>
+			<li>
+				<weight>2</weight>
+				<min>(0.5,0.5,0.5)</min>
+				<max>(1,1,1)</max>
+			</li>
+			</options>
+		</colorGenerator-->
+		<comps Inherit="False">
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Imperial Guard - Undershirt ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel">
+		<defName>OGIG_Apparel_UniformShirt</defName>
+		<label>imperial undershirt</label>
+		<description>A uniform shirt worn by the soldiers of the IG.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/IG_Tunic/IG_Tunic_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<tradeability>Sellable</tradeability>
+		<statBases>
+			<WorkToMake>5000</WorkToMake>
+			<Mass>0.25</Mass>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.22</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.10</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+			<Bulk MayRequire="CETeam.CombatExtended">1</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+		</statBases>
+		<generateCommonality>1</generateCommonality>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_Tunic/IG_Tunic</wornGraphicPath>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<layers>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>OGIGClothing</li>
+				<li>OGIGUniform</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Any</li>
+			</defaultOutfitTags>
+		</apparel>
+		<comps>
+		
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Imperial Guard - Commissar Jacket ========================== -->
+	<ThingDef ParentName="OG_Imperial_Trenchcoat_Base">
+		<defName>OGIG_Apparel_CommissarJacket</defName>
+		<description>The official coat of the Imperial Commissars.</description>
+		<label>Commissar Jacket</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/ComJacket/ComJacket</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>1.7</Mass>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.60</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.85</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>3</EquipDelay>
+			<Bulk MayRequire="CETeam.CombatExtended">6.5</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<!--
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.1</ArmorRating_Heat>
+			<Insulation_Cold>15</Insulation_Cold>
+			<Insulation_Heat>15</Insulation_Heat>
+			-->
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<SocialImpact>0.1</SocialImpact>
+			<PainShockThreshold>0.1</PainShockThreshold>
+			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>10</Steel>
+			<Gold>5</Gold>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<costStuffCount>120</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<generateCommonality>2</generateCommonality>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/ComJacket/ComJacket</wornGraphicPath>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>OGIGHeadgear</li>
+				<li>OGImperialGuard</li>
+				<li>OGIGCommissar</li>
+				<li>OGIGCommissarJacket</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<only>RGBA(1.00,1.00,1.00,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+	</ThingDef>
+
+	<!-- ========================= Steel Leigon ========================== -->
+	<!-- ========================= Steel Leigon - Trenchcoat ========================== -->
+	<ThingDef ParentName="OG_Imperial_Trenchcoat_Base">
+		<defName>OGIG_Apparel_Armageddon_Uniform_Trenchcoat</defName>
+		<label>armageddon pattern trenchcoat</label>
+		<description>Each Guardsman of the Armageddon Steel Legions is equipped with a toxic-resistant trenchcoat. The specially-treated gear protects a Guardsmen from the most polluted or chemically toxic environments.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<!--Mass>4</Mass>
+			<WorkToMake>24000</WorkToMake>
+			<MaxHitPoints>200</MaxHitPoints>
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.1</ArmorRating_Heat>
+			<Insulation_Cold>15</Insulation_Cold>
+			<Insulation_Heat>15</Insulation_Heat-->
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.12</MoveSpeed>
+			<ToxicSensitivity>-0.200</ToxicSensitivity>
+			<!--WorkSpeedGlobal>-0.005</WorkSpeedGlobal-->
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/Trenchcoat/Trenchcoat</wornGraphicPath>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGSteelLegion</li>
+				<li>OGIGSteelLegionJacket</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<colorGenerator Class="AdeptusMechanicus.TwoColorGenerator_Options">
+			<options>
+				<li>
+					<only>183,148,92</only>
+				</li>
+			</options>
+			<optionsTwo>
+				<li>
+					<only>45,32,24</only>
+				</li>
+			</optionsTwo>
+		</colorGenerator>
+		<comps>
+			<!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/IG/IG_Armor/Pauldrons/Flak_Pauldrons</padTexPath>
+						<commonality>10</commonality>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0,0.001,0</NorthOffset>
+				<SouthOffset>0,0.001,0</SouthOffset>
+				<EastOffset>0,0.001,0</EastOffset>
+				<WestOffset>0,0.001,0</WestOffset>
+			</li-->
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Death Korps ========================== -->
+	<!-- ========================= Trenchcoat ========================== -->
+	<ThingDef ParentName="OG_Imperial_Trenchcoat_Base">
+		<!--defName>OGIG_Apparel_Armageddon_Trenchcoat</defName-->
+		<defName>OGIG_Apparel_Krieg_Uniform_Trenchcoat</defName>
+		<label>krieg pattern trenchcoat</label>
+		<description>Each Guardsman of the Death Korps of Krieg is equipped with a toxic-resistant trenchcoat. The specially-treated gear protects a Guardsmen from the most polluted or chemically toxic environments.\n\nPlaceholder Texture.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/Trenchcoat/Trenchcoat__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(75,75,75)</color>
+			<colorTwo>(75,75,75)</colorTwo>
+			<!--colorTwo>(45,32,24)</colorTwo-->
+		</graphicData>
+		<!--statBases>
+			<Mass>4</Mass>
+			<WorkToMake>24000</WorkToMake>
+			<MaxHitPoints>200</MaxHitPoints>
+			<MarketValue>500</MarketValue>
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.1</ArmorRating_Heat>
+			<Insulation_Cold>15</Insulation_Cold>
+			<Insulation_Heat>15</Insulation_Heat>
+		</statBases-->
+		<equippedStatOffsets>
+			<MoveSpeed>-0.12</MoveSpeed>
+			<!--WorkSpeedGlobal>-0.005</WorkSpeedGlobal-->
+			<ToxicSensitivity>-0.200</ToxicSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<researchPrerequisite>ComplexClothing</researchPrerequisite>
+		</recipeMaker>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/DeathKorps/Trenchcoat/Trenchcoat</wornGraphicPath>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGDeathKorps</li>
+				<li>OGIGDeathKorpsJacket</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<colorGenerator Class="AdeptusMechanicus.TwoColorGenerator_Options">
+			<options>
+				<li>
+					<only>85,85,85</only>
+				</li>
+			</options>
+			<optionsTwo>
+				<li>
+					<only>45,32,24</only>
+				</li>
+			</optionsTwo>
+		</colorGenerator>
+		<comps>
+		
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Valhallan ========================== -->
+	<!-- ========================= Valhallan - Greatcoat ========================== -->
+	<!--
+	<ThingDef ParentName="OG_Imperial_Trenchcoat_Base">
+		<defName>OGIG_Apparel_ValhallanCoat</defName>
+		<label>greatcoat</label>
+		<description>A thick greatcoat for staying warm in even the coldest of temperatures.</description>
+		<graphicData>
+			<texPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Neolithic</techLevel>
+		<costStuffCount>120</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<statBases>
+			
+			<MaxHitPoints>180</MaxHitPoints>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>3.8</Mass>
+			<ArmorRating_Sharp>0.09</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.09</ArmorRating_Heat>
+			<Insulation_Cold>-40</Insulation_Cold>
+			<Insulation_Heat>-3</Insulation_Heat>
+			
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.05</MoveSpeed>
+			<WorkSpeedGlobal>-0.20</WorkSpeedGlobal>
+		</equippedStatOffsets>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Pawn/Humanlike/Apparel/Duster/Duster</wornGraphicPath>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Valhallan</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Worker</li>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<only>RGBA(1.00,1.00,1.00,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.95,0.95,0.95,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.90,0.90,0.90,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.85,0.85,0.85,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.80,0.80,0.80,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.75,0.75,0.75,1)</only>
+			</li>
+			<li>
+				<only>RGBA(0.70,0.70,0.70,1)</only>
+			</li>
+			</options>
+		</colorGenerator>
+		<comps>
+		
+		</comps>
+	</ThingDef>
+	-->
+		
+</Defs>

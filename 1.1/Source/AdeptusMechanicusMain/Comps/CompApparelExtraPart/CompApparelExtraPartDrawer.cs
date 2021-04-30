@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,17 +73,38 @@ namespace AdeptusMechanicus
                     {
                         if (extraPartEntryint == -1)
                         {
-                            Rand.PushState();
-                            extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
-                            Rand.PopState();
-                            extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
+                            List<ExtraApparelPartProps> possibles = new List<ExtraApparelPartProps>();
+                            string msg = Apparel.LabelCap;
+                            if (Apparel.TryGetQuality(out QualityCategory quality))
+                            {
+                                msg += " ExtraPartEntry QualityCategory: " + quality;
+                                possibles.AddRange(this.Props.ExtrasEntries.FindAll(x => x.AcceptableForQuality(quality)));
+                            }
+                            else
+                            {
+                                msg += " ExtraPartEntry No CompQuality";
+                                possibles = this.Props.ExtrasEntries;
 
-                            this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
-                            this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
-                            this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
-                            pauldronInitialized = true;
+                            }
+                            msg += " possibles: "+ possibles.Count;
+                            if (!possibles.NullOrEmpty())
+                            {
+                                Rand.PushState();
+                                extraPartEntry = possibles.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                                Rand.PopState();
+                                extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
+
+                                this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
+                                this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
+                                this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
+                                pauldronInitialized = true;
+                                msg += " pauldronInitialized: " + extraPartEntryint +" ";
+                            }
+                            else extraPartEntryint = -2;
+                            Log.Message(msg);
                         }
                         else
+                        if (extraPartEntryint >= 0)
                         {
                             extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
                         }
@@ -95,6 +117,7 @@ namespace AdeptusMechanicus
                 return extraPartEntry;
             }
         }
+
 
         private Graphic _Graphic;
         public Graphic Graphic
@@ -129,11 +152,12 @@ namespace AdeptusMechanicus
             }
         }
 
-        public Apparel apparel
+        public Apparel apparel;
+        public Apparel Apparel
         {
             get
             {
-                return this.parent as Apparel;
+                return apparel ??= this.parent as Apparel;
             }
         }
 
@@ -141,7 +165,59 @@ namespace AdeptusMechanicus
         {
             get
             {
-                return this.apparel.Wearer;
+                return this.Apparel?.Wearer;
+            }
+        }
+
+        private CompColorable colours;
+        private bool colortest = false;
+        public CompColorable Colours
+        {
+            get
+            {
+                if (colours == null && !colortest)
+                {
+                    colortest = true;
+                    colours = this.Apparel.TryGetCompFast<CompColorable>();
+                }
+                return colours;
+            }
+        }
+
+        private CompColorableTwo coloursTwo;
+        private bool colorTwotest = false;
+        public CompColorableTwo ColoursTwo
+        {
+            get
+            {
+                if (colours == null)
+                {
+                    return null;
+                }
+                if (coloursTwo == null && !colorTwotest)
+                {
+                    colorTwotest = true;
+                    coloursTwo = Colours as CompColorableTwo;
+                }
+                return factioncolours;
+            }
+        }
+        private CompColorableTwoFaction factioncolours;
+        private bool factioncolortest = false;
+        public CompColorableTwoFaction FactionColours
+        {
+            get
+            {
+                if (colours == null)
+                {
+                    return null;
+                }
+                if (factioncolours == null && !factioncolortest)
+                {
+                    factioncolortest = true;
+                    factioncolours = Colours as CompColorableTwoFaction;
+                }
+                return factioncolours;
             }
         }
 
@@ -152,48 +228,43 @@ namespace AdeptusMechanicus
             {
                 if (ExtraPartEntry != null)
                 {
-                    if (ExtraPartEntry.overridePrimaryColor.HasValue)
+                    if (ExtraPartEntry.UseFactionColors && factioncolours != null)
                     {
-                        return ExtraPartEntry.overridePrimaryColor.Value;
-                    }
-                    if (ExtraPartEntry.UsePrimaryColor)
-                    {
-                        return this.parent.DrawColor;
-                    }
-                    else
-                    if (ExtraPartEntry.UseSecondaryColor)
-                    {
-                        if (ExtraPartEntry.overrideSecondaryColor.HasValue)
+                        if (factioncolours.Active)
                         {
-                            return ExtraPartEntry.overrideSecondaryColor.Value;
+                            //   Log.Message("mainColorFor " + entry.shoulderPadType + " UseFactionColors");
+                            return factioncolours.Color;
                         }
-                        return this.parent.DrawColorTwo;
+                    }
+                    if (!ExtraPartEntry.useParentPrimaryColor)
+                    {
+                        return ExtraPartEntry.graphicData.color;
                     }
                 }
                 return this.parent.DrawColor;
             }
         }
-
         public Color SecondaryColor = Color.white;
         public Color secondaryColor
         {
             get
             {
-                if (SecondaryColor == Color.white)
+                if (ExtraPartEntry != null)
                 {
-                    SecondaryColor = this.parent.DrawColorTwo;
-                    //    Log.Message(string.Format("CompApparelExtaDrawer return {1}'s DrawColorTwo {0}", SecondaryColor, this.parent.def.label));
-                    return SecondaryColor;
+                    if (ExtraPartEntry.UseFactionColors && factioncolours != null)
+                    {
+                        if (factioncolours.ActiveTwo)
+                        {
+                            //   Log.Message("mainColorFor " + entry.shoulderPadType + " UseFactionColors");
+                            return factioncolours.ColorTwo;
+                        }
+                    }
+                    if (!ExtraPartEntry.useParentSecondaryColor)
+                    {
+                        return ExtraPartEntry.graphicData.colorTwo;
+                    }
                 }
-                if (SecondaryColor != Color.white)
-                {
-                    return SecondaryColor;
-                }
-                if (this.useSecondaryColor)
-                {
-                    return this.parent.DrawColorTwo;
-                }
-                return mainColor;
+                return this.parent.DrawColorTwo;
             }
         }
 
@@ -323,7 +394,7 @@ namespace AdeptusMechanicus
                 extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
                 this.graphicPath = extraPartEntry.graphicData.texPath;
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
-                this.useSecondaryColor = extraPartEntry.UseSecondaryColor;
+                this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
             }
             pauldronInitialized = true;

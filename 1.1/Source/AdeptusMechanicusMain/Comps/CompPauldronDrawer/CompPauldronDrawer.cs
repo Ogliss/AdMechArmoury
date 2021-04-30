@@ -20,6 +20,7 @@ namespace AdeptusMechanicus
         public Vector3 WestOffset = new Vector3();
         public bool drawAll = false;
         public string labelKey = string.Empty;
+        public int saveKey = 0;
         public CompProperties_PauldronDrawer()
         {
             this.compClass = typeof(CompPauldronDrawer);
@@ -295,15 +296,6 @@ namespace AdeptusMechanicus
             return base.TransformLabel(label);
         }
         */
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
-            Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
-            Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
-            Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep);
-            Scribe_References.Look(ref this.wearer, "lastWearer");
-        }
 
         public Vector3 GetOffsetFor(Rot4 rotation, bool northtop)
         {
@@ -546,6 +538,15 @@ namespace AdeptusMechanicus
             return "CompPauldronDrawer_" + parent.thingIDNumber;
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
+            Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
+            Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
+            Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep);
+            Scribe_References.Look(ref this.wearer, "lastWearingPawn"+ Props.saveKey);
+        }
 
         public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
         const float _HeadOffset = 0.02734375f + MinClippingDistance;
