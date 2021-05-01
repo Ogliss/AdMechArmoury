@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using UnityEngine;
 using Verse;
@@ -51,8 +52,22 @@ namespace AdeptusMechanicus
         public bool AcceptableForQuality(QualityCategory quality)
         {
             bool result = minQuality <= quality && maxQuality >= quality;
-            Log.Message("quality: "+ quality + " minQuality: " + minQuality + " maxQuality: " + maxQuality + "result: "+ result);
             return result;
+        }
+
+        public string Label
+        {
+            get
+            {
+                if (label.NullOrEmpty())
+                {
+                    char[] charSeparators = new char[] { '/' };
+                    List<string> split = graphicData.texPath.Split(charSeparators).ToList();
+                    return split[split.Count-1];
+
+                }
+                return label;
+            }
         }
 
         public Graphic Graphic(Apparel thing)

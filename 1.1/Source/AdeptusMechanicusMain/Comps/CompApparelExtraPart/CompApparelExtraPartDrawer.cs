@@ -58,7 +58,7 @@ namespace AdeptusMechanicus
         public BodyTypeDef forcedBodyType => Props.ExtrasEntries.First(x => x.forcedBodyType!=null)?.forcedBodyType;
         //    private bool useFactionTextures = false;
 #pragma warning disable IDE0052 // Remove unread private members
-        private bool pauldronInitialized = false;
+        private bool partInitialized = false;
 #pragma warning restore IDE0052 // Remove unread private members
 
         private ExtraApparelPartProps extraPartEntry;
@@ -67,57 +67,78 @@ namespace AdeptusMechanicus
         {
             get
             {
+                StringBuilder msg = new StringBuilder(Apparel.LabelCap);
                 if (!Props.ExtrasEntries.NullOrEmpty())
                 {
+                    msg.AppendLine("ExtrasEntries: " + Props.ExtrasEntries.Count);
+                    msg.AppendLine("    extraPartEntryint: " + extraPartEntryint);
                     if (extraPartEntry == null)
                     {
+                        msg.AppendLine("        extraPartEntry: Make New");
                         if (extraPartEntryint == -1)
                         {
-                            List<ExtraApparelPartProps> possibles = new List<ExtraApparelPartProps>();
-                            string msg = Apparel.LabelCap;
-                            if (Apparel.TryGetQuality(out QualityCategory quality))
-                            {
-                                msg += " ExtraPartEntry QualityCategory: " + quality;
-                                possibles.AddRange(this.Props.ExtrasEntries.FindAll(x => x.AcceptableForQuality(quality)));
-                            }
-                            else
-                            {
-                                msg += " ExtraPartEntry No CompQuality";
-                                possibles = this.Props.ExtrasEntries;
-
-                            }
-                            msg += " possibles: "+ possibles.Count;
-                            if (!possibles.NullOrEmpty())
-                            {
-                                Rand.PushState();
-                                extraPartEntry = possibles.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
-                                Rand.PopState();
-                                extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
-
-                                this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
-                                this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
-                                this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
-                                pauldronInitialized = true;
-                                msg += " pauldronInitialized: " + extraPartEntryint +" ";
-                            }
-                            else extraPartEntryint = -2;
-                            Log.Message(msg);
+                            this.GeneratePart(ref msg);
                         }
                         else
                         if (extraPartEntryint >= 0)
                         {
                             extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
                         }
+                        msg.AppendLine("        Initialized: " + partInitialized);
+                    }
+                    else
+                    {
+                        msg.AppendLine("    Entry: " + extraPartEntryint + " ExtraPartEntry: " + extraPartEntry.Label);
                     }
                 }
                 else
                 {
                     extraPartEntry = null;
+                    msg.AppendLine("ExtraPartEntry: null");
+                }
+                if (!logged && loging && msg.Length > 0)
+                {
+                    Log.Message(msg.ToString());
+                    logged = true;
                 }
                 return extraPartEntry;
             }
         }
+        bool logged = false;
+        bool loging = true;
 
+        public void GeneratePart(ref StringBuilder msg)
+        {
+            List<ExtraApparelPartProps> possibles = new List<ExtraApparelPartProps>();
+            if (Apparel.TryGetQuality(out QualityCategory quality))
+            {
+                msg.AppendLine("            QualityCategory: " + quality);
+                possibles.AddRange(this.Props.ExtrasEntries.FindAll(x => x.AcceptableForQuality(quality)));
+            }
+            else
+            {
+                msg.AppendLine("            No CompQuality");
+                possibles = this.Props.ExtrasEntries;
+
+            }
+            msg.AppendLine("            possibles: " + possibles.Count);
+            if (!possibles.NullOrEmpty())
+            {
+                Rand.PushState();
+                extraPartEntry = possibles.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                Rand.PopState();
+                extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
+
+                this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
+                this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
+                this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
+                partInitialized = true;
+            }
+            else
+            {
+                extraPartEntryint = -2;
+            }
+        }
 
         private Graphic _Graphic;
         public Graphic Graphic
@@ -271,6 +292,7 @@ namespace AdeptusMechanicus
         public override void PostExposeData()
         {
             base.PostExposeData();
+            Scribe_Values.Look<bool>(ref this.partInitialized, "partInitialized", false, false);
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
             Scribe_Values.Look<string>(ref this.graphicPath, "extragraphicPath", null, false);
             Scribe_Values.Look<bool>(ref this.ExtraUseBodyTexture, "UseBodyOffset", false);
@@ -391,13 +413,17 @@ namespace AdeptusMechanicus
             base.PostSpawnSetup(respawningAfterLoad);
             if (!this.Props.ExtrasEntries.NullOrEmpty())
             {
+                /*
                 extraPartEntry = this.Props.ExtrasEntries.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
                 this.graphicPath = extraPartEntry.graphicData.texPath;
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
+                */
+                StringBuilder msg = new StringBuilder();
+                this.GeneratePart(ref msg);
             }
-            pauldronInitialized = true;
+            partInitialized = true;
 
         }
 
