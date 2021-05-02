@@ -48,51 +48,53 @@ namespace AdeptusMechanicus.HarmonyInstance
                         
                     }
                     */
+                    /*
                     if (!drawSizePatched)
                     {
                         if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
                         {
-                            //        if (Prefs.DevMode) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (Prefs.DevMode) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                             drawSizePatched = true;
                             yield return instruction;                                               // float
                             yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Pawn
+                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
                             instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
                         }
                     }
+                    */
                     if (!drawOffsetPatched)
                     {
-                        if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 12 && instruction.opcode == OpCodes.Ldloc_S)
+                        if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 13 && instruction.opcode == OpCodes.Ldloc_S)
                         {
                             drawOffsetPatched = true;
-                            //        if (Prefs.DevMode) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (Prefs.DevMode) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
 
                             yield return instruction;                                               // Vector3
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Pawn
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Quaternion
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4);              // Rotation
+                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 5);              // Rotation
                             instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawOffset"));
 
                         }
                     }
+                    /*
                     if (!drawLocPatched)
                     {
-                        if (instructionsList[index: i].opcode == OpCodes.Ldarg_1 && instructionsList[index: i+1].opcode != OpCodes.Ldarg_2)
+                        if (instructionsList[index: i].opcode == OpCodes.Ldarg_1 && instructionsList[index: i+1].opcode != OpCodes.Ldarg_3)
                         {
+                            yield return instruction;                                               // bool Portrait
                             drawLocPatched = true;
-                       //     if (Prefs.DevMode) Log.Message("DrawPosition At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (Prefs.DevMode) Log.Message("DrawPosition At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
 
-                            yield return instruction;                                               // Vector3
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Pawn
+                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Quaternion
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4);              // Rotation
+                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4);              // Quaternion
+                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 5);              // Rotation
                             instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawPosition"));
 
                         }
                     }
+                    */
 
                 }
 
@@ -117,7 +119,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             return result;
         }
 
-        public static Vector3 DrawOffset(Vector3 original, Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, Quaternion quat, Rot4 rotation)
+        public static Vector3 DrawOffset(Vector3 original, AlienRace.AlienPartGenerator.BodyAddon addon, Rot4 rotation)
         {
             Vector3 result = original;
             LinkedBodyAddon linked = addon as LinkedBodyAddon;
