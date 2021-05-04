@@ -5,11 +5,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGTraitDefOf
+    public static class AdeptusTraitDefOf
     {
-        static OGTraitDefOf()
+        static AdeptusTraitDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGTraitDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusTraitDefOf));
         }
         public static readonly TraitDef FastLearner;
         public static readonly TraitDef Nimble;

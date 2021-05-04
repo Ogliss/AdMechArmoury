@@ -57,18 +57,22 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static void ThrowMuzzleFlash(IntVec3 cell, Map map, ThingDef moteDef, float scale, Verb verb)
         {
-            
+            bool skip = false;
+            if (!AMAMod.settings.AllowMuzzlePosition)
+            {
+                skip = true;
+            }
             if (verb.GetProjectile() as Lasers.LaserBeamDef != null)
             {
-                return;
+                skip = true;
             }
             
             if (verb.GetProjectile().GetType().ToString().Contains("Lasers.LaserBeamDef"))
             {
-                return;
+                skip = true;
             }
             
-            if (verb.EquipmentSource != null)
+            if (verb.EquipmentSource != null && !skip)
             {
                 if (verb.verbProps.range > 1.48f)
                 {

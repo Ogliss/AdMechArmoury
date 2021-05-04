@@ -5,11 +5,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGBodyPartGroupDefOf
+    public static class AdeptusBodyPartGroupDefOf
     {
-        static OGBodyPartGroupDefOf()
+        static AdeptusBodyPartGroupDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGBodyPartGroupDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusBodyPartGroupDefOf));
         }
         public static readonly BodyPartGroupDef Mouth;
         public static readonly BodyPartGroupDef Neck;

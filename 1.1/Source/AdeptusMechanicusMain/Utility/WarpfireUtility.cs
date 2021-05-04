@@ -61,7 +61,7 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
-            Warpfire fire = (Warpfire)ThingMaker.MakeThing(OGThingDefOf.OG_Warpfire, null);
+            Warpfire fire = (Warpfire)ThingMaker.MakeThing(AdeptusThingDefOf.OG_Warpfire, null);
             fire.fireSize = fireSize;
             GenSpawn.Spawn(fire, c, map, Rot4.North, WipeMode.Vanish, false);
             return true;
@@ -74,11 +74,11 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            if (t.HasAttachment(OGThingDefOf.OG_Warpfire))
+            if (t.HasAttachment(AdeptusThingDefOf.OG_Warpfire))
             {
                 return;
             }
-            Warpfire fire = (Warpfire)ThingMaker.MakeThing(OGThingDefOf.OG_Warpfire, null);
+            Warpfire fire = (Warpfire)ThingMaker.MakeThing(AdeptusThingDefOf.OG_Warpfire, null);
             fire.fireSize = fireSize;
             fire.AttachTo(t);
             GenSpawn.Spawn(fire, t.Position, t.Map, Rot4.North, WipeMode.Vanish, false);
@@ -120,7 +120,7 @@ namespace AdeptusMechanicus
             }
             if (t is Pawn)
             {
-                return t.HasAttachment(OGThingDefOf.OG_Warpfire);
+                return t.HasAttachment(AdeptusThingDefOf.OG_Warpfire);
             }
             return t.Position.ContainsStaticWarpfire(t.Map);
         }

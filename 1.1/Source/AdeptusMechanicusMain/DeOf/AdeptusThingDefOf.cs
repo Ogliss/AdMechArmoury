@@ -4,11 +4,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGThingDefOf
+    public static class AdeptusThingDefOf
     {
-        static OGThingDefOf()
+        static AdeptusThingDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGThingDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusThingDefOf));
         }
         //    public static ThingDef HiveLike; RimlaserPrism
         public static ThingDef OG_AMA_Tunneler;
@@ -18,12 +18,24 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Mote_MicroSparksWarp;
         public static ThingDef OG_Mote_WarpFireGlow;
 
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Human_Mechanicus;
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Abhuman_Ogryn;
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Abhuman_Ratlin;
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Abhuman_Beastman;
         [MayRequireAstartes]
         public static ThingDef OG_Human_Astartes;
         [MayRequireDarkEldar]
         public static ThingDef OG_Alien_DarkEldar;
         [MayRequireEldar]
         public static ThingDef OG_Alien_Eldar;
+        /*
+        [MayRequireEldar]
+        public static ThingDef OG_Alien_Wraithguard;
+        */
         [MayRequireOrkz]
         public static ThingDef OG_Alien_Ork;
         [MayRequireOrkz]

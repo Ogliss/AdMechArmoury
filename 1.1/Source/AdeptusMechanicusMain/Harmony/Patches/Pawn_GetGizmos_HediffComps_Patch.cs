@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -32,26 +33,19 @@ namespace AdeptusMechanicus.HarmonyInstance
             // Find all comps on the apparel. If any have gizmos, add them to the result returned from apparel already (typically empty set).
             List<Gizmo> l = new List<Gizmo>(__result);
 
-            for (int o = 0; o < __instance.health.hediffSet.hediffs.Count; o++)
+            for (int o = 0; o < AdeptusHediffUtility.ShieldHediffs.Count; o++)
             {
-                HediffComp_Shield _Shield;
-                if ((_Shield = __instance.health.hediffSet.hediffs[o].TryGetCompFast<HediffComp_Shield>()) != null)
+                HediffWithComps item = __instance.health.hediffSet.GetFirstHediffOfDef(AdeptusHediffUtility.ShieldHediffs[o]) as HediffWithComps;
+                if (item != null)
                 {
-                    foreach (Gizmo gizmo in _Shield.GetShieldGizmos())
+                    if (item.TryGetCompFast<HediffComp_Shield>() is HediffComp_Shield _Shield)
                     {
-                        l.Add(gizmo);
+                        foreach (Gizmo gizmo in _Shield.GetShieldGizmos())
+                        {
+                            l.Add(gizmo);
+                        }
                     }
                 }
-                /*
-                HediffComp_VerbGiverExtra _VerbGiverExtra;
-                if ((_VerbGiverExtra = __instance.health.hediffSet.hediffs[o].TryGetCompFast<HediffComp_VerbGiverExtra>()) != null)
-                {
-                    foreach (Gizmo gizmo in _VerbGiverExtra.GetVerbsCommands())
-                    {
-                        l.Add(gizmo);
-                    }
-                }
-                */
             }
             __result = l;
         }

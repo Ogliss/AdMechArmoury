@@ -20,12 +20,16 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (eq!=null)
             {
+                eq.BroadcastCompSignal(CompAlwaysActivatableEffect.DeactivateSignal);
+
+                /*
                 OgsCompActivatableEffect.CompActivatableEffect comp = eq.TryGetCompFast<OgsCompActivatableEffect.CompActivatableEffect>();
                 bool flag = __instance != null && comp != null && comp.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Activated;
                 if (flag)
                 {
                     comp.TryDeactivate();
                 }
+                */
             }
         }
     }

@@ -8,6 +8,9 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/ScorpionChainsword</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<!--colorTwo>238,213,172</colorTwo--> <!-- Wraithbone -->
+			<!--colorTwo>101,179,69</colorTwo--> <!-- Striking Scorpion armour Primary colour -->
+			<colorTwo>0,111,69</colorTwo> <!-- SNOT GREEN -->
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<soundInteract>Interact_Chainsword</soundInteract>
@@ -102,7 +105,10 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/BitingBlade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>101,179,69</colorTwo> <!-- SCORPION GREEN -->
+			<drawSize>1.05</drawSize>
 		</graphicData>
+		<equippedAngleOffset>-45</equippedAngleOffset>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<WorkToMake>24500</WorkToMake>
@@ -114,9 +120,8 @@
 		<equippedStatOffsets>
 			<MeleeHitChance>0.15</MeleeHitChance>
 			<PsychicSensitivity>0.15</PsychicSensitivity>
-			<MoveSpeed>0.25</MoveSpeed>
+			<MoveSpeed>-0.05</MoveSpeed>
 		</equippedStatOffsets>
-		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tools>
 			<li>
 				<label>pommel</label>
@@ -175,10 +180,15 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
+		<comps>    
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<westOffset>0.0,-0.1,-0.0</westOffset>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-				<dualWield>true</dualWield>
-				<twoHand>false</twoHand>
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
 				<extraRotation>0</extraRotation>
@@ -195,6 +205,7 @@
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/ScorpionClaw</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>101,179,69</colorTwo> <!-- SCORPION GREEN -->
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
@@ -1413,39 +1424,7 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>1.25</drawSize>			
 		</graphicData>
-		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
-				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
-				<gizmosOnEquip>false</gizmosOnEquip>
-				<!--<altitudeLayer>PawnState</altitudeLayer>-->
-				<graphicData>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>CutoutComplex</shaderType>
-					<color>(156,0,74)</color>	
-				</graphicData>	
-				<!--
-				<activateSound>Activate</activateSound>
-				<sustainerSound>Hum</sustainerSound>
-				<deactivateSound>Deactivate</deactivateSound>
-				-->					
-			</li> 
-			<li Class="AbilitesExtended.CompProperties_AbilityItem">
-				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
-				<Abilities>
-					<li>OGE_Ability_ThrowSingingSpear</li>
-					<!--
-					<li>OGI_Ability_FireFlamer</li>
-					<li>OGI_Ability_FireMelta</li>
-					<li>OGI_Ability_FirePlasma</li>
-					<li>OGDE_Ability_FireSplinter</li>
-					<li>OGI_Ability_FireBolter</li>
-					-->
-				</Abilities>
-			</li>
-		</comps>
+		<equippedAngleOffset>-45</equippedAngleOffset>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<WorkToMake>37500</WorkToMake>
@@ -1463,7 +1442,6 @@
 			<PsychicSensitivity>0.50</PsychicSensitivity>
 			<PsychicEntropyRecoveryRate>0.083</PsychicEntropyRecoveryRate>
 		</equippedStatOffsets>
-		<equippedAngleOffset>-45</equippedAngleOffset>
 		<tools>
 			<li>
 				<label>shaft</label>
@@ -1519,6 +1497,39 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<westOffset>0.0,-0.1,-0.0</westOffset>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(156,0,74)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->					
+			</li> 
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<!-- <AbilityUserClass>AbilityUser.GenericCompAbilityItem</AbilityUserClass> -->
+				<Abilities>
+					<li>OGE_Ability_ThrowSingingSpear</li>
+					<!--
+					<li>OGI_Ability_FireFlamer</li>
+					<li>OGI_Ability_FireMelta</li>
+					<li>OGI_Ability_FirePlasma</li>
+					<li>OGDE_Ability_FireSplinter</li>
+					<li>OGI_Ability_FireBolter</li>
+					-->
+				</Abilities>
+			</li>
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -1542,30 +1553,6 @@
 			<shaderType>CutoutComplex</shaderType>
 			<drawSize>1.25</drawSize>			
 		</graphicData>
-		<comps>    
-			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
-				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
-				<gizmosOnEquip>false</gizmosOnEquip>
-				<!--<altitudeLayer>PawnState</altitudeLayer>-->
-				<graphicData>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>CutoutComplex</shaderType>
-					<color>(156,0,74)</color>	
-				</graphicData>	
-				<ForceWeaponEffect>OG_ForceStrike</ForceWeaponEffect>
-				<ForceWeaponHediff>OG_Hediff_FWPsychicShock</ForceWeaponHediff>
-				<ForceWeaponKillChance>0</ForceWeaponKillChance>
-				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
-				<!--
-				<activateSound>Activate</activateSound>
-				<sustainerSound>Hum</sustainerSound>
-				<deactivateSound>Deactivate</deactivateSound>
-				-->				
-			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<WorkToMake>18000</WorkToMake>
@@ -1622,6 +1609,30 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(156,0,74)</color>	
+				</graphicData>	
+				<ForceWeaponEffect>OG_ForceStrike</ForceWeaponEffect>
+				<ForceWeaponHediff>OG_Hediff_FWPsychicShock</ForceWeaponHediff>
+				<ForceWeaponKillChance>0</ForceWeaponKillChance>
+				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->				
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<westOffset>0.0,-0.1,-0.0</westOffset>
+			</li> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

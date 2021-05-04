@@ -621,6 +621,140 @@
 		</modExtensions>
 	</ThingDef>
 
+	<!-- ====================== Eldar - Flamer ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGE_Bullet_Flamer</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>3</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>2</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>0.75</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>15</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Eldar_Gun_Special">
+		<defName>OGE_Gun_Flamer</defName>
+		<label>flamer (E)</label>
+		<description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DragonsBreathFlamer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>75,75,75</colorTwo>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<!--MarketValue>875</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Flame</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EldarEliteGun</li>
+			<li>EldarFlamer</li>
+			<li>Flamer</li>
+			<li>OGEFlamer</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_Flamer</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>14</range>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
 	<!--==================== Eldar - Reaper Launcher =========================-->
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGE_Bullet_ReaperLauncher</defName>
@@ -1341,6 +1475,8 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/FusionGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<!--colorTwo>168,32,20</colorTwo-->
+			<colorTwo>75,75,75</colorTwo>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -1434,9 +1570,14 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/Firepike</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.250</drawSize>		
+			<!--colorTwo>168,32,20</colorTwo--> <!-- MECHRITE RED -->
+			<!--colorTwo>244,121,32</colorTwo--> <!-- FIERY ORANGE -->
+			<!--colorTwo>230,89,37</colorTwo--> <!-- BLAZING ORANGE -->
+			<!--colorTwo>153,6,0</colorTwo--> <!-- Fire Dragon armour Primary colour -->
+			<colorTwo>75,75,75</colorTwo>
+			<drawSize>1.50</drawSize>		
 		</graphicData>
-		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<equippedAngleOffset>45</equippedAngleOffset>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>60000</WorkToMake>
@@ -1638,14 +1779,6 @@
 			<drawSize>1.50</drawSize>			
 		</graphicData>
 		<!--equippedAngleOffset>45</equippedAngleOffset-->
-		<comps>   
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<reliability>1</reliability>
@@ -1719,6 +1852,14 @@
 			<Plasteel>10</Plasteel>
 			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>

@@ -13,6 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection.Emit;
 using UnityEngine;
 using System.Reflection;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -70,7 +71,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     ApparelComposite composite = apparel as ApparelComposite;
                     if (composite != null)
                     {
-                        if (!composite.Pauldrons.NullOrEmpty())
+                        if (!composite.Pauldrons.NullOrEmpty() && AMAMod.settings.AllowPauldronDrawer)
                         {
                             for (int i = 0; i < composite.Pauldrons.Count; i++)
                             {
@@ -112,7 +113,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                             }
                         }
-                        if (!composite.Extras.NullOrEmpty())
+                        if (!composite.Extras.NullOrEmpty() && AMAMod.settings.AllowExtraPartDrawer)
                         {
                             for (int i = 0; i < composite.Extras.Count; i++)
                             {
@@ -157,77 +158,85 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                     else
-                    for (int i = 0; i < apparel.AllComps.Count; i++)
                     {
-                        CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
-                        if (Pauldron != null)
+                        for (int i = 0; i < apparel.AllComps.Count; i++)
                         {
-                            Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
-                            if (Pauldron.activeEntries.NullOrEmpty())
+                            if (AMAMod.settings.AllowPauldronDrawer)
                             {
-                                Pauldron.Initialize();
-                            }
-                            foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
-                            {
-                                //    entry.Drawer = Pauldron;
-                                if (entry.apparel == null)
+                                CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
+                                if (Pauldron != null)
                                 {
-                                    entry.apparel = apparel;
-                                }
-                                if (entry.Drawer == null)
-                                {
-                                    Log.Warning("Warning! Drawer null");
-                                }
-                                if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
-                                {
-                                    if (Pauldron.onHead || renderBody)
+                                    Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                                    if (Pauldron.activeEntries.NullOrEmpty())
                                     {
-                                        GenDraw.DrawMeshNowOrLater
-                                            (
-                                                // pauldronMesh,
-                                                GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
-                                                center + (quat * offset),
-                                                quat,
-                                                OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                                portrait
-                                            );
+                                        Pauldron.Initialize();
+                                    }
+                                    foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
+                                    {
+                                        //    entry.Drawer = Pauldron;
+                                        if (entry.apparel == null)
+                                        {
+                                            entry.apparel = apparel;
+                                        }
+                                        if (entry.Drawer == null)
+                                        {
+                                            Log.Warning("Warning! Drawer null");
+                                        }
+                                        if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                        {
+                                            if (Pauldron.onHead || renderBody)
+                                            {
+                                                GenDraw.DrawMeshNowOrLater
+                                                    (
+                                                        // pauldronMesh,
+                                                        GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                        center + (quat * offset),
+                                                        quat,
+                                                        OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                        portrait
+                                                    );
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
-                        CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
-                        if (ExtraDrawer != null)
-                        {
-                            Vector3 drawAt = vector;
-                            if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
+                            if (AMAMod.settings.AllowExtraPartDrawer)
                             {
-                                bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
-                                Rot4 facing = onHead ? headfacing : bodyFacing;
-                                if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
+                                CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
+                                if (ExtraDrawer != null)
                                 {
-                                    if (onHead || renderBody)
+                                    Vector3 drawAt = vector;
+                                    if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
                                     {
-                                        if (onHead)
+                                        bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
+                                        Rot4 facing = onHead ? headfacing : bodyFacing;
+                                        if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                         {
-                                            Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
-                                            drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
+                                            if (onHead || renderBody)
+                                            {
+                                                if (onHead)
+                                                {
+                                                    Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                                    drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
 
+                                                }
+                                                else
+                                                {
+                                                    drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                                }
+                                                GenDraw.DrawMeshNowOrLater
+                                                    (
+                                                        // pauldronMesh,
+                                                        GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                        drawAt,
+                                                        quat,
+                                                        OverrideMaterialIfNeeded(extraMat, pawn),
+                                                        portrait
+                                                    );
+                                            }
+                                            //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                         }
-                                        else
-                                        {
-                                            drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
-                                        }
-                                        GenDraw.DrawMeshNowOrLater
-                                            (
-                                                // pauldronMesh,
-                                                GetPawnMesh(portrait, pawn, facing, !onHead),
-                                                drawAt,
-                                                quat,
-                                                OverrideMaterialIfNeeded(extraMat, pawn),
-                                                portrait
-                                            );
                                     }
-                                    //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                 }
                             }
                         }
@@ -235,8 +244,59 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 }
             }
-            if (!pawn.Dead)
+            if (!pawn.Dead && AMAMod.settings.AllowHediffPartDrawer)
             {
+                Vector3 drawAt = vector;
+                for (int i = 0; i < AdeptusHediffUtility.GraphicHediffs.Count; i++)
+                {
+                    if (pawn.health.hediffSet.GetFirstHediffOfDef(AdeptusHediffUtility.GraphicHediffs[i]) is HediffWithComps hediff)
+                    {
+                        if (hediff.TryGetCompFast<HediffComp_DrawImplant_AdMech>() is HediffComp_DrawImplant_AdMech drawer)
+                        {
+                            Material material = null;
+                            if (drawer.implantDrawProps.implantDrawerType != ImplantDrawerType.Head)
+                            {
+                                drawAt.y += 0.005f;
+                                if (bodyFacing == Rot4.South && drawer.implantDrawProps.implantDrawerType == ImplantDrawerType.Backpack)
+                                {
+                                    drawAt.y -= 0.3f;
+                                }
+                                material = drawer.ImplantMaterial(pawn, bodyFacing);
+                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
+                            }
+                            else
+                            {
+                                if (!pawn.Downed && !pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                {
+                                    drawAt = vector + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                }
+                                else
+                                {
+                                    if (pawn.Downed || pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                    {
+                                        drawAt.y = vector.y + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing).y;
+                                    }
+                                }
+                                drawAt.y += 0.005f;
+                                material = drawer.ImplantMaterial(pawn, headfacing);
+                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt, quat, material, portrait);
+                            }
+
+                            if (material != null)
+                            {
+                                //    GenDraw.DrawMeshNowOrLater(mesh, drawAt , quat, material, portrait);
+
+                                material = OverrideMaterialIfNeeded(material, pawn);
+                                //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
+                                GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
+                                    quat: quat, mat: material, drawNow: portrait);
+
+                                drawAt.y += HediffComp_DrawImplant_AdMech.MinClippingDistance;
+                            }
+                        }
+                    }
+                }
+                /*
                 for (int hd = 0; hd < pawn.health.hediffSet.hediffs.Count; hd++)
                 {
                     Vector3 drawAt = vector;
@@ -297,6 +357,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                 }
+                */
             }
         
         }

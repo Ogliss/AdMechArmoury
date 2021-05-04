@@ -41,7 +41,7 @@ namespace AdeptusMechanicus
             bool flag = this.Severity >= 1f;
             if (flag)
             {
-                this.pawn.ReplaceHediffFromBodypart(base.Part, HediffDefOf.MissingBodyPart, OGHediffDefOf.OG_Hediff_Regenerated_Part);
+                this.pawn.ReplaceHediffFromBodypart(base.Part, HediffDefOf.MissingBodyPart, AdeptusHediffDefOf.OG_Hediff_Regenerated_Part);
             }
         }
 

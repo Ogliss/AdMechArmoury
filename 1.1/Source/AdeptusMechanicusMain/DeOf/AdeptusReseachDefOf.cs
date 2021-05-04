@@ -3,11 +3,11 @@
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGReseachDefOf
+    public static class AdeptusReseachDefOf
     {
-        static OGReseachDefOf()
+        static AdeptusReseachDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGReseachDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusReseachDefOf));
         }
         /*
         public static ResearchProjectDef OG_Weapons_Lasgun_Hotshot;

@@ -447,7 +447,7 @@ namespace AdeptusMechanicus
                                 gotHit = true;
                                 break;
                             }
-                            if (p.groups.Contains(BodyPartGroupDefOf.FullHead) || p.groups.Contains(BodyPartGroupDefOf.UpperHead) || p.groups.Contains(BodyPartGroupDefOf.Eyes) || p.groups.Contains(OGBodyPartGroupDefOf.Mouth) || p.groups.Contains(OGBodyPartGroupDefOf.Neck))
+                            if (p.groups.Contains(BodyPartGroupDefOf.FullHead) || p.groups.Contains(BodyPartGroupDefOf.UpperHead) || p.groups.Contains(BodyPartGroupDefOf.Eyes) || p.groups.Contains(AdeptusBodyPartGroupDefOf.Mouth) || p.groups.Contains(AdeptusBodyPartGroupDefOf.Neck))
                             {
                                 _OnHeadCache.Add(parent.def.defName, true);
                                 gotHit = true;

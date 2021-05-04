@@ -42,7 +42,7 @@ namespace AdeptusMechanicus
         {
             base.ExplosionAffectCell(explosion, c, damagedThings, ignoredThings, canThrowMotes);
             Rand.PushState();
-            if ((this.def == OGDamageDefOf.OG_Chaos_Deamon_Warpfire || this.def == OGDamageDefOf.OG_WarpStormStrike) && Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(c, explosion.Map)))
+            if ((this.def == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire || this.def == AdeptusDamageDefOf.OG_WarpStormStrike) && Rand.Chance(WarpfireUtility.ChanceToStartWarpfireIn(c, explosion.Map)))
             {
                 WarpfireUtility.TryStartWarpfireIn(c, explosion.Map, Rand.Range(0.2f, 0.6f));
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdeptusMechanicus.settings;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -20,53 +21,65 @@ namespace CombatExtended
 			{
 				string search = this.defName.NullOrEmpty() ? "@Name" : "defName";
 				string s = this.defName.NullOrEmpty() ? this.Name : this.defName;
-				IEnumerator enumerator = xml.SelectNodes("Defs/ThingDef["+ search +"=\"" + s + "\"]").GetEnumerator();
-				try
-				{
-					while (enumerator.MoveNext())
-					{
-						object obj = enumerator.Current;
-						result = true;
-						XmlNode xmlNode = obj as XmlNode;
-						bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
-						if (flag != null && flag.Value)
-						{
-							this.AddOrReplaceStatBases(xml, xmlNode);
-						}
-						bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
-						if (flag2 != null && flag2.Value)
-						{
-							this.AddOrReplaceCostList(xml, xmlNode);
-						}
-						if (this.Properties != null && this.Properties.node.HasChildNodes)
-						{
-							this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
-						}
-						if (this.AmmoUser != null || this.FireModes != null)
-						{
-							this.AddOrReplaceCompsCE(xml, xmlNode);
-						}
-						if (this.weaponTags != null && this.weaponTags.node.HasChildNodes)
-						{
-							this.AddOrReplaceWeaponTags(xml, xmlNode);
-						}
-						if (this.researchPrerequisite != null)
-						{
-							this.AddOrReplaceResearchPrereq(xml, xmlNode);
-						}
-						if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
-						{
-							this.AddRunAndGunExtension(xml, xmlNode);
-						}
-						this.ReplaceCompsOversized(xml, xmlNode);
+				XmlNodeList nodeList = xml.SelectNodes("Defs/ThingDef[" + search + "=\"" + s + "\"]");
+                if (nodeList.Count == 0)
+                {
+                    if (AMAMod.Dev && warnOnDefNotFound) 
+                    {
+						Log.Warning(s + " Not Found");
 					}
+					result = false;
 				}
-				finally
+                else
 				{
-					IDisposable disposable;
-					if ((disposable = (enumerator as IDisposable)) != null)
+					IEnumerator enumerator = nodeList.GetEnumerator();
+					try
 					{
-						disposable.Dispose();
+						while (enumerator.MoveNext())
+						{
+							object obj = enumerator.Current;
+							result = true;
+							XmlNode xmlNode = obj as XmlNode;
+							bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
+							if (flag != null && flag.Value)
+							{
+								this.AddOrReplaceStatBases(xml, xmlNode);
+							}
+							bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
+							if (flag2 != null && flag2.Value)
+							{
+								this.AddOrReplaceCostList(xml, xmlNode);
+							}
+							if (this.Properties != null && this.Properties.node.HasChildNodes)
+							{
+								this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
+							}
+							if (this.AmmoUser != null || this.FireModes != null)
+							{
+								this.AddOrReplaceCompsCE(xml, xmlNode);
+							}
+							if (this.weaponTags != null && this.weaponTags.node.HasChildNodes)
+							{
+								this.AddOrReplaceWeaponTags(xml, xmlNode);
+							}
+							if (this.researchPrerequisite != null)
+							{
+								this.AddOrReplaceResearchPrereq(xml, xmlNode);
+							}
+							if (ModLister.HasActiveModWithName("RunAndGun") && !this.AllowWithRunAndGun)
+							{
+								this.AddRunAndGunExtension(xml, xmlNode);
+							}
+							this.ReplaceCompsOversized(xml, xmlNode);
+						}
+					}
+					finally
+					{
+						IDisposable disposable;
+						if ((disposable = (enumerator as IDisposable)) != null)
+						{
+							disposable.Dispose();
+						}
 					}
 				}
 			}
@@ -332,6 +345,7 @@ namespace CombatExtended
 		}
 
 		bool warnOnMismatchedVerbCount = true;
+		bool warnOnDefNotFound = true;
 		public string Name;
 		public string defName;
 		public string verbPropertiesClass = "CombatExtended.VerbPropertiesCE";

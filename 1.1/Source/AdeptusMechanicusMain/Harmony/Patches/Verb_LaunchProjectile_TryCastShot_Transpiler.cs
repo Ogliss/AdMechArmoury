@@ -14,6 +14,7 @@ using UnityEngine;
 using System.Reflection.Emit;
 using OgsCompOversizedWeapon;
 using AdeptusMechanicus.Lasers;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -110,7 +111,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static Vector3 MuzzlePosition(Vector3 DrawPos, Verb_LaunchProjectile instance, Thing equipment, Thing launcher)
         {
             Vector3 result = DrawPos;
-            if (equipment == null)
+            if (equipment == null || !AMAMod.settings.AllowMuzzlePosition)
             {
                 return result;
             }

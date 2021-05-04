@@ -6,7 +6,8 @@
         Both,
         Right,
         Left,
-        SouthOnly
+        SouthOnly,
+        NorthOnly
     }
 
 }

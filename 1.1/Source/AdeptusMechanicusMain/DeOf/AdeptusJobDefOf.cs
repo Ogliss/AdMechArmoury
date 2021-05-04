@@ -4,11 +4,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGJobDefOf
+    public static class AdeptusJobDefOf
     {
-        static OGJobDefOf()
+        static AdeptusJobDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGJobDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusJobDefOf));
         }
         public static JobDef OG_Job_ChangeLaserColor;
 

@@ -594,6 +594,10 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
+            if (shoulderPadType == ShoulderPadType.NorthOnly && bodyFacing != Rot4.North)
+            {
+                return false;
+            }
             return true;
         }
 

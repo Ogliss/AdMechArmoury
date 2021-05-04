@@ -438,6 +438,10 @@ namespace AdeptusMechanicus
             {
                 return false;
             }
+            if (shoulderPadType == ShoulderPadType.NorthOnly && bodyFacing != Rot4.North)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -485,12 +489,9 @@ namespace AdeptusMechanicus
         }
         public string GetDescription(ShoulderPadType type)
         {
-            if (type != ShoulderPadType.Backpack)
+            if (type != ShoulderPadType.Backpack && type != ShoulderPadType.NorthOnly && type != ShoulderPadType.SouthOnly)
             {
-                if (type == ShoulderPadType.Both)
-                {
-                    return "Pauldrons";
-                }
+                if (type == ShoulderPadType.Both) return "Pauldrons";
                 return type.ToString() + " Pauldron";
             }
             else

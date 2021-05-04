@@ -44,7 +44,7 @@ namespace AdeptusMechanicus
             this.boltMesh = LightningBoltMeshPool.RandomBoltMesh;
             if (!this.strikeLoc.Fogged(this.map))
             {
-                GenExplosion.DoExplosion(this.strikeLoc, this.map, 3f, OGDamageDefOf.OG_WarpStormStrike, null, -1, -1f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
+                GenExplosion.DoExplosion(this.strikeLoc, this.map, 3f, AdeptusDamageDefOf.OG_WarpStormStrike, null, -1, -1f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
                 Vector3 loc = this.strikeLoc.ToVector3Shifted();
                 Rand.PushState();
                 bool chance = Rand.Chance(thingDefSpawnChance);

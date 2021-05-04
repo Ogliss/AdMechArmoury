@@ -44,6 +44,15 @@ namespace AdeptusMechanicus.settings
         public bool AllowNecronWeapons = true;
         public bool AllowTyranidWeapons = false;
 
+        // Armoury Performance Options
+        public bool ShowPerformanceOptions = false;
+        public bool AllowProjectileTrail = true;
+        public bool AllowProjectileGlow = true;
+        public bool AllowMuzzlePosition = true;
+        public bool AllowPauldronDrawer = true;
+        public bool AllowExtraPartDrawer = true;
+        public bool AllowHediffPartDrawer = true;
+
         // Xenobiologis Settings
 
         public bool ShowXenobiologisSettings = false;
@@ -198,8 +207,15 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowOrkWeapons, "AMA_AllowOrkWeapons", true);
                 Scribe_Values.Look(ref this.AllowNecronWeapons, "AMA_AllowNecronWeapons", true);
                 Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", false);
+
+                Scribe_Values.Look(ref this.AllowProjectileTrail, "AMA_AllowProjectileTrail", true);
+                Scribe_Values.Look(ref this.AllowProjectileGlow, "AMA_AllowProjectileGlow", true);
+                Scribe_Values.Look(ref this.AllowMuzzlePosition, "AMA_AllowMuzzlePosition", true);
+                Scribe_Values.Look(ref this.AllowPauldronDrawer, "AMA_AllowPauldronDrawer", true);
+                Scribe_Values.Look(ref this.AllowExtraPartDrawer, "AMA_AllowExtraPartDrawer", true);
+                Scribe_Values.Look(ref this.AllowHediffPartDrawer, "AMA_AllowHediffPartDrawer", false);
             }
-            
+
             // Xenobiologis Data
             {
                 Scribe_Values.Look(ref this.ShowXenobiologisSettings, "AMXB_ShowXenobiologisSettings", true);

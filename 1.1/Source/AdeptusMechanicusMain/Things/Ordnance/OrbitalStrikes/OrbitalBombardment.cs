@@ -121,7 +121,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			int postExplosionSpawnThingCount = __instance.def.projectile.postExplosionSpawnThingCount;
 			float y = __instance.ExactRotation.eulerAngles.y;
 			ThingDef preExplosionSpawnThingDef = __instance.def.projectile.preExplosionSpawnThingDef;
-			damageDef = OGDamageDefOf.OG_E_Distortion_Damage_Blast;
+			damageDef = AdeptusDamageDefOf.OG_E_Distortion_Damage_Blast;
 			GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, ___launcher, DamageAmount, ArmorPenetration, soundExplode);//, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, EquipmentSource.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, EquipmentSource.def.projectile.preExplosionSpawnChance, EquipmentSource.def.projectile.preExplosionSpawnThingCount, EquipmentSource.def.projectile.explosionChanceToStartFire, EquipmentSource.def.projectile.explosionDamageFalloff);
 
 			DamageInfo dinfo = new DamageInfo(damageDef, DamageAmount, ArmorPenetration, y, ___launcher, null, ___launcher.def, DamageInfo.SourceCategory.ThingOrUnknown, hitPawn);

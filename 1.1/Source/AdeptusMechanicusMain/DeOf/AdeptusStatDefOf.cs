@@ -3,11 +3,11 @@
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGStatDefOf
+    public static class AdeptusStatDefOf
     {
-        static OGStatDefOf()
+        static AdeptusStatDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGStatDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusStatDefOf));
         }
         public static readonly StatDef reliability = StatDef.Named("reliability"); // for gun reliability
 

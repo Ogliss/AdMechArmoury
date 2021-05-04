@@ -2,6 +2,7 @@
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -10,7 +11,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Postfix(Projectile __instance, int ___ticksToImpact, Vector3 ___origin, Vector3 ___destination)
         {
-            if (__instance != null && false)
+            if (__instance != null && AMAMod.settings.AllowProjectileTrail)
             {
                 if (__instance.def.HasModExtension<TrailerProjectileExtension>() && __instance.Map != null)
                 {

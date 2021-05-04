@@ -134,10 +134,10 @@ namespace AdeptusMechanicus
 			if (Rand.Value < num)
 			{
 				this.ticksUntilIrradiate = -4;
-				HediffWithComps hediff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(OGHediffDefOf.OG_Hediff_RadiationPoisioning) as HediffWithComps;
+				HediffWithComps hediff = base.Pawn.health.hediffSet.GetFirstHediffOfDef(AdeptusHediffDefOf.OG_Hediff_RadiationPoisioning) as HediffWithComps;
 				if (hediff == null)
 				{
-					hediff = HediffMaker.MakeHediff(OGHediffDefOf.OG_Hediff_RadiationPoisioning, base.Pawn) as HediffWithComps;
+					hediff = HediffMaker.MakeHediff(AdeptusHediffDefOf.OG_Hediff_RadiationPoisioning, base.Pawn) as HediffWithComps;
 					base.Pawn.health.AddHediff(hediff);
 				}
 				hediff.Severity += this.parent.Severity / 100;

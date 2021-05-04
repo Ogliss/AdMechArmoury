@@ -3,11 +3,11 @@
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGPawnsArrivalModeDefOf
+    public static class AdeptusPawnsArrivalModeDefOf
     {
-        static OGPawnsArrivalModeDefOf()
+        static AdeptusPawnsArrivalModeDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGPawnsArrivalModeDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusPawnsArrivalModeDefOf));
         }
         public static PawnsArrivalModeDef OG_DeepStrike_DropPod_TargetPower;
         public static PawnsArrivalModeDef OG_DeepStrike_DropPod_TargetEnemies;

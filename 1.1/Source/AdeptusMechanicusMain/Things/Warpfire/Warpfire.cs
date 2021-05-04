@@ -206,7 +206,7 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(OGThingDefOf.OG_Mote_WarpFireGlow, null);
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(AdeptusThingDefOf.OG_Mote_WarpFireGlow, null);
             Rand.PushState();
             moteThrown.Scale = Rand.Range(4f, 6f) * size;
             moteThrown.rotationRate = Rand.Range(-3f, 3f);
@@ -222,7 +222,7 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(OGThingDefOf.OG_Mote_MicroSparksWarp, null);
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(AdeptusThingDefOf.OG_Mote_MicroSparksWarp, null);
             Rand.PushState();
             moteThrown.Scale = Rand.Range(0.8f, 1.2f);
             moteThrown.rotationRate = Rand.Range(-12f, 12f);
@@ -361,18 +361,18 @@ namespace AdeptusMechanicus
             {
                 BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_Fire, null);
                 Find.BattleLog.Add(battleLogEntry_DamageTaken);
-                DamageInfo dinfo = new DamageInfo(OGDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                DamageInfo dinfo = new DamageInfo(AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
                 dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                 targ.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_DamageTaken);
                 Apparel apparel;
                 if (pawn.apparel != null && pawn.apparel.WornApparel.TryRandomElement(out apparel))
                 {
-                    apparel.TakeDamage(new DamageInfo(OGDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
+                    apparel.TakeDamage(new DamageInfo(AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
                 }
             }
             else
             {
-                targ.TakeDamage(new DamageInfo(OGDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
+                targ.TakeDamage(new DamageInfo(AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire, (float)num2, 0f, -1f, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));
             }
         }
 
@@ -410,7 +410,7 @@ namespace AdeptusMechanicus
                     {
                         return;
                     }
-                    WarpSpark spark = (WarpSpark)GenSpawn.Spawn(OGThingDefOf.OG_WarpSpark, base.Position, base.Map, WipeMode.Vanish);
+                    WarpSpark spark = (WarpSpark)GenSpawn.Spawn(AdeptusThingDefOf.OG_WarpSpark, base.Position, base.Map, WipeMode.Vanish);
                     spark.Launch(this, intVec, intVec, ProjectileHitFlags.All, null);
                 }
                 else

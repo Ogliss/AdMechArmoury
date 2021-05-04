@@ -4,11 +4,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGDamageDefOf
+    public static class AdeptusDamageDefOf
     {
-        static OGDamageDefOf()
+        static AdeptusDamageDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGDamageDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusDamageDefOf));
         }
         public static DamageDef OG_WarpStormStrike;
 

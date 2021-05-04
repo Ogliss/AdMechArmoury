@@ -19,6 +19,8 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Notify_EquipmentAddedPostfix(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
 
+            eq.BroadcastCompSignal(CompAlwaysActivatableEffect.ActivateSignal);
+            /*
             if (eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() != null && eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
             {
                 bool flag = compPowerWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
@@ -35,6 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     compForceWeapon.TryActivate();
                 }
             }
+            */
         }
     }
 }

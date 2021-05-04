@@ -106,10 +106,19 @@ namespace AdeptusMechanicus
                                                                     ba.offsets.east :
                                                                     ba.offsets.west;
 
-            Vector2 bodyOffset = (portrait ? offset?.portraitBodyTypes ?? offset?.bodyTypes : offset?.bodyTypes)?.FirstOrDefault(predicate: to => to.bodyType == Pawn.story.bodyType)
-                               ?.offset ?? Vector2.zero;
-            Vector2 crownOffset = (portrait ? offset?.portraitCrownTypes ?? offset?.crownTypes : offset?.crownTypes)?.FirstOrDefault(predicate: to => to.crownType == Pawn.story.crownType.ToString())
-                                ?.offset ?? Vector2.zero;
+            Vector2 bodyOffset = new Vector3();
+            Vector2 crownOffset = new Vector3();
+            if (Pawn.RaceProps.Humanlike)
+            {
+                bodyOffset = (portrait ? offset?.portraitBodyTypes ?? offset?.bodyTypes : offset?.bodyTypes)?.FirstOrDefault(predicate: to => to.bodyType == Pawn.story.bodyType)
+                                   ?.offset ?? Vector2.zero;
+                crownOffset = (portrait ? offset?.portraitCrownTypes ?? offset?.crownTypes : offset?.crownTypes)?.FirstOrDefault(predicate: to => to.crownType == Pawn.story.crownType.ToString())
+                                    ?.offset ?? Vector2.zero;
+            }
+            else
+            {
+                bodyOffset = offset.offset;
+            }
 
             //Defaults for tails 
             //south 0.42f, -0.3f, -0.22f
@@ -139,7 +148,7 @@ namespace AdeptusMechanicus
                 moffsetX = -moffsetX;
                 num = -num; //Angle
             }
-        return new Vector3(x: moffsetX, y: moffsetY, z: moffsetZ);
+            return new Vector3(x: moffsetX, y: moffsetY, z: moffsetZ);
         }
     }
 
@@ -172,6 +181,7 @@ namespace AdeptusMechanicus
     {
         public float angle = 0f;
         public float layerOffset = 0;
+        public Vector3 offset = Vector3.zero;
         // Token: 0x040000F5 RID: 245
         public List<BodyTypeOffset> portraitBodyTypes;
 

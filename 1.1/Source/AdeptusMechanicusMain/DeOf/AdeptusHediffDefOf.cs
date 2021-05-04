@@ -4,11 +4,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class OGHediffDefOf
+    public static class AdeptusHediffDefOf
     {
-        static OGHediffDefOf()
+        static AdeptusHediffDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(OGHediffDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusHediffDefOf));
         }
         public static HediffDef OG_Hediff_Regenerated_Part;
         public static HediffDef OG_Hediff_Regenerating_Part;

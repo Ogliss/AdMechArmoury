@@ -16,7 +16,6 @@ namespace AdeptusMechanicus
 
     public class CompAlwaysActivatableEffect : CompActivatableEffect
     {
-
         public override bool IsActiveNow => base.IsActiveNow && GetPawn != null;
         private Graphic graphicInt;
         public bool PowerWeapon => parent.def.tools.Any(x => x.capacities.Any(y => y.defName.Contains("OG_PowerWeapon_")));
@@ -187,5 +186,6 @@ namespace AdeptusMechanicus
 
             return str;
         }
+
     }
 }

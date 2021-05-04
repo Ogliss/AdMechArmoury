@@ -84,7 +84,7 @@ namespace AdeptusMechanicus
                     var fireSize = radius - vec3.DistanceTo(Position);
                     if (fireSize > 0.1f)
                     {
-                        if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                        if (this.def.projectile.damageDef == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire)
                         {
                             WarpfireUtility.TryStartWarpfireIn(vec3, map, fireSize);
                         }
@@ -129,7 +129,7 @@ namespace AdeptusMechanicus
 
             float chance;
 
-            if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+            if (this.def.projectile.damageDef == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire)
             {
                 chance = WarpfireUtility.ChanceToStartWarpfireIn(intVec, base.Map);
             }
@@ -152,9 +152,9 @@ namespace AdeptusMechanicus
                         return;
                     }
                     Spark spark;
-                    if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                    if (this.def.projectile.damageDef == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire)
                     {
-                        spark = (Spark)GenSpawn.Spawn(OGThingDefOf.OG_WarpSpark, base.Position, base.Map, WipeMode.Vanish);
+                        spark = (Spark)GenSpawn.Spawn(AdeptusThingDefOf.OG_WarpSpark, base.Position, base.Map, WipeMode.Vanish);
                     }
                     else
                     {
@@ -164,7 +164,7 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-                    if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+                    if (this.def.projectile.damageDef == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire)
                     {
                         WarpfireUtility.TryStartWarpfireIn(intVec, base.Map, 0.1f);
                     }
@@ -228,7 +228,7 @@ namespace AdeptusMechanicus
         public override void Draw()
         {
             string mote = "Mote_FlameGlow";
-            if (this.def.projectile.damageDef == OGDamageDefOf.OG_Chaos_Deamon_Warpfire)
+            if (this.def.projectile.damageDef == AdeptusDamageDefOf.OG_Chaos_Deamon_Warpfire)
             {
                 mote = "OG_Mote_WarpFireGlow";
             }

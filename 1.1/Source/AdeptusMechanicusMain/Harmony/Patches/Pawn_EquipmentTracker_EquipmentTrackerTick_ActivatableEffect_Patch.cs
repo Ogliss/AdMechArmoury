@@ -22,7 +22,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 foreach (ThingWithComps eq in __instance.AllEquipmentListForReading)
                 {
-                    if (eq.TryGetCompFast<CompAlwaysActivatableEffect>() != null && eq.TryGetCompFast<CompAlwaysActivatableEffect>() is CompAlwaysActivatableEffect compAlwaysActivatable)
+                    eq.BroadcastCompSignal(CompAlwaysActivatableEffect.ActivateSignal);
+                    /*
+                    if (eq.TryGetCompFast<CompAlwaysActivatableEffect>() is CompAlwaysActivatableEffect compAlwaysActivatable)
                     {
                         bool flag = compAlwaysActivatable.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
                         if (flag)
@@ -30,6 +32,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             compAlwaysActivatable.TryActivate();
                         }
                     }
+                    */
                     /*
                     if (eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() != null && eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
                     {
