@@ -582,19 +582,51 @@ namespace AdeptusMechanicus
 
         public bool CheckPauldronRotation(Rot4 bodyFacing)
         {
-            if (shoulderPadType == ShoulderPadType.Left && bodyFacing == Rot4.East)
+            if (shoulderPadType == ApparelAddonType.Left && bodyFacing == Rot4.East)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.Right && bodyFacing == Rot4.West)
+            if (shoulderPadType == ApparelAddonType.Right && bodyFacing == Rot4.West)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.SouthOnly && bodyFacing != Rot4.South)
+            if (shoulderPadType == ApparelAddonType.SouthOnly && bodyFacing != Rot4.South)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.NorthOnly && bodyFacing != Rot4.North)
+            if (shoulderPadType == ApparelAddonType.NotSouth && bodyFacing == Rot4.South)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.NorthOnly && bodyFacing != Rot4.North)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.NotNorth && bodyFacing == Rot4.North)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.NorthSouth && (bodyFacing != Rot4.North && bodyFacing != Rot4.South))
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.EastOnly && bodyFacing != Rot4.East)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.NotEast && bodyFacing == Rot4.East)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.WestOnly && bodyFacing != Rot4.West)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.NotWest && bodyFacing == Rot4.West)
+            {
+                return false;
+            }
+            if (shoulderPadType == ApparelAddonType.EastWest && (bodyFacing != Rot4.East && bodyFacing != Rot4.West))
             {
                 return false;
             }
@@ -619,7 +651,7 @@ namespace AdeptusMechanicus
 
         public void ExposeData()
         {
-            Scribe_Values.Look(ref this.shoulderPadType, "shoulderPadType", ShoulderPadType.Both);
+            Scribe_Values.Look(ref this.shoulderPadType, "shoulderPadType", ApparelAddonType.Both);
             Scribe_Defs.Look(ref this.shaderType, "shaderType");
             Scribe_Values.Look(ref this.bodyspecificTextures, "bodyspecificTextures", true);
             Scribe_Values.Look(ref this.padTexPath, "padTexPath", string.Empty);
@@ -663,7 +695,7 @@ namespace AdeptusMechanicus
         private ShoulderPadProperties props;
         public Vector2 size;
         public Apparel apparel;
-        public ShoulderPadType shoulderPadType;
+        public ApparelAddonType shoulderPadType;
         public ShaderTypeDef shaderType;
         public bool bodyspecificTextures = true;
         public string padTexPath;

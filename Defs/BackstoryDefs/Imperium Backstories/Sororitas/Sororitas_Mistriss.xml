@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Sororitas_Mistress</defName>
+		<title>Mistress</title>
+		<titleShort>Mistress</titleShort>
+		<baseDescription>[PAWN_nameDef] is a Mistress and is therefore in charge of a squad of Repentia. Although she wears the power armor of a Sister in good standing, she has no less zeal than her insane charges.</baseDescription>
+		<slot>Adulthood</slot>
+		<!--  +3 shooting, +4 melee, +4 social; disable art, medical, intellect, and animals -->
+		<workDisables>
+			<li>Intellectual</li>
+			<li>Caring</li>
+			<li>Animals</li>
+			<li>Artistic</li>
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraits>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+		</forcedTraits>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<defName>Shooting</defName>
+				<amount>3</amount>
+			</li>	
+			<li>
+				<defName>Melee</defName>
+				<amount>4</amount>
+			</li>	
+			<li>
+				<defName>Social</defName>
+				<amount>4</amount>
+			</li>	
+		</skillGains>
+		<spawnCategories>
+			<li>Sororitas_Standard</li>
+			<li>Sororitas_Mistress</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

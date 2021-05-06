@@ -19,7 +19,7 @@ namespace AdeptusMechanicus
         public Vector2 drawSize = new Vector2(1, 1);
 
         public Apparel apparel;
-        public ShoulderPadType shoulderPadType;
+        public ApparelAddonType partType;
         public bool bodyspecificTextures = true;
         public string texPath;
         public string label;

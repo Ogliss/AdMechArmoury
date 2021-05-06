@@ -1,13 +1,21 @@
 ﻿namespace AdeptusMechanicus
 {
-    public enum ShoulderPadType
+    public enum ApparelAddonType
     {
         Backpack,
         Both,
         Right,
         Left,
         SouthOnly,
-        NorthOnly
+        NorthOnly,
+        EastOnly,
+        WestOnly,
+        NotSouth,
+        NotNorth,
+        NotEast,
+        NotWest,
+        NorthSouth,
+        EastWest
     }
 
 }

@@ -424,21 +424,21 @@ namespace AdeptusMechanicus
 
         }
         */
-        public bool CheckPauldronRotation(Rot4 bodyFacing, ShoulderPadType shoulderPadType)
+        public bool CheckPauldronRotation(Rot4 bodyFacing, ApparelAddonType shoulderPadType)
         {
-            if (shoulderPadType == ShoulderPadType.Left && bodyFacing == Rot4.East)
+            if (shoulderPadType == ApparelAddonType.Left && bodyFacing == Rot4.East)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.Right && bodyFacing == Rot4.West)
+            if (shoulderPadType == ApparelAddonType.Right && bodyFacing == Rot4.West)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.SouthOnly && bodyFacing != Rot4.South)
+            if (shoulderPadType == ApparelAddonType.SouthOnly && bodyFacing != Rot4.South)
             {
                 return false;
             }
-            if (shoulderPadType == ShoulderPadType.NorthOnly && bodyFacing != Rot4.North)
+            if (shoulderPadType == ApparelAddonType.NorthOnly && bodyFacing != Rot4.North)
             {
                 return false;
             }
@@ -487,11 +487,11 @@ namespace AdeptusMechanicus
                 return ret;
             }
         }
-        public string GetDescription(ShoulderPadType type)
+        public string GetDescription(ApparelAddonType type)
         {
-            if (type != ShoulderPadType.Backpack && type != ShoulderPadType.NorthOnly && type != ShoulderPadType.SouthOnly)
+            if (type != ApparelAddonType.Backpack && type != ApparelAddonType.NorthOnly && type != ApparelAddonType.SouthOnly)
             {
-                if (type == ShoulderPadType.Both) return "Pauldrons";
+                if (type == ApparelAddonType.Both) return "Pauldrons";
                 return type.ToString() + " Pauldron";
             }
             else
@@ -543,7 +543,7 @@ namespace AdeptusMechanicus
         {
             base.PostExposeData();
             Scribe_Values.Look<int>(ref this.entryInd, "entryInd", -1, false);
-            Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
+            Scribe_Values.Look<ApparelAddonType>(ref this.padType, "padType", ApparelAddonType.Both, false);
             Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
             Scribe_Collections.Look(ref this.activeEntries, "activeEntries", LookMode.Deep);
             Scribe_References.Look(ref this.wearer, "lastWearingPawn"+ Props.saveKey);
@@ -556,7 +556,7 @@ namespace AdeptusMechanicus
         const float _OffsetFactor = 0.001f;
         const float _SubOffsetFactor = 0.0001f;
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
-        public ShoulderPadType padType;
+        public ApparelAddonType padType;
         public bool ExtraUseBodyOffset;
         public bool useSecondaryColor;
         public bool useFactionTextures = false;
