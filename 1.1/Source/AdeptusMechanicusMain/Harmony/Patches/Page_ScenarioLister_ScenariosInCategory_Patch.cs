@@ -18,6 +18,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (!DefDatabase<ScenarioDef>.AllDefsListForReading.Any(x => x.scenario.name == scen.name))
                 {
                     yield return scen;
+                    continue;
                 }
                 if (cat == ScenarioCategory.FromDef)
                 {
