@@ -61,9 +61,8 @@ namespace AdeptusMechanicus
             {
                 if (label.NullOrEmpty())
                 {
-                    char[] charSeparators = new char[] { '/' };
-                    List<string> split = graphicData.texPath.Split(charSeparators).ToList();
-                    return split[split.Count-1];
+                    List<string> split = graphicData.texPath.Split(new char[] { '/' }).ToList();
+                    label = split[split.Count-1];
 
                 }
                 return label;
@@ -105,31 +104,18 @@ namespace AdeptusMechanicus
     {
         public Vector3 offset;
         public Vector2 size;
-        // Token: 0x04000103 RID: 259
         public OffsetRotation south;
-
-        // Token: 0x04000104 RID: 260
         public OffsetRotation north;
-
-        // Token: 0x04000105 RID: 261
         public OffsetRotation east;
-
-        // Token: 0x04000106 RID: 262
         public OffsetRotation west;
     }
 
     public class OffsetRotation
     {
-        // Token: 0x04000107 RID: 263
+        public bool canFlip = false;
         public List<OffsetBodyType> portraitBodyTypes;
-
-        // Token: 0x04000108 RID: 264
         public List<OffsetBodyType> bodyTypes;
-
-        // Token: 0x04000109 RID: 265
         public List<OffsetCrownType> portraitCrownTypes;
-
-        // Token: 0x0400010A RID: 266
         public List<OffsetCrownType> crownTypes;
     }
 
@@ -143,14 +129,11 @@ namespace AdeptusMechanicus
         }
 
         public BodyTypeDef bodyType;
-
         public Vector3 offset = Vector3.zero;
     }
 
-    // Token: 0x02000034 RID: 52
     public class OffsetCrownType
     {
-        // Token: 0x060000F6 RID: 246 RVA: 0x0000BA23 File Offset: 0x00009C23
         [UsedImplicitly]
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
@@ -158,10 +141,7 @@ namespace AdeptusMechanicus
             this.offset = (Vector3)ParseHelper.FromString(xmlRoot.FirstChild.Value, typeof(Vector3));
         }
 
-        // Token: 0x0400010D RID: 269
         public string crownType;
-
-        // Token: 0x0400010E RID: 270
         public Vector3 offset = Vector3.zero;
     }
 

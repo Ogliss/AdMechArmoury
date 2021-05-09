@@ -32,10 +32,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName.Contains("OGE_Apparel_DireAvenger"))
                     {
                         newName = defName.Replace("OGE_Apparel_DireAvenger", "OGE_Apparel_Avenger");
+                        return;
                     }
-                    if (defName == "OGE_Apparel_StrikingScorpionArmour")
+                    if (defName.Contains("OGE_Apparel_StrikingScorpion"))
                     {
-                        __result = "OGE_Apparel_ScorpionArmour";
+                        newName = defName.Replace("OGE_Apparel_StrikingScorpion", "OGE_Apparel_Scorpion");
                         return;
                     }
                     if (defName == "OGDE_Melee_WytchKnife")

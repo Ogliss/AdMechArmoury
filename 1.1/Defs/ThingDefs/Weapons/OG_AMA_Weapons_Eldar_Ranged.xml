@@ -663,7 +663,7 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/DragonsBreathFlamer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<colorTwo>75,75,75</colorTwo>
+			<colorTwo>74,76,88</colorTwo> <!-- ADEPTUS BATTLEGREY -->
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
@@ -1207,6 +1207,9 @@
 		</textures>
 		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
 		<seam>0</seam>
+		<beamWidth>1.75</beamWidth>
+		<flareLength>0.5</flareLength>
+		<flareWidthMod>1.50</flareWidthMod>
 		<projectile>
 			<explosionRadius>1.50</explosionRadius>
 			<damageDef>OGELance</damageDef>
@@ -1214,6 +1217,16 @@
 			<armorPenetrationBase>0.84</armorPenetrationBase>
 			<soundExplode>OGIPP_Explosion</soundExplode>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
@@ -1224,7 +1237,8 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/PrismRifle</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.250</drawSize>			
+			<drawSize>1.350</drawSize>	
+			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->		
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<comps>     
@@ -1354,6 +1368,16 @@
 			<damageAmountBase>75</damageAmountBase>
 			<armorPenetrationBase>0.84</armorPenetrationBase>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Eldar_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
@@ -1477,7 +1501,7 @@
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/FusionGun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<!--colorTwo>168,32,20</colorTwo-->
-			<colorTwo>75,75,75</colorTwo>
+			<colorTwo>74,76,88</colorTwo> <!-- ADEPTUS BATTLEGREY -->
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -1564,6 +1588,7 @@
 		</modExtensions>
 	</ThingDef>
 
+	<!-- ====================== Eldar - Firepike ===================== -->
 	<ThingDef ParentName="OG_Eldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
 		<defName>OGE_Gun_Firepike</defName>
 		<label>firepike (E)</label>
@@ -1571,11 +1596,7 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/Firepike</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<!--colorTwo>168,32,20</colorTwo--> <!-- MECHRITE RED -->
-			<!--colorTwo>244,121,32</colorTwo--> <!-- FIERY ORANGE -->
-			<!--colorTwo>230,89,37</colorTwo--> <!-- BLAZING ORANGE -->
-			<!--colorTwo>153,6,0</colorTwo--> <!-- Fire Dragon armour Primary colour -->
-			<colorTwo>75,75,75</colorTwo>
+			<colorTwo>74,76,88</colorTwo> <!-- ADEPTUS BATTLEGREY -->
 			<drawSize>1.50</drawSize>		
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
