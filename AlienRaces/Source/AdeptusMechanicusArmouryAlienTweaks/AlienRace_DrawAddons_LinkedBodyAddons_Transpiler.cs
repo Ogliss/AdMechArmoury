@@ -39,7 +39,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 5 && instruction.opcode == OpCodes.Ldloc_S && !drawOffsetsPatched)
                     {
                         drawOffsetsPatched = true;
-                   //     if (Prefs.DevMode) Log.Message("DrawOffsets At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                   //     if (AMAMod.Dev) Log.Message("DrawOffsets At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                         
                         yield return instruction;                                               // RotationOffset
                         yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Pawn
@@ -53,7 +53,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
                         {
-                            if (Prefs.DevMode) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                             drawSizePatched = true;
                             yield return instruction;                                               // float
                             yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
@@ -62,13 +62,17 @@ namespace AdeptusMechanicus.HarmonyInstance
                             instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
                         }
                     }
-                    
+
+                    if (instructionsList[index: i].opcode == OpCodes.Stfld && instructionsList[index: i].OperandIs(typeof(Graphic).GetField("drawSize")))
+                    {
+                        if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                    }
                     if (!drawOffsetPatched)
                     {
                         if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 13 && instruction.opcode == OpCodes.Ldloc_S)
                         {
                             drawOffsetPatched = true;
-                            if (Prefs.DevMode) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (AMAMod.Dev) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
 
                             yield return instruction;                                               // Vector3
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
@@ -84,7 +88,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             yield return instruction;                                               // bool Portrait
                             drawLocPatched = true;
-                            if (Prefs.DevMode) Log.Message("DrawPosition At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                            if (AMAMod.Dev) Log.Message("DrawPosition At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
 
                             yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
@@ -111,7 +115,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 ThingDef_AlienRace thingDef_AlienRace = pawn.def as ThingDef_AlienRace;
                 GraphicPaths paths = thingDef_AlienRace.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage);
-                Vector2 v = linked.useHeadDrawSize ? (portrait? paths.customPortraitHeadDrawSize :paths.customHeadDrawSize) : (portrait ? paths.customPortraitDrawSize : paths.customDrawSize);
+                Vector2 v = linked.alignWithHead ? (portrait? paths.customPortraitHeadDrawSize : paths.customHeadDrawSize) : (portrait ? paths.customPortraitDrawSize : paths.customDrawSize);
                 result *= (v.x + v.y) / 2f;
                 //    Log.Message("DrawSize result: " + result);
             }
@@ -145,7 +149,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             Vector3 result = original;
             LinkedBodyAddon linked = addon as LinkedBodyAddon;
-            if (linked != null && linked.useHeadPosition)
+            if (linked != null && linked.alignWithHead)
             {
                 Vector3 b = quat * pawn.Drawer.renderer.BaseHeadOffsetAt(rotation);
                 Vector3 v = original + b;
@@ -160,7 +164,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             AlienPartGenerator.RotationOffset result = original;
             LinkedBodyAddon linked = addon as LinkedBodyAddon;
-            if (linked != null && linked.useHeadPosition)
+            if (linked != null && linked.alignWithHead)
             {
                 ThingDef_AlienRace thingDef_AlienRace = pawn.def as ThingDef_AlienRace;
                 GraphicPaths paths = thingDef_AlienRace.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage);

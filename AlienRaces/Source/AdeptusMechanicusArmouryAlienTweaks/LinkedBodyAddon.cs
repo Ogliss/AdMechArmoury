@@ -10,9 +10,7 @@ namespace AdeptusMechanicus
 {
     public class LinkedBodyAddon : BodyAddon
     {
-        public bool useHeadPosition = false;
         public bool useDefautZeroOffset = true;
-        public bool useHeadDrawSize = false;
         public bool linkLifeStageDrawSize = false;
     }
 }
