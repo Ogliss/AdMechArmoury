@@ -48,7 +48,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         
                     }
                     */
-                    /*
+                    
                     if (!drawSizePatched)
                     {
                         if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
@@ -62,7 +62,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
                         }
                     }
-                    */
+                    
                     if (!drawOffsetPatched)
                     {
                         if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 13 && instruction.opcode == OpCodes.Ldloc_S)

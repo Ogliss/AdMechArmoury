@@ -49,6 +49,7 @@ namespace AdeptusMechanicus
         const float _SubOffsetFactor = 0.0001f;
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
         public Shader shader = ShaderDatabase.Cutout;
+        public Shader Shader => ShaderDatabase.Cutout;
         public bool ExtraUseBodyTexture; 
         public bool ExtraUseHeadOffset; 
         private bool useSecondaryColor;
@@ -74,21 +75,21 @@ namespace AdeptusMechanicus
                     msg.AppendLine("    extraPartEntryint: " + extraPartEntryint);
                     if (extraPartEntry == null)
                     {
-                        msg.AppendLine("        extraPartEntry: Make New");
-                        if (extraPartEntryint == -1)
-                        {
-                            this.GeneratePart(ref msg);
-                        }
-                        else
+                        msg.AppendLine("        extraPartEntry: Initalize");
                         if (extraPartEntryint >= 0)
                         {
-                            extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
+                            msg.AppendLine("        extraPartEntry: Load");
                         }
+                        else
+                        {
+                            msg.AppendLine("        extraPartEntry: Make New");
+                        }
+                        this.GeneratePart(ref msg);
                         msg.AppendLine("        Initialized: " + partInitialized);
                     }
                     else
                     {
-                        msg.AppendLine("    Entry: " + extraPartEntryint + " ExtraPartEntry: " + extraPartEntry.Label);
+                        msg.AppendLine("    Entry: " + extraPartEntryint);
                     }
                 }
                 else
@@ -105,33 +106,50 @@ namespace AdeptusMechanicus
             }
         }
         bool logged = false;
-        bool loging = true;
+        bool loging = false;
 
         public void GeneratePart(ref StringBuilder msg)
         {
-            List<ExtraApparelPartProps> possibles = new List<ExtraApparelPartProps>();
-            if (Apparel.TryGetQuality(out QualityCategory quality))
+            if (extraPartEntryint >= 0)
             {
-                msg.AppendLine("            QualityCategory: " + quality);
-                possibles.AddRange(this.Props.ExtrasEntries.FindAll(x => x.AcceptableForQuality(quality)));
+                extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
             }
             else
             {
-                msg.AppendLine("            No CompQuality");
-                possibles = this.Props.ExtrasEntries;
+                List<ExtraApparelPartProps> possibles = new List<ExtraApparelPartProps>();
+                if (extraPartEntryint == -1)
+                {
+                    if (Apparel.TryGetQuality(out QualityCategory quality))
+                    {
+                        msg.AppendLine("            QualityCategory: " + quality);
+                        possibles.AddRange(this.Props.ExtrasEntries.FindAll(x => x.AcceptableForQuality(quality)));
+                    }
+                    else
+                    {
+                        msg.AppendLine("            No CompQuality");
+                        possibles = this.Props.ExtrasEntries;
+
+                    }
+                }
+                msg.AppendLine("            possibles: " + possibles.Count);
+                if (!possibles.NullOrEmpty())
+                {
+                    Rand.PushState();
+                    extraPartEntry = possibles.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
+                    Rand.PopState();
+                    extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
+
+                }
+                else extraPartEntryint = -2;
 
             }
-            msg.AppendLine("            possibles: " + possibles.Count);
-            if (!possibles.NullOrEmpty())
+            if (extraPartEntry != null)
             {
-                Rand.PushState();
-                extraPartEntry = possibles.RandomElementByWeight((ExtraApparelPartProps x) => x.commonality);
-                Rand.PopState();
-                extraPartEntryint = this.Props.ExtrasEntries.IndexOf(extraPartEntry);
-
                 this.shader = ShaderDatabase.LoadShader(extraPartEntry.graphicData.shaderType.shaderPath);
                 this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
+                msg.AppendLine("    Using: " + extraPartEntry + " at position: " + extraPartEntryint);
+                msg.AppendLine("        shader: " + shader + " useSecondaryColor: " + useSecondaryColor + " ExtraUseBodyTexture: " + ExtraUseBodyTexture);
                 partInitialized = true;
             }
             else
@@ -420,7 +438,7 @@ namespace AdeptusMechanicus
                 this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
                 */
-                StringBuilder msg = new StringBuilder();
+                StringBuilder msg = new StringBuilder("PostSpawnSetup ");
                 this.GeneratePart(ref msg);
             }
             partInitialized = true;

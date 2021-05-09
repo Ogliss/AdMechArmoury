@@ -422,7 +422,7 @@ namespace AdeptusMechanicus
             }
             if (!listBlack.NullOrEmpty())
             {
-                alien.alienRace.raceRestriction.researchList[0].projects.AddRange(listBlack);
+            //    alien.alienRace.raceRestriction.researchList[0].projects.AddRange(listBlack);
                 foreach (ResearchProjectDef def in listBlack)
                 {
                     if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
