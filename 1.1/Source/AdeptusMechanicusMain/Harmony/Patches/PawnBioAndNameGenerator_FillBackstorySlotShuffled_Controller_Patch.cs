@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool Prefix(Pawn pawn, BackstorySlot slot, ref Backstory backstory, Backstory backstoryOtherSlot, List<BackstoryCategoryFilter> backstoryCategories, FactionDef factionType)
         {
             Log.Message("PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch For: "+ pawn +" slot: " +slot+ " backstoryOtherSlot: "+ backstoryOtherSlot+ " backstoryCategories: "+ backstoryCategories.Count + " factionType: "+ factionType);
-            bool act = pawn.def.modContentPack.Name.Contains("Adeptus Mechanicus");
+            bool act = pawn.def.modContentPack != null && pawn.def.modContentPack.Name.Contains("Adeptus Mechanicus");
             Log.Message("modContentPack: "+ act);
             if (act || pawn.def.defName.StartsWith("OG_") || pawn.kindDef.defName.StartsWith("OG_") || pawn.kindDef.defName.Contains("_OG_"))
             {
