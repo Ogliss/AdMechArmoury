@@ -43,8 +43,10 @@ namespace AdeptusMechanicus
         // Humanlike Race Defs
         [MayRequireXenobiologis, MayRequireEldar]
         public static ThingDef OG_Alien_Eldar;
-        [MayRequireXenobiologis, MayRequireEldar]
+        [MayRequireEldar]
         public static ThingDef OG_Alien_Wraithguard;
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Eldar_Wraithguard_Race;
         #endregion
 
         #region Dark Eldar
@@ -61,7 +63,7 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Alien_Grot;
 
         // Animal Race Defs
-        [MayRequireXenobiologis, MayRequireOrkz]
+        [MayRequireOrkz]
         public static ThingDef OG_Snotling;
         [MayRequireXenobiologis, MayRequireOrkz]
         public static ThingDef OG_Squig;

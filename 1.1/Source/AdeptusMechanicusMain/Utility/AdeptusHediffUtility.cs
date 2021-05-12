@@ -44,8 +44,10 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (graphicHediffs.NullOrEmpty())
+
+                if (graphicHediffs == null)
                 {
+
                     graphicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_DrawImplant_AdMech)));
                     if (AMAMod.Dev)
                     {

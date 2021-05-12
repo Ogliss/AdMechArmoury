@@ -29,14 +29,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = defName.Replace("Ammo_OG", "OG_Ammo_");
                     }
+                    if (defName.Contains("OGIG_Apparel_Armageddon_GasMask"))
+                    {
+                        __result = "OGIG_Apparel_Armageddon_Gasmask";
+                        return;
+                    }
+                    if (defName.Contains("OGIG_Apparel_CadianFlakHelmet"))
+                    {
+                        __result = "OGIG_Apparel_FlakHelmetLight";
+                        return;
+                    }
                     if (defName.Contains("OGE_Apparel_DireAvenger"))
                     {
-                        newName = defName.Replace("OGE_Apparel_DireAvenger", "OGE_Apparel_Avenger");
+                        __result = defName.Replace("DireAvenger", "Avenger");
                         return;
                     }
                     if (defName.Contains("OGE_Apparel_StrikingScorpion"))
                     {
-                        newName = defName.Replace("OGE_Apparel_StrikingScorpion", "OGE_Apparel_Scorpion");
+                        __result = defName.Replace("StrikingScorpion", "Scorpion");
                         return;
                     }
                     if (defName == "OGDE_Melee_WytchKnife")

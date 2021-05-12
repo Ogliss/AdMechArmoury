@@ -88,7 +88,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         if (!activeEffect.HasValue || activeEffect.Value)
                         {
-                            Log.Message(dinfo.Weapon.LabelCap + " activeEffect");
+                        //    Log.Message(dinfo.Weapon.LabelCap + " activeEffect");
                             if (rending)
                             {
                                 //        Log.Message(dinfo.Weapon.LabelCap + " Is Rending");

@@ -3,6 +3,8 @@ using Verse;
 using System.Collections.Generic;
 using System.Linq;
 using AlienRace;
+using System.Text;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus
 {
@@ -26,7 +28,7 @@ namespace AdeptusMechanicus
             AlienRace.ThingDef_AlienRace Beastman = ArmouryMain.beastman as AlienRace.ThingDef_AlienRace;
             if (Mechanicus != null)
             {
-                DoRacialRestrictionsFor(Mechanicus, "AM", whiteResearches: ArmouryMain.ReseachMechanicus);
+                DoRacialRestrictionsFor(Mechanicus, "AM", whiteResearches: ArmouryMain.ReseachMechanicus, Logging: AMAMod.Dev);
             }
             List<ThingDef> races = new List<ThingDef>();
             if (Ogryn != null) races.Add(Ogryn);
@@ -55,37 +57,38 @@ namespace AdeptusMechanicus
             }
         }
 
-        public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null)
+        public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
             List<string> whiteTags = new List<string>();
             whiteTags.Add(whiteTag);
-            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals);
+            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(ThingDef race, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null)
+        public static void DoRacialRestrictionsFor(ThingDef race, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
-            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals);
+            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
         {
             List<string> Tags = new List<string>();
             Tags.Add(whiteTag);
-            DoRacialRestrictionsFor(races, Tags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals);
+            DoRacialRestrictionsFor(races, Tags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
         {
             foreach (ThingDef race in races)
             {
                 AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
                 if (alien != null)
                 {
-                    string msg = "Try Do Racial Restrictions For " + alien.LabelCap + " (" + alien.defName + ")";
+                    debug = new StringBuilder("Try Do Racial Restrictions For " + alien.LabelCap + " (" + alien.defName + ")");
+                    debug.AppendLine();
                     List<ThingDef> blackBuildings = new List<ThingDef>();
                     List<ThingDef> whiteBuildings = new List<ThingDef>();
                     List<RecipeDef> blackRecipes = new List<RecipeDef>();
@@ -97,13 +100,13 @@ namespace AdeptusMechanicus
                             List<RecipeDef> recipes = DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("OG" + Tag + "_"));
                             if (!recipes.NullOrEmpty())
                             {
-                                msg += "\n" + recipes.Count + " OG" + Tag + " whiteRecipes";
+                            //    if (Logging) debug.AppendLine(recipes.Count + "   OG" + Tag + " whiteRecipes");
                                 whiteRecipes.AddRange(recipes);
                             }
                             List<ThingDef> buildings = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("OG" + Tag + "_") && (x.building != null || x.IsBuildingArtificial));
                             if (!buildings.NullOrEmpty())
                             {
-                                msg += "\n" + buildings.Count + " OG" + Tag + " whiteBuildings";
+                            //     if (Logging) debug.AppendLine(buildings.Count + "   OG" + Tag + " whiteBuildings");
                                 whiteBuildings.AddRange(buildings);
                             }
                         }
@@ -115,70 +118,58 @@ namespace AdeptusMechanicus
                             List<RecipeDef> recipes = DefDatabase<RecipeDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("OG" + Tag + "_"));
                             if (!recipes.NullOrEmpty())
                             {
-                                msg += "\n" + recipes.Count + " OG" + Tag + " blackRecipes";
+                            //     if (Logging) debug.AppendLine(recipes.Count + "   OG" + Tag + " blackRecipes");
                                 blackRecipes.AddRange(recipes);
                             }
                             List<ThingDef> buildings = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("OG" + Tag + "_") && (x.building != null || x.IsBuildingArtificial));
                             if (!buildings.NullOrEmpty())
                             {
-                                msg += "\n" + buildings.Count + " OG" + Tag + " blackBuildings";
+                            //     if (Logging) debug.AppendLine(buildings.Count + "   OG" + Tag + " blackBuildings");
                                 blackBuildings.AddRange(buildings);
                             }
                         }
                     }
-                    RestrictRecipes(alien, whiteRecipes, blackRecipes);
-                    RestrictBuildings(alien, whiteBuildings, blackBuildings);
-                    if (!whiteResearches.NullOrEmpty())
+                    if (!blackRecipes.NullOrEmpty() || !whiteRecipes.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + whiteResearches.Count + " whiteResearches";
+                        debug.AppendLine("    Recipes: ");//+(blackRecipes.Count + whiteRecipes.Count));
                     }
-                    if (!blackResearches.NullOrEmpty())
+                    RestrictRecipes(alien, whiteRecipes, blackRecipes, Logging);
+                    if (!blackBuildings.NullOrEmpty() || !whiteBuildings.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + blackResearches.Count + " blackResearches";
+                        debug.AppendLine("    Buildings: ");// + (blackBuildings.Count + whiteBuildings.Count));
                     }
-                    RestrictResearch(alien, whiteResearches, blackResearches);
-                    if (!whiteApparel.NullOrEmpty())
+                    RestrictBuildings(alien, whiteBuildings, blackBuildings, Logging);
+                    if (!blackResearches.NullOrEmpty() || !whiteResearches.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + whiteApparel.Count + " whiteApparel";
+                        debug.AppendLine("    Research: ");// + (blackResearches.Count + whiteResearches.Count));
                     }
-                    if (!blackApparel.NullOrEmpty())
+                    RestrictResearch(alien, whiteResearches, blackResearches, Logging);
+                    if (!blackApparel.NullOrEmpty() || !whiteApparel.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + blackApparel.Count + " blackApparel";
+                        debug.AppendLine("    Apparel: ");// + (blackApparel.Count + whiteApparel.Count));
                     }
-                    RestrictApparel(alien, whiteApparel, blackApparel);
-                    if (!whiteWeapons.NullOrEmpty())
+                    RestrictApparel(alien, whiteApparel, blackApparel, Logging);
+                    if (!blackWeapons.NullOrEmpty() || !whiteWeapons.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + whiteWeapons.Count + " whiteWeapons";
+                        debug.AppendLine("    Weapons: ");// + (blackWeapons.Count + whiteWeapons.Count));
                     }
-                    if (!blackWeapons.NullOrEmpty())
+                    RestrictWeapons(alien, whiteWeapons, blackWeapons, Logging);
+                    if (!blackPlants.NullOrEmpty() || !whitePlants.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + blackWeapons.Count + " blackWeapons";
+                        debug.AppendLine("    Plants: ");// + (blackPlants.Count + whitePlants.Count));
                     }
-                    RestrictWeapons(alien, whiteWeapons, blackWeapons);
-                    if (!whitePlants.NullOrEmpty())
+                    RestrictPlants(alien, whitePlants, blackPlants, Logging);
+                    if (!blackAnimals.NullOrEmpty() || !whiteAnimals.NullOrEmpty() && Logging)
                     {
-                        msg += "\n" + whitePlants.Count + " whitePlants";
+                        debug.AppendLine("    Animals: ");// + (blackAnimals.Count + whiteAnimals.Count));
                     }
-                    if (!blackPlants.NullOrEmpty())
-                    {
-                        msg += "\n" + blackPlants.Count + " blackPlants";
-                    }
-                    RestrictPlants(alien, whitePlants, blackPlants);
-                    if (!whiteAnimals.NullOrEmpty())
-                    {
-                        msg += "\n" + whiteAnimals.Count + " whiteAnimals";
-                    }
-                    if (!blackAnimals.NullOrEmpty())
-                    {
-                        msg += "\n" + blackAnimals.Count + " blackAnimals";
-                    }
-                    RestrictAnimals(alien, whiteAnimals, blackAnimals);
-                    //    Log.Message(msg);
+                    RestrictAnimals(alien, whiteAnimals, blackAnimals, Logging);
+                    if (Logging) Log.Message(debug.ToString());
                 }
             }
         }
 
-        public static void RestrictBuildings(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictBuildings(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
 
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
@@ -189,7 +180,7 @@ namespace AdeptusMechanicus
             List<ThingDef> list = alien.alienRace.raceRestriction.buildingList;
             List<ThingDef> whitelist = alien.alienRace.raceRestriction.whiteBuildingList;
             List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackBuildingList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.buildingRestricted, listWhite, listBlack);
+            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.buildingRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.buildingList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whiteBuildingList.AddRange(listWhite);
@@ -203,7 +194,7 @@ namespace AdeptusMechanicus
             */
         }
 
-        public static void RestrictWeapons(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictWeapons(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
@@ -213,7 +204,7 @@ namespace AdeptusMechanicus
             List<ThingDef> list = alien.alienRace.raceRestriction.weaponList;
             List<ThingDef> whitelist = alien.alienRace.raceRestriction.whiteWeaponList;
             List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackWeaponList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.weaponRestricted, listWhite, listBlack);
+            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.weaponRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.weaponList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whiteWeaponList.AddRange(listWhite);
@@ -227,7 +218,7 @@ namespace AdeptusMechanicus
             */
         }
 
-        public static void RestrictPlants(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictPlants(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
@@ -237,7 +228,7 @@ namespace AdeptusMechanicus
             List<ThingDef> list = alien.alienRace.raceRestriction.plantList;
             List<ThingDef> whitelist = alien.alienRace.raceRestriction.whitePlantList;
             List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackPlantList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.plantRestricted, listWhite, listBlack);
+            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.plantRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.plantList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whitePlantList.AddRange(listWhite);
@@ -251,7 +242,7 @@ namespace AdeptusMechanicus
             */
         }
 
-        public static void RestrictAnimals(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictAnimals(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
@@ -261,7 +252,7 @@ namespace AdeptusMechanicus
             List<ThingDef> list = alien.alienRace.raceRestriction.petList;
             List<ThingDef> whitelist = alien.alienRace.raceRestriction.whitePetList;
             List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackPetList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.petRestricted, listWhite, listBlack);
+            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.petRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.petList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whitePetList.AddRange(listWhite);
@@ -275,17 +266,14 @@ namespace AdeptusMechanicus
             */
         }
 
-        public static void RestrictApparel(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictApparel(ThingDef race, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
             {
                 return;
             }
-            List<ThingDef> list = alien.alienRace.raceRestriction.apparelList;
-            List<ThingDef> whitelist = alien.alienRace.raceRestriction.whiteApparelList;
-            List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackApparelList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.apparelRestricted, listWhite, listBlack);
+            RestrictThings(ref alien.alienRace.raceRestriction.apparelList, ref alien.alienRace.raceRestriction.whiteApparelList, ref alien.alienRace.raceRestriction.blackApparelList, ref RaceRestrictionSettings.apparelRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.apparelList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whiteApparelList.AddRange(listWhite);
@@ -298,12 +286,14 @@ namespace AdeptusMechanicus
             }
             */
         }
-        public static void RestrictThings(ref List<ThingDef> list, ref List<ThingDef> whiteList, ref List<ThingDef> blackList, ref HashSet<ThingDef> restricted, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null)
+        public static void RestrictThings(ref List<ThingDef> list, ref List<ThingDef> whiteList, ref List<ThingDef> blackList, ref HashSet<ThingDef> restricted, List<ThingDef> listWhite = null, List<ThingDef> listBlack = null, bool Logging = false)
         {
             if (!listWhite.NullOrEmpty())
             {
+                if (Logging) debug.AppendLine("        Whitelising: " + listWhite.Count);
                 foreach (ThingDef def in listWhite)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
                     if (!list.Contains(def))
                     {
                         list.Add(def);
@@ -320,8 +310,11 @@ namespace AdeptusMechanicus
             }
             if (!listBlack.NullOrEmpty())
             {
+                if (Logging) debug.AppendLine("        blacklising: " + listBlack.Count);
                 foreach (ThingDef def in listBlack)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
+                    /*
                     if (!list.Contains(def))
                     {
                         list.Add(def);
@@ -330,6 +323,7 @@ namespace AdeptusMechanicus
                     {
                         restricted.Add(def);
                     }
+                    */
                     if (!blackList.Contains(def))
                     {
                         blackList.Add(def);
@@ -338,14 +332,14 @@ namespace AdeptusMechanicus
             }
         }
 
-        public static void RestrictRecipes(ThingDef race, List<RecipeDef> listWhite, List<RecipeDef> listBlack = null)
+        public static void RestrictRecipes(ThingDef race, List<RecipeDef> listWhite, List<RecipeDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
             {
                 return;
             }
-            RestrictRecipes(ref alien.alienRace.raceRestriction.recipeList, ref alien.alienRace.raceRestriction.whiteRecipeList, ref alien.alienRace.raceRestriction.blackRecipeList, ref RaceRestrictionSettings.recipeRestricted, listWhite, listBlack);
+            RestrictRecipes(ref alien.alienRace.raceRestriction.recipeList, ref alien.alienRace.raceRestriction.whiteRecipeList, ref alien.alienRace.raceRestriction.blackRecipeList, ref RaceRestrictionSettings.recipeRestricted, listWhite, listBlack, Logging);
             /*
             alien.alienRace.raceRestriction.recipeList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whiteRecipeList.AddRange(listWhite);
@@ -359,14 +353,16 @@ namespace AdeptusMechanicus
             */
         }
 
-        public static void RestrictRecipes(ref List<RecipeDef> list, ref List<RecipeDef> whiteList, ref List<RecipeDef> blackList, ref HashSet<RecipeDef> restricted, List<RecipeDef> listWhite = null, List<RecipeDef> listBlack = null)
+        public static void RestrictRecipes(ref List<RecipeDef> list, ref List<RecipeDef> whiteList, ref List<RecipeDef> blackList, ref HashSet<RecipeDef> restricted, List<RecipeDef> listWhite = null, List<RecipeDef> listBlack = null, bool Logging = false)
         {
             list.AddRange(listWhite);
             if (!listWhite.NullOrEmpty())
             {
+                if (Logging) debug.AppendLine("        Whitelising: "+ listWhite.Count);
                 whiteList.AddRange(listWhite);
                 foreach (RecipeDef def in listWhite)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
                     if (!restricted.Contains(def))
                     {
                         restricted.Add(def);
@@ -375,18 +371,20 @@ namespace AdeptusMechanicus
             }
             if (!listBlack.NullOrEmpty())
             {
+                if (Logging) debug.AppendLine("        blacklising: " + listBlack.Count);
                 blackList.AddRange(listBlack);
                 foreach (RecipeDef def in listBlack)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
                     if (!restricted.Contains(def))
                     {
-                        restricted.Add(def);
+                    //    restricted.Add(def);
                     }
                 }
             }
         }
 
-        public static void RestrictResearch(ThingDef race, List<ResearchProjectDef> listWhite = null, List<ResearchProjectDef> listBlack = null)
+        public static void RestrictResearch(ThingDef race, List<ResearchProjectDef> listWhite = null, List<ResearchProjectDef> listBlack = null, bool Logging = false)
         {
             AlienRace.ThingDef_AlienRace alien = race as AlienRace.ThingDef_AlienRace;
             if (alien == null)
@@ -402,9 +400,11 @@ namespace AdeptusMechanicus
             }
             if (!listWhite.NullOrEmpty())
             {
+                if (Logging) debug.AppendLine("        Whitelising: " + listWhite.Count);
                 alien.alienRace.raceRestriction.researchList[0].projects.AddRange(listWhite);
                 foreach (ResearchProjectDef def in listWhite)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
                     if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
                     {
                         List<AlienRace.ThingDef_AlienRace> l2 = new List<AlienRace.ThingDef_AlienRace>();
@@ -422,9 +422,11 @@ namespace AdeptusMechanicus
             }
             if (!listBlack.NullOrEmpty())
             {
-            //    alien.alienRace.raceRestriction.researchList[0].projects.AddRange(listBlack);
+                if (Logging) debug.AppendLine("        blacklising: " + listBlack.Count);
+                //    alien.alienRace.raceRestriction.researchList[0].projects.AddRange(listBlack);
                 foreach (ResearchProjectDef def in listBlack)
                 {
+                    if (Logging) debug.AppendLine("            " + def.defName);
                     if (!AlienRace.RaceRestrictionSettings.researchRestrictionDict.ContainsKey(key: def))
                     {
                         List<AlienRace.ThingDef_AlienRace> l2 = new List<AlienRace.ThingDef_AlienRace>();
@@ -441,6 +443,6 @@ namespace AdeptusMechanicus
                 }
             }
         }
-
+        private static StringBuilder debug = new StringBuilder();
     }
 }

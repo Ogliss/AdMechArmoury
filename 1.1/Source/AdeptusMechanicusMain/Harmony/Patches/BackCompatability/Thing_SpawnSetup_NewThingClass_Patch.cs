@@ -73,12 +73,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool actionRequired = original.GetType() != original.def.thingClass;
             if (actionRequired)
             {
-                Log.Message("original.GetType("+ original.GetType()+ ") != original.def.thingClass("+ original.def.thingClass+")");
+            //    Log.Message("original.GetType("+ original.GetType()+ ") != original.def.thingClass("+ original.def.thingClass+")");
                 bool act = original.def.modContentPack.Name.Contains("Adeptus Mechanicus");
                 if (act)
                 {
-                    Log.Message("act");
-                    Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
+                //    Log.Message("act");
+                //    Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
                     Thing thing = ThingMaker.MakeThing(original.def, original.Stuff);
                     thing.Position = original.Position;
                     CompQuality quality = original.TryGetCompFast<CompQuality>();

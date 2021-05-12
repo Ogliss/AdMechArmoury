@@ -221,7 +221,7 @@ namespace AdeptusMechanicus
                     {
                         secondary = entry.UsePrimaryColorAsSecondary ? entry.Used.Color.Value : entry.Used.ColorTwo.Value;
                         log += " activeOption: "+ secondary;
-                        Log.Message(log);
+                    //    Log.Message(log);
                         return secondary;
                     }
                 }
@@ -230,7 +230,7 @@ namespace AdeptusMechanicus
                     //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overrideSecondaryColor");
                     secondary = entry.overrideSecondaryColor.Value;
                     log += " overrideSecondaryColor: " + secondary;
-                    Log.Message(log);
+                //    Log.Message(log);
                     return secondary;
                 }
                 if (entry.UsePrimaryColorAsSecondary)
@@ -241,13 +241,13 @@ namespace AdeptusMechanicus
                         //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " overridePrimaryColor");
                         secondary = entry.overrideSecondaryColor.Value;
                         log += " overridePrimaryColor: " + secondary;
-                        Log.Message(log);
+                    //    Log.Message(log);
                         return secondary;
                     }
                     //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColor");
                     secondary = this.parent.DrawColor;
                     log += " DrawColor: " + secondary;
-                    Log.Message(log);
+                //    Log.Message(log);
                     return this.parent.DrawColor;
                 }
                 if (entry.UseFactionColors)
@@ -258,7 +258,7 @@ namespace AdeptusMechanicus
                         {
                             secondary = entry.UsePrimaryColorAsSecondary ? colours.Color : colours.ColorTwo;
                             log += " UseFactionColors: " + secondary;
-                            Log.Message(log);
+                        //    Log.Message(log);
                             return secondary;
                         }
                     }
@@ -279,7 +279,7 @@ namespace AdeptusMechanicus
             }
             //    Log.Message("secondaryColorFor " + entry.shoulderPadType + " DrawColorTwo");
             log += " DrawColorTwo: " + secondary;
-            Log.Message(log);
+        //    Log.Message(log);
             return secondary;
         }
         /*

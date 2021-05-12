@@ -22,6 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "DrawAddons")]
     public static class AlienRace_DrawAddons_LinkedBodyAddons_Transpiler
     {
+    //    static FieldInfo alien = AccessTools.TypeByName("RimWorld.JobDriver_PlantWork").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First();
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
@@ -29,50 +30,55 @@ namespace AdeptusMechanicus.HarmonyInstance
             bool drawOffsetPatched = false;
             bool drawOffsetsPatched = false;
             bool drawLocPatched = false;
+
+            FieldInfo alienCompField = AccessTools.TypeByName("AlienRace.HarmonyPatches").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(x=> x.GetFields().Any(y=> y.Name.Contains("alienComp"))).GetField("alienComp");
+
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 CodeInstruction instruction = instructionsList[i];
                 //        Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                 if (i > 1 && i < instructionsList.Count)
                 {
-                    /*
-                    if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 5 && instruction.opcode == OpCodes.Ldloc_S && !drawOffsetsPatched)
-                    {
-                        drawOffsetsPatched = true;
-                   //     if (AMAMod.Dev) Log.Message("DrawOffsets At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
-                        
-                        yield return instruction;                                               // RotationOffset
-                        yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Pawn
-                        yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
-                        instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_Ork_Transpiler).GetMethod("DrawOffsets"));
-                        
-                    }
-                    */
-                    
                     if (!drawSizePatched)
                     {
-                        if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
+                        /*
+                            if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
+                            {
+                                if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                                drawSizePatched = true;
+                                yield return instruction;                                               // float
+                                yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
+                                yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
+                                yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
+                                instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
+                            }
+                        */
+                        if (instructionsList[index: i].opcode == OpCodes.Stfld && instructionsList[index: i].OperandIs(typeof(Graphic).GetField("drawSize")))
                         {
-                            if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                             drawSizePatched = true;
-                            yield return instruction;                                               // float
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
-                            yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
-                            yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
-                            instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
-                        }
-                    }
+                            if (alienCompField != null)
+                            {
+                            //    if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                                //    yield return instruction;                                               // Vector2
+                                yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
+                                yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
+                                yield return new CodeInstruction(opcode: OpCodes.Ldloc_0);              // Pawn
+                                yield return new CodeInstruction(opcode: OpCodes.Ldfld, operand: alienCompField);           // AlienComp
+                                yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
+                            }
+                            else
+                            {
+                                Log.Warning("alienCompField == null, LinkedBodyAddon HeadAddon Scaling disabled");
+                            }
 
-                    if (instructionsList[index: i].opcode == OpCodes.Stfld && instructionsList[index: i].OperandIs(typeof(Graphic).GetField("drawSize")))
-                    {
-                        if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                        }
                     }
                     if (!drawOffsetPatched)
                     {
                         if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 13 && instruction.opcode == OpCodes.Ldloc_S)
                         {
                             drawOffsetPatched = true;
-                            if (AMAMod.Dev) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                        //    if (AMAMod.Dev) Log.Message("DrawOffset At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
 
                             yield return instruction;                                               // Vector3
                             yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
@@ -106,7 +112,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
         }
-
+        /*
         public static float DrawSize(float original, bool portrait, Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon)
         {
             float result = original;
@@ -121,6 +127,19 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
             return result;
+        }
+        */
+        public static Vector2 DrawSize(Vector2 original, bool portrait,AlienRace.AlienPartGenerator.BodyAddon addon, AlienPartGenerator.AlienComp alienComp)
+        {
+            
+            if (addon is LinkedBodyAddon linked && linked.linkLifeStageDrawSize)
+            {
+                // ThingDef_AlienRace thingDef_AlienRace = pawn.def as ThingDef_AlienRace;
+                // AlienPartGenerator.AlienComp alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+                return ((portrait && addon.drawSizePortrait != Vector2.zero) ? addon.drawSizePortrait : addon.drawSize) * (addon.scaleWithPawnDrawsize ? (linked.alignWithHead ? alienComp.customHeadDrawSize : alienComp.customDrawSize) : Vector2.one) * 1.5f;
+            }
+            
+            return original;
         }
 
         public static Vector3 DrawOffset(Vector3 original, AlienRace.AlienPartGenerator.BodyAddon addon, Rot4 rotation)

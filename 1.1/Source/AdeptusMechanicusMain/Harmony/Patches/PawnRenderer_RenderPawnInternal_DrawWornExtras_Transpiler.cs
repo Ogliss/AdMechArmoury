@@ -184,7 +184,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         }
                                         if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                         {
-                                            if (Pauldron.onHead || renderBody)
+                                            if (Pauldron.onHead || renderBody && pauldronMat != null)
                                             {
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
