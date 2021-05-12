@@ -11,6 +11,9 @@ namespace AdeptusMechanicus
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusBodyDefOf));
         }
+        // Astartes BodyDefs
+        [MayRequireAstartes]
+        public static BodyDef OG_Astartes;
 
         #region Kroot
         [MayRequireXenobiologis, MayRequireTau]

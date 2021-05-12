@@ -10,6 +10,7 @@ namespace AdeptusMechanicus
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusSoundDefOf));
         }
+        public static SoundDef Interact_Research;
         public static SoundDef EmpDisabled;
         public static SoundDef MeleeHit_Metal_RendingWeapon;
         public static SoundDef MeleeHit_Metal_PowerWeapon;

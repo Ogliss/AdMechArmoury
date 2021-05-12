@@ -25,8 +25,9 @@ namespace AdeptusMechanicus
         public static DamageDef OG_Force_Cut;
         public static DamageDef OG_Force_Stab;
         public static DamageDef OG_Force_Blunt;
-        public static DamageDef OG_Chaos_Deamon_Warpfire;
 
+        public static DamageDef OG_Chaos_Deamon_Warpfire;
+        public static DamageDef OG_Chaos_Deamon_WarpfireDeath;
 
     }
 }
