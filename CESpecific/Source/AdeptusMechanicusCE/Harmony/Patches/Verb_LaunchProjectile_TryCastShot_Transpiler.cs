@@ -45,50 +45,56 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static Vector2 MuzzlePosition(Vector2 sourceLoc, Verb_LaunchProjectileCE instance)
         {
+            Log.Message("MuzzlePosition CE");
+            Vector2 result = sourceLoc;
+            Log.Message("MuzzlePosition CE sourceLoc: " + sourceLoc);
             string msg = "CE MuzzlePosition {0}: {1}, aimAngle: {2}";
-            Thing equipment = instance.EquipmentSource;
-            Thing launcher = instance.Shooter;
-            Vector3 origin = new Vector3(sourceLoc.x, 0, sourceLoc.y);
-            Vector3 destination = instance.CurrentTarget.Cell.ToVector3Shifted();
             float aimAngle = 0f;
-            if ((destination - origin).MagnitudeHorizontalSquared() > 0.001f)
+            if (instance.EquipmentSource is Thing equipment)
             {
-                aimAngle = (destination - origin).AngleFlat();
-            }
-            IDrawnWeaponWithRotation rotation = equipment as IDrawnWeaponWithRotation;
-            if (rotation != null)
-            {
-                //    Log.Message(gunOG + " is IDrawnWeaponWithRotation with RotationOffset: "+ gunOG.RotationOffset);
-                aimAngle += rotation.RotationOffset;
-            }
-            //    Log.Message(string.Format(msg, "Original", sourceLoc, aimAngle));
-            GunDrawExtension gunDrawExtension = equipment.def.GetModExtensionFast<GunDrawExtension>();
-            if (gunDrawExtension != null)
-            {
-                Log.Message("gunDrawExtension");
-            }
-            else
-            if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
-            {
-                OgsCompOversizedWeapon.CompOversizedWeapon compOversized = equipment.TryGetCompFast<OgsCompOversizedWeapon.CompOversizedWeapon>();
-                if (compOversized != null)
+                Log.Message("MuzzlePosition CE EquipmentSource: " + equipment);
+                Thing launcher = instance.Shooter;
+                Vector3 origin = new Vector3(sourceLoc.x, 0, sourceLoc.y);
+                Vector3 destination = instance.CurrentTarget.Cell.ToVector3Shifted();
+                if ((destination - origin).MagnitudeHorizontalSquared() > 0.001f)
                 {
-                    bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
-                    Vector3 offsetMainHand = default(Vector3);
-                    Vector3 offsetOffHand = default(Vector3);
-                    float offHandAngle = aimAngle;
-                    float mainHandAngle = aimAngle;
-
-                    Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(equipment, equipment as ThingWithComps, aimAngle, launcher, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
-                    Vector3 vector = DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
-                    //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
-                    origin += vector;
-
+                    aimAngle = (destination - origin).AngleFlat();
                 }
+                IDrawnWeaponWithRotation rotation = equipment as IDrawnWeaponWithRotation;
+                if (rotation != null)
+                {
+                    Log.Message(rotation + " is IDrawnWeaponWithRotation with RotationOffset: " + rotation.RotationOffset);
+                    aimAngle += rotation.RotationOffset;
+                }
+                Log.Message(string.Format(msg, "Original", sourceLoc, aimAngle));
+                GunDrawExtension gunDrawExtension = equipment.def.GetModExtensionFast<GunDrawExtension>();
+                if (gunDrawExtension != null)
+                {
+                    Log.Message("gunDrawExtension");
+                }
+                else
+                if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
+                {
+                    OgsCompOversizedWeapon.CompOversizedWeapon compOversized = equipment.TryGetCompFast<OgsCompOversizedWeapon.CompOversizedWeapon>();
+                    if (compOversized != null)
+                    {
+                        bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
+                        Vector3 offsetMainHand = default(Vector3);
+                        Vector3 offsetOffHand = default(Vector3);
+                        float offHandAngle = aimAngle;
+                        float mainHandAngle = aimAngle;
+
+                        Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(equipment, equipment as ThingWithComps, aimAngle, launcher, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
+                        Vector3 vector = DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
+                        //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
+                        origin += vector;
+
+                    }
+                }
+                origin = equipment.MuzzlePositionFor(origin, aimAngle);
+                result = new Vector2(origin.x, origin.z);
             }
-            origin = equipment.MuzzlePositionFor(origin, aimAngle);
-            Vector2 result = new Vector2(origin.x, origin.z);
-        //    Log.Message(string.Format(msg, "result", result, aimAngle));
+            Log.Message(string.Format(msg, "result", result, aimAngle));
             return result;
         }
     }

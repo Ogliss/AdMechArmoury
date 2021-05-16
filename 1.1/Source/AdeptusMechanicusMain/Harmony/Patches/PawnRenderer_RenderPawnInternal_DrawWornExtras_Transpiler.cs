@@ -57,7 +57,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 
                 if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
-                    AlienRacesPatch(pawn, bodyFacing, out size, portrait);
+                    PawnRenderUtility.AlienRacesPatch(pawn, bodyFacing, out size, portrait);
                 }
                 else
                 {
@@ -101,10 +101,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
-                                                        GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
                                                         center + (quat * offset),
                                                         quat,
-                                                        OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                        PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
                                                         portrait
                                                     );
                                             }
@@ -143,10 +143,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
-                                                        GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
                                                         drawAt,
                                                         quat,
-                                                        OverrideMaterialIfNeeded(extraMat, pawn),
+                                                        PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
                                                         portrait
                                                     );
                                             }
@@ -189,10 +189,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
-                                                        GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
                                                         center + (quat * offset),
                                                         quat,
-                                                        OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                        PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
                                                         portrait
                                                     );
                                             }
@@ -227,10 +227,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
-                                                        GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
                                                         drawAt,
                                                         quat,
-                                                        OverrideMaterialIfNeeded(extraMat, pawn),
+                                                        PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
                                                         portrait
                                                     );
                                             }
@@ -286,7 +286,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 //    GenDraw.DrawMeshNowOrLater(mesh, drawAt , quat, material, portrait);
 
-                                material = OverrideMaterialIfNeeded(material, pawn);
+                                material = PawnRenderUtility.OverrideMaterialIfNeeded(material, pawn);
                                 //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
                                 GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
                                     quat: quat, mat: material, drawNow: portrait);
@@ -363,77 +363,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
 
         // Token: 0x06000F45 RID: 3909 RVA: 0x00057D14 File Offset: 0x00055F14
-        private static Material OverrideMaterialIfNeeded(Material original, Pawn pawn)
-        {
-            Material baseMat = pawn.IsInvisible() ? InvisibilityMatPool.GetInvisibleMat(original) : original;
-            return pawn.Drawer.renderer.graphics.flasher.GetDamagedMat(baseMat);
-        }
         
-        public static void AlienRacesPatch(Pawn pawn, Rot4 bodyFacing, out Vector2 size, bool portrait)
-        {
-            AlienRace.ThingDef_AlienRace alienDef = pawn.def as AlienRace.ThingDef_AlienRace;
-            Vector2 d;
-            if (alienDef != null)
-            {
-                AlienRace.AlienPartGenerator.AlienComp comp = pawn.TryGetCompFast<AlienRace.AlienPartGenerator.AlienComp>();
-                if (comp != null)
-                {
-                //    d = (portrait ? comp.alienPortraitGraphics.bodySet.MeshAt(bodyFacing).bounds.size : comp.alienGraphics.bodySet.MeshAt(bodyFacing).bounds.size);
-                    d = (portrait ? comp.customPortraitDrawSize : comp.customDrawSize);
-
-                    size = new Vector2(d.x * 1.5f, d.y * 1.5f);
-                    return;
-                }
-            }
-            size = new Vector2(1.5f, 1.5f);
-            return;
-        }
 
 
         // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
-        public static Mesh GetPawnMesh(bool portrait, Pawn pawn, Rot4 facing, bool wantsBody)
-        {
-
-            if (AdeptusIntergrationUtility.enabled_AlienRaces)
-            {
-                return GetAlienPawnMesh(portrait, pawn, facing, wantsBody);
-            }
-            if (!wantsBody)
-            {
-                return MeshPool.humanlikeHeadSet.MeshAt(facing);
-            }
-            return MeshPool.humanlikeBodySet.MeshAt(facing);
-        }
 
         // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
-        public static Mesh GetAlienPawnMesh(bool portrait, Pawn pawn, Rot4 facing, bool wantsBody)
-        {
-
-            AlienRace.AlienPartGenerator.AlienComp comp = pawn.GetComp<AlienRace.AlienPartGenerator.AlienComp>();
-            if (comp == null)
-            {
-                if (!wantsBody)
-                {
-                    return MeshPool.humanlikeHeadSet.MeshAt(facing);
-                }
-                return MeshPool.humanlikeBodySet.MeshAt(facing);
-            }
-            else if (!portrait)
-            {
-                if (!wantsBody)
-                {
-                    return comp.alienHeadGraphics.headSet.MeshAt(facing);
-                }
-                return comp.alienGraphics.bodySet.MeshAt(facing);
-            }
-            else
-            {
-                if (!wantsBody)
-                {
-                    return comp.alienPortraitHeadGraphics.headSet.MeshAt(facing);
-                }
-                return comp.alienPortraitGraphics.bodySet.MeshAt(facing);
-            }
-        }
     }
 }

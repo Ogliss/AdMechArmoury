@@ -133,6 +133,7 @@ namespace AdeptusMechanicus
                 alt = northalt;
             }
             vector.y += Math.Min(altOffset, YOffset_CarriedThing);
+            // vector.y = Math.Min(Math.Min(vector.y, altOffset), YOffset_CarriedThing);
             //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
         }
@@ -567,14 +568,6 @@ namespace AdeptusMechanicus
                     pauldronMaterial = Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
                     return true;
                 }
-                else
-                {
-                    //    Log.Message(string.Format("CheckPauldronRotation false"));
-                }
-            }
-            else
-            {
-                //    Log.Message(string.Format("pawn.needs = null && pawn.story = null"));
             }
             return false;
 

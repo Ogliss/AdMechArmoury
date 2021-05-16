@@ -39,15 +39,31 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = "OGIG_Apparel_FlakHelmetLight";
                         return;
                     }
-                    if (defName.Contains("OGE_Apparel_DireAvenger"))
+                    if (defName.Contains("OGE_Apparel_"))
                     {
-                        __result = defName.Replace("DireAvenger", "Avenger");
-                        return;
-                    }
-                    if (defName.Contains("OGE_Apparel_StrikingScorpion"))
-                    {
-                        __result = defName.Replace("StrikingScorpion", "Scorpion");
-                        return;
+                        newName = defName;
+                        if (newName.Contains("ArmourHelmet"))
+                        {
+                            newName = newName.Replace("ArmourHelmet", "Helmet");
+                        }
+                        if (defName.Contains("DireAvenger"))
+                        {
+                            newName = newName.Replace("DireAvenger", "Avenger");
+                        }
+                        else if (defName.Contains("StrikingScorpion"))
+                        {
+                            newName = newName.Replace("StrikingScorpion", "Scorpion");
+                        }
+                        else if (defName.Contains("OGE_Apparel_RuneArmour"))
+                        {
+                            newName += "Warlock";
+                        }
+                        if (!newName.NullOrEmpty())
+                        {
+                            __result = newName;
+                            return;
+                        }
+
                     }
                     if (defName == "OGDE_Melee_WytchKnife")
                     {
@@ -554,10 +570,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (defName.Contains("OGT_CombatArmour"))
                     {
                         newName ="OGT_Apparel_CombatArmour";
-                    }
-                    if (defName.Contains("OGE_Apparel_RuneArmour"))
-                    {
-                        newName ="OGE_Apparel_RuneArmourWarlock";
                     }
                     if (defName.Contains("OGCDWarpRift"))
                     {

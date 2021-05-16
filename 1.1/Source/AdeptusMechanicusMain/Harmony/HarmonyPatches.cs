@@ -54,6 +54,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 HarmonyPatches.CanEquip();
             }
+
+            if (AdeptusIntergrationUtility.enabled_FacialStuff)
+            {
+                HarmonyPatches.FacialStuffPatches();
+            }
+
             /*
             if (AccessTools.GetMethodNames(typeof(PawnRenderer)).Contains("OverrideMaterialIfNeeded_NewTemp"))
             {
@@ -69,6 +75,33 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void SOSConstructPatch()
         {
+            //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
+        }
+
+        public static void FacialStuffPatches()
+        {
+            Log.Message("FacialStuff detected: attempting to Patch Draw method");
+            MethodInfo method = AccessTools.TypeByName("FacialStuff.HumanBipedDrawer").GetMethod("DrawApparel");
+            MethodInfo method2 = typeof(HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler).GetMethod("Transpiler");
+            bool flag = method == null;
+            bool flag1 = method2 == null;
+            if (flag)
+            {
+                Log.Error("HumanBipedDrawer Method is null", false);
+            }
+            else
+            if (flag1)
+            {
+                Log.Error("Patch Method is null", false);
+            }
+            else
+            {
+                bool flag2 = AMAMod.harmony.Patch(method, null, null, new HarmonyMethod(method2)) == null;
+                if (flag2)
+                {
+                    Log.Error("Adeptus Mechanicus: Facial Stuff patch failed.", false);
+                }
+            }
             //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
         }
 

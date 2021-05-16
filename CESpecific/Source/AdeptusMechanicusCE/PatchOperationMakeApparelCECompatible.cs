@@ -391,6 +391,9 @@ namespace CombatExtended
 			xmlElement2.AppendChild(xmlElement3);
 		}
 
+		public float sharpMult = 16.30434782608696f;
+		public float bluntMult = 54.34782608695652f;
+
 		public string Name;
 		public string defName;
 		public string verbPropertiesClass = "CombatExtended.VerbPropertiesCE";

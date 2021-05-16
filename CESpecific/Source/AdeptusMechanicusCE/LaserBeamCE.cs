@@ -515,7 +515,7 @@ namespace AdeptusMechanicus.Lasers
         {
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-            Vector3 a = Origin + ShotLine.direction * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+            Vector3 a = Origin;// + ShotLine.direction * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
             Vector3 b = ExactPosition;
             a.y = b.y = def.Altitude;
             SpawnBeam(a, b, hitThing);

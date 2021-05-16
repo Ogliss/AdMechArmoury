@@ -82,6 +82,7 @@ namespace AdeptusMechanicus
         public static bool enabled_SOS2;
         public static bool enabled_SRTS;
 
+        public static bool enabled_FacialStuff;
         public static bool enabled_GasTrap;
 
         public static bool enabled_AvP;
@@ -121,6 +122,7 @@ namespace AdeptusMechanicus
 
             enabled_rooloDualWield = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Roolo.DualWield");
             enabled_rooloRunAndGun = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Roolo.RunAndGun");
+            enabled_FacialStuff = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "killface.facialstuff");
 
             enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Torann.ARimworldOfMagic");
             enabled_RimWorldOfMagic = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Dubwise.Rimatomics");
