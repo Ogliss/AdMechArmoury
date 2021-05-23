@@ -203,7 +203,7 @@ namespace AdeptusMechanicus.ExtensionMethods
                     builder.AppendLine("m = " + verb + " BarrelOffsetExtension" + string.Format(rstring, barrelLength, barrelOffset, flareDef, flareSize, smokeDef, smokeSize));
                 }
             }
-            if ((m = verb.GetProjectile().GetModExtensionFast<ProjectileVFX>()) != null)
+            if ((m = verb.GetProjectile()?.GetModExtensionFast<ProjectileVFX>()) != null)
             {
             //    Log.Message("m = ProjectileVFX");
                 result = true;
@@ -258,8 +258,9 @@ namespace AdeptusMechanicus.ExtensionMethods
                 {
                     offset = -offset;
                 }
-                offset *= (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 2);
-                length *= (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 2);
+                float f = (verb.caster is Building_TurretGun turretGun ? turretGun.def.building.turretTopDrawSize : verb.EquipmentSource.def.graphicData.drawSize.magnitude) / 2;
+                offset *= f;
+                length *= f;
 
                 origin += new Vector3(0f + offset, 0f, 0.4f + length).RotatedBy(aimAngle);
                 origin.y += 0.0367346928f;

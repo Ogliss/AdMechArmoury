@@ -1,10 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+	<RulePackDef>
+		<defName>NamerOGKrootFaction</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+			<li>name->[OG_NameKrootKindredWorlds] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB] [OG_NameKrootKindredTypes]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>NamerOGKrootBases</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[OG_NameKrootBaseTypes] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Kroot_NamerPerson</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+			<li>TribalWordUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+			<li>name->[KrootName] [OG_Unisexlastname]</li>
+			<li>name->[KrootName] '[nickname]' [OG_Unisexlastname]</li>
+			
+			<li>OG_Unisexlastname(p=3)->[OG_NameKrootSurA][OG_NameKrootSurB]</li>
+			<li>OG_Unisexlastname(p=2)->[WordKroot]</li>
+			
+			<li>nickname(p=3)->[OG_NameKrootNickA][OG_NameKrootNickB]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
   <RulePackDef>
-    <defName>OG_NamerKrootUtility</defName>
+    <defName>OG_Kroot_NameUtility</defName>
     <rulePack>
       <rulesStrings>
+        <li>KrootName(p=4)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]</li>
+        <li>KrootName(p=3)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_7][SylK_5][SylK_6]</li>
+        <li>KrootName(p=2)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]-[SylK_1][SylK_2][SylK_6]</li>
+        <li>KrootName(p=1)->[SylK_1][SylK_2][SylK_6]-[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]</li>
+
         <li>WordKroot(p=3)->[SylG]'[SylE]-[SylG]</li>
         <li>WordKroot(p=2)->[SylG]'[SylG][SylE]-[SylG]</li>
       </rulesStrings>
@@ -28,105 +76,16 @@
 		
         <li>SylE->WordParts/Syllables_English</li>
         <li>SylG->WordParts/Syllables_Galician</li>
+		
+        <li>SylK_1->NameBanks/OG_Kroot_Name_SybA</li>
+        <li>SylK_2->NameBanks/OG_Kroot_Name_SybB</li>
+        <li>SylK_3->NameBanks/OG_Kroot_Name_SybC</li>
+        <li>SylK_4->NameBanks/OG_Kroot_Name_SybD</li>
+        <li>SylK_5->NameBanks/OG_Kroot_Name_SybE</li>
+        <li>SylK_6->NameBanks/OG_Kroot_Name_SybF</li>
+        <li>SylK_7->NameBanks/OG_Kroot_Name_SybG</li>
       </rulesFiles>
     </rulePack>
   </RulePackDef>
 
-	<RulePackDef>
-		<defName>NamerOGKrootFaction</defName>
-		<include>
-			<li>OG_NamerKrootUtility</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-			<li>name->[OG_NameKrootKindredWorlds] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB] [OG_NameKrootKindredTypes]</li>
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-	
-	<!--
-	<RulePackDef>
-		<defName>NamerRRYYautjaJungleClan</defName>
-		<rulePack>
-			<rulesStrings>
-			<li>name->[OG_Yautja_JungleClan]</li>
-			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OG_Yautja_JungleClan</keyword>
-				<path>NameBanks/OGKrootClanJungle</path>
-			</li>
-			</rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	-->
-	
-	<RulePackDef>
-		<defName>NamerOGKrootBases</defName>
-		<include>
-			<li>OG_NamerKrootUtility</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-				<li>name->[OG_NameKrootBaseTypes] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB]</li>
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-
-	<RulePackDef>
-		<defName>OG_NamerPersonKroot_Male</defName>
-		<include>
-			<li>OG_NamerKrootUtility</li>
-			<li>TribalWordUtility</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-			<li>name->[OG_Malefirstname] [OG_Unisexlastname]</li>
-			<li>name->[OG_Malefirstname] '[nickname]' [OG_Unisexlastname]</li>
-			
-			<li>OG_Malefirstname(p=3)->[OG_NameKrootFirstA][OG_NameKrootFirstB] </li>
-			<li>OG_Malefirstname(p=2)->[OG_NameKrootMale]</li>
-			
-			<li>OG_Unisexlastname(p=3)->[OG_NameKrootSurA][OG_NameKrootSurB]</li>
-			<li>OG_Unisexlastname(p=2)->[WordKroot]</li>
-			
-			<li>nickname(p=3)->[OG_NameKrootNickA][OG_NameKrootNickB]</li>
-			<!--
-			<li>nicktname(p=3)->[ConceptBadass]</li>
-			<li>nicktname(p=2)->[PersonBadass]</li>
-			<li>nicktname(p=2)->[AnimalBadass]</li>
-			-->
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-
-	<RulePackDef>
-		<defName>OG_NamerPersonKroot_Female</defName>
-		<include>
-			<li>OG_NamerKrootUtility</li>
-			<li>TribalWordUtility</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-			
-			<li>name->[OG_Malefirstname] [OG_Unisexlastname]</li>
-			<li>name->[OG_Malefirstname] '[nickname]' [OG_Unisexlastname]</li>
-			
-			<li>OG_Malefirstname(p=3)->[OG_NameKrootFirstA][OG_NameKrootFirstB] </li>
-			<li>OG_Malefirstname(p=2)->[OG_NameKrootMale]</li>
-			
-			<li>OG_Unisexlastname(p=3)->[OG_NameKrootSurA] [OG_NameKrootSurB]</li>
-			<li>OG_Unisexlastname(p=2)->[WordKroot]</li>
-			
-			<li>nickname(p=3)->[OG_NameKrootNickA][OG_NameKrootNickB]</li>
-			<!--
-			<li>nicktname(p=3)->[ConceptBadass]</li>
-			<li>nicktname(p=2)->[PersonBadass]</li>
-			<li>nicktname(p=2)->[AnimalBadass]</li>
-			-->
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-
-	
 </Defs>

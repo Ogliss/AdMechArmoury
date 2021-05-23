@@ -700,29 +700,16 @@
 	
 	<!-- ========================= Imperial - Wargear S 3 ========================== -->
 	<!-- ========================= Imperial - Basic Servo Arm ========================== -->
-<!--
 	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Makeable">
 		<defName>OGI_Wargear_ServoArm</defName>
 		<label>Imperial Basic Servo Arm</label>
 		<description>Basic Mechanical Servo Arm to attach to most armor, allows the users to increase their work speed, but does slow the users down slightly and messes with their shooting accuracy. Should not be worn into combat..</description>
 		<graphicData>
-			<texPath>Things/ServoArm</texPath>
+			<texPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/_Icon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<comps>  
-			<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
-			<hediffDef>OGI_HeDiff_ServoArm</hediffDef>
-			<severityBasedOnDurability>false</severityBasedOnDurability>
-			<partsToAffect>
-				<li>Arm</li>
-			</partsToAffect>
-			<groupsToAffect>
-			
-			</groupsToAffect>
-			</li> 
-		</comps>
 		<statBases>
-			<MarketValue>1500</MarketValue>
+			<Mass>3.2</Mass>
 			<MaxHitPoints>50</MaxHitPoints>
 			<WorkToMake>25000</WorkToMake>
 			<ArmorRating_Sharp>0.0</ArmorRating_Sharp>
@@ -731,6 +718,12 @@
 			<Insulation_Heat>0</Insulation_Heat>
 			<Insulation_Cold>0</Insulation_Cold>
 		</statBases>
+		<thingCategories>
+		
+		</thingCategories>
+		<tradeTags>
+			<li>OGIWargear</li>
+		</tradeTags>
 		<equippedStatOffsets>
 			<MoveSpeed>0.15</MoveSpeed>
 			<WorkSpeedGlobal>0.25</WorkSpeedGlobal>
@@ -738,22 +731,25 @@
 			<PsychicSensitivity>0.0</PsychicSensitivity>
 		</equippedStatOffsets>
 		<costList>
-			<Ceramite>40</Ceramite>
+			<Steel>20</Steel>
+			<Plasteel>10</Plasteel>
+			<Gold>1</Gold>
+			<!--Ceramite>40</Ceramite>
 			<RefinedCeramite>4</RefinedCeramite>
 			<ImperialComponent>4</ImperialComponent>
-			<ImperialPowercore>2</ImperialPowercore>
+			<ImperialPowercore>2</ImperialPowercore-->
 		</costList>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>ARBasicServoArm</li>
+				<!--li>ARBasicServoArm</li-->
 			</researchPrerequisites>
 		</recipeMaker>
 		<apparel>
-		<useWornGraphicMask>true</useWornGraphicMask>
+			<useWornGraphicMask>false</useWornGraphicMask>
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Things/IGCore/Pawn/IGStdServoArm/IGStd-ServoArm</wornGraphicPath>
+			<!--wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/ServoArm</wornGraphicPath-->
 			<layers>
 				<li>BeltWargear3</li>
 			</layers>
@@ -761,15 +757,67 @@
 				<li>ImperialArmor</li>
 			</tags>
 		</apparel>
-		<thingCategories>
-			<li>IGCAddons</li>
-		</thingCategories>
-		<tradeTags>
-			<li>IGCAddons</li>
-		</tradeTags>
+		<tools>
+			<li>
+				<label>Servo arm</label>
+				<capacities>
+					<li>OG_PowerWeapon_Blunt</li>
+				</capacities>
+				<power>66</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+		</tools>
+		<comps>  
+			<li>
+				<compClass>CompApparelVerbGiver.CompApparelVerbGiver</compClass>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<drawAll>true</drawAll>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<bodyspecificTextures>false</bodyspecificTextures>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/MechBackpack</padTexPath>
+						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Utility_South</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<bodyspecificTextures>false</bodyspecificTextures>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/ServoArm</padTexPath>
+						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Utility_South</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0,0.0,0</NorthOffset>
+				<SouthOffset>0,-0.0,0</SouthOffset>
+				<EastOffset>0,0.0,0</EastOffset>
+				<WestOffset>0,0.0,0</WestOffset>
+			</li>
+		</comps>
 	</ThingDef>
-	-->
+	
 			<!--
+			<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
+				<hediffDef>OGI_HeDiff_ServoArm</hediffDef>
+				<severityBasedOnDurability>false</severityBasedOnDurability>
+				<partsToAffect>
+					<li>Torso</li>
+				</partsToAffect>
+				<groupsToAffect>
+				
+				</groupsToAffect>
+			</li> 
 			<li Class="AdeptusMechanicus.CompProperties_HediffApparel">
 			<hediffDef>FragGrenadeThrowerHeDiff</hediffDef>
 			<severityBasedOnDurability>false</severityBasedOnDurability>

@@ -8,208 +8,205 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AcidicGas
     public class AcidicGas : Gas
     {
-        public AdeptusGasProperties GasProps => this.def.gas as AdeptusGasProperties;
-        public object cachedLabelMouseover { get; private set; }
+        public AdeptusGasProperties Def => this.def.gas as AdeptusGasProperties;
+		private DamageDef DamageDef => Def.damageDef ?? DamageDefOf.Burn;
+		public object cachedLabelMouseover { get; private set; }
+		private int Damage
+		{
+			get
+			{
+				int dmg = Def.damage;
+				if (Def.damageDef != null && Def.damageDef.defaultDamage > 0)
+				{
+					dmg = Def.damageDef.defaultDamage;
 
-        // Token: 0x06000019 RID: 25 RVA: 0x000027B3 File Offset: 0x000009B3
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-        }
+				}
+				return dmg;
+			}
+		}
+		public override void SpawnSetup(Map map, bool respawningAfterLoad)
+		{
+			base.SpawnSetup(map, respawningAfterLoad);
+		}
 
-        // Token: 0x0600001A RID: 26 RVA: 0x000027C0 File Offset: 0x000009C0
-        public override void Tick()
-        {
-            bool destroyed = base.Destroyed;
-            if (!destroyed)
+		public override void Tick()
+		{
+			if (base.Destroyed)
+			{
+				return;
+			}
+			base.Tick();
+			if (this.destroyTick <= Find.TickManager.TicksGame && !base.Destroyed)
+			{
+				this.Destroy(DestroyMode.Vanish);
+				return;
+			}
+			this.graphicRotation += this.graphicRotationSpeed;
+			this.delay--;
+			if (this.delay <= 0)
+			{
+				this.EffectTick();
+				this.delay = this.interval;
+			}
+		}
+
+		public void EffectTick()
+		{
+			if (base.Destroyed)
+			{
+				return;
+			}
+			List<Thing> thingList = base.Position.GetThingList(base.Map);
+			for (int i = 0; i < thingList.Count; i++)
+			{
+				if (thingList[i] != null)
+				{
+					Thing thing = thingList[i];
+					Pawn pawn = thingList[i] as Pawn;
+					if (thing != null && !this.touchingThings.Contains(thing) && thing.def.useHitPoints && !Def.damagePawnsOnly)
+					{
+						if (Find.Selector.SelectedObjects.Contains(thing)) Log.Message("Damaging thing " + thing);
+						this.touchingThings.Add(thing);
+						this.DamageEntities(thing, Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+						if (Def.damageMote) MoteMaker.ThrowDustPuff(thing.Position, base.Map, 0.2f);
+					}
+					if (pawn != null)
+					{
+						this.touchingPawns.Add(pawn);
+						if (Find.Selector.SelectedObjects.Contains(pawn)) Log.Message("Damaging pawn " + pawn);
+						this.DamagePawn(pawn);
+						if (Def.damageMote) MoteMaker.ThrowDustPuff(pawn.Position, base.Map, 0.2f);
+					}
+				}
+			}
+			for (int j = 0; j < this.touchingPawns.Count; j++)
+			{
+				Pawn pawn2 = this.touchingPawns[j];
+				if (!pawn2.Spawned || pawn2.Position != base.Position)
+				{
+					this.touchingPawns.Remove(pawn2);
+				}
+				else/* if (!pawn2.RaceProps.Animal)*/
+				{
+					if (Find.Selector.SelectedObjects.Contains(pawn2)) Log.Message("Damaging pawn2 " + pawn2);
+					this.DamagePawn(pawn2);
+				}
+			}
+			for (int k = 0; k < this.touchingThings.Count; k++)
+			{
+				Thing thing2 = this.touchingThings[k];
+				if (!thing2.Spawned || thing2.Position != base.Position || Def.damagePawnsOnly)
+				{
+					this.touchingThings.Remove(thing2);
+				}
+				else
+				{
+					if (Find.Selector.SelectedObjects.Contains(thing2)) Log.Message("Damaging thing2 " + thing2);
+					this.DamageEntities(thing2, Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+				}
+			}
+            if (Def.damageBuildings && !Def.damagePawnsOnly)
+			{
+					this.DamageBuildings(Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+			}
+			this.cachedLabelMouseover = null;
+		}
+
+		public void DamageEntities(Thing thingToDamage, int amt)
+		{
+			DamageInfo dinfo = new DamageInfo(DamageDef, (float)amt, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
+			if (thingToDamage != null)
+			{
+				thingToDamage.TakeDamage(dinfo);
+				if (Def.damageMote) MoteMaker.ThrowDustPuff(thingToDamage.Position, base.Map, 0.2f);
+			}
+		}
+
+		public void DamageBuildings(int amt)
+		{
+			IntVec3 c = this.RandomAdjacentCell8Way();
+			if (c.InBounds(base.Map))
+			{
+				Building firstBuilding = c.GetFirstBuilding(base.Map);
+				DamageInfo dinfo = new DamageInfo(DamageDef, (float)amt, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
+				if (firstBuilding != null)
+				{
+					if (Find.Selector.SelectedObjects.Contains(firstBuilding)) Log.Message("Damaging firstBuilding " + firstBuilding);
+					firstBuilding.TakeDamage(dinfo);
+					if (Def.damageMote) MoteMaker.ThrowDustPuff(firstBuilding.Position, base.Map, 0.2f);
+				}
+			}
+		}
+
+		public void DamagePawn(Pawn pawn)
+		{
+			if (!this.PawnCanBeAffected(pawn))
+			{
+				return;
+			}
+			List<BodyPartRecord> list = new List<BodyPartRecord>();
+			int num = Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f));
+			DamageInfo dinfo = default(DamageInfo);
+			if (Def.damageMote) MoteMaker.ThrowDustPuff(pawn.Position, base.Map, 0.2f);
+
+			List<Apparel> wornApparel = new List<Apparel>();
+            if (pawn.apparel != null)
             {
-                base.Tick();
-                bool flag = this.destroyTick <= Find.TickManager.TicksGame && !base.Destroyed;
-                if (flag)
+                if (pawn.apparel.WornApparel != null)
                 {
-                    this.Destroy(0);
-                }
-                else
-                {
-                    this.graphicRotation += this.graphicRotationSpeed;
-                    this.Ticks--;
-                    bool flag2 = this.Ticks <= 0;
-                    if (flag2)
-                    {
-                        this.TickTack();
-                        this.Ticks = this.TickRate;
-                    }
-                }
+					wornApparel = pawn.apparel.WornApparel;
+				}
             }
-        }
 
-        // Token: 0x0600001B RID: 27 RVA: 0x00002854 File Offset: 0x00000A54
-        public void TickTack()
-        {
-            bool destroyed = base.Destroyed;
-            if (!destroyed)
-            {
-                List<Thing> thingList = GridsUtility.GetThingList(base.Position, base.Map);
-                for (int i = 0; i < thingList.Count; i++)
-                {
-                    bool flag = thingList[i] != null;
-                    if (flag)
-                    {
-                        Thing thing = thingList[i];
-                        Pawn pawn = thingList[i] as Pawn;
-                        bool flag2 = thing != null && !this.touchingThings.Contains(thing);
-                        if (flag2)
-                        {
-                            this.touchingThings.Add(thing);
-                            Rand.PushState();
-                            this.DamageEntities(thing, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
-                            Rand.PopState();
-                            AdeptusMoteMaker.ThrowDustPuff(thing.DrawPos, base.Map, 0.2f);
-                        }
-                        bool flag3 = pawn != null;
-                        if (flag3)
-                        {
-                            this.touchingPawns.Add(pawn);
-                            bool flag4 = !pawn.RaceProps.Animal;
-                            if (flag4)
-                            {
-                                this.AddAcidDamage(pawn);
-                                AdeptusMoteMaker.ThrowDustPuff(pawn.DrawPos, base.Map, 0.2f);
-                            }
-                        }
-                    }
-                }
-                for (int j = 0; j < this.touchingPawns.Count; j++)
-                {
-                    Pawn pawn2 = this.touchingPawns[j];
-                    bool flag5 = !pawn2.Spawned || pawn2.Position != base.Position;
-                    if (flag5)
-                    {
-                        this.touchingPawns.Remove(pawn2);
-                    }
-                    else
-                    {
-                        bool flag6 = !pawn2.RaceProps.Animal;
-                        if (flag6)
-                        {
-                            this.AddAcidDamage(pawn2);
-                        }
-                    }
-                }
-                for (int k = 0; k < this.touchingThings.Count; k++)
-                {
-                    Thing thing2 = this.touchingThings[k];
-                    bool flag7 = !thing2.Spawned || thing2.Position != base.Position;
-                    if (flag7)
-                    {
-                        this.touchingThings.Remove(thing2);
-                    }
-                    else
-                    {
-                        Rand.PushState();
-                        this.DamageEntities(thing2, Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
-                        Rand.PopState();
-                    }
-                }
-                Rand.PushState();
-                this.DamageBuildings(Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f)));
-                Rand.PopState();
-                this.cachedLabelMouseover = null;
-            }
-        }
+			foreach (BodyPartRecord bodyPartRecord in pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside, null, null))
+			{
+				if (wornApparel.Count > 0)
+				{
+					bool flag = false;
+					for (int i = 0; i < wornApparel.Count; i++)
+					{
+						if (wornApparel[i].def.apparel.CoversBodyPart(bodyPartRecord))
+						{
+							flag = true;
+							break;
+						}
+					}
+					if (!flag)
+					{
+						list.Add(bodyPartRecord);
+					}
+				}
+				else
+				{
+					list.Add(bodyPartRecord);
+				}
+			}
+			for (int j = 0; j < wornApparel.Count; j++)
+			{
+				this.DamageEntities(wornApparel[j], num);
+			}
+			for (int k = 0; k < list.Count; k++)
+			{
+				dinfo = new DamageInfo(DamageDef, (float)Mathf.RoundToInt((float)num * list[k].coverage), 0f, -1f, this, list[k], this.def, DamageInfo.SourceCategory.ThingOrUnknown, null);
+				pawn.TakeDamage(dinfo);
+			}
+		}
+		/*
+		private bool ThingCanBeAffected(Thing thing)
+		{
+			return (!this.Def.ignoreAnimals || !thing.RaceProps.Animal) && (!this.Def.ignoreInsectFlesh || thing.RaceProps.FleshType != FleshTypeDefOf.Insectoid) && (!this.Def.ignoreMechanoidFlesh || thing.RaceProps.FleshType != FleshTypeDefOf.Mechanoid) && (!this.Def.ignoreNormalFlesh || thing.RaceProps.FleshType != FleshTypeDefOf.Normal);
+		}
+		*/
+		private bool PawnCanBeAffected(Pawn pawn)
+		{
+			return (!this.Def.ignoreAnimals || !pawn.RaceProps.Animal) && (!this.Def.ignoreInsectFlesh || pawn.RaceProps.FleshType != FleshTypeDefOf.Insectoid) && (!this.Def.ignoreMechanoidFlesh || pawn.RaceProps.FleshType != FleshTypeDefOf.Mechanoid) && (!this.Def.ignoreNormalFlesh || pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) && (!this.Def.damagePawnsOnlyMoving || !pawn.pather.MovingNow) && (!this.Def.damagePawnsOnlyMovedRecently || !pawn.pather.MovedRecently(interval));
+		}
 
-        // Token: 0x0600001C RID: 28 RVA: 0x00002AD4 File Offset: 0x00000CD4
-        public void DamageEntities(Thing e, int amt)
-        {
-            DamageInfo damageInfo = new DamageInfo(DamageDefOf.Burn, (float)amt, 0f, -1f, null, null, null, 0, null);
-            bool flag = e != null;
-            if (flag)
-            {
-                e.TakeDamage(damageInfo);
-                AdeptusMoteMaker.ThrowDustPuff(e.DrawPos, base.Map, 0.2f);
-            }
-        }
+		private List<Pawn> touchingPawns = new List<Pawn>();
 
-        // Token: 0x0600001D RID: 29 RVA: 0x00002B28 File Offset: 0x00000D28
-        public void DamageBuildings(int amt)
-        {
-            IntVec3 intVec = GenAdj.RandomAdjacentCell8Way(this);
-            bool flag = GenGrid.InBounds(intVec, base.Map);
-            bool flag2 = flag;
-            if (flag2)
-            {
-                Building firstBuilding = GridsUtility.GetFirstBuilding(intVec, base.Map);
-                DamageInfo damageInfo = new DamageInfo(DamageDefOf.Burn, (float)amt, 0f, -1f, null, null, null, 0, null);
-                bool flag3 = firstBuilding != null;
-                bool flag4 = flag3;
-                if (flag4)
-                {
-                    firstBuilding.TakeDamage(damageInfo);
-                    AdeptusMoteMaker.ThrowDustPuff(firstBuilding.DrawPos, base.Map, 0.2f);
-                }
-            }
-        }
+		private List<Thing> touchingThings = new List<Thing>();
 
-        // Token: 0x0600001E RID: 30 RVA: 0x00002BAC File Offset: 0x00000DAC
-        public void AddAcidDamage(Pawn p)
-        {
-            List<BodyPartRecord> list = new List<BodyPartRecord>();
-            List<Apparel> wornApparel = p.apparel.WornApparel;
-            Rand.PushState();
-            int num = Mathf.RoundToInt((float)this.AcidDamage * Rand.Range(0.5f, 1.25f));
-            Rand.PopState();
-            DamageInfo damageInfo = default(DamageInfo);
-            MoteMaker.ThrowDustPuff(p.Position, base.Map, 0.2f);
-            foreach (BodyPartRecord bodyPartRecord in p.health.hediffSet.GetNotMissingParts(0, BodyPartDepth.Outside, null, null))
-            {
-                bool flag = wornApparel.Count > 0;
-                if (flag)
-                {
-                    bool flag2 = false;
-                    for (int i = 0; i < wornApparel.Count; i++)
-                    {
-                        bool flag3 = wornApparel[i].def.apparel.CoversBodyPart(bodyPartRecord);
-                        if (flag3)
-                        {
-                            flag2 = true;
-                            break;
-                        }
-                    }
-                    bool flag4 = !flag2;
-                    if (flag4)
-                    {
-                        list.Add(bodyPartRecord);
-                    }
-                }
-                else
-                {
-                    list.Add(bodyPartRecord);
-                }
-            }
-            for (int j = 0; j < wornApparel.Count; j++)
-            {
-                this.DamageEntities(wornApparel[j], num);
-            }
-            for (int k = 0; k < list.Count; k++)
-            {
-                damageInfo = new DamageInfo(DamageDefOf.Burn, (float)Mathf.RoundToInt((float)num * list[k].coverage), 0f, -1f, this, list[k], null, 0, null);
-                p.TakeDamage(damageInfo);
-            }
-        }
-
-        // Token: 0x0400000F RID: 15
-        private List<Pawn> touchingPawns = new List<Pawn>();
-
-        // Token: 0x04000010 RID: 16
-        private List<Thing> touchingThings = new List<Thing>();
-
-        // Token: 0x04000011 RID: 17
-        private int Ticks = 100;
-
-        // Token: 0x04000012 RID: 18
-        private int TickRate = 100;
-
-        // Token: 0x04000013 RID: 19
-        private int AcidDamage = 3;
-    }
+		private int delay = 100;
+		private int interval = 100;
+	}
 }

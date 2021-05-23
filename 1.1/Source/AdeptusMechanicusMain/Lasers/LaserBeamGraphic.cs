@@ -189,7 +189,7 @@ namespace AdeptusMechanicus.Lasers
                 SoundDef sound = projDef.projectile.damageDef.soundExplosion;
                 Color? color = ext.useGraphicColor ? projDef.graphic.color : (ext.useGraphicColorTwo ? projDef.graphic.colorTwo : projDef.projectile.damageDef.explosionColorCenter);
                 float scale = ext.scaleWithProjectile ? projDef.graphic.drawSize.magnitude : 1f;
-                ext.ImpactEffects(pos, map, explosionMoteDef, ext.ExplosionMoteSize * scale, color, sound, ext.ImpactMoteDef, ext.ImpactMoteSize * scale, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize * scale, hitThing);
+                ext.ImpactEffects(pos, map, explosionMoteDef, ext.ExplosionMoteSize * scale, color, sound, ext.ImpactMoteDef, ext.ImpactMoteSize * scale, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize * scale, hitThing, null, (int)((projDef.lifetime - ticks) * 1.1f));
             //    ext.ImpactEffects(destination, launcher.Map, ext.ExplosionMoteDef ?? this.projDef.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.projDef.projectile.damageDef.explosionColorCenter, this.projDef.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
             }
         }

@@ -19,6 +19,7 @@ namespace AdeptusMechanicus
 		public int hordeSpawns = 20;
 		public float hordeChance = 1f;
 		public PawnKindDef hatcherPawn;
+		public PawnKindDef hordePawn;
 
 
 	}
@@ -69,21 +70,25 @@ namespace AdeptusMechanicus
 		{
 			try
 			{
-				PawnGenerationRequest request = new PawnGenerationRequest(this.Props.hatcherPawn, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, true, false, false, false, false, 0f, null, 1f, null, null, null, null, null, null, null, null, null, null, null, null);
 				int present = this.parent.Map?.mapPawns.AllPawns.Where(x => x.def == this.Props.hatcherPawn.race).Count() ?? 0;
 				int spawnCount = this.parent.stackCount;
+				PawnKindDef spawnKind = this.Props.hatcherPawn;
 				if (present > this.Props.minForHorde)
-                {
+				{
 					Rand.PushState();
-                    if (Rand.Chance(this.Props.hordeChance))
+					if (Rand.Chance(this.Props.hordeChance))
 					{
 						spawnCount += this.Props.hordeSpawns;
+						spawnKind = this.Props.hordePawn;
 					}
 					Rand.PopState();
 
 				}
+				PawnGenerationRequest request = new PawnGenerationRequest(spawnKind, this.hatcheeFaction, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, true, false, false, false, false, 0f, null, 1f, null, null, null, null, null, null, null, null, null, null, null, null);
+
 				for (int i = 0; i < spawnCount; i++)
 				{
+					Log.Message("Spawning pawn "+(i+1)+ " of " +spawnCount);
 					Pawn pawn = PawnGenerator.GeneratePawn(request);
 					if (PawnUtility.TrySpawnHatchedOrBornPawn(pawn, this.parent))
 					{

@@ -106,15 +106,43 @@
 		<defName>OGC_Bullet_SonicBlaster</defName>
 		<label>Sonic Blast</label>
 		<graphicData>
-			<texPath>Things/Projectile/SonicShotSml</texPath>
+			<!--drawSize>1.4</drawSize-->
+			<texPath>Things/Projectile/SonicShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<thingClass>AdeptusMechanicus.Sonic_Blast</thingClass>
 		<projectile>
 			<damageDef>OGCSonic</damageDef>
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.32</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+				<trailMoteSize>0.7</trailMoteSize>
+				<trailerMoteInterval>6</trailerMoteInterval>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowGrahphicData>
+					<texPath>Things/Mote/PsycastPsychicLineMask</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>MoteGlowDistortBackground</shaderType>
+					<drawSize>1.00</drawSize>
+					<shaderParameters>
+						<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+						<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+						<_DistortionTex>/Things/Mote/PsycastPsychicLineMask</_DistortionTex>
+						<_distortionIntensity>0.15</_distortionIntensity>
+						<_brightnessMultiplier>0</_brightnessMultiplier>
+						<_DistortionScale>40</_DistortionScale>
+						<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+					</shaderParameters>
+				</glowGrahphicData>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>6.5</glowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Chaos_Gun">
@@ -144,7 +172,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_SonicBlaster</defaultProjectile>
@@ -155,6 +183,7 @@
 				<soundCast>OG_Hellgun_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.70</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -221,15 +250,43 @@
 		<defName>OGC_Bullet_Blastmaster</defName>
 		<label>Sonic Blast</label>
 		<graphicData>
-			<texPath>Things/Projectile/SonicShotSml</texPath>
+			<drawSize>1.4</drawSize>
+			<texPath>Things/Projectile/SonicShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
+		<thingClass>AdeptusMechanicus.Sonic_Blast</thingClass>
 		<projectile>
 			<damageDef>OGCSonic</damageDef>
 			<damageAmountBase>30</damageAmountBase>
 			<armorPenetrationBase>0.48</armorPenetrationBase>
 			<speed>100</speed>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+				<trailMoteSize>0.7</trailMoteSize>
+				<trailerMoteInterval>6</trailerMoteInterval>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowGrahphicData>
+					<texPath>Things/Mote/PsycastPsychicLineMask</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>MoteGlowDistortBackground</shaderType>
+					<drawSize>1.00</drawSize>
+					<shaderParameters>
+						<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+						<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+						<_DistortionTex>/Things/Mote/PsycastPsychicLineMask</_DistortionTex>
+						<_distortionIntensity>0.15</_distortionIntensity>
+						<_brightnessMultiplier>0</_brightnessMultiplier>
+						<_DistortionScale>40</_DistortionScale>
+						<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+					</shaderParameters>
+				</glowGrahphicData>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>6.5</glowMoteSize>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
@@ -258,7 +315,7 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGC_Bullet_Blastmaster</defaultProjectile>

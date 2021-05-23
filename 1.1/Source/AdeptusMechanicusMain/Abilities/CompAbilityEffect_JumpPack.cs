@@ -1,17 +1,22 @@
 ﻿using RimWorld;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
+
 	public class CompProperties_EquipmentAbilityJumpPack : CompProperties_EffectWithDest
 	{
+		public DeepStrikeType type = DeepStrikeType.Fly;
 		public string jumpingThing = "FlyingObject_JumpPack";
 		public IntRange stunTicks;
 		public float explodingLeaperRadius = 2f;
 		public float jumpRangeMax = 8f;
 		public float jumpRangeMin = 2f;
+		public new bool psychic = false;
 	}
 
 	public class CompAbilityEffect_JumpPack : CompAbilityEffect_WithDest
@@ -24,21 +29,70 @@ namespace AdeptusMechanicus
 			}
 		}
 
+		public override IEnumerable<PreCastAction> GetPreCastActions()
+		{
+            if (Props.type == DeepStrikeType.Teleport)
+            {
+				yield return new PreCastAction
+				{
+					action = delegate (LocalTargetInfo t, LocalTargetInfo d)
+					{
+						if (!this.parent.def.HasAreaOfEffect)
+						{
+							Pawn pawn = t.Pawn;
+							if (pawn != null)
+							{
+								MoteMaker.MakeAttachedOverlay(pawn, ThingDefOf.Mote_PsycastSkipFlashEntry, Vector3.zero, 1f, -1f).detachAfterTicks = 5;
+							}
+							else
+							{
+								MoteMaker.MakeStaticMote(t.CenterVector3, this.parent.pawn.Map, ThingDefOf.Mote_PsycastSkipFlashEntry, 1f);
+							}
+							MoteMaker.MakeStaticMote(d.Cell, this.parent.pawn.Map, ThingDefOf.Mote_PsycastSkipInnerExit, 1f);
+						}
+						if (this.Props.destination != AbilityEffectDestination.RandomInRange)
+						{
+							MoteMaker.MakeStaticMote(d.Cell, this.parent.pawn.Map, ThingDefOf.Mote_PsycastSkipOuterRingExit, 1f);
+						}
+						if (!this.parent.def.HasAreaOfEffect)
+						{
+							SoundDefOf.Psycast_Skip_Entry.PlayOneShot(new TargetInfo(t.Cell, this.parent.pawn.Map, false));
+							SoundDefOf.Psycast_Skip_Exit.PlayOneShot(new TargetInfo(d.Cell, this.parent.pawn.Map, false));
+						}
+					},
+					ticksAwayFromCast = 5
+				};
+			}
+			
+			yield break;
+		}
+
 		public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
 		{
-		//	Log.Message("Try use JumpPack");
-			if (target.IsValid)
+			AbilitesExtended.EquipmentAbility equipmentAbility = this.parent as AbilitesExtended.EquipmentAbility;
+			//	Log.Message("Try use JumpPack");
+			if (parent.CooldownTicksRemaining > 0)
 			{
-				AbilitesExtended.EquipmentAbility equipmentAbility = this.parent as AbilitesExtended.EquipmentAbility;
-
-				if (parent.CooldownTicksRemaining > 0)
-				{
 				//	Log.Message("jump disabled ");
-					return;
-				}
-			//	Log.Message("jumping");
+				return;
+			}
+			bool cd = false;
+			switch (Props.type)
+            {
+                case DeepStrikeType.Fly:
+					cd = TryJumpTo(target, dest);
+					break;
+                case DeepStrikeType.Teleport:
+					cd = TryTeleportTo(target, dest);
+					break;
+                case DeepStrikeType.Tunnel:
+                    break;
+                default:
+                    break;
+            }
+            if (cd)
+			{
 				this.parent.StartCooldown(equipmentAbility.CooldownTicksLeft);
-				Jump(target);
 			}
 			/*
 			if (target.HasThing)
@@ -91,30 +145,190 @@ namespace AdeptusMechanicus
 			return base.Valid(target, throwMessages);
 		}
 
-		public void Jump(LocalTargetInfo target)
+		public bool TryTeleport2(LocalTargetInfo target, LocalTargetInfo dest)
 		{
-
-			bool flag = target.Cell != default(IntVec3);
-			bool flag2 = flag;
-			if (flag2)
+			bool result = false;
+			if (target.HasThing)
 			{
-				bool flag3 = this.CasterPawn != null && this.CasterPawn.Position.IsValid && this.CasterPawn.Spawned && this.CasterPawn.Map != null && !this.CasterPawn.Downed && !this.CasterPawn.Dead;
-				if (flag3)
+				base.Apply(target, dest);
+				LocalTargetInfo destination = base.GetDestination(dest.IsValid ? dest : target);
+				if (destination.IsValid)
 				{
-					this.CasterPawn.jobs.StopAll(false);
-					FlyingObject_JumpPack flyingObject_Leap = (FlyingObject_JumpPack)GenSpawn.Spawn(ThingDef.Named(Props.jumpingThing), this.CasterPawn.Position, this.CasterPawn.Map, WipeMode.Vanish);
-
-					Find.TickManager.DeRegisterAllTickabilityFor(CasterPawn);
-					CasterPawn.DeSpawn(DestroyMode.Vanish);
-					if (target.HasThing)
+					Pawn pawn = this.parent.pawn;
+					if (!this.parent.def.HasAreaOfEffect)
 					{
-					//	Log.Message("jumping at " + target.Thing.LabelShortCap);
-						flyingObject_Leap.Launch(this.CasterPawn, target, this.CasterPawn);
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Entry.Spawn(target.Thing, pawn.Map, 1f), target.Thing.Position, 60);
 					}
-					flyingObject_Leap.Launch(this.CasterPawn, target.Cell, this.CasterPawn);
-					flyingObject_Leap.GetDirectlyHeldThings().TryAdd(CasterPawn, false);
+					else
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_EntryNoDelay.Spawn(target.Thing, pawn.Map, 1f), target.Thing.Position, 60);
+					}
+					if (this.Props.destination == AbilityEffectDestination.Selected)
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Exit.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+					}
+					else
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_ExitNoDelay.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+					}
+					CompCanBeDormant compCanBeDormant = target.Thing.TryGetComp<CompCanBeDormant>();
+					if (compCanBeDormant != null)
+					{
+						compCanBeDormant.WakeUp();
+					}
+					target.Thing.Position = destination.Cell;
+					Pawn pawn2 = target.Thing as Pawn;
+					if (pawn2 != null)
+					{
+						pawn2.stances.stunner.StunFor_NewTmp(this.Props.stunTicks.RandomInRange, this.parent.pawn, false, false);
+						pawn2.Notify_Teleported(true, true);
+					}
+					if (this.Props.destClamorType != null)
+					{
+						GenClamor.DoClamor(pawn, target.Cell, (float)this.Props.destClamorRadius, this.Props.destClamorType);
+					}
 				}
 			}
+			return result;
+		}
+		
+		public bool TryTeleportTo(LocalTargetInfo target, LocalTargetInfo dest)
+		{
+			bool result = false;
+			if (target.IsValid)
+			{
+				if (target.Cell != default(IntVec3))
+				{
+					if (this.CasterPawn != null && this.CasterPawn.Position.IsValid && this.CasterPawn.Spawned && this.CasterPawn.Map != null && !this.CasterPawn.Downed && !this.CasterPawn.Dead)
+					{
+
+						LocalTargetInfo destination = target;
+						result = true;
+						if (destination.IsValid)
+						{
+							Pawn pawn = this.parent.pawn;
+							if (!this.parent.def.HasAreaOfEffect)
+							{
+								this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Entry.Spawn(pawn, pawn.Map, 1f), pawn.Position, 60);
+							}
+							else
+							{
+								this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_EntryNoDelay.Spawn(pawn, pawn.Map, 1f), pawn.Position, 60);
+							}
+
+							this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Exit.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+							/*
+							if (this.Props.destination == AbilityEffectDestination.Selected)
+							{
+								this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Exit.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+							}
+							else
+							{
+								this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_ExitNoDelay.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+							}
+							*/
+							
+							CompCanBeDormant compCanBeDormant = target.Thing.TryGetComp<CompCanBeDormant>();
+							if (compCanBeDormant != null)
+							{
+								compCanBeDormant.WakeUp();
+							}
+							
+							pawn.Position = destination.Cell;
+							pawn.Notify_Teleported(true, true);
+							Pawn pawn2 = target.Thing as Pawn;
+							if (pawn2 != null)
+							{
+								pawn2.stances.stunner.StunFor_NewTmp(this.Props.stunTicks.RandomInRange, this.parent.pawn, false, false);
+							}
+							if (this.Props.destClamorType != null)
+							{
+								GenClamor.DoClamor(pawn, target.Cell, (float)this.Props.destClamorRadius, this.Props.destClamorType);
+							}
+						}
+					}
+				}
+			}
+			return result;
+		}
+		
+		public bool TryTeleport(LocalTargetInfo target, LocalTargetInfo dest)
+		{
+			bool result = false;
+			if (target.HasThing)
+			{
+				base.Apply(target, dest);
+				LocalTargetInfo destination = base.GetDestination(dest.IsValid ? dest : target);
+				if (destination.IsValid)
+				{
+					Pawn pawn = this.parent.pawn;
+					if (!this.parent.def.HasAreaOfEffect)
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Entry.Spawn(target.Thing, pawn.Map, 1f), target.Thing.Position, 60);
+					}
+					else
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_EntryNoDelay.Spawn(target.Thing, pawn.Map, 1f), target.Thing.Position, 60);
+					}
+					if (this.Props.destination == AbilityEffectDestination.Selected)
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_Exit.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+					}
+					else
+					{
+						this.parent.AddEffecterToMaintain(EffecterDefOf.Skip_ExitNoDelay.Spawn(destination.Cell, pawn.Map, 1f), destination.Cell, 60);
+					}
+					CompCanBeDormant compCanBeDormant = target.Thing.TryGetComp<CompCanBeDormant>();
+					if (compCanBeDormant != null)
+					{
+						compCanBeDormant.WakeUp();
+					}
+					target.Thing.Position = destination.Cell;
+					Pawn pawn2 = target.Thing as Pawn;
+					if (pawn2 != null)
+					{
+						pawn2.stances.stunner.StunFor_NewTmp(this.Props.stunTicks.RandomInRange, this.parent.pawn, false, false);
+						pawn2.Notify_Teleported(true, true);
+					}
+					if (this.Props.destClamorType != null)
+					{
+						GenClamor.DoClamor(pawn, target.Cell, (float)this.Props.destClamorRadius, this.Props.destClamorType);
+					}
+				}
+			}
+			return result;
+		}
+
+		public bool TryJumpTo(LocalTargetInfo target, LocalTargetInfo dest)
+		{
+			bool result = false;
+			if (target.IsValid)
+			{
+				if (target.Cell != default(IntVec3))
+				{
+					if (this.CasterPawn != null && this.CasterPawn.Position.IsValid && this.CasterPawn.Spawned && this.CasterPawn.Map != null && !this.CasterPawn.Downed && !this.CasterPawn.Dead)
+					{
+						this.CasterPawn.jobs.StopAll(false);
+						FlyingObject_JumpPack flyingObject_Leap = (FlyingObject_JumpPack)GenSpawn.Spawn(ThingDef.Named(Props.jumpingThing), this.CasterPawn.Position, this.CasterPawn.Map, WipeMode.Vanish);
+
+						Find.TickManager.DeRegisterAllTickabilityFor(CasterPawn);
+						CasterPawn.DeSpawn(DestroyMode.Vanish);
+						if (target.HasThing)
+						{
+							//	Log.Message("jumping at " + target.Thing.LabelShortCap);
+							flyingObject_Leap.Launch(this.CasterPawn, target, this.CasterPawn);
+						}
+						flyingObject_Leap.Launch(this.CasterPawn, target.Cell, this.CasterPawn);
+						flyingObject_Leap.GetDirectlyHeldThings().TryAdd(CasterPawn, false);
+						result = true;
+					}
+				}
+			}
+			return result;
+		}
+		public override bool CanHitTarget(LocalTargetInfo target)
+		{
+			return base.CanPlaceSelectedTargetAt(target) && base.CanHitTarget(target);
 		}
 	}
 }

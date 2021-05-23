@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.settings;
+using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -12,7 +13,7 @@ namespace AdeptusMechanicus
         public override void Tick()
         {
             base.Tick();
-            if (this.ticksToDetonation > 0)
+            if (this.ticksToDetonation > 0 && this.landed)
             {
                 this.ticksToDetonation--;
                 if (this.ticksToDetonation <= 0)
@@ -20,8 +21,101 @@ namespace AdeptusMechanicus
                     this.Explode();
                 }
             }
+            this.TrailTick();
         }
 
+        public virtual void TrailTick()
+        {
+            if (AMAMod.settings.AllowProjectileTrail)
+            {
+                if (!Trailers.NullOrEmpty())
+                {
+                    foreach (TrailerProjectileExtension trailer in Trailers)
+                    {
+                        if (ticksToImpact % trailer.trailerMoteInterval == 0 && (trailer.trailWhenLanded || !this.landed))
+                        {
+                            for (int ii = 0; ii < trailer.motesThrown; ii++)
+                            {
+                                //    Trail1Thrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+
+                                //    TrailThrower.ThrowSmokeTrail(__instance.DrawPos, trailer.trailMoteSize * DistanceCoveredFraction(___origin, ___destination, ___ticksToImpact, __instance.def.projectile.SpeedTilesPerTick), __instance.Map, trailer.trailMoteDef, __instance);
+                                Color? DC = null;
+                                if (trailer.useGraphicColor)
+                                {
+                                    DC = this.DrawColor;
+                                }
+                                else
+                                if (trailer.useGraphicColorTwo)
+                                {
+                                    DC = this.DrawColorTwo;
+                                }
+                                TrailThrower.ThrowSprayTrail(this.DrawPos, this.Map, origin, destination, trailer.trailMoteDef, trailer.trailMoteSize, 240, this.def.projectile.SpeedTilesPerTick, DC);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<TrailerProjectileExtension> _trailers;
+        public List<TrailerProjectileExtension> Trailers
+        {
+            get
+            {
+                if (_trailers == null)
+                {
+                    _trailers = new List<TrailerProjectileExtension>();
+                    if (this.def.HasModExtension<TrailerProjectileExtension>())
+                    {
+                        for (int i = 0; i < def.modExtensions.Count; i++)
+                        {
+                            if (def.modExtensions[i] is TrailerProjectileExtension trailer)
+                            {
+                                _trailers.Add(trailer);
+                            }
+                        }
+                    }
+                }
+                return _trailers;
+            }
+        }
+
+        public virtual void drawGlow()
+        {
+            if (AMAMod.settings.AllowProjectileGlow)
+            {
+                if (!Glower.NullOrEmpty())
+                {
+                    foreach (GlowerProjectileExtension glower in Glower)
+                    {
+                        glower.Glow(this, this.ExactRotation);
+                    }
+                }
+            }
+        }
+
+        private List<GlowerProjectileExtension> _glower;
+        public List<GlowerProjectileExtension> Glower
+        {
+            get
+            {
+                if (_glower == null)
+                {
+                    _glower = new List<GlowerProjectileExtension>();
+                    if (this.def.HasModExtension<GlowerProjectileExtension>())
+                    {
+                        for (int i = 0; i < def.modExtensions.Count; i++)
+                        {
+                            if (def.modExtensions[i] is GlowerProjectileExtension trailer)
+                            {
+                                _glower.Add(trailer);
+                            }
+                        }
+                    }
+                }
+                return _glower;
+            }
+        }
 
         protected override void Impact(Thing hitThing)
         {

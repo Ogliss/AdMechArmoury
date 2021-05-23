@@ -41,7 +41,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
@@ -51,7 +51,9 @@
 				<burstShotCount>8</burstShotCount>
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>4</muzzleFlashScale>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.45</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -134,7 +136,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
@@ -144,7 +146,9 @@
 				<burstShotCount>14</burstShotCount>
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlashScale>2</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.70</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -224,7 +228,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
@@ -234,7 +238,9 @@
 				<burstShotCount>14</burstShotCount>
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlashScale>2</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.70</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -313,6 +319,8 @@
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/ShurikenCannon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<colorTwo>74,76,88</colorTwo> <!-- ADEPTUS BATTLEGREY -->
+			<drawSize>1.750</drawSize>			
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
@@ -331,7 +339,7 @@
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_ShurikenCannon</defaultProjectile>
@@ -341,7 +349,9 @@
 				<burstShotCount>21</burstShotCount>
 				<soundCast>OG_Shuriken_Sound</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlashScale>2</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.70</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -386,6 +396,14 @@
 			<Steel>15</Steel>
 			<OGE_Wraithbone>30</OGE_Wraithbone>
 		</costList>
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -397,6 +415,142 @@
 		</modExtensions>
 	</ThingDef>
 
+	<!--==================== Eldar - Maugetar - Unique Shuriken Cannon =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGE_Bullet_ShurikenCannon_Maugetar</defName>
+		<label>small Shuriken</label>
+		<graphicData>
+			<texPath>Things/Projectile/ShurikenSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGEShuriken</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Eldar_Gun_Relic_Base">
+		<defName>OGE_Gun_ShurikenCannon_Maugetar</defName>
+		<label>maugetar shuriken cannon (E)</label>
+		<description>The Maugetar, or the Harvester as it is known in Low Gothic, is the pinnacle of such deadly force. As a mighty Shuriken Cannon  of the kind known as a "shrieker," as the discs it fires are formed in such a way that they scream as they speed towards the foe, bringing terror before they kill. The Maugetar fires shurikens of unusual size, each large and potent enough to kill a swathe of enemies before they disappear; vanishing like blood in fire, it is unequalled in its destructive power, and it is wedded to a blade of peerless design.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Eldar/ShurikenCannonMaugetar</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<colorTwo>74,76,88</colorTwo> <!-- ADEPTUS BATTLEGREY -->
+			<drawSize>1.750</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Eldar/ShurikenCannonMaugetar_Icon</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<statBases>
+			<WorkToMake>50000</WorkToMake>
+			<MarketValue>1850</MarketValue>
+			<Mass>3.8</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGE_Bullet_ShurikenCannon_Maugetar</defaultProjectile>
+				<warmupTime>0.7</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>12</burstShotCount>
+				<soundCast>OG_Shuriken_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>2</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.70</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>50</power>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>EShurikenCannon</li>
+			<li>EHeavyGun</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGERanged</li>
+			<li>OGERelicRanged</li>
+		</tradeTags>
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,100,205)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.RelicExtension">
+			</li>
+		</modExtensions>
+	</ThingDef>
+
 	<!--==================== Eldar - Starcannon =========================-->
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGE_Bullet_Starcannon</defName>
@@ -404,7 +558,15 @@
 		<graphicData>
 			<texPath>Things/Projectile/PlamsShotSml</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.5</drawSize>
+			<color>0,185,255,255</color>
+			<colorTwo>0,185,255,200</colorTwo>
 			<shaderType>MoteGlow</shaderType>
+			<shaderParameters>
+				<_distortionIntensity>0.015</_distortionIntensity>
+				<_brightnessMultiplier>1.1</_brightnessMultiplier>
+				<_distortionScale>40</_distortionScale>
+			</shaderParameters>
 		</graphicData>
 		<projectile>
 			<damageDef>OGEPlas</damageDef>
@@ -416,14 +578,32 @@
 		<modExtensions>
 			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
 				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
-				<glowMoteSize>1.5</glowMoteSize>
+				<glowMoteSize>2</glowMoteSize>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_PlasmaTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>2</trailMoteSize>
+				<trailerMoteInterval>2</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksTrail</trailMoteDef>
+				<trailMoteSize>0.350</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
 			</li>
 			<li Class="AdeptusMechanicus.ProjectileVFX">
-				<explosionMoteSize>0.75</explosionMoteSize>
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
 				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
-				<impactMoteSize>2</impactMoteSize>
-				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
-				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+				<impactMoteSize>1.25</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -438,14 +618,6 @@
 			<drawSize>1.250</drawSize>			
 		</graphicData>
 		<equippedAngleOffset>45</equippedAngleOffset>
-		<comps>   
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
-		</comps>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
 			<WorkToMake>60000</WorkToMake>
@@ -462,7 +634,7 @@
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Starcannon</defaultProjectile>
@@ -473,6 +645,8 @@
 				<soundCast>OG_Starcannon_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -508,6 +682,14 @@
 			<Plasteel>25</Plasteel>
 			<OGE_Wraithbone>35</OGE_Wraithbone>
 		</costList>
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>false</dualWield>
@@ -529,10 +711,16 @@
 		</graphicData>
 		<projectile>
 			<damageDef>OGEDeathspinner</damageDef>
-			<damageAmountBase>29</damageAmountBase>
-			<armorPenetrationBase>0.68</armorPenetrationBase>
-			<speed>135</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.0</armorPenetrationBase>
+			<speed>60</speed>
 		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>3</projectileCount>
+				<experimental>true</experimental>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="OG_Eldar_Gun_Special">
@@ -560,17 +748,18 @@
 			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<verbs>
-			<li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_Deathspinner</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
-				<range>28</range>
+				<range>18</range>
 				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>OG_Deathspinner_Sound</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.65</barrelLength>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -822,8 +1011,8 @@
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 		</equippedStatOffsets>
 		<verbs>
-		<li>
-			<verbClass>Verb_Shoot</verbClass>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGE_Bullet_ReaperLauncher</defaultProjectile>
 				<warmupTime>3</warmupTime>
@@ -975,7 +1164,7 @@
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
 				<barrelLength>0.8</barrelLength>
-				<bulletOffset>-0.0</bulletOffset>
+				<bulletOffset>0.2</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -1366,7 +1555,7 @@
 		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
 		<lifetime>40</lifetime> <!-- this is how many ticks the beam should be drawn for -->
 		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
-		<impulse>0.1</impulse> <!-- the solidity of the beam -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
 		<beamWidth>2.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<flareLength>3</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
 		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
@@ -1541,7 +1730,7 @@
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>14</muzzleFlashScale>
 				<barrelLength>0.8</barrelLength>
-				<bulletOffset>-0.25</bulletOffset>
+				<bulletOffset>-0.0</bulletOffset>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>

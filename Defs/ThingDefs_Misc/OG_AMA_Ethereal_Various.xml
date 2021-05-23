@@ -1,6 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+	<ThingDef ParentName="BaseBullet" Name="FlyingObject_JumpPack">
+		<defName>FlyingObject_JumpPack</defName>
+		<thingClass>AdeptusMechanicus.FlyingObject_JumpPack</thingClass>
+		<label>jump</label>
+		<graphicData>
+			<texPath>DummyTexture</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutFlying</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>true</flyOverhead>
+			<damageDef>Stun</damageDef>
+			<damageAmountBase>60</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<speed>30</speed>
+		</projectile>
+		<skyfaller>
+			<reversed>true</reversed>
+			<anticipationSound>Shuttle_Leaving</anticipationSound>
+			<anticipationSoundTicks>-10</anticipationSoundTicks>
+			<moteSpawnTime>0.05</moteSpawnTime>
+			<zPositionCurve>
+				<points>
+					<li>(0,0)</li>
+					<li>(0.5,10)</li>
+					<li>(0.9,10)</li>
+					<li>(1,0)</li>
+				</points>
+			</zPositionCurve>
+			<!--xPositionCurve>
+				<points>
+					<li>(0,0)</li>
+					<li>(0.5,5)</li>
+					<li>(1,0)</li>
+				</points>
+			</xPositionCurve-->
+			<speedCurve>
+				<points>
+					<li>(0,1)</li>
+					<li>(0.5,2)</li>
+					<li>(0.9,5)</li>
+					<li>(1,0)</li>
+				</points>
+			</speedCurve>
+		</skyfaller>
+	</ThingDef>
+	
   <ThingDef ParentName="EtherealThingBase">
     <defName>OG_AMA_Tunneler</defName>
     <label>tunnel</label>

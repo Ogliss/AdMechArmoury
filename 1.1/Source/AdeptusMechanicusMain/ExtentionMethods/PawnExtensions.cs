@@ -9,6 +9,8 @@ namespace AdeptusMechanicus.ExtensionMethods
 {
     public static class PawnExtensions
     {
+        public static bool ModPawn(this Pawn pawn) => (pawn.def.modContentPack != null && (pawn.def.modContentPack.Name.Contains("Mechanicus") || pawn.def.modContentPack.Name.Contains("Adeptus") || pawn.def.modContentPack.Name.Contains("Xenobiologis"))) || pawn.def.defName.StartsWith("OG_") || pawn.kindDef.defName.StartsWith("OG_") || pawn.kindDef.defName.Contains("_OG_");
+
         public static bool isAdult(this Pawn pawn)
         {
             float adultage = 18f;

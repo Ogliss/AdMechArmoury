@@ -39,20 +39,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                 //        Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                 if (i > 1 && i < instructionsList.Count)
                 {
+                    /*
                     if (!drawSizePatched)
                     {
-                        /*
-                            if (instructionsList[index: i].opcode == OpCodes.Ldc_R4 && instructionsList[index: i].OperandIs((float)1.5f))
-                            {
-                                if (AMAMod.Dev) Log.Message("DrawSize At " + (i) + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
-                                drawSizePatched = true;
-                                yield return instruction;                                               // float
-                                yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // bool
-                                yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Pawn
-                                yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4);           // Addon
-                                instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(AlienRace_DrawAddons_LinkedBodyAddons_Transpiler).GetMethod("DrawSize"));
-                            }
-                        */
                         if (instructionsList[index: i].opcode == OpCodes.Stfld && instructionsList[index: i].OperandIs(typeof(Graphic).GetField("drawSize")))
                         {
                             drawSizePatched = true;
@@ -73,6 +62,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                         }
                     }
+                    */
                     if (!drawOffsetPatched)
                     {
                         if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 13 && instruction.opcode == OpCodes.Ldloc_S)

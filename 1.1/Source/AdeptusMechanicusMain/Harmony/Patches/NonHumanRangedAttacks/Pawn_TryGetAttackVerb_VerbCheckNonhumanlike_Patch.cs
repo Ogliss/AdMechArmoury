@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using System.Collections.Generic;
 using Verse;
 
@@ -48,6 +49,10 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         static bool Prefix(ref Pawn __instance, ref Verb __result)
         {
+            if (!__instance.ModPawn())
+            {
+                return true;
+            }
             //If animal don't bother
             if (__instance.RaceProps.Humanlike)
                 return true;

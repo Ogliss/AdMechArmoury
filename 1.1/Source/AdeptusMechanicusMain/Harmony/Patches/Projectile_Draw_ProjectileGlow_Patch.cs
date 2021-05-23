@@ -22,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix(Projectile __instance/*, Vector3 ___origin, Vector3 ___destination, float ___ticksToImpact*/)
         {
-            if (__instance != null && AMAMod.settings.AllowProjectileGlow)
+            if (__instance != null && AMAMod.settings.AllowProjectileGlow && __instance as Bullet_Explosive == null)
             {
                 if (__instance.def.HasModExtension<GlowerProjectileExtension>())
                 {

@@ -8,7 +8,11 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    /*
+    // AdeptusMechanicus.RelicExtension
+    public class RelicExtension : DefModExtension
+    {
+
+    }
     public class RelicTracker : WorldComponent
     {
         public RelicTracker(World world) : base(world)
@@ -36,6 +40,10 @@ namespace AdeptusMechanicus
             base.ExposeData();
         }
 
+        public bool CanSpawn(Thing thing)
+        {
+            return CanSpawn(thing.def);
+        }
         public bool CanSpawn(ThingDef def)
         {
             if (spawnedRelics.TryGetValue(def, out bool spawned))
@@ -46,9 +54,4 @@ namespace AdeptusMechanicus
         }
     }
 
-    public class RelicExtension : DefModExtension
-    {
-
-    }
-*/
 }

@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AdeptusMechanicus.ExtensionMethods;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,12 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(JobGiver_Manhunter), "TryGiveJob")]
     public static class JobGiver_Manhunter_TryGiveJob_RangedVerb_Patch
     {
-
         static bool Prefix(ref JobGiver_Manhunter __instance, ref Job __result, ref Pawn pawn)
         {
+            if (!pawn.ModPawn())
+            {
+                return true;
+            }
             //Log.Warning("Detected Animal Attack");
 
             bool hasRangedVerb = false;

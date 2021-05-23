@@ -83,8 +83,11 @@ namespace AdeptusMechanicus.Lasers
                     }
                     for (int ii = 0; ii < list.Count; ii++)
                     {
-
-                        materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
+                        GraphicData data = new GraphicData();
+                        data.CopyFrom(this.graphicData);
+                        data.texPath = textures[i] + "/" + list[ii].name;
+                        materials.Add(data.Graphic.MatSingle);
+                    //    materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                     }
                 }
             }
@@ -92,12 +95,21 @@ namespace AdeptusMechanicus.Lasers
             {
                 for (int i = 0; i < textures.Count; i++)
                 {
-                    materials.Add(MaterialPool.MatFrom(textures[i], this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
+                    GraphicData data = new GraphicData();
+                    data.CopyFrom(this.graphicData);
+                    data.texPath = textures[i];
+                    materials.Add(data.Graphic.MatSingle);
+                    // materials.Add(MaterialPool.MatFrom(textures[i], this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                 }
             }
             if (!flareMatPath.NullOrEmpty())
             {
-                flareMat = MaterialPool.MatFrom(flareMatPath, this.flareShaderType?.Shader ?? this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
+                GraphicData data = new GraphicData();
+                data.CopyFrom(this.graphicData);
+                data.texPath = flareMatPath;
+                data.shaderType = this.flareShaderType ?? this.graphicData.shaderType;
+                flareMat = data.Graphic.MatSingle;
+            //    flareMat = MaterialPool.MatFrom(flareMatPath, this.flareShaderType?.Shader ?? this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
             }
 
         }

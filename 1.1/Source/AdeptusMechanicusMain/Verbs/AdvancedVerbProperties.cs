@@ -1,4 +1,5 @@
 ﻿using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.Lasers;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AdvancedVerbProperties
     public partial class AdvancedVerbProperties : VerbProperties, IMuzzlePosition, IAdvancedVerb
     {
+        public bool debug = true;
+
         public float heavyWeaponSetupTime = -1f;
 
         public Reliability reliability = Reliability.NA;
@@ -75,6 +78,7 @@ namespace AdeptusMechanicus
         #endregion
 
         #region IAdvancedVerb    
+        public bool Debug => debug;
         public bool RapidFire => rapidFire;
         public float RapidFireRange => rapidFireRange;
         public Reliability Reliability => reliability;
@@ -224,6 +228,191 @@ namespace AdeptusMechanicus
                 default:
                     throw new InvalidOperationException();
             }
+        }
+
+
+        public virtual float FailChance(Thing gun, out string reliabilityString)
+        {
+            float failChance = 0;
+            reliabilityString = string.Empty;
+            if (GetsHot || Jams)
+            {
+                StatPart_Reliability.GetReliability(this, gun, out reliabilityString, out failChance);
+                failChance *= (GetsHot ? 0.1f : 0.01f);
+            }
+            if (Debug)
+            {
+                Log.Message("FailChance for"+ reliabilityString + " "+gun+": "+failChance);
+            }
+            return failChance;
+        }
+
+        public virtual bool CheckFail(ref Verb_Shoot __instance)
+        {
+            string msg = string.Format("");
+            Thing gun = __instance.EquipmentSource;
+            bool failed = false;
+            float failChance = FailChance(gun, out string reliabilityString);
+            if (failChance > 0f)
+            {
+                Rand.PushState();
+                failed = Rand.Chance(failChance);
+                Rand.PopState();
+                if (Debug) Log.Message((GetsHot ? "Overheat" : "Jam") + " Chance: " + failChance + "% Result: " + (failed ? (GetsHot ? "Overheated" : "Jamed") : "Passed"));
+            }
+            if (failed)
+            {
+                bool stillFire = true;
+                bool canDamageWeapon = HotDamageWeapon || JamsDamageWeapon;
+                MessageTypeDef msgDef = GetsHot ? MessageTypeDefOf.NegativeHealthEvent : MessageTypeDefOf.SilentInput;
+                float extraWeaponDamage = HotDamageWeapon ? HotDamage : JamDamage;
+                if (GetsHot)
+                {
+                    string overheat = "overheated";
+                    string causing = "causing";
+                    DamageDef damageDef = __instance.Projectile.projectile.damageDef;
+                    HediffDef HediffToAdd = damageDef.hediff;
+                    Pawn launcherPawn = __instance.caster as Pawn;
+                    Rand.PushState();
+                    bool crit = Rand.Chance(GetsHotCritChance);
+                    Rand.PopState();
+                    bool critExplode = false;
+                    if (crit)
+                    {
+                        overheat = "critically overheated";
+                        if (GetsHotCritExplosion)
+                        {
+                            critExplode = Rand.Chance(GetsHotCritExplosionChance);
+                            if (critExplode)
+                            {
+                                causing = "causing an explosion";
+                                CriticalOverheatExplosion(__instance);
+                            }
+                        }
+                    }
+                    float ArmorPenetration = __instance.Projectile.projectile.GetArmorPenetration(__instance.EquipmentSource, null) * (crit ? 1f : 0.25f);
+                    float DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null) * (crit ? 1f : 0.25f);
+                    msg = string.Format("{0}'s {1} " + overheat + ". ({2} chance) " + causing + " {3} damage", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent(), DamageAmount);
+                    float damageLeft = DamageAmount;
+                    List<BodyPartTagDef> tagDefs = new List<BodyPartTagDef>() { BodyPartTagDefOf.ManipulationLimbDigit, BodyPartTagDefOf.ManipulationLimbSegment };
+                    List<BodyPartRecord> list = launcherPawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside, tagDefs).ToList<BodyPartRecord>();
+                    if (!list.NullOrEmpty())
+                    {
+                        while (damageLeft > 0f && !list.NullOrEmpty())
+                        {
+                            Rand.PushState();
+                            BodyPartRecord part = list.RandomElement();
+                            list.Remove(part);
+                            float maxPartDamage = Math.Min(damageLeft, launcherPawn.health.hediffSet.GetPartHealth(part));
+                            float amount = Rand.Range(1f, Math.Min(damageLeft, maxPartDamage));
+                            Rand.PopState();
+                            if (amount > 0)
+                            {
+                                /*
+                                Hediff hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, part);
+                                hediff.Severity = severity;
+                                launcherPawn.health.AddHediff(hediff, part, null);
+                                */
+                                DamageInfo info = new DamageInfo(damageDef, amount, ArmorPenetration, -1, __instance.EquipmentSource, part, __instance.EquipmentSource.def, DamageInfo.SourceCategory.ThingOrUnknown, __instance.CurrentTarget.Thing ?? null);
+                                launcherPawn.TakeDamage(info);
+                                damageLeft -= amount;
+                            }
+                        }
+                    }
+                }
+                if (Jams)
+                {
+                    if (!__instance.GetsHot())
+                    {
+                        msg = string.Format("{0}'s {1} had a weapon jam. ({2} chance)", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent());
+
+                    }
+                    float defaultCooldownTime = __instance.verbProps.defaultCooldownTime * 2;
+                    __instance.verbProps.defaultCooldownTime = defaultCooldownTime;
+                    if (canDamageWeapon)
+                    {
+                        if (extraWeaponDamage != 0f)
+                        {
+                            if (__instance.EquipmentSource != null)
+                            {
+
+                                if (__instance.EquipmentSource.HitPoints - (int)extraWeaponDamage >= 0)
+                                {
+                                    __instance.EquipmentSource.HitPoints = __instance.EquipmentSource.HitPoints - (int)extraWeaponDamage;
+                                }
+                                else if (__instance.EquipmentSource.HitPoints - (int)extraWeaponDamage < 0)
+                                {
+                                    __instance.EquipmentSource.HitPoints = 0;
+                                    __instance.EquipmentSource.Destroy();
+                                }
+                            }
+                            if (__instance.HediffCompSource != null)
+                            {
+                                /*
+                                if (__instance.HediffCompSource.parent.Part.HitPoints - (int)extraWeaponDamage >= 0)
+                                {
+                                    __instance.HediffCompSource.HitPoints = __instance.HediffCompSource.HitPoints - (int)extraWeaponDamage;
+                                }
+                                else if (__instance.HediffCompSource.HitPoints - (int)extraWeaponDamage < 0)
+                                {
+                                    __instance.HediffCompSource.HitPoints = 0;
+                                    __instance.HediffCompSource.Destroy();
+                                }
+                                */
+                            }
+                        }
+                        else
+                        {
+                            if (__instance.EquipmentSource != null)
+                            {
+                                if (__instance.EquipmentSource.HitPoints > 0)
+                                {
+                                    __instance.EquipmentSource.HitPoints--;
+                                }
+                            }
+                        }
+                    }
+                    if (__instance.EquipmentSource != null)
+                    {
+                        SpinningLaserGun spinner = __instance.EquipmentSource as SpinningLaserGun;
+                        if (spinner != null)
+                        {
+                            spinner.state = SpinningLaserGunBase.State.Idle;
+                            spinner.ReachRotationSpeed(0, 0);
+                        }
+                    }
+                }
+                Messages.Message(msg, msgDef);
+            }
+            return failed;
+        }
+
+        public static void CriticalOverheatExplosion(Verb_Shoot __instance)
+        {
+            Map map = __instance.caster.Map;
+            if (__instance.Projectile.projectile.explosionEffect != null)
+            {
+                Effecter effecter = __instance.Projectile.projectile.explosionEffect.Spawn();
+                effecter.Trigger(new TargetInfo(__instance.EquipmentSource.Position, map, false), new TargetInfo(__instance.EquipmentSource.Position, map, false));
+                effecter.Cleanup();
+            }
+            IntVec3 position = __instance.caster.Position;
+            Map map2 = map;
+            float explosionRadius = __instance.Projectile.projectile.explosionRadius;
+            DamageDef damageDef = __instance.Projectile.projectile.damageDef;
+            Thing launcher = __instance.EquipmentSource;
+            int DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null);
+            float ArmorPenetration = __instance.Projectile.projectile.GetArmorPenetration(__instance.EquipmentSource, null);
+            SoundDef soundExplode = __instance.Projectile.projectile.soundExplode;
+            ThingDef equipmentDef = __instance.EquipmentSource.def;
+            ThingDef def = __instance.EquipmentSource.def;
+            Thing thing = __instance.EquipmentSource;
+            ThingDef postExplosionSpawnThingDef = __instance.Projectile.projectile.postExplosionSpawnThingDef;
+            float postExplosionSpawnChance = __instance.Projectile.projectile.postExplosionSpawnChance;
+            int postExplosionSpawnThingCount = __instance.Projectile.projectile.postExplosionSpawnThingCount;
+            ThingDef preExplosionSpawnThingDef = __instance.Projectile.projectile.preExplosionSpawnThingDef;
+            GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, DamageAmount, ArmorPenetration, soundExplode, equipmentDef, def, thing);//, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, EquipmentSource.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, EquipmentSource.def.projectile.preExplosionSpawnChance, EquipmentSource.def.projectile.preExplosionSpawnThingCount, EquipmentSource.def.projectile.explosionChanceToStartFire, EquipmentSource.def.projectile.explosionDamageFalloff);
+            return;
         }
     }
 }

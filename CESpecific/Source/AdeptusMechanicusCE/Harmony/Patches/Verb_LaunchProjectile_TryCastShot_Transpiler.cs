@@ -45,14 +45,14 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
         public static Vector2 MuzzlePosition(Vector2 sourceLoc, Verb_LaunchProjectileCE instance)
         {
-            Log.Message("MuzzlePosition CE");
+        //    Log.Message("MuzzlePosition CE");
             Vector2 result = sourceLoc;
-            Log.Message("MuzzlePosition CE sourceLoc: " + sourceLoc);
+        //    Log.Message("MuzzlePosition CE sourceLoc: " + sourceLoc);
             string msg = "CE MuzzlePosition {0}: {1}, aimAngle: {2}";
             float aimAngle = 0f;
             if (instance.EquipmentSource is Thing equipment)
             {
-                Log.Message("MuzzlePosition CE EquipmentSource: " + equipment);
+            //    Log.Message("MuzzlePosition CE EquipmentSource: " + equipment);
                 Thing launcher = instance.Shooter;
                 Vector3 origin = new Vector3(sourceLoc.x, 0, sourceLoc.y);
                 Vector3 destination = instance.CurrentTarget.Cell.ToVector3Shifted();
@@ -63,7 +63,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 IDrawnWeaponWithRotation rotation = equipment as IDrawnWeaponWithRotation;
                 if (rotation != null)
                 {
-                    Log.Message(rotation + " is IDrawnWeaponWithRotation with RotationOffset: " + rotation.RotationOffset);
+                //    Log.Message(rotation + " is IDrawnWeaponWithRotation with RotationOffset: " + rotation.RotationOffset);
                     aimAngle += rotation.RotationOffset;
                 }
                 Log.Message(string.Format(msg, "Original", sourceLoc, aimAngle));

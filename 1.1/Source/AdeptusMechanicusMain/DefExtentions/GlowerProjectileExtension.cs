@@ -14,25 +14,48 @@ namespace AdeptusMechanicus
 
         public float GlowMoteSize => glowMoteSize;
         public int GlowMoteInterval => glowMoteInterval;
+        public GraphicData glowGrahphicData;
+        private Graphic _glowGrahphic;
         public ThingDef GlowMoteDef => _GlowMoteDef ??= (glowMoteDef.NullOrEmpty() ? null : DefDatabase<ThingDef>.GetNamed(glowMoteDef));
         private ThingDef _GlowMoteDef;
 
         public void Glow(Thing glower, Quaternion ExactRotation)
         {
-
-            Material material = GlowMoteDef.graphic.MatSingle;
-            if (useGraphicColor)
+            if (glowGrahphicData == null)
             {
-                material.color = glower.DrawColor;
+                Material material = GlowMoteDef.graphic.MatSingle;
+                if (useGraphicColor)
+                {
+                    material.color = glower.DrawColor;
+                }
+                else
+                if (useGraphicColorTwo)
+                {
+                    material.color = glower.DrawColorTwo;
+                }
+
+                Mesh mesh2 = MeshPool.GridPlane(GlowMoteDef.graphicData.drawSize * GlowMoteSize);
+                Graphics.DrawMesh(mesh2, glower.DrawPos, ExactRotation, material, 0);
             }
             else
-            if (useGraphicColorTwo)
             {
-                material.color = glower.DrawColorTwo;
-            }
+                if (_glowGrahphic == null)
+                {
+                    _glowGrahphic = glowGrahphicData.GraphicColoredFor(glower);
+                }
+                if (useGraphicColor)
+                {
+                    _glowGrahphic.color = glower.DrawColor;
+                }
+                else
+                if (useGraphicColorTwo)
+                {
+                    _glowGrahphic.color = glower.DrawColorTwo;
+                }
 
-            Mesh mesh2 = MeshPool.GridPlane(GlowMoteDef.graphicData.drawSize * GlowMoteSize);
-            Graphics.DrawMesh(mesh2, glower.DrawPos, ExactRotation, material, 0);
+                Mesh mesh2 = MeshPool.GridPlane(glower.Graphic.drawSize * glowGrahphicData.drawSize);
+                Graphics.DrawMesh(mesh2, glower.DrawPos, ExactRotation, _glowGrahphic.MatSingle, 0);
+            }
         }
         public void Glow(Material mat, Vector3 pos, Quaternion ExactRotation)
         {

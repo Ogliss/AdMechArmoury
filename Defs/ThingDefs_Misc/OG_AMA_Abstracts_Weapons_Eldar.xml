@@ -16,6 +16,22 @@
 		</weaponTags>
 	</ThingDef>
 	
+	<ThingDef Name="OG_Eldar_Gun_Relic_Base" ParentName="OG_Gun_Qaulity" Abstract="True">
+		<graphicData>
+			<shaderType>CutoutComplex</shaderType>
+			<color>238,213,172</color> <!-- BLEACHED BONE -->
+			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
+		</graphicData>
+		<thingCategories>
+			<li>OGERanged</li>
+		</thingCategories>
+		<weaponTags>
+			<li>EldarRelic</li>
+			<li>EldarRelicRanged</li>
+			<li>EldarRelicWeapon</li>
+		</weaponTags>
+	</ThingDef>
+	
 	<ThingDef Name="OG_Eldar_Gun_Makeable" ParentName="OG_Eldar_Gun_Base" Abstract="True">
 		  <recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -103,7 +119,8 @@
 			<effectWorking>Smith</effectWorking>
 			<soundWorking>Recipe_Smith</soundWorking>
 			<recipeUsers>
-				<li>OGE_TableMachining</li>
+				<li>OGE_FueledSmithy</li>
+				<li>OGE_ElectricSmithy</li>
 			</recipeUsers>
 			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
 			<researchPrerequisites>

@@ -19,7 +19,8 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(AgeInjuryUtility), "RandomHediffsToGainOnBirthday", new Type[] { typeof(Pawn), typeof(int) })]
 	public static class AgeInjuryUtility_RandomHediffsToGainOnBirthday_RejuveTreatment_Patch
     {
-        [HarmonyPostfix]
+		public static List<HediffDef> rejuvTreatments;
+		[HarmonyPostfix]
         public static IEnumerable<HediffGiver_Birthday> RandomHediffsToGainOnBirthday_RejuveTreatment_Postfix(IEnumerable<HediffGiver_Birthday> __result, Pawn pawn, int age)
 		{
             if (__result.EnumerableNullOrEmpty())
@@ -28,13 +29,19 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 			if (pawn != null)
 			{
-				if (pawn.RaceProps.Humanlike)
+                if (rejuvTreatments == null)
+                {
+					rejuvTreatments = new List<HediffDef>();
+					rejuvTreatments = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x=> x.HasComp(typeof(HediffComp_RejuvTreatment)));
+
+				}
+				if (pawn.RaceProps.Humanlike && !rejuvTreatments.NullOrEmpty())
 				{
 					float increase = 0f;
-					List<Hediff> rejuvTreatments = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_RejuvTreatment>() != null);
-					if (!rejuvTreatments.NullOrEmpty())
+					List<Hediff> rejuvs = pawn.health.hediffSet.hediffs.FindAll(x => rejuvTreatments.Contains(x.def));
+					if (!rejuvs.NullOrEmpty())
 					{
-						foreach (Hediff hd in rejuvTreatments)
+						foreach (Hediff hd in rejuvs)
 						{
 							HediffComp_RejuvTreatment rejuvTreatment = hd.TryGetCompFast<HediffComp_RejuvTreatment>();
 							if (rejuvTreatment!=null)

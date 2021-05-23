@@ -150,9 +150,14 @@
     <Compile Include="DeOf\AdeptusMentalBreakDefOf.cs" />
     <Compile Include="DeOf\AdeptusTraitDefOf.cs" />
     <Compile Include="ExtentionMethods\Toil_IngestExtensions.cs" />
+    <Compile Include="Harmony\Patches\ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\BackCompatability\ParseHelper_ParseType_Patch.cs" />
+    <Compile Include="Harmony\Patches\GenSpawn_Spawn_RelicTracker_Patch.cs" />
     <Compile Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Astartes_MultiLung_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
+    <Compile Include="HediffGivers\Class1.cs" />
+    <Compile Include="HediffGivers\Class2.cs" />
     <Compile Include="Interfaces\IAdvancedVerb.cs" />
     <Compile Include="Interfaces\IMuzzlePosition.cs" />
     <Compile Include="DefExtentions\ScattershotProjectileExtension.cs" />
@@ -166,7 +171,7 @@
     <Compile Include="Harmony\Patches\Verb_LaunchProjectile_TryCastShot_Transpiler.cs" />
     <Compile Include="Harmony\Patches\VerbProperties_GetHitChanceFactor_AdvancedVerbProperties_Patch.cs" />
     <Compile Include="Harmony\Patches\VerbProperties_DrawRadiusRing_DrawExtraRadiusRings_Patch.cs" />
-    <Compile Include="Harmony\Patches\ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\Building_TurretGun_PlayerControlled_Patches.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\Thing_SpawnSetup_NewThingClass_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_HealthTracker_CheckForStateChange_HediffComp_ForceIncap_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_ForceIncap.cs" />
@@ -190,6 +195,9 @@
     <Compile Include="Lasers\SpinningLaserGunTurret.cs" />
     <Compile Include="Lasers\ThingExtensions.cs" />
     <Compile Include="PatchOps\PatchOperationAddOrReplace - Copy.cs" />
+    <Compile Include="Things\Buildings\Class1.cs" />
+    <Compile Include="Things\Class1.cs" />
+    <Compile Include="Things\Gas\DamageGas.cs" />
     <Compile Include="Things\WarpRift.cs" />
     <Compile Include="Things\Ordnance\Class1.cs" />
     <Compile Include="Things\Ordnance\OrbitalStrikes\OrbitalStrike.cs" />
@@ -203,6 +211,7 @@
     <Compile Include="Things\Projectile\TrailThrower.cs" />
     <Compile Include="Utility\AdeptusHediffUtility.cs" />
     <Compile Include="Utility\AdeptusMath.cs" />
+    <Compile Include="Utility\Class1.cs" />
     <Compile Include="Utility\PawnRenderUtility.cs" />
     <Compile Include="Utility\GasmaskUtility.cs" />
     <Compile Include="Utility\AdeptusLightningBoltMeshPool.cs" />
@@ -492,7 +501,7 @@
     <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
     <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_Patch.cs.bak" />
-    <Compile Include="Harmony\Patches\VerbTracker_PrimaryVerb_Patch.cs" />
+    <Compile Include="Harmony\Patches\CompToggleFireMode_Patches.cs" />
     <None Include="Regeneration\Hediff_Regeneration.cs.bak" />
     <Compile Include="Regeneration\Hediff_Removable.cs" />
     <Compile Include="Regeneration\Hediff_RegeneratingPart.cs" />
@@ -510,7 +519,6 @@
     <Compile Include="Comps\WeaponComps\GunComps\CompToggleFireMode.cs" />
     <Compile Include="Things\Projectile\Projectile_Anim.cs" />
     <Compile Include="Things\Projectile\Projectile_Plasma.cs" />
-    <Compile Include="Things\Projectile\Projectile_Trailer.cs" />
     <Compile Include="Lasers\IBeamColorThing.cs" />
     <Compile Include="Harmony\Patches\PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch.cs" />
     <Compile Include="Harmony\Patches\TuretTop_DrawTurret_LaserTurret_Patch.cs" />

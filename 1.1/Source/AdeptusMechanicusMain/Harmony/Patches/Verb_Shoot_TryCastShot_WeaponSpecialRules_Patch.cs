@@ -33,76 +33,91 @@ namespace AdeptusMechanicus.HarmonyInstance
             float AddHediffChance = entry.EffectsUserChance;
             List<string> Immunitylist = entry.UserEffectImmuneList;
             string msg = string.Format("");
-            float failChance = 0;
+            float failChance = entry.FailChance(__instance.EquipmentSource, out string reliabilityString);
 
             bool failed = false;
-            if (__instance.GetsHot() || __instance.Jams())
+            if (failChance > 0f)
             {
-                StatPart_Reliability.GetReliability(entry, __instance.EquipmentSource, out string reliabilityString, out failChance);
-                failChance = (__instance.GetsHot()) ? (failChance / 10) : (failChance / 100);
-                //    Log.Message("failChance: "+failChance);
+                if (entry.Debug) Log.Message("failChance: "+failChance);
                 Rand.PushState();
                 failed = Rand.Chance(failChance);
                 Rand.PopState();
-            //    Log.Message("failed: "+failed);
+                if (entry.Debug) Log.Message((entry.GetsHot ? "Overheat" : "Jam") + " Chance: " + failChance +"% Result: "+ (failed ? (entry.GetsHot ? "Overheated" : "Jamed") : "Passed"));
+                //    Log.Message("failed: "+failed);
             }
-            if (__instance.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out bool canDamageWeapon, out float extraWeaponDamage))
+            if (failed)
             {
-                if (failed)
+                bool stillFire = true;
+                bool canDamageWeapon = entry.HotDamageWeapon || entry.JamsDamageWeapon;
+                MessageTypeDef msgDef = entry.GetsHot ? MessageTypeDefOf.NegativeHealthEvent : MessageTypeDefOf.SilentInput;
+                float extraWeaponDamage = entry.HotDamageWeapon ? entry.HotDamage : entry.JamDamage;
+                if (entry.GetsHot)
                 {
+                    string overheat = "overheated";
+                    string causing = "causing";
                     DamageDef damageDef = __instance.Projectile.projectile.damageDef;
                     HediffDef HediffToAdd = damageDef.hediff;
-                    float ArmorPenetration = __instance.Projectile.projectile.GetArmorPenetration(__instance.EquipmentSource, null);
-                    float DamageAmount = 0;
                     Pawn launcherPawn = __instance.caster as Pawn;
                     Rand.PushState();
-                    if (Rand.Chance(GetsHotCritChance))
+                    bool crit = Rand.Chance(entry.GetsHotCritChance);
+                    Rand.PopState();
+                    bool critExplode = false;
+                    if (crit)
                     {
-                        DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null);
-                        msg = string.Format("{0}'s {1} critically overheated. ({2} chance) causing {3} damage", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent(), DamageAmount);
-                        if (GetsHotCritExplosion && Rand.Chance(GetsHotCritExplosionChance)) { CriticalOverheatExplosion(ref __instance); }
+                        overheat = "critically overheated";
+                        if (entry.GetsHotCritExplosion)
+                        {
+                            critExplode = Rand.Chance(entry.GetsHotCritExplosionChance);
+                            if (critExplode)
+                            {
+                                causing = "causing an explosion";
+                                CriticalOverheatExplosion(__instance);
+                            }
+                        }
+                    }
+                    float ArmorPenetration = __instance.Projectile.projectile.GetArmorPenetration(__instance.EquipmentSource, null) * (crit ? 1f : 0.25f);
+                    float DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null) * (crit ? 1f : 0.25f);
+                    msg = string.Format("{0}'s {1} " + overheat + ". ({2} chance) "+ causing + " {3} damage", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent(), DamageAmount);
+                    float damageLeft = DamageAmount;
+                    List<BodyPartTagDef> tagDefs = new List<BodyPartTagDef>() { BodyPartTagDefOf.ManipulationLimbDigit, BodyPartTagDefOf.ManipulationLimbSegment };
+                    List<BodyPartRecord> list = launcherPawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside, tagDefs).ToList<BodyPartRecord>();
+                    if (list.NullOrEmpty())
+                    {
+                        list = launcherPawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName.Contains("Arm") || x.parent.def.defName.Contains("Arm")).ToList<BodyPartRecord>();
+                    }
+                    if (list.NullOrEmpty())
+                    {
+                        list = launcherPawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbCore) || x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbSegment) || x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbDigit)).ToList<BodyPartRecord>();
+                    }
+                    if (!list.NullOrEmpty())
+                    {
+                        while (damageLeft > 0f && !list.NullOrEmpty())
+                        {
+                            Rand.PushState();
+                            BodyPartRecord part = list.RandomElement();
+                            list.Remove(part);
+                            float maxPartDamage = Math.Min(damageLeft, launcherPawn.health.hediffSet.GetPartHealth(part));
+                            float amount = Rand.Range(1f, Math.Min(damageLeft, maxPartDamage));
+                            Rand.PopState();
+                            if (amount > 0)
+                            {
+                                /*
+                                Hediff hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, part);
+                                hediff.Severity = severity;
+                                launcherPawn.health.AddHediff(hediff, part, null);
+                                */
+                                DamageInfo info = new DamageInfo(damageDef, amount, ArmorPenetration, -1, __instance.EquipmentSource, part, __instance.EquipmentSource.def, DamageInfo.SourceCategory.ThingOrUnknown, __instance.CurrentTarget.Thing ?? null);
+                                launcherPawn.TakeDamage(info);
+                                damageLeft -= amount;
+                            }
+                        }
                     }
                     else
                     {
-                        DamageAmount = __instance.Projectile.projectile.GetDamageAmount(__instance.EquipmentSource, null);
-                        msg = string.Format("{0}'s {1} overheated. ({2} chance) causing {3} damage", __instance.caster.LabelCap, __instance.EquipmentSource.LabelCap, failChance.ToStringPercent(), DamageAmount);
-                    }
-                    Rand.PopState();
-                    float maxburndmg = DamageAmount / 10;
-                    while (DamageAmount > 0f)
-                    {
-                        List<BodyPartRecord> list = launcherPawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName.Contains("Finger") || x.def.defName.Contains("Hand")).ToList<BodyPartRecord>();
-                        if (list.NullOrEmpty())
-                        {
-                            list = launcherPawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName.Contains("Arm") || x.parent.def.defName.Contains("Arm")).ToList<BodyPartRecord>();
-                        }
-                        if (list.NullOrEmpty())
-                        {
-                            list = launcherPawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbCore) || x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbSegment) || x.def.tags.Contains(BodyPartTagDefOf.ManipulationLimbDigit)).ToList<BodyPartRecord>();
-                        }
-                        if (list.NullOrEmpty())
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            BodyPartRecord part = list.RandomElement();
-                            Hediff hediff;
-                            Rand.PushState();
-                            float severity = Rand.Range(Math.Min(0.1f, DamageAmount), Math.Min(DamageAmount, maxburndmg));
-                            Rand.PopState();
-                            hediff = HediffMaker.MakeHediff(HediffToAdd, launcherPawn, part);
-                            hediff.Severity = severity;
-                            launcherPawn.health.AddHediff(hediff, part, null);
-                            DamageAmount -= severity;
-                        }
                     }
                     Messages.Message(msg, MessageTypeDefOf.NegativeHealthEvent);
                 }
-            }
-            if (__instance.Jams(out canDamageWeapon, out extraWeaponDamage))
-            {
-                if (failed)
+                if (entry.Jams)
                 {
                     if (!__instance.GetsHot())
                     {
@@ -336,7 +351,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             return true;
         }
-        public static void CriticalOverheatExplosion(ref Verb_Shoot __instance)
+        public static void CriticalOverheatExplosion(Verb_Shoot __instance)
         {
             Map map = __instance.caster.Map;
             if (__instance.Projectile.projectile.explosionEffect != null)

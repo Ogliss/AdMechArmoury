@@ -16,6 +16,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AdvancedVerbPropertiesCE
     public class AdvancedVerbPropertiesCE : VerbPropertiesCE, IMuzzlePosition, IAdvancedVerb
     {
+        public bool debug = false;
         private float heavyWeaponSetupTime = -1f;
 
         private Reliability reliability = Reliability.NA;
@@ -77,7 +78,8 @@ namespace AdeptusMechanicus
         public ThingDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(muzzleSmokeDef) : null;
         #endregion
 
-        #region IAdvancedVerb    
+        #region IAdvancedVerb   
+        public bool Debug => debug;
         public bool RapidFire => rapidFire;
         public float RapidFireRange => rapidFireRange;
         public Reliability Reliability => reliability;
@@ -227,6 +229,21 @@ namespace AdeptusMechanicus
                 default:
                     throw new InvalidOperationException();
             }
+        }
+        public virtual float FailChance(Thing gun, out string reliabilityString)
+        {
+            float failChance = 0;
+            reliabilityString = string.Empty;
+            if (GetsHot || Jams)
+            {
+                StatPart_Reliability.GetReliability(this, gun, out reliabilityString, out failChance);
+                failChance *= (GetsHot ? 0.1f : 0.01f);
+            }
+            if (debug)
+            {
+                Log.Message("FailChance for" + reliabilityString + " " + gun + ": " + failChance);
+            }
+            return failChance;
         }
     }
 }

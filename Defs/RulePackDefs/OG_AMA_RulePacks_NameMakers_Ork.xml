@@ -1,426 +1,271 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <!-- ========================= Factions ========================= -->
+  <!-- Standard -->
 	<RulePackDef>
-		<defName>OG_NamerFaction_Ork</defName>
+		<defName>OG_Ork_NamerFaction</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name(p=6)->[Kulture] [OGOrkClans2] of [OGOrkClans3]</li>
-			<li>name(p=6)->[Kulture] [OGOrkClans2] of [LeaderName]</li>
-			<li>name(p=4)->[LeaderName]'z [OGOrkClans2] of [Kulture]</li>
-			<li>name(p=2)->[OGOrkClans1] [OGOrkClans2] of [OGOrkClans3]</li>
-			
-			<!--li>name->[Waaagh] [LeaderName]</li-->
-			
-			<li>LeaderName(p=4)->[Leader]</li>
-			<li>LeaderName(p=2)->[PreLeader] [Leader]</li>
-			<li>LeaderName(p=2)->[Leader] [PostLeader]</li>
-			<li>LeaderName(p=1)->[PreLeader] [Leader] [PostLeader]</li>
-			<!--
-			<li>name-> of da [OGOrkClans1]</li>
-			
-			<li>name-> of da [OGOrkClans1]</li>
-			-->
+				<li>name(p=6)->[Kulture] [Klan_B] of [Klan_C]</li>
+				<li>name(p=6)->[Kulture] [Klan_B] of [LeaderName]</li>
+				<li>name(p=4)->[LeaderName]'z [Klan_B] of [Kulture]</li>
+				<li>name(p=2)->[Klan_A] [Klan_B] of [Klan_C]</li>
+				
+				<!--li>name->[Waaagh] [LeaderName]</li-->
+				
+				<li>LeaderName(p=4)->[Ork_Warboss]</li>
+				<li>LeaderName(p=2)->[Ork_Title_Pre] [Ork_Warboss]</li>
+				<li>LeaderName(p=2)->[Ork_Warboss] [Ork_Title_Post]</li>
+				<li>LeaderName(p=1)->[Ork_Title_Pre] [Ork_Warboss] [Ork_Title_Post]</li>
+				
+				<!--
+				<li>name-> of da [OGOrkClans1]</li>
+				
+				<li>name-> of da [OGOrkClans1]</li>
+				-->
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>Kulture</keyword>
-				<path>NameBanks/OG_Ork_Kulture</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>Leader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Names</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>PreLeader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Prefix</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>PostLeader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Postfix</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans1</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans2</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans3</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_C</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Player -->
 	<RulePackDef>
-		<defName>OG_NamerFaction_Ork_Player</defName>
+		<defName>OG_Ork_NamerFaction_Player</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGOrkClans1] [OGOrkClans2] [OGOrkClans3]</li>
-			<li>name-> of da [OGOrkClans1]</li>
-			
-			<li>name-> of da [OGOrkClans1]</li>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans1</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans2</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans3</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_C</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Feral -->
 	<RulePackDef>
-		<defName>OG_NamerFaction_Ork_Feral</defName>
+		<defName>OG_Ork_NamerFaction_Feral</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGOrkClans1] [OGOrkClans2] [OGOrkClans3]</li>
-			<li>name-> of da [OGOrkClans1]</li>
-			
-			<li>name-> of da [OGOrkClans1]</li>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans1</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans2</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans3</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_C</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Feral Player -->
 	<RulePackDef>
-		<defName>OG_NamerFaction_Ork_Feral_Player</defName>
+		<defName>OG_Ork_NamerFaction_Feral_Player</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGOrkClans1] [OGOrkClans2] [OGOrkClans3]</li>
-			<li>name-> of da [OGOrkClans1]</li>
-			
-			<li>name-> of da [OGOrkClans1]</li>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans1</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans2</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans3</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_Clans_C</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Waaagh -->
 	<RulePackDef>
-		<defName>OG_NamerFaction_Ork_Waaagh</defName>
+		<defName>OG_Ork_NamerFaction_Waaagh</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
 			<li>name->[Waaagh] [LeaderName]</li>
 			<li>Waaagh->Waaagh!</li>
 			
-			<li>LeaderName->[Leader]</li>
-			<li>LeaderName->[Leader] [PostLeader]</li>
-			<li>LeaderName->[PreLeader] [Leader]</li>
-			<li>LeaderName->[PreLeader] [Leader] [PostLeader]</li>
+			<li>LeaderName->[Ork_Warboss]</li>
+			<li>LeaderName->[Ork_Warboss] [Ork_Title_Post]</li>
+			<li>LeaderName->[Ork_Title_Pre] [Ork_Warboss]</li>
+			<li>LeaderName->[Ork_Title_Pre] [Ork_Warboss] [Ork_Title_Post]</li>
 			<!--
 			<li>name-> of da [OGOrkClans1]</li>
 			
 			<li>name-> of da [OGOrkClans1]</li>
 			-->
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>Kulture</keyword>
-				<path>NameBanks/OG_Ork_Kulture</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>Leader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Names</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>PreLeader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Prefix</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>PostLeader</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Postfix</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans1</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans2</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkClans3</keyword>
-				<path>NameBanks/OG_Ork_Faction_Names_C</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
   <!-- Refugee -->
-  <RulePackDef>
-    <defName>OG_NamerFaction_Ork_Refugee</defName>
-    <rulePack>
-      <rulesStrings>
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Refugee</defName>
+		<rulePack>
+			<rulesStrings>
 
-        <li>r_name->[adj] [group]</li>
+				<li>r_name->[adj] [group]</li>
 
-        <li>group->survivaz</li>
-        <li>group->gitz</li>
-        <li>group->runtz</li>
-        <li>group->kastawayz</li>
-        <li>group->mob</li>
-        <li>group->roamaz</li>
-        <li>group->wandaraz</li>
-        <li>group->travelaz</li>
-        <li>group->nomadaz</li>
+				<li>group->survivaz</li>
+				<li>group->gitz</li>
+				<li>group->runtz</li>
+				<li>group->kastawayz</li>
+				<li>group->mob</li>
+				<li>group->roamaz</li>
+				<li>group->wandaraz</li>
+				<li>group->travelaz</li>
+				<li>group->nomadaz</li>
 
-        <li>adj->'aggard</li>
-        <li>adj->knackered</li>
-        <li>adj->abandoned</li>
-        <li>adj->exhausted</li>
-        <li>adj->lost</li>
-        <li>adj->battered</li>
-        <li>adj->tough</li>
-        <li>adj->dogged</li>
-        <li>adj->tenacious</li>
+				<li>adj->'aggard</li>
+				<li>adj->knackered</li>
+				<li>adj->abandoned</li>
+				<li>adj->exhausted</li>
+				<li>adj->lost</li>
+				<li>adj->battered</li>
+				<li>adj->tough</li>
+				<li>adj->dogged</li>
+				<li>adj->tenacious</li>
 
-      </rulesStrings>
-    </rulePack>
-  </RulePackDef>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
   
+  <!-- ========================= Outposts ========================= -->
 	<RulePackDef>
-		<defName>OG_NamerBases_Ork</defName>
+		<defName>OG_Ork_NamerBases</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-				<li>name->[OGOrkBaseNames]</li>
+				<li>name->[Ork_Outpost]</li>
 			</rulesStrings>
-			<rulesRaw>
-				<li Class="Rule_File">
-					<keyword>OGOrkBaseNames</keyword>
-					<path>NameBanks/OG_Ork_BaseNames</path>
-				</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 
+  <!-- ========================= Pawns ========================= -->
+  <!-- Ork -->
 	<RulePackDef>
-		<defName>OG_NamerPerson_Ork</defName>
+		<defName>OG_Ork_NamerPerson</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<!--li>name->[FirstName] [NoName]</li>
-			<li>name->[LastName] [NoName]</li-->
-			<li>name(p=10)->[FirstName] [LastName]</li>
-			<li>name(p=1)->[FirstName] '[TitlePost]' [LastName]</li>
-			
-			<li>FirstName(p=1)->[FirstNameFull]</li>
-			<li>FirstName(p=10)->[FirstNameA][FirstNameB]</li>
-			
-			<li>LastName(p=1)->[LastNameFull]</li>
-			<li>LastName(p=10)->[LastNameA][LastNameB]</li>
-			
-			<li>NickName->[TitlePost]</li>
-			
-			<li>NoName-> </li>
+				<li>name->[NameOrk]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>FirstNameFull</keyword>
-				<path>NameBanks/OG_Ork_Names_First</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>FirstNameA</keyword>
-				<path>NameBanks/OG_Ork_Names_First_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>FirstNameB</keyword>
-				<path>NameBanks/OG_Ork_Names_First_B</path>
-			</li>
-			
-			<li Class="Rule_File">
-				<keyword>LastNameFull</keyword>
-				<path>NameBanks/OG_Ork_Names_Last</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>LastNameA</keyword>
-				<path>NameBanks/OG_Ork_Names_Last_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>LastNameB</keyword>
-				<path>NameBanks/OG_Ork_Names_Last_B</path>
-			</li>
-			
-			<li Class="Rule_File">
-				<keyword>TitlePost</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Postfix</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>TitlePre</keyword>
-				<path>NameBanks/OG_Ork_Leader_Titles_Prefix</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Grot -->
 	<RulePackDef>
-		<defName>OG_NamerPerson_Ork_Old</defName>
+		<defName>OG_Grot_NamerPerson</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGOrkFirst] [OGOrkSecond]</li>
-			<li>name->[OGOrkFirst] '[OGOrkFirstB]' [OGOrkSecond]</li>
-			<li>OGOrkFirst->[OGOrkFirstA][OGOrkFirstB]</li>
+				<li>name->[NameGrot]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGOrkFirstA</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_First_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkFirstB</keyword>
-				<path>NameBanks/OG_AMXBO_Ork_First_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkSecond</keyword>
-				<path>NameBanks/OGOrkSecond</path>
-			</li>
-			</rulesRaw>
-		</rulePack>
-	</RulePackDef>
-	
-	<RulePackDef>
-		<defName>OG_NamerPerson_Grot</defName>
-		<rulePack>
-			<rulesStrings>
-			<li>name(p=10)->[OGGrotFirst] [OGGrotSecond]</li>
-			<li>name(p=1)->[OGGrotFirst] '[OGGrotNick]' [OGOGrotSecond]</li>
-			<li>OGGrotFirst->[OGGrotFirstA][OGGrotFirstB]</li>
-			<li>OGGrotSecond->[OGGrotSecondA][OGGrotSecondB]</li>
-			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGGrotFirstA</keyword>
-				<path>NameBanks/OG_Grot_Names_First_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotFirstB</keyword>
-				<path>NameBanks/OG_Grot_Names_First_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotSecondA</keyword>
-				<path>NameBanks/OG_Grot_Names_Second_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotSecondB</keyword>
-				<path>NameBanks/OG_Grot_Names_Second_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotNick</keyword>
-				<path>NameBanks/OG_Grot_Names_Nick</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 
+  <!-- Snot -->
 	<RulePackDef>
-		<defName>OG_NamerAnimal_Snotling</defName>
+		<defName>OG_Snotling_NamerAnimal</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name(p=10)->[OGSnotUS][OGOrkFirstB]</li>
-			<li>name(p=1)->[OGOrkFirstA][OGSnotLC]</li>
-			<li>name(p=10)->[OGSnotUS][OGOrkLastB]</li>
-			<li>name(p=1)->[OGOrkLastA][OGSnotLC]</li>
-			<li>name(p=10)->[OGSnotUS][OGGrotFirstB]</li>
-			<li>name(p=1)->[OGGrotFirstA][OGSnotLC]</li>
-			<li>name(p=10)->[OGSnotUS][OGGrotSecondB]</li>
-			<li>name(p=1)->[OGGrotSecondA][OGSnotLC]</li>
+				<li>name->[NameSnot]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGOrkFirstB</keyword>
-				<path>NameBanks/OG_Ork_Names_First_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkFirstA</keyword>
-				<path>NameBanks/OG_Ork_Names_First_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkLastA</keyword>
-				<path>NameBanks/OG_Ork_Names_Last_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGOrkLastB</keyword>
-				<path>NameBanks/OG_Ork_Names_Last_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotFirstA</keyword>
-				<path>NameBanks/OG_Grot_Names_First_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotFirstB</keyword>
-				<path>NameBanks/OG_Grot_Names_First_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotSecondA</keyword>
-				<path>NameBanks/OG_Grot_Names_Second_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGGrotSecondB</keyword>
-				<path>NameBanks/OG_Grot_Names_Second_B</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGSnotUS</keyword>
-				<path>NameBanks/OG_SnotUC</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGSnotLC</keyword>
-				<path>NameBanks/OG_SnotLC</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
 	
+  <!-- Squig -->
 	<RulePackDef>
-		<defName>OG_NamerAnimal_Squig</defName>
+		<defName>OG_Squig_NamerAnimal</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGSquig]</li>
-			<li>OGSquig->[OGSquigA][OGSquigB]</li>
+			<li>name->[NameSquig]</li>
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGSquigA</keyword>
-				<path>NameBanks/OG_Squig_Names_A</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGSquigB</keyword>
-				<path>NameBanks/OG_Squig_Names_B</path>
-			</li>
-			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+
+  <!-- ========================= Orkoid Name Utility ========================= -->
+	<RulePackDef>
+		<defName>OG_Orkoid_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordOrk(p=4)->[SylB][SylB]</li>
+				<li>WordOrk(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordOrk(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<li>NameOrk(p=8)->[OrkFirst]</li>
+				<li>NameOrk(p=4)->[OrkFirst] [OrkSecond]</li>
+				<li>NameOrk(p=0.2)->[Ork_First] '[TitlePost]' [Ork_First_B]</li>
+				
+				<li>OrkFirst(p=4)->[Ork_First_A][Ork_First_B]</li>
+				<li>OrkFirst(p=1)->[Ork_First]</li>
+				<li>OrkSecond(p=4)->[Ork_Second_A][Ork_Second_B]</li>
+				<li>OrkSecond(p=1)->[Ork_Second]</li>
+				
+				<li>NameGrot(p=15)->[GrotFirst]</li>
+				<li>NameGrot(p=10)->[GrotFirst] [GrotSecond]</li>
+				<li>NameGrot(p=1)->[GrotFirst] '[Grot_Nick]' [GrotSecond]</li>
+				
+				<li>GrotFirst(p=4)->[Grot_First_A][Grot_First_B]</li>
+				<li>GrotSecond(p=4)->[Grot_Second_A][Grot_Second_B]</li>
+				
+				<li>NameSquig->[Squig_A][Squig_B]</li>
+				
+				<li>NameSnot(p=10)->Snot[Ork_First_B]</li>
+				<li>NameSnot(p=7)->Snot[Ork_Second_B]</li>
+				<li>NameSnot(p=5)->[Ork_First_A]snot</li>
+				<li>NameSnot(p=1)->[Ork_Second_A]snot</li>
+				
+				<li>NameSnot(p=10)->Snot[Grot_First_B]</li>
+				<li>NameSnot(p=7)->Snot[Grot_Second_B]</li>
+				<li>NameSnot(p=5)->[Grot_First_A]snot</li>
+				<li>NameSnot(p=1)->[Grot_Second_A]snot</li>
+				
+				<li>Klan(p=3)->[Klan_A] [Klan_B]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Klan_A->NameBanks/OG_Ork_Faction_Names_A</li>
+				<li>Klan_B->NameBanks/OG_Ork_Faction_Names_B</li>
+				<li>Klan_C->NameBanks/OG_Ork_Faction_Names_C</li>
+				<li>Kultrue->NameBanks/OG_Ork_Kulture</li>
+				
+				<li>Ork_Outpost->NameBanks/OG_Ork_BaseNames</li>
+				
+				<li>Ork_First_A->NameBanks/OG_Ork_Names_First_A</li>
+				<li>Ork_First_B->NameBanks/OG_Ork_Names_First_B</li>
+				<li>Ork_First->NameBanks/OG_Ork_Names_First</li>
+				<li>Ork_Second_A->NameBanks/OG_Ork_Names_Last_A</li>
+				<li>Ork_Second_B->NameBanks/OG_Ork_Names_Last_B</li>
+				<li>Ork_Second->NameBanks/OG_Ork_Names_Last</li>
+				<!--li>Ork_Nick->NameBanks/OG_Ork_Names_Nick</li-->
+				
+				<li>Ork_Warboss->NameBanks/OG_Ork_Leader_Names</li>
+				<li>Ork_Title_Pre->NameBanks/OG_Ork_Leader_Titles_Prefix</li>
+				<li>Ork_Title_Post->NameBanks/OG_Ork_Leader_Titles_Postfix</li>
+				
+				<li>Grot_First_A->NameBanks/OG_Grot_Names_First_A</li>
+				<li>Grot_First_B->NameBanks/OG_Grot_Names_First_B</li>
+				<li>Grot_Second_A->NameBanks/OG_Grot_Names_Second_A</li>
+				<li>Grot_Second_B->NameBanks/OG_Grot_Names_Second_B</li>
+				<li>Grot_Nick->NameBanks/OG_Grot_Names_Nick</li>
+				
+				<li>Squig->NameBanks/OG_Ork_Names_Last</li>
+				<li>Squig_A->NameBanks/OG_Squig_Names_A</li>
+				<li>Squig_B->NameBanks/OG_Squig_Names_B</li>
+			</rulesFiles>
 		</rulePack>
 	</RulePackDef>
 

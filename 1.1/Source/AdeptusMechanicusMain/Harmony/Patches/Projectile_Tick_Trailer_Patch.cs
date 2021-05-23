@@ -11,7 +11,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Postfix(Projectile __instance, int ___ticksToImpact, Vector3 ___origin, Vector3 ___destination)
         {
-            if (__instance != null && AMAMod.settings.AllowProjectileTrail)
+            if (__instance != null && AMAMod.settings.AllowProjectileTrail && __instance as Bullet_Explosive == null)
             {
                 if (__instance.def.HasModExtension<TrailerProjectileExtension>() && __instance.Map != null)
                 {

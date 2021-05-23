@@ -7,12 +7,10 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x020000DD RID: 221
+    // AdeptusMechanicus.ArcingBullet
     [StaticConstructorOnStartup]
-    public class ArcingBullet : Bullet
+    public class ArcingBullet : Bullet_Explosive
     {
-        // Token: 0x17000E05 RID: 3589
-        // (get) Token: 0x06004F1D RID: 20253 RVA: 0x001AA3A8 File Offset: 0x001A85A8
         private float TimeInAnimation
         {
             get
@@ -27,8 +25,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x17000E06 RID: 3590
-        // (get) Token: 0x06004F1E RID: 20254 RVA: 0x001AA3E0 File Offset: 0x001A85E0
         private float CurrentSpeed
         {
             get
@@ -69,8 +65,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700010B RID: 267
-        // (get) Token: 0x060005F3 RID: 1523 RVA: 0x00056DB0 File Offset: 0x00054FB0
         protected new IntVec3 DestinationCell
         {
             get
@@ -79,8 +73,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700010C RID: 268
-        // (get) Token: 0x060005F4 RID: 1524 RVA: 0x00056DD0 File Offset: 0x00054FD0
+
         public override Vector3 ExactPosition
         {
             get
@@ -90,8 +83,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700010D RID: 269
-        // (get) Token: 0x060005F5 RID: 1525 RVA: 0x00056E34 File Offset: 0x00055034
+
         public override Quaternion ExactRotation
         {
             get
@@ -111,9 +103,6 @@ namespace AdeptusMechanicus
             }
         }
 
-
-        // Token: 0x1700010E RID: 270
-        // (get) Token: 0x060005F6 RID: 1526 RVA: 0x00056E5C File Offset: 0x0005505C
         public override Vector3 DrawPos
         {
             get
@@ -169,11 +158,32 @@ namespace AdeptusMechanicus
                 {
                     drawPos.z += this.FlightArc.Evaluate(this.TimeInAnimation);
                 }
+                else
+                {
+
+                    float num = this.ArcHeightFactor * GenMath.InverseParabola(this.DistanceCoveredFraction);
+
+                    drawPos += new Vector3(0f, 0f, 1f) * num;
+                }
                 return drawPos;
             //    return this.ExactPosition;
             }
         }
 
+        private int heightinc = Rand.Range(-1, 3);
+        private float ArcHeightFactor
+        {
+            get
+            {
+                float num = this.def.projectile.arcHeightFactor + heightinc;
+                float num2 = (this.destination - this.origin).MagnitudeHorizontalSquared();
+                if (num * num > num2 * 0.2f * 0.2f)
+                {
+                    num = Mathf.Sqrt(num2) * 0.2f;
+                }
+                return num;
+            }
+        }
         private Vector2 GetPoint(float t, Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
         {
             
@@ -194,7 +204,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (flightArc == null)
+                if (flightArc == null && this.def.skyfaller?.zPositionCurve != null)
                 {
                 //    Log.Message("generating flight arc");
                     SimpleCurve arc = new SimpleCurve();
@@ -235,13 +245,11 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x060015F3 RID: 5619 RVA: 0x0007F644 File Offset: 0x0007D844
         public new void Launch(Thing launcher, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, Thing equipment = null)
         {
             this.Launch(launcher, base.Position.ToVector3Shifted(), usedTarget, intendedTarget, hitFlags, equipment, null);
         }
 
-        // Token: 0x060015F4 RID: 5620 RVA: 0x0007F670 File Offset: 0x0007D870
         public new void Launch(Thing launcher, Vector3 origin, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, Thing equipment = null, ThingDef targetCoverDef = null)
         {
             this.launcher = launcher;
@@ -309,7 +317,7 @@ namespace AdeptusMechanicus
                     for (int i = 0; i < 3; i++)
                     {
                         Rand.PushState();
-                        AdeptusMoteMaker.ThrowDustPuff(exactPosition, base.Map, Rand.Range(0.3f, 0.6f));
+                        AdeptusMoteMaker.ThrowDustPuff(this.DrawPos, base.Map, Rand.Range(0.3f, 0.6f));
                         Rand.PopState();
                     }
                 }
@@ -328,7 +336,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x060005FD RID: 1533 RVA: 0x00057178 File Offset: 0x00055378
         public override void Draw()
         {
             bool flag = this.DefaultGraphic != null;
@@ -340,7 +347,7 @@ namespace AdeptusMechanicus
             }
             base.Comps_PostDraw();
         }
-        // Token: 0x06004F2E RID: 20270 RVA: 0x001AAD18 File Offset: 0x001A8F18
+
         private void DrawDropSpotShadow(Vector3 loc)
         {
             Material shadowMaterial = this.ShadowMaterial;
@@ -348,10 +355,9 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            Skyfaller.DrawDropSpotShadow(loc, base.Rotation, shadowMaterial, this.def.skyfaller.shadowSize / this.FlightArc.Evaluate(this.TimeInAnimation), this.ticksToImpact);
+            ArcingBullet.DrawDropSpotShadow(loc, base.Rotation, shadowMaterial, this.def.skyfaller.shadowSize / this.FlightArc.Evaluate(this.TimeInAnimation), this.ticksToImpact);
         }
 
-        // Token: 0x06004F2F RID: 20271 RVA: 0x001AAD60 File Offset: 0x001A8F60
         public static void DrawDropSpotShadow(Vector3 center, Rot4 rot, Material material, Vector2 shadowSize, int ticksToImpact)
         {
             if (rot.IsHorizontal)
@@ -374,7 +380,6 @@ namespace AdeptusMechanicus
             Graphics.DrawMesh(MeshPool.plane10Back, matrix, material, 0, null, 0, ArcingBullet.shadowPropertyBlock);
         }
 
-        // Token: 0x060005FF RID: 1535 RVA: 0x00057294 File Offset: 0x00055494
         private void ImpactSomething()
         {
             bool flag = this.usedTarget.Thing != null;
@@ -403,7 +408,7 @@ namespace AdeptusMechanicus
 
         protected virtual void HitRoof()
         {
-            if (!this.def.skyfaller.hitRoof)
+            if ((this.def.skyfaller != null && !this.def.skyfaller.hitRoof) || (this.def.projectile != null && !this.def.projectile.flyOverhead))
             {
                 return;
             }
@@ -439,9 +444,12 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (this.cachedShadowMaterial == null && !this.def.skyfaller.shadow.NullOrEmpty())
+                if (this.cachedShadowMaterial == null)
                 {
-                    this.cachedShadowMaterial = MaterialPool.MatFrom(this.def.skyfaller.shadow, ShaderDatabase.Transparent);
+                    if (this.def.skyfaller != null && !this.def.skyfaller.shadow.NullOrEmpty())
+                    {
+                        this.cachedShadowMaterial = MaterialPool.MatFrom(this.def.skyfaller.shadow, ShaderDatabase.Transparent);
+                    }
                 }
                 return this.cachedShadowMaterial;
             }

@@ -35,7 +35,7 @@ namespace AdeptusMechanicus
                 {
                     if (pos != IntVec3.Invalid)
                     {
-                        TrailThrower.ThrowSprayTrail(DrawPos, Map, origin, destination, null, 1.5f, 240, def.projectile.SpeedTilesPerTick);
+                        TrailThrower.ThrowSprayTrail(DrawPos, Map, origin, destination, null, 1.5f * traveled, 240, def.projectile.SpeedTilesPerTick);
                         if (pos != this.Position)
                         {
                             Rand.PushState();

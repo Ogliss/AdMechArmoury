@@ -238,7 +238,7 @@ namespace AdeptusMechanicus
         {
             if (this.ShieldState == ShieldState.Active && this.ShouldDisplay)
             {
-                float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
+                float num =  Mathf.Lerp(1.2f, 1.55f, this.energy);
                 Vector3 vector = base.Wearer.Drawer.DrawPos;
                 vector.y = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
                 int num2 = Find.TickManager.TicksGame - this.lastAbsorbDamageTick;
@@ -251,7 +251,7 @@ namespace AdeptusMechanicus
                 Rand.PushState();
                 float angle = (float)Rand.Range(0, 360);
                 Rand.PopState();
-                Vector3 s = new Vector3(num, 1f, num);
+                Vector3 s = new Vector3(num + base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.x, 1f, num + base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.y);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, AdvShieldBelt.BubbleMat, 0);

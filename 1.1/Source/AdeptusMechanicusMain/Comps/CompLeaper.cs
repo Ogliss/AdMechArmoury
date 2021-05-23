@@ -7,11 +7,8 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x020000E4 RID: 228
     public class CompProperties_Leaper : CompProperties
     {
-        // Token: 0x17000117 RID: 279
-        // (get) Token: 0x06000624 RID: 1572 RVA: 0x000588FC File Offset: 0x00056AFC
         public float GetLeapChance
         {
             get
@@ -20,8 +17,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x17000118 RID: 280
-        // (get) Token: 0x06000625 RID: 1573 RVA: 0x0005891C File Offset: 0x00056B1C
         public float GetExplodingLeaperChance
         {
             get
@@ -30,71 +25,59 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x06000626 RID: 1574 RVA: 0x0005893C File Offset: 0x00056B3C
         public CompProperties_Leaper()
         {
             this.compClass = typeof(CompLeaper);
         }
 
-        // Token: 0x040005DB RID: 1499
         public float leapRangeMax = 8f;
-
-        // Token: 0x040005DC RID: 1500
         public float leapRangeMin = 2f;
-
-        // Token: 0x040005DD RID: 1501
         public float leapChance = 0.5f;
-
-        // Token: 0x040005DE RID: 1502
-        public float ticksBetweenLeapChance = 100f;
-
-        // Token: 0x040005DF RID: 1503
+        public int ticksBetweenLeapChance = 100;
+        public bool combatLeap = false;
+        public int combatCooldown = 600;
         public bool bouncingLeaper = false;
-
-        // Token: 0x040005E0 RID: 1504
         public bool explodingLeaper = false;
-
-        // Token: 0x040005E1 RID: 1505
         public float explodingLeaperChance = 0.2f;
-
-        // Token: 0x040005E2 RID: 1506
         public float explodingLeaperRadius = 2f;
-
-        // Token: 0x040005E3 RID: 1507
         public bool textMotes = true;
+        public List<string> moteStrings = new List<string>();
+        public string leaperDef = "FlyingObject_Leap";
     }
-    // Token: 0x020000E3 RID: 227
+
     public class CompLeaper : ThingComp
     {
-        // Token: 0x17000115 RID: 277
-        // (get) Token: 0x0600061B RID: 1563 RVA: 0x00058128 File Offset: 0x00056328
+        public CompProperties_Leaper Props
+        {
+            get
+            {
+                return (CompProperties_Leaper)this.props;
+            }
+        }
+        public ThingDef _leaperDef;
+        public ThingDef LeaperDef => _leaperDef ??= DefDatabase<ThingDef>.GetNamed(Props.leaperDef);
+
         private Pawn Pawn
         {
             get
             {
                 Pawn pawn = this.parent as Pawn;
-                bool flag = pawn == null;
-                bool flag2 = flag;
-                if (flag2)
+                if (pawn == null)
                 {
-                    Log.Error("pawn is null", false);
+                    Log.Error("CompLeaper pawn is null", false);
                 }
                 return pawn;
             }
         }
 
-        // Token: 0x0600061C RID: 1564 RVA: 0x00058160 File Offset: 0x00056360
         public override void CompTick()
         {
             base.CompTick();
-            bool spawned = this.Pawn.Spawned;
-            if (spawned)
+            if (this.Pawn.Spawned)
             {
-                bool flag = Find.TickManager.TicksGame % 10 == 0;
-                if (flag)
+                if (Find.TickManager.TicksGame % 10 == 0)
                 {
-                    bool flag2 = this.Pawn.Downed && !this.Pawn.Dead;
-                    if (flag2)
+                    if (this.Pawn.Downed && !this.Pawn.Dead)
                     {
                         Rand.PushState();
                         GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, Rand.Range(this.explosionRadius * 0.5f, this.explosionRadius * 1.5f), DamageDefOf.Burn, this.Pawn, Rand.Range(6, 10), 0f, null, null, null, null, null, 0f, 1, false, null, 0f, 1, 0f, false);
@@ -102,64 +85,62 @@ namespace AdeptusMechanicus
                         this.Pawn.Kill(null, null);
                     }
                 }
-                bool flag3 = Find.TickManager.TicksGame % this.nextLeap == 0 && !this.Pawn.Downed && !this.Pawn.Dead;
-                if (flag3)
+                if (Find.TickManager.TicksGame % this.nextLeap == 0 && !this.Pawn.Downed && !this.Pawn.Dead && Find.TickManager.TicksGame - this.Pawn.mindState.lastAttackTargetTick > Props.combatCooldown)
                 {
                     LocalTargetInfo a = null;
-                    bool flag4 = this.Pawn.CurJob != null && this.Pawn.CurJob.targetA != null;
-                    if (flag4)
+                    if (this.Pawn.CurJob != null && this.Pawn.CurJob.targetA != null)
                     {
                         a = this.Pawn.jobs.curJob.targetA.Thing;
                     }
-                    bool flag5 = a != null && a.Thing != null;
-                    if (flag5)
+                    if (a != null && a.Thing != null)
                     {
                         Thing thing = a.Thing;
-                        bool flag6 = thing is Pawn && thing.Spawned;
-                        if (flag6)
+                        if (thing is Pawn && thing.Spawned)
                         {
                             float lengthHorizontal = (thing.Position - this.Pawn.Position).LengthHorizontal;
-                            bool flag7 = lengthHorizontal <= this.Props.leapRangeMax && lengthHorizontal > this.Props.leapRangeMin;
-                            if (flag7)
+                            if (lengthHorizontal <= this.Props.leapRangeMax && lengthHorizontal > this.Props.leapRangeMin)
                             {
                                 Rand.PushState();
-                                bool flag8 = Rand.Chance(this.Props.GetLeapChance);
+                                bool leap = Rand.Chance(this.Props.GetLeapChance);
                                 Rand.PopState();
-                                if (flag8)
+                                if (leap)
                                 {
-                                    bool flag9 = this.CanHitTargetFrom(this.Pawn.Position, thing);
-                                    if (flag9)
+                                    if (this.CanHitTargetFrom(this.Pawn.Position, thing))
                                     {
                                         this.LeapAttack(thing);
                                     }
                                 }
                                 else
                                 {
-                                    bool textMotes = this.Props.textMotes;
-                                    if (textMotes)
+                                    if (this.Props.textMotes)
                                     {
+
                                         Rand.PushState();
-                                        bool flag10 = Rand.Chance(0.5f);
-                                        Rand.PopState();
-                                        if (flag10)
+                                        if (!this.Props.moteStrings.NullOrEmpty())
                                         {
-                                            MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, "grrr", -1f);
+                                            MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, this.Props.moteStrings.RandomElement(), -1f);
                                         }
                                         else
                                         {
-                                            MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, "hsss", -1f);
+                                            if (Rand.Chance(0.5f))
+                                            {
+                                                MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, "grrr", -1f);
+                                            }
+                                            else
+                                            {
+                                                MoteMaker.ThrowText(this.Pawn.DrawPos, this.Pawn.Map, "hsss", -1f);
+                                            }
                                         }
+                                        Rand.PopState();
                                     }
                                 }
                             }
                             else
                             {
-                                bool bouncingLeaper = this.Props.bouncingLeaper;
-                                if (bouncingLeaper)
+                                if (this.Props.bouncingLeaper)
                                 {
                                     Faction faction = null;
-                                    bool flag11 = thing != null && thing.Faction != null;
-                                    if (flag11)
+                                    if (thing != null && thing.Faction != null)
                                     {
                                         faction = thing.Faction;
                                     }
@@ -168,20 +149,15 @@ namespace AdeptusMechanicus
                                     {
                                         Pawn pawn = null;
                                         IntVec3 c = enumerable.ToArray<IntVec3>()[i];
-                                        bool flag12 = c.InBounds(this.Pawn.Map) && c.IsValid;
-                                        if (flag12)
+                                        if (c.InBounds(this.Pawn.Map) && c.IsValid)
                                         {
                                             pawn = c.GetFirstPawn(this.Pawn.Map);
-                                            bool flag13 = pawn != null && pawn != thing && !pawn.Downed && !pawn.Dead && pawn.RaceProps != null;
-                                            if (flag13)
+                                            if (pawn != null && pawn != thing && !pawn.Downed && !pawn.Dead && pawn.RaceProps != null)
                                             {
-                                                bool flag14 = pawn.Faction != null && pawn.Faction == faction;
-                                                if (flag14)
+                                                if (pawn.Faction != null && pawn.Faction == faction)
                                                 {
                                                     Rand.PushState();
-                                                    bool flag15 = Rand.Chance(1f - this.Props.leapChance);
-                                                    Rand.PopState();
-                                                    if (flag15)
+                                                    if (Rand.Chance(1f - this.Props.leapChance))
                                                     {
                                                         i = enumerable.Count<IntVec3>();
                                                     }
@@ -189,6 +165,7 @@ namespace AdeptusMechanicus
                                                     {
                                                         pawn = null;
                                                     }
+                                                    Rand.PopState();
                                                 }
                                                 else
                                                 {
@@ -200,14 +177,11 @@ namespace AdeptusMechanicus
                                                 pawn = null;
                                             }
                                         }
-                                        bool flag16 = pawn != null;
-                                        if (flag16)
+                                        if (pawn != null)
                                         {
-                                            bool flag17 = this.CanHitTargetFrom(this.Pawn.Position, thing);
-                                            if (flag17)
+                                            if (this.CanHitTargetFrom(this.Pawn.Position, thing))
                                             {
-                                                bool flag18 = !pawn.Downed && !pawn.Dead;
-                                                if (flag18)
+                                                if (!pawn.Downed && !pawn.Dead)
                                                 {
                                                     this.LeapAttack(pawn);
                                                 }
@@ -225,65 +199,43 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x0600061D RID: 1565 RVA: 0x00058610 File Offset: 0x00056810
+
         public void LeapAttack(LocalTargetInfo target)
         {
-            bool flag = target != null && target.Cell != default(IntVec3);
-            bool flag2 = flag;
-            if (flag2)
+            if (target != null && target.Cell != default(IntVec3))
             {
-                bool flag3 = this.Pawn != null && this.Pawn.Position.IsValid && this.Pawn.Spawned && this.Pawn.Map != null && !this.Pawn.Downed && !this.Pawn.Dead && !target.Thing.DestroyedOrNull();
-                if (flag3)
+                if (this.Pawn != null && this.Pawn.Position.IsValid && this.Pawn.Spawned && this.Pawn.Map != null && !this.Pawn.Downed && !this.Pawn.Dead && !target.Thing.DestroyedOrNull())
                 {
                     this.Pawn.jobs.StopAll(false);
-                    FlyingObject_Leap flyingObject_Leap = (FlyingObject_Leap)GenSpawn.Spawn(ThingDef.Named("FlyingObject_Leap"), this.Pawn.Position, this.Pawn.Map, WipeMode.Vanish);
+                    FlyingObject_Leap flyingObject_Leap = (FlyingObject_Leap)GenSpawn.Spawn(LeaperDef, this.Pawn.Position, this.Pawn.Map, WipeMode.Vanish);
                     flyingObject_Leap.Launch(this.Pawn, target.Cell, this.Pawn);
                 }
             }
         }
 
-        // Token: 0x0600061E RID: 1566 RVA: 0x00058718 File Offset: 0x00056918
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             this.initialized = true;
-            Pawn pawn = this.parent as Pawn;
             Rand.PushState();
             this.nextLeap = Mathf.RoundToInt(Rand.Range(this.Props.ticksBetweenLeapChance * 0.75f, 1.25f * this.Props.ticksBetweenLeapChance));
             this.explosionRadius = this.Props.explodingLeaperRadius * Rand.Range(0.8f, 1.25f);
             Rand.PopState();
         }
 
-        // Token: 0x17000116 RID: 278
-        // (get) Token: 0x0600061F RID: 1567 RVA: 0x00058794 File Offset: 0x00056994
-        public CompProperties_Leaper Props
+        public bool FoughtRecently(int ticks)
         {
-            get
-            {
-                return (CompProperties_Leaper)this.props;
-            }
+            return Find.TickManager.TicksGame - this.Pawn.mindState.lastAttackTargetTick <= ticks;
         }
-
-        // Token: 0x06000620 RID: 1568 RVA: 0x000587B1 File Offset: 0x000569B1
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look<bool>(ref this.initialized, "initialized", true, false);
-        }
-
-        // Token: 0x06000621 RID: 1569 RVA: 0x000587D0 File Offset: 0x000569D0
         private bool CanHitTargetFrom(IntVec3 pawn, LocalTargetInfo target)
         {
-            bool flag = target.IsValid && target.CenterVector3.InBounds(this.Pawn.Map) && !target.Cell.Fogged(this.Pawn.Map) && target.Cell.Walkable(this.Pawn.Map);
-            return flag && this.TryFindShootLineFromTo(pawn, target, out ShootLine shootLine);
+            return target.IsValid && target.CenterVector3.InBounds(this.Pawn.Map) && !target.Cell.Fogged(this.Pawn.Map) && target.Cell.Walkable(this.Pawn.Map) && this.TryFindShootLineFromTo(pawn, target, out ShootLine shootLine);
         }
 
-        // Token: 0x06000622 RID: 1570 RVA: 0x00058854 File Offset: 0x00056A54
         public bool TryFindShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
-            bool flag = targ.HasThing && targ.Thing.Map != this.Pawn.Map;
             bool result;
-            if (flag)
+            if (targ.HasThing && targ.Thing.Map != this.Pawn.Map)
             {
                 resultingLine = default(ShootLine);
                 result = false;
@@ -297,13 +249,19 @@ namespace AdeptusMechanicus
             return result;
         }
 
-        // Token: 0x040005D8 RID: 1496
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            return base.CompGetGizmosExtra();
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<bool>(ref this.initialized, "initialized", true, false);
+        }
+
         private bool initialized = true;
-
-        // Token: 0x040005D9 RID: 1497
         public float explosionRadius = 2f;
-
-        // Token: 0x040005DA RID: 1498
         private int nextLeap = 0;
     }
 }

@@ -2,6 +2,8 @@
 using RimWorld;
 using HarmonyLib;
 using AdeptusMechanicus.settings;
+using Verse;
+using RimWorld.Planet;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -47,6 +49,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (!AMAMod.settings.AllowTyranidWeapons)
             {
                 ___allWeaponPairs.RemoveAll(x => (x.thing.defName.Contains("OGTY_")) && (x.thing.defName.Contains("_Gun_") || x.thing.defName.Contains("_Melee_")));
+            }
+            if (Find.World is World world)
+            {
+                if (world.GetComponent<RelicTracker>() is RelicTracker relicTracker)
+                {
+                    ___allWeaponPairs.RemoveAll(x => !relicTracker.CanSpawn(x.thing));
+                }
             }
         }
     }

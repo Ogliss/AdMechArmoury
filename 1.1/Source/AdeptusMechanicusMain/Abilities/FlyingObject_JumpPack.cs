@@ -10,12 +10,10 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x020000DD RID: 221
+    // AdeptusMechanicus.FlyingObject_JumpPack
     [StaticConstructorOnStartup]
     public class FlyingObject_JumpPack : ThingWithComps, IThingHolder
     {
-        // Token: 0x17000E05 RID: 3589
-        // (get) Token: 0x06004F1D RID: 20253 RVA: 0x001AA3A8 File Offset: 0x001A85A8
         private float TimeInAnimation
         {
             get
@@ -30,17 +28,16 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x17000E06 RID: 3590
-        // (get) Token: 0x06004F1E RID: 20254 RVA: 0x001AA3E0 File Offset: 0x001A85E0
+        protected float speed => this.def.projectile.speed;
         private float CurrentSpeed
         {
             get
             {
                 if (this.def.skyfaller.speedCurve == null)
                 {
-                    return this.def.skyfaller.speed;
+                    return this.speed;
                 }
-                return this.SpeedArc.Evaluate(this.TimeInAnimation) * this.def.skyfaller.speed;
+                return this.SpeedArc.Evaluate(this.TimeInAnimation) * this.speed;
             }
         }
         protected int StartingTicksToImpact
@@ -109,8 +106,59 @@ namespace AdeptusMechanicus
         {
             get
             {
-            //    return SkyfallerDrawPosUtility.DrawPos_Accelerate(base.DrawPos, this.ticksToImpact, (float)Math.Atan2(origin.y - destination.y, origin.x - destination.x), this.CurrentSpeed);
-                return this.ExactPosition;
+                Vector3 drawPos = this.ExactPosition;
+                float num = 0f;
+
+                /*
+                if (!this.DrawPos.ToIntVec3().IsValid)
+                {
+                    return;
+                }
+                Pawn pawn = this.flyingThing as Pawn;
+                if (this.def.skyfaller.xPositionCurve != null)
+                {
+                //    Log.Message("Xpos mod " + this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
+                    drawPos.x += this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation);
+                }
+                if (this.def.skyfaller.zPositionCurve != null)
+                {
+                //    Log.Message("Zpos mod " + this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
+                    drawPos.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
+                }
+                */
+
+                /*
+                if (this.def.skyfaller.rotateGraphicTowardsDirection)
+                {
+                    num = this.angle;
+                }
+                if (this.def.skyfaller.angleCurve != null)
+                {
+                    this.angle = this.def.skyfaller.angleCurve.Evaluate(this.TimeInAnimation);
+                }
+                */
+                if (this.def.skyfaller.rotationCurve != null)
+                {
+                    num += this.def.skyfaller.rotationCurve.Evaluate(this.TimeInAnimation);
+                }
+                if (this.def.skyfaller.xPositionCurve != null)
+                {
+                    drawPos.x += this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation);
+                }
+                /*
+                if (this.def.skyfaller.zPositionCurve != null)
+                {
+                    drawPos.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
+                }
+                */
+
+                if (this.FlightArc != null)
+                {
+                    drawPos.z += this.FlightArc.Evaluate(this.TimeInAnimation);
+                }
+
+                //    return SkyfallerDrawPosUtility.DrawPos_Accelerate(base.DrawPos, this.ticksToImpact, (float)Math.Atan2(origin.y - destination.y, origin.x - destination.x), this.CurrentSpeed);
+                return drawPos;
             }
         }
 
@@ -189,19 +237,16 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x060005F9 RID: 1529 RVA: 0x00056F84 File Offset: 0x00055184
         public void Launch(Thing launcher, LocalTargetInfo targ, Thing flyingThing, DamageInfo? impactDamage)
         {
             this.Launch(launcher, base.Position.ToVector3Shifted(), targ, flyingThing, impactDamage);
         }
 
-        // Token: 0x060005FA RID: 1530 RVA: 0x00056FAC File Offset: 0x000551AC
         public void Launch(Thing launcher, LocalTargetInfo targ, Thing flyingThing)
         {
             this.Launch(launcher, base.Position.ToVector3Shifted(), targ, flyingThing, null);
         }
 
-        // Token: 0x060005FB RID: 1531 RVA: 0x00056FDC File Offset: 0x000551DC
         public void Launch(Thing launcher, Vector3 origin, LocalTargetInfo targ, Thing flyingThing, DamageInfo? newDamageInfo = null)
         {
             this.innerContainer = new ThingOwner<Thing>(this, false, LookMode.Deep);
@@ -235,15 +280,11 @@ namespace AdeptusMechanicus
             this.Initialize();
         }
 
-        int delay = 5;
         public override void Tick()
         {
             base.Tick();
-        //    this.innerContainer.ThingOwnerTick(true);
-            Vector3 exactPosition = this.ExactPosition;
             if (assignedTarget!=null)
             {
-            //    Log.Message("Has Target");
                 if (assignedTarget.Position!=this.DestinationCell)
                 {
                 //    Log.Message("Target moved");
@@ -264,9 +305,7 @@ namespace AdeptusMechanicus
                 }
                 //    this.ticksToImpact-= (int)CurrentSpeed;
             }
-            bool flag = !this.ExactPosition.InBounds(base.Map);
-            bool flag2 = flag;
-            if (flag2)
+            if (!this.ExactPosition.InBounds(base.Map))
             {
                 this.ticksToImpact++;
                 base.Position = this.ExactPosition.ToIntVec3();
@@ -275,21 +314,30 @@ namespace AdeptusMechanicus
             else
             {
                 base.Position = this.ExactPosition.ToIntVec3();
-                bool flag3 = Find.TickManager.TicksGame % 2 == 0;
-                if (flag3)
+                if (!Trailers.NullOrEmpty())
                 {
-                    
-                    if (this.FlightArc != null)
+                    foreach (TrailerProjectileExtension trailer in Trailers)
                     {
-                        float f = this.FlightArc.Evaluate(this.TimeInAnimation);
-                        exactPosition.z += this.FlightArc.Evaluate(this.TimeInAnimation);
-                    }
-                    
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Rand.PushState();
-                        AdeptusMoteMaker.ThrowDustPuff(exactPosition, base.Map, Rand.Range(0.3f, 0.6f));
-                        Rand.PopState();
+                        if (ticksToImpact % trailer.trailerMoteInterval == 0)
+                        {
+                            for (int ii = 0; ii < trailer.motesThrown; ii++)
+                            {
+                                //    Trail1Thrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+
+                                //    TrailThrower.ThrowSmokeTrail(__instance.DrawPos, trailer.trailMoteSize * DistanceCoveredFraction(___origin, ___destination, ___ticksToImpact, __instance.def.projectile.SpeedTilesPerTick), __instance.Map, trailer.trailMoteDef, __instance);
+                                Color? DC = null;
+                                if (trailer.useGraphicColor)
+                                {
+                                    DC = flyingThing.DrawColor;
+                                }
+                                else
+                                if (trailer.useGraphicColorTwo)
+                                {
+                                    DC = flyingThing.DrawColorTwo;
+                                }
+                                TrailThrower.ThrowSprayTrail(this.DrawPos, this.Map, origin, destination, trailer.trailMoteDef, trailer.trailMoteSize, 240, this.def.projectile.SpeedTilesPerTick, DC);
+                            }
+                        }
                     }
                 }
                 bool flag4 = this.ticksToImpact <= 0;
@@ -307,82 +355,69 @@ namespace AdeptusMechanicus
             }
         }
 
+        /*
+        if (___ticksToImpact % trailer.trailerMoteInterval == 0)
+        {
+            for (int ii = 0; ii < trailer.motesThrown; ii++)
+            {
+                //    Trail1Thrower.ThrowSmokeTrail(__instance.Position.ToVector3Shifted(), trailer.trailMoteSize, __instance.Map, trailer.trailMoteDef);
+
+                //    TrailThrower.ThrowSmokeTrail(__instance.DrawPos, trailer.trailMoteSize * DistanceCoveredFraction(___origin, ___destination, ___ticksToImpact, __instance.def.projectile.SpeedTilesPerTick), __instance.Map, trailer.trailMoteDef, __instance);
+                Color? DC = null;
+                if (trailer.useGraphicColor)
+                {
+                    DC = __instance.DrawColor;
+                }
+                else
+                if (trailer.useGraphicColorTwo)
+                {
+                    DC = __instance.DrawColorTwo;
+                }
+                TrailThrower.ThrowSprayTrail(__instance.ExactPosition, __instance.Map, ___origin, ___destination, trailer.trailMoteDef, trailer.trailMoteSize, 240, __instance.def.projectile.SpeedTilesPerTick, DC);
+            }
+        }
+        */
+
+        private List<TrailerProjectileExtension> _trailers;
+        public List<TrailerProjectileExtension> Trailers
+        {
+            get
+            {
+                if (_trailers == null)
+                {
+                    _trailers = new List<TrailerProjectileExtension>();
+                    if (this.def.HasModExtension<TrailerProjectileExtension>())
+                    {
+                        for (int i = 0; i < def.modExtensions.Count; i++)
+                        {
+                            if (def.modExtensions[i] is TrailerProjectileExtension trailer)
+                            {
+                                _trailers.Add(trailer);
+                            }
+                        }
+                    }
+                }
+                return _trailers;
+            }
+        }
         // Token: 0x060005FD RID: 1533 RVA: 0x00057178 File Offset: 0x00055378
         public override void Draw()
         {
-            bool flag = this.flyingThing != null;
-            bool flag2 = flag;
-            if (flag2)
+            if (this.flyingThing != null)
             {
-                bool flag3 = this.flyingThing is Pawn;
-                bool flag4 = flag3;
-                if (flag4)
+                if (this.flyingThing is Pawn pawn)
                 {
-                    /*
-                    Vector3 drawPos = this.DrawPos;
-                    bool flag5 = !this.DrawPos.ToIntVec3().IsValid;
-                    bool flag6 = flag5;
-                    if (flag6)
-                    {
-                        return;
-                    }
-                    Pawn pawn = this.flyingThing as Pawn;
-                    if (this.def.skyfaller.xPositionCurve != null)
-                    {
-                    //    Log.Message("Xpos mod " + this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
-                        drawPos.x += this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    if (this.def.skyfaller.zPositionCurve != null)
-                    {
-                    //    Log.Message("Zpos mod " + this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation) + " time " + TimeInAnimation);
-                        drawPos.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    */
-                    Vector3 drawPos = this.DrawPos;
-                    Pawn thingForGraphic = this.flyingThing as Pawn;
-                    float num = 0f;
-
-                    /*
-                    if (this.def.skyfaller.rotateGraphicTowardsDirection)
-                    {
-                        num = this.angle;
-                    }
-                    if (this.def.skyfaller.angleCurve != null)
-                    {
-                        this.angle = this.def.skyfaller.angleCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    */
-                    if (this.def.skyfaller.rotationCurve != null)
-                    {
-                        num += this.def.skyfaller.rotationCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    if (this.def.skyfaller.xPositionCurve != null)
-                    {
-                        drawPos.x += this.def.skyfaller.xPositionCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    /*
-                    if (this.def.skyfaller.zPositionCurve != null)
-                    {
-                        drawPos.z += this.def.skyfaller.zPositionCurve.Evaluate(this.TimeInAnimation);
-                    }
-                    */
-                    
-                    if (this.FlightArc != null)
-                    {
-                        drawPos.z += this.FlightArc.Evaluate(this.TimeInAnimation);
-                    }
-                    
-                    pawn.Drawer.DrawAt(drawPos);
-                    this.DrawDropSpotShadow(ExactPosition);
+                    pawn.Drawer.DrawAt(this.DrawPos);
+                    this.DrawDropSpotShadow(this.ExactPosition);
                 }
                 else
                 {
-                    Graphics.DrawMesh(MeshPool.plane10, this.DrawPos, this.ExactRotation, this.flyingThing.def.DrawMatSingle, 0);
+                    Graphics.DrawMesh(MeshPool.plane10, this.ExactPosition, this.ExactRotation, this.flyingThing.def.DrawMatSingle, 0);
                 }
             }
             else
             {
-                Graphics.DrawMesh(MeshPool.plane10, this.DrawPos, this.ExactRotation, this.flyingThing.def.DrawMatSingle, 0);
+                Graphics.DrawMesh(MeshPool.plane10, this.ExactPosition, this.ExactRotation, this.flyingThing.def.DrawMatSingle, 0);
             }
             base.Comps_PostDraw();
         }
@@ -645,7 +680,6 @@ namespace AdeptusMechanicus
 
         protected Vector3 destination;
 
-        protected float speed => this.def.projectile.speed;
 
         protected int ticksToImpact;
 
@@ -659,6 +693,7 @@ namespace AdeptusMechanicus
 
         public bool explosion = false;
 
+        int delay = 5;
         public int weaponDmg = 0;
 
         private static MaterialPropertyBlock shadowPropertyBlock = new MaterialPropertyBlock();

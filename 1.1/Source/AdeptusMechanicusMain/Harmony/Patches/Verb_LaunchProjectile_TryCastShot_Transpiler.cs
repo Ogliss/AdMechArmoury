@@ -148,6 +148,8 @@ namespace AdeptusMechanicus.HarmonyInstance
             result = equipment.MuzzlePositionFor(result, aimAngle);
             return result;
         }
+
     }
+    
     
 }

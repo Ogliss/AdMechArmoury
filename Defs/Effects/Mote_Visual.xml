@@ -357,9 +357,18 @@
 	<ThingDef ParentName="MoteBase">
 		<defName>OG_Mote_DistortBlastGlow</defName>
 		<graphicData>
-			<texPath>Things/Mote/Blast/Distort</texPath>
-			<shaderType>MoteGlow</shaderType>
+			<texPath>Things/Mote/Blast/DistortG</texPath>
+			<shaderType>MoteGlowDistortBackground</shaderType>
 			<color>(0.651,0.78,0.3)</color>
+			<shaderParameters>
+				<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+				<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+				<_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex>
+				<_distortionIntensity>0.15</_distortionIntensity>
+				<_brightnessMultiplier>0</_brightnessMultiplier>
+				<_DistortionScale>40</_DistortionScale>
+				<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+			</shaderParameters>
 		</graphicData>
 		<altitudeLayer>Projectile</altitudeLayer>
 		<mote>

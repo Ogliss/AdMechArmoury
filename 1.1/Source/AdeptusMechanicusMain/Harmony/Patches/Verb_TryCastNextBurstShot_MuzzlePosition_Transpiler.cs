@@ -62,22 +62,22 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 skip = true;
             }
-            if (verb.GetProjectile() as Lasers.LaserBeamDef != null)
+            if (verb.GetProjectile() != null)
             {
-                skip = true;
+                if (verb.GetProjectile() as Lasers.LaserBeamDef != null)
+                {
+                    skip = true;
+                }
+                if (verb.GetProjectile().GetType().ToString().Contains("Lasers.LaserBeamDef"))
+                {
+                    skip = true;
+                }
             }
-            
-            if (verb.GetProjectile().GetType().ToString().Contains("Lasers.LaserBeamDef"))
-            {
-                skip = true;
-            }
-            
             if (verb.EquipmentSource != null && !skip)
             {
                 if (verb.verbProps.range > 1.48f)
                 {
                     ThingDef mote = moteDef;
-                    OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<CompOversizedWeapon>();
                     CompEquippable equippable = verb.EquipmentCompSource;
                     Vector3 origin = verb.CasterIsPawn ? verb.CasterPawn.Drawer.DrawPos : verb.Caster.DrawPos;
                     Vector3 a = verb.CurrentTarget.CenterVector3;
@@ -86,22 +86,30 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         aimAngle = (a - origin).AngleFlat();
                     }
-                    if (compOversized != null)
+                    if (verb.Caster is Building_TurretGun _TurretGun)
                     {
-                        bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
-                        Vector3 offsetMainHand = default(Vector3);
-                        Vector3 offsetOffHand = default(Vector3);
-                        float offHandAngle = aimAngle;
-                        float mainHandAngle = aimAngle;
-                        Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
-                    //    if (DualWeapon && AMAMod.Dev) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
-                        origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
-                        // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
-                        if (compOversized.Props.isDualWeapon) compOversized.FirstAttack = !compOversized.FirstAttack;
+                        origin += new Vector3 (_TurretGun.def.building.turretTopOffset.x, 0, _TurretGun.def.building.turretTopOffset.y);
+                    }
+                    else
+                    {
+                        OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<CompOversizedWeapon>();
+                        if (compOversized != null)
+                        {
+                            bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
+                            Vector3 offsetMainHand = default(Vector3);
+                            Vector3 offsetOffHand = default(Vector3);
+                            float offHandAngle = aimAngle;
+                            float mainHandAngle = aimAngle;
+                            Harmony_PawnRenderer_DrawEquipmentAiming_Transpiler.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
+                            //    if (DualWeapon && AMAMod.Dev) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
+                            origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
+                            // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
+                            if (compOversized.Props.isDualWeapon) compOversized.FirstAttack = !compOversized.FirstAttack;
+                        }
                     }
 
                     origin = verb.MuzzlePositionFor(aimAngle, true);
-                    origin.y = verb.GetProjectile().Altitude;
+                    if (verb.GetProjectile() != null) origin.y = verb.GetProjectile().Altitude;
                     AdeptusMoteMaker.MakeStaticMote(origin, map, mote, scale);
                     return;
                 }

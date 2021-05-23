@@ -113,7 +113,7 @@ namespace AdeptusMechanicus
             return false;
         }
 
-        public void ImpactEffects(Vector3 pos, Map map, ThingDef explosionMoteDef, float ExplosionMoteSize, Color? color, SoundDef sound, ThingDef ImpactMoteDef, float ImpactMoteSize, ThingDef ImpactGlowMoteDef, float ImpactGlowMoteSize, Thing hitThing = null, Thing projectile = null)
+        public void ImpactEffects(Vector3 pos, Map map, ThingDef explosionMoteDef, float ExplosionMoteSize, Color? color, SoundDef sound, ThingDef ImpactMoteDef, float ImpactMoteSize, ThingDef ImpactGlowMoteDef, float ImpactGlowMoteSize, Thing hitThing = null, Thing projectile = null, int OverrideSolidTime = -1)
         {
             Rand.PushState();
             ThingDef impactMoteDef = ImpactMoteDef ?? this.ImpactMoteDef;
@@ -157,6 +157,10 @@ namespace AdeptusMechanicus
                     moteThrown.exactPosition = loc;
                     moteThrown.instanceColor = color.Value;
                     moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
+                    if (OverrideSolidTime > -1)
+                    {
+                        moteThrown.solidTimeOverride = OverrideSolidTime;
+                    }
                     GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
                 }
                 catch (System.Exception)
@@ -184,6 +188,10 @@ namespace AdeptusMechanicus
                         moteThrown.rotationRate = Rand.Range(-30f, 30f);
                         Rand.PopState();
                         moteThrown.exactPosition = loc;
+                        if (OverrideSolidTime > -1)
+                        {
+                            moteThrown.solidTimeOverride = OverrideSolidTime;
+                        }
                         if (pawn.RaceProps.BloodDef != null)  moteThrown.instanceColor = pawn.RaceProps.BloodDef.graphic.color;
                         moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
                         GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
@@ -197,6 +205,10 @@ namespace AdeptusMechanicus
                         mote.instanceColor.r = color.Value.r * 0.25f;
                         mote.instanceColor.g = color.Value.g * 0.25f;
                         mote.instanceColor.b = color.Value.b * 0.25f;
+                        if (OverrideSolidTime > -1)
+                        {
+                            mote.solidTimeOverride = OverrideSolidTime;
+                        }
                         GenSpawn.Spawn(mote, loc.ToIntVec3(), map, WipeMode.Vanish);
                     }
                 }

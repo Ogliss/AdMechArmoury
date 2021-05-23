@@ -65,6 +65,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
 
                     }
+                    if (defName == "OGN_Gun_SynapticDisintergrator")
+                    {
+                        __result = "OGN_Gun_SynapticDisintegrator";
+                        return;
+                    }
                     if (defName == "OGDE_Melee_WytchKnife")
                     {
                         __result = "OGDE_Melee_WychKnife";
@@ -1149,6 +1154,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
 
+                if (defType == typeof(TraderKindDef))
+                {
+                    if (defName == "Caravan_Ork_Exotic")
+                    {
+                        __result = "OG_Ork_Caravan_Exotic";
+                        return;
+                    }
+                }
                 if (defType == typeof(RecipeDef))
                 {
 

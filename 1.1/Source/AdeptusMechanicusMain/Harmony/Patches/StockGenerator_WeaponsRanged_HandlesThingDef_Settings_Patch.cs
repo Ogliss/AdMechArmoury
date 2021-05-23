@@ -85,6 +85,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                     __result = false;
                 }
             }
+            if (td.HasModExtension<RelicExtension>())
+            {
+                Log.Message("Trader Spawned Relic: " + td);
+                if (Find.World.GetComponent<RelicTracker>() is RelicTracker relicTracker)
+                {
+                    __result = relicTracker.CanSpawn(td);
+                    Log.Message("Relic: " + td.LabelCap + " Allow: " + __result);
+                }
+            }
             if (!__result && (td.defName.Contains("OG_") && td.defName.Contains("_Gun_")))
             {
             //    log.message("returning false for " + td.LabelCap);

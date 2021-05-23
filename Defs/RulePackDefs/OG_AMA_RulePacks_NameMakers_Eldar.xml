@@ -2,88 +2,97 @@
 <Defs>
 
 	<RulePackDef>
-		<defName>NamerOGEldarFaction</defName>
+		<defName>OG_Eldar_Craftworld_NamerFaction</defName>
+		<include>
+			<li>OG_Eldar_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGEldarCraftworldMajor]</li>
+				<li>r_name(p=3)->[Craftworld]</li>
+				<!--
+				<li>r_name->[nearnameinitial] [political_union_outlander]</li>
+				<li>r_name->[nearnameinitial] [political_adjective] [political_union_outlander]</li>
+				<li>r_name->[political_union_outlander] of [nearnameinitial]</li>
+				<li>r_name->[political_adjective] [political_union_outlander] of [nearnameinitial]</li>
+				-->
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGEldarCraftworldMajor</keyword>
-				<path>NameBanks/OGEldarMajorCraftworlds</path>
-			</li>
-			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
-	<!--
-  <RulePackDef>
-    <defName>NamerOGEldarFaction</defName>
-    <include>
-      <li>OutlanderPlaceNameUtility</li>
-    </include>
-    <rulePack>
-      <rulesStrings>
-        <li>r_name(p=3)->[nearnameinitial]</li>
-        <li>r_name->[nearnameinitial] [political_union_outlander]</li>
-        <li>r_name->[nearnameinitial] [political_adjective] [political_union_outlander]</li>
-        <li>r_name->[political_union_outlander] of [nearnameinitial]</li>
-        <li>r_name->[political_adjective] [political_union_outlander] of [nearnameinitial]</li>
-        <li>nearnameinitial(p=3)->[PlaceOutlander]</li>
-        <li>nearnameinitial->[Direction] [PlaceOutlander]</li>
-      </rulesStrings>
-      <rulesFiles>
-        <li>political_union_outlander->Words/Nouns/PoliticalUnions_Outlander</li>
-        <li>political_adjective->Words/Adjectives/PoliticalUnions</li>
-      </rulesFiles>
-    </rulePack>
-  </RulePackDef>
--->
+  
 	<RulePackDef>
-		<defName>NamerOGEldarBases</defName>
+		<defName>OG_Eldar_NamerBases</defName>
+		<include>
+		  <li>OG_Eldar_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-				<li>name->[OGEldarBaseNames]</li>
+				<li>name->[Craftworld_Outpost]</li>
 			</rulesStrings>
-			<rulesRaw>
-				<li Class="Rule_File">
-					<keyword>OGEldarBaseNames</keyword>
-					<path>NameBanks/OGEldarBaseNames</path>
-				</li>
-			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_Eldar_NamerPerson</defName>
+		<include>
+			<li>OG_Eldar_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameMaleEldar]</li>
+				<!--li>r_name(p=3)->[NameMaleEldar] [ImperialNameLast]</li-->
+				<!--li>r_name(p=2)->[ImperialNameFirstMale] [WordImperial]</li>
+				<li>r_name(p=2)->[WordImperial] [WordImperial]</li-->
+			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>NamerOGEldarPawns</defName>
+		<defName>OG_Eldar_NamerPersonFemale</defName>
+		<include>
+			<li>OG_Eldar_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>r_name->[OGEldarFirst] [OGEldarCraftworldMajor]</li>
-			<li>r_name->[OGEldarFirst] [OGEldarCraftworldMinor]</li>
-			<li>r_name->[OGEldarFirst] [OGEldarCraftworldLost]</li>
-			<li>r_name->[OGEldarFirst] [OGEldarCraftworldCorsair]</li>
+				<li>r_name(p=3)->[NameFemaleEldar]</li>
+				<!--li>r_name(p=3)->[NameFemaleEldar] [ImperialNameLast]</li-->
+				<!--li>r_name(p=2)->[ImperialNameFirstFemale] [WordImperial]</li>
+				<li>r_name(p=2)->[WordImperial] [WordImperial]</li-->
 			</rulesStrings>
-			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGEldarFirst</keyword>
-				<path>NameBanks/OGEldarFirst</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGEldarCraftworldMajor</keyword>
-				<path>NameBanks/OGEldarMajorCraftworlds</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGEldarCraftworldMinor</keyword>
-				<path>NameBanks/OGEldarMinorCraftworlds</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGEldarCraftworldLost</keyword>
-				<path>NameBanks/OGEldarLostCraftworlds</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGEldarCraftworldCorsair</keyword>
-				<path>NameBanks/OGEldarCorsairCraftworlds</path>
-			</li>
-			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Eldar_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordImperial(p=4)->[SylB][SylB]</li>
+				<li>WordImperial(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordImperial(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<li>NameMaleEldar(p=4)->[Eldar_A_Male][Eldar_B_Male]</li>
+				<!--li>NameMaleEldar(p=2)->[Eldar_Male]</li>
+				<li>NameMaleEldar(p=0.2)->[Eldar_Male][Eldar_B_Male]</li-->
+				
+				<li>NameFemaleEldar(p=4)->[Eldar_A_Female][Eldar_B_Female]</li>
+				<!--li>NameFemaleEldar(p=2)->[Eldar_Female]</li>
+				<li>NameFemaleEldar(p=0.2)->[Eldar_Female][Eldar_B_Female]</li-->
+				
+				<li>Craftworld(p=3)->[Craftworld_Major]</li>
+				<li>Craftworld(p=1)->[Craftworld_Minor]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Craftworld_Major->NameBanks/OG_Eldar_Names_Craftworlds_Major</li>
+				<li>Craftworld_Minor->NameBanks/OG_Eldar_Names_Craftworlds_Minor</li>
+				<li>Craftworld_Lost->NameBanks/OG_Eldar_Names_Craftworlds_Lost</li>
+				<li>Craftworld_Corsair->NameBanks/OG_Eldar_Names_Craftworlds_Corsair</li>
+				<li>Craftworld_Outpost->NameBanks/OG_Eldar_Names_Outpost</li>
+				<li>Eldar_A_Male->NameBanks/OG_Eldar_Names_Male_A</li>
+				<li>Eldar_B_Male->NameBanks/OG_Eldar_Names_Male_B</li>
+				<!--li>Eldar_Male->NameBanks/OG_Eldar_Names_Male</li-->
+				<li>Eldar_A_Female->NameBanks/OG_Eldar_Names_Female_A</li>
+				<li>Eldar_B_Female->NameBanks/OG_Eldar_Names_Female_B</li>
+				<!--li>Eldar_Female->NameBanks/OG_Eldar_Names_Female</li-->
+			</rulesFiles>
 		</rulePack>
 	</RulePackDef>
 

@@ -8,6 +8,7 @@ namespace AdeptusMechanicus
 {
     public interface IAdvancedVerb
     {
+        public bool Debug { get; }
         public bool RapidFire { get; }
         public float RapidFireRange { get; }
         public Reliability Reliability { get; }
@@ -42,6 +43,7 @@ namespace AdeptusMechanicus
         public void DrawRapidFireRadiusRing(IntVec3 center, Func<IntVec3, bool> predicate = null);
         public float GetHitChanceFactor(Thing equipment, float dist);
         public float AdjustedAccuracy(RangeCategory cat, Thing equipment);
+        public float FailChance(Thing gun, out string reliabilityString);
 
         float BarrelLength { get; }
         float BulletOffset { get; }

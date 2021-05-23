@@ -1,4 +1,4 @@
-﻿using AbilitesExtended;
+﻿using AdeptusMechanicus.ExtensionMethods;
 using HarmonyLib;
 using RimWorld;
 using System;
@@ -12,11 +12,38 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(JobGiver_AIFightEnemy), "TryGiveJob")]
     public static class JobGiver_AIFightEnemy_TryGiveJob_RangedVerb_Patch
     {
+        private static List<HediffDef> _hediffs;
+        public static List<HediffDef> VerbGiver_hediffs
+        {
+            get
+            {
+                if (_hediffs == null)
+                {
+                    Log.Message("VerbGiver_hediffs Generating list");
+                    int a = Find.TickManager.TicksGame;
+                    _hediffs = new List<HediffDef>();
+                    foreach (var item in DefDatabase<HediffDef>.AllDefsListForReading)
+                    {
+                        if (item.HasComp(typeof(HediffComp_VerbGiverExtra)))
+                        {
+                            _hediffs.Add(item);
+                        }
+                    }
+                    Log.Message("VerbGiver_hediffs Generated list: "+_hediffs.Count+" taking "+ (Find.TickManager.TicksGame - a) +" ticks");
+                }
+                return _hediffs;
+            }
+        }
+
         static bool Prefix(ref JobGiver_AIFightEnemy __instance, ref Job __result, ref Pawn pawn)
         {
-            //    Log.Warning(string.Format("Tame animal job detected: {0}", pawn.LabelCap));
+            if (!pawn.ModPawn())
+            {
+                return true;
+            }
+                //    Log.Warning(string.Format("Tame animal job detected: {0}", pawn.LabelCap));
 
-            bool player = pawn.Faction == Faction.OfPlayerSilentFail;
+                bool player = pawn.Faction == Faction.OfPlayerSilentFail;
             if (pawn.RaceProps.Humanlike)
                 return HumanUser(ref __instance, ref __result, ref pawn, player);
             bool hasRangedVerb = false;
@@ -52,9 +79,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                     //Log.Warning("Added Ranged Verb");
                 }
             }
-            if (pawn.health.hediffSet.hediffs.Any(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null))
+            if (pawn.health.hediffSet.hediffs.Any(x => VerbGiver_hediffs.Contains(x.def) /*x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null*/))
             {
-                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null);
+                List<Hediff> list = pawn.health.hediffSet.hediffs.FindAll(x => VerbGiver_hediffs.Contains(x.def) /*x.TryGetCompFast<HediffComp_VerbGiverExtra>() != null*/);
 
                 foreach (Hediff item in list)
                 {

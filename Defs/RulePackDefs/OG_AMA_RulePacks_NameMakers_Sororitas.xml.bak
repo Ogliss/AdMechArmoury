@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RulePackDef>
+		<defName>OG_Sororitas_Order_NamerFaction</defName>
+		<include>
+			<li>OG_Sororitas_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->Order of the [Order]</li>
+				<li>r_name->The Order of the [Order]</li>
+				<!--
+				<li>r_name->[nearnameinitial] [political_union_outlander]</li>
+				<li>r_name->[nearnameinitial] [political_adjective] [political_union_outlander]</li>
+				<li>r_name->[political_union_outlander] of [nearnameinitial]</li>
+				<li>r_name->[political_adjective] [political_union_outlander] of [nearnameinitial]</li>
+				-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Sororitas_NamerBases</defName>
+		<include>
+		  <li>OG_Sororitas_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Order_Outpost]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Sororitas_NamerPerson</defName>
+		<include>
+			<li>OG_Sororitas_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameMaleSororitas]</li>
+				<!--li>r_name(p=3)->[NameMaleSororitas] [SororitasNameLast]</li-->
+				<!--li>r_name(p=2)->[SororitasNameFirstMale] [WordSororitas]</li>
+				<li>r_name(p=2)->[WordSororitas] [WordSororitas]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Sororitas_NamerPersonFemale</defName>
+		<include>
+			<li>OG_Sororitas_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameFemaleSororitas]</li>
+				<!--li>r_name(p=3)->[NameFemaleSororitas] [SororitasNameLast]</li-->
+				<!--li>r_name(p=2)->[SororitasNameFirstFemale] [WordSororitas]</li>
+				<li>r_name(p=2)->[WordSororitas] [WordSororitas]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Sororitas_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordSororitas(p=4)->[SylB][SylB]</li>
+				<li>WordSororitas(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordSororitas(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<!--li>NameMaleSororitas(p=4)->[Sororitas_A_Male][Sororitas_B_Male]</li>
+				<li>NameMaleSororitas(p=2)->[Sororitas_Male]</li>
+				<li>NameMaleSororitas(p=0.2)->[Sororitas_Male][Sororitas_B_Male]</li-->
+				
+				<li>NameFemaleSororitas(p=4)->[Sororitas_A_Female][Sororitas_B_Female]</li>
+				<li>NameFemaleSororitas(p=2)->[Sororitas_Female]</li>
+				<li>NameFemaleSororitas(p=0.2)->[Sororitas_Female][Sororitas_B_Female]</li>
+				
+				<li>Order(p=3)->[Order_A] [Order_B]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Order_A->NameBanks/OG_Sororitas_Names_Order_A</li>
+				<li>Order_B->NameBanks/OG_Sororitas_Names_Order_B</li>
+				<li>Order_Outpost->NameBanks/OG_Sororitas_Names_Outpost</li>
+				<!--li>Sororitas_A_Male->NameBanks/OG_Sororitas_Names_Male_A</li>
+				<li>Sororitas_B_Male->NameBanks/OG_Sororitas_Names_Male_B</li>
+				<li>Sororitas_Male->NameBanks/OG_Sororitas_Names_Male</li-->
+				<li>Sororitas_A_Female->NameBanks/OG_Sororitas_Names_Female_A</li>
+				<li>Sororitas_B_Female->NameBanks/OG_Sororitas_Names_Female_B</li>
+				<!--li>Sororitas_Female->NameBanks/OG_Sororitas_Names_Female</li-->
+			</rulesFiles>
+		</rulePack>
+	</RulePackDef>
+
+</Defs>

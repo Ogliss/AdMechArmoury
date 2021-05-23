@@ -6,6 +6,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.TrailerProjectileExtension
     public class TrailerProjectileExtension : DefModExtension
     {
+        public bool trailWhenLanded = false;
         public bool useGraphicColor = false;
         public bool useGraphicColorTwo = false;
         public string trailMoteDef = "Mote_Smoke";
