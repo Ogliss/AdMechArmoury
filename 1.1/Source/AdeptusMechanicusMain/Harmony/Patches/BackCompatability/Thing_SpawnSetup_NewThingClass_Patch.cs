@@ -17,52 +17,62 @@ namespace AdeptusMechanicus.HarmonyInstance
                 ThingWithComps original = __instance as ThingWithComps;
                 if (original != null)
                 {
-                    Pawn pawn = original as Pawn;
-                    if (pawn != null)
+                    try
                     {
-                        Pawn_EquipmentTracker equipmentTracker = pawn.equipment;
-                        Pawn_ApparelTracker apparelTracker = pawn.apparel;
-                        Pawn_InventoryTracker inventoryTracker = pawn.inventory;
-                        if (equipmentTracker != null)
+                        Pawn pawn = original as Pawn;
+                        if (pawn != null)
                         {
-                            if (!equipmentTracker.AllEquipmentListForReading.NullOrEmpty())
+                            Pawn_EquipmentTracker equipmentTracker = pawn.equipment;
+                            Pawn_ApparelTracker apparelTracker = pawn.apparel;
+                            Pawn_InventoryTracker inventoryTracker = pawn.inventory;
+                            if (equipmentTracker != null)
                             {
-                                for (int i = 0; i < equipmentTracker.AllEquipmentListForReading.Count; i++)
+                                if (!equipmentTracker.AllEquipmentListForReading.NullOrEmpty())
                                 {
-                                    equipmentTracker.AllEquipmentListForReading[i] = ReplacedThing(equipmentTracker.AllEquipmentListForReading[i]) as ThingWithComps;
+                                    for (int i = 0; i < equipmentTracker.AllEquipmentListForReading.Count; i++)
+                                    {
+                                        equipmentTracker.AllEquipmentListForReading[i] = ReplacedThing(equipmentTracker.AllEquipmentListForReading[i]) as ThingWithComps;
+                                    }
+                                }
+                            }
+                            if (apparelTracker != null)
+                            {
+                                if (!apparelTracker.WornApparel.NullOrEmpty())
+                                {
+                                    for (int i = 0; i < apparelTracker.WornApparel.Count; i++)
+                                    {
+                                        apparelTracker.WornApparel[i] = ReplacedThing(apparelTracker.WornApparel[i]) as Apparel;
+                                    }
+                                }
+                            }
+                            if (inventoryTracker != null)
+                            {
+                                if (!inventoryTracker.GetDirectlyHeldThings().NullOrEmpty())
+                                {
+                                    for (int i = inventoryTracker.GetDirectlyHeldThings().Count - 1; i > 0; i--)
+                                    {
+                                        Thing replace = ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps);
+                                        inventoryTracker.GetDirectlyHeldThings().RemoveAt(i);
+                                        inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(replace as ThingWithComps));
+                                    }
                                 }
                             }
                         }
-                        if (apparelTracker != null)
+                        else
                         {
-                            if (!apparelTracker.WornApparel.NullOrEmpty())
-                            {
-                                for (int i = 0; i < apparelTracker.WornApparel.Count; i++)
-                                {
-                                    apparelTracker.WornApparel[i] = ReplacedThing(apparelTracker.WornApparel[i]) as Apparel;
-                                }
-                            }
-                        }
-                        if (inventoryTracker != null)
-                        {
-                            if (!inventoryTracker.GetDirectlyHeldThings().NullOrEmpty())
-                            {
-                                for (int i = inventoryTracker.GetDirectlyHeldThings().Count - 1; i > 0; i--)
-                                {
-                                    Thing replace = ReplacedThing(inventoryTracker.GetDirectlyHeldThings()[i] as ThingWithComps);
-                                    inventoryTracker.GetDirectlyHeldThings().RemoveAt(i);
-                                    inventoryTracker.GetDirectlyHeldThings().TryAdd(ReplacedThing(replace as ThingWithComps));
-                                }
-                            }
+                            __instance = ReplacedThing(original);
                         }
                     }
-                    else
+                    catch (Exception)
                     {
-                        __instance = ReplacedThing(original);
+                        Log.Warning("Something went wrong trying to replace " + __instance.LabelCap + "'s ThingClass");
                     }
-                    if (__instance.GetType() != __instance.def.thingClass)
+                    finally
                     {
-                        Log.Warning("Failed to repalce "+__instance.LabelCap + "'s ThingClass");
+                        if (__instance.GetType() != __instance.def.thingClass)
+                        {
+                            Log.Warning("Failed to replace " + __instance.LabelCap + "'s ThingClass");
+                        }
                     }
                 }
             }
@@ -74,44 +84,52 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (actionRequired)
             {
             //    Log.Message("original.GetType("+ original.GetType()+ ") != original.def.thingClass("+ original.def.thingClass+")");
-                bool act = original.def.modContentPack.Name.Contains("Adeptus Mechanicus");
+                bool act = original.def.modContentPack != null && original.def.modContentPack.Name.Contains("Adeptus Mechanicus");
                 if (act)
                 {
-                //    Log.Message("act");
-                //    Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
-                    Thing thing = ThingMaker.MakeThing(original.def, original.Stuff);
-                    thing.Position = original.Position;
-                    CompQuality quality = original.TryGetCompFast<CompQuality>();
-                    if (quality != null)
+                    try
                     {
-                        quality.parent = thing as ThingWithComps;
-                    }
-                    CompArt art = original.TryGetCompFast<CompArt>();
-                    if (art != null)
-                    {
-                        art.parent = thing as ThingWithComps;
-                    }
-                    thing.thingIDNumber = original.thingIDNumber;
-                    IThingHolder holder = original.ParentHolder;
-                    CompEquippable equippable = original.TryGetCompFast<CompEquippable>();
-                    if (equippable != null)
-                    {
-                        Thing user = equippable.VerbTracker.PrimaryVerb.Caster;
-                        Pawn p = user as Pawn;
-                        if (p != null)
+                        //    Log.Message("act");
+                        //    Log.Warning(original.LabelCap + "'s ThingClass doesnt match its Defs ThingClass, trying to fix");
+                        Thing thing = ThingMaker.MakeThing(original.def, original.Stuff);
+                        thing.Position = original.Position;
+                        CompQuality quality = original.TryGetCompFast<CompQuality>();
+                        if (quality != null)
                         {
-                            p.equipment.Remove(original);
-                            p.equipment.AddEquipment(thing as ThingWithComps);
+                            quality.parent = thing as ThingWithComps;
                         }
+                        CompArt art = original.TryGetCompFast<CompArt>();
+                        if (art != null)
+                        {
+                            art.parent = thing as ThingWithComps;
+                        }
+                        thing.thingIDNumber = original.thingIDNumber;
+                        IThingHolder holder = original.ParentHolder;
+                        CompEquippable equippable = original.TryGetCompFast<CompEquippable>();
+                        if (equippable != null)
+                        {
+                            Thing user = equippable.VerbTracker.PrimaryVerb.Caster;
+                            Pawn p = user as Pawn;
+                            if (p != null)
+                            {
+                                p.equipment.Remove(original);
+                                p.equipment.AddEquipment(thing as ThingWithComps);
+                            }
+                        }
+                        else
+                        if (holder != null)
+                        {
+                            holder.GetDirectlyHeldThings().Remove(original);
+                            holder.GetDirectlyHeldThings().TryAdd(thing);
+                        }
+                        return thing;
                     }
-                    else
-                    if (holder != null)
+                    catch (Exception)
                     {
-                        holder.GetDirectlyHeldThings().Remove(original);
-                        holder.GetDirectlyHeldThings().TryAdd(thing);
-                    }
-                    return thing;
 
+                        Log.Warning("Something went wrong trying to replace " + original.LabelCap + "'s ThingClass from "+original.GetType().Name +" to "+ original.def.thingClass.Name);
+                        return original;
+                    }
                 }
             }
             return original;

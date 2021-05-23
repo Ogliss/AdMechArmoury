@@ -34,6 +34,17 @@ namespace AdeptusMechanicus.HarmonyInstance
                             bool apparel = defExtension.ApparelDefs.NullOrEmpty();
                             bool hediff = defExtension.HediffDefs.NullOrEmpty();
                             bool trait = defExtension.TraitDefs.NullOrEmpty();
+                            bool bodytype = defExtension.BodytypeDefs.NullOrEmpty();
+                            if (!defExtension.BodytypeDefs.NullOrEmpty())
+                            {
+                                bodytype = defExtension.BodytypeDefs.Contains(pawn.story.bodyType);
+                                if (bodytype && defExtension.Any)
+                                {
+                                    __result = true;
+                                    return;
+                                }
+                                cantReason = "Wrong Bodytype";
+                            }
                             if (!defExtension.RaceDefs.NullOrEmpty())
                             {
                                 race = defExtension.RaceDefs.Contains(pawn.def);
@@ -84,7 +95,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                                 cantReason = "Missing required Train";
                             }
-                            __result = gender && (race && hediff && trait && apparel);
+                            __result = gender && (race && hediff && trait && apparel && bodytype);
                             if (!__result)
                             {
                                 cantReason = $"{pawn.NameShortColored} "+ cantReason;

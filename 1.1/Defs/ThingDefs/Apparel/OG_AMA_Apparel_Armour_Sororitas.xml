@@ -5,16 +5,6 @@
 	<!-- ========================= Imperial - Power Armour ========================== -->
 	<!-- ========================= Base Power Armour ========================== -->
 	<ThingDef Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base" ParentName="OG_Imperial_Apparel_Armor" Abstract="true">
-		<modExtensions>
-		  <!--li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
-			<RaceDefs>
-			<li>OG_Human_Sororitas</li>
-			</RaceDefs>
-			<HediffDefs>
-			<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
-			</HediffDefs>
-		  </li-->
-		</modExtensions>
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
@@ -34,9 +24,9 @@
 			<Mass>30</Mass>
 			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
 			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
-			<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
-			<ArmorRating_Sharp>1.35</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.60</ArmorRating_Heat>
+			<ArmorRating_Blunt>1.06</ArmorRating_Blunt>
+			<ArmorRating_Sharp>1.06</ArmorRating_Sharp>
+			<ArmorRating_Heat>1.06</ArmorRating_Heat>
 			<Insulation_Heat>50</Insulation_Heat>
 			<Insulation_Cold>50</Insulation_Cold>
 		</statBases>
@@ -97,6 +87,19 @@
 		  </li>
 		-->
 		</comps>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<!--RaceDefs>
+				<li>OG_Human_Sororitas</li>
+			</RaceDefs>
+			<HediffDefs>
+				<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
+			</HediffDefs-->
+			<BodytypeDefs>
+				<li>Female</li>
+			</BodytypeDefs>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!-- ========================= Base Power Armour Helmet ========================== -->
@@ -176,6 +179,8 @@
 			<texPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->
+			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
 		</graphicData>
 		<statBases>
 		
@@ -190,6 +195,7 @@
 	
 		</recipeMaker>
 		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</wornGraphicPath>
 			<layers>
 			
@@ -217,6 +223,10 @@
 						<shaderType>CutoutComplex</shaderType>
 						<padTexPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/Pauldrons/SororitasPowerArmour</padTexPath>
 						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
 					</li>
 				</PauldronEntries>
 				<NorthOffset>0,0.5,0</NorthOffset>
