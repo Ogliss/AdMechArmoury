@@ -90,8 +90,8 @@ namespace AdeptusMechanicus
                 }
 
             }
-            Find.LetterStack.ReceiveLetter("AMA_Infiltrators_Revealed".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AMA_Infiltrators_Revealed_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
-        //    Messages.Message("AMA_Infiltrators_Revealed".Translate(pawns.Find(x=> x.Faction!=null).Faction.Name), pawns, MessageTypeDefOf.ThreatBig);
+            Find.LetterStack.ReceiveLetter("AdeptusMechanicus.Infiltrators_Revealed".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AdeptusMechanicus.Infiltrators_Revealed_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
+        //    Messages.Message("AdeptusMechanicus.Infiltrators_Revealed".Translate(pawns.Find(x=> x.Faction!=null).Faction.Name), pawns, MessageTypeDefOf.ThreatBig);
         }
 
         public int ticksSinceRaid = -1;

@@ -34,7 +34,7 @@ namespace AdeptusMechanicus
                     }
                     else if (Colorable != null)
                     {
-                        labelKey = "OG_Customize".Translate(); // defined by the Comp
+                        labelKey = "AdeptusMechanicus.Customize".Translate(); // defined by the Comp
                         return true;
                     }
                 }
@@ -71,7 +71,7 @@ namespace AdeptusMechanicus
             if (Drawer == null)
             {
                 if (Colorable == null) Log.Warning("selected thing has no CompPauldronDrawer for ITab_ToggleLivelry"); 
-                labelKey = "OG_Customize";
+                labelKey = "AdeptusMechanicus.Customize";
             }
             else labelKey = Drawer.Props.labelKey; //"UM_TabToggleDef";//.Translate();
             var rect = new Rect(17f, 17f, ITab_ToggleLivelry.CardSize().x, ITab_ToggleLivelry.CardSize().y);
@@ -216,7 +216,7 @@ namespace AdeptusMechanicus
             GUI.EndGroup();
         }
 
-        public void DrawVariantButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
+        public static void DrawVariantButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
             Rect rect2 = rect.LeftHalf().RightHalf();
@@ -226,7 +226,7 @@ namespace AdeptusMechanicus
             Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
 
 
-            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry, (ShoulderPadEntry p) => p.Used, new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(this.DrawVariantButton_GenerateMenu), entry.Used.Label, null, null, null, null, true);
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry, (ShoulderPadEntry p) => p.Used, new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu), entry.Used.Label, null, null, null, null, true);
             /*
             Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
                 (ShoulderPadEntry sp) => sp.Used,
@@ -238,7 +238,7 @@ namespace AdeptusMechanicus
             */
         }
 
-        private IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
+        private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
         {
             if (e.Used != e.DefaultOption)
             {
@@ -316,7 +316,7 @@ namespace AdeptusMechanicus
             e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
         }
 
-        public void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
+        public static void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
             Rect rect2 = rect.LeftHalf().RightHalf();
@@ -334,7 +334,7 @@ namespace AdeptusMechanicus
 
         }
 
-        private IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
+        private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
         {
             if (e.Used != e.DefaultOption)
             {
@@ -437,7 +437,7 @@ namespace AdeptusMechanicus
             yield break;
         }
         
-        public void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable)
+        public static void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
             Widgets.Label(rect1, "Faction Presets: ");
@@ -448,7 +448,7 @@ namespace AdeptusMechanicus
             Rect rect3 = rect.RightHalf().RightHalf();
             Widgets.Dropdown<CompColorableTwoFaction, FactionDef>(rect2, comp,
                 (CompColorableTwoFaction sp) => comp.FactionDef,
-                new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
+                new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(ITab_ToggleLivelry.DrawFactionColorsButton_GenerateMenu),
                 comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None", null, null, null, delegate ()
                 {
                 //    entry.Drawer = comp;
@@ -457,7 +457,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x060046EB RID: 18155 RVA: 0x0017FE99 File Offset: 0x0017E099
-        private IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompColorableTwoFaction e)
+        private static IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompColorableTwoFaction e)
         {
             if (e.FactionDef != null)
             {

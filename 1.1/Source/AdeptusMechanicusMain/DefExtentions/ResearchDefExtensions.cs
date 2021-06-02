@@ -19,24 +19,32 @@ namespace AdeptusMechanicus
 
         public bool UseHidden = true;
 
-        private List<ResearchProjectDef> requiredResearch = new List<ResearchProjectDef>();
+        private List<ResearchProjectDef> requiredResearch;
         public List<ResearchProjectDef> RequiredResearch
         {
             get
             {
-                if (requiredResearch.NullOrEmpty())
+                if (requiredResearch == null)
                 {
-                //    log.message("generating required Research");
-                    requiredResearch = DefDatabase<ResearchProjectDef>.AllDefsListForReading.FindAll(x => (Include.NullOrEmpty() ? true : Include.Any(y => x.defName.Contains(y))) && (Exclude.NullOrEmpty() ? true : !Exclude.Any(y => x.defName.Contains(y))) && (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.StartsWith(ResearchKeyPrefix)) && x.defName.Contains(ResearchKey) && (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.EndsWith(ResearchKeyPostfix)));
+                    requiredResearch = new List<ResearchProjectDef>();
+                    //    log.message("generating required Research");
+                    requiredResearch = DefDatabase<ResearchProjectDef>.AllDefsListForReading.FindAll(x => 
+                        (Include.NullOrEmpty() ? true : Include.Any(y => x.defName.Contains(y))) && 
+                        (Exclude.NullOrEmpty() ? true : !Exclude.Any(y => x.defName.Contains(y))) && 
+                        (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.StartsWith(ResearchKeyPrefix)) && 
+                        (ResearchKeyPrefix.NullOrEmpty() ? true : x.defName.EndsWith(ResearchKeyPostfix)) &&
+                        x.defName.Contains(ResearchKey)
+                        );
                 }
                 return requiredResearch;
             }
         }
+
         public bool AnyRequiredResearchCompleted
         {
             get
             {
-                return RequiredResearch.Any(x=> x.IsFinished);
+                return RequiredResearch.NullOrEmpty() || RequiredResearch.Any(x=> x.IsFinished);
             }
         }
     }

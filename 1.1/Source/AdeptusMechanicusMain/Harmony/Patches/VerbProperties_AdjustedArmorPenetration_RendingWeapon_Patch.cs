@@ -56,7 +56,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Rand.PopState();
                         if (rend)
                         {
-                        //    MoteMaker.ThrowText(attacker.Position.ToVector3(), attacker.MapHeld, "AMA_Rending_Strike".Translate(), 3f);
+                        //    MoteMaker.ThrowText(attacker.Position.ToVector3(), attacker.MapHeld, "AdeptusMechanicus.Rending_Strike".Translate(), 3f);
                             __result = 2f;
                             return;
                         }

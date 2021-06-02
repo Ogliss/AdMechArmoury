@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using AdeptusMechanicus.ExtensionMethods;
 using HarmonyLib;
 using RimWorld;
@@ -38,13 +39,28 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 			}
 			*/
+			string mskVariant = "";
+			if (apparel is ApparelComposite composite)
+            {
+                if (!composite.AltGraphics.NullOrEmpty() && composite.ActiveAltGraphic != null)
+                {
+					rec.graphic = composite.ActiveAltGraphic.GetGraphic(rec.graphic, true);
+					Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(composite.WornGraphicPath, apparel.def.apparel.useWornGraphicMask ? ShaderDatabase.CutoutComplex : ShaderDatabase.Cutout, apparel.def.graphicData.drawSize, composite.DrawColor, composite.DrawColorTwo);
+                    if (!composite.ActiveAltGraphic.maskKey.NullOrEmpty())
+                    {
+						mskVariant = "_"+composite.ActiveAltGraphic.maskKey;
+
+					}
+					rec = new ApparelGraphicRecord(graphic, apparel);
+				}
+            }
 			CompColorableTwo compColorable = apparel.TryGetCompFast<CompColorableTwo>();
 			if (compColorable!=null)
 			{
 			//	Log.Message("CompColorableTwo "+ apparel);
 				string comptype = compColorable.GetType().Name;
 				string msg = string.Empty;
-				string msk = "m";
+				string mskFaction = string.Empty;
 				CompColorableTwoFaction factionColors = compColorable as CompColorableTwoFaction;
 				Color colorOne = compColorable.Color;
 				Color colorTwo = compColorable.ColorTwo;
@@ -110,7 +126,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             if (!factionColors.Extension.factionMaskTag.NullOrEmpty())
 							{
 							//	Log.Message("factionColors.factionMaskTag");
-								msk = msk +"_" + factionColors.Extension.factionMaskTag;
+								mskFaction = "_" + factionColors.Extension.factionMaskTag;
 							//	Log.Message("factionMaskTag: "+msk);
 							}
 						}
@@ -135,53 +151,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (rec.graphic != null)
                 {
 					Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
-					Texture texture;
+					bool replaced = false;
 					if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
 					{
-						if (!msk.NullOrEmpty())
+						Graphic replace = AdeptusApparelUtility.ApplyMask(newgraphic, apparel, colorOne, colorTwo, mskVariant, mskFaction);
+						replaced = replace != null;
+						if (replaced)
 						{
-							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_east" + msk, false);
-							if (texture != null)
-							{
-								newgraphic.MatEast.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-							}
-							newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_west" + msk, false);
-							if (texture != null)
-							{
-								newgraphic.MatWest.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-							}
-							newgraphic.MatWest.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_south" + msk, false);
-							if (texture != null)
-							{
-								newgraphic.MatSouth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-							}
-							newgraphic.MatSouth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-
-							texture = ContentFinder<Texture2D>.Get(rec.graphic.path + "_north" + msk, false);
-							if (texture != null)
-							{
-								newgraphic.MatNorth.SetTexture(ShaderPropertyIDs.MaskTex, texture);
-							}
-							newgraphic.MatNorth.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-							/*
-							ExtendedGraphicData newdata = new ExtendedGraphicData();
-							newdata.graphicClass = typeof(Graphic_MultiMask);
-							Log.Message("ExtendedGraphicData");
-							newdata.texPath = rec.graphic.path;
-							newdata.MaskSelector = msk;
-							newdata.maskKey = olddata.maskKey;
-							newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
-							*/
+							newgraphic = replace;
+							   rec = new ApparelGraphicRecord(newgraphic, apparel);
 						}
-						rec = new ApparelGraphicRecord(newgraphic, apparel);
 					}
 					if (!rec.graphic.path.NullOrEmpty())
 					{
-						texture = ContentFinder<Texture2D>.Get(rec.graphic.path + msk, false);
+						Texture texture = ContentFinder<Texture2D>.Get(rec.graphic.path + mskFaction, false);
 						if (texture != null)
 						{
 							newgraphic.MatSingle.SetTexture(ShaderPropertyIDs.MaskTex, texture);
@@ -217,12 +200,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 									{
 										path = apparel.def.apparel.wornGraphicPath + "_" + item.texPath + "_" + bodyType.defName;
 									}
-									Shader shader = ShaderDatabase.Cutout;
-									if (apparel.def.apparel.useWornGraphicMask)
-									{
-										shader = ShaderDatabase.CutoutComplex;
-									}
-									Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, apparel.def.graphicData.drawSize, rec.graphic.color, rec.graphic.colorTwo);
+									Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(path, apparel.def.apparel.useWornGraphicMask ? ShaderDatabase.CutoutComplex : ShaderDatabase.Cutout, apparel.def.graphicData.drawSize, rec.graphic.color, rec.graphic.colorTwo);
 									rec = new ApparelGraphicRecord(graphic, apparel);
 
 								}

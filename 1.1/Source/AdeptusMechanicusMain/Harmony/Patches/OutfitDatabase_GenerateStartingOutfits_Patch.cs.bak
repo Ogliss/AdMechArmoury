@@ -18,9 +18,9 @@ namespace AdeptusMechanicus.HarmonyInstance
 	{
 		public static void Postfix(OutfitDatabase __instance)
 		{
-			__instance.MakeNewOutfit().label = "OG_AMA_Imperial_OutfitAnything".Translate();
+			__instance.MakeNewOutfit().label = "AdeptusMechanicus.Imperial_OutfitAnything".Translate();
 			Outfit outfit = __instance.MakeNewOutfit();
-			outfit.label = "OG_AMA_Imperial_OutfitWorker".Translate();
+			outfit.label = "AdeptusMechanicus.Imperial_OutfitWorker".Translate();
 			outfit.filter.SetDisallowAll(null, null);
 			outfit.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
 			foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 			}
 			Outfit outfit2 = __instance.MakeNewOutfit();
-			outfit2.label = "OG_AMA_Imperial_OutfitSoldier".Translate();
+			outfit2.label = "AdeptusMechanicus.Imperial_OutfitSoldier".Translate();
 			outfit2.filter.SetDisallowAll(null, null);
 			outfit2.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
 			foreach (ThingDef thingDef2 in DefDatabase<ThingDef>.AllDefs)
@@ -42,7 +42,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 			}
 			Outfit outfit3 = __instance.MakeNewOutfit();
-			outfit3.label = "OG_AMA_Imperial_OutfitNudist".Translate();
+			outfit3.label = "AdeptusMechanicus.Imperial_OutfitNudist".Translate();
 			outfit3.filter.SetDisallowAll(null, null);
 			outfit3.filter.SetAllow(SpecialThingFilterDefOf.AllowDeadmansApparel, false);
 			foreach (ThingDef thingDef3 in DefDatabase<ThingDef>.AllDefs)

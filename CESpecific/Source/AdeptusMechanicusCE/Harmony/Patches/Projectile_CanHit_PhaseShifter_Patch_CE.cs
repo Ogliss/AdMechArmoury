@@ -45,7 +45,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         _Shifter.phasedfor.Add(__instance);
                                         if (_Shifter.phasedNotifcationTick==0)
                                         {
-                                            MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AMA_Phased_Out".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);
+                                            MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AdeptusMechanicus.Phased_Out".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);
                                             _Shifter.phasedNotifcationTick = _Shifter.Props.minPhasedNotifcation.SecondsToTicks();
                                         }
                                         return false;

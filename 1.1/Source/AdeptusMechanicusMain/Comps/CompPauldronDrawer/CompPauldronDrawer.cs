@@ -87,11 +87,12 @@ namespace AdeptusMechanicus
             }
             else
             {
-            //    Log.Message(apparel.LabelShortCap + " pauldrons initialized");
+                //    Log.Message(apparel.LabelShortCap + " pauldrons initialized");
                 foreach (ShoulderPadEntry item in activeEntries)
                 {
 
-                //    item.Drawer = this;
+                    //    item.Drawer = this;
+                    item.UpdateProps();
                     item.apparel = this.apparel;
                     /*
                     if (Props.PauldronEntries.Any(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType))
@@ -102,7 +103,23 @@ namespace AdeptusMechanicus
                         item.SouthOffset = Props.PauldronEntries.Find(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType).SouthOffset;
                     }
                     */
-                    
+
+                }
+                if (Props.drawAll && Props.PauldronEntries.Count != activeEntries.Count)
+                {
+                    if (Props.PauldronEntries.Count > activeEntries.Count)
+                    {
+                        foreach (ShoulderPadProperties props in Props.PauldronEntries)
+                        {
+                            if (!activeEntries.Any(x=> x.Props == props))
+                            {
+                                ShoulderPadEntry entry = new ShoulderPadEntry(props, this);
+
+                                activeEntries.Add(entry);
+                            }
+                        }
+                    }
+
                 }
             }
         }

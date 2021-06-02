@@ -41,6 +41,10 @@ namespace AdeptusMechanicus
 					}
 				}
 			}
+            if (t is Apparel apparel && apparel.Wearer != null && !apparel.def.apparel.wornGraphicPath.NullOrEmpty())
+            {
+				apparel.Wearer.Drawer.renderer.graphics.ResolveApparelGraphics();
+            }
 		}
 		public static void SetColorOne(this Thing t, Color newColor, bool reportFailure = true)
 		{

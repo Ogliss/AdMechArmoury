@@ -5,11 +5,11 @@ using Verse;
 namespace AdeptusMechanicus
 {
     [DefOf]
-    public static class AdeptusOf
+    public static class AdeptusDefOf
     {
-        static AdeptusOf()
+        static AdeptusDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusDefOf));
         }
 
     }

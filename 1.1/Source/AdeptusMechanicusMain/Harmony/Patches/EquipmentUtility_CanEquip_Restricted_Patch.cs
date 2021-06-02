@@ -34,8 +34,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                             bool apparel = defExtension.ApparelDefs.NullOrEmpty();
                             bool hediff = defExtension.HediffDefs.NullOrEmpty();
                             bool trait = defExtension.TraitDefs.NullOrEmpty();
-                            bool bodytype = defExtension.BodytypeDefs.NullOrEmpty();
-                            if (!defExtension.BodytypeDefs.NullOrEmpty())
+                            bool bodytype = defExtension.BodytypeDefs.NullOrEmpty() || defExtension.forcedBodytype;
+                            if (!bodytype)
                             {
                                 bodytype = defExtension.BodytypeDefs.Contains(pawn.story.bodyType);
                                 if (bodytype && defExtension.Any)
@@ -43,7 +43,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     __result = true;
                                     return;
                                 }
-                                cantReason = "Wrong Bodytype";
+                                cantReason = "Wrong Bodytype: ";
+                                for (int i = 0; i < defExtension.BodytypeDefs.Count; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        cantReason += ", ";
+                                    }
+                                    cantReason += defExtension.BodytypeDefs[i].LabelCap;
+                                }
                             }
                             if (!defExtension.RaceDefs.NullOrEmpty())
                             {
@@ -53,7 +61,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     __result = true;
                                     return;
                                 }
-                                cantReason = "Wrong Race";
+                                cantReason = "Wrong Race: ";
+                                for (int i = 0; i < defExtension.RaceDefs.Count; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        cantReason += ", ";
+                                    }
+                                    cantReason += defExtension.RaceDefs[i].LabelCap;
+                                }
                             }
                             if (!defExtension.ApparelDefs.NullOrEmpty())
                             {
@@ -73,7 +89,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         return;
                                     }
                                 }
-                                cantReason = "Missing required Apparel";
+                                cantReason = "Missing required Apparel: ";
+                                for (int i = 0; i < defExtension.ApparelDefs.Count; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        cantReason += ", ";
+                                    }
+                                    cantReason += defExtension.ApparelDefs[i].LabelCap;
+                                }
                             }
                             if (!defExtension.HediffDefs.NullOrEmpty())
                             {
@@ -83,7 +107,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     __result = true;
                                     return;
                                 }
-                                cantReason = "Missing required Implant";
+                                cantReason = "Missing required Implant: ";
+                                for (int i = 0; i < defExtension.HediffDefs.Count; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        cantReason += ", ";
+                                    }
+                                    cantReason += defExtension.HediffDefs[i].LabelCap;
+                                }
                             }
                             if (!defExtension.TraitDefs.NullOrEmpty())
                             {
@@ -93,7 +125,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     __result = true;
                                     return;
                                 }
-                                cantReason = "Missing required Train";
+                                cantReason = "Missing required Trait: ";
+                                for (int i = 0; i < defExtension.TraitDefs.Count; i++)
+                                {
+                                    if (i > 0)
+                                    {
+                                        cantReason += ", ";
+                                    }
+                                    cantReason += defExtension.TraitDefs[i].LabelCap;
+                                }
                             }
                             __result = gender && (race && hediff && trait && apparel && bodytype);
                             if (!__result)

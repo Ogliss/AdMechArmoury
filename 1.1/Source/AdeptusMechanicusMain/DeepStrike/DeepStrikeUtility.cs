@@ -202,17 +202,17 @@ namespace AdeptusMechanicus
             switch (pawnsArrivalMode)
             {
                 case DeepStrikeType.DropPara:
-                    return "AMA_DeepStrikeType_DropPara".Translate() + " - NOT YET IMPLEMENTED";
+                    return "AdeptusMechanicus.DeepStrikeType_DropPara".Translate() + " - NOT YET IMPLEMENTED";
                 case DeepStrikeType.Fly:
-                    return "AMA_DeepStrikeType_Flight".Translate();
+                    return "AdeptusMechanicus.DeepStrikeType_Flight".Translate();
                 case DeepStrikeType.Teleport:
-                    return "AMA_DeepStrikeType_Teleport".Translate();
+                    return "AdeptusMechanicus.DeepStrikeType_Teleport".Translate();
                 case DeepStrikeType.Tunnel:
-                    return "AMA_DeepStrikeType_Tunnel".Translate();
+                    return "AdeptusMechanicus.DeepStrikeType_Tunnel".Translate();
                 case DeepStrikeType.DropShip:
-                    return "AMA_DeepStrikeType_DropShip".Translate() + " - NOT YET IMPLEMENTED";
+                    return "AdeptusMechanicus.DeepStrikeType_DropShip".Translate() + " - NOT YET IMPLEMENTED";
                 default:
-                    return "AMA_DeepStrikeType_DropPod".Translate();
+                    return "AdeptusMechanicus.DeepStrikeType_DropPod".Translate();
             }
         }
 

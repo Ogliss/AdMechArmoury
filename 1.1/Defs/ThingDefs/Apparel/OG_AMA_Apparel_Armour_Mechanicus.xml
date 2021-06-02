@@ -46,7 +46,7 @@
 		</recipeMaker>
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/TechPriestRobe</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Base</wornGraphicPath>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Shoulders</li>
@@ -186,7 +186,7 @@
 		<label>Skitarii Legionnaire Armour</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/SkitariiLegionnaireArmour</texPath>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/_Icon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<color>164,66,62</color>
@@ -231,7 +231,9 @@
 				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/SkitariiLegionnaireArmour</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Base</wornGraphicPath>
+			<!--wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Base</wornGraphicPath-->
+			<!--wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/SkitariiLegionnaireArmour</wornGraphicPath-->
 			<layers>
 				<li>Middle</li>
 				<li>Shell</li>
@@ -255,6 +257,12 @@
 						<shaderType>CutoutComplex</shaderType>
 						<padTexPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Pauldrons/Pauldron</padTexPath>
 						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+						<EastOffset>0,0.35,0</EastOffset>
+						<WestOffset>0,0.35,0</WestOffset>
 					</li>
 					<!--li>
 						<shoulderPadType>Right</shoulderPadType>
@@ -267,16 +275,18 @@
 						<shaderType>CutoutComplex</shaderType>
 						<padTexPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Backpack/Backpack</padTexPath>
 						<commonality>10</commonality>
-						<SouthOffset>0,-0.01,0.25</SouthOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>Shell</easttop>
+						<westtop>Shell</westtop>
+						<SouthOffset>0,-0.00,0.25</SouthOffset>
 						<NorthOffset>0,0.51,0.25</NorthOffset>
-						<EastOffset>0,0.3499,0.25</EastOffset>
-						<WestOffset>0,0.3499,0.25</WestOffset>
+						<EastOffset>0,0.0,0.25</EastOffset>
+						<WestOffset>0,0.0,0.25</WestOffset>
 					</li>
 				</PauldronEntries>
 				<NorthOffset>0,0.5,0</NorthOffset>
 				<SouthOffset>0,0.0000,0</SouthOffset>
-				<EastOffset>0,0.35,0</EastOffset>
-				<WestOffset>0,0.35,0</WestOffset>
 				<drawAll>true</drawAll>
 			</li>
 		</comps>
@@ -294,7 +304,7 @@
 	</ThingDef>
 
 	<!-- ========================= Mechanicus - Skitarii Legionnaire Helmet ========================== -->
-	<ThingDef Name="OGAM_Apparel_SkitariiLegionnaireHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
+	<ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiLegionnaireHelmet" ParentName="OG_Mechanicus_Apparel_Armor">
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet</defName>
 		<label>Skitarii Legionnaire Helmet</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
@@ -372,6 +382,88 @@
 			</options>
 		</colorGenerator>
 		-->
+	</ThingDef>
+
+    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Ranger" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<defName>OGAM_Apparel_SkitariiRangerHelmet</defName>
+		<label>Skitarii Ranger Helmet</label>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_Ranger</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(255,255,255)</colorTwo>
+		</graphicData>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Ranger</wornGraphicPath>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator-->
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
+			<defaultLabel>Down</defaultLabel>
+			<keyLabel>Hood</keyLabel>
+			<alternateGraphics>
+				<li>
+					<label>Up</label>
+					<saveKey>HoodUp</saveKey>
+					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_RangerHooded</texPath>
+					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/RangerHooded</wornGraphicPath>
+				</li>
+			</alternateGraphics>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Vanguard" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<defName>OGAM_Apparel_SkitariiVanguardHelmet</defName>
+		<label>Skitarii Vanguard Helmet</label>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_Vanguard</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(255,255,255)</colorTwo>
+		</graphicData>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Vanguard</wornGraphicPath>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator-->
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
+			<defaultLabel>Down</defaultLabel>
+			<keyLabel>Hood</keyLabel>
+			<alternateGraphics>
+				<li>
+					<label>Up</label>
+					<saveKey>HoodUp</saveKey>
+					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_VanguardHooded</texPath>
+					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/VanguardHooded</wornGraphicPath>
+				</li>
+			</alternateGraphics>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ========================= Mechanicus - Skitarii Ranger Helmet ========================== -->
+    <!--ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiHelmet_Ranger_Base" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
 		<inspectorTabs>
 			<li>OgsCompToggleDef.ITab_ToggleDef</li>
 		</inspectorTabs>
@@ -382,7 +474,7 @@
 		</comps>
 	</ThingDef>
 
-    <ThingDef ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Unhooded</defName>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</texPath>
@@ -405,7 +497,7 @@
 		</colorGenerator>
     </ThingDef>
 	
-    <ThingDef ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded</defName>
 		<label>Skitarii Legionnaire Helmet(Hooded)</label>
 		<graphicData>
@@ -427,10 +519,10 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+    </ThingDef-->
 	
-	<!-- ========================= Mechanicus - Skitarii Primus Helmet ========================== -->
-	<ThingDef Name="OGAM_Apparel_SkitariiPrimusHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
+	<!-- ========================= Mechanicus - Skitarii Ranger Primus Helmet ========================== -->
+	<!--ThingDef Name="OGAM_Apparel_SkitariiPrimusHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
 		<defName>OGAM_Apparel_SkitariiPrimusHelmet</defName>
 		<label>Skitarii Primus Helmet</label>
 		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
@@ -554,6 +646,6 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+    </ThingDef-->
 	
 </Defs>

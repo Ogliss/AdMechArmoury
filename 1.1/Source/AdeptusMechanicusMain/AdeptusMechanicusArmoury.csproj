@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Abilities\FlyingObject_JumpPack.cs.bak" />
+    <Compile Include="Apparel\Dialog_CustomizeApparelComposite.cs" />
     <Compile Include="Attributes\MayRequireUniversalFermenter.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisAstartes.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisDarkEldar.cs" />
@@ -123,6 +124,15 @@
     <Compile Include="Attributes\MayRequireXenobiologisTau.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisTyranids.cs" />
     <Compile Include="Backstories\BackstorySettings.cs" />
+    <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
+    <Compile Include="DeOf\AdeptusResearchTabDefOf.cs" />
+    <Compile Include="Harmony\Patches\MainTabWindow_Research_ViewSize_SubTabs_Patch.cs" />
+    <Compile Include="Harmony\Patches\MainTabWindow_Research_PostOpen_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\ResearchProjectDef_GenerateNonOverlappingCoordinates_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
+    <Compile Include="Hediffs\HediffComps\HediffComp_DetonateOnDeath.cs" />
+    <Compile Include="Comps\CompFireStarter.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
     <Compile Include="Comps\CompHatcherHorde.cs" />
     <Compile Include="Comps\Reliability.cs" />
@@ -151,18 +161,19 @@
     <Compile Include="DeOf\AdeptusTraitDefOf.cs" />
     <Compile Include="ExtentionMethods\Toil_IngestExtensions.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch.cs" />
+    <Compile Include="Harmony\Patches\ITab_Pawn_Gear_DrawThingRow_CustomizeItemButton_Transpiler.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\ParseHelper_ParseType_Patch.cs" />
     <Compile Include="Harmony\Patches\GenSpawn_Spawn_RelicTracker_Patch.cs" />
     <Compile Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Astartes_MultiLung_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
-    <Compile Include="HediffGivers\Class1.cs" />
-    <Compile Include="HediffGivers\Class2.cs" />
+    <Compile Include="HediffGivers\HediffGiver_HealthBelowThreshold.cs" />
     <Compile Include="Interfaces\IAdvancedVerb.cs" />
     <Compile Include="Interfaces\IMuzzlePosition.cs" />
     <Compile Include="DefExtentions\ScattershotProjectileExtension.cs" />
     <Compile Include="ExtentionMethods\FastGetCompsExtensions.cs" />
     <Compile Include="ExtentionMethods\MuzzlePositionExtensions.cs" />
+    <Compile Include="Harmony\Patches\ResearchProjectDef_CanBeResearchedAt_RaceBench_Patch.cs" />
     <None Include="Harmony\Patches\_TransportPodsArrivalActionUtility_DropShuttle_NewTemp_FactionShuttle_Transpiler.cs.bak" />
     <None Include="Harmony\Patches\_QuestGen_Shuttle_GenerateShuttle_FactionShuttle_Transpiler.cs.bak" />
     <None Include="Harmony\Patches\_SkyfallerUtility_MakeDropoffShuttle_FactionShuttle_Transpiler.cs.bak" />
@@ -196,7 +207,7 @@
     <Compile Include="Lasers\ThingExtensions.cs" />
     <Compile Include="PatchOps\PatchOperationAddOrReplace - Copy.cs" />
     <Compile Include="Things\Buildings\Class1.cs" />
-    <Compile Include="Things\Class1.cs" />
+    <Compile Include="Things\PawnThrown.cs" />
     <Compile Include="Things\Gas\DamageGas.cs" />
     <Compile Include="Things\WarpRift.cs" />
     <Compile Include="Things\Ordnance\Class1.cs" />
@@ -209,9 +220,12 @@
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeDef.cs" />
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeMaker.cs" />
     <Compile Include="Things\Projectile\TrailThrower.cs" />
+    <Compile Include="Utility\AdeptusApparelUtility.cs" />
     <Compile Include="Utility\AdeptusHediffUtility.cs" />
     <Compile Include="Utility\AdeptusMath.cs" />
-    <Compile Include="Utility\Class1.cs" />
+    <Compile Include="Utility\BattleLogEntry_WeaponOverheated.cs" />
+    <Compile Include="Utility\SubTabRecord.cs" />
+    <Compile Include="Utility\ResearchSubtabUtility.cs" />
     <Compile Include="Utility\PawnRenderUtility.cs" />
     <Compile Include="Utility\GasmaskUtility.cs" />
     <Compile Include="Utility\AdeptusLightningBoltMeshPool.cs" />
@@ -321,8 +335,7 @@
     <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
-    <Compile Include="Hediffs\Class1.cs" />
-    <Compile Include="Hediffs\HediffComps\Class1.cs" />
+    <Compile Include="Hediffs\HediffComps\HediffComp_RangedVerbGiver.cs" />
     <Compile Include="Recipes\Class1.cs" />
     <Compile Include="SettingsMenu\IntergrationMenus.cs" />
     <Compile Include="SettingsMenu\ArmouryMenus.cs" />
@@ -355,6 +368,7 @@
     <None Include="Utility\AbilityUtility.cs.bak" />
     <Compile Include="Utility\AdeptusMoteMaker.cs" />
     <Compile Include="Utility\HumanlikeRecipeUtility.cs" />
+    <Compile Include="Utility\OriginalBodyTracker.cs" />
     <Compile Include="Utility\TestingScenarioUtility.cs" />
     <Compile Include="Utility\RelicTracker.cs" />
     <Compile Include="DeepStrike\DeepStrikeCellFinder.cs" />
@@ -654,7 +668,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.2.2753</Version>
+      <Version>1.2.2905</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>

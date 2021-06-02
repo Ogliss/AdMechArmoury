@@ -64,7 +64,7 @@ namespace AdeptusMechanicus
 			Text.Anchor = TextAnchor.UpperLeft;
 			Rect rect2 = new Rect(position.width / 2f, 0f, position.width / 2f, position.height);
 			Text.Anchor = TextAnchor.UpperRight;
-			string text = "AMAA_AstarteChapterSettings".Translate();
+			string text = "AdeptusMechanicus.Astartes.AstarteChapterSettings".Translate();
 			if (Text.CalcSize(text).x > rect2.width)
 			{
 				Text.Font = GameFont.Small;
@@ -73,7 +73,7 @@ namespace AdeptusMechanicus
 			Widgets.Label(rect2, text);
 			Text.Font = GameFont.Small;
 			Text.Anchor = TextAnchor.UpperRight;
-			Widgets.Label(new Rect(position.width / 2f, 27f, position.width / 2f, position.height / 2f), "AMAA_AstarteAvailableChapters".Translate());
+			Widgets.Label(new Rect(position.width / 2f, 27f, position.width / 2f, position.height / 2f), "AdeptusMechanicus.Astartes.AstarteAvailableChapters".Translate());
 			Text.Anchor = TextAnchor.UpperLeft;
 			GUI.EndGroup();
 

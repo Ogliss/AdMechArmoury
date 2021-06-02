@@ -24,9 +24,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Log.Message("Trying to spawn Relic: " + newThing.def.LabelCap);
                 if (Find.World.GetComponent<RelicTracker>() is RelicTracker relicTracker)
                 {
-                    if (relicTracker.CanSpawn(newThing))
+                    if (relicTracker.CanSpawn(newThing, out RelicTracked data))
                     {
-                        relicTracker.spawnedRelics.SetOrAdd(newThing.def, true);
+                        data.SpawnedRelic();
+                     //   relicTracker.spawnedRelics.SetOrAdd(newThing.def, true);
                         Log.Message("Recording new Relic: " + newThing.def.LabelCap);
                         PawnWeaponGenerator.Reset();
                         if (newThing.TryGetCompFast<CompQuality>() is CompQuality quality)

@@ -272,7 +272,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 }
                                 else
                                 {
-                                    if (pawn.Downed || pawn.Dead && drawer.implantDrawProps.useHeadOffset)
+                                    if ((pawn.Downed || pawn.Dead) && drawer.implantDrawProps.useHeadOffset)
                                     {
                                         drawAt.y = vector.y + pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing).y;
                                     }

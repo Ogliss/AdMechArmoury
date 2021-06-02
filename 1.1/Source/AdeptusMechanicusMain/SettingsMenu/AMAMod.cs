@@ -70,7 +70,7 @@ namespace AdeptusMechanicus.settings
                         // JobDriver_AttackStatic
                         if (harmony.Patch(target, new HarmonyMethod(patch)) == null)
                         {
-                            Log.Warning("AMA_ModName".Translate() + ": " + tname + " Patch Failed to apply");
+                            Log.Warning("AdeptusMechanicus.ModName".Translate() + ": " + tname + " Patch Failed to apply");
                         }
                     }
                 }
@@ -83,8 +83,8 @@ namespace AdeptusMechanicus.settings
 
         public static float lineheight = (Text.LineHeight + 2f);
         public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
-        public override string SettingsCategory() => "AM_ModSeries".Translate();
-        public string ModLoaded() => "Mods Loaded: " + "AMA_ModName".Translate();
+        public override string SettingsCategory() => "AdeptusMechanicus.ModSeries".Translate();
+        public string ModLoaded() => "Mods Loaded: " + "AdeptusMechanicus.ModName".Translate();
         public int PatchesCount => Patches.Count % 2 == 0 ? Patches.Count / 2 : Patches.Count / 2 + 1;
         private float Listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + Listing_ArmouryIntergrationContents + intergrationMenuInc;
         private float Listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, PatchesCount, lineheight, 0, 0);
@@ -185,8 +185,8 @@ namespace AdeptusMechanicus.settings
         {
             rect.height = 100000f;
             listing_Main.Begin(rect);
-            string labelA = "AMA_ModName".Translate() + " Settings";
-            string tooltipA = "AMA_ShowSpecialRulesDesc".Translate();
+            string labelA = "AdeptusMechanicus.ModName".Translate() + " Settings";
+            string tooltipA = "AdeptusMechanicus.ShowSpecialRulesDesc".Translate();
             if (listing_Main.ButtonText(labelA, ref settings.ShowArmourySettings, Dev, ref armouryMenuInc, tooltipA))
             {
                 ArmouryMenus.ArmouryModOptionsMenu(listing_Main);
@@ -195,8 +195,8 @@ namespace AdeptusMechanicus.settings
             DisableConflicting();
             if (AdeptusIntergrationUtility.enabled_MagosXenobiologis)
             {
-                string labelXB = "AMXB_ModName".Translate() + " Settings";
-                string tooltipXB = "AMXB_ShowOptionsDesc".Translate();
+                string labelXB = "AdeptusMechanicus.Xenobiologis.ModName".Translate() + " Settings";
+                string tooltipXB = "AdeptusMechanicus.Xenobiologis.ShowOptionsDesc".Translate();
                 if (listing_Main.ButtonText(labelXB, ref settings.ShowXenobiologisSettings, Dev, ref XenobiologisMenuInc, tooltipXB))
                 {
                     XenobiologisSettings(ref listing_Main, rect, inRect, width, ml);
@@ -215,11 +215,11 @@ namespace AdeptusMechanicus.settings
             }
             if (showArmouryIntergrationMenu)
             {
-                string labelI = "AMA_IntergrationOptions".Translate();
-                string tooltipI = "AMA_IntergrationOptionsDesc".Translate();
+                string labelI = "AdeptusMechanicus.IntergrationOptions".Translate();
+                string tooltipI = "AdeptusMechanicus.IntergrationOptionsDesc".Translate();
                 if (Dev)
                 {
-                    labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + Listing_ArmouryIntergrationContents + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + intergrationMenuInc;
+                    labelI = "AdeptusMechanicus.IntergrationOptions".Translate() + " Menu Length: " + Listing_ArmouryIntergrationContents + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + intergrationMenuInc;
                 }
                 if (listing_Main.ButtonText(labelI, ref showArmouryIntergrationOptions, Dev, ref intergrationMenuInc, tooltipI))
                 {

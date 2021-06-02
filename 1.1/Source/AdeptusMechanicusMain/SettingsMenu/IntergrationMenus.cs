@@ -26,14 +26,14 @@ namespace AdeptusMechanicus
 
         public static void IntergrationModOptionsMenu(Listing_StandardExpanding listing_Main)
         {
-            string labelI = "AMA_IntergrationOptions".Translate();
-            string tooltipI = "AMA_IntergrationOptionsDesc".Translate();
+            string labelI = "AdeptusMechanicus.IntergrationOptions".Translate();
+            string tooltipI = "AdeptusMechanicus.IntergrationOptionsDesc".Translate();
             if (Dev)
             {
                 Log.Message("showArmouryIntergrationOptions "+ showArmouryIntergrationOptions);
                 Log.Message("mod.patchesCount " + mod.PatchesCount);
                 Log.Message("AMAMod.lineheight " + AMAMod.lineheight);
-                labelI = "AMA_IntergrationOptions".Translate() + " Menu Length: " + mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0) + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + Inc;
+                labelI = "AdeptusMechanicus.IntergrationOptions".Translate() + " Menu Length: " + mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0) + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + Inc;
             }
 
             listing_Menu.maxOneColumn = true;

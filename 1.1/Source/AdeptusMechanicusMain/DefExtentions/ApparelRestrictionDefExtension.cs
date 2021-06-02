@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
         public List<TraitDef> TraitDefs = new List<TraitDef>();
         public List<BodyTypeDef> BodytypeDefs = new List<BodyTypeDef>();
         public Gender gender = Gender.None;
-        public BodyTypeDef forcedBodytype = null;
+        public bool forcedBodytype = false;
         public List<RaceSpecificTexturePath> raceSpecifics = new List<RaceSpecificTexturePath>();
 
     }

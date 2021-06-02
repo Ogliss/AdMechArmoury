@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
     {
         //   public static int AMSeed = 454385387;
         public static int AMSeed = 454385387;
-        public static readonly string ModPrefix = "AM_";
+        public static readonly string ModPrefix = "AdeptusMechanicus.";
 
     //    public static Color YautjaCloakColor = new Color(0.25f, 0.25f, 0.25f, 0.0001f);
         public static int CloakNoiseTex = Shader.PropertyToID("_NoiseTex");

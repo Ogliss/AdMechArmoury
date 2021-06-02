@@ -151,7 +151,7 @@ namespace AdeptusMechanicus
         {
             base.PostExposeData();;
         }
-        
+
         /*
         public override IEnumerable<Gizmo> EquippedGizmos()
         {
@@ -163,7 +163,7 @@ namespace AdeptusMechanicus
                 yield return new Command_Toggle
                 {
                     icon = this.CommandTex,
-                    defaultLabel = "OG_ToggleFireModeCommandLabel".Translate(Toggled ? PrimaryMode.defaultProjectile.label : SecondaryMode.defaultProjectile.label),
+                    defaultLabel = "AdeptusMechanicus.ToggleFireModeCommandLabel".Translate(Toggled ? PrimaryMode.defaultProjectile.label : SecondaryMode.defaultProjectile.label),
                     defaultDesc = Toggled ? PrimaryMode.defaultProjectile.description : SecondaryMode.defaultProjectile.description,
                     isActive = (() => Toggled),
                     toggleAction = delegate ()

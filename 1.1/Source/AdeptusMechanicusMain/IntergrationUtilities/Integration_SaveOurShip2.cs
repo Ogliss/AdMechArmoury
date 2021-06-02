@@ -28,14 +28,14 @@ namespace AdeptusMechanicus
 
         public override void ScribeSettings()
         {
-            Scribe_Values.Look(ref this.ShowChaos, "AMXB_ShowChaos", false);
-            Scribe_Values.Look(ref this.AllowChaosMarine, "AMXB_AllowChaosMarine", false);
-            Scribe_Values.Look(ref this.AllowChaosGuard, "AMXB_AllowChaosGuard", false);
-            Scribe_Values.Look(ref this.AllowChaosMechanicus, "AMXB_AllowChaosMechanicus", false);
-            Scribe_Values.Look(ref this.AllowWarpstorm, "AMXB_AllowWarpstorm", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamons, "AMXB_AllowChaosDeamons", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamonicIncursion, "AMXB_AllowChaosDeamonicIncursion", true);
-            Scribe_Values.Look(ref this.AllowChaosDeamonicInfestation, "AMXB_AllowChaosDeamonicInfestation", true);
+            Scribe_Values.Look(ref this.ShowChaos, "AdeptusMechanicus.Xenobiologis.ShowChaos", false);
+            Scribe_Values.Look(ref this.AllowChaosMarine, "AdeptusMechanicus.Xenobiologis.AllowChaosMarine", false);
+            Scribe_Values.Look(ref this.AllowChaosGuard, "AdeptusMechanicus.Xenobiologis.AllowChaosGuard", false);
+            Scribe_Values.Look(ref this.AllowChaosMechanicus, "AdeptusMechanicus.Xenobiologis.AllowChaosMechanicus", false);
+            Scribe_Values.Look(ref this.AllowWarpstorm, "AdeptusMechanicus.Xenobiologis.AllowWarpstorm", true);
+            Scribe_Values.Look(ref this.AllowChaosDeamons, "AdeptusMechanicus.Xenobiologis.AllowChaosDeamons", true);
+            Scribe_Values.Look(ref this.AllowChaosDeamonicIncursion, "AdeptusMechanicus.Xenobiologis.AllowChaosDeamonicIncursion", true);
+            Scribe_Values.Look(ref this.AllowChaosDeamonicInfestation, "AdeptusMechanicus.Xenobiologis.AllowChaosDeamonicInfestation", true);
         }
     }
 }

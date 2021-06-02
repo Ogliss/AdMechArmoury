@@ -302,7 +302,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 SoundDef soundExplode = WeaponRules?.ForceWeaponTriggerSound ?? compForce.ForceWeaponTriggerSound;
                                                 Thing thing = target;
                                                 GenExplosion.DoExplosion(position, map2, explosionRadius, damDef, launcher, (int)damAmount, armorPenetration, soundExplode, source, null, thing, null, 0f, 0, false, null, 0, 0, 0, false);
-                                                TaggedString msg = "OG_AMA_ForceStrike";
+                                                TaggedString msg = "AdeptusMechanicus.ForceStrike";
                                                 MessageTypeDef typeDef = MessageTypeDefOf.NegativeHealthEvent;
                                                 float KillChance = WeaponRules?.ForceWeaponKillChance ?? compForce.ForceWeaponKillChance;
                                                 if (KillChance != 0)
@@ -319,7 +319,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 {
                                                     Victim.Kill(mainDinfo);
                                                 }
-                                                if (Victim.Faction == Faction.OfPlayer) { Messages.Message(string.Format("AMA_Force_Strike ".Translate(), Victim.Name, typeDef == MessageTypeDefOf.PawnDeath ? "slain" : "blasted"), typeDef); }
+                                                if (Victim.Faction == Faction.OfPlayer) { Messages.Message(string.Format("AdeptusMechanicus.Force_Strike ".Translate(), Victim.Name, typeDef == MessageTypeDefOf.PawnDeath ? "slain" : "blasted"), typeDef); }
                                                 return mainDinfo;
                                             }
                                         }

@@ -44,7 +44,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Rand.PopState();
                         if (explode)
                         {
-                            MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AMA_Distorting_Shot".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);
+                            MoteMaker.ThrowText(hitPawn.Position.ToVector3(), hitPawn.Map, "AdeptusMechanicus.Distorting_Shot".Translate(__instance.LabelCap, hitPawn.LabelShortCap), 3f);
                             Projectile_Impact_ProjectileExtension_Patches.WarpRift(__instance, ___launcher, hitPawn);
                         }
                     }

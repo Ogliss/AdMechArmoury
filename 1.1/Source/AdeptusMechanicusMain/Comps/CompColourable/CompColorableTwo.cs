@@ -124,8 +124,44 @@ namespace AdeptusMechanicus
 			}
 		}
 
+
 		public override void PostPostMake()
 		{
+
+			if (this.parent.def.colorGenerator != null)
+			{
+				ColorGenerator generator = this.parent.def.colorGenerator;
+
+				TwoColorGenerator_Options twoColor = generator as TwoColorGenerator_Options;
+				if (twoColor != null)
+				{
+					if (this.parent.Stuff == null || (this.parent.Stuff.stuffProps.allowColorGenerators || !this.parent.def.recipeMaker.useIngredientsForColor))
+					{
+						if (!this.active)
+						{
+							this.Color = generator.NewRandomizedColor();
+							//	Log.Message(this + " getting new random colour " + this.Color + " for " + this.parent);
+						}
+					}
+					if (!this.activeTwo && !twoColor.optionsTwo.NullOrEmpty())
+					{
+						this.ColorTwo = twoColor.NewRandomizedColorTwo();
+						//	Log.Message(this + " getting new random colourtwo " + this.ColorTwo + " for " + this.parent);
+					}
+				}
+				else
+				{
+					if (this.parent.Stuff == null || (this.parent.Stuff.stuffProps.allowColorGenerators || !this.parent.def.recipeMaker.useIngredientsForColor))
+					{
+						if (!this.active)
+						{
+							this.Color = generator.NewRandomizedColor();
+							//	Log.Message("getting new random colourtwo "+ this.Color);
+						}
+					}
+				}
+			}
+			/*
 			if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators || !this.parent.def.recipeMaker.useIngredientsForColor) && !this.active)
 			{
 				this.Color = this.parent.def.colorGenerator.NewRandomizedColor();
@@ -136,6 +172,7 @@ namespace AdeptusMechanicus
 				this.ColorTwo = this.parent.def.colorGenerator.NewRandomizedColor();
 				//	Log.Message("getting new random colourtwo "+ this.Color);
 			}
+			*/
 		}
 
 		// Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
@@ -169,18 +206,6 @@ namespace AdeptusMechanicus
 				}
 			}
 		}
-		public override string CompInspectStringExtra()
-		{
-			if (AMAMod.Dev)
-			{
-				StringBuilder builder = new StringBuilder("Two Colour comp: " + this.parent.LabelCap);
-				builder.AppendLine("color: " + color + " Active: " + active);
-				builder.AppendLine("colorTwo: " + colorTwo + " Active: " + activeTwo);
-				return builder.ToString();
-			}
-			return base.CompInspectStringExtra();
-		}
-
 
 		// Token: 0x04000EA1 RID: 3745
 		protected Color color = Color.white;

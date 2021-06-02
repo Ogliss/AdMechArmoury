@@ -211,6 +211,8 @@ namespace AdeptusMechanicus
 		// Token: 0x0400119C RID: 4508
 		public static readonly Texture2D ShowWorldFeatures = ContentFinder<Texture2D>.Get("UI/Buttons/ShowWorldFeatures", true);
 
+		public static readonly Texture2D CustomizeButton = ContentFinder<Texture2D>.Get("Ui/Buttons/CustomizeButton", true);
+
 		// Token: 0x0400119D RID: 4509
 		public static readonly Texture2D[] SpeedButtonTextures = new Texture2D[]
 		{

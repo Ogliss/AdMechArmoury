@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Research =========================OG-->
-	<ResearchProjectDef Name="OG_Eldar_ReseachBase" Abstract="True">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef Name="OG_Aeldari_ReseachBase" Abstract="True">
+		<tab>OGAMA_RSubTab_Aeldari</tab>
+		<tags>
+			<li>OG_Aeldari_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef Name="OG_Eldar_Tech_Base" ParentName="OG_Aeldari_ReseachBase" Abstract="True">
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<requiredResearchFacilities>
 			<li>OGE_TableMachining</li>
@@ -10,8 +16,7 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Eldar_Tech_Base">
 		<defName>OG_Eldar_Tech_Base_T1</defName>
 		<label>Craftworld Eldar</label>
 		<description>The Aeldari who fled their ancient empire in the Craftworlds eventually called themselves the "Asuryani" since their culture was redefined by their decision to pursue the Asuryani Path that they believed had been laid out for them by the chief Aeldari god, the Phoenix King Asuryan.</description>
@@ -21,11 +26,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>1.00</researchViewX>
-		<researchViewY>7.00</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Eldar_Tech_Base">
 		<defName>OG_Eldar_Tech_Base_T2</defName>
 		<label>The Eldar Path</label>
 		<description>Basic Eldar Technology Concepts</description>
@@ -35,11 +39,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>7.00</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 
-	<ResearchProjectDef ParentName="OG_Eldar_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Eldar_Tech_Base">
 		<defName>OG_Eldar_Tech_Base_T3</defName>
 		<label>Infinity Circuit</label>
 		<description>Allows you to construct Wraith weaponry</description>
@@ -50,12 +53,11 @@
 		<techLevel>Spacer</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<researchViewX>5.00</researchViewX>
-		<researchViewY>7.00</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Weapons Research =========================OG-->
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Weapons_Shuriken</defName>
 		<label>Shuriken Technology</label>
 		<description>Shuriken Weapons are the primary type of anti-personnel weapons used by the Aeldari. Utilising gravitic pulses, a mono-molecular disc of plasti-crystal taken from the weapon's magazine is accelerated down the barrel of the weapon, hurling it at the target at incredible velocity. The accelerator creates a peristaltic shift from the front to the rear of the firing chamber, hurling the shuriken missiles forward at a tremendous velocity. A burst of several missiles can be fired in a fraction of a second in this way.</description>
@@ -65,14 +67,13 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>2.00</researchViewX>
-		<researchViewY>6.750</researchViewY>
+		<researchViewY>2.250</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Aeldari_Tech_Weapons_Monofilament</defName>
 		<label>Monofilament Weaponry</label>
-		<description>All Monofilament Weapons work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
+		<description>All Aeldari Monofilament Weapons work on the same principle: a liquid form of the psycho-reactive substance known as Wraithbone is kept in stasis within the weapon's magazine. Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
 			<!--li>OG_Eldar_Tech_Base_T2</li-->
@@ -82,8 +83,8 @@
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
-		<researchViewX>3.750</researchViewX>
-		<researchViewY>7.250</researchViewY>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>3.00</researchViewY>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
 			<!-- DefName of the Marking Hediff Kills of this race give -->
@@ -98,8 +99,7 @@
 		</modExtensions>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Weapons_Vortex</defName>
 		<label>Vortex Tech</label>
 		<description>Vortex Weapons are some of the most deadly weapons available and, while coming in many shapes and sizes, operate on the same principle of creating a gaping hole in reality. Like a black hole anything that comes in contact with this rift, whether matter or energy, is effectively wiped from existence as it is sucked into the nightmare realm known as the Immaterium and turned into the very stuff of the Warp.</description>
@@ -113,11 +113,10 @@
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>6.0</researchViewY>
+		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<!--ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<!--ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Weapons_Melee_T1</defName>
 		<label>Eldar Melee Weapons</label>
 		<description>Allows you to create basic shuriken weapons</description>
@@ -127,11 +126,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>2.00</researchViewX>
-		<researchViewY>6.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>	
 	
-		<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Weapons_Melee_T2</defName>
 		<label>Power Weaponry</label>
 		<description>Allows you to create eldar Power Weapons</description>
@@ -141,11 +139,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>6.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef-->
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Weapons_Witchblade</defName>
 		<label>Witchblades</label>
 		<description>A Witchblade is a psychically-attuned melee weapon that a Craftworld Aeldari walking the Path of the Seer, such as Warlocks and Farseers, often carry to battle. Essentially a potent Force Weapon, these swords resonate with their users, enhancing their physical strength to terrifying levels -- Farseers have been known to slash through the heaviest of Power Armour or cleave battle tanks clean in half with devastating blows from these weapons. Used to enhance and unleash the latent psychic power of the wielder, Witchblades are effective against all infantry targets; humanoid, xenos, beast or daemon. A Witch Blade contains a helix-shaped, crystalline psychic matrix embedded with runes to channel and focus a Seer's psychic energies.</description>
@@ -162,69 +159,61 @@
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>6.00</researchViewY>
+		<researchViewY>2.75</researchViewY>
 	</ResearchProjectDef>
 	
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Armour =========================OG-->
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Aeldari_Tech_Apparel</defName>
-		<label>Eldar Apparel</label>
-		<description>Allows you to create basic Eldar apparel</description>
+		<label>Aeldari Apparel</label>
+		<description>Allows you to create basic Aeldari apparel</description>
 		<baseCost>500</baseCost>
 		<prerequisites>
 			<!--li>OG_Eldar_Tech_Base_T1</li-->
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>2.00</researchViewX>
-		<researchViewY>7.50</researchViewY>
+		<researchViewY>3.00</researchViewY>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
-			<!-- DefName of the Marking Hediff Kills of this race give -->
-			<ResearchKeyPrefix>OG_</ResearchKeyPrefix>
-			<ResearchKey>_Tech_Base</ResearchKey>
-			<ResearchKeyPostfix>_T1</ResearchKeyPostfix>
-			<Include>
-				<li>Eldar</li>
-				<li>DarkEldar</li>
-			</Include>
+				<ResearchKeyPrefix>OG_</ResearchKeyPrefix>
+				<ResearchKey>_Tech_Base</ResearchKey>
+				<ResearchKeyPostfix>_T1</ResearchKeyPostfix>
+				<Include>
+					<li>Eldar</li>
+					<li>DarkEldar</li>
+				</Include>
 			</li>
 		</modExtensions>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Aeldari_Tech_Apparel_Armour_T1</defName>
-		<label>Eldar Armour</label>
-		<description>Allows you to create basic Eldar armour</description>
+		<label>Aeldari Armour</label>
+		<description>Allows you to create basic Aeldari armour</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
 			<li>OG_Aeldari_Tech_Apparel</li>
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>7.50</researchViewY>
+		<researchViewY>3.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Apparel_Armour_T2</defName>
 		<label>Aspect Armour</label>
 		<description>Allows you to create Eldar Aspect Warrior armours</description>
 		<baseCost>1000</baseCost>
 		<prerequisites>
-			<li>OG_Eldar_Tech_Base_T2</li>
-		</prerequisites>
-		<hiddenPrerequisites>
 			<li>OG_Aeldari_Tech_Apparel_Armour_T1</li>
-		</hiddenPrerequisites>
+		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>4.250</researchViewX>
-		<researchViewY>6.750</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
 		<defName>OG_Eldar_Tech_Apparel_Armour_T3</defName>
 		<label>Rune Armour</label>
 		<description>Allows you to create the most Advanced Eldar armours, such as those worn by Farseers, Warlocks and Exarchs</description>
@@ -235,15 +224,14 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>6.750</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
 	
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Eldar Wargear =========================OG-->
-	<!--
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
-		<defName>EldarWargear</defName>
+
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_Eldar_Tech_Apparel_Wargear</defName>
 		<label>Eldar Warger</label>
 		<description>Allows you to create basic Eldar wargear</description>
 		<baseCost>500</baseCost>
@@ -251,13 +239,13 @@
 			<li>OG_Eldar_Tech_Base_T1</li>
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
-		<researchViewX>0.75</researchViewX>
-		<researchViewY>5.50</researchViewY>
+		<researchViewX>1.8250</researchViewX>
+		<researchViewY>1.750</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
-		<defName>EldarAspectWargear</defName>
+<!--
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_Eldar_Tech_Apparel_Wargear</defName>
 		<label>Eldar Aspect Warger</label>
 		<description>Allows you to create Eldar Aspect Warrior Warger</description>
 		<baseCost>1000</baseCost>
@@ -265,13 +253,12 @@
 			<li>EldarWargear</li>
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
-		<researchViewX>1.5</researchViewX>
-		<researchViewY>5.50</researchViewY>
+		<researchViewX>3.825</researchViewX>
+		<researchViewY>2.250</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
-		<defName>EldarAdvancedWargear</defName>
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_Eldar_Tech_Apparel_Wargear</defName>
 		<label>Eldar Advanced Warger</label>
 		<description>Allows you to create the most Advanced Eldar Warger</description>
 		<baseCost>1500</baseCost>
@@ -279,8 +266,8 @@
 			<li>EldarAspectWargear</li>
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
-		<researchViewX>2.25</researchViewX>
-		<researchViewY>5.50</researchViewY>
+		<researchViewX>5.825</researchViewX>
+		<researchViewY>2.250</researchViewY>
 	</ResearchProjectDef>
 	-->
 </Defs>

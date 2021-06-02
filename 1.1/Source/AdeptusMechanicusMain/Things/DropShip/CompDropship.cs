@@ -225,8 +225,8 @@ namespace AdeptusMechanicus
                 };
             }
             Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "OG_CommandSendDropShip".Translate();
-            command_Action.defaultDesc = "OG_CommandSendDropShip_Desc".Translate();
+            command_Action.defaultLabel = "AdeptusMechanicus.CommandSendDropShip".Translate();
+            command_Action.defaultDesc = "AdeptusMechanicus.CommandSendDropShip_Desc".Translate();
             command_Action.icon = CompDropship.SendCommandTex;
             command_Action.alsoClickIfOtherInGroupClicked = false;
             command_Action.action = delegate ()

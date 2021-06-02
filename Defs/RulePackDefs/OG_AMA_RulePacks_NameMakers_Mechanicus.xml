@@ -2,28 +2,203 @@
 <Defs>
 
 	<RulePackDef>
-		<defName>NamerOGOG_Mechanicus_Faction</defName>
+		<defName>OG_Mechanicus_NamerFaction</defName>
+		<include>
+			<li>OG_Mechanicus_NameUtility</li>
+		</include>
 		<rulePack>
 			<rulesStrings>
-			<li>name->[OGMechanicusForgeWorld] [Ordinal] [OGMechanicusRegiment]</li>
+				<li>r_name->[Mechanicus_HomeWorld] [Ordinal] Legio</li>
+				<!--
+				<li>r_name->[nearnameinitial] [political_union_outlander]</li>
+				<li>r_name->[nearnameinitial] [political_adjective] [political_union_outlander]</li>
+				<li>r_name->[political_union_outlander] of [nearnameinitial]</li>
+				<li>r_name->[political_adjective] [political_union_outlander] of [nearnameinitial]</li>
+				-->
 			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Mechanicus_NamerBases</defName>
+		<include>
+		  <li>OG_Mechanicus_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Mechanicus_Outpost]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Mechanicus_NamerPerson</defName>
+		<include>
+			<li>OG_Mechanicus_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameMaleMechanicus]</li>
+				<!--li>r_name(p=3)->[NameMaleMechanicus] [MechanicusNameLast]</li-->
+				<!--li>r_name(p=2)->[MechanicusNameFirstMale] [WordMechanicus]</li>
+				<li>r_name(p=2)->[WordMechanicus] [WordMechanicus]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Mechanicus_NamerPersonFemale</defName>
+		<include>
+			<li>OG_Mechanicus_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameFemaleMechanicus]</li>
+				<!--li>r_name(p=3)->[NameFemaleMechanicus] [MechanicusNameLast]</li-->
+				<!--li>r_name(p=2)->[MechanicusNameFirstFemale] [WordMechanicus]</li>
+				<li>r_name(p=2)->[WordMechanicus] [WordMechanicus]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Mechanicus_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordMechanicus(p=4)->[SylB][SylB]</li>
+				<li>WordMechanicus(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordMechanicus(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<li>NameMaleMechanicus(p=10)->[Mechanicus_Name]</li>
+				<li>NameMaleMechanicus(p=10)->[Mechanicus_Name] `[MaleNick]`</li>
+				<li>NameMaleMechanicus(p=4)->[MaleFirst]</li>
+				<li>NameMaleMechanicus(p=4)->[MaleFirst] [MaleSecond]</li>
+				<li>NameMaleMechanicus(p=0.2)->[MaleFirst] `[MaleNick]`</li>
+				<li>NameMaleMechanicus(p=0.2)->[MaleFirst] `[MaleNick]` [MaleSecond]</li>
+				
+				<li>MaleFirst->[Mechanicus_Male_First]</li>
+				<!--li>MaleFirst->[Mechanicus_Male_First_A][Mechanicus_Male_First_B]</li-->
+				<!--li>MaleFirst->[Mechanicus_Unisex_First]</li-->
+				<!--li>MaleFirst->[Mechanicus_Unisex_First_A][Mechanicus_Unisex_First_B]</li-->
+				
+				<!--li>MaleSecond->[Mechanicus_Male_Last]</li-->
+				<!--li>MaleSecond->[Mechanicus_Male_Last_A][Mechanicus_Male_Last_B]</li-->
+				<li>MaleSecond->[Mechanicus_Unisex_Last]</li>
+				<!--li>MaleSecond->[Mechanicus_Unisex_Last_A][Mechanicus_Unisex_Last_B]</li-->
+				
+				<li>MaleNick->[Mechanicus_Male_Nick]</li>
+				<!--li>MaleNick->[Mechanicus_Male_Nick_A] [Mechanicus_Male_Nick_B]</li-->
+				<li>MaleNick->[Mechanicus_Unisex_Nick]</li>
+				<!--li>MaleNick->[Mechanicus_Unisex_Nick_A] [Mechanicus_Unisex_Nick_B]</li-->
+				
+				<li>NameFemaleMechanicus(p=10)->[Mechanicus_Name]</li>
+				<li>NameFemaleMechanicus(p=10)->[Mechanicus_Name] `[FemaleNick]`</li>
+				<li>NameFemaleMechanicus(p=4)->[FemaleFirst]</li>
+				<li>NameFemaleMechanicus(p=4)->[FemaleFirst] [FemaleSecond]</li>
+				<li>NameFemaleMechanicus(p=0.2)->[FemaleFirst] `[FemaleNick]`</li>
+				<li>NameFemaleMechanicus(p=0.2)->[FemaleFirst] `[FemaleNick]` [FemaleSecond]</li>
+				
+				<li>FemaleFirst->[Mechanicus_Female_First]</li>
+				<!--li>FemaleFirst->[Mechanicus_Female_First_A][Mechanicus_Female_First_B]</li-->
+				<!--li>FemaleFirst->[Mechanicus_Unisex_First]</li-->
+				<!--li>FemaleFirst->[Mechanicus_Unisex_First_A][Mechanicus_Unisex_First_B]</li-->
+				
+				<!--li>FemaleSecond->[Mechanicus_Female_Last]</li-->
+				<!--li>FemaleSecond->[Mechanicus_Female_Last_A][Mechanicus_Female_Last_B]</li-->
+				<li>FemaleSecond->[Mechanicus_Unisex_Last]</li>
+				<!--li>FemaleSecond->[Mechanicus_Unisex_Last_A][Mechanicus_Unisex_Last_B]</li-->
+				
+				<li>FemaleNick->[Mechanicus_Female_Nick]</li>
+				<!--li>FemaleNick->[Mechanicus_Female_Nick_A] [Mechanicus_Female_Nick_B]</li-->
+				<li>FemaleNick->[Mechanicus_Unisex_Nick]</li>
+				<!--li>FemaleNick->[Mechanicus_Unisex_Nick_A] [Mechanicus_Unisex_Nick_B]</li-->
+				
+				<!-- Unisex Names -->
+				<li>Mechanicus_Name->[SingleDigit][SingleDigit]-[SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[GreekLetter] [SingleDigit]-[SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [SingleDigit][SingleDigit]/[SingleDigit] [DualSyllableA][DualSyllableB]</li>
+				<li>Mechanicus_Name->[GreekLetter]-[GreekLetter] [SingleDigit][SingleDigit]</li>
+				<li>Mechanicus_Name->[Capital]-[Capital] [Capital][SingleDigit][Capital]/[Capital][SingleDigit][Capital]</li>
+				<li>Mechanicus_Name->[Capital][Capital]-[SingleDigit][SingleDigit][SingleDigit]</li>
+				<li>Mechanicus_Name->[Capital]-[SingleDigit][SingleDigit][SingleDigit]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB]-[GreekLetter]-[SingleDigit]</li>
+				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
+				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB] [TriSyllableA][TriSyllableB][TriSyllableC]</li>
+				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB] [QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [TriSyllableA][TriSyllableB][TriSyllableC]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD]</li>
+				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
+				<li>Mechanicus_Name->[QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
+				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [SingleSyllableA][SingleSyllableB]-[SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC] [SingleSyllableA][SingleSyllableB]-[SingleSyllableA][SingleSyllableB]</li>
+				
+				<li>Mechanicus_Extra(p=5)-> </li>
+				<li>Mechanicus_Extra(p=1)->-</li>
+				<li>Mechanicus_Extra(p=1)-> van </li>
+				<li>Mechanicus_Extra(p=1)-> van der </li>
+				
+				<li>Mechanicus_Title(p=1)-> [TitleA] [TitleB] of the [TitleC] [TitleD]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Mechanicus_HomeWorld->NameBanks/OG_Imperial_Names_ForgeWorlds</li>
+				<li>Mechanicus_Outpost->NameBanks/OG_Imperial_Names_Outpost</li>
+				<!-- Male Names -->
+				<li>Mechanicus_Male_First->NameBanks/OG_Imperial_Mechanicus_Names_First_Male</li>
+				<!--li>Mechanicus_Male_First_A->NameBanks/OG_Imperial_Mechanicus_Names_First_Male_A</li-->
+				<!--li>Mechanicus_Male_First_B->NameBanks/OG_Imperial_Mechanicus_Names_First_Male_B</li-->
+				<!--li>Mechanicus_Male_Last->NameBanks/OG_Imperial_Mechanicus_Names_Last_Male</li-->
+				<!--li>Mechanicus_Male_Last_A->NameBanks/OG_Imperial_Mechanicus_Names_Last_Male_A</li-->
+				<!--li>Mechanicus_Male_Last_B->NameBanks/OG_Imperial_Mechanicus_Names_Last_Male_B</li-->
+				<li>Mechanicus_Male_Nick->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Male</li>
+				<!--li>Mechanicus_Male_Nick_A->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Male_A</li-->
+				<!--li>Mechanicus_Male_Nick_B->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Male_B</li-->
+				<!-- Female Names -->
+				<li>Mechanicus_Female_First->NameBanks/OG_Imperial_Mechanicus_Names_First_Female</li>
+				<!--li>Mechanicus_Female_First_A->NameBanks/OG_Imperial_Mechanicus_Names_First_Female_A</li-->
+				<!--li>Mechanicus_Female_First_B->NameBanks/OG_Imperial_Mechanicus_Names_First_Female_B</li-->
+				<!--li>Mechanicus_Female_Last->NameBanks/OG_Imperial_Mechanicus_Names_Last_Female</li-->
+				<!--li>Mechanicus_Female_Last_A->NameBanks/OG_Imperial_Mechanicus_Names_Last_Female_A</li-->
+				<!--li>Mechanicus_Female_Last_B->NameBanks/OG_Imperial_Mechanicus_Names_Last_Female_B</li-->
+				<li>Mechanicus_Female_Nick->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Female</li>
+				<!--li>Mechanicus_Female_Nick_A->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Female_A</li-->
+				<!--li>Mechanicus_Female_Nick_B->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Female_B</li-->
+				<!-- Unisex Names -->
+				<!--li>Mechanicus_Unisex_First->NameBanks/OG_Imperial_Mechanicus_Names_First_Unisex</li-->
+				<li>Mechanicus_Unisex_Nick->NameBanks/OG_Imperial_Mechanicus_Names_Nick_Unisex</li>
+				<li>Mechanicus_Unisex_Last->NameBanks/OG_Imperial_Mechanicus_Names_Last_Unisex</li>
+				<!-- One Syllable Names -->
+				<li>SingleSyllableA->NameBanks/OG_Imperial_Mechanicus_Names_Syllable_A</li>
+				<li>SingleSyllableB->NameBanks/OG_Imperial_Mechanicus_Names_Syllable_B</li>
+				<!-- Two Syllable Names -->
+				<li>DualSyllableA->NameBanks/OG_Imperial_Mechanicus_Names_SyllableDual_A</li>
+				<li>DualSyllableB->NameBanks/OG_Imperial_Mechanicus_Names_SyllableDual_B</li>
+				<!-- Three Syllable Names -->
+				<li>TriSyllableA->NameBanks/OG_Imperial_Mechanicus_Names_SyllableTri_A</li>
+				<li>TriSyllableB->NameBanks/OG_Imperial_Mechanicus_Names_SyllableTri_B</li>
+				<li>TriSyllableC->NameBanks/OG_Imperial_Mechanicus_Names_SyllableTri_C</li>
+				<!-- Four Syllable Names -->
+				<li>QuadSyllableA->NameBanks/OG_Imperial_Mechanicus_Names_SyllableQuad_A</li>
+				<li>QuadSyllableB->NameBanks/OG_Imperial_Mechanicus_Names_SyllableQuad_B</li>
+				<li>QuadSyllableC->NameBanks/OG_Imperial_Mechanicus_Names_SyllableQuad_C</li>
+				<li>QuadSyllableD->NameBanks/OG_Imperial_Mechanicus_Names_SyllableQuad_D</li>
+				<!--Titles -->
+				<li>TitleA->NameBanks/OG_Imperial_Mechanicus_Title_A</li>
+				<li>TitleB->NameBanks/OG_Imperial_Mechanicus_Title_B</li>
+				<li>TitleC->NameBanks/OG_Imperial_Mechanicus_Title_C</li>
+				<li>TitleD->NameBanks/OG_Imperial_Mechanicus_Title_D</li>
+				<!-- Parts -->
+				<li>CapitalLetter->WordParts/CapitalLetters</li>
+				<li>SingleDigit->WordParts/SingleDigit</li>
+				<li>GreekLetter->WordParts/GreekLetters</li>
+			</rulesFiles>
 			<rulesRaw>
-			<li Class="Rule_File">
-				<keyword>OGMechanicusForgeWorld</keyword>
-				<path>NameBanks/OGMechanicusForgeWorld</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGMechanicusRegiments</keyword>
-				<path>NameBanks/OGMechanicusRegiments</path>
-			</li>
-			<li Class="Rule_File">
-				<keyword>OGMechanicusRegiment</keyword>
-				<path>NameBanks/OGMechanicusRegiment</path>
-			</li>
-			<li Class="AdeptusMechanicus.Rule_Ordinal_Number">
-				<keyword>Ordinal</keyword>
-				<range>0~1999</range>
-			</li>
+				<li Class="AdeptusMechanicus.Rule_Ordinal_Number">
+					<keyword>Ordinal</keyword>
+					<range>0~1999</range>
+				</li>
 			</rulesRaw>
 		</rulePack>
 	</RulePackDef>

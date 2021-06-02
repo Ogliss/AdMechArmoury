@@ -248,7 +248,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return false;
             }
-            if (__instance.verbProps.stopBurstWithoutLos && !__instance.TryFindShootLineFromTo(__instance.caster.Position, currentTarget, out ShootLine shootLine))
+            ShootLine shootLine;
+            bool flag = __instance.TryFindShootLineFromTo(__instance.caster.Position, currentTarget, out shootLine);
+            if (__instance.verbProps.stopBurstWithoutLos && !flag)
             {
                 return false;
             }

@@ -137,11 +137,11 @@ namespace AdeptusMechanicus
 
         public override string CompInspectStringExtra()
         {
-            string str = "AMA_SpecialRules".Translate();
+            string str = "AdeptusMechanicus.SpecialRules".Translate();
             string str2 = string.Empty;
             if (HeavyWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_HeavyWeapon".Translate().ToString() : str2 + ", " + "AMA_HeavyWeapon".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.HeavyWeapon".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.HeavyWeapon".Translate().ToString();
             }
             if (FireMode!=null)
             {
@@ -154,52 +154,52 @@ namespace AdeptusMechanicus
             }
             if (RapidFire)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " "+ "AMA_RapidFire".Translate().ToString() : str2 + ", " + "AMA_RapidFire".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " "+ "AdeptusMechanicus.RapidFire".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.RapidFire".Translate().ToString();
             }
             if (GetsHot)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_GetsHot".Translate().ToString() : str2 + ", " + "AMA_GetsHot".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.GetsHot".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.GetsHot".Translate().ToString();
             }
             else
             if (Jams)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Jams".Translate().ToString() : str2 + ", " + "AMA_Jams".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Jams".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Jams".Translate().ToString();
             }
             if (TwinLinked)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_TwinLinked".Translate().ToString() : str2 + ", " + "AMA_TwinLinked".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.TwinLinked".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.TwinLinked".Translate().ToString();
             }
             if (Multishot)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Scatter".Translate().ToString() : str2 + ", " + "AMA_Scatter".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Scatter".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Scatter".Translate().ToString();
             }
             if (Rending)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Rending_Shot".Translate().ToString() : str2 + ", " + "AMA_Rending_Shot".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Rending_Shot".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Rending_Shot".Translate().ToString();
             }
             if (MeltaWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Melta".Translate().ToString() : str2 + ", " + "AMA_Melta".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Melta".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Melta".Translate().ToString();
             }
             if (VolkiteWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Volkite".Translate().ToString() : str2 + ", " + "AMA_Volkite".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Volkite".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Volkite".Translate().ToString();
             }
             if (ConversionWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_ConversionBeam".Translate().ToString() : str2 + ", " + "AMA_ConversionBeam".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.ConversionBeam".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.ConversionBeam".Translate().ToString();
             }
             if (HaywireWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Haywire".Translate().ToString() : str2 + ", " + "AMA_Haywire".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Haywire".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Haywire".Translate().ToString();
             }
             if (GaussWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " "+ "AMA_Gauss".Translate().ToString() : str2 + ", "+ "AMA_RapidFire".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " "+ "AdeptusMechanicus.Gauss".Translate().ToString() : str2 + ", "+ "AdeptusMechanicus.RapidFire".Translate().ToString();
             }
             if (TeslaWeapon)
             {
-                str2 = str2.NullOrEmpty() ? str2 + " " + "AMA_Tesla".Translate().ToString() : str2 + ", " + "AMA_Tesla".Translate().ToString();
+                str2 = str2.NullOrEmpty() ? str2 + " " + "AdeptusMechanicus.Tesla".Translate().ToString() : str2 + ", " + "AdeptusMechanicus.Tesla".Translate().ToString();
             }
             return str2.NullOrEmpty() ? null : str + str2;
         }
@@ -207,7 +207,7 @@ namespace AdeptusMechanicus
         public override string GetDescriptionPart()
         {
             StringBuilder builder = new StringBuilder(base.GetDescriptionPart());
-            builder.AppendLine("AMA_SpecialRules".Translate());
+            builder.AppendLine("AdeptusMechanicus.SpecialRules".Translate());
             if (FireMode!=null)
             {
                 builder.AppendLine();
@@ -237,24 +237,24 @@ namespace AdeptusMechanicus
                 float cooldownreduction = (cooldown / 2) + RapidFireReductionBase;
                 float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (RapidFireReductionBase * 4);
 
-                builder.AppendLine("AMA_RapidFire".Translate() + ":");
-                builder.AppendLine("AMA_RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
+                builder.AppendLine("AdeptusMechanicus.RapidFire".Translate() + ":");
+                builder.AppendLine("AdeptusMechanicus.RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
             }
             if (GetsHot)
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
-                    builder.AppendLine("AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
+                    builder.AppendLine("AdeptusMechanicus.GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
                 }
                 if (GetsHotCrit)
                 {
-                    builder.Append(" "+"AMA_GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
+                    builder.Append(" "+"AdeptusMechanicus.GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
                     if (GetsHotCritExplosion)
                     {
-                        builder.AppendLine("AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
+                        builder.AppendLine("AdeptusMechanicus.GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
                     }
                 }
             }
@@ -262,21 +262,21 @@ namespace AdeptusMechanicus
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Jams".Translate() + ": " + "AdeptusMechanicus.JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (JamsDamageWeapon)
                 {
-                    builder.Append(" "+"AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label));
+                    builder.Append(" "+"AdeptusMechanicus.JamsWeaponDamage".Translate(JamDamage, parent.def.label));
                 }
             }
             if (TwinLinked)
             {
                 builder.AppendLine();
-                builder.AppendLine("AMA_TwinLinked".Translate() + ": " + "AMA_TwinLinkedDesc".Translate());
+                builder.AppendLine("AdeptusMechanicus.TwinLinked".Translate() + ": " + "AdeptusMechanicus.TwinLinkedDesc".Translate());
             }
             if (Multishot)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Scatter".Translate() + ": " + "AMA_ScatterDesc".Translate(ScattershotCount)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Scatter".Translate() + ": " + "AdeptusMechanicus.ScatterDesc".Translate(ScattershotCount)));
             }
             if (Rending)
             {
@@ -284,35 +284,35 @@ namespace AdeptusMechanicus
                 if (GaussWeapon)
                 {
                     builder.AppendLine("Gauss Weapon:");
-                //    builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
+                //    builder.AppendLine(string.Format("AdeptusMechanicus.Gauss".Translate() + ": " + "AdeptusMechanicus.GaussDesc".Translate()));
                 }
-                builder.AppendLine(string.Format("AMA_Rending_Shot".Translate() + ": " + "AMA_Rending_ShotDesc".Translate(RendingChance)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Rending_Shot".Translate() + ": " + "AdeptusMechanicus.Rending_ShotDesc".Translate(RendingChance)));
             }
             if (MeltaWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Melta".Translate() + ": " + "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Melta".Translate() + ": " + "AdeptusMechanicus.MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
             }
             if (VolkiteWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Volite".Translate() + ": " + "AdeptusMechanicus.VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
             }
             if (ConversionWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.ConversionBeam".Translate() + ": " + "AdeptusMechanicus.ConversionBeamDesc".Translate()));
             }
             if (HaywireWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Haywire".Translate() + ": " + "AdeptusMechanicus.HaywireDesc".Translate()));
             }
             if (TeslaWeapon)
             {
                 builder.AppendLine();
                 builder.AppendLine("Tesla Weapon:");
-                builder.AppendLine(string.Format("AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Tesla".Translate() + ": " + "AdeptusMechanicus.TeslaDesc".Translate()));
             }
             return builder.ToString();
         }
@@ -330,24 +330,24 @@ namespace AdeptusMechanicus
                 float cooldownreduction = (cooldown / 2) + RapidFireReductionBase;
                 float newCycle = (cooldown - cooldownreduction) + (warmup - warmupreduction) + (RapidFireReductionBase * 4);
 
-                builder.AppendLine("AMA_RapidFire".Translate() + ":");
-                builder.AppendLine("AMA_RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
+                builder.AppendLine("AdeptusMechanicus.RapidFire".Translate() + ":");
+                builder.AppendLine("AdeptusMechanicus.RapidFireDesc".Translate(RapidFireWarmupReduction.ToStringByStyle(ToStringStyle.FloatMaxTwo), warmup - warmupreduction, RapidFireCooldownReduction.ToStringByStyle(ToStringStyle.FloatMaxOne), cooldown - cooldownreduction, ActiveVerbProperties.range / 2, Cycle, newCycle));
             }
             if (GetsHot)
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AMA_GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
-                    builder.AppendLine("AMA_GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
+                    builder.AppendLine("AdeptusMechanicus.GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
                 }
                 if (GetsHotCrit)
                 {
-                    builder.Append(" " + "AMA_GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
+                    builder.Append(" " + "AdeptusMechanicus.GetsHotCrit".Translate((GetsHotCritChance / 100).ToStringPercent()));
                     if (GetsHotCritExplosion)
                     {
-                        builder.AppendLine("AMA_GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
+                        builder.AppendLine("AdeptusMechanicus.GetsHotCritExplosion".Translate((GetsHotCritExplosionChance / 100).ToStringPercent()));
                     }
                 }
             }
@@ -355,60 +355,60 @@ namespace AdeptusMechanicus
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AMA_Jams".Translate() + ": " + "AMA_JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Jams".Translate() + ": " + "AdeptusMechanicus.JamsDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (JamsDamageWeapon)
                 {
-                    builder.Append(" " + "AMA_JamsWeaponDamage".Translate(JamDamage, parent.def.label));
+                    builder.Append(" " + "AdeptusMechanicus.JamsWeaponDamage".Translate(JamDamage, parent.def.label));
                 }
             }
             if (TwinLinked)
             {
                 builder.AppendLine();
-                builder.AppendLine("AMA_TwinLinked".Translate() + ": " + "AMA_TwinLinkedDesc".Translate());
+                builder.AppendLine("AdeptusMechanicus.TwinLinked".Translate() + ": " + "AdeptusMechanicus.TwinLinkedDesc".Translate());
             }
             if (Multishot)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Scatter".Translate() + ": " + "AMA_ScatterDesc".Translate(ScattershotCount)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Scatter".Translate() + ": " + "AdeptusMechanicus.ScatterDesc".Translate(ScattershotCount)));
             }
             if (Rending)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Rending_Shot".Translate() + ": " + "AMA_Rending_ShotDesc".Translate(RendingChance)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Rending_Shot".Translate() + ": " + "AdeptusMechanicus.Rending_ShotDesc".Translate(RendingChance)));
             }
             if (MeltaWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Melta".Translate() + ": " + "AMA_MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Melta".Translate() + ": " + "AdeptusMechanicus.MeltaDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2) + " \n"));
             }
             if (VolkiteWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Volite".Translate() + ": " + "AMA_VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Volite".Translate() + ": " + "AdeptusMechanicus.VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
             }
             if (ConversionWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_ConversionBeam".Translate() + ": " + "AMA_ConversionBeamDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.ConversionBeam".Translate() + ": " + "AdeptusMechanicus.ConversionBeamDesc".Translate()));
             }
             if (HaywireWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AMA_Haywire".Translate() + ": " + "AMA_HaywireDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Haywire".Translate() + ": " + "AdeptusMechanicus.HaywireDesc".Translate()));
             }
             /*
             if (GaussWeapon)
             {
                 builder.AppendLine();
                 builder.AppendLine("Gauss Weapon:");
-                builder.AppendLine(string.Format("AMA_Gauss".Translate() + ": " + "AMA_GaussDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Gauss".Translate() + ": " + "AdeptusMechanicus.GaussDesc".Translate()));
             }
             */
             if (TeslaWeapon)
             {
                 builder.AppendLine();
                 builder.AppendLine("Tesla Weapon:");
-                builder.AppendLine(string.Format("AMA_Tesla".Translate() + ": " + "AMA_TeslaDesc".Translate()));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Tesla".Translate() + ": " + "AdeptusMechanicus.TeslaDesc".Translate()));
             }
         }
 

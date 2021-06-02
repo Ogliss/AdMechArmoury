@@ -105,7 +105,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         num = Mathf.Clamp(num * 2f, 0f, 2f);
                         float armorPenetration = num;
 
-                        MoteMaker.ThrowText(hitThing.PositionHeld.ToVector3(), hitThing.MapHeld, "AMA_Rending_Shot".Translate(__instance.LabelCap ,hitThing.LabelShortCap), 3f);
+                        MoteMaker.ThrowText(hitThing.PositionHeld.ToVector3(), hitThing.MapHeld, "AdeptusMechanicus.Rending_Shot".Translate(__instance.LabelCap ,hitThing.LabelShortCap), 3f);
                         //    Log.Warning(string.Format("ArmorPenetration: {0}", ArmorPenetration));
 
                         bool flag = ___launcher is AmmoThing;

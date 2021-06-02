@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Research Tau Empire =========================OG-->
-	<ResearchProjectDef Name="OG_Tau_ReseachBase" Abstract="True">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef Abstract="True" Name="OG_Tau_ReseachBase">
+		<tab>OGAMA_RSubTab_Tau</tab>
+		<tags>
+			<li>OG_Tau_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef Abstract="True" ParentName="OG_Tau_ReseachBase" Name="OG_Tau_Tech_Base">
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<requiredResearchFacilities>
 			<li>OGT_TableMachining</li>
@@ -10,8 +16,7 @@
 		</requiredResearchFacilities>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Kroot_Tech_Base_T1</defName>
 		<label>Kroot Kindred</label>
 		<description>Basic understanding of Kroot Culture</description>
@@ -25,11 +30,10 @@
 			<li>TribalStart_Kroot</li>
 		</tags-->
 		<researchViewX>0.00</researchViewX>
-		<researchViewY>13.50</researchViewY>
+		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Kroot_Tech_Base_T2</defName>
 		<label>Kroot Culture</label>
 		<description>Basic understanding of Kroot Culture and the Greater Good</description>
@@ -43,11 +47,10 @@
 			<li>TribalStart_Kroot</li>
 		</tags-->
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>13.50</researchViewY>
+		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Kroot_Tech_Base_T3</defName>
 		<label>Kroot Mercenaries</label>
 		<description>Basic understanding of Kroot Culture and the Greater Good</description>
@@ -61,10 +64,10 @@
 			<li>TribalStart_Kroot</li>
 		</tags-->
 		<researchViewX>5.00</researchViewX>
-		<researchViewY>13.50</researchViewY>
+		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Tau_Tech_Base_T1</defName>
 		<label>The Greater Good</label>
 		<description>Basic understanding of Tau Culture and the Greater Good</description>
@@ -77,11 +80,10 @@
 			<li>Start_Tau</li>
 		</tags>
 		<researchViewX>0.00</researchViewX>
-		<researchViewY>14.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Tau_Tech_Base_T2</defName>
 		<label>Caste System</label>
 		<description>Basic understanding of Tau Culture and the Greater Good</description>
@@ -94,11 +96,10 @@
 			<!--li>Start_Tau</li-->
 		</tags>
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>14.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Tau_Tech_Base_T3</defName>
 		<label>Etherals</label>
 		<description>Basic understanding of Tau Culture and the Greater Good</description>
@@ -111,11 +112,10 @@
 			<!--li>Start_Tau</li-->
 		</tags>
 		<researchViewX>5.00</researchViewX>
-		<researchViewY>14.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_Tech_Base">
 		<defName>OG_Vespid_Tech_Base_T1</defName>
 		<label>Vespid Strain</label>
 		<description>Basic understanding of Vespid Culture and the Greater Good</description>
@@ -129,11 +129,10 @@
 			<li>TribalVespidStart</li>
 		</tags-->
 		<researchViewX>0.00</researchViewX>
-		<researchViewY>14.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Weapons_PlasmaPulse</defName>
 		<label>Pulse Weapons</label>
 		<description>The T'au, whilst a relatively young race in the grand scale of time, have advanced extraordinarily rapidly and have already perfected many different forms of Plasma Weapon technology and use it to a great extent on the battlefield. The T'au variant of Plasma Weapon technology, which they refer to as Pulse Weapons, is commonly utilised by the warriors of the T'au Empire's military Fire Caste. Pulse Weapons make use of micro-pulsed induction fields to propel a particle across a distance.</description>
@@ -143,11 +142,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		  <researchViewX>1.00</researchViewX>
-		  <researchViewY>13.750</researchViewY>
+		  <researchViewY>1.750</researchViewY>
 	</ResearchProjectDef>	
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Weapons_Railgun</defName>
 		<label>Railgun Weaponry</label>
 		<description>Rail Weapons use a series of powerful electromagnets and super-conductive electrodes to accelerate small, solid and conductive projectiles to hypersonic speeds. The resulting high levels of kinetic force imparted to the weapon's projectile allows it to devastate and destroy the most heavily armoured vehicles on impact, even at extremely long ranges. Few vehicles are able to withstand a direct hit from a Rail Weapon without suffering critical damage.</description>
@@ -157,11 +155,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>13.50</researchViewY>
+		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Weapons_Ion</defName>
 		<label>Ionic Projection</label>
 		<description>Ion Weapons are advanced directed energy weapons utilised by the Fire Caste of the Tau Empire. Ion Weapons typically are capable of engaging enemies at long range with high-energy streams of ionised subatomic particles, vaporising flesh and metal with equal ease. These high-energy ions containing an electric charge are accelerated by an electromagnetic field and react explosively with the target as a result of the direct transfer of energy at an atomic level.</description>
@@ -175,11 +172,10 @@
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>14.00</researchViewY>
+		<researchViewY>2.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel</defName>
 		<label>Tau Apparel</label>
 		<description>Allows you to create basic Tau apparal</description>
@@ -189,11 +185,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>1.00</researchViewX>
-		<researchViewY>15.00</researchViewY>
+		<researchViewY>3.00</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Armour_T1</defName>
 		<label>Pathfinder Armour</label>
 		<description>Allows you to create Pathfinder armour</description>
@@ -203,11 +198,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>2.00</researchViewX>
-		<researchViewY>14.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Armour_T2</defName>
 		<label>Combat Armour</label>
 		<description>Allows you to create Combat armour</description>
@@ -217,11 +211,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>3.00</researchViewX>
-		<researchViewY>14.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<!--ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<!--ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Armour_T3</defName>
 		<label>Stealth Battlesuit</label>
 		<description>Allows you to create basic Tau armour</description>
@@ -231,11 +224,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>4.00</researchViewX>
-		<researchViewY>11.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Armour_T4</defName>
 		<label>Crisis Battlesuit</label>
 		<description>Allows you to create basic Tau armour</description>
@@ -245,11 +237,10 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>5.00</researchViewX>
-		<researchViewY>11.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Armour_T5</defName>
 		<label>Broadside Battlesuit</label>
 		<description>Allows you to create basic Tau armour</description>
@@ -259,13 +250,12 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<researchViewX>6.00</researchViewX>
-		<researchViewY>11.50</researchViewY>
+		<researchViewY>2.50</researchViewY>
 	</ResearchProjectDef-->
 	
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Tau Wargear =========================OG-->
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Wargear_Drone</defName>
 		<label>Tau Drone Tech</label>
 		<description>Basic understanding of Tau Drone technology, allows you to build basic drones</description>
@@ -275,12 +265,11 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-  <researchViewX>2.00</researchViewX>
-  <researchViewY>15.50</researchViewY>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Tau_ReseachBase">
 		<defName>OG_Tau_Tech_Apparel_Wargear_Shield</defName>
 		<label>Tau Shield Tech</label>
 		<description>Allows you to Shield drones</description>
@@ -290,8 +279,8 @@
 		</prerequisites>
 		<techLevel>Spacer</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-  <researchViewX>3.00</researchViewX>
-  <researchViewY>15.50</researchViewY>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
 	</ResearchProjectDef>
 	
 </Defs>

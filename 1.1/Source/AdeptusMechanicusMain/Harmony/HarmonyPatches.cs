@@ -61,6 +61,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
             /*
+            MethodInfo targetmethod1 = AccessTools.TypeByName("ResearchProjectDef.ConfigErrors").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First().
+                GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).
+                MaxBy(mi => mi.GetMethodBody()?.GetILAsByteArray().Length ?? -1);
+            */
+            /*
             if (AccessTools.GetMethodNames(typeof(PawnRenderer)).Contains("OverrideMaterialIfNeeded_NewTemp"))
             {
                 HarmonyPatches.OverrideMaterialIfNeeded_NewTemp();

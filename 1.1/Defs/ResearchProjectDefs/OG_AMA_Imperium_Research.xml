@@ -3,8 +3,14 @@
 
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Research Imperial Weapons =========================OG-->
 
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef Name="OG_Imperial_ReseachBase" Abstract="True">
+		<tab>OGAMA_RSubTab_Imperial</tab>
+		<tags>
+			<li>OG_Imperial_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Base_T0</defName> 
 		<label>Imperial Subjects</label>
 		<description>Grants you access to basic Imperial technology.</description>
@@ -18,8 +24,7 @@
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef>
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Apparel</defName>
 		<label>Imperial Clothing</label>
 		<description>Allows you to create basic Imperial Clothing</description>
@@ -34,8 +39,7 @@
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef> 
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Apparel_Armour_T1</defName>
 		<label>Flakk Armour</label>
 		<description>Allows you to create Imperial Flak Armour</description>
@@ -50,8 +54,7 @@
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef> 
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Apparel_Armour_T2</defName>
 		<label>Carapace Armour</label>
 		<description>Allows you to create Imperial Carapace Armour</description>
@@ -65,8 +68,7 @@
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef> 
 	
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Wargear_Shield</defName>
 		<label>Conversion Fields</label>
 		<description>Allows you to create Conversion Field emitters</description>
@@ -96,8 +98,7 @@
 	
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Servo Skulls =========================OG-->
 
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Wargear_ServoSkull</defName>
 		<label>Servo Skulls</label>
 		<description>Allows you to create basic Servo Skulls</description>
@@ -128,8 +129,7 @@
 	</ResearchProjectDef>
 
 	<!--OG==================== Adeptus Mechanicus Armoury Mod - Bolt Weapons =========================OG-->
-	<ResearchProjectDef>
-		<tab>OGAMA_RTab</tab>
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Weapons_Bolt</defName>
 		<label>Bolt Weapons</label>
 		<description>A brutally efficient weapon, the Bolter fires mass-reactive bolts at its targets, each one a self-propelled missile which explodes with devastating effectiveness after penetrating its target. The fear and awe that Bolter fire creates makes it a perfect weapon for shock troops, the hammering thunder of the guns mixing terrifyingly with the dull, wet explosions as flesh is blown apart.</description>
@@ -142,8 +142,8 @@
 		<requiredResearchFacilities>
 			<li>MultiAnalyzer</li>
 		</requiredResearchFacilities>
-		<researchViewX>4.00</researchViewX>
-		<researchViewY>0.00</researchViewY>
+		<researchViewX>5.00</researchViewX>
+		<researchViewY>0.75</researchViewY>
 		<modExtensions>
 			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
 			<ResearchKeyPrefix>OG_</ResearchKeyPrefix>

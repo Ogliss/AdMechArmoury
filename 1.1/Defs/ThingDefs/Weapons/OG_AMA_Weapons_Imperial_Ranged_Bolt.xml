@@ -537,6 +537,89 @@
 		</modExtensions>
 	</ThingDef>
  
+	<ThingDef ParentName="OG_Imperial_Bolter_Base">
+		<defName>OGI_Gun_BoltGun_GodwynDeaz</defName>
+		<label>bolter godwyn-deaz (I)</label>
+		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts capable of ripping through or blowing apart a foe. The Locke Pattern is a variant of an older pattern used by the Adeptus Arbites, and is now the most common pattern of Bolter in use in the Rim.\n\nLike the Bolter patterns used by the Orders Militant of the Adepta Sororitas, the Locke Pattern Bolter can be used without difficulty by normal-sized humans.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_GodwynDeaz</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+			<drawSize>1.1</drawSize>		
+		</graphicData>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_GodwynDeaz_Icon</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>	
+		<generateCommonality>1.0</generateCommonality>
+		<costList>
+			<Steel>185</Steel>
+			<Plasteel>65</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<statBases>
+			<!--WorkToMake>180000</WorkToMake-->
+			<!--MarketValue>3000</MarketValue-->
+			<Mass>7</Mass>
+			<AccuracyTouch>0.87</AccuracyTouch>
+			<AccuracyShort>0.92</AccuracyShort>
+			<AccuracyMedium>0.94</AccuracyMedium>
+			<AccuracyLong>0.875</AccuracyLong>
+			<RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Bolter</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>1.00</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<muzzleFlareSize>2.5</muzzleFlareSize>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps> 
+			<li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
+				<compClass>OgsCompSlotLoadable.CompSlotLoadable</compClass>
+				<qualityRestriction>Masterwork</qualityRestriction>
+				<slots>
+					<li>OGI_BoltSlot</li>
+				</slots>
+			</li>	 
+		</comps>
+		<modExtensions>
+		
+		</modExtensions>
+	</ThingDef>
+ 
 <!-- ====================== Sternguard Bolter ===================== -->
 <!--
 	<ThingDef ParentName="OG_Imperial_Gun_Special">

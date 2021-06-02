@@ -190,6 +190,7 @@ namespace AdeptusMechanicus
 							this.FactionActiveTwo = false;
 						}
 						this.ActiveFaction = true;
+						this.active = true;
 					//	Log.Message("set faction " + faction.LabelCap + " Colour: " + factioncolor + " ColourTwo: " + factioncolorTwo);
 						return;
 					}
@@ -245,6 +246,7 @@ namespace AdeptusMechanicus
 				Scribe_Values.Look<Color>(ref this.factioncolorTwo, "factioncolorTwo", default, false);
 				Scribe_Values.Look<bool>(ref this.factionactiveTwo, "factioncolorActiveTwo", false, false);
 			}
+			base.PostExposeData();
 		}
 
 		// Token: 0x06001746 RID: 5958 RVA: 0x00085618 File Offset: 0x00083818
@@ -268,14 +270,13 @@ namespace AdeptusMechanicus
         {
             if (AMAMod.Dev)
             {
-				StringBuilder builder = new StringBuilder("Faction Colour comp.");
-				builder.AppendLine();
-				builder.AppendLine("color: " + color + " Active: " + active + ".");
-				builder.AppendLine("colorTwo: " + colorTwo + " Active: " + activeTwo + ".");
-				builder.AppendLine("faction: " + (faction?.LabelCap.ToString() ?? "Null") + " activeFaction: " + activeFaction + ".");
-				builder.AppendLine("factioncolor: " + factioncolor + " Active: " + factionactive + ".");
-				builder.AppendLine("factioncolorTwo: " + factioncolorTwo + " Active: " + factionactiveTwo+".");
-				return builder.ToString();
+				string s = "Faction Colour comp.";
+				s += "\ncolor: " + color + " Active: " + active + ".";
+				s += "\ncolorTwo: " + colorTwo + " Active: " + activeTwo + ".";
+				s += "\nfaction: " + (faction?.LabelCap.ToString() ?? "Null") + " activeFaction: " + activeFaction + ".";
+				s += "\nfactioncolor: " + factioncolor + " Active: " + factionactive + ".";
+				s += "\nfactioncolorTwo: " + factioncolorTwo + " Active: " + factionactiveTwo + ".";
+				return s;
 			}
             return base.CompInspectStringExtra();
         }

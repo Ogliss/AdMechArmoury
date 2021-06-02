@@ -61,6 +61,28 @@ namespace AdeptusMechanicus
             }
         }
 
+        public void UpdateProps()
+        {
+            ShoulderPadProperties newprops = null;
+            for (int i = 0; i < Drawer.Props.PauldronEntries.Count; i++)
+            {
+                ShoulderPadProperties e = Drawer.Props.PauldronEntries[i];
+                if ((this.padTexPath == e.padTexPath && this.shoulderPadType == e.shoulderPadType) || (!this.label.NullOrEmpty() && !e.label.NullOrEmpty() && this.label == e.label))
+                {
+                    newprops = e;
+                    break;
+                }
+            }
+            if (newprops == null && Drawer.Props.PauldronEntries.Any(x=> x.shoulderPadType == this.shoulderPadType))
+            {
+                newprops = Drawer.Props.PauldronEntries.Find(x => x.shoulderPadType == this.shoulderPadType);
+            }
+            if (newprops != null)
+            {
+                UpdateProps(newprops);
+            }
+        }
+
         public const float MinClippingDistance = 0.0015f;   // Minimum space between layers to avoid z-fighting
         private const float YOffset_Utility_South = 0.006122449f;
         private const float YOffset_Shell = 0.021428572f + MinClippingDistance;
@@ -197,21 +219,55 @@ namespace AdeptusMechanicus
                     props = new ShoulderPadProperties();
                     if (Drawer != null)
                     {
-                        for (int i = 0; i < Drawer.Props.PauldronEntries.Count; i++)
-                        {
-                            ShoulderPadProperties e = Drawer.Props.PauldronEntries[i];
-                            if ((this.padTexPath == e.padTexPath && this.shoulderPadType == e.shoulderPadType) || (!this.label.NullOrEmpty() && !e.label.NullOrEmpty() && this.label == e.label))
-                            {
-                                UpdateProps(e);
-                                //        Log.Message("ShoulderPadEntryProps found for " + Label);
-                                break;
-                            }
-                        }
+                        UpdateProps();
                     }
                 }
                 return props;
             }
         }
+
+        public string bodyTypeString(BodyTypeDef def)
+        {
+            string body = string.Empty;
+            if (bodyspecificTextures)
+            {
+                body = "_";
+                if (def.ToString().Contains("Female"))
+                {
+                    body += "Female";
+                }
+                else
+                if (def.ToString().Contains("Male"))
+                {
+                    body += "Male";
+                }
+                else
+                if (def.ToString().Contains("Fat"))
+                {
+                    body += "Fat";
+                }
+                else
+                if (def.ToString().Contains("Thin"))
+                {
+                    body += "Thin";
+                }
+                else
+                if (def.ToString().Contains("Hulk"))
+                {
+                    body += "Hulk";
+                }
+                else body += def.ToString();
+                //    Log.Message("bodyspecificTextures: "+ path + "_" + body);
+            }
+            return body;
+        }
+
+        public bool ValidatePat()
+        {
+
+            return true;
+        }
+
         public void UpdateGraphic()
         {
             if (Drawer?.pawn == null)
@@ -359,48 +415,44 @@ namespace AdeptusMechanicus
                 path = padTexPath + "/" + Used.TexPath;
             }
 
-            if (bodyspecificTextures)
+            string body = bodyTypeString(pawn.story.bodyType);
+            string testRot = "_";
+            if (CheckPauldronRotation(Rot4.South))
             {
-                string body;
-                if (pawn.story.bodyType.ToString().Contains("Female"))
-                {
-                    body = "Female";
-                }
-                else
-                if (pawn.story.bodyType.ToString().Contains("Male"))
-                {
-                    body = "Male";
-                }
-                else
-                if (pawn.story.bodyType.ToString().Contains("Fat"))
-                {
-                    body = "Fat";
-                }
-                else
-                if (pawn.story.bodyType.ToString().Contains("Thin"))
-                {
-                    body = "Thin";
-                }
-                else
-                if (pawn.story.bodyType.ToString().Contains("Hulk"))
-                {
-                    body = "Hulk";
-                }
-                else body = pawn.story.bodyType.ToString();
-            //    Log.Message("bodyspecificTextures: "+ path + "_" + body);
-                path += "_" + body;
+                testRot += "south";
             }
-
-            Texture2D tex = ContentFinder<Texture2D>.Get(path+"_south", false);
+            else
+            if (CheckPauldronRotation(Rot4.North))
+            {
+                testRot += "north";
+            }
+            else
+            if (CheckPauldronRotation(Rot4.East))
+            {
+                testRot += "east";
+            }
+            else
+            if (CheckPauldronRotation(Rot4.West))
+            {
+                testRot += "west";
+            }
+            else
+            {
+                testRot = "";
+            }
+            string testpath = path + body + testRot;
+            Texture2D tex = ContentFinder<Texture2D>.Get(testpath, false);
             Graphic graphic;
-            if (tex == null && (UseFactionTextures || UseVariableTextures))
+            if (tex == null)
             {
-                path = padTexPath + "/" + this.DefaultOption.TexPath;
-                if (bodyspecificTextures)
+                this.UpdateProps();
+                path = padTexPath;
+                if (UseFactionTextures || UseVariableTextures)
                 {
-                    path += "_" + pawn.story.bodyType.ToString();
+                    path = padTexPath + "/" + this.DefaultOption.TexPath;
                 }
             }
+            path += body;
             Color color = Drawer.mainColorFor(this);
             Color colorTwo = Drawer.secondaryColorFor(this);
             graphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, size, color, colorTwo);

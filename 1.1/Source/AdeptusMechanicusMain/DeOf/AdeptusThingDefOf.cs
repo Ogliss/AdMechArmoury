@@ -16,6 +16,8 @@ namespace AdeptusMechanicus
         public static ThingDef OG_WarpSpark;
         public static ThingDef OG_Mote_MicroSparksWarp;
         public static ThingDef OG_Mote_WarpFireGlow;
+        public static ThingDef SimpleResearchBench;
+        public static ThingDef HiTechResearchBench;
 
         #region Mechanicus
         // Humanlike Race Defs

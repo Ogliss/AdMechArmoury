@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
             {
                 if (GridsUtility.GetThingList(c, map).FirstOrDefault((Thing x) => x.def.defName.Contains("Wall") || x.def.defName.Contains("Smoothed")) == null)
                 {
-                    return new AcceptanceReport(Translator.Translate("AM_PlaceWorker_OnTopOfWalls"));
+                    return new AcceptanceReport(Translator.Translate("AdeptusMechanicus.PlaceWorker_OnTopOfWalls"));
                 }
             }
             return true;
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus
             }
             else
             {
-                result = new AcceptanceReport(Translator.Translate("AM_PlaceWorker_OnTopOfWalls"));
+                result = new AcceptanceReport(Translator.Translate("AdeptusMechanicus.PlaceWorker_OnTopOfWalls"));
             }
             return result;
             */

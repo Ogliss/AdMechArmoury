@@ -95,7 +95,7 @@ namespace AdeptusMechanicus
                 ArriveTunnel(Tunnellers);
                 Tunnellers.Clear();
             }
-            Find.LetterStack.ReceiveLetter("AMA_DeepStrike_Incomming".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AMA_DeepStrike_Incomming_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural, str), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
+            Find.LetterStack.ReceiveLetter("AdeptusMechanicus.DeepStrike_Incomming".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnSingular), "AdeptusMechanicus.DeepStrike_Incomming_Letter".Translate(pawns.Find(x => x.Faction != null).Faction.def.pawnsPlural, str), LetterDefOf.ThreatBig, pawns, pawns.Find(x => x.Faction != null).Faction, null);
             strike.struck = true;
         }
 
