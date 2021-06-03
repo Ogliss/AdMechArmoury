@@ -5,6 +5,12 @@
     <!--success>Always</success-->
     <operations>
 		<li Class="PatchOperationConditional">
+			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved[position()>1]</xpath>
+			<match Class="PatchOperationRemove">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved[position()>1]</xpath>
+			</match>
+		</li>
+		<li Class="PatchOperationConditional">
 			<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
 			<nomatch Class="PatchOperationAdd">
 				<xpath>/Defs</xpath>
@@ -162,11 +168,18 @@
 		</li>
 		<li Class="PatchOperationConditional">
 			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
-			<match Class="PatchOperationReplace">
-				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
-				<value>
-					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
-				</value>
+			<match Class="PatchOperationSequence">
+				<operations> <!-- PatchOperationReplace -->
+					<li Class="PatchOperationConditional">
+						<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved[text()="Brain"]</xpath>
+						<nomatch Class="PatchOperationReplace">
+							<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+							<value>
+								<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+							</value>
+						</nomatch>
+					</li>
+				</operations>
 			</match>
 			<nomatch Class="PatchOperationAdd">
 				<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
