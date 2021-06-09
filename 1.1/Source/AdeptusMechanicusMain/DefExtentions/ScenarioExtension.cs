@@ -5,7 +5,7 @@ using Verse;
 namespace AdeptusMechanicus
 {
     // Token: 0x02000020 RID: 32
-    public class ScenarioExtension : DefModExtension
+    public class SlottedBonusExtension : DefModExtension
     {
 
     }

@@ -218,5 +218,19 @@ namespace AdeptusMechanicus
 
         // Token: 0x04001640 RID: 5696
         private static List<List<Thing>> tempList = new List<List<Thing>>();
+
+        private static MapComponent_DeepStrike deepStrikeTracker;
+        public static MapComponent_DeepStrike DeepStrikeTracker
+        {
+            get
+            {
+                Map map = Find.CurrentMap;
+                if (deepStrikeTracker == null && map != null)
+                {
+                    deepStrikeTracker = map.GetComponent<MapComponent_DeepStrike>();
+                }
+                return deepStrikeTracker;
+            }
+        }
     }
 }

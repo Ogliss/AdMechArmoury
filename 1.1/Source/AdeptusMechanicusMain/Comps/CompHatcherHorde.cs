@@ -88,7 +88,7 @@ namespace AdeptusMechanicus
 
 				for (int i = 0; i < spawnCount; i++)
 				{
-					Log.Message("Spawning pawn "+(i+1)+ " of " +spawnCount);
+				//	Log.Message("Spawning pawn "+(i+1)+ " of " +spawnCount);
 					Pawn pawn = PawnGenerator.GeneratePawn(request);
 					if (PawnUtility.TrySpawnHatchedOrBornPawn(pawn, this.parent))
 					{

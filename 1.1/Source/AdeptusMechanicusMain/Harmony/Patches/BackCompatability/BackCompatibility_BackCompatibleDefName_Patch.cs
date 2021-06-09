@@ -29,6 +29,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName = defName.Replace("Ammo_OG", "OG_Ammo_");
                     }
+                    if (defName.Contains("OGAM_Apparel_SkitariiLegionnaireHelmet"))
+                    {
+                        newName = "OGAM_Apparel_SkitariiRangerHelmet";
+                    }
+                    if (defName.Contains("OGAM_Apparel_SkitariiPrimusHelmet"))
+                    {
+                        newName = "OGAM_Apparel_SkitariiVanguardHelmet";
+                    }
                     if (defName.Contains("OGIG_Apparel_Armageddon_GasMask"))
                     {
                         __result = "OGIG_Apparel_Armageddon_Gasmask";

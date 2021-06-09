@@ -38,7 +38,7 @@ namespace AdeptusMechanicus
 			}
             else
 			{
-				Log.Message("Verb_MeleeAttackDamage_Polearm CanHitTarget");
+			//	Log.Message("Verb_MeleeAttackDamage_Polearm CanHitTarget");
 			}
 			casterPawn.rotationTracker.Face(thing.DrawPos);
 			if (!this.IsTargetImmobile(this.currentTarget) && casterPawn.skills != null)
@@ -139,7 +139,7 @@ namespace AdeptusMechanicus
         }
 		public new bool TryFindShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
 		{
-			Log.Message("Verb_MeleeAttackDamage_Polearm TryFindShootLineFromTo");
+		//	Log.Message("Verb_MeleeAttackDamage_Polearm TryFindShootLineFromTo");
 			if (targ.HasThing && targ.Thing.Map != this.caster.Map)
 			{
 				resultingLine = default(ShootLine);

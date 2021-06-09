@@ -188,7 +188,7 @@
 	<ThingDef ParentName="OGI_Turret">
 		<defName>OGI_Turret_StormBolter_Manual</defName>
 		<label>pintle-mounted storm bolter</label>
-		<description>A mounted storm bolter turret. Requires a gunner.</description>
+		<description>A mounted storm bolter turret. Requires a gunner. Can be placed on top of barricades and sandbags.</description>
 		<graphicData>
 			<texPath>Things/Building/Imperial/Security/PintleMount_Base</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -201,6 +201,7 @@
 				<offset>(0,0,0)</offset>
 			</shadowData>
 		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<uiIconPath>Things/Building/Imperial/Security/PintleMount_StormBolter_Menu</uiIconPath>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -259,6 +260,9 @@
 		<placeWorkers>
 			<li>AdeptusMechanicus.PlaceWorker_OnTopOfLowWalls</li>
 		</placeWorkers>
+		<tradeTags>
+			<li>OG_Mounted_Weapon</li>
+		</tradeTags>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseWeaponTurret">
@@ -281,19 +285,19 @@
 		</statBases>
 		<verbs>
 			<li>
-		<verbClass>Verb_Shoot</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
-		<warmupTime>0.00</warmupTime>
-		<range>31</range>
-		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-		<burstShotCount>6</burstShotCount>
-		<soundCast>OG_Bolt_Gun_Sound</soundCast>
-		<soundCastTail>GunTail_Heavy</soundCastTail>
-		<muzzleFlashScale>14</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+				<warmupTime>0.00</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
 	</ThingDef>
@@ -302,7 +306,7 @@
 	<ThingDef ParentName="OGI_Turret">
 		<defName>OGI_Turret_HeavyBolter_Manual</defName>
 		<label>pintle-mounted heavy bolter</label>
-		<description>A mounted heavy bolter turret. Requires a gunner.</description>
+		<description>A mounted heavy bolter turret. Requires a gunner. Can be placed on top of barricades and sandbags.</description>
 		<graphicData>
 			<texPath>Things/Building/Imperial/Security/PintleMount_Base</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -315,6 +319,7 @@
 				<offset>(0,0,0)</offset>
 			</shadowData>
 		</graphicData>
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
 		<uiIconPath>Things/Building/Imperial/Security/PintleMount_HeavyBolter_Menu</uiIconPath>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -368,6 +373,9 @@
 		<placeWorkers>
 			<li>AdeptusMechanicus.PlaceWorker_OnTopOfLowWalls</li>
 		</placeWorkers>
+		<tradeTags>
+			<li>OG_Mounted_Weapon</li>
+		</tradeTags>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseWeaponTurret">
@@ -390,19 +398,19 @@
 		</statBases>
 		<verbs>
 			<li>
-		<verbClass>Verb_Shoot</verbClass>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
-		<warmupTime>0.00</warmupTime>
-		<range>38</range>
-		<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-		<burstShotCount>6</burstShotCount>
-		<soundCast>OG_Bolt_Gun_Sound</soundCast>
-		<soundCastTail>GunTail_Heavy</soundCastTail>
-		<muzzleFlashScale>14</muzzleFlashScale>
-		<targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+				<warmupTime>0.00</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
 	</ThingDef>

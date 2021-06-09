@@ -14,6 +14,10 @@ namespace AdeptusMechanicus
     {
         public static bool IsSubTabOf(this ResearchTabDef def, ResearchTabDef tabDef)
         {
+            if (def is ResearchSubTabDef subTabDef)
+            {
+                return subTabDef.parentTab == tabDef;
+            }
             return false;
         }
         // ResearchSubTabUtility.NotSubTab
@@ -22,6 +26,10 @@ namespace AdeptusMechanicus
             if (def == null)
             {
                 return false;
+            }
+            if (def is ResearchSubTabDef subTabDef)
+            {
+                return true;
             }
         //    return def.ToString().Contains("OGAMA_RSubTab_");
             return def.defName.Contains("OGAMA_RSubTab_");
@@ -75,12 +83,21 @@ namespace AdeptusMechanicus
         public static Rect SubTabMenu(Rect rightOutRect, ResearchTabDef CurTab)
         {
             Rect rect = rightOutRect;
+            List<SubTabRecord> subtabs = ResearchSubTabUtility.SubTabs.FindAll(x => x.SubTabOf(CurTab));
+            if (!subtabs.NullOrEmpty())
+            {
+                rect.yMin += 32f;
+                Widgets.DrawMenuSection(rect);
+                TabDrawer.DrawTabs(rect, subtabs.Cast<TabRecord>().ToList(), 200f);
+            }
+            /*
             if (CurTab == AdeptusResearchTabDefOf.OGAMA_RTab)
             {
                 rect.yMin += 32f;
                 Widgets.DrawMenuSection(rect);
                 TabDrawer.DrawTabs(rect, ResearchSubTabUtility.SubTabs.Cast<TabRecord>().ToList(), 200f);
             }
+            */
             return rect;
         }
 
@@ -198,37 +215,68 @@ namespace AdeptusMechanicus
         }
         private static ResearchProjectTagDef curTabTagInt;
 
-        public static List<SubTabRecord> SubTabs => subTabs;
-        private static List<SubTabRecord> subTabs = new List<SubTabRecord>()
+        public static List<SubTabRecord> SubTabs 
         {
-            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial.LabelCap,AdeptusResearchTagDefOf.OG_Imperial_Tech,delegate()
+            get
+            {
+                if (subTabs == null)
                 {
-                    CurSubTabTag = AdeptusResearchTagDefOf.OG_Imperial_Tech;
-                    CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial;
-                },
-                () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Imperial_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial),
+                    subTabs = new List<SubTabRecord>();
+                    List<ResearchSubTabDef> subTabDefs = DefDatabase<ResearchSubTabDef>.AllDefsListForReading;
+                    if (subTabDefs.NullOrEmpty())
+                    {
+                        subTabs = new List<SubTabRecord>()
+                        {
+                            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial,delegate()
+                            {
+                                CurSubTabTag = AdeptusResearchTagDefOf.OG_Imperial_Tech;
+                                CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial;
+                            }, () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Imperial_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Imperial),
 
-            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari.LabelCap,AdeptusResearchTagDefOf.OG_Aeldari_Tech,delegate()
-                {
-                    CurSubTabTag = AdeptusResearchTagDefOf.OG_Aeldari_Tech;
-                    CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari;
-                },
-                () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Aeldari_Tech && CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari),
+                            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari,delegate()
+                            {
+                                CurSubTabTag = AdeptusResearchTagDefOf.OG_Aeldari_Tech;
+                                CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari;
+                            },  () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Aeldari_Tech && CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Aeldari),
 
-            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau.LabelCap,AdeptusResearchTagDefOf.OG_Tau_Tech,delegate()
-                {
-                    CurSubTabTag = AdeptusResearchTagDefOf.OG_Tau_Tech;
-                    CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau;
-                },
-                () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Tau_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau),
+                            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau,delegate()
+                            {
+                                CurSubTabTag = AdeptusResearchTagDefOf.OG_Tau_Tech;
+                                CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau;
+                            }, () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Tau_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Tau),
 
-            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin.LabelCap,AdeptusResearchTagDefOf.OG_Greenskin_Tech,delegate()
+                            new SubTabRecord(AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin,delegate()
+                            {
+                                CurSubTabTag = AdeptusResearchTagDefOf.OG_Greenskin_Tech;
+                                CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin;
+                            }, () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Greenskin_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin)
+                        };
+                    }
+                    else
+                    {
+                        foreach (var item in subTabDefs)
+                        {
+                            subTabs.Add(new SubTabRecord(item, delegate ()
+                            {
+                                CurSubTabTag = item.tagdef;
+                                CurSubTab = item;
+                            }, () => CurSubTabTag == item.tagdef && CurSubTab == item));
+                        }
+                    }
+                }
+                return subTabs;
+            }
+            set
+            {
+                if (value == subTabs)
                 {
-                    CurSubTabTag = AdeptusResearchTagDefOf.OG_Greenskin_Tech;
-                    CurSubTab = AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin;
-                },
-                () => CurSubTabTag == AdeptusResearchTagDefOf.OG_Greenskin_Tech&& CurSubTab == AdeptusResearchTabDefOf.OGAMA_RSubTab_Greenskin)
-        };
+                    return;
+                }
+                subTabs = value;
+            }
+        }
+
+        private static List<SubTabRecord> subTabs;
 
     }
 }

@@ -14,6 +14,24 @@ namespace AdeptusMechanicus
     public class AdeptusWidgets
     {
 
+        public static void ScrollHorizontalAndVert(Rect outRect, ref Vector2 scrollPosition, Rect viewRect, float ScrollWheelSpeed = 20f)
+        {
+            if (Event.current.type == EventType.ScrollWheel && !KeyBindingDefOf.ModifierIncrement_10x.IsDown && Mouse.IsOver(outRect))
+            {
+                scrollPosition.x += Event.current.delta.y * ScrollWheelSpeed;
+                float num = 0f;
+                float num2 = viewRect.width - outRect.width + 16f;
+                if (scrollPosition.x < num)
+                {
+                    scrollPosition.x = num;
+                }
+                if (scrollPosition.x > num2)
+                {
+                    scrollPosition.x = num2;
+                }
+                Event.current.Use();
+            }
+        }
         public static void CheckboxLabeled(Rect rect, string label, ref bool checkOn, bool disabled = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false)
         {
             TextAnchor anchor = Text.Anchor;

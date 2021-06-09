@@ -6,6 +6,8 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+
+
     public class CompProperties_Floating : CompProperties
     {
         public bool isFloater = false;

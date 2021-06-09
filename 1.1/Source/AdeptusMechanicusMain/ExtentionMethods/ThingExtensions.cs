@@ -87,7 +87,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 			BindingFlags.NonPublic | BindingFlags.Instance);
 			object[] parameters = new object[] { ingester, nutritionWanted, null, null };
 			dynMethod.Invoke(thing, parameters);
-			Log.Message(thing+" eaten by "+ingester+" nutritionWanted: "+ nutritionWanted + " num: " + parameters[2] + " result: " + parameters[3]);
+		//	Log.Message(thing+" eaten by "+ingester+" nutritionWanted: "+ nutritionWanted + " num: " + parameters[2] + " result: " + parameters[3]);
 			num = (int)parameters[2];
 			result = (float)parameters[3];
 			//	thing.IngestedCalculateAmounts(ingester, nutritionWanted, out num, out result);

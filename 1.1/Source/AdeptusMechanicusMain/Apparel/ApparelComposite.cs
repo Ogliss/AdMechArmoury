@@ -10,142 +10,6 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus
 {
 
-    public class AlternateApparelGraphic
-    {
-        public float Weight
-        {
-            get
-            {
-                return this.weight;
-            }
-        }
-
-        public Graphic GetGraphic(Graphic other, bool wornGraphic = false, CompColorable colorable = null)
-        {
-            if (this.graphicData == null)
-            {
-                this.graphicData = new GraphicData();
-            }
-            if (other.data != null)
-            {
-                CopyFrom(other.data);
-            }
-
-            if (!this.texPath.NullOrEmpty() && !wornGraphic)
-                this.graphicData.texPath = this.texPath;
-            else if (!this.wornGraphicPath.NullOrEmpty() && wornGraphic)
-                this.graphicData.texPath = this.wornGraphicPath;
-            this.graphicData.color = (this.color ?? other.color);
-            this.graphicData.colorTwo = (this.colorTwo ?? other.colorTwo);
-            if (colorable != null)
-            {
-                if (colorable is CompColorableTwo twocolor)
-                {
-                    if (twocolor.Active)
-                    {
-                        this.graphicData.color = twocolor.Color;
-                    }
-                    if (twocolor.ActiveTwo)
-                    {
-                        this.graphicData.colorTwo = twocolor.ColorTwo;
-                    }
-                }
-                if (colorable is CompColorableTwoFaction twoFaction)
-                {
-                    if (twoFaction.ActiveFaction && this.allowFactionColours)
-                    {
-                        if (twoFaction.FactionActive)
-                        {
-                            this.graphicData.color = twoFaction.Color;
-                        }
-                        if (twoFaction.FactionActiveTwo)
-                        {
-                            this.graphicData.colorTwo = twoFaction.ColorTwo;
-                        }
-                    }
-                }
-            }
-
-            return this.graphicData.Graphic;
-        }
-        
-        public Graphic GetGraphic(GraphicData other, bool wornGraphic = false, CompColorable colorable = null)
-        {
-            if (this.graphicData == null)
-            {
-                this.graphicData = new GraphicData();
-            }
-            CopyFrom(other);
-            if (!this.texPath.NullOrEmpty())
-            {
-                this.graphicData.texPath = this.texPath;
-            }
-            this.graphicData.color = (this.color ?? other.color);
-            this.graphicData.colorTwo = (this.colorTwo ?? other.colorTwo);
-            return this.graphicData.Graphic;
-        }
-        
-        public void CopyFrom(GraphicData other)
-        {
-            Log.Message("CopyFrom");
-            this.graphicData.texPath = other.texPath;
-            this.graphicData.graphicClass = other.graphicClass;
-            this.graphicData.shaderType = other.shaderType;
-            this.graphicData.color = other.color;
-            this.graphicData.colorTwo = other.colorTwo;
-            this.graphicData.drawSize = other.drawSize;
-            this.graphicData.drawOffset = other.drawOffset;
-            this.graphicData.drawOffsetNorth = other.drawOffsetNorth;
-            this.graphicData.drawOffsetEast = other.drawOffsetEast;
-            this.graphicData.drawOffsetSouth = other.drawOffsetSouth;
-            this.graphicData.drawOffsetWest = other.drawOffsetSouth;
-            this.graphicData.onGroundRandomRotateAngle = other.onGroundRandomRotateAngle;
-            this.graphicData.drawRotated = other.drawRotated;
-            this.graphicData.allowFlip = other.allowFlip;
-            this.graphicData.flipExtraRotation = other.flipExtraRotation;
-            this.graphicData.shadowData = other.shadowData;
-            this.graphicData.damageData = other.damageData;
-            this.graphicData.linkType = other.linkType;
-            this.graphicData.linkFlags = other.linkFlags;
-        }
-        // Token: 0x04000503 RID: 1283
-        public float weight = 0.5f;
-
-        // Token: 0x04000504 RID: 1284
-        public string texPath;
-        public string wornGraphicPath;
-        public string maskKey;
-        public bool allowFactionColours = true;
-
-        // Token: 0x04000505 RID: 1285
-        public Color? color;
-
-        public Color? colorTwo;
-
-        public GraphicData graphicData;
-        public string label;
-        public string saveKey;
-    }
-
-    // AdeptusMechanicus.ApparelGraphicExtension
-    public class ApparelGraphicExtension : DefModExtension
-    {
-        public string defaultLabel = "Default";
-        public string keyLabel = "Alternate Graphic";
-        public List<AlternateApparelGraphic> alternateGraphics = new List<AlternateApparelGraphic>();
-        public bool gizmoOnWorn = true;
-        public override IEnumerable<string> ConfigErrors()
-        {
-            foreach (string text in base.ConfigErrors())
-            {
-                yield return text;
-            }
-
-
-            yield break;
-        }
-    }
-
     // AdeptusMechanicus.ApparelComposite
     public class ApparelComposite : Apparel
     {
@@ -162,6 +26,11 @@ namespace AdeptusMechanicus
                     if (AltGraphicsExt != null)
                     {
                         altGraphics = AltGraphicsExt.alternateGraphics;
+                        if (Quality != null && AltGraphicsExt.QualityControled)
+                        {
+                            altGraphics.RemoveAll(x => !x.SuitableQuality(Quality.Quality));
+                        }
+
                     }
                 }
                 return altGraphics;
@@ -173,10 +42,25 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (activeAltGraphic == null && activeAltInt > -1)
+                if (activeAltGraphic == null && activeAltInt > -1 && AltGraphicsExt != null)
                 {
                     if (!activeAltKey.NullOrEmpty()) activeAltGraphic = AltGraphics?.Find(x => x.saveKey == activeAltKey);
-                    else activeAltGraphic = AltGraphics?[Math.Min(activeAltInt, AltGraphics.Count)];
+                    else
+                    {
+                        List<AlternateApparelGraphic> useable = AltGraphics;
+                        int used = activeAltInt;
+                        /*
+                        if (Quality != null && AltGraphicsExt.QualityControled)
+                        {
+                            useable.RemoveAll(x => !x.SuitableQuality(Quality.Quality));
+                        }
+                        */
+                        if (AltGraphicsExt.randomizeInital)
+                        {
+                            used = Rand.Range(0, useable.Count - 1);
+                        }
+                        activeAltGraphic = useable?[Math.Min(used, useable.Count - 1)];
+                    }
                 }
                 return activeAltGraphic;
             }
@@ -223,6 +107,20 @@ namespace AdeptusMechanicus
         }
         public FactionDefExtension ColoursExt => FactionColours !=null ? (FactionColours?.GetModExtensionFast<FactionDefExtension>() ?? null) : null;
         bool triedColorable = false;
+        bool triedQuality = false;
+        public CompQuality quality;
+        public CompQuality Quality
+        {
+            get
+            {
+                if (quality == null && !triedQuality)
+                {
+                    quality = this.TryGetCompFast<CompQuality>();
+                    triedQuality = true;
+                }
+                return quality;
+            }
+        }
         public CompColorable colorable;
         public CompColorable Colorable
         {
@@ -391,7 +289,7 @@ namespace AdeptusMechanicus
                         r = ActiveAltGraphic.wornGraphicPath;
                     }
                 }
-                Log.Message("using " + r);
+            //    Log.Message("using " + r);
                return r;
             }
         }
@@ -419,7 +317,7 @@ namespace AdeptusMechanicus
                     }
                     catch (Exception)
                     {
-                        Log.Message("shit went tits up");
+                    //    Log.Message("shit went tits up");
                         failedgraphic = true;
                     }
                 }

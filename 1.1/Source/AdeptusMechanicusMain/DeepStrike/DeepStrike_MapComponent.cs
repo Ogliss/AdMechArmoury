@@ -24,7 +24,7 @@ namespace AdeptusMechanicus
             {
                 foreach (DeepStrike item in Strikes)
                 {
-                    if (item.delay>0)
+                    if (!item.StrikeNow)
                     {
                         item.delay--;
                     }
@@ -47,23 +47,28 @@ namespace AdeptusMechanicus
         public void DoStrike(DeepStrike strike)
         {
             string str = string.Empty;
-            foreach (var item in strike.members)
+            foreach (var item in strike.Members)
             {
-                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.DropPod)
+                switch (item.DeepStrike().pawnsArrivalMode)
                 {
-                    Droppers.Add(item);
-                }
-                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Fly)
-                {
-                    Flyers.Add(item);
-                }
-                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Teleport)
-                {
-                    Teleporters.Add(item);
-                }
-                if (item.DeepStrike().pawnsArrivalMode == DeepStrikeType.Tunnel)
-                {
-                    Tunnellers.Add(item);
+                    case DeepStrikeType.DropPod:
+                        Droppers.Add(item);
+                        break;
+                    case DeepStrikeType.DropPara:
+                        break;
+                    case DeepStrikeType.DropShip:
+                        break;
+                    case DeepStrikeType.Fly:
+                        Flyers.Add(item);
+                        break;
+                    case DeepStrikeType.Teleport:
+                        Teleporters.Add(item);
+                        break;
+                    case DeepStrikeType.Tunnel:
+                        Tunnellers.Add(item);
+                        break;
+                    default:
+                        break;
                 }
             }
             List<Pawn> pawns = new List<Pawn>();

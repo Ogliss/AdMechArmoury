@@ -14,17 +14,30 @@ using UnityEngine;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    
     [HarmonyPatch(typeof(MainTabWindow_Research), "ViewSize")]
     public static class MainTabWindow_Research_ViewSize_SubTabs_Patch
 	{
 		[HarmonyPrefix]
         public static void Prefix(MainTabWindow_Research __instance, ref ResearchTabDef tab, ref Vector2 __result)
 		{
-            if (tab == AdeptusResearchTabDefOf.OGAMA_RTab)
+            if (ResearchSubTabUtility.CurSubTab.IsSubTabOf(tab))
             {
                 tab = ResearchSubTabUtility.CurSubTab;
             }
 		}
+        /*
+		[HarmonyPostfix]
+        public static void Postfix(MainTabWindow_Research __instance, ref ResearchTabDef tab, ref Vector2 __result)
+		{
+            if (tab == ResearchSubTabUtility.CurSubTab)
+            {
+                Vector2 result = __result;
+                result.y -= 6;
+                __result = result;
+            }
+		}
+        */
 
 	}
     

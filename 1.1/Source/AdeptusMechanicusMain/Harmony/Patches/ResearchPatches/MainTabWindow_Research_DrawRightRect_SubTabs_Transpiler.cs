@@ -24,9 +24,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             var instructionsList = new List<CodeInstruction>(instructions);
             MethodInfo CurTab = AccessTools.Property(typeof(MainTabWindow_Research), "CurTab").GetGetMethod(true);
+            MethodInfo ScrollWindow = AccessTools.Method(typeof(Widgets), "ScrollHorizontal");
             bool tabs = false;
             bool research = false;
             bool links = false;
+            bool log = false;
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 var instruction = instructionsList[i];
@@ -39,6 +41,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                     yield return new CodeInstruction(opcode: OpCodes.Call, CurTab);
                     instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(ResearchSubTabUtility).GetMethod("SubTabMenu"));
 
+
+                }
+                if (ScrollWindow != null)
+                {
+                    if (instruction.opcode == OpCodes.Call && instruction.OperandIs(ScrollWindow))
+                    {
+                    //    Log.Message("ScrollWindow "+i + " opcode: " + instruction.opcode + " operand: " + instruction.operand.ToString());
+                        instruction.operand = typeof(AdeptusWidgets).GetMethod("ScrollHorizontalAndVert");
+                    }
 
                 }
                 if (i > 1 && instruction.opcode == (research && !links ? OpCodes.Bne_Un_S : OpCodes.Bne_Un) && instructionsList[i - 1].OperandIs(CurTab))

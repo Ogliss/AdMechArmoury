@@ -12,6 +12,28 @@ namespace AdeptusMechanicus
 {
     public static class AdeptusApparelUtility
     {
+        public static bool CanCustomizeApparel(Thing thing)
+        {
+            if (thing is ApparelComposite apparel)
+            {
+                if (!apparel.Pauldrons.NullOrEmpty() || !apparel.AltGraphics.NullOrEmpty() | apparel.ColorableFaction != null)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (PauldronApparel.Contains(thing.def))
+                {
+                    return true;
+                }
+                if (thing.def.HasComp(typeof(CompColorableTwoFaction)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static Graphic ApplyMask(Graphic Original, Apparel apparel, Color32 colorOne, Color32 colorTwo, string mskVariant, string mskFaction)
         {
 
@@ -149,24 +171,107 @@ namespace AdeptusMechanicus
             }
         }
 
-        public static void DrawVariantButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
+        public static void DrawVariantButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable = false)
         {
             Rect rect1 = rect.LeftHalf().LeftHalf();
             Rect rect2 = rect.LeftHalf().RightHalf();
             rect2.width *= 2;
-            //   entry.Drawer = comp;
             Rect rect3 = rect.RightHalf().RightHalf();
             Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
-            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry, (ShoulderPadEntry p) => p.Used, new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu), entry.Used.Label, null, null, null, null, true);
-            /*
-            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
-                (ShoulderPadEntry sp) => sp.Used,
-                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu),
-                entry.VariantTextures.activeOption.Label, null, null, null, delegate ()
-                {
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>
+                (
+                    rect2, 
+                    entry,
+                    (ShoulderPadEntry p) => p.Used, 
+                    new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawVariantButton_GenerateMenu), 
+                    entry.Used.Label, 
+                    null, 
+                    null, 
+                    null,
+                    delegate ()
+                    {
+                    },
+                    paintable
+                );
+        }
 
-                }, paintable);
-            */
+        public static void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable = false)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>
+                (
+                    rect2,
+                    entry,
+                    (ShoulderPadEntry sp) => entry.Used,
+                    new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawFactionButton_GenerateMenu),
+                    entry.Used.Label, 
+                    null, 
+                    null, 
+                    null, 
+                    delegate ()
+                    {
+                    }, 
+                    paintable
+                );
+        }
+
+
+        public static void DrawBaseTextureOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
+        {
+            float w = rect.width / 5;
+            float w2 = (rect.width - w) / 4;
+            float y = rect.y;
+            float x = rect.x;
+            Rect rect1 = new Rect(x, y, w, 30f);
+            Widgets.Label(rect1, label);
+            x += w;
+            Rect rect2 = new Rect(x, y, w2, 30f);
+            Widgets.Dropdown<ApparelComposite, AlternateApparelGraphic>
+                (
+                    rect2,
+                    composite,
+                    (ApparelComposite p) => p.ActiveAltGraphic,
+                    new Func<ApparelComposite, IEnumerable<Widgets.DropdownMenuElement<AlternateApparelGraphic>>>(DrawMainTexVariantButton_GenerateMenu),
+                    composite.ActiveAltGraphic?.label.CapitalizeFirst() ?? composite.AltGraphicsExt.defaultLabel.CapitalizeFirst(),
+                    null,
+                    null,
+                    null,
+                    delegate ()
+                    {
+                    },
+                    paintable
+                );
+            x += w;
+        }
+
+        public static void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable = false)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Widgets.Label(rect1, "Faction Presets: ");
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Dropdown<CompColorableTwoFaction, FactionDef>
+                (
+                    rect2, 
+                    comp,
+                    (CompColorableTwoFaction sp) => comp.FactionDef,
+                    new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
+                    comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None",
+                    comp.FactionDef != null ? comp.FactionDef.FactionIcon : null,
+                    null,
+                    null,
+                    delegate ()
+                    {
+
+                    }, 
+                    paintable
+                );
+
         }
 
         private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)
@@ -186,6 +291,11 @@ namespace AdeptusMechanicus
                         }
                         */
                         e.UpdateGraphic();
+                        if (e.Drawer.pawn != null)
+                        {
+                            UpdateApparelGraphicsFor(e.Drawer.pawn);
+                        }
+
 
 
                     }, MenuOptionPriority.Default, null, null, 0f, null, null),
@@ -211,6 +321,11 @@ namespace AdeptusMechanicus
                                 }
                                 */
                                 e.UpdateGraphic();
+                                if (e.Drawer.pawn != null)
+                                {
+                                    UpdateApparelGraphicsFor(e.Drawer.pawn);
+                                }
+
 
                             }, MenuOptionPriority.Default, null, null, 0f, null, null),
                             payload = variant
@@ -219,24 +334,6 @@ namespace AdeptusMechanicus
                 }
             }
             yield break;
-        }
-
-        public static void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
-        {
-            Rect rect1 = rect.LeftHalf().LeftHalf();
-            Rect rect2 = rect.LeftHalf().RightHalf();
-            rect2.width *= 2;
-
-            Rect rect3 = rect.RightHalf().RightHalf();
-            Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
-            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>(rect2, entry,
-                (ShoulderPadEntry sp) => entry.Used,
-                new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawFactionButton_GenerateMenu),
-                entry.Used.Label, null, null, null, delegate ()
-                {
-                    //    entry.Drawer = comp;
-                }, paintable);
-
         }
 
         private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawFactionButton_GenerateMenu(ShoulderPadEntry e)
@@ -350,35 +447,6 @@ namespace AdeptusMechanicus
             yield break;
         }
 
-
-        public static void DrawBaseTextureOptions(Rect rect, string label, ApparelComposite composite)
-		{
-			float w = rect.width / 5;
-			float w2 = (rect.width - w) / 4;
-			float y = rect.y;
-			float x = rect.x;
-			Rect rect1 = new Rect(x, y, w, 30f);
-			Widgets.Label(rect1, label);
-			x += w;
-			Rect rect2 = new Rect(x, y, w2, 30f);
-
-			Widgets.Dropdown<ApparelComposite, AlternateApparelGraphic>
-                (
-                    rect2, 
-                    composite, 
-                    (ApparelComposite p) => p.ActiveAltGraphic, 
-                    new Func<ApparelComposite, IEnumerable<Widgets.DropdownMenuElement<AlternateApparelGraphic>>>(DrawMainTexVariantButton_GenerateMenu),
-                    composite.ActiveAltGraphic?.label.CapitalizeFirst() ?? composite.AltGraphicsExt.defaultLabel.CapitalizeFirst(),
-                    null, 
-                    null, 
-                    null, 
-                    null,
-                    true
-                );
-		//	Widgets.Dropdown<ApparelComposite, AlternateApparelGraphic>(rect2, composite, (ApparelComposite p) => p.ActiveAltGraphic, new Func<ApparelComposite, IEnumerable<Widgets.DropdownMenuElement<AlternateApparelGraphic>>>(DrawMainTexVariantButton_GenerateMenu), "Texture", null, null, null, null, true);
-			x += w;
-		}
-
 		private static IEnumerable<Widgets.DropdownMenuElement<AlternateApparelGraphic>> DrawMainTexVariantButton_GenerateMenu(ApparelComposite composite)
 		{
 			if (composite.ActiveAltGraphic != null)
@@ -423,29 +491,6 @@ namespace AdeptusMechanicus
 				}
 			}
 			yield break;
-		}
-
-		public static void DrawFactionColorsButton(Rect rect, CompColorableTwoFaction comp, bool paintable)
-		{
-			Rect rect1 = rect.LeftHalf().LeftHalf();
-			Widgets.Label(rect1, "Faction Presets: ");
-
-			Rect rect2 = rect.LeftHalf().RightHalf();
-			rect2.width *= 2;
-
-			Rect rect3 = rect.RightHalf().RightHalf();
-			Widgets.Dropdown<CompColorableTwoFaction, FactionDef>(rect2, comp,
-				(CompColorableTwoFaction sp) => comp.FactionDef,
-				new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
-				comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None",
-				comp.FactionDef != null ? comp.FactionDef.FactionIcon : null, 
-				null, 
-				null, 
-				delegate ()
-				{
-
-				}, paintable);
-
 		}
 
 		private static IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompColorableTwoFaction e)
@@ -583,8 +628,9 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (pauldronApparel.NullOrEmpty())
+                if (pauldronApparel == null)
                 {
+                    pauldronApparel = new List<ThingDef>();
                     pauldronApparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(CompPauldronDrawer)));
                     if (AMAMod.Dev)
                     {
@@ -594,14 +640,42 @@ namespace AdeptusMechanicus
                 return pauldronApparel;
             }
         }
+        private static List<ThingDef> pauldronApparelCustomizeable;
+        public static List<ThingDef> PauldronApparelCustomizeable
+        {
+            get
+            {
+                if (pauldronApparelCustomizeable == null)
+                {
+                    pauldronApparelCustomizeable = new List<ThingDef>();
+                    foreach (var item in pauldronApparel)
+                    {
+                        CompProperties_PauldronDrawer drawer = item.GetCompProperties<CompProperties_PauldronDrawer>();
+                        if (drawer != null)
+                        {
+                            if (drawer.PauldronEntries.Any(x=> x.UseFactionTextures || x.UseVariableTextures))
+                            {
+                                pauldronApparelCustomizeable.Add(item);
+                            }
+                        }
+                    }
+                    if (AMAMod.Dev)
+                    {
+                        Log.Message("Generated PauldronApparel list: " + pauldronApparelCustomizeable.Count);
+                    }
+                }
+                return pauldronApparelCustomizeable;
+            }
+        }
 
         private static List<ThingDef> extraPartApparel;
         public static List<ThingDef> ExtraPartApparel
         {
             get
             {
-                if (extraPartApparel.NullOrEmpty())
+                if (extraPartApparel == null)
                 {
+                    extraPartApparel = new List<ThingDef>();
                     extraPartApparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(CompApparelExtraPartDrawer)));
                     if (AMAMod.Dev)
                     {
@@ -621,6 +695,7 @@ namespace AdeptusMechanicus
                 if (graphicHediffs == null)
                 {
 
+                    graphicHediffs = new List<HediffDef>();
                     graphicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_DrawImplant_AdMech)));
                     if (AMAMod.Dev)
                     {

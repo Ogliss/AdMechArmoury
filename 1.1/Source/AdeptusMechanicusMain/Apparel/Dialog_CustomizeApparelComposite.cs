@@ -24,18 +24,35 @@ namespace AdeptusMechanicus
 
 		public Dialog_CustomizeApparelComposite(Thing thing)
 		{
+			if (Things == null) Things = new List<Thing>();
+			if (thing is Apparel apparel && apparel.Wearer is Pawn pawn)
+			{
+				foreach (Apparel item in pawn.apparel.WornApparel)
+				{
+				//	Log.Message(pawn + ": wearing " + item);
+					if (!Things.Contains(item) && AdeptusApparelUtility.CanCustomizeApparel(item))
+					{
+					//	Log.Message(item + ": Customizeable");
+						Things.Add(item);
+					}
+				}
+			}
 			this.thing = thing;
+			this.thingInd = Things.IndexOf(thing);
 			this.forcePause = true;
 			this.doCloseButton = true;
 			this.absorbInputAroundWindow = true;
 			this.soundAppear = SoundDefOf.CommsWindow_Open;
 			this.soundClose = SoundDefOf.CommsWindow_Close;
 		}
+		private int thingInd = 0;
 
+        private readonly List<Thing> Things;
 		public override void PostOpen()
 		{
 			base.PostOpen();
 		}
+
 
 		public override void DoWindowContents(Rect inRect)
 		{
@@ -69,15 +86,38 @@ namespace AdeptusMechanicus
 			Rect mainRect = new Rect(0f, 58f + num2, inRect.width, inRect.height - 58f - 38f - num2 - 20f);
 			this.FillMainRect(mainRect);
 			GUI.EndGroup();
+			Rect rect3 = this.windowRect.AtZero();
+
+
+            if (Things.Count > 1)
+			{
+				if (BackButtonFor(new Rect((rect3.width / 2f - this.CloseButSize.x / 2f) - this.CloseButSize.x - 20f, rect3.height - 74f, this.CloseButSize.x * 0.9f, this.CloseButSize.y * 0.9f)))
+				{
+					this.Thing = this.Things[thingInd == 0 ? Things.Count -1 : thingInd - 1];
+				}
+				if (NextButtonFor(new Rect((rect3.width / 2f - this.CloseButSize.x / 2f) + this.CloseButSize.x - 5f, rect3.height - 74f, this.CloseButSize.x * 0.9f, this.CloseButSize.y * 0.9f)))
+				{
+					this.Thing = this.Things[thingInd == Things.Count -1 ? 0 : thingInd + 1];
+				}
+			}
+
 		}
 
+		public static bool BackButtonFor(Rect rectToBack)
+		{
+			return Widgets.ButtonText(rectToBack, "Back".Translate(), true, true, true);
+		}
+		public static bool NextButtonFor(Rect rectToBack)
+		{
+			return Widgets.ButtonText(rectToBack, "Next".Translate(), true, true, true);
+		}
 		public override void Close(bool doCloseSound = true)
 		{
 			DragSliderManager.ForceStop();
 			base.Close(doCloseSound);
 		}
 
-		private static readonly Vector2 PawnPortraitSize = new Vector2(128f, 128f) * 2.5f;
+		private static readonly Vector2 PawnPortraitSize = new Vector2(256f, 256f) * 1.5f;
 
 		private void FillMainRect(Rect mainRect)
 		{
@@ -154,6 +194,7 @@ namespace AdeptusMechanicus
 									num += 30f;
 									num4++;
 								}
+								else
 								if (entry.UseVariableTextures)
 								{
 									Rect rect = new Rect(0f, num, scrollViewRect.width, 30f);
@@ -235,6 +276,23 @@ namespace AdeptusMechanicus
 		{
 			return true;
 		}
+
+		protected Thing Thing
+        {
+            get
+            {
+				return thing;
+            }
+            set
+            {
+                if (value == thing)
+                {
+					return;
+                }
+				thing = value; 
+				thingInd = Things.IndexOf(this.thing);
+			}
+        }
 
 		private Thing thing = null;
 		private Vector2 scrollPosition = Vector2.zero;

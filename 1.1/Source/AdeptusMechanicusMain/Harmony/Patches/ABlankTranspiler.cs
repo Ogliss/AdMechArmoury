@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 yield return instruction;
             }
             
-}
+        }
     }
     */
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,31 @@ namespace AdeptusMechanicus
     internal class SubTabRecord : TabRecord
 	{
 
-		public SubTabRecord(string label, ResearchProjectTagDef subTagDef, Action clickedAction, bool selected) : base(label, clickedAction, selected)
+		public SubTabRecord(ResearchSubTabDef subTabDef, Action clickedAction, bool selected, string label = null) : base(label, clickedAction, selected)
 		{
-			this.label = label;
 			this.clickedAction = clickedAction;
 			this.selected = selected;
-			this.subTagDef = subTagDef;
+			this.subTabDef = subTabDef;
+			this.label = subTabDef.LabelCap;
+			this.subTagDef = subTabDef.tagdef;
+			this.parentTab = subTabDef.parentTab;
 		}
-		public SubTabRecord(string label, ResearchProjectTagDef subTagDef, Action clickedAction, Func<bool> selected) : base(label, clickedAction, selected)
+		public SubTabRecord(ResearchSubTabDef subTabDef, Action clickedAction, Func<bool> selected, string label = null) : base(label, clickedAction, selected)
 		{
-			this.label = label;
 			this.clickedAction = clickedAction;
 			this.selectedGetter = selected;
-			this.subTagDef = subTagDef;
+			this.label = subTabDef.LabelCap;
+			this.subTabDef = subTabDef;
+			this.subTagDef = subTabDef.tagdef;
+			this.parentTab = subTabDef.parentTab;
 		}
+		public ResearchSubTabDef subTabDef;
 		public ResearchProjectTagDef subTagDef;
+		public ResearchTabDef parentTab;
+
+		public bool SubTabOf(ResearchTabDef tabDef)
+        {
+			return tabDef == this.subTabDef.parentTab;
+        }
 	}
 }

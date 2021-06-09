@@ -41,7 +41,7 @@ namespace AdeptusMechanicus
 				return this.AttackVerb.ProjectileFliesOverhead() || this.IsMortar;
 			}
 		}
-		/*
+        /*
 		public override IEnumerable<Gizmo> GetGizmos()
 		{
 			foreach (Gizmo gizmo in base.GetGizmos())
@@ -67,5 +67,13 @@ namespace AdeptusMechanicus
 			yield break;
 		}
 		*/
-	}
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            if (this.def.rotatable && respawningAfterLoad && this.IsMannable && !this.mannableComp.MannedNow)
+			{
+				this.top.SetRotationFromOrientation();
+			}
+        }
+    }
 }

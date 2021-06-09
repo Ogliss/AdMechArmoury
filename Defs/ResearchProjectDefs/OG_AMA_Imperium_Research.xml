@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Research Imperial Weapons =========================OG-->
-
+	<!--OG==================== Imperial Tech - Abstract =========================OG-->
 	<ResearchProjectDef Name="OG_Imperial_ReseachBase" Abstract="True">
 		<tab>OGAMA_RSubTab_Imperial</tab>
 		<tags>
@@ -10,6 +9,7 @@
 		</tags>
 	</ResearchProjectDef>
 	
+	<!--OG==================== Imperial Tech - Base =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Base_T0</defName> 
 		<label>Imperial Subjects</label>
@@ -21,9 +21,10 @@
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<researchViewX>0.00</researchViewX>
-		<researchViewY>1.50</researchViewY>
+		<researchViewY>3.00</researchViewY>
 	</ResearchProjectDef>
 	
+	<!--OG==================== Imperial Tech - Apparel =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Apparel</defName>
 		<label>Imperial Clothing</label>
@@ -39,6 +40,7 @@
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef> 
 	
+	<!--OG==================== Imperial Tech - Armour =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Apparel_Armour_T1</defName>
 		<label>Flakk Armour</label>
@@ -61,13 +63,30 @@
 		<baseCost>750</baseCost>
 		<prerequisites>
 			<li>OG_Imperial_Tech_Apparel_Armour_T1</li>
+			<li>ReconArmor</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>4.50</researchViewX>
+		<researchViewY>1.50</researchViewY>
+	</ResearchProjectDef> 
+		
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Apparel_Armour_T3</defName>
+		<label>Power Armour</label>
+		<description>Allows you to create Imperial Power Armour</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
+			<li>PoweredArmor</li>
 		</prerequisites>
 		<techLevel>Industrial</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
 		<researchViewX>6.00</researchViewX>
 		<researchViewY>1.50</researchViewY>
 	</ResearchProjectDef> 
-	
+		
+	<!--OG==================== Imperial Tech - Conversion Shield =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Wargear_Shield</defName>
 		<label>Conversion Fields</label>
@@ -96,8 +115,7 @@
 		</modExtensions>
 	</ResearchProjectDef>
 	
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Servo Skulls =========================OG-->
-
+	<!--OG==================== Imperial Tech - Servo Skulls =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Wargear_ServoSkull</defName>
 		<label>Servo Skulls</label>
@@ -128,7 +146,7 @@
 		</modExtensions>
 	</ResearchProjectDef>
 
-	<!--OG==================== Adeptus Mechanicus Armoury Mod - Bolt Weapons =========================OG-->
+	<!--OG==================== Imperial Tech - Bolt Weapons =========================OG-->
 	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
 		<defName>OG_Imperial_Tech_Weapons_Bolt</defName>
 		<label>Bolt Weapons</label>

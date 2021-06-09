@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>8.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -114,6 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Abilities\FlyingObject_JumpPack.cs.bak" />
+    <None Include="AI\AbilityAIDef.cs.bak" />
+    <None Include="AI\AbilityUserAIProfileDef.cs.bak" />
+    <Compile Include="Apparel\AlternateApparelGraphic.cs" />
+    <Compile Include="Apparel\ApparelGraphicExtension.cs" />
     <Compile Include="Apparel\Dialog_CustomizeApparelComposite.cs" />
     <Compile Include="Attributes\MayRequireUniversalFermenter.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisAstartes.cs" />
@@ -124,13 +129,17 @@
     <Compile Include="Attributes\MayRequireXenobiologisTau.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisTyranids.cs" />
     <Compile Include="Backstories\BackstorySettings.cs" />
+    <Compile Include="Comps\CompPowerPlantWind.cs" />
+    <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
+    <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
     <Compile Include="DeOf\AdeptusResearchTabDefOf.cs" />
-    <Compile Include="Harmony\Patches\MainTabWindow_Research_ViewSize_SubTabs_Patch.cs" />
-    <Compile Include="Harmony\Patches\MainTabWindow_Research_PostOpen_SubTabs_Transpiler.cs" />
-    <Compile Include="Harmony\Patches\ResearchProjectDef_GenerateNonOverlappingCoordinates_SubTabs_Transpiler.cs" />
-    <Compile Include="Harmony\Patches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
-    <Compile Include="Harmony\Patches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
+    <Compile Include="Harmony\Patches\GenSpawn_SpawningWipes_MountedWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_ViewSize_SubTabs_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_PostOpen_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\ResearchProjectDef_GenerateNonOverlappingCoordinates_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_DetonateOnDeath.cs" />
     <Compile Include="Comps\CompFireStarter.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
@@ -161,7 +170,7 @@
     <Compile Include="DeOf\AdeptusTraitDefOf.cs" />
     <Compile Include="ExtentionMethods\Toil_IngestExtensions.cs" />
     <Compile Include="Harmony\Patches\ABlankPatch.cs" />
-    <Compile Include="Harmony\Patches\ITab_Pawn_Gear_DrawThingRow_CustomizeItemButton_Transpiler.cs" />
+    <None Include="Harmony\Patches\ITab_Pawn_Gear_DrawThingRow_CustomizeItemButton_Transpiler.cs.bak" />
     <Compile Include="Harmony\Patches\BackCompatability\ParseHelper_ParseType_Patch.cs" />
     <Compile Include="Harmony\Patches\GenSpawn_Spawn_RelicTracker_Patch.cs" />
     <Compile Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs" />
@@ -173,7 +182,7 @@
     <Compile Include="DefExtentions\ScattershotProjectileExtension.cs" />
     <Compile Include="ExtentionMethods\FastGetCompsExtensions.cs" />
     <Compile Include="ExtentionMethods\MuzzlePositionExtensions.cs" />
-    <Compile Include="Harmony\Patches\ResearchProjectDef_CanBeResearchedAt_RaceBench_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\ResearchProjectDef_CanBeResearchedAt_RaceBench_Patch.cs" />
     <None Include="Harmony\Patches\_TransportPodsArrivalActionUtility_DropShuttle_NewTemp_FactionShuttle_Transpiler.cs.bak" />
     <None Include="Harmony\Patches\_QuestGen_Shuttle_GenerateShuttle_FactionShuttle_Transpiler.cs.bak" />
     <None Include="Harmony\Patches\_SkyfallerUtility_MakeDropoffShuttle_FactionShuttle_Transpiler.cs.bak" />
@@ -206,7 +215,7 @@
     <Compile Include="Lasers\SpinningLaserGunTurret.cs" />
     <Compile Include="Lasers\ThingExtensions.cs" />
     <Compile Include="PatchOps\PatchOperationAddOrReplace - Copy.cs" />
-    <Compile Include="Things\Buildings\Class1.cs" />
+    <Compile Include="Things\Buildings\Building_TurretGun.cs" />
     <Compile Include="Things\PawnThrown.cs" />
     <Compile Include="Things\Gas\DamageGas.cs" />
     <Compile Include="Things\WarpRift.cs" />
@@ -310,7 +319,7 @@
     <Compile Include="Things\Ordnance\AirStrikes\FlyingShip.cs" />
     <Compile Include="Things\Ordnance\AirStrikes\AirStrikeIncoming.cs" />
     <Compile Include="Comps\CompWearable.cs" />
-    <Compile Include="Harmony\Patches\RelationsUtility_TryDevelopBondRelation_Restricted_Patch.cs" />
+    <None Include="Harmony\Patches\RelationsUtility_TryDevelopBondRelation_Restricted_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\Ext_Pawn_TryStartOffHandAttack_DualWield_Patch.cs" />
     <Compile Include="Harmony\Patches\RaceProperties_get_IsFlesh_Name_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnWeaponGenerator_Reset_WeaponRestriction_Patch.cs" />
@@ -374,41 +383,41 @@
     <Compile Include="DeepStrike\DeepStrikeCellFinder.cs" />
     <Compile Include="Utility\Listing_StandardExpanding.cs" />
     <Compile Include="Utility\AdeptusWidgets.cs" />
-    <Compile Include="IntergrationUtilities\Integration.cs" />
-    <Compile Include="IntergrationUtilities\Integration_EndTimesWithGuns.cs" />
-    <Compile Include="IntergrationUtilities\Integration_ARimworldOfMagic.cs" />
-    <Compile Include="IntergrationUtilities\Integration_ChJdroids.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AvP.cs" />
-    <Compile Include="IntergrationUtilities\Integration_GasTrap.cs" />
-    <Compile Include="IntergrationUtilities\Integration_SaveOurShip2.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AndroidTiers.cs" />
-    <Compile Include="IntergrationUtilities\Integration_RunAndGun.cs" />
-    <Compile Include="IntergrationUtilities\Integration_DualWield.cs" />
-    <Compile Include="IntergrationUtilities\Integration_ResearchPal.cs" />
-    <Compile Include="IntergrationUtilities\Integration_CombatExtended.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AstraServoSkulls.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AstraTurrets.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AstraFactions.cs" />
-    <Compile Include="IntergrationUtilities\Integration_AstraCore.cs" />
-    <Compile Include="IntergrationUtilities\Integration_GeneSeed.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Sororitas.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Militarum.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Mechanicus.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Xenobiologis.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Astartes.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Tyranid.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Necron.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Orkz.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Tau.cs" />
-    <Compile Include="IntergrationUtilities\Integration_DarkEldar.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Eldar.cs" />
-    <Compile Include="IntergrationUtilities\Integration_Chaos.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_EndTimesWithGuns.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_ARimworldOfMagic.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_ChJdroids.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AvP.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_GasTrap.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_SaveOurShip2.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AndroidTiers.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_RunAndGun.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_DualWield.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_ResearchPal.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_CombatExtended.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AstraServoSkulls.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AstraTurrets.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AstraFactions.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_AstraCore.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_GeneSeed.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Sororitas.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Militarum.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Mechanicus.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Xenobiologis.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Astartes.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Tyranid.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Necron.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Orkz.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Tau.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_DarkEldar.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Eldar.cs" />
+    <Compile Include="Utility\IntergrationUtilities\Integration_Chaos.cs" />
     <Compile Include="Utility\MultiplayerCompatibilityUtility.cs" />
     <Compile Include="DebugTools\DebugActionsMisc.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_Irradiator.cs" />
-    <Compile Include="IntergrationUtilities\AdeptusIntergrationUtility.cs" />
-    <Compile Include="IntergrationUtilities\UtilDinosauria.cs" />
-    <Compile Include="IntergrationUtilities\UtilTieredAndroids.cs" />
+    <Compile Include="Utility\IntergrationUtilities\AdeptusIntergrationUtility.cs" />
+    <Compile Include="Utility\IntergrationUtilities\UtilDinosauria.cs" />
+    <Compile Include="Utility\IntergrationUtilities\UtilTieredAndroids.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_OnTopOfLowWalls.cs" />
     <Compile Include="StockGenerators\StockGenerator_ArmorTagged.cs" />
     <Compile Include="ScenParts\ScenPart_ConfigPage_ConfigureStartingPawnsSpecific.cs" />
@@ -441,7 +450,7 @@
     <Compile Include="Harmony\Patches\PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_get_DrawPos_CompFloater_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_Tick_Trailer_Patch.cs" />
-    <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch.cs" />
     <Compile Include="Harmony\Patches\Thing_DrawColorTwo_CompColorableTwo_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_Draw_ProjectileGlow_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_ApparelTracker_Notify_ApparelAdded_CompHediffApparel_Patch.cs" />
@@ -492,9 +501,9 @@
     <Compile Include="GameConditions\GameCondition_PlanetConquest.cs" />
     <Compile Include="Harmony\Patches\IncidentWorker_TryExecute_Test_Patch.cs" />
     <Compile Include="Harmony\Patches\Page_ScenarioLister_ScenariosInCategory_Patch.cs" />
-    <Compile Include="Harmony\Patches\MainTabWindow_Research_DrawResearchPrereqs_AnyOneOf_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_DrawResearchPrereqs_AnyOneOf_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.cs" />
-    <Compile Include="Harmony\Patches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch.cs" />
+    <Compile Include="Harmony\Patches\ResearchPatches\ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch.cs" />
     <Compile Include="Harmony\Patches\Graphic_Collection_Init_Test_Patch.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_GetBackCompatibleType_Patch.cs" />
     <Compile Include="Harmony\Patches\AgeInjuryUtility_RandomHediffsToGainOnBirthday_RejuveTreatment_Patch.cs" />
@@ -581,7 +590,7 @@
     <Compile Include="Apparel\ApparelComposite.cs" />
     <Compile Include="Apparel\Apparel_ShockCollar.cs" />
     <Compile Include="ExtentionMethods\ObjectExtensions.cs" />
-    <Compile Include="IntergrationUtilities\UtilJurassicRimworld.cs" />
+    <Compile Include="Utility\IntergrationUtilities\UtilJurassicRimworld.cs" />
     <None Include="Comps\CompPoweredStatChange.cs.bak" />
     <Compile Include="DeepStrike\TeleportSpawner.cs" />
     <Compile Include="WeatherEvents\WeatherEvent_WarpLightningStrike.cs" />
@@ -673,6 +682,11 @@
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>
     </PackageReference>
+    <PackageReference Include="TaskPubliciser">
+      <Version>1.0.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
       <Version>8.0.0</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
@@ -680,5 +694,26 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
+  <Target Name="MyCode" BeforeTargets="UpdateReferences">
+    <PropertyGroup>
+      <AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
+      <PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
+      <AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
+    </PropertyGroup>
+    <Publicise TargetAssemblyPath="$(AssemblyCSharp)" OutputPath="$(PubliciseOutputPath)" Condition="Exists('$(AssemblyCSharp)')" />
+    <ItemGroup>
+      <Reference Include="$(AssemblyCSharp_Publicised)">
+        <SpecificVersion>false</SpecificVersion>
+        <HintPath>$(AssemblyCSharp_Publicised)</HintPath>
+        <Implicit>true</Implicit>
+        <Private>false</Private>
+      </Reference>
+    </ItemGroup>
+  </Target>
+  <Target Name="UpdateReferences" AfterTargets="ResolveLockFileReferences">
+    <ItemGroup>
+      <Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
+    </ItemGroup>
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
