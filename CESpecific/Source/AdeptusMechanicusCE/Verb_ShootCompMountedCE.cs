@@ -16,7 +16,7 @@ namespace CompTurretCE
 	// 1168 CompTurret.Verb_ShootCompMounted
 	public class Verb_ShootCompMountedCE : Verb_LaunchProjectileCE
 	{
-		protected override int ShotsPerBurst
+		public override int ShotsPerBurst
 		{
 			get
 			{

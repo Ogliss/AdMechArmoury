@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,8 +8,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdeptusMechanicus</RootNamespace>
     <AssemblyName>AdeptusMechanicusArmoury</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFramework>net472</TargetFramework>
     <FileAlignment>512</FileAlignment>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,6 +37,10 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -48,29 +52,32 @@
     <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AnimatedProjectile\bin\Debug\1AnimatedProjectile.dll</HintPath>
+      <Private>true</Private>
     </Reference>
-    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="1CompActivatableEffect">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompActivatableEffect\bin\Debug\1CompActivatableEffect.dll</HintPath>
     </Reference>
-    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="1CompOversizedWeapon">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompOversizedWeapon\bin\Debug\1CompOversizedWeapon.dll</HintPath>
     </Reference>
     <Reference Include="1CompSlotLoadable">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompSlotLoadable\bin\Debug\1CompSlotLoadable.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleDef\bin\Debug\1CompToggleDef.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AbilitiesExtended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AbilitiesExtended\bin\Debug\AbilitiesExtended.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AdvancedGraphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AdvancedGraphics\bin\Debug\AdvancedGraphics.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.2\Assemblies\AlienRace.dll</HintPath>
@@ -82,13 +89,16 @@
     </Reference>
     <Reference Include="CompApparelVerbGiver">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompApparelVerbGiver\bin\Debug\CompApparelVerbGiver.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="CompToggleFireMode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleFireMode\bin\Debug\CompToggleFireMode.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="CompTurret">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompTurret\bin\Debug\CompTurret.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Corruption.Core">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2137637809\1.2\Assemblies\Corruption.Core.dll</HintPath>
@@ -96,6 +106,7 @@
     </Reference>
     <Reference Include="CrashedShipsExtension">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\ExpandedCrashedShips\bin\Debug\CrashedShipsExtension.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="DualWield">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1628211313\Assemblies\DualWield.dll</HintPath>
@@ -107,6 +118,7 @@
     </Reference>
     <Reference Include="RecruitShips">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\RecruitShips\bin\Debug\RecruitShips.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="ShipsHaveInsides">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1909914131\1.2\Assemblies\ShipsHaveInsides.dll</HintPath>
@@ -669,16 +681,13 @@
     <Compile Include="DamageWorkers\DamageWorker_BombNoCamShake.cs" />
     <Compile Include="DamageWorkers\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="DeOf\AdeptusBodyPartGroupDefOf.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GunSpecialRules\StatDrawEntry.cs" />
     <Compile Include="Utility\GunSpecialRules\StatPart_Reliability.cs" />
     <Compile Include="Utility\GunSpecialRules\StatWorker_Reliability.cs" />
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.2.2905</Version>
-    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.2905" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>
     </PackageReference>
@@ -693,11 +702,13 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Target Name="MyCode" BeforeTargets="UpdateReferences">
     <PropertyGroup>
       <AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
-      <PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
+      <PubliciseOutputPath>$(PubliciseOutputPath)</PubliciseOutputPath>
       <AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
     </PropertyGroup>
     <Publicise TargetAssemblyPath="$(AssemblyCSharp)" OutputPath="$(PubliciseOutputPath)" Condition="Exists('$(AssemblyCSharp)')" />
@@ -715,5 +726,11 @@
       <Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
     </ItemGroup>
   </Target>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
