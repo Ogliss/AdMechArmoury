@@ -8,7 +8,7 @@ namespace AdeptusMechanicus
 {
     public class SiegeProjectile : Projectile
     {
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             Map map = base.Map;
             base.Impact(hitThing);

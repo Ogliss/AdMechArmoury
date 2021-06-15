@@ -42,7 +42,7 @@ namespace AdeptusMechanicus
         public void DrawExtraRadiusRings(IntVec3 center);
         public void DrawRapidFireRadiusRing(IntVec3 center, Func<IntVec3, bool> predicate = null);
         public float GetHitChanceFactor(Thing equipment, float dist);
-        public float AdjustedAccuracy(RangeCategory cat, Thing equipment);
+    //    public float AdjustedAccuracy(RangeCategory cat, Thing equipment);
         public float FailChance(Thing gun, out string reliabilityString);
 
         float BarrelLength { get; }

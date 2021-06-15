@@ -71,7 +71,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06004F05 RID: 20229 RVA: 0x001A99DC File Offset: 0x001A7BDC
-        protected override void Impact()
+        public override void Impact()
         {
             for (int i = 0; i < 6; i++)
             {

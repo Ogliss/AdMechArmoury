@@ -188,7 +188,7 @@ namespace AdeptusMechanicus
             return Mathf.Clamp(value, 0.01f, 1f);
         }
         // Token: 0x0600055E RID: 1374 RVA: 0x0001AE90 File Offset: 0x00019090
-        public float AdjustedAccuracy(RangeCategory cat, Thing equipment)
+        public new float AdjustedAccuracy(RangeCategory cat, Thing equipment)
         {
             if (equipment != null)
             {
@@ -414,5 +414,6 @@ namespace AdeptusMechanicus
             GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, DamageAmount, ArmorPenetration, soundExplode, equipmentDef, def, thing);//, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, EquipmentSource.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, EquipmentSource.def.projectile.preExplosionSpawnChance, EquipmentSource.def.projectile.preExplosionSpawnThingCount, EquipmentSource.def.projectile.explosionChanceToStartFire, EquipmentSource.def.projectile.explosionDamageFalloff);
             return;
         }
+
     }
 }

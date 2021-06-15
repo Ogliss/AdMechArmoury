@@ -113,7 +113,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 			}
 		}
 
-		protected override void Impact()
+		public override void Impact()
 		{
 			if (Payload != null)
 			{

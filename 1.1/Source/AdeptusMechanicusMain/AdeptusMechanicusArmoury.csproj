@@ -44,6 +44,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Verbs\RangeCategory.cs.bak" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="0MultiplayerAPI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
@@ -141,7 +144,6 @@
     <Compile Include="Attributes\MayRequireXenobiologisTau.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisTyranids.cs" />
     <Compile Include="Backstories\BackstorySettings.cs" />
-    <Compile Include="Comps\CompPowerPlantWind.cs" />
     <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
     <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
@@ -492,7 +494,7 @@
     <Compile Include="Utility\TexButton.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
     <Compile Include="Verbs\AdvancedVerbProperties.cs" />
-    <Compile Include="Verbs\RangeCategory.cs" />
+    <Compile Include="Verbs\RangeCategory.cs.bak" />
     <Compile Include="Verbs\Verb_MeleeAttackDamage_Polearm.cs" />
     <None Include="Things\Projectile\ArcingBullet.bak" />
     <Compile Include="Things\Projectile\Projectile_Explosive_Thrown.cs" />
@@ -708,7 +710,7 @@
   <Target Name="MyCode" BeforeTargets="UpdateReferences">
     <PropertyGroup>
       <AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
-      <PubliciseOutputPath>$(PubliciseOutputPath)</PubliciseOutputPath>
+      <PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
       <AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
     </PropertyGroup>
     <Publicise TargetAssemblyPath="$(AssemblyCSharp)" OutputPath="$(PubliciseOutputPath)" Condition="Exists('$(AssemblyCSharp)')" />

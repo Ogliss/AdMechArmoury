@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\AdMechArmoury\CESpecific\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,15 +40,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.2905" GeneratePathProperty="true" />
-    <PackageReference Include="Lib.Harmony">
-      <Version>2.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="TaskPubliciser">
-      <Version>1.0.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedVerbPropertiesCE.cs" />
@@ -107,7 +99,15 @@
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.2905" GeneratePathProperty="true" />
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="TaskPubliciser">
+      <Version>1.0.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Target Name="MyCode" BeforeTargets="UpdateReferences">
     <PropertyGroup>
