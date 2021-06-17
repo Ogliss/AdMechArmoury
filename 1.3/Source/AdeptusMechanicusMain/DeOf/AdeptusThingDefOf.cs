@@ -17,9 +17,9 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Mote_MicroSparksWarp;
         public static ThingDef OG_Mote_WarpFireGlow;
         public static ThingDef OG_Mote_LightningGlow;
-        public static ThingDef OG_Mote_Smoke;
-        public static ThingDef OG_Mote_AirPuff;
-        public static ThingDef OG_Mote_DustPuff;
+    //    public static ThingDef OG_Mote_Smoke;
+    //    public static ThingDef OG_Mote_AirPuff;
+    //    public static ThingDef OG_Mote_DustPuff;
         public static ThingDef SimpleResearchBench;
         public static ThingDef HiTechResearchBench;
 

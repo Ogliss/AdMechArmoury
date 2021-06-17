@@ -182,7 +182,7 @@ namespace AdeptusMechanicus
 			base.CompTick();
 		}
 		// Token: 0x060056A9 RID: 22185 RVA: 0x001CFF18 File Offset: 0x001CE118
-		private Command_ApparelWargear CreateVerbTargetCommand(Thing gear, Verb verb)
+		public new Command_ApparelWargear CreateVerbTargetCommand(Thing gear, Verb verb)
 		{
 			/*
 				Command_ApparelWargear command_Reloadable = new Command_ApparelWargear(this);

@@ -10,8 +10,6 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.Warpfire
     public class Warpfire : Fire
     {
-        // Token: 0x170005C7 RID: 1479
-        // (get) Token: 0x06002643 RID: 9795 RVA: 0x00122E3D File Offset: 0x0012123D
         public override string Label
         {
             get
@@ -24,8 +22,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x170005C8 RID: 1480
-        // (get) Token: 0x06002644 RID: 9796 RVA: 0x00122E7C File Offset: 0x0012127C
         public override string InspectStringAddon
         {
             get
@@ -34,9 +30,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x170005C9 RID: 1481
-        // (get) Token: 0x06002645 RID: 9797 RVA: 0x00122ECC File Offset: 0x001212CC
-        private float SpreadInterval
+        public new float SpreadInterval
         {
             get
             {
@@ -49,15 +43,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x06002646 RID: 9798 RVA: 0x00122F04 File Offset: 0x00121304
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<int>(ref this.ticksSinceSpawn, "ticksSinceSpawn", 0, false);
-            Scribe_Values.Look<float>(ref this.fireSize, "fireSize", 0f, false);
-        }
-
-        // Token: 0x06002647 RID: 9799 RVA: 0x00122F34 File Offset: 0x00121334
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -68,7 +53,6 @@ namespace AdeptusMechanicus
             Rand.PopState();
         }
 
-        // Token: 0x06002649 RID: 9801 RVA: 0x00122F6C File Offset: 0x0012136C
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             if (this.sustainer != null)
@@ -84,8 +68,7 @@ namespace AdeptusMechanicus
             this.RecalcPathsOnAndAroundMe(map);
         }
 
-        // Token: 0x0600264A RID: 9802 RVA: 0x00122FDC File Offset: 0x001213DC
-        private void RecalcPathsOnAndAroundMe(Map map)
+        public new void RecalcPathsOnAndAroundMe(Map map)
         {
             IntVec3[] adj = GenAdj.AdjacentCellsAndInside;
             for (int i = 0; i < adj.Length; i++)
@@ -99,7 +82,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x0600264B RID: 9803 RVA: 0x00123038 File Offset: 0x00121438
         public override void AttachTo(Thing parent)
         {
             base.AttachTo(parent);
@@ -113,7 +95,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x0600264C RID: 9804 RVA: 0x00123070 File Offset: 0x00121470
         public override void Tick()
         {
             this.ticksSinceSpawn++;
@@ -171,8 +152,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x0600264D RID: 9805 RVA: 0x001231F8 File Offset: 0x001215F8
-        private void SpawnSmokeParticles()
+        public new void SpawnSmokeParticles()
         {
             if (Warpfire.fireCount < 15)
             {
@@ -192,7 +172,7 @@ namespace AdeptusMechanicus
             this.ticksUntilSmoke = Warpfire.SmokeIntervalRange.Lerped(num) + (int)(10f * Rand.Value);
             Rand.PopState();
         }
-        // Token: 0x060026BE RID: 9918 RVA: 0x00126330 File Offset: 0x00124730
+
         public static void ThrowFireGlow(IntVec3 c, Map map, float size)
         {
             Vector3 vector = c.ToVector3Shifted();
@@ -216,7 +196,7 @@ namespace AdeptusMechanicus
             Rand.PopState();
             GenSpawn.Spawn(moteThrown, vector.ToIntVec3(), map, WipeMode.Vanish);
         }
-        // Token: 0x060026C0 RID: 9920 RVA: 0x001264E0 File Offset: 0x001248E0
+
         public static void ThrowMicroSparks(Vector3 loc, Map map)
         {
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
@@ -234,8 +214,8 @@ namespace AdeptusMechanicus
             Rand.PopState();
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
-        // Token: 0x0600264E RID: 9806 RVA: 0x001232A4 File Offset: 0x001216A4
-        private void DoComplexCalcs()
+
+        public new void DoComplexCalcs()
         {
             bool flag = false;
             Warpfire.flammableList.Clear();
@@ -328,27 +308,12 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x0600264F RID: 9807 RVA: 0x001235C8 File Offset: 0x001219C8
-        private void TryBurnFloor()
-        {
-            if (this.parent != null || !base.Spawned)
-            {
-                return;
-            }
-            if (base.Position.TerrainFlammableNowWarp(base.Map))
-            {
-                base.Map.terrainGrid.Notify_TerrainBurned(base.Position);
-            }
-        }
-
-        // Token: 0x06002650 RID: 9808 RVA: 0x00123618 File Offset: 0x00121A18
-        private bool VulnerableToRain()
+        public new bool VulnerableToRain()
         {
             return false;
         }
 
-        // Token: 0x06002651 RID: 9809 RVA: 0x00123684 File Offset: 0x00121A84
-        private void DoWarpfireDamage(Thing targ)
+        public void DoWarpfireDamage(Thing targ)
         {
             float num = 0.0125f + 0.0036f * this.fireSize;
             num = Mathf.Clamp(num, 0.0125f, 0.05f);
@@ -377,7 +342,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x06002652 RID: 9810 RVA: 0x00123790 File Offset: 0x00121B90
         protected new void TrySpread()
         {
             IntVec3 intVec = base.Position;
@@ -420,86 +384,5 @@ namespace AdeptusMechanicus
                 }
             }
         }
-
-        // Token: 0x04001588 RID: 5512
-        private int ticksSinceSpawn;
-
-        // Token: 0x0400158A RID: 5514
-        private int ticksSinceSpread;
-
-        // Token: 0x0400158B RID: 5515
-        private float flammabilityMax = 0.5f;
-
-        // Token: 0x0400158C RID: 5516
-        private int ticksUntilSmoke;
-
-        // Token: 0x0400158D RID: 5517
-        private Sustainer sustainer;
-
-        // Token: 0x0400158E RID: 5518
-        private static List<Thing> flammableList = new List<Thing>();
-
-        // Token: 0x0400158F RID: 5519
-        private static int fireCount;
-
-        // Token: 0x04001590 RID: 5520
-        private static int lastFireCountUpdateTick;
-
-        // Token: 0x04001592 RID: 5522
-        private const float MinSizeForSpark = 1f;
-
-        // Token: 0x04001593 RID: 5523
-        private const float TicksBetweenSparksBase = 150f;
-
-        // Token: 0x04001594 RID: 5524
-        private const float TicksBetweenSparksReductionPerFireSize = 40f;
-
-        // Token: 0x04001595 RID: 5525
-        private const float MinTicksBetweenSparks = 75f;
-
-        // Token: 0x04001596 RID: 5526
-        private const float MinFireSizeToEmitSpark = 1f;
-
-        // Token: 0x04001598 RID: 5528
-        private const int TicksToBurnFloor = 7500;
-
-        // Token: 0x04001599 RID: 5529
-        private const int ComplexCalcsInterval = 150;
-
-        // Token: 0x0400159A RID: 5530
-        private const float CellIgniteChancePerTickPerSize = 0.01f;
-
-        // Token: 0x0400159B RID: 5531
-        private const float MinSizeForIgniteMovables = 0.4f;
-
-        // Token: 0x0400159C RID: 5532
-        private const float FireBaseGrowthPerTick = 0.00055f;
-
-        // Token: 0x0400159D RID: 5533
-        private static readonly IntRange SmokeIntervalRange = new IntRange(130, 200);
-
-        // Token: 0x0400159E RID: 5534
-        private const int SmokeIntervalRandomAddon = 10;
-
-        // Token: 0x0400159F RID: 5535
-        private const float BaseSkyExtinguishChance = 0.04f;
-
-        // Token: 0x040015A0 RID: 5536
-        private const int BaseSkyExtinguishDamage = 10;
-
-        // Token: 0x040015A1 RID: 5537
-        private const float HeatPerFireSizePerInterval = 160f;
-
-        // Token: 0x040015A2 RID: 5538
-        private const float HeatFactorWhenDoorPresent = 0.15f;
-
-        // Token: 0x040015A3 RID: 5539
-        private const float SnowClearRadiusPerFireSize = 3f;
-
-        // Token: 0x040015A4 RID: 5540
-        private const float SnowClearDepthFactor = 0.1f;
-
-        // Token: 0x040015A5 RID: 5541
-        private const int FireCountParticlesOff = 15;
     }
 }

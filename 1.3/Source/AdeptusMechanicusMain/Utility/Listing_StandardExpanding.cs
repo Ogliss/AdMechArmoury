@@ -329,16 +329,5 @@ namespace AdeptusMechanicus
 		public new Rect listingRect;
 		public Rect frameRect;
 
-		// Token: 0x040010AA RID: 4266
-		private GameFont font;
-
-		// Token: 0x040010AB RID: 4267
-		private List<Pair<Vector2, Vector2>> labelScrollbarPositions;
-
-		// Token: 0x040010AC RID: 4268
-		private List<Vector2> labelScrollbarPositionsSetThisFrame;
-
-		// Token: 0x040010AD RID: 4269
-		private const float DefSelectionLineHeight = 21f;
 	}
 }

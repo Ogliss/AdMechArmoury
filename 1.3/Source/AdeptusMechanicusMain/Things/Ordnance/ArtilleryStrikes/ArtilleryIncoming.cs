@@ -25,24 +25,6 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 		Thing launcher;
 		LocalTargetInfo target;
 
-		private float CurrentSpeed
-		{
-			get
-			{
-				if (this.def.skyfaller.speedCurve == null)
-				{
-					return this.def.skyfaller.speed;
-				}
-				return this.def.skyfaller.speedCurve.Evaluate(this.TimeInAnimation) * this.def.skyfaller.speed;
-			}
-		}
-		private bool SpawnTimedMotes
-		{
-			get
-			{
-				return this.def.skyfaller.moteSpawnTime != float.MinValue && Mathf.Approximately(this.def.skyfaller.moteSpawnTime, this.TimeInAnimation);
-			}
-		}
 		public override void Tick()
 		{
 			if (Payload == null)
@@ -215,7 +197,6 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 		}
 
 		private int ticksToDetonation = 0;
-		private bool anticipationSoundPlayed;
 		private bool landed;
 	}
 }

@@ -21,7 +21,7 @@ namespace AdeptusMechanicus
         }
 
         private Thing thingforgfx;
-        public Thing GetThingForGraphic()
+        public new Thing GetThingForGraphic()
         {
             if (thingforgfx==null)
             {

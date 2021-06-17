@@ -27,7 +27,7 @@ namespace AdeptusMechanicus
 		}
 		*/
 		// Token: 0x0600792A RID: 31018 RVA: 0x00239AC8 File Offset: 0x00237CC8
-		private void PodOpen()
+		public new void PodOpen()
 		{
 			Map map = base.Map;
 			if (this.contents.despawnPodBeforeSpawningThing)
@@ -58,7 +58,5 @@ namespace AdeptusMechanicus
 		// Token: 0x04004DE3 RID: 19939
 		public new int age;
 
-		// Token: 0x04004DE4 RID: 19940
-		private ActiveDropPodInfo contents;
 	}
 }

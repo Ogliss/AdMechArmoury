@@ -9,7 +9,6 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    [StaticConstructorOnStartup]
     public class CompProperties_ApparelExtraPartDrawer : CompProperties
     {
         public CompProperties_ApparelExtraPartDrawer()
@@ -30,7 +29,6 @@ namespace AdeptusMechanicus
         public bool onHead = false;
 
     }
-    [StaticConstructorOnStartup]
     public class CompApparelExtraPartDrawer : ThingComp
     {
         public CompProperties_ApparelExtraPartDrawer Props
@@ -84,7 +82,7 @@ namespace AdeptusMechanicus
                         {
                             msg.AppendLine("        extraPartEntry: Make New");
                         }
-                        this.GeneratePart(ref msg);
+                        this.GeneratePart();
                         msg.AppendLine("        Initialized: " + partInitialized);
                     }
                     else
@@ -99,7 +97,7 @@ namespace AdeptusMechanicus
                 }
                 if (!logged && loging && msg.Length > 0)
                 {
-                    Log.Message(msg.ToString());
+                //    Log.Message(msg.ToString());
                     logged = true;
                 }
                 return extraPartEntry;
@@ -108,8 +106,9 @@ namespace AdeptusMechanicus
         bool logged = false;
         bool loging = false;
 
-        public void GeneratePart(ref StringBuilder msg)
+        public void GeneratePart()
         {
+            StringBuilder msg = new StringBuilder();
             if (extraPartEntryint >= 0)
             {
                 extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
@@ -438,8 +437,8 @@ namespace AdeptusMechanicus
                 this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
                 */
-                StringBuilder msg = new StringBuilder("PostSpawnSetup ");
-                this.GeneratePart(ref msg);
+            //    StringBuilder msg = new StringBuilder("PostSpawnSetup ");
+            //    this.GeneratePart();
             }
             partInitialized = true;
 

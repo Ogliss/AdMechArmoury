@@ -631,9 +631,9 @@ namespace AdeptusMechanicus
         }
 
         public const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
-        const float _HeadOffset = 0.02734375f + MinClippingDistance;
+        const float _HeadOffset = PawnRenderer.YOffset_Head + MinClippingDistance;
         const float _HairOffset = 0244897958f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
-        const float _BodyOffset = 0.021428572f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
+        const float _BodyOffset = PawnRenderer.YOffset_Shell+ MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
         const float _OffsetFactor = 0.001f;
         const float _SubOffsetFactor = 0.0001f;
         static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();

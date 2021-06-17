@@ -28,33 +28,40 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int i = 0; i < instructionList.Count; i++)
             {
                 CodeInstruction instruction = instructionList[index: i];
-                if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(Graphics), name: nameof(Graphics.DrawMesh), parameters: new []{typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(Int32)})) && (i+1) < instructionList.Count /* && instructionList[index: i + 1].opcode == OpCodes.Brtrue_S*/)
+                if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(PawnRenderer), name: nameof(PawnRenderer.DrawBodyApparel))) && (i+1) < instructionList.Count /* && instructionList[index: i + 1].opcode == OpCodes.Brtrue_S*/)
                 {
-                    yield return instruction; // portrait
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
-                    yield return new CodeInstruction(opcode: OpCodes.Ldfld, operand: AccessTools.Field(type: typeof(PawnRenderer), name: "pawn"));
-                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_0);             // quat
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 4); // bodyfacing
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 9); //invisible
-                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_1);             // Mesh
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 5); // headfacing
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);
-                    yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
-                    instruction = new CodeInstruction(opcode: OpCodes.Ldarg_S, operand: 7);
+                    Log.Message("RenderPawnInternal DrawWornExtras opcode: "+ instruction.opcode +" operand: "+ instruction.operand);
+                    yield return instruction; // nop
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S,5);  // PawnRenderFlags flags
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);    // Vector3
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);    // PawnRenderer
+                    yield return new CodeInstruction(opcode: OpCodes.Ldfld, AccessTools.Field(type: typeof(PawnRenderer), name: "pawn"));
+                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_0);    // quat
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4); // bodyfacing
+                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4); // Mesh
+                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 7); // headfacing
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);    // renderBody
+                    instruction = new CodeInstruction(opcode: OpCodes.Call, typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
                 }
 
                 yield return instruction;
             }
         }
 
-        public static void DrawAddons( bool portrait, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, bool invisible, Mesh mesh, Rot4 headfacing, bool renderBody)
+        public static void DrawAddons(PawnRenderFlags flags, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, Mesh mesh, Rot4 headfacing, bool renderBody)
         {
-            if (invisible) return;
+            Log.Message("DrawAddons "+ flags.ToString());
+            if (flags.FlagSet(PawnRenderFlags.Invisible))
+            {
+                Log.Message("PawnRenderFlags.Invisible"); 
+                return;
+            }
+            bool portrait = flags.FlagSet(PawnRenderFlags.Portrait);
             Vector2 size  = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
             if (pawn.apparel != null && pawn.apparel.WornApparelCount > 0)
             {
-                
+
+                Log.Message("DrawAddons for "+ pawn.apparel.WornApparelCount+" apparel");
                 if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
                     PawnRenderUtility.AlienRacesPatch(pawn, bodyFacing, out size, portrait);
@@ -68,9 +75,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                 for (int wa = 0; wa < worn.Count; wa++)
                 {
                     Apparel apparel = worn[wa];
-                    ApparelComposite composite = apparel as ApparelComposite;
-                    if (composite != null)
+                    if (apparel is ApparelComposite composite)
                     {
+                        Log.Message("composite");
                         if (!composite.Pauldrons.NullOrEmpty() && AMAMod.settings.AllowPauldronDrawer)
                         {
                             for (int i = 0; i < composite.Pauldrons.Count; i++)
@@ -105,7 +112,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                         center + (quat * offset),
                                                         quat,
                                                         PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                                        portrait
+                                                        flags.FlagSet(PawnRenderFlags.DrawNow)
                                                     );
                                             }
                                         }
@@ -147,7 +154,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                         drawAt,
                                                         quat,
                                                         PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                        portrait
+                                                        flags.FlagSet(PawnRenderFlags.DrawNow)
                                                     );
                                             }
                                             //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
@@ -159,6 +166,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     else
                     {
+                        Log.Message("noncomposite");
                         for (int i = 0; i < apparel.AllComps.Count; i++)
                         {
                             if (AMAMod.settings.AllowPauldronDrawer)
@@ -166,6 +174,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
                                 if (Pauldron != null)
                                 {
+                                    Log.Message("Pauldron");
                                     Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
                                     if (Pauldron.activeEntries.NullOrEmpty())
                                     {
@@ -186,6 +195,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         {
                                             if (Pauldron.onHead || renderBody && pauldronMat != null)
                                             {
+                                                Log.Message("Pauldron DrawMeshNowOrLater " + !flags.FlagSet(PawnRenderFlags.Cache));
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
@@ -193,7 +203,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                         center + (quat * offset),
                                                         quat,
                                                         PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                                        portrait
+                                                        !flags.FlagSet(PawnRenderFlags.Cache)
                                                     );
                                             }
                                         }
@@ -205,6 +215,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
                                 if (ExtraDrawer != null)
                                 {
+                                    Log.Message("ExtraDrawer");
                                     Vector3 drawAt = vector;
                                     if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
                                     {
@@ -224,6 +235,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 {
                                                     drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
                                                 }
+                                                Log.Message("ExtraDrawer DrawMeshNowOrLater "+ !flags.FlagSet(PawnRenderFlags.Cache));
                                                 GenDraw.DrawMeshNowOrLater
                                                     (
                                                         // pauldronMesh,
@@ -231,7 +243,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                         drawAt,
                                                         quat,
                                                         PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                        portrait
+                                                        !flags.FlagSet(PawnRenderFlags.Cache)
                                                     );
                                             }
                                             //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
@@ -289,7 +301,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 material = PawnRenderUtility.OverrideMaterialIfNeeded(material, pawn);
                                 //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
                                 GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
-                                    quat: quat, mat: material, drawNow: portrait);
+                                    quat: quat, mat: material, drawNow: !flags.FlagSet(PawnRenderFlags.Cache));
 
                                 drawAt.y += HediffComp_DrawImplant_AdMech.MinClippingDistance;
                             }

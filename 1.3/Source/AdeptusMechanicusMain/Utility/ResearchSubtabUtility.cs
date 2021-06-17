@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
             {
                 return true;
             }
-            return def.defName.Contains("OGAMA_RSubTab_");
+            return false;
         }
 
 

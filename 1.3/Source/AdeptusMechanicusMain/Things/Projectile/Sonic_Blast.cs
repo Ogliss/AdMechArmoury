@@ -211,12 +211,7 @@ namespace AdeptusMechanicus
 			tmpThings.Clear();
 		}
 
-
 		private static List<Thing> tmpThings = new List<Thing>();
-		private List<IntVec3> checkedCells = new List<IntVec3>();
 		private List<IntVec3> removedRoofsTmp = new List<IntVec3>();
-
-		// Token: 0x04000E5F RID: 3679
-		private List<Thing> cellThingsFiltered = new List<Thing>();
 	}
 }

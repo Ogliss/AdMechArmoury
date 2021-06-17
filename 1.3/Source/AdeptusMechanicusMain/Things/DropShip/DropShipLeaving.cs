@@ -150,7 +150,7 @@ namespace AdeptusMechanicus
             this.DrawDropSpotShadow();
         }
 
-        private Thing GetThingForGraphic()
+        public new Thing GetThingForGraphic()
         {
             if (this.def.graphicData != null || !this.innerContainer.Any)
             {
@@ -159,7 +159,7 @@ namespace AdeptusMechanicus
             return this.innerContainer[0];
         }
 
-        protected new void DrawDropSpotShadow()
+        public new void DrawDropSpotShadow()
         {
             Material shadowMaterial = this.ShadowMaterial;
             if (shadowMaterial == null)
@@ -195,7 +195,7 @@ namespace AdeptusMechanicus
             */
         }
 
-        private Material ShadowMaterial
+        public new Material ShadowMaterial
         {
             get
             {
@@ -312,9 +312,5 @@ namespace AdeptusMechanicus
 
         public Vector3 scale = new Vector3(11f, 1f, 20f);
         public Vector3 shadowScale = new Vector3(11f, 1f, 20f);
-        private Material cachedShadowMaterial;
-        private static MaterialPropertyBlock shadowPropertyBlock = new MaterialPropertyBlock();
-        private bool alreadyLeft;
-        private static List<Thing> tmpActiveDropPods = new List<Thing>();
     }
 }

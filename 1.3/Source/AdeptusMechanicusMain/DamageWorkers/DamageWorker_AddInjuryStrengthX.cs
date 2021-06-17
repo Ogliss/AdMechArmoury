@@ -9,7 +9,6 @@ namespace AdeptusMechanicus
 	// AdeptusMechanicus.DamageWorker_AddInjuryStrengthX
 	public class DamageWorker_AddInjuryStrengthX : DamageWorker_BombNoCamShake
 	{
-		// Token: 0x06000F7D RID: 3965 RVA: 0x0005916C File Offset: 0x0005736C
 		public override DamageWorker.DamageResult Apply(DamageInfo dinfo, Thing thing)
 		{
 			Pawn pawn = thing as Pawn;
@@ -20,7 +19,6 @@ namespace AdeptusMechanicus
 			return this.ApplyToPawn(dinfo, pawn);
 		}
 
-		// Token: 0x06000F7E RID: 3966 RVA: 0x00059194 File Offset: 0x00057394
 		public new DamageWorker.DamageResult ApplyToPawn(DamageInfo dinfo, Pawn pawn)
 		{
 			DamageWorker.DamageResult damageResult = new DamageWorker.DamageResult();
@@ -140,8 +138,7 @@ namespace AdeptusMechanicus
 			return damageResult;
 		}
 
-		// Token: 0x06000F80 RID: 3968 RVA: 0x00059558 File Offset: 0x00057758
-		private void ApplySmallPawnDamagePropagation(DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
+		public new void ApplySmallPawnDamagePropagation(DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
 		{
 			if (!dinfo.AllowDamagePropagation)
 			{
@@ -155,8 +152,7 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x06000F81 RID: 3969 RVA: 0x00059624 File Offset: 0x00057824
-		private void ApplyDamageToPart(DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
+		public new void ApplyDamageToPart(DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
 		{
 			BodyPartRecord exactPartFromDamageInfo = this.GetExactPartFromDamageInfo(dinfo, pawn);
 			if (exactPartFromDamageInfo == null)
@@ -204,13 +200,12 @@ namespace AdeptusMechanicus
 			this.ApplySpecialEffectsToPart(pawn, num, dinfo, result);
 		}
 
-		private static bool IsHeadshot(DamageInfo dinfo, Pawn pawn)
+		public static new bool IsHeadshot(DamageInfo dinfo, Pawn pawn)
 		{
 			return !dinfo.InstantPermanentInjury && dinfo.HitPart.groups.Contains(BodyPartGroupDefOf.FullHead) && dinfo.Def == DamageDefOf.Bullet;
 		}
 
-		// Token: 0x06000F87 RID: 3975 RVA: 0x00059B54 File Offset: 0x00057D54
-		private BodyPartRecord GetExactPartFromDamageInfo(DamageInfo dinfo, Pawn pawn)
+		public new BodyPartRecord GetExactPartFromDamageInfo(DamageInfo dinfo, Pawn pawn)
 		{
 			if (dinfo.HitPart == null)
 			{
@@ -228,9 +223,7 @@ namespace AdeptusMechanicus
 			return dinfo.HitPart;
 		}
 
-
-		// Token: 0x06000F89 RID: 3977 RVA: 0x00059BF4 File Offset: 0x00057DF4
-		private static void PlayWoundedVoiceSound(DamageInfo dinfo, Pawn pawn)
+		public static new void PlayWoundedVoiceSound(DamageInfo dinfo, Pawn pawn)
 		{
 			if (pawn.Dead)
 			{
@@ -249,6 +242,5 @@ namespace AdeptusMechanicus
 				LifeStageUtility.PlayNearestLifestageSound(pawn, (LifeStageAge ls) => ls.soundWounded, 1f);
 			}
 		}
-
 	}
 }

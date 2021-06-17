@@ -277,7 +277,7 @@ namespace AdeptusMechanicus
             }
             return new FloatMenu(list);
         }
-        public string WornGraphicPath
+        public new string WornGraphicPath
         {
             get
             {

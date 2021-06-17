@@ -207,12 +207,7 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x04000EA1 RID: 3745
-		protected Color color = Color.white;
 		protected Color colorTwo = Color.white;
-
-		// Token: 0x04000EA2 RID: 3746
-		protected bool active;
 		protected bool activeTwo;
 	}
 }

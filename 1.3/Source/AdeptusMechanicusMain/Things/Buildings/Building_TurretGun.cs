@@ -12,21 +12,21 @@ namespace AdeptusMechanicus
 {
     public class Building_TurretGun : RimWorld.Building_TurretGun
     {
-		public bool CanSetForcedTarget
+		public new bool CanSetForcedTarget
 		{
 			get
 			{
 				return this.PlayerControlled;
 			}
 		}
-		public bool PlayerControlled
+		public new bool PlayerControlled
 		{
 			get
 			{
 				return (base.Faction == Faction.OfPlayer);
 			}
 		}
-		public bool IsMortar
+		public new bool IsMortar
 		{
 			get
 			{
@@ -34,7 +34,7 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		public bool IsMortarOrProjectileFliesOverhead
+		public new bool IsMortarOrProjectileFliesOverhead
 		{
 			get
 			{

@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--=============== Visual - Flamer Glow ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_FlameGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/FireGlow</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<shaderParameters>
+				<_DistortionTex>/Things/Mote/PsycastDistortionMask</_DistortionTex>
+				<_distortionIntensity>0.024</_distortionIntensity>
+				<_brightnessMultiplier>5.1</_brightnessMultiplier>
+			</shaderParameters>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.5</fadeInTime>
+			<solidTime>0.5</solidTime>
+			<fadeOutTime>0.5</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<!--=============== Visual - Plasma Glow ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>Mote_PlasmaGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Glow/Ring</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<fadeInTime>0.5</fadeInTime>
+			<solidTime>0.5</solidTime>
+			<fadeOutTime>0.5</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<!--=================== Visual - Lightning ==================-->
+	<ThingDef ParentName="MoteBase">
+		<defName>Mote_OG_NecronLightningGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Glow/Lightning</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.08</fadeInTime>
+			<solidTime>0.08</solidTime>
+			<fadeOutTime>0.35</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<!--=================== Visual - Warpfire ==================-->
+
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_WarpFireGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Glow/Bubble</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.75</fadeInTime>
+			<solidTime>1.08</solidTime>
+			<fadeOutTime>0.8</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="MoteBase" Name="Mote_MicroSparksWarp">
+		<defName>OG_Mote_MicroSparksWarp</defName>
+		<graphicData>
+			<texPath>Things/Mote/Spark/MicroWarp</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.75</fadeInTime>
+			<solidTime>0.5</solidTime>
+			<fadeOutTime>0.65</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="Mote_MicroSparksWarp">
+		<defName>OG_Mote_MicroSparksWarpFast</defName>
+		<mote>
+			<fadeInTime>0.15</fadeInTime>
+			<solidTime>0.3</solidTime>
+			<fadeOutTime>0.45</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BlastEMP</defName>
+		<graphicData>
+			<texPath>Things/Mote/BlastEMP</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_LineEMP</defName>
+		<graphicData>
+			<texPath>Things/Mote/LineEMP</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.4</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>OG_Mote_LaserFlareHeavy</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <solidTime>0.05</solidTime>
+      <fadeOutTime>0.1</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Things/Mote/MuzzleFlare/LaserFlareHeavy</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_ExplosionFlash</defName>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0.05</solidTime>
+			<fadeOutTime>0.1</fadeOutTime>
+		</mote>
+		<graphicData>
+			<texPath>Things/Mote/ExplosionFlash</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_ExplosionFlashPlasma</defName>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0.05</solidTime>
+			<fadeOutTime>0.75</fadeOutTime>
+		</mote>
+		<graphicData>
+			<texPath>Things/Mote/ExplosionFlash</texPath>
+			<shaderType>MoteGlowDistorted</shaderType>
+			<shaderParameters>
+				<_DistortionTex>/Other/Ripples</_DistortionTex>
+				<_distortionIntensity>0.1</_distortionIntensity>
+				<_DistortionScale>0.5</_DistortionScale>
+				<_distortionScrollSpeed>(0.07, 0.07, 0.0)</_distortionScrollSpeed>
+			</shaderParameters>
+		</graphicData>
+	</ThingDef>
+
+	<!--=============== Blasts ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_Blast</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Base</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BlastGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Base</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<color>(1,1,1,0.3)</color>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>-4</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BlastSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>1.2</growthRate>
+		</mote>
+	</ThingDef>
+
+	
+	<!--=============== BoltBlast ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BoltBlast</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Bolt</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BoltBlastGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Bolt</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<color>(1,0.6,0.6,0.3)</color>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>-4</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_BoltBlastSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>1.2</growthRate>
+		</mote>
+	</ThingDef>
+
+	<!--=============== Plasma Blast ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlast</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Plasma</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>5</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlastGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Plasma</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.15</fadeOutTime>
+			<growthRate>-4</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlastSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>1.2</growthRate>
+		</mote>
+	</ThingDef>
+
+	<!--=============== Plasma Blast Slow ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlastSlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Plasma</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>-3</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlastSlowGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Plasma</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<color>(0.651,0.78,0.3)</color>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.3</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>32</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_PlasmaBlastSlowSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>1.2</growthRate>
+		</mote>
+	</ThingDef>
+
+	<!--=============== Distort Blast ==============-->
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_DistortBlast</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/Distort</texPath>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.10</fadeOutTime>
+			<growthRate>-4</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_DistortBlastGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Blast/DistortG</texPath>
+			<shaderType>MoteGlowDistortBackground</shaderType>
+			<color>(0.651,0.78,0.3)</color>
+			<shaderParameters>
+				<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+				<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+				<_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex>
+				<_distortionIntensity>0.15</_distortionIntensity>
+				<_brightnessMultiplier>0</_brightnessMultiplier>
+				<_DistortionScale>40</_DistortionScale>
+				<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+			</shaderParameters>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0</solidTime>
+			<fadeOutTime>0.15</fadeOutTime>
+			<growthRate>-3</growthRate>
+		</mote>
+	</ThingDef>
+	<ThingDef ParentName="MoteBase">
+		<defName>OG_Mote_DistortBlastSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+		</graphicData>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<solidTime>0.2</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<growthRate>1.2</growthRate>
+		</mote>
+	</ThingDef>
+
+	<ThingDef Name="VisualSupport" Abstract="True">
+		<thingClass>MoteThrown</thingClass>
+		<label>Mote</label>
+		<category>Mote</category>
+		<graphicData>
+			<graphicClass>Graphic_Mote</graphicClass>
+			<shaderType>Mote</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteLow</altitudeLayer>
+		<tickerType>Normal</tickerType>
+		<useHitPoints>false</useHitPoints>
+		<isSaveable>false</isSaveable>
+		<rotatable>false</rotatable>
+	</ThingDef>
+
+  <!--=================== Visual - Lightning ==================-->
+
+  <ThingDef ParentName="MoteBase">
+    <defName>OG_Mote_LightningGlow</defName>
+    <graphicData>
+      <texPath>Things/Mote/LightningGlow</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.08</fadeInTime>
+      <solidTime>0.08</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+	<!--====== Puffs ======-->
+	<!--====== EMP Weather Motes ======-->
+
+	<ThingDef ParentName="VisualSupport" Name="EMP_Sparks">
+		<defName>EMP_Sparks</defName>
+		<graphicData>
+			<texPath>Things/Mote/Spark/EMP</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>4.75</fadeInTime>
+			<solidTime>0.5</solidTime>
+			<fadeOutTime>4.65</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="VisualSupport" Name="Mote_EMPSmoke">
+		<defName>Mote_EMPSmoke</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke/EMP</texPath>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>1.2</fadeInTime>
+			<solidTime>3</solidTime>
+			<fadeOutTime>3.2</fadeOutTime>
+			<growthRate>0.025</growthRate>
+		</mote>
+	</ThingDef>
+
+	<ThingDef ParentName="VisualSupport">
+		<defName>EMPGlow</defName>
+		<graphicData>
+			<texPath>Things/Mote/Glow/EMP</texPath>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.08</fadeInTime>
+			<solidTime>0.08</solidTime>
+			<fadeOutTime>0.35</fadeOutTime>
+		</mote>
+	</ThingDef>
+
+</Defs>

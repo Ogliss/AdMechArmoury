@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    
+
     [HarmonyPatch(typeof(ITab_Pawn_Gear), "DrawThingRow")]
     public static class ITab_Pawn_Gear_DrawThingRow_CustomizeItemButton_Transpiler
     {
@@ -40,7 +40,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 yield return instruction;
             }
-            
+
         }
 
         public static Rect CustomizeItemButton(Rect rect, Thing thing, Pawn SelPawnForGear, bool CanControlColonist, ref float y)
@@ -64,14 +64,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     else if (thing.def.IsWeapon)
                     {
-                        
+
                     }
                     //    rect.width -= 24f;
                 }
             }
-            
+
             return rect;
         }
     }
-    
+
 }

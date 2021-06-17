@@ -16,7 +16,7 @@ namespace AdeptusMechanicus
 		private int rotinc = 0;
 		private int rotrate = Rand.Range(-3, 3);
 		private int heightinc = Rand.Range(-1, 3);
-		// Token: 0x06001651 RID: 5713 RVA: 0x00081EDC File Offset: 0x000800DC
+
 		public override void Draw()
 		{
 			float num = this.ArcHeightFactor * GenMath.InverseParabola(this.DistanceCoveredFraction);
@@ -43,7 +43,7 @@ namespace AdeptusMechanicus
 				return Quaternion.LookRotation((this.destination - this.origin).Yto0().RotatedBy(rotinc));
 			}
 		}
-		private float ArcHeightFactor
+		public new float ArcHeightFactor
 		{
 			get
 			{
@@ -56,7 +56,7 @@ namespace AdeptusMechanicus
 				return num;
 			}
 		}
-		private void DrawShadow(Vector3 drawLoc, float height)
+		public new void DrawShadow(Vector3 drawLoc, float height)
 		{
 			if (Projectile_Explosive_Thrown.shadowMaterial == null)
 			{
@@ -69,7 +69,6 @@ namespace AdeptusMechanicus
 			matrix.SetTRS(drawLoc + b, Quaternion.identity, s);
 			Graphics.DrawMesh(MeshPool.plane10, matrix, Projectile_Explosive_Thrown.shadowMaterial, 0);
 		}
-		private static readonly Material shadowMaterial = MaterialPool.MatFrom("Things/Skyfaller/SkyfallerShadowCircle", ShaderDatabase.Transparent);
 
 		public virtual void TrailTick()
 		{

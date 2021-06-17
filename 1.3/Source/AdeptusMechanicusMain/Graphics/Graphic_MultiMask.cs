@@ -310,16 +310,5 @@ namespace AdeptusMechanicus
 
 		public new ExtendedGraphicData data;
 
-		// Token: 0x04000E4B RID: 3659
-		private Material[] mats = new Material[4];
-
-		// Token: 0x04000E4C RID: 3660
-		private bool westFlipped;
-
-		// Token: 0x04000E4D RID: 3661
-		private bool eastFlipped;
-
-		// Token: 0x04000E4E RID: 3662
-		private float drawRotatedExtraAngleOffset;
 	}
 }

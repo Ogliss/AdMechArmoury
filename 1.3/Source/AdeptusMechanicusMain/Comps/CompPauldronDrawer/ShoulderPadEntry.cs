@@ -84,13 +84,13 @@ namespace AdeptusMechanicus
         }
 
         public const float MinClippingDistance = 0.0015f;   // Minimum space between layers to avoid z-fighting
-        private const float YOffset_Utility_South = 0.006122449f;
-        private const float YOffset_Shell = 0.021428572f + MinClippingDistance;
-        private const float YOffset_Head = 0.0244897958f + MinClippingDistance;
-        private const float YOffset_Utility = 0.02755102f + MinClippingDistance;
-        private const float YOffset_OnHead = 0.0306122452f + MinClippingDistance;
-        private const float YOffset_PostHead = 0.03367347f + MinClippingDistance;
-        private const float YOffset_CarriedThing = 0.0367346928f - MinClippingDistance;
+        private const float YOffset_Utility_South = PawnRenderer.YOffset_Utility_South;
+        private const float YOffset_Shell = PawnRenderer.YOffset_Shell + MinClippingDistance;
+        private const float YOffset_Head = PawnRenderer.YOffset_Head + MinClippingDistance;
+        private const float YOffset_Utility = PawnRenderer.YOffset_Utility + MinClippingDistance;
+        private const float YOffset_OnHead = PawnRenderer.YOffset_OnHead + MinClippingDistance;
+        private const float YOffset_PostHead = PawnRenderer.YOffset_PostHead + MinClippingDistance;
+        private const float YOffset_CarriedThing = PawnRenderer.YOffset_CarriedThing - MinClippingDistance;
         public Shader Shader => shaderType.Shader;
         public Vector3 NorthOffset => this.Props.NorthOffset;
         public Vector3 SouthOffset => this.Props.SouthOffset;

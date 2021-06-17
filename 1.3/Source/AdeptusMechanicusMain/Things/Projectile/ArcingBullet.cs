@@ -171,7 +171,7 @@ namespace AdeptusMechanicus
         }
 
         private int heightinc = Rand.Range(-1, 3);
-        private float ArcHeightFactor
+        private new float ArcHeightFactor
         {
             get
             {
@@ -245,13 +245,14 @@ namespace AdeptusMechanicus
             }
         }
 
-        public new void Launch(Thing launcher, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, Thing equipment = null)
+        public new void Launch(Thing launcher, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, bool preventFriendlyFire, Thing equipment = null)
         {
-            this.Launch(launcher, base.Position.ToVector3Shifted(), usedTarget, intendedTarget, hitFlags, equipment, null);
+            this.Launch(launcher, base.Position.ToVector3Shifted(), usedTarget, intendedTarget, hitFlags, preventFriendlyFire, equipment, null);
         }
 
-        public new void Launch(Thing launcher, Vector3 origin, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, Thing equipment = null, ThingDef targetCoverDef = null)
+        public new void Launch(Thing launcher, Vector3 origin, LocalTargetInfo usedTarget, LocalTargetInfo intendedTarget, ProjectileHitFlags hitFlags, bool preventFriendlyFire, Thing equipment = null, ThingDef targetCoverDef = null)
         {
+            this.preventFriendlyFire = preventFriendlyFire;
             this.launcher = launcher;
             this.origin = origin;
             this.usedTarget = usedTarget;
@@ -380,7 +381,7 @@ namespace AdeptusMechanicus
             Graphics.DrawMesh(MeshPool.plane10Back, matrix, material, 0, null, 0, ArcingBullet.shadowPropertyBlock);
         }
 
-        private void ImpactSomething()
+        private new void ImpactSomething()
         {
             bool flag = this.usedTarget.Thing != null;
             bool flag2 = flag;

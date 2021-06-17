@@ -53,11 +53,11 @@ namespace AdeptusMechanicus
         public float MuzzleSmokeSize => muzzleSmokeSizeRange?.RandomInRange ?? muzzleSmokeSize;
         public float MuzzleFlareSize => muzzleFlareSizeRange?.RandomInRange ?? muzzleFlareSize;
 
-        public ThingDef ExplosionMoteDef => _explosionMoteDef ??= !explosionMoteDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(explosionMoteDef) : null;
-        public FleckDef ImpactMoteDef => _impactMoteDef ??= !impactMoteDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(impactMoteDef) : null;
-        public FleckDef ImpactGlowMoteDef => _impactGlowMoteDef ??= !impactGlowMoteDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(impactGlowMoteDef) : null;
-        public FleckDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef) : null;
-        public FleckDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleSmokeDef) : null;
+        public ThingDef ExplosionMoteDef => _explosionMoteDef ??= !explosionMoteDef.NullOrEmpty() ? (DefDatabase<ThingDef>.GetNamed(explosionMoteDef, false)) : null;
+        public FleckDef ImpactMoteDef => _impactMoteDef ??= !impactMoteDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(impactMoteDef, false) ?? DefDatabase<FleckDef>.GetNamed(impactMoteDef.Replace("Mote", "Fleck"), false) : null;
+        public FleckDef ImpactGlowMoteDef => _impactGlowMoteDef ??= !impactGlowMoteDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(impactGlowMoteDef, false) ?? DefDatabase<FleckDef>.GetNamed(impactGlowMoteDef.Replace("Mote", "Fleck"), false) : null;
+        public FleckDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef, false) ?? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef.Replace("Mote", "Fleck"), false) : null;
+        public FleckDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleSmokeDef, false) ?? DefDatabase<FleckDef>.GetNamed(muzzleSmokeDef.Replace("Mote", "Fleck"), false) : null;
 
         private static bool enabled_CombatExtended = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "CETeam.CombatExtended");
 

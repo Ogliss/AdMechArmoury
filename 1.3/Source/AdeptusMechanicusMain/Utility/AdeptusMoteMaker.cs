@@ -12,6 +12,7 @@ namespace AdeptusMechanicus
     public static class AdeptusMoteMaker
     {
         // AdeptusFleckMaker.ThrowDustPuff
+        /*
         public static void ThrowDustPuff(Vector3 loc, Map map, float scale, ThingDef def = null, Color? color = null)
         {
             if (!loc.ShouldSpawnMotesAt(map))
@@ -31,7 +32,6 @@ namespace AdeptusMechanicus
 
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
-
         public static void ThrowSmoke(Vector3 loc, float size, Map map, ThingDef def = null , Color? color = null, float? exactRotation = null)
         {
             if (!GenView.ShouldSpawnMotesAt(loc, map))
@@ -56,6 +56,7 @@ namespace AdeptusMechanicus
             Rand.PopState();
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
+        */
         public static void ThrowExplosionCell(IntVec3 cell, Map map, ThingDef moteDef, Color? color = null)
         {
             if (!cell.ShouldSpawnMotesAt(map))
@@ -115,6 +116,7 @@ namespace AdeptusMechanicus
             }
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
+        /*
         public static void ThrowToxicGas(Vector3 loc, Map map, float size, Color? color = null)
         {
             if (!loc.ToIntVec3().InBounds(map))
@@ -133,6 +135,7 @@ namespace AdeptusMechanicus
             }
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
         }
+
         public static void ThrowToxicSmoke(Vector3 loc, Map map, Color? color = null)
         {
             if (!loc.ShouldSpawnMotesAt(map))
@@ -155,7 +158,6 @@ namespace AdeptusMechanicus
             }
             GenSpawn.Spawn(moteThrown, IntVec3Utility.ToIntVec3(loc), map, WipeMode.Vanish);
         }
-
         public static void ThrowToxicPostExplosionSmoke(Vector3 loc, Map map, float size, Color? color = null)
         {
             if (!loc.ShouldSpawnMotesAt(map))
@@ -175,6 +177,6 @@ namespace AdeptusMechanicus
             GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
 
         }
-
+        */
     }
 }

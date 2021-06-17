@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Eldar Damage Types =========================-->
+	<!--==================== Shuriken Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGEShuriken</defName>
+		<label>Shuriken</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was cut to ribbons.</deathMessage>
+		<hediff>Cut</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		
+	</DamageDef>
+	
+	<!--==================== Plasma Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGEPlas</defName>
+		<label>Starfire</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0}'s death was forseen.</deathMessage>
+		<hediff>OG_Hediff_PlasmaBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== Wraithcannon Damage Types =========================-->
+	<!--==================== Wraithcannon Normal Damage =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase"> 
+		<defName>OG_E_Distortion_Damage</defName>
+		<label>Warp Rift</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} was torn to shreds by a warp rift.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+	</DamageDef>
+	
+	<!--==================== Wraithcannon Explosion Damage =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OG_E_Distortion_Damage_Blast</defName>
+		<label>Warp Rift Blast</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} was lost to the warp.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<defaultDamage>0</defaultDamage>
+		<buildingDamageFactor>0</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
+		<explosionCellFleck>BlastEMP</explosionCellFleck>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+
+	<!--==================== Brightlance Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGELance</defName>
+		<label>Lance</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} was slain by a lance of pure energy.</deathMessage>
+		<hediff>LaserBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<!--explosionCellMote>Mote_BlastDry</explosionCellMote-->
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<combatLogRules>Damage_Flame</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== Mono-filament Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGEDeathspinner</defName>
+		<label>Mono-filament Mesh </label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was reduced to a pulp.</deathMessage>
+		<hediff>Cut</hediff>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<buildingDamageFactor>0.2</buildingDamageFactor>
+		<plantDamageFactor>0.2</plantDamageFactor>
+	</DamageDef>
+	
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGEShadowWeaver</defName>
+		<label>Mono-filament Mesh </label>
+		<externalViolence>false</externalViolence>
+		<deathMessage>{0} was reduced to a pulp.</deathMessage>
+		<hediff>Cut</hediff>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<buildingDamageFactor>0.2</buildingDamageFactor>
+		<plantDamageFactor>0.2</plantDamageFactor>
+	</DamageDef>
+			
+</Defs>

@@ -110,7 +110,7 @@ namespace AdeptusMechanicus
             this.DrawDropSpotShadow(num, flip);
         }
 
-        private Thing GetThingForGraphic()
+        public new Thing GetThingForGraphic()
         {
             if (this.def.graphicData != null || !this.innerContainer.Any)
             {
@@ -119,7 +119,7 @@ namespace AdeptusMechanicus
             return this.innerContainer[0];
         }
 
-        protected void DrawDropSpotShadow(float num, bool flip)
+        public void DrawDropSpotShadow(float num, bool flip)
         {
             Material shadowMaterial = this.ShadowMaterial;
             if (shadowMaterial == null)
@@ -156,7 +156,7 @@ namespace AdeptusMechanicus
             Graphics.DrawMesh(MeshPool.plane10Back, matrix, material, 0, null, 0, DropShipLeaving.shadowPropertyBlock);
             */
         }
-        private Material ShadowMaterial
+        public new Material ShadowMaterial
         {
             get
             {
@@ -222,7 +222,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        private Rot4 rotation;
+        public Rot4 rotation;
         public Vector3 exactPosition = Vector3.zero;
         public Vector3 shadowExactPosition = Vector3.zero;
         public float exactRotation = 0f;
@@ -230,7 +230,5 @@ namespace AdeptusMechanicus
         public Matrix4x4 shadowMatrix = default(Matrix4x4);
         public Vector3 scale = new Vector3(10f, 1f, 10f);
         public Vector3 shadowScale = new Vector3(10f, 1f, 10f);
-        private static MaterialPropertyBlock shadowPropertyBlock = new MaterialPropertyBlock();
-        private Material cachedShadowMaterial;
     }
 }

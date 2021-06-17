@@ -70,7 +70,7 @@ namespace AdeptusMechanicus
         public float BulletOffset => defaultProjectile as Lasers.LaserBeamDef == null ? bulletOffset : bulletOffset + laserOffset;
         public float MuzzleSmokeSize => muzzleSmokeSizeRange?.RandomInRange ?? muzzleSmokeSize;
         public float MuzzleFlareSize => muzzleFlareSizeRange?.RandomInRange ?? (muzzleFlareSize > 0 ? muzzleFlareSize : muzzleFlashScale * 0.25f);
-        public FleckDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef) : null;
+        public FleckDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef.Replace("Mote_", "")) : null;
         public bool MuzzleFlareRotates => muzzleFlareRotates;
         public Color MuzzleFlareColor => muzzleFlareColor;
         public Color MuzzleFlareColorTwo => muzzleFlareColorTwo;
