@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef ParentName="SkyfallerBase">
-    <defName>OGDropPodIncoming</defName>
-    <label>drop pod (incoming)</label>
-		<thingClass>DropPodIncoming</thingClass>
+  <ThingDef Abstract="True" Name="OG_DropPodBase" ParentName="SkyfallerBase">
     <graphicData>
       <texPath>Things/Special/DropPod</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -15,30 +12,17 @@
       <movementType>Decelerate</movementType>
       <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
       <shadowSize>(2, 2)</shadowSize>
-      <anticipationSound>DropPod_Fall</anticipationSound>
-      <anticipationSoundTicks>100</anticipationSoundTicks>
       <motesPerCell>0</motesPerCell>
     </skyfaller>
   </ThingDef>
 
-  <ThingDef ParentName="SkyfallerBase">
-    <defName>OGDropPodLeaving</defName>
-    <label>drop pod (leaving)</label>
-		<thingClass>DropPodLeaving</thingClass>
-    <graphicData>
-      <texPath>Things/Special/DropPod</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutFlying</shaderType>
-      <drawSize>1.9</drawSize>
-    </graphicData>
+  <ThingDef ParentName="OG_DropPodBase">
+    <defName>OGDropPodIncoming</defName>
+    <label>drop pod (incoming)</label>
+	<thingClass>DropPodIncoming</thingClass>
     <skyfaller>
-      <movementType>Decelerate</movementType>
-      <reversed>true</reversed>
-      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
-      <shadowSize>(2, 2)</shadowSize>
-      <anticipationSound>DropPod_Leaving</anticipationSound>
-      <anticipationSoundTicks>-10</anticipationSoundTicks>
-      <ticksToImpactRange><min>-40</min><max>-15</max></ticksToImpactRange>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
     </skyfaller>
   </ThingDef>
 
