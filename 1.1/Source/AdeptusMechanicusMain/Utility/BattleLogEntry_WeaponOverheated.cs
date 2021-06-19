@@ -144,7 +144,7 @@ namespace AdeptusMechanicus
 			return null;
 		}
 
-		protected override BodyDef DamagedBody()
+		public override BodyDef DamagedBody()
 		{
 			if (this.recipientPawn == null)
 			{
@@ -153,7 +153,7 @@ namespace AdeptusMechanicus
 			return this.recipientPawn.RaceProps.body;
 		}
 
-		protected override GrammarRequest GenerateGrammarRequest()
+		public override GrammarRequest GenerateGrammarRequest()
 		{
 			GrammarRequest result = base.GenerateGrammarRequest();
 			if (this.recipientPawn != null || this.recipientThing != null)

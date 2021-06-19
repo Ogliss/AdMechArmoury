@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
             return true;
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             //Log.Warning("Trying to make new toil");
             yield return this.Fire(this.TargetThingA).FailOnDespawnedNullOrForbidden(TargetIndex.A);

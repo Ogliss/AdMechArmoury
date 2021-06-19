@@ -23,7 +23,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06000EA7 RID: 3751 RVA: 0x0006C290 File Offset: 0x0006A690
-        protected override bool CanFireNowSub(IncidentParms parms)
+        public override bool CanFireNowSub(IncidentParms parms)
         {
             Map map = (Map)parms.target;
             return map.listerThings.ThingsOfDef(this.def.mechClusterBuilding).Count <= 0;
@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        protected override bool TryExecuteWorker(IncidentParms parms)
+        public override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target;
             List<TargetInfo> list = new List<TargetInfo>();

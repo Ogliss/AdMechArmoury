@@ -35,7 +35,7 @@ namespace AdeptusMechanicus
 				((ActiveDropPod)this.innerContainer[0]).Contents = value;
 			}
 		}
-		/*
+        /*
 		protected override void SpawnThings()
 		{
 			
@@ -51,8 +51,8 @@ namespace AdeptusMechanicus
 			
 		}
 		*/
-		// Token: 0x06007932 RID: 31026 RVA: 0x00239D78 File Offset: 0x00237F78
-		protected override void Impact()
+        // Token: 0x06007932 RID: 31026 RVA: 0x00239D78 File Offset: 0x00237F78
+        public override void Impact()
 		{
 			for (int i = 0; i < 6; i++)
 			{

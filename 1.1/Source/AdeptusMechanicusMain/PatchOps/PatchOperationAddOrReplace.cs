@@ -16,7 +16,7 @@ namespace AdeptusMechanicus
         protected string key;
         private XmlContainer value;
 
-        protected override bool ApplyWorker(XmlDocument xml)
+        public override bool ApplyWorker(XmlDocument xml)
         {
             XmlNode valNode = value.node;
             bool result = false;

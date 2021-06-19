@@ -33,12 +33,12 @@ namespace AdeptusMechanicus
             foreach (var f in Find.FactionManager.AllFactionsListForReading)
             {
                 var relations = AccessTools.FieldRefAccess<Faction, List<FactionRelation>>(f, "relations");
+
                 relations.RemoveAll(r => r?.other == null || r.other == faction);
             }
 
             if (Prefs.DevMode) Log.Message($"Marking faction {faction.Name} as hidden.");
             faction.defeated = true;
-            //faction.hidden = true;
         }
 
         public static bool NeverSpawn(Faction faction)

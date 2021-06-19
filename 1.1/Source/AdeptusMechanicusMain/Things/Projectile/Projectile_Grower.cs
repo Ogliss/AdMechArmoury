@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.Projectile_Fire
     public class Projectile_Grower : Projectile_Anim
     {
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
         }

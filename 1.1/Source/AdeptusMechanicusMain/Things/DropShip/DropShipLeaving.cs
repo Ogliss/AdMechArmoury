@@ -36,7 +36,7 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<Vector3>(ref this.shadowScale, "shadowScale", default(Vector3), false);
         }
 
-        protected override void LeaveMap()
+        public override void LeaveMap()
         {
             if (this.groupID < 0 && this.destinationTile < 0)
             {

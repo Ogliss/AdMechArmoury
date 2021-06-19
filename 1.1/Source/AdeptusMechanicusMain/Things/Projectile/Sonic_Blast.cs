@@ -49,7 +49,7 @@ namespace AdeptusMechanicus
 			*/
 		}
 
-		protected override void Impact(Thing hitThing)
+		public override void Impact(Thing hitThing)
 		{
 			Map map = base.Map;
 			if (this.ticksToImpact<=0)

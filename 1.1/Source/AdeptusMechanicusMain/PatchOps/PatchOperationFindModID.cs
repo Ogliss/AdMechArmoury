@@ -8,7 +8,7 @@ namespace Verse
 	public class PatchOperationFindModID : PatchOperation
 	{
 		// Token: 0x06000F11 RID: 3857 RVA: 0x00055788 File Offset: 0x00053988
-		protected override bool ApplyWorker(XmlDocument xml)
+		public override bool ApplyWorker(XmlDocument xml)
 		{
 			bool flag = false;
 			for (int i = 0; i < this.mods.Count; i++)

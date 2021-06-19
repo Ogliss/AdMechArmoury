@@ -65,7 +65,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        protected override void FillTab()
+        public override void FillTab()
         {
             var selected = Find.Selector.SingleSelectedThing as ThingWithComps;
             if (Drawer == null)

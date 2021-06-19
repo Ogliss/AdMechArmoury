@@ -9,7 +9,7 @@ namespace AdeptusMechanicus
     public class IncidentWorker_WandererJoin : IncidentWorker
     {
         // Token: 0x06000EB4 RID: 3764 RVA: 0x0006D7D8 File Offset: 0x0006BBD8
-        protected override bool CanFireNowSub(IncidentParms parms)
+        public override bool CanFireNowSub(IncidentParms parms)
         {
             if (!base.CanFireNowSub(parms))
             {
@@ -21,7 +21,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x06000EB5 RID: 3765 RVA: 0x0006D808 File Offset: 0x0006BC08
-        protected override bool TryExecuteWorker(IncidentParms parms)
+        public override bool TryExecuteWorker(IncidentParms parms)
         {
             Map map = (Map)parms.target;
             IntVec3 loc;

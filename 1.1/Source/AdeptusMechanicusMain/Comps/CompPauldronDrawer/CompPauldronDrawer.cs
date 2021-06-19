@@ -25,6 +25,70 @@ namespace AdeptusMechanicus
         {
             this.compClass = typeof(CompPauldronDrawer);
         }
+        /*
+        public override void ResolveReferences(ThingDef parentDef)
+        {
+            base.ResolveReferences(parentDef);
+            if (!PauldronEntries.NullOrEmpty())
+            {
+                Log.Message("PauldronDrawer ResolveReferences for " + parentDef);
+                foreach (var item in PauldronEntries)
+                {
+                    if (!item.padTexPath.NullOrEmpty())
+                    {
+                        List<Texture2D> list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item.padTexPath)
+                                                where
+                                                    !x.name.EndsWith("_m") &&
+                                                    !x.name.EndsWith("_Glow") &&
+                                                    !x.name.EndsWith("_Glow_m") &&
+                                                    !x.name.Contains("_northm") &&
+                                                    !x.name.Contains("_southm") &&
+                                                    !x.name.Contains("_eastm") &&
+                                                    !x.name.Contains("_westm")
+                                                orderby x.name
+                                                select x).ToList<Texture2D>();
+                        if (list.NullOrEmpty<Texture2D>())
+                        {
+                            Log.Error("PauldronDrawer cannot init "+ item.label + ": No textures found at path " + item.padTexPath, false);
+                        }
+                        if (!item.options.NullOrEmpty())
+                        {
+                            foreach (var item2 in item.options)
+                            {
+                                if (!item2.TexPath.NullOrEmpty())
+                                {
+                                    list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item2.TexPath)
+                                                            where
+                                                                !x.name.EndsWith("_m") &&
+                                                                !x.name.EndsWith("_Glow") &&
+                                                                !x.name.EndsWith("_Glow_m") &&
+                                                                !x.name.Contains("_northm") &&
+                                                                !x.name.Contains("_southm") &&
+                                                                !x.name.Contains("_eastm") &&
+                                                                !x.name.Contains("_westm") &&
+                                                                x.name.Contains("_" + item2.TexPath)
+                                                            orderby x.name
+                                                            select x).ToList<Texture2D>();
+                                    if (list.NullOrEmpty<Texture2D>())
+                                    {
+                                        Log.Error("PauldronDrawer cannot init " + item2.Label + ": No textures found at path " + item.padTexPath+ "_" + item2.TexPath, false);
+                                    }
+                                }
+                                else
+                                {
+                                    Log.Error("PauldronDrawer cannot init option "+ item2 + ": No TexPath found", false);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Log.Error("PauldronDrawer cannot init "+ item + ": No padTexPath found", false);
+                    }
+                }
+            }
+        }
+        */
     }
 
     public class CompPauldronDrawer : ThingComp, ILoadReferenceable

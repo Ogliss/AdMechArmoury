@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
 {
     public class JobGiver_ServitorIdle : ThinkNode_JobGiver
     {
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             return new Job(JobDefOf.Wait_Wander)
             {

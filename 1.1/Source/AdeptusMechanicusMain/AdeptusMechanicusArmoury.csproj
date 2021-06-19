@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,15 +8,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdeptusMechanicus</RootNamespace>
     <AssemblyName>AdeptusMechanicusArmoury</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFramework>net472</TargetFramework>
     <FileAlignment>512</FileAlignment>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Assemblies\</OutputPath>
+    <OutputPath>..\..\1.1\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,8 +37,15 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Verbs\RangeCategory.cs.bak" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="0MultiplayerAPI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -48,29 +55,32 @@
     <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AnimatedProjectile\bin\Debug\1AnimatedProjectile.dll</HintPath>
+      <Private>true</Private>
     </Reference>
-    <Reference Include="1CompActivatableEffect, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompActivatableEffect\bin\Debug\1CompActivatableEffect.dll</HintPath>
+    <Reference Include="1CompActivatableEffect">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompActivatableEffect\1.1\bin\Debug\1CompActivatableEffect.dll</HintPath>
     </Reference>
-    <Reference Include="1CompOversizedWeapon, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompOversizedWeapon\bin\Debug\1CompOversizedWeapon.dll</HintPath>
+    <Reference Include="1CompOversizedWeapon">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompOversizedWeapon\1.1\bin\Debug\1CompOversizedWeapon.dll</HintPath>
     </Reference>
     <Reference Include="1CompSlotLoadable">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompSlotLoadable\bin\Debug\1CompSlotLoadable.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompSlotLoadable\1.1\bin\Debug\1CompSlotLoadable.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleDef\bin\Debug\1CompToggleDef.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AbilitiesExtended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AbilitiesExtended\bin\Debug\AbilitiesExtended.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AbilitiesExtended\1.2\bin\Debug\AbilitiesExtended.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AdvancedGraphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AdvancedGraphics\bin\Debug\AdvancedGraphics.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AdvancedGraphics\1.2\bin\Debug\AdvancedGraphics.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.2\Assemblies\AlienRace.dll</HintPath>
@@ -82,20 +92,24 @@
     </Reference>
     <Reference Include="CompApparelVerbGiver">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompApparelVerbGiver\bin\Debug\CompApparelVerbGiver.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="CompToggleFireMode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleFireMode\bin\Debug\CompToggleFireMode.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="CompTurret">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompTurret\bin\Debug\CompTurret.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompTurret\1.1\bin\Debug\CompTurret.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Corruption.Core">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2137637809\1.2\Assemblies\Corruption.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CrashedShipsExtension">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\ExpandedCrashedShips\bin\Debug\CrashedShipsExtension.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\ExpandedCrashedShips\1.1\bin\Debug\CrashedShipsExtension.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="DualWield">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1628211313\Assemblies\DualWield.dll</HintPath>
@@ -107,6 +121,7 @@
     </Reference>
     <Reference Include="RecruitShips">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\RecruitShips\bin\Debug\RecruitShips.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="ShipsHaveInsides">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1909914131\1.2\Assemblies\ShipsHaveInsides.dll</HintPath>
@@ -129,7 +144,6 @@
     <Compile Include="Attributes\MayRequireXenobiologisTau.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisTyranids.cs" />
     <Compile Include="Backstories\BackstorySettings.cs" />
-    <Compile Include="Comps\CompPowerPlantWind.cs" />
     <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
     <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
@@ -480,7 +494,7 @@
     <Compile Include="Utility\TexButton.cs" />
     <Compile Include="ThoughtWorkers\ThoughtWorker_IsCarryingMeleeWeapon.cs" />
     <Compile Include="Verbs\AdvancedVerbProperties.cs" />
-    <Compile Include="Verbs\RangeCategory.cs" />
+    <Compile Include="Verbs\RangeCategory.cs.bak" />
     <Compile Include="Verbs\Verb_MeleeAttackDamage_Polearm.cs" />
     <None Include="Things\Projectile\ArcingBullet.bak" />
     <Compile Include="Things\Projectile\Projectile_Explosive_Thrown.cs" />
@@ -669,16 +683,13 @@
     <Compile Include="DamageWorkers\DamageWorker_BombNoCamShake.cs" />
     <Compile Include="DamageWorkers\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="DeOf\AdeptusBodyPartGroupDefOf.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\GunSpecialRules\StatDrawEntry.cs" />
     <Compile Include="Utility\GunSpecialRules\StatPart_Reliability.cs" />
     <Compile Include="Utility\GunSpecialRules\StatWorker_Reliability.cs" />
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.2.2905</Version>
-    </PackageReference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.2905" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>
     </PackageReference>
@@ -693,7 +704,9 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Target Name="MyCode" BeforeTargets="UpdateReferences">
     <PropertyGroup>
       <AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
@@ -715,5 +728,11 @@
       <Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
     </ItemGroup>
   </Target>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

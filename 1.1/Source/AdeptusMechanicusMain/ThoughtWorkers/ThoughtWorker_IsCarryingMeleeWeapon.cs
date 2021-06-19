@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
 	public class ThoughtWorker_IsCarryingMeleeWeapon : ThoughtWorker
 	{
 		// Token: 0x060035C1 RID: 13761 RVA: 0x00126595 File Offset: 0x00124795
-		protected override ThoughtState CurrentStateInternal(Pawn p)
+		public override ThoughtState CurrentStateInternal(Pawn p)
 		{
 			return p.equipment.Primary != null && p.equipment.Primary.def.IsMeleeWeapon;
 		}

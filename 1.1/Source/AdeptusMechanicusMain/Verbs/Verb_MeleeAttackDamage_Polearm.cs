@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
 	// AdeptusMechanicus.Verb_MeleeAttackDamage_Polearm
 	class Verb_MeleeAttackDamage_Polearm : Verb_MeleeAttackDamage
 	{
-		protected override bool TryCastShot()
+		public override bool TryCastShot()
 		{
 			Pawn casterPawn = this.CasterPawn;
 			if (!casterPawn.Spawned)

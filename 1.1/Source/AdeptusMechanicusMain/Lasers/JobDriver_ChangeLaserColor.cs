@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.Lasers
             return pawn.Reserve(Gun, job, 1, -1, null, errorOnFailed) && pawn.Reserve(Prism, job, 1, -1, null, errorOnFailed);
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);

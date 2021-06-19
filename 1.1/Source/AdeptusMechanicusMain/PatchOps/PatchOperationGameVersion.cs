@@ -9,7 +9,7 @@ namespace Verse
     public class PatchOperationGameVersion : PatchOperation
     {
         // Token: 0x06004B25 RID: 19237 RVA: 0x00231378 File Offset: 0x0022F778
-        protected override bool ApplyWorker(XmlDocument xml)
+        public override bool ApplyWorker(XmlDocument xml)
         {
             bool flag = false;
             string version = VersionControl.CurrentVersion.Major + "." + VersionControl.CurrentVersion.Minor;

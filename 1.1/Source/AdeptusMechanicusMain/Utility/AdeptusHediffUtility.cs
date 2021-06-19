@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (shieldHediffs.NullOrEmpty())
+                if (shieldHediffs == null)
                 {
                     shieldHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_Shield)));
                     if (AMAMod.Dev)
@@ -28,7 +28,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (phasicHediffs.NullOrEmpty())
+                if (phasicHediffs == null)
                 {
                     phasicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_PhaseShifter)));
                     if (AMAMod.Dev)

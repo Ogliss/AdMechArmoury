@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             this.hitThing = hitThing;
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;

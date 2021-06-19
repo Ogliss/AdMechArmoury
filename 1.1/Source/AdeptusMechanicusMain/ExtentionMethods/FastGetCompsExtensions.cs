@@ -48,7 +48,6 @@ namespace AdeptusMechanicus.ExtensionMethods
             return results;
         }
         
-        // Token: 0x060017F8 RID: 6136 RVA: 0x0008820C File Offset: 0x0008640C
         public static T TryGetCompFast<T>(this Thing thing) where T : ThingComp
         {
             ThingWithComps thingWithComps = thing as ThingWithComps;

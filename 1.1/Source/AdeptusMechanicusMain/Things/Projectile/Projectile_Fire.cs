@@ -11,7 +11,7 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class Projectile_Fire : Projectile_Anim
     {
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
         //    base.Impact(hitThing);
             Ignite();

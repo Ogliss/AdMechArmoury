@@ -117,7 +117,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             if (this.def.projectile.explosionRadius>0)
             {

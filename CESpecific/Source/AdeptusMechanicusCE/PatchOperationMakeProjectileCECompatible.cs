@@ -7,7 +7,7 @@ namespace CombatExtended
 {
     public class PatchOperationMakeProjectileCECompatible : PatchOperation
 	{
-		protected override bool ApplyWorker(XmlDocument xml)
+		public override bool ApplyWorker(XmlDocument xml)
 		{
 			bool flag = false;
 			bool result;

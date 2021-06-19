@@ -10,7 +10,7 @@ namespace CombatExtended
 {
 	public class PatchOperationMakeGunCECompatibleAdv : PatchOperation
 	{
-		protected override bool ApplyWorker(XmlDocument xml)
+		public override bool ApplyWorker(XmlDocument xml)
 		{
 			bool result = false;
 			if (this.defName.NullOrEmpty() && this.Name.NullOrEmpty())
