@@ -22,23 +22,15 @@ namespace AdeptusMechanicus.HarmonyInstance
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
-            CodeInstruction loop = null;
-            bool patched = false;
+            MethodInfo allTabDefs = AccessTools.Method(typeof(DefDatabase<ResearchTabDef>), "get_AllDefs");
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 var instruction = instructionsList[i];
-                if (instruction.opcode == OpCodes.Br_S && loop == null)
+                if (instruction.OperandIs(allTabDefs))
                 {
-                    loop = instruction;
-                }
-                if (!patched && loop != null && instructionsList[i].opcode == OpCodes.Ldloc_1)
-                {
-                    patched = true;
+                //    Log.Message("ResearchTab PostOpen filterSubTabs: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                     yield return instruction;
-                    yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(ResearchSubTabUtility).GetMethod("IsSubTab"));
-                    yield return new CodeInstruction(OpCodes.Brtrue_S, loop.operand);
-                    instruction = new CodeInstruction(opcode: instruction.opcode, instruction.operand);
-
+                    instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(ResearchSubTabUtility).GetMethod("filterSubTabs"));
                 }
                 yield return instruction;
             }

@@ -34,7 +34,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                 var instruction = instructionsList[i];
                 if (i > 1 && instruction.opcode == OpCodes.Ldarg_1 && instructionsList[i - 1].opcode == OpCodes.Stloc_0 && !tabs)
                 {
-                    Log.Message("ResearchTab DrawRightRect SubTabMenu: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                //    Draws SubTabMenu
+                //    Log.Message("ResearchTab DrawRightRect SubTabMenu: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                     tabs = true;
                     yield return instruction;
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
@@ -47,17 +48,20 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     if (instruction.opcode == OpCodes.Call && instruction.OperandIs(ScrollWindow))
                     {
-                        Log.Message("ResearchTab DrawRightRect ScrollWindow: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                    //    Enables vertical mousewheel scrolling while holding Ctrl 
+                    //    Log.Message("ResearchTab DrawRightRect ScrollWindow: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                         instruction.operand = typeof(AdeptusWidgets).GetMethod("ScrollHorizontalAndVert");
                     }
 
                 }
-                if (i > 1 && instruction.opcode == (research && !links ? OpCodes.Bne_Un_S : OpCodes.Bne_Un) && instructionsList[i - 1].OperandIs(CurTab))
+                if ( i > 1 && instruction.opcode == OpCodes.Ceq && instructionsList[i - 1].OperandIs(CurTab))
                 {
-                    Log.Message("ResearchTab DrawRightRect OnTabOrActiveSubTab: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
-                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, research ? (links ? 18 : 16) : 14);
+                //    controls which research are displayed 
+                //    Log.Message("ResearchTab DrawRightRect OnTabOrActiveSubTab: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, research ? (links ? 30 : 21) : 18);
                     yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(ResearchSubTabUtility).GetMethod("OnTabOrActiveSubTab"));
-                    instruction = new CodeInstruction(OpCodes.Brfalse, instruction.operand);
+                    yield return new CodeInstruction(OpCodes.Ldc_I4_1);
+                //    instruction = new CodeInstruction(OpCodes.Brfalse, instruction.operand);
                     if (research && !links)
                     {
                         links = true;

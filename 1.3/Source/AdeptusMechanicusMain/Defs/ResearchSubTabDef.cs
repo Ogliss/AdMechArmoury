@@ -14,4 +14,10 @@ namespace AdeptusMechanicus
 		public ResearchTabDef parentTab;
 		public ResearchProjectTagDef tagdef;
 	}
+
+	public class ResearchTabWithSubsDef : ResearchTabDef
+	{
+		public ResearchTabDef parentTab;
+		public ResearchProjectTagDef tagdef;
+	}
 }

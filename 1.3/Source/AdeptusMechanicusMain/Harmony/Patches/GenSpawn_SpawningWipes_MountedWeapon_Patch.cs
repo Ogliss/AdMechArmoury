@@ -22,16 +22,16 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (__result && newEntDef is ThingDef newDef && oldEntDef is ThingDef oldDef)
             {
-                if (newDef.tradeTags.NullOrEmpty() || !newDef.tradeTags.Contains("OG_Mounted_Weapon"))
+                if ((newDef.placeWorkers.NullOrEmpty() || !newDef.placeWorkers.Contains(typeof(PlaceWorker_OnTopOfLowWalls))) && (newDef.tradeTags.NullOrEmpty() || !newDef.tradeTags.Contains("OG_Mounted_Weapon")))
                 {
                     return;
                 }
                 if (oldDef.graphicData != null)
                 {
                     LinkFlags linkFlags = oldDef.graphicData.linkFlags;
-                    if (linkFlags.HasFlag(LinkFlags.Barricades) || linkFlags.HasFlag(LinkFlags.Sandbags))
+                    if (linkFlags.HasFlag(LinkFlags.Barricades) || linkFlags.HasFlag(LinkFlags.Sandbags) || linkFlags.HasFlag(LinkFlags.Fences))
                     {
-                        Log.Message("SpawningWipes linkFlags " + oldDef);
+                    //    Log.Message("SpawningWipes linkFlags " + oldDef);
                         __result = false;
                         return;
                     }

@@ -20,18 +20,17 @@ namespace AdeptusMechanicus
             }
             return false;
         }
-        // ResearchSubTabUtility.NotSubTab
-        public static bool IsSubTab(ResearchTabDef def)
+
+        public static IEnumerable<ResearchTabDef> filterSubTabs(IEnumerable<ResearchTabDef> defs)
         {
-            if (def == null)
+            foreach (ResearchTabDef def in defs)
             {
-                return false;
+                if (def is ResearchSubTabDef)
+                {
+                    continue;
+                }
+                yield return def;
             }
-            if (def is ResearchSubTabDef subTabDef)
-            {
-                return true;
-            }
-            return false;
         }
 
 
@@ -43,14 +42,37 @@ namespace AdeptusMechanicus
             }
             if (CurTab == AdeptusResearchTabDefOf.OGAMA_RTab)
             {
-                if (defTab != CurTab)
+                if (defTab != CurSubTab)
                 {
-                    return defTab == CurSubTab || (def == null && def.HasTag(ResearchSubTabUtility.CurSubTabTag) || def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech));
+                    if (def.HasTag(ResearchSubTabUtility.CurSubTabTag))
+                    {
+                        return true;
+                    }
+                    if (def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech))
+                    {
+                        return true;
+                    }
+                    return false;
                 }
-                else
-                {
-                    return def != null && (def.HasTag(ResearchSubTabUtility.CurSubTabTag) || def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech));
-                }
+                else return true;
+
+                /*
+                    if (defTab is ResearchSubTabDef subTabDef)
+                    {
+                        Log.Message(defTab + " is subTab of " + subTabDef.parentTab);
+                    }
+                    if (defTab != CurTab)
+                    {
+
+                        //    Log.Message("OGAMA_RTab defTab != CurTab CurSubTabTag: "+ ResearchSubTabUtility.CurSubTabTag);
+                        return def != null && (def.HasTag(ResearchSubTabUtility.CurSubTabTag) || def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech));
+                    }
+                    else
+                    {
+                    //    Log.Message("OGAMA_RTab defTab == CurTab");
+                        return def != null && (def.HasTag(ResearchSubTabUtility.CurSubTabTag) || def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech));
+                    }
+                */
             }
             return defTab == CurTab;
         }
@@ -62,17 +84,14 @@ namespace AdeptusMechanicus
             }
             if (def == null)
             {
-                Log.Message("OnSubTab fail def null " + def);
                 return true;
             }
             if (def.HasTag(ResearchSubTabUtility.CurSubTabTag))
-            {
-                Log.Message("OnSubTab CurSubTab " + def);
+            {;
                 return true;
             }
             if (def.HasTag(AdeptusResearchTagDefOf.OG_Common_Tech))
             {
-                Log.Message("OnSubTab OG_Common_Tech " + def);
                 return true;
             }
 
@@ -137,7 +156,7 @@ namespace AdeptusMechanicus
             return true;
         }
 
-        public static ResearchTabDef CurSubTab
+        public static ResearchSubTabDef CurSubTab
         {
             get
             {
@@ -185,7 +204,7 @@ namespace AdeptusMechanicus
                 */
             }
         }
-        private static ResearchTabDef curTabInt;
+        private static ResearchSubTabDef curTabInt;
 
         public static ResearchProjectTagDef CurSubTabTag
         {
@@ -214,7 +233,7 @@ namespace AdeptusMechanicus
         }
         private static ResearchProjectTagDef curTabTagInt;
 
-        public static List<SubTabRecord> SubTabs 
+        public static List<SubTabRecord> SubTabs
         {
             get
             {
