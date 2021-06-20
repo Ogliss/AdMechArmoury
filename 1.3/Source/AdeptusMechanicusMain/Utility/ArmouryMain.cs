@@ -86,7 +86,18 @@ namespace AdeptusMechanicus
             {
                 AlienRaceUtility.AlienRaces();
             }
-
+            StringBuilder Memes = new StringBuilder("MemeDef's");
+            foreach (var item in DefDatabase<MemeDef>.AllDefsListForReading)
+            {
+                Memes.AppendLine(item.defName);
+            }
+            StringBuilder Precepts = new StringBuilder("PreceptDef's");
+            foreach (var item in DefDatabase<PreceptDef>.AllDefsListForReading)
+            {
+                Precepts.AppendLine(item.defName);
+            }
+            Log.Message(Memes.ToString());
+            Log.Message(Precepts.ToString());
         }
 
         public static void InsertTags()
