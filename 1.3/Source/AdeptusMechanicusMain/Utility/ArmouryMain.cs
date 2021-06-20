@@ -86,6 +86,7 @@ namespace AdeptusMechanicus
             {
                 AlienRaceUtility.AlienRaces();
             }
+            /*
             StringBuilder Memes = new StringBuilder("MemeDef's");
             foreach (var item in DefDatabase<MemeDef>.AllDefsListForReading)
             {
@@ -98,6 +99,7 @@ namespace AdeptusMechanicus
             }
             Log.Message(Memes.ToString());
             Log.Message(Precepts.ToString());
+            */
         }
 
         public static void InsertTags()
