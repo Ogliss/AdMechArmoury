@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <EffecterDef>
+    <defName>CompTurretDisabledByEMP</defName>
+    <children>
+      <li>
+        <subEffecterClass>CompTurret.SubEffecterComp_Sustainer</subEffecterClass>
+        <soundDef>EmpDisabled</soundDef>
+      </li>
+      <li>
+        <subEffecterClass>CompTurret.SubEffecterComp_SprayerTriggered</subEffecterClass>
+        <moteDef>Mote_GrowingFlash</moteDef>
+        <burstCount>1~1</burstCount>
+        <scale>5~5</scale>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <li>
+        <subEffecterClass>CompTurret.SubEffecterComp_SprayerChance</subEffecterClass>
+        <moteDef>Mote_BlastEMP</moteDef>
+        <scale>0.6~1</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <burstCount>1~1</burstCount>
+        <chancePerTick>0.052</chancePerTick>
+        <positionRadius>0.25</positionRadius>
+      </li>
+      <li>
+        <subEffecterClass>CompTurret.SubEffecterComp_SprayerContinuous</subEffecterClass>
+        <moteDef>Mote_Smoke</moteDef>
+        <ticksBetweenMotes>30</ticksBetweenMotes>
+        <scale>0.6~1.1</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <absoluteAngle>true</absoluteAngle>
+        <angle>30~70</angle>
+        <speed>0.2~0.35</speed>
+      </li>
+    </children>
+  </EffecterDef>
+
+</Defs>
