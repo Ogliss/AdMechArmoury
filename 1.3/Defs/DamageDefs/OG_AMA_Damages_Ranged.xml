@@ -1,98 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <!--==================== Warpfire Damage Type =========================-->
-  <DamageDef ParentName="OGLocalRangedInjuryBase">
-		<workerClass>AdeptusMechanicus.DamageWorker_WarpFlameNoCamShake</workerClass>
-    <defName>OG_Warpfire</defName>
-    <label>warpfire</label>
-    <hasForcefulImpact>false</hasForcefulImpact>
-    <makesBlood>false</makesBlood>
-    <canInterruptJobs>true</canInterruptJobs>
-    <externalViolence>true</externalViolence>
-    <deathMessage>{0} was corrupted by warpfire!</deathMessage>
-    <hediff>Burn</hediff>
-    <armorCategory>Heat</armorCategory>
-    <minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>10</defaultDamage>
-    <defaultArmorPenetration>0</defaultArmorPenetration>
-    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
-    <explosionCellFleck>BlastFlame</explosionCellFleck>
-    <explosionColorCenter>(0.95, 0, 0.99)</explosionColorCenter>
-    <explosionColorEdge>(0.75, 0, 0.8)</explosionColorEdge>
-    <soundExplosion>Explosion_Flame</soundExplosion>
-    <combatLogRules>Damage_Flame</combatLogRules>
-    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
-  </DamageDef>
+	<!--==================== Warpfire Damage Type =========================-->
+  	<DamageDef ParentName="OG_WarpfireBase">
+		<defName>OG_Warpfire</defName>
+		<explosionCellFleck>BlastFlame</explosionCellFleck>
+	</DamageDef>
   
-  <!--==================== Warpfire Damage Type =========================-->
-  <DamageDef ParentName="OGLocalRangedInjuryBase">
-		<workerClass>AdeptusMechanicus.DamageWorker_WarpFlameNoCamShake</workerClass>
-    <defName>OG_Chaos_Deamon_Warpfire</defName>
-    <label>warpfire</label>
-    <hasForcefulImpact>false</hasForcefulImpact>
-    <makesBlood>false</makesBlood>
-    <canInterruptJobs>true</canInterruptJobs>
-    <externalViolence>true</externalViolence>
-    <deathMessage>{0} was corrupted by warpfire!</deathMessage>
-    <hediff>Burn</hediff>
-    <armorCategory>Heat</armorCategory>
-    <minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>10</defaultDamage>
-    <defaultArmorPenetration>0</defaultArmorPenetration>
-    <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
-    <explosionCellFleck>BlastFlame</explosionCellFleck>
-    <explosionColorCenter>(0.95, 0, 0.99)</explosionColorCenter>
-    <explosionColorEdge>(0.75, 0, 0.8)</explosionColorEdge>
-    <soundExplosion>Explosion_Flame</soundExplosion>
-    <combatLogRules>Damage_Flame</combatLogRules>
-    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
-  </DamageDef>
-
-  <!--==================== Warpfire Death Damage Type =========================-->
-  <DamageDef ParentName="OGLocalRangedInjuryBaseFlameNoCamShake">
+	<!--==================== Warpfire Damage Type =========================-->
+  	<DamageDef ParentName="OG_Deamon_WarpfireBase">
+		<defName>OG_Chaos_Deamon_Warpfire</defName>
+		<explosionCellFleck>BlastFlame</explosionCellFleck>
+	</DamageDef>
+	
+	<!--==================== Warpfire Death Damage Type =========================-->
+  	<DamageDef ParentName="OG_Deamon_WarpfireDeathBase">
 		<defName>OG_Chaos_Deamon_WarpfireDeath</defName>
-		<label>Warp Rift Blast</label>
-		<externalViolence>true</externalViolence>
-		<isExplosive>true</isExplosive>
-		<deathMessage>{0} was lost to the warp.</deathMessage>
-		<hediff>Gunshot</hediff>
-		<hediffSolid>Crack</hediffSolid>
-		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Bullet</impactSoundType>
-		<armorCategory>Sharp</armorCategory>
-		<defaultDamage>0</defaultDamage>
-		<buildingDamageFactor>0</buildingDamageFactor>
-		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
-		<explosionCellFleck>BlastEMP</explosionCellFleck>
-		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
-		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
-		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
-		<combatLogRules>Damage_Bomb</combatLogRules>
-  </DamageDef>
-  
-  <!--==================== Warp Storm Strike Damage Type =========================-->
-  <DamageDef ParentName="OGLocalRangedInjuryBaseFlameNoCamShake">
+		<explosionCellFleck>BlastFlame</explosionCellFleck>
+		<explosionInteriorFleck>ElectricalSpark</explosionInteriorFleck>
+	</DamageDef>
+	
+	<!--==================== Warp Storm Strike Damage Type =========================-->
+  	<DamageDef ParentName="OG_Deamon_WarpStormStrikeBase">
 		<defName>OG_WarpStormStrike</defName>
-		<label>Warp Rift Blast</label>
-		<externalViolence>true</externalViolence>
-		<isExplosive>true</isExplosive>
-		<deathMessage>{0} was lost to the warp.</deathMessage>
-		<hediff>Gunshot</hediff>
-		<hediffSolid>Crack</hediffSolid>
-		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-		<impactSoundType>Bullet</impactSoundType>
-		<armorCategory>Sharp</armorCategory>
-		<defaultDamage>0</defaultDamage>
-		<minDamageToFragment>15</minDamageToFragment>
-		<buildingDamageFactor>0</buildingDamageFactor>
-		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-		<explosionHeatEnergyPerCell>30</explosionHeatEnergyPerCell>
 		<explosionCellFleck>BlastEMP</explosionCellFleck>
-		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
-		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
-		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
-		<combatLogRules>Damage_Bomb</combatLogRules>
-  </DamageDef>
-  
+		<explosionInteriorFleck>ElectricalSpark</explosionInteriorFleck>
+	</DamageDef>
+	
 </Defs>

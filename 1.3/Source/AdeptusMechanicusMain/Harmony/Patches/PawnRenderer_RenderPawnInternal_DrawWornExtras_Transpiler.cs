@@ -28,12 +28,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int i = 0; i < instructionList.Count; i++)
             {
                 CodeInstruction instruction = instructionList[index: i];
-                if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(PawnRenderer), name: nameof(PawnRenderer.DrawBodyApparel))) && (i+1) < instructionList.Count /* && instructionList[index: i + 1].opcode == OpCodes.Brtrue_S*/)
+                if (i > 1 && instructionList[index: i -1].OperandIs(AccessTools.Method(type: typeof(PawnRenderer), name: nameof(PawnRenderer.DrawBodyApparel))) && (i+1) < instructionList.Count)
                 {
                 // Draws Pauldrons, ExtraParts & Hediff graphics
                 //    Log.Message("RenderPawnInternal DrawWornExtras opcode: "+ instruction.opcode +" operand: "+ instruction.operand);
                     yield return instruction; // nop
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S,5);  // PawnRenderFlags flags
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S,6);  // PawnRenderFlags flags
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);    // Vector3
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);    // PawnRenderer
                     yield return new CodeInstruction(opcode: OpCodes.Ldfld, AccessTools.Field(type: typeof(PawnRenderer), name: "pawn"));
@@ -51,211 +51,230 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void DrawAddons(PawnRenderFlags flags, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, Mesh mesh, Rot4 headfacing, bool renderBody)
         {
-        //    Log.Message("DrawAddons "+ flags.ToString());
+            if (!pawn.RaceProps.Humanlike || PawnRenderFlagsExtension.FlagSet(flags, (PawnRenderFlags)4))
+            {
+                return;
+            }
+            /*
+            Log.Message(string.Concat(new string[]
+            {
+                "DRAWING EXTRAS FOR: " + pawn.NameFullColored + " | " + flags.ToString() + " | ",
+                (!pawn.RaceProps.Humanlike || PawnRenderFlagsExtension.FlagSet(flags, (PawnRenderFlags)4)).ToString(),
+                " | ",
+                PawnRenderFlagsExtension.FlagSet(flags, (PawnRenderFlags)4).ToString(),
+                " | ",
+                (!pawn.RaceProps.Humanlike).ToString()              
+            }));
+            */
+            //    Log.Message("DrawAddons "+ flags.ToString());
             if (flags.FlagSet(PawnRenderFlags.Invisible))
             {
             //    Log.Message("PawnRenderFlags.Invisible"); 
                 return;
             }
             bool portrait = flags.FlagSet(PawnRenderFlags.Portrait);
-            Vector2 size  = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
-            if (pawn.apparel != null && pawn.apparel.WornApparelCount > 0)
+            Vector2 size = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
+            if (pawn.RaceProps.Humanlike)
             {
+                if (pawn.apparel != null && pawn.apparel.WornApparelCount > 0)
+                {
 
-            //    Log.Message("DrawAddons for "+ pawn.apparel.WornApparelCount+" apparel");
-                if (AdeptusIntergrationUtility.enabled_AlienRaces)
-                {
-                    PawnRenderUtility.AlienRacesPatch(pawn, bodyFacing, out size, portrait);
-                }
-                else
-                {
-                    size = new Vector2(1.5f, 1.5f);
-                }
-                
-                List<Apparel> worn = pawn.apparel.WornApparel;
-                for (int wa = 0; wa < worn.Count; wa++)
-                {
-                    Apparel apparel = worn[wa];
-                    if (apparel is ApparelComposite composite)
+                    //    Log.Message("DrawAddons for "+ pawn.apparel.WornApparelCount+" apparel");
+                    if (AdeptusIntergrationUtility.enabled_AlienRaces)
                     {
-                        Log.Message("composite");
-                        if (!composite.Pauldrons.NullOrEmpty() && AMAMod.settings.AllowPauldronDrawer)
-                        {
-                            for (int i = 0; i < composite.Pauldrons.Count; i++)
-                            {
-                                CompPauldronDrawer Pauldron = composite.Pauldrons[i] as CompPauldronDrawer;
-                                if (Pauldron != null)
-                                {
-                                    Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
-                                    if (Pauldron.activeEntries.NullOrEmpty())
-                                    {
-                                        Pauldron.Initialize();
-                                    }
-                                    foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
-                                    {
-                                        //    entry.Drawer = Pauldron;
-                                        if (entry.apparel == null)
-                                        {
-                                            entry.apparel = apparel;
-                                        }
-                                        if (entry.Drawer == null)
-                                        {
-                                            Log.Warning("Warning! Drawer null");
-                                        }
-                                        if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
-                                        {
-                                            if (Pauldron.onHead || renderBody)
-                                            {
-                                                GenDraw.DrawMeshNowOrLater
-                                                    (
-                                                        // pauldronMesh,
-                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
-                                                        center + (quat * offset),
-                                                        quat,
-                                                        PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                                        flags.FlagSet(PawnRenderFlags.DrawNow)
-                                                    );
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if (!composite.Extras.NullOrEmpty() && AMAMod.settings.AllowExtraPartDrawer)
-                        {
-                            for (int i = 0; i < composite.Extras.Count; i++)
-                            {
-
-                                CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i] as CompApparelExtraPartDrawer;
-                                if (ExtraDrawer != null)
-                                {
-                                    Vector3 drawAt = vector;
-                                    if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
-                                    {
-                                        bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
-                                        Rot4 facing = onHead ? headfacing : bodyFacing;
-                                        if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
-                                        {
-                                            if (onHead || renderBody)
-                                            {
-                                                if (onHead)
-                                                {
-                                                    Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
-                                                    drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
-
-                                                }
-                                                else
-                                                {
-                                                    drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
-                                                }
-                                                GenDraw.DrawMeshNowOrLater
-                                                    (
-                                                        // pauldronMesh,
-                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
-                                                        drawAt,
-                                                        quat,
-                                                        PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                        flags.FlagSet(PawnRenderFlags.DrawNow)
-                                                    );
-                                            }
-                                            //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        PawnRenderUtility.AlienRacesPatch(pawn, bodyFacing, out size, portrait);
                     }
                     else
                     {
-                    //    Log.Message("noncomposite");
-                        for (int i = 0; i < apparel.AllComps.Count; i++)
+                        size = new Vector2(1.5f, 1.5f);
+                    }
+
+                    List<Apparel> worn = pawn.apparel.WornApparel;
+                    for (int wa = 0; wa < worn.Count; wa++)
+                    {
+                        Apparel apparel = worn[wa];
+                        if (apparel is ApparelComposite composite)
                         {
-                            if (AMAMod.settings.AllowPauldronDrawer)
+                            Log.Message("composite");
+                            if (!composite.Pauldrons.NullOrEmpty() && AMAMod.settings.AllowPauldronDrawer)
                             {
-                                CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
-                                if (Pauldron != null)
+                                for (int i = 0; i < composite.Pauldrons.Count; i++)
                                 {
-                                //    Log.Message("Pauldron");
-                                    Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
-                                    if (Pauldron.activeEntries.NullOrEmpty())
+                                    CompPauldronDrawer Pauldron = composite.Pauldrons[i] as CompPauldronDrawer;
+                                    if (Pauldron != null)
                                     {
-                                        Pauldron.Initialize();
-                                    }
-                                    foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
-                                    {
-                                        //    entry.Drawer = Pauldron;
-                                        if (entry.apparel == null)
+                                        Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                                        if (Pauldron.activeEntries.NullOrEmpty())
                                         {
-                                            entry.apparel = apparel;
+                                            Pauldron.Initialize();
                                         }
-                                        if (entry.Drawer == null)
+                                        foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
                                         {
-                                            Log.Warning("Warning! Drawer null");
-                                        }
-                                        if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
-                                        {
-                                            if (Pauldron.onHead || renderBody && pauldronMat != null)
+                                            //    entry.Drawer = Pauldron;
+                                            if (entry.apparel == null)
                                             {
-                                            //    Log.Message("Pauldron DrawMeshNowOrLater " + !flags.FlagSet(PawnRenderFlags.Cache));
-                                                GenDraw.DrawMeshNowOrLater
-                                                    (
-                                                        // pauldronMesh,
-                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
-                                                        center + (quat * offset),
-                                                        quat,
-                                                        PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
-                                                        !flags.FlagSet(PawnRenderFlags.Cache)
-                                                    );
+                                                entry.apparel = apparel;
+                                            }
+                                            if (entry.Drawer == null)
+                                            {
+                                                Log.Warning("Warning! Drawer null");
+                                            }
+                                            if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                            {
+                                                if (Pauldron.onHead || renderBody)
+                                                {
+                                                    GenDraw.DrawMeshNowOrLater
+                                                        (
+                                                            // pauldronMesh,
+                                                            PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                            center + (quat * offset),
+                                                            quat,
+                                                            PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow)
+                                                        );
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                            if (AMAMod.settings.AllowExtraPartDrawer)
+                            if (!composite.Extras.NullOrEmpty() && AMAMod.settings.AllowExtraPartDrawer)
                             {
-                                CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
-                                if (ExtraDrawer != null)
+                                for (int i = 0; i < composite.Extras.Count; i++)
                                 {
-                                //    Log.Message("ExtraDrawer");
-                                    Vector3 drawAt = vector;
-                                    if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
-                                    {
-                                        bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
-                                        Rot4 facing = onHead ? headfacing : bodyFacing;
-                                        if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
-                                        {
-                                            if (onHead || renderBody)
-                                            {
-                                                if (onHead)
-                                                {
-                                                    Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
-                                                    drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
 
-                                                }
-                                                else
+                                    CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i] as CompApparelExtraPartDrawer;
+                                    if (ExtraDrawer != null)
+                                    {
+                                        Vector3 drawAt = vector;
+                                        if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
+                                        {
+                                            bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
+                                            Rot4 facing = onHead ? headfacing : bodyFacing;
+                                            if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
+                                            {
+                                                if (onHead || renderBody)
                                                 {
-                                                    drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                                    if (onHead)
+                                                    {
+                                                        Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                                        drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
+
+                                                    }
+                                                    else
+                                                    {
+                                                        drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                                    }
+                                                    GenDraw.DrawMeshNowOrLater
+                                                        (
+                                                            // pauldronMesh,
+                                                            PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                            drawAt,
+                                                            quat,
+                                                            PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.animateExtra
+                                                        );
                                                 }
-                                            //    Log.Message("ExtraDrawer DrawMeshNowOrLater "+ !flags.FlagSet(PawnRenderFlags.Cache));
-                                                GenDraw.DrawMeshNowOrLater
-                                                    (
-                                                        // pauldronMesh,
-                                                        PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
-                                                        drawAt,
-                                                        quat,
-                                                        PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                        !flags.FlagSet(PawnRenderFlags.Cache)
-                                                    );
+                                                //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                             }
-                                            //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
                                         }
                                     }
                                 }
                             }
                         }
-                    }
+                        else
+                        {
+                            //    Log.Message("noncomposite");
+                            for (int i = 0; i < apparel.AllComps.Count; i++)
+                            {
+                                if (AMAMod.settings.AllowPauldronDrawer)
+                                {
+                                    CompPauldronDrawer Pauldron = apparel.AllComps[i] as CompPauldronDrawer;
+                                    if (Pauldron != null)
+                                    {
+                                        //    Log.Message("Pauldron");
+                                        Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                                        if (Pauldron.activeEntries.NullOrEmpty())
+                                        {
+                                            Pauldron.Initialize();
+                                        }
+                                        foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
+                                        {
+                                            //    entry.Drawer = Pauldron;
+                                            if (entry.apparel == null)
+                                            {
+                                                entry.apparel = apparel;
+                                            }
+                                            if (entry.Drawer == null)
+                                            {
+                                                Log.Warning("Warning! Drawer null");
+                                            }
+                                            if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                            {
+                                                if (Pauldron.onHead || renderBody && pauldronMat != null)
+                                                {
+                                                    //    Log.Message("Pauldron DrawMeshNowOrLater " + !flags.FlagSet(PawnRenderFlags.Cache));
+                                                    GenDraw.DrawMeshNowOrLater
+                                                        (
+                                                            // pauldronMesh,
+                                                            PawnRenderUtility.GetPawnMesh(portrait, pawn, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
+                                                            center + (quat * offset),
+                                                            quat,
+                                                            PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), pawn),
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow)
+                                                        );
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (AMAMod.settings.AllowExtraPartDrawer)
+                                {
+                                    CompApparelExtraPartDrawer ExtraDrawer = apparel.AllComps[i] as CompApparelExtraPartDrawer;
+                                    if (ExtraDrawer != null)
+                                    {
+                                        //    Log.Message("ExtraDrawer");
+                                        Vector3 drawAt = vector;
+                                        if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
+                                        {
+                                            bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
+                                            Rot4 facing = onHead ? headfacing : bodyFacing;
+                                            if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
+                                            {
+                                                if (onHead || renderBody)
+                                                {
+                                                    if (onHead)
+                                                    {
+                                                        Vector3 v = vector + quat * pawn.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                                        drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
 
+                                                    }
+                                                    else
+                                                    {
+                                                        drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                                    }
+                                                    //    Log.Message("ExtraDrawer DrawMeshNowOrLater "+ !flags.FlagSet(PawnRenderFlags.Cache));
+                                                    GenDraw.DrawMeshNowOrLater
+                                                        (
+                                                            // pauldronMesh,
+                                                            PawnRenderUtility.GetPawnMesh(portrait, pawn, facing, !onHead),
+                                                            drawAt,
+                                                            quat,
+                                                            PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.animateExtra
+                                                        );
+                                                }
+                                                //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 }
+
             }
             if (!pawn.Dead && AMAMod.settings.AllowHediffPartDrawer)
             {
@@ -302,7 +321,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 material = PawnRenderUtility.OverrideMaterialIfNeeded(material, pawn);
                                 //                                                                                        Angle calculation to not pick the shortest, taken from Quaternion.Angle and modified
                                 GenDraw.DrawMeshNowOrLater(mesh: mesh, loc: drawAt + drawer.offsetVector().RotatedBy(angle: Mathf.Acos(f: Quaternion.Dot(a: Quaternion.identity, b: quat)) * 2f * 57.29578f),
-                                    quat: quat, mat: material, drawNow: !flags.FlagSet(PawnRenderFlags.Cache));
+                                    quat: quat, mat: material, drawNow: flags.FlagSet(PawnRenderFlags.DrawNow));
 
                                 drawAt.y += HediffComp_DrawImplant_AdMech.MinClippingDistance;
                             }

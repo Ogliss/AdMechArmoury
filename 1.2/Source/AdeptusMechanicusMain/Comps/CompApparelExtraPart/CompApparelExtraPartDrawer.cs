@@ -9,6 +9,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public class CompProperties_ApparelExtraPartDrawer : CompProperties
     {
         public CompProperties_ApparelExtraPartDrawer()
@@ -29,6 +30,7 @@ namespace AdeptusMechanicus
         public bool onHead = false;
 
     }
+    [StaticConstructorOnStartup]
     public class CompApparelExtraPartDrawer : ThingComp
     {
         public CompProperties_ApparelExtraPartDrawer Props
@@ -82,7 +84,7 @@ namespace AdeptusMechanicus
                         {
                             msg.AppendLine("        extraPartEntry: Make New");
                         }
-                        this.GeneratePart();
+                        this.GeneratePart(ref msg);
                         msg.AppendLine("        Initialized: " + partInitialized);
                     }
                     else
@@ -97,7 +99,7 @@ namespace AdeptusMechanicus
                 }
                 if (!logged && loging && msg.Length > 0)
                 {
-                //    Log.Message(msg.ToString());
+                    Log.Message(msg.ToString());
                     logged = true;
                 }
                 return extraPartEntry;
@@ -106,9 +108,8 @@ namespace AdeptusMechanicus
         bool logged = false;
         bool loging = false;
 
-        public void GeneratePart()
+        public void GeneratePart(ref StringBuilder msg)
         {
-            StringBuilder msg = new StringBuilder();
             if (extraPartEntryint >= 0)
             {
                 extraPartEntry = this.Props.ExtrasEntries[extraPartEntryint];
@@ -314,41 +315,57 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<string>(ref this.graphicPath, "extragraphicPath", null, false);
             Scribe_Values.Look<bool>(ref this.ExtraUseBodyTexture, "UseBodyOffset", false);
             Scribe_Values.Look<int>(ref this.extraPartEntryint, "extraPartEntryint", -1);
-        //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
+            //    Scribe_Values.Look<ExtraPartEntry>(ref this.extraPartEntry, "ExtraPartEntry", null);
         }
-        
+
         public Vector3 bitPosition = Vector3.zero;
         private bool bitFloatingDown = true;
-        private float bitOffset = 0.45f;
+        private bool bitFloatingRight = true;
+        private float bitOffsetZ = 0.0f;
+        private float bitOffsetX = 0.0f;
+        private float Xlimit = 0.25f;
         private Vector3 AnimateExtraBit(Vector3 origin)
         {
-            float num = Mathf.Lerp(1.2f, 1.55f, 1f);
-            if (bitFloatingDown)
+            if (!Find.TickManager.Paused)
             {
-                if (this.bitOffset < 0.38f)
+                if (bitFloatingDown)
                 {
-                    this.bitFloatingDown = false;
+                    if (this.bitOffsetZ < -0.07f)
+                    {
+                        this.bitFloatingDown = false;
+                    }
+                    this.bitOffsetZ -= 0.0005f * Find.TickManager.TickRateMultiplier;
                 }
-                this.bitOffset -= 0.001f;
-            }
-            else
-            {
-                if (this.bitOffset > 0.57f)
+                else
                 {
-                    this.bitFloatingDown = true;
+                    if (this.bitOffsetZ > 0.12f)
+                    {
+                        this.bitFloatingDown = true;
+                    }
+                    this.bitOffsetZ += 0.0005f * Find.TickManager.TickRateMultiplier;
                 }
-                this.bitOffset += 0.001f;
+                if (bitFloatingRight)
+                {
+                    if (this.bitOffsetX > Xlimit || Rand.Chance(Mathf.InverseLerp(0, Xlimit, this.bitOffsetX) * 0.1f))
+                    {
+                        this.bitFloatingRight = false;
+                    }
+                    this.bitOffsetX += 0.0005f * Find.TickManager.TickRateMultiplier;
+                }
+                else
+                {
+                    if (this.bitOffsetX < -Xlimit || Rand.Chance(Mathf.InverseLerp(0, -Xlimit, this.bitOffsetX) * 0.1f))
+                    {
+                        this.bitFloatingRight = true;
+                    }
+                    this.bitOffsetX -= 0.0005f * Find.TickManager.TickRateMultiplier;
+                }
             }
             this.bitPosition = origin == default ? pawn.Drawer.DrawPos : origin;
-            this.bitPosition.x -= (0.5f + Rand.Range(-0.01f, 0.01f));
-            this.bitPosition.z += this.bitOffset;
-            this.bitPosition.y = AltitudeLayer.Blueprint.AltitudeFor();
-            float angle = 0f;
-            Vector3 s = new Vector3(0.35f, 1f, 0.35f);
+            this.bitPosition.x += this.bitOffsetX;
+            this.bitPosition.z += this.bitOffsetZ;
+        //    this.bitPosition.y = AltitudeLayer.Blueprint.AltitudeFor();
             return bitPosition;
-            Matrix4x4 matrix = default(Matrix4x4);
-            matrix.SetTRS(this.bitPosition, Quaternion.AngleAxis(angle, Vector3.up), s);
-        //    Graphics.DrawMesh(MeshPool.plane10, matrix, TM_RenderQueue.bitMat, 0);
         }
 
         public Vector3 GetOffset(Rot4 rotation, ExtraApparelPartProps partEntry)
@@ -397,9 +414,10 @@ namespace AdeptusMechanicus
                 else
                     offset.y += _HeadOffset;
             }
+
             if (partEntry.animateExtra)
             {
-                offset = AnimateExtraBit(offset); 
+                offset = AnimateExtraBit(offset);
             }
             return offset;
         }
@@ -474,8 +492,8 @@ namespace AdeptusMechanicus
                 this.useSecondaryColor = extraPartEntry.useParentSecondaryColor;
                 this.ExtraUseBodyTexture = extraPartEntry.UseBodytypeTextures;
                 */
-            //    StringBuilder msg = new StringBuilder("PostSpawnSetup ");
-            //    this.GeneratePart();
+                StringBuilder msg = new StringBuilder("PostSpawnSetup ");
+                this.GeneratePart(ref msg);
             }
             partInitialized = true;
 

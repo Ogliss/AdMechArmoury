@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>	
+	<!--==================== Dark Eldar Damage Types =========================-->
+	<!--==================== Splinter Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGESplinter</defName>
+		<label>Splinter</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was cut to ribbons.</deathMessage>
+		<hediff>Cut</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+	</DamageDef>
+	
+	<!--==================== Plasma Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<defName>OGDEPlas</defName>
+		<label>Disintegrator</label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was disintergrated.</deathMessage>
+		<hediff>OG_Hediff_PlasmaBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== Shredder Damage Type =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGDEShredder</defName>
+		<label>Mono-filament Mesh </label>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} was reduced to a pulp.</deathMessage>
+		<hediff>Cut</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+	</DamageDef>
+	
+	<!--==================== Stinger Damage Types =========================-->
+	<!--==================== Stinger Normal Damage =========================-->
+	<DamageDef ParentName="OGLocalRangedInjuryBase">
+		<defName>OGDEStinger</defName>
+		<workerClass>AdeptusMechanicus.DamageWorker_AddInjuryStrengthX</workerClass>
+		<label>Stinger</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>false</isExplosive>
+		<deathMessage>{0} was torn to shreds by needles.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<additionalHediffs>
+			<li>
+				<hediff>Toxins</hediff>
+				<severityPerDamageDealt>0.001</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+	
+	<!--==================== Stinger Explosion Damage =========================-->
+	<DamageDef Abstract="True" Name="OG_DarkEldar_StingerBlastBase" ParentName="OGLocalRangedInjuryBase">
+		<label>Stinger Toxin Blast</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} exploaded in a shower of gore.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<defaultDamage>0</defaultDamage>
+		<buildingDamageFactor>0</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.9)</explosionColorEdge>
+		<soundExplosion>MeleeHit_Metal_ThunderHammer</soundExplosion>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+		<additionalHediffs>
+			<li>
+				<hediff>Toxins</hediff>
+				<severityPerDamageDealt>0.001</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicSensitivity</victimSeverityScaling>
+			</li>
+		</additionalHediffs>
+	</DamageDef>
+	
+	<!--==================== Darklance Damage Type =========================-->
+	<DamageDef Abstract="True" Name="OG_DarkEldar_DarklanceBase" ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<label>Lance</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} was slain by a Brightlance.</deathMessage>
+		<hediff>LaserBurn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionColorCenter>(0.55, 0.95, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.55, 0.4)</explosionColorEdge>
+		<combatLogRules>Damage_Flame</combatLogRules>
+	</DamageDef>
+	
+</Defs>
