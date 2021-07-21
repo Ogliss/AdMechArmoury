@@ -126,7 +126,8 @@ namespace AdeptusMechanicus
                 try
                 {
                     Vector3 loc = pos;
-                    loc.y = ImpactGlowMoteDef.Altitude;
+                //    loc.y = ImpactGlowMoteDef.Altitude;
+                    loc.y -= 0.001f;
                     Mote mote = (Mote)ThingMaker.MakeThing(ImpactGlowMoteDef, null);
                     mote.exactPosition = loc;
                     mote.Scale = ImpactGlowMoteSize;

@@ -71,7 +71,7 @@ namespace AdeptusMechanicus
                 }
                 if (ArmouryMain.ogryn != null)
                 {
-                    //        Log.Message("ArmouryMain 1 ogryn");
+                    //    //    Log.Message("ArmouryMain 1 ogryn");
                     if (!item.AllRecipeUsers.Contains(ArmouryMain.ogryn))
                     {
                         item.recipeUsers.Add(ArmouryMain.ogryn);
@@ -87,7 +87,7 @@ namespace AdeptusMechanicus
                 }
                 if (ArmouryMain.beastman != null)
                 {
-                    //        Log.Message("ArmouryMain 1 beastman");
+                    //    //    Log.Message("ArmouryMain 1 beastman");
                     if (!item.AllRecipeUsers.Contains(ArmouryMain.beastman))
                     {
                         item.recipeUsers.Add(ArmouryMain.beastman);

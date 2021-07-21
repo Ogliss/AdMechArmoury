@@ -142,7 +142,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (pauldrons.NullOrEmpty())
+                if (pauldrons == null)
                 {
                     pauldrons = new List<CompPauldronDrawer>();
                     for (int i = 0; i < this.AllComps.Count; i++)
@@ -163,7 +163,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (extras.NullOrEmpty())
+                if (extras == null)
                 {
                     extras = new List<CompApparelExtraPartDrawer>();
                     for (int i = 0; i < this.AllComps.Count; i++)
@@ -179,10 +179,117 @@ namespace AdeptusMechanicus
             }
         }
 
+        public override void DrawWornExtras()
+        {
+            base.DrawWornExtras();
+            if (!Extras.NullOrEmpty())
+            {
+                PawnRenderFlags flags = Wearer.Drawer.renderer.GetDefaultRenderFlags(Wearer);
+                Quaternion quat = Quaternion.AngleAxis(0, Vector3.up);
+                Vector3 vector = Wearer.DrawPos;
+                Rot4 headfacing = Wearer.Rotation;
+                Rot4 bodyFacing = Wearer.Rotation;
+                bool portrait = flags.FlagSet(PawnRenderFlags.Portrait);
+                Vector2 size = (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : Wearer.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
+                if (AdeptusIntergrationUtility.enabled_AlienRaces)
+                {
+                    PawnRenderUtility.AlienRacesPatch(Wearer, bodyFacing, out size, portrait);
+                }
+                else
+                {
+                    size = new Vector2(1.5f, 1.5f);
+                }
+                foreach (CompApparelExtraPartDrawer ExtraDrawer in Extras)
+                {
+                    Vector3 drawAt = Wearer.DrawPos;
+                    if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
+                    {
+                        bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
+                        Rot4 facing = onHead ? headfacing : bodyFacing;
+                        if (!ExtraDrawer.ExtraPartEntry.animateExtra)
+                        {
+                            continue;
+                        }
+                        if (ExtraDrawer.ShouldDrawExtra(Wearer, this, facing, out Material extraMat))
+                        {
+                            if (onHead || !PawnRenderFlagsExtension.FlagSet(flags, PawnRenderFlags.Invisible))
+                            {
+                                if (onHead)
+                                {
+                                    Vector3 v = vector + quat * Wearer.Drawer.renderer.BaseHeadOffsetAt(headfacing);
+                                    drawAt = v + quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y);
 
-        // add shield comps here, with getter as above
+                                }
+                                else
+                                {
+                                    drawAt = vector + (quat * new Vector3(ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).x * size.x, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).y, ExtraDrawer.GetOffset(bodyFacing, ExtraDrawer.ExtraPartEntry).z * size.y));
+                                }
+                                /*
+                                GenDraw.DrawMeshNowOrLater
+                                    (
+                                        // pauldronMesh,
+                                        PawnRenderUtility.GetPawnMesh(portrait, Wearer, facing, !onHead),
+                                        drawAt,
+                                        quat,
+                                        PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, Wearer),
+                                        ExtraDrawer.ExtraPartEntry.animateExtra
+                                    );
+                                */
+                                Graphics.DrawMesh(
+                                    PawnRenderUtility.GetPawnMesh(portrait, Wearer, facing, !onHead),
+                                    drawAt,
+                                    quat,
+                                    PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, Wearer),
+                                    0);
+                            }
+                            //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
+                        }
+                    }
+                }
+            }
+            
+            if (!Shields.NullOrEmpty())
+            {
+                foreach (var item in Shields)
+                {
+                    item.DrawShield();
+                }
+            }
+            
+        }
+
+        private List<Comp_Shield> shields;
+        public List<Comp_Shield> Shields
+        {
+            get
+            {
+                if (shields == null)
+                {
+                //    Log.Message("generating shieldlist");
+                    shields = new List<Comp_Shield>();
+                    for (int i = 0; i < this.AllComps.Count; i++)
+                    {
+                        if (this.AllComps[i] is Comp_Shield shield)
+                        {
+                        //    Log.Message("adding shield to shieldlist");
+                            shields.Add(shield);
+                        }
+                    }
+                //    Log.Message("generated shieldlist: " + shields.Count);
+                }
+                return shields;
+            }
+        }
+
         public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
+            foreach (Comp_Shield shield in Shields)
+            {
+                if (shield.CheckPreAbsorbDamage(dinfo))
+                {
+                    return true;
+                }
+            }
             return base.CheckPreAbsorbDamage(dinfo);
         }
 
@@ -195,6 +302,7 @@ namespace AdeptusMechanicus
             int num = 700000101;
             if (Find.Selector.SingleSelectedThing == base.Wearer)
             {
+                /*
                 if (AltGraphicsExt != null && AltGraphicsExt.gizmoOnWorn)
                 {
                     Command_Action command_Action = new Command_Action()
@@ -212,6 +320,14 @@ namespace AdeptusMechanicus
                     };
                     yield return command_Action;
                 }
+                */
+                if (!Shields.NullOrEmpty())
+                {
+                    foreach (var item in Shields)
+                    {
+                        yield return item.GetShieldGizmos();
+                    }
+                }
 
             }
             yield break;
@@ -219,7 +335,7 @@ namespace AdeptusMechanicus
 
 
 
-
+        /*
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (var item in base.GetGizmos())
@@ -246,6 +362,7 @@ namespace AdeptusMechanicus
             }
             yield break;
         }
+        */
 
         public FloatMenu MakeAlternateGraphicMenu()
         {
@@ -327,6 +444,21 @@ namespace AdeptusMechanicus
 
         public override Color DrawColor { get => ColoursExt?.factionColor ?? base.DrawColor; set => base.DrawColor = value; }
         public override Color DrawColorTwo => ColoursExt?.factionColorTwo ?? base.DrawColorTwo;
+
+        public override bool AllowVerbCast(Verb verb)
+        {
+            if (!Shields.NullOrEmpty())
+            {
+                foreach (var item in Shields)
+                {
+                    if (!item.AllowVerbCast(verb))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return base.AllowVerbCast(verb);
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {

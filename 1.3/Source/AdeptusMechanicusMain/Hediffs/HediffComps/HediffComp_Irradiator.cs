@@ -128,7 +128,7 @@ namespace AdeptusMechanicus
 			
 			if (base.Pawn.Faction == Faction.OfPlayer)
 			{
-				num *= Find.Storyteller.difficultyValues.playerPawnInfectionChanceFactor;
+				num *= Find.Storyteller.difficulty.playerPawnInfectionChanceFactor;
 			}
 			
 			if (Rand.Value < num)

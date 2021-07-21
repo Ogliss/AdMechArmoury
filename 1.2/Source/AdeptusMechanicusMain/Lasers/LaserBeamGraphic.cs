@@ -149,7 +149,7 @@ namespace AdeptusMechanicus.Lasers
             {
                 if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
                 {
-                    a = origin -= dir * (barrelOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
+                    a = origin -= dir * (bulletOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
                     a.y += 0.0367346928f;
                     if (flareDef != null)
                     {

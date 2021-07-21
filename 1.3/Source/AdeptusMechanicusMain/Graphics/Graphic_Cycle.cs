@@ -26,12 +26,12 @@ namespace AdeptusMechanicus
 		{
 			if (thingDef == null)
 			{
-				Log.ErrorOnce("Fire DrawWorker with null thingDef: " + loc, 3427324, false);
+				Log.ErrorOnce("Fire DrawWorker with null thingDef: " + loc, 3427324);
 				return;
 			}
 			if (this.subGraphics == null)
 			{
-				Log.ErrorOnce("Graphic_Flicker has no subgraphics " + thingDef, 358773632, false);
+				Log.ErrorOnce("Graphic_Flicker has no subgraphics " + thingDef, 358773632);
 				return;
 			}
 			int num = Find.TickManager.TicksGame;
@@ -58,7 +58,7 @@ namespace AdeptusMechanicus
 			}
 			if (num3 < 0 || num3 >= this.subGraphics.Length)
 			{
-				Log.ErrorOnce("Fire drawing out of range: " + num3, 7453435, false);
+				Log.ErrorOnce("Fire drawing out of range: " + num3, 7453435);
 				num3 = 0;
 			}
 			Graphic graphic = this.subGraphics[num3];

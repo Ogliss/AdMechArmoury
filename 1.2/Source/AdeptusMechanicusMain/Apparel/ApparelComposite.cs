@@ -105,7 +105,7 @@ namespace AdeptusMechanicus
                 factionColours = value;
             }
         }
-        public FactionDefExtension ColoursExt => FactionColours !=null ? (FactionColours?.GetModExtensionFast<FactionDefExtension>() ?? null) : null;
+        public FactionDefExtension ColoursExt => FactionColours != null ? (FactionColours?.GetModExtensionFast<FactionDefExtension>() ?? null) : null;
         bool triedColorable = false;
         bool triedQuality = false;
         public CompQuality quality;
@@ -142,7 +142,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (pauldrons.NullOrEmpty())
+                if (pauldrons == null)
                 {
                     pauldrons = new List<CompPauldronDrawer>();
                     for (int i = 0; i < this.AllComps.Count; i++)
@@ -157,13 +157,13 @@ namespace AdeptusMechanicus
                 return pauldrons;
             }
         }
-        
+
         private List<CompApparelExtraPartDrawer> extras;
         public List<CompApparelExtraPartDrawer> Extras
         {
             get
             {
-                if (extras.NullOrEmpty())
+                if (extras == null)
                 {
                     extras = new List<CompApparelExtraPartDrawer>();
                     for (int i = 0; i < this.AllComps.Count; i++)
@@ -179,10 +179,51 @@ namespace AdeptusMechanicus
             }
         }
 
+        public override void DrawWornExtras()
+        {
+            base.DrawWornExtras();
+            if (!Shields.NullOrEmpty())
+            {
+                foreach (var item in Shields)
+                {
+                    item.DrawShield();
+                }
+            }
 
-        // add shield comps here, with getter as above
+        }
+
+        private List<Comp_Shield> shields;
+        public List<Comp_Shield> Shields
+        {
+            get
+            {
+                if (shields == null)
+                {
+                    Log.Message("generating shieldlist");
+                    shields = new List<Comp_Shield>();
+                    for (int i = 0; i < this.AllComps.Count; i++)
+                    {
+                        if (this.AllComps[i] is Comp_Shield shield)
+                        {
+                            Log.Message("adding shield to shieldlist");
+                            shields.Add(shield);
+                        }
+                    }
+                    Log.Message("generated shieldlist: " + shields.Count);
+                }
+                return shields;
+            }
+        }
+
         public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
+            foreach (Comp_Shield shield in Shields)
+            {
+                if (shield.CheckPreAbsorbDamage(dinfo))
+                {
+                    return true;
+                }
+            }
             return base.CheckPreAbsorbDamage(dinfo);
         }
 
@@ -195,6 +236,7 @@ namespace AdeptusMechanicus
             int num = 700000101;
             if (Find.Selector.SingleSelectedThing == base.Wearer)
             {
+                /*
                 if (AltGraphicsExt != null && AltGraphicsExt.gizmoOnWorn)
                 {
                     Command_Action command_Action = new Command_Action()
@@ -212,6 +254,14 @@ namespace AdeptusMechanicus
                     };
                     yield return command_Action;
                 }
+                */
+                if (!Shields.NullOrEmpty())
+                {
+                    foreach (var item in Shields)
+                    {
+                        yield return item.GetShieldGizmos();
+                    }
+                }
 
             }
             yield break;
@@ -219,7 +269,7 @@ namespace AdeptusMechanicus
 
 
 
-
+        /*
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (var item in base.GetGizmos())
@@ -246,6 +296,7 @@ namespace AdeptusMechanicus
             }
             yield break;
         }
+        */
 
         public FloatMenu MakeAlternateGraphicMenu()
         {
@@ -289,8 +340,8 @@ namespace AdeptusMechanicus
                         r = ActiveAltGraphic.wornGraphicPath;
                     }
                 }
-            //    Log.Message("using " + r);
-               return r;
+                //    Log.Message("using " + r);
+                return r;
             }
         }
         private Graphic _graphic;
@@ -317,7 +368,7 @@ namespace AdeptusMechanicus
                     }
                     catch (Exception)
                     {
-                    //    Log.Message("shit went tits up");
+                        //    Log.Message("shit went tits up");
                         failedgraphic = true;
                     }
                 }
@@ -328,6 +379,21 @@ namespace AdeptusMechanicus
         public override Color DrawColor { get => ColoursExt?.factionColor ?? base.DrawColor; set => base.DrawColor = value; }
         public override Color DrawColorTwo => ColoursExt?.factionColorTwo ?? base.DrawColorTwo;
 
+        public override bool AllowVerbCast(IntVec3 root, Map map, LocalTargetInfo targ, Verb verb)
+        {
+            if (!Shields.NullOrEmpty())
+            {
+                foreach (var item in Shields)
+                {
+                    if (!item.AllowVerbCast(verb))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return base.AllowVerbCast(root, map, targ, verb);
+        }
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -337,7 +403,7 @@ namespace AdeptusMechanicus
         {
             base.ExposeData();
             Scribe_Values.Look(ref this.activeAltKey, "activeAltGraphicKey", null);
-            Scribe_Values.Look(ref this.activeAltInt, "activeAltGraphicInt",-1);
+            Scribe_Values.Look(ref this.activeAltInt, "activeAltGraphicInt", -1);
         }
         public string activeAltKey = null;
         public int activeAltInt = -1;

@@ -199,7 +199,7 @@ namespace AdeptusMechanicus
             {
                 if (!CellFinder.TryFindRandomCellNear(this.parent.Position, this.parent.Map, 5, (IntVec3 c) => c.Standable(this.parent.Map) && this.parent.Map.reachability.CanReach(c, this.parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)), out IntVec3 invalid, -1))
                 {
-                    Log.Error("Found no place for Pawns to defend " + this, false);
+                    Log.Error("Found no place for Pawns to defend " + this);
                     invalid = IntVec3.Invalid;
                 }
                 LordJob_PawnsDefendShip lordJob = new LordJob_PawnsDefendShip(this.parent, this.parent.Faction, 21f, invalid);

@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (_hediffs == null)
                 {
-                    Log.Message("VerbGiver_hediffs Generating list");
+               //     Log.Message("VerbGiver_hediffs Generating list");
                     int a = Find.TickManager.TicksGame;
                     _hediffs = new List<HediffDef>();
                     foreach (var item in DefDatabase<HediffDef>.AllDefsListForReading)
@@ -29,7 +29,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             _hediffs.Add(item);
                         }
                     }
-                    Log.Message("VerbGiver_hediffs Generated list: "+_hediffs.Count+" taking "+ (Find.TickManager.TicksGame - a) +" ticks");
+                //    Log.Message("VerbGiver_hediffs Generated list: "+_hediffs.Count+" taking "+ (Find.TickManager.TicksGame - a) +" ticks");
                 }
                 return _hediffs;
             }
@@ -273,7 +273,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (equipmentAbility.CanCast && equipmentAbility.verb.verbProps.range < 1.5f)
                         {
-                            Log.Message("Adding " + equipmentAbility.def.LabelCap + "to " + pawn + "");
+                       //     Log.Message("Adding " + equipmentAbility.def.LabelCap + "to " + pawn + "");
                             rangeList.Add(equipmentAbility.verb);
                             hasRangedVerb = true;
                         }
@@ -281,7 +281,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
                 if (!rangeList.NullOrEmpty() && hasRangedVerb)
                 {
-                    Log.Message("found " + rangeList.Count + " eqabilities for " + pawn);
+                //    Log.Message("found " + rangeList.Count + " eqabilities for " + pawn);
                 }
             }
             return true;

@@ -78,7 +78,7 @@ namespace AdeptusMechanicus.settings
             }
 
             listing_Main = new Listing_StandardExpanding();
-            if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))), false);
+            if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))));
         }
 
         public static float lineheight = (Text.LineHeight + 2f);
@@ -96,7 +96,6 @@ namespace AdeptusMechanicus.settings
             float width = inRect2.ContractedBy(4).width;
             PreModOptions(listing_Main, inRect1, width, ref menu, ModLoaded());
             Rect Menu = new Rect(Frame.x, Frame.y, width, menu);
-            float height = Frame.height;
             Widgets.DrawMenuSection(Frame);
             Widgets.BeginScrollView(Frame, ref this.pos, Menu, false);
             ModOptions(ref Menu, inRect2, Menu.ContractedBy(4).width, ref menu);
@@ -395,7 +394,6 @@ namespace AdeptusMechanicus.settings
         public static int IntergrationOptions;
         public static Listing_StandardExpanding listing_Main;
         private Vector2 pos = new Vector2(0f, 0f);
-        private Vector2 pos2 = new Vector2(0f, 0f);
     }
     
 }

@@ -37,8 +37,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             first = i;
                             /*
-                            Log.Message("Current: " + inst.operand.GetType().FullName + " : " + inst.operand);
-                            Log.Message("+ " + extra + ": " + next.operand.GetType().FullName + " : " + next.operand.ToString() + " +" + (i - first));
+                        //    Log.Message("Current: " + inst.operand.GetType().FullName + " : " + inst.operand);
+                        //    Log.Message("+ " + extra + ": " + next.operand.GetType().FullName + " : " + next.operand.ToString() + " +" + (i - first));
                             */
                             yield return new CodeInstruction(opcode: OpCodes.Ldarga_S, operand: 1);
                             yield return new CodeInstruction(opcode: OpCodes.Ldarga_S, operand: 2);

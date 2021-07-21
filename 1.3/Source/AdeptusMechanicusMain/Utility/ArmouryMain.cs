@@ -73,8 +73,8 @@ namespace AdeptusMechanicus
                 InsertTags();
             }
             /*
-            Log.Message("AppDomain.CurrentDomain.GetAssemblies():\n" + System.AppDomain.CurrentDomain.GetAssemblies().Join(delimiter: "\n"));
-            Log.Message("GenTypes.AllActiveAssemblies:\n" + Traverse.Create(typeof(GenTypes)).Property<IEnumerable<System.Reflection.Assembly>>("AllActiveAssemblies").Value.Join(delimiter: "\n"));
+        //    Log.Message("AppDomain.CurrentDomain.GetAssemblies():\n" + System.AppDomain.CurrentDomain.GetAssemblies().Join(delimiter: "\n"));
+        //    Log.Message("GenTypes.AllActiveAssemblies:\n" + Traverse.Create(typeof(GenTypes)).Property<IEnumerable<System.Reflection.Assembly>>("AllActiveAssemblies").Value.Join(delimiter: "\n"));
             */
             //    Log.Message("ArmouryMain ");
             if (AMAMod.Dev && !scenariosTesting.NullOrEmpty())
@@ -97,8 +97,8 @@ namespace AdeptusMechanicus
             {
                 Precepts.AppendLine(item.defName);
             }
-            Log.Message(Memes.ToString());
-            Log.Message(Precepts.ToString());
+        //    Log.Message(Memes.ToString());
+        //    Log.Message(Precepts.ToString());
             */
         }
 
@@ -106,10 +106,10 @@ namespace AdeptusMechanicus
         {
             IEnumerable<BackstorySettings> settings = DefDatabase<BackstorySettings>.AllDefs;
             IEnumerable<BackstoryTagItem> items = settings.SelectMany((BackstorySettings bs) => bs.backstoryTagInsertion);
-            Log.Message("Checking " + items.Count() + " Backstroy Tags from " + settings.Count() + " BackstorySettings");
+       //     Log.Message("Checking " + items.Count() + " Backstroy Tags from " + settings.Count() + " BackstorySettings");
             foreach (BackstoryTagItem backstoryTagItem in items)
             {
-                Log.Message("BackstorySettings for " + backstoryTagItem);
+            //    Log.Message("BackstorySettings for " + backstoryTagItem);
                 using (List<string>.Enumerator enumerator2 = backstoryTagItem.backstories.GetEnumerator())
                 {
                     while (enumerator2.MoveNext())

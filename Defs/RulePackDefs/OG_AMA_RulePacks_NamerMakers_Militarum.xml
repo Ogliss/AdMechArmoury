@@ -111,67 +111,24 @@
 		<rulePack>
 			<rulesStrings>
 				<li>r_name(p=3)->[NameMaleMilitarum]</li>
-				<!--li>r_name(p=6)->[NameImperialGuardMaleFirst] '[NameImperialGuardMaleNick]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=5)->[NameImperialGuardMaleFirst] '[NameImperialGuardUnisexNick]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=4)->[NameImperialGuardMaleFirst] '[AnimalBadass]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=3)->[NameImperialGuardMaleFirst] '[Color]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=2)->[NameImperialGuardMaleFirst] [NameImperialGuardUnisexLast]</li>
-				<li>r_name->[exoticname]</li>
-
-				<li>exoticname(p=2)->[AdjectiveBadass]</li>
-				<li>exoticname(p=2)->[PersonBadass]</li>
-				<li>exoticname->[Enemy]</li>
-				<li>exoticname->[ConceptAny]</li>
-				<li>exoticname->[Color]</li-->
-				<!--li>r_name(p=3)->[NameMaleMilitarum] [MilitarumNameLast]</li-->
-				<!--li>r_name(p=2)->[MilitarumNameFirstMale] [WordMilitarum]</li>
-				<li>r_name(p=2)->[WordMilitarum] [WordMilitarum]</li-->
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-
-	<RulePackDef>
-		<defName>OG_Militarum_NamerPersonFemale</defName>
-		<include>
-			<li>OG_Militarum_NameUtility</li>
-			<li>TribalWordUtility</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-				<li>r_name(p=3)->[NameFemaleMilitarum]</li>
-				<!--li>r_name(p=6)->[NameImperialGuardFemaleFirst] '[NameImperialGuardFemaleNick]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=6)->[NameImperialGuardFemaleFirst] '[NameImperialGuardUnisexNick]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=6)->[NameImperialGuardFemaleFirst] '[AnimalBadass]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=6)->[NameImperialGuardFemaleFirst] '[Color]' [NameImperialGuardUnisexLast]</li>
-				<li>r_name(p=6)->[NameImperialGuardFemaleFirst] [NameImperialGuardUnisexLast]</li>
-				<li>r_name->[exoticname]</li>
 				
-				<li>exoticname(p=2)->[AdjectiveBadass]</li>
-				<li>exoticname(p=2)->[PersonBadass]</li>
-				<li>exoticname->[Enemy]</li>
-				<li>exoticname->[ConceptAny]</li>
-				<li>exoticname->[Color]</li-->
-				<!-- <li>r_name(p=6)->[NamePersonFemale]</li> -->
-				<!--li>r_name(p=3)->[NameFemaleMilitarum] [MilitarumNameLast]</li-->
-				<!--li>r_name(p=2)->[MilitarumNameFirstFemale] [WordMilitarum]</li>
-				<li>r_name(p=2)->[WordMilitarum] [WordMilitarum]</li-->
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-  
-	<RulePackDef>
-		<defName>OG_Militarum_NameUtility</defName>
-		<rulePack>
-			<rulesStrings>
-				<!--li>WordMilitarum(p=4)->[SylB][SylB]</li>
-				<li>WordMilitarum(p=2)->[SylB][SylB][SylB]</li>
-				<li>WordMilitarum(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
-				
-				<li>NameMaleMilitarum(p=4)->[MaleFirst] [MaleSecond]</li>
-				<li>NameMaleMilitarum(p=2)->[MaleFirst] `[MaleNick]` [MaleSecond]</li>
-				<li>NameMaleMilitarum(p=0.5)->[MaleFirst] [MaleNick]</li>
-				<li>NameMaleMilitarum(p=0.5)->[MaleWeirdName]</li>
-				<li>NameMaleMilitarum(p=0.1)->[MaleFirst]</li>
+				<li>r_name(p=4)->[MaleFirst] [MaleSecond]</li>
+				<li>r_name(p=2)->[MaleFirst] `[MaleNick]` [MaleSecond]</li>
+				<li>r_name(p=0.5)->[MaleFirst] [MaleNick]</li>
+				<li>r_name->[SybGenA][SybGenB] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
+				<li>r_name->[SybGenC][SybGenD] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
+				<li>r_name->[Imperial_Male_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
+				<li>r_name->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenA][SybGenB] [SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenA][SybGenB] [SybGenE][SybGenF][SybGenG]</li>
+				<li>r_name->[SybGenC][SybGenD] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenC][SybGenD] [SybGenE][SybGenF][SybGenG]</li>
+				<li>r_name->[SybGenE][SybGenF][SybGenG] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenE][SybGenF][SybGenG] [SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenE][SybGenF][SybGenG] [SybGenA][SybGenB]-[SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenE][SybGenF][SybGenG] [SybGenC][SybGenD]-[SybGenA][SybGenB]</li>
+				<li>r_name(p=0.1)->[MaleFirst]</li>
 				
 				<li>MaleFirst->[Militarum_Male_First]</li>
 				<li>MaleFirst->[SybGenA][SybGenB]</li>
@@ -199,33 +156,43 @@
 				<li>MaleMEName->Al[Extra][SybMEC][SybMED][SybMEE]</li>
 				<li>MaleMEName->[SybMEC][SybMED][SybMEE]</li>
 				
-				<li>MaleWeirdName->[SybGenA][SybGenB] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
-				<li>MaleWeirdName->[SybGenC][SybGenD] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
-				<li>MaleWeirdName->[Imperial_Male_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
-				<li>MaleWeirdName->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenA][SybGenB]</li>
-				<li>MaleWeirdName->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenC][SybGenD]</li>
-				<li>MaleWeirdName->[SybGenA][SybGenB] [SybGenC][SybGenD]</li>
-				<li>MaleWeirdName->[SybGenA][SybGenB] [SybGenE][SybGenF][SybGenG]</li>
-				<li>MaleWeirdName->[SybGenC][SybGenD] [SybGenA][SybGenB]</li>
-				<li>MaleWeirdName->[SybGenC][SybGenD] [SybGenE][SybGenF][SybGenG]</li>
-				<li>MaleWeirdName->[SybGenE][SybGenF][SybGenG] [SybGenA][SybGenB]</li>
-				<li>MaleWeirdName->[SybGenE][SybGenF][SybGenG] [SybGenC][SybGenD]</li>
-				<li>MaleWeirdName->[SybGenE][SybGenF][SybGenG] [SybGenA][SybGenB]-[SybGenC][SybGenD]</li>
-				<li>MaleWeirdName->[SybGenE][SybGenF][SybGenG] [SybGenC][SybGenD]-[SybGenA][SybGenB]</li>
 
 				<li>MaleNick->[Militarum_Male_Nick]</li>
 				<!--li>MaleNick->[Militarum_Male_Nick_A] [Militarum_Male_Nick_B]</li-->
 				<li>MaleNick->[Militarum_Unisex_Nick]</li>
 				<!--li>MaleNick->[Militarum_Unisex_Nick_A] [Militarum_Unisex_Nick_B]</li-->
 				
-				<li>NameFemaleMilitarum(p=4)->[FemaleFirst] [FemaleSecond]</li>
-				<li>NameFemaleMilitarum(p=2)->[FemaleFirst] `[FemaleNick]` [FemaleSecond]</li>
-				<li>NameFemaleMilitarum(p=0.1)->[FemaleFirst] `[FemaleNick]`</li>
-				<li>NameFemaleMilitarum(p=0.5)->[FemaleFirst]</li>
-				<li>NameFemaleMilitarum->[FemaleWeirdName]</li>
-				<li>NameFemaleMilitarum->[Imperial_Female_First] [SybGenA][SybGenB]</li>
-				<li>NameFemaleMilitarum->[Imperial_Female_First] [SybGenC][SybGenD]</li>
-				<li>NameFemaleMilitarum->[Imperial_Female_First] [SybGenE][SybGenF][SybGenG]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Militarum_NamerPersonFemale</defName>
+		<include>
+			<li>OG_Militarum_NameUtility</li>
+			<li>TribalWordUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameFemaleMilitarum]</li>
+				
+				<li>r_name(p=4)->[FemaleFirst] [FemaleSecond]</li>
+				<li>r_name(p=2)->[FemaleFirst] `[FemaleNick]` [FemaleSecond]</li>
+				<li>r_name(p=0.1)->[FemaleFirst] `[FemaleNick]`</li>
+				<li>r_name(p=0.5)->[FemaleFirst]</li>
+				<li>r_name->[SybGenC] [Imperial_Female_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
+				<li>r_name->[Imperial_Female_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
+				<li>r_name->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenH][SybGenI][SybGenJ] [Imperial_Female_First] [SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenC] [Imperial_Female_First] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenC] [Imperial_Female_First] [SybGenE][SybGenF][SybGenG]</li>
+				<li>r_name->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenA][SybGenB]</li>
+				<li>r_name->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenA][SybGenB]-[SybGenC][SybGenD]</li>
+				<li>r_name->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenC][SybGenD]-[SybGenA][SybGenB]</li>
+				<li>r_name->[Imperial_Female_First] [SybGenA][SybGenB]</li>
+				<li>r_name->[Imperial_Female_First] [SybGenC][SybGenD]</li>
+				<li>r_name->[Imperial_Female_First] [SybGenE][SybGenF][SybGenG]</li>
 				
 				<li>FemaleFirst->[Militarum_Female_First]</li>
 				<li>FemaleFirst->[SybGenC] [Imperial_Female_First]</li>
@@ -250,21 +217,23 @@
 				<li>FemaleMEName->[Al][Extra][SybMEC][SybMED][SybMEE]</li>
 				<li>FemaleMEName->[SybMEC][SybMED][SybMEE]</li>
 
-				<li>FemaleWeirdName->[SybGenC] [Imperial_Female_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
-				<li>FemaleWeirdName->[Imperial_Female_First] [SybGenH][SybGenI][SybGenJ][SybGenK]</li>
-				<li>FemaleWeirdName->[SybGenH][SybGenI][SybGenJ][SybGenK] [SybGenA][SybGenB]</li>
-				<li>FemaleWeirdName->[SybGenH][SybGenI][SybGenJ] [Imperial_Female_First] [SybGenC][SybGenD]</li>
-				<li>FemaleWeirdName->[SybGenC] [Imperial_Female_First] [SybGenA][SybGenB]</li>
-				<li>FemaleWeirdName->[SybGenC] [Imperial_Female_First] [SybGenE][SybGenF][SybGenG]</li>
-				<li>FemaleWeirdName->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenA][SybGenB]</li>
-				<li>FemaleWeirdName->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenC][SybGenD]</li>
-				<li>FemaleWeirdName->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenA][SybGenB]-[SybGenC][SybGenD]</li>
-				<li>FemaleWeirdName->[SybGenE][SybGenF] [Imperial_Female_First] [SybGenC][SybGenD]-[SybGenA][SybGenB]</li>
 
 				<li>FemaleNick->[Militarum_Female_Nick]</li>
 				<!--li>FemaleNick->[Militarum_Female_Nick_A] [Militarum_Female_Nick_B]</li-->
 				<li>FemaleNick->[Militarum_Unisex_Nick]</li>
 				<!--li>FemaleNick->[Militarum_Unisex_Nick_A] [Militarum_Unisex_Nick_B]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Militarum_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordMilitarum(p=4)->[SylB][SylB]</li>
+				<li>WordMilitarum(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordMilitarum(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
 				
 				<li>MilitarumRegiment(p=0.1)->[Ordinal] [Militarum_HomeWorld] [RegimentType]</li>
 				<li>MilitarumRegiment(p=0.1)->[Militarum_HomeWorld] [Ordinal] [RegimentType]</li>

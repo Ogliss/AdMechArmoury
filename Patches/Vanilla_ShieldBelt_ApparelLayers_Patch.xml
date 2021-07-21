@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-	<success>Always</success>
 		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>/Defs/ThingDef[defName = "Apparel_ShieldBelt" or defName = "Apparel_SmokepopBelt" or defName = "IGVoidShieldBelt"]</xpath>
-			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName = "Apparel_ShieldBelt" or defName = "Apparel_SmokepopBelt" or defName = "IGVoidShieldBelt"]/apparel/layers</xpath>
+				<order>Prepend</order>
 				<value><li>BeltWargear1</li></value>
 			</li> 
 		</operations>	

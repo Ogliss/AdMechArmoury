@@ -10,6 +10,7 @@ using AdeptusMechanicus;
 using DualWield;
 using AdeptusMechanicus.settings;
 using RimWorld.QuestGen;
+using System.Reflection.Emit;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -60,6 +61,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 HarmonyPatches.FacialStuffPatches();
             }
 
+            if (AccessTools.TypeByName("MVCF.Utilities.VerbManagerUtility") != null)
+            {
+                MCVFPatch();
+            }
             /*
             MethodInfo targetmethod1 = AccessTools.TypeByName("ResearchProjectDef.ConfigErrors").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First().
                 GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).
@@ -78,6 +83,53 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnApparelGenerator), "GenerateStartingApparelFor", null, null), null, new HarmonyMethod(typeof(PawnApparelGenerator_GenerateStartingApparelFor_FactionColors_Patch), "Postfix", null), null, null);
         }
 
+        public static void MCVFPatch()
+        {
+            MethodInfo[] MVCFTypes = AccessTools.TypeByName("MVCF.Utilities.VerbManagerUtility").GetMethods();
+            if (!MVCFTypes.NullOrEmpty())
+            {
+                foreach (MethodInfo item in MVCFTypes)
+                {
+                    if (item.Name == "AddVerbs")
+                    {
+                        if (AMAMod.harmony.Patch(item, null, null, new HarmonyMethod(typeof(HarmonyPatches).GetMethod("MVCFTranspiler"))) == null)
+                        {
+                            Log.Error("MVCFType " + item.Name + "Patching Failed");
+                        }
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<CodeInstruction> MVCFTranspiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var instructionsList = new List<CodeInstruction>(instructions);
+            MethodInfo errorOnce = AccessTools.Method(typeof(Log), "ErrorOnce");
+            MethodInfo mVCFError = AccessTools.Method(typeof(HarmonyPatches), "MVCFError");
+            foreach (var item in instructionsList)
+            {
+                if (item.OperandIs(errorOnce))
+                {
+                    yield return new CodeInstruction(OpCodes.Call, mVCFError);
+                }
+                else yield return item;
+            }
+
+            /*
+            instructions.MethodReplacer(errorOnce, mVCFError);
+
+            return instructions;
+            */
+        }
+        public static void MVCFError(string text, int key, bool ignoreStopLoggingLimit = false)
+        {
+            if (text.Contains("Adeptus Mechanicus: Armoury"))
+            {
+                Log.ErrorOnce("[MVCF] the framework is overstepping its bounds, assuming its use when it is not, please contact the author of MVCF and ask them to fix this", key, ignoreStopLoggingLimit);
+            }
+            else
+            Log.ErrorOnce(text, key, ignoreStopLoggingLimit);
+        }
         public static void SOSConstructPatch()
         {
             //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));

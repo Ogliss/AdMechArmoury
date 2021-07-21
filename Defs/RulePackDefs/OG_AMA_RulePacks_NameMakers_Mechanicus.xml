@@ -38,10 +38,22 @@
 		</include>
 		<rulePack>
 			<rulesStrings>
-				<li>r_name(p=3)->[NameMaleMechanicus]</li>
-				<!--li>r_name(p=3)->[NameMaleMechanicus] [MechanicusNameLast]</li-->
-				<!--li>r_name(p=2)->[MechanicusNameFirstMale] [WordMechanicus]</li>
-				<li>r_name(p=2)->[WordMechanicus] [WordMechanicus]</li-->
+				<li>r_name(p=10)->[Mechanicus_Name]</li>
+				<li>r_name(p=10)->[Mechanicus_Name] `[MaleNick]`</li>
+				<li>r_name(p=7)->[GreekLetter] [SingleDigit]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=7)->[GreekLetter]-[GreekLetter] [SingleDigit][SingleDigit]</li>
+				<li>r_name(p=7)->[Mechanicus_SingleSyllable] [Mechanicus_TriSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_SingleSyllable] [Mechanicus_QuadSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_TriSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_QuadSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_SingleSyllable]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_TriSyllable] [Mechanicus_SingleSyllable]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=5)->[Capital]-[Capital] [Capital][SingleDigit][Capital]/[Capital][SingleDigit][Capital]</li>
+				<li>r_name(p=5)->[Mechanicus_DualSyllable] [SingleDigit][SingleDigit]/[SingleDigit] [Mechanicus_DualSyllable]</li>
+				<li>r_name(p=4)->[MaleFirst]</li>
+				<li>r_name(p=4)->[MaleFirst] [MaleSecond]</li>
+				<li>r_name(p=0.2)->[MaleFirst] `[MaleNick]`</li>
+				<li>r_name(p=0.2)->[MaleFirst] `[MaleNick]` [MaleSecond]</li>
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
@@ -53,10 +65,22 @@
 		</include>
 		<rulePack>
 			<rulesStrings>
-				<li>r_name(p=3)->[NameFemaleMechanicus]</li>
-				<!--li>r_name(p=3)->[NameFemaleMechanicus] [MechanicusNameLast]</li-->
-				<!--li>r_name(p=2)->[MechanicusNameFirstFemale] [WordMechanicus]</li>
-				<li>r_name(p=2)->[WordMechanicus] [WordMechanicus]</li-->
+				<li>r_name(p=10)->[Mechanicus_Name]</li>
+				<li>r_name(p=10)->[Mechanicus_Name] `[FemaleNick]`</li>
+				<li>r_name(p=7)->[GreekLetter] [SingleDigit]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=7)->[GreekLetter]-[GreekLetter] [SingleDigit][SingleDigit]</li>
+				<li>r_name(p=7)->[Mechanicus_SingleSyllable] [Mechanicus_TriSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_SingleSyllable] [Mechanicus_QuadSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_TriSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_QuadSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_DualSyllable] [Mechanicus_SingleSyllable]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=7)->[Mechanicus_TriSyllable] [Mechanicus_SingleSyllable]-[Mechanicus_SingleSyllable]</li>
+				<li>r_name(p=5)->[Capital]-[Capital] [Capital][SingleDigit][Capital]/[Capital][SingleDigit][Capital]</li>
+				<li>r_name(p=5)->[Mechanicus_DualSyllable] [SingleDigit][SingleDigit]/[SingleDigit] [Mechanicus_DualSyllable]</li>
+				<li>r_name(p=4)->[FemaleFirst]</li>
+				<li>r_name(p=4)->[FemaleFirst] [FemaleSecond]</li>
+				<li>r_name(p=0.2)->[FemaleFirst] `[FemaleNick]`</li>
+				<li>r_name(p=0.2)->[FemaleFirst] `[FemaleNick]` [FemaleSecond]</li>
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
@@ -68,13 +92,6 @@
 				<!--li>WordMechanicus(p=4)->[SylB][SylB]</li>
 				<li>WordMechanicus(p=2)->[SylB][SylB][SylB]</li>
 				<li>WordMechanicus(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
-				
-				<li>NameMaleMechanicus(p=10)->[Mechanicus_Name]</li>
-				<li>NameMaleMechanicus(p=10)->[Mechanicus_Name] `[MaleNick]`</li>
-				<li>NameMaleMechanicus(p=4)->[MaleFirst]</li>
-				<li>NameMaleMechanicus(p=4)->[MaleFirst] [MaleSecond]</li>
-				<li>NameMaleMechanicus(p=0.2)->[MaleFirst] `[MaleNick]`</li>
-				<li>NameMaleMechanicus(p=0.2)->[MaleFirst] `[MaleNick]` [MaleSecond]</li>
 				
 				<li>MaleFirst->[Mechanicus_Male_First]</li>
 				<!--li>MaleFirst->[Mechanicus_Male_First_A][Mechanicus_Male_First_B]</li-->
@@ -91,12 +108,6 @@
 				<li>MaleNick->[Mechanicus_Unisex_Nick]</li>
 				<!--li>MaleNick->[Mechanicus_Unisex_Nick_A] [Mechanicus_Unisex_Nick_B]</li-->
 				
-				<li>NameFemaleMechanicus(p=10)->[Mechanicus_Name]</li>
-				<li>NameFemaleMechanicus(p=10)->[Mechanicus_Name] `[FemaleNick]`</li>
-				<li>NameFemaleMechanicus(p=4)->[FemaleFirst]</li>
-				<li>NameFemaleMechanicus(p=4)->[FemaleFirst] [FemaleSecond]</li>
-				<li>NameFemaleMechanicus(p=0.2)->[FemaleFirst] `[FemaleNick]`</li>
-				<li>NameFemaleMechanicus(p=0.2)->[FemaleFirst] `[FemaleNick]` [FemaleSecond]</li>
 				
 				<li>FemaleFirst->[Mechanicus_Female_First]</li>
 				<!--li>FemaleFirst->[Mechanicus_Female_First_A][Mechanicus_Female_First_B]</li-->
@@ -114,26 +125,21 @@
 				<!--li>FemaleNick->[Mechanicus_Unisex_Nick_A] [Mechanicus_Unisex_Nick_B]</li-->
 				
 				<!-- Unisex Names -->
-				<li>Mechanicus_Name->[SingleDigit][SingleDigit]-[SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[GreekLetter] [SingleDigit]-[SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [SingleDigit][SingleDigit]/[SingleDigit] [DualSyllableA][DualSyllableB]</li>
-				<li>Mechanicus_Name->[GreekLetter]-[GreekLetter] [SingleDigit][SingleDigit]</li>
-				<li>Mechanicus_Name->[Capital]-[Capital] [Capital][SingleDigit][Capital]/[Capital][SingleDigit][Capital]</li>
+				<li>Mechanicus_Name->[SingleDigit][SingleDigit]-[Mechanicus_SingleSyllable]</li>
 				<li>Mechanicus_Name->[Capital][Capital]-[SingleDigit][SingleDigit][SingleDigit]</li>
 				<li>Mechanicus_Name->[Capital]-[SingleDigit][SingleDigit][SingleDigit]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB]-[GreekLetter]-[SingleDigit]</li>
-				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
-				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB] [TriSyllableA][TriSyllableB][TriSyllableC]</li>
-				<li>Mechanicus_Name->[SingleSyllableA][SingleSyllableB] [QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [TriSyllableA][TriSyllableB][TriSyllableC]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD]</li>
-				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
-				<li>Mechanicus_Name->[QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD][Mechanicus_Extra][SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD][Mechanicus_Extra][DualSyllableA][DualSyllableB]</li>
-				<li>Mechanicus_Name->[DualSyllableA][DualSyllableB] [SingleSyllableA][SingleSyllableB]-[SingleSyllableA][SingleSyllableB]</li>
-				<li>Mechanicus_Name->[TriSyllableA][TriSyllableB][TriSyllableC] [SingleSyllableA][SingleSyllableB]-[SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_Name->[Mechanicus_DualSyllable]-[GreekLetter]-[SingleDigit]</li>
+				<li>Mechanicus_Name->[Mechanicus_SingleSyllable][Mechanicus_Extra][Mechanicus_DualSyllable]</li>
+				<li>Mechanicus_Name->[Mechanicus_DualSyllable][Mechanicus_Extra][Mechanicus_SingleSyllable]</li>
+				<li>Mechanicus_Name->[Mechanicus_TriSyllable][Mechanicus_Extra][Mechanicus_SingleSyllable]</li>
+				<li>Mechanicus_Name->[Mechanicus_TriSyllable][Mechanicus_Extra][Mechanicus_DualSyllable]</li>
+				<li>Mechanicus_Name->[Mechanicus_QuadSyllable][Mechanicus_Extra][Mechanicus_SingleSyllable]</li>
+				<li>Mechanicus_Name->[Mechanicus_QuadSyllable][Mechanicus_Extra][Mechanicus_DualSyllable]</li>
+				
+				<li>Mechanicus_SingleSyllable->[SingleSyllableA][SingleSyllableB]</li>
+				<li>Mechanicus_DualSyllable->[DualSyllableA][DualSyllableB]</li>
+				<li>Mechanicus_TriSyllable->[TriSyllableA][TriSyllableB][TriSyllableC]</li>
+				<li>Mechanicus_QuadSyllable->[QuadSyllableA][QuadSyllableB][QuadSyllableC][QuadSyllableD]</li>
 				
 				<li>Mechanicus_Extra(p=5)-> </li>
 				<li>Mechanicus_Extra(p=1)->-</li>

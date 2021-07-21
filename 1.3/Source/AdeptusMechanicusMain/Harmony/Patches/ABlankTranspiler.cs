@@ -26,7 +26,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             int i = 0;
             foreach (var instruction in instructionsList)
             {
-                Log.Message(i+" opcode: " + instruction.opcode + " operand: " + instruction.operand);
+            //    Log.Message(i+" opcode: " + instruction.opcode + " operand: " + instruction.operand);
                 i++;
                 yield return instruction;
             }

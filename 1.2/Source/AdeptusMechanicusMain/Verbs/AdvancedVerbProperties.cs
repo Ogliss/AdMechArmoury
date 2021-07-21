@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AdvancedVerbProperties
     public partial class AdvancedVerbProperties : VerbProperties, IMuzzlePosition, IAdvancedVerb
     {
-        public bool debug = true;
+        public bool debug = false;
 
         public float heavyWeaponSetupTime = -1f;
 
@@ -187,7 +187,7 @@ namespace AdeptusMechanicus
             }
             return Mathf.Clamp(value, 0.01f, 1f);
         }
-        // Token: 0x0600055E RID: 1374 RVA: 0x0001AE90 File Offset: 0x00019090
+
         public new float AdjustedAccuracy(RangeCategory cat, Thing equipment)
         {
             if (equipment != null)

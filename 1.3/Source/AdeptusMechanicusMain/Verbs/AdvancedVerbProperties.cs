@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.AdvancedVerbProperties
     public partial class AdvancedVerbProperties : VerbProperties, IMuzzlePosition, IAdvancedVerb
     {
-        public bool debug = true;
+        public bool debug = false;
 
         public float heavyWeaponSetupTime = -1f;
 
@@ -114,7 +114,7 @@ namespace AdeptusMechanicus
         {
             if (ownerVerb.verbProps != this)
             {
-                Log.ErrorOnce("Tried to calculate cooldown for a verb with different verb props. verb=" + ownerVerb, 19485711, false);
+                Log.ErrorOnce("Tried to calculate cooldown for a verb with different verb props. verb=" + ownerVerb, 19485711);
                 return 0f;
             }
             float baseCD = this.AdjustedCooldown(ownerVerb.tool, attacker, ownerVerb.EquipmentSource);
@@ -128,7 +128,7 @@ namespace AdeptusMechanicus
             }
             if (attacker.pather.MovedRecently(warmupTime.SecondsToTicks()))
             {
-                Log.Message(attacker.Name+ " needs to set up");
+            //    Log.Message(attacker.Name+ " needs to set up");
             }
             return baseCD;
         }
@@ -242,7 +242,7 @@ namespace AdeptusMechanicus
             }
             if (Debug)
             {
-                Log.Message("FailChance for"+ reliabilityString + " "+gun+": "+failChance);
+            //    Log.Message("FailChance for"+ reliabilityString + " "+gun+": "+failChance);
             }
             return failChance;
         }

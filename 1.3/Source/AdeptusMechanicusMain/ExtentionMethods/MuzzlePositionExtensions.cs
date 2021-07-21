@@ -98,7 +98,7 @@ namespace AdeptusMechanicus.ExtensionMethods
             }
             if (builder.Length > 0 && MechanicusDebugViewSettings.drawMuzzlePosition)
             {
-                Log.Message(builder.ToString());
+           //     Log.Message(builder.ToString());
             }
             return result;
         }
@@ -121,8 +121,8 @@ namespace AdeptusMechanicus.ExtensionMethods
                 offset *= (thing.def.graphicData.drawSize.magnitude / 2);
                 length *= (thing.def.graphicData.drawSize.magnitude / 2);
                 /*
-                Log.Message(thing.Label + " graphicData drawSize: " + thing.def.graphicData.drawSize.magnitude + "  / 2 = " + thing.def.graphicData.drawSize.magnitude / 2);
-                Log.Message(thing.Label + " graphic drawSize: " + thing.def.graphic.drawSize.magnitude + "  / 2 = " + thing.def.graphic.drawSize.magnitude / 2);
+            //    Log.Message(thing.Label + " graphicData drawSize: " + thing.def.graphicData.drawSize.magnitude + "  / 2 = " + thing.def.graphicData.drawSize.magnitude / 2);
+            //    Log.Message(thing.Label + " graphic drawSize: " + thing.def.graphic.drawSize.magnitude + "  / 2 = " + thing.def.graphic.drawSize.magnitude / 2);
                 */
                 origin += new Vector3(0f + offset, 0f, 0.4f + length).RotatedBy(aimAngle);
 
@@ -220,11 +220,11 @@ namespace AdeptusMechanicus.ExtensionMethods
             {
                 if (builder.Length > 0)
                 {
-                    Log.Message(builder.ToString());
+               //     Log.Message(builder.ToString());
                 }
                 else
                 {
-                    Log.Message("No Muzzle found for verb: " + verb?.ToString() ?? "NULL");
+               //     Log.Message("No Muzzle found for verb: " + verb?.ToString() ?? "NULL");
                 }
             }
             return result;

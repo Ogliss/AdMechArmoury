@@ -19,7 +19,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch
     {
         [HarmonyPrefix]
-        public static bool Prefix(ref Verb_Shoot __instance, MethodBase __originalMethod)
+        public static bool Prefix(ref Verb_Shoot __instance)
         {
             //    Log.Warning("TryCastShot");
             IAdvancedVerb entry = __instance.SpecialRules();

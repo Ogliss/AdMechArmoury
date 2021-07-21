@@ -49,7 +49,7 @@ namespace AdeptusMechanicus
             }
             PlayerPawnsArriveMethod method = (PlayerPawnsArriveMethod)AccessTools.Field(typeof(ScenPart_PlayerPawnsArriveMethod), "method").GetValue(this);
 
-            Log.Message("method = " + method.ToStringHuman() + " dropship: "+ (DropshipDef != null));
+       //     Log.Message("method = " + method.ToStringHuman() + " dropship: "+ (DropshipDef != null));
             if (DropshipDef != null && method == PlayerPawnsArriveMethod.DropPods)
             {
                 Thing ship = ThingMaker.MakeThing(this.DropshipDef);

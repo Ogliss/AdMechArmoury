@@ -54,14 +54,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
 
                 }
-                if ( i > 1 && instruction.opcode == OpCodes.Ceq && instructionsList[i - 1].OperandIs(CurTab))
+                if (i > 1 && instruction.opcode == (research && !links ? OpCodes.Bne_Un_S : OpCodes.Bne_Un) && instructionsList[i - 1].OperandIs(CurTab))
                 {
-                //    controls which research are displayed 
-                //    Log.Message("ResearchTab DrawRightRect OnTabOrActiveSubTab: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
-                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, research ? (links ? 30 : 21) : 18);
+                    //    Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand.ToString());
+                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, research ? (links ? 18 : 16) : 14);
                     yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(ResearchSubTabUtility).GetMethod("OnTabOrActiveSubTab"));
-                    yield return new CodeInstruction(OpCodes.Ldc_I4_1);
-                //    instruction = new CodeInstruction(OpCodes.Brfalse, instruction.operand);
+                    instruction = new CodeInstruction(OpCodes.Brfalse, instruction.operand);
                     if (research && !links)
                     {
                         links = true;
@@ -70,7 +68,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         research = true;
                     }
-
                 }
                 yield return instruction;
             }

@@ -7,12 +7,9 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000014 RID: 20
     [StaticConstructorOnStartup]
-    public class AdvShieldBelt : Apparel
+    public class AdvShieldBelt : ApparelComposite
     {
-        // Token: 0x1700000A RID: 10
-        // (get) Token: 0x06000050 RID: 80 RVA: 0x00003B12 File Offset: 0x00001D12
         private float EnergyMax
         {
             get
@@ -21,8 +18,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700000B RID: 11
-        // (get) Token: 0x06000051 RID: 81 RVA: 0x00003B20 File Offset: 0x00001D20
         private float EnergyGainPerTick
         {
             get
@@ -31,8 +26,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700000C RID: 12
-        // (get) Token: 0x06000052 RID: 82 RVA: 0x00003B34 File Offset: 0x00001D34
         public float Energy
         {
             get
@@ -41,8 +34,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700000D RID: 13
-        // (get) Token: 0x06000053 RID: 83 RVA: 0x00003B3C File Offset: 0x00001D3C
         public ShieldState ShieldState
         {
             get
@@ -55,8 +46,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x1700000E RID: 14
-        // (get) Token: 0x06000054 RID: 84 RVA: 0x00003B4C File Offset: 0x00001D4C
         private bool ShouldDisplay
         {
             get
@@ -66,7 +55,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x06000055 RID: 85 RVA: 0x00003BC0 File Offset: 0x00001DC0
         public override void ExposeData()
         {
             base.ExposeData();
@@ -75,7 +63,6 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<int>(ref this.lastKeepDisplayTick, "lastKeepDisplayTick", 0, false);
         }
 
-        // Token: 0x06000056 RID: 86 RVA: 0x00003C0D File Offset: 0x00001E0D
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             if (Find.Selector.SingleSelectedThing != base.Wearer)
@@ -109,13 +96,11 @@ namespace AdeptusMechanicus
             yield break;
         }
 
-        // Token: 0x06000057 RID: 87 RVA: 0x00003C1D File Offset: 0x00001E1D
         public override float GetSpecialApparelScoreOffset()
         {
             return this.EnergyMax * this.ApparelScorePerEnergyMax;
         }
 
-        // Token: 0x06000058 RID: 88 RVA: 0x00003C2C File Offset: 0x00001E2C
         public override void Tick()
         {
             base.Tick();
@@ -143,7 +128,6 @@ namespace AdeptusMechanicus
             }
         }
 
-        // Token: 0x06000059 RID: 89 RVA: 0x00003CB0 File Offset: 0x00001EB0
         public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
             if (dinfo.Instigator == base.Wearer)
@@ -181,13 +165,11 @@ namespace AdeptusMechanicus
             return true;
         }
 
-        // Token: 0x0600005A RID: 90 RVA: 0x00003DB9 File Offset: 0x00001FB9
         public void KeepDisplaying()
         {
             this.lastKeepDisplayTick = Find.TickManager.TicksGame;
         }
 
-        // Token: 0x0600005B RID: 91 RVA: 0x00003DCC File Offset: 0x00001FCC
         private void AbsorbedDamage(DamageInfo dinfo)
         {
             SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(base.Wearer.Position, base.Wearer.Map, false));
@@ -206,7 +188,6 @@ namespace AdeptusMechanicus
             this.KeepDisplaying();
         }
 
-        // Token: 0x0600005C RID: 92 RVA: 0x00003EBC File Offset: 0x000020BC
         private void Break()
         {
             SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(base.Wearer.Position, base.Wearer.Map, false));
@@ -221,7 +202,6 @@ namespace AdeptusMechanicus
             this.ticksToReset = this.StartingTicksToReset;
         }
 
-        // Token: 0x0600005D RID: 93 RVA: 0x00003F90 File Offset: 0x00002190
         private void Reset()
         {
             if (base.Wearer.Spawned)
@@ -233,9 +213,9 @@ namespace AdeptusMechanicus
             this.energy = this.EnergyOnReset;
         }
 
-        // Token: 0x0600005E RID: 94 RVA: 0x00004008 File Offset: 0x00002208
         public override void DrawWornExtras()
         {
+            base.DrawWornExtras();
             if (this.ShieldState == ShieldState.Active && this.ShouldDisplay)
             {
                 float num =  Mathf.Lerp(1.2f, 1.55f, this.energy);
@@ -251,56 +231,27 @@ namespace AdeptusMechanicus
                 Rand.PushState();
                 float angle = (float)Rand.Range(0, 360);
                 Rand.PopState();
-                Vector3 s = new Vector3(num + base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.x, 1f, num + base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.y);
+                Vector3 s = new Vector3(num * base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.x, 1f, num * base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.y);
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, AdvShieldBelt.BubbleMat, 0);
             }
         }
 
-        // Token: 0x04000019 RID: 25
         private float energy;
-
-        // Token: 0x0400001A RID: 26
         private int ticksToReset = -1;
-
-        // Token: 0x0400001B RID: 27
         private int lastKeepDisplayTick = -9999;
-
-        // Token: 0x0400001C RID: 28
         private Vector3 impactAngleVect;
-
-        // Token: 0x0400001D RID: 29
         private int lastAbsorbDamageTick = -9999;
-
-        // Token: 0x0400001E RID: 30
         private const float MinDrawSize = 1.2f;
-
-        // Token: 0x0400001F RID: 31
         private const float MaxDrawSize = 1.45f;
-
-        // Token: 0x04000020 RID: 32
         private const float MaxDamagedJitterDist = 0.05f;
-
-        // Token: 0x04000021 RID: 33
         private const int JitterDurationTicks = 8;
-
-        // Token: 0x04000022 RID: 34
         private int StartingTicksToReset = 1800;
-
-        // Token: 0x04000023 RID: 35
         private float EnergyOnReset = 0.2f;
-
-        // Token: 0x04000024 RID: 36
         private float EnergyLossPerDamage = 0.03f;
-
-        // Token: 0x04000025 RID: 37
         private int KeepDisplayingTicks = 600;
-
-        // Token: 0x04000026 RID: 38
         private float ApparelScorePerEnergyMax = 0.25f;
-
-        // Token: 0x04000027 RID: 39
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
     }
 }

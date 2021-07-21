@@ -35,7 +35,6 @@ namespace AdeptusMechanicus
 			{
 				yield return text;
 			}
-			IEnumerator<string> enumerator = null;
 			if (this.tools != null)
 			{
 				Tool tool = this.tools.SelectMany((Tool lhs) => from rhs in this.tools
@@ -51,9 +50,7 @@ namespace AdeptusMechanicus
 					{
 						yield return text2;
 					}
-					enumerator = null;
 				}
-				List<Tool>.Enumerator enumerator2 = default(List<Tool>.Enumerator);
 			}
 			yield break;
 		}

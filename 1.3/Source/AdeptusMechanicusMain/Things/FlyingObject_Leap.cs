@@ -139,37 +139,41 @@ namespace AdeptusMechanicus
             }
         }
 
-        public void Launch(Thing launcher, LocalTargetInfo targ, Thing flyingThing, DamageInfo? impactDamage)
-        {
-            this.Launch(launcher, base.Position.ToVector3Shifted(), targ, flyingThing, impactDamage);
-        }
-
         public void Launch(Thing launcher, LocalTargetInfo targ, Thing flyingThing = null)
         {
             this.Launch(launcher, base.Position.ToVector3Shifted(), targ, flyingThing, null);
         }
 
-        public void Launch(Thing launcher, Vector3 origin, LocalTargetInfo targ, Thing flyingThing = null, DamageInfo? newDamageInfo = null)
+        public void Launch(Thing launcher, Vector3 origin, LocalTargetInfo targ, Thing flyer = null, DamageInfo? newDamageInfo = null)
         {
-            this.pawn = (launcher as Pawn);
-            this.flyingThing = flyingThing ?? this.pawn;
+            if (launcher is Pawn p)
+            {
+                this.pawn = p;
+            }
+            this.flyingThing = flyer ?? this.pawn;
             if (flyingThing.Spawned)
             {
                 flyingThing.DeSpawn(DestroyMode.Vanish);
             }
             this.origin = origin;
-            this.impactDamage = newDamageInfo;
+            if (newDamageInfo != null)
+            {
+                this.impactDamage = newDamageInfo;
+            }
             if (targ.Thing != null)
             {
                 this.assignedTarget = targ.Thing;
             }
             this.drafted = pawn.Drafted;
             this.selected = Find.Selector.IsSelected(pawn);
-            if (this.drafted)
+            if (this.drafted || this.selected)
             {
                 Find.Selector.ShelveSelected(pawn);
             }
-            this.jobQueue = pawn.jobs.CaptureAndClearJobQueue();
+            if (pawn.RaceProps.Humanlike)
+            {
+                this.jobQueue = pawn.jobs.CaptureAndClearJobQueue();
+            }
             this.destination = targ.Cell.ToVector3Shifted();
             this.ticksToImpact = this.StartingTicksToImpact;
             this.Initialize();

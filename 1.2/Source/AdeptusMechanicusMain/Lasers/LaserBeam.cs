@@ -351,7 +351,7 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
-        public void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
+        public new void NotifyImpact(Thing hitThing, Map map, IntVec3 position)
         {
             BulletImpactData impactData = new BulletImpactData
             {

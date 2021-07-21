@@ -12,7 +12,6 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using System.Reflection.Emit;
-using OgsCompOversizedWeapon;
 using AdeptusMechanicus.Lasers;
 using AdeptusMechanicus.settings;
 
@@ -138,7 +137,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     float offHandAngle = aimAngle;
                     float mainHandAngle = aimAngle;
 
-                    OversizedUtil.SetAnglesAndOffsets(equipment, equipment as ThingWithComps, aimAngle, launcher, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
+                    OgsCompOversizedWeapon.OversizedUtil.SetAnglesAndOffsets(equipment, equipment as ThingWithComps, aimAngle, launcher, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
                     Vector3 vector = DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
                     //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
                     result += vector;

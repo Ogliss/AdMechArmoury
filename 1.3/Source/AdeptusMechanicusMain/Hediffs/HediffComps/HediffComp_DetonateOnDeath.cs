@@ -206,7 +206,7 @@ namespace AdeptusMechanicus
 				this.wickStarted = false;
 			if (map == null)
 			{
-				Log.Warning("Tried to detonate HediffComp_DetonateOnDeath in a null map.", false);
+				Log.Warning("Tried to detonate HediffComp_DetonateOnDeath in a null map.");
 				return;
 			};
 			if (props.explosionEffect != null)

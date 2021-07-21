@@ -56,7 +56,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 return;
             }
             /*
-            Log.Message(string.Concat(new string[]
+        //    Log.Message(string.Concat(new string[]
             {
                 "DRAWING EXTRAS FOR: " + pawn.NameFullColored + " | " + flags.ToString() + " | ",
                 (!pawn.RaceProps.Humanlike || PawnRenderFlagsExtension.FlagSet(flags, (PawnRenderFlags)4)).ToString(),
@@ -95,7 +95,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Apparel apparel = worn[wa];
                         if (apparel is ApparelComposite composite)
                         {
-                            Log.Message("composite");
+                       //     Log.Message("composite");
                             if (!composite.Pauldrons.NullOrEmpty() && AMAMod.settings.AllowPauldronDrawer)
                             {
                                 for (int i = 0; i < composite.Pauldrons.Count; i++)
@@ -151,6 +151,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         {
                                             bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
+                                            if (ExtraDrawer.ExtraPartEntry.animateExtra)
+                                            {
+                                                continue;
+                                            }
                                             if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                             {
                                                 if (onHead || renderBody)
@@ -239,6 +243,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         {
                                             bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
+                                            if (ExtraDrawer.ExtraPartEntry.animateExtra)
+                                            {
+                                                continue;
+                                            }
                                             if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                             {
                                                 if (onHead || renderBody)

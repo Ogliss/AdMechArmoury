@@ -9,12 +9,9 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000F94 RID: 3988
     [StaticConstructorOnStartup]
     public class Dialog_CompatabilityPatches : Window
 	{
-		// Token: 0x1700119E RID: 4510
-		// (get) Token: 0x060062AE RID: 25262 RVA: 0x001EDFFD File Offset: 0x001EC1FD
 		public override Vector2 InitialSize
 		{
 			get
@@ -23,7 +20,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x060062B7 RID: 25271 RVA: 0x00224580 File Offset: 0x00222780
 		public Dialog_CompatabilityPatches()
 		{
 			this.forcePause = true;
@@ -43,13 +39,11 @@ namespace AdeptusMechanicus
 
 		private List<PatchDescription> patches = new List<PatchDescription>();
 
-		// Token: 0x060062B8 RID: 25272 RVA: 0x0022462C File Offset: 0x0022282C
 		public override void PostOpen()
 		{
 			base.PostOpen();
 		}
 
-		// Token: 0x060062BA RID: 25274 RVA: 0x002248A0 File Offset: 0x00222AA0
 		public override void DoWindowContents(Rect inRect)
 		{
 			GUI.BeginGroup(inRect);
@@ -83,14 +77,12 @@ namespace AdeptusMechanicus
 			GUI.EndGroup();
 		}
 
-		// Token: 0x060062BB RID: 25275 RVA: 0x00224FD6 File Offset: 0x002231D6
 		public override void Close(bool doCloseSound = true)
 		{
 			DragSliderManager.ForceStop();
 			base.Close(doCloseSound);
 		}
 
-		// Token: 0x060062BC RID: 25276 RVA: 0x00224FE4 File Offset: 0x002231E4
 		private void FillMainRect(Rect mainRect)
 		{
 			Text.Font = GameFont.Small;
@@ -176,26 +168,15 @@ namespace AdeptusMechanicus
 			Widgets.TextFieldNumeric(rect3, ref val, ref buffer, min, max);
 		}
 
-		public static readonly Texture2D RangeMatch = ContentFinder<Texture2D>.Get("UI/Buttons/Dev/RangeMatch", true);
-		// Token: 0x060062BE RID: 25278 RVA: 0x00010451 File Offset: 0x0000E651
 		public override bool CausesMessageBackground()
 		{
 			return true;
 		}
 
-		// Token: 0x040035F8 RID: 13816
 		private Vector2 scrollPosition = Vector2.zero;
-
-		// Token: 0x040035F9 RID: 13817
 		public static float lastCurrencyFlashTime = -100f;
-
-
-
-		// Token: 0x04003619 RID: 13849
 		protected static readonly Vector2 AcceptButtonSize = new Vector2(160f, 40f);
-
-		// Token: 0x0400361A RID: 13850
 		protected static readonly Vector2 OtherBottomButtonSize = new Vector2(160f, 40f);
-
+		public static readonly Texture2D RangeMatch = ContentFinder<Texture2D>.Get("UI/Buttons/Dev/RangeMatch", true);
 	}
 }

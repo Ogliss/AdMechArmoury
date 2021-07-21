@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			salvos++;
 			if (!base.Spawned)
 			{
-				Log.Error("Called StartStrike() on unspawned thing.", false);
+				Log.Error("Called StartStrike() on unspawned thing.");
 				return;
 			}
 			this.cooldownTicks = strikeDef.timeBetweenSalvos.SecondsToTicks();

@@ -18,7 +18,7 @@ namespace AdeptusMechanicus
 			{
 				if (reportFailure)
 				{
-					Log.Error("SetColor on non-ThingWithComps " + t, false);
+					Log.Error("SetColor on non-ThingWithComps " + t);
 				}
 				return;
 			}
@@ -53,7 +53,7 @@ namespace AdeptusMechanicus
 			{
 				if (reportFailure)
 				{
-					Log.Error("SetColor on non-ThingWithComps " + t, false);
+					Log.Error("SetColor on non-ThingWithComps " + t);
 				}
 				return;
 			}
@@ -63,7 +63,7 @@ namespace AdeptusMechanicus
 				t.SetColor(newColor);
 				if (reportFailure)
 				{
-					Log.Error("SetColor on Thing without CompColorableTwo " + t, false);
+					Log.Error("SetColor on Thing without CompColorableTwo " + t);
 				}
 				return;
 			}
@@ -80,7 +80,7 @@ namespace AdeptusMechanicus
 			{
 				if (reportFailure)
 				{
-					Log.Error("SetColor on non-ThingWithComps " + t, false);
+					Log.Error("SetColor on non-ThingWithComps " + t);
 				}
 				return;
 			}
@@ -89,7 +89,7 @@ namespace AdeptusMechanicus
 			{
 				if (reportFailure)
 				{
-					Log.Error("SetColor on Thing without CompColorableTwo " + t, false);
+					Log.Error("SetColor on Thing without CompColorableTwo " + t);
 				}
 				return;
 			}

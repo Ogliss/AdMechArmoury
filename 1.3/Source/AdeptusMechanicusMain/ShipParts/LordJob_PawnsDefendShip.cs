@@ -48,7 +48,7 @@ namespace AdeptusMechanicus
             StateGraph stateGraph = new StateGraph();
             if (!this.defSpot.IsValid)
             {
-                Log.Warning("LordJob_PawnsDefendShip defSpot is invalid. Returning graph for LordJob_AssaultColony.", false);
+                Log.Warning("LordJob_PawnsDefendShip defSpot is invalid. Returning graph for LordJob_AssaultColony.");
                 stateGraph.AttachSubgraph(new LordJob_AssaultColony(this.faction, true, true, false, false, true).CreateGraph());
                 return stateGraph;
             }

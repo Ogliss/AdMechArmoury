@@ -21,7 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (!__result)
             {
-                if ((__instance.requiredResearchBuilding == AdeptusThingDefOf.HiTechResearchBench && bench.def.defName.Contains("HiTechResearchBench")) || (__instance.requiredResearchBuilding == AdeptusThingDefOf.SimpleResearchBench && bench.def.defName.Contains("ResearchBench")))
+                if ((__instance.requiredResearchBuilding == AdeptusThingDefOf.HiTechResearchBench && bench.def.defName.Contains("HiTechResearchBench")) || (__instance.requiredResearchBuilding == AdeptusThingDefOf.SimpleResearchBench && bench.def.defName.Contains("SimpleResearchBench")))
                 {
                     if (raceTableFor(bench, __instance))
                     {
@@ -63,7 +63,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             List<string> split = def.defName.Split(new char[] { '_' }).ToList();
             if (split.NullOrEmpty() )
             {
-                return false;
+                return bench.def.defName.StartsWith("OG") && bench.def.defName.EndsWith("_" + def.requiredResearchBuilding.defName);
             }
             if (split.Count > 1)
             {

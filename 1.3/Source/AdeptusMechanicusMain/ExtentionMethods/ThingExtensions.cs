@@ -47,18 +47,18 @@ namespace AdeptusMechanicus.ExtensionMethods
 		{
 			if (thing.Destroyed)
 			{
-				Log.Error(ingester + " ingested destroyed thing " + thing, false);
+				Log.Error(ingester + " ingested destroyed thing " + thing);
 				return 0f;
 			}
 			if (!thing.IngestibleNow)
 			{
-				Log.Error(ingester + " ingested IngestibleNow=false thing " + thing, false);
+				Log.Error(ingester + " ingested IngestibleNow=false thing " + thing);
 				return 0f;
 			}
 			Corpse corpse = thing as Corpse;
 			if (corpse == null)
 			{
-				Log.Error(ingester + " ingested NonCorpse thing " + thing, false);
+				Log.Error(ingester + " ingested NonCorpse thing " + thing);
 				return 0f;
 			}
 			ingester.mindState.lastIngestTick = Find.TickManager.TicksGame;
@@ -74,7 +74,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 			{
 				ingester.needs.drugsDesire.Notify_IngestedDrug(thing);
 			}
-			if (ingester.IsColonist && FoodUtility.IsHumanlikeMeatOrHumanlikeCorpse(thing, thing.def))
+			if (ingester.IsColonist && FoodUtility.IsHumanlikeCorpseOrHumanlikeMeat(thing, thing.def))
 			{
 				TaleRecorder.RecordTale(TaleDefOf.AteRawHumanlikeMeat, new object[]
 				{
@@ -106,7 +106,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 			{
 				if (thing.stackCount == 0)
 				{
-					Log.Error(thing + " stack count is 0.", false);
+					Log.Error(thing + " stack count is 0.");
 				}
 				if (num == thing.stackCount)
 				{
@@ -154,7 +154,7 @@ namespace AdeptusMechanicus.ExtensionMethods
 					" ate ",
 					corpse,
 					" but no body part was found. Replacing with core part."
-				}), false);
+				}));
 				bodyPartRecord = corpse.InnerPawn.RaceProps.body.corePart;
 			}
 			float bodyPartNutrition = FoodUtility.GetBodyPartNutrition(corpse, bodyPartRecord);

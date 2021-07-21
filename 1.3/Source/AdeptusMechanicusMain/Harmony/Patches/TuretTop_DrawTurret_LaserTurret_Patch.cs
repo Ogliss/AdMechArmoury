@@ -11,19 +11,11 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-    [HarmonyPatch(typeof(TurretTop), "DrawTurret", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(TurretTop), "DrawTurret"), StaticConstructorOnStartup]
     class TuretTop_DrawTurret_LaserTurret_Patch
     {
-        static FieldInfo parentTurretField;
-        static FieldInfo curRotationIntField;
 
-        static TuretTop_DrawTurret_LaserTurret_Patch()
-        {
-            parentTurretField = typeof(TurretTop).GetField("parentTurret", BindingFlags.NonPublic | BindingFlags.Instance);
-            curRotationIntField = typeof(TurretTop).GetField("curRotationInt", BindingFlags.NonPublic | BindingFlags.Instance);
-        }
-
-        static bool Prefix(TurretTop __instance, float ___curRotationInt, Building_Turret ___parentTurret)
+        static bool Prefix(TurretTop __instance, Vector3 recoilDrawOffset, float recoilAngleOffset, float ___curRotationInt, Building_Turret ___parentTurret)
         {
             Building_LaserGun turret = ___parentTurret as Building_LaserGun;
             if (turret == null) return true;
@@ -44,12 +36,13 @@ namespace AdeptusMechanicus
                 material = spinningGun.Graphic.MatSingle;
             }
 
-            Vector3 b = new Vector3(___parentTurret.def.building.turretTopOffset.x, 0f, ___parentTurret.def.building.turretTopOffset.y);
-            float turretTopDrawSize = ___parentTurret.def.building.turretTopDrawSize;
-            Matrix4x4 matrix = default(Matrix4x4);
-            matrix.SetTRS(turret.DrawPos + Altitudes.AltIncVect + b, (rotation + (float)TurretTop.ArtworkRotation).ToQuat(), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
-            Graphics.DrawMesh(MeshPool.plane10, matrix, material, 0);
-
+            Vector3 offset = new Vector3(___parentTurret.def.building.turretTopOffset.x, 0f, ___parentTurret.def.building.turretTopOffset.y).RotatedBy(___curRotationInt);
+            float scale = ___parentTurret.def.building.turretTopDrawSize;
+            offset = offset.RotatedBy(recoilAngleOffset);
+            offset += recoilDrawOffset;
+            Matrix4x4 Matrix = default(Matrix4x4);
+            Matrix.SetTRS(___parentTurret.DrawPos + Altitudes.AltIncVect + offset, (___curRotationInt + (float)TurretTop.ArtworkRotation).ToQuat(), new Vector3(scale, 1f, scale));
+            Graphics.DrawMesh(MeshPool.plane10, Matrix, material, 0);
             return false;
         }
     }

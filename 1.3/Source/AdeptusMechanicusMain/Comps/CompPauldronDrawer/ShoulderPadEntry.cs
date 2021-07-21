@@ -22,7 +22,7 @@ namespace AdeptusMechanicus
         {
             UpdateProps(entry);
             this.drawer = drawer;
-            this.apparel = drawer.apparel;
+            this.apparel = drawer.Apparel;
         }
 
         public void UpdateProps(ShoulderPadProperties entry)
@@ -345,7 +345,7 @@ namespace AdeptusMechanicus
                             //    Log.Message("FC != null");
                             if (FC.FactionDef != null)
                             {
-                                //        Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
+                                //    //    Log.Message("FactionDef = " + FC.FactionDef.LabelCap);
                                 FactionDefExtension e = FC.Extension;
                                 if (e != null)
                                 {
@@ -359,7 +359,7 @@ namespace AdeptusMechanicus
                                             if (Options[i].TexPath == e.factionTextureTag)
                                             {
                                                 Used = Options[i];
-                                        //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
+                                        //    //    Log.Message("Found faction VariantTexture " + Options[i].TexPath);
                                                 break;
                                             }
                                         }
@@ -401,7 +401,7 @@ namespace AdeptusMechanicus
                                         if (Options[ii].TexPath == e.factionTextureTag)
                                         {
                                             faction = f;
-                                            //        Log.Message("Found faction VariantTexture " + Options[i].TexPath);
+                                            //    //    Log.Message("Found faction VariantTexture " + Options[i].TexPath);
                                             break;
                                         }
                                     }
@@ -507,9 +507,9 @@ namespace AdeptusMechanicus
         public void SetApparelColours()
         {
 
-            Graphic graphic = this.Drawer.apparel.DefaultGraphic;
-            Color color = this.Drawer.apparel.DrawColor;
-            Color colorTwo = this.Drawer.apparel.DrawColorTwo;
+            Graphic graphic = this.Drawer.Apparel.DefaultGraphic;
+            Color color = this.Drawer.Apparel.DrawColor;
+            Color colorTwo = this.Drawer.Apparel.DrawColorTwo;
 
             graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
             //    this.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
@@ -524,7 +524,7 @@ namespace AdeptusMechanicus
                     colorTwo = activeOption.ColorTwo.Value;
                 }
                 graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
-                this.Drawer.apparel.SetColors(color, colorTwo, true, activeOption?.factionDef ?? null, graphic);
+                this.Drawer.Apparel.SetColors(color, colorTwo, true, activeOption?.factionDef ?? null, graphic);
             }
         }
 
@@ -614,7 +614,7 @@ namespace AdeptusMechanicus
                 {
                     if (Graphic == null || (Graphic != null && Drawer.pawn != apparel.Wearer))
                     {
-                //        Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
+                //    //    Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
                         UpdateGraphic();
                     }
                     pauldronMaterial = Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);

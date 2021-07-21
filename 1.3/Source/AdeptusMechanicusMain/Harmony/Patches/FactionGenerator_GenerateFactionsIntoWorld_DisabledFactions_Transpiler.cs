@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 // callvirt instance void RimWorld.FactionManager::Add(class RimWorld.Faction)
                 if (instruction.opcode == OpCodes.Ldloc_0 && instructionsList[i-1].OperandIs(typeof(FactionManager).GetMethod("Add")) && !AstartesHook)
                 {
-                    Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand + " Labels: " + instruction.ExtractLabels());
+                //    Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand + " Labels: " + instruction.ExtractLabels());
                     AstartesHook = true;
                     yield return new CodeInstruction(opcode: OpCodes.Ldloc_0);
                     yield return new CodeInstruction(opcode: OpCodes.Call, operand: typeof(FactionGenerator_GenerateFactionsIntoWorld_DisabledFactions_Transpiler).GetMethod("AstartesFactionsToGenerate"));

@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (world.GetComponent<RelicTracker>() is RelicTracker relicTracker)
                 {
-                    ___allWeaponPairs.RemoveAll(x => !relicTracker.CanSpawn(x.thing));
+                    ___allWeaponPairs.RemoveAll(x => x.thing.HasModExtension<RelicExtension>() && !relicTracker.CanSpawn(x.thing));
                 }
             }
         }

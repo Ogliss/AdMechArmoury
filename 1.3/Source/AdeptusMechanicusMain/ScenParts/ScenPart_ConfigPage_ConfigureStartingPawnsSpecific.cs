@@ -57,7 +57,7 @@ namespace AdeptusMechanicus
 				}
 			}
 			while (!StartingPawnUtility.WorkTypeRequirementsSatisfied());
-			IL_62:
+		//	IL_62:
 			while (Find.GameInitData.startingAndOptionalPawns.Count < this.pawnChoiceCount)
 			{
 				foreach (var item in kinds)
@@ -67,7 +67,7 @@ namespace AdeptusMechanicus
 				}
 			}
 			return;
-			goto IL_62;
+			//goto IL_62;
 		}
 
 

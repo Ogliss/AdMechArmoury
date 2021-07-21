@@ -19,12 +19,12 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix()
         {
-            Log.Message("Graphic_Collection Init Prefix");
+        //    Log.Message("Graphic_Collection Init Prefix");
         }
 
         public static void Postfix()
         {
-            Log.Message("Graphic_Collection Init Postfix");
+        //    Log.Message("Graphic_Collection Init Postfix");
         }
     }
     */

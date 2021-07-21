@@ -31,7 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\1.1\Assemblies\</OutputPath>
+    <OutputPath>..\..\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,11 +43,6 @@
     <None Remove="Verbs\RangeCategory.cs.bak" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0MultiplayerAPI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="1AnimatedProjectile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\AnimatedProjectile\bin\Debug\1AnimatedProjectile.dll</HintPath>
@@ -140,6 +135,8 @@
     <Compile Include="Attributes\MayRequireXenobiologisTau.cs" />
     <Compile Include="Attributes\MayRequireXenobiologisTyranids.cs" />
     <Compile Include="Backstories\BackstorySettings.cs" />
+    <Compile Include="Comps\CompGraphicOverlay.cs" />
+    <Compile Include="Comps\Comp_Shield.cs" />
     <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
     <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
@@ -353,7 +350,6 @@
     <Compile Include="Harmony\Patches\Verb_LaunchProjectileStatic_ValidateTarget_CompWargearUseable_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
-    <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_RangedVerbGiver.cs" />
     <Compile Include="Recipes\Class1.cs" />
     <Compile Include="SettingsMenu\IntergrationMenus.cs" />
@@ -656,7 +652,6 @@
     <Compile Include="ShipParts\CompPawnSpawnerOnDamaged.cs" />
     <Compile Include="Comps\CompWarpFireOverlay.cs" />
     <Compile Include="Comps\CompLungProtectionApparel.cs" />
-    <Compile Include="Comps\CompApparel.cs" />
     <Compile Include="DamageWorkers\DamageWorker_AddEyes.cs" />
     <Compile Include="Comps\CompEyeProtectionApparel.cs" />
     <Compile Include="HediffGivers\HediffGiver_StartWithHediff.cs" />
@@ -689,6 +684,7 @@
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>
     </PackageReference>
+    <PackageReference Include="RimWorld.MultiplayerAPI" Version="0.3.0" />
     <PackageReference Include="TaskPubliciser">
       <Version>1.0.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -723,6 +719,9 @@
     <ItemGroup>
       <Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
     </ItemGroup>
+  </Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;$(ProjectDir)..\Scripts\ModCopy 1.2.bat&quot;&#xD;&#xA;call :REPORT_ERRORLEVEL&#xD;&#xA;goto :EOF&#xD;&#xA;&#xD;&#xA;:REPORT_ERRORLEVEL&#xD;&#xA;echo.&#xD;&#xA;if ERRORLEVEL 16 echo ***FATAL ERROR*** &amp; goto :EOF&#xD;&#xA;if ERRORLEVEL 8 echo **FAILED COPIES** &amp; goto :EOF&#xD;&#xA;if ERRORLEVEL 4 echo *MISMATCHES* &amp; goto :EOF&#xD;&#xA;if ERRORLEVEL 2 echo EXTRA FILES &amp; goto :EOF&#xD;&#xA;if ERRORLEVEL 1 echo Copy successful &amp; goto :EOF&#xD;&#xA;if ERRORLEVEL 0 echo –no change– &amp; goto :EOF" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -134,7 +134,7 @@ namespace AdeptusMechanicus
                 }
                 catch (System.Exception)
                 {
-                    Log.Message("Waaah "+ projectile + " ImpactGlowMoteDef broke Vs " + hitThing);
+               //     Log.Message("Waaah "+ projectile + " ImpactGlowMoteDef broke Vs " + hitThing);
                 }
             }
             if (explosionMoteDef != null)
@@ -160,7 +160,7 @@ namespace AdeptusMechanicus
                 }
                 catch (System.Exception)
                 {
-                    Log.Message("Waaah " + projectile + " explosionMoteDef broke Vs " + hitThing);
+               //     Log.Message("Waaah " + projectile + " explosionMoteDef broke Vs " + hitThing);
                 }
             }
             if (ImpactMoteDef != null)
@@ -191,7 +191,7 @@ namespace AdeptusMechanicus
                 }
                 catch (System.Exception)
                 {
-                    Log.Message("Waaah " + projectile + " ImpactMoteDef broke Vs "+hitThing);
+               //     Log.Message("Waaah " + projectile + " ImpactMoteDef broke Vs "+hitThing);
                 }
             }
         }

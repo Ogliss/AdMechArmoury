@@ -120,13 +120,13 @@ namespace AdeptusMechanicus
                 /*
                 ExtendedGraphicData newdata = new ExtendedGraphicData();
                 newdata.graphicClass = typeof(Graphic_MultiMask);
-                Log.Message("ExtendedGraphicData");
+            //    Log.Message("ExtendedGraphicData");
                 newdata.texPath = rec.graphic.path;
                 newdata.MaskSelector = msk;
                 newdata.maskKey = olddata.maskKey;
                 newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
                 */
-                Log.Message(s.ToString());
+           //     Log.Message(s.ToString());
             }
             return newgraphic;
         }
@@ -134,12 +134,12 @@ namespace AdeptusMechanicus
         public static void SetApparelColours(ShoulderPadEntry e, PauldronTextureOption variant)
         {
 
-            Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+            Graphic graphic = e.Drawer.Apparel.DefaultGraphic;
             Color color = graphic.Color;
             Color colorTwo = graphic.ColorTwo;
 
             graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
-            e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
+            e.Drawer.Apparel.SetColors(color, colorTwo, true, null, graphic);
             {
                 if (variant.Color.HasValue)
                 {
@@ -153,7 +153,7 @@ namespace AdeptusMechanicus
 
             graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
 
-            e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
+            e.Drawer.Apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
             if (e.Drawer.pawn != null)
             {
                 UpdateApparelGraphicsFor(e.Drawer.pawn);
@@ -344,7 +344,7 @@ namespace AdeptusMechanicus
                 {
                     option = new FloatMenuOption(e.DefaultOption.TexPath, delegate ()
                     {
-                        Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+                        Graphic graphic = e.Drawer.Apparel.DefaultGraphic;
                         Color color = graphic.Color;
                         Color colorTwo = graphic.ColorTwo;
 
@@ -380,7 +380,7 @@ namespace AdeptusMechanicus
                         {
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
-                                Graphic graphic = e.Drawer.apparel.Graphic;
+                                Graphic graphic = e.Drawer.Apparel.Graphic;
                                 graphic.path += "_" + variant.TexPath;
                                 Color color = graphic.Color;
                                 Color colorTwo = graphic.ColorTwo;
@@ -634,7 +634,7 @@ namespace AdeptusMechanicus
                     pauldronApparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(CompPauldronDrawer)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated PauldronApparel list: " + pauldronApparel.Count);
+                    //    Log.Message("Generated PauldronApparel list: " + pauldronApparel.Count);
                     }
                 }
                 return pauldronApparel;
@@ -661,7 +661,7 @@ namespace AdeptusMechanicus
                     }
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated PauldronApparel list: " + pauldronApparelCustomizeable.Count);
+                    //    Log.Message("Generated PauldronApparel list: " + pauldronApparelCustomizeable.Count);
                     }
                 }
                 return pauldronApparelCustomizeable;
@@ -679,7 +679,7 @@ namespace AdeptusMechanicus
                     extraPartApparel = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(CompApparelExtraPartDrawer)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated ExtraPartApparel list: " + extraPartApparel.Count);
+                    //    Log.Message("Generated ExtraPartApparel list: " + extraPartApparel.Count);
                     }
                 }
                 return extraPartApparel;
@@ -699,7 +699,7 @@ namespace AdeptusMechanicus
                     graphicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_DrawImplant_AdMech)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated GraphicHediffs list: " + graphicHediffs.Count);
+                    //    Log.Message("Generated GraphicHediffs list: " + graphicHediffs.Count);
                     }
                 }
                 return graphicHediffs;

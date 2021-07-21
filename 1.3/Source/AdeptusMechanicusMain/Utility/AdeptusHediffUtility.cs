@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
                     shieldHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_Shield)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated ShieldHediffs list: "+ shieldHediffs.Count);
+                    //    Log.Message("Generated ShieldHediffs list: "+ shieldHediffs.Count);
                     }
                 }
                 return shieldHediffs;
@@ -33,7 +33,7 @@ namespace AdeptusMechanicus
                     phasicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_PhaseShifter)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated PhasicHediffs list: " + phasicHediffs.Count);
+                    //    Log.Message("Generated PhasicHediffs list: " + phasicHediffs.Count);
                     }
                 }
                 return phasicHediffs;
@@ -51,7 +51,7 @@ namespace AdeptusMechanicus
                     graphicHediffs = DefDatabase<HediffDef>.AllDefsListForReading.FindAll(x => x.HasComp(typeof(HediffComp_DrawImplant_AdMech)));
                     if (AMAMod.Dev)
                     {
-                        Log.Message("Generated GraphicHediffs list: " + graphicHediffs.Count);
+                    //    Log.Message("Generated GraphicHediffs list: " + graphicHediffs.Count);
                     }
                 }
                 return graphicHediffs;

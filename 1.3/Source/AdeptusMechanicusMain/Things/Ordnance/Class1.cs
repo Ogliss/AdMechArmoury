@@ -72,7 +72,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			{
 				if (this.sustainer == null)
 				{
-					Log.Error("Tornado sustainer is null.", false);
+					Log.Error("Tornado sustainer is null.");
 					this.CreateSustainer();
 				}
 				this.sustainer.Maintain();

@@ -87,11 +87,11 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (td.HasModExtension<RelicExtension>())
             {
-                Log.Message("Trader Spawned Relic: " + td);
+           //     Log.Message("Trader Spawned Relic: " + td);
                 if (Find.World.GetComponent<RelicTracker>() is RelicTracker relicTracker)
                 {
                     __result = relicTracker.CanSpawn(td);
-                    Log.Message("Relic: " + td.LabelCap+" Allow: "+__result);
+                 //   Log.Message("Relic: " + td.LabelCap+" Allow: "+__result);
                 }
             }
             if (!__result && (td.defName.Contains("OG_") && td.defName.Contains("_Melee_")))

@@ -294,12 +294,12 @@ namespace AdeptusMechanicus
         public void SetApparelColours(ShoulderPadEntry e, PauldronTextureOption variant)
         {
 
-            Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+            Graphic graphic = e.Drawer.Apparel.DefaultGraphic;
             Color color = graphic.Color;
             Color colorTwo = graphic.ColorTwo;
 
             graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
-            e.Drawer.apparel.SetColors(color, colorTwo, true, null, graphic);
+            e.Drawer.Apparel.SetColors(color, colorTwo, true, null, graphic);
             {
                 if (variant.Color.HasValue)
                 {
@@ -313,7 +313,7 @@ namespace AdeptusMechanicus
 
             graphic = graphic.GetColoredVersion(graphic.Shader, color, colorTwo);
 
-            e.Drawer.apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
+            e.Drawer.Apparel.SetColors(color, colorTwo, true, variant.factionDef, graphic);
         }
 
         public static void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable)
@@ -342,7 +342,7 @@ namespace AdeptusMechanicus
                 {
                     option = new FloatMenuOption(e.DefaultOption.TexPath, delegate ()
                     {
-                        Graphic graphic = e.Drawer.apparel.DefaultGraphic;
+                        Graphic graphic = e.Drawer.Apparel.DefaultGraphic;
                         Color color = graphic.Color;
                         Color colorTwo = graphic.ColorTwo;
 
@@ -374,7 +374,7 @@ namespace AdeptusMechanicus
                         {
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
-                                Graphic graphic = e.Drawer.apparel.Graphic;
+                                Graphic graphic = e.Drawer.Apparel.Graphic;
                                 graphic.path += "_" + variant.TexPath;
                                 Color color = graphic.Color;
                                 Color colorTwo = graphic.ColorTwo;

@@ -61,9 +61,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             string tag = "OG";
             List<string> Tags = new List<string>();
             List<string> split = def.defName.Split(new char[] { '_' }).ToList();
-            if (split.NullOrEmpty() )
+            if (split.NullOrEmpty())
             {
-                return false;
+                return bench.def.defName.StartsWith("OG") && bench.def.defName.EndsWith("_" + def.requiredResearchBuilding.defName);
             }
             if (split.Count > 1)
             {
@@ -117,8 +117,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Tags.Add(tag + "TY");
                         break;
                     default:
-                        Tags.Add(tag);
-                        break;
+                        return bench.def.defName.StartsWith("OG") && bench.def.defName.EndsWith("_" + def.requiredResearchBuilding.defName);
                 }
             }
             else

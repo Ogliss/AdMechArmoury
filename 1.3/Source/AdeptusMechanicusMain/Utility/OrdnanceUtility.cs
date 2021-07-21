@@ -173,17 +173,17 @@ namespace AdeptusMechanicus
 			}
 			if (mtb <= 0f)
 			{
-				Log.Error("MTBEventOccurs with mtb=" + mtb, false);
+				Log.Error("MTBEventOccurs with mtb=" + mtb);
 				return true;
 			}
 			if (mtbUnit <= 0f)
 			{
-				Log.Error("MTBEventOccurs with mtbUnit=" + mtbUnit, false);
+				Log.Error("MTBEventOccurs with mtbUnit=" + mtbUnit);
 				return false;
 			}
 			if (checkDuration <= 0f)
 			{
-				Log.Error("MTBEventOccurs with checkDuration=" + checkDuration, false);
+				Log.Error("MTBEventOccurs with checkDuration=" + checkDuration);
 				return false;
 			}
 			double num = (double)checkDuration / ((double)mtb * (double)mtbUnit);
@@ -200,7 +200,7 @@ namespace AdeptusMechanicus
 					mtbUnit,
 					", checkDuration=",
 					checkDuration
-				}), false);
+				}));
 				return false;
 			}
 			double num2 = 1.0;

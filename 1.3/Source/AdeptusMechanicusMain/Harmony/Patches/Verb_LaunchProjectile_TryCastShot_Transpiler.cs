@@ -15,6 +15,7 @@ using System.Reflection.Emit;
 using OgsCompOversizedWeapon;
 using AdeptusMechanicus.Lasers;
 using AdeptusMechanicus.settings;
+using System.Reflection;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -25,10 +26,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
+            MethodInfo drawPos = AccessTools.Method(typeof(Thing), "get_DrawPos");
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 var instruction = instructionsList[i];
-                if (instruction.opcode == OpCodes.Stloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 12)
+                if (instruction.opcode == OpCodes.Stloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 6)
                 {
                 //    Log.Message("MuzzlePosition patch at " + i);
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // Verb

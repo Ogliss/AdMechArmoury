@@ -21,7 +21,7 @@ namespace AdeptusMechanicus
 			}
 			catch (Exception arg)
 			{
-				Log.Error("There was an exception thrown by the PawnGenerator during generating a starting pawn. Trying one more time...\nException: " + arg, false);
+				Log.Error("There was an exception thrown by the PawnGenerator during generating a starting pawn. Trying one more time...\nException: " + arg);
 				pawn = PawnGenerator.GeneratePawn(request);
 			}
 			pawn.relations.everSeenByPlayer = true;

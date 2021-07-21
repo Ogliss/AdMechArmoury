@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (instruction.opcode == OpCodes.Ldsfld && instruction.OperandIs(shuttle))
                 {
                     yield return instruction;
-                    Log.Message("Faction Shuttle System: Patching ...TransportPodsArrivalActionUtility.DropShuttle_NewTemp...");
+                //    Log.Message("Faction Shuttle System: Patching ...TransportPodsArrivalActionUtility.DropShuttle_NewTemp...");
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // Faction
                     instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(TransportPodsArrivalActionUtility_DropShuttle_NewTemp_FactionShuttle_Transpiler).GetMethod("FactionShuttle"));
 
@@ -54,12 +54,12 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static ThingDef FactionShuttle(ThingDef ShuttleIncoming, Faction owningFaction)
         {
             ThingDef result = ShuttleIncoming;
-            Log.Message("TransportPodsArrivalActionUtility.DropShuttle_NewTemp: faction shuttle system: Start");
+        //    Log.Message("TransportPodsArrivalActionUtility.DropShuttle_NewTemp: faction shuttle system: Start");
             if (owningFaction != null)
             {
-                Log.Message("faction shuttle system: " + owningFaction.Name);
+            //    Log.Message("faction shuttle system: " + owningFaction.Name);
             }
-            Log.Message("TransportPodsArrivalActionUtility.DropShuttle_NewTemp: faction shuttle system: using: "+ result);
+        //    Log.Message("TransportPodsArrivalActionUtility.DropShuttle_NewTemp: faction shuttle system: using: "+ result);
             return result;
         }
     }

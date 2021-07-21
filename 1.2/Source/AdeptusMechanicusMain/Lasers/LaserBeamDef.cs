@@ -54,6 +54,9 @@ namespace AdeptusMechanicus.Lasers
         public EffecterDef explosionEffect;
         public EffecterDef hitLivingEffect;
         public ThingDef beamGraphic;
+
+        public GraphicData flareData;
+
         public string flareMatPath;
         public ShaderTypeDef flareShaderType;
         public Material flareMat; 
@@ -85,7 +88,7 @@ namespace AdeptusMechanicus.Lasers
                     {
                         GraphicData data = new GraphicData();
                         data.CopyFrom(this.graphicData);
-                        data.texPath = textures[i] + "/" + list[ii].name;
+                        data.texPath = textures[i];
                         materials.Add(data.Graphic.MatSingle);
                     //    materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                     }
@@ -102,10 +105,19 @@ namespace AdeptusMechanicus.Lasers
                     // materials.Add(MaterialPool.MatFrom(textures[i], this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                 }
             }
+            if (flareData != null)
+            {
+                GraphicData data = new GraphicData();
+                data.CopyFrom(this.flareData);
+                flareMat = data.Graphic.MatSingle;
+            //    flareMat = MaterialPool.MatFrom(flareMatPath, this.flareShaderType?.Shader ?? this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam);
+            }
+            else
             if (!flareMatPath.NullOrEmpty())
             {
                 GraphicData data = new GraphicData();
                 data.CopyFrom(this.graphicData);
+                data.graphicClass = typeof(Graphic_Single);
                 data.texPath = flareMatPath;
                 data.shaderType = this.flareShaderType ?? this.graphicData.shaderType;
                 flareMat = data.Graphic.MatSingle;

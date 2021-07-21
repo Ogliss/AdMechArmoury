@@ -732,7 +732,7 @@ namespace AdeptusMechanicus
             if (cafr == null)
                 if (!this.parent.Spawned)
                 {
-                    Log.Error("Tried to launch " + this.parent + ", but it's unspawned.", false);
+                    Log.Error("Tried to launch " + this.parent + ", but it's unspawned.");
                     return;
                 }
             /*
@@ -747,14 +747,14 @@ namespace AdeptusMechanicus
             {
                 if (!this.LoadingInProgressOrReadyToLaunch)
                 {
-                    Log.Error("Tried to launch " + this.parent + ", but it's !LoadingInProgressOrReadyToLaunch.", false);
+                    Log.Error("Tried to launch " + this.parent + ", but it's !LoadingInProgressOrReadyToLaunch.");
                     return;
                 }
             }
             if (!this.AllInGroupConnectedToFuelingPort || !this.AllFuelingPortSourcesInGroupHaveAnyFuel)
             {
 
-                Log.Error("Tried to launch " + this.parent + ", but it's !this.AllInGroupConnectedToFuelingPort || !this.AllFuelingPortSourcesInGroupHaveAnyFuel.", false);
+                Log.Error("Tried to launch " + this.parent + ", but it's !this.AllInGroupConnectedToFuelingPort || !this.AllFuelingPortSourcesInGroupHaveAnyFuel.");
                 return;
             }
             if (cafr == null)
@@ -763,7 +763,7 @@ namespace AdeptusMechanicus
                 int num = Find.WorldGrid.TraversalDistanceBetween(map.Tile, destinationTile, true, int.MaxValue);
                 if (num > this.MaxLaunchDistance)
                 {
-                    Log.Error("Tried to launch " + this.parent + ", but it's num > this.MaxLaunchDistance.", false);
+                    Log.Error("Tried to launch " + this.parent + ", but it's num > this.MaxLaunchDistance.");
                     return;
                 }
                 this.Transporter.TryRemoveLord(map);
@@ -904,12 +904,12 @@ namespace AdeptusMechanicus
         {
             if (!Thing.allowDestroyNonDestroyable && !thing.def.destroyable)
             {
-                Log.Error("Tried to destroy non-destroyable thing " + thing, false);
+                Log.Error("Tried to destroy non-destroyable thing " + thing);
                 return;
             }
             if (thing.Destroyed)
             {
-                Log.Error("Tried to destroy already-destroyed thing " + thing, false);
+                Log.Error("Tried to destroy already-destroyed thing " + thing);
                 return;
             }
             bool spawned = thing.Spawned;
@@ -1116,7 +1116,7 @@ namespace AdeptusMechanicus
             }
             if (!this.parent.Spawned)
             {
-                Log.Error("Tried to send " + this.parent + ", but it's unspawned.", false);
+                Log.Error("Tried to send " + this.parent + ", but it's unspawned.");
                 return;
             }
             List<CompTransporter> transportersInGroup = this.TransportersInGroup;
@@ -1128,7 +1128,7 @@ namespace AdeptusMechanicus
             {
                 if (transportersInGroup == null)
                 {
-                    Log.Error("Tried to send " + this.parent + ", but it's not in any group.", false);
+                    Log.Error("Tried to send " + this.parent + ", but it's not in any group.");
                     return;
                 }
             }

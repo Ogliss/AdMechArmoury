@@ -30,7 +30,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (instruction.opcode == OpCodes.Ldsfld && instruction.OperandIs(shuttle))
                 {
                     yield return instruction;
-                    Log.Message("Faction Shuttle System: Patching ...QuestGen_Shuttle.GenerateShuttle...");
+                //    Log.Message("Faction Shuttle System: Patching ...QuestGen_Shuttle.GenerateShuttle...");
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);              // Faction
                     instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(QuestGen_Shuttle_GenerateShuttle_FactionShuttle_Transpiler).GetMethod("FactionShuttle"));
 
@@ -53,10 +53,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static ThingDef FactionShuttle(ThingDef Shuttle, Faction owningFaction)
         {
             ThingDef result = Shuttle;
-            Log.Message("QuestGen_Shuttle.GenerateShuttle: faction shuttle system: Start");
+        //    Log.Message("QuestGen_Shuttle.GenerateShuttle: faction shuttle system: Start");
             if (owningFaction != null)
             {
-                Log.Message("faction shuttle system: " + owningFaction.Name);
+            //    Log.Message("faction shuttle system: " + owningFaction.Name);
             }
             return result;
         }

@@ -56,7 +56,7 @@ namespace AdeptusMechanicus
 			}
 			if (array[0] == null)
 			{
-				Log.Error("Failed to find any textures at " + req.path + " while constructing " + this.ToStringSafe<Graphic_MultiMask>(), false);
+				Log.Error("Failed to find any textures at " + req.path + " while constructing " + this.ToStringSafe<Graphic_MultiMask>());
 				return;
 			}
 			if (array[2] == null)
@@ -212,7 +212,7 @@ namespace AdeptusMechanicus
 			}
 			if (array[0] == null)
 			{
-				Log.Error("Failed to find any textures at " + path + " while constructing " + this.ToStringSafe<Graphic_MultiMask>(), false);
+				Log.Error("Failed to find any textures at " + path + " while constructing " + this.ToStringSafe<Graphic_MultiMask>());
 				return;
 			}
 			if (array[2] == null)

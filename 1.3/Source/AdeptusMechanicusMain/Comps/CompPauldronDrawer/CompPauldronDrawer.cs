@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
             base.ResolveReferences(parentDef);
             if (!PauldronEntries.NullOrEmpty())
             {
-                Log.Message("PauldronDrawer ResolveReferences for " + parentDef);
+            //    Log.Message("PauldronDrawer ResolveReferences for " + parentDef);
                 foreach (var item in PauldronEntries)
                 {
                     if (!item.padTexPath.NullOrEmpty())
@@ -157,7 +157,7 @@ namespace AdeptusMechanicus
 
                     //    item.Drawer = this;
                     item.UpdateProps();
-                    item.apparel = this.apparel;
+                    item.apparel = this.Apparel;
                     /*
                     if (Props.PauldronEntries.Any(x => x.padTexPath == item.padTexPath && x.shoulderPadType == item.shoulderPadType))
                     {
@@ -188,7 +188,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        public Apparel apparel
+        public Apparel Apparel
         {
             get
             {
@@ -203,7 +203,7 @@ namespace AdeptusMechanicus
             {
                 if (wearer == null)
                 {
-                    wearer = this.apparel.Wearer;
+                    wearer = this.Apparel.Wearer;
                 }
                 return wearer;
             }
@@ -223,7 +223,7 @@ namespace AdeptusMechanicus
                 if (colours == null && !colortest)
                 {
                     colortest = true;
-                    colours = this.apparel.TryGetCompFast<CompColorable>();
+                    colours = this.Apparel.TryGetCompFast<CompColorable>();
                 }
                 return colours;
             }
@@ -288,7 +288,7 @@ namespace AdeptusMechanicus
         
         public Color secondaryColorFor(ShoulderPadEntry entry)
         {
-            Color secondary = apparel.DrawColorTwo;
+            Color secondary = Apparel.DrawColorTwo;
             string log = (pawn != null ? pawn.NameShortColored.ToString() + "'s " : string.Empty) +parent.LabelCap+ " secondaryColorFor " + entry.shoulderPadType;
             if (entry != null)
             {
@@ -480,7 +480,7 @@ namespace AdeptusMechanicus
                 {
                     if (this.CheckPauldronRotation(bodyFacing, Entry.shoulderPadType))
                     {
-                        Log.Message("pawn "+pawn + " Wearer "+ apparel.Wearer);
+                    //    Log.Message("pawn "+pawn + " Wearer "+ apparel.Wearer);
                         if (Entry.Graphic==null || pawn != apparel.Wearer)
                         {
                             wearer = apparel.Wearer;

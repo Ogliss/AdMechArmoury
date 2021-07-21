@@ -19,24 +19,21 @@ using System.Reflection;
 namespace AdeptusMechanicus.HarmonyInstance
 {
 
-    [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "DrawAddons")]
+//    [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "DrawAddons")]
     public static class AlienRace_DrawAddons_LinkedBodyAddons_Transpiler
     {
     //    static FieldInfo alien = AccessTools.TypeByName("RimWorld.JobDriver_PlantWork").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First();
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
-            bool drawSizePatched = false;
             bool drawOffsetPatched = false;
-            bool drawOffsetsPatched = false;
-            bool drawLocPatched = false;
 
             FieldInfo alienCompField = AccessTools.TypeByName("AlienRace.HarmonyPatches").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(x=> x.GetFields().Any(y=> y.Name.Contains("alienComp"))).GetField("alienComp");
 
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 CodeInstruction instruction = instructionsList[i];
-                //        Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                //    //    Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                 if (i > 1 && i < instructionsList.Count)
                 {
                     /*
@@ -147,7 +144,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 result = new Vector3();
                 result += quat * pawn.Drawer.renderer.BaseHeadOffsetAt(rotation);
-                Log.Message("DrawOffset useHeadPosition Original: " + original + " Modifier: " + pawn.Drawer.renderer.BaseHeadOffsetAt(rotation) + " result: " + result);
+            //    Log.Message("DrawOffset useHeadPosition Original: " + original + " Modifier: " + pawn.Drawer.renderer.BaseHeadOffsetAt(rotation) + " result: " + result);
             }
             */
 
@@ -192,7 +189,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     AlienPartGenerator.CrownTypeOffset body = result.crownTypes[i];
                     body.offset += paths.headOffsetDirectional?.GetOffset(pawn.Rotation) ?? Vector2.zero;
                 }
-                Log.Message("DrawOffsets result: " + result);
+            //    Log.Message("DrawOffsets result: " + result);
             }
 
             return result;

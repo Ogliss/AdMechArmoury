@@ -184,7 +184,7 @@ namespace AdeptusMechanicus
 #if DEBUG
                     if (selected)
                     {
-                        Log.Message(string.Format("{1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", ((Apparel)base.parent).Wearer.Label, this.parent.def.label, direction, offset, drawPos.y));
+                    //    Log.Message(string.Format("{1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", ((Apparel)base.parent).Wearer.Label, this.parent.def.label, direction, offset, drawPos.y));
                     }
 #endif
                     Material matSingle = PauldronGraphic.GetColoredVersion(ShaderDatabase.Cutout, this.mainColor, this.secondaryColor).MatAt(rotation);
@@ -263,7 +263,7 @@ namespace AdeptusMechanicus
             }
             if (flag)
             {
-                Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.pawn.Label, parent.def.label, direction, offset, pawn.Drawer.DrawPos.y));
+            //    Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.pawn.Label, parent.def.label, direction, offset, pawn.Drawer.DrawPos.y));
             }
 
             return offset;

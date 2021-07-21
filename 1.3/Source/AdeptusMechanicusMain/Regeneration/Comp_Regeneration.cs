@@ -203,11 +203,10 @@ namespace AdeptusMechanicus
                 {
                     BodyPartRecord part = enumerator.Current;
                     Hediff hediff2 = this.pawn.health.hediffSet.hediffs.First((Hediff hediff) => hediff.Part == part && hediff.def == HediffDefOf.MissingBodyPart);
-                    bool flag = hediff2 != null;
                     Rand.PushState();
                     float chance = Rand.Value;
                     Rand.PopState();
-                    if (flag && canHeal && chance < Props.regrowMissingChance)
+                    if (hediff2 != null && canHeal && chance < Props.regrowMissingChance)
                     {
                         float num = hediff2.Part.def.GetMaxHealth(pawn) / 100;
                         this.pawn.health.RemoveHediff(hediff2);

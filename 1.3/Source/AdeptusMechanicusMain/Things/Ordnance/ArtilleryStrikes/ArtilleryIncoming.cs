@@ -65,7 +65,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 				}
 				if (this.ticksToImpact > 220)
 				{
-					Log.Error("ticksToImpact > LeaveMapAfterTicks. Was there an exception? Destroying skyfaller.", false);
+					Log.Error("ticksToImpact > LeaveMapAfterTicks. Was there an exception? Destroying skyfaller.");
 					this.Destroy(DestroyMode.Vanish);
 					return;
 				}
@@ -89,7 +89,7 @@ namespace AdeptusMechanicus.ArtilleryStrikes
 				}
 				if (this.ticksToImpact < 0 && Payload.projectile.explosionDelay == 0)
 				{
-					Log.Error("ticksToImpact < 0. Was there an exception? Destroying skyfaller.", false);
+					Log.Error("ticksToImpact < 0. Was there an exception? Destroying skyfaller.");
 					this.Destroy(DestroyMode.Vanish);
 				}
 			}

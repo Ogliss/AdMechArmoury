@@ -30,9 +30,9 @@ namespace AdeptusMechanicus
             string tooltipI = "AdeptusMechanicus.IntergrationOptionsDesc".Translate();
             if (Dev)
             {
-                Log.Message("showArmouryIntergrationOptions "+ showArmouryIntergrationOptions);
-                Log.Message("mod.patchesCount " + mod.PatchesCount);
-                Log.Message("AMAMod.lineheight " + AMAMod.lineheight);
+            //    Log.Message("showArmouryIntergrationOptions "+ showArmouryIntergrationOptions);
+            //    Log.Message("mod.patchesCount " + mod.PatchesCount);
+            //    Log.Message("AMAMod.lineheight " + AMAMod.lineheight);
                 labelI = "AdeptusMechanicus.IntergrationOptions".Translate() + " Menu Length: " + mod.Length(showArmouryIntergrationOptions, mod.PatchesCount, AMAMod.lineheight, 0, 0) + " Total Length: " + Listing_ArmouryIntergrationLength + " " + showArmouryIntergrationOptions + " CurInc: " + Inc;
             }
 

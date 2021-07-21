@@ -77,7 +77,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         " of ",
                         factionType.ToStringSafe<FactionDef>(),
                         ". Choosing random."
-                        }), false);
+                        }));
                         backstory = (from kvp in BackstoryDatabase.allBackstories
                                      where kvp.Value.slot == slot
                                      select kvp).RandomElement<KeyValuePair<string, Backstory>>().Value;
@@ -126,7 +126,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 " generating with factionDef ",
                 faction,
                 ": no backstoryCategories in either."
-            }), 1871521, false);
+            }), 1871521);
             return new List<BackstoryCategoryFilter>
             {
                 PawnBioAndNameGenerator_FillBackstorySlotShuffled_Controller_Patch.FallbackCategoryGroup

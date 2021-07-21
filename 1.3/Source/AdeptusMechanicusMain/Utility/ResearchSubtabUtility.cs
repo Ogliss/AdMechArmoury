@@ -59,7 +59,7 @@ namespace AdeptusMechanicus
                 /*
                     if (defTab is ResearchSubTabDef subTabDef)
                     {
-                        Log.Message(defTab + " is subTab of " + subTabDef.parentTab);
+                    //    Log.Message(defTab + " is subTab of " + subTabDef.parentTab);
                     }
                     if (defTab != CurTab)
                     {

@@ -54,6 +54,8 @@ namespace AdeptusMechanicus.Lasers
         public EffecterDef explosionEffect;
         public EffecterDef hitLivingEffect;
         public ThingDef beamGraphic;
+
+        public GraphicData flareData;
         public string flareMatPath;
         public ShaderTypeDef flareShaderType;
         public Material flareMat; 
@@ -79,7 +81,7 @@ namespace AdeptusMechanicus.Lasers
                                             select x).ToList<Texture2D>();
                     if (list.NullOrEmpty<Texture2D>())
                     {
-                        Log.Error("Collection cannot init: No textures found at path " + textures[i], false);
+                        Log.Error("Collection cannot init: No textures found at path " + textures[i]);
                     }
                     for (int ii = 0; ii < list.Count; ii++)
                     {

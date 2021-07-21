@@ -100,15 +100,20 @@ namespace AdeptusMechanicus
             Scribe_Values.Look<int>(ref this.ticksToReset, "ticksToReset", -1, false);
             Scribe_Values.Look<int>(ref this.lastKeepDisplayTick, "lastKeepDisplayTick", 0, false);
         }
-        // Token: 0x0600273A RID: 10042 RVA: 0x0012AACC File Offset: 0x00128ECC
+
+        private Gizmo_HediffEnergyShieldStatus _CompEnergyShieldStatus;
         public virtual IEnumerable<Gizmo> GetShieldGizmos()
         {
             if (Find.Selector.SingleSelectedThing == Pawn)
             {
-                yield return new Gizmo_HediffEnergyShieldStatus
+                if (_CompEnergyShieldStatus == null)
                 {
-                    shield = this
-                };
+                    _CompEnergyShieldStatus = new Gizmo_HediffEnergyShieldStatus
+                    {
+                        shield = this
+                    };
+                }
+                yield return _CompEnergyShieldStatus;
             }
             yield break;
         }
@@ -183,13 +188,13 @@ namespace AdeptusMechanicus
 
         public override void CompPostMake()
         {
-            Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostMake");
+       //     Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostMake");
             base.CompPostMake();
         }
 
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
-            Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostPostAdd");
+         //   Log.Message(this.parent.LabelCap + " " + this.Pawn.LabelCap + " CompPostPostAdd");
             base.CompPostPostAdd(dinfo);
         }
 

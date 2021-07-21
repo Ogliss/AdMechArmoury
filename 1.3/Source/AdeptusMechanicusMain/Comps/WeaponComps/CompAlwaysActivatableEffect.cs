@@ -39,12 +39,6 @@ namespace AdeptusMechanicus
                         {
                             if (Prefs.DevMode) Log.Message("Quality Graphic detected");
                         }
-                        else
-                        if (this.parent.TryGetCompFast<CompAdvancedGraphic>() != null && this.parent.TryGetCompFast<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
-                        {
-                            tex = graphic.current.path;
-                        }
-
                         if (tex.NullOrEmpty())
                         {
                             tex = this.parent.def.graphicData.texPath;
@@ -90,7 +84,7 @@ namespace AdeptusMechanicus
                     bool flag2 = this.Props.graphicData == null;
                     if (flag2)
                     {
-                        Log.ErrorOnce(this.parent.def + " has no SecondLayer graphicData but we are trying to access it.", 764532, false);
+                        Log.ErrorOnce(this.parent.def + " has no SecondLayer graphicData but we are trying to access it.", 764532);
                         return BaseContent.BadGraphic;
                     }
                     Color newColor = (GraphicData.color == Color.white) ? this.parent.DrawColor : GraphicData.color;

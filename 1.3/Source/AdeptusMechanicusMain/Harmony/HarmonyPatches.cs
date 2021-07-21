@@ -52,7 +52,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 HarmonyPatches.FacialStuffPatches();
             }
-
+//            AMAMod.harmony.Patch(original: AccessTools.Constructor(typeof(Verse.PawnTextureAtlas)), transpiler: new HarmonyMethod(typeof(PawnTextureAtlas_Constructor_Name_Patch), nameof(PawnTextureAtlas_Constructor_Name_Patch.Transpiler)));
             /*
             MethodInfo targetmethod1 = AccessTools.TypeByName("ResearchProjectDef.ConfigErrors").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First().
                 GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).
@@ -78,26 +78,26 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void FacialStuffPatches()
         {
-            Log.Message("FacialStuff detected: attempting to Patch Draw method");
+       //     Log.Message("FacialStuff detected: attempting to Patch Draw method");
             MethodInfo method = AccessTools.TypeByName("FacialStuff.HumanBipedDrawer").GetMethod("DrawApparel");
             MethodInfo method2 = typeof(HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler).GetMethod("Transpiler");
             bool flag = method == null;
             bool flag1 = method2 == null;
             if (flag)
             {
-                Log.Error("HumanBipedDrawer Method is null", false);
+                Log.Error("HumanBipedDrawer Method is null");
             }
             else
             if (flag1)
             {
-                Log.Error("Patch Method is null", false);
+                Log.Error("Patch Method is null");
             }
             else
             {
                 bool flag2 = AMAMod.harmony.Patch(method, null, null, new HarmonyMethod(method2)) == null;
                 if (flag2)
                 {
-                    Log.Error("Adeptus Mechanicus: Facial Stuff patch failed.", false);
+                    Log.Error("Adeptus Mechanicus: Facial Stuff patch failed.");
                 }
             }
             //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));

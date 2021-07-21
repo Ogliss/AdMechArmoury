@@ -199,7 +199,7 @@ namespace AdeptusMechanicus
 			pawn.DeSpawn(DestroyMode.Vanish);
 			if (!pawnthrown.innerContainer.TryAdd(pawn, true))
 			{
-				Log.Error("Could not add " + pawn.ToStringSafe<Pawn>() + " to a thrower.", false);
+				Log.Error("Could not add " + pawn.ToStringSafe<Pawn>() + " to a thrower.");
 				pawn.Destroy(DestroyMode.Vanish);
 			}
 			return pawnthrown;

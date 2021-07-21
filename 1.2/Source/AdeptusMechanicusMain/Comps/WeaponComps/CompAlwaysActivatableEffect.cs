@@ -39,11 +39,6 @@ namespace AdeptusMechanicus
                         {
                             if (Prefs.DevMode) Log.Message("Quality Graphic detected");
                         }
-                        else
-                        if (this.parent.TryGetCompFast<CompAdvancedGraphic>() != null && this.parent.TryGetCompFast<CompAdvancedGraphic>() is CompAdvancedGraphic graphic)
-                        {
-                            tex = graphic.current.path;
-                        }
 
                         if (tex.NullOrEmpty())
                         {

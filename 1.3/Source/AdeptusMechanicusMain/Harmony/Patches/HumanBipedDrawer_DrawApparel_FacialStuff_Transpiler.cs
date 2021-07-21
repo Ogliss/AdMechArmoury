@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 var instruction = instructionsList[i];
                 if (instruction.opcode == OpCodes.Stloc_2)
                 {
-                    Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+               //     Log.Message(i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                     yield return instruction;
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
                     yield return new CodeInstruction(opcode: OpCodes.Call, Pawn);

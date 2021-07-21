@@ -57,6 +57,7 @@ namespace AdeptusMechanicus
                 Graphics.DrawMesh(mesh2, glower.DrawPos, ExactRotation, _glowGrahphic.MatSingle, 0);
             }
         }
+
         public void Glow(Material mat, Vector3 pos, Quaternion ExactRotation)
         {
 

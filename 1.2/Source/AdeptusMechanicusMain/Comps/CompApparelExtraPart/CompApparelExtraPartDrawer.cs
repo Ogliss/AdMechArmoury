@@ -462,7 +462,7 @@ namespace AdeptusMechanicus
         public bool ShouldDrawExtra(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material extraMaterial)
         {
             extraMaterial = null;
-            if (pawn.InBed() && !onHead)
+            if (pawn.InBed() && (!onHead))
             {
                 extraMaterial = null;
                 return false;

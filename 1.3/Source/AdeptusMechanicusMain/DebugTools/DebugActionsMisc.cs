@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
 		*/
 
 		// Verse.DebugToolsSpawning
-		[DebugAction("Adeptus Mechanicus: General", "Destroy All things of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Adeptus Mechanicus: General", "Destroy All things of Def...", false, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void DestroyAllThingsOf()
 		{
 			List<DebugMenuOption> list = new List<DebugMenuOption>();

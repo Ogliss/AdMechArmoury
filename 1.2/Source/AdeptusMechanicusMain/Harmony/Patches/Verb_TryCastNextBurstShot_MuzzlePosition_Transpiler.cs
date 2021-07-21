@@ -12,7 +12,6 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection.Emit;
 using UnityEngine;
-using OgsCompOversizedWeapon;
 using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
@@ -75,7 +74,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     else
                     {
-                        OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<CompOversizedWeapon>();
+                        OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<OgsCompOversizedWeapon.CompOversizedWeapon>();
                         if (compOversized != null)
                         {
                             bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
@@ -83,7 +82,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             Vector3 offsetOffHand = default(Vector3);
                             float offHandAngle = aimAngle;
                             float mainHandAngle = aimAngle;
-                            OversizedUtil.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
+                            OgsCompOversizedWeapon.OversizedUtil.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
                             //    if (DualWeapon && AMAMod.Dev) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
                             origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
                             // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);

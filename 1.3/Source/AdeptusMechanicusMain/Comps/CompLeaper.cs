@@ -64,7 +64,7 @@ namespace AdeptusMechanicus
                 Pawn pawn = this.parent as Pawn;
                 if (pawn == null)
                 {
-                    Log.Error("CompLeaper pawn is null", false);
+                    Log.Error("CompLeaper pawn is null");
                 }
                 return pawn;
             }

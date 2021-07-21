@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
 {
     // Token: 0x02000706 RID: 1798
     [StaticConstructorOnStartup]
-    public class CloseCombatShield : Apparel
+    public class CloseCombatShield : ApparelComposite
     {
         // Token: 0x170005F4 RID: 1524
         // (get) Token: 0x06002733 RID: 10035 RVA: 0x0012A8FF File Offset: 0x00128CFF
@@ -207,6 +207,7 @@ namespace AdeptusMechanicus
         // Token: 0x06002741 RID: 10049 RVA: 0x0012ADF4 File Offset: 0x001291F4
         public override void DrawWornExtras()
         {
+            base.DrawWornExtras();
             if (this.ShieldState == ShieldState.Active && this.ShouldDisplay)
             {
                 float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
@@ -222,7 +223,7 @@ namespace AdeptusMechanicus
                 Rand.PushState();
                 float angle = (float)Rand.Range(0, 360);
                 Rand.PopState();
-                Vector3 s = new Vector3(num, 1f, num);
+                Vector3 s = new Vector3(num * base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.x, 1f, num * base.Wearer.Drawer.renderer.graphics.nakedGraphic.drawSize.y);
                 Matrix4x4 matrix = default;
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, CloseCombatShield.BubbleMat, 0);

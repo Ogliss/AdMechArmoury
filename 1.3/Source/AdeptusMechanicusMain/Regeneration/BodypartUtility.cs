@@ -43,7 +43,6 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
                 currentSet.Clear();
             }
             while (nextSet.Count > 0);
@@ -97,7 +96,6 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
                 currentSet.Clear();
             }
             while (nextSet.Count > 0);
@@ -151,7 +149,6 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
                 currentSet.Clear();
             }
             while (nextSet.Count > 0);
@@ -205,7 +202,6 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
                 currentSet.Clear();
             }
             while (nextSet.Count > 0);
@@ -249,7 +245,6 @@ namespace AdeptusMechanicus
                         }
                     }
                 }
-                List<BodyPartRecord>.Enumerator enumerator = default(List<BodyPartRecord>.Enumerator);
                 currentSet.Clear();
             }
             while (nextSet.Count > 0);
