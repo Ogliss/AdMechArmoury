@@ -60,6 +60,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                     */
+                    /*
                     if (!drawOffsetPatched)
                     {
                         if (instruction.operand is LocalBuilder lb && lb.LocalIndex == 14 && instruction.opcode == OpCodes.Ldloc_S)
@@ -74,6 +75,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                         }
                     }
+                    */
                     /*
                     if (!drawLocPatched)
                     {

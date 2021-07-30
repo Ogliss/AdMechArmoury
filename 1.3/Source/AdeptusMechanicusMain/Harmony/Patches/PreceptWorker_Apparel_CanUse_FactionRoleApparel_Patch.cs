@@ -10,18 +10,27 @@ using System;
 using RimWorld;
 using Verse;
 using HarmonyLib;
-using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    
-    [HarmonyPatch(typeof(PreceptWorker), "CanUse", new Type[] { typeof(ThingDef), typeof(Ideo), typeof(FactionDef) })]
-    public static class PreceptWorker_CanUse_FactionRelics_Patch
+    //  if (__instance is PreceptWorker_Apparel relic && ideo.culture.defName.StartsWith("OG_")) { }
+    // PreceptWorker.ThingDefsForIdeo
+    // PreceptWorker_Apparel.CanUse
+    [HarmonyPatch(typeof(PreceptWorker_Apparel), "CanUse", new Type[] { typeof(ThingDef), typeof(Ideo), typeof(FactionDef) })]
+    public static class PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch
     {
-        [HarmonyPostfix]
-        public static AcceptanceReport Postfix(AcceptanceReport __result, PreceptWorker __instance, ThingDef def, Ideo ideo, FactionDef generatingFor)
+        /*
+        [HarmonyPrefix]
+        public static void Prefix(AcceptanceReport __result, PreceptWorker_Apparel __instance, ThingDef def, Ideo ideo)
         {
-            if (__instance is PreceptWorker_Relic relic && ideo.culture.defName.StartsWith("OG_"))
+
+        }
+        */
+
+        [HarmonyPostfix]
+        public static AcceptanceReport Postfix(AcceptanceReport __result, PreceptWorker_Apparel __instance, ThingDef def, Ideo ideo)
+        {
+            if (ideo.culture.defName.StartsWith("OG_"))
             {
                 if (def.defName.StartsWith("OGI_"))
                 {
@@ -57,12 +66,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
             return __result;
-        }
-        static string Tag()
-        {
-            string tag = string.Empty;
-
-            return tag;
         }
     }
     
