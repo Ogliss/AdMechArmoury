@@ -176,11 +176,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                             bool castShadow = __instance.castShadow;
                             if (castShadow)
                             {
-                                MoteMaker.MakeStaticMote(__instance.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                                FleckMaker.Static(__instance.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                                 bool takeSplashes = __instance.Position.GetTerrain(map).takeSplashes;
                                 if (takeSplashes)
                                 {
-                                    MoteMaker.MakeWaterSplash(__instance.ExactPosition, map, Mathf.Sqrt((float)__instance.def.projectile.GetDamageAmount(___launcher, null)) * 1f, 4f);
+                                    FleckMaker.WaterSplash(__instance.ExactPosition, map, Mathf.Sqrt((float)__instance.def.projectile.GetDamageAmount(___launcher, null)) * 1f, 4f);
                                 }
                             }
                             Impact(__instance, ___launcher, ___equipmentDef, hitThing, ___originInt, ___origin, ___destinationInt, ___startingTicksToImpactInt, ___ticksToImpact, ___intTicksToImpact, ref ___suppressionAmount);
@@ -277,7 +277,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         private static void LogImpact(ProjectileCE __instance, Thing launcher, ThingDef equipmentDef, Thing hitThing, out LogEntry_DamageResult logEntry)
         {
-            logEntry = new BattleLogEntry_RangedImpact(launcher, hitThing, __instance.intendedTarget, equipmentDef, __instance.def, null);
+            logEntry = new BattleLogEntry_RangedImpact(launcher, hitThing, __instance.intendedTarget.Thing, equipmentDef, __instance.def, null);
             bool flag = !(launcher is AmmoThing);
             if (flag)
             {

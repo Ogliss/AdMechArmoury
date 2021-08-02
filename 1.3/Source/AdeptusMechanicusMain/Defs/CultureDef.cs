@@ -12,6 +12,7 @@ namespace AdeptusMechanicus
 	public class CultureDef : RimWorld.CultureDef
 	{
 		MemeDef defaultStructureMeme;
+		
 	}
 
 }

@@ -69,7 +69,7 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             this.hitThing = hitThing;
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
@@ -223,11 +223,11 @@ namespace AdeptusMechanicus.Lasers
                 bool castShadow = this.castShadow;
                 if (castShadow)
                 {
-                    MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+                    FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                     bool takeSplashes = base.Position.GetTerrain(map).takeSplashes;
                     if (takeSplashes)
                     {
-                        MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(this.launcher, null)) * 1f, 4f);
+                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)this.def.projectile.GetDamageAmount(this.launcher, null)) * 1f, 4f);
                     }
                 }
                 this.ProjectileImpact(null);
@@ -366,7 +366,7 @@ namespace AdeptusMechanicus.Lasers
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             ThingDef weaponDef = this.equipmentDef ?? ThingDef.Named("Gun_Autopistol");
-            logEntry = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, weaponDef, this.def, null);
+            logEntry = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, weaponDef, this.def, null);
             bool flag = this.launcher is AmmoThing;
             if (flag)
             {

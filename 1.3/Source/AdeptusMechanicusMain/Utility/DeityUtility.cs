@@ -18,27 +18,56 @@ namespace AdeptusMechanicus
 		public static void GenerateSpecificDeities(IdeoFoundation_Deity __instance)
 		{
 			__instance.deities.Clear();
-			if (__instance.ideo.culture.defName.StartsWith("OG_Greenskin"))
+
+            if (__instance.ideo.culture.defName.StartsWith("OG_"))
 			{
-				IdeoFoundation_Deity.Deity gork = DeityUtility.Gork.cloneDeity();
-				IdeoFoundation_Deity.Deity mork = DeityUtility.Mork.cloneDeity();
-				FillDeity(__instance, gork);
-				__instance.deities.Add(gork);
-				FillDeity(__instance, mork);
-				__instance.deities.Add(mork);
-			}
-			
-			if (__instance.ideo.culture.defName.StartsWith("OG_Imperial_"))
-			{
-				IdeoFoundation_Deity.Deity emperor = DeityUtility.Emperor.cloneDeity();
-				FillDeity(__instance, emperor);
-				__instance.deities.Add(emperor);
-			}
-			if (__instance.ideo.culture.defName.StartsWith("OG_Mechanicus"))
-			{
-				IdeoFoundation_Deity.Deity omnissiah = DeityUtility.Omnissiah.cloneDeity();
-				FillDeity(__instance, omnissiah);
-				__instance.deities.Add(omnissiah);
+				if (__instance.ideo.culture.defName.Contains("Mechanicus"))
+				{
+					IdeoFoundation_Deity.Deity omnissiah = DeityUtility.Omnissiah.cloneDeity();
+					FillDeity(__instance, omnissiah);
+					__instance.deities.Add(omnissiah);
+					return;
+				}
+				if (__instance.ideo.culture.defName.Contains("Imperial"))
+				{
+					IdeoFoundation_Deity.Deity emperor = DeityUtility.Emperor.cloneDeity();
+					FillDeity(__instance, emperor);
+					__instance.deities.Add(emperor);
+					return;
+				}
+				if (__instance.ideo.culture.defName.Contains("Greenskin") || __instance.ideo.culture.defName.Contains("Orkoid"))
+				{
+					IdeoFoundation_Deity.Deity gork = DeityUtility.Gork.cloneDeity();
+					IdeoFoundation_Deity.Deity mork = DeityUtility.Mork.cloneDeity();
+					FillDeity(__instance, gork);
+					__instance.deities.Add(gork);
+					FillDeity(__instance, mork);
+					__instance.deities.Add(mork);
+					return;
+				}
+				if (__instance.ideo.culture.defName.Contains("Kroot"))
+				{
+					IdeoFoundation_Deity.Deity vawk = DeityUtility.Vawk.cloneDeity();
+					IdeoFoundation_Deity.Deity gmork = DeityUtility.Gmork.cloneDeity();
+					FillDeity(__instance, vawk);
+					__instance.deities.Add(vawk);
+					FillDeity(__instance, gmork);
+					__instance.deities.Add(gmork);
+					return;
+				}
+				if (__instance.ideo.culture.defName.Contains("Aeldari"))
+				{
+					IdeoFoundation_Deity.Deity khaine = DeityUtility.Khaine.cloneDeity();
+					IdeoFoundation_Deity.Deity ynnead = DeityUtility.Ynnead.cloneDeity();
+					IdeoFoundation_Deity.Deity cegorach = DeityUtility.Cegorach.cloneDeity();
+					FillDeity(__instance, khaine);
+					__instance.deities.Add(khaine);
+					FillDeity(__instance, ynnead);
+					__instance.deities.Add(ynnead);
+					FillDeity(__instance, Cegorach);
+					__instance.deities.Add(cegorach);
+					return;
+				}
 			}
 
 		}
@@ -121,7 +150,7 @@ namespace AdeptusMechanicus
             name = "Emperor of Mankind",
             gender = Gender.Male,
             type = "AdeptusMechanicus.Imperial.Emperor_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/EmperorOfMan",
+            iconPath = "Ui/Gods/Icons/Icon_EmperorOfMan",
 			relatedMeme = AdeptusMemeDefOf.OG_Imperial_Structure_TheistEmbodied
 
 		};
@@ -129,8 +158,8 @@ namespace AdeptusMechanicus
         {
             name = "Ommnissiah",
             gender = Gender.None,
-            type = "AdeptusMechanicus.Imperial.Ommnissiah_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Ommnissiah",
+            type = "AdeptusMechanicus.Imperial.Omnissiah_Desc".Translate(),
+            iconPath = "Ui/Gods/Icons/Icon_Omnissiah",
 			relatedMeme = MemeDefOf.Transhumanist
 
 		};
@@ -138,25 +167,25 @@ namespace AdeptusMechanicus
         public static IdeoFoundation_Deity.Deity Khaine = new IdeoFoundation_Deity.Deity()
         {
             name = "Khaine",
-            gender = Gender.None,
-            type = "AdeptusMechanicus.Eldar.Khaine_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Khaine"
+            gender = Gender.Male,
+            type = "AdeptusMechanicus.Aeldari.Khaine_Desc".Translate(),
+            iconPath = "Ui/Gods/Icons/Icon_Khaine"
 
 		};
-        public static IdeoFoundation_Deity.Deity Yeanned = new IdeoFoundation_Deity.Deity()
+        public static IdeoFoundation_Deity.Deity Ynnead = new IdeoFoundation_Deity.Deity()
         {
-            name = "Yeanned",
-            gender = Gender.None,
-            type = "AdeptusMechanicus.Eldar.Yeanned_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Yeanned"
+            name = "Ynnead",
+            gender = Gender.Male,
+            type = "AdeptusMechanicus.Aeldari.Ynnead_Desc".Translate(),
+            iconPath = "Ui/Gods/Icons/Icon_Ynnead"
 
 		};
-        public static IdeoFoundation_Deity.Deity Cregoarch = new IdeoFoundation_Deity.Deity()
+        public static IdeoFoundation_Deity.Deity Cegorach = new IdeoFoundation_Deity.Deity()
         {
-            name = "Cregoarch",
-            gender = Gender.None,
-            type = "AdeptusMechanicus.Eldar.Cregoarch_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Cregoarch"
+            name = "Cegorach",
+            gender = Gender.Male,
+            type = "AdeptusMechanicus.Aeldari.Cegorach_Desc".Translate(),
+            iconPath = "Ui/Gods/Icons/Icon_Cegorach"
 
 		};
         // Orkish Gods
@@ -165,7 +194,7 @@ namespace AdeptusMechanicus
             name = "Gork",
             gender = Gender.None,
             type = "AdeptusMechanicus.Ork.Gork_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Gork"
+            iconPath = "Ui/Gods/Icons/Icon_Gork"
 
 		};
         public static IdeoFoundation_Deity.Deity Mork = new IdeoFoundation_Deity.Deity()
@@ -173,7 +202,7 @@ namespace AdeptusMechanicus
             name = "Mork",
             gender = Gender.None,
             type = "AdeptusMechanicus.Ork.Mork_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Mork"
+            iconPath = "Ui/Gods/Icons/Icon_Mork"
 
 		};
         // Kroot Gods
@@ -182,7 +211,7 @@ namespace AdeptusMechanicus
             name = "Vawk",
             gender = Gender.Female,
             type = "AdeptusMechanicus.Kroot.Vawk_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Vawk"
+            iconPath = "Ui/Gods/Icons/Icon_Vawk"
 
 		};
         public static IdeoFoundation_Deity.Deity Gmork = new IdeoFoundation_Deity.Deity()
@@ -190,7 +219,7 @@ namespace AdeptusMechanicus
             name = "Gmork",
             gender = Gender.Male,
             type = "AdeptusMechanicus.Kroot.Gmork_Desc".Translate(),
-            iconPath = "Ui/Gods/Icons/Gmork"
+            iconPath = "Ui/Gods/Icons/Icon_Gmork"
 
 		};
     }

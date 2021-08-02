@@ -36,21 +36,21 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		protected override void Impact(Thing hitThing)
+		public override void Impact(Thing hitThing)
 		{
 			Map map = base.Map;
 			if (this.ticksToImpact<=0)
 			{
 				base.Impact(hitThing);
 			}
-			BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, this.equipmentDef, this.def, null);
+			BattleLogEntry_RangedImpact battleLogEntry_RangedImpact = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, this.equipmentDef, this.def, null);
 			Find.BattleLog.Add(battleLogEntry_RangedImpact);
 			int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
 			if (hitThing != null)
 			{
 				DamageDefExtensionCE damageDefExtensionCE = this.def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
 				ProjectilePropertiesCE projectilePropertiesCE = (ProjectilePropertiesCE)this.def.projectile;
-				DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, (float)damageAmount, (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt, this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget);
+				DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, (float)damageAmount, (this.def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp) ? projectilePropertiesCE.armorPenetrationSharp : projectilePropertiesCE.armorPenetrationBlunt, this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
 				hitThing.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_RangedImpact);
 				Pawn pawn = hitThing as Pawn;
 				if (pawn != null && pawn.stances != null && pawn.BodySize <= this.def.projectile.StoppingPower + 0.001f)
@@ -69,7 +69,7 @@ namespace AdeptusMechanicus
 						Rand.PushState();
 						if (Rand.Chance(extraDamage.chance))
 						{
-							DamageInfo dinfo2 = new DamageInfo(extraDamage.def, extraDamage.amount, extraDamage.AdjustedArmorPenetration(), this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget);
+							DamageInfo dinfo2 = new DamageInfo(extraDamage.def, extraDamage.amount, extraDamage.AdjustedArmorPenetration(), this.ExactRotation.eulerAngles.y, this.launcher, null, this.equipmentDef, DamageInfo.SourceCategory.ThingOrUnknown, this.intendedTarget.Thing);
 							hitThing.TakeDamage(dinfo2).AssociateWithLog(battleLogEntry_RangedImpact);
 						}
 						Rand.PopState();
@@ -80,10 +80,10 @@ namespace AdeptusMechanicus
 			SoundDefOf.BulletImpact_Ground.PlayOneShot(new TargetInfo(base.Position, map, false));
 			if (base.Position.GetTerrain(map).takeSplashes)
 			{
-				MoteMaker.MakeWaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)damageAmount) * 1f, 4f);
+				FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt((float)damageAmount) * 1f, 4f);
 				return;
 			}
-			MoteMaker.MakeStaticMote(this.ExactPosition, map, ThingDefOf.Mote_ShotHit_Dirt, 1f);
+			FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
 		}
 		// Token: 0x060015F7 RID: 5623 RVA: 0x0007FB24 File Offset: 0x0007DD24
 

@@ -141,7 +141,6 @@ namespace AdeptusMechanicus.Lasers
             this.hitThing = hitThing ?? null;
             this.effecter = effecter ?? null;
             this.effecterDef = effecterDef ?? null;
-            ThingDef mote = ThingDefOf.Mote_ShotFlash;
             Map map = verb?.Caster?.Map ?? launcher.Map;
             Vector3 dir = (destination - origin).normalized;
             dir.y = 0;
@@ -178,7 +177,7 @@ namespace AdeptusMechanicus.Lasers
                         AdeptusMoteMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
                     }
                 }
-                AdeptusMoteMaker.MakeStaticMote(a, launcher.Map, mote, verb.verbProps.muzzleFlashScale);
+                FleckMaker.Static(a, launcher.Map, FleckDefOf.ShotFlash, verb.verbProps.muzzleFlashScale);
             }
             if (effecter == null)
             {

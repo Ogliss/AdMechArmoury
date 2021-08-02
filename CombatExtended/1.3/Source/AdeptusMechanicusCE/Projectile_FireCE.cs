@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
     // AdeptusMechanicus.Projectile_Fire
     public class Projectile_FireCE : Projectile_AnimCE
     {
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
         //    base.Impact(hitThing);
             Ignite();
@@ -71,10 +71,10 @@ namespace AdeptusMechanicus
             cellsToAffect.Clear();
             cellsToAffect.AddRange(def.projectile.damageDef.Worker.ExplosionCellsToHit(Position, map, radius));
 
-            MoteMaker.MakeStaticMote(Position, map, ThingDefOf.Mote_ExplosionFlash, radius * 4f);
+            FleckMaker.Static(Position, map, FleckDefOf.ExplosionFlash, radius * 4f);
             for (int i = 0; i < 4; i++)
             {
-                MoteMaker.ThrowSmoke(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(radius * 0.7f), map, radius * 0.6f);
+                FleckMaker.ThrowSmoke(Position.ToVector3Shifted() + Gen.RandomHorizontalVector(radius * 0.7f), map, radius * 0.6f);
             }
 
             Rand.PushState();
@@ -160,7 +160,7 @@ namespace AdeptusMechanicus
                     {
                         spark = (Spark)GenSpawn.Spawn(ThingDefOf.Spark, base.Position, base.Map, WipeMode.Vanish);
                     }
-                    spark.Launch(this, intVec, intVec, ProjectileHitFlags.All, null);
+                    spark.Launch(this, intVec, intVec, ProjectileHitFlags.All, false, null);
                 }
                 else
                 {

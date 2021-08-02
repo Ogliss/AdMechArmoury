@@ -69,7 +69,7 @@ namespace AdeptusMechanicus.Lasers
             }
         }
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             this.hitThing = hitThing;
             bool shielded = hitThing.IsShielded() && def.IsWeakToShields;
@@ -366,7 +366,7 @@ namespace AdeptusMechanicus.Lasers
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             ThingDef weaponDef = this.equipmentDef ?? ThingDef.Named("Gun_Autopistol");
-            logEntry = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget, weaponDef, this.def, null);
+            logEntry = new BattleLogEntry_RangedImpact(this.launcher, hitThing, this.intendedTarget.Thing, weaponDef, this.def, null);
             bool flag = this.launcher is AmmoThing;
             if (flag)
             {

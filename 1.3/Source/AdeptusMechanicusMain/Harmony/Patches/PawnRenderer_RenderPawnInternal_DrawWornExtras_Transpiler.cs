@@ -40,7 +40,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     yield return new CodeInstruction(opcode: OpCodes.Ldloc_0);    // quat
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4); // bodyfacing
                     yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 4); // Mesh
-                    yield return new CodeInstruction(opcode: OpCodes.Ldloc_S, 7); // headfacing
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S, 4); // headfacing
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);    // renderBody
                     instruction = new CodeInstruction(opcode: OpCodes.Call, typeof(PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler).GetMethod("DrawAddons"));
                 }
@@ -143,7 +143,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                 for (int i = 0; i < composite.Extras.Count; i++)
                                 {
 
-                                    CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i] as CompApparelExtraPartDrawer;
+                                    CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i];
                                     if (ExtraDrawer != null)
                                     {
                                         Vector3 drawAt = vector;

@@ -235,6 +235,7 @@
 		<label>armageddon pattern rebreather</label>
 		<description>Designed to keep the wearer alive in even the most noxious atmosphere, this rebreather consists of a mask (often shaped like a skull for senior officers) connected by hose to a small air supply. A character wearing an Armageddon Pattern Rebreather is immune to the effects of gases and issues of air quality, and can even survive underwater at limited depths. The air canister lasts for two full hours before requiring replacement.\n\nProtective Gear: Gas</description>
 		<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -265,9 +266,8 @@
 		</equippedStatOffsets>
 		<generateCommonality>0.25</generateCommonality>
 		<apparel>
-			<useWornGraphicMask>true</useWornGraphicMask>
-			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>		
-			<!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</wornGraphicPath-->	
+			<useWornGraphicMask>true</useWornGraphicMask>	
+			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
 			<bodyPartGroups Inherit="false">
 				<li>Mouth</li>
 				<li>Neck</li>
@@ -276,7 +276,7 @@
 				<li MayRequire="CETeam.CombatExtended">OnHead</li>
 				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
 				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
-				<li>Overhead</li>
+				<li>OverheadEquipment</li>
 			</layers>
 			<tags>
 				<li>OGSteelLeigon</li>
@@ -303,6 +303,7 @@
 						<commonality>10</commonality>
 					</li>
 				</ExtrasEntries>
+				<onHead>True</onHead>
 				<NorthOffset>0,-0.05,0</NorthOffset>
 				<SouthOffset>0,0.000,0</SouthOffset>
 				<EastOffset>0,00.000,0</EastOffset>
@@ -325,6 +326,7 @@
 		<label>krieg pattern rebreather</label>
 		<description>A simple breathing mask that covers the nose and mouth or entire face, these offer much better protection than filtration plugs and are used by the troops of the Death Korps in toxic environments or during attacks by chemical or even biological weapons.\n\nProtective Gear: Gas.\n\nPlaceholder Texture.</description>
 		<!-- <thingClass>AdeptusMechanicus.ProtectiveEyeWear</thingClass> -->
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/GasMask/GasMask</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -355,9 +357,8 @@
 		</equippedStatOffsets>
 		<generateCommonality>0.25</generateCommonality>
 		<apparel>
-		<useWornGraphicMask>true</useWornGraphicMask>
-			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>	
-			<!--wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/GasMask/GasMask</wornGraphicPath-->	
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
 			<bodyPartGroups Inherit="false">
 				<li>Mouth</li>
 				<li>Neck</li>
@@ -366,7 +367,7 @@
 				<li MayRequire="CETeam.CombatExtended">OnHead</li>
 				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
 				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
-				<li>Overhead</li>
+				<li>OverheadEquipment</li>
 			</layers>
 			<tags>
 				<li>OGIGDeathKorps</li>
@@ -377,8 +378,6 @@
 			</defaultOutfitTags> 
 		</apparel>
 		<comps>	 
-			<li Class="AdeptusMechanicus.CompProperties_Wargear">
-			</li>
 			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
 				<ExtrasEntries>
 					<li>

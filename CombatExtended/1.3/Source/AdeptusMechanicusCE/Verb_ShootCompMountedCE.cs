@@ -105,7 +105,7 @@ namespace CompTurretCE
 		}
 		public int warningticks = 0;
 
-		protected override bool TryCastShot()
+		public override bool TryCastShot()
 		{
 			//Reduce ammunition
 			if (CompAmmo != null)
@@ -190,7 +190,7 @@ namespace CompTurretCE
 					{
 						if (VerbPropsCE.muzzleFlashScale > 0.01f)
 						{
-							MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, VerbPropsCE.muzzleFlashScale);
+							FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
 						}
 						if (VerbPropsCE.soundCast != null)
 						{
@@ -320,12 +320,12 @@ namespace CompTurretCE
 			//     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
 			GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
 		}
-		public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true)
+        public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false)
 		{
 			//	Log.Messageage("TryStartCastOn ");
 			if (this.Caster == null)
 			{
-				Log.Error("Verb " + this.GetUniqueLoadID() + " needs Caster to work (possibly lost during saving/loading).", false);
+				Log.Error("Verb " + this.GetUniqueLoadID() + " needs Caster to work (possibly lost during saving/loading).");
 				return false;
 			}
 			if (this.state == VerbState.Bursting || !this.CanHitTarget(castTarg))
@@ -380,7 +380,6 @@ namespace CompTurretCE
 			//	Log.Message("TryStartCastOn 6");
 			return true;
 		}
-
 		protected new void TryCastNextBurstShot()
 		{
 			//	Log.Messageage("TryCastNextBurstShot ");
@@ -390,7 +389,7 @@ namespace CompTurretCE
 				//	Log.Messageage("TryCastNextBurstShot Available TryCastShot");
 				if (this.verbProps.muzzleFlashScale > 0.01f)
 				{
-					MoteMaker.MakeStaticMote(MuzzlePosition(this.Caster, this.currentTarget, this.turretGun.Props.projectileOffset), this.caster.Map, ThingDefOf.Mote_ShotFlash, this.verbProps.muzzleFlashScale);
+					FleckMaker.Static(MuzzlePosition(this.Caster, this.currentTarget, this.turretGun.Props.projectileOffset), this.caster.Map, FleckDefOf.ShotFlash, this.verbProps.muzzleFlashScale);
 				}
 				if (this.verbProps.soundCast != null)
 				{
@@ -526,7 +525,7 @@ namespace CompTurretCE
 			}
 		}
 
-		public override bool ValidateTarget(LocalTargetInfo target)
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
 		{
 			Pawn p;
 			return !this.CasterIsPawn || (p = (target.Thing as Pawn)) == null || (!p.InSameExtraFaction(this.Caster as Pawn, ExtraFactionType.HomeFaction, null) && !p.InSameExtraFaction(this.Caster as Pawn, ExtraFactionType.MiniFaction, null));
@@ -543,7 +542,7 @@ namespace CompTurretCE
             {
                 return this.targetParams.canTargetSelf;
             }
-            return !this.ApparelPreventsShooting(root, targ) && this.TryFindShootLineFromTo(root, targ, out ShootLine shootLine);
+            return !this.ApparelPreventsShooting() && this.TryFindShootLineFromTo(root, targ, out ShootLine shootLine);
 		}
 
 		public new bool CausesTimeSlowdown(LocalTargetInfo castTarg)

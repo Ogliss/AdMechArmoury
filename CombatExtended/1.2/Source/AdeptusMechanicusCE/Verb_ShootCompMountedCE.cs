@@ -105,7 +105,7 @@ namespace CompTurretCE
 		}
 		public int warningticks = 0;
 
-		protected override bool TryCastShot()
+		public override bool TryCastShot()
 		{
 			//Reduce ammunition
 			if (CompAmmo != null)

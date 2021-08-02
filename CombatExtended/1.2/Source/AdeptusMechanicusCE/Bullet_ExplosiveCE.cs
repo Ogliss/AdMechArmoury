@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
         }
 
         // Token: 0x060052C8 RID: 21192 RVA: 0x002628C0 File Offset: 0x00260CC0
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             if (hitThing is Pawn)
             {

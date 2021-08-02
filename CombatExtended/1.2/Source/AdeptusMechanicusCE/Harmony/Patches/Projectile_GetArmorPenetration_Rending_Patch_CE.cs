@@ -277,7 +277,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         private static void LogImpact(ProjectileCE __instance, Thing launcher, ThingDef equipmentDef, Thing hitThing, out LogEntry_DamageResult logEntry)
         {
-            logEntry = new BattleLogEntry_RangedImpact(launcher, hitThing, __instance.intendedTarget, equipmentDef, __instance.def, null);
+            logEntry = new BattleLogEntry_RangedImpact(launcher, hitThing, __instance.intendedTarget.Thing, equipmentDef, __instance.def, null);
             bool flag = !(launcher is AmmoThing);
             if (flag)
             {
