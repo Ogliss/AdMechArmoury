@@ -11,6 +11,8 @@ namespace AdeptusMechanicus
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusMemeDefOf));
         }
+
+        [MayRequireIdeology]
         public static readonly MemeDef OG_Imperial_Structure_TheistEmbodied;
 
     }

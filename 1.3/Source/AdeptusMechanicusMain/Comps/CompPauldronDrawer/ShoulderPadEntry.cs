@@ -31,6 +31,7 @@ namespace AdeptusMechanicus
             this.label = entry.label;
             this.shoulderPadType = entry.shoulderPadType;
             this.shaderType = entry.shaderType;
+            this.ForceDynamicDraw = entry.forceDynamicDraw;
             this.bodyspecificTextures = entry.bodyspecificTextures;
             this.padTexPath = entry.padTexPath;
             if (!entry.label.NullOrEmpty())
@@ -706,6 +707,7 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref this.southalt, "southalt", "Shell");
             Scribe_Values.Look(ref this.eastalt, "eastalt", "Shell");
             Scribe_Values.Look(ref this.westalt, "westalt", "Shell");
+            Scribe_Values.Look(ref this.ForceDynamicDraw, "ForceDynamicDraw", false);
             Scribe_Values.Look(ref this.UseFactionTextures, "UseFactionTextures", false);
             Scribe_Values.Look(ref this.UseFactionColors, "UseFactionColors", false);
             Scribe_Values.Look(ref this.UseVariableTextures, "UseVariableTextures", false);
@@ -751,6 +753,7 @@ namespace AdeptusMechanicus
         public string eastalt = "Shell";
         public string westalt = "Shell";
         public bool UseFactionTextures = false;
+        public bool ForceDynamicDraw = false;
         public bool UseFactionColors = false;
         public bool UseVariableTextures;
         public bool UsePrimaryColor = true;

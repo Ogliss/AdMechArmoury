@@ -14,6 +14,7 @@ namespace AdeptusMechanicus
         public ApparelAddonType shoulderPadType;
         public ShaderTypeDef shaderType;
         public bool bodyspecificTextures = true;
+        public bool forceDynamicDraw = false;
         public bool? drawInBed;
         public string padTexPath;
         public string label;

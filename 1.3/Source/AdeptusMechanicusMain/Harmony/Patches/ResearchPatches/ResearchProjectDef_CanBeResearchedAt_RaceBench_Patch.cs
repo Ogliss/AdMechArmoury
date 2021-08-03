@@ -12,7 +12,7 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    
+
     [HarmonyPatch(typeof(ResearchProjectDef), "CanBeResearchedAt")]
     public static class ResearchProjectDef_CanBeResearchedAt_RaceBench_Patch
     {
@@ -21,7 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (!__result)
             {
-                if ((__instance.requiredResearchBuilding == AdeptusThingDefOf.HiTechResearchBench && bench.def.defName.Contains("HiTechResearchBench")) || (__instance.requiredResearchBuilding == AdeptusThingDefOf.SimpleResearchBench && bench.def.defName.Contains("SimpleResearchBench")))
+                if ((__instance.requiredResearchBuilding == AdeptusThingDefOf.HiTechResearchBench && bench.def.defName.Contains("HiTechResearchBench")) || (__instance.requiredResearchBuilding == AdeptusThingDefOf.SimpleResearchBench && bench.def.defName.Contains("ResearchBench")))
                 {
                     if (raceTableFor(bench, __instance))
                     {
@@ -35,7 +35,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         if (!__instance.requiredResearchFacilities.NullOrEmpty())
                         {
-                            CompAffectedByFacilities affectedByFacilities = bench.TryGetComp<CompAffectedByFacilities>();
+                            CompAffectedByFacilities affectedByFacilities = bench.TryGetCompFast<CompAffectedByFacilities>();
                             if (affectedByFacilities == null)
                             {
                                 return;
@@ -61,7 +61,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             string tag = "OG";
             List<string> Tags = new List<string>();
             List<string> split = def.defName.Split(new char[] { '_' }).ToList();
-            if (split.NullOrEmpty() )
+            if (split.NullOrEmpty())
             {
                 return bench.def.defName.StartsWith("OG") && bench.def.defName.EndsWith("_" + def.requiredResearchBuilding.defName);
             }
@@ -117,8 +117,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         Tags.Add(tag + "TY");
                         break;
                     default:
-                        Tags.Add(tag);
-                        break;
+                        return bench.def.defName.StartsWith("OG") && bench.def.defName.EndsWith("_" + def.requiredResearchBuilding.defName);
                 }
             }
             else
@@ -130,7 +129,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 for (int i = 0; i < Tags.Count; i++)
                 {
-                    if (bench.def.defName.StartsWith(Tags[i] +(split.Count > 1 ? "_":"")))
+                    if (bench.def.defName.StartsWith(Tags[i] + (split.Count > 1 ? "_" : "")))
                     {
                         return true;
                     }
@@ -139,5 +138,5 @@ namespace AdeptusMechanicus.HarmonyInstance
             return false;
         }
     }
-    
+
 }

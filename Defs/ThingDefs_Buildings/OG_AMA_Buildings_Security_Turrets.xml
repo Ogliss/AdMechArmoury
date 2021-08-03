@@ -2,21 +2,9 @@
 <Defs>
 
 	<!--=============== Mini-turret Base ===============-->
-	<ThingDef ParentName="BuildingBase" Name="OGI_Turret" Abstract="True"> 
+	<ThingDef Abstract="True" Name="OG_Turret_Base" ParentName="BuildingBase"> 
 		<thingClass>Building_TurretGun</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
-		<graphicData>
-			<texPath>Things/Building/Security/TurretMini_Base</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(3,3)</drawSize>
-			<damageData>
-				<rect>(0.2,0.2,0.6,0.6)</rect>
-			</damageData>
-			<shadowData>
-				<volume>(0.27,0.25,0.27)</volume>
-				<offset>(0,0,0)</offset>
-			</shadowData>
-		</graphicData>
 		<uiIconScale>0.90</uiIconScale>
 		<minifiedDef>MinifiedThing</minifiedDef>
 		<altitudeLayer>Building</altitudeLayer>
@@ -52,8 +40,110 @@
 		<designationHotKey>Misc2</designationHotKey>		
 	</ThingDef>
 
-	<ThingDef ParentName="OGI_Turret" Name="OGI_LaserTurret" Abstract="True"> 
+	<ThingDef Abstract="True" Name="OG_LaserTurret_Base" ParentName="OG_Turret_Base"> 
 		<thingClass>AdeptusMechanicus.Lasers.Building_LaserGun</thingClass>
+	</ThingDef>
+
+	<!--=============== Heavy-turret Base ===============-->
+	<ThingDef Abstract="True" Name="OG_HeavyTurret_Base" ParentName="BuildingBase"> 
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>	
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>false</rotatable>
+		<size>(2,2)</size>
+		<statBases>
+			<MaxHitPoints>380</MaxHitPoints>
+			<Flammability>0.7</Flammability>
+			<WorkToBuild>15000</WorkToBuild>
+			<Mass>100</Mass>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.5</fillPercent>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretTopDrawSize>2.7</turretTopDrawSize>
+			<turretTopOffset>(0, 0.05)</turretTopOffset>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+			<li>PlaceWorker_ShowTurretRadius</li>
+		</placeWorkers>
+		<designationHotKey>Misc3</designationHotKey>		
+		<uiIconScale>0.95</uiIconScale>
+	</ThingDef>
+
+	<ThingDef Abstract="True" Name="OG_HeavyLaserTurret_Base" ParentName="OG_HeavyTurret_Base"> 
+		<thingClass>AdeptusMechanicus.Lasers.Building_LaserGun</thingClass>
+	</ThingDef>
+
+	<!--=============== Artillery-turret Base ===============-->
+	<ThingDef Abstract="True" Name="OG_BaseArtilleryBuilding" ParentName="BuildingBase">
+		<thingClass>Building_TurretGun</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<stealable>false</stealable>
+		<size>(2,2)</size>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.4</fillPercent>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<tickerType>Normal</tickerType>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
+		<costStuffCount>75</costStuffCount>
+		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<inspectorTabs>
+			<li>ITab_Shells</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<statBases>
+			<MaxHitPoints>180</MaxHitPoints>
+			<Flammability>0.7</Flammability>
+			<WorkToBuild>2000</WorkToBuild>
+			<Mass>30</Mass>
+			<Beauty>-20</Beauty>
+		</statBases>
+		<building>
+			<turretBurstWarmupTime>4.0</turretBurstWarmupTime>
+			<turretBurstCooldownTime>28.0</turretBurstCooldownTime>
+			<buildingTags>
+				<li>Artillery</li>
+			</buildingTags>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+			<li>PlaceWorker_TurretTop</li>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+		</placeWorkers>
+		<researchPrerequisites>
+			<li>Mortars</li>
+		</researchPrerequisites>
+		<uiIconScale>1.1</uiIconScale>
 	</ThingDef>
 
 <!--
@@ -184,6 +274,86 @@
 		</verbs>
 	</ThingDef>
 -->
+
+	<!--=============== Imperial Turret Bases ===============-->
+	<ThingDef Abstract="True" Name="OGI_Turret" ParentName="OG_Turret_Base"> 
+		<graphicData>
+			<texPath>Things/Building/Security/TurretMini_Base</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Abstract="True" Name="OGI_LaserTurret" ParentName="OG_LaserTurret_Base"> 
+		<graphicData>
+			<texPath>Things/Building/Security/TurretMini_Base</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Abstract="True" Name="OGI_HeavyTurret" ParentName="OG_HeavyTurret_Base"> 
+		<graphicData>
+			<texPath>Things/Building/Imperial/Security/TurretHeavy_Tarantula_Base</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2.0, 2.0)</drawSize>
+			<drawOffset>(0,0,-0.0)</drawOffset>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(1.5,0.35,1.4)</volume>
+				<offset>(0,0,-0.05)</offset>
+			</shadowData>
+		</graphicData>	
+	</ThingDef>
+	
+	<ThingDef Abstract="True" Name="OGI_HeavyLaserTurret" ParentName="OG_HeavyLaserTurret_Base"> 
+		<graphicData>
+			<texPath>Things/Building/Imperial/Security/TurretHeavy_Tarantula_Base</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2.0, 2.0)</drawSize>
+			<drawOffset>(0,0,-0.0)</drawOffset>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(1.5,0.35,1.4)</volume>
+				<offset>(0,0,-0.05)</offset>
+			</shadowData>
+		</graphicData>	
+	</ThingDef>
+
+	<ThingDef Abstract="True" Name="OGI_ArtilleryTurret" ParentName="OG_BaseArtilleryBuilding"> 
+		<graphicData>
+			<texPath>Things/Building/Imperial/Security/TurretHeavyManual_Base</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2.5,2.5)</drawSize>
+			<damageData>
+				<rect>(0.38,0.2,0.56375,0.8)</rect>
+				<cornerTL>Damage/Corner</cornerTL>
+			</damageData>
+			<shadowData>
+				<offset>(-0.13,-0.87,-0.1)</offset>
+				<volume>(0.5,0.4,1.05)</volume>
+			</shadowData>
+		</graphicData>
+	</ThingDef>
+
 	<!--=============== Pintle-Mounted Manual ===============-->
 	<!--=============== Storm Bolter ===============-->
 	<ThingDef ParentName="OGI_Turret">
@@ -562,59 +732,6 @@
 		</verbs>
 	</ThingDef>
 -->
-	<!--=============== Heavy turret Base ===============-->
-
-	<ThingDef ParentName="BuildingBase" Name="OGI_HeavyTurret" Abstract="True"> 
-		<thingClass>Building_TurretGun</thingClass>
-		<drawerType>MapMeshAndRealTime</drawerType>
-		<graphicData>
-			<texPath>Things/Building/Imperial/Security/TurretHeavy_Tarantula_Base</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(2.0, 2.0)</drawSize>
-			<drawOffset>(0,0,-0.0)</drawOffset>
-			<damageData>
-				<rect>(0.2,0.2,0.6,0.6)</rect>
-			</damageData>
-			<shadowData>
-				<volume>(1.5,0.35,1.4)</volume>
-				<offset>(0,0,-0.05)</offset>
-			</shadowData>
-		</graphicData>		
-		<altitudeLayer>Building</altitudeLayer>
-		<stealable>false</stealable>
-		<rotatable>false</rotatable>
-		<size>(2,2)</size>
-		<statBases>
-			<MaxHitPoints>380</MaxHitPoints>
-			<Flammability>0.7</Flammability>
-			<WorkToBuild>15000</WorkToBuild>
-			<Mass>100</Mass>
-			<Beauty>-20</Beauty>
-		</statBases>
-		<tickerType>Normal</tickerType>
-		<passability>PassThroughOnly</passability>
-		<pathCost>50</pathCost>
-		<fillPercent>0.5</fillPercent>
-		<hasTooltip>true</hasTooltip>
-		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-		<designationCategory>Security</designationCategory>
-		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
-		<building>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretTopDrawSize>2.7</turretTopDrawSize>
-			<turretTopOffset>(0, 0.05)</turretTopOffset>
-		</building>
-		<placeWorkers>
-			<li>PlaceWorker_TurretTop</li>
-			<li>PlaceWorker_ShowTurretRadius</li>
-		</placeWorkers>
-		<designationHotKey>Misc3</designationHotKey>		
-		<uiIconScale>0.95</uiIconScale>
-	</ThingDef>
-
-	<ThingDef ParentName="OGI_HeavyTurret" Name="OGI_HeavyLaserTurret" Abstract="True"> 
-		<thingClass>AdeptusMechanicus.Lasers.Building_LaserGun</thingClass>
-	</ThingDef>
 
 	<!--=============== Quad Heavy Stubber turret ===============-->
 	<ThingDef ParentName="OGI_HeavyTurret">

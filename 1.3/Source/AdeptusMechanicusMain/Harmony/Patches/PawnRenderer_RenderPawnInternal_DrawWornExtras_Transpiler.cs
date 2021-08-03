@@ -119,6 +119,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             {
                                                 Log.Warning("Warning! Drawer null");
                                             }
+                                            if (entry.ForceDynamicDraw)
+                                            {
+                                                continue;
+                                            }
                                             if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                             {
                                                 if (Pauldron.onHead || renderBody)
@@ -212,6 +216,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             if (entry.Drawer == null)
                                             {
                                                 Log.Warning("Warning! Drawer null");
+                                            }
+                                            if (entry.ForceDynamicDraw)
+                                            {
+                                                continue;
                                             }
                                             if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                             {
