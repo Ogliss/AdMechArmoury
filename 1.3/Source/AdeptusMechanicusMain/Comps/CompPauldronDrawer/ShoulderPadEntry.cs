@@ -85,6 +85,7 @@ namespace AdeptusMechanicus
         }
 
         public const float MinClippingDistance = 0.0015f;   // Minimum space between layers to avoid z-fighting
+        private const float SubInterval = PawnRenderer.SubInterval;
         private const float YOffset_Utility_South = PawnRenderer.YOffset_Utility_South;
         private const float YOffset_Shell = PawnRenderer.YOffset_Shell + MinClippingDistance;
         private const float YOffset_Head = PawnRenderer.YOffset_Head + MinClippingDistance;
@@ -92,11 +93,23 @@ namespace AdeptusMechanicus
         private const float YOffset_OnHead = PawnRenderer.YOffset_OnHead + MinClippingDistance;
         private const float YOffset_PostHead = PawnRenderer.YOffset_PostHead + MinClippingDistance;
         private const float YOffset_CarriedThing = PawnRenderer.YOffset_CarriedThing - MinClippingDistance;
+        private const float YOffset_PrimaryEquipmentUnder = PawnRenderer.YOffset_PrimaryEquipmentUnder;
+        private const float YOffset_CarriedThingUnder = PawnRenderer.YOffset_CarriedThingUnder;
+        private const float YOffset_Behind = PawnRenderer.YOffset_Behind;
+        private const float YOffset_Body = PawnRenderer.YOffset_Body;
+        private const float YOffsetInterval_Clothes = PawnRenderer.YOffsetInterval_Clothes;
+        private const float YOffset_PrimaryEquipmentOver = PawnRenderer.YOffset_PrimaryEquipmentOver;
+        private const float YOffset_Status = PawnRenderer.YOffset_Status;
+        public Vector3 northOffset = Vector3.zero;
+        public Vector3 southOffset = Vector3.zero;
+        public Vector3 eastOffset = Vector3.zero;
+        public Vector3 westOffset = Vector3.zero;
+
         public Shader Shader => shaderType.Shader;
-        public Vector3 NorthOffset => this.Props.NorthOffset;
-        public Vector3 SouthOffset => this.Props.SouthOffset;
-        public Vector3 EastOffset => this.Props.EastOffset;
-        public Vector3 WestOffset => this.Props.WestOffset;
+        public Vector3 NorthOffset => this.Props.NorthOffset + northOffset;
+        public Vector3 SouthOffset => this.Props.SouthOffset + southOffset;
+        public Vector3 EastOffset => this.Props.EastOffset + eastOffset;
+        public Vector3 WestOffset => this.Props.WestOffset + westOffset;
         public float AltOffet(string alt)
         {
             switch (alt.CapitalizeFirst())
@@ -115,6 +128,18 @@ namespace AdeptusMechanicus
                     return YOffset_PostHead;
                 case "CarriedThing":
                     return YOffset_CarriedThing;
+                case "PrimaryUnder":
+                    return YOffset_PrimaryEquipmentUnder;
+                case "PrimaryOver":
+                    return YOffset_PrimaryEquipmentOver;
+                case "CarriedUnder":
+                    return YOffset_CarriedThingUnder;
+                case "Behind":
+                    return YOffset_Behind;
+                case "Body":
+                    return YOffset_Body;
+                case "Status":
+                    return YOffset_Status;
                 default:
                     if (alt.NullOrEmpty())
                     {
@@ -131,31 +156,34 @@ namespace AdeptusMechanicus
             if (rot == Rot4.North)
             {
                 vector = NorthOffset;
-                altOffset = AltOffet(northalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.South)
             {
                 vector = SouthOffset;
-                altOffset = AltOffet(southalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.East)
             {
                 vector = EastOffset;
-                altOffset = AltOffet(eastalt);
                 alt = northalt;
             }
             else
             if (rot == Rot4.West)
             {
                 vector = WestOffset;
-                altOffset = AltOffet(westalt);
                 alt = northalt;
             }
-            vector.y += Math.Min(altOffset, YOffset_CarriedThing);
+            altOffset = AltOffet(alt);
+            WornGraphicData wornGraphic = this.apparel?.def.apparel.wornGraphicData;
+            if (wornGraphic != null && wornGraphic.renderUtilityAsPack)
+            {
+                Vector2 v = wornGraphic.BeltOffsetAt(rot, apparel.Wearer.story.bodyType);
+                vector += new Vector3(v.x, 0, v.y);
+            }
+            vector.y += this.ForceDynamicDraw ? altOffset : Math.Min(altOffset, YOffset_CarriedThing);
             // vector.y = Math.Min(Math.Min(vector.y, altOffset), YOffset_CarriedThing);
             //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
@@ -263,7 +291,7 @@ namespace AdeptusMechanicus
             return body;
         }
 
-        public bool ValidatePat()
+        public bool ValidatePart()
         {
 
             return true;
@@ -582,12 +610,12 @@ namespace AdeptusMechanicus
         }
 
 
-        Mesh GetPauldronMesh(bool portrait, Pawn pawn, Rot4 facing, bool body)
+        Mesh GetPauldronMesh(PawnRenderFlags flags, Pawn pawn, Rot4 facing, bool body)
         {
-            return AlienRace.HarmonyPatches.GetPawnMesh(portrait, pawn, facing, body);
+            return AlienRace.HarmonyPatches.GetPawnMesh(flags, pawn, facing, body);
         }
 
-        public bool ShouldDrawEntry(bool portrait, Rot4 bodyFacing, Vector2 size, bool renderBody, out Graphic pauldronMaterial, out Mesh pauldronMesh, out Vector3 offset)
+        public bool ShouldDrawEntry(PawnRenderFlags flags, Rot4 bodyFacing, Vector2 size, bool renderBody, out Graphic pauldronMaterial, out Mesh pauldronMesh, out Vector3 offset)
         {
             this.size = size;
             pauldronMaterial = null;
@@ -606,7 +634,7 @@ namespace AdeptusMechanicus
                 pauldronMesh = !Drawer.onHead ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing) : MeshPool.humanlikeHeadSet.MeshAt(bodyFacing);
                 if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
-                    pauldronMesh = GetPauldronMesh(portrait, apparel.Wearer, bodyFacing, !Drawer.onHead);
+                    pauldronMesh = GetPauldronMesh(flags, apparel.Wearer, bodyFacing, !Drawer.onHead);
                 }
             }
             if (apparel.Wearer.RaceProps.Humanlike)

@@ -21,6 +21,7 @@ namespace AdeptusMechanicus
         public Apparel apparel;
         public ApparelAddonType partType;
         public bool bodyspecificTextures = true;
+        public bool forceDynamicDraw = false;
         public string texPath;
         public string label;
         public bool animateExtra = false;
@@ -49,6 +50,8 @@ namespace AdeptusMechanicus
         public TextureOption defaultOption = new TextureOption(null, new GraphicData());
         public QualityCategory minQuality = QualityCategory.Awful;
         public QualityCategory maxQuality = QualityCategory.Legendary;
+
+        public bool DynamicDraw => this.forceDynamicDraw || this.animateExtra;
 
         public bool AcceptableForQuality(QualityCategory quality)
         {

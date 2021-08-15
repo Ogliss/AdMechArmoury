@@ -33,7 +33,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 // Draws Pauldrons, ExtraParts & Hediff graphics
                 //    Log.Message("RenderPawnInternal DrawWornExtras opcode: "+ instruction.opcode +" operand: "+ instruction.operand);
                     yield return instruction; // nop
-                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_S,6);  // PawnRenderFlags flags
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarga_S , 6);  // PawnRenderFlags flags
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);    // Vector3
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);    // PawnRenderer
                     yield return new CodeInstruction(opcode: OpCodes.Ldfld, AccessTools.Field(type: typeof(PawnRenderer), name: "pawn"));
@@ -49,7 +49,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        public static void DrawAddons(PawnRenderFlags flags, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, Mesh mesh, Rot4 headfacing, bool renderBody)
+        public static void DrawAddons(ref PawnRenderFlags flags, Vector3 vector, Pawn pawn, Quaternion quat, Rot4 bodyFacing, Mesh mesh, Rot4 headfacing, bool renderBody)
         {
             if (!pawn.RaceProps.Humanlike || PawnRenderFlagsExtension.FlagSet(flags, (PawnRenderFlags)4))
             {
@@ -73,6 +73,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 return;
             }
             bool portrait = flags.FlagSet(PawnRenderFlags.Portrait);
+            Vector2 defaultSize = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
             Vector2 size = mesh?.bounds.size ?? (portrait ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing).bounds.size : pawn.Drawer.renderer.graphics.nakedGraphic.MeshAt(bodyFacing).bounds.size);
             if (pawn.RaceProps.Humanlike)
             {
@@ -119,11 +120,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             {
                                                 Log.Warning("Warning! Drawer null");
                                             }
+                                            /*
                                             if (entry.ForceDynamicDraw)
                                             {
                                                 continue;
                                             }
-                                            if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                            */
+                                            if (entry.ShouldDrawEntry(flags, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                             {
                                                 if (Pauldron.onHead || renderBody)
                                                 {
@@ -150,12 +153,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     CompApparelExtraPartDrawer ExtraDrawer = composite.Extras[i];
                                     if (ExtraDrawer != null)
                                     {
+                                        if (ExtraDrawer.hidesHead)
+                                        {
+                                            flags |= PawnRenderFlags.HeadStump;
+                                        }
                                         Vector3 drawAt = vector;
                                         if (!ExtraDrawer.Props.ExtrasEntries.NullOrEmpty())
                                         {
                                             bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
-                                            if (ExtraDrawer.ExtraPartEntry.animateExtra)
+                                            if (ExtraDrawer.ExtraPartEntry.DynamicDraw)
                                             {
                                                 continue;
                                             }
@@ -180,7 +187,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                             drawAt,
                                                             quat,
                                                             PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.animateExtra
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.DynamicDraw
                                                         );
                                                 }
                                                 //    vector.y += CompApparelExtaDrawer.MinClippingDistance;
@@ -221,7 +228,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             {
                                                 continue;
                                             }
-                                            if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+                                            if (entry.ShouldDrawEntry(flags, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                                             {
                                                 if (Pauldron.onHead || renderBody && pauldronMat != null)
                                                 {
@@ -251,7 +258,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                         {
                                             bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
-                                            if (ExtraDrawer.ExtraPartEntry.animateExtra)
+                                            if (ExtraDrawer.ExtraPartEntry.DynamicDraw)
                                             {
                                                 continue;
                                             }
@@ -277,7 +284,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                             drawAt,
                                                             quat,
                                                             PawnRenderUtility.OverrideMaterialIfNeeded(extraMat, pawn),
-                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.animateExtra
+                                                            flags.FlagSet(PawnRenderFlags.DrawNow) || ExtraDrawer.ExtraPartEntry.DynamicDraw
                                                         );
                                                 }
                                                 //    vector.y += CompApparelExtaDrawer.MinClippingDistance;

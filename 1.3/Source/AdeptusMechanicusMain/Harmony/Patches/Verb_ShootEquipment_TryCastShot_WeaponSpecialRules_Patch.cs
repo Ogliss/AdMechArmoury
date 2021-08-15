@@ -34,7 +34,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             HediffDef UserHediff = __instance.verbProperties.UserEffect;
             float AddHediffChance = __instance.verbProperties.EffectsUserChance;
             List<string> Immunitylist = __instance.verbProperties.UserEffectImmuneList;
-            if ((GetsHot && AMSettings.Instance.AllowGetsHot) || (Jams && AMSettings.Instance.AllowJams))
+            if ((AMSettings.Instance.AllowGetsHot && GetsHot) || (AMSettings.Instance.AllowJams && Jams))
             {
                 string msg = string.Format("");
                 string reliabilityString;
@@ -166,11 +166,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
 
-            if (ScattershotCount > 0 && Multishot && AMSettings.Instance.AllowMultiShot || TwinLinked)
+            if (AMSettings.Instance.AllowMultiShot && ScattershotCount > 0 && (Multishot || TwinLinked))
             {
-                Traverse traverse = Traverse.Create(__instance);
-                LocalTargetInfo currentTarget = (LocalTargetInfo)Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.currentTarget.GetValue(__instance);
-                bool canHitNonTargetPawnsNow = (bool)Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.canHitNonTargetPawnsNow.GetValue(__instance);
+                LocalTargetInfo currentTarget = __instance.CurrentTarget;
+                bool canHitNonTargetPawnsNow = __instance.canHitNonTargetPawnsNow;
                 //    Log.Message(string.Format("AllowMultiShot: {0} Projectile Count: {1}", AMASettings.Instance.AllowMultiShot && Multishot, ScattershotCount));
                 if (TwinLinked)
                 {
@@ -186,7 +185,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             }
 
-            if (UserEffect && AMSettings.Instance.AllowUserEffects)
+            if (AMSettings.Instance.AllowUserEffects && UserEffect)
             {
                 if (__instance.caster.def.category == ThingCategory.Pawn)
                 {
@@ -241,9 +240,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             return true;
         }
 
-        public static FieldInfo currentTarget = typeof(Verb_Shoot).GetField("currentTarget", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
-        public static FieldInfo canHitNonTargetPawnsNow = typeof(Verb_Shoot).GetField("canHitNonTargetPawnsNow", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
-        // Token: 0x0600651E RID: 25886 RVA: 0x001B8BC0 File Offset: 0x001B6FC0
         public static bool TryCastExtraShot(ref AbilitesExtended.Verb_EquipmentLaunchProjectile __instance, LocalTargetInfo currentTarget, bool canHitNonTargetPawnsNow)
         {
             if (currentTarget.HasThing && currentTarget.Thing.Map != __instance.caster.Map)

@@ -95,6 +95,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         break;
                     case "Aeldari":
                         Tags.Add(tag + "DE");
+                        Tags.Add(tag + "E");
                         break;
                     case "Tau":
                         Tags.Add(tag + "T");

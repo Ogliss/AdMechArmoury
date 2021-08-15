@@ -51,6 +51,9 @@
     <None Remove="packages\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs.bak" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="0MultiplayerAPI, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Assemblies\0MultiplayerAPI.dll</HintPath>
@@ -87,7 +90,7 @@
       <Private>true</Private>
     </Reference>
     <Reference Include="AlienRace">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.2\Assemblies\AlienRace.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.3\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CombatExtended">
@@ -157,11 +160,12 @@
     <Compile Include="DeOf\AdeptusResearchTabDefOf.cs" />
     <Compile Include="DeOf\AdeptusMemeDefOf.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Harmony\Patches\ABlankPatch - Copy (2).cs" />
+    <Compile Include="Harmony\Patches\PawnStyleItemChooser_ChooseStyleItem_Name_Patch.cs" />
+    <Compile Include="Harmony\Patches\NamePlayerFactionAndSettlementUtility_CanNameFaction_TestingHAR_Patch.cs" />
     <Compile Include="Harmony\Patches\PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch.cs" />
     <Compile Include="Harmony\Patches\IdeoFoundation_Deity_GenerateDeities_FactionSpecifc_Patch.cs" />
     <Compile Include="Harmony\Patches\PreceptWorker_CanUse_FactionRelics_Patch.cs" />
-    <Compile Include="Harmony\Patches\ABlankPatch - Copy.cs" />
+    <Compile Include="Harmony\Patches\PawnRenderer_GetBlitMeshUpdatedFrame_Testing_Patch.cs" />
     <Compile Include="Harmony\Patches\ITab_Pawn_Gear_DrawThingRow_CustomizeItemButton_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GenSpawn_SpawningWipes_MountedWeapon_Patch.cs" />
     <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_ViewSize_SubTabs_Patch.cs" />
@@ -174,7 +178,7 @@
     <Compile Include="Comps\CompOrbitalBeam.cs" />
     <Compile Include="Comps\CompHatcherHorde.cs" />
     <Compile Include="Comps\Reliability.cs" />
-    <Compile Include="Comps\ReliabilityUtility.cs" />
+    <Compile Include="Utility\ReliabilityUtility.cs" />
     <Compile Include="Comps\WeaponComps\GunComps\CompProperties_ToggleFireMode.cs" />
     <Compile Include="DebugTools\Class1.cs" />
     <Compile Include="DefExtentions\BarrelOffsetExtension.cs" />
@@ -203,7 +207,9 @@
     <Compile Include="Utility\AdeptusFleckMaker.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\ParseHelper_ParseType_Patch.cs" />
     <Compile Include="Harmony\Patches\GenSpawn_Spawn_RelicTracker_Patch.cs" />
-    <Compile Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs" />
+    <None Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
+    <None Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
+    <None Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs.bak" />
     <Compile Include="Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Astartes_MultiLung_Patch.cs" />
     <Compile Include="Harmony\Patches\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
     <Compile Include="HediffGivers\HediffGiver_HealthBelowThreshold.cs" />
@@ -544,7 +550,7 @@
     <Compile Include="Utility\ArmouryMain.cs" />
     <Compile Include="Harmony\Patches\RaidStrategyWorker_CanUsePawnGenOption_FactionLeader_Patch.cs" />
     <Compile Include="Harmony\Patches\ABlankTranspiler.cs" />
-    <None Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs.bak" />
+    <Compile Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
     <Compile Include="Harmony\Patches\Corpse_SpawnSetup_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnGenerator_GenerateInitialHediffs_StartWithHediff_Patch.cs" />
     <Compile Include="Harmony\Patches\FoodUtility_AddFoodPoisoningHediff_Protection_Patch.cs" />
@@ -703,7 +709,7 @@
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3076" GeneratePathProperty="true" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3087" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
       <Version>2.1.1</Version>
     </PackageReference>

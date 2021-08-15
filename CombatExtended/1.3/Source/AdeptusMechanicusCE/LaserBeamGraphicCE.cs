@@ -149,32 +149,20 @@ namespace AdeptusMechanicus.Lasers
 
             if (verb != null)
             {
-                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out ThingDef flareDef, out float flareSize, out ThingDef smokeDef, out float smokeSize))
+                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out FleckDef flareDef, out float flareSize, out FleckDef smokeDef, out float smokeSize))
                 {
                     a = origin -= dir * (barrelOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
-                //    a.y += 0.0367346928f;
+                    //    a.y += 0.0367346928f;
                     if (flareDef != null)
                     {
-                        MoteThrown m = AdeptusMoteMaker.MakeStaticMote(a, map, flareDef, flareSize) as MoteThrown;
-                        if (m != null)
-                        {
-                            m.solidTimeOverride = projDef.lifetime;
-                            AdvancedVerbPropertiesCE properties = verb.verbProps as AdvancedVerbPropertiesCE;
-                            if (properties == null || properties.MuzzleFlareRotates)
-                            {
-                                if (properties != null)
-                                {
-                                    m.instanceColor = properties.MuzzleFlareColor;
-                                }
-                                Rand.PushState();
-                                m.exactRotation = Rand.Range(0, 350);
-                                Rand.PopState();
-                            }
-                        }
+                        IAdvancedVerb properties = verb.verbProps as IAdvancedVerb;
+                        Rand.PushState();
+                        AdeptusFleckMaker.Static(a, map, flareDef, flareSize, properties?.MuzzleFlareColor, properties != null && properties.MuzzleFlareRotates ? (float?)Rand.Range(0, 350) : null, projDef.lifetime);
+                        Rand.PopState();
                     }
                     if (smokeDef != null)
                     {
-                        AdeptusMoteMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
+                        AdeptusFleckMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
                     }
                 }
                 FleckMaker.Static(a, launcher.Map, FleckDefOf.ShotFlash, verb.verbProps.muzzleFlashScale);

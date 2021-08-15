@@ -459,11 +459,12 @@ namespace AdeptusMechanicus
         {
             return this.Props.WestOffset + Entry.Props.WestOffset;
         }
-
+        /*
         Mesh GetPauldronMesh(bool portrait, Pawn pawn, Rot4 facing, bool body)
         {
             return AlienRace.HarmonyPatches.GetPawnMesh(portrait, pawn, facing, body);
         }
+        */
         /*
         public bool ShouldDrawPauldron(bool portrait, Rot4 bodyFacing, Vector2 size, ShoulderPadEntry Entry, out Graphic pauldronMaterial, out Mesh pauldronMesh)
         {
@@ -646,6 +647,7 @@ namespace AdeptusMechanicus
         //    public FactionDef FactionDef;
         public int entryInd = -1;
 
+        public Vector3 pos = Vector3.zero;
         public Vector2 size;
         public List<ShoulderPadEntry> activeEntries;
         public static string UpdateString = "UPDATEPADGRAPHICS";

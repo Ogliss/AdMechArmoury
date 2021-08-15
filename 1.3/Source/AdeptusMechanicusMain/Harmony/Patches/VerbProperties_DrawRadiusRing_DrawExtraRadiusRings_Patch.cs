@@ -10,6 +10,7 @@ using HarmonyLib;
 using Verse.Sound;
 using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -21,7 +22,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(VerbProperties __instance, IntVec3 center)
         {
             IAdvancedVerb verbProperties = __instance as IAdvancedVerb;
-            if (verbProperties !=null)
+            if (AMAMod.settings.AllowRapidFire && verbProperties != null)
             {
                 verbProperties.DrawExtraRadiusRings(center);
             }

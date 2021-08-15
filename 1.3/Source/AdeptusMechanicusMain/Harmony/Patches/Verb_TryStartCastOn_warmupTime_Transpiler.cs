@@ -12,6 +12,7 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection;
 using System.Reflection.Emit;
+using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -65,13 +66,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             Pawn CasterPawn = verb.CasterPawn;
             if (props != null)
             {
-
+                /*
                 if (verb.GetsHot(out bool GetsHotCrit, out float GetsHotCritChance, out bool GetsHotCritExplosion, out float GetsHotCritExplosionChance, out bool canDamageWeapon, out float extraWeaponDamage))
                 {
 
                 }
-
-                if (props.RapidFire)
+                */
+                if (AMAMod.settings.AllowRapidFire && props.RapidFire)
                 {
                     //    log.message(string.Format("RapidFire prefix pre-modified Values, Warmup: {0}", gun.def.Verbs[0].warmupTime, cooldown));
                     if (caster.Position.InHorDistOf(castTarg.Cell, verb.verbProps.range * props.RapidFireRange))

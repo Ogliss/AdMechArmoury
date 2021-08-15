@@ -28,8 +28,8 @@
     </generalRules>
     <descriptionMaker>
       <patterns>
-        <li><def>TheistMyth</def></li>
-        <li><def>TheistFounder</def></li>
+        <li><def>OG_ImperialMyth</def></li>
+        <li><def>OG_ImperialFounder</def></li>
       </patterns>
       <constants>
         <li><key>OG_Imperial_structure_theist</key><value>true</value></li>
@@ -54,8 +54,8 @@
 
   <MemeDef>
     <defName>OG_Mechanicus_Structure_Archist</defName>
-    <label>archist</label>
-    <description>Archotechs are the true gods. They know the moral structure of the universe, and serving them is how we will connect with it.</description>
+    <label>Cult Mechanicus</label>
+    <description>The Cult Mechanicus believes knowledge itself to be the manifestation of divinity in the universe. The supreme object of devotion is therefore the omniscient Machine God, an immanent and omnipotent spirit that governs all technology, machinery and knowledge in Creation. The Machine God is believed to be friendly to humanity, and to be the originator of all human technological and scientific knowledge.</description>
     <category>Structure</category>
     <iconPath>Ui/Memes/Structure/CultMechanicus</iconPath>
     <impact>0</impact>
@@ -63,30 +63,22 @@
     <deityCount>1</deityCount>
     <generalRules>
       <rulesStrings>
-        <li>memeAdjective->archic</li>
-        <li>memeAdjective->archotechnic</li>
-        <li>memeAdjective->archonic</li>
-        <li>memeHyphenPrefix->archo</li>
-        <li>memeHyphenPrefix->arch</li>
-        <li>memeLeaderNoun->archist</li>
-        <li>memeLeaderNoun->archotechnist</li>
-        <li>memeLeaderAdjective->archic</li>
-        <li>memeLeaderAdjective->exochrome</li>
-        <li>memeMoralist->priest</li>
-        <li>memeMoralist->cleric</li>
-        <li>memeMoralist->rector</li>
-        <li>memeMoralist->abbot</li>
+        <li>memeAdjective->Mechanicus</li>
+        <li>memeHyphenPrefix->Cult</li>
+        <li>memeLeaderNoun->General</li>
+        <li>memeLeaderAdjective->Fabricator</li>
+        <li>memeMoralist->Lord Dogma</li>
       </rulesStrings>
     </generalRules>
     <descriptionMaker>
       <patterns>
-        <li><def>ArchistDescription</def></li>
+        <li><def>OG_Mechanicus_ArchistDescription</def></li>
       </patterns>
       <constants>
-        <li><key>structure_archist</key><value>true</value></li>
+        <li><key>og_mechanicus_structure_archist</key><value>true</value></li>
       </constants>
     </descriptionMaker>
-    <worshipRoomLabel>shrine</worshipRoomLabel>
+    <worshipRoomLabel>Temple of All Knowledge</worshipRoomLabel>
     <symbolPacks>
       <li>
         <ideoName>Archotechnics</ideoName>
@@ -95,12 +87,33 @@
         <member>archotechnist</member>
       </li>
       <li>
-        <ideoName>Archism</ideoName>
+        <ideoName>Cult Mechanicus</ideoName>
         <theme>archism</theme>
-        <adjective>archist</adjective>
-        <member>archist</member>
+        <adjective>Adeptus Mechanicus</adjective>
+        <member>Tech-Adept</member>
       </li>
     </symbolPacks>
+    <preferredWeaponClasses>
+		<noble>Ultratech</noble>
+		<despised>Neolithic</despised>
+    </preferredWeaponClasses>
+    <requireOne>
+		<li>
+			<li>BodyMod_Approved</li>
+		</li>
+    </requireOne>
+    <thingStyleCategories>
+		<li>
+			<category>Techist</category>
+			<priority>4</priority>
+		</li>
+    </thingStyleCategories>
+	<agreeableTraits>
+		<li>Transhumanist</li>
+	</agreeableTraits>
+	<disagreeableTraits>
+		<li>BodyPurist</li>
+	</disagreeableTraits>
   </MemeDef>
 
 </Defs>

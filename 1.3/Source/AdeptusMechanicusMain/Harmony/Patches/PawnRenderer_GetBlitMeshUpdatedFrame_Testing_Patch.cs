@@ -17,7 +17,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 {
     /*
     [HarmonyPatch(typeof(PawnRenderer), "GetBlitMeshUpdatedFrame")]
-    public static class PawnRenderer_GetBlitMeshUpdatedFrame_Name_Patch
+    public static class PawnRenderer_GetBlitMeshUpdatedFrame_Testing_Patch
     {
         [HarmonyPrefix]
         public static bool Prefix(PawnRenderer __instance, ref PawnTextureAtlasFrameSet frameSet, Rot4 rotation, PawnDrawMode drawMode, ref Mesh __result)

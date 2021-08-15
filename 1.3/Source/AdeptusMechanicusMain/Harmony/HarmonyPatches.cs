@@ -50,7 +50,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             if (AdeptusIntergrationUtility.enabled_FacialStuff)
             {
-                HarmonyPatches.FacialStuffPatches();
+            //    HarmonyPatches.FacialStuffPatches();
             }
 //            AMAMod.harmony.Patch(original: AccessTools.Constructor(typeof(Verse.PawnTextureAtlas)), transpiler: new HarmonyMethod(typeof(PawnTextureAtlas_Constructor_Name_Patch), nameof(PawnTextureAtlas_Constructor_Name_Patch.Transpiler)));
             /*
@@ -80,7 +80,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
        //     Log.Message("FacialStuff detected: attempting to Patch Draw method");
             MethodInfo method = AccessTools.TypeByName("FacialStuff.HumanBipedDrawer").GetMethod("DrawApparel");
-            MethodInfo method2 = typeof(HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler).GetMethod("Transpiler");
+            MethodInfo method2 = null;// typeof(HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler).GetMethod("Transpiler");
             bool flag = method == null;
             bool flag1 = method2 == null;
             if (flag)

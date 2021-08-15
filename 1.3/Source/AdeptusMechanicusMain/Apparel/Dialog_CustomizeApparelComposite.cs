@@ -294,7 +294,20 @@ namespace AdeptusMechanicus
 			}
         }
 
-		private Thing thing = null;
+        public override void PostClose()
+		{
+			Apparel apparel = this.thing as Apparel;
+            if (apparel?.Wearer != null)
+			{
+				AdeptusApparelUtility.UpdateApparelGraphicsFor(apparel.Wearer);
+
+				apparel.Wearer.Drawer.renderer.graphics.SetAllGraphicsDirty();
+				PortraitsCache.SetDirty(apparel.Wearer);
+			}
+			base.PostClose();
+        }
+
+        private Thing thing = null;
 		private Vector2 scrollPosition = Vector2.zero;
 		public static float lastCurrencyFlashTime = -100f;
 		protected static readonly Vector2 AcceptButtonSize = new Vector2(160f, 40f);

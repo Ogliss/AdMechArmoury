@@ -20,11 +20,10 @@ namespace AdeptusMechanicus.ExtensionMethods
         {
             modifier = num;
             InRange = false;
-            bool result = verb.SpecialRules() != null && verb.SpecialRules().RapidFire && AMSettings.Instance.AllowRapidFire;
+            bool result = AMSettings.Instance.AllowRapidFire && verb.SpecialRules() != null && verb.SpecialRules().RapidFire;
             if (result)
             {
-                InRange = verb.SpecialRules().RapidFire && verb.CurrentTarget.Cell.InHorDistOf(verb.Caster.Position, verb.verbProps.range * verb.SpecialRules().RapidFireRange);
-                if (InRange)
+                if (verb.CurrentTarget.Cell.InHorDistOf(verb.Caster.Position, verb.verbProps.range * verb.SpecialRules().RapidFireRange))
                 {
                     float reduction = ((verb.verbProps.burstShotCount - 1) * verb.verbProps.ticksBetweenBurstShots).TicksToSeconds() / 4;
                     reduction += num / 2;

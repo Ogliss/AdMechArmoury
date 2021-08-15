@@ -56,12 +56,12 @@ namespace AdeptusMechanicus
         private Color muzzleFlareColorTwo = Color.white;
         private string muzzleFlareDef = "Mote_SparkFlash";
         private float muzzleFlareSize = -1f;
-        private ThingDef _muzzleFlareDef;
+        private FleckDef _muzzleFlareDef;
         private FloatRange? muzzleFlareSizeRange;
 
         private string muzzleSmokeDef = "OG_Mote_SmokeTrail";
         private float muzzleSmokeSize = 0.35f;
-        private ThingDef _muzzleSmokeDef;
+        private FleckDef _muzzleSmokeDef;
         private FloatRange? muzzleSmokeSizeRange;
 
         public bool gizmosOnEquip = true;
@@ -71,11 +71,11 @@ namespace AdeptusMechanicus
         public float BulletOffset => defaultProjectile as LaserBeamDefCE == null ? bulletOffset : bulletOffset + laserOffset;
         public float MuzzleSmokeSize => muzzleSmokeSizeRange?.RandomInRange ?? muzzleSmokeSize;
         public float MuzzleFlareSize => muzzleFlareSizeRange?.RandomInRange ?? (muzzleFlareSize > 0 ? muzzleFlareSize : muzzleFlashScale * 0.25f);
-        public ThingDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(muzzleFlareDef) : null;
+        public FleckDef MuzzleFlareDef => _muzzleFlareDef ??= !muzzleFlareDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleFlareDef.Replace("Mote_", "")) : null;
         public bool MuzzleFlareRotates => muzzleFlareRotates;
         public Color MuzzleFlareColor => muzzleFlareColor;
         public Color MuzzleFlareColorTwo => muzzleFlareColorTwo;
-        public ThingDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<ThingDef>.GetNamed(muzzleSmokeDef) : null;
+        public FleckDef MuzzleSmokeDef => _muzzleSmokeDef ??= !muzzleSmokeDef.NullOrEmpty() ? DefDatabase<FleckDef>.GetNamed(muzzleSmokeDef) : null;
         #endregion
 
         #region IAdvancedVerb   
@@ -115,7 +115,7 @@ namespace AdeptusMechanicus
         {
             if (ownerVerb.verbProps != this)
             {
-                Log.ErrorOnce("Tried to calculate cooldown for a verb with different verb props. verb=" + ownerVerb, 19485711, false);
+                Log.ErrorOnce("Tried to calculate cooldown for a verb with different verb props. verb=" + ownerVerb, 19485711);
                 return 0f;
             }
             float baseCD = this.AdjustedCooldown(ownerVerb.tool, attacker, ownerVerb.EquipmentSource);
@@ -246,9 +246,5 @@ namespace AdeptusMechanicus
             return failChance;
         }
 
-        public float AdjustedAccuracy(AdeptusMechanicus.RangeCategory cat, Thing equipment)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

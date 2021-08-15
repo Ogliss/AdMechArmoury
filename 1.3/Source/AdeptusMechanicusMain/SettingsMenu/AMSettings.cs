@@ -132,6 +132,14 @@ namespace AdeptusMechanicus.settings
 
         // Playable Orkz Settings
 
+        public bool OrkoidFightyness = true;
+
+        public float OrkoidFightynessStatisfied;
+        public string OrkoidFightynessStatisfiedBuffer;
+        
+        public float FungusMedChance;
+        public string FungusMedChanceBuffer;
+
         public float FungusSpawnChance;
         public string FungusSpawnChanceBuffer;
         public float FungusSquigChance;
@@ -290,6 +298,14 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowOrkRok, "AMXB_AllowOrkRok", true);
 
                 // Orkz Playable Race Extras
+
+                Scribe_Values.Look(ref this.OrkoidFightyness, "AMO_AllowOrkoidFightyness", true);
+                Scribe_Values.Look(ref this.OrkoidFightynessStatisfied, "AMO_OrkoidFightynessStatisfied", 24000);
+                Scribe_Values.Look(ref this.OrkoidFightynessStatisfiedBuffer, "AMO_OrkoidFightynessStatisfiedBuffer", "24000");
+
+                Scribe_Values.Look(ref this.FungusMedChance, "AMO_FungusMedChance", 0.01f);
+                Scribe_Values.Look(ref this.FungusMedChanceBuffer, "AMO_FungusMedChanceBuffer", "0.01");
+
                 Scribe_Values.Look(ref this.FungusSpawnChance, "AMO_FungusSpawnChance", 0.025f);
                 Scribe_Values.Look(ref this.FungusSpawnChanceBuffer, "AMO_FungusSpawnChanceBuffer", "0.025");
                 Scribe_Values.Look(ref this.FungusSquigChance, "AMO_FungusSquigChance", 1f);

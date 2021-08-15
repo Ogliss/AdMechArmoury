@@ -201,8 +201,6 @@ namespace AdeptusMechanicus
                 }
                 foreach (CompPauldronDrawer Pauldron in Pauldrons)
                 {
-                    Vector3 drawAt = Wearer.DrawPos;
-
                     Vector3 center = vector + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
                     if (Pauldron.activeEntries.NullOrEmpty())
                     {
@@ -223,15 +221,23 @@ namespace AdeptusMechanicus
                         {
                             continue;
                         }
-                        if (entry.ShouldDrawEntry(portrait, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
+
+                        if (entry.ShouldDrawEntry(flags, bodyFacing, size, renderBody, out Graphic pauldronMat, out Mesh pauldronMesh, out Vector3 offset))
                         {
                             if (Pauldron.onHead || renderBody)
                             {
+                                Vector3 drawAt = Wearer.Drawer.DrawPos + (quat * Pauldron.GetOffsetFor(bodyFacing, false));
+                                /*
+                                drawAt.y += 0.009687258f;
+                                drawAt.y += 0.022166021f;
+                                drawAt.y += 0.028957527f;
+                                drawAt.y += 0.97f;
+                                */
                                 GenDraw.DrawMeshNowOrLater
                                     (
                                         // pauldronMesh,
                                         PawnRenderUtility.GetPawnMesh(portrait, Wearer, entry.Props.flipWest && bodyFacing == Rot4.West ? bodyFacing.Opposite : bodyFacing, !Pauldron.onHead),
-                                        center + (quat * offset),
+                                        drawAt + (quat * offset),
                                         quat,
                                         PawnRenderUtility.OverrideMaterialIfNeeded(pauldronMat.MatAt(bodyFacing), Wearer),
                                         flags.FlagSet(PawnRenderFlags.DrawNow)
@@ -265,7 +271,7 @@ namespace AdeptusMechanicus
                     {
                         bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
                         Rot4 facing = onHead ? headfacing : bodyFacing;
-                        if (!ExtraDrawer.ExtraPartEntry.animateExtra)
+                        if (!ExtraDrawer.ExtraPartEntry.DynamicDraw)
                         {
                             continue;
                         }

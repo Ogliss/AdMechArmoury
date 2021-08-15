@@ -331,7 +331,7 @@
  
 	<!-- ========================= Imperial - Wargear S 2 ========================== -->
     <!-- ========================= Imperial - Purity Seal ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Base" Name="OGI_Apparel_PuritySealA"  Abstract="True">
+	<ThingDef Abstract="True" Name="OGI_Apparel_PuritySealA" ParentName="OG_Imperial_Apparel_Wargear_Base">
 		<defName>OGI_Wargear_PuritySealA</defName>
 		<label>imperial purity seal</label>
 		<description>Purity seals are borne by various Imperial troops, applied to weapons, armor and vehicles. They take the form of wax seals and parchment inscribed with declarations and prayers. They are prominently displayed on armour, and symbolize that the wearer is uncontaminated by the slightest taint of Chaos.</description>
@@ -709,9 +709,31 @@
 			<bodyPartGroups>
 				<li>Waist</li>
 			</bodyPartGroups>
-			<!--wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/ServoArm</wornGraphicPath-->
+			<wornGraphicPath>Things/Item/Equipment/Wargear/Imperial/ServoArm/MechBackpack</wornGraphicPath>
+			<wornGraphicData>
+				<renderUtilityAsPack>true</renderUtilityAsPack>
+				<east>
+				  <offset>(-0.0,-0.05)</offset>
+				  <thin><offset>(0.05,0)</offset></thin>
+				  <hulk><offset>(-0.1,0)</offset></hulk>
+				  <fat><offset>(-0.15,0)</offset></fat>
+				</east>
+				<west>
+				  <offset>(0.0,-0.05)</offset>
+				  <thin><offset>(-0.05,0)</offset></thin>
+				  <hulk><offset>(0.1,0)</offset></hulk>
+				  <fat><offset>(0.15,0)</offset></fat>
+				</west>
+				<male>  <scale>(0.75,0.75)</scale></male>
+				<female><scale>(0.75,0.75)</scale></female>
+				<thin>  <scale>(0.7,0.7)</scale></thin>
+				<hulk>  <scale>(0.9,0.9)</scale></hulk>
+				<fat>   <scale>(0.9,0.9)</scale></fat>
+
+			</wornGraphicData>
 			<layers>
 				<li>BeltWargear3</li>
+				<li>Belt</li>
 			</layers>
 			<tags>
 				<li>ImperialArmor</li>
@@ -736,7 +758,7 @@
 				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 				<drawAll>true</drawAll>
 				<PauldronEntries>
-					<li>
+					<!--li>
 						<shoulderPadType>Both</shoulderPadType>
 						<bodyspecificTextures>false</bodyspecificTextures>
 						<shaderType>CutoutComplex</shaderType>
@@ -746,7 +768,11 @@
 						<southtop>Utility_South</southtop>
 						<easttop>PostHead</easttop>
 						<westtop>PostHead</westtop>
-					</li>
+						<NorthOffset>0,0.0,0</NorthOffset>
+						<SouthOffset>0,-0.0,0</SouthOffset>
+						<EastOffset>0,0.0,0</EastOffset>
+						<WestOffset>0,0.0,0</WestOffset>
+					</li-->
 					<li>
 						<shoulderPadType>Both</shoulderPadType>
 						<bodyspecificTextures>false</bodyspecificTextures>
@@ -757,6 +783,10 @@
 						<southtop>Utility_South</southtop>
 						<easttop>Utility_South</easttop>
 						<westtop>PostHead</westtop>
+						<NorthOffset>0,0.0,0.15</NorthOffset>
+						<SouthOffset>0,-0.350,0.1</SouthOffset>
+						<EastOffset>0,-0.350,0</EastOffset>
+						<WestOffset>0,-0.0,0</WestOffset>
 					</li>
 				</PauldronEntries>
 				<NorthOffset>0,0.0,0</NorthOffset>

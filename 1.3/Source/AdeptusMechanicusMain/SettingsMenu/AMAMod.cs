@@ -27,7 +27,7 @@ namespace AdeptusMechanicus.settings
             {
             //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
             }
-            showArmouryIntergrationMenu = !Patches.NullOrEmpty();
+            showArmouryIntergrationMenu = !Patches.NullOrEmpty() || (AdeptusIntergrationUtility.enabled_AlienRaces && Dev);
             if (!Patches.NullOrEmpty())
             {
                 IntergrationOptions = (int)Mathf.Round((Patches.Count / 2) + 0.25f);
@@ -112,11 +112,13 @@ namespace AdeptusMechanicus.settings
         {
             if (AdeptusIntergrationUtility.enabled_AlienRaces && Dev)
             {
-                Listing_StandardExpanding listing_AlienRacesIntergration = listing_Main.BeginSection(120);
+                Listing_StandardExpanding listing_AlienRacesIntergration = listing_Main.BeginSection(110);
                 Listing_StandardExpanding listing_ImperialRacesIntergration = listing_AlienRacesIntergration.BeginSection(100);
 
                 listing_AlienRacesIntergration.EndSection(listing_ImperialRacesIntergration);
+                Listing_StandardExpanding listing_AeldariRacesIntergration = listing_AlienRacesIntergration.BeginSection(100);
 
+                listing_AlienRacesIntergration.EndSection(listing_AeldariRacesIntergration);
                 listing_Main.EndSection(listing_AlienRacesIntergration);
             }
             Listing_StandardExpanding listing_ArmouryIntergration = listing_Main.BeginSection(Listing_ArmouryIntergrationLength, false, 3);
@@ -247,6 +249,7 @@ namespace AdeptusMechanicus.settings
                 return patches;
             }
         }
+
 
         public void DisableConflicting()
         {
