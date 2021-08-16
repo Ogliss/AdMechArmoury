@@ -71,9 +71,7 @@ namespace AdeptusMechanicus
         [MayRequireXenobiologis, MayRequireOrkz]
         public static FactionDef OG_Ork_Feral_Faction;
         [MayRequireXenobiologis, MayRequireOrkz]
-        public static FactionDef OG_Ork_Rok;
-        [MayRequireXenobiologis, MayRequireOrkz]
-        public static FactionDef OG_Ork_Hulk;
+        public static FactionDef OG_Ork_Waaagh;
         [MayRequireOrkz]
         public static FactionDef OG_Ork_PlayerColony;
         [MayRequireOrkz]

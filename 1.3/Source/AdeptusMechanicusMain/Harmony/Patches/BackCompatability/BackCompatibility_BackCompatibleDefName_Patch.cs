@@ -646,6 +646,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         newName ="OG_Chaos_Deamon_Faction";
                     }
+                    if (defName == "OG_GreenskinTribal_Culture")
+                    {
+                        newName = "OG_Ork_Feral_Faction";
+                    }
+                    if (defName == "OG_Ork_Hulk" || defName == "OG_Ork_Rok")
+                    {
+                        newName = "OG_Ork_Waaagh";
+                    }
                     if (defName == "MechanicusFaction")
                     {
                         newName ="OG_Mechanicus_Faction";

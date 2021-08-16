@@ -10,28 +10,32 @@ namespace CombatExtended
 {
 	public class PatchOperationMakeGunCECompatibleAdv : PatchOperation
 	{
+		string info = string.Empty;
+		string SearchType => this.defName.NullOrEmpty() ? "@Name" : "defName";
+		string SearchString => this.defName.NullOrEmpty() ? this.Name : this.defName;
 		public override bool ApplyWorker(XmlDocument xml)
 		{
 			bool result = false;
 			if (this.defName.NullOrEmpty() && this.Name.NullOrEmpty())
 			{
+				info = "Name & defname empty";
 				result = false;
 			}
 			else
 			{
-				string search = this.defName.NullOrEmpty() ? "@Name" : "defName";
-				string s = this.defName.NullOrEmpty() ? this.Name : this.defName;
-				XmlNodeList nodeList = xml.SelectNodes("Defs/ThingDef[" + search + "=\"" + s + "\"]");
+				XmlNodeList nodeList = xml.SelectNodes("Defs/ThingDef[" + SearchType + "=\"" + SearchString + "\"]");
                 if (nodeList.Count == 0)
                 {
                     if (AMAMod.Dev && warnOnDefNotFound) 
                     {
-						Log.Warning(s + " Not Found");
+						Log.Warning(SearchString + " Not Found");
 					}
+					info = SearchString + " Not Found";
 					result = false;
 				}
                 else
 				{
+					info = nodeList.Count + " nodes Found";
 					IEnumerator enumerator = nodeList.GetEnumerator();
 					try
 					{
@@ -344,6 +348,18 @@ namespace CombatExtended
 			xmlElement2.AppendChild(xmlElement3);
 		}
 
+		public override void Complete(string modIdentifier)
+		{
+			if (this.neverSucceeded)
+			{
+				string text = string.Format("[{0}] Patch operation {1} failed", modIdentifier, this);
+				if (!string.IsNullOrEmpty(this.sourceFile))
+				{
+					text = text + "\ninfo:" + info + "\nfile: " + this.sourceFile;
+				}
+				Log.Error(text);
+			}
+		}
 		bool warnOnMismatchedVerbCount = true;
 		bool warnOnDefNotFound = true;
 		public string Name;
