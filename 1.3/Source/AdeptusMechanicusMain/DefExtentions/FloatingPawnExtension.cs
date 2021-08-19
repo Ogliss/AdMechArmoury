@@ -5,6 +5,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     // Token: 0x02000020 RID: 32
     public class FloatingPawnExtension : DefModExtension
     {
