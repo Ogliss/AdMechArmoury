@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
-		<defName>OGI_Gun_T2BoltGun</defName>
+	<!--Operation Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+		<defName>IG_Gun_T2BoltGun</defName>
 		<statBases>
 			<Mass>3.8</Mass>
 			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
@@ -41,7 +41,7 @@
 			<aiUseBurstMode>TRUE</aiUseBurstMode>
 			<aimedBurstShotCount>2</aimedBurstShotCount>	
 		</FireModes>
-	</Operation>
+	</Operation-->
 
 	<Operation Class="PatchOperationFindModID">
 		<mods>
@@ -49,6 +49,10 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/defName/text()</xpath>
+					<value>OGI_Gun_T2BoltGun</value>
+				</li-->
 				<!-- ====================== Std Bolt T2 ===================== -->
 				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_T2BoltStd</defName>
@@ -63,7 +67,7 @@
 				</li>
 				
 				<!-- ====================== Bolter T2 ===================== -->
-				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
 					<defName>OGI_Gun_T2BoltGun</defName>
 					<statBases>
 						<Mass>3.8</Mass>
@@ -103,7 +107,7 @@
 						<aiUseBurstMode>TRUE</aiUseBurstMode>
 						<aimedBurstShotCount>2</aimedBurstShotCount>	
 					</FireModes>
-				</li-->
+				</li>
 				
 				<!-- ====================== Std Bolt T3 ===================== -->
 				<!-- ====================== Bolter T3 ===================== -->

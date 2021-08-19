@@ -34,14 +34,17 @@ namespace AdeptusMechanicus.settings
                 var allPatches = content.Patches as List<PatchOperation>;
                 foreach (var patch in Patches)
                 {
-                    if (settings.PatchDisabled[patch] == false)
+                    if (patch.optional)
                     {
-                        if (Prefs.DevMode) Log.Message("RemoveAll XML Patch: " + patch.label);
-                        allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
-                    }
-                    else
-                    {
-                        if (Prefs.DevMode) Log.Message("Running XML Patch: " + patch.label);
+                        if (settings.PatchDisabled[patch] == false)
+                        {
+                            if (Prefs.DevMode) Log.Message("RemoveAll XML Patch: " + patch.label);
+                            allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
+                        }
+                        else
+                        {
+                            if (Prefs.DevMode) Log.Message("Running XML Patch: " + patch.label);
+                        }
                     }
                 }
             }
@@ -85,7 +88,20 @@ namespace AdeptusMechanicus.settings
         public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
         public override string SettingsCategory() => "AdeptusMechanicus.ModSeries".Translate();
         public string ModLoaded() => "Mods Loaded: " + "AdeptusMechanicus.ModName".Translate();
-        public int PatchesCount => Patches.Count % 2 == 0 ? Patches.Count / 2 : Patches.Count / 2 + 1;
+
+        private int optionalPatchesCount = Patches.FindAll(x => x.optional).Count;
+        private int patchesCount = -1;
+        public int PatchesCount
+        {
+            get
+            {
+                if (patchesCount == -1)
+                {
+                    patchesCount = optionalPatchesCount % 2 == 0 ? optionalPatchesCount / 2 : optionalPatchesCount / 2 + 1;
+                }
+                return patchesCount;
+            }
+        }
         private float Listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + Listing_ArmouryIntergrationContents + intergrationMenuInc;
         private float Listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, PatchesCount, lineheight, 0, 0);
         public override void DoSettingsWindowContents(Rect inRect)
@@ -130,6 +146,10 @@ namespace AdeptusMechanicus.settings
             for (int i = 0; i < Patches.Count; i++)
             {
                 var patch = Patches[i];
+                if (!patch.optional)
+                {
+                    continue;
+                }
                 var status = settings.PatchDisabled[patch];
                 if (!flag && i+1 > Patches.Count / 2)
                 {
@@ -242,8 +262,15 @@ namespace AdeptusMechanicus.settings
                     patches = new List<PatchDescription>();
                     if (AdeptusIntergrationUtility.enabled_AstraCore)
                     {
-                        patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active"));
-                        patches.Add(new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "Astra Miliatrum Weapons Patch", "Removes the Astra Militarum versions of dupped Weapons when active"));
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active", true));
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "Astra Miliatrum Weapons Patch", "Removes the Astra Militarum versions of dupped Weapons when active", true));
+                        if (AdeptusIntergrationUtility.enabled_CombatExtended)
+                        {
+                        //    patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active"));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Bolt_Astra.xml", "Astra Miliatrum Bolt Weapons CE Patch", "Patches Astra Militarum Bolt Weapons for CE compatability when active", false));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Plasma_Astra.xml", "Astra Miliatrum Plasma Weapons CE Patch", "Patches Astra Militarum Plasma Weapons for CE compatability when active", false));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Misc_Astra.xml", "Astra Miliatrum Misc Weapons CE Patch", "Patches Astra Militarum Misc Weapons for CE compatability when active", false));
+                        }
                     }
                 }
                 return patches;
@@ -299,9 +326,11 @@ namespace AdeptusMechanicus.settings
             {
                 settings.AllowNecron = false;
             }
-            if (!settings.AllowTyranidWeapons)
+            if (!settings.AllowTyranidWeapons || !settings.AllowTyranid)
             {
                 settings.AllowTyranid = false;
+                settings.AllowTyranidWeapons = false;
+                settings.AllowTyranidInfestation = false;
             }
         }
         public virtual void ResetMenu()

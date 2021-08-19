@@ -201,11 +201,18 @@
 						<defaultProjectile>OGI_Bullet_T2BoltStd</defaultProjectile>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/defName</xpath>
-					<value>
-						<defName>OGI_Gun_T2BoltGun</defName>
-					</value>
+				<li Class="PatchOperationFindModID">
+					<mods>
+						<li>CETeam.CombatExtended</li>
+					</mods>
+					<nomatch Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="IG_Gun_T2BoltGun"]/defName/text()</xpath>
+								<value>OGI_Gun_T2BoltGun</value>
+							</li>
+						</operations>
+					</nomatch>
 				</li>
 				
 				<!-- Swap Astra Angelus Boltgun -->

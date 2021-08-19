@@ -98,7 +98,7 @@ namespace AdeptusMechanicus
         public void TryHealWounds()
         {
             IEnumerable<Hediff> enumerable = from hd in this.pawn.health.hediffSet.hediffs
-                                             where !hd.IsPermanent() && hd.def.isBad && hd.GetType() == typeof(Hediff_Injury) 
+                                             where !hd.IsPermanent() && hd.def.isBad && hd is Hediff_Injury
                                              select hd;
             bool flag = enumerable != null;
             if (flag && canHeal)

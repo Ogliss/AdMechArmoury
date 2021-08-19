@@ -16,6 +16,8 @@ namespace AdeptusMechanicus
         public static IncidentDef OG_Ork_Rok_Crash;
 
         [MayRequireXenobiologis]
+        public static IncidentDef OG_Tyranid_Infestation;
+        [MayRequireXenobiologis]
         public static IncidentDef OG_Chaos_Deamon_Warpstorm_Deamonic;
         [MayRequireXenobiologis]
         public static IncidentDef OG_Chaos_Deamon_Deamonic_Incursion;

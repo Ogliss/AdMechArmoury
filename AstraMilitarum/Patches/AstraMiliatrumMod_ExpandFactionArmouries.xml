@@ -3,123 +3,112 @@
 	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
 	<!-- Human Humanoid Alien Races 2.0 -->
 	<Operation Class="PatchOperationSequence">
-		<operations>
-			<li Class="PatchOperationFindModID">
-				<mods>
-					<li>QX.AstraMilitarum</li>
-				</mods>
-				<match Class="PatchOperationSequence">
-					<!--success>Always</success-->
-					<operations>
-						
-					<!-- Traitor Guard Armoury Expansion -->
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TGSolider"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TGSolider"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_Gun</li>
-								</value>
-						</match>	
-					</li>
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TGHeavySoldier"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TGHeavySoldier"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_HeavyGun</li>
-								</value>
-						</match>	
-					</li>	
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TGVeteran"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TGVeteran"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_SpecialGun</li>
-								</value>
-						</match>	
-					</li>				
-					<!-- Chaos Marines Armoury Expansion -->
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Solider"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Solider"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_Gun</li>
-								</value>
-						</match>	
-					</li>		
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Sargent"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Sargent"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_SpecialGun</li>
-								</value>
-						</match>	
-					</li>	
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Solider"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Solider"]/weaponTags</xpath>
-								<value>
-									<li>ChaosMelee</li>
-								</value>
-						</match>	
-					</li>		
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Sargent"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Sargent"]/weaponTags</xpath>
-								<value>
-									<li>ChaosMelee</li>
-								</value>
-						</match>	
-					</li>		
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "IG_CM_Leader"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "IG_CM_Leader"]/weaponTags</xpath>
-								<value>
-									<li>Chaos_HeavyGun</li>
-								</value>
-						</match>	
-					</li>		
-
-					<!-- Tyranid Armoury Expansion -->
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TY_Mawloc"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TY_Mawloc"]/weaponTags</xpath>
-								<value>
-									<li>Tyranid_Gun</li>
-									<li>TyranidMelee</li>
-								</value>
-						</match>	
-					</li>
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TY_BroodLord"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TY_BroodLord"]/weaponTags</xpath>
-								<value>
-									<li>Tyranid_SpecialGun</li>
-									<li>TyranidMelee</li>
-								</value>
-						</match>	
-					</li>
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/PawnKindDef[@Name = "TY_Tyrannocyte"]/weaponTags</xpath>
-						<match Class="PatchOperationAdd">
-							<xpath>/Defs/PawnKindDef[@Name = "TY_Tyrannocyte"]/weaponTags</xpath>
-								<value>
-									<li>Tyranid_HeavyGun</li>
-								</value>
-						</match>	
-					</li>	
-					</operations>
-				</match>
+		<operations>	
+			<!-- Traitor Guard Armoury Expansion -->
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TGSolider"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TGSolider"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_Gun</li>
+						</value>
+				</match>	
 			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TGHeavySoldier"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TGHeavySoldier"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_HeavyGun</li>
+						</value>
+				</match>	
+			</li>	
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TGVeteran"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TGVeteran"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_SpecialGun</li>
+						</value>
+				</match>	
+			</li>				
+			<!-- Chaos Marines Armoury Expansion -->
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Solider"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Solider"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_Gun</li>
+						</value>
+				</match>	
+			</li>		
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Sargent"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "IG_CM_RNG_Sargent"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_SpecialGun</li>
+						</value>
+				</match>	
+			</li>	
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Solider"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Solider"]/weaponTags</xpath>
+						<value>
+							<li>ChaosMelee</li>
+						</value>
+				</match>	
+			</li>		
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Sargent"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "IG_CM_MEL_Sargent"]/weaponTags</xpath>
+						<value>
+							<li>ChaosMelee</li>
+						</value>
+				</match>	
+			</li>		
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "IG_CM_Leader"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "IG_CM_Leader"]/weaponTags</xpath>
+						<value>
+							<li>Chaos_HeavyGun</li>
+						</value>
+				</match>	
+			</li>		
+
+			<!-- Tyranid Armoury Expansion -->
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TY_Mawloc"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TY_Mawloc"]/weaponTags</xpath>
+						<value>
+							<li>Tyranid_Gun</li>
+							<li>TyranidMelee</li>
+						</value>
+				</match>	
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TY_BroodLord"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TY_BroodLord"]/weaponTags</xpath>
+						<value>
+							<li>Tyranid_SpecialGun</li>
+							<li>TyranidMelee</li>
+						</value>
+				</match>	
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/PawnKindDef[@Name = "TY_Tyrannocyte"]/weaponTags</xpath>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[@Name = "TY_Tyrannocyte"]/weaponTags</xpath>
+						<value>
+							<li>Tyranid_HeavyGun</li>
+						</value>
+				</match>	
+			</li>	
 		</operations>	
 	</Operation>
 	 

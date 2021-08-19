@@ -2,17 +2,16 @@
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
-			<li Class="PatchOperationFindModID">
-				<mods>
-					<li>QX.AstraMilitarum</li>
-				</mods>
-				<match Class="PatchOperationSequence">
-					<operations>
-						<li Class="PatchOperationRemove">
-								<xpath>Defs/ThingDef[defName='IGStd-ArmorMk' or defName='IGStd-HelmetMk' or defName='IGStd-CaraArmorMk' or defName='IGStd-CaraHelmetMk' or defName='IG_ARM_KriegArmor' or defName='IG_ARM_KriegHelmet']</xpath>
-						</li>
-					</operations>
-				</match>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef
+				[
+					defName='IGStd-ArmorMk' or 
+					defName='IGStd-HelmetMk' or 
+					defName='IGStd-CaraArmorMk' or 
+					defName='IGStd-CaraHelmetMk' or 
+					defName='IG_ARM_KriegArmor' or 
+					defName='IG_ARM_KriegHelmet'
+				]</xpath>
 			</li>
 		</operations>	
 	</Operation>
