@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <HediffDef Name="OG_Melee_InjuryBase" Abstract="True">
+  <HediffDef Abstract="True" Name="OG_Melee_InjuryBase">
 	<description>description</description>
 	<hediffClass>Hediff_Injury</hediffClass>
 	<tendable>true</tendable>
 	<displayWound>true</displayWound>
 	<labelNounPretty>{0} in the {1}</labelNounPretty>
+    <comps>
+		<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.HediffCompProperties_Stabilize" />
+    </comps>
   </HediffDef>
 	
-  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CutBaseHediff">
+  <HediffDef Abstract="True" Name="OG_Cut_BaseHediff" ParentName="OG_Melee_InjuryBase">
 	<description>description</description>
-    <defName>CutBase</defName>
+    <!--defName>CutBase</defName-->
     <label>cut</label>
     <labelNoun>a cut</labelNoun>
     <comps>
@@ -36,8 +39,8 @@
     </injuryProps>
   </HediffDef>
 	
-  <HediffDef ParentName="OG_Melee_InjuryBase" Name="StabBaseHediff">
-    <defName>Stab</defName>
+  <HediffDef Abstract="True" Name="OG_Stab_BaseHediff" ParentName="OG_Melee_InjuryBase">
+    <!--defName>Stab</defName-->
 	<description>description</description>
     <label>stab</label>
     <labelNoun>a stab wound</labelNoun>
@@ -64,8 +67,8 @@
     </injuryProps>
   </HediffDef>
 	
-  <HediffDef ParentName="OG_Melee_InjuryBase" Name="CrushBaseHediff">
-    <defName>Crush</defName>
+  <HediffDef Abstract="True" Name="OG_Crush_BaseHediff" ParentName="OG_Melee_InjuryBase">
+    <!--defName>Crush</defName-->
 	<description>description</description>
     <label>crush</label>
     <labelNoun>a crush wound</labelNoun>
@@ -92,7 +95,7 @@
   </HediffDef>
 
 	<!-- ==================== Power Weapon HeDiff ========================= -->
-	<HediffDef ParentName="CutBaseHediff" Name="OG_PowerWeapon_CutBaseHediff">
+	<HediffDef ParentName="OG_Cut_BaseHediff" Name="OG_PowerWeapon_CutBaseHediff">
 		<defName>OG_PowerWeapon_Cut</defName>
 		<label>power weapon(cut)</label>
 		<comps>
@@ -105,7 +108,7 @@
 		</injuryProps>
 	</HediffDef>
 	
-	<HediffDef ParentName="StabBaseHediff" Name="OG_PowerWeapon_StabBaseHediff">
+	<HediffDef ParentName="OG_Stab_BaseHediff" Name="OG_PowerWeapon_StabBaseHediff">
 		<defName>OG_PowerWeapon_Stab</defName>
 		<label>power weapon(stab)</label>
 		<comps>
@@ -118,7 +121,7 @@
 		</injuryProps>
 	</HediffDef>
 	
-	<HediffDef ParentName="CrushBaseHediff" Name="OG_PowerWeapon_BluntBaseHediff">
+	<HediffDef ParentName="OG_Crush_BaseHediff" Name="OG_PowerWeapon_BluntBaseHediff">
 		<defName>OG_PowerWeapon_Blunt</defName>
 		<label>power weapon(blunt)</label>
 		<comps>

@@ -178,7 +178,7 @@ namespace AdeptusMechanicus.settings
         private Dictionary<string, bool> _CompatabilityPatchesScribeHelper;
         private Dictionary<string, bool> _ImperialRaceScribeHelper;
         private Dictionary<string, bool> _MechanicusRaceScribeHelper;
-        public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => true);
+        public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => p.enabledByDefault);
         public Dictionary<ThingDef, bool> ImperialRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human") || p.defName.Contains("Abhuman") || p.defName.Contains("Astartes") || p.defName.Contains("Custodes"));
         public Dictionary<ThingDef, bool> MechanicusRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Mechanicus"));
         public Dictionary<ThingDef, bool> RaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human"));
@@ -412,13 +412,15 @@ namespace AdeptusMechanicus.settings
         public string label;
         public string tooltip;
         public bool optional;
+        public bool enabledByDefault;
 
-        public PatchDescription(string file, string label, string tooltip = null, bool optional = true)
+        public PatchDescription(string file, string label, string tooltip = null, bool optional = true, bool enabledByDefault = true)
         {
             this.file = file;
             this.label = label;
             this.tooltip = tooltip;
             this.optional = optional;
+            this.enabledByDefault = enabledByDefault;
         }
     }
 }

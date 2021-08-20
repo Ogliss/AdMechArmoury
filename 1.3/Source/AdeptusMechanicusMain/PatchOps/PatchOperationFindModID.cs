@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdeptusMechanicus.settings;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -7,7 +8,7 @@ namespace Verse
 	// Token: 0x02000215 RID: 533
 	public class PatchOperationFindModID : PatchOperation
 	{
-		// Token: 0x06000F11 RID: 3857 RVA: 0x00055788 File Offset: 0x00053988
+		public bool log = false;
 		public override bool ApplyWorker(XmlDocument xml)
 		{
 			bool flag = false;
@@ -16,13 +17,29 @@ namespace Verse
 				if (ModLister.HasActiveModWithName(this.mods[i]))
 				{
 					flag = true;
-				//	Log.Message("Found Named " + this.mods[i]);
+					if (log && AMAMod.Dev)
+					{
+						string text = string.Format("Name:: [{0}] Found by {1} ", this.mods[i], this);
+						if (!string.IsNullOrEmpty(this.sourceFile))
+						{
+							text = text + "\nfile: " + this.sourceFile;
+						}
+						Log.Message(text);
+					}
 					break;
 				}
 				if (ModLister.GetActiveModWithIdentifier(this.mods[i]) != null)
 				{
 					flag = true;
-				//	Log.Message("Found ID " + this.mods[i]);
+					if (log && AMAMod.Dev)
+					{
+						string text = string.Format("ID:: [{0}] Found by {1} ", this.mods[i], this);
+						if (!string.IsNullOrEmpty(this.sourceFile))
+						{
+							text = text + "\nfile: " + this.sourceFile;
+						}
+						Log.Message(text);
+					}
 					break;
 				}
 			}
