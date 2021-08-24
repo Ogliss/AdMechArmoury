@@ -130,14 +130,18 @@ namespace AdeptusMechanicus
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
-                List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+                List<ScenPart> parts = ScenDef.scenario.parts;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;//
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)
@@ -164,14 +168,18 @@ namespace AdeptusMechanicus
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
-                List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+                List<ScenPart> parts = ScenDef.scenario.parts;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)
@@ -198,14 +206,18 @@ namespace AdeptusMechanicus
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
-                List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+                List<ScenPart> parts = ScenDef.scenario.parts;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;//
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)
@@ -232,14 +244,18 @@ namespace AdeptusMechanicus
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
-                List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+                List<ScenPart> parts = ScenDef.scenario.parts;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;//
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)
@@ -266,14 +282,18 @@ namespace AdeptusMechanicus
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
-                List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+                List<ScenPart> parts = ScenDef.scenario.parts;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;//
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)
@@ -297,17 +317,21 @@ namespace AdeptusMechanicus
         public static void TryAddTestingWeaponsToScenario(ScenarioDef ScenDef, List<string> tags)
         {
             List<ThingDef> things = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(x => x.IsRangedWeapon && x.defName.StartsWith("OG") && (tags.Any(y => x.weaponTags.ToCommaList().Contains(y)) || tags.Any(y=> x.defName.Contains(y))));
-            List<ScenPart> parts = Traverse.Create(ScenDef.scenario).Field("parts").GetValue<List<ScenPart>>();
+            List<ScenPart> parts = ScenDef.scenario.parts;
             foreach (ThingDef Weapon in things)
             {
                 bool hasweapon = false;
                 foreach (ScenPart scenpart in parts.Where(x => x.def == ScenPartDefOf.StartingThing_Defined))
                 {
-                    ThingDef td = Traverse.Create(scenpart).Field("thingDef").GetValue<ThingDef>();
-                    if (td == Weapon)
+                    ScenPart_StartingThing_Defined startingThing = scenpart as ScenPart_StartingThing_Defined;
+                    if (startingThing != null)
                     {
-                        hasweapon = true;
-                        break;
+                        ThingDef td = startingThing.thingDef;//
+                        if (td == Weapon)
+                        {
+                            hasweapon = true;
+                            break;
+                        }
                     }
                 }
                 if (hasweapon)

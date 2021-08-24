@@ -66,7 +66,7 @@ namespace AdeptusMechanicus
         public static bool enabled_XenobiologisOrk;
         public static bool enabled_XenobiologisTau;
         public static bool enabled_XenobiologisEldar;
-        public static bool enabled_XenobiologisDarkEldar;
+    //    public static bool enabled_XenobiologisDarkEldar;
         public static bool enabled_XenobiologisChaos;
         public static bool enabled_XenobiologisNecron;
         public static bool enabled_XenobiologisTyranid;
@@ -112,7 +112,7 @@ namespace AdeptusMechanicus
             enabled_XenobiologisOrk = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Orkz"));
             enabled_XenobiologisTau = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Tau"));
             enabled_XenobiologisEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Eldar"));
-            enabled_XenobiologisDarkEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.DarkEldar"));
+        //    enabled_XenobiologisDarkEldar = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Eldar"));
             enabled_XenobiologisChaos = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Chaos"));
             enabled_XenobiologisNecron = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Necron"));
             enabled_XenobiologisTyranid = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == ("Ogliss.AdMech.Xenobiologis.Tyranid"));

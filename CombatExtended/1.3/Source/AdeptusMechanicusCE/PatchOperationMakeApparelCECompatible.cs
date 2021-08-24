@@ -31,7 +31,7 @@ namespace CombatExtended
 						bool? flag = (this.statBases != null) ? new bool?(this.statBases.node.HasChildNodes) : null;
 						if (flag != null && flag.Value)
 						{
-							this.AddOrReplaceStatBases(xml, xmlNode);
+							this.AddOrReplaceStatBasesApparel(xml, xmlNode);
 						}
 						bool? flag2 = (this.costList != null) ? new bool?(this.costList.node.HasChildNodes) : null;
 						if (flag2 != null && flag2.Value)
@@ -319,6 +319,47 @@ namespace CombatExtended
 			}
 			this.Populate(xml, this.statBases.node, ref xmlElement, true);
 		}
+		
+		private void AddOrReplaceStatBasesApparel(XmlDocument xml, XmlNode xmlNode)
+		{
+			XmlElement xmlElement;
+			this.GetOrCreateNode(xml, xmlNode, "statBases", out xmlElement);
+			if (xmlElement.HasChildNodes)
+			{
+				string nodes = string.Empty;
+				foreach (XmlNode item in this.statBases.node.ChildNodes)
+				{
+					if (nodes != string.Empty)
+					{
+						nodes += " | ";
+					}
+					nodes += item.Name;
+				}
+				XmlNodeList xmlNodeList = xmlElement.SelectNodes(nodes);
+				Log.Message("checking statBases: " + (this.defName.NullOrEmpty() ? this.Name : this.defName) + " Nodes: " + xmlNodeList.Count);
+				IEnumerator enumerator = xmlNodeList.GetEnumerator();
+				try
+				{
+					while (enumerator.MoveNext())
+					{
+						object obj = enumerator.Current;
+						XmlNode oldChild = (XmlNode)obj;
+						Log.Message("removing item: " + oldChild.Name);
+						xmlElement.RemoveChild(oldChild);
+					}
+				}
+				finally
+				{
+					IDisposable disposable;
+					if ((disposable = (enumerator as IDisposable)) != null)
+					{
+						disposable.Dispose();
+					}
+				}
+			}
+			this.Populate(xml, this.statBases.node, ref xmlElement, true);
+		}
+
 		private void AddOrReplaceEquippedStatOffsets(XmlDocument xml, XmlNode xmlNode)
 		{
 			XmlElement xmlElement;
