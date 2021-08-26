@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -124,7 +125,7 @@ namespace CombatExtended
 			return xmlElement;
 		}
 
-		private void Populate(XmlDocument xml, XmlNode reference, ref XmlElement destination, bool overrideExisting = false)
+		private void Populate(XmlDocument xml, XmlNode reference, ref XmlElement destination, bool overrideExisting = true)
 		{
 			IEnumerator enumerator = reference.GetEnumerator();
 			try
@@ -327,6 +328,8 @@ namespace CombatExtended
 			if (xmlElement.HasChildNodes)
 			{
 				string nodes = string.Empty;
+				bool armourSharp = false;
+				bool armourBlunt = false;
 				foreach (XmlNode item in this.statBases.node.ChildNodes)
 				{
 					if (nodes != string.Empty)
@@ -334,9 +337,18 @@ namespace CombatExtended
 						nodes += " | ";
 					}
 					nodes += item.Name;
+                    if (item.Name== "ArmorRating_Sharp")
+                    {
+						armourSharp = true;
+
+					}
+                    if (item.Name== "ArmorRating_Blunt")
+					{
+						armourBlunt = true;
+					}
 				}
 				XmlNodeList xmlNodeList = xmlElement.SelectNodes(nodes);
-				Log.Message("checking statBases: " + (this.defName.NullOrEmpty() ? this.Name : this.defName) + " Nodes: " + xmlNodeList.Count);
+			//	Log.Message("checking statBases: " + (this.defName.NullOrEmpty() ? this.Name : this.defName) + " Nodes: " + xmlNodeList.Count);
 				IEnumerator enumerator = xmlNodeList.GetEnumerator();
 				try
 				{
@@ -344,7 +356,17 @@ namespace CombatExtended
 					{
 						object obj = enumerator.Current;
 						XmlNode oldChild = (XmlNode)obj;
-						Log.Message("removing item: " + oldChild.Name);
+						//	Log.Message("removing item: " + oldChild.Name + ": " + oldChild.InnerText);
+						if (!armourSharp && oldChild.Name == "ArmorRating_Sharp")
+						{
+							oldChild.InnerText = (float.Parse(oldChild.InnerText) * this.sharpMult).ToString();
+						}
+						else if (!armourBlunt && oldChild.Name == "ArmorRating_Blunt")
+						{
+							oldChild.InnerText = (float.Parse(oldChild.InnerText) * this.bluntMult).ToString();
+
+						}	
+						else
 						xmlElement.RemoveChild(oldChild);
 					}
 				}
@@ -357,7 +379,18 @@ namespace CombatExtended
 					}
 				}
 			}
-			this.Populate(xml, this.statBases.node, ref xmlElement, true);
+			this.Populate(xml, this.statBases.node, ref xmlElement);
+
+			string nodes2 = string.Empty;
+			foreach (XmlNode item in xmlElement.ChildNodes)
+			{
+				if (nodes2 != string.Empty)
+				{
+					nodes2 += ", ";
+				}
+				nodes2 += item.Name +": "+item.InnerText;
+			}
+		//	Log.Message("Now: "+ nodes2);
 		}
 
 		private void AddOrReplaceEquippedStatOffsets(XmlDocument xml, XmlNode xmlNode)

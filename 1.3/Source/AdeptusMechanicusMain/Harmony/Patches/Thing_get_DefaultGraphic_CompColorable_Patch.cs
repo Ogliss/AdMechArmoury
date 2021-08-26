@@ -10,6 +10,7 @@ using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
 using System.Reflection;
+using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -33,7 +34,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     Color colorOne = colorableTwo.Color;
                     Color colorTwo = colorableTwo.ColorTwo;
-                    CompFactionColorableTwo factionColorable = __instance.TryGetCompFast<CompFactionColorableTwo>();
+                    CompColorableTwoFaction factionColorable = __instance.TryGetCompFast<CompColorableTwoFaction>();
                     if (factionColorable != null)
                     {
                         if (factionColorable.Active)
@@ -69,6 +70,5 @@ namespace AdeptusMechanicus.HarmonyInstance
                 }
             }
         }
-        public static FieldInfo subgraphic = typeof(Graphic_RandomRotated).GetField("subGraphic", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.GetField);
     }
 }

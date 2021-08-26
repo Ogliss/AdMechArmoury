@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdeptusMechanicus.settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,21 @@ namespace AdeptusMechanicus
     public class Integration_Orkz : Integration
     {
         public override string PackageID() => "Ogliss.AdMech.Xenobiologis.Orkz";
+        private static AMSettings settings = AMAMod.settings;
+        private static AMAMod mod = AMAMod.Instance;
+        private static float lineheight = AMAMod.lineheight;
+
+        private static bool Dev => AMAMod.Dev;
+        private static bool ShowXB => settings.ShowXenobiologisSettings;
+        private static bool ShowRaces => settings.ShowAllowedRaceSettings && ShowXB;
+        private static bool Setting => ShowRaces && settings.ShowOrk;
+
+        private static int Options = 2;
+        private static float RaceSettings => mod.Length(Setting, Options, lineheight, 8, ShowRaces ? 1 : 0);
+
+        public static float MainMenuLength = 0;
+        public static float MenuLength = 0;
+        private static float inc = 0;
 
         public bool ShowChaos = false;
         public bool AllowChaosMarine = false;

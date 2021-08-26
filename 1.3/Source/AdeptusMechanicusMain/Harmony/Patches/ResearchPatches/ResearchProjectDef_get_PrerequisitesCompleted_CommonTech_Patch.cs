@@ -13,7 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    
+    // ResearchProjectDef.PrerequisitesCompleted
     [HarmonyPatch(typeof(ResearchProjectDef), "get_PrerequisitesCompleted")]
     public static class ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch
     {
@@ -40,10 +40,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                             __result = __result || !reqs.Any(x => !x.IsFinished && !ext.RequiredResearch.Contains(x));
                         }
                     }
+                    /*
                     else
                     {
                         __result = false;
                     }
+                    */
                 }
             }
         }
