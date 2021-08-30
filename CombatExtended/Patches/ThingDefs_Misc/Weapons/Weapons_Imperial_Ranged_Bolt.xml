@@ -272,6 +272,75 @@
 					</value>
 				</li>
 
+				<!-- ====================== Bolter Godwyn-Deaz ===================== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+					<defName>OGI_Gun_BoltGun_GodwynDeaz</defName>
+					<statBases>
+						<Mass>7.8</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.28</SwayFactor>
+						<Bulk>15.10</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<label>Bolter</label>
+						<rapidFire>true</rapidFire>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>40</range>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<burstShotCount>4</burstShotCount>
+						<soundCast>OG_Bolt_Gun_Sound</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<barrelLength>0.6</barrelLength>
+						<muzzleFlareSize>2.5</muzzleFlareSize>
+						<recoilAmount>0.6</recoilAmount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>36</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_OGBoltStd</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>	
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OGI_Gun_BoltGun_GodwynDeaz"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.9</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
 				<!-- ====================== Combi Weapons ===================== -->
 				<!-- ====================== CombiFlamer ===================== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">

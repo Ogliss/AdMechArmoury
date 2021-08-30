@@ -57,7 +57,8 @@ namespace AdeptusMechanicus
         public static bool enabled_GeneSeed;
 
         public static bool enabled_MagosXenobiologis;
-        public static bool enabled_AlienRaces;
+        public static bool enabled_AlienRaces = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "erdelf.HumanoidAlienRaces");
+
 
         public static bool enabled_AdeptusAstartes;
         public static bool enabled_AdeptusMechanicus;

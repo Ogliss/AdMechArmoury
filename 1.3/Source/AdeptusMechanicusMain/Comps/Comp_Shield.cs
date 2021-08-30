@@ -307,20 +307,20 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (graphic is null && !Props.graphicData.texPath.NullOrEmpty())
+                if (graphic == null && Props.graphicData != null && !Props.graphicData.texPath.NullOrEmpty())
                 {
                     graphic = Props.graphicData.Graphic;
                 }
                 return graphic;
             }
         }
-        private Graphic graphic;
+        private Graphic graphic = null;
 
         protected virtual Material BubbleMat
         {
             get
             {
-                if (bubbleMat is null)
+                if (bubbleMat == null)
                 {
                     if (Graphic != null)
                     {

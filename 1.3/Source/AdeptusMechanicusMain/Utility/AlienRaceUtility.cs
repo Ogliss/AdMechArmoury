@@ -16,7 +16,7 @@ namespace AdeptusMechanicus
             AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
             if (Human != null)
             {
-                List<string> Tags = new List<string>() { "I", "C" };
+                List<string> Tags = new List<string>() { "I", "C", "AS" };
                 List<ResearchProjectDef> projects = new List<ResearchProjectDef>();
                 projects.AddRange(ArmouryMain.ReseachImperial);
                 projects.AddRange(ArmouryMain.ReseachChaos);
