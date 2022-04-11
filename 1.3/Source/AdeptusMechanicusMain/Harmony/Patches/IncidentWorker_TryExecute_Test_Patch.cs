@@ -30,4 +30,22 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         */
     }
+
+    [HarmonyPatch(typeof(IncidentWorker_OrbitalTraderArrival), "TryExecuteWorker")]
+    public static class IncidentWorker_OrbitalTraderArrival_TryExecuteWorker_Test_Patch
+    {
+        [HarmonyPrefix]
+        public static void Pre_TryExecuteWorker(IncidentWorker __instance, IncidentParms parms)
+        {
+        //    Log.Message($"{__instance}: {parms.traderKind}({parms.faction})");
+        }
+
+        /*
+            [HarmonyPostfix]
+            public static void Post_TryExecuteWorker(Pawn p, ThingDef apparel, ref bool __result)
+            {
+
+            }
+        */
+    }
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ==================== Mod - Base Makeable Gun Weapon Template ========================= -->
+	<!-- Imperial - Weapon Abstracts -->
+	<!-- Gun Base -->
 	<ThingDef Name="OG_Imperial_Gun_Base" ParentName="OG_Gun_Qaulity_Art" Abstract="True">
 		<thingCategories>
 			<li>OGIRanged</li>
 			<li MayRequire="QX.AstraMilitarum">IGCRanged</li>
 		</thingCategories>
 		<tradeTags>
-			<li>OGCRanged</li>
+			<li>OGIRanged</li>
 			<li>IGCRanged</li>
 		</tradeTags>
 		<weaponTags>
@@ -16,6 +17,7 @@
 		</weaponTags>
 	</ThingDef> 
 	
+	<!-- Gun Base Makeable -->
 	<ThingDef Name="OG_Imperial_Gun_Makeable" ParentName="OG_Imperial_Gun_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -33,6 +35,7 @@
 		</recipeMaker>
 	</ThingDef>
   
+	<!-- Gun Standard -->
 	<ThingDef Name="OG_Imperial_Gun" ParentName="OG_Imperial_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Imperial_Gun</li>
@@ -45,6 +48,7 @@
 		</recipeMaker>
 	</ThingDef>
   
+	<!-- Gun Special -->
 	<ThingDef Name="OG_Imperial_Gun_Special" ParentName="OG_Imperial_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Imperial_SpecialGun</li>
@@ -57,6 +61,7 @@
 		</recipeMaker>
 	</ThingDef>
   
+	<!-- Gun Heavy -->
 	<ThingDef Name="OG_Imperial_Gun_Heavy" ParentName="OG_Imperial_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Imperial_HeavyGun</li>
@@ -69,7 +74,7 @@
 		</recipeMaker>
 	</ThingDef>
 	
-	<!-- ==================== Mod - Base Imperial Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Base -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Base" ParentName="OG_MeleeWeapon_Base" Abstract="True">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
@@ -101,6 +106,7 @@
 		</comps>
 	</ThingDef>
 
+	<!-- Melee Weapon Base Makable -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Makeable" ParentName="OG_Imperial_MeleeWeapon_Base" Abstract="True"> 
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -117,7 +123,7 @@
 		</recipeMaker>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Imperial Melee Weapon Sharp Template ========================= -->
+	<!-- Melee Weapon Base Sharp -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Sharp" ParentName="OG_Imperial_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -133,7 +139,7 @@
 		</recipeMaker>
 		</ThingDef>
 
-	<!-- ==================== Mod - Base Imperial Melee Weapon Blunt Template ========================= -->
+	<!-- Melee Weapon Base Blunt -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Blunt" ParentName="OG_Imperial_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -149,21 +155,21 @@
 		</recipeMaker>
 	</ThingDef>
   
-	<!-- ==================== Mod - Base Imperial Sharp Quality Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Sharp -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Sharp_Quality" ParentName="OG_Imperial_MeleeWeapon_Sharp" Abstract="True">
 		<weaponTags>
 			<li>ImperialMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Imperial Blunt Quality Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Blunt -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Blunt_Quality" ParentName="OG_Imperial_MeleeWeapon_Blunt" Abstract="True">
 		<weaponTags>
 			<li>ImperialMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Power Imperial Sharp Melee Quality Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Sharp -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_Imperial_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -175,7 +181,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Power Imperial Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Blunt -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_Imperial_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -187,7 +193,7 @@
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Force Imperial Sharp Melee Quality Weapon Template ========================= -->
+	<!-- Melee Weapon Force Sharp -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_Imperial_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -199,7 +205,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Force Imperial Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- Melee Weapon Force Blunt -->
 	<ThingDef Name="OG_Imperial_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Imperial_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>

@@ -16,8 +16,9 @@ namespace AdeptusMechanicus.HarmonyInstance
 	{
 		public static bool Prefix(IdeoFoundation_Deity __instance)
 		{
-			if (__instance.ideo.culture.defName.StartsWith("OG_"))
+			if (__instance.ideo.culture is CultureDef def && def.deities != null && (!def.deities.requiredDeities.NullOrEmpty() || !def.deities.possibleDeities.NullOrEmpty()))
 			{
+			//	Log.Message($"Generating Deities for {__instance.ideo.culture.defName}");
 				DeityUtility.GenerateSpecificDeities(__instance);
 				return false;
 			}

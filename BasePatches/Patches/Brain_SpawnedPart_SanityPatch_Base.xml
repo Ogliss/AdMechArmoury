@@ -12,7 +12,7 @@
 		</li>
 		<li Class="PatchOperationConditional">
 			<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
-			<nomatch Class="PatchOperationAdd">
+			<!--nomatch Class="PatchOperationAdd">
 				<xpath>/Defs</xpath>
 				<value>
 					<ThingDef ParentName="BodyPartNaturalBase">
@@ -29,7 +29,7 @@
 						</statBases>
 					</ThingDef>
 				</value>
-			</nomatch>
+			</nomatch-->
 			<match Class="PatchOperationSequence">
 				<operations>
 				
@@ -166,27 +166,31 @@
 				</nomatch>
 			</match>
 		</li>
+
 		<li Class="PatchOperationConditional">
-			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
-			<match Class="PatchOperationSequence">
-				<operations> <!-- PatchOperationReplace -->
-					<li Class="PatchOperationConditional">
-						<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved[text()="Brain"]</xpath>
-						<nomatch Class="PatchOperationReplace">
-							<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
-							<value>
-								<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
-							</value>
-						</nomatch>
-					</li>
-				</operations>
+			<xpath>/Defs/ThingDef[defName="Brain"]</xpath>
+			<match Class="PatchOperationConditional">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+				<match Class="PatchOperationSequence">
+					<operations> <!-- PatchOperationReplace -->
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved[text()="Brain"]</xpath>
+							<nomatch Class="PatchOperationReplace">
+								<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+								<value>
+									<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+								</value>
+							</nomatch>
+						</li>
+					</operations>
+				</match>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
+					<value>
+						<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
+					</value>
+				</nomatch>
 			</match>
-			<nomatch Class="PatchOperationAdd">
-				<xpath>/Defs/BodyPartDef[defName="Brain"]</xpath>
-				<value>
-					<spawnThingOnRemoved>Brain</spawnThingOnRemoved>
-				</value>
-			</nomatch>
 		</li>
     </operations>
   </Operation>

@@ -106,7 +106,7 @@ namespace AdeptusMechanicus.settings
         // Dark Eldar Settings
 
         public bool ShowDarkEldar = false;
-        public bool AllowDarkEldar = false;
+        public bool AllowDarkEldar = true;
 
         // Playable Dark Eldar Settings
 
@@ -131,6 +131,9 @@ namespace AdeptusMechanicus.settings
         public bool AllowOrkRok = true;
 
         // Playable Orkz Settings
+
+        // temp option
+        public bool DisableVEMPatch = false;
 
         public bool OrkoidFightyness = true;
 
@@ -175,14 +178,17 @@ namespace AdeptusMechanicus.settings
         public bool AllowTyranid = true;
         public bool AllowTyranidInfestation = false;
 
+        // Compatability Patch Settings
         private Dictionary<string, bool> _CompatabilityPatchesScribeHelper;
-        private Dictionary<string, bool> _ImperialRaceScribeHelper;
-        private Dictionary<string, bool> _MechanicusRaceScribeHelper;
         public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => p.enabledByDefault);
+
+        // Racial Restriction Settings
         public Dictionary<ThingDef, bool> ImperialRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human") || p.defName.Contains("Abhuman") || p.defName.Contains("Astartes") || p.defName.Contains("Custodes"));
         public Dictionary<ThingDef, bool> MechanicusRaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Mechanicus"));
         public Dictionary<ThingDef, bool> RaceKeyPairs = DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.race != null && x.race.Humanlike).ToDictionary(p => p, p => p.defName.Contains("Human"));
 
+        private Dictionary<string, bool> _ImperialRaceScribeHelper;
+        private Dictionary<string, bool> _MechanicusRaceScribeHelper;
 
         public override void ExposeData()
         {
@@ -214,14 +220,14 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowTauWeapons, "AMA_AllowTauWeapons", true);
                 Scribe_Values.Look(ref this.AllowOrkWeapons, "AMA_AllowOrkWeapons", true);
                 Scribe_Values.Look(ref this.AllowNecronWeapons, "AMA_AllowNecronWeapons", true);
-                Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", false);
+                Scribe_Values.Look(ref this.AllowTyranidWeapons, "AMA_AllowTyranidWeapons", true);
 
                 Scribe_Values.Look(ref this.AllowProjectileTrail, "AMA_AllowProjectileTrail", true);
                 Scribe_Values.Look(ref this.AllowProjectileGlow, "AMA_AllowProjectileGlow", true);
                 Scribe_Values.Look(ref this.AllowMuzzlePosition, "AMA_AllowMuzzlePosition", true);
                 Scribe_Values.Look(ref this.AllowPauldronDrawer, "AMA_AllowPauldronDrawer", true);
                 Scribe_Values.Look(ref this.AllowExtraPartDrawer, "AMA_AllowExtraPartDrawer", true);
-                Scribe_Values.Look(ref this.AllowHediffPartDrawer, "AMA_AllowHediffPartDrawer", false);
+                Scribe_Values.Look(ref this.AllowHediffPartDrawer, "AMA_AllowHediffPartDrawer", true);
             }
 
             // Xenobiologis Data
@@ -246,7 +252,7 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsGreat, "AMXB_EndTimesChaosDeamonIntergration_GreatPortal", true);
                 Scribe_Values.Look(ref this.EndTimesIntergrateDeamonsSmall, "AMXB_EndTimesChaosDeamonIntergration_SmallPortal", true);
                 Scribe_Values.Look(ref this.ShowDarkEldar, "AMXB_ShowDarkEldar", false);
-                Scribe_Values.Look(ref this.AllowDarkEldar, "AMXB_AllowDarkEldar", false && AMSettings.Instance.AllowDarkEldarWeapons);
+                Scribe_Values.Look(ref this.AllowDarkEldar, "AMXB_AllowDarkEldar", true && AMSettings.Instance.AllowDarkEldarWeapons);
                 Scribe_Values.Look(ref this.ShowEldar, "AMXB_ShowEldar", false);
                 Scribe_Values.Look(ref this.AllowEldarCraftworld, "AMXB_AllowEldarCraftworld", true && AMSettings.Instance.AllowEldarWeapons);
                 Scribe_Values.Look(ref this.AllowEldarExodite, "AMXB_AllowEldarExodite", false && AMSettings.Instance.AllowEldarWeapons);
@@ -257,15 +263,15 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowGueVesaAuxiliaries, "AMXB_AllowGueVesaAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
                 Scribe_Values.Look(ref this.AllowKrootAuxiliaries, "AMXB_AllowKrootAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
                 Scribe_Values.Look(ref this.AllowKroot, "AMXB_AllowKroot", true && AMSettings.Instance.AllowTauWeapons);
-                Scribe_Values.Look(ref this.AllowVespidAuxiliaries, "AMXB_AllowVespidAuxiliaries", false && AMSettings.Instance.AllowTauWeapons);
+                Scribe_Values.Look(ref this.AllowVespidAuxiliaries, "AMXB_AllowVespidAuxiliaries", true && AMSettings.Instance.AllowTauWeapons);
                 Scribe_Values.Look(ref this.AllowVespid, "AMXB_AllowVespid", false && AMSettings.Instance.AllowTauWeapons);
                 Scribe_Values.Look(ref this.ShowNecron, "AMXB_ShowNecron", true);
                 Scribe_Values.Look(ref this.AllowNecron, "AMXB_AllowNecron", true && AMSettings.Instance.AllowNecronWeapons);
                 Scribe_Values.Look(ref this.AllowNecronMonolith, "AMXB_AllowNecronMonolith", true && AMSettings.Instance.AllowNecronWeapons);
                 Scribe_Values.Look(ref this.AllowNecronWellBeBack, "AMXB_AllowNecronWellBeBack", true && AMSettings.Instance.AllowNecronWeapons);
-                Scribe_Values.Look(ref this.ShowTyranid, "AMXB_ShowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
-                Scribe_Values.Look(ref this.AllowTyranid, "AMXB_AllowTyranid", false && AMSettings.Instance.AllowTyranidWeapons);
-                Scribe_Values.Look(ref this.AllowTyranidInfestation, "AMXB_AllowTyranidInfestation", false && AMSettings.Instance.AllowTyranidWeapons && AMSettings.Instance.AllowTyranid);
+                Scribe_Values.Look(ref this.ShowTyranid, "AMXB_ShowTyranid", false);
+                Scribe_Values.Look(ref this.AllowTyranid, "AMXB_AllowTyranid", true && AMSettings.Instance.AllowTyranidWeapons);
+                Scribe_Values.Look(ref this.AllowTyranidInfestation, "AMXB_AllowTyranidInfestation", true && AMSettings.Instance.AllowTyranidWeapons && AMSettings.Instance.AllowTyranid);
 
             }
             // Astartes Data
@@ -285,7 +291,6 @@ namespace AdeptusMechanicus.settings
 
             // Tau Data
             {
-
                 // Tau Playable Race Extras
 
             }
@@ -336,7 +341,7 @@ namespace AdeptusMechanicus.settings
                     ImperialRaceKeyPairs.RemoveAll(x => x.Key == null);
                 }
             }
-            Scribe_Collections.Look<ThingDef, bool>(ref this.ImperialRaceKeyPairs, "ImperialRaceKeyPairs"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
+            Scribe_Collections.Look<ThingDef, bool>(ref this.MechanicusRaceKeyPairs, "MechanicusRaceKeyPairs"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 // create the data structure we're going to save.
@@ -395,8 +400,31 @@ namespace AdeptusMechanicus.settings
                 }
             }
             */
+            if (TrashableKeyPairs.EnumerableNullOrEmpty())
+            {
+                TrashableKeyPairs = new Dictionary<string, bool>();
+            }
+            Scribe_Collections.Look<string, bool>(ref this.TrashableKeyPairs, "TrashableKeyPairs");
         }
 
+        public Dictionary<string, bool> TrashableKeyPairs;
+        public bool CanTrash(Building b, Pawn pawn = null) 
+        { 
+            return CanTrash(b.def, b.Stuff, pawn);
+        }
+        public bool CanTrash(ThingDef thingDef, ThingDef stuffdef = null, Pawn pawn = null)
+        {
+            bool setting = true;
+            if (TrashableKeyPairs.ContainsKey(thingDef.defName))
+            {
+                setting = TrashableKeyPairs.GetValueOrDefault(thingDef.defName);
+            }
+            else
+            {
+                TrashableKeyPairs.SetOrAdd(thingDef.defName, setting);
+            }
+            return setting && thingDef != ThingDefOf.Wall;
+        }
 
     }
     public abstract class SettingHandle : IExposable

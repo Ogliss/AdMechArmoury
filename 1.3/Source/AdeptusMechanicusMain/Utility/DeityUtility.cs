@@ -17,10 +17,53 @@ namespace AdeptusMechanicus
 		}
 		public static void GenerateSpecificDeities(IdeoFoundation_Deity __instance)
 		{
-			__instance.deities.Clear();
+			AdeptusMechanicus.CultureDef culture = __instance.ideo.culture as AdeptusMechanicus.CultureDef;
+			if (culture != null)
+			{
+				bool required = !culture.deities.requiredDeities.NullOrEmpty();
+				bool possible = !culture.deities.possibleDeities.NullOrEmpty();
+				bool fill = required || possible;
+				if (fill)
+				{
+					List<DeityDef> usedDefs = new List<DeityDef>();
+					if (required)
+					{
+						foreach (var def in culture.deities.requiredDeities)
+						{
+							usedDefs.Add(def);
+						}
+					}
+					if (possible)
+					{
+						int max = culture.deities.max > culture.deities.possibleDeities.Count ? culture.deities.possibleDeities.Count : culture.deities.max;
+						int min = culture.deities.min;
+						int take = Rand.RangeInclusive(min, max);
+						foreach (var def in culture.deities.possibleDeities.TakeRandom(take))
+						{
+							usedDefs.Add(def);
+						}
+					}
+					if (!usedDefs.NullOrEmpty())
+					{
+						__instance.deities.Clear();
+						if (culture.deities.randomizeOrder)
+						{
+							usedDefs = usedDefs.InRandomOrder().ToList();
+						}
+						foreach (var def in usedDefs)
+						{
+							IdeoFoundation_Deity.Deity god = def.Deity();
+							FillDeity(__instance, god);
+							__instance.deities.Add(god);
+						}
+						return;
+					}
+				}
+			}
 
             if (__instance.ideo.culture.defName.StartsWith("OG_"))
 			{
+				__instance.deities.Clear();
 				if (__instance.ideo.culture.defName.Contains("Mechanicus"))
 				{
 					IdeoFoundation_Deity.Deity omnissiah = DeityUtility.Omnissiah.cloneDeity();

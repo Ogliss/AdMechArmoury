@@ -138,47 +138,56 @@ namespace AdeptusMechanicus.Lasers
             this.hitThing = hitThing ?? null;
             this.effecter = effecter ?? null;
             this.effecterDef = effecterDef ?? null;
-            Map map = verb?.Caster?.Map ?? launcher.Map;
-            Vector3 dir = (destination - origin).normalized;
-            dir.y = 0;
-
-            Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
-            
-            if (verb != null)
+            try
             {
-                if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out FleckDef flareDef, out float flareSize, out FleckDef smokeDef, out float smokeSize))
+                Map map = verb?.Caster?.Map ?? launcher.Map;
+                Vector3 dir = (destination - origin).normalized;
+                dir.y = 0;
+
+                Vector3 a = origin;// += dir * (defWeapon == null ? 0.9f : defWeapon.barrelLength);
+
+                if (verb != null)
                 {
-                    a = origin -= dir * (barrelOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
-                    a.y += 0.0367346928f;
-                    if (flareDef != null)
+                    if (verb.Muzzle(out float barrelLength, out float barrelOffset, out float bulletOffset, out FleckDef flareDef, out float flareSize, out FleckDef smokeDef, out float smokeSize))
                     {
-                        IAdvancedVerb properties = verb.verbProps as IAdvancedVerb;
-                        Rand.PushState();
-                        AdeptusFleckMaker.Static(a, map, flareDef, flareSize, properties?.MuzzleFlareColor, properties != null && properties.MuzzleFlareRotates ? (float?)Rand.Range(0, 350) : null, projDef.lifetime);
-                        Rand.PopState();
+                        a = origin -= dir * (barrelOffset * (verb.EquipmentSource.def.graphicData.drawSize.magnitude / 4));
+                        a.y += 0.0367346928f;
+                        if (flareDef != null)
+                        {
+                            IAdvancedVerb properties = verb.verbProps as IAdvancedVerb;
+                            Rand.PushState();
+                            AdeptusFleckMaker.Static(a, map, flareDef, flareSize, properties?.MuzzleFlareColor, properties != null && properties.MuzzleFlareRotates ? (float?)Rand.Range(0, 350) : null, projDef.lifetime);
+                            Rand.PopState();
+                        }
+                        if (smokeDef != null)
+                        {
+                            AdeptusFleckMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
+                        }
                     }
-                    if (smokeDef != null)
-                    {
-                        AdeptusFleckMaker.ThrowSmoke(a, smokeSize, map, smokeDef);
-                    }
-                }
 
-                FleckMaker.Static(a, launcher.Map, FleckDefOf.ShotFlash, verb.verbProps.muzzleFlashScale);
+                    FleckMaker.Static(a, launcher.Map, FleckDefOf.ShotFlash, verb.verbProps.muzzleFlashScale);
+                }
+                if (effecter == null && effecterDef != null)
+                {
+                    TriggerEffect(effecterDef, b, hitThing);
+                }
+                ProjectileVFX ext = this.projDef.GetModExtensionFast<ProjectileVFX>();
+                if (ext != null && destination.InBounds(launcher.Map))
+                {
+                    Vector3 pos = destination;
+                    ThingDef explosionMoteDef = ext.ExplosionMoteDef ?? projDef.projectile.damageDef.explosionCellMote ?? null;
+                    SoundDef sound = projDef.projectile.damageDef.soundExplosion;
+                    Color? color = ext.useGraphicColor ? projDef.graphic.color : (ext.useGraphicColorTwo ? projDef.graphic.colorTwo : projDef.projectile.damageDef.explosionColorCenter);
+                    float scale = ext.scaleWithProjectile ? projDef.graphic.drawSize.magnitude : 1f;
+                    ext.ImpactEffects(pos, map, explosionMoteDef, ext.ExplosionMoteSize * scale, color, sound, ext.ImpactMoteDef, ext.ImpactMoteSize * scale, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize * scale, hitThing, null, (int)((projDef.lifetime - ticks) * 1.1f));
+                    //    ext.ImpactEffects(destination, launcher.Map, ext.ExplosionMoteDef ?? this.projDef.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.projDef.projectile.damageDef.explosionColorCenter, this.projDef.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
+                }
             }
-            if (effecter == null)
+            catch (Exception)
             {
-                TriggerEffect(effecterDef, b, hitThing);
-            }
-            ProjectileVFX ext = this.projDef.GetModExtensionFast<ProjectileVFX>();
-            if (ext != null && destination.InBounds(launcher.Map))
-            {
-                Vector3 pos = destination;
-                ThingDef explosionMoteDef = ext.ExplosionMoteDef ?? projDef.projectile.damageDef.explosionCellMote ?? null;
-                SoundDef sound = projDef.projectile.damageDef.soundExplosion;
-                Color? color = ext.useGraphicColor ? projDef.graphic.color : (ext.useGraphicColorTwo ? projDef.graphic.colorTwo : projDef.projectile.damageDef.explosionColorCenter);
-                float scale = ext.scaleWithProjectile ? projDef.graphic.drawSize.magnitude : 1f;
-                ext.ImpactEffects(pos, map, explosionMoteDef, ext.ExplosionMoteSize * scale, color, sound, ext.ImpactMoteDef, ext.ImpactMoteSize * scale, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize * scale, hitThing, null, (int)((projDef.lifetime - ticks) * 1.1f));
-            //    ext.ImpactEffects(destination, launcher.Map, ext.ExplosionMoteDef ?? this.projDef.projectile.damageDef.explosionCellMote, ext.ExplosionMoteSize, this.projDef.projectile.damageDef.explosionColorCenter, this.projDef.projectile.damageDef.soundExplosion, ext.ImpactMoteDef, ext.ImpactMoteSize, ext.ImpactGlowMoteDef, ext.ImpactGlowMoteSize, hitThing);
+                string l = $"{launcher}'s {verb} vs {hitThing} done fucked up firinf from {origin} to {destination}, Breaking to avoid error spam";
+                Log.Warning(l);
+                return;
             }
         }
 

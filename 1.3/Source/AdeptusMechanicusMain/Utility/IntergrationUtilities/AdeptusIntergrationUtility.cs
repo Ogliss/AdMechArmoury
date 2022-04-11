@@ -57,7 +57,7 @@ namespace AdeptusMechanicus
         public static bool enabled_GeneSeed;
 
         public static bool enabled_MagosXenobiologis;
-        public static bool enabled_AlienRaces = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "erdelf.HumanoidAlienRaces");
+        public static bool enabled_AlienRaces;
 
 
         public static bool enabled_AdeptusAstartes;
@@ -92,6 +92,7 @@ namespace AdeptusMechanicus
 
         public static bool enabled_EndTimesWithGuns;
         public static bool enabled_Royalty;
+        public static bool enabled_VE;
 
 
         static AdeptusIntergrationUtility()
@@ -136,6 +137,7 @@ namespace AdeptusMechanicus
             enabled_ChjAndroids = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "ChJees.Androids");
             enabled_AndroidTiers = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "Atlas.AndroidTiers");
             enabled_EndTimesWithGuns = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing == "SickBoyWi.TheEndTimes.WithGuns");
+            enabled_VE = ModsConfig.ActiveModsInLoadOrder.Any((ModMetaData m) => m.PackageIdPlayerFacing.Contains("VanillaExpanded"));
             enabled_Royalty = ModLister.RoyaltyInstalled && ModLister.HasActiveModWithName("Royalty");
         }
 

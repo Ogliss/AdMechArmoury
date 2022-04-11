@@ -23,12 +23,6 @@ namespace AdeptusMechanicus
         public static ThingDef SimpleResearchBench;
         public static ThingDef HiTechResearchBench;
 
-        #region Mechanicus
-        // Humanlike Race Defs
-        [MayRequireXenobiologis]
-        public static ThingDef OG_Human_Mechanicus;
-        #endregion
-
         #region Imperial
         public static ThingDef OG_ProteinMash;
         public static ThingDef OG_NutrientSolution;
@@ -40,6 +34,11 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Abhuman_Ratlin;
         [MayRequireXenobiologis]
         public static ThingDef OG_Abhuman_Beastman;
+
+        #region Mechanicus
+        // Humanlike Race Defs
+        [MayRequireXenobiologis]
+        public static ThingDef OG_Human_Mechanicus;
         #endregion
 
         #region Astartes
@@ -91,6 +90,8 @@ namespace AdeptusMechanicus
 
         #endregion
 
+        #endregion
+
         #region Chaos
         /*
         // Humanlike Race Defs
@@ -125,6 +126,11 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Chaos_Deamon_WarpTunnel;
         #endregion
 
+        #region Aeldari
+        // common
+        [MayRequireDarkEldar, MayRequireEldar]
+        public static ThingDef OG_Webway_Core;
+
         #region Eldar
         // Humanlike Race Defs
         [MayRequireXenobiologis, MayRequireEldar]
@@ -141,6 +147,8 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Alien_DarkEldar;
         #endregion
 
+        #endregion
+
         #region Greenskins
         // Humanlike Race Defs
         [MayRequireXenobiologis, MayRequireOrkz]
@@ -151,6 +159,10 @@ namespace AdeptusMechanicus
         // Animal Race Defs
         [MayRequireOrkz]
         public static ThingDef OG_Snotling;
+        [MayRequireOrkz]
+        public static ThingDef OG_Squig_Eatin;
+        [MayRequireOrkz]
+        public static ThingDef OG_Squig_Oily;
         [MayRequireXenobiologis, MayRequireOrkz]
         public static ThingDef OG_Squig;
         [MayRequireXenobiologis, MayRequireOrkz]

@@ -11,6 +11,7 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(Verse.AI.PathGrid), "PerceivedPathCostAt", new Type[] { typeof(IntVec3) })]
     public static class PathGrid_PerceivedPathCostAt_DeployableBarricade_Patch
     {
@@ -40,4 +41,5 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         }
     }
+    */
 }

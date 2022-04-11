@@ -9,6 +9,7 @@ namespace AdeptusMechanicus
     /// Perfect for Alien Race bonuses/modifiers.
     /// Chance option to add for some randomization.
     /// </summary>
+    /*
     public class HediffGiver_StartWithBionics : HediffGiver
     {
         public float chance = 100.0f;
@@ -64,4 +65,5 @@ namespace AdeptusMechanicus
         }
         private static List<Thing> emptyIngredientsList = new List<Thing>();
     }
+    */
 }

@@ -87,7 +87,7 @@ namespace AdeptusMechanicus.Lasers
                     {
                         GraphicData data = new GraphicData();
                         data.CopyFrom(this.graphicData);
-                        data.texPath = textures[i] + "/" + list[ii].name;
+                        data.texPath = textures[i];//+ "/" + list[ii].name;
                         materials.Add(data.Graphic.MatSingle);
                     //    materials.Add(MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, this.graphicData.shaderType.Shader, MapMaterialRenderQueues.OrbitalBeam));
                     }

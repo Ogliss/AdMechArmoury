@@ -20,43 +20,43 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPrefix]
         public static bool Prefix(MainTabWindow_Research __instance, ResearchProjectDef project, Rect rect, ref float __result)
 		{
+			bool didSomething = false;
 			if (project.HasModExtension<AnyPrerequisiteResearchExtension>())
 			{
-				AnyPrerequisiteResearchExtension ext = project.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
-				if (project.prerequisites.NullOrEmpty<ResearchProjectDef>() && ext.RequiredResearch.NullOrEmpty())
-				{
-					return true;
-				}
 				float xMin = rect.xMin;
 				float yMin = rect.yMin;
-				Widgets.LabelCacheHeight(ref rect, "ResearchPrerequisites".Translate() + ":", true, false);
-				rect.yMin += rect.height;
-				rect.xMin += 6f;
-				for (int i = 0; i < project.prerequisites.Count; i++)
+				AnyPrerequisiteResearchExtension ext = project.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
+				if (!(project.prerequisites.NullOrEmpty<ResearchProjectDef>() && ext.RequiredResearch.NullOrEmpty()))
 				{
-					SetPrerequisiteStatusColor(project.prerequisites[i].IsFinished, project);
-					Widgets.LabelCacheHeight(ref rect, project.prerequisites[i].LabelCap, true, false);
+					Widgets.LabelCacheHeight(ref rect, "ResearchPrerequisites".Translate() + ":", true, false);
 					rect.yMin += rect.height;
-				}
-				GUI.color = Color.white;
-				Widgets.LabelCacheHeight(ref rect, "and ONE of the following" + ":", true, false);
-				rect.yMin += rect.height;
-				rect.xMin += 6f;
-				if (ext.RequiredResearch != null)
-				{
-					for (int j = 0; j < ext.RequiredResearch.Count; j++)
+					rect.xMin += 6f;
+					for (int i = 0; i < project.prerequisites.Count; i++)
 					{
-						SetPrerequisiteStatusColor(ext.RequiredResearch[j].IsFinished, project);
-						Widgets.LabelCacheHeight(ref rect, ext.RequiredResearch[j].LabelCap, true, false);
+						SetPrerequisiteStatusColor(project.prerequisites[i].IsFinished, project);
+						Widgets.LabelCacheHeight(ref rect, project.prerequisites[i].LabelCap, true, false);
 						rect.yMin += rect.height;
 					}
+					GUI.color = Color.white;
+					Widgets.LabelCacheHeight(ref rect, "and ONE of the following" + ":", true, false);
+					rect.yMin += rect.height;
+					rect.xMin += 6f;
+					if (ext.RequiredResearch != null)
+					{
+						for (int j = 0; j < ext.RequiredResearch.Count; j++)
+						{
+							SetPrerequisiteStatusColor(ext.RequiredResearch[j].IsFinished, project);
+							Widgets.LabelCacheHeight(ref rect, ext.RequiredResearch[j].LabelCap, true, false);
+							rect.yMin += rect.height;
+						}
+					}
+					GUI.color = Color.white;
+					rect.xMin = xMin;
+					__result = rect.yMin - yMin;
+					didSomething = true;
 				}
-				GUI.color = Color.white;
-				rect.xMin = xMin;
-				__result = rect.yMin - yMin;
-				return false;
 			}
-			return true;
+			return !didSomething;
 		}
 		private static void SetPrerequisiteStatusColor(bool present, ResearchProjectDef project)
 		{

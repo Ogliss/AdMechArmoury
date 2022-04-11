@@ -3,7 +3,7 @@
 	<!-- ========================= Armour ========================== -->
 	<!-- ========================= Imperial Guard ========================== -->
 	<!-- ========================= Light Flak Helmet ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="CadianHelmet">
+	<ThingDef Name="CadianHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_FlakHelmetLight</defName>
 		<label>light flak helmet</label>
 		<description>A lightweight Imperial combat helmet, often issued to PDF and Cadian Whiteshield regiments.</description>
@@ -59,7 +59,7 @@
 
 	<!-- ========================= Cadian - Armour ========================== -->
 	<!-- ========================= Cadian - Flak Helmet ========================== -->
-	<ThingDef Name="OGIG_Apparel_Cadia_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear" Abstract="True" >
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Cadia_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_Cadia_FlakHelmet</defName>
 		<label>cadian pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
@@ -98,13 +98,13 @@
 				<li>Overhead</li>
 			</layers>
 			<tags>
-				<li>OGSteelLeigon</li>
-				<li>OGSteelLeigonArmour</li>
-				<li>OGSteelLeigonHeadgear</li>
-				<li>OGSteelLeigonBasicHelmet</li>
+				<li>OGCadian</li>
+				<li>OGCadianArmour</li>
+				<li>OGCadianHeadgear</li>
+				<li>OGCadianBasicHelmet</li>
 			</tags>
 			<defaultOutfitTags>
-				<li>SteelLeigonSoldier</li>
+				<li>CadianSoldier</li>
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
@@ -115,7 +115,7 @@
 		</tradeTags>
 		<comps>
 			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
-				<labelKey>OG_Toggle_Goggle</labelKey>
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
 			</li> 
 		</comps>
 		<inspectorTabs>
@@ -124,7 +124,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
-			<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
+		<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
 		<label>cadian pattern helmet</label>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</texPath>
@@ -133,10 +133,10 @@
 			<color>(74,97,71)</color>
 			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
-			<apparel>
+		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
-			</apparel>
+		</apparel>
 	</ThingDef>
 	
 	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
@@ -167,7 +167,7 @@
 	
 	<!-- ========================= Steel Leigon - Armour ========================== -->
 	<!-- ========================= Steel Leigon - Flak Helmet ========================== -->
-	<ThingDef Name="OGIG_Apparel_Armageddon_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear" Abstract="True" >
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Armageddon_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_Armageddon_FlakHelmet</defName>
 		<label>armageddon pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
@@ -231,7 +231,7 @@
 		</colorGenerator>
 		<comps>
 			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
-				<labelKey>OG_Toggle_Goggle</labelKey>
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
 			</li> 
 		</comps>
 		<inspectorTabs>
@@ -263,7 +263,7 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
-			<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+		<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
 		<label>armageddon pattern helmet (Goggled)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
@@ -297,7 +297,7 @@
 	
 	<!-- ========================= Death Korps - Armour ========================== -->
 	<!-- ========================= Death Korps - Flak Helmet ========================== -->
-	<ThingDef Name="OGIG_Apparel_Krieg_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear" Abstract="True" >
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Krieg_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_Krieg_FlakHelmet</defName>
 		<label>krieg pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
@@ -361,7 +361,7 @@
 		</colorGenerator>
 		<comps>
 			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
-				<labelKey>OG_Toggle_Goggle</labelKey>
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
 			</li> 
 		</comps>
 		<inspectorTabs>
@@ -370,7 +370,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
-			<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
+		<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
 		<label>krieg pattern helmet</label>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</texPath>
@@ -393,7 +393,7 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
-			<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_B</defName>
+		<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_B</defName>
 		<label>krieg pattern helmet (spiked)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
@@ -419,7 +419,7 @@
 	
 	<!-- ========================= Tempestus Scion ========================== -->
 	<!-- ========================= Carapace Helmet ========================== -->
-	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear" Name="IGCarapaceHelmTS">
+	<ThingDef Name="IGCarapaceHelmTS" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_TempestusScion_CarapaceHelmet</defName>
 		<label>Tempestus Scion Omnishield Helmet</label>
 		<description>The Omnishield Helm is a special helmet used by Imperial Tempestus Scions. In hostile environments, a Tempestus regiment will don all-enclosing Omnishield Helms, their respmasks proof against everything from industrial pollution to fully ignited atmospheres. When sealed, they allow Tempestus Scions to operate even in airless vacuums for limited periods of time. The multi-spectral occulum that attaches via suction to the wearer's eye sockets allow him to see in low light and occluded conditions with relative ease.</description>

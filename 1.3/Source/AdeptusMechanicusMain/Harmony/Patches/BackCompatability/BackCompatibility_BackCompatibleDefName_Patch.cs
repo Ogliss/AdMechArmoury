@@ -42,6 +42,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = "OGIG_Apparel_Armageddon_Gasmask";
                         return;
                     }
+                    if (defName.Contains("OGI_Gun_BoltGun_GodwynDeaz"))
+                    {
+                        __result = "OGAS_Gun_BoltGun_GodwynDeaz";
+                        return;
+                    }
                     if (defName.Contains("OGIG_Apparel_CadianFlakHelmet"))
                     {
                         __result = "OGIG_Apparel_FlakHelmetLight";
@@ -72,6 +77,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                             return;
                         }
 
+                    }
+                    if (defName == "OG_Chaos_Deamon_Horror")
+                    {
+                        __result = "OG_Chaos_Deamon_Horror_Pink";
+                        return;
                     }
                     if (defName == "OGN_Gun_SynapticDisintergrator")
                     {

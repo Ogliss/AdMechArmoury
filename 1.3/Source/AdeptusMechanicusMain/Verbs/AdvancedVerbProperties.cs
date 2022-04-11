@@ -230,6 +230,14 @@ namespace AdeptusMechanicus
             }
         }
 
+        public new float GetForceMissFactorFor(Thing equipment, Pawn caster)
+        {
+            if (equipment.def.building != null && equipment.def.building.IsMortar)
+            {
+                return caster.GetStatValueForPawn(StatDef.Named("MortarMissRadiusFactor"), caster, true);
+            }
+            return 1f;
+        }
 
         public virtual float FailChance(Thing gun, out string reliabilityString)
         {

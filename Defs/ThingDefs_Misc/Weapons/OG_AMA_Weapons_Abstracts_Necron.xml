@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-	<!-- ==================== Mod - Base Necron Weapon Template ========================= -->	
+	<!-- Necron - Weapon Abstracts -->
+	<!-- Gun Base -->
 	<ThingDef Name="OG_Necron_Gun_Base" Abstract="True" ParentName="OG_Weapon_Base">
 		<techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
@@ -19,6 +19,7 @@
 		</comps>
 	</ThingDef>
 	
+	<!-- Gun Base Makeable -->
 	<ThingDef Name="OG_Necron_Gun_Makeable" ParentName="OG_Necron_Gun_Base" Abstract="True">
 		  <recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -33,6 +34,7 @@
 		</recipeMaker>
 	</ThingDef>
 	
+	<!-- Gun Standard -->
 	<ThingDef Name="OG_Necron_Gun" ParentName="OG_Necron_Gun_Makeable" Abstract="True">
     <weaponTags>
       <li>Necron_Gun</li>
@@ -44,6 +46,7 @@
     </recipeMaker>
 	</ThingDef>
   
+	<!-- Gun Special -->
 	<ThingDef Name="OG_Necron_Gun_Special" ParentName="OG_Necron_Gun_Makeable" Abstract="True">
     <weaponTags>
       <li>Necron_SpecialGun</li>
@@ -55,6 +58,7 @@
     </recipeMaker>
   </ThingDef>
 	
+	<!-- Gun Heavy -->
 	<ThingDef Name="OG_Necron_Gun_Heavy" ParentName="OG_Necron_Gun_Makeable" Abstract="True">
     <weaponTags>
       <li>Necron_HeavyGun</li>
@@ -66,7 +70,7 @@
     </recipeMaker>
   </ThingDef>
  
-	<!-- ==================== Mod - Base Necron Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Base -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Base" Abstract="True" ParentName="OG_Weapon_Base">
     <techLevel>Industrial</techLevel>
 		<smeltable>true</smeltable>
@@ -87,6 +91,7 @@
 		</comps>
 	</ThingDef>
 
+	<!-- Melee Weapon Base Makable -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Makeable" ParentName="OG_Necron_MeleeWeapon_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -103,7 +108,7 @@
 		</recipeMaker>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Necron Melee Weapon Sharp Template ========================= -->
+	<!-- Melee Weapon Base Sharp -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Sharp" ParentName="OG_Necron_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -119,7 +124,7 @@
 		</recipeMaker>
 		</ThingDef>
 
-	<!-- ==================== Mod - Base Necron Melee Weapon Blunt Template ========================= -->
+	<!-- Melee Weapon Base Blunt -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Blunt" ParentName="OG_Necron_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -135,21 +140,21 @@
 		</recipeMaker>
 	</ThingDef>
   
-	<!-- ==================== Mod - Base Necron Sharp Quality Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Sharp -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Sharp_Quality" ParentName="OG_Necron_MeleeWeapon_Sharp" Abstract="True">
 		<weaponTags>
 			<li>NecronMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Necron Blunt Quality Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Blunt -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Blunt_Quality" ParentName="OG_Necron_MeleeWeapon_Blunt" Abstract="True">
 		<weaponTags>
 			<li>NecronMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Power Necron Sharp Melee Quality Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Sharp -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_Necron_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -161,7 +166,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Power Necron Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Blunt -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_Necron_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -173,7 +178,7 @@
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Force Necron Sharp Melee Quality Weapon Template ========================= -->
+	<!-- Melee Weapon Force Sharp -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_Necron_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -185,7 +190,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Force Necron Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- Melee Weapon Force Blunt -->
 	<ThingDef Name="OG_Necron_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Necron_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>

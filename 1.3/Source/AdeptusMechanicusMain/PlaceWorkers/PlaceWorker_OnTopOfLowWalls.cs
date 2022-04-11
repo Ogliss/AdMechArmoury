@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
                 if (def.graphicData != null)
                 {
                     LinkFlags linkFlags = def.graphicData.linkFlags;
-                    if (linkFlags.HasFlag(LinkFlags.Barricades) || linkFlags.HasFlag(LinkFlags.Sandbags))
+                    if (linkFlags.HasFlag(LinkFlags.Barricades) || linkFlags.HasFlag(LinkFlags.Sandbags) || linkFlags.HasFlag(LinkFlags.Fences))
                     {
                         return true;
                     }

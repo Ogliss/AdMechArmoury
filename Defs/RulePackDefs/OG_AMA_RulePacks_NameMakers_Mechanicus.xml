@@ -4,7 +4,7 @@
 	<RulePackDef>
 		<defName>OG_Mechanicus_NamerFaction</defName>
 		<include>
-			<li>OG_Mechanicus_NameUtility</li>
+			<li>OG_NameUtility_Mechanicus</li>
 		</include>
 		<rulePack>
 			<rulesStrings>
@@ -18,11 +18,11 @@
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
-  
+	
 	<RulePackDef>
-		<defName>OG_Mechanicus_NamerBases</defName>
+		<defName>OG_NamerBases_Mechanicus</defName>
 		<include>
-		  <li>OG_Mechanicus_NameUtility</li>
+			<li>OG_NameUtility_Mechanicus</li>
 		</include>
 		<rulePack>
 			<rulesStrings>
@@ -32,9 +32,9 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>OG_Mechanicus_NamerPerson</defName>
+		<defName>OG_NamerPerson_Mechanicus</defName>
 		<include>
-			<li>OG_Mechanicus_NameUtility</li>
+			<li>OG_NameUtility_Mechanicus</li>
 		</include>
 		<rulePack>
 			<rulesStrings>
@@ -59,9 +59,9 @@
 	</RulePackDef>
 
 	<RulePackDef>
-		<defName>OG_Mechanicus_NamerPersonFemale</defName>
+		<defName>OG_NamerPersonFemale_Mechanicus</defName>
 		<include>
-			<li>OG_Mechanicus_NameUtility</li>
+			<li>OG_NameUtility_Mechanicus</li>
 		</include>
 		<rulePack>
 			<rulesStrings>
@@ -84,9 +84,9 @@
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>
-  
+	
 	<RulePackDef>
-		<defName>OG_Mechanicus_NameUtility</defName>
+		<defName>OG_NameUtility_Mechanicus</defName>
 		<rulePack>
 			<rulesStrings>
 				<!--li>WordMechanicus(p=4)->[SylB][SylB]</li>
@@ -208,5 +208,105 @@
 			</rulesRaw>
 		</rulePack>
 	</RulePackDef>
+
+	<!-- Re-used content -->
+
+	<RulePackDef>
+		<defName>OG_LeaderTitleMaker_Mechanicus</defName>
+		<include>
+			<li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>memeLeaderNoun(priority=1)->[cultureLeaderNoun]</li> <!-- ignore all meme nouns, pirates always use a culture noun -->
+				
+				<li>cultureLeaderTitle->[cultureLeaderAdjective] [cultureLeaderNoun]</li>
+
+				<li>cultureLeaderAdjective->high</li>
+				<li>cultureLeaderAdjective->grand</li>
+				<li>cultureLeaderAdjective->lord</li>
+
+				<li>cultureLeaderNoun->magos</li>
+				<li>cultureLeaderNoun->archmagos</li>
+				<li>cultureLeaderNoun->marshal</li>
+				<li>cultureLeaderNoun->governor</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_NamerDeity_Omnissiah</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_deityName->The Omnissiah</li>
+				<li>r_deityName->The Machine God</li>
+				<li>r_deityName->Deus Mechanicus</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_DeityTypeMaker_Omnissiah</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_deityType->The Machine God</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_NamerFestivalGlobal_Mechanicus</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>festivalName(p=2)->[memeAdjective] [festival]</li>
+				<li>festivalName->[festival] of [chosenTheme]</li>
+				<li>festivalName->[chosenAdjective] [festival]</li>
+				<li>festivalName->[keyDeity]'s [festival]</li>
+				<li>festivalName->[festival] of [keyDeity]</li>
+				<li>festivalName->[festival] of [memeConcept]</li>
+				<li>festivalName->[festival] of [chosenIdeoName]</li>
+
+				<li>festival->festival</li>
+				<li>festival->celebration</li>
+				<li>festival->party</li>
+				<li>festival->advent</li>
+				<li>festival->fair</li>
+				<li>festival->jubilee</li>
+				<li>festival->fiesta</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- Culture-specific Festival Names -->
+	<RulePackDef>
+		<defName>OG_NamerFestival_Mechanicus</defName>
+		<include>
+			<li>OG_NamerFestivalGlobal_Mechanicus</li>
+		</include>
+	</RulePackDef>
+
+  <RulePackDef>
+    <defName>OG_NamerRitualFuneral_Mechanicus</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_ritualName(p=2)->[memeAdjective] [funeral]</li>
+        <li>r_ritualName->[funeral] of [chosenTheme]</li>
+        <li>r_ritualName->[chosenAdjective] [funeral]</li>
+        <li>r_ritualName->[keyDeity]'s [funeral]</li>
+        <li>r_ritualName->[funeral] of [keyDeity]</li>
+        <li>r_ritualName->[funeral] of [memeConcept]</li>
+        <li>r_ritualName->[funeral] of [chosenIdeoName]</li>
+
+        <li>funeral->funeral</li>
+        <li>funeral->mourning</li>
+        <li>funeral->eulogy</li>
+        <li>funeral->burial</li>
+        <li>funeral->interment</li>
+        <li>funeral->inhumation</li>
+        <li>funeral->requiem</li>
+        <li>funeral->sepulture</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
 
 </Defs>

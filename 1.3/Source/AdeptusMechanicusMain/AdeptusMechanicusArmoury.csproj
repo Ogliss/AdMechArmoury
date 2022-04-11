@@ -39,7 +39,7 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <AssemblyVersion>1.6.7.2</AssemblyVersion>
     <FileVersion>1.6.0.0</FileVersion>
     <Version>1.3.1</Version>
@@ -76,7 +76,7 @@
     </Reference>
     <Reference Include="1CompToggleDef, Version=1.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleDef\bin\Debug\1CompToggleDef.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\User\Desktop\OgsTools\CompToggleDef\1.3\bin\Debug\1CompToggleDef.dll</HintPath>
       <Private>true</Private>
     </Reference>
     <Reference Include="AbilitiesExtended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -154,12 +154,29 @@
     <Compile Include="Comps\CompGraphicOverlay.cs" />
     <Compile Include="Comps\Comp_Shield.cs" />
     <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
+    <Compile Include="DefExtentions\InheritRecipesDefExtension.cs" />
     <Compile Include="Defs\CultureDef.cs" />
     <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
     <Compile Include="DeOf\AdeptusResearchTabDefOf.cs" />
     <Compile Include="DeOf\AdeptusMemeDefOf.cs" />
+    <Compile Include="GenSteps\Building_WebwayReactor.cs" />
+    <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Pregen.cs" />
+    <Compile Include="GenSteps\EscapePortalWebwayComp.cs" />
+    <Compile Include="GenSteps\GenStep_EscapePortal_Webway.cs" />
+    <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Core.cs" />
+    <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Spine.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Harmony\Patches\Precept_Role_GenerateNameRaw_CultralRoleNames_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\SiegeBlueprintPlacer_PlaceArtilleryBlueprints_RaceRestriction_Patch.cs" />
+    <Compile Include="Harmony\Patches\Precept_Relic_GenerateStuffFor_Name_Patch.cs" />
+    <Compile Include="Harmony\Patches\TrashUtility_ShouldTrashBuilding_Restrictions_Patch.cs" />
+    <Compile Include="Harmony\Patches\JobGiver_OptimizeApparel_ApparelScoreGain_Restrictions_Patch.cs" />
+    <Compile Include="Harmony\Patches\FactionGenerator_NewGeneratedFaction_NoBase_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\Faction_TryGenerateNewLeader_NonhumanlikeFaction_Patch.cs" />
+    <Compile Include="Harmony\Patches\GoodwillSituationWorker_MemeCompatibility_GetNaturalGoodwillOffset_NonhumanlikeFaction_Patch.cs" />
+    <Compile Include="Harmony\Patches\GoodwillSituationWorker_SameIdeo_GetNaturalGoodwillOffset_NonhumanlikeFaction_Patch.cs" />
+    <Compile Include="Harmony\Patches\IdeoFoundation_RandomizeCulture_FactionSpecifc_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnStyleItemChooser_ChooseStyleItem_Name_Patch.cs" />
     <Compile Include="Harmony\Patches\NamePlayerFactionAndSettlementUtility_CanNameFaction_TestingHAR_Patch.cs" />
     <Compile Include="Harmony\Patches\PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch.cs" />
@@ -173,11 +190,14 @@
     <Compile Include="Harmony\Patches\ResearchPatches\ResearchProjectDef_GenerateNonOverlappingCoordinates_SubTabs_Transpiler.cs" />
     <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
     <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_GetForceMissFactorFor_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_DetonateOnDeath.cs" />
     <Compile Include="Comps\CompFireStarter.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
     <Compile Include="Comps\CompHatcherHorde.cs" />
     <Compile Include="Comps\Reliability.cs" />
+    <Compile Include="Things\PassingShips\Class1.cs" />
+    <Compile Include="Things\Pawns\SwarmPawn.cs" />
     <Compile Include="Utility\ReliabilityUtility.cs" />
     <Compile Include="Comps\WeaponComps\GunComps\CompProperties_ToggleFireMode.cs" />
     <Compile Include="DebugTools\Class1.cs" />
@@ -211,7 +231,7 @@
     <None Include="Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
     <None Include="Harmony\Patches\HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler.cs.bak" />
     <Compile Include="Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Astartes_MultiLung_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
     <Compile Include="HediffGivers\HediffGiver_HealthBelowThreshold.cs" />
     <Compile Include="Interfaces\IAdvancedVerb.cs" />
     <Compile Include="Interfaces\IMuzzlePosition.cs" />
@@ -226,9 +246,9 @@
     <None Include="Harmony\Patches\_SkyfallerUtility_MakeDropoffShuttle_FactionShuttle_Transpiler.cs.bak" />
     <Compile Include="Harmony\Patches\CompProjectileInterceptor_CheckIntercept_Laser_Transpiler.cs" />
     <Compile Include="Harmony\Patches\Projectile_Launch_Transpiler.cs" />
-    <Compile Include="Harmony\Patches\Verb_LaunchProjectile_TryCastShot_Transpiler.cs" />
-    <Compile Include="Harmony\Patches\VerbProperties_GetHitChanceFactor_AdvancedVerbProperties_Patch.cs" />
-    <Compile Include="Harmony\Patches\VerbProperties_DrawRadiusRing_DrawExtraRadiusRings_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_LaunchProjectile_TryCastShot_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_GetHitChanceFactor_AdvancedVerbProperties_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_DrawRadiusRing_DrawExtraRadiusRings_Patch.cs" />
     <Compile Include="Harmony\Patches\Building_TurretGun_PlayerControlled_Patches.cs" />
     <Compile Include="Harmony\Patches\BackCompatability\Thing_SpawnSetup_NewThingClass_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_HealthTracker_CheckForStateChange_HediffComp_ForceIncap_Patch.cs" />
@@ -376,10 +396,10 @@
     <Compile Include="Harmony\Patches\PawnGroupMakerUtility_GeneratePawns_AnimalsWithRaiders_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_PathFollower_PatherTick_HeavyWeapons_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingWithComps_DrawColor_CompColorableTwo_Patch.cs" />
-    <Compile Include="Harmony\Patches\VerbProperties_AdjustedAccuracy_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_TryStartCastOn_CompWargearUseable_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_LaunchProjectileStatic_ValidateTarget_CompWargearUseable_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_AdjustedAccuracy_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_TryStartCastOn_CompWargearUseable_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_LaunchProjectileStatic_ValidateTarget_CompWargearUseable_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_TryCastNextBurstShot_MuzzlePosition_Transpiler.cs" />
     <Compile Include="Harmony\Patches\GameComponentUtility_LoadedGame_ManageFactionsInWorld_Patch.cs" />
     <Compile Include="Harmony\Patches\PawnGraphicSet_ResolveApparelGraphics_Test_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_RangedVerbGiver.cs" />
@@ -497,11 +517,9 @@
     <Compile Include="Harmony\Patches\StockGenerator_WeaponsMelee_HandlesThingDef_Settings_Patch.cs" />
     <Compile Include="Harmony\Patches\ThingStuffPair_AllWith_Settings_Patch.cs" />
     <Compile Include="Harmony\Patches\Thing_TakeDamage_SpecialRules_Patch.cs" />
-    <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_CompAdvancedGraphic_Patch.cs.bak" />
-    <Compile Include="Harmony\Patches\Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
-    <None Include="Harmony\Patches\Verb_get_UIIcon_CompAdvancedGraphic_Patch.cs.bak" />
-    <Compile Include="Harmony\Patches\Verb_ShootEquipment_TryCastShot_WeaponSpecialRules_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_Shoot_WarmupComplete_RapidFIre_FixEXP_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_LaunchProjectile_Get_Projectile_Upgradeable_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_ShootEquipment_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_Shoot_WarmupComplete_RapidFIre_FixEXP_Patch.cs" />
     <Compile Include="Abilities\CompAbilityEffect_JumpPack.cs" />
     <Compile Include="Harmony\Patches\ApparelGraphicRecordGetter_TryGetGraphicApparel_PauldronDrawer_Patch.cs" />
     <Compile Include="Harmony\Patches\Pawn_PathFollower_CostToMoveIntoCell_Floater_MoveThroughCover_Patch.cs" />
@@ -558,7 +576,6 @@
     <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
-    <None Include="Harmony\Patches\VerbTracker_CreateVerbTargetCommand_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\CompToggleFireMode_Patches.cs" />
     <None Include="Regeneration\Hediff_Regeneration.cs.bak" />
     <Compile Include="Regeneration\Hediff_Removable.cs" />
@@ -613,13 +630,11 @@
     <Compile Include="Harmony\Patches\Pawn_GetGizmos_HediffComps_Patch.cs" />
     <Compile Include="Harmony\Patches\Apparel_GetWornGizmos_GizmosFromCompWearable_Patch.cs" />
     <None Include="Harmony\Patches\ShotReport_HitReportFor_Patch.cs.bak" />
-    <Compile Include="Harmony\Patches\VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
-    <None Include="Harmony\Patches\VerbTracker_GetVerbsCommands_Patch.cs.bak" />
-    <Compile Include="Harmony\Patches\VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_UseEquipment_Get_Projectile_Upgradeable_Patch.cs" />
-    <Compile Include="Harmony\Patches\Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\VerbProperties_AdjustedCooldown_RapidFire_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_UseEquipment_Get_Projectile_Upgradeable_Patch.cs" />
+    <Compile Include="Harmony\Patches\Verbs\Verb_Shoot_TryCastShot_WeaponSpecialRules_Patch.cs" />
     <Compile Include="Harmony\Patches\HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
-    <None Include="Harmony\Patches\Verb_get_UIIcon_ColouredWeapons_Patch.cs.bak" />
     <None Include="Harmony\Patches\ShotReport_GetAimOnTargetChance_StandardTarget_Debuff_Patch.cs.bak" />
     <Compile Include="Harmony\Patches\NonHumanRangedAttacks\JobGiver_AIFightEnemy_TryGiveJob_RangedVerb_Patch.cs" />
     <Compile Include="Apparel\ApparelComposite.cs" />
@@ -709,9 +724,9 @@
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3087" GeneratePathProperty="true" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3287" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
-      <Version>2.1.1</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="TaskPubliciser">
       <Version>1.0.3</Version>
@@ -719,7 +734,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
-      <Version>9.0.0</Version>
+      <Version>9.0.1</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

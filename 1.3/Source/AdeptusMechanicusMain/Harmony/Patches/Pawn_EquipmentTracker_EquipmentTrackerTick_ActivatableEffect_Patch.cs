@@ -18,40 +18,14 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Notify_EquipmentAddedPostfix(Pawn_EquipmentTracker __instance)
         {
-            if (!__instance.AllEquipmentListForReading.NullOrEmpty())
+            if (__instance == null || __instance.pawn == null || __instance.pawn.Map == null || __instance.AllEquipmentListForReading.NullOrEmpty())
             {
-                foreach (ThingWithComps eq in __instance.AllEquipmentListForReading)
-                {
-                    eq.BroadcastCompSignal(CompAlwaysActivatableEffect.ActivateSignal);
-                    /*
-                    if (eq.TryGetCompFast<CompAlwaysActivatableEffect>() is CompAlwaysActivatableEffect compAlwaysActivatable)
-                    {
-                        bool flag = compAlwaysActivatable.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
-                        if (flag)
-                        {
-                            compAlwaysActivatable.TryActivate();
-                        }
-                    }
-                    */
-                    /*
-                    if (eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() != null && eq.TryGetCompFast<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
-                    {
-                        bool flag = compPowerWeapon.CurrentState == CompActivatableEffect.CompActivatableEffect.State.Deactivated;
-                        if (flag)
-                        {
-                            compPowerWeapon.TryActivate();
-                        }
-                    }
-                    if (eq.TryGetCompFast<CompForceWeaponActivatableEffect>() != null && eq.TryGetCompFast<CompForceWeaponActivatableEffect>() is CompForceWeaponActivatableEffect compForceWeapon)
-                    {
-                        bool flag = compForceWeapon.CurrentState == CompActivatableEffect.CompActivatableEffect.State.Deactivated;
-                        if (flag)
-                        {
-                            compForceWeapon.TryActivate();
-                        }
-                    }
-                    */
-                }
+                return;
+            }
+            foreach (var item in __instance.AllEquipmentListForReading)
+            {
+                ThingWithComps eq = item as ThingWithComps;
+                if (eq != null) eq.BroadcastCompSignal(CompAlwaysActivatableEffect.ActivateSignal);
             }
         }
     }

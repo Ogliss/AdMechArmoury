@@ -22,6 +22,27 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 SOSConstructPatch();
             }
+            MethodInfo checkFaction = null;
+            foreach (var item in typeof(PreceptWorker_Apparel).GetMethods(BindingFlags.NonPublic | BindingFlags.Static))
+            {
+                if (item.Name.Contains("CheckFaction"))
+                {
+                    Log.Message($"{item.Name}");
+                    checkFaction = item;
+                }
+            }
+            if (checkFaction != null)
+            {
+                MethodInfo patch = typeof(PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch).GetMethod("CheckFaction");
+                if (patch != null)
+                {
+                    AMAMod.harmony.Patch(checkFaction, null, new HarmonyMethod(patch));
+                }
+                else
+                {
+                    Log.Error("Couldnt find patch method");
+                }
+            }
 
             MethodInfo QuestGen_Pawns_ = AccessTools.TypeByName("RimWorld.QuestGen.QuestGen_Pawns").GetMethod("GeneratePawn", new Type[] { typeof(Quest), typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool) });
             if (QuestGen_Pawns_ != null)
@@ -238,7 +259,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        // Token: 0x0600000A RID: 10 RVA: 0x000022B0 File Offset: 0x000004B0
         public static void PawnWeaponGenerator_TryGenerateWeaponFor_PostFix(Pawn pawn)
         {
             HugsLib.Settings.SettingHandle<int> chance = Traverse.Create(typeof(DualWield.Base)).Field("NPCDualWieldChance").GetValue<HugsLib.Settings.SettingHandle<int>>();
@@ -301,9 +321,17 @@ namespace AdeptusMechanicus.HarmonyInstance
             var types = baseType.AllSubclassesNonAbstract();
             foreach (Type cur in types)
             {
-                if (cur != typeof(PawnsArrivalModeWorker_CenterDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDropGroups) && cur != typeof(PawnsArrivalModeWorker_RandomDrop))
+                try
                 {
-                    harmonyInstance.Patch(cur.GetMethod("Arrive"), new HarmonyMethod(prefix));
+                    if (cur != typeof(PawnsArrivalModeWorker_CenterDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDropGroups) && cur != typeof(PawnsArrivalModeWorker_RandomDrop))
+                    {
+                        harmonyInstance.Patch(cur.GetMethod("Arrive"), new HarmonyMethod(prefix));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Warning($"Deep Strike/Infiltrators patch on {cur} failed, throwing \n{e}");
+                    continue;
                 }
             }
         }

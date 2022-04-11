@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<CultureDef Abstract="True" Name="OG_Orkoid_CultureBase">
+	<AdeptusMechanicus.CultureDef Abstract="True" Name="OG_Orkoid_CultureBase">
 		<defName>OG_Greenskin_Ork_Culture</defName>
 		<label>greenskin klan</label>
 		<description>A broad category describing the styles and practices of ork 'Kultures' and the worship of their brutish gods.</description>
@@ -67,15 +67,29 @@
 				<weightFactor>1</weightFactor>
 			</li-->
 		</styleItemTags>
-	</CultureDef>
+		<deities>
+			<randomizeOrder>true</randomizeOrder>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
+	</AdeptusMechanicus.CultureDef>
 
-	<CultureDef ParentName="OG_Orkoid_CultureBase">
+	<AdeptusMechanicus.CultureDef ParentName="OG_Orkoid_CultureBase">
 		<defName>OG_Greenskin_Goffs</defName>
 		<iconPath>Ui/Kultur/Goffs</iconPath>
 		<label>goffs</label>
-	</CultureDef>
+		<deities>
+			<min>1</min>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
+	</AdeptusMechanicus.CultureDef>
 
-	<CultureDef>
+	<AdeptusMechanicus.CultureDef>
 		<defName>OG_GreenskinTribal_Culture</defName>
 		<label>greenskin tribe</label>
 		<description>An ancient culture common among rimworld tribes.</description>
@@ -88,6 +102,13 @@
 		<allowedPlaceTags>
 			<li>OriginTribal</li>
 		</allowedPlaceTags>
+		<deities>
+			<min>1</min>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
 		<iconPath>Icons/Ork/Icon_Ork_Hulk</iconPath>
 		<iconColor>(0.8, 0.8, 0.8)</iconColor>
 		<preferredWeaponClasses>
@@ -146,6 +167,6 @@
 				<weightFactor>1</weightFactor>
 			</li-->
 		</styleItemTags>
-	</CultureDef>
+	</AdeptusMechanicus.CultureDef>
 	
 </Defs>

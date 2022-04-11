@@ -82,7 +82,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             var list = __result.ToList();
             CompEquippable compEquippable = __instance.directOwner as CompEquippable;
-            var comp = compEquippable.parent.TryGetCompFast<CompToggleFireMode>();
+            var comp = compEquippable?.parent.TryGetCompFast<CompToggleFireMode>();
             if (comp != null)
             {
                 list.RemoveAll(x => x is Command_VerbTarget verbTarget && verbTarget.verb != comp.ActiveVerb);
@@ -97,20 +97,20 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         private static void Postfix(Pawn __instance, ref IEnumerable<Gizmo> __result)
         {
-            Pawn_EquipmentTracker equipment = __instance.equipment;
-            if (equipment != null)
+            if (__instance != null)
             {
-                ThingWithComps primary = equipment.Primary;
-                if (primary != null)
+                if (__instance.Faction == Faction.OfPlayer)
                 {
-                    CompToggleFireMode comp = primary.GetComp<CompToggleFireMode>();
-                    if (comp != null)
+                    Pawn_EquipmentTracker equipment = __instance.equipment;
+                    if (equipment != null)
                     {
-                        if (GizmoGetter(comp).Count<Gizmo>() > 0)
+                        ThingWithComps primary = equipment.Primary;
+                        if (primary != null)
                         {
-                            if (__instance != null)
+                            CompToggleFireMode comp = primary.GetComp<CompToggleFireMode>();
+                            if (comp != null)
                             {
-                                if (__instance.Faction == Faction.OfPlayer)
+                                if (GizmoGetter(comp).Count<Gizmo>() > 0)
                                 {
                                     __result = __result.Concat(GizmoGetter(comp));
                                 }

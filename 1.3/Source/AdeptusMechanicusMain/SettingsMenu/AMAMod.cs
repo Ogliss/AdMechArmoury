@@ -13,10 +13,8 @@ namespace AdeptusMechanicus.settings
 {
     public class AMAMod : Mod
     {
-        public static Harmony harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
-        public static AMAMod Instance;
-        public static AMSettings settings;
 
+        #region overrides
         public AMAMod(ModContentPack content) : base(content)
         {
             Instance = this;
@@ -83,27 +81,7 @@ namespace AdeptusMechanicus.settings
             listing_Main = new Listing_StandardExpanding();
             if (Prefs.DevMode) Log.Message(string.Format("Adeptus Mecanicus: Armoury: successfully completed {0} harmony patches.", harmony.GetPatchedMethods().Select(new Func<MethodBase, Patches>(Harmony.GetPatchInfo)).SelectMany((Patches p) => p.Prefixes.Concat(p.Postfixes).Concat(p.Transpilers)).Count((Patch p) => p.owner.Contains(harmony.Id))));
         }
-
-        public static float lineheight = (Text.LineHeight + 2f);
-        public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
         public override string SettingsCategory() => "AdeptusMechanicus.ModSeries".Translate();
-        public string ModLoaded() => "Mods Loaded: " + "AdeptusMechanicus.ModName".Translate();
-
-        private int optionalPatchesCount = Patches.FindAll(x => x.optional).Count;
-        private int patchesCount = -1;
-        public int PatchesCount
-        {
-            get
-            {
-                if (patchesCount == -1)
-                {
-                    patchesCount = optionalPatchesCount % 2 == 0 ? optionalPatchesCount / 2 : optionalPatchesCount / 2 + 1;
-                }
-                return patchesCount;
-            }
-        }
-        private float Listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + Listing_ArmouryIntergrationContents + intergrationMenuInc;
-        private float Listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, PatchesCount, lineheight, 0, 0);
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Rect inRect1 = inRect.TopPart(0.05f);
@@ -116,13 +94,57 @@ namespace AdeptusMechanicus.settings
             Widgets.BeginScrollView(Frame, ref this.pos, Menu, false);
             ModOptions(ref Menu, inRect2, Menu.ContractedBy(4).width, ref menu);
             Widgets.EndScrollView();
-        //    PostModOptions(listing_Main, inRect2, width, menu);
+            //    PostModOptions(listing_Main, inRect2, width, menu);
+        }
+        public override void WriteSettings()
+        {
+            base.WriteSettings();
+        }
+        #endregion
+
+        #region properties
+        public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
+        public string ModLoaded() => "Mods Loaded: " + "AdeptusMechanicus.ModName".Translate();
+
+        public int PatchesCount
+        {
+            get
+            {
+                if (patchesCount == -1)
+                {
+                    patchesCount = optionalPatchesCount % 2 == 0 ? optionalPatchesCount / 2 : optionalPatchesCount / 2 + 1;
+                }
+                return patchesCount;
+            }
+        }
+        public static List<PatchDescription> Patches
+        {
+            get
+            {
+                if (patches.NullOrEmpty())
+                {
+                    patches = new List<PatchDescription>();
+                    if (AdeptusIntergrationUtility.enabled_AstraCore)
+                    {
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active", true));
+                        patches.Add(new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "Astra Miliatrum Weapons Patch", "Removes the Astra Militarum versions of dupped Weapons when active", true));
+                        if (AdeptusIntergrationUtility.enabled_CombatExtended)
+                        {
+                            //    patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active"));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Bolt_Astra.xml", "Astra Miliatrum Bolt Weapons CE Patch", "Patches Astra Militarum Bolt Weapons for CE compatability when active", false));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Plasma_Astra.xml", "Astra Miliatrum Plasma Weapons CE Patch", "Patches Astra Militarum Plasma Weapons for CE compatability when active", false));
+                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Misc_Astra.xml", "Astra Miliatrum Misc Weapons CE Patch", "Patches Astra Militarum Misc Weapons for CE compatability when active", false));
+                        }
+                    }
+                }
+                return patches;
+            }
         }
 
-        private float menu = 0;
-        private float armouryMenuInc = 0f;
-        public float XenobiologisMenuInc = 0f;
-        private float intergrationMenuInc = 0f;
+        private float Listing_ArmouryIntergrationLength => Length(this.showArmouryIntergrationOptions, 1, lineheight, 8, 0) + Listing_ArmouryIntergrationContents + intergrationMenuInc;
+        private float Listing_ArmouryIntergrationContents => Length(this.showArmouryIntergrationOptions, PatchesCount, lineheight, 0, 0);
+
+        #endregion
 
         public void IntergrationMenu()
         {
@@ -194,14 +216,6 @@ namespace AdeptusMechanicus.settings
             }
         }
 
-        private static float raceMenuImperial = 0;
-        private static float raceMenuChaos = 0;
-        private static float raceMenuEldar = 0;
-        private static float raceMenuDarkEldar = 0;
-        private static float raceMenuOrk = 0;
-        private static float raceMenuTau = 0;
-        private static float raceMenuNecron = 0;
-        private static float raceMenuTyranid = 0;
         public void ModOptions(ref Rect rect, Rect inRect, float width, ref float ml)
         {
             rect.height = 100000f;
@@ -211,6 +225,12 @@ namespace AdeptusMechanicus.settings
             if (listing_Main.ButtonText(labelA, ref settings.ShowArmourySettings, Dev, ref armouryMenuInc, tooltipA))
             {
                 ArmouryMenus.ArmouryModOptionsMenu(listing_Main);
+                if (AdeptusIntergrationUtility.enabled_VE)
+                {
+                    listing_Main.CheckboxLabeled("Disable Vanilla Expanded Memes",
+                        ref settings.DisableVEMPatch,
+                        "Temp option to bypass an issue with Vanilla Expanded Memes erroring on worldgen with certain scenarios");
+                }
             }
             
             DisableConflicting();
@@ -250,31 +270,6 @@ namespace AdeptusMechanicus.settings
             listing_Main.End();
             rect.height = listing_Main.MaxColumnHeightSeen;
             menu = listing_Main.CurHeight;
-        }
-
-        private static List<PatchDescription> patches;
-        public static List<PatchDescription> Patches
-        {
-            get
-            {
-                if (patches.NullOrEmpty())
-                {
-                    patches = new List<PatchDescription>();
-                    if (AdeptusIntergrationUtility.enabled_AstraCore)
-                    {
-                        patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active", true));
-                        patches.Add(new PatchDescription("AstraMiliatrumMod_WeaponsPatch.xml", "Astra Miliatrum Weapons Patch", "Removes the Astra Militarum versions of dupped Weapons when active", true));
-                        if (AdeptusIntergrationUtility.enabled_CombatExtended)
-                        {
-                        //    patches.Add(new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active"));
-                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Bolt_Astra.xml", "Astra Miliatrum Bolt Weapons CE Patch", "Patches Astra Militarum Bolt Weapons for CE compatability when active", false));
-                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Plasma_Astra.xml", "Astra Miliatrum Plasma Weapons CE Patch", "Patches Astra Militarum Plasma Weapons for CE compatability when active", false));
-                            patches.Add(new PatchDescription("Weapons_Imperial_Ranged_Misc_Astra.xml", "Astra Miliatrum Misc Weapons CE Patch", "Patches Astra Militarum Misc Weapons for CE compatability when active", false));
-                        }
-                    }
-                }
-                return patches;
-            }
         }
 
 
@@ -361,6 +356,7 @@ namespace AdeptusMechanicus.settings
         {
             return ((lineheight * (setting ? lines : linesfallback)) + (setting ? offset : offsetfallback));
         }
+
         public virtual void XenobiologisSettings(ref Listing_StandardExpanding listing_Main, Rect rect, Rect inRect, float num, float xenobiologisMenuLenght)
         {
 
@@ -415,11 +411,26 @@ namespace AdeptusMechanicus.settings
         {
 
         }
-        public override void WriteSettings()
-        {
-            base.WriteSettings();
-        }
 
+        public static Harmony harmony = new Harmony("com.ogliss.rimworld.mod.AdeptusMechanicus");
+        public static AMAMod Instance;
+        public static AMSettings settings;
+        public static float lineheight = (Text.LineHeight + 2f);
+        private int optionalPatchesCount = Patches.FindAll(x => x.optional).Count;
+        private int patchesCount = -1;
+        private float menu = 0;
+        private float armouryMenuInc = 0f;
+        public float XenobiologisMenuInc = 0f;
+        private float intergrationMenuInc = 0f;
+        private static float raceMenuImperial = 0;
+        private static float raceMenuChaos = 0;
+        private static float raceMenuEldar = 0;
+        private static float raceMenuDarkEldar = 0;
+        private static float raceMenuOrk = 0;
+        private static float raceMenuTau = 0;
+        private static float raceMenuNecron = 0;
+        private static float raceMenuTyranid = 0;
+        private static List<PatchDescription> patches;
         private float inc = 0;
         bool showArmouryIntergrationMenu;
         bool showArmouryIntergrationOptions = false;

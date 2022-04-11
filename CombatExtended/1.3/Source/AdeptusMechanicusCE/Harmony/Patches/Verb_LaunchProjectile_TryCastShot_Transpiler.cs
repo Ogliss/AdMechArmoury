@@ -65,11 +65,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                 //    Log.Message(rotation + " is IDrawnWeaponWithRotation with RotationOffset: " + rotation.RotationOffset);
                     aimAngle += rotation.RotationOffset;
                 }
-                Log.Message(string.Format(msg, "Original", sourceLoc, aimAngle));
+            //    Log.Message(string.Format(msg, "Original", sourceLoc, aimAngle));
                 GunDrawExtension gunDrawExtension = equipment.def.GetModExtensionFast<GunDrawExtension>();
                 if (gunDrawExtension != null)
                 {
-                    Log.Message("gunDrawExtension");
+                //    Log.Message("gunDrawExtension");
                 }
                 else
                 if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
@@ -93,7 +93,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 origin = equipment.MuzzlePositionFor(origin, aimAngle);
                 result = new Vector2(origin.x, origin.z);
             }
-            Log.Message(string.Format(msg, "result", result, aimAngle));
+        //    Log.Message(string.Format(msg, "result", result, aimAngle));
             return result;
         }
     }

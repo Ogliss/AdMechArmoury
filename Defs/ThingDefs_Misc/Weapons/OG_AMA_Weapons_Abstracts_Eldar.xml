@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- ==================== Base Eldar Gun Template ========================= -->
+	<!-- Eldar - Weapon Abstracts -->
+	<!-- Gun Base -->
 	<ThingDef Name="OG_Eldar_Gun_Base" ParentName="OG_Gun_Qaulity_Art" Abstract="True">
 		<graphicData>
 			<shaderType>CutoutComplex</shaderType>
@@ -16,6 +17,7 @@
 		</weaponTags>
 	</ThingDef>
 	
+	<!-- Gun Base Relic -->
 	<ThingDef Name="OG_Eldar_Gun_Relic_Base" ParentName="OG_Gun_Qaulity" Abstract="True">
 		<graphicData>
 			<shaderType>CutoutComplex</shaderType>
@@ -32,6 +34,7 @@
 		</weaponTags>
 	</ThingDef>
 	
+	<!-- Gun Base Makeable -->
 	<ThingDef Name="OG_Eldar_Gun_Makeable" ParentName="OG_Eldar_Gun_Base" Abstract="True">
 		  <recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -48,6 +51,7 @@
 		</recipeMaker>
 	</ThingDef>
   
+	<!-- Gun Standard -->
 	<ThingDef Name="OG_Eldar_Gun" ParentName="OG_Eldar_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Eldar_Gun</li>
@@ -59,6 +63,7 @@
 		</recipeMaker>
 	</ThingDef>
 	
+	<!-- Gun Special -->
 	<ThingDef Name="OG_Eldar_Gun_Special" ParentName="OG_Eldar_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Eldar_SpecialGun</li>
@@ -71,6 +76,7 @@
 		</recipeMaker>
 	</ThingDef>
 	
+	<!-- Gun Heavy -->
 	<ThingDef Name="OG_Eldar_Gun_Heavy" ParentName="OG_Eldar_Gun_Makeable" Abstract="True">
 		<weaponTags>
 			<li>Eldar_HeavyGun</li>
@@ -83,7 +89,7 @@
 		</recipeMaker>
 	</ThingDef>
   	
-	<!-- ==================== Mod - Base Eldar Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Base -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Base" ParentName="OG_MeleeWeapon_Base" Abstract="True">
 		<techLevel>Industrial</techLevel>
 		<graphicData>
@@ -112,6 +118,7 @@
 		</comps>
 	</ThingDef>
 
+	<!-- Melee Weapon Base Makable -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Makeable" ParentName="OG_Eldar_MeleeWeapon_Base" Abstract="True">
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -129,7 +136,7 @@
 		</recipeMaker>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Eldar Melee Weapon Sharp Template ========================= -->
+	<!-- Melee Weapon Base Sharp -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Sharp" ParentName="OG_Eldar_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -140,7 +147,7 @@
 		</recipeMaker>
 		</ThingDef>
 
-	<!-- ==================== Mod - Base Eldar Melee Weapon Blunt Template ========================= -->
+	<!-- Melee Weapon Base Blunt -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Blunt" ParentName="OG_Eldar_MeleeWeapon_Makeable" Abstract="True">
 		<recipeMaker>
 			<defaultIngredientFilter>
@@ -151,21 +158,21 @@
 		</recipeMaker>
 	</ThingDef>
   
-	<!-- ==================== Mod - Base Eldar Sharp Quality Melee Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Sharp -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Sharp_Quality" ParentName="OG_Eldar_MeleeWeapon_Sharp" Abstract="True">
 		<weaponTags>
 			<li>EldarMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Eldar Blunt Melee Quality  Weapon Template ========================= -->
+	<!-- Melee Weapon Basic Blunt -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Blunt_Quality" ParentName="OG_Eldar_MeleeWeapon_Blunt" Abstract="True">
 		<weaponTags>
 			<li>EldarMeleeBasic</li>
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Base Eldar Sharp Quality Power Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Sharp -->
 	<ThingDef Name="OG_Eldar_PowerWeapon_Sharp_Quality" ParentName="OG_Eldar_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -177,7 +184,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Eldar Blunt Quality Power Weapon Template ========================= -->
+	<!-- Melee Weapon Powered Blunt -->
 	<ThingDef Name="OG_Eldar_PowerWeapon_Blunt_Quality" ParentName="OG_Eldar_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -189,7 +196,7 @@
 		</weaponTags>
 	</ThingDef>
 	 
-	<!-- ==================== Mod - Base Eldar Sharp Quality Force Weapon Template ========================= -->
+	<!-- Melee Weapon Force Sharp -->
 	<ThingDef Name="OG_Eldar_ForceWeapon_Sharp_Quality" ParentName="OG_Eldar_MeleeWeapon_Sharp" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>
@@ -201,7 +208,7 @@
 		</weaponTags>
 	</ThingDef>
 
-	<!-- ==================== Mod - Base Eldar Blunt Quality Force Weapon Template ========================= -->
+	<!-- Melee Weapon Force Blunt -->
 	<ThingDef Name="OG_Eldar_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Eldar_MeleeWeapon_Blunt" Abstract="True">
 		<recipeMaker>
 			<researchPrerequisites>

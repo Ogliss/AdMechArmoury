@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<CultureDef>
+
+	<AdeptusMechanicus.CultureDef MayRequire="Ogliss.AdMech.Xenobiologis.Tau">
 		<defName>OG_Kroot_Mercenary</defName>
 		<label>mercenary kindred</label>
 		<description>A broad category describing the styles and practices of many kroot mercenary kindred groups.</description>
-		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoKriminul</ideoNameMaker>
-		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityKriminul</deityNameMaker>
-		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerKriminul</deityTypeMaker>
+		<pawnNameMaker>OG_Kroot_NamerPerson</pawnNameMaker>
+		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">OG_NamerIdeoKroot</ideoNameMaker>
+		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">OG_NamerDeity_Kroot</deityNameMaker>
+		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">OG_DeityTypeMaker_Kroot</deityTypeMaker>
 		<leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Kriminul</leaderTitleMaker>
 		<festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalKriminul</festivalNameMaker>
 		<allowedPlaceTags>
@@ -15,6 +17,12 @@
 		</allowedPlaceTags>
 		<iconPath>World/WorldObjects/Expanding/PirateOutpost</iconPath>
 		<iconColor>(0.8, 0.8, 0.8)</iconColor>
+		<deities>
+			<requiredDeities>
+				<li>OG_Vawk</li>
+				<li>OG_Gmork</li>
+			</requiredDeities>
+		</deities>
 		<thingStyleCategories>
 			<li MayRequire="Ludeon.RimWorld.Ideology">
 				<category>Totemic</category>
@@ -47,18 +55,16 @@
 				<baseWeight>0.4</baseWeight>
 				<weightFactor>1</weightFactor>
 			</li>
-
 		</styleItemTags>
-	</CultureDef>
+	</AdeptusMechanicus.CultureDef>
 
-	<CultureDef>
+	<AdeptusMechanicus.CultureDef ParerntName="OG_Kroot_CultureBase" MayRequire="Ogliss.AdMech.Xenobiologis.Tau">
 		<defName>OG_Kroot_Tribal</defName>
 		<label>tribal kroot</label>
-		<description>A broad category describing the styles and practices of many kroot tribal kindred groups.</description>
-		<pawnNameMaker>NamerPersonCorunan</pawnNameMaker>
-		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoCorunan</ideoNameMaker>
-		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityCorunan</deityNameMaker>
-		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerCorunan</deityTypeMaker>
+		<description>A broad category describing the styles and practices of those kroot kindred groups, that for one reason or another have regressed technologically.</description>
+		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">OG_NamerIdeoKroot</ideoNameMaker>
+		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">OG_NamerDeity_Kroot</deityNameMaker>
+		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">OG_DeityTypeMaker_Kroot</deityTypeMaker>
 		<festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalCorunan</festivalNameMaker>
 		<leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Corunan</leaderTitleMaker>
 		<allowedPlaceTags>
@@ -66,6 +72,12 @@
 		</allowedPlaceTags>
 		<iconPath>World/WorldObjects/Expanding/Village</iconPath>
 		<iconColor>(0.8, 0.8, 0.8)</iconColor>
+		<deities>
+			<requiredDeities>
+				<li>OG_Vawk</li>
+				<li>OG_Gmork</li>
+			</requiredDeities>
+		</deities>
 		<preferredWeaponClasses>
 			<noble>Neolithic</noble>
 			<despised>Ultratech</despised>
@@ -108,6 +120,6 @@
 				<weightFactor>1</weightFactor>
 			</li>
 		</styleItemTags>
-	</CultureDef>
+	</AdeptusMechanicus.CultureDef>
 	
 </Defs>

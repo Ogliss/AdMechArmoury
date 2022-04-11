@@ -38,13 +38,19 @@ namespace AdeptusMechanicus
                 }
                 return requiredResearch;
             }
+
         }
+
 
         public bool AnyRequiredResearchCompleted
         {
             get
             {
-                return RequiredResearch.NullOrEmpty() || RequiredResearch.Any(x=> x.IsFinished);
+                foreach (var item in RequiredResearch)
+                {
+                    if (item.IsFinished) return true;
+                }
+                return RequiredResearch.NullOrEmpty();
             }
         }
     }

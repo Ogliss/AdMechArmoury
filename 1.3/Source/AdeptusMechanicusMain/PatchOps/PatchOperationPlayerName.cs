@@ -3,53 +3,54 @@ using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Xml;
-
 namespace Verse
 {
-    // Token: 0x02000D37 RID: 3383
-    public class PatchOperationPlayerName : PatchOperation
-    {
-        // Token: 0x06004B25 RID: 19237 RVA: 0x00231378 File Offset: 0x0022F778
-        public override bool ApplyWorker(XmlDocument xml)
+    /*
+        // Token: 0x02000D37 RID: 3383
+        public class PatchOperationPlayerName : PatchOperation
         {
-            bool flag = false;
-            for (int i = 0; i < this.names.Count; i++)
+            // Token: 0x06004B25 RID: 19237 RVA: 0x00231378 File Offset: 0x0022F778
+            public override bool ApplyWorker(XmlDocument xml)
             {
-                if (SteamUtility.SteamPersonaName == (this.names[i]))
+                bool flag = false;
+                for (int i = 0; i < this.names.Count; i++)
                 {
-                    
-                    flag = true;
-                    break;
+                    if (SteamUtility.SteamPersonaName == (this.names[i]))
+                    {
+
+                        flag = true;
+                        break;
+                    }
                 }
-            }
-            if (flag)
-            {
-                if (this.match != null)
+                if (flag)
                 {
-                //    Log.Message(SteamUtility.SteamPersonaName + " Playing Loading Test Scenario");
-                    return this.match.Apply(xml);
+                    if (this.match != null)
+                    {
+                    //    Log.Message(SteamUtility.SteamPersonaName + " Playing Loading Test Scenario");
+                        return this.match.Apply(xml);
+                    }
                 }
+                else if (this.nomatch != null)
+                {
+                    return this.nomatch.Apply(xml);
+                }
+                return true;
             }
-            else if (this.nomatch != null)
+
+            // Token: 0x06004B26 RID: 19238 RVA: 0x002313FC File Offset: 0x0022F7FC
+            public override string ToString()
             {
-                return this.nomatch.Apply(xml);
+                return string.Format("{0}({1})", base.ToString(), this.names.ToCommaList(false));
             }
-            return true;
+
+            // Token: 0x040032F2 RID: 13042
+            private List<string> names;
+
+            // Token: 0x040032F3 RID: 13043
+            private PatchOperation match;
+
+            // Token: 0x040032F4 RID: 13044
+            private PatchOperation nomatch;
         }
-
-        // Token: 0x06004B26 RID: 19238 RVA: 0x002313FC File Offset: 0x0022F7FC
-        public override string ToString()
-        {
-            return string.Format("{0}({1})", base.ToString(), this.names.ToCommaList(false));
-        }
-
-        // Token: 0x040032F2 RID: 13042
-        private List<string> names;
-
-        // Token: 0x040032F3 RID: 13043
-        private PatchOperation match;
-
-        // Token: 0x040032F4 RID: 13044
-        private PatchOperation nomatch;
-    }
+    */
 }

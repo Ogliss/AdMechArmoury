@@ -76,7 +76,8 @@ namespace AdeptusMechanicus
         }
         private static void InitializeFaction(Faction faction, FactionRelationKind kind)
         {
-            faction.SetRelationDirect(Faction.OfPlayer, kind, false);
+            if (!(faction.HasGoodwill || Faction.OfPlayer.HasGoodwill))
+                faction.SetRelationDirect(Faction.OfPlayer, kind, false);
             Find.FactionManager.Add(faction);
         }
 

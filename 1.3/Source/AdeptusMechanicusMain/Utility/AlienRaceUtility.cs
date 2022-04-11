@@ -5,10 +5,11 @@ using System.Linq;
 using AlienRace;
 using System.Text;
 using AdeptusMechanicus.settings;
+using HarmonyLib;
+using UnityEngine;
 
 namespace AdeptusMechanicus
 {
-    [MayRequireAlienRaces]
     public static class AlienRaceUtility
     {
         public static void AlienRaces()
@@ -443,6 +444,28 @@ namespace AdeptusMechanicus
                 }
             }
         }
+        public static bool CanResearch(ResearchProjectDef def)
+        {
+            return RaceRestrictionSettings.CanResearch((IEnumerable<ThingDef>)AccessTools.Field(typeof(AlienRace.HarmonyPatches), "colonistRaces").GetValue(null), def);
+        }
+
+        public static void RequiredRace(ResearchProjectDef project, ref Rect rect)
+        {
+            if (selected != project)
+            {
+                raceRestriction = RaceRestrictionSettings.researchRestrictionDict[key: project].ToList<ThingDef>();
+            }
+            if (!raceRestriction.NullOrEmpty())
+            {
+                for (int i = 0; i < raceRestriction.Count; i++)
+                {
+                    Widgets.LabelCacheHeight(ref rect, raceRestriction[i].LabelCap, true, false);
+                    rect.yMin += rect.height;
+                }
+            }
+        }
+        static ResearchProjectDef selected = null;
+        static List<ThingDef> raceRestriction = new List<ThingDef>();
         private static StringBuilder debug = new StringBuilder();
     }
 }

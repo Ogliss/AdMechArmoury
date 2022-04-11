@@ -34,7 +34,7 @@ namespace AdeptusMechanicus
         public static ThingDef geneseedCustodes;
         public static Texture2D expandTex;
         public static Texture2D collapseTex;
-
+        public static List<string> humansTags = new List<string>() {"I", "AM", "AS", "C" };
         static ArmouryMain()
         {
             collapseTex = TexButton.Collapse;

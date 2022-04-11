@@ -5,17 +5,51 @@
 	<ThingDef Name="OG_Imperial_Apparel_Base" ParentName="OG_Apparel_Base" Abstract="True">
 		<techLevel>Spacer</techLevel>
 		<apparel>
+			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>Outlander</li>
+				<li>OG_Outlander_Militarum</li>
+				<li>OG_Outlander_Militarum_Cadian</li>
+				<li>OG_Outlander_Militarum_Kreig</li>
+			</ideoDesireAllowedFactionCategoryTags>
+			<!--ideoDesireDisallowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>OG_Outlander_Craftworld</li>
+				<li>OG_OutlanderRefugee_Craftworld</li>
+				<li>OG_Outlander_Harlequin</li>
+				<li>OG_OutlanderRefugee_Harlequin</li>
+				<li>OG_Tribal_Exodite</li>
+				<li>OG_TribalRefugee_Exodite</li>
+				<li>OG_Outlander_DarkEldar</li>
+				<li>OG_OutlanderRefugee_DarkEldar</li>
+				<li>OG_Outlander_Ork</li>
+				<li>OG_OutlanderRefugee_Ork</li>
+				<li>OG_Tribal_Ork</li>
+				<li>OG_TribalRefugee_Ork</li>
+				<li>OG_Outlander_Tau</li>
+				<li>OG_OutlanderRefugee_Tau</li>
+				<li>OG_Outlander_Kroot</li>
+				<li>OG_OutlanderRefugee_Kroot</li>
+				<li>OG_Tribal_Kroot</li>
+				<li>OG_TribalRefugee_Kroot</li>
+			</ideoDesireDisallowedFactionCategoryTags-->
 			<tags>
 				<li>ImperialApparel</li>
 			</tags>
 		</apparel>
 		<thingCategories>
-			<li>OGISub</li>
+			<li>OG_Apparel_Imperial</li>
 		</thingCategories>
 	</ThingDef>
 	
     <!-- ========================= Imperial - Clothes Makable Base ========================== -->
 	<ThingDef Name="OG_Imperial_Apparel_Makeable" ParentName="OG_Imperial_Apparel_Base" Abstract="True">
+		<apparel>
+			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>Outlander</li>
+				<li>OG_Outlander_Mechanicus</li>
+				<li>OG_Outlander_Sororitas</li>
+				<li>OG_Outlander_Astartes</li>
+			</ideoDesireAllowedFactionCategoryTags>
+		</apparel>
 		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
 			<workSkill>Crafting</workSkill>
@@ -99,7 +133,7 @@
 			</tags>
 		</apparel>
 		<thingCategories>
-			<li>OGISub</li>
+			<li>OG_Apparel_Imperial</li>
 		</thingCategories>
 	</ThingDef>
 
@@ -519,15 +553,8 @@
 	</ThingDef>
 
 	<!-- ========================= Imperial - Apparel Wargear Base ========================== -->
-	<ThingDef Name="OG_Imperial_Apparel_Wargear_Base" ParentName="OG_Apparel_Base" Abstract="True">
+	<ThingDef Name="OG_Imperial_Apparel_Wargear_Base" ParentName="OG_Apparel_Wargear_Base" Abstract="True">
 		<apparel>
-			<countsAsClothingForNudity IgnoreIfNoMatchingField="True">false</countsAsClothingForNudity>
-			<careIfWornByCorpse>false</careIfWornByCorpse>
-			<careIfDamaged>false</careIfDamaged>
-			<wearPerDay>0</wearPerDay>
-			<!--layers>
-				<li>Belt</li>
-			</layers-->
 			<tags>
 				<li>ImperialWargear</li>
 			</tags>

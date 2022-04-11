@@ -17,38 +17,51 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(ResearchProjectDef), "get_PrerequisitesCompleted")]
     public static class ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_Patch
     {
-        public static void Postfix(ResearchProjectDef __instance, ref bool __result)
+        public static bool Postfix(bool __result, ResearchProjectDef __instance)
         {
-            if (__instance.HasModExtension<AnyPrerequisiteResearchExtension>())
+            if (__result)
             {
-                AnyPrerequisiteResearchExtension ext = __instance.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
-                if (!ext.RequiredResearch.NullOrEmpty())
+
+                if (__instance.HasModExtension<AnyPrerequisiteResearchExtension>())
                 {
-                    if (ext.AnyRequiredResearchCompleted)
+                    AnyPrerequisiteResearchExtension ext = __instance.GetModExtensionFast<AnyPrerequisiteResearchExtension>();
+                    if (!ext.RequiredResearch.NullOrEmpty())
                     {
-                        List<ResearchProjectDef> reqs = new List<ResearchProjectDef>();
-                        if (!__instance.prerequisites.NullOrEmpty())
+                        return ext.AnyRequiredResearchCompleted;
+                        if (ext.AnyRequiredResearchCompleted)
                         {
-                            reqs.AddRange(__instance.prerequisites);
+                            List<ResearchProjectDef> reqs = new List<ResearchProjectDef>();
+                            if (!__instance.prerequisites.NullOrEmpty())
+                            {
+                                reqs.AddRange(__instance.prerequisites);
+                            }
+                            if (!__instance.hiddenPrerequisites.NullOrEmpty())
+                            {
+                                reqs.AddRange(__instance.hiddenPrerequisites);
+                            }
+                            if (!reqs.NullOrEmpty())
+                            {
+                                __result = __result || !reqs.Any(x => !x.IsFinished && !ext.RequiredResearch.Contains(x));
+                            }
                         }
-                        if (!__instance.hiddenPrerequisites.NullOrEmpty())
+                        /*
+                        else
                         {
-                            reqs.AddRange(__instance.hiddenPrerequisites);
+                            __result = false;
                         }
-                        if (!reqs.NullOrEmpty())
-                        {
-                            __result = __result || !reqs.Any(x => !x.IsFinished && !ext.RequiredResearch.Contains(x));
-                        }
+                        */
                     }
-                    /*
-                    else
-                    {
-                        __result = false;
-                    }
-                    */
                 }
+                /*
+                if (__result && AdeptusIntergrationUtility.enabled_AlienRaces)
+                {
+                    __result = AlienRaceUtility.CanResearch(__instance);
+                }
+                */
             }
+            return __result;
         }
+
     }
     
 }
