@@ -13,7 +13,7 @@ namespace AdeptusMechanicus.settings
 {
     public class AMAMod : Mod
     {
-
+        bool restart = false;
         #region overrides
         public AMAMod(ModContentPack content) : base(content)
         {
@@ -99,6 +99,7 @@ namespace AdeptusMechanicus.settings
         public override void WriteSettings()
         {
             base.WriteSettings();
+            
         }
         #endregion
 

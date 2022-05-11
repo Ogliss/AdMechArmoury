@@ -130,21 +130,30 @@ namespace AdeptusMechanicus
                             }
                         }
                     }
-                    if (!blackRecipes.NullOrEmpty() || !whiteRecipes.NullOrEmpty() && Logging)
+                    if (settings.AMSettings.Instance.RacialProductionRestriction)
                     {
-                        debug.AppendLine("    Recipes: ");//+(blackRecipes.Count + whiteRecipes.Count));
+                        if (!blackRecipes.NullOrEmpty() || !whiteRecipes.NullOrEmpty() && Logging)
+                        {
+                            debug.AppendLine("    Recipes: ");//+(blackRecipes.Count + whiteRecipes.Count));
+                        }
+                        RestrictRecipes(alien, whiteRecipes, blackRecipes, Logging);
                     }
-                    RestrictRecipes(alien, whiteRecipes, blackRecipes, Logging);
-                    if (!blackBuildings.NullOrEmpty() || !whiteBuildings.NullOrEmpty() && Logging)
+                    if (settings.AMSettings.Instance.RacialConstructionRestriction)
                     {
-                        debug.AppendLine("    Buildings: ");// + (blackBuildings.Count + whiteBuildings.Count));
+                        if (!blackBuildings.NullOrEmpty() || !whiteBuildings.NullOrEmpty() && Logging)
+                        {
+                            debug.AppendLine("    Buildings: ");// + (blackBuildings.Count + whiteBuildings.Count));
+                        }
+                        RestrictBuildings(alien, whiteBuildings, blackBuildings, Logging);
                     }
-                    RestrictBuildings(alien, whiteBuildings, blackBuildings, Logging);
-                    if (!blackResearches.NullOrEmpty() || !whiteResearches.NullOrEmpty() && Logging)
+                    if (settings.AMSettings.Instance.RacialResearchRestriction)
                     {
-                        debug.AppendLine("    Research: ");// + (blackResearches.Count + whiteResearches.Count));
+                        if (!blackResearches.NullOrEmpty() || !whiteResearches.NullOrEmpty() && Logging)
+                        {
+                            debug.AppendLine("    Research: ");// + (blackResearches.Count + whiteResearches.Count));
+                        }
+                        RestrictResearch(alien, whiteResearches, blackResearches, Logging);
                     }
-                    RestrictResearch(alien, whiteResearches, blackResearches, Logging);
                     if (!blackApparel.NullOrEmpty() || !whiteApparel.NullOrEmpty() && Logging)
                     {
                         debug.AppendLine("    Apparel: ");// + (blackApparel.Count + whiteApparel.Count));

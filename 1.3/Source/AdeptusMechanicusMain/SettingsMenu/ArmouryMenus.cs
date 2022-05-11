@@ -22,6 +22,8 @@ namespace AdeptusMechanicus
         private static float Listing_WeaponSpecialRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeaponSpecialRules, 4, AMAMod.lineheight, 0, 0);
         private static float Listing_AllowedWeaponRulesLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowAllowedWeapons, 4, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
         private static float Listing_AllowedWeaponRulesContents => AMAMod.Instance.Length(settings.ShowAllowedWeapons, 3, AMAMod.lineheight, 0, 0);
+        private static float Listing_MiscOptionsLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowPerformanceOptions, 4, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
+        private static float Listing_MiscOptionsContents => AMAMod.Instance.Length(settings.ShowPerformanceOptions, 3, AMAMod.lineheight, 0, 0);
         private static float Listing_PerformanceOptionsLength => AMAMod.Instance.Length(settings.ShowArmourySettings && settings.ShowPerformanceOptions, 4, AMAMod.lineheight, 8, settings.ShowArmourySettings ? 1 : 0);
         private static float Listing_PerformanceOptionsContents => AMAMod.Instance.Length(settings.ShowPerformanceOptions, 3, AMAMod.lineheight, 0, 0);
 
@@ -102,24 +104,24 @@ namespace AdeptusMechanicus
                 listing.listingRect.height = listing.MaxColumnHeightSeen;
 
             }
-            // Armoury mod Performance options menu
+            // Armoury mod Misc/Performance options menu
             {
                 Listing_StandardExpanding listing = listing_Menu.BeginSection(Listing_PerformanceOptionsLength, false, 3, 4, 0);
                 if (listing.CheckboxLabeled("AdeptusMechanicus.ShowPerformanceOptions".Translate(), ref settings.ShowPerformanceOptions, "AdeptusMechanicus.ShowPerformanceOptionsDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex))
                 {
                     Listing_StandardExpanding listing_General = listing.BeginSection(Listing_PerformanceOptionsContents, true);
                     listing_General.ColumnWidth *= 0.32f;
-                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowProjectileTrail".Translate(), ref settings.AllowProjectileTrail, "AMAAllowProjectileTrailDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.RacialResearchRestriction".Translate(), ref settings.RacialResearchRestriction, "AdeptusMechanicus.RacialResearchRestrictionDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.RacialConstructionRestriction".Translate(), ref settings.RacialConstructionRestriction, "AdeptusMechanicus.RacialConstructionRestrictionDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.RacialProductionRestriction".Translate(), ref settings.RacialProductionRestriction, "AdeptusMechanicus.RacialProductionRestrictionDesc".Translate());
+                    listing_General.NewColumn();
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowProjectileTrail".Translate(), ref settings.AllowProjectileTrail, "AdeptusMechanicus.AllowProjectileTrailDesc".Translate());
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowProjectileGlow".Translate(), ref settings.AllowProjectileGlow, "AdeptusMechanicus.AllowProjectileGlowDesc".Translate());
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowMuzzlePosition".Translate(), ref settings.AllowMuzzlePosition, "AdeptusMechanicus.AllowMuzzlePositionDesc".Translate());
                     listing_General.NewColumn();
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowPauldronDrawer".Translate(), ref settings.AllowPauldronDrawer, "AdeptusMechanicus.AllowPauldronDrawerDesc".Translate());
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowExtraPartDrawer".Translate(), ref settings.AllowExtraPartDrawer, "AdeptusMechanicus.AllowExtraPartDrawerDesc".Translate());
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowHediffPartDrawer".Translate(), ref settings.AllowHediffPartDrawer, "AdeptusMechanicus.AllowHediffPartDrawerDesc".Translate());
-                    listing_General.NewColumn();
-                //    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowOrkWeapons".Translate(), ref settings.AllowOrkWeapons, "AdeptusMechanicus.AllowOrkWeaponsDesc".Translate());
-                //    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowNecronWeapons".Translate(), ref settings.AllowNecronWeapons, "AdeptusMechanicus.AllowNecronWeaponsDesc".Translate());
-                //    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowTyranidWeapons".Translate(), ref settings.AllowTyranidWeapons, "AdeptusMechanicus.AllowTyranidWeaponsDesc".Translate());
                     listing.EndSection(listing_General);
                     listing_General.listingRect.height = listing_General.MaxColumnHeightSeen;
                 }

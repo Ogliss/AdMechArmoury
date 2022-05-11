@@ -44,6 +44,12 @@ namespace AdeptusMechanicus.settings
         public bool AllowNecronWeapons = true;
         public bool AllowTyranidWeapons = false;
 
+        // Armoury Misc Options
+        public bool ShowMiscOptions = false;
+        public bool RacialResearchRestriction = true;
+        public bool RacialConstructionRestriction = true;
+        public bool RacialProductionRestriction = true;
+
         // Armoury Performance Options
         public bool ShowPerformanceOptions = false;
         public bool AllowProjectileTrail = true;
@@ -228,6 +234,10 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowPauldronDrawer, "AMA_AllowPauldronDrawer", true);
                 Scribe_Values.Look(ref this.AllowExtraPartDrawer, "AMA_AllowExtraPartDrawer", true);
                 Scribe_Values.Look(ref this.AllowHediffPartDrawer, "AMA_AllowHediffPartDrawer", true);
+
+                Scribe_Values.Look(ref this.RacialConstructionRestriction, "AMA_RacialConstructionRestriction", true);
+                Scribe_Values.Look(ref this.RacialProductionRestriction, "AMA_RacialProductionRestriction", true);
+                Scribe_Values.Look(ref this.RacialResearchRestriction, "AMA_RacialResearchRestriction", true);
             }
 
             // Xenobiologis Data
