@@ -186,7 +186,7 @@ namespace AdeptusMechanicus
 						{
 							foreach (ShoulderPadEntry entry in Drawer.activeEntries)
 							{
-								if (entry.Options.NullOrEmpty() && (entry.UseVariableTextures || entry.UseFactionTextures))
+								if (entry.Options.NullOrEmpty() && (entry.useVariableTextures || entry.useFactionTextures))
 								{
 									if (entry.Options.NullOrEmpty())
 									{
@@ -198,7 +198,7 @@ namespace AdeptusMechanicus
 								{
 									//entry.drawer = Drawer;
 								}
-								if (entry.UseFactionTextures)
+								if (entry.useFactionTextures)
 								{
 									Rect rect = new Rect(0f, num, scrollViewRect.width, 30f);
 									AdeptusApparelUtility.DrawFactionButton(rect, Drawer, entry, false);
@@ -206,7 +206,7 @@ namespace AdeptusMechanicus
 									num4++;
 								}
 								else
-								if (entry.UseVariableTextures)
+								if (entry.useVariableTextures)
 								{
 									Rect rect = new Rect(0f, num, scrollViewRect.width, 30f);
 									AdeptusApparelUtility.DrawVariantButton(rect, Drawer, entry, false);

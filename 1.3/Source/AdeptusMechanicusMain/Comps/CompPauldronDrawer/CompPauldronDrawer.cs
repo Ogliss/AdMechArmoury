@@ -241,7 +241,7 @@ namespace AdeptusMechanicus
                         return entry.Used.Color.Value;
                     }
                 }
-                if (entry.UseFactionColors)
+                if (entry.useFactionColors)
                 {
                     CompColorableTwoFaction colours = Colours as CompColorableTwoFaction;
                     if (colours != null)
@@ -271,7 +271,7 @@ namespace AdeptusMechanicus
                 //    Log.Message("mainColorFor " + entry.shoulderPadType + " overridePrimaryColor");
                     return entry.overridePrimaryColor.Value;
                 }
-                if (entry.UseSecondaryColorAsPrimary)
+                if (entry.useSecondaryColorAsPrimary)
                 {
                     if (entry.overrideSecondaryColor.HasValue)
                     {
@@ -292,7 +292,7 @@ namespace AdeptusMechanicus
             string log = (pawn != null ? pawn.NameShortColored.ToString() + "'s " : string.Empty) +parent.LabelCap+ " secondaryColorFor " + entry.shoulderPadType;
             if (entry != null)
             {
-                if (entry.UsePrimaryColorAsSecondary)
+                if (entry.usePrimaryColorAsSecondary)
                 {
                     log += " UsePrimaryColorAsSecondary";
                 }
@@ -300,7 +300,7 @@ namespace AdeptusMechanicus
                 {
                     if (entry.Used.ColorTwo != null)
                     {
-                        secondary = entry.UsePrimaryColorAsSecondary ? entry.Used.Color.Value : entry.Used.ColorTwo.Value;
+                        secondary = entry.usePrimaryColorAsSecondary ? entry.Used.Color.Value : entry.Used.ColorTwo.Value;
                         log += " activeOption: "+ secondary;
                     //    Log.Message(log);
                         return secondary;
@@ -314,7 +314,7 @@ namespace AdeptusMechanicus
                 //    Log.Message(log);
                     return secondary;
                 }
-                if (entry.UsePrimaryColorAsSecondary)
+                if (entry.usePrimaryColorAsSecondary)
                 {
                     log += " UsePrimaryColorAsSecondary";
                     if (entry.overridePrimaryColor.HasValue)
@@ -331,13 +331,13 @@ namespace AdeptusMechanicus
                 //    Log.Message(log);
                     return this.parent.DrawColor;
                 }
-                if (entry.UseFactionColors)
+                if (entry.useFactionColors)
                 {
                     if (Colours is CompColorableTwoFaction colours)
                     {
                         if (colours.FactionActiveTwo)
                         {
-                            secondary = entry.UsePrimaryColorAsSecondary ? colours.Color : colours.ColorTwo;
+                            secondary = entry.usePrimaryColorAsSecondary ? colours.Color : colours.ColorTwo;
                             log += " UseFactionColors: " + secondary;
                         //    Log.Message(log);
                             return secondary;

@@ -480,7 +480,7 @@ namespace AdeptusMechanicus
                                 }
                                 else
                                 {
-                                    if (e.UseFactionColors)
+                                    if (e.useFactionColors)
                                     {
                                         if (variant.Color.HasValue)
                                         {

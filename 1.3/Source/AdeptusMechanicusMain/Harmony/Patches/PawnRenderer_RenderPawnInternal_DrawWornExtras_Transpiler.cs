@@ -164,7 +164,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
                                             if (ExtraDrawer.ExtraPartEntry.DynamicDraw)
                                             {
-                                            //    continue;
+                                                continue;
                                             }
                                             if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                             {
@@ -224,7 +224,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             {
                                                 Log.Warning("Warning! Drawer null");
                                             }
-                                            if (entry.ForceDynamicDraw)
+                                            if (entry.forceDynamicDraw)
                                             {
                                                 continue;
                                             }

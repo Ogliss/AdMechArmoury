@@ -217,7 +217,7 @@ namespace AdeptusMechanicus
                         {
                             Log.Warning("Warning! Drawer null");
                         }
-                        if (!entry.ForceDynamicDraw)
+                        if (!entry.forceDynamicDraw)
                         {
                             continue;
                         }

@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
             this.label = entry.label;
             this.shoulderPadType = entry.shoulderPadType;
             this.shaderType = entry.shaderType;
-            this.ForceDynamicDraw = entry.forceDynamicDraw;
+            this.forceDynamicDraw = entry.forceDynamicDraw;
             this.bodyspecificTextures = entry.bodyspecificTextures;
             this.padTexPath = entry.padTexPath;
             if (!entry.label.NullOrEmpty())
@@ -43,16 +43,16 @@ namespace AdeptusMechanicus
             this.southalt = entry.southtop;
             this.eastalt = entry.easttop;
             this.westalt = entry.westtop;
-            this.UseFactionTextures = entry.UseFactionTextures;
-            this.UseFactionColors = entry.UseFactionColors;
-            this.UseVariableTextures = entry.UseVariableTextures;
-            this.UsePrimaryColor = entry.UsePrimaryColor;
+            this.useFactionTextures = entry.UseFactionTextures;
+            this.useFactionColors = entry.UseFactionColors;
+            this.useVariableTextures = entry.UseVariableTextures;
+            this.usePrimaryColor = entry.UsePrimaryColor;
             this.overridePrimaryColor = entry.overridePrimaryColor;
-            this.UseSecondaryColor = entry.UseSecondaryColor;
+            this.useSecondaryColor = entry.UseSecondaryColor;
             this.overrideSecondaryColor = entry.overrideSecondaryColor;
             this.order = entry.order;
             this.sublayer = entry.sublayer;
-            if (this.UseFactionTextures || this.UseVariableTextures)
+            if (this.useFactionTextures || this.useVariableTextures)
             {
                 this.defaultOption = entry.defaultOption;
                 if (activeOption == null)
@@ -183,7 +183,7 @@ namespace AdeptusMechanicus
                 Vector2 v = wornGraphic.BeltOffsetAt(rot, apparel.Wearer.story.bodyType);
                 vector += new Vector3(v.x, 0, v.y);
             }
-            vector.y += this.ForceDynamicDraw ? altOffset : Math.Min(altOffset, YOffset_Head);
+            vector.y += this.forceDynamicDraw ? altOffset : Math.Min(altOffset, YOffset_Head);
             // vector.y = Math.Min(Math.Min(vector.y, altOffset), YOffset_CarriedThing);
             //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
@@ -321,13 +321,13 @@ namespace AdeptusMechanicus
             Pawn pawn = Drawer.pawn;
             Shader shader = this.Shader;
             string path = padTexPath;
-            if (UseFactionTextures || UseVariableTextures)
+            if (useFactionTextures || useVariableTextures)
             {
                 bool notPlayer = pawn.Faction != null && (pawn.Faction != Faction.OfPlayer);
                 if (notPlayer)
                 {
                     FactionDefExtension ext = pawn.Faction.def.HasModExtension<FactionDefExtension>() ? pawn.Faction.def.GetModExtensionFast<FactionDefExtension>() : null;
-                    bool factionTextures = UseFactionTextures && ext?.factionTextureTag != null;
+                    bool factionTextures = useFactionTextures && ext?.factionTextureTag != null;
                     if (factionTextures)
                     {
                         //    Log.Message("using factionTextureTag " + ext.factionTextureTag);
@@ -365,7 +365,7 @@ namespace AdeptusMechanicus
                 }
                 else
                 {
-                    if (UseFactionTextures)
+                    if (useFactionTextures)
                     {
                         //    Log.Message("UseFactionTextures");
                     //    CompColorableTwoFaction FC = Drawer.Colours as CompColorableTwoFaction;
@@ -476,7 +476,7 @@ namespace AdeptusMechanicus
             {
                 this.UpdateProps();
                 path = padTexPath;
-                if (UseFactionTextures || UseVariableTextures)
+                if (useFactionTextures || useVariableTextures)
                 {
                     path = padTexPath + "/" + this.DefaultOption.TexPath;
                 }
@@ -715,13 +715,13 @@ namespace AdeptusMechanicus
             Scribe_Values.Look(ref this.southalt, "southalt", "Shell");
             Scribe_Values.Look(ref this.eastalt, "eastalt", "Shell");
             Scribe_Values.Look(ref this.westalt, "westalt", "Shell");
-            Scribe_Values.Look(ref this.ForceDynamicDraw, "ForceDynamicDraw", false);
-            Scribe_Values.Look(ref this.UseFactionTextures, "UseFactionTextures", false);
-            Scribe_Values.Look(ref this.UseFactionColors, "UseFactionColors", false);
-            Scribe_Values.Look(ref this.UseVariableTextures, "UseVariableTextures", false);
-            Scribe_Values.Look(ref this.UsePrimaryColor, "UsePrimaryColor", true);
+            Scribe_Values.Look(ref this.forceDynamicDraw, "ForceDynamicDraw", false);
+            Scribe_Values.Look(ref this.useFactionTextures, "UseFactionTextures", false);
+            Scribe_Values.Look(ref this.useFactionColors, "UseFactionColors", false);
+            Scribe_Values.Look(ref this.useVariableTextures, "UseVariableTextures", false);
+            Scribe_Values.Look(ref this.usePrimaryColor, "UsePrimaryColor", true);
             Scribe_Values.Look(ref this.overridePrimaryColor, "PrimaryColor", null);
-            Scribe_Values.Look(ref this.UseSecondaryColor, "UseSecondaryColor", true);
+            Scribe_Values.Look(ref this.useSecondaryColor, "UseSecondaryColor", true);
             Scribe_Values.Look(ref this.overrideSecondaryColor, "SecondaryColor", null);
             Scribe_Values.Look(ref this.order, "order", 1);
             Scribe_Values.Look(ref this.sublayer, "sublayer", 0);
@@ -760,15 +760,15 @@ namespace AdeptusMechanicus
         public string southalt = "Shell";
         public string eastalt = "Shell";
         public string westalt = "Shell";
-        public bool UseFactionTextures = false;
-        public bool ForceDynamicDraw = false;
-        public bool UseFactionColors = false;
-        public bool UseVariableTextures;
-        public bool UsePrimaryColor = true;
-        public bool UseSecondaryColorAsPrimary = false;
+        public bool useFactionTextures = false;
+        public bool forceDynamicDraw = false;
+        public bool useFactionColors = false;
+        public bool useVariableTextures;
+        public bool usePrimaryColor = true;
+        public bool useSecondaryColorAsPrimary = false;
         public Color? overridePrimaryColor;
-        public bool UseSecondaryColor = true;
-        public bool UsePrimaryColorAsSecondary = false;
+        public bool useSecondaryColor = true;
+        public bool usePrimaryColorAsSecondary = false;
         public Color? overrideSecondaryColor;
         public int order = 1;
         public int sublayer = 0;
