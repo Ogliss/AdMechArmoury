@@ -41,7 +41,8 @@ namespace AdeptusMechanicus
 
 		public static FleckCreationData GetDataThrowMetaIcon(Vector3 loc, Map map, FleckDef fleckDef, float scale = 1f, Color? color = null, float? exactRotation = null, float? rotationRate = null, float? solidTimeOverride = null, float velocitySpeed = 0.42f, float? velocityAngle = null)
 		{
-			return new FleckCreationData
+			Rand.PushState();
+			FleckCreationData data = new FleckCreationData
 			{
 				def = fleckDef,
 				spawnPosition = loc + new Vector3(0.35f, 0f, 0.35f) + new Vector3(Rand.Value, 0f, Rand.Value) * 0.1f,
@@ -50,10 +51,13 @@ namespace AdeptusMechanicus
 				rotationRate = Rand.Range(-3f, 3f),
 				scale = 0.7f
 			};
+			Rand.PopState();
+			return data;
 		}
 		public static FleckCreationData GetDataThrowMetaIcon(IntVec3 cell, Map map, FleckDef fleckDef, float velocitySpeed = 0.42f)
 		{
-			return new FleckCreationData
+			Rand.PushState();
+			FleckCreationData data = new FleckCreationData
 			{
 				def = fleckDef,
 				spawnPosition = cell.ToVector3Shifted() + new Vector3(0.35f, 0f, 0.35f) + new Vector3(Rand.Value, 0f, Rand.Value) * 0.1f,
@@ -62,6 +66,8 @@ namespace AdeptusMechanicus
 				rotationRate = Rand.Range(-3f, 3f),
 				scale = 0.7f
 			};
+			Rand.PopState();
+			return data;
 		}
 
 		public static void ThrowMetaIcon(IntVec3 cell, Map map, FleckDef fleckDef, float velocitySpeed = 0.42f)
@@ -107,10 +113,14 @@ namespace AdeptusMechanicus
 		public static void ThrowMetaPuffs(TargetInfo targ)
 		{
 			Vector3 center = targ.HasThing ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();
+			Rand.PushState();
 			int numDust = Rand.RangeInclusive(4, 6);
+			Rand.PopState();
 			for (int i = 0; i < numDust; i++)
 			{
+				Rand.PushState();
 				Vector3 loc = center + new Vector3(Rand.Range(-0.5f, 0.5f), 0f, Rand.Range(-0.5f, 0.5f));
+				Rand.PopState();
 				AdeptusFleckMaker.ThrowMetaPuff(loc, targ.Map);
 			}
 		}
@@ -121,9 +131,11 @@ namespace AdeptusMechanicus
 			if (!flag)
 			{
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.MetaPuff, 1.9f);
+				Rand.PushState();
 				data.rotationRate = (float)Rand.Range(-60, 60);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = Rand.Range(0.6f, 0.78f);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -133,10 +145,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ToIntVec3().ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc + new Vector3(Rand.Range(-0.02f, 0.02f), 0f, Rand.Range(-0.02f, 0.02f)), map, FleckDefOf.AirPuff, 1.5f);
 				data.rotationRate = (float)Rand.RangeInclusive(-240, 240);
 				data.velocityAngle = (float)Rand.Range(-45, 45);
 				data.velocitySpeed = Rand.Range(1.2f, 1.5f);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -146,11 +160,13 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ToIntVec3().ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc + new Vector3(Rand.Range(-0.005f, 0.005f), 0f, Rand.Range(-0.005f, 0.005f)), map, FleckDefOf.AirPuff, Rand.Range(0.6f, 0.7f));
 				data.rotationRate = (float)Rand.RangeInclusive(-240, 240);
 				data.velocityAngle = throwAngle + (float)Rand.Range(-10, 10);
 				data.velocitySpeed = Rand.Range(0.1f, 0.8f);
 				data.velocity = new Vector3?(inheritVelocity * 0.5f);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -158,7 +174,9 @@ namespace AdeptusMechanicus
 		// edited
 		public static void ThrowDustPuff(IntVec3 cell, Map map, float scale, FleckDef def = null, Color? color = null)
 		{
+			Rand.PushState();
 			Vector3 throwPosExact = cell.ToVector3() + new Vector3(Rand.Value, 0f, Rand.Value);
+			Rand.PopState();
 			AdeptusFleckMaker.ThrowDustPuff(throwPosExact, map, scale, def, color);
 		}
 
@@ -168,10 +186,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, def ?? FleckDefOf.DustPuff, 1.9f * scale);
 				data.rotationRate = (float)Rand.Range(-60, 60);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = Rand.Range(0.6f, 0.75f);
+				Rand.PopState();
 				if (color.HasValue)
 				{
 					data.instanceColor = color.Value;
@@ -187,9 +207,11 @@ namespace AdeptusMechanicus
 			if (!flag)
 			{
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.DustPuffThick, scale);
+				Rand.PushState();
 				data.rotationRate = (float)Rand.Range(-60, 60);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = Rand.Range(0.6f, 0.75f);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -200,10 +222,12 @@ namespace AdeptusMechanicus
 			if (!flag)
 			{
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.TornadoDustPuff, 1.9f * scale);
+				Rand.PushState();
 				data.rotationRate = (float)Rand.Range(-60, 60);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = Rand.Range(0.6f, 0.75f);
 				data.instanceColor = new Color?(color);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -214,11 +238,13 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, def ?? FleckDefOf.Smoke, Rand.Range(1.5f, 2.5f) * size);
 				data.rotationRate = Rand.Range(-30f, 30f);
 				data.velocityAngle = (float)Rand.Range(30, 40);
 				data.spawnPosition = loc;
 				data.velocitySpeed = Rand.Range(0.5f, 0.7f);
+				Rand.PopState();
 				if (color.HasValue)
 				{
 					data.instanceColor = color.Value;
@@ -234,17 +260,19 @@ namespace AdeptusMechanicus
 
 		public static void ThrowFireGlow(Vector3 c, Map map, float size)
 		{
-			bool flag = !c.ShouldSpawnMotesAt(map);
-			if (!flag)
+			if (c.ShouldSpawnMotesAt(map))
 			{
+				Rand.PushState();
 				Vector3 loc = c + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f);
-				bool flag2 = !loc.InBounds(map);
-				if (!flag2)
+				Rand.PopState();
+				if (loc.InBounds(map))
 				{
+					Rand.PushState();
 					FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.FireGlow, Rand.Range(4f, 6f) * size);
 					data.rotationRate = Rand.Range(-3f, 3f);
 					data.velocityAngle = (float)Rand.Range(0, 360);
 					data.velocitySpeed = 0.12f;
+					Rand.PopState();
 					map.flecks.CreateFleck(data);
 				}
 			}
@@ -256,14 +284,18 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				loc += size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f);
+				Rand.PopState();
 				bool flag2 = !loc.InBounds(map);
 				if (!flag2)
 				{
+					Rand.PushState();
 					FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.HeatGlow, Rand.Range(4f, 6f) * size);
 					data.rotationRate = Rand.Range(-3f, 3f);
 					data.velocityAngle = (float)Rand.Range(0, 360);
 					data.velocitySpeed = 0.12f;
+					Rand.PopState();
 					map.flecks.CreateFleck(data);
 				}
 			}
@@ -275,11 +307,13 @@ namespace AdeptusMechanicus
 			if (!flag)
 			{
 				loc -= new Vector3(0.5f, 0f, 0.5f);
+				Rand.PushState();
 				loc += new Vector3(Rand.Value, 0f, Rand.Value);
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, FleckDefOf.MicroSparks, Rand.Range(0.8f, 1.2f));
 				data.rotationRate = Rand.Range(-12f, 12f);
 				data.velocityAngle = (float)Rand.Range(35, 45);
 				data.velocitySpeed = 1.2f;
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}
@@ -289,10 +323,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f), map, def ?? FleckDefOf.LightningGlow, Rand.Range(4f, 6f) * size);
 				data.rotationRate = Rand.Range(-3f, 3f);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = 1.2f;
+				Rand.PopState();
 				if (color.HasValue)
 				{
 					data.instanceColor = color.Value;
@@ -307,10 +343,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f), map, FleckDefOf.LightningGlow, Rand.Range(4f, 6f) * size);
 				data.rotationRate = Rand.Range(-3f, 3f);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = 1.2f;
+				Rand.PopState();
 				if (color.HasValue)
 				{
 					data.instanceColor = color.Value;
@@ -324,10 +362,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f), map, FleckDefOf.LightningGlow, Rand.Range(4f, 6f) * size);
 				data.rotationRate = Rand.Range(-3f, 3f);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = 1.2f;
+				Rand.PopState();
 				if (color.HasValue)
 				{
 					data.instanceColor = color.Value;
@@ -362,6 +402,7 @@ namespace AdeptusMechanicus
 			bool flag = !thrower.Position.ShouldSpawnMotesAt(thrower.Map);
 			if (!flag)
 			{
+				Rand.PushState();
 				float speed = Rand.Range(3.8f, 5.6f);
 				Vector3 exactTarget = targetCell.ToVector3Shifted() + Vector3Utility.RandomHorizontalOffset((1f - (float)thrower.skills.GetSkill(SkillDefOf.Shooting).Level / 20f) * 1.8f);
 				exactTarget.y = thrower.DrawPos.y;
@@ -370,6 +411,7 @@ namespace AdeptusMechanicus
 				data.velocityAngle = (exactTarget - data.spawnPosition).AngleFlat();
 				data.velocitySpeed = speed;
 				data.airTimeLeft = new float?((float)Mathf.RoundToInt((data.spawnPosition - exactTarget).MagnitudeHorizontal() / speed));
+				Rand.PopState();
 				thrower.Map.flecks.CreateFleck(data);
 			}
 		}
@@ -381,10 +423,12 @@ namespace AdeptusMechanicus
 			if (!flag)
 			{
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(cell.ToVector3Shifted(), map, fleckDef, 1f);
+				Rand.PushState();
 				data.rotation = (float)(90 * Rand.RangeInclusive(0, 3));
 				data.instanceColor = new Color?(color);
 				map.flecks.CreateFleck(data);
 				bool flag2 = Rand.Value < 0.7f;
+				Rand.PopState();
 				if (flag2)
 				{
 					AdeptusFleckMaker.ThrowDustPuff(cell, map, 1.2f, null, dustColor);
@@ -397,10 +441,12 @@ namespace AdeptusMechanicus
 			bool flag = !loc.ShouldSpawnMotesAt(map);
 			if (!flag)
 			{
+				Rand.PushState();
 				FleckCreationData data = AdeptusFleckMaker.GetDataStatic(loc, map, fleckDef, Rand.Range(3f, 4.5f));
 				data.rotationRate = Rand.Range(-30f, 30f);
 				data.velocityAngle = (float)Rand.Range(0, 360);
 				data.velocitySpeed = Rand.Range(0.48f, 0.72f);
+				Rand.PopState();
 				map.flecks.CreateFleck(data);
 			}
 		}

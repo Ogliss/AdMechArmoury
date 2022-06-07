@@ -26,7 +26,7 @@ namespace AdeptusMechanicus
     {
         public RelicTracked()
         {
-
+            relics = new List<Thing>();
         }
         public RelicTracked(ThingDef relicDef)
         {
@@ -36,25 +36,28 @@ namespace AdeptusMechanicus
                 this.reacquirable = ext.relicProps.reacquirable;
                 this.compensate = ext.relicProps.compensate;
                 this.compensateRate = ext.relicProps.compensateRate;
-                relics = new List<Thing>();
             }
+            relics = new List<Thing>();
         }
         private int curSpawned = 0;
+        private int curDestroyed = 0;
         public int maxCount = 1;
         public bool reacquirable = false;
         public bool compensate = false;
         public float compensateRate = 0.75f;
+        public ThingDef relicDef;
         public List<Thing> relics;
         public void ExposeData()
         {
             Scribe_Values.Look(ref maxCount, "maxSpawnableCount", 1);
             Scribe_Values.Look(ref curSpawned, "curSpawnedCount", 0);
+            Scribe_Values.Look(ref curDestroyed, "curDestroyedount", 0);
             Scribe_Values.Look(ref reacquirable, "reacquirableRelic", false);
             Scribe_Values.Look(ref compensate, "compensate", false);
             Scribe_Values.Look(ref compensateRate, "compensateRate", 0.75f);
             Scribe_Collections.Look(ref relics, "relics", LookMode.Reference, new List<Thing>());
         }
-        public bool CanSpawn
+        public bool Spawnable
         {
             get
             {
@@ -63,17 +66,21 @@ namespace AdeptusMechanicus
         }
         public void SpawnedRelic(Thing Relic)
         {
-            curSpawned++;
-            if (!relics.Contains(Relic))
+            if (relics.NullOrEmpty() || !relics.Contains(Relic))
             {
                 relics.Add(Relic);
             }
+            curSpawned++;
         }
         public void DespawnedRelic(Thing Relic)
         {
             if (this.reacquirable && curSpawned > 0)
             {
                 curSpawned--;
+                if (Relic.Destroyed)
+                {
+                    curDestroyed++;
+                }
                 if (relics.Contains(Relic))
                 {
                     relics.Remove(Relic);
@@ -116,7 +123,7 @@ namespace AdeptusMechanicus
 
         public bool CanSpawn(Thing thing, out RelicTracked data)
         {
-            return CanSpawn(thing.def, out data) && data != null && data.relics.Contains(thing);
+            return CanSpawn(thing.def, out data) && (data != null && (data.relics.NullOrEmpty() || data.relics.Contains(thing)));
         }
 
         public bool CanSpawn(ThingDef def)
@@ -128,10 +135,8 @@ namespace AdeptusMechanicus
         {
             if (spawnedRelics.TryGetValue(def, out data))
             {
-            //    Log.Message("Data found");
-                return !data.CanSpawn;
+                return data.Spawnable;
             }
-        //    Log.Message("No data found");
             return true;
         }
     }

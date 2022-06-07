@@ -47,7 +47,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (failed)
             {
-                bool stillFire = true;
                 bool canDamageWeapon = entry.HotDamageWeapon || entry.JamsDamageWeapon;
                 MessageTypeDef msgDef = entry.GetsHot ? MessageTypeDefOf.NegativeHealthEvent : MessageTypeDefOf.SilentInput;
                 float extraWeaponDamage = entry.HotDamageWeapon ? entry.HotDamage : entry.JamDamage;

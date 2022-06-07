@@ -64,7 +64,9 @@ namespace AdeptusMechanicus
                 return;
             }
             Mote moteThrown = (Mote)ThingMaker.MakeThing(moteDef, null);
+            Rand.PushState();
             moteThrown.exactRotation = (float)(90 * Rand.RangeInclusive(0, 3));
+            Rand.PopState();
             moteThrown.exactPosition = cell.ToVector3Shifted();
             if (color.HasValue)
             {
@@ -72,10 +74,12 @@ namespace AdeptusMechanicus
                 //    moteThrown.instanceColor = new Color(0.368f, 0f, 1f);
             }
             GenSpawn.Spawn(moteThrown, cell, map, WipeMode.Vanish);
+            Rand.PushState();
             if (Rand.Value < 0.7f)
             {
                 AdeptusFleckMaker.ThrowDustPuff(cell.ToVector3Shifted(), map, 1.2f, null, color);
             }
+            Rand.PopState();
         }
         public static Mote MakeStaticMote(Vector3 loc, Map map, ThingDef moteDef, float scale = 1f, Color? color = null, float? exactRotation = null)
         {
@@ -104,11 +108,13 @@ namespace AdeptusMechanicus
             {
                 return;
             }
+            Rand.PushState();
             MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(AdeptusThingDefOf.OG_Mote_LightningGlow, null);
             moteThrown.Scale = Rand.Range(4f, 6f) * size;
             moteThrown.rotationRate = Rand.Range(-3f, 3f);
             moteThrown.exactPosition = loc + size * new Vector3(Rand.Value - 0.5f, 0f, Rand.Value - 0.5f);
             moteThrown.SetVelocity((float)Rand.Range(0, 360), 1.2f);
+            Rand.PopState();
             if (color.HasValue)
             {
                 moteThrown.instanceColor = color.Value;

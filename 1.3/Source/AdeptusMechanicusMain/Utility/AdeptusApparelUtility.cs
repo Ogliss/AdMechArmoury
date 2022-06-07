@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
@@ -218,8 +219,81 @@ namespace AdeptusMechanicus
                     paintable
                 );
         }
+        private static List<Color> allColors = null;
+        public static List<Color> AllColors(Pawn pawn = null)
+        {
+            if (allColors == null)
+            {
+                allColors = (from x in DefDatabase<ColorDef>.AllDefsListForReading
+                             where !x.hairOnly
+                             select x into ic
+                             select ic.color).ToList<Color>();
+                allColors.SortByColor((Color x) => x);
+            }
+            List<Color> cs = allColors;
+            if (pawn != null && pawn.Ideo != null && !Find.IdeoManager.classicMode && !cs.Any((Color c) => pawn.Ideo.ApparelColor.IndistinguishableFrom(c)))
+            {
+                cs.Add(pawn.Ideo.ApparelColor);
+            }
+            if (pawn != null && pawn.story != null && pawn.story.favoriteColor != null && !cs.Any((Color c) => pawn.story.favoriteColor.Value.IndistinguishableFrom(c)))
+            {
+                cs.Add(pawn.story.favoriteColor.Value);
+            }
+            return cs;
+        }
 
+        public static void DrawBaseColourOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
+        {
+            float w = rect.width / 5;
+            float w2 = (rect.width - w) / 4;
+            float y = rect.y;
+            float x = rect.x;
+            Rect rect1 = new Rect(x, y, w, 30f);
+            Widgets.Label(rect1, label);
+            x += w;
+            Rect rect2 = new Rect(x, y, w2, 30f);
 
+            if (!composite.Wearer.apparel.IsLocked(composite))
+            {
+                Widgets.ColorSelector(rect2, ref composite.colorable.color, AllColors(composite.Wearer), composite.def.uiIcon, 22, 2);
+                if (composite.Wearer.Ideo != null && !Find.IdeoManager.classicMode)
+                {
+                    rect2 = new Rect(rect.x, y, rect.width / 2f - 10f, 24f);
+                    if (Widgets.ButtonText(rect2, "SetIdeoColor".Translate(), true, true, true))
+                    {
+                        composite.colorable.color = composite.Wearer.Ideo.ApparelColor;
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    }
+                }
+                Pawn_StoryTracker story = composite.Wearer.story;
+                if (story != null && story.favoriteColor != null)
+                {
+                    rect2 = new Rect(rect2.xMax + 10f, y, rect.width / 2f - 10f, 24f);
+                    if (Widgets.ButtonText(rect2, "SetFavoriteColor".Translate(), true, true, true))
+                    {
+                        composite.colorable.color = composite.Wearer.story.favoriteColor.Value;
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    }
+                }
+            }
+            else
+            {
+                Widgets.ColorSelectorIcon(new Rect(rect2.x, rect2.y, 88f, 88f), composite.def.uiIcon, composite.colorable.color, 22);
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Rect rect3 = rect2;
+                rect3.x += 100f;
+                Widgets.Label(rect3, "ApparelLockedCannotRecolor".Translate(composite.Wearer.Named("PAWN"), composite.Named("APPAREL")).Colorize(ColorLibrary.RedReadable));
+                Text.Anchor = TextAnchor.UpperLeft;
+            }
+            y += 34f;
+
+            x += w;
+            if (composite.ColorableTwo is CompColorableTwo twoColour)
+            {
+
+            }
+        }
+        
         public static void DrawBaseTextureOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
         {
             float w = rect.width / 5;
@@ -261,7 +335,7 @@ namespace AdeptusMechanicus
                     comp,
                     (CompColorableTwoFaction sp) => comp.FactionDef,
                     new Func<CompColorableTwoFaction, IEnumerable<Widgets.DropdownMenuElement<FactionDef>>>(DrawFactionColorsButton_GenerateMenu),
-                    comp.FactionDef != null ? ((string)comp.FactionDef.LabelCap ?? comp.FactionDef.fixedName) : "None",
+                    comp.FactionDef != null ? ((string)comp.FactionDef.fixedName ?? comp.FactionDef.LabelCap) : "None",
                     comp.FactionDef != null ? comp.FactionDef.FactionIcon : null,
                     null,
                     null,
@@ -381,6 +455,10 @@ namespace AdeptusMechanicus
                             option = new FloatMenuOption(variant.Label.CapitalizeFirst() ?? variant.TexPath, delegate ()
                             {
                                 Graphic graphic = e.Drawer.Apparel.Graphic;
+                                if (!variant.padTexPathOverride.NullOrEmpty())
+                                {
+                                    graphic.path = variant.padTexPathOverride;
+                                }
                                 graphic.path += "_" + variant.TexPath;
                                 Color color = graphic.Color;
                                 Color colorTwo = graphic.ColorTwo;
@@ -492,7 +570,7 @@ namespace AdeptusMechanicus
 			}
 			yield break;
 		}
-
+        
 		private static IEnumerable<Widgets.DropdownMenuElement<FactionDef>> DrawFactionColorsButton_GenerateMenu(CompColorableTwoFaction e)
 		{
 			if (e.FactionDef != null)
@@ -545,19 +623,19 @@ namespace AdeptusMechanicus
 					FactionDef variant = enumerator.Current;
 					FactionDefExtension ext = enumerator.Current.GetModExtensionFast<FactionDefExtension>();
 
-					if (e.FactionDef != variant && variant.defName.Contains(key))
+                    if (ext == null)
+                    {
+                        continue;
+                    }
+                    if (e.FactionDef != variant && (variant.defName.Contains(key) || ext.factionColourTag.Contains(key)))
 					{
-						if (ext == null)
-						{
-							continue;
-						}
 						if (ext.factionColor == null && ext.factionColorTwo == null && ext.factionMaskTag.NullOrEmpty() && ext.factionTextureTag.NullOrEmpty())
 						{
 							continue;
 						}
 						yield return new Widgets.DropdownMenuElement<FactionDef>
 						{
-							option = new FloatMenuOption((string)variant.LabelCap ?? variant.fixedName, delegate ()
+							option = new FloatMenuOption((string)variant.fixedName ?? variant.LabelCap, delegate ()
 							{
 								/*
                                 Graphic graphic = e.parent.Graphic;
@@ -623,6 +701,7 @@ namespace AdeptusMechanicus
 			}
 			yield break;
         }
+        
         private static List<ThingDef> pauldronApparel;
         public static List<ThingDef> PauldronApparel
         {

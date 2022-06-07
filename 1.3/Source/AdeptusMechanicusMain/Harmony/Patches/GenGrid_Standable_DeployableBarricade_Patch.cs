@@ -26,11 +26,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                     list = list.FindAll(x => x is Building_DeployableBarricade);
                     for (int j = 0; j < list.Count; j++)
                     {
-                        Building_DeployableBarricade barricade = null;
                         if (c.InBounds(map))
                         {
-                            barricade = (list[j] as Building_DeployableBarricade);
-                            if (barricade != null)
+                            if (list[j] is Building_DeployableBarricade barricade)
                             {
                                 if (barricade.Toggled && barricade.Deployed.deployedpassability != Traversability.Standable)
                                 {

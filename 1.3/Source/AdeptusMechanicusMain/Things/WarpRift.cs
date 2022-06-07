@@ -94,7 +94,10 @@ namespace AdeptusMechanicus
 						{
 							this.DamageCloseThings();
 						}
-						if (Rand.MTBEventOccurs(15f, 1f, 1f))
+						Rand.PushState();
+						bool damageFar = Rand.MTBEventOccurs(15f, 1f, 1f);
+						Rand.PopState();
+						if (damageFar)
 						{
 							this.DamageFarThings();
 						}
@@ -113,11 +116,13 @@ namespace AdeptusMechanicus
 						}
 						if (this.IsHashIntervalTick(4) && !this.CellImmuneToDamage(base.Position))
 						{
+							Rand.PushState();
 							float num = Rand.Range(0.6f, 1f);
 							FleckMaker.ThrowTornadoDustPuff(new Vector3(this.realPosition.x, 0f, this.realPosition.y)
 							{
 								y = AltitudeLayer.MoteOverhead.AltitudeFor()
 							} + Vector3Utility.RandomHorizontalOffset(1.5f), base.Map, Rand.Range(1.5f, 3f), new Color(num, num, num));
+							Rand.PopState();
 							return;
 						}
 					}
@@ -266,7 +271,10 @@ namespace AdeptusMechanicus
 				if (intVec.InBounds(base.Map) && !this.CellImmuneToDamage(intVec))
 				{
 					Pawn firstPawn = intVec.GetFirstPawn(base.Map);
-					if (firstPawn == null || !firstPawn.Downed || !Rand.Bool)
+					Rand.PushState();
+					bool rand = Rand.Bool;
+					Rand.PopState();
+					if (firstPawn == null || !firstPawn.Downed || !rand)
 					{
 						float damageFactor = GenMath.LerpDouble(0f, 4.2f, 1f, 0.2f, intVec.DistanceTo(base.Position));
 						this.DoDamage(intVec, damageFactor);
@@ -294,7 +302,9 @@ namespace AdeptusMechanicus
 			IntVec3 c = (from x in GenRadial.RadialCellsAround(effectLoc, effectRange, true)
 						 where x.InBounds(base.Map)
 						 select x).RandomElementByWeight((IntVec3 x) => 1f - Mathf.Min(x.DistanceTo(effectLoc) / effectRange, 1f) + 0.05f);
+			Rand.PushState();
 			FireUtility.TryStartFireIn(c, base.Map, Rand.Range(0.1f, 0.925f));
+			Rand.PopState();
 			WarpRift.tmpThings.Clear();
 			WarpRift.tmpThings.AddRange(c.GetThingList(base.Map));
 			for (int i = 0; i < WarpRift.tmpThings.Count; i++)

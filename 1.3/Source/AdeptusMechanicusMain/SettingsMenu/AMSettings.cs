@@ -58,6 +58,7 @@ namespace AdeptusMechanicus.settings
         public bool AllowPauldronDrawer = true;
         public bool AllowExtraPartDrawer = true;
         public bool AllowHediffPartDrawer = true;
+        public bool AllowDynmanicPartDrawer = true; 
 
         // Xenobiologis Settings
 
@@ -234,6 +235,7 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AllowPauldronDrawer, "AMA_AllowPauldronDrawer", true);
                 Scribe_Values.Look(ref this.AllowExtraPartDrawer, "AMA_AllowExtraPartDrawer", true);
                 Scribe_Values.Look(ref this.AllowHediffPartDrawer, "AMA_AllowHediffPartDrawer", true);
+                Scribe_Values.Look(ref this.AllowDynmanicPartDrawer, "AMA_AllowDynmanicPartDrawer", true);
 
                 Scribe_Values.Look(ref this.RacialConstructionRestriction, "AMA_RacialConstructionRestriction", true);
                 Scribe_Values.Look(ref this.RacialProductionRestriction, "AMA_RacialProductionRestriction", true);

@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using UnityEngine;
 using Verse;
+using Verse.Grammar;
 
 namespace AdeptusMechanicus
 {
-	// AdeptusMechanicus.CultureDef
-	public class CultureDef : RimWorld.CultureDef
+    // AdeptusMechanicus.CultureDef
+    public class CultureDef : RimWorld.CultureDef
 	{
 
 		public DeityProperties deities = new DeityProperties();
 		public List<RoleRenamer> rolesNames = new List<RoleRenamer>();
 		public List<RitualRenamer> ritualNames = new List<RitualRenamer>();
 		public List<string> preferredApparelTags = new List<string>();
-
+		public RulePack generalRules;
 		public class DeityProperties
         {
 			public bool randomizeOrder = false;
@@ -38,26 +38,6 @@ namespace AdeptusMechanicus
 	{
 		public PreceptDef ritual;
 		public RulePackDef rulePack;
-	}
-
-	// AdeptusMechanicus.DeityDef
-	public class DeityDef : Def
-	{
-		public Gender gender;
-		public string iconPath;
-		public MemeDef relatedMeme;
-		public Texture2D icon;
-		public IdeoFoundation_Deity.Deity Deity()
-		{
-			return new IdeoFoundation_Deity.Deity()
-			{
-				name = this.label,
-				iconPath = this.iconPath,
-				type = this.description,
-				gender = this.gender,
-				relatedMeme = this.relatedMeme
-			};
-		}
 	}
 
 }

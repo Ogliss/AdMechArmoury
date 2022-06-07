@@ -90,7 +90,11 @@ namespace AdeptusMechanicus.OrbitalStrikes
 				if (roofDef.isThickRoof)
 				{
 					this.ThrowDebugText("hit-thick-roof", c);
-					if (Rand.Chance(strikeDef.roofThickCollapseChance))
+
+					Rand.PushState();
+					bool collapseThickRoof = Rand.Chance(strikeDef.roofThickCollapseChance);
+					Rand.PopState();
+					if (collapseThickRoof)
 					{
 						this.ThrowDebugText("collapse-thick-roof", c);
 						if (c.GetEdifice(base.Map) == null || c.GetEdifice(base.Map).def.Fillage != FillCategory.Full)
@@ -110,8 +114,11 @@ namespace AdeptusMechanicus.OrbitalStrikes
 				}
 				else
 				{
+					Rand.PushState();
+					bool collapseThinkRoof = Rand.Chance(strikeDef.roofThinCollapseChance);
+					Rand.PopState();
 					this.ThrowDebugText("hit-thin-roof", c);
-					if (Rand.Chance(strikeDef.roofThinCollapseChance))
+					if (collapseThinkRoof)
 					{
 						this.ThrowDebugText("collapse-thin-roof", c);
 						if (c.GetEdifice(base.Map) == null || c.GetEdifice(base.Map).def.Fillage != FillCategory.Full)

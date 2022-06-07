@@ -15,15 +15,17 @@ namespace AdeptusMechanicus
         {
             faction = o.faction;
             texPath = o.texPath;
+            padTexPathOverride = o.padTexPathOverride;
             color = o.color;
             colorTwo = o.colorTwo;
             label = o.label ?? o.texPath;
             invertColors = o.invertColors;
         }
-        public PauldronTextureOption(string f, string t)
+        public PauldronTextureOption(string f, string t, string Override = null)
         {
             faction = f;
             texPath = t;
+            padTexPathOverride = Override;
         }
         public PauldronTextureOption(string t)
         {
@@ -66,7 +68,7 @@ namespace AdeptusMechanicus
                 }
                 if (factionDef !=null)
                 {
-                    label = factionDef.LabelCap;
+                    label = factionDef.fixedName ?? factionDef.LabelCap;
                 }
                 else
                 {
@@ -105,6 +107,7 @@ namespace AdeptusMechanicus
         {
             Scribe_Values.Look(ref this.faction, "faction");
             Scribe_Values.Look(ref this.texPath, "TexPath");
+            Scribe_Values.Look(ref this.padTexPathOverride, "PadTexPathOverride");
             Scribe_Values.Look(ref this.label, "label");
             Scribe_Values.Look(ref this.color, "color");
             Scribe_Values.Look(ref this.invertColors, "invertColors");
@@ -115,7 +118,8 @@ namespace AdeptusMechanicus
         private string label;
         private bool invertColors = false;
         public string faction;
-        public string texPath;
+        public string texPath = null;
+        public string padTexPathOverride = null;
     }
 
 }

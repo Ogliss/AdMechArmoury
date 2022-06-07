@@ -37,7 +37,9 @@ namespace AdeptusMechanicus
 					{
 						int max = culture.deities.max > culture.deities.possibleDeities.Count ? culture.deities.possibleDeities.Count : culture.deities.max;
 						int min = culture.deities.min;
+						Rand.PushState();
 						int take = Rand.RangeInclusive(min, max);
+						Rand.PopState();
 						foreach (var def in culture.deities.possibleDeities.TakeRandom(take))
 						{
 							usedDefs.Add(def);

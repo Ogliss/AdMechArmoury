@@ -78,6 +78,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
 
                     }
+                    if (defName == "OG_Cyborg_Ork")
+                    {
+                        __result = "OG_Alien_Ork";
+                        return;
+                    }
                     if (defName == "OG_Chaos_Deamon_Horror")
                     {
                         __result = "OG_Chaos_Deamon_Horror_Pink";

@@ -143,6 +143,7 @@ namespace AdeptusMechanicus
             {
 				ThingDef ordnance = StrikeDef.ordnance[i];
 				IntVec3 strikeLoc = targetPosition;
+				Rand.PushState();
 				if (Rand.Chance(0.9f) || !DropCellFinder.IsGoodDropSpot(targetPosition,map,true,true))
 				{
                     if (!OrdnanceStrikeCellFinder.TryFindStrikeLocNear(targetPosition, map, out strikeLoc, true, true, true))
@@ -154,6 +155,7 @@ namespace AdeptusMechanicus
 						break;
                     }
 				}
+				Rand.PopState();
 				ArtilleryIncoming ordnanceIncoming = ArtilleryStrikeMaker.MakeSkyfaller(OrdnanceUtility.ArtilleryStrike, ordnance);
 				GenPlace.TryPlaceThing(ordnanceIncoming, strikeLoc, map, ThingPlaceMode.Near, null, null, default(Rot4));
 			}

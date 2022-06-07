@@ -9,6 +9,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 	public static class Faction_TryGenerateNewLeader_NonhumanlikeFaction_Patch
 	{
 		// generate leader for non-humanlike Factions
+		[HarmonyPrefix]
 		public static bool Prefix(Faction __instance, ref bool __result)
 		{
             if (__instance.def.defName.StartsWith("OG_") && !__instance.def.humanlikeFaction && __instance.def.fixedLeaderKinds != null)

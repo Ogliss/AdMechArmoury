@@ -155,6 +155,17 @@ namespace AdeptusMechanicus
 						num += 30f;
 						num4++;
 					}
+                    if (true)
+					{
+						if (num > num2 && num < num3)
+						{
+							Rect rect = new Rect(0f, num, scrollViewRect.width, 30f);
+							AdeptusApparelUtility.DrawBaseColourOptions(rect, "Colours", composite);
+						}
+						num += 30f;
+						num4++;
+						
+					}
 				}
                 if (!composite.AltGraphics.NullOrEmpty())
 				{

@@ -87,8 +87,10 @@ namespace AdeptusMechanicus
             this.flyingThing = flyingThing;
             if (targ.Thing != null)
                 usedTarget = targ.Thing;
+            Rand.PushState();
             destination = targ.Cell.ToVector3Shifted() +
                           new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.3f, 0.3f));
+            Rand.PopState();
             ticksToImpact = StartingTicksToImpact;
         }
 

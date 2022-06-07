@@ -68,6 +68,8 @@ namespace AdeptusMechanicus.Comps
         {
             IntVec3 intVec = pawn.Position;
             bool flag;
+
+            Rand.PushState();
             if (Rand.Chance(0.8f))
             {
                 intVec = pawn.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(1, 8)];
@@ -78,6 +80,7 @@ namespace AdeptusMechanicus.Comps
                 intVec = pawn.Position + GenRadial.ManualRadialPattern[Rand.RangeInclusive(10, 20)];
                 flag = false;
             }
+            Rand.PopState();
             if (!intVec.InBounds(pawn.Map))
             {
                 return;

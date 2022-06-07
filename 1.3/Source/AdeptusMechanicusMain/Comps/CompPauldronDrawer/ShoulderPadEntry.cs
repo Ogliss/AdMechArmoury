@@ -84,7 +84,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        public const float MinClippingDistance = 0.0015f;   // Minimum space between layers to avoid z-fighting
+        public const float MinClippingDistance = 0.000015f;   // Minimum space between layers to avoid z-fighting
         private const float SubInterval = PawnRenderer.SubInterval;
         private const float YOffset_Utility_South = PawnRenderer.YOffset_Utility_South;
         private const float YOffset_Shell = PawnRenderer.YOffset_Shell + MinClippingDistance;
@@ -183,7 +183,7 @@ namespace AdeptusMechanicus
                 Vector2 v = wornGraphic.BeltOffsetAt(rot, apparel.Wearer.story.bodyType);
                 vector += new Vector3(v.x, 0, v.y);
             }
-            vector.y += this.ForceDynamicDraw ? altOffset : Math.Min(altOffset, YOffset_CarriedThing);
+            vector.y += this.ForceDynamicDraw ? altOffset : Math.Min(altOffset, YOffset_Head);
             // vector.y = Math.Min(Math.Min(vector.y, altOffset), YOffset_CarriedThing);
             //   Log.Message("Offset for " + rot.ToStringHuman() +" at alt: " + alt + ": " + vector);
             return vector;
@@ -441,7 +441,7 @@ namespace AdeptusMechanicus
                     }
                 }
 
-                path = padTexPath + "/" + Used.TexPath;
+                path = (Used.padTexPathOverride ?? padTexPath) + "/" + Used.TexPath;
             }
 
             string body = bodyTypeString(pawn.story.bodyType);
@@ -580,26 +580,6 @@ namespace AdeptusMechanicus
             
         }
 
-        public string UsedTex
-        {
-            get
-            {
-                string s = padTexPath;
-                
-                if (Used.TexPath != null)
-                {
-                    s = Used.TexPath;
-                    if (s.Contains(" "))
-                    {
-                    //    Log.Message("removing space");
-                        s = Regex.Replace(Used.TexPath, " ", "");
-                    }
-                }
-                
-
-                return s;
-            }
-        }
 
         public List<PauldronTextureOption> Options
         {

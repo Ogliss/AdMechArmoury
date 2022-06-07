@@ -24,7 +24,9 @@ namespace AdeptusMechanicus
             num *= p.GetStatValue(StatDefOf.ToxicSensitivity, true);
             if (num != 0f)
             {
+                Rand.PushState();
                 float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(p.thingIDNumber ^ 74374237));
+                Rand.PopState();
                 num *= num2;
                 num *= mod;
                 HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);

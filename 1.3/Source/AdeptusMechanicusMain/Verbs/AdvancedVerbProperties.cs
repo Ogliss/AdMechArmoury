@@ -270,7 +270,6 @@ namespace AdeptusMechanicus
             }
             if (failed)
             {
-                bool stillFire = true;
                 bool canDamageWeapon = HotDamageWeapon || JamsDamageWeapon;
                 MessageTypeDef msgDef = GetsHot ? MessageTypeDefOf.NegativeHealthEvent : MessageTypeDefOf.SilentInput;
                 float extraWeaponDamage = HotDamageWeapon ? HotDamage : JamDamage;

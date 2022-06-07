@@ -91,8 +91,9 @@ namespace AdeptusMechanicus
 				return null;
 			}
 			int num2;
+			Rand.PushState();
 			string varPath = (((num2 = (savedIndex.HasValue ? (sharedIndex = savedIndex.Value % num) : (linkVariantIndexWithPrevious ? (sharedIndex % num) : (sharedIndex = Rand.Range(0, num))))) == 0) ? "" : num2.ToString());
-
+			Rand.PopState();
 			if (!allowPairWith.NullOrEmpty())
 			{
                 foreach (List<int> item in allowPairWith)

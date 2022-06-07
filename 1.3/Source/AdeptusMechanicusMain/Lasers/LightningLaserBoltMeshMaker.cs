@@ -34,8 +34,10 @@ namespace AdeptusMechanicus.Lasers
                 vector += b;
             }
             vector = Vector2.zero;
+            Rand.PushState();
             vector.x += Rand.Range(-originVariance, originVariance);
             vector.y += Rand.Range(-originVariance, originVariance);
+            Rand.PopState();
             LightningLaserBoltMeshMaker.verts2D[0] = vector;
         }
 
@@ -43,7 +45,9 @@ namespace AdeptusMechanicus.Lasers
         private static void PeturbVerticesRandomly(float str)
         {
             float dmod = 1f;
+            Rand.PushState();
             Perlin perlin = new Perlin(0.0070000002160668373, 2.0, 0.5, 6, Rand.Range(0, int.MaxValue), QualityMode.High);
+            Rand.PopState();
             List<Vector2> list = LightningLaserBoltMeshMaker.verts2D.ListFullCopy<Vector2>();
             LightningLaserBoltMeshMaker.verts2D.Clear();
             int threshold = (list.Count / 4) * 3;
@@ -79,7 +83,9 @@ namespace AdeptusMechanicus.Lasers
         private static void PeturbVerticesRandomly(SimpleCurve strDist, SimpleCurve strTime = null)
         {
             float dmod = 1f;
+            Rand.PushState();
             Perlin perlin = new Perlin(0.0070000002160668373, 2.0, 0.5, 6, Rand.Range(0, int.MaxValue), QualityMode.High);
+            Rand.PopState();
             List<Vector2> list = LightningLaserBoltMeshMaker.verts2D.ListFullCopy<Vector2>();
             LightningLaserBoltMeshMaker.verts2D.Clear();
             int threshold = (list.Count / 4) * 3;

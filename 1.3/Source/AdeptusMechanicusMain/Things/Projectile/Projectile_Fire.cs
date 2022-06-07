@@ -224,11 +224,12 @@ namespace AdeptusMechanicus
 			float num3 = (initialAngle + (float)ticksGame * num2) % 360f;
 			Vector2 vector = this.realPosition.Moved(num3, this.AdjustedDistanceFromCenter(distanceFromCenter));
 
-		//	vector.y += distanceFromCenter * 4f;
-		//	vector.y += Projectile_Fire.ZOffsetBias;
-
-			Vector3 a = new Vector3(vector.x, AltitudeLayer.Weather.AltitudeFor() + 0.042857144f * Rand.Range(0f, 1f), vector.y);
-			float num4 = distanceFromCenter / 3f;
+            //	vector.y += distanceFromCenter * 4f;
+            //	vector.y += Projectile_Fire.ZOffsetBias;
+            Rand.PushState();
+            Vector3 a = new Vector3(vector.x, AltitudeLayer.Weather.AltitudeFor() + 0.042857144f * Rand.Range(0f, 1f), vector.y);
+            Rand.PopState();
+            float num4 = distanceFromCenter / 3f;
 			float num5 = 1f;
 			
 			if (num3 > 270f)

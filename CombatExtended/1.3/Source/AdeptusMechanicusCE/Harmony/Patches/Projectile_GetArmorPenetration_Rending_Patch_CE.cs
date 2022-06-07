@@ -196,6 +196,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         private static void Impact(ProjectileCE __instance, Thing launcher, ThingDef equipmentDef, Thing hitThing, IntVec3 OriginIV3, Vector2 origin, Vector2 Destination, int StartingTicksToImpact, int ticksToImpact, int IntTicksToImpact, ref float suppressionAmount)
         {
             List<Thing> list = new List<Thing>();
+            Rand.PushState();
             if (__instance.Position.IsValid && __instance.def.projectile.preExplosionSpawnChance > 0f && __instance.def.projectile.preExplosionSpawnThingDef != null && (Controller.settings.EnableAmmoSystem || !(__instance.def.projectile.preExplosionSpawnThingDef is AmmoDef)) && Rand.Value < __instance.def.projectile.preExplosionSpawnChance)
             {
                 ThingDef preExplosionSpawnThingDef = __instance.def.projectile.preExplosionSpawnThingDef;
@@ -217,6 +218,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                 }
             }
+            Rand.PopState();
             Vector3 vector = (hitThing != null) ? hitThing.DrawPos : __instance.ExactPosition;
             bool flag3 = !vector.ToIntVec3().IsValid;
             if (flag3)

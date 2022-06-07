@@ -39,7 +39,9 @@ namespace AdeptusMechanicus
             FleckDef def = defname.NullOrEmpty() ? null : DefDatabase<FleckDef>.GetNamedSilentFail(defname);
             if (def != null)
             {
+                Rand.PushState();
                 AdeptusFleckMaker.Thrown(loc + Quaternion.AngleAxis(Rand.Range(-10, 10) + angle, Vector3.up) * Vector3.back * Rand.Range(0, projectieSpeed), map, def, size, color, Rand.Range(0, 360), rotationRate, 0f, Rand.Range(0, projectieSpeed), (float)Rand.Range(-15, 15) + angle);
+                Rand.PopState();
             }
         }
 

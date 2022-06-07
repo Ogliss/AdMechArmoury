@@ -181,9 +181,12 @@ namespace AdeptusMechanicus.OrbitalStrikes
 
 		private void StartRandomFire()
 		{
+			Rand.PushState();
 			FireUtility.TryStartFireIn((from x in GenRadial.RadialCellsAround(base.Position, (float)this.randomFireRadius, true)
 										where x.InBounds(base.Map)
 										select x).RandomElementByWeight((IntVec3 x) => OrbitalBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position))), base.Map, Rand.Range(0.1f, 0.925f));
+
+			Rand.PopState();
 		}
 
 		private void GetNextExplosionCell()

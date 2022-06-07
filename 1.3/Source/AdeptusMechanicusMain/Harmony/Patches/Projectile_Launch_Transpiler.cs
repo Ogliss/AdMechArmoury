@@ -37,6 +37,31 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
 
         }
+
+        [HarmonyPostfix]
+        static void Postfix(Projectile __instance, Thing launcher, Thing equipment)
+        {
+            if (__instance is Projectile_Returning returning)
+            {
+                returning.launcherPawn = launcher as Pawn;
+                if (equipment != null)
+                {
+                    returning.equipment = equipment;
+                    if (equipment.ParentHolder != returning.innerContainer)
+                    {
+                        if (!returning.innerContainer.TryAddOrTransfer(equipment))
+                        {
+                            Log.Warning("Returning Projectile failed to transfer to projectile's innerContainer");
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Warning("Returning Projectile has null equipment, is this intentional?");
+                }
+            }
+        }
+
         public static float CalculateAdjusted(float spread, Projectile instance)
         {
             if (instance.def.HasModExtension<ScattershotProjectileExtension>())

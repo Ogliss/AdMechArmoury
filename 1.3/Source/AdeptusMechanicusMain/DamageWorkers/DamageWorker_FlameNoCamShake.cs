@@ -58,6 +58,7 @@ namespace AdeptusMechanicus
                 GenTemperature.PushHeat(explosion.Position, explosion.Map, this.def.explosionHeatEnergyPerCell * (float)cellsToAffect.Count);
 			}
 			FleckMaker.Static(explosion.DrawPos, explosion.Map, FleckDefOf.ExplosionFlash, explosion.radius * 6f);
-        }
+			this.ExplosionVisualEffectCenter(explosion);
+		}
     }
 }

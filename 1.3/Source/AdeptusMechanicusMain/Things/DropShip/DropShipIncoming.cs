@@ -178,6 +178,8 @@ namespace AdeptusMechanicus
             int num = base.Map.Size.x / 2;
             int num2 = base.Map.Size.z / 2;
             bool flag = targetPosition.x <= 50 || base.Map.Size.x - targetPosition.x <= 50 || targetPosition.z <= 50 || base.Map.Size.z - targetPosition.z <= 50;
+
+            Rand.PushState();
             if (flag)
             {
                 bool flag2 = targetPosition.x <= num && targetPosition.z >= num2;
@@ -210,6 +212,7 @@ namespace AdeptusMechanicus
             {
                 this.exactRotation = Rand.Range(0f, 360f);
             }
+            Rand.PopState();
             base.Rotation = new Rot4(Mathf.RoundToInt(this.exactRotation) / 90);
         }
 

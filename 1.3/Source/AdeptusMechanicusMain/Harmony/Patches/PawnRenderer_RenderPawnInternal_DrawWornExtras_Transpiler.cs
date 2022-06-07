@@ -164,7 +164,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                             Rot4 facing = onHead ? headfacing : bodyFacing;
                                             if (ExtraDrawer.ExtraPartEntry.DynamicDraw)
                                             {
-                                                continue;
+                                            //    continue;
                                             }
                                             if (ExtraDrawer.ShouldDrawExtra(pawn, apparel, facing, out Material extraMat))
                                             {
@@ -417,12 +417,5 @@ namespace AdeptusMechanicus.HarmonyInstance
         
         }
 
-        // Token: 0x06000F45 RID: 3909 RVA: 0x00057D14 File Offset: 0x00055F14
-        
-
-
-        // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
-
-        // Token: 0x06000082 RID: 130 RVA: 0x00008950 File Offset: 0x00006B50
     }
 }

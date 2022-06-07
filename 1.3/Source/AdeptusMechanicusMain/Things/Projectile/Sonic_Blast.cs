@@ -107,7 +107,10 @@ namespace AdeptusMechanicus
 				if (intVec.InBounds(base.Map) && !this.CellImmuneToDamage(intVec))
 				{
 					Pawn firstPawn = intVec.GetFirstPawn(base.Map);
-					if (firstPawn == null || !firstPawn.Downed || !Rand.Bool)
+					Rand.PushState();
+					bool rand = Rand.Bool;
+					Rand.PopState();
+					if (firstPawn == null || !firstPawn.Downed || !rand)
 					{
 						float damageFactor = GenMath.LerpDouble(0f, 4.2f, 1f, 0.2f, intVec.DistanceTo(base.Position));
 						this.DoDamage(intVec, damageFactor);

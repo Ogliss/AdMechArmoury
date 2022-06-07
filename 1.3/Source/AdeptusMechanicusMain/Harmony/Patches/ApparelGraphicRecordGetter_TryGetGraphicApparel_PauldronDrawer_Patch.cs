@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using AdeptusMechanicus.ExtensionMethods;
 using HarmonyLib;
@@ -14,6 +16,40 @@ namespace AdeptusMechanicus.HarmonyInstance
 	[HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
 	public static class ApparelGraphicRecordGetter_TryGetGraphicApparel_PauldronDrawer_Patch
 	{
+		static MethodInfo drawColor = AccessTools.Property(typeof(Apparel), "DrawColor").GetGetMethod();
+		static MethodInfo drawColorTwo = AccessTools.Property(typeof(Thing), "DrawColorTwo").GetGetMethod();
+		static MethodInfo getGraphicOneColor = AccessTools.GetDeclaredMethods(typeof(GraphicDatabase)).First((MethodInfo mi) => mi.Name == "Get" && mi.GetParameters().Length == 4 && mi.GetParameters().Last().ParameterType == typeof(Color));
+		static MethodInfo getGraphicTwoColor = AccessTools.GetDeclaredMethods(typeof(GraphicDatabase)).First((MethodInfo mi) => mi.Name == "Get" && mi.GetParameters().Length == 5 && mi.GetParameters().Last().ParameterType == typeof(Color));
+		/*
+		static MethodInfo getGraphicTwoColor = AccessTools.Method(typeof(GraphicDatabase), "Get", new Type[]
+			{
+				typeof(string),
+				typeof(Shader),
+				typeof(float),
+				typeof(Color),
+				typeof(Color)
+			});
+		*/
+		[HarmonyTranspiler]
+		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+
+			var instructionsList = new List<CodeInstruction>(instructions);
+
+            for (int i = 0; i < instructionsList.Count; i++)
+            {
+				CodeInstruction instruction = instructionsList[i];
+                if (instruction.opcode == OpCodes.Call && instruction.OperandIs(getGraphicOneColor.MakeGenericMethod(typeof(Graphic_Multi))))
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_0);
+					yield return new CodeInstruction(OpCodes.Callvirt, drawColorTwo);
+				//    Log.Message($"{i}  opcode: {instruction.opcode} operand: {instruction.operand}");
+					instruction = new CodeInstruction(OpCodes.Call, getGraphicTwoColor.MakeGenericMethod(typeof(Graphic_Multi)));
+				}
+				yield return instruction;
+			}
+
+		}
 
 		// Token: 0x060008F6 RID: 2294 RVA: 0x0004A904 File Offset: 0x00048B04
 		[HarmonyPostfix]

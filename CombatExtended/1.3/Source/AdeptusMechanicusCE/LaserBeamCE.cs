@@ -237,7 +237,9 @@ namespace AdeptusMechanicus.Lasers
         protected void ProjectileImpact(Thing hitThing)
         {
             List<Thing> list = new List<Thing>();
+            Rand.PushState();
             bool flag = base.Position.IsValid && this.def.projectile.preExplosionSpawnChance > 0f && this.def.projectile.preExplosionSpawnThingDef != null && (Controller.settings.EnableAmmoSystem || !(this.def.projectile.preExplosionSpawnThingDef is AmmoDef)) && Rand.Value < this.def.projectile.preExplosionSpawnChance;
+            Rand.PopState();
             if (flag)
             {
                 ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;

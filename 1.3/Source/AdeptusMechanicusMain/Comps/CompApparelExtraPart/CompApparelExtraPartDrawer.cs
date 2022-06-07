@@ -325,6 +325,7 @@ namespace AdeptusMechanicus
         private float Xlimit = 0.25f;
         private Vector3 AnimateExtraBit(Vector3 origin)
         {
+            Rand.PushState();
             if (!Find.TickManager.Paused)
             {
                 if (bitFloatingDown)
@@ -360,6 +361,7 @@ namespace AdeptusMechanicus
                     this.bitOffsetX -= 0.0005f * Find.TickManager.TickRateMultiplier;
                 }
             }
+            Rand.PopState();
             this.bitPosition = origin == default ? pawn.Drawer.DrawPos : origin;
             this.bitPosition.x += this.bitOffsetX;
             this.bitPosition.z += this.bitOffsetZ;

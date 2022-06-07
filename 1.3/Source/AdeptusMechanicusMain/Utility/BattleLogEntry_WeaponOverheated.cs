@@ -239,7 +239,10 @@ namespace AdeptusMechanicus
 			{
 				num = this.weaponDef.Verbs[0].burstShotCount;
 			}
-			return Rand.ChanceSeeded(BattleLogEntry_WeaponOverheated.DisplayChanceOnMiss / (float)num, this.logID);
+			Rand.PushState();
+			bool result = Rand.ChanceSeeded(BattleLogEntry_WeaponOverheated.DisplayChanceOnMiss / (float)num, this.logID);
+			Rand.PopState();
+			return result;
 		}
 
 		public override void ExposeData()

@@ -62,8 +62,10 @@ namespace AdeptusMechanicus.OrbitalStrikes
             if (base.HitRoof(c))
             {
 				return;
-            }
+			}
+			Rand.PushState();
 			FireUtility.TryStartFireIn(c, base.Map, Rand.Range(0.1f, 0.925f));
+			Rand.PopState();
 			OrbitalBeam.tmpThings.Clear();
 			OrbitalBeam.tmpThings.AddRange(c.GetThingList(base.Map));
 			for (int i = 0; i < OrbitalBeam.tmpThings.Count; i++)

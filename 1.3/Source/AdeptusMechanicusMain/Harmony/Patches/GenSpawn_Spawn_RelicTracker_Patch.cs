@@ -52,7 +52,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newThing = ThingMaker.MakeThing(ThingDefOf.Silver);
                         newThing.stackCount = (int)silver;
                         */
-                        Log.Warning("Tried to spawn Relic: " + relicDef.LabelCap + " But one already exists in this World.");// Spawning "+ silver+" instead.");
+                        Log.Warning($"Tried to spawn Relic: {relicDef.LabelCap} But {data.relics.Count} already exist in this World.");// Spawning "+ silver+" instead.");
                         return false;
                     }
                 }

@@ -10,11 +10,6 @@
 			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<comps>    
-			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-				<randomised>true</randomised>
-			</li--> 
-		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<WorkToMake>1000</WorkToMake>
@@ -52,9 +47,13 @@
 					<li>Stab</li>
 				</capacities>
 				<power>28</power>
-				<cooldownTime>2</cooldownTime>
+				<cooldownTime>2.7</cooldownTime>
 			</li>
 		</tools>
+		<costList>
+			<Steel>1</Steel>
+			<WoodLog>1</WoodLog>
+		</costList>
 		<costStuffCount>75</costStuffCount>
 		<stuffCategories>
 			<li>Stony</li>
@@ -69,10 +68,10 @@
 				<li>OG_Ork_Tech_Base_T1</li>
 			</researchPrerequisites> 
 		</recipeMaker>
-		<costList>
-			<Steel>1</Steel>
-			<WoodLog>1</WoodLog>
-		</costList>
+		<techLevel>Neolithic</techLevel>
+		<weaponClasses IgnoreIfNoMatchingField="True">
+			<li>Neolithic</li>
+		</weaponClasses>
 		<weaponTags>
 			<li>OCrudeChoppa</li>
 			<li>OBrutalityMelee</li>
@@ -81,13 +80,18 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
+		<comps>    
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>true</dualWield>
-			<twoHand>false</twoHand>
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
+				<extraRotation>0</extraRotation>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -102,13 +106,7 @@
 			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<comps>    
-			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
-				<randomised>true</randomised>
-			</li--> 
-		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
-		<costStuffCount>75</costStuffCount>
 		<statBases>
 			<WorkToMake>1500</WorkToMake>
 			<Mass>2.5</Mass>
@@ -121,19 +119,6 @@
 			<MoveSpeed>0.5</MoveSpeed>
 		</equippedStatOffsets>
 		<equippedAngleOffset>-25</equippedAngleOffset>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
-		<recipeMaker>
-			<recipeUsers>
-				<li>ElectricSmithy</li>
-				<li>FueledSmithy</li>
-				<li>CraftingSpot</li>
-			</recipeUsers>
-			<researchPrerequisites>
-				<li>OG_Ork_Tech_Weapons_Melee_T1</li>
-			</researchPrerequisites> 
-		</recipeMaker>
 		<tools>
 			<li>
 				<label>handle</label>
@@ -161,9 +146,27 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<costStuffCount>75</costStuffCount>
 		<costList>
 			<OGO_Bitz>10</OGO_Bitz>
 		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricSmithy</li>
+				<li>FueledSmithy</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Melee_T1</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<techLevel>Medieval</techLevel>
+		<weaponClasses IgnoreIfNoMatchingField="True">
+			<li>Neolithic</li>
+		</weaponClasses>
 		<weaponTags>
 			<li>OChoppa</li>
 			<li>OBrutalityMelee</li>
@@ -172,13 +175,18 @@
 		<tradeTags>
 			<li>OGOMelee</li>
 		</tradeTags>
+		<comps>    
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>true</dualWield>
-			<twoHand>false</twoHand>
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
+				<extraRotation>0</extraRotation>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -254,11 +262,11 @@
 		</tradeTags>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
-			<dualWield>true</dualWield>
-			<twoHand>false</twoHand>
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
 			</li>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
-			<extraRotation>0</extraRotation>
+				<extraRotation>0</extraRotation>
 			</li>
 		</modExtensions>
 	</ThingDef>

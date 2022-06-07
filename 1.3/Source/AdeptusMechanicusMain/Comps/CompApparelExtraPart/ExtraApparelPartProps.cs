@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using AdeptusMechanicus.settings;
+using JetBrains.Annotations;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace AdeptusMechanicus
         public QualityCategory minQuality = QualityCategory.Awful;
         public QualityCategory maxQuality = QualityCategory.Legendary;
 
-        public bool DynamicDraw => this.forceDynamicDraw || this.animateExtra;
+        public bool DynamicDraw => (this.forceDynamicDraw || this.animateExtra) && AMAMod.settings.AllowDynmanicPartDrawer;
 
         public bool AcceptableForQuality(QualityCategory quality)
         {

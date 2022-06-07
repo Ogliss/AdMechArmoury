@@ -12,6 +12,7 @@ using Verse;
 using HarmonyLib;
 using UnityEngine;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -36,8 +37,10 @@ namespace AdeptusMechanicus.HarmonyInstance
         }
     }
 
-
-    //    [HarmonyPatch(typeof(PawnTextureAtlas), MethodType.StaticConstructor)]
+    
+*/
+    /*
+    [HarmonyPatch(typeof(PawnTextureAtlas), MethodType.Constructor)]
     public static class PawnTextureAtlas_Constructor_Name_Patch
     {
         [HarmonyTranspiler]
@@ -56,6 +59,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                     code.operand = 0.10f;
                 }
                 
+                if (code.opcode == OpCodes.Ldc_R4 && code.OperandIs(2048))
+                {
+                    code.operand = 4096;
+                }
+
+                if (code.opcode == OpCodes.Ldc_R4 && code.OperandIs(2048f))
+                {
+                    code.operand = 4096f;
+                }
+
+                if (code.opcode == OpCodes.Ldc_R4 && code.OperandIs(128))
+                {
+                    code.operand = 256;
+                }
+
                 yield return code;
             }
         }
@@ -65,5 +83,5 @@ namespace AdeptusMechanicus.HarmonyInstance
             return TextureAtlasHelper.CreateMeshForUV(uv, scale * 1.5f);
         }
     }
-*/
+        */
 }

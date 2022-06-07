@@ -18,7 +18,7 @@ namespace AdeptusMechanicus
     public static class DebugToolsSpawning
     {
         // Verse.DebugToolsSpawning
-        [DebugAction("Adeptus Mechanicus: Spawning", "Call Air Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Call Air Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallAirstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -35,7 +35,7 @@ namespace AdeptusMechanicus
         }
 
         // Verse.DebugToolsSpawning
-        [DebugAction("Adeptus Mechanicus: Spawning", "Call Artillery Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Call Artillery Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallArtillerystrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -52,7 +52,7 @@ namespace AdeptusMechanicus
         }
         
         // Verse.DebugToolsSpawning
-        [DebugAction("Adeptus Mechanicus: Spawning", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallOrbitalstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -67,7 +67,7 @@ namespace AdeptusMechanicus
             Find.WindowStack.Add(new FloatMenu(list));
         }
         /*
-        [DebugAction("Spawning", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallOrbitalstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
@@ -84,7 +84,7 @@ namespace AdeptusMechanicus
         }
         */
         // Token: 0x060018BD RID: 6333 RVA: 0x0008E204 File Offset: 0x0008C404
-        [DebugAction("Adeptus Mechanicus: Spawning", "Spawn via Deep Strike...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Spawn via Deep Strike...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallDeepstrikeOf()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();
@@ -134,7 +134,7 @@ namespace AdeptusMechanicus
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
         }
         // Token: 0x060018BD RID: 6333 RVA: 0x0008E204 File Offset: 0x0008C404
-        [DebugAction("Adeptus Mechanicus: Spawning", "Spawn Dropship...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Spawn Dropship...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void SpawnDropship()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();
@@ -198,7 +198,7 @@ namespace AdeptusMechanicus
         }
         /*
         // Token: 0x0600186F RID: 6255 RVA: 0x0008C8C8 File Offset: 0x0008AAC8
-        [DebugAction("Spawning", null, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", null, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void SpawnDropship()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();
@@ -216,7 +216,7 @@ namespace AdeptusMechanicus
         */
         /*
         // Verse.DebugToolsSpawning
-        [DebugAction("Adeptus General", "Call Deep Strike...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Call Deep Strike...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallDeepstrikeOf()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();

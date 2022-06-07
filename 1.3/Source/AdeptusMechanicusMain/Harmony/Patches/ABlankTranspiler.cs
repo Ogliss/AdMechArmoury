@@ -23,13 +23,12 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             var instructionsList = new List<CodeInstruction>(instructions);
             
-            int i = 0;
-            foreach (var instruction in instructionsList)
+            for (int i = 0; i < instructionsList.Count; i++)
             {
-            //    Log.Message(i+" opcode: " + instruction.opcode + " operand: " + instruction.operand);
-                i++;
-                yield return instruction;
-            }
+				CodeInstruction instruction = instructionsList[i];
+				Log.Message($"{i}  opcode: {instruction.opcode} operand: {instruction.operand}");
+				yield return instruction;
+			}
             
         }
     }

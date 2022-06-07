@@ -52,6 +52,7 @@ namespace AdeptusMechanicus.AirStrikes
 			if (flag)
 			{
 				bool flag2 = targetPosition.x <= num && targetPosition.z >= num2;
+				Rand.PushState();
 				if (flag2)
 				{
 					this.spaceshipExactRotation = (float)Rand.RangeInclusive(280, 350);
@@ -81,6 +82,7 @@ namespace AdeptusMechanicus.AirStrikes
 			{
 				this.spaceshipExactRotation = Rand.Range(0f, 360f);
 			}
+			Rand.PopState();
 			base.Rotation = new Rot4(Mathf.RoundToInt(this.spaceshipExactRotation) / 90);
 		}
 
@@ -214,7 +216,9 @@ namespace AdeptusMechanicus.AirStrikes
 			{
 				this.weaponRemainingRounds[weaponIndex] = weaponDef.ammoQuantity;
 				this.weaponNextShotTick[weaponIndex] = Find.TickManager.TicksGame;
+				Rand.PushState();
 				int num = Rand.RangeInclusive(0, 1);
+				Rand.PopState();
 				bool flag2 = num == 1;
 				if (flag2)
 				{
@@ -268,7 +272,9 @@ namespace AdeptusMechanicus.AirStrikes
 					}
 					else
 					{
+						Rand.PushState();
 						vector2 += new Vector3(Rand.Range(-weaponDef.targetAcquireRange, weaponDef.targetAcquireRange), 0f, 0f).RotatedBy(this.spaceshipExactRotation);
+						Rand.PopState();
 						projectile.Launch(this, vector, vector2.ToIntVec3(), vector2.ToIntVec3(), ProjectileHitFlags.None, false, this, null);
 					}
 				}

@@ -21,7 +21,9 @@ namespace AdeptusMechanicus
             int duration = Mathf.RoundToInt(this.def.durationDays.RandomInRange * 60000f);
             GameCondition_Warpstorm gameCondition_Warpstorm = (GameCondition_Warpstorm)GameConditionMaker.MakeCondition(AdeptusGameConditionDefOf.OG_Condition_Warpstorm, duration);
             gameCondition_Warpstorm.points = parms.points;
+            Rand.PushState();
             gameCondition_Warpstorm.severity = Rand.Value;
+            Rand.PopState();
             map.gameConditionManager.RegisterCondition(gameCondition_Warpstorm);
             base.SendStandardLetter(this.def.letterLabel, this.def.letterText, this.def.letterDef, parms, new TargetInfo());
             if (map.weatherManager.curWeather.rainRate > 0.1f)

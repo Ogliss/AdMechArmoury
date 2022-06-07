@@ -388,7 +388,6 @@ namespace AdeptusMechanicus
             Scribe_Deep.Look<JobQueue>(ref this.jobQueue, "jobQueue", Array.Empty<object>());
         }
 
-        private int heightinc = Rand.Range(-1, 3);
         protected Vector3 origin;
         protected Vector3 destination;
         protected float speed = 28f;

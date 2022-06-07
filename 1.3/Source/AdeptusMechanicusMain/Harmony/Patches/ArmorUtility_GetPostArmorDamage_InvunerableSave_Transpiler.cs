@@ -69,7 +69,9 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     ap = Mathf.Max(armorPenetration - ir, 0f);
                 }
+                Rand.PushState();
                 float value = Rand.Value;
+                Rand.PopState();
                 float num2 = ap * 0.5f;
                 if (value < num2)
                 {

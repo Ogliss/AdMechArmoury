@@ -215,6 +215,7 @@ namespace AdeptusMechanicus
             if (flag)
             {
                 bool flag2 = targetPosition.x <= num && targetPosition.z >= num2;
+                Rand.PushState();
                 if (flag2)
                 {
                     this.exactRotation = (float)Rand.RangeInclusive(280, 350);
@@ -244,6 +245,7 @@ namespace AdeptusMechanicus
             {
                 this.exactRotation = Rand.Range(0f, 360f);
             }
+            Rand.PopState();
             base.Rotation = new Rot4(Mathf.RoundToInt(this.exactRotation) / 90);
         }
 

@@ -30,7 +30,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\1.1\Assemblies\</OutputPath>
+    <OutputPath>..\..\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,9 +40,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
-    <AssemblyVersion>1.6.7.2</AssemblyVersion>
-    <FileVersion>1.6.0.0</FileVersion>
-    <Version>1.3.1</Version>
+    <AssemblyVersion>1.6.8.3</AssemblyVersion>
+    <FileVersion>1.6.2.1</FileVersion>
+    <Version>1.3.2</Version>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Remove="MigrationBackup\**" />
@@ -153,9 +153,11 @@
     <Compile Include="Backstories\BackstorySettings.cs" />
     <Compile Include="Comps\CompGraphicOverlay.cs" />
     <Compile Include="Comps\Comp_Shield.cs" />
+    <Compile Include="DebugTools\DebugActionsRendering.cs" />
     <Compile Include="DefExtentions\FloatingPawnExtension.cs" />
     <Compile Include="DefExtentions\InheritRecipesDefExtension.cs" />
     <Compile Include="Defs\CultureDef.cs" />
+    <Compile Include="Defs\DeityDef.cs" />
     <Compile Include="Defs\ResearchSubTabDef.cs" />
     <Compile Include="DeOf\AdeptusResearchTagDefOf.cs" />
     <Compile Include="DeOf\AdeptusResearchTabDefOf.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Core.cs" />
     <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Spine.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Harmony\Patches\Pawn_GetGizmos_CompToggleFireMode_Patch.cs" />
     <Compile Include="Harmony\Patches\Precept_Role_GenerateNameRaw_CultralRoleNames_Transpiler.cs" />
     <Compile Include="Harmony\Patches\SiegeBlueprintPlacer_PlaceArtilleryBlueprints_RaceRestriction_Patch.cs" />
     <Compile Include="Harmony\Patches\Precept_Relic_GenerateStuffFor_Name_Patch.cs" />
@@ -191,6 +194,8 @@
     <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
     <Compile Include="Harmony\Patches\ResearchPatches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
     <Compile Include="Harmony\Patches\Verbs\VerbProperties_GetForceMissFactorFor_Patch.cs" />
+    <Compile Include="Harmony\Patches\VerbTracker_GetVerbsCommands_CompToggleFireMode_Patch.cs" />
+    <Compile Include="Harmony\Patches\VerbUtility_HarmsHealth_CompToggleFireMode_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_DetonateOnDeath.cs" />
     <Compile Include="Comps\CompFireStarter.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
@@ -198,6 +203,7 @@
     <Compile Include="Comps\Reliability.cs" />
     <Compile Include="Things\PassingShips\Class1.cs" />
     <Compile Include="Things\Pawns\SwarmPawn.cs" />
+    <Compile Include="Things\Projectile\Projectile_Returning.cs" />
     <Compile Include="Utility\ReliabilityUtility.cs" />
     <Compile Include="Comps\WeaponComps\GunComps\CompProperties_ToggleFireMode.cs" />
     <Compile Include="DebugTools\Class1.cs" />
@@ -286,7 +292,7 @@
     <Compile Include="Things\Ordnance\OrbitalStrikes\OrbitalStrikeDef.cs" />
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeDef.cs" />
     <Compile Include="Things\Ordnance\ArtilleryStrikes\ArtilleryStrikeMaker.cs" />
-    <Compile Include="Things\Projectile\TrailThrower.cs" />
+    <Compile Include="Utility\TrailThrower.cs" />
     <Compile Include="Utility\AdeptusApparelUtility.cs" />
     <Compile Include="Utility\AdeptusHediffUtility.cs" />
     <Compile Include="Utility\AdeptusMath.cs" />
@@ -576,7 +582,7 @@
     <Compile Include="Harmony\Patches\BackCompatability\BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
-    <Compile Include="Harmony\Patches\CompToggleFireMode_Patches.cs" />
+    <Compile Include="Harmony\Patches\CompEquippable_PrimaryVerb_CompToggleFireMode_Patch.cs" />
     <None Include="Regeneration\Hediff_Regeneration.cs.bak" />
     <Compile Include="Regeneration\Hediff_Removable.cs" />
     <Compile Include="Regeneration\Hediff_RegeneratingPart.cs" />
@@ -724,7 +730,7 @@
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3287" GeneratePathProperty="true" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3326" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.1</Version>
     </PackageReference>

@@ -63,7 +63,10 @@ namespace AdeptusMechanicus
 			{
 				return;
 			}
-			if (!Rand.Chance(chanceToAddHediff) || severityToAdd <= 0f)
+			Rand.PushState();
+			bool exit = !Rand.Chance(chanceToAddHediff);
+			Rand.PopState();
+			if (exit || severityToAdd <= 0f)
 			{
 				return;
 			}

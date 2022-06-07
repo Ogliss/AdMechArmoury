@@ -67,7 +67,9 @@ namespace AdeptusMechanicus
 					{
 					//	if (Find.Selector.SelectedObjects.Contains(thing)) Log.Message("Damaging thing " + thing);
 						this.touchingThings.Add(thing);
+						Rand.PushState();
 						this.DamageEntities(thing, Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+						Rand.PopState();
 						if (Def.damageMote) FleckMaker.ThrowDustPuff(thing.Position, base.Map, 0.2f);
 					}
 					if (pawn != null)
@@ -101,13 +103,17 @@ namespace AdeptusMechanicus
 				}
 				else
 				{
-				//	if (Find.Selector.SelectedObjects.Contains(thing2)) Log.Message("Damaging thing2 " + thing2);
+					//	if (Find.Selector.SelectedObjects.Contains(thing2)) Log.Message("Damaging thing2 " + thing2);
+					Rand.PushState();
 					this.DamageEntities(thing2, Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+					Rand.PopState();
 				}
 			}
 			if (Def.damageBuildings && !Def.damagePawnsOnly)
 			{
+				Rand.PushState();
 				this.DamageBuildings(Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f)));
+				Rand.PopState();
 			}
 			this.cachedLabelMouseover = null;
 		}
@@ -145,7 +151,9 @@ namespace AdeptusMechanicus
 				return;
 			}
 			List<BodyPartRecord> list = new List<BodyPartRecord>();
+			Rand.PushState();
 			int num = Mathf.RoundToInt((float)this.Damage * Rand.Range(0.5f, 1.25f));
+			Rand.PopState();
 			DamageInfo dinfo = default(DamageInfo);
 			if (Def.damageMote) FleckMaker.ThrowDustPuff(pawn.Position, base.Map, 0.2f);
 
