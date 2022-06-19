@@ -336,10 +336,10 @@ namespace AdeptusMechanicus.Lasers
                             if (origin != null && destination != null)
                             {
                                 float distance = Vector3.Distance(origin, destination);
-                                if (distance > ((ThingWithComps)weapon).def.Verbs[0].range / 2)
+                                float halfrange = ((ThingWithComps)weapon).def.Verbs[0].range / 2;
+                                if (distance > halfrange)
                                 {
-
-                                    return base.ArmorPenetration / distance;
+                                    return Mathf.Lerp(base.ArmorPenetration, base.ArmorPenetration / 2, (halfrange/(distance - halfrange)));
                                 }
                             }
                         }

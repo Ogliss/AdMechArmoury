@@ -563,6 +563,109 @@
 		</comps>
 	</ThingDef>
 
+	<!--=============== Dual Heavy Bolter turret ===============-->
+	<ThingDef ParentName="OGI_HeavyTurret">
+		<defName>OGI_Turret_DualHeavyBolter_Auto</defName>
+		<label>dual heavy bolter turret</label>
+		<description>An automatic dual heavy bolter turret. Its capable of laying down awithering hail of fire, but its not the most accurate and its barrel must be refurbished after use. It cannot fire at close-up targets, and may explode when damaged.</description>	
+		<uiIconPath>Things/Building/Imperial/Security/TurretMount_DualHeavyBolter_Menu</uiIconPath>
+		<statBases>
+			<AimingAccuracy MayRequire="CETeam.CombatExtended">0.25</AimingAccuracy>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+		</statBases>
+		<costList>
+			<Steel>350</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<wickTicks>240</wickTicks>
+				<explosiveRadius>5.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+			</li>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>150</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+				<fuelFilter><thingDefs><li>Steel</li></thingDefs></fuelFilter>
+				<fuelCapacity>90</fuelCapacity>			
+				<fuelMultiplier>0.5</fuelMultiplier> 
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.5</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<building>
+			<turretGunDef>OGI_GunTurret_DualHeavyBolter</turretGunDef>
+			<turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+		</building>
+		<researchPrerequisites>
+			<li>HeavyTurrets</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>OGI_GunTurret_DualHeavyBolter</defName>
+		<label>quad heavy stubber</label>
+		<description>A self-loading dual heavy bolter designed to attach to a turret.</description>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Security/TurretMount_DualHeavyBolter_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.25</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.45</AccuracyLong>
+			<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>40</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+				<warmupTime>0</warmupTime>
+				<range>38</range>
+				<minRange>2.9</minRange>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>OG_Bolt_Gun_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>28</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<Multishot>true</Multishot>
+						<ScattershotCount>3</ScattershotCount>
+					</li>
+				</VerbEntries>
+			</li>		
+		</comps>
+	</ThingDef>
+
 	<!--=============== Autocannon turret ===============-->
 	<ThingDef ParentName="OGI_HeavyTurret">
 		<defName>OGI_Turret_Autocannon_Auto</defName>

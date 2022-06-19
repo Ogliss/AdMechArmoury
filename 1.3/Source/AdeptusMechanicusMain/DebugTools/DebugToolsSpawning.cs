@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AdeptusMechanicus;
-using AdeptusMechanicus.AirStrikes;
-using AdeptusMechanicus.ArtilleryStrikes;
+using AdeptusMechanicus.Ordnance;
 using AdeptusMechanicus.ExtensionMethods;
-using AdeptusMechanicus.OrbitalStrikes;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -14,18 +12,16 @@ using Verse.AI.Group;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x02000330 RID: 816
     public static class DebugToolsSpawning
     {
-        // Verse.DebugToolsSpawning
         [DebugAction("Adeptus Mechanicus", "Call Air Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallAirstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
             IntVec3 cell = UI.MouseCell();
-            foreach (AirStrikeDef StrikeDef in DefDatabase<AirStrikeDef>.AllDefs)
+            foreach (OrdnanceStrikeDef StrikeDef in DefDatabase<OrdnanceStrikeDef>.AllDefs)
             {
-                AirStrikeDef localStrike = StrikeDef;
+                OrdnanceStrikeDef localStrike = StrikeDef;
                 list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
                 {
                     OrdnanceUtility.SpawnAirStrike(Find.CurrentMap, cell, localStrike);
@@ -34,15 +30,14 @@ namespace AdeptusMechanicus
             Find.WindowStack.Add(new FloatMenu(list));
         }
 
-        // Verse.DebugToolsSpawning
         [DebugAction("Adeptus Mechanicus", "Call Artillery Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallArtillerystrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
             IntVec3 cell = UI.MouseCell();
-            foreach (ArtilleryStrikeDef StrikeDef in DefDatabase<ArtilleryStrikeDef>.AllDefs)
+            foreach (OrdnanceStrikeDef StrikeDef in DefDatabase<OrdnanceStrikeDef>.AllDefs)
             {
-                ArtilleryStrikeDef localStrike = StrikeDef;
+                OrdnanceStrikeDef localStrike = StrikeDef;
                 list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
                 {
                     OrdnanceUtility.SpawnArtilleryStrike(Find.CurrentMap, cell, localStrike);
@@ -51,14 +46,13 @@ namespace AdeptusMechanicus
             Find.WindowStack.Add(new FloatMenu(list));
         }
         
-        // Verse.DebugToolsSpawning
         [DebugAction("Adeptus Mechanicus", "Call Orbital Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallOrbitalstrikeOf()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
-            foreach (OrbitalStrikeDef StrikeDef in DefDatabase<OrbitalStrikeDef>.AllDefs)
+            foreach (OrdnanceStrikeDef StrikeDef in DefDatabase<OrdnanceStrikeDef>.AllDefs)
             {
-                OrbitalStrikeDef localStrike = StrikeDef;
+                OrdnanceStrikeDef localStrike = StrikeDef;
                 list.Add(new FloatMenuOption(localStrike.LabelCap + " - ", delegate ()
                 {
                     OrdnanceUtility.StartTargeting(localStrike, Find.CurrentMap);
@@ -83,9 +77,9 @@ namespace AdeptusMechanicus
             Find.WindowStack.Add(new FloatMenu(list));
         }
         */
-        // Token: 0x060018BD RID: 6333 RVA: 0x0008E204 File Offset: 0x0008C404
+
         [DebugAction("Adeptus Mechanicus", "Spawn via Deep Strike...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void CallDeepstrikeOf()
+        private static void CallDeepstrikerOf()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();
             foreach (PawnKindDef localKindDef2 in from f in DefDatabase<PawnKindDef>.AllDefs
@@ -106,7 +100,7 @@ namespace AdeptusMechanicus
                     IntVec3 cell = UI.MouseCell();
                     for (int i = 0; i < 6; i++)
                     {
-                        DeepStrikeType strikeType = (DeepStrikeType)i;
+                        ReserveDeploymentType strikeType = (ReserveDeploymentType)i;
                         list2.Add(new FloatMenuOption(DeepStrikeUtility.DeepstrikeArrivalmode(strikeType) + " - ", delegate ()
                         {
                             Faction faction = FactionUtility.DefaultFactionFrom(localKindDef.defaultFactionType);
@@ -133,7 +127,52 @@ namespace AdeptusMechanicus
             }
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
         }
-        // Token: 0x060018BD RID: 6333 RVA: 0x0008E204 File Offset: 0x0008C404
+        /*
+        [DebugAction("Adeptus Mechanicus", "Spawn Deep Strike...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void ExecuteRaidWithFaction()
+        {
+            StorytellerComp storytellerComp = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain);
+            MapComponent_Reserves _DeepStrike = Find.CurrentMap.Reserves();
+            IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
+            parms.raidArrivalMode = AdeptusPawnsArrivalModeDefOf.OG_DeepStrike_Random;
+            List<DebugMenuOption> list = new List<DebugMenuOption>();
+            foreach (Faction allFaction in Find.FactionManager.AllFactions.Where(x=> x.def.HasModExtension<FactionDefExtension>()))
+            {
+                Faction localFac = allFaction;
+                float localPoints = default(float);
+                list.Add(new DebugMenuOption(localFac.Name + " (" + localFac.def.defName + ")", DebugMenuOptionMode.Action, delegate
+                {
+                    parms.faction = localFac;
+                    List<DebugMenuOption> list2 = new List<DebugMenuOption>();
+                    foreach (float item in DebugActionsUtility.PointsOptions(extended: true))
+                    {
+                        localPoints = item;
+                        list2.Add(new DebugMenuOption(item + " points", DebugMenuOptionMode.Action, delegate
+                        {
+                            parms.points = localPoints;
+
+                            if (DeepStrikeUtility.TryGenerateStrikeInfo(parms, out List<Pawn> DeepStrikers))
+                            {
+                                Log.Message($"Deep strike with {DeepStrikers.Select(x => x.NameShortColored.ToString()).ToCommaList()}");
+                                FactionDefExtension defExtension = parms.faction.def.GetModExtensionFast<FactionDefExtension>();
+                                Rand.PushState();
+                                int delay = Rand.RangeInclusive(defExtension.DeepStrikeDelayMin.RandomInRange.SecondsToTicks(), defExtension.DeepStrikeDelayMax.RandomInRange.SecondsToTicks());
+                                Rand.PopState();
+                                ReserveForce strikeEntry = new ReserveForce(parms.faction, delay, Find.CurrentMap, DeepStrikers);
+                                _DeepStrike.AddDeepStrike(strikeEntry, delay);
+                            }
+                            else
+                            {
+
+                            }
+                        }));
+                    }
+                    Find.WindowStack.Add(new Dialog_DebugOptionListLister(list2));
+                }));
+            }
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
+        }
+        */
         [DebugAction("Adeptus Mechanicus", "Spawn Dropship...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void SpawnDropship()
         {

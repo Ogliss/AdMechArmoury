@@ -10,7 +10,7 @@ namespace AdeptusMechanicus
 
 	public class CompProperties_EquipmentAbilityJumpPack : CompProperties_EffectWithDest
 	{
-		public DeepStrikeType type = DeepStrikeType.Fly;
+		public ReserveDeploymentType type = ReserveDeploymentType.Fly;
 		public string jumpingThing = "FlyingObject_JumpPack";
 		public IntRange stunTicks;
 		public float explodingLeaperRadius = 2f;
@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
 
 		public override IEnumerable<PreCastAction> GetPreCastActions()
 		{
-            if (Props.type == DeepStrikeType.Teleport)
+            if (Props.type == ReserveDeploymentType.Teleport)
             {
 				yield return new PreCastAction
 				{
@@ -81,13 +81,13 @@ namespace AdeptusMechanicus
 			bool cd = false;
 			switch (Props.type)
             {
-                case DeepStrikeType.Fly:
+                case ReserveDeploymentType.Fly:
 					cd = TryJumpTo(target, dest);
 					break;
-                case DeepStrikeType.Teleport:
+                case ReserveDeploymentType.Teleport:
 					cd = TryTeleportTo(target, dest);
 					break;
-                case DeepStrikeType.Tunnel:
+                case ReserveDeploymentType.Tunnel:
                     break;
                 default:
                     break;

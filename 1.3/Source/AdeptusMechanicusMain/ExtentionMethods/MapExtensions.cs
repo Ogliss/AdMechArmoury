@@ -9,15 +9,9 @@ namespace AdeptusMechanicus.ExtensionMethods
 {
     public static class MapExtensions
     {
-        public static MapComponent_DeepStrike DeepStrike(this Map map)
+        public static MapComponent_Reserves Reserves(this Map map)
         {
-            return map.GetComponent<MapComponent_DeepStrike>();
+            return map.GetComponent<MapComponent_Reserves>();
         }
-
-        public static MapComponent_Infiltrate Infiltrate(this Map map)
-        {
-            return map.GetComponent<MapComponent_Infiltrate>();
-        }
-
     }
 }

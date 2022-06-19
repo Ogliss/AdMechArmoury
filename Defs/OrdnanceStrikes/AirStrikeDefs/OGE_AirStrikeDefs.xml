@@ -2,7 +2,7 @@
 <Defs>
 
 	<!--==================== Air Strikes - Eldar =========================-->
-	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" Name="OG_Eldar_StrikeShip" Abstract="True">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef Abstract="True" Name="OG_Eldar_StrikeShip" ParentName="OG_AirStrike_Base">
 		<graphicData>
 			<texPath>Things/Ships/Strike/DarkEldar/StrikeShip_DE_VoidRaven</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -12,22 +12,22 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</shadowData>
 		<scale>20,20</scale>
-	</Def>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 	
 	<!-- Shuriken Cannon -->
-	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_Eldar_StrikeShip">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Eldar_StrikeShip">
 		<defName>OGE_AirStrike_ShurikenCannon</defName>
 		<label>splinter cannon run</label>
 		<description>Strike ship fills the air with projectiles from its twin shuriken cannons. Covers a large area. Particularly effective against unarmored units.</description>
 		<runsNumber>2</runsNumber>
 		<costInSilver>500</costInSilver>
 		<ammoResupplyDays>10</ammoResupplyDays>
-		<weapons>
+		<weaponsAirstrike>
 			<li>OGE_AirstrikeWeapon_ShurikenCannon</li>
-		</weapons>
-	</Def>
+		</weaponsAirstrike>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 
-	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+	<AdeptusMechanicus.Ordnance.WeaponDef>
 		<defName>OGE_AirstrikeWeapon_ShurikenCannon</defName>
 		<label>shuriken cannon</label>
 		<ammoDef>OGE_AirstrikeBullet_ShurikenCannon</ammoDef>
@@ -41,7 +41,7 @@
 		<isTwinGun>true</isTwinGun>
 		<horizontalPositionOffset>3.5</horizontalPositionOffset>
 		<verticalPositionOffset>2.0</verticalPositionOffset>
-	</Def> 
+	</AdeptusMechanicus.Ordnance.WeaponDef> 
 
 	<ThingDef ParentName="OG_AirstrikeBullet_Base">
 		<defName>OGE_AirstrikeBullet_ShurikenCannon</defName>
@@ -59,19 +59,19 @@
 	</ThingDef>
 	
 	<!-- Star Cannon -->
-	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_Eldar_StrikeShip">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Eldar_StrikeShip">
 		<defName>OGE_AirStrike_StarCannon</defName>
 		<label>starcannon assault</label>
 		<description>The powerful frontal starcannon can deal high damages to armored units and buildings. It does not cover a wide area though.</description>
 		<runsNumber>3</runsNumber>
 		<costInSilver>1000</costInSilver>
 		<ammoResupplyDays>15</ammoResupplyDays>
-		<weapons>
+		<weaponsAirstrike>
 			<li>OGE_AirstrikeWeapon_StarCannon</li>
-		</weapons>
-	</Def>
+		</weaponsAirstrike>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 
-	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+	<AdeptusMechanicus.Ordnance.WeaponDef>
 		<defName>OGE_AirstrikeWeapon_StarCannon</defName>
 		<label>starcannon</label>
 		<ammoDef>OGE_AirstrikeBullet_StarCannon</ammoDef>
@@ -85,7 +85,7 @@
 		<isTwinGun>false</isTwinGun>
 		<horizontalPositionOffset>0</horizontalPositionOffset>
 		<verticalPositionOffset>9.0</verticalPositionOffset>
-	</Def>	
+	</AdeptusMechanicus.Ordnance.WeaponDef>	
 	
 	<ThingDef ParentName="OG_AirstrikeBullet_Base">
 		<defName>OGE_AirstrikeBullet_StarCannon</defName>
@@ -118,20 +118,20 @@
 
 	
 	<!-- Brightlance & Star Cannon -->
-	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_Eldar_StrikeShip">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Eldar_StrikeShip">
 		<defName>OGE_AirStrike_Brightlance</defName>
 		<label>splinter cannon and darklance strafe run</label>
 		<description>Strike ship attacks with both twin shuriken cannons and darklances. A truly devastative assault.</description>
 		<runsNumber>2</runsNumber>
 		<costInSilver>2000</costInSilver>
 		<ammoResupplyDays>20</ammoResupplyDays>
-		<weapons>
+		<weaponsAirstrike>
 			<li>OGE_AirstrikeWeapon_ShurikenCannon</li>
 			<li>OGE_AirstrikeWeapon_Brightlance</li>
-		</weapons>
-	</Def>
+		</weaponsAirstrike>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 
-	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+	<AdeptusMechanicus.Ordnance.WeaponDef>
 		<defName>OGE_AirstrikeWeapon_Brightlance</defName>
 		<label>darklance</label>
 		<ammoDef>OGE_AirstrikeBullet_Brightlance</ammoDef> <!-- Do not overwrite vanilla rocket def! -->
@@ -143,7 +143,7 @@
 		<isTwinGun>true</isTwinGun>
 		<horizontalPositionOffset>3.5</horizontalPositionOffset>
 		<verticalPositionOffset>0.0</verticalPositionOffset>
-	</Def>
+	</AdeptusMechanicus.Ordnance.WeaponDef>
 	
 	<ThingDef ParentName="OG_AirstrikeBullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGE_AirstrikeBullet_Brightlance</defName>
@@ -162,7 +162,7 @@
 	</ThingDef>
 
 	<!--==================== Bombing Runs - Eldar =========================-->
-	<!--Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_Eldar_StrikeShip">
+	<!--AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Eldar_StrikeShip">
 		<defName>OGE_BombingRun_IncendiaryRaid</defName>
 		<label>incendiary bombing run</label>
 		<description>Strike ship perform a carpet bombing on the targeted area with massive incendiary bombs. Particularly effective against stationnary installations.</description>
@@ -171,12 +171,12 @@
 		<ammoResupplyDays>20</ammoResupplyDays>
 		<cellsTravelledPerTick>0.08</cellsTravelledPerTick>
 		<ticksBeforeOverflightReducedSpeed>60</ticksBeforeOverflightReducedSpeed>
-		<weapons>
+		<weaponsAirstrike>
 			<li>OGE_BombingRunWeapon_Incendiary</li>
-		</weapons>
-	</Def-->
+		</weaponsAirstrike>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef-->
 
-	<!--Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+	<!--AdeptusMechanicus.Ordnance.WeaponDef>
 		<defName>OGE_BombingRunWeapon_Incendiary</defName>
 		<label>incendiary bomb</label>
 		<ammoDef>OGE_BombingRunBomb_Incendiary</ammoDef>
@@ -189,7 +189,7 @@
 		<horizontalPositionOffset>3.0</horizontalPositionOffset>
 		<verticalPositionOffset>0.0</verticalPositionOffset>
 		<disableRainDurationInTicks>30000</disableRainDurationInTicks>
-	</Def-->
+	</AdeptusMechanicus.Ordnance.WeaponDef-->
 	
 	<!--ThingDef ParentName="OG_AirstrikeBullet_Base">
 		<defName>OGE_BombingRunBomb_Incendiary</defName>

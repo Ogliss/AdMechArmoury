@@ -655,7 +655,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     */
                 }
-                if (defType == typeof(FactionDef))
+                else if (defType == typeof(FactionDef))
                 {
                     if (defName == "OGChaosDeamonFaction")
                     {
@@ -740,7 +740,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
 
                 }
-                if (defType == typeof(PawnKindDef))
+                else if (defType == typeof(PawnKindDef))
                 {
                     List<PawnKindDef> list;
                     if (defName.Contains("Ork"))
@@ -869,7 +869,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
 
                 }
-                if (defType == typeof(ResearchProjectDef))
+                else if (defType == typeof(ResearchProjectDef))
                 {
                     // Common Reseach renames
                     if (defName == "WRPowerWeapons" || defName == "OG_Weapons_Power_Imperial")
@@ -1070,12 +1070,46 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = "OG_Ork_Tech_Apparel_Armour_T3";
                     }
                 }
-                if (defType == typeof(HediffDef))
+                else if (defType == typeof(HediffDef))
                 {
                     if (defName == "PlasmaBurn")
                     {
                         newName = "OG_Hediff_PlasmaBurn";
                     }
+                    if (defName == "OG_Hediff_PlasmaBurn")
+                    {
+                        newName = "OG_Burn_Plasma";
+                    }
+                    if (defName == "LaserBurn")
+                    {
+                        newName = "OG_Burn_Laser";
+                    }
+                    if (defName == "MeltaBurn")
+                    {
+                        newName = "OG_Burn_Melta";
+                    }
+                    if (defName == "ElectricalBurn")
+                    {
+                        newName = "OG_Burn_Electrical";
+                    }
+
+                    if (defName == "RadiumGunshot")
+                    {
+                        newName = "OG_Gunshot_Radium";
+                    }
+                    if (defName == "GalvanicWound")
+                    {
+                        newName = "OG_Gunshot_Galvanic";
+                    }
+                    if (defName == "TransuranicWound")
+                    {
+                        newName = "OG_Gunshot_Transuranic";
+                    }
+                    if (defName == "GaussWound")
+                    {
+                        newName = "OG_Gunshot_Gauss";
+                    }
+
                     if (defName == "RadiationPoisioning")
                     {
                         newName = "OG_Hediff_RadiationPoisioning";
@@ -1106,35 +1140,35 @@ namespace AdeptusMechanicus.HarmonyInstance
                             newName = Regex.Replace(defName, "OG_Hediff_AstartesOrgans_", "OG_Zygote_Hediff_");
                     }
                 }
-                if (defType == typeof(DamageDef))
+                else if (defType == typeof(DamageDef))
                 {
                     if (defName == "OGForceStrike")
                     {
                         newName = "OG_ForceStrike";
                     }
                 }
-                if (defType == typeof(GameConditionDef))
+                else if (defType == typeof(GameConditionDef))
                 {
                     if (defName == "OG_Warpstorm")
                     {
                         newName = "OG_Condition_Warpstorm";
                     }
                 }
-                if (defType == typeof(WorkGiverDef))
+                else if (defType == typeof(WorkGiverDef))
                 {
                     if (defName == "DoBillsImperialMachining" || defName == "DoBillsOrkMachining" || defName == "DoBillsTauMachining" || defName == "DoBillsEldarMachining")
                     {
                         newName = "DoBillsMachiningTable";
                     }
                 }
-                if (defType == typeof(BodyDef))
+                else if (defType == typeof(BodyDef))
                 {
                     if (defName.Contains("Kroot") || defName.Contains("Tau") || defName.Contains("Vespid"))
                     {
                         newName = defName + "_Body";
                     }
                 }
-                if (defType == typeof(LifeStageDef))
+                else if (defType == typeof(LifeStageDef))
                 {
                     newName = "OG_Lifestage_";
                     if (defName.Contains("Orkoid"))
@@ -1143,14 +1177,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = Regex.Replace(defName, "Orkoid", newName);
                     }
                 }
-                if (defType == typeof(HairDef))
+                else if (defType == typeof(HairDef))
                 {
                     if (defName.Contains("OG"))
                     {
                         newName = Regex.Replace(defName, "OG", "");
                     }
                 }
-                if (defType == typeof(ScenarioDef))
+                else if (defType == typeof(ScenarioDef))
                 {
                     if (defName == "OG_Militarum_Start")
                     {
@@ -1184,8 +1218,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = "OGAM_Scenario_Kroot_LostTribe";
                     }
                 }
-
-                if (defType == typeof(TraderKindDef))
+                else if (defType == typeof(TraderKindDef))
                 {
                     if (defName == "Caravan_Ork_Exotic")
                     {
@@ -1193,7 +1226,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         return;
                     }
                 }
-                if (defType == typeof(RecipeDef))
+                else if (defType == typeof(RecipeDef))
                 {
 
                     if (defName.Contains("Ammo_OG"))

@@ -41,7 +41,7 @@ namespace AdeptusMechanicus
             Graphic newgraphic = Original.GetColoredVersion(Original.Shader, colorOne, colorTwo);
             if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
             {
-                string varMaskPath = Original.path + "{0}" + "m" + mskVariant + mskFaction;
+                string varMaskPath = Original.path + mskVariant + mskFaction + "{0}" + "m";
                 bool factionMask = !mskFaction.NullOrEmpty();
                 bool variantMask = !mskFaction.NullOrEmpty();
                 bool defaultMask = !variantMask && !factionMask;
@@ -61,6 +61,7 @@ namespace AdeptusMechanicus
                     s.AppendLine("Default Mask Active");
                 }
                 s.AppendLine("Using Mask: " + string.Format(varMaskPath, " with Mask: "));
+
                 if (newgraphic.MatSouth.mainTexture.name.Contains("_south") )
                 {
                     string used = string.Format(varMaskPath, "_south");
@@ -245,24 +246,37 @@ namespace AdeptusMechanicus
         public static void DrawBaseColourOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
         {
             float w = rect.width / 5;
-            float w2 = (rect.width - w) / 4;
+            float w2 = (rect.width - w) / 2;
             float y = rect.y;
             float x = rect.x;
             Rect rect1 = new Rect(x, y, w, 30f);
             Widgets.Label(rect1, label);
             x += w;
-            Rect rect2 = new Rect(x, y, w2, 30f);
+            Rect colours = new Rect(x, y, w2, rect.height);
+            Rect rect2 = colours.LeftHalf();
+            Rect colour = colours.LeftHalf();
+            Rect colour2 = colours.RightHalf();
 
             if (!composite.Wearer.apparel.IsLocked(composite))
             {
-                Widgets.ColorSelector(rect2, ref composite.colorable.color, AllColors(composite.Wearer), composite.def.uiIcon, 22, 2);
+
                 if (composite.Wearer.Ideo != null && !Find.IdeoManager.classicMode)
                 {
                     rect2 = new Rect(rect.x, y, rect.width / 2f - 10f, 24f);
-                    if (Widgets.ButtonText(rect2, "SetIdeoColor".Translate(), true, true, true))
+                    if (Widgets.ButtonText(rect2.LeftHalf(), "SetIdeoColor".Translate() + ": Primary", true, true, true))
                     {
                         composite.colorable.color = composite.Wearer.Ideo.ApparelColor;
+                        if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    }
+                    if (composite.ColorableTwo != null)
+                    {
+                        if (Widgets.ButtonText(rect2.RightHalf(), "SetIdeoColor".Translate() + ": Secondry", true, true, true))
+                        {
+                            composite.ColorableTwo.ColorTwo = composite.Wearer.Ideo.ApparelColor;
+                            if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
+                            SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                        }
                     }
                 }
                 Pawn_StoryTracker story = composite.Wearer.story;
@@ -272,9 +286,37 @@ namespace AdeptusMechanicus
                     if (Widgets.ButtonText(rect2, "SetFavoriteColor".Translate(), true, true, true))
                     {
                         composite.colorable.color = composite.Wearer.story.favoriteColor.Value;
+                        if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
                     }
                 }
+                y += 34f;
+
+                if (composite.ColorableFaction != null)
+                {
+                    
+                    if (AdeptusWidgets.ColorSelector(rect2, ref composite.ColorableFaction.color, AllColors(composite.Wearer), null, 22, 2, composite))
+                    {
+                        composite.ColorableFaction.Active = true;
+                    }
+                    if (AdeptusWidgets.ColorSelector(colour2, ref composite.ColorableFaction.colorTwo, AllColors(composite.Wearer), null, 22, 2, composite))
+                    {
+                        composite.ColorableFaction.ActiveTwo = true;
+                    }
+                }
+                else
+                {
+                    AdeptusWidgets.ColorSelector(rect2, ref composite.colorable.color, AllColors(composite.Wearer), null, 22, 2, composite);
+                    if (composite.ColorableTwo != null)
+                    {
+                        if (AdeptusWidgets.ColorSelector(colour2, ref composite.ColorableTwo.colorTwo, AllColors(composite.Wearer), null, 22, 2, composite))
+                        {
+                            composite.ColorableTwo.ActiveTwo = true;
+                        }
+                    }
+                }
+                
+                
             }
             else
             {
@@ -285,7 +327,6 @@ namespace AdeptusMechanicus
                 Widgets.Label(rect3, "ApparelLockedCannotRecolor".Translate(composite.Wearer.Named("PAWN"), composite.Named("APPAREL")).Colorize(ColorLibrary.RedReadable));
                 Text.Anchor = TextAnchor.UpperLeft;
             }
-            y += 34f;
 
             x += w;
             if (composite.ColorableTwo is CompColorableTwo twoColour)
@@ -345,7 +386,13 @@ namespace AdeptusMechanicus
                     }, 
                     paintable
                 );
-
+            if (comp.FactionDef != null)
+            {
+                Rect rect4 = rect3.LeftHalf().ContractedBy(2);
+                Rect rect5 = rect3.RightHalf().ContractedBy(2);
+                Widgets.DrawBoxSolid(rect4, comp.Color);
+                Widgets.DrawBoxSolid(rect5, comp.ColorTwo);
+            }
         }
 
         private static IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>> DrawVariantButton_GenerateMenu(ShoulderPadEntry e)

@@ -284,11 +284,9 @@ namespace AdeptusMechanicus
         protected FactionDef faction;
 		protected bool activeFaction;
 
-		// Token: 0x04000EA1 RID: 3745
-		protected Color factioncolor = Color.white;
-		protected Color factioncolorTwo = Color.white;
+		public Color factioncolor = Color.white;
+		public Color factioncolorTwo = Color.white;
 
-		// Token: 0x04000EA2 RID: 3746
 		protected bool factionactive;
 		protected bool factionactiveTwo;
 	}

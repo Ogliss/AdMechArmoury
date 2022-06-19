@@ -4,7 +4,7 @@
 	<!-- ==================== Burn Damage HeDiffs ========================= -->
 	<!-- ==================== Plasma Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>OG_Hediff_PlasmaBurn</defName>
+		<defName>OG_Hediff_Burn_Plasma</defName>
 		<description>description</description>
 		<label>plasma burn</label>
 		<labelNoun>a plasma burn</labelNoun>
@@ -32,7 +32,7 @@
 	
 	<!-- ==================== Laser Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>LaserBurn</defName>
+		<defName>OG_Hediff_Burn_Laser</defName>
 		<description>description</description>
 		<label>las-burn</label>
 		<labelNoun>a laser burn</labelNoun>
@@ -62,7 +62,7 @@
 	
 	<!-- ==================== Melta Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>MeltaBurn</defName>
+		<defName>OG_Hediff_Burn_Melta</defName>
 		<description>description</description>
 		<label>meltaburn</label>
 		<labelNoun>a melta burn</labelNoun>
@@ -90,7 +90,7 @@
 	
 	<!-- ==================== Electrical Burn HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>ElectricalBurn</defName>
+		<defName>OG_Burn_Electrical</defName>
 		<description>description</description>
 		<label>electrical burn</label>
 		<labelNoun>an electrical burn</labelNoun>
@@ -119,9 +119,9 @@
 	</HediffDef>
 		
 	<!-- ==================== Gunshot Damage HeDiffs ========================= -->
-	<!-- ==================== Radium Gunshot HeDiff ========================= -->
+	<!-- ==================== Radium HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>RadiumGunshot</defName>
+		<defName>OG_Gunshot_Radium</defName>
 		<description>description</description>
 		<label>gunshot</label>
 		<labelNoun>an irradiated gunshot</labelNoun>
@@ -147,9 +147,9 @@
 		</injuryProps>
 	</HediffDef>
 	
-	<!-- ==================== Galvanic Gunshot HeDiff ========================= -->
+	<!-- ==================== Galvanic HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>GalvanicWound</defName>
+		<defName>OG_Gunshot_Galvanic</defName>
 		<description>description</description>
 		<label>galvanic gunshot</label>
 		<labelNoun>a galvanic gunshot</labelNoun>
@@ -175,9 +175,9 @@
 		</injuryProps>
 	</HediffDef>
 	
-	<!-- ==================== Transuranic Gunshot HeDiff ========================= -->
+	<!-- ==================== Transuranic HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>TransuranicWound</defName>
+		<defName>OG_Gunshot_Transuranic</defName>
 		<description>description</description>
 		<label>transuranic gunshot</label>
 		<labelNoun>a transuranic gunshot</labelNoun>
@@ -203,9 +203,9 @@
 		</injuryProps>
 	</HediffDef>
 
-	<!-- ==================== Gauss Gunshot HeDiff ========================= -->
+	<!-- ==================== Gauss HeDiff ========================= -->
 	<HediffDef ParentName="InjuryBase">
-		<defName>GaussWound</defName>
+		<defName>OG_Gunshot_Gauss</defName>
 		<description>description</description>
 		<label>gauss wound</label>
 		<labelNoun>a guass wound</labelNoun>
@@ -228,6 +228,36 @@
 			<canMerge>true</canMerge>
 			<destroyedLabel>Disintegrated</destroyedLabel>
 			<destroyedOutLabel>Disintegrated</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+	
+	<!-- ==================== Splinter HeDiff ========================= -->
+	<HediffDef ParentName="InjuryBase">
+		<defName>OG_Gunshot_Splinter</defName>
+		<description>description</description>
+		<label>a splintershot wound</label>
+		<labelNoun>a splintershot wound</labelNoun>
+		<comps>
+			<li Class="HediffCompProperties_TendDuration">
+				<labelTendedWell>bandaged</labelTendedWell>
+				<labelTendedWellInner>sutured</labelTendedWellInner>
+				<labelSolidTendedWell>set</labelSolidTendedWell>
+			</li>
+			<li Class="HediffCompProperties_Infecter">
+				<infectionChance>0.15</infectionChance>
+			</li>
+			<li Class="HediffCompProperties_GetsPermanent">
+				<permanentLabel>old splintershot</permanentLabel>
+				<instantlyPermanentLabel>permanent splintershot injury</instantlyPermanentLabel>
+			</li>
+		</comps>
+		<injuryProps>
+			<painPerSeverity>0.02675</painPerSeverity>
+			<averagePainPerSeverityPermanent>0.00825</averagePainPerSeverityPermanent>
+			<bleedRate>0.06</bleedRate>
+			<canMerge>false</canMerge>
+			<destroyedLabel>Shot off</destroyedLabel>
+			<destroyedOutLabel>Shot out</destroyedOutLabel>
 		</injuryProps>
 	</HediffDef>
 </Defs>

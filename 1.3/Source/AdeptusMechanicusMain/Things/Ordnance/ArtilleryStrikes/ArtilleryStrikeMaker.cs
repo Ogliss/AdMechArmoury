@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Verse;
 
-namespace AdeptusMechanicus.ArtilleryStrikes
+namespace AdeptusMechanicus.Ordnance
 {
 	// Token: 0x02000D41 RID: 3393
 	public static class ArtilleryStrikeMaker

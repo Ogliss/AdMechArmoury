@@ -13,7 +13,45 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class AdeptusWidgets
     {
-
+        public static Vector2 colorSelectorScrollPos = new Vector2(0f, 0f);
+        public static bool ColorSelector(Rect rect, ref Color color, List<Color> colors, Texture icon = null, int colorSize = 22, int colorPadding = 2, ApparelComposite composite = null)
+        {
+            bool result = false;
+            int num = colorSize + colorPadding * 2;
+            float num2 = (icon != null) ? ((float)(colorSize * 4) + 10f) : 0f;
+            int num3 = Mathf.FloorToInt((rect.width - num2) / (float)(num + colorPadding));
+            int num4 = Mathf.CeilToInt((float)colors.Count / (float)num3);
+            Widgets.BeginGroup(rect);
+            if (icon != null)
+            {
+                Widgets.ColorSelectorIcon(new Rect(5f, 5f, (float)(colorSize * 4), (float)(colorSize * 4)), icon, color, colorSize);
+            }
+            int num5 = 0;
+            foreach (Color color2 in colors)
+            {
+                int num6 = num5 / num3;
+                int num7 = num5 % num3;
+                float num8 = (icon != null) ? ((num2 - (float)(num * num4) - (float)colorPadding) / 2f) : 0f;
+                Rect rect2 = new Rect(num2 + (float)(num7 * num) + (float)(num7 * colorPadding), num8 + (float)(num6 * num) + (float)(num6 * colorPadding), (float)num, (float)num);
+                Widgets.DrawLightHighlight(rect2);
+                Widgets.DrawHighlightIfMouseover(rect2);
+                if (color.IndistinguishableFrom(color2))
+                {
+                    Widgets.DrawBox(rect2, 1, null);
+                }
+                Widgets.DrawBoxSolid(new Rect(rect2.x + (float)colorPadding, rect2.y + (float)colorPadding, (float)colorSize, (float)colorSize), color2);
+                if (Widgets.ButtonInvisible(rect2, true))
+                {
+                    result = true;
+                    color = color2;
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
+                    if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
+                }
+                num5++;
+            }
+            Widgets.EndGroup();
+            return result;
+        }
         public static void ScrollHorizontalAndVert(Rect outRect, ref Vector2 scrollPosition, Rect viewRect, float ScrollWheelSpeed = 20f)
         {
             if (Event.current.type == EventType.ScrollWheel && !KeyBindingDefOf.ModifierIncrement_10x.IsDown && Mouse.IsOver(outRect))

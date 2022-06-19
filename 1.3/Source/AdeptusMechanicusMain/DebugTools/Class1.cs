@@ -12,28 +12,37 @@ namespace AdeptusMechanicus
     public static class DebugToolsGeneral
     {
 
-		[DebugAction("General", null, false, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+	//	[DebugAction("General", null, false, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void SetColor()
 		{
-			List<FloatMenuOption> list = new List<FloatMenuOption>();
+			List<FloatMenuOption> colorOne = new List<FloatMenuOption>();
+			List<FloatMenuOption> colorTwo = new List<FloatMenuOption>();
 			IntVec3 cell = UI.MouseCell();
 			foreach (Ideo i in Find.IdeoManager.IdeosListForReading)
 			{
-				list.Add(new FloatMenuOption(i.name, delegate
+				colorOne.Add(new FloatMenuOption(i.name, delegate
+				{
+					SetColor_All(i.Color);
+				}, i.Icon, i.Color));
+				colorTwo.Add(new FloatMenuOption(i.name, delegate
 				{
 					SetColor_All(i.Color);
 				}, i.Icon, i.Color));
 			}
 			foreach (ColorDef c in DefDatabase<ColorDef>.AllDefs)
 			{
-				list.Add(new FloatMenuOption(c.defName, delegate
+				colorOne.Add(new FloatMenuOption(c.defName, delegate
+				{
+					SetColor_All(c.color);
+				}, BaseContent.WhiteTex, c.color));
+				colorTwo.Add(new FloatMenuOption(c.defName, delegate
 				{
 					SetColor_All(c.color);
 				}, BaseContent.WhiteTex, c.color));
 			}
-			if (list.Any())
+			if (colorOne.Any())
 			{
-				Find.WindowStack.Add(new FloatMenu(list));
+				Find.WindowStack.Add(new FloatMenu(colorOne));
 			}
 			void SetColor_All(Color color)
 			{

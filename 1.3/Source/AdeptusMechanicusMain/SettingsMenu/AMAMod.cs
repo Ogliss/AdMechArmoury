@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.settings
             Instance = this;
             settings = GetSettings<AMSettings>();
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            HarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
+            AdeptusHarmonyPatches.PatchPawnsArrivalModeWorker(harmony);
             if (AdeptusIntergrationUtility.enabled_ResearchPal)
             {
             //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));

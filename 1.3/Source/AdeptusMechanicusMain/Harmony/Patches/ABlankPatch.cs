@@ -13,6 +13,35 @@ using HarmonyLib;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    
+    [HarmonyPatch(typeof(ApparelProperties), "get_LastLayer")]
+    public static class ApparelProperties_get_LastLayer_Tweaks_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ref ApparelLayerDef __result)
+        {
+            if (__result.defName.StartsWith("OG_"))
+            {
+                if (__result.defName.Contains("Overhead"))
+                {
+                    __result = ApparelLayerDefOf.Overhead;
+                }
+                if (__result.defName.Contains("Shell"))
+                {
+                    __result = ApparelLayerDefOf.Shell;
+                }
+                if (__result.defName.Contains("Belt"))
+                {
+                    __result = ApparelLayerDefOf.Belt;
+                }
+                if (__result.defName.Contains("EyeCover"))
+                {
+                    __result = ApparelLayerDefOf.EyeCover;
+                }
+            }
+        }
+    }
+    
     /*
     [HarmonyPatch(typeof(Class), "Method")]
     public static class Class_Method_Name_Patch

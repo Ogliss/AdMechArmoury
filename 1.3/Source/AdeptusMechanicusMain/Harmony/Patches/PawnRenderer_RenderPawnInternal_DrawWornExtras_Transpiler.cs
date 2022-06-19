@@ -20,7 +20,24 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal"), HarmonyPriority(Priority.Last)]
     public static class PawnRenderer_RenderPawnInternal_DrawWornExtras_Transpiler
     {
-        private static readonly Type patchType = typeof(HarmonyPatches);
+        /*
+        [HarmonyPrefix]
+        public static void Postfix(ref PawnRenderer __instance)
+        {
+            Pawn pawn = __instance.pawn;
+            if (!pawn.RaceProps.Humanlike)
+            {
+                return;
+            }
+            if (__instance.graphics.apparelGraphics.NullOrEmpty())
+            {
+                return;
+            }
+            __instance.graphics.apparelGraphics.OrderBy(x => x.sourceApparel.def.apparel.layers[Math.Max(x.sourceApparel.def.apparel.layers.Count - 1, 0)]);
+            pawn.apparel.wornApparel.innerList.OrderBy(x => x.def.apparel.layers[Math.Max(x.def.apparel.layers.Count - 1, 0)]);
+        }
+        */
+        private static readonly Type patchType = typeof(AdeptusHarmonyPatches);
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> instructionList = instructions.ToList();

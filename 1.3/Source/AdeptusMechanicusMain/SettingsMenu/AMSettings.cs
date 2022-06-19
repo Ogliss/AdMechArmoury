@@ -15,6 +15,33 @@ namespace AdeptusMechanicus.settings
             AMSettings.Instance = this;
         }
 
+        public void ApplySettings()
+        {
+            if (Find.Scenario?.parts is List<ScenPart> parts)
+            {
+                // Monolith Appears
+                if (!AllowNecronMonolith && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
+                    parts.Add(new ScenPart_DisableIncident() { incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
+                else if (parts.Find(x=> (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
+                    parts.Remove(part);
+                // Deamonic Infestations
+                if (!AllowChaosDeamonicInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+                // Deamonic Incursions
+                if (!AllowChaosDeamonicIncursion && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
+                    parts.Add(new ScenPart_DisableIncident() { incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
+                    parts.Remove(part);
+                // Tyranid Infestations
+                if (!AllowTyranidInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+            }
+        }
+
         public static AMSettings Instance;
         // Armoury Settings;
         public bool ShowArmourySettings = true;
@@ -76,7 +103,7 @@ namespace AdeptusMechanicus.settings
         public bool ShowInquisition = false;
         public bool AllowAdeptusAstartes = false;
         public float AstartePunchingFactor = 1f, AstarteSplitFactor = 1f, AstarteScale = 1f;
-        public bool AstarteUseOrgans, AstarteEasyMode, AstartesMaleOnly, AstartesAgeMatters;
+        public bool AstarteUseOrgans, AstarteEasyMode, AstartesMaleOnly, AstartesAgeMatters, AstartesHumansOnly;
         public bool AllowAdeptusMechanicus = true;
         public bool AllowAdeptusMilitarum = true;
         public bool AllowAdeptusSororitas = false;
@@ -185,6 +212,8 @@ namespace AdeptusMechanicus.settings
         public bool AllowTyranid = true;
         public bool AllowTyranidInfestation = false;
 
+        public bool rimTime = false;
+
         // Compatability Patch Settings
         private Dictionary<string, bool> _CompatabilityPatchesScribeHelper;
         public Dictionary<PatchDescription, bool> PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => p.enabledByDefault);
@@ -205,8 +234,8 @@ namespace AdeptusMechanicus.settings
             {
                 Scribe_Values.Look(ref this.ShowArmourySettings, "AMA_ShowArmourySettings", false);
                 Scribe_Values.Look(ref this.ArmouryGeneralSpecialRules, "AMA_ShowSpecialRules", false);
-                Scribe_Values.Look(ref this.AllowDeepStrike, "AMA_AllowRapidFire", true);
-                Scribe_Values.Look(ref this.AllowInfiltrate, "AMA_AllowGetsHot", true);
+                Scribe_Values.Look(ref this.AllowDeepStrike, "AMA_AllowDeepStrike", true);
+                Scribe_Values.Look(ref this.AllowInfiltrate, "AMA_AllowInfiltrate", true);
 
                 Scribe_Values.Look(ref this.ShowAllowedWeaponSpecialRules, "AMA_ShowWeaponSpecialRules", false);
                 Scribe_Values.Look(ref this.AllowRapidFire, "AMA_AllowRapidFire", true);
@@ -297,6 +326,7 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.AstartesAgeMatters, "AMAA_AstartesAgeMatters", true);
                 Scribe_Values.Look(ref this.AstartesMaleOnly, "AMAA_AstartesMaleOnly", true);
                 Scribe_Values.Look(ref this.AstarteUseOrgans, "AMAA_AstarteUseOrgans", true);
+                Scribe_Values.Look(ref this.AstartesHumansOnly, "AMAA_AstartesHumansOnly", true);
 
             }
 

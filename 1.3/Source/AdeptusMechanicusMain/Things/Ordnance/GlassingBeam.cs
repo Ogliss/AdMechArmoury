@@ -7,9 +7,9 @@ using Verse;
 using Verse.Noise;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.OrbitalStrikes
+namespace AdeptusMechanicus.Ordnance
 {
-	// AdeptusMechanicus.OrbitalStrikes.GlassingBeam
+	// AdeptusMechanicus.Ordnance.GlassingBeam
 	[StaticConstructorOnStartup]
 	public class GlassingBeam : ThingWithComps
 	{

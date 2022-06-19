@@ -14,9 +14,9 @@ using RimWorld.QuestGen;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [StaticConstructorOnStartup]
-    public static class HarmonyPatches
+    public static class AdeptusHarmonyPatches
     {
-        static HarmonyPatches()
+        static AdeptusHarmonyPatches()
         {
             if (AdeptusIntergrationUtility.enabled_SOS2)
             {
@@ -51,23 +51,23 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
             if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
             {
-                HarmonyPatches.HeadMatAt_NewTemp();
+                AdeptusHarmonyPatches.HeadMatAt_NewTemp();
             }
             else
             {
-                HarmonyPatches.HeadMatAt();
+                AdeptusHarmonyPatches.HeadMatAt();
             }
 
             if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HairMatAt_NewTemp"))
             {
-                HarmonyPatches.HairMatAt_NewTemp();
+                AdeptusHarmonyPatches.HairMatAt_NewTemp();
             }
             else
             {
-                HarmonyPatches.HairMatAt();
+                AdeptusHarmonyPatches.HairMatAt();
             }
 
-            HarmonyPatches.CanEquip();
+            AdeptusHarmonyPatches.CanEquip();
 
             if (AdeptusIntergrationUtility.enabled_FacialStuff)
             {
@@ -316,7 +316,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         
         public static void PatchPawnsArrivalModeWorker(Harmony harmonyInstance)
         {
-            var prefix = typeof(PawnsArrivalModeWorker_EdgeWalkIn_Arrive_DSI_Patch).GetMethod("Prefix");
+            var prefix = typeof(PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Reserves_Patch).GetMethod("Prefix");
             var baseType = typeof(PawnsArrivalModeWorker);
             var types = baseType.AllSubclassesNonAbstract();
             foreach (Type cur in types)

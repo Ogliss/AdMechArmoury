@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (AdeptusApparelUtility.CanCustomizeApparel(thing))
                         {
                             Rect rect2 = new Rect(rect.width, y, 24f, 24f);
-                            TooltipHandler.TipRegionByKey(rect2, "AdeptusMechanicus.ApparelCustomizeationOptions", thing.LabelNoCount, thing);
+                            TooltipHandler.TipRegionByKey(rect2, "AdeptusMechanicus.ApparelCustomizeationOptionsDesc", thing.LabelNoCount, thing);
                             if (Widgets.ButtonImage(rect2, TexButton.CustomizeButton, true))
                             {
                                 SoundDefOf.Tick_High.PlayOneShotOnCamera(null);

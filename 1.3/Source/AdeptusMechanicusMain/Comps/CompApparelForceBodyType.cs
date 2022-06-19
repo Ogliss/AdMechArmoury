@@ -44,7 +44,7 @@ namespace AdeptusMechanicus
         {
             if (pawn == null) return;
             if (pawn.story == null) return;
-            HarmonyPatches.ChangeBodyType(pawn, bodyTypeDef);
+            AdeptusHarmonyPatches.ChangeBodyType(pawn, bodyTypeDef);
         }
 
         public bool Add(Pawn pawn)
@@ -54,7 +54,7 @@ namespace AdeptusMechanicus
             if (pawn == null) return false;
             if (pawn.story == null) return false;
             bodyTypeDef = pawn.story.bodyType;
-            HarmonyPatches.ChangeBodyType(pawn, RimWorld.BodyTypeDefOf.Hulk);
+            AdeptusHarmonyPatches.ChangeBodyType(pawn, RimWorld.BodyTypeDefOf.Hulk);
             return true;
         }
 

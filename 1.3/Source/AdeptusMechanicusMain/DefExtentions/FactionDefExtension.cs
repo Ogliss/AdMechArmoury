@@ -15,7 +15,7 @@ namespace AdeptusMechanicus
         public List<HediffGiverSetDef> hediffGivers = new List<HediffGiverSetDef>();
         public ThingDef ActiveDropPod = DefDatabase<ThingDef>.GetNamedSilentFail("ActiveDropPod");
         public ThingDef DropPodIncoming = DefDatabase<ThingDef>.GetNamedSilentFail("DropPodIncoming");
-        public DeepStrikeType DropPodOverride = DeepStrikeType.DropPod;
+        public ReserveDeploymentType DropPodOverride = ReserveDeploymentType.DropPod;
         public string TeleportBoltTexPath = "Weather/DefaultBolt";
         public float DeepStrikeChance = 0.1f;
         public FloatRange DeepStrikeDelayMin = new FloatRange(30, 120);

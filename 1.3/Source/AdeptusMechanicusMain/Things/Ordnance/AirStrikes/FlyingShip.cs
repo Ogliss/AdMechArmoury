@@ -3,7 +3,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace AdeptusMechanicus.AirStrikes
+namespace AdeptusMechanicus.Ordnance
 {
 	// Many thanks to Rikki for allowing me to utilize their code
 	[StaticConstructorOnStartup]
@@ -48,7 +48,7 @@ namespace AdeptusMechanicus.AirStrikes
 		}
 
 		// Token: 0x06000122 RID: 290 RVA: 0x0000A7F0 File Offset: 0x000089F0
-		public void ConfigureShipTexture(ShipKind spaceshipKind, AirStrikeDef strikeDef = null)
+		public void ConfigureShipTexture(ShipKind spaceshipKind, OrdnanceStrikeDef strikeDef = null)
 		{
 			switch (spaceshipKind)
 			{

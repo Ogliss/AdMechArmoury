@@ -10,6 +10,15 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus
 {
 
+    // AdeptusMechanicus.ApparelProperties
+    /*
+    public class ApparelProperties : RimWorld.ApparelProperties
+    {
+        public List<string> wornGraphicMasks = new List<string>();
+
+    }
+    */
+
     // AdeptusMechanicus.ApparelComposite
     public class ApparelComposite : Apparel
     {

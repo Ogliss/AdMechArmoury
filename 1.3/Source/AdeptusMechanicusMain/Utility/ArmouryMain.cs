@@ -125,11 +125,19 @@ namespace AdeptusMechanicus
             }
         }
         
-        public static void CopyFields<T>(T source, T destination)
+        public static void CopyFields<T>(T source, T destination, List<string> not = null, bool log = false)
         {
             var fields = source.GetType().GetFields();
             foreach (var field in fields)
             {
+                if (!not.NullOrEmpty())
+                {
+                    if (not.Any(x=> x == field.Name))
+                    {
+                        Log.Message($"CopyFields skipping: {field.Name}");
+                        continue;
+                    }
+                }
                 field.SetValue(destination, field.GetValue(source));
             }
         }

@@ -36,7 +36,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             float failChance = entry.FailChance(__instance.EquipmentSource, out string reliabilityString);
 
             bool failed = false;
-            if (failChance > 0f)
+            if (failChance > 0f && (settings.AMSettings.Instance.AllowJams || settings.AMSettings.Instance.AllowGetsHot))
             {
                 if (entry.Debug) Log.Message("failChance: "+failChance);
                 Rand.PushState();
@@ -50,7 +50,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 bool canDamageWeapon = entry.HotDamageWeapon || entry.JamsDamageWeapon;
                 MessageTypeDef msgDef = entry.GetsHot ? MessageTypeDefOf.NegativeHealthEvent : MessageTypeDefOf.SilentInput;
                 float extraWeaponDamage = entry.HotDamageWeapon ? entry.HotDamage : entry.JamDamage;
-                if (entry.GetsHot)
+                if (entry.GetsHot && settings.AMSettings.Instance.AllowGetsHot)
                 {
                     string overheat = "overheated";
                     string causing = "causing";
@@ -116,7 +116,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     Messages.Message(msg, MessageTypeDefOf.NegativeHealthEvent);
                 }
-                if (entry.Jams)
+                if (entry.Jams && settings.AMSettings.Instance.AllowJams)
                 {
                     if (!__instance.GetsHot())
                     {
@@ -181,7 +181,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 }
             }
-            if (__instance.UserEffect(out float Chance, out HediffDef Effect, out StatDef ResistStat, out List<string> ImmuneList))
+            if (settings.AMSettings.Instance.AllowUserEffects && __instance.UserEffect(out float Chance, out HediffDef Effect, out StatDef ResistStat, out List<string> ImmuneList))
             {
 
                 bool Immunityflag = false;

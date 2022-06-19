@@ -10,6 +10,7 @@ namespace AdeptusMechanicus
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusDamageDefOf));
         }
+        public static DamageDef OGIVolkite;
         public static DamageDef OG_WarpStormStrike;
 
         public static DamageDef OG_E_Distortion_Damage;

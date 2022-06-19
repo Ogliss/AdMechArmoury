@@ -13,7 +13,7 @@ namespace AdeptusMechanicus
         public static HediffDef MissingBodyPart;
         public static HediffDef OG_Hediff_Regenerated_Part;
         public static HediffDef OG_Hediff_Regenerating_Part;
-        public static HediffDef OG_Hediff_PlasmaBurn;
+        public static HediffDef OG_Hediff_Burn_Plasma;
         public static HediffDef OG_Hediff_RadiationPoisioning;
         public static HediffDef OG_Hediff_FWPsychicShock;
         [MayRequireXenobiologis]

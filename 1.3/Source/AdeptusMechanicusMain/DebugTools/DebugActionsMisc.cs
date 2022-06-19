@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdeptusMechanicus.AirStrikes;
-using AdeptusMechanicus.ArtilleryStrikes;
+using AdeptusMechanicus.Ordnance;
+using AdeptusMechanicus.Ordnance;
 using AdeptusMechanicus.HarmonyInstance;
 using RimWorld;
 using RimWorld.Planet;
@@ -76,7 +76,7 @@ namespace AdeptusMechanicus
 							BodyTypeDef localDef = localDef3;
 							list2.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Action, delegate ()
 							{
-								HarmonyPatches.ChangeBodyType(t, localDef);
+								AdeptusHarmonyPatches.ChangeBodyType(t, localDef);
 							}));
 							Find.WindowStack.Add(new Dialog_DebugOptionListLister(list2));
 						}

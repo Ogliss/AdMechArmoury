@@ -7,7 +7,6 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
-	// Token: 0x0200031C RID: 796
 	public class CompColorableTwo : CompColorable
 	{
 		public new virtual Color Color
@@ -58,8 +57,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x170004CD RID: 1229
-		// (get) Token: 0x06001743 RID: 5955 RVA: 0x00085558 File Offset: 0x00083758
 		public new virtual bool Active
 		{
 			get
@@ -85,7 +82,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x06001744 RID: 5956 RVA: 0x00085560 File Offset: 0x00083760
 		public override void Initialize(CompProperties props)
 		{
 			this.props = props;
@@ -175,7 +171,6 @@ namespace AdeptusMechanicus
 			*/
 		}
 
-		// Token: 0x06001745 RID: 5957 RVA: 0x000855C8 File Offset: 0x000837C8
 		public override void PostExposeData()
 		{
 			if ((Scribe.mode == LoadSaveMode.Saving && this.active) || Scribe.mode != LoadSaveMode.Saving)
@@ -190,7 +185,6 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		// Token: 0x06001746 RID: 5958 RVA: 0x00085618 File Offset: 0x00083818
 		public override void PostSplitOff(Thing piece)
 		{
 			base.PostSplitOff(piece);
@@ -207,7 +201,7 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		protected Color colorTwo = Color.white;
+		public Color colorTwo = Color.white;
 		protected bool activeTwo;
 	}
 }

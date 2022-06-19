@@ -7,9 +7,9 @@ using Verse;
 using Verse.Sound;
 using AdeptusMechanicus.ExtensionMethods;
 
-namespace AdeptusMechanicus.OrbitalStrikes
+namespace AdeptusMechanicus.Ordnance
 {
-	// AdeptusMechanicus.OrbitalStrikes.OrbitalBombardment
+	// AdeptusMechanicus.Ordnance.OrbitalBombardment
 	[StaticConstructorOnStartup]
     public class OrbitalBombardment : OrbitalStrike
 	{
@@ -58,7 +58,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			if (this.ticksToNextEffect <= 0 && base.TicksLeft >= this.bombIntervalTicks)
 			{
 				SoundDefOf.Bombardment_PreImpact.PlayOneShot(new TargetInfo(this.nextExplosionCell, base.Map, false));
-				this.projectiles.Add(new OrbitalBombardment.BombardmentProjectile(base.Map, 60, this.nextExplosionCell, strikeDef.ordnance, this.angle));
+				this.projectiles.Add(new OrbitalBombardment.BombardmentProjectile(base.Map, 60, this.nextExplosionCell, strikeDef.ordnanceOrbital, this.angle));
 				this.ticksToNextEffect = this.bombIntervalTicks;
 				this.GetNextExplosionCell();
 			}

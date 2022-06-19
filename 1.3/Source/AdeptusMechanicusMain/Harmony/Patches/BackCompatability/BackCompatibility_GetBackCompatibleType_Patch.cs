@@ -23,7 +23,16 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 string name = Regex.Replace(providedClassName, "AMASettings", "AMSettings");
                 Type type = GenTypes.GetTypeInAnyAssembly(name, null);
-                if (type!=null)
+                if (type != null)
+                {
+                    __result = type;
+                }
+            }
+            if (providedClassName.Contains("MapComponent_DeepStrike"))
+            {
+                string name = Regex.Replace(providedClassName, "DeepStrike", "Reserves");
+                Type type = GenTypes.GetTypeInAnyAssembly(name, null);
+                if (type != null)
                 {
                     __result = type;
                 }

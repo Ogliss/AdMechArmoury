@@ -31,7 +31,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         if (!tracker.ModifiedBody(pawn, out BodyTypeDef original))
                         {
                             tracker.originalBody.SetOrAdd(apparel.Wearer, apparel.Wearer.story.bodyType);
-                            HarmonyPatches.ChangeBodyType(pawn, ext.BodytypeDefs.RandomElement());
+                            AdeptusHarmonyPatches.ChangeBodyType(pawn, ext.BodytypeDefs.RandomElement());
                         }
                     }
                 }

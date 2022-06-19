@@ -79,23 +79,23 @@ namespace AdeptusMechanicus
 
         #region IAdvancedVerb    
         public bool Debug => debug;
-        public bool RapidFire => rapidFire;
+        public bool RapidFire => rapidFire && settings.AMSettings.Instance.AllowRapidFire;
         public float RapidFireRange => rapidFireRange;
         public Reliability Reliability => reliability;
         public int ScattershotCount => defaultProjectile?.GetModExtensionFast<ScattershotProjectileExtension>()?.projectileCount ?? scattershotCount;
-        public bool Jams => reliability != Reliability.NA;
+        public bool Jams => reliability != Reliability.NA && settings.AMSettings.Instance.AllowJams;
         public bool JamsDamageWeapon => jamDamage > 0;
         public float JamDamage => jamDamage;
-        public bool GetsHot => getsHot;
+        public bool GetsHot => getsHot && settings.AMSettings.Instance.AllowGetsHot;
         public bool HotDamageWeapon => hotDamage > 0f;
         public float HotDamage => hotDamage;
         public bool GetsHotCrit => getsHotCritChance > 0f;
         public float GetsHotCritChance => getsHotCritChance;
         public bool GetsHotCritExplosion => getsHotCritExplosionChance > 0f;
         public float GetsHotCritExplosionChance => getsHotCritExplosionChance;
-        public bool Rending => rending;
+        public bool Rending => rending && settings.AMSettings.Instance.AllowRendingRangedEffect;
         public float RendingChance => rendingChance;
-        public bool EffectsUser => effectsUserChance > 0 && userEffect != null;
+        public bool EffectsUser => effectsUserChance > 0 && userEffect != null && settings.AMSettings.Instance.AllowUserEffects;
         public float EffectsUserChance => effectsUserChance;
         public HediffDef UserEffect => userEffect;
         public StatDef ResistEffectStat => resistEffectStat;

@@ -43,5 +43,7 @@ namespace AdeptusMechanicus
         public static JobDef OG_Astartes_OmophageaIngest;
         [MayRequireAstartes]
         public static JobDef OG_Astartes_NeuroglottisInspect;
+        [MayRequireAstartes]
+        public static JobDef OG_Astartes_EnterSusAn;
     }
 }

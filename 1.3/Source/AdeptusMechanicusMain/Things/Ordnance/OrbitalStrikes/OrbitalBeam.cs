@@ -5,9 +5,9 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace AdeptusMechanicus.OrbitalStrikes
+namespace AdeptusMechanicus.Ordnance
 {
-    // AdeptusMechanicus.OrbitalStrikes.OrbitalBeam
+    // AdeptusMechanicus.Ordnance.OrbitalBeam
     public class OrbitalBeam : OrbitalStrike
 	{
 		public override void StartStrike()
@@ -78,7 +78,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 					battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_PowerBeam, this.instigator as Pawn);
 					Find.BattleLog.Add(battleLogEntry_DamageTaken);
 				}
-				OrbitalBeam.tmpThings[i].TakeDamage(new DamageInfo(strikeDef.ordnance.projectile.damageDef, (float)num, strikeDef.ordnance.projectile.GetArmorPenetration(this), -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
+				OrbitalBeam.tmpThings[i].TakeDamage(new DamageInfo(strikeDef.ordnanceOrbital.projectile.damageDef, (float)num, strikeDef.ordnanceOrbital.projectile.GetArmorPenetration(this), -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
 			}
 			OrbitalBeam.tmpThings.Clear();
 		}

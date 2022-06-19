@@ -3,7 +3,7 @@
 
 	<!--==================== Orbital Strikes - Imperial =========================-->
 	<!-- Base -->
-	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" Name="OG_Imperial_OrbitalStrike" Abstract="True">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef Abstract="True" Name="OG_Imperial_OrbitalStrike" ParentName="OG_OrbitalStrike_Base">
 		<!--graphicData>
 			<texPath>Things/Ships/Strike/Imperial/StrikeShip_I_Valkyrie</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -13,10 +13,10 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</shadowData>
 		<scale>20,20</scale-->
-	</Def>	
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>	
 	
 	<!-- ====================== Macro Cannon Battery - High Explosive ===================== -->
-	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Imperial_OrbitalStrike">
 		<defName>OGI_Orbitalstrike_MacroCannonHE</defName>
 		<label>high explosive shell salvos</label>
 		<description>Salvos of high explosive shells are fired.</description>
@@ -24,9 +24,9 @@
 		<costInSilver>500</costInSilver>
 		<ammoResupplyDays>10</ammoResupplyDays>
 		<impactAreaRadius>30</impactAreaRadius>
-		<ordnance>OGI_Bullet_MacroCannonHEStrike</ordnance>
+		<ordnanceOrbital>OGI_Bullet_MacroCannonHEStrike</ordnanceOrbital>
 		<strikeType>OG_IncomingOrbitalStrike</strikeType>
-	</Def>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 	
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGI_Bullet_MacroCannonHEStrike</defName>
@@ -61,7 +61,7 @@
 	</ThingDef>
 	
 	<!-- ====================== Macro Cannon Battery - Plasma ===================== -->
-	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Imperial_OrbitalStrike">
 		<defName>OGI_Orbitalstrike_MacroCannonPlasma</defName>
 		<label>Plasma salvos</label>
 		<description>variant of plasma macroweaponry that fires superheated plasma rather than a ballistic shell. This variant refocuses the power of the plasma "blast," concentrating it into a compressed photonic packet that can be fired accurately over extremely long distances, though its blast radius is reduced.\n
@@ -71,9 +71,9 @@
 		<ammoResupplyDays>10</ammoResupplyDays>
 		<bombardmentSalvoSize>5</bombardmentSalvoSize>
 		<bombardmentSalvoTicksBetweenShots>5</bombardmentSalvoTicksBetweenShots>
-		<ordnance>OGI_Bullet_MacroCannonPlasmaStrike</ordnance>
+		<ordnanceOrbital>OGI_Bullet_MacroCannonPlasmaStrike</ordnanceOrbital>
 		<strikeType>OG_IncomingOrbitalStrike</strikeType>
-	</Def>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 
 	<ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGI_Bullet_MacroCannonPlasmaStrike</defName>
@@ -125,7 +125,7 @@
 	</ThingDef>
 
 	<!-- ====================== Lance Battery ===================== -->
-	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+	<AdeptusMechanicus.Ordnance.OrdnanceStrikeDef ParentName="OG_Imperial_OrbitalStrike">
 		<defName>OGI_Orbitalstrike_Lance</defName>
 		<label>lance battery salvos</label>
 		<description>Salvos of lances are fired.</description>
@@ -133,9 +133,9 @@
 		<duration>60</duration>
 		<costInSilver>500</costInSilver>
 		<ammoResupplyDays>10</ammoResupplyDays>
-		<ordnance>OGI_Bullet_LanceStrike</ordnance>
+		<ordnanceOrbital>OGI_Bullet_LanceStrike</ordnanceOrbital>
 		<strikeType>OG_IncomingOrbitalLanceStrike</strikeType>
-	</Def>
+	</AdeptusMechanicus.Ordnance.OrdnanceStrikeDef>
 
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
 		<defName>OGI_Bullet_LanceStrike</defName>
@@ -171,7 +171,7 @@
   <ThingDef ParentName="EtherealThingBase">
     <defName>GlassingBeam</defName>
     <label>glassing beam</label>
-    <thingClass>AdeptusMechanicus.OrbitalStrikes.GlassingBeam</thingClass>
+    <thingClass>AdeptusMechanicus.Ordnance.GlassingBeam</thingClass>
     <tickerType>Normal</tickerType>
     <drawerType>RealtimeOnly</drawerType>
     <drawOffscreen>true</drawOffscreen>

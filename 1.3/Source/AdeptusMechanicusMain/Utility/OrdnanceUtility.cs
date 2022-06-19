@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using AdeptusMechanicus.AirStrikes;
-using AdeptusMechanicus.ArtilleryStrikes;
-using AdeptusMechanicus.OrbitalStrikes;
 using RimWorld;
 using Verse;
 
-namespace AdeptusMechanicus
+namespace AdeptusMechanicus.Ordnance
 {
     // Token: 0x02000033 RID: 51
     public static class OrdnanceUtility
@@ -41,21 +38,34 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		public static void StartTargeting(Def def, Map map = null)
+		public static void StartTargeting(OrdnanceStrikeDef ordnanceStrikeDef, Map map = null, RoyalAid aid = null, Pawn caller= null, Faction faction = null, bool free = false)
 		{
 			TargetingParameters targetingParameters = new TargetingParameters();
 			targetingParameters.canTargetLocations = true;
 			targetingParameters.canTargetSelf = true;
 			targetingParameters.canTargetFires = true;
 			targetingParameters.canTargetItems = true;
-			AirStrikeDef airStrike = def as AirStrikeDef;
-			ArtilleryStrikeDef artilleryStrike = def as ArtilleryStrikeDef;
-			OrbitalStrikeDef orbitalStrike = def as OrbitalStrikeDef;
-			if (airStrike != null)
+            if (ordnanceStrikeDef == null)
+            {
+				return;
+            }
+            if (aid != null)
+            {
+
+				targetingParameters.validator = delegate (TargetInfo target)
+				{
+					if (aid.targetingRange > 0f && target.Cell.DistanceTo(caller.Position) > aid.targetingRange)
+					{
+						return false;
+					}
+					return (!target.Cell.Fogged(map)) ? true : false;
+				};
+			}
+			if (ordnanceStrikeDef.strikeType == AirStrike)
 			{
 				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
 				{
-					SpawnAirStrike(map, x.Cell, airStrike);
+					SpawnAirStrike(map, x.Cell, ordnanceStrikeDef);
 				}, null, delegate
 				{
 					if (map != null && Find.Maps.Contains(map))
@@ -65,11 +75,11 @@ namespace AdeptusMechanicus
 				}, CompLaunchable.TargeterMouseAttachment);
 			}
 			else
-            if (artilleryStrike != null)
+            if (ordnanceStrikeDef.strikeType == ArtilleryStrike)
 			{
 				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
 				{
-					SpawnArtilleryStrike(map, x.Cell, artilleryStrike);
+					SpawnArtilleryStrike(map, x.Cell, ordnanceStrikeDef);
 				}, null, delegate
 				{
 					if (map != null && Find.Maps.Contains(map))
@@ -79,11 +89,11 @@ namespace AdeptusMechanicus
 				}, CompLaunchable.TargeterMouseAttachment);
 			}
 			else
-			if (orbitalStrike != null)
+			if (ordnanceStrikeDef.strikeType == OrbitalStrike || ordnanceStrikeDef.strikeType == OrbitalLanceStrike)
 			{
 				Find.Targeter.BeginTargeting(targetingParameters, delegate (LocalTargetInfo x)
 				{
-					SpawnOrbitalStrike(map, x.Cell, orbitalStrike);
+					SpawnOrbitalStrike(map, x.Cell, ordnanceStrikeDef);
 				}, null, delegate
 				{
 					if (map != null && Find.Maps.Contains(map))
@@ -92,6 +102,14 @@ namespace AdeptusMechanicus
 					}
 				}, CompLaunchable.TargeterMouseAttachment);
 			}
+            else
+            {
+				Log.Error($"Unknown strikeType{ordnanceStrikeDef.strikeType} for strikeDef: {ordnanceStrikeDef}");
+            }
+            if (aid != null)
+            {
+
+            }
 		}
 
 		/*
@@ -107,11 +125,11 @@ namespace AdeptusMechanicus
 			Find.Targeter.BeginTargeting(this, null);
 		}
 		*/
-		public static void SpawnOrbitalStrike(Map map, IntVec3 targetPosition, OrbitalStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false)
+		public static void SpawnOrbitalStrike(Map map, IntVec3 targetPosition, OrdnanceStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false, RoyalAid aid = null)
 		{
-			ThingDef weapon = StrikeDef.ordnance;
+			ThingDef weapon = StrikeDef.ordnanceOrbital;
 			IntVec3 strikeLoc = targetPosition;
-			if (!OrdnanceStrikeCellFinder.TryFindStrikeLocNear(targetPosition, map, out strikeLoc, true, true, true, StrikeDef.targetArea))
+			if (!OrdnanceStrikeCellFinder.TryFindStrikeLocNear(targetPosition, map, out strikeLoc, true, true, true, StrikeDef.targetAreaOrbital))
 			{
 				if (warnFail)
 				{
@@ -119,13 +137,13 @@ namespace AdeptusMechanicus
 				}
 				return;
 			}
-			AdeptusMechanicus.OrbitalStrikes.OrbitalStrike orbitalStrike = (AdeptusMechanicus.OrbitalStrikes.OrbitalStrike)GenSpawn.Spawn(StrikeDef.strikeType, strikeLoc, map, WipeMode.Vanish);
+			AdeptusMechanicus.Ordnance.OrbitalStrike orbitalStrike = (AdeptusMechanicus.Ordnance.OrbitalStrike)GenSpawn.Spawn(StrikeDef.strikeType, strikeLoc, map, WipeMode.Vanish);
 			orbitalStrike.instigator = instigator;
 			orbitalStrike.weaponDef = weaponDef;
 			orbitalStrike.strikeDef = StrikeDef;
 			orbitalStrike.targetLoc = targetPosition;
 			orbitalStrike.impactAreaRadius = StrikeDef.impactAreaRadius;
-			orbitalStrike.explosionRadiusRange = StrikeDef.ordnance.projectile.explosionRadius != 0 ? new FloatRange(StrikeDef.ordnance.projectile.explosionRadius/2, StrikeDef.ordnance.projectile.explosionRadius*2) : StrikeDef.explosionRadiusRange;
+			orbitalStrike.explosionRadiusRange = StrikeDef.ordnanceOrbital.projectile.explosionRadius != 0 ? new FloatRange(StrikeDef.ordnanceOrbital.projectile.explosionRadius/2, StrikeDef.ordnanceOrbital.projectile.explosionRadius*2) : StrikeDef.explosionRadiusRange;
 			orbitalStrike.randomFireRadius = StrikeDef.randomFireRadius;
 			orbitalStrike.bombIntervalTicks = StrikeDef.bombardmentSalvoTicksBetweenShots;
 			orbitalStrike.warmupTicks = StrikeDef.warmupTicks;
@@ -137,11 +155,11 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		public static void SpawnArtilleryStrike(Map map, IntVec3 targetPosition, ArtilleryStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false)
+		public static void SpawnArtilleryStrike(Map map, IntVec3 targetPosition, OrdnanceStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false, RoyalAid aid = null)
 		{
-            for (int i = 0; i < StrikeDef.ordnance.Count; i++)
+            for (int i = 0; i < StrikeDef.ordnanceArtillery.Count; i++)
             {
-				ThingDef ordnance = StrikeDef.ordnance[i];
+				ThingDef ordnance = StrikeDef.ordnanceArtillery[i];
 				IntVec3 strikeLoc = targetPosition;
 				Rand.PushState();
 				if (Rand.Chance(0.9f) || !DropCellFinder.IsGoodDropSpot(targetPosition,map,true,true))
@@ -160,7 +178,7 @@ namespace AdeptusMechanicus
 				GenPlace.TryPlaceThing(ordnanceIncoming, strikeLoc, map, ThingPlaceMode.Near, null, null, default(Rot4));
 			}
 		}
-		public static void SpawnAirStrike(Map map, IntVec3 targetPosition, AirStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false)
+		public static void SpawnAirStrike(Map map, IntVec3 targetPosition, OrdnanceStrikeDef StrikeDef, Thing instigator = null, ThingDef weaponDef = null, bool warnFail = false, RoyalAid aid = null)
 		{
 			AirStrikeIncoming flyingSpaceshipAirStrike = ThingMaker.MakeThing(OrdnanceUtility.AirStrike, null) as AirStrikeIncoming;
 			GenSpawn.Spawn(flyingSpaceshipAirStrike, targetPosition, map, WipeMode.Vanish);

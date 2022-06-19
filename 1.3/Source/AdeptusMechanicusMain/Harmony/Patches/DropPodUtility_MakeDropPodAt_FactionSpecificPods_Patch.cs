@@ -27,26 +27,26 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 Thing thing = list.RandomElement();
                 FactionDefExtension extension = thing.Faction.def.GetModExtensionFast<FactionDefExtension>();
-                if (thing.Faction.IsPlayer || extension.DropPodOverride == DeepStrikeType.DropPod && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )
+                if (thing.Faction.IsPlayer || extension.DropPodOverride == ReserveDeploymentType.DropPod && extension.DropPodIncoming == ThingDefOf.DropPodIncoming )
                 {
                     return result;
                 }
-                if (extension.DropPodOverride == DeepStrikeType.DropPod)
+                if (extension.DropPodOverride == ReserveDeploymentType.DropPod)
                 {
                     DeepStrikeUtility.MakeDropPodAt(c, map, info, extension);
                     result = false;
                 }
-                else if (extension.DropPodOverride == DeepStrikeType.Fly)
+                else if (extension.DropPodOverride == ReserveDeploymentType.Fly)
                 {
                     DeepStrikeUtility.MakeFlyerLandAt(c, map, info, extension);
                     result = false;
                 }
-                else if (extension.DropPodOverride == DeepStrikeType.Teleport)
+                else if (extension.DropPodOverride == ReserveDeploymentType.Teleport)
                 {
                     DeepStrikeUtility.MakeTeleportAt(c, map, info, extension);
                     result = false;
                 }
-                else if (extension.DropPodOverride == DeepStrikeType.Tunnel)
+                else if (extension.DropPodOverride == ReserveDeploymentType.Tunnel)
                 {
                     DeepStrikeUtility.MakeTunnelAt(c, map, info, extension);
                     result = false;

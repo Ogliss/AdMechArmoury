@@ -8,10 +8,10 @@ using System;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    [HarmonyPatch(typeof(PawnGraphicSet), "ResolveApparelGraphics")]
+    [HarmonyPatch(typeof(PawnGraphicSet), "ResolveApparelGraphics"), HarmonyPriority(Priority.Last)]
     public static class PawnGraphicSet_ResolveApparelGraphics_ApparelLayerDrawOrder_Patch
     {
-        [HarmonyPostfix, HarmonyPriority(Priority.Last)]
+        [HarmonyPostfix]
         public static void Postfix(ref PawnGraphicSet __instance)
         {
             Pawn pawn = __instance.pawn;
@@ -19,23 +19,25 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return;
             }
-            if (__instance.apparelGraphics.NullOrEmpty())
+            if (__instance.apparelGraphics.NullOrEmpty() || __instance.apparelGraphics.Count == 1)
             {
                 return;
             }
-            __instance.apparelGraphics.OrderBy(x => x.sourceApparel.def.apparel.LastLayer.drawOrder);
-
+                __instance.apparelGraphics = apparelGraphicRecordsOrdered(__instance.apparelGraphics);
+            //    pawn.apparel.wornApparel.innerList = pawn.apparel.wornApparel.innerList.OrderBy(x => x.def.apparel.layers[Math.Max(x.def.apparel.layers.Count - 1, 0)]).ToList();
+            //    __instance.apparelGraphics.OrderBy(x => x.sourceApparel.def.apparel.LastLayer.drawOrder);
+            /*
             List<ApparelGraphicRecord> graphics = new List<ApparelGraphicRecord>();
 
             List<ApparelGraphicRecord> bodyGraphics = new List<ApparelGraphicRecord>();
             List<ApparelGraphicRecord> shellGraphics = new List<ApparelGraphicRecord>();
             List<ApparelGraphicRecord> overheadGraphics = new List<ApparelGraphicRecord>();
 
-            /*
-            List<ApparelGraphicRecord> bodyGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer != ApparelLayerDefOf.Shell && x.sourceApparel.def.apparel.LastLayer != ApparelLayerDefOf.Overhead).ToList();
-            List<ApparelGraphicRecord> shellGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Shell).OrderBy(x => x.sourceApparel.def.apparel.layers[Math.Max(x.sourceApparel.def.apparel.layers.Count - 2, 0)].drawOrder).ToList();
-            List<ApparelGraphicRecord> overheadGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead).OrderBy(x => x.sourceApparel.def.apparel.layers[Math.Max(x.sourceApparel.def.apparel.layers.Count - 2, 0)].drawOrder).ToList();
-            */
+
+        //    List<ApparelGraphicRecord> bodyGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer != ApparelLayerDefOf.Shell && x.sourceApparel.def.apparel.LastLayer != ApparelLayerDefOf.Overhead).ToList();
+        //    List<ApparelGraphicRecord> shellGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Shell).OrderBy(x => x.sourceApparel.def.apparel.layers[Math.Max(x.sourceApparel.def.apparel.layers.Count - 2, 0)].drawOrder).ToList();
+        //    List<ApparelGraphicRecord> overheadGraphics = __instance.apparelGraphics.FindAll(x => x.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead).OrderBy(x => x.sourceApparel.def.apparel.layers[Math.Max(x.sourceApparel.def.apparel.layers.Count - 2, 0)].drawOrder).ToList();
+
             for (int i = 0; i < __instance.apparelGraphics.Count; i++)
             {
                 ApparelGraphicRecord record = __instance.apparelGraphics[i];
@@ -58,6 +60,12 @@ namespace AdeptusMechanicus.HarmonyInstance
             graphics.AddRange(shellGraphics);
             graphics.AddRange(overheadGraphics);
             __instance.apparelGraphics = graphics;
+            */
+        }
+        public static List<ApparelGraphicRecord> apparelGraphicRecordsOrdered(List<ApparelGraphicRecord> list)
+        {
+            //    Log.Message($"returning {list.Count} appareal, in draw order of last layer");
+            return list.OrderBy(x => x.sourceApparel.def.apparel.layers.Last().drawOrder).ToList();
         }
     }
 

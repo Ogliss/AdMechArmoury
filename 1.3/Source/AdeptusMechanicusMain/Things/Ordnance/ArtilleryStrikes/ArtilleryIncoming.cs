@@ -5,7 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.ArtilleryStrikes
+namespace AdeptusMechanicus.Ordnance
 {
     // Token: 0x02000D3B RID: 3387
     public class ArtilleryIncoming : Skyfaller

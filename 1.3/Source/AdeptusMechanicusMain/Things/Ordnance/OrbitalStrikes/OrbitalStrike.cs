@@ -6,9 +6,9 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.OrbitalStrikes
+namespace AdeptusMechanicus.Ordnance
 {
-    // AdeptusMechanicus.OrbitalStrikes.OrbitalStrike
+    // AdeptusMechanicus.Ordnance.OrbitalStrike
     public class OrbitalStrike : ThingWithComps
 	{
 		protected int MaxSalvos
@@ -180,7 +180,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 			base.ExposeData();
 			Scribe_References.Look<Thing>(ref this.instigator, "instigator", false);
 			Scribe_Defs.Look<ThingDef>(ref this.weaponDef, "weaponDef");
-			Scribe_Defs.Look<OrbitalStrikeDef>(ref this.strikeDef, "strikeDef");
+			Scribe_Defs.Look<OrdnanceStrikeDef>(ref this.strikeDef, "strikeDef");
 			Scribe_Values.Look<int>(ref this.warmupTicks, "warmupTicks", 0, false);
 			Scribe_Values.Look<int>(ref this.duration, "duration", 0, false);
 			Scribe_Values.Look<int>(ref this.cooldownTicks, "cooldownTicks", 0, false);
@@ -213,7 +213,7 @@ namespace AdeptusMechanicus.OrbitalStrikes
 		public int salvos;
 		public Thing instigator;
 		public ThingDef weaponDef;
-		public OrbitalStrikeDef strikeDef;
+		public OrdnanceStrikeDef strikeDef;
 		protected float angle;
 		protected int startTick;
 		private static readonly FloatRange AngleRange = new FloatRange(-12f, 12f);

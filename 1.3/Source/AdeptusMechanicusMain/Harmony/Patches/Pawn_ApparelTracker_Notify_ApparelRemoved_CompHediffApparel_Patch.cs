@@ -21,7 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         OriginalBodyTracker tracker = Find.World.GetComponent<OriginalBodyTracker>();
                         if (tracker.ModifiedBody(pawn, out BodyTypeDef original))
                         {
-                            HarmonyPatches.ChangeBodyType(pawn, original);
+                            AdeptusHarmonyPatches.ChangeBodyType(pawn, original);
                             tracker.originalBody.Remove(pawn);
                         }
                     }

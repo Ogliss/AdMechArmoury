@@ -1,7 +1,7 @@
 ﻿using System;
 using Verse;
 
-namespace AdeptusMechanicus.AirStrikes
+namespace AdeptusMechanicus.Ordnance
 {
 	public class WeaponDef : Def
 	{

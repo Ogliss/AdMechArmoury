@@ -5,14 +5,14 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace AdeptusMechanicus.AirStrikes
+namespace AdeptusMechanicus.Ordnance
 {
 	// Token: 0x02000040 RID: 64
 	[StaticConstructorOnStartup]
     public class AirStrikeIncoming : FlyingShip
 	{
 		// Token: 0x06000139 RID: 313 RVA: 0x0000B3CC File Offset: 0x000095CC
-		public void InitializeAirStrikeData(IntVec3 targetPosition, AirStrikeDef airStrikeDef)
+		public void InitializeAirStrikeData(IntVec3 targetPosition, OrdnanceStrikeDef airStrikeDef)
 		{
 			this.targetPosition = targetPosition;
 			this.airStrikeDef = airStrikeDef;
@@ -103,7 +103,7 @@ namespace AdeptusMechanicus.AirStrikes
 			Scribe_Values.Look<int>(ref this.ticksBeforeOverflight, "ticksBeforeOverflight", 0, false);
 			Scribe_Values.Look<int>(ref this.ticksAfterOverflight, "ticksAfterOverflight", 0, false);
 			Scribe_Values.Look<IntVec3>(ref this.targetPosition, "targetPosition", default(IntVec3), false);
-			Scribe_Defs.Look<AirStrikeDef>(ref this.airStrikeDef, "airStrikeDef");
+			Scribe_Defs.Look<OrdnanceStrikeDef>(ref this.airStrikeDef, "airStrikeDef");
 			Scribe_Values.Look<float>(ref this.spaceshipExactRotation, "shipRotation", 0f, false);
 			Scribe_Collections.Look<int>(ref this.weaponRemainingRounds, "weaponRemainingRounds", LookMode.Undefined, Array.Empty<object>());
 			Scribe_Collections.Look<int>(ref this.weaponNextShotTick, "weaponNextShotTick", LookMode.Undefined, Array.Empty<object>());
@@ -118,9 +118,9 @@ namespace AdeptusMechanicus.AirStrikes
 			{
 				AirStrikeIncoming.airStrikeSound.PlayOneShot(new TargetInfo(this.targetPosition, base.Map, false));
 			}
-			for (int i = 0; i < this.airStrikeDef.weapons.Count; i++)
+			for (int i = 0; i < this.airStrikeDef.weaponsAirstrike.Count; i++)
 			{
-				this.WeaponTick(i, this.airStrikeDef.weapons[i]);
+				this.WeaponTick(i, this.airStrikeDef.weaponsAirstrike[i]);
 			}
 			bool flag2 = this.ticksBeforeOverflight > 0;
 			if (flag2)
@@ -323,7 +323,7 @@ namespace AdeptusMechanicus.AirStrikes
 		public int ticksAfterOverflight = 0;
 
 		// Token: 0x040000A9 RID: 169
-		public AirStrikeDef airStrikeDef = null;
+		public OrdnanceStrikeDef airStrikeDef = null;
 
 		// Token: 0x040000AA RID: 170
 		public IntVec3 targetPosition = IntVec3.Invalid;

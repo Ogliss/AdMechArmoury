@@ -14,6 +14,10 @@ public static class DeepStrikeCellFinder
 
 	public static List<ShipLandingArea> tmpShipLandingAreas = new List<ShipLandingArea>();
 
+	public static IntVec3 RandomStrikeSpot(Map map, bool standableOnly = true, bool roofed = false, bool fogged = false)
+	{
+		return CellFinderLoose.RandomCellWith((IntVec3 c) => (!standableOnly || c.Standable(map)) && (roofed || !c.Roofed(map)) && (fogged || !c.Fogged(map)), map, 1000);
+	}
 	public static IntVec3 RandomDropSpot(Map map)
 	{
 		return CellFinderLoose.RandomCellWith((IntVec3 c) => c.Standable(map) && !c.Roofed(map) && !c.Fogged(map), map);

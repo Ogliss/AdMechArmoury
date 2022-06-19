@@ -13,7 +13,7 @@ namespace AdeptusMechanicus
         }
         // Astartes BodyDefs
         [MayRequireAstartes]
-        public static BodyDef OG_Astartes;
+        public static BodyDef OG_Human_Astartes_Body;
 
         #region Kroot
         [MayRequireXenobiologis, MayRequireTau]

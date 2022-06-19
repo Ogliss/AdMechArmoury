@@ -31,7 +31,7 @@ namespace AdeptusMechanicus
         public static Material OverrideMaterialIfNeeded(Material original, Pawn pawn)
         {
             Material baseMat = pawn.IsInvisible() ? InvisibilityMatPool.GetInvisibleMat(original) : original;
-            return pawn.Drawer.renderer.graphics.flasher.GetDamagedMat(baseMat);
+            return baseMat;//  pawn.Drawer.renderer.graphics.flasher.GetDamagedMat(baseMat);
         }
 
         public static void AlienRacesPatch(Pawn pawn, Rot4 bodyFacing, out Vector2 size, bool portrait)
