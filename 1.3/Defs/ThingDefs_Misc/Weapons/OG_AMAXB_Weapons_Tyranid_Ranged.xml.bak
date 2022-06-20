@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs> 
+
+  <!-- ====================== Spinefist Spines ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_Spinefist</defName>
+    <label>spines</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/SpinefistShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>4</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Heavy Spines ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_SpinefistHeavy</defName>
+    <label>heavy spines</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/SpinefistShotLrg</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>7</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Spinefist ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_Spinefist</defName>
+    <label>spinefist</label>
+    <description>A Spinefist is a Tyranid Bio-weapon of a symbiotic living gun, typically carried in pairs, which connects its own air-bladder to the airways of its host via a long tube-like tail that burrows through the host's limb into their torso. A spinefist's lethally poisonous spines are coated with neuro-toxins which assault the nervous system of its victims, and are fired by a sharp exhalation of the host. Thus, a larger and more powerful host can exhale more spines in each salvo, ripping through the flesh of any caught victims.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/SpineFist</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.0</drawSize>			
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>200</MarketValue>
+		<reliability>1</reliability>
+		<Mass>1</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_Spinefist</li>
+		<li>OGTY_Gun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_Spinefist</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>25</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Fleshhook_Sound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Dual Spinefist ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_SpinefistDual</defName>
+    <label>dual spinefist</label>
+    <description>A Spinefist is a Tyranid Bio-weapon of a symbiotic living gun, typically carried in pairs, which connects its own air-bladder to the airways of its host via a long tube-like tail that burrows through the host's limb into their torso. A spinefist's lethally poisonous spines are coated with neuro-toxins which assault the nervous system of its victims, and are fired by a sharp exhalation of the host. Thus, a larger and more powerful host can exhale more spines in each salvo, ripping through the flesh of any caught victims.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/SpinefistDual</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.0</drawSize>			
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>0</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_SpinefistDual</li>
+		<li>OGTY_Spinefist</li>
+		<li>OGTY_Gun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_Spinefist</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>25</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Fleshhook_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				<TwinLinked>true</TwinLinked>
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Fleshborer Beetles ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_Fleshborer</defName>
+    <label>fleshborer beetles</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/FleshborerShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>55</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Fleshborer ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<defName>OGTY_Gun_Fleshborer</defName>
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+    <label>fleshborer</label>
+    <description>The Fleshborer, designated by the binomial Pulpa terebro, contains a compact brood nest where Borer beetles lay their eggs, which hatch and mature, sustained by the weapon for future use as ammunition. These beetles are kept in their mature state in a hormone-induced dormancy until the weapon is ready to be fired. At this point, neural impulses from the wielder forces one of the insects into a firing sphincter. From here, the beetle can be fired at a target by a further impulse.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/Fleshborer</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.0</drawSize>			
+		<shaderType>CutoutComplex</shaderType>	
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>2</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_Fleshborer</li>
+		<li>OGTY_Gun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_Fleshborer</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>25</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Devourer_Sound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Devourer worms ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_Devourer</defName>
+    <label>devourer worms</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/DevourerShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationBase>0.16</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+  </ThingDef>
+  
+  <!-- ====================== Brainleech worms ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_DevourerBrainleech</defName>
+    <label>brainleech worms</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/DevourerShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>18</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Devourer ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_Devourer</defName>
+    <label>devourer</label>
+    <description>The devourer is a conical lump of partly rotted flesh, infested by writhing Flesh-worms, parasites with black, shiny heads. When the weapon is triggered, a bio-electric jolt hurls a shower of these creatures at the enemy, where they immediately start burrowing into the flesh, eating their way through the victim's nervous system towards the brain. The agony caused by this process is enough to drive the victim insane.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/Devourer</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.0</drawSize>		
+		<shaderType>CutoutComplex</shaderType>		
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>0</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.20</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_Devourer</li>
+		<li>OGTY_Gun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_Devourer</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>28</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Devourer_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Barbed Strangler Seed ===================== -->
+ <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_BarbedStrangler</defName>
+    <label>strangler seed</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/StranglerShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef MayRequire="Ogliss.AdMech.Xenobiologis">OGTY_StranglerBlast</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<!--postExplosionSpawnThingDef>Warpfire</postExplosionSpawnThingDef-->
+		<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<soundExplode>OG_BarbedStranglerBlast_Sound</soundExplode>
+		<speed>75</speed>
+	 	<explosionRadius>2.55</explosionRadius>
+	</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+  </ThingDef>
+
+  <!-- ====================== Barbed Strangler ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_BarbedStrangler</defName>
+    <label>barbed strangler</label>
+    <description>the Barbed Strangler is a fairly simple weapon consisting of a seed sac and a muscled tube. A seed moves from the sac to the barrel where it grows in seconds. When it is launched it grows further in all directions, reaching maturity in seconds. It sends out hooked tendrils to bind and tear apart its prey. The seed has some similarity to some ground-based xenomorphs and is in actual fact a sentient alien flora.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/BarbedStrangler</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>
+		<shaderType>CutoutComplex</shaderType>	
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>6</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.20</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_BarbedStrangler</li>
+		<li>OGTY_EliteGun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_BarbedStrangler</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>45</range>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<soundCast>OG_BarbedStrangler_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Venom Cannon Blast ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_VenomCannon</defName>
+    <label>venom blast</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/VenomCannonShotSml</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>			
+    </graphicData>
+    <projectile>
+		<flyOverhead>false</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>32</damageAmountBase>
+		<armorPenetrationBase>0.48</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>75</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Venom Cannon ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_VenomCannon</defName>
+    <label>venom cannon</label>
+    <description>The Venom Cannon fires salvos of crystals formed of highly corrosive poison and then coated in a metallic, venomous reside. They are launched with an electrostatic charge at tremendous velocities. A target, if not killed outright by the impact, will be shredded by the hailing shards of shattered crystal, or by the corrosive poison from the shattered crystals. They are also effective against vehicle armour, shattering within the bulkheads of a tank and killing the crew.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/VenomCannon</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>
+		<shaderType>CutoutComplex</shaderType>	
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>0</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.20</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_VenomCannon</li>
+		<li>OGTY_EliteGun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_VenomCannon</defaultProjectile>
+			<warmupTime>2.4</warmupTime>
+			<range>45</range>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Venomcannon_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!-- ====================== Impaler Cannon Barb ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="BaseBullet">
+	<defName>OGTY_Bullet_ImpalerCannon</defName>
+    <label>impaler barb</label>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Projectile/ImpalerCannonShot</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>			
+    </graphicData>
+    <projectile>
+		<flyOverhead>true</flyOverhead>
+		<damageDef>Bullet</damageDef>
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationBase>0.32</armorPenetrationBase>
+		<stoppingPower>0.5</stoppingPower>
+		<speed>65</speed>
+	</projectile>
+  </ThingDef>
+
+  <!-- ====================== Impaler Cannon ===================== -->
+  <ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_Gun_Base">
+	<thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass>
+	<defName>OGTY_Gun_ImpalerCannon</defName>
+    <label>impaler cannon</label>
+    <description>The devourer is a conical lump of partly rotted flesh, infested by writhing Flesh-worms, parasites with black, shiny heads. When the weapon is triggered, a bio-electric jolt hurls a shower of these creatures at the enemy, where they immediately start burrowing into the flesh, eating their way through the victim's nervous system towards the brain. The agony caused by this process is enough to drive the victim insane.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">Things/Item/Equipment/WeaponRanged/Tyranid/ImpalerCannon</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>2.0</drawSize>
+		<shaderType>CutoutComplex</shaderType>	
+	</graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+		<MarketValue>400</MarketValue>
+		<reliability>1</reliability>
+		<Mass>0</Mass>
+		<AccuracyTouch>0.91</AccuracyTouch>
+		<AccuracyShort>0.81</AccuracyShort>
+		<AccuracyMedium>0.70</AccuracyMedium>
+		<AccuracyLong>0.42</AccuracyLong>
+		<RangedWeapon_Cooldown>2.20</RangedWeapon_Cooldown>
+    </statBases>
+	<weaponTags>
+		<li>OGTY_ImpalerCannon</li>
+		<li>OGTY_HeavyGun</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_ImpalerCannon</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>31</range>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>OG_Flamer_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	  <li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+	  
+	  </li> 
+	</comps>
+  </ThingDef>
+ 
+  <!--ThingDef ParentName="OG_Tyranid_Gun_Base">
+    <defName>OGTY_Gun_ZoanthropeBlast</defName>
+    <label>psychic blast</label>
+    <description>A blast of warp energy released by a Zoanthrope.</description>
+    <graphicData>
+		<texPath MayRequire="Ogliss.AdMech.Xenobiologis">DummyTexture</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+			<MarketValue>1</MarketValue>
+		<Mass>0</Mass>
+		<AccuracyTouch>0.90</AccuracyTouch>
+		<AccuracyShort>0.60</AccuracyShort>
+		<AccuracyMedium>0.55</AccuracyMedium>
+		<AccuracyLong>0.50</AccuracyLong>
+		<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+		<li>OGTY_Zoanthrope</li>
+	</weaponTags>
+    <verbs>
+		<li>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGTY_Bullet_Zoanthrope</defaultProjectile>
+			<warmupTime>3.5</warmupTime>
+			<range>31</range>
+			<forcedMissRadius>2</forcedMissRadius>
+			<burstShotCount>1</burstShotCount>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<soundAiming>OG_ZoanthropeAiming_Sound</soundAiming>
+			<soundCast>OG_Zoanthrope_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+      </li>
+    </verbs>
+	<comps>    
+		<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+		<VerbEntries>
+			<li>
+				
+			</li>
+		</VerbEntries>
+		</li> 
+	</comps>
+  </ThingDef-->
+	
+</Defs>

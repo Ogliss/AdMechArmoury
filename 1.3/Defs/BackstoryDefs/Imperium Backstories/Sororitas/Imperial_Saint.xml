@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Sororitas_Saint</defName>
+		<title>Living Saint</title>
+		<titleShort>Saint</titleShort>
+		<baseDescription>[PAWN_nameDef] is a Living Saint, an incarnation of the God Emperor's will.</baseDescription>
+		<slot>Adulthood</slot>
+		<!-- +8 to melee, shooting, and social -->
+		<workDisables>
+			<!--
+			<li>Intellectual</li>
+			<li>Caring</li>
+			<li>Animals</li>
+			<li>ManualSkilled</li>
+			<li>Artistic</li>
+			<li>Firefighting</li>
+			-->
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraits>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+		</forcedTraits>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<defName>Shooting</defName>
+				<amount>8</amount>
+			</li>	
+			<li>
+				<defName>Melee</defName>
+				<amount>8</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>8</amount>
+			</li>
+		</skillGains>
+		<spawnCategories>
+			<li>Sororitas_Standard</li>
+			<li>Sororitas_Saint</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

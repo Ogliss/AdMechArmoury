@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Sororitas_Retributor</defName>
+		<title>Retributor</title>
+		<titleShort>Retributor</titleShort>
+		<baseDescription>[PAWN_nameDef] feels a special joy while firing heavy weapons and swears she can hear prayers to the Emperor issuing from every round, missile, and plasma bolt she lets loose. She has confessed to feeling a tad "naughty" to her Sister Superior but has been told that to love the Emperor is no sin.</baseDescription>
+		<slot>Adulthood</slot>
+		<!--  +5 shooting, +3 melee, construction and art disabled -->
+		<workDisables>
+			<!--
+			<li>Intellectual</li>
+			<li>Caring</li>
+			<li>Animals</li>
+			-->
+			<li>ManualSkilled</li>
+			<li>Artistic</li>
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraits>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+			<li>
+				<defName>Bloodlust</defName>
+				<chance>10</chance>
+			</li>
+			<li>
+				<defName>NaturalMood</defName>
+				<degree>2</degree>
+				<chance>10</chance>
+			</li>
+			<!--li>
+				<defName>Tough</defName>
+				<chance>100</chance>
+			</li-->
+		</forcedTraits>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<defName>Shooting</defName>
+				<amount>5</amount>
+			</li>	
+			<li>
+				<defName>Melee</defName>
+				<amount>3</amount>
+			</li>	
+			<li>
+				<defName>Social</defName>
+				<amount>2</amount>
+			</li>	
+		</skillGains>
+		<spawnCategories>
+			<li>Sororitas_Standard</li>
+			<li>Sororitas_Retributor</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Tyranid - Weapon Abstracts -->
+	<!-- Gun Base -->
+  <ThingDef Name="OG_Tyranid_Gun_Base" ParentName="OG_Weapon_Base" Abstract="True">
+	<thingCategories>
+		<li MayRequire="Ogliss.AdMech.Xenobiologis" >OGTYRanged</li>
+	</thingCategories>
+    <weaponTags>
+      <li>TyranidRanged</li>
+      <li>TyranidWeapon</li>
+    </weaponTags>
+    <tickerType>Normal</tickerType>
+	<tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>
+	<techLevel>Spacer</techLevel>
+	<comps>    
+		<li MayRequire="Ogliss.AdMech.Xenobiologis" Class="AdeptusMechanicus.CompProperties_TyranidRottable">
+			<daysToRotStart>2</daysToRotStart>
+			<rotDestroys>true</rotDestroys>
+		</li>
+		<li>
+			<compClass>AdeptusMechanicus.CompColorableTwoOwner</compClass>
+		</li>
+	</comps>
+  </ThingDef>
+	
+	<!-- Gun Base Makeable -->
+	<!--ThingDef Name="OG_Tyranid_Gun_Makeable" ParentName="OG_Tyranid_Gun_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<recipeUsers>
+				<li>OGC_TableMachining</li>
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>Gunsmithing</li>
+				<li>OG_Imperial_Tech_Base_T0</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef-->
+	
+	<!-- Gun Standard -->
+	<ThingDef Name="OG_Tyranid_Gun" ParentName="OG_Tyranid_Gun_Base" Abstract="True">
+    <weaponTags>
+      <li>Tyranid_Gun</li>
+    </weaponTags>
+    <!--recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Tyranid_Tech_Base_T1</li>
+		</researchPrerequisites>
+    </recipeMaker-->
+	</ThingDef>
+  
+	<!-- Gun Special -->
+	<ThingDef Name="OG_Tyranid_Gun_Special" ParentName="OG_Tyranid_Gun_Base" Abstract="True">
+    <weaponTags>
+      <li>Tyranid_SpecialGun</li>
+    </weaponTags>
+    <!--recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Special</li>
+		</researchPrerequisites>
+    </recipeMaker-->
+  </ThingDef>
+	
+	<!-- Gun Heavy -->
+	<ThingDef Name="OG_Tyranid_Gun_Heavy" ParentName="OG_Tyranid_Gun_Base" Abstract="True">
+    <weaponTags>
+      <li>Tyranid_HeavyGun</li>
+    </weaponTags>
+    <!--recipeMaker>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Heavy</li>
+		</researchPrerequisites>
+    </recipeMaker-->
+  </ThingDef>
+ 
+	<!-- Melee Weapon Base -->
+	<ThingDef Name="OG_Tyranid_MeleeWeapon_Base" Abstract="True" ParentName="OG_Weapon_Base">
+    <techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+	<tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>
+	<thingCategories>
+		<li>OGCMelee</li>
+	</thingCategories>
+    <weaponTags>
+      <li>TyranidMelee</li>
+      <li>TyranidWeapon</li>
+    </weaponTags>
+
+    <!--recipeMaker>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+		
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Base_T0</li>
+			<li>OG_Tyranid_Tech_Base_T1</li>
+		</researchPrerequisites>
+    </recipeMaker-->
+    <inspectorTabs>
+      <!--li>ITab_Art</li-->
+    </inspectorTabs>
+    <tickerType>Normal</tickerType>
+		<comps>
+			<li MayRequire="Ogliss.AdMech.Xenobiologis" Class="AdeptusMechanicus.CompProperties_TyranidRottable">
+				<daysToRotStart>2</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li>
+				<compClass>AdeptusMechanicus.CompColorableTwoOwner</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Melee Weapon Base Makable -->
+	<ThingDef Name="OG_Tyranid_MeleeWeapon_Sharp" ParentName="OG_Tyranid_MeleeWeapon_Base" Abstract="True">
+		<!--recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+			</defaultIngredientFilter>
+		</recipeMaker-->
+		</ThingDef>
+
+	<!-- Melee Weapon Base Sharp -->
+	<ThingDef Name="OG_Tyranid_MeleeWeapon_Blunt" ParentName="OG_Tyranid_MeleeWeapon_Base" Abstract="True">
+		<!--recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+			</defaultIngredientFilter>
+		</recipeMaker-->
+	</ThingDef>
+  
+	<!-- Melee Weapon Base Blunt -->
+	<ThingDef Name="OG_Tyranid_MeleeWeapon_Sharp_Quality" Abstract="True" ParentName="OG_Tyranid_MeleeWeapon_Sharp">
+
+	
+	</ThingDef>
+
+	<!-- Melee Weapon Base Blunt -->
+	<ThingDef Name="OG_Tyranid_MeleeWeapon_Blunt_Quality" Abstract="True" ParentName="OG_Tyranid_MeleeWeapon_Blunt">
+
+	
+	</ThingDef>
+	 
+</Defs>

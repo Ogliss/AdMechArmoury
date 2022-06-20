@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Mechanicus - Armour ========================== -->
+	<!-- ========================= Mechanicus - Enginseer robe ========================== -->
+	<ThingDef ParentName="OG_Mechanicus_Apparel_Armor">
+		<defName>OGAM_Apparel_EnginseerRobe</defName>
+		<label>Enginseer robe</label>
+		<description>Enginseers are perhaps the most common of the Tech-priests of the Adeptus Mechanicus. They view themselves as engineer-mystics dedicated to the Omnissiah, and each Enginseer possesses a wealth of knowledge on how to maintain and repair mechanical and electronic technology. Unlike most of the Priesthood of the Adeptus Mechanicus, Enginseers can be found serving in almost every Imperial institution (other than the Adeptus Astartes, where the same role is played by the Techmarines), and are often assigned to regiments of the Imperial Guard or other parts of the Adeptus Terra. Enginseers are highly-trained members of the Cult Mechanicus and are dedicated to the maintenance of Imperial technology.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToMake>30000</WorkToMake>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.30</ArmorRating_Heat>
+			<Insulation_Heat>30</Insulation_Heat>
+			<Insulation_Cold>30</Insulation_Cold>
+			<Mass>4</Mass>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.03</MoveSpeed>
+			<CarryingCapacity>100</CarryingCapacity>
+			<WorkSpeedGlobal>+0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+			<ResearchSpeed>0.05</ResearchSpeed>
+			<ConstructionSpeed>0.15</ConstructionSpeed>
+			<ConstructSuccessChance>0.5</ConstructSuccessChance>
+			<FixBrokenDownBuildingSuccessChance>0.5</FixBrokenDownBuildingSuccessChance>
+			<ButcheryMechanoidEfficiency>0.1</ButcheryMechanoidEfficiency>
+			<ButcheryMechanoidSpeed>0.05</ButcheryMechanoidSpeed>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+		</recipeMaker>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Base</wornGraphicPath>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li MayRequire="CETeam.CombatExtended">Hands</li>
+				<li MayRequire="CETeam.CombatExtended">Feet</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Shell</li>
+				<li>Middle</li>
+			</layers>
+			<tags>
+				<li>AMTechPriestRobe</li>
+				<li>AMTechPriest</li>
+				<li>AMMilitary</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Pauldrons/Pauldron</padTexPath>
+						<commonality>10</commonality>
+						<northtop>OnHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>Shell</easttop>
+						<westtop>Shell</westtop>
+						<SouthOffset>-0.0,-0.0125,0.00</SouthOffset>
+						<EastOffset>-0.0,-0.0125,0.00</EastOffset>
+						<WestOffset>-0.0,-0.0125,0.00</WestOffset>
+						<NorthOffset>-0.0,-0.010,0.00</NorthOffset>
+					</li>
+				</PauldronEntries>
+				<!--NorthOffset>0,0.05,0</NorthOffset>
+				<SouthOffset>0,0.022,0</SouthOffset>
+				<EastOffset>0,0.0225,0</EastOffset>
+				<WestOffset>0,0.0225,0</WestOffset-->
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Mechanicus - Enginseer Hood ========================== -->
+	<ThingDef ParentName="OG_Mechanicus_Apparel_Armor">
+		<defName>OGAM_Apparel_EnginseerHood</defName>
+		<label>Enginseer Hood</label>
+		<description>Enginseers are perhaps the most common of the Tech-priests of the Adeptus Mechanicus. They view themselves as engineer-mystics dedicated to the Omnissiah, and each Enginseer possesses a wealth of knowledge on how to maintain and repair mechanical and electronic technology. Unlike most of the Priesthood of the Adeptus Mechanicus, Enginseers can be found serving in almost every Imperial institution (other than the Adeptus Astartes, where the same role is played by the Techmarines), and are often assigned to regiments of the Imperial Guard or other parts of the Adeptus Terra. Enginseers are highly-trained members of the Cult Mechanicus and are dedicated to the maintenance of Imperial technology.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/TechPriestHood/TechPriestHood</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+		</graphicData>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>250</MaxHitPoints>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
+			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.15</ArmorRating_Heat>
+			<Insulation_Heat>10</Insulation_Heat>
+			<Insulation_Cold>10</Insulation_Cold>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>+0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestHood/TechPriestHood</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+			</layers>
+			<tags>
+				<li>AMTechPriestHood</li>
+				<li>AMTechPriest</li>
+				<li>AMMilitary</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+		
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Mechanicus - Armour ========================== -->
+	<!-- ========================= Mechanicus - Skitarii Legionnaire Armour ========================== -->
+	<ThingDef ParentName="OG_Mechanicus_Apparel_Armor">
+		<defName>OGAM_Apparel_SkitariiLegionnaireArmour</defName>
+		<label>Skitarii Legionnaire Armour</label>
+		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+		</graphicData>
+		<statBases>
+			<WorkToMake>47500</WorkToMake>
+			<MaxHitPoints>300</MaxHitPoints>
+			<!--MarketValue>1500</MarketValue-->
+			<Mass>9</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">80</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">12</WornBulk>
+			<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.90</ArmorRating_Heat>
+			<Insulation_Heat>30</Insulation_Heat>
+			<Insulation_Cold>30</Insulation_Cold>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.13</MoveSpeed>
+			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<ToxicSensitivity>-0.45</ToxicSensitivity>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<CarryWeight MayRequire="CETeam.CombatExtended">50</CarryWeight>
+			<CarryBulk MayRequire="CETeam.CombatExtended">8</CarryBulk>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>80</Plasteel>
+			<Hyperweave>10</Hyperweave>
+		</costList>
+		<recipeMaker>
+			
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li IfModActive="CETeam.CombatExtended">Hands</li>
+				<li IfModActive="CETeam.CombatExtended">Feet</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Base</wornGraphicPath>
+			<!--wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Base</wornGraphicPath-->
+			<!--wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/SkitariiLegionnaireArmour</wornGraphicPath-->
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>AMSkitariiLegionnaireArmour</li>
+				<li>AMSkitariiLegionnaire</li>
+				<li>AMMilitary</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Pauldrons/Pauldron</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>-0.0,-0.0125,0.01</SouthOffset>
+						<NorthOffset>0.0,0.0000,0.01</NorthOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<!--li>
+						<shoulderPadType>Right</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Pauldrons/TerminatorArmour_Elite</padTexPath>
+						<commonality>10</commonality>
+					</li-->
+					<li>
+						<shoulderPadType>Backpack</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireArmour/Backpack/Backpack</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>0,-0.35,0.25</SouthOffset>
+						<NorthOffset>0,0.65,0.25</NorthOffset>
+						<EastOffset>-0.0,0.0,0.25</EastOffset>
+						<WestOffset>0.0,0.0,0.25</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0,0.2,0.0</NorthOffset>
+				<SouthOffset>0,0.0,0.0</SouthOffset>
+				<EastOffset>0,0.15,0.0</EastOffset>
+				<WestOffset>0,0.15,0.0</WestOffset>
+				<drawAll>true</drawAll>
+			</li>
+		</comps>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<tradeTags>
+			<li>Apparel</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ========================= Mechanicus - Skitarii Legionnaire Helmet ========================== -->
+	<ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiLegionnaireHelmet" ParentName="OG_Mechanicus_Apparel_Armor">
+		<label>Skitarii Legionnaire Helmet</label>
+		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.20</ArmorRating_Heat>
+			<Insulation_Heat>3</Insulation_Heat>
+			<Insulation_Cold>-10</Insulation_Cold>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.45</ToxicSensitivity>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>AMSkitariiLegionnaireHelmet</li>
+				<li>AMSkitariiLegionnaire</li>
+				<li>AMMilitary</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<!--
+		<colorGenerator Class="ColorGenerator_Options">
+		<options>
+			<li>
+				<weight>10</weight>
+				<only>RGBA(0.514,0.114,0.059,1)</only>
+			</li>
+			</options>
+		</colorGenerator>
+		-->
+	</ThingDef>
+
+    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Ranger" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<defName>OGAM_Apparel_SkitariiRangerHelmet</defName>
+		<label>Skitarii Ranger Helmet</label>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_Ranger</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(255,255,255)</colorTwo>
+		</graphicData>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Ranger</wornGraphicPath>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator-->
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
+			<defaultLabel>Down</defaultLabel>
+			<keyLabel>Hood</keyLabel>
+			<alternateGraphics>
+				<li>
+					<label>Up</label>
+					<saveKey>HoodUp</saveKey>
+					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_RangerHooded</texPath>
+					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/RangerHooded</wornGraphicPath>
+				</li>
+			</alternateGraphics>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Vanguard" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<defName>OGAM_Apparel_SkitariiVanguardHelmet</defName>
+		<label>Skitarii Vanguard Helmet</label>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_Vanguard</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(255,255,255)</colorTwo>
+		</graphicData>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Vanguard</wornGraphicPath>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator-->
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
+			<defaultLabel>Down</defaultLabel>
+			<keyLabel>Hood</keyLabel>
+			<alternateGraphics>
+				<li>
+					<label>Up</label>
+					<saveKey>HoodUp</saveKey>
+					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_VanguardHooded</texPath>
+					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/VanguardHooded</wornGraphicPath>
+				</li>
+			</alternateGraphics>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ========================= Mechanicus - Skitarii Ranger Helmet ========================== -->
+    <!--ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiHelmet_Ranger_Base" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>OG_Toggle_Hood</labelKey>
+			</li> 
+		</comps>
+	</ThingDef>
+
+    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
+		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Unhooded</defName>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</wornGraphicPath>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
+    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
+		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded</defName>
+		<label>Skitarii Legionnaire Helmet(Hooded)</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmetHooded</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmetHooded</wornGraphicPath>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef-->
+	
+	<!-- ========================= Mechanicus - Skitarii Ranger Primus Helmet ========================== -->
+	<!--ThingDef Name="OGAM_Apparel_SkitariiPrimusHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
+		<defName>OGAM_Apparel_SkitariiPrimusHelmet</defName>
+		<label>Skitarii Primus Helmet</label>
+		<description>The Skitarii (sing. Skitarius), also known as the Tech-Guard and the Legiones Skitarii, are the cybernetic military forces of the Adeptus Mechanicus of the Imperium of Man. To a man, the Skitarii are warriors born. They take pride in their holy work, glorying in the power of the Omnissiah as He drives them to ever greater feats. Reticules and calibrators pick out targets with uncanny accuracy, Galvanic Rifles bark and Servitor-bullets find the skulls of the foe. Rad Weapons borne with martyr's strength turn the battlefield ever more toxic until it is as befouled as the Red Planet's own wastes. On titanium limbs the Skitarii stalk the war zones of the galaxy, looking from above like the columns of rust-ants that hunt the dunes of Mars.</description>
+		<statBases>
+			<MarketValue>500</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>1</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<ArmorRating_Sharp>0.36</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.36</ArmorRating_Heat>
+			<Insulation_Heat>3</Insulation_Heat>
+			<Insulation_Cold>-10</Insulation_Cold>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.10</PsychicSensitivity>
+			<ToxicSensitivity>-0.75</ToxicSensitivity>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</wornGraphicPath>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>AMSkitariiPrimusHelmet</li>
+				<li>AMSkitariiPrimus</li>
+				<li>AMMilitary</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>OG_Toggle_Hood</labelKey>
+			</li> 
+		</comps>
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+	</ThingDef>
+
+    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+		<defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Unhooded</defName>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</wornGraphicPath>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef>
+	
+    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+		<defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Hooded</defName>
+		<label>Skitarii Primus Helmet(Hooded)</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmetHooded</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>164,66,62</color>
+			<colorTwo>(0,174,17)</colorTwo>
+		</graphicData>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmetHooded</wornGraphicPath>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>164,66,62</only>
+				</li>
+			</options>
+		</colorGenerator>
+    </ThingDef-->
+	
+</Defs>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ==================== Mod - Base Tau Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_Gun_Base" ParentName="OG_Gun_Qaulity_Art" Abstract="True">
+		<thingCategories>
+			<li>OGTRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<weaponTags>
+			<li>TauRanged</li>
+			<li>TauWeapon</li>
+		</weaponTags>
+	</ThingDef>
+	
+	<ThingDef Name="OG_Tau_Gun_Makeable" ParentName="OG_Tau_Gun_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGT_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>Gunsmithing</li>
+				<li>OG_Tau_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+  
+	<ThingDef Name="OG_Tau_Gun" ParentName="OG_Tau_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Tau_Gun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Tau_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+		
+	<ThingDef Name="OG_Tau_Gun_Special" ParentName="OG_Tau_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Tau_SpecialGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+	<ThingDef Name="OG_Tau_Gun_Heavy" ParentName="OG_Tau_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Tau_HeavyGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Heavy</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!-- ==================== Mod - Base Tau Melee Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Base" Abstract="True" ParentName="OG_Weapon_Base">
+    <techLevel>Industrial</techLevel>
+	<smeltable>true</smeltable>
+    <thingCategories>
+		<li>OGTMelee</li>
+    </thingCategories>
+	<tradeTags>
+		<li>OGTMelee</li>
+	</tradeTags>
+    <weaponTags>
+		<li>TauMelee</li>
+		<li>TauWeapon</li>
+    </weaponTags>
+    <recipeMaker>
+      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>OGT_TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		<researchPrerequisites>
+			<li>OG_Tau_Tech_Base_T1</li>
+		</researchPrerequisites>
+    </recipeMaker>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Name="OG_Tau_MeleeWeapon_Makeable" ParentName="OG_Tau_MeleeWeapon_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGT_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Tau_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- ==================== Mod - Base Tau Melee Weapon Sharp Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Sharp" ParentName="OG_Tau_MeleeWeapon_Makeable" Abstract="True">
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		</ThingDef>
+
+	<!-- ==================== Mod - Base Tau Melee Weapon Blunt Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Blunt" ParentName="OG_Tau_MeleeWeapon_Makeable" Abstract="True">
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- ==================== Mod - Base Tau Sharp Quality Melee Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Sharp_Quality" ParentName="OG_Tau_MeleeWeapon_Sharp" Abstract="True">
+		<weaponTags>
+			<li>TauMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Base Tau Blunt Quality Melee Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Blunt_Quality" ParentName="OG_Tau_MeleeWeapon_Blunt" Abstract="True">
+		<weaponTags>
+			<li>TauMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- ==================== Mod - Power Tau Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_Tau_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>TauMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Power Tau Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_Tau_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>TauMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- ==================== Mod - Force Tau Sharp Melee Quality Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_Tau_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>TauMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- ==================== Mod - Force Tau Blunt Melee Quality  Weapon Template ========================= -->
+	<ThingDef Name="OG_Tau_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Tau_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>TauMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+	 
+</Defs>

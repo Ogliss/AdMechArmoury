@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Necron - Gauss Base =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef" Name="OGN_Bullet_LaserGauss" Abstract="True">
+		<label>guass blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(75,233,0,200)</color>	
+			<colorTwo>(138,241,110,25)</colorTwo>	
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GaussBoltSml</li-->
+		</textures>
+		<!--flareMatPath>Other/LaserFlareHeavy</flareMatPath-->
+		<!--flareMatPath>Other/BeamGlow</flareMatPath-->
+		<flareMatPath>Other/BeamGlowB</flareMatPath>
+		<seam>0</seam>
+		<lifetime>20</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.5</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>true</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningVariance>0.5</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.25)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 0.0)</li>
+				<li>(0.1, 0.25)</li>
+				<li>(0.9, 0.25)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 0.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+	</ThingDef>
+
+	<!--==================== Necron - Gauss Flayer =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_GaussFlayer</defName>
+		<projectile>
+			<damageDef>OG_N_Gauss_Damage</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Necron_Gun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_GaussFlayer</defName>
+		<label>gauss flayer (N)</label>
+		<description>A Gauss Flayer is a type of Necron Gauss Weapon that can strip a target down to nothing molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Flayers are rifle-like weapons consisting of a stock, a transparent tube containing the unholy and unknown viridian energy the weapon fires, and sometimes an axe-like bayonet underneath the circular muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Flayer does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Flayer, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/GaussFlayer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_GaussFlayer</li>
+			<li>NGaussFlayer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>64000</WorkToMake>
+			<MarketValue>7500</MarketValue>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.5</PsychicSensitivity>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_GaussFlayer</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>OG_Gauss_Flayer_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.90</barrelLength>
+				<bulletOffset>0.10</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel blade</label>
+				<capacities>
+					<li>OG_RendingWeapon_Cut</li>
+					<li>OG_RendingWeapon_Stab</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<!--
+				<altitudeLayer>MoteOverhead</altitudeLayer>
+				<activateSound>PJ_LightsaberActivate</activateSound>
+				<sustainerSound>PJ_LightsaberHum</sustainerSound>
+				<deactivateSound>PJ_LightsaberDeactivate</deactivateSound>
+				-->
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,205,100)</color>	
+				</graphicData>			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Gause Blaster =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_GaussBlaster</defName>
+		<projectile>
+			<damageDef>OG_N_Gauss_Damage</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_GaussBlaster</defName>
+		<label>gauss blaster (N)</label>
+		<description>A Gauss Blaster is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Blasters are larger than the more common Gauss Flayers and feature two barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Blaster does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles.	Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Blaster, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/GaussBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.150</drawSize>
+		</graphicData>
+		<equippedAngleOffset>44</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_GaussBlaster</li>
+			<li>NGaussBlaster</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>76000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
+				<warmupTime>1.25</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>1.00</barrelLength>
+				<bulletOffset>-0.20</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>16</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel blade</label>
+				<capacities>
+					<li>OG_RendingWeapon_Cut</li>
+					<li>OG_RendingWeapon_Stab</li>
+				</capacities>
+				<power>16</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<!--
+				<altitudeLayer>MoteOverhead</altitudeLayer>
+				<activateSound>PJ_LightsaberActivate</activateSound>
+				<sustainerSound>PJ_LightsaberHum</sustainerSound>
+				<deactivateSound>PJ_LightsaberDeactivate</deactivateSound>
+				-->
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,205,100)</color>	
+				</graphicData>			
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Twin-Linked Gause Blaster =========================-->
+	<ThingDef ParentName="OG_Necron_Gun_Special">
+		<defName>OGN_Gun_GaussBlasterTwinLinked</defName>
+		<label>twin-linked gauss blaster (N)</label>
+		<description>A Gauss Blaster is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Blasters are larger than the more common Gauss Flayers and feature two barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Blaster does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles.	Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. It is, supposedly, extremely painful to be shot with a Gauss Blaster, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/GaussBlasterTwinLinked</texPath>
+			<graphicClass>Graphic_Single</graphicClass>	
+			<drawSize>1.150</drawSize>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_GaussBlasterTwinLinked</li>
+			<li>NGaussBlasterTwinLinked</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<scattershotCount>1</scattershotCount>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_GaussBlaster</defaultProjectile>
+				<warmupTime>1.35</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>1.00</barrelLength>
+				<barrelOffset>-0.20</barrelOffset>
+				<bulletOffset>-0.1</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Gauss Cannon =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_GaussCannon</defName>
+		<!--flareMatPath>Other/LaserFlareHeavy</flareMatPath-->
+		<beamWidth>0.65</beamWidth>
+		<projectile>
+			<damageDef>OG_N_Gauss_Damage</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Necron_Gun_Heavy">
+		<defName>OGN_Gun_GaussCannon</defName>
+		<label>gauss cannon (N)</label>
+		<description>A Gauss Cannon is type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Gauss Cannons are larger than the more common Gauss Flayers and Gauss Blasters, and feature four barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires, and an axe-like bayonet underneath the muzzle.\n\nUnlike more conventional directed energy weapons, a Gauss Cannon does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. In the case of more powerful Gauss Weapons, this process occurs so rapidly and completely that the emerald beam of energy may appear to punch through its target, though it may be more accurate to think of it as "digging" its way through armour. It is said to be extremely painful to be shot with a Gauss Cannon, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/GaussCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.150</drawSize>	
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_GaussCannon</li>
+			<li>NGaussCannon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>25000</MarketValue>
+			<Mass>9</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>2.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_GaussCannon</defaultProjectile>
+				<warmupTime>1.75</warmupTime>
+				<range>31</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Gauss_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+				<barrelLength>0.95</barrelLength>
+				<bulletOffset>-0.15</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>	
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Heavy Gauss Cannon =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_GaussCannonHeavy</defName>
+		<!--flareMatPath>Other/LaserFlareHeavy</flareMatPath-->
+		<beamWidth>0.75</beamWidth>
+		<projectile>
+			<damageDef>OG_N_Gauss_Damage</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>3.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Necron_Gun_Heavy">
+		<defName>OGN_Gun_GaussCannonHeavy</defName>
+		<label>heavy gauss cannon (N)</label>
+		<description>The Heavy Gauss Cannon is a type of horrifying Necron Gauss Weapon that can strip a target down molecule by molecule, reducing it to its constituent atoms in a matter of seconds. Heavy Gauss Cannons are larger than even more common Gauss Cannon, and feature four barrels which lead to transparent tubes containing the unholy and unknown viridian energy the weapon fires.\n\nUnlike more conventional directed energy weapons, a Gauss weapon does not deliver a cutting beam or pure bolt of electromagnetic force or subatomic particles. Instead it emits an emerald, lightning-like molecular disassembling beam capable of reducing flesh, armour and bone to almost nothing. In the case of more powerful Gauss Weapons, this process occurs so rapidly and completely that the emerald beam of energy may appear to punch through its target, though it may be more accurate to think of it as "digging" its way through armour. It is said to be extremely painful to be shot with a Gauss Cannon, and victims die as much from the systemic shock of the assault as the damage caused by the beams.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/HeavyGaussCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+			<drawSize>1.30</drawSize>
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_GaussCannon</li>
+			<li>NGaussCannon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>25000</MarketValue>
+			<Mass>9</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>3.55</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_GaussCannonHeavy</defaultProjectile>
+				<warmupTime>3.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Gauss_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+				<barrelLength>1.00</barrelLength>
+				<bulletOffset>-0.00</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Telsa Base =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef" Name="OGN_Bullet_LaserTesla" Abstract="True">
+		<label>tesla blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,205,155,75)</color>	
+			<colorTwo>(57,205,155,75)</colorTwo>	
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/TeslaBoltGreen</li-->
+			<!--li>Things/Projectile/BlueBeamGlow</li-->
+		</textures>
+		<!--flareMatPath>Other/LaserFlareHeavy</flareMatPath-->
+		<seam>10</seam>
+		<flickerFrameTime>10</flickerFrameTime>
+		<lifetime>30</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.5</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningFrameTime>15</LightningFrameTime>
+		<LightningVariance>1.25</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+	</ThingDef>
+	
+	<!--==================== Necron - Telsa Carbine =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserTesla" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_TeslaCarbine</defName>
+		<projectile>
+			<damageDef>OG_N_Tesla_Damage</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OGN_Bullet_LaserTesla" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_TeslaCarbine_Arc</defName>
+		<label>tesla arc</label>
+		<lifetime>15</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<projectile>
+			<damageDef>OG_N_Tesla_Arc_Damage</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_TeslaCarbine</defName>
+		<label>tesla carbine (N)</label>
+		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_TeslaCarbine</li>
+			<li>NTeslaCarbine</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>4</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
+				<warmupTime>1.25</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>-0.20</barrelOffset>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Twin-Linked Tesla Carbine =========================-->
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_TeslaCarbineTwinLinked</defName>
+		<label>twin-linked tesla carbine (N)</label>
+		<description>A Tesla Carbine is a form of Necron Tesla Weapon that unleashes a bolt of living viridian lightning that crackles from foe to foe after hitting its target, charring flesh and melting armour. Tesla bolts feed off the energy released by the destruction, and the lightning discharge becomes more furious with every fresh arc, moving as if it had a mind of its own. In some cases, these energetic projectiles have even been observed to crack ceramite and plasteel. These weapons have been named by the Imperium after the ancient Terran scientist Nikola Tesla, who was the first human known to experiment with this type of weapon technology, although the Necrons had perfected it long before humans even existed. A Tesla Carbine is the smallest form of Tesla Weapon, and its rifle size makes it easily portable.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/TeslaCarbineTwinLinked</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_TeslaCarbineTwinLinked</li>
+			<li>NTeslaCarbineTwinLinked</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<scattershotCount>1</scattershotCount>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_TeslaCarbine</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>1</barrelLength>
+				<barrelOffset>-0.25</barrelOffset>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Synaptic Disintegrator =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_SynapticDisintegrator</defName>
+		<label>disintergrator blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(75,233,0,150)</color>	
+			<colorTwo>(138,241,110,25)</colorTwo>	
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/Beam_SynapticDisintergrator</li>
+		</textures>
+		<!--flareMatPath>Other/LaserFlareHeavy</flareMatPath-->
+		<seam>0</seam>
+		<impulse>0.5</impulse> <!-- the solidity of the beam -->
+		<beamWidth>1.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>1.5</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidth>1.5</flareWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidthMod>2.5</flareWidthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<LightningFrameTime>15</LightningFrameTime>
+		<StaticLightning>false</StaticLightning>
+		<LightningVariance>0.5</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.25)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.5)</li>
+				<li>(0.5, 0.5)</li>
+				<li>(1, 0.25)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 0.0)</li>
+				<li>(0.1, 0.35)</li>
+				<li>(0.9, 0.35)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 0.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<projectile>
+			<damageDef>OG_N_Particle_Damage</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBase>0.64</armorPenetrationBase>
+			<stoppingPower>2.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_SynapticDisintegrator</defName>
+		<label>synaptic disintergrator (N)</label>
+		<description>A Synaptic Disintegrator is an advanced sniper weapon utilised only by Necron Deathmark assassins as their favoured weapon to deliver death from afar. These cruel long-barrelled rifles fire compressed leptonic beams of sub-atomic particles which destroy neural and synaptic tissue. Beginning within the target’s brain and spreading in microseconds throughout their entire body, molecules unbond with one another, causing the luckless target to crumple limply to the ground like a puppet with its strings severed. Synaptic Disintegrators are capable of sustaining a rate of fire at long range -- even when the wielder is on the move -- that few other sniper weapons can match. Those killed by the first shot from a Synaptic Disintegrator are the fortunate ones, for a hit from the weapon that is less than fatal almost invariably leaves the victim an echo of his former self; his neural tissue utterly destroyed and his mind torn apart.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/SynapticDisintergrater</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_SynapticDisintegrator</li>
+			<li>NSynapticDisintegrator</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+				<!--li>OG_Necron_Tech_Weapons_Particle</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rending>true</rending>
+				<rapidFire>true</rapidFire>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_SynapticDisintegrator</defaultProjectile>
+				<warmupTime>2.25</warmupTime>
+				<range>50</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlareRotates>False</muzzleFlareRotates>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlareDef>OG_Mote_LaserFlareHeavy</muzzleFlareDef>
+				<muzzleFlareColor>(75,233,0,150)</muzzleFlareColor>
+				<barrelLength>1.0</barrelLength>
+				<barrelOffset>-0.00</barrelOffset>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Particle Beamer =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_ParticleBeamer</defName>
+		<label>particle beam</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,205,155,75)</color>	
+			<colorTwo>(57,205,155,75)</colorTwo>	
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/BlueBeamGlow</li>
+		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<seam>0</seam>
+		<beamWidth>1.5</beamWidth>
+		<flareLength>1.5</flareLength>
+		<flareWidth>1.5</flareWidth>
+		<projectile>
+			<damageDef>OG_N_Particle_Damage</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBase>0.64</armorPenetrationBase>
+			<stoppingPower>2.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Necron_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_ParticleBeamer</defName>
+		<label>particle beamer (N)</label>
+		<description>A Particle Beamer is a heavy, rifle-sized Particle Weapon capable of causing powerful blasts at range to decimate enemy infantry. Tomb Blades can mount a Particle Beamer on their chassis instead of their usual twin-linked Tesla Carbines, whilst Canoptek Spyders who specialise in sentinel duties commonly mount twin-linked Particle Beamers on their backs. Tesseract Arks are also able to mount two Particle Beamers as secondary weapon systems.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Necron/ParticleBeamer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_ParticleBeamer</li>
+			<li>OGN_TombSpyder_Weapons</li>
+			<li>NParticleBeamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Necron_Tech_Weapons_Tesla</li-->
+				<!--li>OG_Necron_Tech_Weapons_Gauss</li-->
+				<!--li>OG_Necron_Tech_Weapons_Particle</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>15000</MarketValue>
+			<Mass>8</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.55</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_ParticleBeamer</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>32</range>
+				<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Gauss_Blaster_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>-0.25</barrelOffset>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Necron - Staff of Light =========================-->
+	<ThingDef ParentName="OGN_Bullet_LaserGauss" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGN_Bullet_StaffOfLight</defName>
+		<label>light blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(75,233,0,200)</color>	
+			<colorTwo>(138,241,110,200)</colorTwo>	
+		</graphicData>
+		<flareMatPath>Other/BeamGlowB</flareMatPath>
+		<ArcCount>1</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<flickerFrameTime>10</flickerFrameTime>
+		<lifetime>30</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.5</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>true</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningFrameTime>15</LightningFrameTime>
+		<LightningVariance>2.25</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+
+		<lightningArcWidthDistCurve Inherit="False">
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve Inherit="False">
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve Inherit="False">
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve Inherit="False">
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<projectile>
+			<damageDef>OG_N_Gauss_Damage</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Necron_MeleeWeapon_Sharp_Quality" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGN_Gun_StaffOfLight</defName>
+		<label>staff of light (N)</label>
+		<description>A Staff of Light is a device of arcane Necron technology that serves as both a symbol of rank and authority, as well as a potent weapon for Necron royals. Shaped like a traditional Necrontyr staff with an ornate headpiece, its haft is actually a disguised power generator rod; and the crest a finely tuned focussing device which allows the wielder to unleash searing bolts of viridian energy at a rapid rate towards the enemy. These beams are so potent that they are even capable of penetrating Astartes Power Armour with ease. As well as being capable of projecting devastating blasts of energy at range, a Staff of Light also serves a similar function to a Power Weapon in close combat. A Staff of Light is usually only found in the armouries of Necron royalty, including those belonging to Necron Overlords, Necron Lords or Necron Destroyer Lords. However, Crypteks of an unspecialised nature in their techno-sorcerous arts also commonly wield a Staff of Light in battle.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Necron/StaffOfLight</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OGN_Gun_StaffOfLight</li>
+			<li>NStaffOfLight</li>
+			<li>OGNPowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGNMelee</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<MarketValue>37500</MarketValue>
+			<Mass>3</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<rending>true</rending>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicSensitivity</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Necron</li>
+				</userEffectImmuneList>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGN_Bullet_StaffOfLight</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>18</range>
+				<soundCast>GaussSound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelOffset>0.25</barrelOffset>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>35</power>
+				<armorPenetration>1</armorPenetration>
+				<cooldownTime>1.5</cooldownTime>
+			</li>
+			<li>
+				<label>stave</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.5</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,100,205)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+</Defs>

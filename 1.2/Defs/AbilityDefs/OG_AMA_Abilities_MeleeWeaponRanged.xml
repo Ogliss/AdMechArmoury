@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ======================== Melee Weapon Ranged Ability Defs ================================== -->
+<!-- ======================== Imperial - Abilities ================================== -->
+<!-- ======================== Imperial - Bolter Ability ================================== -->
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireBolter</defName>
+        <label>Fire Bolter</label>
+        <iconPath>Things/Projectile/BoltShotSml</iconPath>
+        <description>Fire built in Bolter.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>10</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <RapidFire>true</RapidFire>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>3</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>31</range>
+			<soundCast>OG_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Eldar - Abilities ================================== -->
+<!-- ======================== Eldar - Shuriken Catapult Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_FireShuriken</defName>
+        <label>Fire Shuriken Catapult</label>
+        <iconPath>Things/Projectile/ShurikenSml</iconPath>
+        <description>Fire built in Shuriken Catapult.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>10</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_Bullet_Shuriken</defaultProjectile>
+            <warmupTime>0.7</warmupTime>
+            <burstShotCount>14</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>28</range>
+			<soundCast>OG_Shuriken_Sound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Eldar - Singing Spear Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_ThrowSingingSpear</defName>
+        <label>Throw Singing Spear</label>
+        <iconPath>Things/Projectile/SingingSpear_Thrown</iconPath>
+        <description>Throw the Singing Spear.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+		<requirePsyker>true</requirePsyker>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGE_Thrown_SingingSpear</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<range>20</range>
+			<soundCast>Interact_BeatFire</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+	<ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>OGE_Thrown_SingingSpear</defName>
+    <label>Singing Spear</label>
+    <graphicData>
+      <texPath>Things/Projectile/SingingSpear_Thrown</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.750</drawSize>			
+    </graphicData>
+	<comps>     
+		<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			
+		</li> 
+	</comps>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>OG_Power_Stab</damageDef>
+      <damageAmountBase>30</damageAmountBase>
+      <speed>26</speed>
+    </projectile>
+	</ThingDef>
+	
+ <!-- ======================== Dark Eldar - Abilities ================================== -->
+<!-- ======================== Dark Eldar - Splinter Rifle Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_FireSplinter</defName>
+        <label>Fire Splinter Rifle</label>
+        <iconPath>Things/Projectile/SplinterSml</iconPath>
+        <description>Fire built in Splinter Rifle.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>10</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <RapidFire>true</RapidFire>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
+            <warmupTime>0.7</warmupTime>
+            <burstShotCount>9</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>31</range>
+			<soundCast>OG_Splinter_Sound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+</Defs>

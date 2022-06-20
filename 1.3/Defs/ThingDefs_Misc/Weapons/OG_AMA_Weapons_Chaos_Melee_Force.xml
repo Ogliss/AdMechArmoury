@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ==================== Chaos - Sorcerers Staff ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Blunt_Quality">
+		<defName>OGC_Melee_SorcerersStaff</defName>
+		<label>sorcerers staff</label>
+		<description>The Sorcerer's Staff is a force weapon carried by Chaos Sorcerers. It is used to channel psychic energy and then unleash it in a burst greater than a single mind can control. Force Weapons are advanced, psychically-attuned close combat weapons that are only effective in the hands of a psyker. Force Weapons effectively act as deadly, psychic extensions or amplifiers of the wielder's own Empyrean-spawned powers. They are designed to allow a psyker to channel deadly Warp energies into their victim, acting as a conduit between the wielder's mind and the flesh of his target. Large alien monstrosities and daemons that are resilient to conventional weapons can be slain outright by a single wound from a Force Weapon, as their bodies and minds are destroyed by the unearthly powers of the Immaterium.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/SorcerersStaffColoured</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>3.5</Mass>
+			<!--MarketValue>1500</MarketValue-->
+			<Bulk MayRequire="CETeam.CombatExtended">3.3</Bulk>
+			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.375</MeleeCounterParryBonus>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>haft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.4</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>18</power>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>OG_ForceWeapon_Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>400</costStuffCount>
+		<weaponTags>
+			<li>CForceStaff</li>
+			<li>OGCForceWeapon</li>
+			<li>ForceWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(136,0,54)</color>	
+				</graphicData>	
+				<ForceWeaponEffect>OG_ForceStrike</ForceWeaponEffect>
+				<ForceWeaponHediff>OG_Hediff_FWPsychicShock</ForceWeaponHediff>
+				<ForceWeaponKillChance>0.1</ForceWeaponKillChance>
+				<ForceWeaponTriggerSound>MeleeHit_Metal_ForceWeapon</ForceWeaponTriggerSound>
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->					
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,0.0,0.0</eastOffset>
+				<westOffset>0.0,0.10,0.0</westOffset>
+				<southOffset>0.0,0.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+</Defs>

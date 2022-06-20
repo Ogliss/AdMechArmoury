@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RulePackDef>
+		<defName>NamerOGKrootFaction</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+			<li>name->[OG_NameKrootKindredWorlds] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB] [OG_NameKrootKindredTypes]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>NamerOGKrootBases</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[OG_NameKrootBaseTypes] [OG_NameKrootBaseNamesA][OG_NameKrootBaseNamesB]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Kroot_NamerPerson</defName>
+		<include>
+			<li>OG_Kroot_NameUtility</li>
+			<li>TribalWordUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+			<li>name->[KrootName] [OG_Unisexlastname]</li>
+			<li>name->[KrootName] '[nickname]' [OG_Unisexlastname]</li>
+			
+			<li>OG_Unisexlastname(p=3)->[OG_NameKrootSurA][OG_NameKrootSurB]</li>
+			<li>OG_Unisexlastname(p=2)->[WordKroot]</li>
+			
+			<li>nickname(p=3)->[OG_NameKrootNickA][OG_NameKrootNickB]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+  <RulePackDef>
+    <defName>OG_Kroot_NameUtility</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>KrootName(p=4)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]</li>
+        <li>KrootName(p=3)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_7][SylK_5][SylK_6]</li>
+        <li>KrootName(p=2)->[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]-[SylK_1][SylK_2][SylK_6]</li>
+        <li>KrootName(p=1)->[SylK_1][SylK_2][SylK_6]-[SylK_1][SylK_2][SylK_3][SylK_4][SylK_6]</li>
+
+        <li>WordKroot(p=3)->[SylG]'[SylE]-[SylG]</li>
+        <li>WordKroot(p=2)->[SylG]'[SylG][SylE]-[SylG]</li>
+      </rulesStrings>
+      <rulesFiles>
+        <li>OG_NameKrootFirstA->NameBanks/OG_Kroot_Names_First_A</li>
+        <li>OG_NameKrootFirstB->NameBanks/OG_Kroot_Names_First_B</li>
+		
+        <li>OG_NameKrootSurA->NameBanks/OG_Kroot_Names_Last_A</li>
+        <li>OG_NameKrootSurB->NameBanks/OG_Kroot_Names_Last_B</li>
+		
+        <li>OG_NameKrootNickA->NameBanks/OG_Kroot_Names_Nick_A</li>
+        <li>OG_NameKrootNickB->NameBanks/OG_Kroot_Names_Nick_B</li>
+		
+        <li>OG_NameKrootKindredTypes->NameBanks/OG_Kroot_Kindred_Types</li>
+        <li>OG_NameKrootKindredWorlds->NameBanks/OG_Kroot_Worlds</li>
+		
+        <li>OG_NameKrootBaseNamesA->NameBanks/OG_Kroot_Names_Outpost_A</li>
+        <li>OG_NameKrootBaseNamesB->NameBanks/OG_Kroot_Names_Outpost_B</li>
+		
+        <li>OG_NameKrootBaseTypes->NameBanks/OG_Kroot_Outpost_Types</li>
+		
+        <li>SylE->WordParts/Syllables_English</li>
+        <li>SylG->WordParts/Syllables_Galician</li>
+		
+        <li>SylK_1->NameBanks/OG_Kroot_Names_SybA</li>
+        <li>SylK_2->NameBanks/OG_Kroot_Names_SybB</li>
+        <li>SylK_3->NameBanks/OG_Kroot_Names_SybC</li>
+        <li>SylK_4->NameBanks/OG_Kroot_Names_SybD</li>
+        <li>SylK_5->NameBanks/OG_Kroot_Names_SybE</li>
+        <li>SylK_6->NameBanks/OG_Kroot_Names_SybF</li>
+        <li>SylK_7->NameBanks/OG_Kroot_Names_SybG</li>
+      </rulesFiles>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>OG_NamerIdeoKroot</defName>
+    <include>
+      <li>GlobalUtility</li>
+      <li>OG_Kroot_NameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <!-- The system will feed one (and only one) of these cases into this namer:
+                - key deity
+                - symbol pack
+             These cases are separate, they won't mix.
+
+             The system will also feed a set of place_* keys correesponding to the ideo's foundation PlaceDef
+         -->
+
+        <!-- From key deity -->
+        <li>r_ideoName->[keyDeity]ism</li>
+        <li>r_ideoName->[hyphenPrefix]-[keyDeity]ism</li>
+        <li>r_ideoName->[keyDeity]'s [creed]</li>
+        <li>r_ideoName->[creed] of [keyDeity]</li>
+        <li>r_ideoAdjective->[keyDeity]ic</li>
+        <li>r_memberName->[keyDeity]ist</li>
+        <li>r_memberName->[keyDeity]ite</li>
+
+        <!-- From symbol pack -->
+        <li>r_ideoName(p=2)->[globalAdjective] [packIdeoName]</li>
+        <li>r_ideoName(p=1.5,forcePrefix==False)->[hyphenPrefix]-[packIdeoName]</li>
+        <li>r_ideoName->[memeAdjective] [packIdeoName]</li>
+        <li>r_ideoName(p=0.5)->[memeAdjective] [creed]</li>
+        <li>r_ideoName(p=0.2)->[creed] of [packTheme]</li>
+        <li>r_ideoAdjective(priority=1)->[packAdjective]</li>
+        <li>r_memberName->[packMember]</li>
+
+        <!-- Generic content -->
+
+        <li>creed(priority=1)->[memeCreed]</li>
+        <li>creed->[genericCreed]</li>
+
+        <li>genericCreed->creed</li>
+        <li>genericCreed->doctrine</li>
+        <li>genericCreed->way</li>
+        <li>genericCreed->path</li>
+
+        <li>globalAdjective->[Color]</li>
+        <li>globalAdjective->New</li>
+        <li>globalAdjective->Full</li>
+        <li>globalAdjective->Old</li>
+        <li>globalAdjective->Ancient</li>
+        <li>globalAdjective->Historical</li>
+        <li>globalAdjective->Revised</li>
+        <li>globalAdjective->Reformed</li>
+        <li>globalAdjective->Hard</li>
+        <li>globalAdjective->Fundamental</li>
+        <li>globalAdjective->True</li>
+        <li>globalAdjective->Folk</li>
+        <li>globalAdjective->Reformed</li>
+        <li>globalAdjective->[place_adjective]</li>
+
+        <li>hyphenPrefix->[globalHyphenPrefix]</li>
+        <li>hyphenPrefix->[memeHyphenPrefix]</li>
+
+        <li>globalHyphenPrefix(p=4)->neo</li>
+        <li>globalHyphenPrefix(p=2)->post</li>
+        <li>globalHyphenPrefix->nova</li>
+        <li>globalHyphenPrefix->archaeo</li>
+        <li>globalHyphenPrefix->hyper</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>NamerIdeo_Kroot_Mercenary</defName>
+    <include>
+      <li>OG_NamerIdeoKroot</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">CultureSpacer</li>
+    </include>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>NamerIdeo_Kroot_Tribal</defName>
+    <include>
+      <li>OG_NamerIdeoKroot</li>
+    </include>
+  </RulePackDef>
+
+</Defs>

@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+<!-- ======================== Grenade Ability Defs ================================== -->
+<!-- ======================== Imperial - Grenade Ability ================================== -->
+<!-- ======================== Imperial - Photon Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Photon</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpPhotonGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePhoton</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowPhoton</defName>
+        <label>Throw Blind Grenade</label>
+        <iconPath>Things/Projectile/ImpPhotonGrenade</iconPath>
+        <description>Throws a Blind Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Photon</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+	
+<!-- ======================== Imperial - Frag Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Frag</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpFragGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeFrag</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowFrag</defName>
+        <label>Throw Frag</label>
+        <iconPath>Things/Projectile/ImpFragGrenade</iconPath>
+        <description>Throws a Frag Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Frag</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Imperial - Krak Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Krak</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpKrakGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeKrak</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>1.00</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowKrak</defName>
+        <label>Throw Krak</label>
+        <iconPath>Things/Projectile/ImpKrakGrenade</iconPath>
+        <description>Throws a Krak Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Krak</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Imperial - Rad Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Rad</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpRadGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeRad</damageDef>
+			<!--damageAmountBase>1</damageAmountBase-->
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>1</AddHediffChance>
+				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowRad</defName>
+        <label>Throw Rad Grenade</label>
+        <iconPath>Things/Projectile/ImpRadGrenade</iconPath>
+        <description>Throws a Rad Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Rad</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+	
+<!-- ======================== Imperial - Psyk-Out Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Psyk</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpPsychGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowPsyk</defName>
+        <label>Throw Psyk</label>
+        <iconPath>Things/Projectile/ImpPsychGrenade</iconPath>
+        <description>Throws a Psyk Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Psyk</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Imperial - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpMeltaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowMelta</defName>
+        <label>Throw Melta</label>
+        <iconPath>Things/Projectile/ImpMeltaBomb</iconPath>
+        <description>Throws a Melta Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Melta</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Imperial - Vortex Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGI_GrenadeThrown_Vortex</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/ImpVortexGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_ThrowVortex</defName>
+        <label>Throw Vortex</label>
+        <iconPath>Things/Projectile/ImpVortexGrenade</iconPath>
+        <description>Throws a Vortex Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGI_GrenadeThrown_Vortex</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Tau - Grenade Ability ================================== -->
+<!-- ======================== Tau - Photon Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGT_GrenadeThrown_Photon</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/TauPhotonGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePhoton</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGT_Ability_ThrowPhoton</defName>
+        <label>Throw Photon Grenade</label>
+        <iconPath>Things/Projectile/TauPhotonGrenade</iconPath>
+        <description>Throws a Photon Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGT_GrenadeThrown_Photon</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Tau - Photon Grenade Launcher Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGT_GrenadeLaunched_Photon</defName>
+		<graphicData>
+			<texPath>Things/Projectile/TauPhotonGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePhoton</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>20</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGT_Ability_LaunchPhoton</defName>
+        <label>Launch Photon</label>
+        <iconPath>Things/Projectile/TauPhotonGrenade</iconPath>
+        <description>Launches a Photon Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGT_GrenadeLaunched_Photon</defaultProjectile>
+            <warmupTime>0.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Tau - EMP Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGT_GrenadeThrown_EMP</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/TauEMPGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeEMP</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGT_Ability_ThrowEMP</defName>
+        <label>Throw EMP Grenade</label>
+        <iconPath>Things/Projectile/TauEMPGrenade</iconPath>
+        <description>Throws an EMP Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGT_GrenadeThrown_EMP</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+
+<!-- ======================== Eldar - Grenade Ability ================================== -->
+<!-- ======================== Eldar - Plasma Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Plasma</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarPlasmaGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePlasma</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_ThrowPlasma</defName>
+        <label>Throw Plasma Grenade</label>
+        <iconPath>Things/Projectile/EldarPlasmaGrenade</iconPath>
+        <description>Throws a Plasma Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_Plasma</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Eldar - Haywire Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Haywire</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeEMP</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>	
+ </ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_ThrowHaywire</defName>
+        <label>Throw Haywire Grenade</label>
+        <iconPath>Things/Projectile/EldarHaywireGrenade</iconPath>
+        <description>Throws a Haywire Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_Haywire</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Eldar - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarMeltaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_ThrowMelta</defName>
+        <label>Throw Melta</label>
+        <iconPath>Things/Projectile/EldarMeltaBomb</iconPath>
+        <description>Throws a Melta Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_Melta</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+	
+  <!-- ======================== Eldar - Hallucinogen Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Hallucinogen</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<postExplosionSpawnThingDef>OG_HallucinogenGas</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_ThrowHallucinogen</defName>
+        <label>Throw Hallucinogen Grenade</label>
+        <iconPath>Things/Projectile/EldarHaywireGrenade</iconPath>
+        <description>Throws a Hallucinogen Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_Hallucinogen</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+	<!-- ======================== Eldar - Grenade Launcher Ability ================================== -->
+<!--
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGEGrenadeL</defName>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenade</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGE_Ability_Launch</defName>
+        <label>Launch Photon</label>
+        <iconPath>Things/Projectile/TauPhotonGrenade</iconPath>
+        <description>Launches a Photon Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ -->
+ 
+<!-- ======================== Dark Eldar - Grenade Ability ================================== -->
+<!-- ======================== Dark Eldar - Plasma Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Plasma</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarPlasmaGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePlasma</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_ThrowPlasma</defName>
+        <label>Throw Plasma Grenade</label>
+        <iconPath>Things/Projectile/DarkEldarPlasmaGrenade</iconPath>
+        <description>Throws a Plasma Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGDE_GrenadeThrown_Plasma</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Dark Eldar - Haywire Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Haywire</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeEMP</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>	
+ </ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_ThrowHaywire</defName>
+        <label>Throw Haywire Grenade</label>
+        <iconPath>Things/Projectile/DarkEldarHaywireGrenade</iconPath>
+        <description>Throws a Haywire Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGDE_GrenadeThrown_Haywire</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Dark Eldar - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarMeltaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_ThrowMelta</defName>
+        <label>Throw Melta</label>
+        <iconPath>Things/Projectile/DarkEldarMeltaBomb</iconPath>
+        <description>Throws a Melta Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGDE_GrenadeThrown_Melta</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+	
+  <!-- ======================== Dark Eldar - Hallucinogen Grenade Ability ================================== -->
+	<!--ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGDEGrenadeHallucinogen</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<postExplosionSpawnThingDef>HallucinogenGas</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_ThrowHallucinogen</defName>
+        <label>Throw Hallucinogen Grenade</label>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+        <iconPath>Things/Projectile/EldarHaywireGrenade</iconPath>
+        <description>Throws a Hallucinogen Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>Projectile_OGDEGrenadeHallucinogen</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef-->
+ 
+	<!-- ======================== Dark Eldar - Grenade Launcher Ability ================================== -->
+<!--
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGDEGrenadeL</defName>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenade</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGDE_Ability_Launch</defName>
+        <label>Launch Photon</label>
+        <iconPath>Things/Projectile/TauPhotonGrenade</iconPath>
+        <description>Launches a Photon Grenade.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGE_GrenadeThrown_</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ -->
+ 
+	<!-- ======================== Ork - Grenade Ability ================================== -->
+	<!-- ======================== Ork - Frag Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Frag</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(199,199,46)</color>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeFrag</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGO_Ability_ThrowFrag</defName>
+        <label>Lob Frag</label>
+        <iconPath>Things/Projectile/StikkBomb</iconPath>
+        <description>Lobs a Frag Stikkbomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGO_GrenadeThrown_Frag</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+	<!-- ======================== Ork - Krak Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Krak</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(183,075,0)</color>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeKrak</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>1.00</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGO_Ability_ThrowKrak</defName>
+        <label>Lob Krak</label>
+        <iconPath>Things/Projectile/StikkBomb</iconPath>
+        <description>Lobs a Krak Stikkbomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGO_GrenadeThrown_Krak</defaultProjectile>
+            <warmupTime>2.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>12.9</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Ork - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/TankbustaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGO_Ability_ThrowMelta</defName>
+        <label>Lob Tankbusta</label>
+        <iconPath>Things/Projectile/TankbustaBomb</iconPath>
+        <description>Lobs a Tankbusta Bomb.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGO_GrenadeThrown_Melta</defaultProjectile>
+            <warmupTime>3.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>6.45</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+</Defs>

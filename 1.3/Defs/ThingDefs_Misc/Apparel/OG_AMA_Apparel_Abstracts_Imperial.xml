@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <!-- ========================= Imperial ========================== -->
+    <!-- ========================= Imperial - Clothes Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<apparel>
+			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>Outlander</li>
+				<li>OG_Outlander_Militarum</li>
+				<li>OG_Outlander_Militarum_Cadian</li>
+				<li>OG_Outlander_Militarum_Kreig</li>
+			</ideoDesireAllowedFactionCategoryTags>
+			<!--ideoDesireDisallowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>OG_Outlander_Craftworld</li>
+				<li>OG_OutlanderRefugee_Craftworld</li>
+				<li>OG_Outlander_Harlequin</li>
+				<li>OG_OutlanderRefugee_Harlequin</li>
+				<li>OG_Tribal_Exodite</li>
+				<li>OG_TribalRefugee_Exodite</li>
+				<li>OG_Outlander_DarkEldar</li>
+				<li>OG_OutlanderRefugee_DarkEldar</li>
+				<li>OG_Outlander_Ork</li>
+				<li>OG_OutlanderRefugee_Ork</li>
+				<li>OG_Tribal_Ork</li>
+				<li>OG_TribalRefugee_Ork</li>
+				<li>OG_Outlander_Tau</li>
+				<li>OG_OutlanderRefugee_Tau</li>
+				<li>OG_Outlander_Kroot</li>
+				<li>OG_OutlanderRefugee_Kroot</li>
+				<li>OG_Tribal_Kroot</li>
+				<li>OG_TribalRefugee_Kroot</li>
+			</ideoDesireDisallowedFactionCategoryTags-->
+			<tags>
+				<li>ImperialApparel</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OG_Apparel_Imperial</li>
+		</thingCategories>
+	</ThingDef>
+	
+    <!-- ========================= Imperial - Clothes Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Makeable" ParentName="OG_Imperial_Apparel_Base" Abstract="True">
+		<apparel>
+			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>Outlander</li>
+				<li>OG_Outlander_Mechanicus</li>
+				<li>OG_Outlander_Sororitas</li>
+				<li>OG_Outlander_Astartes</li>
+			</ideoDesireAllowedFactionCategoryTags>
+		</apparel>
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+		
+    <!-- ========================= Imperial - Clothes Makable Base - No stuff colour  ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Makeable_NoStuffColour" ParentName="OG_Imperial_Apparel_Base" Abstract="True">
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+    <!-- ========================= Imperial - Clothes - Apparel Makable ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel" ParentName="OG_Imperial_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialClothing</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIApparel</li>
+		</thingCategories>
+	</ThingDef>
+	
+    <!-- ========================= Imperial - Clothes - Apparel Makable ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_NoStuffColour" ParentName="OG_Imperial_Apparel_Makeable_NoStuffColour" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialClothing</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIApparel</li>
+		</thingCategories>
+	</ThingDef>
+	
+	
+	<!-- ========================= Imperial - Headgear - Hat Makable ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Headgear" ParentName="OG_Imperial_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialHat</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIHeadgear</li>
+		</thingCategories>
+    <statBases>
+      <Mass>0.15</Mass>
+    </statBases>
+	</ThingDef>
+	
+    <!-- ========================= Imperial - Armour Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialApparel</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OG_Apparel_Imperial</li>
+		</thingCategories>
+	</ThingDef>
+
+    <!-- ========================= Imperial - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_Makeable" ParentName="OG_Imperial_Apparel_Armor_Base" Abstract="True">
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel_Armour_T1</li>
+			</researchPrerequisites>
+			<!--researchPrerequisite>OG_Militarum_Tech_Base_T1</researchPrerequisite-->
+		</recipeMaker>
+	</ThingDef>
+	
+    <!-- ========================= Imperial - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor" ParentName="OG_Imperial_Apparel_Armor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialArmour</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIArmour</li>
+		</thingCategories>
+	</ThingDef>	
+		
+	<!-- ========================= Imperial - Headgear Base - Helmet Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_Headgear" ParentName="OG_Imperial_Apparel_Armor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialHelmet</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIHeadgear</li>
+		</thingCategories>
+		<statBases>
+			<Mass>0.35</Mass>
+		</statBases>
+	</ThingDef>
+
+	<!-- ========================= Imperial - Apparel Power Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_PowerArmor_Makeable" ParentName="OG_Imperial_Apparel_Armor_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Base_T3</li>
+				<li>OG_Imperial_Tech_Base_T3</li>
+			</researchPrerequisites>
+			<!--researchPrerequisite>OG_Militarum_Tech_Base_T1</researchPrerequisite-->
+		</recipeMaker>
+		<comps Inherit = "false">
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="AdeptusMechanicus.CompProperties_FactionColorable">
+				<Key>OG_Imperial_Faction</Key>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>OG_AMAA_ArtDescription_ApparelArmour</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+		<apparel>
+			<tags>
+				<li>Astartes</li>
+				<li>EVA</li>
+			</tags>
+		</apparel>
+	</ThingDef>
+
+	<!-- ========================= Imperial - Headgear Power Armour Base - Helmet Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_PowerArmor_Makeable_Headgear" ParentName="OG_Imperial_Apparel_PowerArmor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialHelmet</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIHeadgear</li>
+		</thingCategories>
+		<statBases>
+			<Mass>0.35</Mass>
+		</statBases>
+	</ThingDef>
+			
+	<!-- ========================= Base Power Armour ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_PowerArmour_Base" ParentName="OG_Imperial_Apparel_PowerArmor_Makeable" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<recipeMaker Inherit="false">
+		
+		</recipeMaker>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<generateCommonality>2</generateCommonality>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<MaxHitPoints>340</MaxHitPoints>
+			<Mass>12</Mass>
+			<Flammability>0.2</Flammability>
+			<ArmorRating_Sharp>1.06</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.06</ArmorRating_Blunt>
+			<ArmorRating_Heat>1.06</ArmorRating_Heat>
+			<Insulation_Cold>50</Insulation_Cold>
+			<Insulation_Heat>50</Insulation_Heat>
+			<EquipDelay>14</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.4</MoveSpeed>
+		</equippedStatOffsets>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<tradeTags>
+			<li>HiTechArmor</li>
+		</tradeTags>
+		<costList>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Plasteel>100</Plasteel>
+			<Uranium>20</Uranium>
+		</costList>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<only>(0.33,0.33,0.33)</only>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.65,0.65,0.65)</only>
+			</li>
+			<li>
+				<weight>6</weight>
+				<min>(0.3,0.3,0.3)</min>
+				<max>(0.5,0.5,0.5)</max>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.9,0.9,0.9)</only>
+			</li>
+			</options>
+		</colorGenerator-->
+		<!--thingSetMakerTags>
+			<li>RewardStandardHighFreq</li>
+		</thingSetMakerTags-->
+		<inspectorTabs>
+			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_BiocodableApparel"/>
+			
+			<!--li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li-->
+			
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Base Power Armour Helmet ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_Headgear_Power_Helmet_Base" ParentName="OG_Imperial_Apparel_PowerArmor_Makeable_Headgear" Abstract="true">
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/SM/PowerArmour/Helmet_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(248,174,0)</colorTwo>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<recipeMaker Inherit="false">
+		</recipeMaker>
+		<generateCommonality>2</generateCommonality>
+		<statBases>
+			<WorkToMake>21000</WorkToMake>
+			<MaxHitPoints>160</MaxHitPoints>
+			<Mass>2.7</Mass>
+			<Flammability>0.4</Flammability>
+			<ArmorRating_Sharp>1.00</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.00</ArmorRating_Blunt>
+			<ArmorRating_Heat>1.0</ArmorRating_Heat>
+			<Insulation_Cold>4</Insulation_Cold>
+			<Insulation_Heat>2</Insulation_Heat>
+			<EquipDelay>4</EquipDelay>
+		</statBases>
+		<costList>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Plasteel>40</Plasteel>
+		</costList>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>ImperialPowerArmour</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/PowerArmour/Helmet</wornGraphicPath>
+		</apparel>
+		<thingCategories>
+			<li>OGAAHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGAAArmour</li>
+			<li>OGAAHeadgear</li>
+		</tradeTags>
+		<thingSetMakerTags>
+			<!-- <li>RewardSpecial</li> -->
+		</thingSetMakerTags>
+		<inspectorTabs>
+			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_BiocodableApparel"/>
+			<!--li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li-->
+		</comps>
+	</ThingDef>
+	
+	<!-- ========================= Base Terminator Armour ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_TerminatorArmour_Base" ParentName="OG_Imperial_Apparel_PowerArmor_Makeable" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<recipeMaker Inherit="false">
+		
+		</recipeMaker>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/SM/TerminatorArmour/TerminatorArmour_Base_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<uiIconScale>1.25</uiIconScale>
+		<generateCommonality>2</generateCommonality>
+		<statBases>
+			<WorkToMake>75000</WorkToMake>
+			<MaxHitPoints>400</MaxHitPoints>
+			<Mass>15</Mass>
+			<Flammability>0.4</Flammability>
+			<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.25</ArmorRating_Blunt>
+			<ArmorRating_Heat>1.25</ArmorRating_Heat>
+			<Insulation_Cold>55</Insulation_Cold>
+			<Insulation_Heat>55</Insulation_Heat>
+			<EquipDelay>17</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-1.2</MoveSpeed>
+		</equippedStatOffsets>
+		<tradeTags>
+			<li>HiTechArmor</li>
+		</tradeTags>
+		<thingCategories>
+			<li>ApparelArmor</li>
+		</thingCategories>
+		<costList>
+			<ComponentSpacer>6</ComponentSpacer>
+			<Plasteel>150</Plasteel>
+			<Uranium>50</Uranium>
+		</costList>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/TerminatorArmour/TerminatorArmour</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<thingSetMakerTags>
+			<!--li>RewardStandardHighFreq</li-->
+		</thingSetMakerTags>
+		<inspectorTabs>
+			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_BiocodableApparel"/>
+			<!--li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li-->
+		</comps>
+	</ThingDef>
+
+	<!-- ========================= Base Terminator Armour Helmet ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Armor_Headgear_Terminator_Helmet_Base" ParentName="OG_Imperial_Apparel_PowerArmor_Makeable_Headgear" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<recipeMaker Inherit="false">
+		
+		</recipeMaker>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/SM/TerminatorArmour/Helmet_Base_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(248,174,0)</colorTwo>
+		</graphicData>
+		<tradeTags>
+			<li>HiTechArmor</li>
+		</tradeTags>
+		<generateCommonality>2</generateCommonality>
+		<statBases>
+			<WorkToMake>26250</WorkToMake>
+			<MaxHitPoints>180</MaxHitPoints>
+			<Mass>2</Mass>
+			<Flammability>0.4</Flammability>
+			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+			<ArmorRating_Heat>1.2</ArmorRating_Heat>
+			<Insulation_Cold>4</Insulation_Cold>
+			<Insulation_Heat>2</Insulation_Heat>
+			<EquipDelay>6</EquipDelay>
+		</statBases>
+		<costList>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Plasteel>50</Plasteel>
+		</costList>
+		<apparel>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/TerminatorArmour/Helmet_Base</wornGraphicPath>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+		</apparel>
+		<thingSetMakerTags>
+			<!--li>RewardStandardHighFreq</li-->
+		</thingSetMakerTags>
+		<inspectorTabs>
+			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
+		</inspectorTabs>
+		<comps>
+			<li Class="CompProperties_BiocodableApparel"/>
+			<!--li>
+				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
+			</li-->
+		</comps>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<ApparelDefs>
+			<li>OGAA_Armour_Terminator_Cyclone</li>
+			<li>OGAA_Armour_Terminator</li>
+			</ApparelDefs>
+			
+			<!--
+			<RaceDefs>
+			<li>OG_Human_Imperial</li>
+			</RaceDefs>
+			
+			<HediffDefs>
+			<li>OG_Zygote_Hediff_BlackCarapace</li>
+			</HediffDefs>
+			-->
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ========================= Imperial - Apparel Wargear Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Wargear_Base" ParentName="OG_Apparel_Wargear_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ImperialWargear</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGIWargear</li>
+		</thingCategories>
+	</ThingDef>	
+	
+	<!-- ========================= Imperial - Apparel Wargear Makable Base ========================== -->
+	<ThingDef Name="OG_Imperial_Apparel_Wargear_Makeable" ParentName="OG_Imperial_Apparel_Wargear_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Base_T0</li>
+			</researchPrerequisites>
+			<!--researchPrerequisite>OG_Militarum_Tech_Base_T1</researchPrerequisite-->
+		</recipeMaker>
+	</ThingDef>	
+
+	
+</Defs>

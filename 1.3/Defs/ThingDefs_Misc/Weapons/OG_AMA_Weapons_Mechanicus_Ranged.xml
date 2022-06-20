@@ -1,0 +1,2426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ====================== Radium Pistol ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_RadiumPistol</defName>
+		<label>radium round</label>
+		<graphicData>
+			<texPath>Things/Projectile/RadiumShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIRadium</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<stoppingPower>1</stoppingPower>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.35</AddHediffChance>
+				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Mechanicus_Gun">
+		<defName>OGAM_Gun_RadiumPistol</defName>
+		<label>radium pistol (AM)</label>
+		<description>A small pistol that uses scaled down radium technology, usually used by Skitarii Vanguard and Ranger Alphas. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>12500</WorkToMake>
+			<!--MarketValue>1750</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<li>OG_Mechanicus_Tech_Weapons_Radium</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>35</Plasteel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<Gold>1</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>RadiumPistol</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_RadiumPistol</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>26</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.5</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Radium Carbine ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_RadiumCarbine</defName>
+		<label>radium round</label>
+		<graphicData>
+			<texPath>Things/Projectile/RadiumShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIRadium</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<stoppingPower>1.25</stoppingPower>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.35</AddHediffChance>
+				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun">
+		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+		<defName>OGAM_Gun_RadiumCarbine</defName>
+		<label>radium carbine (AM)</label>
+		<description>A rapid firing radium weapon capable of a punishing rate of fire, it is the main armament of Skitarii Vanguard. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>44000</WorkToMake>
+			<!--MarketValue>4000</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.72</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<li>OG_Mechanicus_Tech_Weapons_Radium</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>85</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>RadiumCarbine</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_RadiumCarbine</defaultProjectile>
+				<warmupTime>0.40</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.7</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Radium Jezzail===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_RadiumJezzail</defName>
+		<label>Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/RadiumShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIRadium</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<stoppingPower>1.5</stoppingPower>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.5</AddHediffChance>
+				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special">
+		<defName>OGAM_Gun_RadiumJezzail</defName>
+		<label>radium jezzail (AM)</label>
+		<description>A long sniper-like radium weapon that is sometimes used by Sydonian Dragoons instead of a Taser Lance. Radium Weapons, also known as Rad Weapons, are deadly and highly dangerous personal weapons that are used exclusively by the forces of the Skitarii Legions of the Adeptus Mechanicus. Many weapons wielded by the Skitarii are so deadly to the wielder they're widely condemned by the rest of the Imperium. Their baroque beauty belies a singularly vile function -- not only to strike, but to render the battlefield as deadly as the rad-wastes of Mars.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/RadiumJezzail</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.10</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<!--MarketValue>5000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.82</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<li>OG_Mechanicus_Tech_Weapons_Radium</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>115</Steel>
+			<Plasteel>75</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>RadiumJezzail</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_RadiumJezzail</defaultProjectile>
+				<warmupTime>1.70</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Macro Stubber ===================== --> 
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_MacroStubber</defName>
+		<label>macro stub bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun">
+		<defName>OGAM_Gun_MacroStubber</defName>
+		<label>macro stubber (AM)</label>
+		<description>This type of antique weapon is used by Adeptus Mechanicus Tech-Priests and is able to hurl out a thunderous cloud of solid slugs</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MacroStubber</texPath>
+			<graphicClass>Graphic_Single</graphicClass>	
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>28000</WorkToMake>
+			<!--MarketValue>6500</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+				</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>70</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>1</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>MacroStubber</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+		<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_MacroStubber</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>26</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Shot_MachinePistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.5</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Stub Carbine ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_StubCarbine</defName>
+		<label>stubber bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+			<speed>105</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Mechanicus_Gun">
+		<defName>OGAM_Gun_StubCarbine</defName>
+		<label>stub carbine (AM)</label>
+		<description>A Stubcarbine is a compact, solid projectile weapon used exclusively by Sicarian Infiltrators, perhaps the most sinister of the Adeptus Mechanicus's Skitarii warrior clades. The Stubcarbine, though compact, deals the same damage as the Heavy Stubbers mounted on the tanks of the Astra Militarum. When a squad of Sicarian Infiltrators opens fire with these weapons, the air fills with a storm of solid shot that chews their victims to ruin.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/StubCarbine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<!--MarketValue>2500</MarketValue-->
+			<Mass>3.2</Mass>
+				<AccuracyTouch>0.70</AccuracyTouch>
+				<AccuracyShort>0.80</AccuracyShort>
+				<AccuracyMedium>0.80</AccuracyMedium>
+				<AccuracyLong>0.70</AccuracyLong>
+				<RangedWeapon_Cooldown>0.70</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+				</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>50</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>StubCarbine</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_StubCarbine</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<burstShotCount>16</burstShotCount>
+				<soundCast>Shot_MachinePistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.55</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Galvanic Rifle ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_GalvanicRifle</defName>
+		<label>galvanic round</label>
+		<graphicData>
+			<texPath>Things/Projectile/GalvanicRifleShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIGalvanic</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<speed>105</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special">
+		<defName>OGAM_Gun_GalvanicRifle</defName>
+		<label>galvanic rifle (AM)</label>
+		<description>The Mark IV Arkhan Galvanic Rifle, modelled after the hunting flintlocks of Mars' distant colonial past, is a precision tool in the hands of a Skitarii Ranger. Its bodywork is that of an antique, with a polished wooden stock and curlicues that echo the sandy seas of Mars' desert. Yet the galvanic Servitor-bullets inside are incredibly advanced. When such a bullet strikes home, it causes all the potential energy of the target to burn out in a killing blast of electric force.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/GalvanicRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.10</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>52000</WorkToMake>
+			<!--MarketValue>3500</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.85</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>130</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GalvanicRifle</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+			<li>OgsWeaponTestAuto</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_GalvanicRifle</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>3</warmupTime>
+				<range>38</range>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>1.05</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>		
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Transuranic Arquebus ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_TransuranicArquebus</defName>
+		<label>transuranic shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/TransuranicShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGITransuranic</damageDef>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>105</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
+		<defName>OGAM_Gun_TransuranicArquebus</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<label>transuranic arquebus (AM)</label>
+		<description>A Transuranic Arquebus is a long-barrelled infantry weapon which epitomises the precision and inhuman efficiency that typify the cyborg Skitarii legions of the Adeptus Mechanicus. Firing a shell of depleted transuranium, a transuranic arquebus can puncture a tank from one side to the other, the resultant pressure wave also pulping any biological creatures that may be sheltering inside. Both Skitarii Vanguards and Skitarii Rangers typically field Transuranic Arquebuses as a special weapon in their squads.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/TransuranicArquebus</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.10</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>56000</WorkToMake>
+			<!--MarketValue>7250</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.85</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TransuranicArquebus</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_TransuranicArquebus</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>4</warmupTime>
+				<range>60</range>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>1.1</barrelLength>
+				<barrelOffset>0.075</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Plasma Caliver ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaHuman">
+		<defName>OGAM_Bullet_PlasmaCaliver</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<color>150,155,255</color>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>0.50</explosionRadius>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>1.75</stoppingPower>
+			<speed>55</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.25</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>1.0</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.25</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special">
+		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+		<defName>OGAM_Gun_PlasmaCaliver</defName>
+		<label>plasma caliver (AM)</label>
+		<description>Plasma Calivers are a type of Plasma Weapon used by Adeptus Mechanicus Skitarii. This gun exchanges range for a terrifying rate of fire. A squad of Skitarii armed with several plasma calivers lights up the night with each volley. They risk life and limb in the process, as Imperial plasma weaponry is notoriously unreliable</description>
+			<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCaliver</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.10</drawSize>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<!--reliability>0.25</reliability-->
+			<WorkToMake>48000</WorkToMake>
+			<!--MarketValue>3250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>2.26</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>PlasmaCaliver</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma</label>
+				<rapidFire>true</rapidFire>
+				<getsHot>true</getsHot>
+				<hotDamage>10</hotDamage>
+				<reliability>ST</reliability>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PlasmaCaliver</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>28</range>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrels</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ====================== Plasma Culverin ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaHuman">
+		<defName>OGAM_Bullet_PlasmaCulverin</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<color>150,155,255</color>
+			<texPath>Things/Projectile/PlasmaShotLrgB</texPath>
+			<drawSize>2.0</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<explosionRadius>1.05</explosionRadius>
+			<stoppingPower>2</stoppingPower>
+			<damageAmountBase>70</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>55</speed>
+			<soundExplode>OGIPC_Explosion</soundExplode>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>2.25</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
+		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+		<defName>OGAM_Gun_PlasmaCulverin</defName>
+		<label>plasma culverin (AM)</label>
+		<description>A Plasma Culverin is a type of heavy Plasma Weapon deployed by the Adeptus Mechanicus' Kataphron Battle Servitors, particularly the variant known as the Kataphron Destroyer. Plasma Culverins sacrifice the range of their cannon pattern equivalents in exchange for a higher rate of fire. Only the Adeptus Mechanicus dare coax such rampant destruction from their Plasma Weapons, yet to the Adepts of the Forge World of Ryza in particular, the scars they leave on wielder and war zone alike are considered quite normal.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PlasmaCulverin</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<!--reliability>1</reliability-->
+			<WorkToMake>80000</WorkToMake>
+			<!--MarketValue>16000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.35</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.85</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>8</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>PlasmaCulverin</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<getsHot>true</getsHot>
+				<getsHotCritChance>0.25</getsHotCritChance>
+				<getsHotCritExplosionChance>0.15</getsHotCritExplosionChance>
+				<hotDamage>15</hotDamage>
+				<reliability>UR</reliability>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PlasmaCulverin</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<range>40</range>
+				<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!--==================== Phospur Serpenta =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_PhosphorSml</defName>
+		<label>Phosphur Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/Firebolt</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<projectile>
+			<damageDef>OGFlamer</damageDef>
+			<explosionRadius>0.55</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>65</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>10</ticksPerFrame>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special">
+		<defName>OGAM_Gun_PhosphorSerpenta</defName>
+		<label>phosphor serpenta (AM)</label>
+		<description>Phosphor Weapons are a type of weapon used by the Adeptus Mechanicus. Though the technology to produce these weapons has been lost to the Imperium, surviving weapons are still utilized by the Skitarii. They are used to mark out high priority targets on the battlefield, and if struck by the burning spheres fired by these weapons the victim will find himself under fire from subsequent light-guided volleys</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PhosphorSerpenta</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>13500</WorkToMake>
+			<!--MarketValue>750</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<li>OG_Mechanicus_Tech_Weapons_Phosphor</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>0.3</warmupTime>
+				<range>28</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.45</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>PhosphorSerpenta</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>30</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Phospur Blaster =========================-->
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special">
+		<defName>OGAM_Gun_PhosphorBlastPistol</defName>
+		<label>phosphor blast pistol (AM)</label>
+		<description>Phosphor Weapons are a type of weapon used by the Adeptus Mechanicus. Though the technology to produce these weapons has been lost to the Imperium, surviving weapons are still utilized by the Skitarii. They are used to mark out high priority targets on the battlefield, and if struck by the burning spheres fired by these weapons the victim will find himself under fire from subsequent light-guided volleys</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/PhosphorBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<!--MarketValue>750</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<li>OG_Mechanicus_Tech_Weapons_Phosphor</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_PhosphorSml</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<burstShotCount>3</burstShotCount>
+				<range>26</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.45</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>PhosphorBlastPistol</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<costList>				
+			<Steel>70</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Cognis Flamer ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGAM_Bullet_FlamerCognis</defName>
+		<label>burning promethium</label>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>4</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGFlamer</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>1.50</explosionRadius>
+			<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+			<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<stoppingPower>0.75</stoppingPower>
+			<speed>15</speed>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+ 	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
+		<defName>OGAM_Gun_FlamerCognis</defName>
+		<label>cognis flamer (AM)</label>
+		<description>A Cognis Flamer is an Imperial Flamer Weapon used by the military forces of the Adeptus Mechanicus which has been outfitted with a Cogitator. The spark-like anger of the Cognis Flamer's artificially intelligent Machine Spirit has been fanned to a roaring blaze. When under duress it will fight with incendiary wrath, even should its wielder be distracted.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/FlamerCognis</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<!--MarketValue>2500</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Common_Tech_Weapons_Flame</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CognisFlamer</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_FlamerCognis</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>16</range>
+				<burstShotCount>24</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.55</barrelLength>
+				<barrelOffset>-0.2</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	   
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Arc Pistol ===================== --> 
+ 	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGAM_Bullet_ArcBolt</defName>
+		<label>arc bolt</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,255,255)</color>	
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/AnimLightning</li>
+		</textures>
+		<lifetime>44</lifetime>	<!-- this is how many ticks the beam should be drawn for -->
+		<flickerFrameTime>6</flickerFrameTime>	<!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam>	<!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.5</impulse>	<!-- the solidity of the beam -->
+		<beamWidth>0.25</beamWidth>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<LightningBeam>true</LightningBeam>	<!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning>	<!-- use single mesh per arc if true -->
+		<LightningFrameTime>30</LightningFrameTime>	<!-- this is how many ticks the beam should be drawn for -->
+		<LightningVariance>2</LightningVariance>	<!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount>	<!-- number of lightning bolts drawn per shot -->
+		<impactReflection>3</impactReflection>	<!-- number of lightning bolts drawn -->
+		
+		<flareLength>0.25</flareLength>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.25</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>5.50</flareWidthMod>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+			
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+    	<decorations>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>-0.1</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.55</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>0.3</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.45</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+    	</decorations>
+		<projectile>
+			<damageDef>OGIArc</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+			<extraDamages>
+				<li>
+					<def>EMP</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>1</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>0.5</chance>
+				</li>
+			</extraDamages>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>Mote_YellowSparkFlash</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Mechanicus_Gun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_ArcPistol</defName>
+		<label>arc pistol (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A small pistol based on Arc Weapon technology and most commonly used by Skitarii Vanguard / Ranger Alphas.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>	
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<barrelLength>0.75</barrelLength>
+		<statBases>
+			<WorkToMake>14500</WorkToMake>
+			<!--MarketValue>6500</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Haywire</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>70</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>1</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ArcPistol</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_ArcBolt</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>0.5</warmupTime>
+				<range>26</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<soundCast>Shot_MachinePistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Arc Rifle ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGAM_Bullet_ArcBoltRifle</defName>
+		<label>tesla bolt</label>
+		<description>A focused bolt of eletrical energy which is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,255,255)</color> <!-- default bolt colour -->
+		</graphicData>
+		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
+			<!--li>Things/Projectile/AnimLightning</li-->
+		</textures>
+		<lifetime>30</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>10</impulse> <!-- the solidity of the beam -->
+		<impulseCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.75)</li>
+				<li>(1, 0)</li>
+			</points>
+		</impulseCurve>
+		<beamWidth>0.125</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<LightningBeam>true</LightningBeam> <!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning> <!-- use single mesh per arc if true -->
+		<LightningVariance>1.5</LightningVariance> <!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount> <!-- number of lightning bolts drawn per shot -->
+		<impactReflection>3</impactReflection> <!-- number of lightning bolts drawn -->
+		<flareLength>0.25</flareLength>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.25</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.50</flareWidthMod>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+		<projectile>
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+			<extraDamages>
+				<li>
+					<def>EMP</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>1</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>1</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>0.5</chance>
+				</li>
+			</extraDamages>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>Mote_YellowSparkFlash</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_ArcRifle</defName>
+		<label>arc rifle (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A rapid firing Arc Weapon used as a special weapon in Skitarii Vanguard and Ranger squads.\n\nArc Weapons are a type of weapon utilised by the armed forces of the Adeptus Mechanicus. They are powered by bulky perma-capacitors shipped from Mars' great repositorum; some of these zinc-plated blocks store energy from days when the Imperium was young. Arc Weapons discharge directed energy blasts with a loud crack, firing blots of blue-white electricity that can fry a man's brain or overload a war machine's data-cortex in a solar second.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArcRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>47000</WorkToMake>
+			<!--MarketValue>3250</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.62</AccuracyLong>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Haywire</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<weaponTags>
+			<li>ArcRifle</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_ArcBoltRifle</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>1</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+				<soundCast>Shot_MachinePistol</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+<!-- ====================== Mitralock ===================== -->
+ 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGAM_Bullet_Mitralock</defName>
+		<label>mitralock blast</label>
+		<graphicData>
+			<color>(187,33,0,255)</color>
+			<colorTwo>(255,150,0,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Lasbeam</li>
+		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<lifetime>20</lifetime>
+		<seam>0</seam>
+		<impulse>0.25</impulse>
+		<beamWidth>0.75</beamWidth>
+		<flareLength>2</flareLength>
+		<!--flareWidth>0.5</flareWidth-->
+		<flareWidthMod>0.5</flareWidthMod>
+		<!--flareLengthMod>0.250</flareLengthMod-->
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<stoppingPower>0.3</stoppingPower>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>5</projectileCount>
+				<experimental>true</experimental>
+			</li>
+		</modExtensions>
+ 	</ThingDef>
+  
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy">
+		<defName>OGAM_Gun_Mitralock</defName>
+		<label>mitralock (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>Mitralocks are a type of Las-weapon used by the Adeptus Mechanicus. Commonly equipped to Tech-Thralls, Mitralocks release a fan of las-pulses akin to a shotgun blast. The firing range is reduced in favour of an increased likelihood of injuring their targets.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Mitralock</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(137,33,0)</color>		
+		</graphicData>
+		<soundInteract>Interact_Shotgun</soundInteract>
+		<statBases>
+			<WorkToMake>36000</WorkToMake>
+			<Mass>5.4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.87</AccuracyShort>
+			<AccuracyMedium>0.77</AccuracyMedium>
+			<AccuracyLong>0.64</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+			<Crafting>5</Crafting>
+			</skillRequirements>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>Mitralock</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_Mitralock</defaultProjectile>
+				<warmupTime>0.25</warmupTime>
+				<range>18</range>
+				<scattershotCount>5</scattershotCount>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Shot_Shotgun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>4</muzzleFlashScale>
+				<barrelLength>0.7</barrelLength>
+				<barrelOffset>-0.25</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<comps>	   
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+ 	</ThingDef>
+  
+	<!-- ====================== Volkite shots ===================== -->
+	<!-- ====================== Std Volkite shot ===================== -->
+ 	<ThingDef ParentName="OG_Bullet_LaserAnim" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGAM_Bullet_VolkiteStd</defName>
+		<label>heat ray</label>
+		<description>A focused heat beam which is strong enough to be able to penetrate the thick ceramite plates of Space Marine Power Armour with one concentrated shot.</description>
+		<graphicData>
+			<color>(187,133,0,205)</color>
+			<colorTwo>(15,15,15,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<!--li>Things/Projectile/GreenBolt</li>
+			<li>Things/Projectile/LasbeamC</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/LasbeamB</li>
+			<li>Things/Projectile/Laser</li>
+			<li>Things/Projectile/LasShotLrg</li>
+			<li>Things/Projectile/LasCShot</li>
+			<li>Things/Projectile/BlueBeamGlow</li>
+			<li>Things/Projectile/GalvanicRifleShot</li>
+			<li>Things/Projectile/Lasbeam</li>
+			<li>Things/Projectile/DarkLightShot</li-->
+			<li>Things/Projectile/Volkite</li>
+		</textures>
+		<flareData IgnoreIfNoMatchingField="True">
+			<texPath>Other/LaserFlare</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</flareData>
+		<lifetime>45</lifetime>
+		<seam>0</seam>
+		<impulse>0.5</impulse>
+		<beamWidth>3.5</beamWidth>
+		<flareLength>2</flareLength>
+		<!--flareWidth>0.5</flareWidth-->
+		<flareWidthMod>0.35</flareWidthMod>
+		<!--flareLengthMod>0.250</flareLengthMod-->
+    	<decorations>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>-0.1</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.55</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+			<li>
+				<mote>AdeptusMechanicus_Mote_LaserGlowBlue</mote>
+				<spacing>0.8</spacing>
+				<initialOffset>0.3</initialOffset>
+				<speed>1.0</speed>
+				<speedJitter>0.45</speedJitter>
+				<speedJitterOffset>90</speedJitterOffset>
+			</li>
+    	</decorations>
+		<projectile>
+			<damageDef>OGIVolkite</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.62</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+		</projectile>
+ 	</ThingDef>
+  
+	<!-- ====================== Volkite Serpenta ===================== -->
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_VolkiteSerpenta</defName>
+		<label>volkite serpenta (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The pistol variant of a Volkite Weapon wielded single-handed, the Volkite Serpenta was sometimes carried by high-ranking soldiers of the Imperial Army and the Tech-priests of the Mechanicum during the Great Crusade era.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteSerpenta</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<!--MarketValue>750</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.26</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialVolkiteSerpenta</li>
+			<li>VolkiteGun</li>
+			<li>VolkiteSerpenta</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>0.01</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_VolkiteStd</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>EnergyShield_Broken</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.3</barrelLength>
+				<bulletOffset>0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Volkite Charger ===================== -->
+	<ThingDef ParentName="OG_Mechanicus_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_VolkiteCharger</defName>
+		<label>volkite charger (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Volkite Charger was the assault weapon variant of a Volkite Weapon carried by Space Marine infantry and the military forces of the Mechanicum. Whilst not benefiting from the range or power of its larger cousins, the Charger retained the Volkite thermal ray's deflagrating effects and allowed its wielder a greater degree of movement. Volkite Chargers were often employed by Legion Tactical Support Squads.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteCharger</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.1</drawSize>	
+			<color>(77,77,77)</color>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>ImperialVolkiteCharger</li>
+			<li>VolkiteGun</li>
+			<li>VolkiteCharger</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<!--MarketValue>4000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.90</AccuracyShort>
+			<AccuracyMedium>0.92</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<generateCommonality>0.01</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_VolkiteStd</defaultProjectile>
+				<warmupTime>0.30</warmupTime>
+				<range>35</range>
+				<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>EnergyShield_Broken</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.50</barrelLength>
+				<bulletOffset>0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Volkite Caliver ===================== -->
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_VolkiteCaliver</defName>
+		<label>volkite caliver (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Volkite Caliver was a Volkite heavy weapon variant carried by Space Marine and Mechanicum infantry forces. A Volkite rifle with a devastating effect on flesh and bone, the Volkite Caliver was often employed by mobile Legion Tactical Support Squads, utilising firepower superior to that of the more common Bolter that would eventually replace it as the standard infantry weapon of the Space Marine Legions.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/VolkiteCaliver</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Mechanicus_Tech_Weapons_Volkite</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>70</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialVolkiteCaliver</li>
+			<li>VolkiteHeavyGun</li>
+			<li>VolkiteCaliver</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>110000</WorkToMake>
+			<!--MarketValue>8500</MarketValue-->
+			<Mass>10.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.80</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<generateCommonality>0.01</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_VolkiteStd</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>41</range>
+				<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>EnergyShield_Broken</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.5</barrelLength>
+				<bulletOffset>0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ====================== Conversion Beamer shot ===================== -->
+ 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGAM_Bullet_ConversionBeamer</defName>
+		<label>conversion beam</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(187,0,250,205)</color>
+			<colorTwo>(255,255,255,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/DarkLightShot</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGIConversion</damageDef>
+			<explosionRadius>0.55</explosionRadius>
+			<damageAmountBase>15</damageAmountBase>
+			<stoppingPower>4</stoppingPower>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+ 	</ThingDef>
+
+	<!-- ====================== Conversion Beamer ===================== -->
+	<ThingDef ParentName="OG_Mechanicus_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGAM_Gun_ConversionBeamer</defName>
+		<label>conversion beamer (AM)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A Conversion Beamer is an esoteric weapon that is both difficult to construct and highly complex to use, needing skilled calibration to operate as well as dedicated reactor core systems to power. A Conversion Beam weapon fires a beam of antimatter which induces a subatomic implosion in its target, with the beam itself gathering power over distance up to a terminal point of beam instability. By using the energy stored in atomic bonds, a Conversion Beamer can annihilate creatures, vehicles, or nearly anything its beam reaches, provided it is given time to build to critical mass.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ConversionBeamer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>	
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>125000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>10.2</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>70</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ConversionBeamer</li>
+			<li>ImperialConversionBeamer</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGAMRanged</li>
+		</tradeTags>
+		<generateCommonality>0.01</generateCommonality>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGAM_Bullet_ConversionBeamer</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>90</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>18</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+</Defs>

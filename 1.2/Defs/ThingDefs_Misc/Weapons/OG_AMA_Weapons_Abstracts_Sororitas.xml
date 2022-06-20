@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Sororitas - Weapon Abstracts -->
+	<!-- Gun Base -->
+	<ThingDef Name="OG_Sororitas_Gun_Base" ParentName="OG_Gun_Qaulity_Art" Abstract="True">
+		<thingCategories>
+			<li>OGASRanged</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGASRanged</li>
+		</tradeTags>
+		<weaponTags>
+			<li>SororitasRanged</li>
+			<li>SororitasWeapon</li>
+		</weaponTags>
+	</ThingDef> 
+	
+	<!-- Gun Base Makeable -->
+	<ThingDef Name="OG_Sororitas_Gun_Makeable" ParentName="OG_Sororitas_Gun_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>Gunsmithing</li>
+				<li>OG_Imperial_Tech_Base_T0</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- Gun Standard -->
+	<ThingDef Name="OG_Sororitas_Gun" ParentName="OG_Sororitas_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Sororitas_Gun</li>
+			<li>OGASGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Militarum_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- Gun Special -->
+	<ThingDef Name="OG_Sororitas_Gun_Special" ParentName="OG_Sororitas_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Sororitas_SpecialGun</li>
+			<li>OGASSpecialGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- Gun Heavy -->
+	<ThingDef Name="OG_Sororitas_Gun_Heavy" ParentName="OG_Sororitas_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>Sororitas_HeavyGun</li>
+			<li>OGASHeavyGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Heavy</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!-- Melee Weapon Base -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Base" ParentName="OG_MeleeWeapon_Base" Abstract="True">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+			<li>OGASMelee</li>
+		</thingCategories>
+		<weaponTags>
+			<li>OGASMelee</li>
+			<li>SororitasMelee</li>
+			<li>SororitasWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGASMelee</li>
+		</tradeTags>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Melee Weapon Base Makable -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Makeable" ParentName="OG_Sororitas_MeleeWeapon_Base" Abstract="True"> 
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T0</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- Melee Weapon Base Sharp -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Sharp" ParentName="OG_Sororitas_MeleeWeapon_Makeable" Abstract="True">
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		</ThingDef>
+
+	<!-- Melee Weapon Base Blunt -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Blunt" ParentName="OG_Sororitas_MeleeWeapon_Makeable" Abstract="True">
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- Melee Weapon Basic Sharp -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Sharp_Quality" ParentName="OG_Sororitas_MeleeWeapon_Sharp" Abstract="True">
+		<weaponTags>
+			<li>SororitasMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Basic Blunt -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Blunt_Quality" ParentName="OG_Sororitas_MeleeWeapon_Blunt" Abstract="True">
+		<weaponTags>
+			<li>SororitasMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- Melee Weapon Powered Sharp -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_Sororitas_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>SororitasMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Powered Blunt -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_Sororitas_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>SororitasMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- Melee Weapon Force Sharp -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_Sororitas_MeleeWeapon_Sharp" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>SororitasMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Force Blunt -->
+	<ThingDef Name="OG_Sororitas_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_Sororitas_MeleeWeapon_Blunt" Abstract="True">
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>SororitasMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+	 
+</Defs>

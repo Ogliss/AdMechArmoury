@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- ======================== Combi Weapon Ability Defs ================================== -->
+<!-- ======================== Imperial - Combi Weapon Abilities ================================== -->
+<!-- ======================== Imperial - Combi Flamer Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireFlamer</defName>
+        <label>Fire Flamer</label>
+        <iconPath>Things/Projectile/FlamerFire/FireA</iconPath>
+        <description>Fire built in Flamer.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+		<verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <Multishot>true</Multishot>
+			<ScattershotCount>2</ScattershotCount>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGI_Bullet_Flamer</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>18</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>12</range>
+			<soundCast>OG_Flamer_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Melta Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireMelta</defName>
+        <label>Fire Melta</label>
+        <iconPath>Things/Projectile/MeltaShot</iconPath>
+        <description>Fire built in Melta.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<soundCast>OG_Melta_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<range>16</range>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Plasma Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_FirePlasma</defName>
+        <label>Fire Plasma</label>
+        <iconPath>Things/Projectile/PlamsShotSml</iconPath>
+        <description>Fire built in Plasmagun.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+			<Jams>true</Jams>
+			<reliability>ST</reliability>
+			<GetsHot>true</GetsHot>
+			<GetsHotCrit>false</GetsHotCrit>
+			<RapidFire>true</RapidFire>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGI_Bullet_PlasmaGun</defaultProjectile>
+            <warmupTime>1.25</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<range>31</range>
+			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Imperial - Combi Grav Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGI_Ability_FireGrav</defName>
+        <label>Fire Gravgun</label>
+        <iconPath>Things/Projectile/PlamsShotSml</iconPath>
+        <description>Fire built in Gravgun.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+            <warmupTime>1.25</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<range>12</range>
+			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+<!-- ======================== Ork - Kombi Weapon Abilities ================================== -->
+<!-- ======================== Ork - Kombi Burna Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGO_Ability_FireBurna</defName>
+        <label>Fire Burna</label>
+        <iconPath>Things/Projectile/FlamerFire/FireA</iconPath>
+        <description>Fire built in Burna.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>30</cooldown>
+		<verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <Multishot>true</Multishot>
+			<ScattershotCount>1</ScattershotCount>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>18</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>12</range>
+			<soundCast>OG_Flamer_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilitesExtended.EquipmentAbilityDef>
+ 
+ <!-- ======================== Ork - Kombi Rokkit Ability ================================== -->
+	<AbilitesExtended.EquipmentAbilityDef>
+        <defName>OGO_Ability_FireRokkit</defName>
+        <label>Fire Rokkit</label>
+        <iconPath>Things/Projectile/PlamsShotSml</iconPath>
+        <description>Fire built in Plasmagun.</description>
+        <abilityClass>AbilitesExtended.EquipmentAbility</abilityClass>
+		<cooldown>45</cooldown>
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+			<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+            <warmupTime>2.25</warmupTime>
+            <burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+			<range>35</range>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+ </AbilitesExtended.EquipmentAbilityDef>
+ 
+</Defs>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Abstract="True" Name="OG_DropPodBase" ParentName="SkyfallerBase">
+    <graphicData>
+      <texPath>Things/Special/DropPod</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutFlying</shaderType>
+      <drawSize>1.9</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Decelerate</movementType>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(2, 2)</shadowSize>
+      <motesPerCell>0</motesPerCell>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="OG_DropPodBase">
+    <defName>OGDropPodIncoming</defName>
+    <label>drop pod (incoming)</label>
+	<thingClass>DropPodIncoming</thingClass>
+    <skyfaller>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>OGShipChunkIncoming</defName>
+    <label>ship chunk (incoming)</label>
+    <size>(2, 2)</size>
+    <skyfaller>
+      <shadowSize>(2.5, 2.5)</shadowSize>
+      <explosionRadius>2</explosionRadius>
+      <explosionDamage>Bomb</explosionDamage>
+      <explosionDamageFactor>0.5</explosionDamageFactor>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>OGCrashedShipPartIncoming</defName>
+    <label>crashed ship part (incoming)</label>
+    <size>(6, 6)</size>
+    <skyfaller>
+      <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>
+      <shadowSize>(7, 3.5)</shadowSize>
+      <explosionRadius>5</explosionRadius>
+      <explosionDamage>Flame</explosionDamage>
+      <cameraShake>1</cameraShake>
+      <metalShrapnelCountRange><min>6</min><max>10</max></metalShrapnelCountRange>
+      <rubbleShrapnelCountRange><min>300</min><max>400</max></rubbleShrapnelCountRange>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>UnknownCrashedShipPartIncoming</defName>
+    <label>crashed ship part (incoming)</label>
+    <size>(6, 6)</size>
+    <skyfaller>
+      <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>
+      <shadowSize>(7, 7)</shadowSize>
+      <explosionRadius>5</explosionRadius>
+      <explosionDamage>Flame</explosionDamage>
+      <cameraShake>1</cameraShake>
+      <metalShrapnelCountRange><min>6</min><max>10</max></metalShrapnelCountRange>
+      <rubbleShrapnelCountRange><min>300</min><max>400</max></rubbleShrapnelCountRange>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>OGMeteoriteIncoming</defName>
+    <label>meteorite (incoming)</label>
+    <size>(4, 4)</size>
+    <graphicData>
+      <texPath>Things/Skyfaller/Meteorite</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Transparent</shaderType>
+      <drawSize>(10, 10)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <shadowSize>(3, 3)</shadowSize>
+      <explosionRadius>4</explosionRadius>
+      <explosionDamage>Bomb</explosionDamage>
+      <rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+      <speed>1.2</speed>
+    </skyfaller>
+  </ThingDef>
+
+</Defs>

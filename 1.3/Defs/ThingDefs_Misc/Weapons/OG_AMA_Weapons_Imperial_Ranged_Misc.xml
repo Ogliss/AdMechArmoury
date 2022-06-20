@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ====================== Imperial Webber ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_Webber</defName>
+		<label>webber</label>
+		<graphicData>
+			<texPath>Things/Projectile/Webber</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>2.25</drawSize>			
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Projectile_Grower</thingClass>
+		<projectile>
+			<damageDef>Blunt</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<stoppingPower>3</stoppingPower>
+			<armorPenetrationBase>0.14</armorPenetrationBase>
+			<speed>35</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>1</AddHediffChance>
+				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+				<!--CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicSensitivity</ResistHediffStat-->
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Imperial_Gun_Special">
+		<defName>OGI_Gun_Webber</defName>
+		<label>webber (I)</label>
+		<description>A Webber is an exotic, non-lethal weapon used to immobolise a target. It fires masses of filaments, which expand in the air to form a web of sticky, near-unbreakable material. Targets are quickly entangled in a painful embrace; if they attempt to struggle, the filaments constrict even more, further entrapping them.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Webber</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<soundInteract>Interact_Shotgun</soundInteract>
+		<statBases>
+			<WorkToMake>28000</WorkToMake>
+			<Mass>3.4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.0</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Webber</defaultProjectile>
+				<warmupTime>0.9</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<range>15.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+				<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrelLength>0.6</barrelLength>
+				</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Ogryn Grenade Gauntlet =========================-->
+	<!--==================== Frag Grenade =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_OgrynGauntletGrenadeFrag</defName>
+		<label>Frag Grenade</label>
+		<description>Fragmention grenades have a large blast radius and excel at dealing with light infantry, however they have little effect against vehicals, fortifications or heavily armoured troops.</description>
+		<thingClass>Projectile_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>True</flyOverhead>
+			<damageDef>OGIBomb</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>1.00</explosionRadius>
+			<stoppingPower>1</stoppingPower>
+			<speed>35</speed>
+			<soundExplode>OGIAC_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<!--==================== Krak Grenade =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_OgrynGauntletGrenadeKrak</defName>
+		<label>Krak Grenade</label>
+		<description>Krak grenades high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
+		<thingClass>Projectile_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<flyOverhead>True</flyOverhead>
+			<damageDef>OGIBomb</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>0.50</explosionRadius>
+			<stoppingPower>5</stoppingPower>
+			<speed>35</speed>
+			<soundExplode>OGIAC_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+		
+	<!--==================== Ogryn Grenade Gauntlet =========================-->
+	<ThingDef ParentName="OG_Imperial_Gun_Heavy">
+		<defName>OGI_Gun_OgrynGrenadeGauntlet</defName>
+		<label>grenadier gauntlet (I)</label>
+		<description>The Imperial Grenade Gauntlet is a type of heavy Grenade Launcher used by Imperial Guard Bullgryn's. The foe are left reeling and shell-shocked even before the maul-wielding Ogryns charge into their midst and bludgeon the survivors to a red paste.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/OgrynGrenadeGauntlet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<tickerType>Normal</tickerType>
+		<generateCommonality>0.25</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Heavy</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>45</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>OgrynGrenadeGauntlet</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<statBases>
+			<WorkToMake>45000</WorkToMake>
+			<!--MarketValue>1150</MarketValue-->
+			<Mass>7</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<label>Frag</label>
+				<defaultProjectile>OGI_Bullet_OgrynGauntletGrenadeFrag</defaultProjectile>
+				<forcedMissRadius>5.0</forcedMissRadius>
+				<warmupTime>4.0</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>Shot_IncendiaryLauncher</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_OgrynGauntletGrenadeKrak</defaultProjectile>
+				<forcedMissRadius>5.0</forcedMissRadius>
+				<warmupTime>4.0</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>Shot_IncendiaryLauncher</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.4</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.4</cooldownTime>
+			</li>
+		</tools>
+		<comps> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li>	
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrelLength>0.6</barrelLength>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Missile Launcher ===================== -->
+	<!-- ====================== Missile Krak ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_RocketKrak</defName>
+		<label>krak rocket</label>
+		<description>Krak grenades high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
+		<graphicData>
+			<texPath>Things/Projectile/ImpMissileKrak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>70</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<stoppingPower>4</stoppingPower>
+			<speed>50</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.75</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Missile Frag ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_RocketFrag</defName>
+		<label>frag rocket</label>
+		<description>Fragmention rockets have a large blast radius and excel at dealing with light infantry, however they have little effect against vehicals, fortifications or heavily armoured troops.</description>
+		<graphicData>
+			<texPath>Things/Projectile/ImpMissileFrag</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>4.8</explosionRadius>
+			<stoppingPower>2</stoppingPower>
+			<speed>50</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.75</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<!-- ====================== Launcher ===================== -->
+	<ThingDef ParentName="OG_Imperial_Gun_Heavy">
+		<defName>OGI_Gun_RocketLaucher</defName>
+		<label>missile launcher (I)</label>
+		<description>A Missile Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MissileLauncher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+		</graphicData>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<recipeMaker>
+
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>RocketLaucher</li>
+			<li>ImperialRocketLaucher</li>
+			<li>ImperialGunHeavy</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<statBases>
+			<WorkToMake>75000</WorkToMake>
+			<!--MarketValue>3275</MarketValue-->
+			<AccuracyTouch>0.50</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Frag</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>11.7</power>
+				<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>  
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li>  
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrelLength>1</barrelLength>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,1943 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Orkish Cunning =========================-->
+	<!--==================== Ork - GrotBlasta =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_GrotBlasta</defName>
+		<label>Grot Blasta Slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<speed>50</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Ork_Gun">
+		<defName>OGO_Gun_GrotBlasta</defName>
+		<label>grot blasta (O)</label>
+		<description>A Grot Blasta is the term given to any type of crude, ranged weapon used by Orkoid Gretchin to defend themselves on the rare occasions they actually enter combat. Grot Blastas are usually ramshackle, low-technology, dust-caked weapons that are little more than pieces of junk discarded by higher-ranking Orks.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/GrotBlasta</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>GrotBlasta</li>
+			<li>OCunningGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Bitz>5</OGO_Bitz>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>2000</WorkToMake>
+			<!--MarketValue>250</MarketValue-->
+			<Mass>1</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.30</AccuracyShort>
+			<AccuracyMedium>0.10</AccuracyMedium>
+			<AccuracyLong>0.05</AccuracyLong>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Base_T1</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_GrotBlasta</defaultProjectile>
+				<warmupTime>0.2</warmupTime>
+				<range>22</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Slugga</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>4</muzzleFlashScale>
+				<muzzleFlareSize>2</muzzleFlareSize>
+				<barrelLength>0.35</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.2</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li--> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Orc - Slugga =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_Slugga</defName>
+		<label>Slugga Slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Ork_Gun">
+		<defName>OGO_Gun_Slugga</defName>
+		<label>slugga (O)</label>
+		<description>A Slugga is the Ork equivalent of a Space Marine Bolt Pistol. It is usually paired with a Choppa, and mobs of Boyz who carry the two are called Slugga Boyz. Due to the ramshackle nature of Ork weaponry, every Slugga is different, but most if not all Sluggas are semi-automatic, large calibre side arms. Though not as sophisticated as most other weapons used in the Imperium, Sluggas are no less effective than other, more advanced side arms when used correctly. As far as the melee-focused Ork holding it is concerned, the effectiveness of a Slugga is of little importance, as long as it is big and makes a loud noise when it fires.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Slugga</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OSlugga</li>
+			<li>OCunningGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Component>1</OGO_Component>
+			<OGO_Bitz>5</OGO_Bitz>
+			<Steel>10</Steel>
+		</costList>
+		<statBases>
+			<WorkToMake>6000</WorkToMake>
+			<!--MarketValue>650</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.35</AccuracyShort>
+			<AccuracyMedium>0.20</AccuracyMedium>
+			<AccuracyLong>0.10</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Base_T1</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Slugga</defaultProjectile>
+				<warmupTime>0.2</warmupTime>
+				<range>26</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Slugga</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlareSize>3</muzzleFlareSize>
+				<barrelLength>0.5</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Ork - Shoota =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_Shoota</defName>
+		<label>Shoota Slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Ork_Gun">
+		<defName>OGO_Gun_Shoota</defName>
+		<label>shoota (O)</label>
+		<description>A Shoota is a kinetic, ballistic weapon used by the Orks that is chosen not for its efficiency but for the amount of noise it makes and the amount of damage it can do. The best Shootas are deafening and deadly in equal measure. Like the Slugga, Shootas are not very accurate. This suits the Orks just fine since they seem less interested in accuracy than in causing damage and raising a ruckus. The noise of a Shoota will give Orks a morale boost and can cause enemies to lose their morale and retreat from the overpowering noise of dozens of Shootas. None the less, mobs of Shoota Boyz make up for their lack of accuracy with the sheer volume of fire directed at their targets.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Shoota</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<!--color>(255,231,0)</color-->
+			<color>(183,175,0)</color>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OShoota</li>
+			<li>OCunningGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>
+			<OGO_Component>2</OGO_Component>
+			<OGO_Bitz>5</OGO_Bitz>
+			<Steel>20</Steel>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>BlowbackOperation</li>
+				<li>OG_Ork_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>850</MarketValue-->
+			<Mass>3</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<barrelLength>0.65</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Intense Cunning =========================-->
+	<!--==================== Ork - Twin Linked Shoota =========================-->
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_TwinLinkedShoota</defName>
+		<label>twin-linked shoota (O)</label>
+		<description>Ork Mekboyz often customise their Shootas by adding an additional barrel for more firepower. These custom Shootas cost their clients much more teef than the usual Shoota, and are often utilised by both Ork Nobs and Warbosses. Often times these deadly weapons are incorporated into Mega Armour.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/ShootaTwinLinked</texPath>
+			<graphicClass>Graphic_Single</graphicClass>		
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OTwinLinkedShoota</li>
+			<li>OICunningGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Component>4</OGO_Component>
+			<OGO_Bitz>15</OGO_Bitz>
+			<Steel>15</Steel>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>1550</MarketValue-->
+			<Mass>6</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<muzzleFlareSize>5</muzzleFlareSize>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Ork - Big Shoota =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_BigShoota</defName>
+		<label>Big Shoota Slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>			
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_BigShoota</defName>
+		<label>big shoota (O)</label>
+		<description>A Big Shoota is a loud, heavy, large-calibre machine gun that bucks and sparks when the trigger is pulled. Quite simply it is a larger caliber Shoota, and has a greater range and damage potential compared to a Shoota. A Big Shoota is also commonly fitted with an attached bayonet for melee. A Big Shoota has twice the range of a regular Shoota. Big Shootas are also less prevalent on the battlefield, as on average there is only one Ork armed with a Big Shoota for every 10 Orks in a mob, up to an average of three Big Shootas in a mob of 30 Ork Boyz.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/ShootaBig</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.150</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OBigShoota</li>
+			<li>OICunningGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Component>6</OGO_Component>
+			<Plasteel>10</Plasteel>
+			<OGO_Bitz>10</OGO_Bitz>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>38000</WorkToMake>
+			<!--MarketValue>2700</MarketValue-->
+			<Mass>9.5</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.60</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.1</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_BigShoota</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<burstShotCount>36</burstShotCount>
+				<soundCast>OG_Ork_Shot_Big_Shoota</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<comps>	 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Mek Boys =========================-->
+	<!--==================== Ork - Snazzgun =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGO_Bullet_Snazzgun</defName>
+		<label>snazzgun slug</label>
+		<textures>
+			<li>Things/Projectile/RailgunSml</li>
+		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<lifetime>10</lifetime>
+		<flareWidthMod>2.5</flareWidthMod>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<stoppingPower>1.00</stoppingPower>
+		</projectile>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Ork_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGO_Gun_Snazzgun</defName>
+		<label>snazzgun (O)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A Snazzgun is either a ballistic or directed energy weapon favoured by the most ostentatious and obnoxious of Orks, known as Flash Gitz. Snazzguns vary as much in design as Shootas, but all are lethal in the extreme. Many Flash Gitz hard-wire their Snazzguns to their primitive bionics, incorporating a variety of barrels, scopes and targeting arrays into their cybernetics to maximise their Snazzgun's effectiveness -- not that this necessarily makes them any better shots, but it does make them feel bigger and cleverer as they are shooting. An individual Snazzgun shoots either bolts of energy or ballistic rounds, but not both. A Snazzgun, just like a Shoota, is inherently inaccurate and can do variable damage, as the velocity of its shots (if the weapon is of the ballistic variety) can vary.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/SnazzGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<barrelLength>0.75</barrelLength>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OSnazzgun</li>
+			<li>OMekTekGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Component>6</OGO_Component>
+			<Plasteel>20</Plasteel>
+			<OGO_Bitz>20</OGO_Bitz>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Ork_Tech_Base_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>4500</MarketValue-->
+			<Mass>8</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.15</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Snazzgun</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>38</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>8</burstShotCount>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1</barrelLength>
+				<barrelOffset>-0.1</barrelOffset>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.6</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Big Mek =========================-->
+	<!--==================== Ork - Zapp Kannon =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGO_Bullet_ZappKannon</defName>
+		<label>zapp kannon blast</label>
+		<textures>
+			<li>Things/Projectile/LightningBolt</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGILas</damageDef>
+			<explosionRadius>0.55</explosionRadius>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_Ork_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGO_Gun_ZappKannon</defName>
+		<label>zapp kannon (O)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>A Big Shoota is a loud, heavy, large-calibre machine gun that bucks and sparks when the trigger is pulled. Quite simply it is a larger caliber Shoota, and has a greater range and damage potential compared to a Shoota. A Big Shoota is also commonly fitted with an attached bayonet for melee. A Big Shoota has twice the range of a regular Shoota. Big Shootas are also less prevalent on the battlefield, as on average there is only one Ork armed with a Big Shoota for every 10 Orks in a mob, up to an average of three Big Shootas in a mob of 30 Ork Boyz.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/ZappKannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<barrelLength>0.9</barrelLength>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OZappKannon</li>
+			<li>OBigMekGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>
+			<OGO_Component>8</OGO_Component>
+			<Plasteel>25</Plasteel>
+			<OGO_Bitz>30</OGO_Bitz>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Ork_Tech_Base_T3</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>8000</MarketValue-->
+			<Mass>10</Mass>
+			<AccuracyTouch>0.10</AccuracyTouch>
+			<AccuracyShort>0.20</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_ZappKannon</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ork_Shot_Zapp_Cannon</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrels</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Ork - Deffgun - Dakka ===================== --> 
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_DeffgunDakka</defName>
+		<label>deffgun bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<stoppingPower>1</stoppingPower>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>1</projectileCount>
+				<experimental>true</experimental>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Ork_Gun_Heavy">
+		<defName>OGO_Gun_DeffgunDakka</defName>
+		
+		<label>dakka deffgun (O)</label>
+		<description>Deffguns are heavy Ork weapons, fine examples of the Mek's craft that are made from all kinds of materials, mainly scavenged heavy weaponry of other races. Deffguns are so large they must be mounted on a special firing rig strapped to to an Ork's broad shoulders. No man could hope to fit into a Deffgun's rig without heavy augmetics or thick slabs of vat-grown muscle. This cumbersome rig is needed to absorb bone-breaking recoil each time the Deffgun is fired.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/DeffgunDakka</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.25</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>5750</MarketValue-->
+			<Mass>6</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Ork_Tech_Base_T3</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>75</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkGunHeavy</li>
+			<li>DefgunnDakka</li>
+			<li>Deffgun</li>
+			<li>OBigMekGun</li>
+			<li>OgsWeaponTestAuto</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+			<generateCommonality>0.10</generateCommonality>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<jamDamage>1</jamDamage>
+				<reliability>ST</reliability>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_DeffgunDakka</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>38</range>
+				<burstShotCount>60</burstShotCount>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<soundCast>OG_Ork_Shot_Deffgun_Dakka</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<muzzleFlareSize>7</muzzleFlareSize>
+				<barrelLength>1</barrelLength>
+				<bulletOffset>0.2</bulletOffset>
+				<barrelOffset>0.2</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrels</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Ork - Deffgun - Plasma =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_PlasmaDeffgun</defName>
+		<label>Deffun blast</label>
+		<description>A superheated bolt fired by a Plasma Weapon impacts with the fury of a supernova, scything through steel, flesh and bone as if they were nothing.Due to the enormous temperatures and deadly energies that Plasma Weapons generate when fired, most such weapons are prone to overheating, destabilisation and misfire.</description>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaShotSml</texPath>
+			<graphicClass>Graphic_MotePulse</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<color>0,185,255,255</color>
+			<colorTwo>0,185,255,200</colorTwo>
+			<shaderParameters>
+				<_distortionIntensity>0.015</_distortionIntensity>
+				<_brightnessMultiplier>1.1</_brightnessMultiplier>
+				<_distortionScale>40</_distortionScale>
+			</shaderParameters>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<explosionRadius>1.75</explosionRadius>
+			<damageAmountBase>90</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>55</speed>
+			<soundExplode>OGIPC_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>2.25</impactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_PlasmaTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>2</trailMoteSize>
+				<trailerMoteInterval>2</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksTrail</trailMoteDef>
+				<trailMoteSize>0.350</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Ork_Gun_Heavy">
+		<defName>OGO_Gun_DeffgunPlasma</defName>
+		
+		<label>plasma deffgun (O)</label>
+		<description>Deffguns are heavy Ork weapons, fine examples of the Mek's craft that are made from all kinds of materials, mainly scavenged heavy weaponry of other races. Deffguns are so large they must be mounted on a special firing rig strapped to to an Ork's broad shoulders. No man could hope to fit into a Deffgun's rig without heavy augmetics or thick slabs of vat-grown muscle. This cumbersome rig is needed to absorb bone-breaking recoil each time the Deffgun is fired.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/DeffgunPlasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkGunHeavy</li>
+			<li>OPlasmaDeffgun</li>
+			<li>DeffgunPlasma</li>
+			<li>Deffgun</li>
+			<li>OBigMekGun</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<OGO_Component>10</OGO_Component>
+			<Plasteel>35</Plasteel>
+			<OGO_Bitz>40</OGO_Bitz>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+				<li>OG_Ork_Tech_Base_T3</li>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>9000</MarketValue-->
+			<Mass>9</Mass>
+			<AccuracyTouch>0.10</AccuracyTouch>
+			<AccuracyShort>0.20</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.45</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<getsHot>true</getsHot>
+				<getsHotCritChance>0.25</getsHotCritChance>
+				<getsHotCritExplosionChance>0.15</getsHotCritExplosionChance>
+				<hotDamage>15</hotDamage>
+				<reliability>UR</reliability>
+				<accuracyTouch>0.25</accuracyTouch>
+				<accuracyShort>0.70</accuracyShort>
+				<accuracyMedium>0.75</accuracyMedium>
+				<accuracyLong>0.52</accuracyLong>
+				<defaultCooldownTime>2.25</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_PlasmaCannon</defaultProjectile>
+				<warmupTime>3.5</warmupTime>
+				<range>38</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>0.2</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrels</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Ork - Deffgun - Beamy ===================== -->
+	<ThingDef ParentName="OG_Ork_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGO_Gun_DeffgunBeamy</defName>
+		<label>beamy deffgun (O)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>Deffguns are heavy Ork weapons, fine examples of the Mek's craft that are made from all kinds of materials, mainly scavenged heavy weaponry of other races. Deffguns are so large they must be mounted on a special firing rig strapped to to an Ork's broad shoulders. No man could hope to fit into a Deffgun's rig without heavy augmetics or thick slabs of vat-grown muscle. This cumbersome rig is needed to absorb bone-breaking recoil each time the Deffgun is fired.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/DeffgunBeamy</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.50</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<barrelLength>0.9</barrelLength>
+		<costList>
+			<Steel>200</Steel>
+			<Plasteel>70</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkGunHeavy</li>
+			<li>Deffgun</li>
+			<li>BeamyDeffgun</li>
+			<li>OBigMekGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Ork_Tech_Base_T3</li>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>125000</WorkToMake>
+			<!--MarketValue>7250</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.15</AccuracyTouch>
+			<AccuracyShort>0.25</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<getsHot>true</getsHot>
+				<getsHotCritChance>0.05</getsHotCritChance>
+				<getsHotCritExplosionChance>0.05</getsHotCritExplosionChance>
+				<hotDamage>5</hotDamage>
+				<reliability>UR</reliability>
+				<accuracyTouch>0.25</accuracyTouch>
+				<accuracyShort>0.70</accuracyShort>
+				<accuracyMedium>0.75</accuracyMedium>
+				<accuracyLong>0.52</accuracyLong>
+				<defaultCooldownTime>2.25</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+				<warmupTime>4</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Las_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelOffset>0.2</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+	<!-- ====================== Ork - Burna ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_Burna</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>3</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>OGFlamer</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationBase>0.16</armorPenetrationBase>
+				<explosionRadius>0.75</explosionRadius>
+				<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
+				<stoppingPower>0.75</stoppingPower>
+				<speed>20</speed>
+				<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	 </ThingDef>
+		
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_Burna</defName>
+		<label>burna (O)</label>
+		<description>A Burna is a stripped-down version of a typical Flamer Weapon utilised by the Orks. Flame has an undeniable appeal to the Greenskin race. These "Burnas" are long, stripped-down Flamers able to spray great gouts of oily flame, and are linked to a sloshing tank of volatile Promethium slung over their shoulder. Ork Boyz can modify their Burnas with special nozzles and valves that can be switched to force out a fierce blue tongue of fire instead of a cloud of orange flame. This "cuttin' flame" is powerful enough to slice through any material up to and including a metal bulkhead. In battle, Burnas prove extremely useful, as they can be utilised to flush out enemies hiding in ruined buildings and woods. When facing heavily armoured opponents such as Space Marines, Burna Boyz can simply switch to their cuttin' flames and use their Burnas to slice apart the foe.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Burna</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<!--color>(255,231,0)</color-->
+			<color>(183,175,0)</color>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>1875</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.80</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Flame</li>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkEliteGun</li>
+			<li>OrkFlamer</li>
+			<li>Flamer</li>
+			<li>OrkBurna</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>14</range>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>cutting torch</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<altitudeLayer>MoteOverhead</altitudeLayer>
+				<!--
+				<activateSound>PJ_LightsaberActivate</activateSound>
+				<sustainerSound>PJ_LightsaberHum</sustainerSound>
+				<deactivateSound>PJ_LightsaberDeactivate</deactivateSound>
+				-->
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Ork/BurnaFlame</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+					<color>(143,075,0)</color>
+				</graphicData>			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+			<li Class="AdeptusMechanicus.BarrelOffsetExtension">
+				<barrelLength>0.6</barrelLength>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+	<!-- ====================== Ork - Scorcha ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_Scorcha</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Fire</thingClass>
+		<label>flames</label>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Projectile/FlamerFire</texPath>
+			<graphicClass>AdeptusMechanicus.Graphic_Cycle</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<modExtensions>
+			<li Class="AnimatedProjectile.AnimatedProjectileExtension">
+				<ticksPerFrame>15</ticksPerFrame>
+			</li>
+			<li Class="AdeptusMechanicus.ScattershotProjectileExtension">
+				<projectileCount>5</projectileCount>
+			</li>
+		</modExtensions>
+		<projectile>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>OGFlamer</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationBase>0.33</armorPenetrationBase>
+				<explosionRadius>1.550</explosionRadius>
+				<explosionChanceToStartFire>1.0</explosionChanceToStartFire>
+				<postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<stoppingPower>0.75</stoppingPower>
+				<speed>20</speed>
+				<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+		
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_Scorcha</defName>
+		<label>Scorcha (O)</label>
+		<description>Flamers, also known as "Flame Guns", are Flamer Weapons that come in a wide variety of designs and patterns, but all are ideal for flushing out enemies in cover and putting groups of foes to the torch with projected flame. The two most common variants of Flamers either have a detachable fuel canister under the barrel, or a hose connecting to a backpack canister. Flamers are most commonly used by Imperial assault forces such as Space Marine Assault Squads, though xenos races such as the Eldar, Orks and the Tau are also known to make use of similar weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/Scorcha</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Weapons_Ranged_T2</li>
+				<li>OG_Common_Tech_Weapons_Flame</li>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<generateCommonality>0.20</generateCommonality>
+		<weaponTags>
+			<li>OrkHeavyGun</li>
+			<li>OrkHeavyFlamer</li>
+			<li>HeavyFlamer</li>
+			<li>OHeavyFlamer</li>
+			<li>OrkScorcha</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<statBases>
+			<WorkToMake>120000</WorkToMake>
+			<!--MarketValue>2300</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.30</AccuracyShort>
+			<AccuracyMedium>0.15</AccuracyMedium>
+			<AccuracyLong>0.10</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.15</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Scorcha</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>12</range>
+				<burstShotCount>24</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelOffset>0.25</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Rokkit Launcha ===================== -->
+	<!-- ====================== Rokkit Krak ===================== -->
+	 <ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGO_Bullet_RokkitKrak</defName>
+		<label>krak rocket</label>
+		<description>Krak grenades high explovie charge excels at dealing with vehicals, fortifications or heavily armoured troops, however due to their small blast radius they have little effect against large groups of light infantry.</description>
+		<graphicData>
+			<texPath>Things/Projectile/ImpMissileKrak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>70</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<stoppingPower>4</stoppingPower>
+			<speed>50</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_BoltTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>1.75</trailMoteSize>
+				<trailerMoteInterval>1</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksTrail</trailMoteDef>
+				<trailMoteSize>0.250</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+			</li>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<useGraphicColor>True</useGraphicColor>
+				<explosionMoteDef>OG_Mote_BoltBlast</explosionMoteDef>
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlastGlow</impactMoteDef>
+				<impactMoteSize>0.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>0.75</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Ork_Gun_Heavy">
+		<defName>OGO_Gun_RokkitLaucha</defName>
+		<label>rokkit launcha (O)</label>
+		<description>A Rokkit Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/RokkitLauncha</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.5</drawSize>			
+		</graphicData>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Base_T2</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>RockkitLaucha</li>
+			<li>OrkRockkitLaucha</li>
+			<li>OrkGunHeavy</li>
+			<li>OgsWeaponTestRocket</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<statBases>
+			<WorkToMake>200000</WorkToMake>
+			<!--MarketValue>3275</MarketValue-->
+			<AccuracyTouch>0.10</AccuracyTouch>
+			<AccuracyShort>0.20</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlareSize>-1</muzzleFlareSize>
+				<barrelOffset>-0.2</barrelOffset>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>11.7</power>
+				<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<comps> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+			</li>
+			-->
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+	<!-- ====================== Kombi - Burna ===================== -->
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_KombiBurna</defName>
+		
+		<label>kombi-burna (O)</label>
+		<description>Lombi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA standard Shoota with a Burna attached to the side, useful for close combat.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/KombiBurna</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Common_Tech_Weapons_Flame</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Gold>1</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkGun</li>
+			<li>OrkKombiGun</li>
+			<li>OrkKombiFlamer</li>
+			<li>KombiGun</li>
+			<li>KombiFlamer</li>
+			<li>OgsWeaponTestAuto</li>
+			<li>OgsWeaponTestFlamer</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<generateCommonality>0.25</generateCommonality>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>180000</WorkToMake>
+			<!--MarketValue>2500</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.15</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<label>Shoota</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<barrelLength>0.55</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Burna</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<accuracyTouch>0.90</accuracyTouch>
+				<accuracyShort>0.90</accuracyShort>
+				<accuracyMedium>0.90</accuracyMedium>
+				<accuracyLong>0.90</accuracyLong>
+				<defaultCooldownTime>4.00</defaultCooldownTime>
+				<defaultProjectile>OGO_Bullet_Burna</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>14</range>
+				<burstShotCount>8</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<soundCast>OG_Flamer_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+				<InspectLabelKey>AMA_Combi</InspectLabelKey>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<!--li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGO_Ability_FireBurna</li>
+				</Abilities>
+			</li-->
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+	<!-- ====================== Kombi - Rokkit Launcha ===================== -->
+	<ThingDef ParentName="OG_Ork_Gun_Special">
+		<defName>OGO_Gun_KombiRokkit</defName>
+		<label>kombi-rokkit (O)</label>
+		
+		<description>Combi-weapons are a variety weaponry derived from the integration of multiple different weapon types into a single weapon.\n\nThere are two major types of Combi-weapons. The first combines two identical weapons into one larger weapon, giving the resulting weapon system a higher rate of fire and better accuracy by virtue of simply throwing more shells, heat beams or plasma at the target. The second type of Combi-weapon is an amalgamation of two wholly different weapons into a single casing.\n\nOnly one component of the combined weapon can be fired at a time, and often the secondary weapon has very limited ammunition, enough for only one shot or short burst of fire. Such weapons augment the bearer's tactical flexibility, granting him a limited capacity to deal with threats that the main weapon would find hard or impossible to damage.\n\nA standard Shoota with a Rokkit attached to its side, used as an anti-armour weapon.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Ork/KombiRokkit</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>180000</WorkToMake>
+			<!--MarketValue>5750</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.45</AccuracyShort>
+			<AccuracyMedium>0.30</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>2.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.15</MoveSpeed>
+		</equippedStatOffsets>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Ork_Tech_Base_T2</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>OrkGun</li>
+			<li>OrkKombiGun</li>
+			<li>OrkKombiRokkit</li>
+			<li>KombiGun</li>
+			<li>KombiRokkit</li>
+			<li>OgsWeaponTestAuto</li>
+			<li>OgsWeaponTestRocket</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGORanged</li>
+		</tradeTags>
+		<generateCommonality>0.05</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<label>Shoota</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_Shoota</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Ork_Shot_Shoota</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<barrelLength>0.55</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGO_Bullet_RokkitKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlareSize>-1</muzzleFlareSize>
+				<barrelOffset>-0.2</barrelOffset>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+				<InspectLabelKey>AMA_Combi</InspectLabelKey>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<!--li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGO_Ability_FireRokkit</li>
+				</Abilities>
+			</li-->
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+		
+</Defs>

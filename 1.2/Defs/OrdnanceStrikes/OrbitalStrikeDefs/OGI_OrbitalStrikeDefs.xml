@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--==================== Orbital Strikes - Imperial =========================-->
+	<!-- Base -->
+	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" Name="OG_Imperial_OrbitalStrike" Abstract="True">
+		<!--graphicData>
+			<texPath>Things/Ships/Strike/Imperial/StrikeShip_I_Valkyrie</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<shadowData>
+			<texPath>Things/Ships/Strike/Imperial/StrikeShip_I_Valkyrie_Shadow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</shadowData>
+		<scale>20,20</scale-->
+	</Def>	
+	
+	<!-- ====================== Macro Cannon Battery - High Explosive ===================== -->
+	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+		<defName>OGI_Orbitalstrike_MacroCannonHE</defName>
+		<label>high explosive shell salvos</label>
+		<description>Salvos of high explosive shells are fired.</description>
+		<salvoCount>2</salvoCount>
+		<costInSilver>500</costInSilver>
+		<ammoResupplyDays>10</ammoResupplyDays>
+		<impactAreaRadius>30</impactAreaRadius>
+		<ordnance>OGI_Bullet_MacroCannonHEStrike</ordnance>
+		<strikeType>OG_IncomingOrbitalStrike</strikeType>
+	</Def>
+	
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_MacroCannonHEStrike</defName>
+		<label>macro cannon shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/BoltShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>3</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>OGIBoltStd</damageDef>
+			<damageAmountBase>80</damageAmountBase>
+			<armorPenetrationBase>0.33</armorPenetrationBase>
+			<explosionRadius>9</explosionRadius>
+			<speed>100</speed>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_BoltTrailPuff</trailMoteDef>
+				<trailMoteSize>0.35</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ====================== Macro Cannon Battery - Plasma ===================== -->
+	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+		<defName>OGI_Orbitalstrike_MacroCannonPlasma</defName>
+		<label>Plasma salvos</label>
+		<description>variant of plasma macroweaponry that fires superheated plasma rather than a ballistic shell. This variant refocuses the power of the plasma "blast," concentrating it into a compressed photonic packet that can be fired accurately over extremely long distances, though its blast radius is reduced.\n
+		2 Salvos of high enegry Plasma are fired.</description>
+		<salvoCount>2</salvoCount>
+		<costInSilver>500</costInSilver>
+		<ammoResupplyDays>10</ammoResupplyDays>
+		<bombardmentSalvoSize>5</bombardmentSalvoSize>
+		<bombardmentSalvoTicksBetweenShots>5</bombardmentSalvoTicksBetweenShots>
+		<ordnance>OGI_Bullet_MacroCannonPlasmaStrike</ordnance>
+		<strikeType>OG_IncomingOrbitalStrike</strikeType>
+	</Def>
+
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGI_Bullet_MacroCannonPlasmaStrike</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsShotLrg</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>3</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>OGIPlasmaCannon</damageDef>
+			<damageAmountBase>160</damageAmountBase>
+			<armorPenetrationBase>1.6</armorPenetrationBase>
+			<explosionRadius>5</explosionRadius>
+			<speed>55</speed>
+			<soundExplode>OGIPC_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>1.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2.5</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>2.25</impactGlowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>2</glowMoteSize>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_PlasmaTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>2</trailMoteSize>
+				<trailerMoteInterval>2</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksTrail</trailMoteDef>
+				<trailMoteSize>0.350</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Lance Battery ===================== -->
+	<Def Class="AdeptusMechanicus.OrbitalStrikes.OrbitalStrikeDef" ParentName="OG_Imperial_OrbitalStrike">
+		<defName>OGI_Orbitalstrike_Lance</defName>
+		<label>lance battery salvos</label>
+		<description>Salvos of lances are fired.</description>
+		<salvoCount>2</salvoCount>
+		<duration>60</duration>
+		<costInSilver>500</costInSilver>
+		<ammoResupplyDays>10</ammoResupplyDays>
+		<ordnance>OGI_Bullet_LanceStrike</ordnance>
+		<strikeType>OG_IncomingOrbitalLanceStrike</strikeType>
+	</Def>
+
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGI_Bullet_LanceStrike</defName>
+		<label>lance blast</label>
+		<description>A Starship class laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<textures>
+			<li>Things/Projectile/LasCShot</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGILasC</damageDef>
+			<explosionRadius>0.55</explosionRadius>
+			<damageAmountBase>140</damageAmountBase>
+			<stoppingPower>4</stoppingPower>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+
+
+
+
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>GlassingBeam</defName>
+    <label>glassing beam</label>
+    <thingClass>AdeptusMechanicus.OrbitalStrikes.GlassingBeam</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <drawOffscreen>true</drawOffscreen>
+    <seeThroughFog>true</seeThroughFog>
+    <alwaysFlee>true</alwaysFlee>
+    <comps>
+      <li Class="CompProperties_OrbitalBeam">
+        <width>30</width>
+        <color>(215, 215, 254, 242)</color>
+        <sound>OrbitalBeam</sound>
+      </li>
+      <li Class="CompProperties_CameraShaker">
+        <mag>0.03</mag>
+      </li>
+      <li Class="CompProperties_AffectsSky">
+        <skyColors>
+          <sky>(255, 230, 200)</sky>
+          <shadow>(225, 220, 185)</shadow>
+          <overlay>(255, 255, 255)</overlay>
+          <saturation>1.3</saturation>
+        </skyColors>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

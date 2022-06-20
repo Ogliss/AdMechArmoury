@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Class="OgsCompSlotLoadable.SlotLoadableDef">
+		<defName>OGI_BoltSlot</defName>
+		<thingClass>OgsCompSlotLoadable.SlotLoadable</thingClass>
+		<label>Bolts</label>
+		<description>This ammunition slot determines the bolt type fired by the weapon.</description>
+		<slottableThingDefs>
+			<li>OGI_Bolt_Hellfire</li>
+			<li>OGI_Bolt_Dragonfire</li>
+			<li>OGI_Bolt_Kraken</li>
+			<li>OGI_Bolt_Vengeance</li>
+		</slottableThingDefs>
+		<doesChangeStats>true</doesChangeStats>
+	</ThingDef>
+
+	<ThingDef Class="OgsCompSlotLoadable.SlotLoadableDef">
+		<defName>OGI_HeavyBoltSlot</defName>
+		<thingClass>OgsCompSlotLoadable.SlotLoadable</thingClass>
+		<label>Heavy Bolts</label>
+		<description>This ammunition slot determines the bolt type fired by the weapon.</description>
+		<slottableThingDefs>
+			<li>OGI_HeavyBolt_Hellfire</li>
+		</slottableThingDefs>
+		<doesChangeStats>true</doesChangeStats>
+	</ThingDef>
+
+  <!--================== Base ==================-->
+  
+  <ThingDef Name="OG_BoltBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>	
+    <description>These miniture rockets or 'Bolts' are fired by various launchers known as Bolt Weapons</description>
+    <soundInteract>Silver_Drop</soundInteract>
+    <soundDrop>Silver_Drop</soundDrop>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>false</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>1</stackLimit>
+	<tradeNeverStack>true</tradeNeverStack>
+  	<statBases>
+		<Beauty>5</Beauty>
+      <MarketValue>2000</MarketValue>
+      <Mass>0.3</Mass>		
+	</statBases>
+	<comps>
+		<li Class="CompProperties_Forbiddable"/>
+	</comps>
+	<alwaysHaulable>true</alwaysHaulable>
+	<drawGUIOverlay>true</drawGUIOverlay>
+	<rotatable>false</rotatable>
+	<pathCost>15</pathCost>
+  </ThingDef>
+  
+  <!-- ================ Imperial Bolts ================ -->
+  <!-- ================ Imperial Bolt Base ================ -->
+  <ThingDef Name="OG_BoltBaseImp" ParentName="OG_BoltBase" Abstract="True">
+  	<statBases>
+		<Beauty>5</Beauty>
+      <MarketValue>3000</MarketValue>
+      <Mass>0.3</Mass>		
+	</statBases>
+    <thingCategories>
+      <li>OGIMissiles</li>
+    </thingCategories>	
+	<tradeTags>
+      <li>Artifact</li>
+    </tradeTags>
+  </ThingDef>  
+
+	<!-- ================ Imperial Hellfire Bolt ================ -->
+	<ThingDef ParentName="OG_BoltBase">
+		<defName>OGI_Bolt_Hellfire</defName>
+		<label>hellfire bolts</label>
+		<description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileFrag</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<color>(124,196,243)</color>
+		</graphicData>
+		<modExtensions>
+			<li Class="OgsCompSlotLoadable.SlottedBonusExtension">
+				<projectileReplacer>OGI_Bullet_BoltHellfire</projectileReplacer>
+			</li>
+		</modExtensions>
+  </ThingDef> 
+  
+	<!-- ================ Imperial Dragonfire Bolt ================ -->
+	<ThingDef ParentName="OG_BoltBase">
+		<defName>OGI_Bolt_Dragonfire</defName>
+		<label>fragonfire bolts</label>
+		<description>Dragonfire Bolts are hollow-shelled bolts that are issued fo use by Sternguard Veterans, and explode with a gout of superheated gas that can eliminate the value of cover for enemy troops. Any targets struck receive full damage even when partially protected by cover.</description>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileFrag</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<color>(124,196,243)</color>
+		</graphicData>
+		<modExtensions>
+			<li Class="OgsCompSlotLoadable.SlottedBonusExtension">
+				<projectileReplacer>OGI_Bullet_BoltDragonfire</projectileReplacer>
+			</li>
+		</modExtensions>
+	</ThingDef>  
+  
+	<!-- ================ Imperial Kraken Bolt ================ -->
+    <ThingDef ParentName="OG_BoltBase">
+		<defName>OGI_Bolt_Kraken</defName>
+		<label>kraken bolts</label>
+		<description>Kraken Bolts are specialised Bolter shells with an enhanced adamantium core and improved propellant, and were utilised by Seeker Squads during the Great Crusade and Horus Heresy eras of the late 30th and early 31st Millennia, as well as Sternguard Veterans in modern times. They possessed superior armour-piercing properties and increased range compared to standard bolts, but the expense and resources required to create them kept them in limited issue.</description>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileKrak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<color>(240,241,241)</color>
+		</graphicData>
+		<modExtensions>
+			<li Class="OgsCompSlotLoadable.SlottedBonusExtension">
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Kraken Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+					<warmupTime>0.45</warmupTime>
+					<range>38.75</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
+			</li>
+		</modExtensions>
+	</ThingDef>  
+  
+	<!-- ================ Imperial Vengeance Bolt ================ -->
+    <ThingDef ParentName="OG_BoltBase">
+		<defName>OGI_Bolt_Vengeance</defName>
+		<label>Vengeance bolts</label>
+		<description>Vengeance Round bolts are designed for use against heavy infantry and armoured targets. Each bolt has a volatile core utilising unstable flux core technology that makes them hazardous to use, but extremely potent at penetrating through heavily armoured targets. They are especially effective at punching clean through even the Ceramite plates of Power Armour. As their name implies, these bolts were developed by the Imperium specifically to target the Chaos Space Marines of the Traitor Legions.</description>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileKrak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<color>(240,241,241)</color>
+		</graphicData>
+		<modExtensions>
+			<li Class="OgsCompSlotLoadable.SlottedBonusExtension">
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Vengeance Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltVengeance</defaultProjectile>
+					<warmupTime>0.45</warmupTime>
+					<range>23.25</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
+			</li>
+		 </modExtensions>
+	</ThingDef>  
+  
+  
+	<!-- ================ Imperial Heavy Hellfire Bolt ================ -->
+	<ThingDef ParentName="OG_BoltBase">
+		<defName>OGI_HeavyBolt_Hellfire</defName>
+		<label>heavy hellfire bolts</label>
+		<description>Hellfire bolts were created as one of the Imperium's desperate measures to stem the predations of Tyranid assaults within the galaxy. Each bolt is tipped with thousands of needles and a vial of mutagenic acid capable of dissolving its way through citin and carapace with equal ease.\n\nWhen the round enters the target's body, the vial shatters and the needles pierce the victim's flesh, pumping the acid into the target. Such is the success of the Hellfire bolt that it has found a use against a variety of foes, its acid just as effective at killing other foul xenos.</description>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileFrag</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+			<color>(124,196,243)</color>
+		</graphicData>
+		<modExtensions>
+			<li Class="OgsCompSlotLoadable.SlottedBonusExtension">
+				<verbReplacer>
+					<verbClass>Verb_Shoot</verbClass>
+					<label>Heavy Hellfire Bolts</label>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_HeavyBoltHellfire</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>38</range>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbReplacer>
+			</li>
+		</modExtensions>
+	</ThingDef> 
+  
+</Defs>

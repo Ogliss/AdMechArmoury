@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="SkyfallerBase">
+		<defName>OG_IncomingArtilleryStrike</defName>
+		<label>ordnance</label>
+		<thingClass>AdeptusMechanicus.ArtilleryStrikes.ArtilleryIncoming</thingClass>
+		<!--graphicData>
+			<texPath>Things/Skyfaller/Meteorite</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+			<drawSize>(10, 10)</drawSize>
+		</graphicData-->
+		<skyfaller>
+			<!--shadowSize>(3, 3)</shadowSize-->
+			<explosionRadius>4</explosionRadius>
+			<explosionDamage>Bomb</explosionDamage>
+			<rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+			<speed>1.2</speed>
+		</skyfaller>
+		<drawOffscreen>true</drawOffscreen>
+		<seeThroughFog>true</seeThroughFog>
+		<verbs>
+			<li>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+	</ThingDef>
+	  
+	<ThingDef>
+		<defName>OG_IncomingAirStrike</defName>
+		<label>strikeship</label>
+		<thingClass>AdeptusMechanicus.AirStrikes.AirStrikeIncoming</thingClass>
+		<category>Ethereal</category>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+			<texPath>Things/Ships/Strike/StrikeShip</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(20,20)</drawSize>
+			<shaderType>CutoutFlying</shaderType>
+		</graphicData>
+		<size>(1,1)</size> <!-- Minimum size to avoid errors when ship is spawned near map edge -->
+		<altitudeLayer>MetaOverlays</altitudeLayer>
+		<useHitPoints>false</useHitPoints>
+		<drawOffscreen>true</drawOffscreen>
+		<seeThroughFog>true</seeThroughFog>
+		<verbs>
+			<li>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+		  <!--li Class="CompProperties_OrbitalBeam">
+			<width>4</width>
+			<color>(255, 245, 214, 242)</color>
+			<sound>OrbitalBeam</sound>
+		  </li-->
+		</comps>
+	</ThingDef>
+
+	<ThingDef Abstract="True" Name="OG_AirstrikeBullet_Base" ParentName="OG_Bullet_Base">
+		<altitudeLayer>MetaOverlays</altitudeLayer>
+		<drawOffscreen>true</drawOffscreen>
+		<seeThroughFog>true</seeThroughFog>
+	</ThingDef>
+	
+	<ThingDef Abstract="True" Name="OG_AirstrikeBullet_LaserGeneric" ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<altitudeLayer>MetaOverlays</altitudeLayer>
+		<drawOffscreen>true</drawOffscreen>
+		<seeThroughFog>true</seeThroughFog>
+	</ThingDef>
+	
+  <ThingDef ParentName="OrbitalStrikeBase">
+    <defName>OG_IncomingOrbitalLanceStrike</defName>
+    <label>lance strike</label>
+    <thingClass>AdeptusMechanicus.OrbitalStrikes.OrbitalBeam</thingClass>
+    <comps>
+      <li Class="CompProperties_OrbitalBeam">
+        <width>6</width>
+        <color>(255, 245, 214, 242)</color>
+        <sound>OrbitalBeam</sound>
+      </li>
+      <li Class="CompProperties_CameraShaker">
+        <mag>0.03</mag>
+      </li>
+      <li Class="CompProperties_AffectsSky">
+        <skyColors>
+          <sky>(255, 230, 200)</sky>
+          <shadow>(225, 220, 185)</shadow>
+          <overlay>(255, 255, 255)</overlay>
+          <saturation>1.3</saturation>
+        </skyColors>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="OrbitalStrikeBase">
+    <defName>OG_IncomingOrbitalStrike</defName>
+    <label>bombardment</label>
+    <thingClass>AdeptusMechanicus.OrbitalStrikes.OrbitalBombardment</thingClass>
+    <comps>
+      <!--li Class="CompProperties_OrbitalBeam">
+        <width>0.2</width>
+        <color>(255, 20, 20, 242)</color>
+      </li-->
+    </comps>
+  </ThingDef>
+
+</Defs>

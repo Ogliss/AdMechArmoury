@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Armour ========================== -->
+	<!-- ========================= Imperial Guard ========================== -->
+	<!-- ========================= Light Flak Helmet ========================== -->
+	<ThingDef Name="CadianHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_FlakHelmetLight</defName>
+		<label>light flak helmet</label>
+		<description>A lightweight Imperial combat helmet, often issued to PDF and Cadian Whiteshield regiments.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmetLight/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<MarketValue>300</MarketValue>
+			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.25</WornBulk>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.2</ArmorRating_Heat>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<equippedStatOffsets>
+			<MoveSpeed>0.0</MoveSpeed>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmetLight/Base</wornGraphicPath>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>
+
+		</comps>
+	</ThingDef> 
+
+	<!-- ========================= Cadian - Armour ========================== -->
+	<!-- ========================= Cadian - Flak Helmet ========================== -->
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Cadia_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_Cadia_FlakHelmet</defName>
+		<label>cadian pattern helmet</label>
+		<description>A lightweight combat helmet.</description>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<MarketValue>300</MarketValue>
+			<Mass>1.2</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGCadian</li>
+				<li>OGCadianArmour</li>
+				<li>OGCadianHeadgear</li>
+				<li>OGCadianBasicHelmet</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>CadianSoldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGIGHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
+			</li> 
+		</comps>
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+	</ThingDef>
+
+	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
+		<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
+		<label>cadian pattern helmet</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
+		</apparel>
+	</ThingDef>
+	
+	<ThingDef ParentName="OGIG_Apparel_Cadia_FlakHelmet">
+		<defName>OGIG_Apparel_Cadia_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+		<label>cadian pattern helmet (Goggled)</label>
+		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+		<apparel>
+			<bodyPartGroups>
+				<li>Eyes</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
+		</apparel>
+		<tickerType>Normal</tickerType>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<!-- ========================= Steel Leigon - Armour ========================== -->
+	<!-- ========================= Steel Leigon - Flak Helmet ========================== -->
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Armageddon_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_Armageddon_FlakHelmet</defName>
+		<label>armageddon pattern helmet</label>
+		<description>A lightweight combat helmet.</description>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<MarketValue>300</MarketValue>
+			<Mass>1.2</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGSteelLeigon</li>
+				<li>OGSteelLeigonArmour</li>
+				<li>OGSteelLeigonHeadgear</li>
+				<li>OGSteelLeigonBasicHelmet</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>SteelLeigonSoldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>88,78,45</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
+			</li> 
+		</comps>
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+	</ThingDef>
+
+	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
+		<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
+		<label>armageddon pattern helmet</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+			<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
+			</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>88,78,45</only>
+				</li>
+			</options>
+		</colorGenerator>
+	</ThingDef>
+	
+	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
+		<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesDown</defName>
+		<label>armageddon pattern helmet (Goggled)</label>
+		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+			<apparel>
+			<bodyPartGroups>
+				<li>Eyes</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
+			</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>88,78,45</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<tickerType>Normal</tickerType>
+		<comps>	 
+				<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<!-- ========================= Death Korps - Armour ========================== -->
+	<!-- ========================= Death Korps - Flak Helmet ========================== -->
+	<ThingDef Abstract="True" Name="OGIG_Apparel_Krieg_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_Krieg_FlakHelmet</defName>
+		<label>krieg pattern helmet</label>
+		<description>A lightweight combat helmet.</description>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<MarketValue>300</MarketValue>
+			<Mass>1.2</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGDeathKorps</li>
+				<li>OGDeathKorpsArmour</li>
+				<li>OGDeathKorpsHeadgear</li>
+				<li>OGDeathKorpsBasicHelmet</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>DeathKorpsSoldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>70,70,70</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
+				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
+			</li> 
+		</comps>
+		<inspectorTabs>
+			<li>OgsCompToggleDef.ITab_ToggleDef</li>
+		</inspectorTabs>
+	</ThingDef>
+
+	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
+		<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
+		<label>krieg pattern helmet</label>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+			<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</wornGraphicPath>
+			</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>70,70,70</only>
+				</li>
+			</options>
+		</colorGenerator>
+	</ThingDef>
+	
+	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
+		<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_B</defName>
+		<label>krieg pattern helmet (spiked)</label>
+		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+			<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</wornGraphicPath>
+			</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>70,70,70</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<tickerType>Normal</tickerType>
+	</ThingDef>
+	
+	<!-- ========================= Tempestus Scion ========================== -->
+	<!-- ========================= Carapace Helmet ========================== -->
+	<ThingDef Name="IGCarapaceHelmTS" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_TempestusScion_CarapaceHelmet</defName>
+		<label>Tempestus Scion Omnishield Helmet</label>
+		<description>The Omnishield Helm is a special helmet used by Imperial Tempestus Scions. In hostile environments, a Tempestus regiment will don all-enclosing Omnishield Helms, their respmasks proof against everything from industrial pollution to fully ignited atmospheres. When sealed, they allow Tempestus Scions to operate even in airless vacuums for limited periods of time. The multi-spectral occulum that attaches via suction to the wearer's eye sockets allow him to see in low light and occluded conditions with relative ease.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">5</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1.1</WornBulk>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.05</AimingAccuracy>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</wornGraphicPath>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+	</ThingDef>
+ 
+	<!-- ========================= Cadian - Gasmask ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_GasMask</defName>
+		<label>imperial guard gas mask</label>
+		<description>A lightweight combat gas mask.\n\nProtective Eye Wear</description>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Cadian/GasMask/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+		</graphicData>
+		<costList>
+			<Steel>20</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>4000</WorkToMake>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>400</MarketValue>
+			<Mass>3</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.05</MoveSpeed>
+			<ToxicSensitivity>-0.700</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.1</AimingAccuracy>
+			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>0.25</generateCommonality>
+		<apparel>	
+			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups Inherit="false">
+				<li>Mouth</li>
+				<li>Neck</li>
+			</bodyPartGroups>
+			<layers>
+				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGGasmask</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+		</apparel>
+		<tickerType>Normal</tickerType>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Wargear">
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
+				<ExtrasEntries>
+					<li>
+						<graphicData>
+							<texPath>Things/Item/Apparel/Imperial/IG/Cadian/GasMask/GasMask</texPath>
+							<!--graphicClass>Graphic_Single</graphicClass-->
+							<shaderType>CutoutComplex</shaderType>
+							<!--colorTwo>(255,255,255)</colorTwo>
+							<color>255,255,209</color-->
+						</graphicData>
+						<UseBodytypeTextures>false</UseBodytypeTextures>
+						<commonality>10</commonality>
+					</li>
+				</ExtrasEntries>
+				<NorthOffset>0,-0.05,0</NorthOffset>
+				<SouthOffset>0,0.000,0</SouthOffset>
+				<EastOffset>0,00.000,0</EastOffset>
+				<WestOffset>0,0.000,0</WestOffset>
+			</li>  
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

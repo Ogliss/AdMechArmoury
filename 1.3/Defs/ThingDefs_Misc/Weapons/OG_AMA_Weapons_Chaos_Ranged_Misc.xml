@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ====================== Metla Gun ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGC_Gun_MeltaGun</defName>
+		<label>meltagun (C)</label>
+		<description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MeltaGun</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>50000</WorkToMake>
+			<!--MarketValue>6000</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.45</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Melta</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CEliteGun</li>
+			<li>CMetla</li>
+			<li>CMetlaGun</li>
+			<li>CMMetlaGun</li>
+			<li>TGMetlaGun</li>
+			<li>OgsWeaponTestMelta</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+			<li>TGRanged</li>
+		</tradeTags>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+				<warmupTime>0.25</warmupTime>
+				<range>16</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!--==================== Sonic Blaster =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGC_Bullet_SonicBlaster</defName>
+		<label>Sonic Blast</label>
+		<graphicData>
+			<!--drawSize>1.4</drawSize-->
+			<texPath>Things/Projectile/SonicShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Sonic_Blast</thingClass>
+		<projectile>
+			<damageDef>OGCSonic</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+				<trailMoteSize>0.7</trailMoteSize>
+				<trailerMoteInterval>6</trailerMoteInterval>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowGrahphicData>
+					<texPath>Things/Mote/PsycastPsychicLineMask</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>MoteGlowDistortBackground</shaderType>
+					<drawSize>1.00</drawSize>
+					<shaderParameters>
+						<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+						<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+						<_DistortionTex>/Things/Mote/PsycastPsychicLineMask</_DistortionTex>
+						<_distortionIntensity>0.15</_distortionIntensity>
+						<_brightnessMultiplier>0</_brightnessMultiplier>
+						<_DistortionScale>40</_DistortionScale>
+						<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+					</shaderParameters>
+				</glowGrahphicData>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>6.5</glowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Chaos_Gun">
+		<defName>OGC_Gun_SonicBlaster</defName>
+		<label>sonic blaster (C)</label>
+		<description>The Sonic Blaster is a heavy Sonic Weapon that when fired unleashes wave after wave of devastating harmonics and literally rips its target apart with the power of extreme sound. The Sonic Blaster is the preferred weapon of Chaos Space Marine Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Sonic Blaster is about the same size as the Astartes' man-portable Heavy Bolter, and is wielded with both hands. There exists a slightly larger variant of the weapon that is used by Chaos Sonic Dreadnoughts, where it is twin-linked with a second Sonic Blaster to cause even more destructive results. Imperial records do not list any other known users of the Sonic Blaster, although there probably exist many more amongst the Forces of Chaos dedicated to the Prince of Pleasure.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/SonicBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.050</drawSize>			
+		</graphicData>
+			<soundInteract>Interact_Autopistol</soundInteract>
+			<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>43000</WorkToMake>
+			<!--MarketValue>2500</MarketValue-->
+			<Mass>3.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_SonicBlaster</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>8</burstShotCount>
+				<soundCast>OG_Hellgun_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.70</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CBlastmaster</li>
+			<li>OgsWeaponTestSonic</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Sonic</li>
+		</researchPrerequisites>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Blastmaster =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGC_Bullet_Blastmaster</defName>
+		<label>Sonic Blast</label>
+		<graphicData>
+			<drawSize>1.4</drawSize>
+			<texPath>Things/Projectile/SonicShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>AdeptusMechanicus.Sonic_Blast</thingClass>
+		<projectile>
+			<damageDef>OGCSonic</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>Mote_PlasmaGlow</trailMoteDef>
+				<trailMoteSize>0.7</trailMoteSize>
+				<trailerMoteInterval>6</trailerMoteInterval>
+			</li>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowGrahphicData>
+					<texPath>Things/Mote/PsycastPsychicLineMask</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>MoteGlowDistortBackground</shaderType>
+					<drawSize>1.00</drawSize>
+					<shaderParameters>
+						<!--_DistortionTex>/Other/Ripples</_DistortionTex-->
+						<!--_DistortionTex>/Things/Mote/PsychicConditionCauserMask</_DistortionTex-->
+						<_DistortionTex>/Things/Mote/PsycastPsychicLineMask</_DistortionTex>
+						<_distortionIntensity>0.15</_distortionIntensity>
+						<_brightnessMultiplier>0</_brightnessMultiplier>
+						<_DistortionScale>40</_DistortionScale>
+						<_distortionScrollSpeed>(0.00, 0.00, 0.0)</_distortionScrollSpeed>
+					</shaderParameters>
+				</glowGrahphicData>
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>6.5</glowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_Blastmaster</defName>
+		<label>blastmaster (C)</label>
+		<description>The Blastmaster is a heavy Sonic Weapon that when fired focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects. The Blastmaster is used alongside the smaller Sonic Blaster weapon. These weapons are employed by Noise Marines and Daemon Engines that serve the Chaos God Slaanesh. The Blastmaster is about the same size as the Astartes man-portable Lascannon, and is wielded with both hands.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/Blastmaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>57000</WorkToMake>
+			<!--MarketValue>5000</MarketValue-->
+			<Mass>10.4</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGC_Bullet_Blastmaster</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>OG_Hellgun_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>CSonicBlaster</li>
+			<li>OgsWeaponTestSonic</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Sonic</li>
+		</researchPrerequisites>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Launcher ===================== -->
+	<ThingDef ParentName="OG_Chaos_Gun_Heavy">
+		<defName>OGC_Gun_RocketLaucher</defName>
+		<label>missile launcher (C)</label>
+		<description>A Missile Launcher is a weapon that can fire several types of self-propelled, usually guided Missile, including both the common Frag and Krak Missiles. Frag (Fragmentation) projectiles are designed to spray a designated area with shrapnel, making these munitions highly useful against groups of lightly armoured infantry.\n\nA variant of a Missile Launcher is a Rocket Launcher, which fires unguided, self-propelled projectiles. Rockets contain the same types of warheads as a missile.</description>
+		<tickerType>Normal</tickerType>
+		<techLevel>Spacer</techLevel>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Chaos/MissileLauncher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<WorkToMake>70000</WorkToMake>
+			<!--MarketValue>3275</MarketValue-->
+			<AccuracyTouch>0.50</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.55</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<Mass>7</Mass>
+			<RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<Plasteel>15</Plasteel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<weaponTags>
+			<li>RocketLaucher</li>
+			<li>ChaosRocketLaucher</li>
+			<li>ChaosGunHeavy</li>
+			<li>OgsWeaponTestRocket</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCRanged</li>
+		</tradeTags>
+		<generateCommonality>0.10</generateCommonality>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Frag</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<muzzleFlashScale>14</muzzleFlashScale>
+			</li>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Krak</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_RocketKrak</defaultProjectile>
+				<forcedMissRadius>2.9</forcedMissRadius>
+				<warmupTime>4.5</warmupTime>
+				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+				<range>35.9</range>
+				<soundCast>InfernoCannon_Fire</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<onlyManualCast>true</onlyManualCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>11.7</power>
+				<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<comps> 
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+				<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+				<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+			</li> 
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.8</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li> 
+			<!-- CompProperties_SlotLoadable 
+				<li Class="AdeptusMechanicus.CompProperties_WargearWeaponToggle">
+				</li>
+			-->
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Sororitas_Dominion</defName>
+		<title>Dominion</title>
+		<titleShort>Dominion</titleShort>
+		<baseDescription>[PAWN_nameDef] is a skilled sister tasked with operating rarer weapons. She's tempted to tinker with her favorite heavy flamer but knows this is heresy--only a sanctified Tech-priest should touch Emperor Fwoosh.</baseDescription>
+		<slot>Adulthood</slot>
+		<!--   +5 shooting, +2 melee, +3 crafting firefighting disabled -->
+		<workDisables>
+			<!--
+			<li>Intellectual</li>
+			<li>Caring</li>
+			<li>Animals</li>
+			<li>ManualSkilled</li>
+			<li>Artistic</li>
+			-->
+			<li>Firefighting</li>
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraits>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+			<li>
+				<defName>Pyromaniac</defName>
+				<chance>25</chance>
+			</li>
+		</forcedTraits>
+		<disallowedTraits>
+			<li>
+				<defName>Brawler</defName>
+			</li>
+		</disallowedTraits>
+		<skillGains>
+			<li>
+				<defName>Shooting</defName>
+				<amount>5</amount>
+			</li>	
+			<li>
+				<defName>Melee</defName>
+				<amount>2</amount>
+			</li>	
+			<li>
+				<defName>Crafting</defName>
+				<amount>3</amount>
+			</li>	
+		</skillGains>
+		<spawnCategories>
+			<li>Sororitas_Standard</li>
+			<li>Sororitas_Dominion</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

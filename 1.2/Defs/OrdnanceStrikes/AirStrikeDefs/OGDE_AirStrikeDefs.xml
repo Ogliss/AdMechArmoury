@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--==================== Air Strikes - Dark Eldar =========================-->
+	<!--==================== Venom =========================-->
+	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" Name="OG_DarkEldar_StrikeShip_Venom" Abstract="True">
+		<graphicData>
+			<texPath>Things/Ships/Strike/DarkEldar/StrikeShip_DE_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<shadowData>
+			<texPath>Things/Ships/Strike/DarkEldar/StrikeShip_DE_Venom_Shadow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</shadowData>
+		<scale>7.5,7.5</scale>
+		<weapons>
+			<li>OGDE_AirstrikeWeapon_SplinterRifles</li>
+		</weapons>
+	</Def>
+	
+	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+		<defName>OGDE_AirstrikeWeapon_SplinterRifles</defName>
+		<label>twin-linked splinter rifles</label>
+		<ammoDef>OGDE_AirstrikeBullet_SplinterRifle</ammoDef>
+		<soundCastDef>OG_Splinter_Sound</soundCastDef>
+		<ammoQuantity>100</ammoQuantity>
+		<ticksBetweenShots>1</ticksBetweenShots>
+		<startShootingDistance>50</startShootingDistance>
+		<ammoTravelDistance>30</ammoTravelDistance>
+		<ammoDispersion>2.5</ammoDispersion>
+		<targetAcquireRange>5</targetAcquireRange>
+		<isTwinGun>true</isTwinGun>
+		<horizontalPositionOffset>1.5</horizontalPositionOffset>
+		<verticalPositionOffset>2.0</verticalPositionOffset>
+	</Def> 
+	<ThingDef ParentName="OG_AirstrikeBullet_Base">
+		<defName>OGDE_AirstrikeBullet_SplinterRifle</defName>
+		<label>Splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGESplinter</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- Splinter Cannon -->
+	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_DarkEldar_StrikeShip_Venom">
+		<defName>OGDE_AirStrike_SplinterCannon</defName>
+		<label>splinter cannon run</label>
+		<description>Strike ship fills the air with shards from its twin splinter cannons. Covers a large area. Particularly effective against unarmored units.</description>
+		<runsNumber>2</runsNumber>
+		<costInSilver>500</costInSilver>
+		<ammoResupplyDays>10</ammoResupplyDays>
+		<weapons>
+			<li>OGDE_AirstrikeWeapon_SplinterCannon</li>
+		</weapons>
+	</Def>
+
+
+	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+		<defName>OGDE_AirstrikeWeapon_SplinterCannon</defName>
+		<label>splinter cannon</label>
+		<ammoDef>OGDE_AirstrikeBullet_SplinterCannon</ammoDef>
+		<soundCastDef>OG_Splinter_Sound</soundCastDef>
+		<ammoQuantity>50</ammoQuantity>
+		<ticksBetweenShots>1</ticksBetweenShots>
+		<startShootingDistance>50</startShootingDistance>
+		<ammoTravelDistance>30</ammoTravelDistance>
+		<ammoDispersion>2.5</ammoDispersion>
+		<targetAcquireRange>10</targetAcquireRange>
+		<isTwinGun>false</isTwinGun>
+		<horizontalPositionOffset>0</horizontalPositionOffset>
+		<verticalPositionOffset>3.0</verticalPositionOffset>
+	</Def> 
+
+	<ThingDef ParentName="OG_AirstrikeBullet_Base">
+		<defName>OGDE_AirstrikeBullet_SplinterCannon</defName>
+		<label>large splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+      <drawSize>2</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>OGESplinter</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+	
+	<!-- Disintegrator Cannon -->
+	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_DarkEldar_StrikeShip_Venom">
+		<defName>OGDE_AirStrike_DisintegratorCannon</defName>
+		<label>disintegrator cannon assault</label>
+		<description>The powerful frontal autocannon can deal high damages to armored units and buildings. It does not cover a wide area though.</description>
+		<runsNumber>3</runsNumber>
+		<costInSilver>1000</costInSilver>
+		<ammoResupplyDays>15</ammoResupplyDays>
+		<weapons>
+			<li>OGDE_AirstrikeWeapon_DisintegratorCannon</li>
+		</weapons>
+	</Def>
+
+	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+		<defName>OGDE_AirstrikeWeapon_DisintegratorCannon</defName>
+		<label>disintegrator cannon</label>
+		<ammoDef>OGDE_AirstrikeBullet_DisintegratorCannon</ammoDef>
+		<soundCastDef>OG_Starcannon_Sound</soundCastDef>
+		<ammoQuantity>12</ammoQuantity>
+		<ticksBetweenShots>8</ticksBetweenShots>
+		<startShootingDistance>50</startShootingDistance>
+		<ammoTravelDistance>30</ammoTravelDistance>
+		<ammoDispersion>2.5</ammoDispersion>
+		<targetAcquireRange>5.0</targetAcquireRange>
+		<isTwinGun>false</isTwinGun>
+		<horizontalPositionOffset>0</horizontalPositionOffset>
+		<verticalPositionOffset>9.0</verticalPositionOffset>
+	</Def>	
+	
+	<ThingDef ParentName="OG_AirstrikeBullet_Base">
+		<defName>OGDE_AirstrikeBullet_DisintegratorCannon</defName>
+		<label>Disintegrator Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGEPlas</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowMoteDef>Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.65</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>2</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	
+	<!--==================== VoidRaven =========================-->
+	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" Name="OG_DarkEldar_StrikeShip_VoidRaven" Abstract="True">
+		<graphicData>
+			<texPath>Things/Ships/Strike/DarkEldar/StrikeShip_DE_VoidRaven</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<shadowData>
+			<texPath>Things/Ships/Strike/DarkEldar/StrikeShip_DE_VoidRaven_Shadow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</shadowData>
+		<scale>20,20</scale>
+	</Def>
+	
+	<!-- Darklance & Disintegrator Cannon -->
+	<Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_DarkEldar_StrikeShip_VoidRaven">
+		<defName>OGDE_AirStrike_Darklance</defName>
+		<label>splinter cannon and darklance strafe run</label>
+		<description>Strike ship attacks with both gatling guns and darklances. A truly devastative assault.</description>
+		<runsNumber>2</runsNumber>
+		<costInSilver>2000</costInSilver>
+		<ammoResupplyDays>20</ammoResupplyDays>
+		<weapons>
+			<li>OGDE_AirstrikeWeapon_SplinterCannon</li>
+			<li>OGDE_AirstrikeWeapon_Darklance</li>
+		</weapons>
+	</Def>
+
+	<Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+		<defName>OGDE_AirstrikeWeapon_Darklance</defName>
+		<label>darklance</label>
+		<ammoDef>OGDE_AirstrikeBullet_Darklance</ammoDef> <!-- Do not overwrite vanilla rocket def! -->
+		<soundCastDef>OG_Darklance_Sound</soundCastDef>
+		<ammoQuantity>8</ammoQuantity>
+		<ticksBetweenShots>14</ticksBetweenShots>
+		<startShootingDistance>55</startShootingDistance>
+		<ammoTravelDistance>45</ammoTravelDistance>
+		<isTwinGun>true</isTwinGun>
+		<horizontalPositionOffset>3.5</horizontalPositionOffset>
+		<verticalPositionOffset>0.0</verticalPositionOffset>
+	</Def>
+	
+	<ThingDef ParentName="OG_AirstrikeBullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGDE_AirstrikeBullet_Darklance</defName>
+		<label>darklight beam</label>
+		<textures>
+			<li>Things/Projectile/DarkLightShot</li>
+		</textures>
+		<seam>0</seam>
+
+		<projectile>
+			<damageDef>OGELance</damageDef>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<!--==================== Bombing Runs - Dark Eldar =========================-->
+	<!--Def Class="AdeptusMechanicus.AirStrikes.AirStrikeDef" ParentName="OG_DarkEldar_StrikeShip_VoidRaven">
+		<defName>OGDE_BombingRun_IncendiaryRaid</defName>
+		<label>incendiary bombing run</label>
+		<description>Strike ship perform a carpet bombing on the targeted area with massive incendiary bombs. Particularly effective against stationnary installations.</description>
+		<runsNumber>1</runsNumber>
+		<costInSilver>2500</costInSilver>
+		<ammoResupplyDays>20</ammoResupplyDays>
+		<cellsTravelledPerTick>0.08</cellsTravelledPerTick>
+		<ticksBeforeOverflightReducedSpeed>60</ticksBeforeOverflightReducedSpeed>
+		<weapons>
+			<li>OGDE_BombingRunWeapon_Incendiary</li>
+		</weapons>
+	</Def-->
+
+	<!--Def Class="AdeptusMechanicus.AirStrikes.WeaponDef">
+		<defName>OGDE_BombingRunWeapon_Incendiary</defName>
+		<label>incendiary bomb</label>
+		<ammoDef>OGDE_BombingRunBomb_Incendiary</ammoDef>
+		<soundCastDef>InfernoCannon_Fire</soundCastDef>
+		<ammoQuantity>3</ammoQuantity>
+		<ticksBetweenShots>60</ticksBetweenShots>
+		<startShootingDistance>10</startShootingDistance>
+		<ammoTravelDistance>5</ammoTravelDistance>
+		<isTwinGun>true</isTwinGun>
+		<horizontalPositionOffset>3.0</horizontalPositionOffset>
+		<verticalPositionOffset>0.0</verticalPositionOffset>
+		<disableRainDurationInTicks>30000</disableRainDurationInTicks>
+	</Def-->
+	
+	<!--ThingDef ParentName="OG_AirstrikeBullet_Base">
+		<defName>OGDE_BombingRunBomb_Incendiary</defName>
+		<label>incendiary bomb</label>
+		<thingClass>Projectile_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>true</flyOverhead>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>7</explosionRadius>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<speed>10</speed>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+		</projectile>
+	</ThingDef-->
+	
+</Defs>
