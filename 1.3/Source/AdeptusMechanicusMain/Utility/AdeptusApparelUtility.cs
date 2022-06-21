@@ -195,6 +195,10 @@ namespace AdeptusMechanicus
                     },
                     paintable
                 );
+            Rect rect4 = rect3.LeftHalf().ContractedBy(2);
+            Rect rect5 = rect3.RightHalf().ContractedBy(2);
+            Widgets.DrawBoxSolid(rect4, entry.overridePrimaryColor ?? (entry.useSecondaryColorAsPrimary ? entry.apparel.DrawColorTwo : entry.apparel.DrawColor));
+            Widgets.DrawBoxSolid(rect5, entry.overrideSecondaryColor ?? (entry.usePrimaryColorAsSecondary ? entry.apparel.DrawColor : entry.apparel.DrawColorTwo));
         }
 
         public static void DrawFactionButton(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable = false)
@@ -219,6 +223,10 @@ namespace AdeptusMechanicus
                     }, 
                     paintable
                 );
+            Rect rect4 = rect3.LeftHalf().ContractedBy(2);
+            Rect rect5 = rect3.RightHalf().ContractedBy(2);
+            Widgets.DrawBoxSolid(rect4, entry.overridePrimaryColor ?? (entry.useSecondaryColorAsPrimary ? entry.apparel.DrawColorTwo : entry.apparel.DrawColor));
+            Widgets.DrawBoxSolid(rect5, entry.overrideSecondaryColor ?? (entry.usePrimaryColorAsSecondary ? entry.apparel.DrawColor : entry.apparel.DrawColorTwo));
         }
         private static List<Color> allColors = null;
         public static List<Color> AllColors(Pawn pawn = null)
@@ -229,94 +237,137 @@ namespace AdeptusMechanicus
                              where !x.hairOnly
                              select x into ic
                              select ic.color).ToList<Color>();
+                foreach (var item in DefDatabase<FactionDef>.AllDefsListForReading)
+                {
+                    if (item.GetModExtensionFast<FactionDefExtension>() is FactionDefExtension ext && (ext.factionColor.HasValue || ext.factionColorTwo.HasValue))
+                    {
+                        if (ext.factionColor.HasValue && !allColors.Any(c => ext.factionColor.Value.IndistinguishableFrom(c)))
+                        {
+                            allColors.Add(ext.factionColor.Value);
+                        }
+                        if (ext.factionColorTwo.HasValue && !allColors.Any(c => ext.factionColorTwo.Value.IndistinguishableFrom(c)))
+                        {
+                            allColors.Add(ext.factionColorTwo.Value);
+                        }
+                    }
+                }
                 allColors.SortByColor((Color x) => x);
             }
             List<Color> cs = allColors;
-            if (pawn != null && pawn.Ideo != null && !Find.IdeoManager.classicMode && !cs.Any((Color c) => pawn.Ideo.ApparelColor.IndistinguishableFrom(c)))
-            {
-                cs.Add(pawn.Ideo.ApparelColor);
-            }
-            if (pawn != null && pawn.story != null && pawn.story.favoriteColor != null && !cs.Any((Color c) => pawn.story.favoriteColor.Value.IndistinguishableFrom(c)))
-            {
-                cs.Add(pawn.story.favoriteColor.Value);
-            }
             return cs;
         }
 
-        public static void DrawBaseColourOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
+        public static void DrawBaseColourOptions_new(Rect rect, CompPauldronDrawer comp, ShoulderPadEntry entry, bool paintable = false)
+        {
+            Rect rect1 = rect.LeftHalf().LeftHalf();
+            Rect rect2 = rect.LeftHalf().RightHalf();
+            rect2.width *= 2;
+            Rect rect3 = rect.RightHalf().RightHalf();
+            Widgets.Label(rect1, comp.GetDescription(entry.shoulderPadType));
+            Widgets.Dropdown<ShoulderPadEntry, PauldronTextureOption>
+                (
+                    rect2,
+                    entry,
+                    (ShoulderPadEntry sp) => entry.Used,
+                    new Func<ShoulderPadEntry, IEnumerable<Widgets.DropdownMenuElement<PauldronTextureOption>>>(DrawFactionButton_GenerateMenu),
+                    entry.Used.Label,
+                    null,
+                    null,
+                    null,
+                    delegate ()
+                    {
+                    },
+                    paintable
+                );
+            Rect rect4 = rect3.LeftHalf().ContractedBy(2);
+            Rect rect5 = rect3.RightHalf().ContractedBy(2);
+            Widgets.DrawBoxSolid(rect4, entry.overridePrimaryColor ?? (entry.useSecondaryColorAsPrimary ? entry.apparel.DrawColorTwo : entry.apparel.DrawColor));
+            Widgets.DrawBoxSolid(rect5, entry.overrideSecondaryColor ?? (entry.usePrimaryColorAsSecondary ? entry.apparel.DrawColor : entry.apparel.DrawColorTwo));
+        }
+        public static float DrawBaseColourOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
         {
             float w = rect.width / 5;
             float w2 = (rect.width - w) / 2;
             float y = rect.y;
             float x = rect.x;
             Rect rect1 = new Rect(x, y, w, 30f);
-            Widgets.Label(rect1, label);
+            Widgets.Label(rect1.LeftHalf(), $"Primary {label}");
+            Widgets.Label(rect1.RightHalf(), $"Secondry {label}");
+            y += 30f;
             x += w;
             Rect colours = new Rect(x, y, w2, rect.height);
             Rect rect2 = colours.LeftHalf();
-            Rect colour = colours.LeftHalf();
-            Rect colour2 = colours.RightHalf();
-
+            Pawn_StoryTracker story = composite.Wearer.story;
             if (!composite.Wearer.apparel.IsLocked(composite))
             {
-
                 if (composite.Wearer.Ideo != null && !Find.IdeoManager.classicMode)
                 {
-                    rect2 = new Rect(rect.x, y, rect.width / 2f - 10f, 24f);
-                    if (Widgets.ButtonText(rect2.LeftHalf(), "SetIdeoColor".Translate() + ": Primary", true, true, true))
+                    Rect ideoColour = new Rect(rect.x, y, rect.width - 10f, 24f);
+                    if (Widgets.ButtonText(composite.ColorableTwo != null ? ideoColour.LeftHalf() : ideoColour, "SetIdeoColor".Translate(), true, true, true))
                     {
                         composite.colorable.color = composite.Wearer.Ideo.ApparelColor;
                         if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
                     }
-                    if (composite.ColorableTwo != null)
+                    if (composite.ColorableTwo != null && Widgets.ButtonText(ideoColour.RightHalf(), "SetIdeoColor".Translate(), true, true, true))
                     {
-                        if (Widgets.ButtonText(rect2.RightHalf(), "SetIdeoColor".Translate() + ": Secondry", true, true, true))
-                        {
-                            composite.ColorableTwo.ColorTwo = composite.Wearer.Ideo.ApparelColor;
-                            if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
-                            SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
-                        }
+                        composite.ColorableTwo.ColorTwo = composite.Wearer.Ideo.ApparelColor;
+                        if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
                     }
+                    y += 24f;
                 }
-                Pawn_StoryTracker story = composite.Wearer.story;
                 if (story != null && story.favoriteColor != null)
                 {
-                    rect2 = new Rect(rect2.xMax + 10f, y, rect.width / 2f - 10f, 24f);
-                    if (Widgets.ButtonText(rect2, "SetFavoriteColor".Translate(), true, true, true))
+                    Rect favoriteColour = new Rect(rect.x, y, rect.width - 10f, 24f);
+                    if (Widgets.ButtonText(composite.ColorableTwo != null ? favoriteColour.LeftHalf() : favoriteColour, "SetFavoriteColor".Translate(), true, true, true))
                     {
                         composite.colorable.color = composite.Wearer.story.favoriteColor.Value;
                         if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
                     }
+                    if (composite.ColorableTwo != null && Widgets.ButtonText(favoriteColour.RightHalf(), "SetFavoriteColor".Translate(), true, true, true))
+                    {
+                        composite.ColorableTwo.colorTwo = composite.Wearer.story.favoriteColor.Value;
+                        if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
+                    }
+                    y += 24f;
                 }
-                y += 34f;
+                int entries = AllColors(composite.Wearer).Count;
+                int lines = (int)((entries / 8f) + (entries % 8f == 0 ? 0 : 1));
+                float height = lines * 30f;
 
+
+                Rect baseColours = new Rect(rect.x, y, rect.width, height);
                 if (composite.ColorableFaction != null)
                 {
-                    
-                    if (AdeptusWidgets.ColorSelector(rect2, ref composite.ColorableFaction.color, AllColors(composite.Wearer), null, 22, 2, composite))
+                    if (AdeptusWidgets.ColorSelector(baseColours.LeftHalf().ContractedBy(6), ref composite.ColorableFaction.color, AllColors(composite.Wearer), out height, null, 22, 2, composite))
                     {
                         composite.ColorableFaction.Active = true;
                     }
-                    if (AdeptusWidgets.ColorSelector(colour2, ref composite.ColorableFaction.colorTwo, AllColors(composite.Wearer), null, 22, 2, composite))
+
+                    if (AdeptusWidgets.ColorSelector(baseColours.RightHalf().ContractedBy(6), ref composite.ColorableFaction.colorTwo, AllColors(composite.Wearer), out height, null, 22, 2, composite))
                     {
                         composite.ColorableFaction.ActiveTwo = true;
                     }
+                    baseColours.height = height;
                 }
                 else
                 {
-                    AdeptusWidgets.ColorSelector(rect2, ref composite.colorable.color, AllColors(composite.Wearer), null, 22, 2, composite);
+                    AdeptusWidgets.ColorSelector(baseColours.LeftHalf(), ref composite.colorable.color, AllColors(composite.Wearer), out height, null, 22, 2, composite);
                     if (composite.ColorableTwo != null)
                     {
-                        if (AdeptusWidgets.ColorSelector(colour2, ref composite.ColorableTwo.colorTwo, AllColors(composite.Wearer), null, 22, 2, composite))
+                        if (AdeptusWidgets.ColorSelector(baseColours.RightHalf(), ref composite.ColorableTwo.colorTwo, AllColors(composite.Wearer), out height, null, 22, 2, composite))
                         {
                             composite.ColorableTwo.ActiveTwo = true;
                         }
                     }
+                    baseColours.height = height;
                 }
-                
-                
+                y += baseColours.height;
+
+
             }
             else
             {
@@ -327,14 +378,16 @@ namespace AdeptusMechanicus
                 Widgets.Label(rect3, "ApparelLockedCannotRecolor".Translate(composite.Wearer.Named("PAWN"), composite.Named("APPAREL")).Colorize(ColorLibrary.RedReadable));
                 Text.Anchor = TextAnchor.UpperLeft;
             }
-
             x += w;
             if (composite.ColorableTwo is CompColorableTwo twoColour)
             {
 
             }
+            return y;
         }
-        
+
+        private static Vector2 coloursScrollPos = Vector2.zero;
+
         public static void DrawBaseTextureOptions(Rect rect, string label, ApparelComposite composite, bool paintable = false)
         {
             float w = rect.width / 5;
@@ -360,6 +413,15 @@ namespace AdeptusMechanicus
                     },
                     paintable
                 );
+            /*
+            if (comp.FactionDef != null)
+            {
+                Rect rect4 = rect3.LeftHalf().ContractedBy(2);
+                Rect rect5 = rect3.RightHalf().ContractedBy(2);
+                Widgets.DrawBoxSolid(rect4, composite.DrawColor);
+                Widgets.DrawBoxSolid(rect5, composite.DrawColorTwo);
+            }
+            */
             x += w;
         }
 

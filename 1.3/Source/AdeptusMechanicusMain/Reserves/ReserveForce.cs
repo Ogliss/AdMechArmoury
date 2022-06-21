@@ -153,6 +153,32 @@ namespace AdeptusMechanicus
             }
         }
 
+        public void Notify_PawnLostViolently(Lord lord, out bool reacting, DamageInfo? dinfo = null)
+        {
+            Rand.PushState();
+            reacting = Rand.Chance(0.35f);
+            Rand.PopState();
+            if (reacting)
+            {
+                if (dinfo?.Instigator != null)
+                    target = dinfo?.Instigator.Position ?? IntVec3.Invalid;
+                delay = 1;
+            }
+
+        }
+        public void Notify_PawnDamaged(Lord lord, DamageInfo dinfo, out bool reacting)
+        {
+            Rand.PushState();
+            reacting = Rand.Chance(0.35f);
+            Rand.PopState();
+            if (reacting)
+            {
+                if (dinfo.Instigator != null)
+                    target = dinfo.Instigator.Position;
+                delay = 1;
+            }
+        }
+
         public void DeployReserve()
         {
             Log.Message($"DeployReserve with {Members.Count} pawns");

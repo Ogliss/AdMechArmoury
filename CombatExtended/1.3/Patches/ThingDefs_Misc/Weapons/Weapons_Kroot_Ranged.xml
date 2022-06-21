@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+	<!--success>Always</success-->
+	<operations>
+	
+	<!--==================== Kroot - Recurve Bow =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+		<defName>OGK_Bow_Recurve</defName>
+		<statBases>
+			<SightsEfficiency>0.6</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>32</range>
+			<soundCast>Bow_Recurve</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+		</AmmoUser>
+		<FireModes />
+		<researchPrerequisite>RecurveBow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGK_Bow_Recurve"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+			<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>limb blades</label>
+				<capacities>
+					<li>Stab</li>
+					<li>Cut</li>
+				</capacities>
+				<power>14</power>
+				<cooldownTime>1.4</cooldownTime>
+				<armorPenetrationSharp>0.65</armorPenetrationSharp>
+			</li>
+			</tools>
+		</value>
+	</li>
+
+	<!--==================== Kroot - rounds =========================-->	
+	<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+		<defName>OGK_Bullet_Solid</defName>
+		<thingClass>AdeptusMechanicus.Projectile_BulletEffectCE</thingClass>
+		<projectile>
+			<damageDef>OGTKroot</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>46</armorPenetrationBlunt>
+			<speed>75</speed>
+		</projectile>
+	</li>
+	<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+		<defName>OGK_Bullet_Pulse</defName>
+		<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>142</armorPenetrationBlunt>
+			<speed>100</speed>
+		</projectile>
+	</li>
+	
+	<!--==================== Kroot - Pistol =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+		<defName>OGK_Gun_KrootPistol</defName>
+		<statBases>
+			<Mass>1.8</Mass>
+			<RangedWeapon_Cooldown>0.52</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.25</SwayFactor>
+			<Bulk>1.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.25</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGK_Bullet_Solid</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Revolver</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>18</magazineSize>
+			<reloadTime>2</reloadTime>
+			<ammoSet>AmmoSet_OGKroot</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>		
+		</FireModes>
+	</li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGK_Gun_KrootPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<!--==================== Kroot - Rifle =========================-->
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+		<defName>OGK_Gun_KrootRifle</defName>
+		<statBases>
+			<Mass>3.25</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.52</SwayFactor>
+			<Bulk>8.25</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.85</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGK_Bullet_Solid</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>44</range>
+			<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_OGKroot</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>		
+		</FireModes>
+	</li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGK_Gun_KrootRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationSharp>2.75</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<!--==================== Kroot - Hunting Rifle =========================-->
+	<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+		<defName>OGK_Bullet_HunterSolid</defName>
+		<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+		<projectile>
+			<damageDef>OGTKroot</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>32</armorPenetrationBlunt>
+			<speed>85</speed>
+		</projectile>
+	</li>
+	<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+		<defName>OGK_Bullet_HunterPulse</defName>
+		<thingClass>AdeptusMechanicus.Bullet_ExplosiveCE</thingClass>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>
+			<armorPenetrationBlunt>142</armorPenetrationBlunt>
+			<speed>100</speed>
+		</projectile>
+	</li>
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatibleAdv">
+		<defName>OGK_Gun_KrootHunterRifle</defName>
+		<statBases>
+			<Mass>4.5</Mass>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.25</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.88</SwayFactor>
+			<Bulk>12.50</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>OGK_Bullet_HunterSolid</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_Revolver</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_OGKrootHunter</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>	
+		</FireModes>
+	</li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGK_Gun_KrootHunterRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationSharp>2.75</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	</operations>
+</Operation>
+
+</Patch>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Verse;
 
 namespace AdeptusMechanicus
@@ -14,6 +15,14 @@ namespace AdeptusMechanicus
         public int trailerMoteInterval = 30;
         public int trailInitalDelay = -1;
         public int motesThrown = 1;
+
+        public FleckDef TrailMoteDef;
+        public override IEnumerable<string> ConfigErrors()
+        {
+            TrailMoteDef = DefDatabase<FleckDef>.GetNamed(trailMoteDef);
+            return base.ConfigErrors();
+
+        }
     }
 
 }

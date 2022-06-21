@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <success>Always</success>
+        <operations>
+			<!-- Weapon_GrenadeFrag: PowderGrenade to WeaponTags-->
+            <li Class="PatchOperationConditional">
+                <xpath>/Defs/ThingDef[defName = "Weapon_GrenadeFrag"]/weaponTags</xpath>
+                <success>Always</success>
+                <match Class="PatchOperationAdd">
+                    <success>Always</success>
+                    <xpath>Defs/ThingDef[defName = "Weapon_GrenadeFrag"]/weaponTags</xpath>
+                    <value>
+                            <li>PowderGrenade</li>
+                    </value>
+                </match>
+                <nomatch Class="PatchOperationAdd">
+                    <success>Always</success>
+                    <xpath>Defs/ThingDef[defName = "Weapon_GrenadeFrag"]</xpath>
+                    <value>
+                        <weaponTags>
+                            <li>PowderGrenade</li>
+                        </weaponTags>
+                    </value>
+                </nomatch>
+            </li>
+			<!-- Gun_DoomsdayRocket: PowderGanger to WeaponTags-->
+            <li Class="PatchOperationConditional">
+                <xpath>/Defs/ThingDef[defName = "Gun_DoomsdayRocket"]/weaponTags</xpath>
+                <success>Always</success>
+                <match Class="PatchOperationAdd">
+                    <success>Always</success>
+                    <xpath>Defs/ThingDef[defName = "Gun_DoomsdayRocket"]/weaponTags</xpath>
+                    <value>
+                            <li>PowderGanger</li>
+                    </value>
+                </match>
+                <nomatch Class="PatchOperationAdd">
+                    <success>Always</success>
+                    <xpath>Defs/ThingDef[defName = "Gun_DoomsdayRocket"]</xpath>
+                    <value>
+                        <weaponTags>
+                            <li>PowderGanger</li>
+                        </weaponTags>
+                    </value>
+                </nomatch>
+            </li>
+        </operations>
+    </Operation>
+</Patch>

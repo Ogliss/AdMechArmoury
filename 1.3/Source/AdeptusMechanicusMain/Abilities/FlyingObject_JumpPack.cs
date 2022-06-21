@@ -335,7 +335,7 @@ namespace AdeptusMechanicus
                                 {
                                     DC = flyingThing.DrawColorTwo;
                                 }
-                                TrailThrower.ThrowSprayTrail(this.DrawPos, this.Map, origin, destination, trailer.trailMoteDef, trailer.trailMoteSize, 240, this.def.projectile.SpeedTilesPerTick, DC);
+                                TrailThrower.ThrowSprayTrail(this.DrawPos, this.Map, origin, destination, trailer.TrailMoteDef, trailer.trailMoteSize, 240, this.def.projectile.SpeedTilesPerTick, DC);
                             }
                         }
                     }

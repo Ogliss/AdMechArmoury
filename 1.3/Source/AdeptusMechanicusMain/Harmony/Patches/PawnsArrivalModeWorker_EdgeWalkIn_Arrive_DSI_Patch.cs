@@ -23,7 +23,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (__instance.Map.Reserves() is MapComponent_Reserves _Reserves)
                 {
-                    _Reserves.Notify_PawnLostViolently(__instance, dinfo);
+                    _Reserves.Notify_PawnDamaged(__instance, dinfo);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     //    [HarmonyPatch(typeof(PawnsArrivalModeWorker_EdgeWalkIn), "Arrive")]
     public static class PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Reserves_Patch
     {
-        [HarmonyPrefix, HarmonyPriority(Priority.First)]
+        [HarmonyPrefix]
         public static void Prefix(ref List<Pawn> pawns, IncidentParms parms)
         {
             Map map = (Map)parms.target;
@@ -136,7 +136,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         if (!potentialInfiltrators.NullOrEmpty()) skip.Concat(potentialInfiltrators);
                     }
-                    if (Find.Storyteller.def.defName != "VSE_WinstonWave") pawns.RemoveAll(x=> infiltrators.Contains(x) || deepStrikers.Contains(x));
+                    pawns.RemoveAll(x=> infiltrators.Contains(x) || deepStrikers.Contains(x));
                 }
                 if (Find.Storyteller.def.defName == "VSE_WinstonWave" && infiltrators.Count + deepStrikers.Count > 0)
                 {

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGArc</defName>
+		<label>Arc charge</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+			
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGArc</defName>
+		<label>Arc charge</label>
+		<ammoTypes>
+			<OG_Ammo_Arc>OGAM_Bullet_ArcBolt</OG_Ammo_Arc>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGArcE</defName>
+		<label>Haywire charge</label>
+		<ammoTypes>
+			<OG_Ammo_ArcE>OGE_Bullet_HaywireCannon</OG_Ammo_ArcE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGArcDE</defName>
+		<label>Haywire charge</label>
+		<ammoTypes>
+			<OG_Ammo_ArcE>OGDE_Bullet_HaywireBlaster</OG_Ammo_ArcE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGArcOrk</defName>
+		<label>Zapp charge</label>
+		<ammoTypes>
+			<OG_Ammo_ArcOrk>OGO_Bullet_ZappKannon</OG_Ammo_ArcOrk>
+			<OG_Ammo_Arc>OGO_Bullet_ZappKannon</OG_Ammo_Arc>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+			
+			<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGArcBase" ParentName="AmmoBase" Abstract="True">
+		<description>Arc ammo</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGArc</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
+		<defName>OG_Ammo_ArcOrk</defName>
+		<label>Zapp cartridge</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+			
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_ArcOrk</defName>
+		<label>make Zapp Powa pack x30</label>
+		<description>Craft 30 Zapp Powa packs.</description>
+		<jobString>Making Zapp Powa packs.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Silver</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_ArcOrk>30</OG_Ammo_ArcOrk>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
+	</RecipeDef>
+		
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
+		<defName>OG_Ammo_Arc</defName>
+		<label>perma-capacitor</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+		
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_Arc</defName>
+		<label>make perma-capacitor x100</label>
+		<description>Craft 100 perma-capacitors.</description>
+		<jobString>Making perma-capacitors.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Silver</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Silver</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Arc>100</OG_Ammo_Arc>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
+	</RecipeDef>
+		
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGArcBase">
+		<defName>OG_Ammo_ArcE</defName>
+		<label>Haywire cartridge</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Regular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+		
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_ArcE</defName>
+		<label>make Haywire pack 70</label>
+		<description>Craft 70 Haywire packs.</description>
+		<jobString>Making Haywire packs.</jobString>
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>Plasteel</li>
+				</thingDefs>
+			</filter>
+			<count>3</count>
+			</li>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>ComponentIndustrial</li>
+				</thingDefs>
+			</filter>
+			<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+			<li>Plasteel</li>
+			<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_ArcE>70</OG_Ammo_ArcE>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Common_Tech_Weapons_Haywire</li>
+		</researchPrerequisites>
+	</RecipeDef>
+		
+</Defs>

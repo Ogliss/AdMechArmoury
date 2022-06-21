@@ -71,17 +71,9 @@ namespace AdeptusMechanicus
             {
                 foreach (var item in forces)
                 {
-                    Rand.PushState();
-                    if (Rand.Chance(0.45f))
-                    {
-                        item.delay = 1;
-                        if (dinfo?.Instigator != null)
-                        {
-                            item.target = dinfo?.Instigator.Position ?? IntVec3.Invalid;
-                        }
+                    item.Notify_PawnLostViolently(lord, out bool deployNow, dinfo);
+                    if (deployNow)
                         break;
-                    }
-                    Rand.PopState();
                 }
             }
         }
@@ -91,17 +83,9 @@ namespace AdeptusMechanicus
             {
                 foreach (var item in forces)
                 {
-                    Rand.PushState();
-                    if (Rand.Chance(0.1f))
-                    {
-                        item.delay = 1;
-                        if (dinfo.Instigator != null)
-                        {
-                            item.target = dinfo.Instigator.Position;
-                        }
+                    item.Notify_PawnDamaged(lord, dinfo, out bool deployNow);
+                    if (deployNow)
                         break;
-                    }
-                    Rand.PopState();
                 }
             }
         }

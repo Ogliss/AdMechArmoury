@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ==================== NeuralDisruptor ========================== -->
+	<!-- ==================== AmmoCategory ========================== -->
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGNeuralDisruptorAC</defName>
+		<label>Neural Disruptor cores</label>
+		<description>When fired it ejects a long sliver of hollow glass that can pierce a foe's skin and introduce the toxins straight into his bloodstream, invariably with horrific results.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== ThingCategory ========================== -->
+	<ThingCategoryDef>
+		<defName>AmmoOGNeuralDisruptor</defName>
+		<label>Neural Disruptor</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGNeuralDisruptor</defName>
+		<label>Neural Disruptor</label>
+		<ammoTypes>
+			<OG_Ammo_NeuralDisruptor>OGE_Bullet_NeuroDisruptor</OG_Ammo_NeuralDisruptor>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGNeuralDisruptorBase" ParentName="AmmoBase" Abstract="True">
+		<description>small NeuralDisruptor ammo</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGNeuralDisruptor</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGNeuralDisruptorBase">
+		<defName>OG_Ammo_NeuralDisruptor</defName>
+		<label>small NeuralDisruptor</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/SlingBullet/Plasteel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGNeuralDisruptorAC</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_NeuralDisruptor</defName>
+		<label>make small NeuralDisruptor x70</label>
+		<description>Craft 70 small NeuralDisruptors.</description>
+		<jobString>Making small NeuralDisruptors.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_NeuralDisruptor>70</OG_Ammo_NeuralDisruptor>
+		</products>
+		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+	</RecipeDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<!--ThingDef Class="CombatExtended.AmmoDef" Name="BaseOGNeuralDisruptor" ParentName="OG_Bullet_Base" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/StingerSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>OGENeuroDisruptor</damageDef>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOGNeuralDisruptor">
+		<defName>OGE_Bullet_NeuroDisruptor</defName>
+		<label>small NeuralDisruptor</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>5</armorPenetrationBase>
+		</projectile>
+	</ThingDef-->
+
+</Defs>

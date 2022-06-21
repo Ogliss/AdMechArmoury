@@ -37,7 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     {
                                         DC = __instance.DrawColorTwo;
                                     }
-                                    TrailThrower.ThrowSprayTrail(__instance.ExactPosition, __instance.Map, ___origin, ___destination, trailer.trailMoteDef, trailer.trailMoteSize, 240, __instance.def.projectile.SpeedTilesPerTick, DC);
+                                    TrailThrower.ThrowSprayTrail(__instance.ExactPosition, __instance.Map, ___origin, ___destination, trailer.TrailMoteDef, trailer.trailMoteSize, 240, __instance.def.projectile.SpeedTilesPerTick, DC);
                                 }
                             }
                         }

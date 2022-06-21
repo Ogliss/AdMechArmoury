@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Human Humanoid Alien Races 2.0 -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>QX.AstraMilitarum</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<!--success>Always</success-->
+					<operations>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_FOOT"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_FOOT</hediff>
+										<partsToAffect>
+										<li>Foot</li>
+										</partsToAffect>
+										<chance>50</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_HAND"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_HAND</hediff>
+										<partsToAffect>
+										<li>Hand</li>
+										</partsToAffect>
+										<chance>50</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_ARM"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_ARM</hediff>
+										<partsToAffect>
+										<li>Shoulder</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_LEG"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_LEG</hediff>
+										<partsToAffect>
+										<li>Leg</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_EAR"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_EAR</hediff>
+										<partsToAffect>
+										<li>Ear</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_EYE"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_EYE</hediff>
+										<partsToAffect>
+										<li>Eye</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_SPINE"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_SPINE</hediff>
+										<partsToAffect>
+										<li>Spine</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<!-- Synthetic Organs -->
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_STOM"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_STOM</hediff>
+										<partsToAffect>
+										<li>Stomach</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_KIDNEY"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_Aug_KIDNEY</hediff>
+										<partsToAffect>
+										<li>Kidney</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<!-- Synthetic Organs -->
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_RWNA"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_RWNA</hediff>
+										<partsToAffect>
+										<li>IG_RGTHemiSphere</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_DRONE"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_DRONE</hediff>
+										<partsToAffect>
+										<li>IG_LFTHemiSphere</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_SSAA"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_SSAA</hediff>
+										<partsToAffect>
+										<li>IG_Skin</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_RESPI"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_RESPI</hediff>
+										<partsToAffect>
+										<li>Lung</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>2</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_VOCA"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_VOCA</hediff>
+										<partsToAffect>
+										<li>Jaw</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_PAIN"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_PAIN</hediff>
+										<partsToAffect>
+										<li>IG_ElectooChest</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_MOOD"]</xpath>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/HediffGiverSetDef[defName = "Mechanicus"]/hediffGivers</xpath>
+									<value>	
+										<li Class="AdeptusMechanicus.HediffGiver_StartWithHediff">
+										<hediff>IG_HediffDef_MOOD</hediff>
+										<partsToAffect>
+										<li>IG_ElectooBack</li>
+										</partsToAffect>
+										<chance>15</chance>
+										<countToAffect>1</countToAffect>
+										</li>
+									</value>
+							</match>	
+						</li>
+					</operations>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+</Patch>

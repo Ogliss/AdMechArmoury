@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGFusionAC</defName>
+		<label>Sonic Wave</label>
+		<description>Focuses a throbbing bass note into an explosive sonic crescendo that can burst eyeballs and rupture internal organs. By varying the frequency of the blast, the effect of the weapon can be altered to produce different effects.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGMelta</defName>
+		<label>Fuision cells</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGMelta</defName>
+		<label>pyrum-petrol</label>
+		<ammoTypes>
+			<OG_Ammo_Melta>OGI_Bullet_Melta</OG_Ammo_Melta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGDEMelta</defName>
+		<label>pyrum-petrol</label>
+		<ammoTypes>
+			<OG_Ammo_Melta>OGDE_Bullet_FusionBeam</OG_Ammo_Melta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGEMelta</defName>
+		<label>pyrum-petrol</label>
+		<ammoTypes>
+			<OG_Ammo_Melta>OGE_Bullet_FusionGun</OG_Ammo_Melta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGMultiMelta</defName>
+		<label>pyrum-petrol</label>
+		<ammoTypes>
+			<OG_Ammo_Melta>OGI_Bullet_MultiMelta</OG_Ammo_Melta>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGMeltaBase" ParentName="AmmoBase" Abstract="True">
+		<description>Melta ammo</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGMelta</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMeltaBase">
+		<defName>OG_Ammo_Melta</defName>
+		<label>pyrum-petrol canister</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/Concentrated</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGFusionAC</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Recipes ================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_Melta</defName>
+		<label>make pyrum-petrol canister x100</label>
+		<description>Craft 100 pyrum-petrol canisters.</description>
+		<jobString>Making pyrum-petrol canisters.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Melta>100</OG_Ammo_Melta>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Melta</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

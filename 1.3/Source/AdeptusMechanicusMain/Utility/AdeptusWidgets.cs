@@ -14,8 +14,9 @@ namespace AdeptusMechanicus
     public class AdeptusWidgets
     {
         public static Vector2 colorSelectorScrollPos = new Vector2(0f, 0f);
-        public static bool ColorSelector(Rect rect, ref Color color, List<Color> colors, Texture icon = null, int colorSize = 22, int colorPadding = 2, ApparelComposite composite = null)
+        public static bool ColorSelector(Rect rect, ref Color color, List<Color> colors, out float height, Texture icon = null, int colorSize = 22, int colorPadding = 2, ApparelComposite composite = null)
         {
+            height = 0f;
             bool result = false;
             int num = colorSize + colorPadding * 2;
             float num2 = (icon != null) ? ((float)(colorSize * 4) + 10f) : 0f;
@@ -47,6 +48,7 @@ namespace AdeptusMechanicus
                     SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                     if (composite?.Wearer != null) AdeptusApparelUtility.UpdateApparelGraphicsFor(composite?.Wearer);
                 }
+                height = rect2.yMax + (float)colorPadding;
                 num5++;
             }
             Widgets.EndGroup();

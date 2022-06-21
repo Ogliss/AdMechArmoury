@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- ========================= Camoline ========================== -->
+<Operation Class="PatchOperationSequence">
+  <success>Always</success>
+  <operations>
+    <li Class="PatchOperationTest">
+      <xpath>/Defs/ThingCategoryDef[defName = "Federation"]</xpath>
+    </li>
+	
+	<!-- ========================= Tattered ========================== -->
+
+    <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>OG_Apparel_TatteredCamoline_Cloak</defName>
+		<thingClass>FactionColors.ApparelUniform</thingClass>
+		<label>tattered camoline cloak</label>
+		<description>A tattered full-body covering cloak from camoline. While it may look primitive, it is effective at hiding the wearer.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Common/Tattered_Camoline_Cloak/Cloak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Spacer</techLevel>
+		<costStuffCount>60</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<tradeability>Sellable</tradeability>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>1800</WorkToMake>
+			<Mass>0.4</Mass>
+      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.55</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<thingCategories>
+			<li>Apparel</li>
+		</thingCategories>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Common/Tattered_Camoline_Cloak/Cloak</wornGraphicPath>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>Neolithic</li>
+				<li>TribalCloak</li>
+				<li>Cloak</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+		</recipeMaker>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1.0,1.0,1.0,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <comps>
+      <li Class="FactionColors.CompProperties_FactionColor">
+        <compClass>FactionColors.CompFactionColor</compClass>
+        <UseCamouflageColor>true</UseCamouflageColor>
+      </li>
+    </comps>
+	</ThingDef>
+        </value>
+	</li>
+	
+	<!-- ========================= Normal ========================== -->
+ 
+    <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+	<ThingDef ParentName="ApparelMakeableBase">
+		<defName>OG_Apparel_Camoline_Cloak</defName>
+		<thingClass>FactionColors.ApparelUniform</thingClass>
+		<label>camoline cloak</label>
+		<description>A full-body covering cloak from camoline. While it may look primitive, it is effective at hiding the wearer.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Common/Camoline_Cloak/Cloak</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<techLevel>Neolithic</techLevel>
+		<costStuffCount>80</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<tradeability>Sellable</tradeability>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>2000</WorkToMake>
+			<Mass>0.5</Mass>
+      <StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.75</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.75</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>1.8</EquipDelay>
+		</statBases>
+		<thingCategories>
+			<li>Apparel</li>
+		</thingCategories>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Common/Camoline_Cloak/Cloak</wornGraphicPath>
+			<layers>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>IndustrialBasic</li>
+				<li>NormalCloak</li>
+				<li>Cloak</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+				<li>CraftingSpot</li>
+			</recipeUsers>
+		</recipeMaker>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(1.0,1.0,1.0,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <comps>
+      <li Class="FactionColors.CompProperties_FactionColor">
+        <compClass>FactionColors.CompFactionColor</compClass>
+        <UseCamouflageColor>true</UseCamouflageColor>
+      </li>
+    </comps>
+	</ThingDef>
+
+        </value>
+	</li>
+  </operations>
+</Operation>
+
+</Patch>

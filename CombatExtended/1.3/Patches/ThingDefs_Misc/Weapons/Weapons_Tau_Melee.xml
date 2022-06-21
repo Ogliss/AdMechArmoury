@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+	<!--success>Always</success-->
+	<operations>
+	<!--==================== Tau	- Honor Blade =========================-->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OGT_Melee_HonorBlade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	</operations>
+</Operation>
+
+</Patch>

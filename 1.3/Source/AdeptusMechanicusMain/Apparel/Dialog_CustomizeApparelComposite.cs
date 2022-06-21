@@ -125,20 +125,20 @@ namespace AdeptusMechanicus
 			Text.Font = GameFont.Small;
 			float height = 6f + 1 * 30f;
 			Rect scrollRect = mainRect.LeftHalf();
-			Rect previewRect = mainRect.RightHalf().TopPart(0.75f);
+			Rect previewRect = mainRect.RightHalf();
 			Rect scrollViewRect = new Rect(0f, 0f, scrollRect.width - 16f, height);
             if (apparel?.Wearer is Pawn Wearer)
 			{
-				/*
+				Vector2 renderSize = PawnPortraitSize * 0.75f;
 				Rect north = previewRect.TopHalf().RightHalf(); // new Rect(previewRect.center.x - PawnPortraitSize.x / 2f, previewRect.yMin - 24f, PawnPortraitSize.x, PawnPortraitSize.y)
-				Rect South = previewRect.TopHalf().LeftHalf();
+				Rect south = previewRect.TopHalf().LeftHalf();
 				Rect east = previewRect.BottomHalf().RightHalf();
 				Rect west = previewRect.BottomHalf().LeftHalf();
-				*/
-				GUI.DrawTexture(previewRect.TopHalf().LeftHalf(), PortraitsCache.Get(Wearer, PawnPortraitSize * 0.75f, Rot4.South, default(Vector2), 1f, true, true));
-				GUI.DrawTexture(previewRect.TopHalf().RightHalf(), PortraitsCache.Get(Wearer, PawnPortraitSize * 0.75f, Rot4.North, default(Vector2), 1f, true, true));
-				GUI.DrawTexture(previewRect.BottomHalf().RightHalf(), PortraitsCache.Get(Wearer, PawnPortraitSize * 0.75f, Rot4.East, default(Vector2), 1f, true, true));
-				GUI.DrawTexture(previewRect.BottomHalf().LeftHalf(), PortraitsCache.Get(Wearer, PawnPortraitSize * 0.75f, Rot4.West, default(Vector2), 1f, true, true));
+				
+				GUI.DrawTexture(new Rect(north.center.x - renderSize.x / 2f, north.center.y - renderSize.y / 2f, renderSize.x, renderSize.y), PortraitsCache.Get(Wearer, renderSize, Rot4.South, default(Vector2), 1f, true, true));
+				GUI.DrawTexture(new Rect(south.center.x - renderSize.x / 2f, south.center.y - renderSize.y / 2f, renderSize.x, renderSize.y), PortraitsCache.Get(Wearer, renderSize, Rot4.North, default(Vector2), 1f, true, true));
+				GUI.DrawTexture(new Rect(east.center.x - renderSize.x / 2f, east.center.y - renderSize.y / 2f, renderSize.x, renderSize.y), PortraitsCache.Get(Wearer, renderSize, Rot4.East, default(Vector2), 1f, true, true));
+				GUI.DrawTexture(new Rect(west.center.x - renderSize.x / 2f, west.center.y - renderSize.y / 2f, renderSize.x, renderSize.y), PortraitsCache.Get(Wearer, renderSize, Rot4.West, default(Vector2), 1f, true, true));
 			}
             else
 			{
@@ -153,8 +153,10 @@ namespace AdeptusMechanicus
             {
                 if (composite.ColorableTwo != null)
 				{
+					bool factionOverride = false;
                     if (composite.ColorableFaction != null)
 					{
+						factionOverride = composite.ColorableFaction.ActiveFaction || composite.ColorableFaction.FactionActiveTwo;
 						if (num > num2 && num < num3)
 						{
 							Rect rect = new Rect(0f, num, scrollViewRect.width, 30f);
@@ -163,14 +165,13 @@ namespace AdeptusMechanicus
 						num += 30f;
 						num4++;
 					}
-					float spacer = 120f;
-					if (num > num2 && num < num3)
+					float spacer = 72f;
+					if (!factionOverride && num > num2 && num < num3)
 					{
 						Rect rect = new Rect(0f, num, scrollViewRect.width, spacer);
-						AdeptusApparelUtility.DrawBaseColourOptions(rect, "Colours", composite);
+						num += AdeptusApparelUtility.DrawBaseColourOptions(rect, "Colours", composite);
+						num4++;
 					}
-					num += spacer;
-					num4++;
 				}
                 if (!composite.AltGraphics.NullOrEmpty())
 				{

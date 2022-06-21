@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Remove uneeded research -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OGE_TableMachining"]</xpath>
+				<!--success>Always</success-->
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
+					<value>
+						<li>OGE_TableMachining</li>
+					</value>
+				</match>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OGT_TableMachining"]</xpath>
+				<!--success>Always</success-->
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
+					<value>
+						<li>OGT_TableMachining</li>
+					</value>
+				</match>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OGO_TableMachining"]</xpath>
+				<!--success>Always</success-->
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
+					<value>
+						<li>OGO_TableMachining</li>
+					</value>
+				</match>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OGI_TableMachining"]</xpath>
+				<!--success>Always</success-->
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
+					<value>
+						<li>OGI_TableMachining</li>
+					</value>
+				</match>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OGC_TableMachining"]</xpath>
+				<!--success>Always</success-->
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
+					<value>
+						<li>OGC_TableMachining</li>
+					</value>
+				</match>
+			</li>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>Ogliss.AdMech.Xenobiologis.Orkz</li>
+				</mods>
+				<nomatch Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ResearchProjectDef[contains(defName,'OG_Ork_Tech_') and (contains(defName,'Apparel') or contains(defName,'Wargear'))]</xpath>
+						</li>
+					</operations>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>Ogliss.AdMech.Xenobiologis.Tau</li>
+				</mods>
+				<nomatch Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ResearchProjectDef[contains(defName,'OG_Tau_Tech_') and (contains(defName,'Apparel') or contains(defName,'Tech_Wargear'))]</xpath>
+						</li>
+					</operations>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>Ogliss.AdMech.Xenobiologis.Eldar</li>
+				</mods>
+				<nomatch Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ResearchProjectDef[(contains(defName,'OG_Aeldari_Tech_') or contains(@ParentName,'OG_Aeldari_Tech_') or contains(defName,'OG_Eldar_Tech_') or contains(defName,'OG_DarkEldar_Tech_')) and (contains(defName,'Apparel') or contains(defName,'Wargear'))]</xpath>
+						</li>
+					</operations>
+				</nomatch>
+			</li>
+		</operations>	
+	</Operation>
+	 
+
+</Patch>

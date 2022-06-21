@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<!--success>Always</success-->
+			<!--=============== Base turrets ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_HeavyTurret_Base" or @Name="OG_Turret_Base"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="OG_HeavyLaserTurret_Base" or @Name="OG_LaserTurret_Base"]/thingClass</xpath>
+				<value>
+					<thingClass>AdeptusMechanicus.Lasers.Building_LaserGunCE</thingClass>
+				</value>
+			</li>
+			<!--=============== Manual turrets ===============-->
+			<!--=============== Pintle-Mounted Heavy Bolter ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_HeavyBolter</defName>
+				<statBases>
+					<Mass>12.6</Mass>
+					<RangedWeapon_Cooldown>3.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.26</SwayFactor>
+					<Bulk>22.87</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.85</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_HeavyBoltStd</defaultProjectile>
+					<warmupTime>0.95</warmupTime>
+					<range>56</range>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>120</magazineSize>
+					<reloadTime>7.5</reloadTime>
+					<ammoSet>AmmoSet_OGBoltHeavy</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			<!--=============== Pintle-Mounted Storm Bolter ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_StormBolter</defName>
+				<statBases>
+					<Mass>4.6</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.26</SwayFactor>
+					<Bulk>5.50</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.6</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_BoltStd</defaultProjectile>
+					<warmupTime>0.8</warmupTime>
+					<range>38</range>
+					<soundCast>OG_Bolt_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>36</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_OGBoltStd</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			<!--=============== Auto turrets ===============-->
+			<!--=============== Quad Heavy Stubber turret ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "OGI_Turret_QuadHeavyStubber_Auto"]/researchPrerequisites/li[text()="HeavyTurrets"]</xpath>
+					<value>
+						<li>CE_HeavyTurret</li>
+					</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_QuadHeavyStubber_Auto"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_QuadHeavyStubber_Auto"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_QuadHeavyStubber</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>10.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_HeavyStubberQuad</defaultProjectile>
+					<warmupTime>0.3</warmupTime>
+					<range>36</range>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>12</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>140</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+						<defName>OGI_Bullet_HeavyStubberQuad</defName>
+						<label>Heavy Stubber bullet</label>
+						<graphicData>
+							<texPath>Things/Projectile/Bullet_Small</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>8</damageAmountBase>
+							<stoppingPower>1.25</stoppingPower>
+							<armorPenetrationBase>0.32</armorPenetrationBase>
+							<speed>100</speed>
+							<pelletCount>4</pelletCount>
+							<spreadMult>2.0</spreadMult>
+						</projectile>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!--=============== Autocannon turret ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "OGI_Turret_Autocannon_Auto"]/researchPrerequisites/li[text()="HeavyTurrets"]</xpath>
+					<value>
+						<li>CE_HeavyTurret</li>
+					</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_Autocannon_Auto"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_Autocannon_Auto"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_Autocannon</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>10.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_AutoCannon</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>48</range>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Auto_Cannon_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>150</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_OGAutoCannnon</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!--=============== Lascannon turret ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "OGI_Turret_Lascannon_Auto"]/researchPrerequisites/li[text()="HeavyTurrets"]</xpath>
+					<value>
+						<li>CE_HeavyTurret</li>
+					</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_Lascannon_Auto"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_Lascannon</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>10.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>48</range>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Las_Cannon_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<!--AmmoUser>
+					<magazineSize>150</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_OGLasCannon</ammoSet>
+				</AmmoUser-->
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			<!--=============== Twin-Linked Lascannon turret ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "OGI_Turret_LascannonDual_Auto"]/researchPrerequisites/li[text()="HeavyTurrets"]</xpath>
+					<value>
+						<li>CE_HeavyTurret</li>
+					</value>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="OGI_Turret_LascannonDual_Auto"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OGI_GunTurret_LascannonDual</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>
+					<Bulk>10.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_LasCannonDual</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>48</range>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<soundCast>OG_Las_Cannon_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<!--AmmoUser>
+					<magazineSize>50</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_OGLasCannon</ammoSet>
+				</AmmoUser-->
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="AdeptusMechanicus.Lasers.LaserBeamDefCE" ParentName="OG_Bullet_LaserGeneric">
+						<defName>OGI_Bullet_LasCannonDual</defName>
+							<label>las blast</label>
+							<description>A high power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+						<textures>
+							<li>Things/Projectile/LasCShot</li>
+						</textures>
+						<seam>0</seam>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>OGILasC</damageDef>
+							<damageAmountBase>75</damageAmountBase>
+							<explosionRadius>0.55</explosionRadius>
+							<armorPenetrationSharp>36</armorPenetrationSharp>
+							<armorPenetrationBlunt>80</armorPenetrationBlunt>
+							<spreadMult>4.8</spreadMult>
+							<pelletCount>2</pelletCount>
+						</projectile>
+						<modExtensions>
+							<li Class="AdeptusMechanicus.ProjectileVFX">
+								<explosionMoteSize>0.75</explosionMoteSize>
+								<impactMoteDef>OG_Mote_BoltBlast</impactMoteDef>
+								<impactMoteSize>2</impactMoteSize>
+								<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+								<impactGlowMoteSize>2.5</impactGlowMoteSize>
+							</li>
+						</modExtensions>
+					</ThingDef>
+				</value>
+			</li>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>QX.AstraMilitarum</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						<!--=============== Auto turrets ===============-->
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[@ParentName="IG_TurretBase_CH"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[@ParentName="IG_TurretBase_NH"]/thingClass</xpath>
+							<value>
+								<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+							</value>
+						</li>
+						<!--li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[@Name="OGI_HeavyLaserTurret"]/thingClass</xpath>
+							<value>
+								<thingClass>AdeptusMechanicus.Lasers.Building_LaserGunCE</thingClass>
+							</value>
+						</li-->
+						<!--=============== Remove CompProperties_Explosive from turrets ===============-->
+						<li Class="PatchOperationRemove">
+							<xpath>Defs/ThingDef[defName="ATMiniAutoGunPowered" or defName="ATAutoGunPowered" or defName="ATSentryTurret" or defName="MTHeavyBolter" or defName="MTLasCannon" or defName="ATDualHeavyBolter" or defName="MTLasCannon" or defName="ATDualLasCannon" or defName="ATDualLasCannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+						</li>
+						
+						<!--=============== Auto Sentry MiniAutoGun turret ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_ASTMiniAutoGun</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>OGI_Bullet_HeavyStubberQuad</defaultProjectile>
+								<warmupTime>0.3</warmupTime>
+								<range>18</range>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>10</burstShotCount>
+								<soundCast>Shot_Minigun</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_ASTMiniAutoGun"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_ASTMiniAutoGun</defName>
+									<label>AST MiniAutoGun bullet</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/SentryTurrets/ASTAutoGun/ATAutoGunProjectile</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGBullet</damageDef>
+										<damageAmountBase>3</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						<!--=============== Auto Sentry AutoGun turret ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_ASTAutoGun</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_ASTAutoGun</defaultProjectile>
+								<warmupTime>0.5</warmupTime>
+								<range>22</range>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>10</burstShotCount>
+								<soundCast>Shot_Minigun</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_ASTAutoGun"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_ASTAutoGun</defName>
+									<label>AST MiniGun bullet</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/SentryTurrets/ASTAutoGun/ATAutoGunMk1</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGBullet</damageDef>
+										<damageAmountBase>5</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						
+						<!--=============== Automated Twin Autocannon turret ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_ASTMiniGun</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_ASTMiniGun</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>23</range>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>15</burstShotCount>
+								<soundCast>Shot_Minigun</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_ASTMiniGun"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_ASTMiniGun</defName>
+									<label>AST MiniGun bullet</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/SentryTurrets/ASTMiniGun/ASTMiniGunProjectile</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGBullet</damageDef>
+										<damageAmountBase>8</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						<!--=============== Heavy Bolter Gun Emplacement ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_MTHeavyBolter</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_MTHeavyBolter</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>35</range>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>6</burstShotCount>
+								<soundCast>HeavyBolterSound</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_MTHeavyBolter"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_MTHeavyBolter</defName>
+									<label>Heavy Bolter bullet</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/ManualTurrets/HeavyBolter/BoltProjectileMk1-LRG</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGBomb</damageDef>
+										<damageAmountBase>11</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						<!--=============== Las Cannon Gun Emplacement ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_MTLasCannon</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>OGI_Bullet_LasCannon</defaultProjectile>
+								<!--defaultProjectile>Bullet_MTLasCannon</defaultProjectile-->
+								<warmupTime>1.5</warmupTime>
+								<range>45</range>
+								<minRange>2</minRange>
+								<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+								<burstShotCount>2</burstShotCount>
+								<soundCast>LasCannonSound</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>12</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<!--AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser-->
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_MTLasCannon"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_MTLasCannon</defName>
+									<label>Las Cannon Beam</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/ManualTurrets/LasCannon/LasCannonProjectile</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGArmorPiercing</damageDef>
+										<damageAmountBase>75</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						<!--=============== Tarantula Dual Heavy Bolter Gun Turret ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_ATDualHeavyBolter</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_ATDualHeavyBolter</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>42</range>
+								<minRange>5</minRange>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<burstShotCount>12</burstShotCount>
+								<soundCast>HeavyBolterSound</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_OGHeavyStubberQuad</ammoSet>
+							</AmmoUser>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_ATDualHeavyBolter"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_ATDualHeavyBolter</defName>
+									<label>Heavy Bolter bullet</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/ManualTurrets/HeavyBolter/BoltProjectileMk1-LRG</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGBomb</damageDef>
+										<damageAmountBase>11</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+						<!--=============== Tarantula Dual Las Cannon Gun Turret ===============-->
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Turret_ATDualLasCannon</defName>
+							<statBases>
+								<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+								<SightsEfficiency>1</SightsEfficiency>
+								<ShotSpread>0.07</ShotSpread>
+								<SwayFactor>0.82</SwayFactor>
+								<Bulk>10.00</Bulk>
+							</statBases>
+							<Properties>
+								<recoilAmount>0.76</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<!--defaultProjectile>Bullet_ATDualLasCannon</defaultProjectile-->
+								<defaultProjectile>OGI_Bullet_LasCannonDual</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<range>46</range>
+								<minRange>5</minRange>
+								<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<soundCast>LasCannonSound</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>15</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</Properties>
+							<!--AmmoUser>
+								<magazineSize>140</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_Q</ammoSet>
+							</AmmoUser-->
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</FireModes>
+						</li>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="Bullet_ATDualLasCannon"]</xpath>
+							<value>
+								<ThingDef Class="CombatExtended.AmmoDef" ParentName="OG_Bullet_Base">
+									<defName>Bullet_ATDualLasCannon</defName>
+									<label>Las Cannon Beam</label>
+									<graphicData>
+										<texPath>Things/IGTurrets/ManualTurrets/LasCannon/LasCannonProjectile</texPath>
+										<graphicClass>Graphic_Single</graphicClass>
+									</graphicData>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<flyOverhead>false</flyOverhead>
+										<damageDef>IGArmorPiercing</damageDef>
+										<damageAmountBase>100</damageAmountBase>
+										<stoppingPower>1.25</stoppingPower>
+										<armorPenetrationBase>0.32</armorPenetrationBase>
+										<speed>100</speed>
+									</projectile>
+									<thingClass>CombatExtended.BulletCE</thingClass>
+								</ThingDef>
+							</value>
+						</li>
+						
+					</operations>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+	 
+</Patch>

@@ -48,8 +48,12 @@ namespace AdeptusMechanicus
 				spawnPosition = loc + new Vector3(0.35f, 0f, 0.35f) + new Vector3(Rand.Value, 0f, Rand.Value) * 0.1f,
 				velocityAngle = velocityAngle.HasValue ? velocityAngle.Value : (float)Rand.Range(30, 60),
 				velocitySpeed = velocitySpeed,
-				rotationRate = Rand.Range(-3f, 3f),
-				scale = 0.7f
+				rotationRate = rotationRate ?? Rand.Range(-3f, 3f),
+				rotation = exactRotation ?? 0f,
+				scale = scale,
+				instanceColor = color,
+				solidTimeOverride = solidTimeOverride
+
 			};
 			Rand.PopState();
 			return data;

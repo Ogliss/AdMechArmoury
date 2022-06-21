@@ -308,7 +308,7 @@ namespace AdeptusMechanicus.Ordnance
 									{
 										DC = ordnance.graphicData.colorTwo;
 									}
-									TrailThrower.ThrowSprayTrail(pos, map, pos, this.targetCell.ToVector3(), trailer.trailMoteDef, trailer.trailMoteSize * Scale, 240, ordnance.projectile.SpeedTilesPerTick, DC);
+									TrailThrower.ThrowSprayTrail(pos, map, pos, this.targetCell.ToVector3(), trailer.TrailMoteDef, trailer.trailMoteSize * Scale, 240, ordnance.projectile.SpeedTilesPerTick, DC);
 								}
 							}
 						}

@@ -15,6 +15,7 @@ namespace AdeptusMechanicus
     public class ApparelProperties : RimWorld.ApparelProperties
     {
         public List<string> wornGraphicMasks = new List<string>();
+        public ApparelGraphicExtension altGraphicsSettings;
 
     }
     */
