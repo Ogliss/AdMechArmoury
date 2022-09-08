@@ -15,7 +15,9 @@ namespace AdeptusMechanicus
 	{
 
 		public DeityProperties deities = new DeityProperties();
+		[MayRequireIdeology]
 		public List<RoleRenamer> rolesNames = new List<RoleRenamer>();
+		[MayRequireIdeology]
 		public List<RitualRenamer> ritualNames = new List<RitualRenamer>();
 		public List<string> preferredApparelTags = new List<string>();
 		public RulePack generalRules;
@@ -31,11 +33,13 @@ namespace AdeptusMechanicus
 	}
 	public class RoleRenamer
 	{
+        [MayRequireIdeology]
 		public PreceptDef role;
 		public RulePackDef rulePack;
 	}
 	public class RitualRenamer
 	{
+		[MayRequireIdeology]
 		public PreceptDef ritual;
 		public RulePackDef rulePack;
 	}

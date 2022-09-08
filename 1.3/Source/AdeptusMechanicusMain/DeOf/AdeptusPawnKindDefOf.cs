@@ -149,8 +149,6 @@ namespace AdeptusMechanicus
         // Tool User PawnKind Defs
         [MayRequireXenobiologis, MayRequireOrkz]
         public static PawnKindDef OG_Squig_Ork;
-        [MayRequireXenobiologis]
-        public static PawnKindDef OG_Ork_Snotling;
 
         #endregion
 

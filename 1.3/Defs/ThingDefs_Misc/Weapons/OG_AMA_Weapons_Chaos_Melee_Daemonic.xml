@@ -16,8 +16,6 @@
 			<WorkToMake>25000</WorkToMake>
 			<!--MarketValue>2250</MarketValue-->
 			<Mass>2.0</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">2.5</Bulk>
-			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.14</MeleeCounterParryBonus>
 		</statBases>
 		<equippedAngleOffset>-20</equippedAngleOffset>
 		<tools>
@@ -100,6 +98,23 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<equippedAngleOffset>-65</equippedAngleOffset>
+		<weaponTags>
+			<li>CPlagueknife</li>
+		</weaponTags>
+		<statBases>
+			<WorkToMake>18000</WorkToMake>
+			<Mass>0.5</Mass>
+			<!--MarketValue>750</MarketValue-->
+		</statBases>
+		<costStuffCount>30</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<recipeMaker Inherit="flase">
+			<recipeUsers>
+			
+			</recipeUsers>
+		</recipeMaker>
 		<tools>
 			<li>
 				<label>handle</label>
@@ -143,25 +158,6 @@
 				-->						
 			</li>
 		</comps>
-		<weaponTags>
-			<li>CPlagueknife</li>
-		</weaponTags>
-		<statBases>
-			<WorkToMake>18000</WorkToMake>
-			<Mass>0.5</Mass>
-			<!--MarketValue>750</MarketValue-->
-			<Bulk MayRequire="CETeam.CombatExtended">0.5</Bulk>
-			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.25</MeleeCounterParryBonus>
-		</statBases>
-		<costStuffCount>30</costStuffCount>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
-		<recipeMaker Inherit="flase">
-			<recipeUsers>
-			
-			</recipeUsers>
-		</recipeMaker>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
 				<dualWield>true</dualWield>
@@ -188,8 +184,6 @@
 			<WorkToMake>25000</WorkToMake>
 			<!--MarketValue>2250</MarketValue-->
 			<Mass>2.0</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">2.5</Bulk>
-			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.14</MeleeCounterParryBonus>
 		</statBases>
 		<equippedAngleOffset>-20</equippedAngleOffset>
 		<tools>
@@ -275,8 +269,6 @@
 			<WorkToMake>25000</WorkToMake>
 			<!--MarketValue>2250</MarketValue-->
 			<Mass>2.0</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">2.5</Bulk>
-			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.14</MeleeCounterParryBonus>
 		</statBases>
 		<equippedAngleOffset>-20</equippedAngleOffset>
 		<tools>
@@ -380,8 +372,6 @@
 			<WorkToMake>32500</WorkToMake>
 			<Mass>2.5</Mass>
 			<!--MarketValue>750</MarketValue-->
-			<Bulk MayRequire="CETeam.CombatExtended">4.5</Bulk>
-			<MeleeCounterParryBonus MayRequire="CETeam.CombatExtended">0.275</MeleeCounterParryBonus>
 		</statBases>
 		<equippedStatOffsets>
 			<MeleeHitChance>0.15</MeleeHitChance>
@@ -440,4 +430,86 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
+
+
+	<!--==================== Chaos - Slannesh - Deamonette Claw =========================-->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Base">
+		<defName>OGCD_Melee_Deamonette_Claw</defName>
+		<label>Deamonic claw</label>
+		<description>A deamonettes claws are long, razor-edged claws resembling pincers made of Chitin and serrated bone-like substances. Each claw is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Deamonic/DeamonetteClawA</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.5</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>0</equippedAngleOffset>
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<isDualWeapon>true</isDualWeapon>
+				<!--verticalFlipNorth>true</verticalFlipNorth-->
+				<angleAdjustmentNorth>-45</angleAdjustmentNorth>
+				<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+				<eastOffset>-0.250,0,-0.05</eastOffset>
+				<westOffset>0.250,0,-0.05</westOffset>
+				<southOffset>-0.750,0,-0.050</southOffset>
+				<northOffset>0.550,0,-0.0750</northOffset>
+			</li> 
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+		<!--soundInteract>Interact_Chainsword</soundInteract-->
+		<statBases>
+			<Mass>1</Mass>
+			<MarketValue>100</MarketValue>
+		</statBases>
+		<tools>
+			<li>
+				<label>claw</label>
+				<capacities>
+					<li>OG_RendingWeapon_Blunt</li>
+				</capacities>
+				<power>28</power>
+				<cooldownTime>2.3</cooldownTime>
+			</li>
+			<li>
+				<label>claw</label>
+				<capacities>
+					<li>OG_RendingWeapon_Cut</li>
+				</capacities>
+				<power>28</power>
+				<cooldownTime>2.3</cooldownTime>
+			</li>
+			<li>
+				<label>talon</label>
+				<capacities>
+					<li>OG_RendingWeapon_Cut</li>
+				</capacities>
+				<power>18</power>
+				<cooldownTime>1.3</cooldownTime>
+			</li>
+			<li>
+				<label>talon</label>
+				<capacities>
+					<li>OG_RendingWeapon_Stab</li>
+				</capacities>
+				<power>24</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+		<weaponTags>
+			<li>Deamon_Melee_Deamonette</li>
+			<li>OGCD_DeamonetteClaw</li>
+		</weaponTags>
+		<generateCommonality>1</generateCommonality>
+	 </ThingDef>
+	 
+
 </Defs>

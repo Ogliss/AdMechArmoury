@@ -82,10 +82,6 @@ namespace AdeptusMechanicus
                 TestingScenarioUtility.SetUpTestScenarios(scenariosTesting);
             }
             HumanlikeRecipeUtility.AddHumanlikeRecipes();
-            if (AdeptusIntergrationUtility.enabled_AlienRaces)
-            {
-                AlienRaceUtility.AlienRaces();
-            }
             /*
             StringBuilder Memes = new StringBuilder("MemeDef's");
             foreach (var item in DefDatabase<MemeDef>.AllDefsListForReading)

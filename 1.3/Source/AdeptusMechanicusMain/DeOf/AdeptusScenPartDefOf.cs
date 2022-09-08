@@ -11,6 +11,7 @@ namespace AdeptusMechanicus
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(AdeptusScenPartDefOf));
         }
+        public static ScenPartDef DisableIncident;
         [MayRequireXenobiologis]
         public static ScenPartDef OG_Rule_EnforceFactionRelations;
 

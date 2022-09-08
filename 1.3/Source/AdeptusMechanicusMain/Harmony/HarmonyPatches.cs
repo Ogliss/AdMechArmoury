@@ -27,7 +27,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 if (item.Name.Contains("CheckFaction"))
                 {
-                    Log.Message($"{item.Name}");
                     checkFaction = item;
                 }
             }
@@ -49,31 +48,18 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 QuestGen_Pawns_GeneratePawn_Patch();
             }
-            if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HeadMatAt_NewTemp"))
-            {
-                AdeptusHarmonyPatches.HeadMatAt_NewTemp();
-            }
-            else
-            {
-                AdeptusHarmonyPatches.HeadMatAt();
-            }
-
-            if (AccessTools.GetMethodNames(typeof(PawnGraphicSet)).Contains("HairMatAt_NewTemp"))
-            {
-                AdeptusHarmonyPatches.HairMatAt_NewTemp();
-            }
-            else
-            {
-                AdeptusHarmonyPatches.HairMatAt();
-            }
-
+            AdeptusHarmonyPatches.HeadMatAt();
+            AdeptusHarmonyPatches.HairMatAt();
             AdeptusHarmonyPatches.CanEquip();
 
+            MethodInfo ObserveSurroundingThings = AccessTools.TypeByName("RimWorld.PawnObserver").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).FirstOrFallback(x => x.GetParameters().Length == 1 && x.GetParameters().First().ParameterType == typeof(Region));
+            if (ObserveSurroundingThings != null) AMAMod.harmony.Patch(original: ObserveSurroundingThings, transpiler: new HarmonyMethod(typeof(PawnObserver_ObserveSurroundingThings_CompilerGenerated_ObserveablePawn_Transpiler), nameof(PawnObserver_ObserveSurroundingThings_CompilerGenerated_ObserveablePawn_Transpiler.Transpiler)));
+            else Log.Error($"ObserveSurroundingThings.Name NOT FOUND");
             if (AdeptusIntergrationUtility.enabled_FacialStuff)
             {
             //    HarmonyPatches.FacialStuffPatches();
             }
-//            AMAMod.harmony.Patch(original: AccessTools.Constructor(typeof(Verse.PawnTextureAtlas)), transpiler: new HarmonyMethod(typeof(PawnTextureAtlas_Constructor_Name_Patch), nameof(PawnTextureAtlas_Constructor_Name_Patch.Transpiler)));
+            //            AMAMod.harmony.Patch(original: AccessTools.Constructor(typeof(Verse.PawnTextureAtlas)), transpiler: new HarmonyMethod(typeof(PawnTextureAtlas_Constructor_Name_Patch), nameof(PawnTextureAtlas_Constructor_Name_Patch.Transpiler)));
             /*
             MethodInfo targetmethod1 = AccessTools.TypeByName("ResearchProjectDef.ConfigErrors").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First().
                 GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).

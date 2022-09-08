@@ -26,6 +26,18 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                     }
                 }
+                for (int i = 0; i < __instance.WornApparelCount; i++)
+                {
+                    Apparel worn = __instance.WornApparel[i];
+                    if (worn.def.GetModExtensionFast<ApparelRestrictionDefExtension>() is ApparelRestrictionDefExtension ext2)
+                    {
+                        if (ext2.ApparelDefs.Contains(apparel.def))
+                        {
+                        //    Log.Message($"should try to drop {worn} as it requires {apparel}");
+                            __instance.TryDrop(worn, out Apparel dropped, __instance.pawn.Position.RandomAdjacentCell8Way());
+                        }
+                    }
+                }
             }
         }
     }

@@ -10,6 +10,7 @@
 				<li>OG_Outlander_Militarum</li>
 				<li>OG_Outlander_Militarum_Cadian</li>
 				<li>OG_Outlander_Militarum_Kreig</li>
+				<li>OG_Outlander_Mechanicus</li>
 			</ideoDesireAllowedFactionCategoryTags>
 			<!--ideoDesireDisallowedFactionCategoryTags IgnoreIfNoMatchingField="True">
 				<li>OG_Outlander_Craftworld</li>
@@ -45,6 +46,7 @@
 		<apparel>
 			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
 				<li>Outlander</li>
+				<li>OG_Outlander_Militarum</li>
 				<li>OG_Outlander_Mechanicus</li>
 				<li>OG_Outlander_Sororitas</li>
 				<li>OG_Outlander_Astartes</li>
@@ -210,7 +212,7 @@
 			</li>
 			<li Class="CompProperties_Art">
 				<nameMaker>NamerArtWeaponMelee</nameMaker>
-				<descriptionMaker>OG_AMAA_ArtDescription_ApparelArmour</descriptionMaker>
+				<descriptionMaker>OG_ArtDescription_ApparelArmour</descriptionMaker>
 				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
 		</comps>
@@ -244,7 +246,7 @@
 		
 		</recipeMaker>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</texPath>
+			<texPath>Things/Item/Apparel/Imperial/Common/PowerArmour/__Icon</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
@@ -284,7 +286,7 @@
 				<li>Legs</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/PowerArmour/PowerArmour</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Base</wornGraphicPath>
 			<layers>
 				<li>Middle</li>
 				<li>Shell</li>
@@ -322,12 +324,7 @@
 			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
 		</inspectorTabs>
 		<comps>
-			<li Class="CompProperties_BiocodableApparel"/>
-			
-			<!--li>
-				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
-			</li-->
-			
+		
 		</comps>
 	</ThingDef>
 
@@ -364,9 +361,8 @@
 				<li>FullHead</li>
 			</bodyPartGroups>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<!--li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<li MayRequire="CETeam.CombatExtended">StrappedHead</li-->
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -509,9 +505,9 @@
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/SM/TerminatorArmour/Helmet_Base</wornGraphicPath>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
+				<!--li MayRequire="CETeam.CombatExtended">OnHead</li>
 				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
+				<li MayRequire="CETeam.CombatExtended">MiddleHead</li-->
 				<li>Overhead</li>
 			</layers>
 			<defaultOutfitTags>
@@ -527,29 +523,9 @@
 			<li>AdeptusMechanicus.ITab_ToggleLivelry</li>
 		</inspectorTabs>
 		<comps>
-			<li Class="CompProperties_BiocodableApparel"/>
-			<!--li>
-				<compClass>AdeptusMechanicus.CompColorableTwo</compClass>
-			</li-->
+		
 		</comps>
-		<modExtensions>
-			<li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
-			<ApparelDefs>
-				<li>OGAA_Armour_Terminator_Cyclone</li>
-				<li>OGAA_Armour_Terminator</li>
-			</ApparelDefs>
-			
-			<!--
-			<RaceDefs>
-				<li>OG_Human_Imperial</li>
-			</RaceDefs>
-			
-			<HediffDefs>
-				<li>OG_Zygote_Hediff_BlackCarapace</li>
-			</HediffDefs>
-			-->
-			</li>
-		</modExtensions>
+		
 	</ThingDef>
 
 	<!-- ========================= Imperial - Apparel Wargear Base ========================== -->

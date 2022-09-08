@@ -16,8 +16,6 @@
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<MarketValue>300</MarketValue>
-			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">0.25</WornBulk>
 			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.2</ArmorRating_Heat>
@@ -37,9 +35,6 @@
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakHelmetLight/Base</wornGraphicPath>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -72,8 +67,6 @@
 			<MaxHitPoints>120</MaxHitPoints>
 			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
 			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.35</ArmorRating_Heat>
@@ -92,9 +85,6 @@
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -180,8 +170,6 @@
 			<MaxHitPoints>120</MaxHitPoints>
 			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
 			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.35</ArmorRating_Heat>
@@ -200,9 +188,6 @@
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -310,8 +295,6 @@
 			<MaxHitPoints>120</MaxHitPoints>
 			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
 			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.35</ArmorRating_Heat>
@@ -330,9 +313,6 @@
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -437,8 +417,6 @@
 			<WorkToMake>8000</WorkToMake>
 			<MaxHitPoints>120</MaxHitPoints>
 			<Mass>1.2</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">5</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">1.1</WornBulk>
 			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.5</ArmorRating_Heat>
@@ -448,8 +426,6 @@
 			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
 			<ToxicSensitivity>-0.450</ToxicSensitivity>
 			<PsychicSensitivity>0.10</PsychicSensitivity>
-			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.05</AimingAccuracy>
-			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<generateCommonality>2</generateCommonality>
 		<recipeMaker>
@@ -464,9 +440,6 @@
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Helmets/TempestScion_HelmetA</wornGraphicPath>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -488,6 +461,11 @@
 				<Chance>1</Chance>
 			</li>
 		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
 	</ThingDef>
  
 	<!-- ========================= Cadian - Gasmask ========================== -->
@@ -511,8 +489,6 @@
 			<MaxHitPoints>100</MaxHitPoints>
 			<MarketValue>400</MarketValue>
 			<Mass>3</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
@@ -521,8 +497,6 @@
 			<MoveSpeed>-0.05</MoveSpeed>
 			<ToxicSensitivity>-0.700</ToxicSensitivity>
 			<PsychicSensitivity>0.10</PsychicSensitivity>
-			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.1</AimingAccuracy>
-			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<generateCommonality>0.25</generateCommonality>
 		<apparel>	
@@ -533,9 +507,6 @@
 				<li>Neck</li>
 			</bodyPartGroups>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>

@@ -71,7 +71,7 @@ namespace AdeptusMechanicus.Lasers
         {
             get
             {
-                if (def.frames.Count == 0) return DefaultGraphic;
+                if (def.frames.Count == 0 ) return DefaultGraphic;
 
                 UpdateState();
 

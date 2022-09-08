@@ -10,78 +10,83 @@ using UnityEngine;
 
 namespace AdeptusMechanicus
 {
-    public static class AlienRaceUtility
+    public static class AlienRaceUtility_Old
     {
         public static void AlienRaces()
         {
             AlienRace.ThingDef_AlienRace Human = DefDatabase<ThingDef>.GetNamedSilentFail("Human") as AlienRace.ThingDef_AlienRace;
-            if (Human != null)
-            {
-                List<string> Tags = new List<string>() { "I", "C", "AS" };
-                List<ResearchProjectDef> projects = new List<ResearchProjectDef>();
-                projects.AddRange(ArmouryMain.ReseachImperial);
-                projects.AddRange(ArmouryMain.ReseachChaos);
-            //    DoRacialRestrictionsFor(Human, Tags, whiteResearches: projects);
-            }
             AlienRace.ThingDef_AlienRace Mechanicus = ArmouryMain.mechanicus as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Ogryn = ArmouryMain.ogryn as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Ratlin = ArmouryMain.ratlin as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Beastman = ArmouryMain.beastman as AlienRace.ThingDef_AlienRace;
-            if (Mechanicus != null)
-            {
-                DoRacialRestrictionsFor(Mechanicus, "AM", whiteResearches: ArmouryMain.ReseachMechanicus, Logging: AMAMod.Dev);
-            }
             List<ThingDef> races = new List<ThingDef>();
-            if (Ogryn != null) races.Add(Ogryn);
-            if (Ratlin != null) races.Add(Ratlin);
-            if (Beastman != null) races.Add(Beastman);
-
-            if (AdeptusIntergrationUtility.enabled_GeneSeed)
+            foreach (var item in settings.AMSettings.Instance.RaceSettings)
             {
-                AlienRace.ThingDef_AlienRace GeneseedAstartes = ArmouryMain.geneseedAstartes as AlienRace.ThingDef_AlienRace;
-                AlienRace.ThingDef_AlienRace GeneseedCustodes = ArmouryMain.geneseedCustodes as AlienRace.ThingDef_AlienRace;
-                if (GeneseedAstartes != null) races.Add(GeneseedAstartes);
-                if (GeneseedCustodes != null) races.Add(GeneseedCustodes);
+                if (!item.hidden && !races.Contains(item.Race))
+                {
+                    if (item.Imperial)
+                    {
+                        races.Add(item.Race);
+                        races.Add(item.Race);
+                    }
+                }
             }
             if (AdeptusIntergrationUtility.enabled_AstraServoSkulls)
             {
                 races.AddRange(DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (x.defName.Contains("IG_Serv_ServoSkull") && x.defName.Contains("_Race")) || (x.defName.Contains("IG_Serv_Servitor") && x.defName.Contains("_Race"))));
             }
 
+            if (Human != null)
+            {
+                List<string> Tags = new List<string>() { "I", "C", "AS" };
+                List<ResearchProjectDef> projects = new List<ResearchProjectDef>();
+
+                projects.AddRange(ArmouryMain.ReseachImperial);
+                projects.AddRange(ArmouryMain.ReseachChaos);
+                DoRacialRestrictionsFor(Human, Tags, whiteResearches: projects, racesNotXeno: races);
+            }
             if (!races.NullOrEmpty())
             {
                 List<string> Tags = new List<string>() { "I", "C" };
                 List<ResearchProjectDef> projects = new List<ResearchProjectDef>();
                 projects.AddRange(ArmouryMain.ReseachImperial);
                 projects.AddRange(ArmouryMain.ReseachChaos);
-            //    DoRacialRestrictionsFor(races, Tags, whiteResearches: projects);
+                DoRacialRestrictionsFor(races, Tags, whiteResearches: projects, racesNotXeno: races);
+            }
+            if (Mechanicus != null)
+            {
+                List<string> Tags = new List<string>() { "I", "AS", "AM" };
+                List<ResearchProjectDef> projects = new List<ResearchProjectDef>();
+                projects.AddRange(ArmouryMain.ReseachImperial);
+                projects.AddRange(ArmouryMain.ReseachMechanicus);
+                DoRacialRestrictionsFor(Mechanicus, Tags, whiteResearches: projects, racesNotXeno: races, Logging: AMAMod.Dev);
             }
         }
 
-        public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
+        public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
             List<string> whiteTags = new List<string>();
             whiteTags.Add(whiteTag);
-            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
+            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, racesNotXeno, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(ThingDef race, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
+        public static void DoRacialRestrictionsFor(ThingDef race, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();
             races.Add(race);
-            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
+            DoRacialRestrictionsFor(races, whiteTags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, racesNotXeno, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             List<string> Tags = new List<string>();
             Tags.Add(whiteTag);
-            DoRacialRestrictionsFor(races, Tags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, Logging);
+            DoRacialRestrictionsFor(races, Tags, blackTags, whiteResearches, blackResearches, whiteApparel, blackApparel, whiteWeapons, blackWeapons, whitePlants, blackPlants, whiteAnimals, blackAnimals, racesNotXeno, Logging);
         }
 
-        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, bool Logging = false)
+        public static void DoRacialRestrictionsFor(List<ThingDef> races, List<string> whiteTags, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             foreach (ThingDef race in races)
             {
@@ -174,7 +179,27 @@ namespace AdeptusMechanicus
                         debug.AppendLine("    Animals: ");// + (blackAnimals.Count + whiteAnimals.Count));
                     }
                     RestrictAnimals(alien, whiteAnimals, blackAnimals, Logging);
+                    if (!racesNotXeno.NullOrEmpty())
+                    {
+                        debug.AppendLine("    Xenophobia: ");// + (blackAnimals.Count + whiteAnimals.Count));
+                    }
+                    Xenophobia(alien, racesNotXeno, Logging);
                     if (Logging) Log.Message(debug.ToString());
+                }
+            }
+        }
+
+        public static void Xenophobia(ThingDef race, List<ThingDef> Races, bool logging)
+        {
+            if (race is AlienRace.ThingDef_AlienRace alien && !Races.NullOrEmpty())
+            {
+                foreach (var item in Races)
+                {
+                    if (item != race)
+                    {
+                        if (alien.alienRace.generalSettings.notXenophobistTowards.NullOrEmpty()) alien.alienRace.generalSettings.notXenophobistTowards = new List<ThingDef>();
+                        if (!alien.alienRace.generalSettings.notXenophobistTowards.Contains(item)) alien.alienRace.generalSettings.notXenophobistTowards.Add(item);
+                    }
                 }
             }
         }

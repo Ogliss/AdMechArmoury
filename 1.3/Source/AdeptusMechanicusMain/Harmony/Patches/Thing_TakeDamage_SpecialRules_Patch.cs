@@ -21,12 +21,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Prefix(Thing __instance, ref DamageInfo dinfo)
         {
-            /*
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return;
-            }
-            */
             if (__instance == null || !__instance.Spawned || __instance.Map == null)
             {
                 return;
@@ -132,6 +126,19 @@ namespace AdeptusMechanicus.HarmonyInstance
                     {
                         dinfo = GetForceDamage(dinfo, Attacker, hitPawn);
                     }
+                }
+            }
+            if (hitPawn != null && !hitPawn.RaceProps.Humanlike)
+            {
+                if (hitPawn.ageTracker.CurKindLifeStage is SwarmKindLifeStage swarm)
+                {
+                    if (!swarm.subStagesHealth.NullOrEmpty())
+                    {
+                        int ind = (int)Mathf.Lerp(0, swarm.subStagesHealth.Count, hitPawn.health.summaryHealth.SummaryHealthPercent);
+                        Log.Message($"{hitPawn}'s SwarmKindLifeStage using HealthSubStage @ Ind: {ind}");
+                        if (ind > 0) hitPawn.Drawer.renderer.graphics.nakedGraphic = swarm.subStagesHealth[ind - 1].bodyGraphicData.Graphic;
+                    }
+                    
                 }
             }
         }

@@ -14,8 +14,18 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void Postfix(PawnGraphicSet __instance, ref List<Material> __result)
         {
             Pawn pawn = __instance.pawn;
-            if (pawn == null || !pawn.RaceProps.Humanlike)
+            if (pawn == null)
             {
+                return;
+            }
+            if (!pawn.RaceProps.Humanlike)
+            {
+                /*
+                if (pawn is SwarmPawn swarm)
+                {
+
+                }
+                */
                 return;
             }
             if (pawn.apparel.AnyApparel)

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+				<!-- ====================== Webber ===================== -->
+				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+					<defName>OGI_Bullet_Webber</defName>
+					<thingClass>AdeptusMechanicus.Projectile_GrowerCE</thingClass>
+					<projectile>
+						<damageDef>Blunt</damageDef>
+						<damageAmountBase>1</damageAmountBase>
+						<stoppingPower>3</stoppingPower>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>6</armorPenetrationBlunt>
+						<speed>35</speed>
+						<pelletCount>4</pelletCount>
+						<spreadMult>20.8</spreadMult>
+					</projectile>
+				</li>
+				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+					<defName>OGI_Gun_Webber</defName>
+					<statBases>
+						<Mass>2.8</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>1.2</ShotSpread>
+						<SwayFactor>1.3</SwayFactor>
+						<Bulk>3.50</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.1</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_Webber</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>16</range>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<burstShotCount>12</burstShotCount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>54</magazineSize>
+						<reloadTime>6.5</reloadTime>
+						<ammoSet>AmmoSet_OGWebber</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>	
+					</FireModes>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</li>
+				
+				<!-- ====================== Launchers	===================== -->
+				<!--==================== Ogryn Grenade Gauntlet =========================-->
+				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+					<defName>OGI_Bullet_OgrynGauntletGrenadeFrag</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<projectile>
+						<flyOverhead>True</flyOverhead>
+						<damageDef>OGIBomb</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<armorPenetrationSharp>14</armorPenetrationSharp>
+						<armorPenetrationBlunt>46</armorPenetrationBlunt>
+						<explosionRadius>1.00</explosionRadius>
+						<stoppingPower>1</stoppingPower>
+						<gravityFactor>25</gravityFactor>
+						<speed>60</speed>
+						<soundExplode>OGIAC_Explosion</soundExplode>
+					</projectile>
+				</li>
+				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+					<defName>OGI_Bullet_OgrynGauntletGrenadeKrak</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<projectile>
+						<flyOverhead>True</flyOverhead>
+						<damageDef>OGIBomb</damageDef>
+						<damageAmountBase>40</damageAmountBase>
+						<armorPenetrationBase>1</armorPenetrationBase>
+						<explosionRadius>0.50</explosionRadius>
+						<gravityFactor>25</gravityFactor>
+						<stoppingPower>5</stoppingPower>
+						<speed>60</speed>
+						<soundExplode>OGIAC_Explosion</soundExplode>
+					</projectile>
+				</li>
+				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+					<defName>OGI_Gun_OgrynGrenadeGauntlet</defName>
+					<warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount>
+					<statBases>
+						<Mass>4.8</Mass>
+						<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<Bulk>11</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_OgrynGauntletGrenadeFrag</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>40</range>
+						<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+						<burstShotCount>4</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>4</muzzleFlashScale>
+						<recoilAmount>2.45</recoilAmount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>4</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_OGGrenadeL</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</li>
+
+				<!-- ====================== Missile Launcher ===================== -->
+				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+					<defName>OGI_Bullet_RocketFrag</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<projectile>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>35</damageAmountBase>
+						<armorPenetrationSharp>22</armorPenetrationSharp>
+						<armorPenetrationBlunt>104</armorPenetrationBlunt>
+						<explosionRadius>4.8</explosionRadius>
+						<stoppingPower>2</stoppingPower>
+						<speed>50</speed>
+					</projectile>
+				</li>
+				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+					<defName>OGI_Bullet_RocketKrak</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<projectile>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>70</damageAmountBase>
+						<armorPenetrationSharp>22</armorPenetrationSharp>
+						<armorPenetrationBlunt>104</armorPenetrationBlunt>
+						<explosionRadius>1.5</explosionRadius>
+						<stoppingPower>4</stoppingPower>
+						<speed>50</speed>
+					</projectile>
+				</li>
+				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+					<defName>OGI_Gun_RocketLaucher</defName>
+					<warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount>
+					<statBases>
+						<Mass>6.8</Mass>
+						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.16</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>1.68</SwayFactor>
+						<Bulk>10.50</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
+						<warmupTime>2.0</warmupTime>
+						<range>48</range>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>8.5</reloadTime>
+						<ammoSet>AmmoSet_OGMissile</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</li>
+				
+		</operations>
+	</Operation>
+
+</Patch>

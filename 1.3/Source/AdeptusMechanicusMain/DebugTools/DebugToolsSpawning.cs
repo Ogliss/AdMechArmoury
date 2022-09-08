@@ -14,6 +14,87 @@ namespace AdeptusMechanicus
 {
     public static class DebugToolsSpawning
     {
+        [DebugAction("Adeptus Mechanicus", "Spawn Weapon, Stuff, Quality", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void SpawnWeaponStuffQuality()
+        {
+            List<DebugMenuOption> list = new List<DebugMenuOption>();
+            for (int i = 0; i < 6; i++)
+            {
+                QualityCategory quality = (QualityCategory)i;
+
+                list.Add(new DebugMenuOption(quality.ToString(), DebugMenuOptionMode.Action, delegate ()
+                {
+                    List<DebugMenuOption> list2 = new List<DebugMenuOption>();
+                    foreach (ThingDef localDef2 in from def in DefDatabase<ThingDef>.AllDefs
+                                                   where def.equipmentType == EquipmentType.Primary
+                                                   select def into d
+                                                   orderby d.defName
+                                                   select d)
+                    {
+                        ThingDef localDef = localDef2;
+
+                        list2.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Action, delegate ()
+                        {
+                            List<DebugMenuOption> list3 = new List<DebugMenuOption>();
+                            if (localDef.MadeFromStuff)
+                            {
+                                foreach (ThingDef stuffDef in from def in GenStuff.AllowedStuffsFor(localDef, TechLevel.Undefined)
+                                select def into d
+                                orderby d.defName
+                                select d)
+                                {
+                                    ThingDef localStuff = stuffDef;
+                                    list3.Add(new DebugMenuOption(localStuff.defName, DebugMenuOptionMode.Tool, delegate ()
+                                    {
+                                        DebugSpawn(localDef, UI.MouseCell(), quality, -1, false, null, localStuff);
+                                    }));
+                                    Find.WindowStack.Add(new Dialog_DebugOptionListLister(list3));
+                                }
+                            }
+                            else
+                            {
+                                list2.Add(new DebugMenuOption(quality.ToString(), DebugMenuOptionMode.Tool, delegate ()
+                                {
+                                    DebugSpawn(localDef, UI.MouseCell(), quality, -1, false, null);
+                                }));
+                            }
+                        }));
+                        Find.WindowStack.Add(new Dialog_DebugOptionListLister(list2));
+                    }
+                }));
+            }
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
+        }
+
+        public static void DebugSpawn(ThingDef def, IntVec3 c, QualityCategory quality, int stackCount = -1, bool direct = false, ThingStyleDef thingStyleDef = null, ThingDef stuffDef = null)
+        {
+            if (stackCount <= 0)
+            {
+                stackCount = def.stackLimit;
+            }
+            ThingDef stuff = stuffDef ?? GenStuff.RandomStuffFor(def);
+            Thing thing = ThingMaker.MakeThing(def, stuff);
+            if (thingStyleDef != null)
+            {
+                thing.StyleDef = thingStyleDef;
+            }
+            CompQuality compQuality = thing.TryGetComp<CompQuality>();
+            if (compQuality != null)
+            {
+                compQuality.SetQuality(quality, ArtGenerationContext.Colony);
+            }
+            if (thing.def.Minifiable)
+            {
+                thing = thing.MakeMinified();
+            }
+            thing.stackCount = stackCount;
+            if (direct)
+            {
+                GenPlace.TryPlaceThing(thing, c, Find.CurrentMap, ThingPlaceMode.Direct, null, null, default(Rot4));
+                return;
+            }
+            GenPlace.TryPlaceThing(thing, c, Find.CurrentMap, ThingPlaceMode.Near, null, null, default(Rot4));
+        }
         [DebugAction("Adeptus Mechanicus", "Call Air Strike of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void CallAirstrikeOf()
         {

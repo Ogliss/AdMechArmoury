@@ -31,8 +31,6 @@
 			<MaxHitPoints>260</MaxHitPoints>
 			<WorkToMake>14000</WorkToMake>
 			<Mass>4</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">5</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">6</WornBulk>
 			<Flammability>0.6</Flammability>
 			<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
@@ -88,8 +86,6 @@
 			<WorkToMake>9000</WorkToMake>
 			<MaxHitPoints>200</MaxHitPoints>
 			<Mass>4</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">4</WornBulk>
 			<Flammability>0.6</Flammability>
 			<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
@@ -157,8 +153,6 @@
 			<MaxHitPoints>225</MaxHitPoints>
 			<MarketValue>500</MarketValue>
 			<Mass>5</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">12</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">10</WornBulk>
 			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.75</ArmorRating_Heat>
@@ -166,8 +160,6 @@
 			<Insulation_Heat>9</Insulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
-			<CarryWeight MayRequire="CETeam.CombatExtended">10</CarryWeight>
-			<CarryBulk MayRequire="CETeam.CombatExtended">8</CarryBulk>
 			<MoveSpeed>-0.12</MoveSpeed>
 			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
 		</equippedStatOffsets>
@@ -185,8 +177,6 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li MayRequire="CETeam.CombatExtended">Hands</li>
-				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/FlakArmour/FlakArmour</wornGraphicPath>
 			<layers>
@@ -247,8 +237,6 @@
 			<MaxHitPoints>200</MaxHitPoints>
 			<!--MarketValue>500</MarketValue-->
 			<Mass>25</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">80</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">18</WornBulk>
 			<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.90</ArmorRating_Heat>
@@ -257,8 +245,6 @@
 			<EquipDelay>8</EquipDelay>
 		</statBases>
 		<equippedStatOffsets>
-			<CarryWeight MayRequire="CETeam.CombatExtended">30</CarryWeight>
-			<CarryBulk MayRequire="CETeam.CombatExtended">10</CarryBulk>
 			<MoveSpeed>-0.15</MoveSpeed>
 			<WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
 			<ToxicSensitivity>-0.450</ToxicSensitivity>
@@ -277,8 +263,6 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li MayRequire="CETeam.CombatExtended">Hands</li>
-				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/IG_TempestScion_Carapace/IG_TempestScionCarapace</wornGraphicPath>
 			<layers>
@@ -316,6 +300,128 @@
 				<WestOffset>0,0.35,0</WestOffset9-->
 			</li>
 		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
+		<defName>OGI_Armour_Power</defName>
+		<label>Astartes power armor</label>
+		<description>Power Armour is an advanced form of powered combat armour, worn primarily by the Space Marines and the Chaos Space Marines, though suits have been created to be worn by mere mortals. It is a completely enclosed suit of combat armour composed of shaped Adamantium and Plasteel plates, encased in a Ceramite ablative layer. Each suit possesses a full suite of life-support functions for operation in hostile environments, an automated medicae system to provide some level of first aid to a wounded wearer and a highly advanced and fully integrated tactical targeting and threat analysis system known as Auto-senses. The suit would be heavy and cumbersome to wear but for the electrically motivated fibre bundles within the armour that replicates the wearer's movement and enhances his strength beyond its already considerable superhuman baseline (for Space Marines). Whilst Power Armour is most commonly associated with the Space Marines of the Adeptus Astartes, the Sisters of Battle and many Inquisitors also use powered armour of one sort or another. Typically, however, these armours may not contain the same strength-enhancing properties or life-support functions of Space Marine Power Armour, nor do they always provide the same level of protection.</description>
+		<graphicData Class="AdeptusMechanicus.ExtendedGraphicData">
+			<texPath>Things/Item/Apparel/Imperial/Common/PowerArmour/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<maskKey>_</maskKey>
+		</graphicData>
+		<apparel>
+			<tags>
+				<li>ImperialPowerArmour</li>
+				<li>ImperialArmour</li>
+			</tags>
+		</apparel>
+		
+		<recipeMaker>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisite>PoweredArmor</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>10</Crafting>
+			</skillRequirements>
+			<recipeUsers Inherit="False">
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<labelKey>OG_Customize</labelKey>
+				<PauldronEntries>
+					<li>
+						<label>Power Armour Pauldron Left</label>
+						<shoulderPadType>Left</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Pauldrons_Left/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>0.1,0.0000,0.01</SouthOffset>
+						<NorthOffset>-0.1,-0.0001,0.01</NorthOffset>
+						<EastOffset>0,0.15,0.0</EastOffset>
+						<WestOffset>0,0.15,0.0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<li>
+						<label>Power Armour Pauldron Right</label>
+						<shoulderPadType>Right</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Pauldrons_Right/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>-0.1,0.0000,0.01</SouthOffset>
+						<NorthOffset>0.1,-0.0001,0.01</NorthOffset>
+						<EastOffset>0,0.15,0.0</EastOffset>
+						<WestOffset>0,0.15,0.0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<li>
+						<label>Power Armour Pack</label>
+						<shoulderPadType>Backpack</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Backpacks/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>0,-0.25,0</SouthOffset>
+						<NorthOffset>0,0.5,0</NorthOffset>
+						<EastOffset>0,-0.0,0</EastOffset>
+						<WestOffset>0,-0.0,0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0,0.2,0.01</NorthOffset>
+				<SouthOffset>0,0.1,0.01</SouthOffset>
+				<EastOffset>0,0.15,0.01</EastOffset>
+				<WestOffset>0,0.15,0.01</WestOffset>
+				<drawAll>true</drawAll>
+			</li>
+		</comps>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<!--RaceDefs>
+				<li>OG_Human_Sororitas</li>
+			</RaceDefs>
+			<HediffDefs>
+				<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
+			</HediffDefs-->
+			<BodytypeDefs>
+				<li>Hulk</li>
+			</BodytypeDefs>
+			<forcedBodytype>true</forcedBodytype>
+		  </li>
+		</modExtensions>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<only>(0.33,0.33,0.33)</only>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.65,0.65,0.65)</only>
+			</li>
+			<li>
+				<weight>6</weight>
+				<min>(0.3,0.3,0.3)</min>
+				<max>(0.5,0.5,0.5)</max>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.9,0.9,0.9)</only>
+			</li>
+			</options>
+		</colorGenerator>
 	</ThingDef>
 
 </Defs>

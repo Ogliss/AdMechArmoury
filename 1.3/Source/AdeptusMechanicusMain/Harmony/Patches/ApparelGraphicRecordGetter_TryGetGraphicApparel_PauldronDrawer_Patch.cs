@@ -55,6 +55,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 		[HarmonyPostfix]
 		public static void Postfix(ref Apparel apparel, BodyTypeDef bodyType, ref ApparelGraphicRecord rec)
 		{
+			bool onHead = apparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead || PawnRenderer.RenderAsPack(apparel) || apparel.def.apparel.wornGraphicPath == BaseContent.PlaceholderImagePath;
 			/*
 			bool Pauldron = apparel.TryGetCompFast<CompPauldronDrawer>() != null;
 			if (Pauldron)
@@ -75,21 +76,6 @@ namespace AdeptusMechanicus.HarmonyInstance
 				}
 			}
 			*/
-			string mskVariant = "";
-			if (apparel is ApparelComposite composite)
-            {
-                if (!composite.AltGraphics.NullOrEmpty() && composite.ActiveAltGraphic != null)
-                {
-					rec.graphic = composite.ActiveAltGraphic.GetGraphic(rec.graphic, true);
-					Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(composite.WornGraphicPath, apparel.def.apparel.useWornGraphicMask ? ShaderDatabase.CutoutComplex : ShaderDatabase.Cutout, apparel.def.graphicData.drawSize, composite.DrawColor, composite.DrawColorTwo);
-                    if (!composite.ActiveAltGraphic.maskKey.NullOrEmpty())
-                    {
-						mskVariant = "_"+composite.ActiveAltGraphic.maskKey;
-
-					}
-					rec = new ApparelGraphicRecord(graphic, apparel);
-				}
-            }
 			CompColorableTwo compColorable = apparel.TryGetCompFast<CompColorableTwo>();
 			if (compColorable!=null)
 			{
@@ -185,7 +171,23 @@ namespace AdeptusMechanicus.HarmonyInstance
 			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
                 //	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
                 if (rec.graphic != null)
-                {
+				{
+					string mskVariant = "";
+					if (apparel is ApparelComposite composite)
+					{
+						if (!composite.AltGraphics.NullOrEmpty() && composite.ActiveAltGraphic != null)
+						{
+							rec.graphic = composite.ActiveAltGraphic.GetGraphic(rec.graphic, true);
+
+							Graphic graphic = GraphicDatabase.Get<Graphic_Multi>(composite.WornGraphicPath, apparel.def.apparel.useWornGraphicMask ? ShaderDatabase.CutoutComplex : ShaderDatabase.Cutout, apparel.def.graphicData.drawSize, composite.DrawColor, composite.DrawColorTwo);
+							if (!composite.ActiveAltGraphic.maskKey.NullOrEmpty())
+							{
+								mskVariant = "_" + composite.ActiveAltGraphic.maskKey;
+
+							}
+							rec = new ApparelGraphicRecord(graphic, apparel);
+						}
+					}
 					Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
 					bool replaced = false;
 					if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())

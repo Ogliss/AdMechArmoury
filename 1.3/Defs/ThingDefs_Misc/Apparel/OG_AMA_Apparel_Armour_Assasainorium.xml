@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Offico Assasain ========================== -->
+	<!-- ========================= Synth Skin ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor">
+		<defName>OGOA_Apparel_SynthSkin</defName>
+		<label>synth-skin</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/OA/SynthSkin/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+			<drawSize>1.00</drawSize>
+		</graphicData>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Assassinorum_Tech_Base</li>
+			</researchPrerequisites>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<costList>
+			<Cloth>50</Cloth>
+			<Steel>70</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<statBases>
+			<MaxHitPoints>260</MaxHitPoints>
+			<WorkToMake>14000</WorkToMake>
+			<Mass>4</Mass>
+			<Flammability>0.6</Flammability>
+			<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.625</ArmorRating_Heat>
+			<Insulation_Cold>10.4</Insulation_Cold> <!-- like a cloth jacket -->
+			<Insulation_Heat>3</Insulation_Heat>
+			<EquipDelay>6</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.04</MoveSpeed>
+			<WorkSpeedGlobal>-0.020</WorkSpeedGlobal>
+		</equippedStatOffsets>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/OA/SynthSkin/SynthSkin</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+			</layers>
+			<tags>
+				<li>OGOA_Synthskin</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+	</ThingDef>
+
+	<!-- ========================= Callidus Assasain ========================== -->
+	<!-- ========================= Helmet ========================== -->
+	<!--ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGOA_Apparel_Callidus_Helmet</defName>
+		<label>Callidus Assasain Helmet</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/OA/Callidus/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Assassinorum_Tech_Weapons_Callidus</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/OA/Callidus/Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef-->
+ 
+	<!-- ========================= Culexus Assasain ========================== -->
+	<!-- ========================= Helmet ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGOA_Apparel_Culexus_Helmet</defName>
+		<label>Culexus Assasain Helmet</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/OA/Culexus/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Assassinorum_Tech_Weapons_Culexus</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/OA/Culexus/Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ========================= Eversor Assasain ========================== -->
+	<!-- ========================= Helmet ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGOA_Apparel_Eversor_Helmet</defName>
+		<label>Eversor Assasain Helmet</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/OA/Eversor/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Assassinorum_Tech_Weapons_Eversor</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/OA/Eversor/Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+	<!-- ========================= Vindicare Assasain ========================== -->
+	<!-- ========================= Helmet ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGOA_Apparel_Vindicare_Helmet</defName>
+		<label>Vindicare Assasain Helmet</label>
+		<description>.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/OA/Vindicare/__Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Mass>1.2</Mass>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+			<ToxicSensitivity>-0.450</ToxicSensitivity>
+			<PsychicSensitivity>0.10</PsychicSensitivity>
+		</equippedStatOffsets>
+		<generateCommonality>2</generateCommonality>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Assassinorum_Tech_Weapons_Vindicare</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/OA/Vindicare/Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGBasicHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+	   </apparel>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_EyeProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef>
+ 
+</Defs>

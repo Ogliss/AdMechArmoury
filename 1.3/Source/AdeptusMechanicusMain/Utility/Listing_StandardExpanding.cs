@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AdeptusMechanicus.settings;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -7,16 +8,13 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-    // Token: 0x020003B1 RID: 945
     public class Listing_StandardExpanding : Listing_Standard
 	{
-		// Token: 0x06001C19 RID: 7193 RVA: 0x000AC7E5 File Offset: 0x000AA9E5
 		public Listing_StandardExpanding(GameFont font)
 		{
 			this.font = font;
 		}
 
-		// Token: 0x06001C1A RID: 7194 RVA: 0x000AC7F4 File Offset: 0x000AA9F4
 		public Listing_StandardExpanding()
 		{
 			this.font = GameFont.Small;
@@ -33,7 +31,6 @@ namespace AdeptusMechanicus
 				this.NewColumn();
 			}
 		}
-		// Token: 0x06001C1B RID: 7195 RVA: 0x000AC803 File Offset: 0x000AAA03
 		public override void Begin(Rect rect)
 		{
 			base.Begin(rect);
@@ -42,24 +39,9 @@ namespace AdeptusMechanicus
 
 		public Rect GetRect(float height, Listing_StandardExpanding parent = null, bool extend = false)
 		{
-            if (extend)
-			{
-				if (this.curY + height > this.listingRect.height)
-				{
-					this.listingRect.height = this.curY + height;
-				}
-			}
 			this.NewColumnIfNeeded(height);
 			Rect result = new Rect(this.curX, this.curY, this.ColumnWidth, height);
 			this.curY += height;
-            if (parent != null)
-            {
-				parent.curY += height;
-			}
-            if (listingRect.height < this.curY + height)
-			{
-				listingRect.height += height;
-			}
 			return result;
 		}
 
@@ -85,110 +67,37 @@ namespace AdeptusMechanicus
 
 		public Listing_StandardExpanding BeginSection(float height, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null)
 		{
-			Rect rect = this.GetRect(height + sectionBorder + bottomBorder);
-			this.frameRect = rect;
-			if (parent != null)
-			{
-				parent.listingRect.height += rect.height;
-
-			}
-			if (!hidesection)
-			{
-				switch (type)
-				{
-					case 1:
-						Widgets.DrawWindowBackground(rect);
-						break;
-					case 2:
-						Widgets.DrawWindowBackgroundTutor(rect);
-						break;
-					case 3:
-						Widgets.DrawOptionUnselected(rect);
-						break;
-					case 4:
-						Widgets.DrawOptionSelected(rect);
-						break;
-					default:
-						Widgets.DrawMenuSection(rect);
-						break;
-				}
-			}
-			Listing_StandardExpanding listing_Standard = new Listing_StandardExpanding();
-			Rect rect2 = new Rect(rect.x + sectionBorder, rect.y + sectionBorder, rect.width - sectionBorder * 2f, rect.height - (sectionBorder + bottomBorder));
-			listing_Standard.Begin(rect2);
-			return listing_Standard;
+			return BeginSection(height, out Rect out1, out Rect out2, hidesection, type, sectionBorder, bottomBorder, parent, false);
 		}
 
-		public Listing_StandardExpanding BeginSection(float height, out Rect frane, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null, bool extend = false)
+		public Listing_StandardExpanding BeginSection(float height, out Rect frame, out Rect contents, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null, bool extend = false)
 		{
-			frane = this.GetRect(height + sectionBorder + bottomBorder, null, extend);
-			this.frameRect = frane;
-			if (parent != null)
-			{
-				parent.curY += frane.height;
-
-			}
+			frame = this.GetRect(height + sectionBorder + bottomBorder, null, extend);
 			if (!hidesection)
 			{
 				switch (type)
 				{
 					case 1:
-						Widgets.DrawWindowBackground(frane);
+						Widgets.DrawWindowBackground(frame);
 						break;
 					case 2:
-						Widgets.DrawWindowBackgroundTutor(frane);
+						Widgets.DrawWindowBackgroundTutor(frame);
 						break;
 					case 3:
-						Widgets.DrawOptionUnselected(frane);
+						Widgets.DrawOptionUnselected(frame);
 						break;
 					case 4:
-						Widgets.DrawOptionSelected(frane);
+						Widgets.DrawOptionSelected(frame);
 						break;
 					default:
-						Widgets.DrawMenuSection(frane);
+						Widgets.DrawMenuSection(frame);
 						break;
 				}
 			}
 			Listing_StandardExpanding listing_Standard = new Listing_StandardExpanding();
-			Rect rect2 = new Rect(frane.x + sectionBorder, frane.y + sectionBorder, frane.width - sectionBorder * 2f, frane.height - (sectionBorder + bottomBorder));
-
-			listing_Standard.Begin(rect2);
-			return listing_Standard;
-		}
-
-		public Listing_StandardExpanding BeginSection(float height, out Rect frane, out Rect contents, bool hidesection = false, int type = 0, int sectionBorder = 4, int bottomBorder = 4, Listing_StandardExpanding parent = null, bool extend = false)
-		{
-			frane = this.GetRect(height + sectionBorder + bottomBorder, null, extend);
-			this.frameRect = frane;
-			if (parent != null)
-			{
-				parent.curY += frane.height;
-
-			}
-			if (!hidesection)
-			{
-				switch (type)
-				{
-					case 1:
-						Widgets.DrawWindowBackground(frane);
-						break;
-					case 2:
-						Widgets.DrawWindowBackgroundTutor(frane);
-						break;
-					case 3:
-						Widgets.DrawOptionUnselected(frane);
-						break;
-					case 4:
-						Widgets.DrawOptionSelected(frane);
-						break;
-					default:
-						Widgets.DrawMenuSection(frane);
-						break;
-				}
-			}
-			Listing_StandardExpanding listing_Standard = new Listing_StandardExpanding();
-			contents = new Rect(frane.x + sectionBorder, frane.y + sectionBorder, frane.width - sectionBorder * 2f, frane.height - (sectionBorder + bottomBorder));
-
+			contents = new Rect(frame.x + sectionBorder, frame.y + sectionBorder, frame.width - sectionBorder * 2f, frame.height - (sectionBorder + bottomBorder));
+			listing_Standard.frameRect = frame;
+			listing_Standard.parent = this;
 			listing_Standard.Begin(contents);
 			return listing_Standard;
 		}
@@ -253,6 +162,26 @@ namespace AdeptusMechanicus
 			this.Gap(this.verticalSpacing);
 		}
 		*/
+		public bool CheckboxLabeledSection(string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false, bool extend = false)
+        {
+
+			return checkOn;
+		}
+		public void RaceSettingLabeled(string label, RaceSettingHandle raceSetting, string tooltip = null, bool disabled = false, bool highlight = false, Texture2D texChecked = null, Texture2D texUnchecked = null)
+		{
+			float lineHeight = Text.LineHeight;
+			Rect rect = this.GetRect(lineHeight);
+			if (!tooltip.NullOrEmpty() || highlight)
+			{
+				if (Mouse.IsOver(rect))
+				{
+					Widgets.DrawHighlight(rect);
+				}
+				if (!tooltip.NullOrEmpty()) TooltipHandler.TipRegion(rect, tooltip);
+			}
+			AdeptusWidgets.RaceSettingLabeled(rect, raceSetting, disabled, texChecked, texUnchecked);
+			this.Gap(this.verticalSpacing);
+		}
 		public bool CheckboxLabeled(string label, ref bool checkOn, string tooltip = null, bool disabled = false, bool highlight = false, Texture2D texChecked = null, Texture2D texUnchecked = null, bool placeCheckboxNearText = false, bool extend = false)
 		{
 			float lineHeight = Text.LineHeight;
@@ -302,12 +231,10 @@ namespace AdeptusMechanicus
 		public void EndSection(Listing_StandardExpanding listing)
 		{
 			listing.End();
-			this.listingRect.height += listing.listingRect.height;
 		}
 
 		public override void End()
 		{
-			ExtendRec();
 			base.End();
 		}
 
@@ -319,15 +246,22 @@ namespace AdeptusMechanicus
 				listingRect.height = this.curY;
 			}
 		}
-		
-        public void ExtendRec(float f)
-		{
-			listingRect.height += f;
-			frameRect.height += f;
-		}
 
-		public new Rect listingRect;
+		public void ExtendRec(float f)
+		{
+			curY += f;
+			if (this.listingRect != null)
+			{
+				this.listingRect.height += f;
+			}
+			if (this.frameRect != null)
+			{
+				this.frameRect.height += f;
+			}
+		}
+		public Listing_StandardExpanding parent;
 		public Rect frameRect;
 
 	}
+
 }

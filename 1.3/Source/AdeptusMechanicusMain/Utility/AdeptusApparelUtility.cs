@@ -11,8 +11,17 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public static class AdeptusApparelUtility
     {
+        static AdeptusApparelUtility()
+        {
+            foreach (var item in DefDatabase<ThingDef>.AllDefsListForReading.Where(x=> x.HasComp(typeof(CompPauldronDrawer))))
+            {
+                item.GetCompProperties<CompProperties_PauldronDrawer>().initalizeGraphics(item);
+            }
+        }
+
         public static bool CanCustomizeApparel(Thing thing)
         {
             if (thing is ApparelComposite apparel)

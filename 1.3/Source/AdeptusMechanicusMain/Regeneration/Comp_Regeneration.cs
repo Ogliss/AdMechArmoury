@@ -37,6 +37,8 @@ namespace AdeptusMechanicus
     {
         public CompProperties_Regeneration Props => this.props as CompProperties_Regeneration;
         public Pawn pawn => this.parent as Pawn;
+        public virtual float HealFactor => Props.healFactor;
+        public virtual float HealFactorScar => Props.healFactorOldWound;
         public override void PostPostMake()
         {
             base.PostPostMake();
@@ -47,10 +49,7 @@ namespace AdeptusMechanicus
         {
             get
             {
-                if (parent.Map== null)
-                {
-                    return false;
-                }
+                if (parent.Map== null) return false;
                 bool a = (Props.useFood && pawn.needs.food.CurCategory > HungerCategory.UrgentlyHungry);
                 bool b = (Props.useRest && pawn.needs.rest.CurCategory > RestCategory.VeryTired);
                 bool c = (Props.onlyWhileSleeping && pawn.Awake());
@@ -69,29 +68,18 @@ namespace AdeptusMechanicus
             base.CompTick();
             if (Current.Game.tickManager.TicksGame >= this.ticksUntilNextHeal)
             {
-                if (Props.healFreshChance > 0f)
-                {
-                    this.TryHealWounds();
-                }
-                if (Props.sealWoundsChance > 0f)
-                {
-                    this.TrySealWounds();
-                }
+                if (Props.healFreshChance > 0f) this.TryHealWounds();
+                if (Props.sealWoundsChance > 0f) this.TrySealWounds();
                 this.SetNextHealTick();
             }
             if (Current.Game.tickManager.TicksGame >= this.ticksUntilNextGrow)
             {
-                if (Props.healPermenantChance > 0f)
-                {
-                    this.TryHealOldWounds();
-                }
-                if (Props.regrowMissingChance > 0f)
-                {
-                    this.TryRegrowBodyparts();
-                }
+                if (Props.healPermenantChance > 0f) this.TryHealOldWounds();
+                if (Props.regrowMissingChance > 0f) this.TryRegrowBodyparts();
                 this.SetNextGrowTick();
             }
         }
+
 
         public void TryHealWounds()
         {
@@ -109,16 +97,19 @@ namespace AdeptusMechanicus
                         Rand.PopState();
                         if (CanHeal && chance < Props.healFreshChance)
                         {
-                            float num = Injury.Severity * Props.healFactor;
-                            Injury.Heal(Mathf.Max(num, Props.healMinimum));
+                            float num = Injury.Severity * HealFactor;
+                            float cost = Props.useRest && Props.useFood ? num / 2 : (Props.useRest || Props.useFood ? num : 0f);
+                            bool afford = (!Props.useFood || pawn.needs.food.CurLevel >= cost) && (!Props.useRest || pawn.needs.rest.CurLevel >= cost);
+                            if (!afford) continue;
                             if (Props.useFood)
                             {
-                                pawn.needs.food.CurLevel -= num;
+                                pawn.needs.food.CurLevel -= cost;
                             }
                             if (Props.useRest)
                             {
-                                pawn.needs.rest.CurLevel -= num;
+                                pawn.needs.rest.CurLevel -= cost;
                             }
+                            Injury.Heal(Mathf.Max(num, Props.healMinimum));
                         }
                     }
                 }
@@ -134,14 +125,26 @@ namespace AdeptusMechanicus
             {
                 foreach (Hediff hediff in enumerable)
                 {
-                    if (hediff is HediffWithComps hediffWithComps)
+                    if (hediff is Hediff_Injury Injury)
                     {
                         Rand.PushState();
                         float chance = Rand.Value;
                         Rand.PopState();
                         if (CanHeal && chance < Props.sealWoundsChance)
                         {
-                            HediffComp_TendDuration hediffComp_TendDuration = hediffWithComps.TryGetCompFast<HediffComp_TendDuration>();
+                            float num = (Injury.AgeTicksToStopBleeding - Injury.ageTicks) * HealFactor;
+                            float cost = Props.useRest && Props.useFood ? num / 2 : (Props.useRest || Props.useFood ? num : 0f);
+                            bool afford = (!Props.useFood || pawn.needs.food.CurLevel >= cost) && (!Props.useRest || pawn.needs.rest.CurLevel >= cost);
+                            if (!afford) continue;
+                            if (Props.useFood)
+                            {
+                                pawn.needs.food.CurLevel -= cost;
+                            }
+                            if (Props.useRest)
+                            {
+                                pawn.needs.rest.CurLevel -= cost;
+                            }
+                            HediffComp_TendDuration hediffComp_TendDuration = Injury.TryGetCompFast<HediffComp_TendDuration>();
                             hediffComp_TendDuration.tendQuality = 0f;
                             hediffComp_TendDuration.tendTicksLeft = Find.TickManager.TicksGame;
                             this.pawn.health.Notify_HediffChanged(hediff);
@@ -169,21 +172,24 @@ namespace AdeptusMechanicus
                         Rand.PopState();
                         if (Injury != null && CanHeal && chance < Props.healPermenantChance)
                         {
-                            float num = Injury.Severity * Props.healFactorOldWound;
+                            float num = Injury.Severity * HealFactorScar;
+                            float cost = Props.useRest && Props.useFood ? num / 2 : (Props.useRest || Props.useFood ? num : 0f);
+                            bool afford = (!Props.useFood || pawn.needs.food.CurLevel >= cost) && (!Props.useRest || pawn.needs.rest.CurLevel >= cost);
+                            if (!afford) continue;
+                            if (Props.useFood)
+                            {
+                                pawn.needs.food.CurLevel -= cost;
+                            }
+                            if (Props.useRest)
+                            {
+                                pawn.needs.rest.CurLevel -= cost;
+                            }
                             if (num > Injury.Severity && Props.scarRemovalChance > 0)
                             {
                                 if (chancescar < Props.scarRemovalChance)
                                 {
                                     num = Injury.Severity - Props.healFactorOldWound;
                                 }
-                            }
-                            if (Props.useFood)
-                            {
-                                pawn.needs.food.CurLevel -= num;
-                            }
-                            if (Props.useRest)
-                            {
-                                pawn.needs.rest.CurLevel -= num;
                             }
                             Injury.Heal(num);
                         }
@@ -205,17 +211,19 @@ namespace AdeptusMechanicus
                     if (hediff2 != null && CanHeal && chance < Props.regrowMissingChance)
                     {
                         float num = hediff2.Part.def.GetMaxHealth(pawn) / 100;
-                        this.pawn.health.RemoveHediff(hediff2);
-                        this.pawn.health.AddHediff(AdeptusHediffDefOf.OG_Hediff_Regenerating_Part, part, null, null);
-
+                        float cost = Props.useRest && Props.useFood ? num / 2 : (Props.useRest || Props.useFood ? num : 0f);
+                        bool afford = (!Props.useFood || pawn.needs.food.CurLevel >= cost) && (!Props.useRest || pawn.needs.rest.CurLevel >= cost);
+                        if (!afford) continue;
                         if (Props.useFood)
                         {
-                            pawn.needs.food.CurLevel -= num;
+                            pawn.needs.food.CurLevel -= cost;
                         }
                         if (Props.useRest)
                         {
-                            pawn.needs.rest.CurLevel -= num;
+                            pawn.needs.rest.CurLevel -= cost;
                         }
+                        this.pawn.health.RemoveHediff(hediff2);
+                        this.pawn.health.AddHediff(Props.Regenerating_Part ?? AdeptusHediffDefOf.OG_Hediff_Regenerating_Part, part, null, null);
                         this.pawn.health.hediffSet.DirtyCache();
                     }
                 }

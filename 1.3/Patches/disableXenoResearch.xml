@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- Remove uneeded research -->
+	<!-- Add TableMachining to DoBillsMachiningTable fixedBillGiverDefs -->
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="OGE_TableMachining"]</xpath>
-				<!--success>Always</success-->
 				<match Class="PatchOperationAdd">
 					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
 					<value>
@@ -16,7 +15,6 @@
 			</li>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="OGT_TableMachining"]</xpath>
-				<!--success>Always</success-->
 				<match Class="PatchOperationAdd">
 					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
 					<value>
@@ -26,7 +24,6 @@
 			</li>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="OGO_TableMachining"]</xpath>
-				<!--success>Always</success-->
 				<match Class="PatchOperationAdd">
 					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
 					<value>
@@ -36,7 +33,6 @@
 			</li>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="OGI_TableMachining"]</xpath>
-				<!--success>Always</success-->
 				<match Class="PatchOperationAdd">
 					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
 					<value>
@@ -46,7 +42,6 @@
 			</li>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="OGC_TableMachining"]</xpath>
-				<!--success>Always</success-->
 				<match Class="PatchOperationAdd">
 					<xpath>/Defs/WorkGiverDef[defName = "DoBillsMachiningTable"]/fixedBillGiverDefs</xpath>
 					<value>
@@ -54,6 +49,12 @@
 					</value>
 				</match>
 			</li>
+		</operations>	
+	</Operation>
+	 
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
 			<li Class="PatchOperationFindModID">
 				<mods>
 					<li>Ogliss.AdMech.Xenobiologis.Orkz</li>

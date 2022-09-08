@@ -16,7 +16,7 @@ using System.Reflection.Emit;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     
-    [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld")]
+ //   [HarmonyPatch(typeof(FactionGenerator), "GenerateFactionsIntoWorld")]
     public static class FactionGenerator_GenerateFactionsIntoWorld_DisabledFactions_Transpiler
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

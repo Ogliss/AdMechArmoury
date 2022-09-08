@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AdeptusMechanicus.settings;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,6 +97,99 @@ namespace AdeptusMechanicus
             CheckboxDraw(rect.x + rect.width - 24f, rect.y, checkOn, disabled, 24f, texChecked, texUnchecked);
             Text.Anchor = anchor;
         }
+        public static void RaceSettingLabeled(Rect rect, RaceSettingHandle raceSetting, bool disabled = false, Texture2D texChecked = null, Texture2D texUnchecked = null)
+        {
+            TextAnchor anchor = Text.Anchor;
+            Verse.Text.Anchor = TextAnchor.MiddleLeft;
+            Rect labelRect = rect.LeftPart(0.3f);
+            Rect boxesRect = rect.RightPart(0.7f);
+            float x = boxesRect.width / 14f;
+            Widgets.Label(labelRect, raceSetting.Race.LabelCap);
+            float num = x;
+            CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Imperial, disabled, 24f, texChecked, texUnchecked);
+            if (AdeptusIntergrationUtility.enabled_AdeptusMechanicus)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Mechanicus, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_AdeptusAstartes)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Astartes, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisChaos)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Chaos, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisEldar)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Aeldari, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisOrk)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Orkoid, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisTau)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Tau, disabled, 24f, texChecked, texUnchecked);
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Kroot, disabled, 24f, texChecked, texUnchecked);
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Vespid, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisNecron)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Necron, disabled, 24f, texChecked, texUnchecked);
+            }
+            if (AdeptusIntergrationUtility.enabled_XenobiologisTyranid)
+            {
+                num += x;
+                CheckboxSmallDraw(boxesRect.x + num, rect.y, ref raceSetting.Tyranid, disabled, 24f, texChecked, texUnchecked);
+            }
+            Text.Anchor = anchor;
+        }
+        public static void CheckboxSmallDraw(float x, float y, ref bool active, bool disabled = false, float size = 24f, Texture2D texChecked = null, Texture2D texUnchecked = null)
+        {
+            Rect rect = new Rect(x, y, size, size);
+            if (!disabled && Widgets.ButtonInvisible(rect, true))
+            {
+                active = !active;
+                if (active)
+                {
+                    SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera(null);
+                }
+                else
+                {
+                    SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
+                }
+            }
+            Color color = GUI.color;
+            if (disabled)
+            {
+                GUI.color = InactiveColor;
+            }
+            Texture2D image;
+            Texture2D imageActive = ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex);
+            Texture2D imageInactive = ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex);
+            if (active)
+            {
+                image = disabled ? imageInactive : imageActive;
+            }
+            else
+            {
+                image = imageInactive;
+            }
+            GUI.DrawTexture(rect, image);
+            if (disabled)
+            {
+                GUI.color = color;
+            }
+        }
         private static void CheckboxDraw(float x, float y, bool active, bool disabled, float size = 24f, Texture2D texChecked = null, Texture2D texUnchecked = null)
         {
             Color color = GUI.color;
@@ -104,13 +198,15 @@ namespace AdeptusMechanicus
                 GUI.color = InactiveColor;
             }
             Texture2D image;
+            Texture2D imageActive = ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex);
+            Texture2D imageInactive = ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex);
             if (active)
             {
-                image = ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex);
+                image = disabled ? imageInactive : imageActive;
             }
             else
             {
-                image = ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex);
+                image = imageInactive;
             }
             GUI.DrawTexture(new Rect(x, y, size, size), image);
             if (disabled)
@@ -178,6 +274,6 @@ namespace AdeptusMechanicus
         }
 
         public static readonly Texture2D RangeMatch = ContentFinder<Texture2D>.Get("UI/Buttons/Dev/RangeMatch", true);
-        private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
+        public static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
     }
 }

@@ -9,6 +9,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public class CompProperties_PauldronDrawer : CompProperties
     {
         public List<ShoulderPadProperties> PauldronEntries;
@@ -25,66 +26,174 @@ namespace AdeptusMechanicus
         {
             this.compClass = typeof(CompPauldronDrawer);
         }
-        /*
-        public override void ResolveReferences(ThingDef parentDef)
+        public void initalizeGraphics(ThingDef parentDef)
         {
-            base.ResolveReferences(parentDef);
-            if (!PauldronEntries.NullOrEmpty())
+            foreach (var entry in PauldronEntries)
             {
-            //    Log.Message("PauldronDrawer ResolveReferences for " + parentDef);
-                foreach (var item in PauldronEntries)
+                if (!entry.padTexPath.NullOrEmpty())
                 {
-                    if (!item.padTexPath.NullOrEmpty())
+                    List<Texture2D> mainList = ContentFinder<Texture2D>.GetAllInFolder(entry.padTexPath).ToList();
+                    if (!mainList.NullOrEmpty())
                     {
-                        List<Texture2D> list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item.padTexPath)
+                        List<Texture2D> list = (from x in mainList
                                                 where
-                                                    !x.name.EndsWith("_m") &&
-                                                    !x.name.EndsWith("_Glow") &&
-                                                    !x.name.EndsWith("_Glow_m") &&
-                                                    !x.name.Contains("_northm") &&
-                                                    !x.name.Contains("_southm") &&
-                                                    !x.name.Contains("_eastm") &&
-                                                    !x.name.Contains("_westm")
+                                                    NotMaskOrGlow(x.name)
                                                 orderby x.name
-                                                select x).ToList<Texture2D>();
-                        if (list.NullOrEmpty<Texture2D>())
+                                                select x).ToList();
+                        if (list.NullOrEmpty())
                         {
-                            Log.Error("PauldronDrawer cannot init "+ item.label + ": No textures found at path " + item.padTexPath, false);
+                            Log.Error($"PauldronDrawer cannot init {parentDef}'s {entry.shoulderPadType} {entry.label}: No textures found at padTexPath:: {entry.padTexPath}");
                         }
-                        if (!item.options.NullOrEmpty())
+                        else
                         {
-                            foreach (var item2 in item.options)
+                            TestPath(entry, list, parentDef);
+                        }
+                        if (entry.defaultOption != null && entry.defaultOption.TexPath != "Blank")
+                        {
+                            List<Texture2D> list2 = (from x in mainList
+                                                     where 
+                                                         x.name.Contains(entry.defaultOption.TexPath) && 
+                                                         NotMaskOrGlow(x.name)
+                                                     orderby x.name
+                                                     select x).ToList();
+                            if (list2.NullOrEmpty())
                             {
-                                if (!item2.TexPath.NullOrEmpty())
+                                Log.Error($"PauldronDrawer cannot init {parentDef}'s {entry.shoulderPadType} {entry.label}: No textures found at defaultOption.TexPath:: {entry.padTexPath}/{entry.defaultOption.TexPath}");
+                            }
+                            else
+                            {
+                                TestPath(entry, list, parentDef);
+                            }
+                        }
+                        if (!entry.options.NullOrEmpty())
+                        {
+                            foreach (var option in entry.options)
+                            {
+                                if (!option.TexPath.NullOrEmpty())
                                 {
-                                    list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item2.TexPath)
-                                                            where
-                                                                !x.name.EndsWith("_m") &&
-                                                                !x.name.EndsWith("_Glow") &&
-                                                                !x.name.EndsWith("_Glow_m") &&
-                                                                !x.name.Contains("_northm") &&
-                                                                !x.name.Contains("_southm") &&
-                                                                !x.name.Contains("_eastm") &&
-                                                                !x.name.Contains("_westm") &&
-                                                                x.name.Contains("_" + item2.TexPath)
-                                                            orderby x.name
-                                                            select x).ToList<Texture2D>();
-                                    if (list.NullOrEmpty<Texture2D>())
+                                    list = (from x in mainList
+                                            where
+                                                x.name.Contains(option.TexPath) &&
+                                                NotMaskOrGlow(x.name)
+                                            orderby x.name
+                                            select x).ToList();
+                                    if (list.NullOrEmpty())
                                     {
-                                        Log.Error("PauldronDrawer cannot init " + item2.Label + ": No textures found at path " + item.padTexPath+ "_" + item2.TexPath, false);
+                                        Log.Error($"PauldronDrawer cannot init {parentDef}'s {entry.shoulderPadType} {entry.label}({option.Label}): No textures found at Option.TexPath:: {entry.padTexPath}/{option.TexPath}");
+
+                                    }
+                                    else
+                                    {
+                                        TestPath(entry, list, parentDef);
                                     }
                                 }
                                 else
                                 {
-                                    Log.Error("PauldronDrawer cannot init option "+ item2 + ": No TexPath found", false);
+                                    if (!(option.Color.HasValue || option.ColorTwo.HasValue))
+                                    {
+                                        Log.Error("PauldronDrawer cannot init option " + option.Label + ": No TexPath found");
+                                    }
                                 }
                             }
                         }
                     }
                     else
                     {
-                        Log.Error("PauldronDrawer cannot init "+ item + ": No padTexPath found", false);
+                        Log.Error($"PauldronDrawer cannot find any textures in {entry.padTexPath} for {parentDef}'s {entry.shoulderPadType} {entry.label}");
                     }
+                }
+                else
+                {
+                    Log.Error("PauldronDrawer cannot init " + entry.label + ": No padTexPath found");
+                }
+            }
+        }
+
+        public bool TestPath(ShoulderPadProperties entry, List<Texture2D> list, ThingDef parentDef)
+        {
+            List<Rot4> list2 = new List<Rot4>() { Rot4.North, Rot4.South, Rot4.East, Rot4.West };
+            string s = string.Empty;
+            foreach (Rot4 item in list2)
+            {
+                if (entry.DrawAtRot(item))
+                {
+                    string s2 = item.ToStringWord().ToLower();
+                    Texture2D texture = list.FirstOrFallback(x => x.name.Contains(s2), item != Rot4.West ? null : list.FirstOrFallback(x => x.name.Contains("east")));
+                    if (texture == null)
+                    {
+                        s += (s != string.Empty ? $", " : "") + s2;
+                    }
+                }
+            }
+            if (s != string.Empty)
+            {
+                Log.Error($"PauldronDrawer cannot init {parentDef}'s {entry.label}: No {s} textures found at path:: {entry.padTexPath}");
+                return false;
+            }
+            return true;
+        }
+
+        public bool NotMaskOrGlow(string name)
+        {
+            return !name.EndsWith("_m") && !name.EndsWith("_Glow") && !name.EndsWith("_Glow_m") &&    !name.Contains("_northm") &&  !name.Contains("_southm") &&  !name.Contains("_eastm") && !name.Contains("_westm");
+        }
+        /*
+        public override void ResolveReferences(ThingDef parentDef)
+        {
+            base.ResolveReferences(parentDef);
+            foreach (var item in PauldronEntries)
+            {
+                if (!item.padTexPath.NullOrEmpty())
+                {
+                    List<Texture2D> list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item.padTexPath)
+                                            where x.name.Contains(item.defaultOption.TexPath) &&
+                                                !x.name.EndsWith("_m") &&
+                                                !x.name.EndsWith("_Glow") &&
+                                                !x.name.EndsWith("_Glow_m") &&
+                                                !x.name.Contains("_northm") &&
+                                                !x.name.Contains("_southm") &&
+                                                !x.name.Contains("_eastm") &&
+                                                !x.name.Contains("_westm")
+                                            orderby x.name
+                                            select x).ToList<Texture2D>();
+                    if (list.NullOrEmpty<Texture2D>())
+                    {
+                        Log.Error($"PauldronDrawer cannot init {parentDef}'s {item.shoulderPadType.ToString()} {item.label}: No textures found at path:: {item.padTexPath}/{item.defaultOption.TexPath}");
+                    }
+                    if (!item.options.NullOrEmpty())
+                    {
+                        foreach (var item2 in item.options)
+                        {
+                            if (!item2.TexPath.NullOrEmpty())
+                            {
+                                list = (from x in ContentFinder<Texture2D>.GetAllInFolder(item.padTexPath + "/" + item2.TexPath)
+                                        where
+                                            !x.name.EndsWith("_m") &&
+                                            !x.name.EndsWith("_Glow") &&
+                                            !x.name.EndsWith("_Glow_m") &&
+                                            !x.name.Contains("_northm") &&
+                                            !x.name.Contains("_southm") &&
+                                            !x.name.Contains("_eastm") &&
+                                            !x.name.Contains("_westm") &&
+                                            x.name.Contains("_" + item2.TexPath)
+                                        orderby x.name
+                                        select x).ToList<Texture2D>();
+                                if (list.NullOrEmpty<Texture2D>())
+                                {
+                                    Log.Error($"PauldronDrawer cannot init {parentDef}'s {item.shoulderPadType.ToString()} {item.label}({item2.Label}): No textures found at path:: {item.padTexPath}/{item2.TexPath}");
+
+                                }
+                            }
+                            else
+                            {
+                                Log.Error("PauldronDrawer cannot init option " + item2 + ": No TexPath found");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Error("PauldronDrawer cannot init " + item + ": No padTexPath found");
                 }
             }
         }

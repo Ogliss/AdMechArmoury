@@ -15,8 +15,6 @@
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>500</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.30</ArmorRating_Heat>
@@ -52,8 +50,6 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li MayRequire="CETeam.CombatExtended">Hands</li>
-				<li MayRequire="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<layers>
 				<li>Middle</li>
@@ -61,6 +57,7 @@
 				<li>Shell</li>
 			</layers>
 			<tags>
+				<li>AMTech_Priest</li>
 				<li>AMTechPriestRobe</li>
 				<li>AMTechPriest</li>
 				<li>AMMilitary</li>
@@ -119,8 +116,6 @@
 			<MaxHitPoints>250</MaxHitPoints>
 			<WorkToMake>20000</WorkToMake>
 			<Mass>1</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">2</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">0.5</WornBulk>
 			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.15</ArmorRating_Heat>
@@ -149,9 +144,9 @@
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestHood/TechPriestHood</wornGraphicPath>
 			<layers>
 				<li>Overhead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 			</layers>
 			<tags>
+				<li>AMTech_Priest</li>
 				<li>AMTechPriestHood</li>
 				<li>AMTechPriest</li>
 				<li>AMMilitary</li>
@@ -197,8 +192,6 @@
 			<MaxHitPoints>300</MaxHitPoints>
 			<!--MarketValue>1500</MarketValue-->
 			<Mass>9</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">80</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">12</WornBulk>
 			<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.90</ArmorRating_Heat>
@@ -211,8 +204,6 @@
 			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
 			<ToxicSensitivity>-0.45</ToxicSensitivity>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
-			<CarryWeight MayRequire="CETeam.CombatExtended">50</CarryWeight>
-			<CarryBulk MayRequire="CETeam.CombatExtended">8</CarryBulk>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>80</Steel>
@@ -228,8 +219,6 @@
 				<li>Shoulders</li>
 				<li>Arms</li>
 				<li>Legs</li>
-				<li IfModActive="CETeam.CombatExtended">Hands</li>
-				<li IfModActive="CETeam.CombatExtended">Feet</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/TechPriestRobe/Base</wornGraphicPath>
@@ -315,8 +304,6 @@
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
 			<Mass>1</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
 			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.20</ArmorRating_Heat>
@@ -329,7 +316,6 @@
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			<ToxicSensitivity>-0.45</ToxicSensitivity>
-			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>50</Steel>
@@ -345,9 +331,6 @@
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -386,7 +369,7 @@
 		-->
 	</ThingDef>
 
-    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Ranger" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<ThingDef Name="OGAM_Apparel_SkitariiHelmet_Ranger" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
 		<defName>OGAM_Apparel_SkitariiRangerHelmet</defName>
 		<label>Skitarii Ranger Helmet</label>
 		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
@@ -400,6 +383,12 @@
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Ranger</wornGraphicPath>
+			<tags>
+				<li>AMSkitariiRangerHelmet</li>
+				<li>AMSkitariiRanger</li>
+				<li>AMMilitary</li>
+				<li>EVA</li>
+			</tags>
 		</apparel>
 		<!--colorGenerator Class="ColorGenerator_Options">
 			<options>
@@ -410,22 +399,22 @@
 			</options>
 		</colorGenerator-->
 		<modExtensions>
-		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
-			<defaultLabel>Down</defaultLabel>
-			<keyLabel>Hood</keyLabel>
-			<alternateGraphics>
-				<li>
-					<label>Up</label>
-					<saveKey>HoodUp</saveKey>
-					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_RangerHooded</texPath>
-					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/RangerHooded</wornGraphicPath>
-				</li>
-			</alternateGraphics>
-		  </li>
+			<li Class="AdeptusMechanicus.ApparelGraphicExtension">
+				<defaultLabel>Down</defaultLabel>
+				<keyLabel>Hood</keyLabel>
+				<alternateGraphics>
+					<li>
+						<label>Up</label>
+						<saveKey>HoodUp</saveKey>
+						<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_RangerHooded</texPath>
+						<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/RangerHooded</wornGraphicPath>
+					</li>
+				</alternateGraphics>
+			</li>
 		</modExtensions>
 	</ThingDef>
 	
-    <ThingDef Name="OGAM_Apparel_SkitariiHelmet_Vanguard" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<ThingDef Name="OGAM_Apparel_SkitariiHelmet_Vanguard" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
 		<defName>OGAM_Apparel_SkitariiVanguardHelmet</defName>
 		<label>Skitarii Vanguard Helmet</label>
 		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
@@ -439,6 +428,12 @@
 		<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/Vanguard</wornGraphicPath>
+			<tags>
+				<li>AMSkitariiVanguardHelmet</li>
+				<li>AMSkitariiVanguard</li>
+				<li>AMMilitary</li>
+				<li>EVA</li>
+			</tags>
 		</apparel>
 		<!--colorGenerator Class="ColorGenerator_Options">
 			<options>
@@ -449,23 +444,23 @@
 			</options>
 		</colorGenerator-->
 		<modExtensions>
-		  <li Class="AdeptusMechanicus.ApparelGraphicExtension">
-			<defaultLabel>Down</defaultLabel>
-			<keyLabel>Hood</keyLabel>
-			<alternateGraphics>
-				<li>
-					<label>Up</label>
-					<saveKey>HoodUp</saveKey>
-					<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_VanguardHooded</texPath>
-					<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/VanguardHooded</wornGraphicPath>
-				</li>
-			</alternateGraphics>
-		  </li>
+			<li Class="AdeptusMechanicus.ApparelGraphicExtension">
+				<defaultLabel>Down</defaultLabel>
+				<keyLabel>Hood</keyLabel>
+				<alternateGraphics>
+					<li>
+						<label>Up</label>
+						<saveKey>HoodUp</saveKey>
+						<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_VanguardHooded</texPath>
+						<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/VanguardHooded</wornGraphicPath>
+					</li>
+				</alternateGraphics>
+			</li>
 		</modExtensions>
 	</ThingDef>
 	
 	<!-- ========================= Mechanicus - Skitarii Ranger Helmet ========================== -->
-    <!--ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiHelmet_Ranger_Base" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
+		<!--ThingDef Abstract="True" Name="OGAM_Apparel_SkitariiHelmet_Ranger_Base" ParentName="OGAM_Apparel_SkitariiLegionnaireHelmet">
 		<inspectorTabs>
 			<li>OgsCompToggleDef.ITab_ToggleDef</li>
 		</inspectorTabs>
@@ -476,7 +471,7 @@
 		</comps>
 	</ThingDef>
 
-    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
+		<ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Unhooded</defName>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiLegionnaireHelmet</texPath>
@@ -497,9 +492,9 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+		</ThingDef>
 	
-    <ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
+		<ThingDef ParentName="OGAM_Apparel_SkitariiHelmet_Ranger_Base">
 		<defName>OGAM_Apparel_SkitariiLegionnaireHelmet_TOGGLEDEF_Hooded</defName>
 		<label>Skitarii Legionnaire Helmet(Hooded)</label>
 		<graphicData>
@@ -521,7 +516,7 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef-->
+		</ThingDef-->
 	
 	<!-- ========================= Mechanicus - Skitarii Ranger Primus Helmet ========================== -->
 	<!--ThingDef Name="OGAM_Apparel_SkitariiPrimusHelmet" ParentName="OG_Mechanicus_Apparel_Armor" Abstract="True" >
@@ -533,8 +528,8 @@
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>30000</WorkToMake>
 			<Mass>1</Mass>
-			<Bulk MayRequire="CETeam.CombatExtended">4</Bulk>
-			<WornBulk MayRequire="CETeam.CombatExtended">1</WornBulk>
+			<Bulk IgnoreIfNoMatchingField="True">4</Bulk>
+			<WornBulk IgnoreIfNoMatchingField="True">1</WornBulk>
 			<ArmorRating_Sharp>0.36</ArmorRating_Sharp>
 			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.36</ArmorRating_Heat>
@@ -547,7 +542,6 @@
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<PsychicSensitivity>-0.10</PsychicSensitivity>
 			<ToxicSensitivity>-0.75</ToxicSensitivity>
-			<SmokeSensitivity MayRequire="CETeam.CombatExtended">-1</SmokeSensitivity>
 		</equippedStatOffsets>
 		<costList>
 			<Steel>50</Steel>
@@ -564,9 +558,6 @@
 			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</wornGraphicPath>
 			<layers>
-				<li MayRequire="CETeam.CombatExtended">OnHead</li>
-				<li MayRequire="CETeam.CombatExtended">StrappedHead</li>
-				<li MayRequire="CETeam.CombatExtended">MiddleHead</li>
 				<li>Overhead</li>
 			</layers>
 			<tags>
@@ -603,7 +594,7 @@
 		</inspectorTabs>
 	</ThingDef>
 
-    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+		<ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
 		<defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Unhooded</defName>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/SkitariiPrimusHelmet</texPath>
@@ -624,9 +615,9 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef>
+		</ThingDef>
 	
-    <ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
+		<ThingDef ParentName="OGAM_Apparel_SkitariiPrimusHelmet">
 		<defName>OGAM_Apparel_SkitariiPrimusHelmet_TOGGLEDEF_Hooded</defName>
 		<label>Skitarii Primus Helmet(Hooded)</label>
 		<graphicData>
@@ -648,6 +639,6 @@
 				</li>
 			</options>
 		</colorGenerator>
-    </ThingDef-->
+		</ThingDef-->
 	
 </Defs>

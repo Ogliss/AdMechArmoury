@@ -13,17 +13,12 @@ using HarmonyLib;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    /*
     [HarmonyPatch(typeof(Precept_Relic), "GenerateStuffFor")]
     public static class Precept_Relic_GenerateStuffFor_Name_Patch
     {
-        [HarmonyPrefix]
-        public static bool Prefix(Precept_Relic __instance, ThingDef thing, Ideo ideo)
-        {
-			return false;
-        }
-
         [HarmonyPostfix]
-        public static void Postfix(Precept_Relic __instance, ThingDef thing, Ideo ideo, ThingDef __result)
+        public static ThingDef Postfix(ThingDef __result, Precept_Relic __instance, ThingDef thing, Ideo ideo)
         {
             try
             {
@@ -42,13 +37,15 @@ namespace AdeptusMechanicus.HarmonyInstance
                              where !alreadyUsedStuffs.Contains(stuff)
                              select stuff;
                 }
-                __result = source.RandomElementByWeight((ThingDef stuff) => stuff.BaseMarketValue);
+                return source.RandomElementByWeight((ThingDef stuff) => stuff.BaseMarketValue);
             }
             catch (Exception e)
             {
                 Log.Error($"{thing} {e}");
+                return __result;
                 throw;
             }
 		}
     }
+    */
 }

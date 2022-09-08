@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ====================== Chaos Ranged ===================== -->
+			<!-- ==================== Traitor - Sonic Blaster ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGC_Bullet_SonicBlaster</defName>
+				<!--defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass-->
+				<projectile>
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGCSonic</damageDef>
+					<damageAmountBase>15</damageAmountBase>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
+					<armorPenetrationBlunt>104</armorPenetrationBlunt>
+					<speed>162</speed>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<defName>OGC_Gun_SonicBlaster</defName>
+				<statBases>
+					<Mass>9.8</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.3</SwayFactor>
+					<Bulk>12.50</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.15</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGC_Bullet_SonicBlaster</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>46</range>
+					<soundCast>OG_Las_Pistol_Sound</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>8</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_OGSonic</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>4</aimedBurstShotCount>
+				</FireModes>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
+			
+			<!-- ==================== Traitor - Blastmaster ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<defName>OGC_Bullet_Blastmaster</defName>
+				<!--defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass-->
+				<projectile>
+					<flyOverhead>false</flyOverhead>
+					<damageDef>OGCSonic</damageDef>
+					<damageAmountBase>30</damageAmountBase>
+					<armorPenetrationSharp>14</armorPenetrationSharp>
+					<armorPenetrationBlunt>124</armorPenetrationBlunt>
+					<speed>162</speed>
+				</projectile>
+			</li>
+			<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<defName>OGC_Gun_Blastmaster</defName>
+				<statBases>
+					<Mass>16.8</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.51</SwayFactor>
+					<Bulk>18.20</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.3</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGC_Bullet_Blastmaster</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>58</range>
+					<soundCast>OG_Las_Pistol_Sound</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>4</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_OGSonicHeavy</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
+			
+			<!-- ==================== Traitor - Melta Gun ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<defName>OGC_Gun_MeltaGun</defName>
+				<statBases>
+					<Mass>4.8</Mass>
+					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.25</SwayFactor>
+					<Bulk>8.50</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_Melta</defaultProjectile>
+					<warmupTime>2.6</warmupTime>
+					<range>16</range>
+					<soundCast>OG_Melta_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>4</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_OGMelta</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>	
+				</FireModes>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
+			
+			<!-- ====================== Missile Launcher ===================== -->
+			<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<defName>OGC_Gun_RocketLaucher</defName>
+				<warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount>
+				<statBases>
+					<Mass>6.8</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.2</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>10.50</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>OGI_Bullet_RocketFrag</defaultProjectile>
+					<warmupTime>2.0</warmupTime>
+					<range>42</range>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>8.5</reloadTime>
+					<ammoSet>AmmoSet_OGMissile</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.8</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</li>
+			
+		</operations>
+	</Operation>
+</Patch>

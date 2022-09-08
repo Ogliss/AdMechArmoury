@@ -19,7 +19,8 @@ namespace AdeptusMechanicus.Lasers
             var holder = ParentHolder as Pawn_EquipmentTracker;
             if (holder == null) return;
 
-            Stance stance = holder.pawn.stances.curStance;
+            Stance stance = holder.pawn?.stances?.curStance;
+            if (stance == null) return;
             Stance_Warmup warmup;
 
             switch (state)

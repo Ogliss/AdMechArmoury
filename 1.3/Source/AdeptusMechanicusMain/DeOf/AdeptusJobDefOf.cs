@@ -13,13 +13,13 @@ namespace AdeptusMechanicus
         public static JobDef OG_Job_ChangeLaserColor;
 
         [MayRequireXenobiologis]
-        public static JobDef OGAMXBDeconstruct;
+        public static JobDef OG_AMXB_Deconstruct;
         [MayRequireXenobiologis]
-        public static JobDef OGAMXBWaitBuilding;
+        public static JobDef OG_AMXB_WaitBuilding;
         [MayRequireXenobiologis]
-        public static JobDef OGAMXBWaitCombatBuilding;
+        public static JobDef OG_AMXB_WaitCombatBuilding;
         [MayRequireXenobiologis]
-        public static JobDef OGAMXBAttackBuilding;
+        public static JobDef OG_AMXB_AttackBuilding;
 
         [MayRequireOrkz]
         public static JobDef OGO_Orkoid_Hunt;
@@ -27,7 +27,7 @@ namespace AdeptusMechanicus
         public static JobDef OGO_Orkoid_Scrap;
 
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static JobDef OG_XB_Job_Necron_TombSpyderRepair;
+        public static JobDef OG_Necron_TombSpyder_Repair;
 
 
         [MayRequireAstartes]

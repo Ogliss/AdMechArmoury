@@ -8,6 +8,30 @@ using System;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
+    [HarmonyPatch(typeof(PawnGraphicSet), "ResolveAllGraphics"), HarmonyPriority(Priority.Last)]
+    public static class PawnGraphicSet_ResolveAllGraphics_SwarmPawn_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ref PawnGraphicSet __instance)
+        {
+            Pawn pawn = __instance.pawn;
+            if (pawn.RaceProps.Humanlike)
+            {
+                return;
+            }
+            if (pawn.ageTracker.CurKindLifeStage is SwarmKindLifeStage swarm)
+            {
+                Log.Message($"{pawn}'s current PawnKindLifeStage is a SwarmKindLifeStage");
+                if (!swarm.subStagesHealth.NullOrEmpty())
+                {
+                    int ind = (int)Mathf.Lerp(0, swarm.subStagesHealth.Count, pawn.health.summaryHealth.SummaryHealthPercent);
+                    Log.Message($"{pawn}'s SwarmKindLifeStage using HealthSubStage @ Ind: {ind}");
+                    if (ind > 0) __instance.nakedGraphic = swarm.subStagesHealth[ind - 1].bodyGraphicData.Graphic;
+                }
+            }
+        }
+    }
+    
     [HarmonyPatch(typeof(PawnGraphicSet), "ResolveApparelGraphics"), HarmonyPriority(Priority.Last)]
     public static class PawnGraphicSet_ResolveApparelGraphics_ApparelLayerDrawOrder_Patch
     {

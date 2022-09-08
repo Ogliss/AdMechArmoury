@@ -36,6 +36,11 @@ namespace AdeptusMechanicus
         [MayRequireXenobiologis, MayRequireTau]
         public static FactionDef OG_Tau_Faction;
         #endregion
+        
+        #region Verspid
+        [MayRequireTau]
+        public static FactionDef OG_Vespid_Faction;
+        #endregion
 
         #region Kroot
         [MayRequireTau]
@@ -57,6 +62,10 @@ namespace AdeptusMechanicus
         [MayRequireXenobiologis, MayRequireEldar]
         public static FactionDef OG_Eldar_Corsair_Faction;
         */
+        [MayRequireXenobiologis, MayRequireEldar]
+        public static FactionDef OG_DarkEldar_Kabal_Faction;
+        [MayRequireEldar]
+        public static FactionDef OG_DarkEldar_Kabal_BlackHand;
         [MayRequireEldar]
         public static FactionDef OG_Eldar_Craftworld_PlayerColony;
         /*

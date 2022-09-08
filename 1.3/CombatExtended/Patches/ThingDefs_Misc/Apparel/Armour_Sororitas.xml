@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--success>Always</success-->
+		<operations>
+			<!-- ========================= Adeptus Sororitas - Power Armour ========================== -->
+			<li Class="CombatExtended.PatchOperationMakeApparelCECompatible">
+				<Name>OG_Sororitas_Apparel_Armor_PowerArmour_Base</Name>
+				<statBases>
+					<Mass>30</Mass>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Blunt>72</ArmorRating_Blunt>
+					<ArmorRating_Sharp>24</ArmorRating_Sharp>
+				</statBases>
+				<equippedStatOffsets>
+					<CarryWeight>50</CarryWeight>
+					<CarryBulk>8</CarryBulk>
+				</equippedStatOffsets>
+				<bodyPartGroups>
+					<li>Hands</li>
+					<li>Feet</li>
+				</bodyPartGroups>
+			</li>
+			
+			<!-- ========================= Adeptus Sororitas - Power Armour Helmet ========================== -->
+			<li Class="CombatExtended.PatchOperationMakeApparelCECompatible">
+				<Name>OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet_Base</Name>
+				<statBases>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+					<ArmorRating_Blunt>72</ArmorRating_Blunt>
+					<ArmorRating_Sharp>24</ArmorRating_Sharp>
+				</statBases>
+				<equippedStatOffsets>
+					<AimingAccuracy>-0.1</AimingAccuracy>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</equippedStatOffsets>
+				<layersPrepend>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+				</layersPrepend>
+			</li>	
+		</operations>
+	</Operation>
+</Patch>

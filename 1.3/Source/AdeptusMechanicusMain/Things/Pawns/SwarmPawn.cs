@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdeptusMechanicus.ExtensionMethods;
 using HarmonyLib;
+using System.Reflection;
 using UnityEngine;
 using Verse;
+using Verse.AI;
+using Verse.Sound;
+using RimWorld;
 
 namespace AdeptusMechanicus
 {
+    // AdeptusMechanicus.SwarmPawn
     class SwarmPawn : Pawn
     {
-        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+        public LifeStageDef SwarmLifeStageDef
         {
-            base.DrawAt(drawLoc, flip);
-        }
-        public override void ExposeData()
-        {
-            base.ExposeData();
-        }
+            get
+            {
+                LifeStageDef result = null;
+                if (true)
+                {
 
+                }
+
+
+                return result;
+            }
+        }
     }
 }

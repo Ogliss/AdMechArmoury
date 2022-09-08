@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
             if (fleck != null)
             {
                 Rand.PushState();
-                Vector3 sloc = loc + Quaternion.AngleAxis(Rand.Range(-10, 10) + angle, Vector3.up) * Vector3.back * Rand.Range(0, projectieSpeed);
+                Vector3 sloc = loc;// + Quaternion.AngleAxis(Rand.Range(-10, 10) + angle, Vector3.up) * Vector3.back * Rand.Range(0, projectieSpeed);
                 AdeptusFleckMaker.Thrown(sloc, map, fleck, size, color, Rand.Range(0, 360), rotationRate, null, Rand.Range(0, projectieSpeed), (float)Rand.Range(-15, 15) + angle);
                 Rand.PopState();
             }

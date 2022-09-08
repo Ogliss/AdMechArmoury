@@ -12,7 +12,7 @@ namespace AdeptusMechanicus
 
     // AdeptusMechanicus.ApparelProperties
     /*
-    public class ApparelProperties : RimWorld.ApparelProperties
+    public class ApparelCompositeProperties : RimWorld.ApparelProperties
     {
         public List<string> wornGraphicMasks = new List<string>();
         public ApparelGraphicExtension altGraphicsSettings;
@@ -481,10 +481,16 @@ namespace AdeptusMechanicus
                         r = ActiveAltGraphic.wornGraphicPath;
                     }
                 }
+                if (!OnHead && this.Wearer != null)
+                {
+                    r = r + "_" + this.Wearer.story.bodyType.defName;
+                }
             //    Log.Message("using " + r);
                return r;
             }
         }
+        private bool? onhead;
+        public bool OnHead => (onhead != null ? onhead.Value : (onhead = this.def.apparel.LastLayer == ApparelLayerDefOf.Overhead || PawnRenderer.RenderAsPack(this) || this.def.apparel.wornGraphicPath == BaseContent.PlaceholderImagePath).Value);
         private Graphic _graphic;
         private bool failedgraphic = false;
         public override Graphic Graphic

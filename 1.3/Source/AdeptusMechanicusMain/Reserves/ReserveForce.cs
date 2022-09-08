@@ -11,6 +11,15 @@ using Verse.AI.Group;
 
 namespace AdeptusMechanicus
 {
+    public enum StrikeTargetType
+    {
+        Aggressor,
+        Turrets,
+        Power,
+        HighValue,
+        Altar
+    }
+
     public class ReserveForce : IExposable
     {
         public ReserveForce()

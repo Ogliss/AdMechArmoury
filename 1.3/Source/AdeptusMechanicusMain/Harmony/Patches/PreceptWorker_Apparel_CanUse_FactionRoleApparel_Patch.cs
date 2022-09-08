@@ -115,18 +115,18 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             if (def.defName.StartsWith("OG") && def.apparel.canBeDesiredForIdeo && faction.categoryTag != null)
             {
-                Log.Message("Testing: {" + def + "} For {" + faction + "}");
+            //    Log.Message("Testing: {" + def + "} For {" + faction + "}");
                 if (def.apparel.ideoDesireAllowedFactionCategoryTags != null && !def.apparel.ideoDesireAllowedFactionCategoryTags.Any(x => x.StartsWith(faction.categoryTag)))
                 {
-                    Log.Message("Fail: {" + def + "} For {" + faction + "} ideoDesireAllowedFactionCategoryTags");
+                //    Log.Message("Fail: {" + def + "} For {" + faction + "} ideoDesireAllowedFactionCategoryTags");
                     return new AcceptanceReport("RoleApparelRequirementIncompatibleFaction".Translate(Find.ActiveLanguageWorker.WithIndefiniteArticle(def.apparel.ideoDesireAllowedFactionCategoryTags.Where(x => !x.Contains("Refugee")).Select((string t) => ("RoleApparelRequirementIncompatibleFaction_Allowed_" + t).Translate().Resolve()).ToCommaListOr())));
                 }
                 if (def.apparel.ideoDesireDisallowedFactionCategoryTags != null && def.apparel.ideoDesireDisallowedFactionCategoryTags.Contains(faction.categoryTag))
                 {
-                    Log.Message("Fail: {" + def + "} For {" + faction + "} ideoDesireDisallowedFactionCategoryTags");
+                //    Log.Message("Fail: {" + def + "} For {" + faction + "} ideoDesireDisallowedFactionCategoryTags");
                     return new AcceptanceReport("RoleApparelRequirementIncompatibleFaction".Translate(Find.ActiveLanguageWorker.WithIndefiniteArticle(def.apparel.ideoDesireDisallowedFactionCategoryTags.Select((string t) => ("RoleApparelRequirementIncompatibleFaction_Disallowed_" + t).Translate().Resolve()).ToCommaListOr())));
                 }
-                Log.Message("Sucess: {" + def + "} For {" + faction + "}");
+            //    Log.Message("Sucess: {" + def + "} For {" + faction + "}");
                 return true;
             }
             return __result;

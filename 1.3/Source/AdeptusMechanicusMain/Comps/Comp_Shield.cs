@@ -26,6 +26,7 @@ namespace AdeptusMechanicus
         public bool blockRanged = true;
         public bool blockMelee = false;
         public bool brokenByEMP = true;
+        public List<DamageDef> bypassingDamage = new List<DamageDef>();
 
         public string shieldTexPath;
         public Color shieldColor;
@@ -182,6 +183,10 @@ namespace AdeptusMechanicus
             }
             if (Props != null)
             {
+                if (dinfo.Def == DamageDefOf.SurgicalCut || Props.bypassingDamage.Contains(dinfo.Def))
+                {
+                    return false;
+                }
                 if (dinfo.Def.externalViolenceForMechanoids && Props.brokenByEMP)
                 {
                     this.energy = 0f;

@@ -11,7 +11,7 @@ namespace AdeptusMechanicus
 {
 	// AdeptusMechanicus.WarpRift
 	[StaticConstructorOnStartup]
-    public class WarpRift : ThingWithComps
+    public class WarpVortex : ThingWithComps
 	{
 		private float FadeInOutFactor
 		{
@@ -33,7 +33,7 @@ namespace AdeptusMechanicus
 				this.direction = Rand.Range(0f, 360f);
 				this.spawnTick = Find.TickManager.TicksGame;
 				this.leftFadeOutTicks = -1;
-				this.ticksLeftToDisappear = WarpRift.DurationTicks.RandomInRange;
+				this.ticksLeftToDisappear = WarpVortex.DurationTicks.RandomInRange;
 				IntVec3 effectLoc = new IntVec3((int)realPosition.x, 0, (int)realPosition.y);
 				CompAffectsSky comp = base.GetComp<CompAffectsSky>();
 				if (comp != null)
@@ -45,7 +45,7 @@ namespace AdeptusMechanicus
 				{
 					if (this.beamAngle == 0)
 					{
-						this.beamAngle = WarpRift.AngleRange.RandomInRange;
+						this.beamAngle = WarpVortex.AngleRange.RandomInRange;
 					}
 					comp2.StartAnimation(this.ticksLeftToDisappear, 10, this.beamAngle);
 				}
@@ -77,11 +77,11 @@ namespace AdeptusMechanicus
 				}
 				else
 				{
-					if (WarpRift.directionNoise == null)
+					if (WarpVortex.directionNoise == null)
 					{
-						WarpRift.directionNoise = new Perlin(0.0020000000949949026, 2.0, 0.5, 4, 1948573612, QualityMode.Medium);
+						WarpVortex.directionNoise = new Perlin(0.0020000000949949026, 2.0, 0.5, 4, 1948573612, QualityMode.Medium);
 					}
-					this.direction += (float)WarpRift.directionNoise.GetValue((double)Find.TickManager.TicksAbs, (double)((float)(this.thingIDNumber % 500) * 1000f), 0.0) * 0.78f;
+					this.direction += (float)WarpVortex.directionNoise.GetValue((double)Find.TickManager.TicksAbs, (double)((float)(this.thingIDNumber % 500) * 1000f), 0.0) * 0.78f;
 					this.realPosition = this.realPosition.Moved(this.direction, 0.0283333343f);
 					IntVec3 intVec = new Vector3(this.realPosition.x, 0f, this.realPosition.y).ToIntVec3();
 					if (intVec.InBounds(base.Map))
@@ -305,21 +305,21 @@ namespace AdeptusMechanicus
 			Rand.PushState();
 			FireUtility.TryStartFireIn(c, base.Map, Rand.Range(0.1f, 0.925f));
 			Rand.PopState();
-			WarpRift.tmpThings.Clear();
-			WarpRift.tmpThings.AddRange(c.GetThingList(base.Map));
-			for (int i = 0; i < WarpRift.tmpThings.Count; i++)
+			WarpVortex.tmpThings.Clear();
+			WarpVortex.tmpThings.AddRange(c.GetThingList(base.Map));
+			for (int i = 0; i < WarpVortex.tmpThings.Count; i++)
 			{
-				int num = (WarpRift.tmpThings[i] is Corpse) ? WarpRift.CorpseFlameDamageAmountRange.RandomInRange : WarpRift.FlameDamageAmountRange.RandomInRange;
-				Pawn pawn = WarpRift.tmpThings[i] as Pawn;
+				int num = (WarpVortex.tmpThings[i] is Corpse) ? WarpVortex.CorpseFlameDamageAmountRange.RandomInRange : WarpVortex.FlameDamageAmountRange.RandomInRange;
+				Pawn pawn = WarpVortex.tmpThings[i] as Pawn;
 				BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = null;
 				if (pawn != null)
 				{
 					battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_PowerBeam, this.instigator as Pawn);
 					Find.BattleLog.Add(battleLogEntry_DamageTaken);
 				}
-				WarpRift.tmpThings[i].TakeDamage(new DamageInfo(DamageDefOf.Flame, (float)num, 0, -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
+				WarpVortex.tmpThings[i].TakeDamage(new DamageInfo(DamageDefOf.Flame, (float)num, 0, -1f, this.instigator, null, this.weaponDef, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
 			}
-			WarpRift.tmpThings.Clear();
+			WarpVortex.tmpThings.Clear();
 		}
 
 		private void DestroyRoofs()
@@ -357,19 +357,19 @@ namespace AdeptusMechanicus
 
 		private void DoDamage(IntVec3 c, float damageFactor)
 		{
-			WarpRift.tmpThings.Clear();
-			WarpRift.tmpThings.AddRange(c.GetThingList(base.Map));
+			WarpVortex.tmpThings.Clear();
+			WarpVortex.tmpThings.AddRange(c.GetThingList(base.Map));
 			Vector3 vector = c.ToVector3Shifted();
 			Vector2 b = new Vector2(vector.x, vector.z);
 			float angle = -this.realPosition.AngleTo(b) + 180f;
-			for (int i = 0; i < WarpRift.tmpThings.Count; i++)
+			for (int i = 0; i < WarpVortex.tmpThings.Count; i++)
 			{
 				BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = null;
-				switch (WarpRift.tmpThings[i].def.category)
+				switch (WarpVortex.tmpThings[i].def.category)
 				{
 					case ThingCategory.Pawn:
 						{
-							Pawn pawn = (Pawn)WarpRift.tmpThings[i];
+							Pawn pawn = (Pawn)WarpVortex.tmpThings[i];
 							battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_Tornado, null);
 							Find.BattleLog.Add(battleLogEntry_DamageTaken);
 							if (pawn.RaceProps.baseHealthScale < 1f)
@@ -397,9 +397,9 @@ namespace AdeptusMechanicus
 						break;
 				}
 				int num = Mathf.Max(GenMath.RoundRandom(30f * damageFactor), 1);
-				WarpRift.tmpThings[i].TakeDamage(new DamageInfo(DamageDefOf.TornadoScratch, (float)num, 0f, angle, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
+				WarpVortex.tmpThings[i].TakeDamage(new DamageInfo(DamageDefOf.TornadoScratch, (float)num, 0f, angle, this, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null)).AssociateWithLog(battleLogEntry_DamageTaken);
 			}
-			WarpRift.tmpThings.Clear();
+			WarpVortex.tmpThings.Clear();
 		}
 
 		public override void ExposeData()
@@ -456,7 +456,7 @@ namespace AdeptusMechanicus
 		private static readonly Material TornadoMaterial = MaterialPool.MatFrom("Things/Ethereal/Tornado", ShaderDatabase.Transparent, MapMaterialRenderQueues.Tornado);
 		private static readonly FloatRange PartsDistanceFromCenter = new FloatRange(1f, 10f);
 		private static readonly FloatRange AngleRange = new FloatRange(-12f, 12f);
-		private static readonly float ZOffsetBias = -4f * WarpRift.PartsDistanceFromCenter.min;
+		private static readonly float ZOffsetBias = -4f * WarpVortex.PartsDistanceFromCenter.min;
 		private List<IntVec3> removedRoofsTmp = new List<IntVec3>();
 		private static List<Thing> tmpThings = new List<Thing>();
 	}

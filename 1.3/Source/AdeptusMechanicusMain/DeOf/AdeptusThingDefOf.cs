@@ -165,8 +165,6 @@ namespace AdeptusMechanicus
         public static ThingDef OG_Squig_Oily;
         [MayRequireXenobiologis, MayRequireOrkz]
         public static ThingDef OG_Squig;
-        [MayRequireXenobiologis, MayRequireOrkz]
-        public static ThingDef OG_Squig_Ork;
 
         // Plant Defs
         [MayRequireOrkz]
@@ -213,14 +211,6 @@ namespace AdeptusMechanicus
         [MayRequireXenobiologis, MayRequireTau]
         public static ThingDef OG_Knarloc;
 
-        // Tool User Race Defs
-        [MayRequireXenobiologis, MayRequireTau]
-        public static ThingDef OG_Kroothound_Kindred;
-        [MayRequireXenobiologis, MayRequireTau]
-        public static ThingDef OG_KrootOx_Kindred;
-        [MayRequireXenobiologis, MayRequireTau]
-        public static ThingDef OG_Knarloc_Kindred;
-
         // Blood Defs
         [MayRequireXenobiologis, MayRequireTau]
         public static ThingDef OG_FilthBlood_Kroot;
@@ -241,29 +231,29 @@ namespace AdeptusMechanicus
         [MayRequireNecrons]
         public static ThingDef OG_Alien_Necron;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef MonolithIncoming;
+        public static ThingDef OG_Necron_MonolithIncoming;
         [MayRequireXenobiologis, MayRequireNecrons]
         public static ThingDef OG_FilthBlood_Necron;
 
         // Tool User Race Defs
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_ScarabSwarm;
+        public static ThingDef OG_Necron_ScarabSwarm;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_FlayedOne;
+        public static ThingDef OG_Necron_FlayedOne;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_Warrior;
+        public static ThingDef OG_Necron_Warrior;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_Wraith;
+        public static ThingDef OG_Necron_Wraith;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_Immortal;
+        public static ThingDef OG_Necron_Immortal;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_TombSpyder;
+        public static ThingDef OG_Necron_TombSpyder;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_Destroyer;
+        public static ThingDef OG_Necron_Destroyer;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_HeavyDestroyer;
+        public static ThingDef OG_Necron_HeavyDestroyer;
         [MayRequireXenobiologis, MayRequireNecrons]
-        public static ThingDef Necron_Lord;
+        public static ThingDef OG_Necron_Lord;
         #endregion
 
         #region Tyranids
