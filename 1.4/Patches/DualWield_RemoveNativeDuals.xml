@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+	<!-- <success>Always</success> -->
+		<operations>
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Dual Wield</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGI_Gun_BoltPistolD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGI_Melee_LightningClawD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGE_Melee_MirrorswordD"]</xpath>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGE_Melee_GhostSwordD"]</xpath>
+						</li>
+						<li Class="PatchOperationFindMod">
+							<mods>
+								<li>Adeptus Mechanicus: Xenobiologis (Playable Eldar)</li>
+							</mods>
+							<match Class="PatchOperationSequence">
+								<success>Always</success>
+								<operations>
+									<li Class="PatchOperationRemove">
+										<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name = "OG_Eldar_RaceBase"]/alienRace/raceRestriction/recipeList/li[text()="Make_OGE_Melee_MirrorswordD"]</xpath>
+									</li>
+									<li Class="PatchOperationRemove">
+										<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name = "OG_Eldar_RaceBase"]/alienRace/raceRestriction/recipeList/li[text()="Make_OGE_Melee_GhostSwordD"]</xpath>
+									</li>
+								</operations>
+							</match>
+						</li>
+						<li Class="PatchOperationRemove">
+							<xpath>/Defs/ThingDef[defName = "OGN_Melee_FlayingTalon"]/comps/li[@Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon"]</xpath>
+						</li>
+					</operations>
+				</match>
+				<nomatch Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+					</operations>
+				</nomatch>
+			</li>
+		</operations>
+	</Operation>
+	
+</Patch>

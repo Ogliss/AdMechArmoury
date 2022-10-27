@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationSequence">
+	<!--success>Always</success-->
+	<operations>
+	<!--==================== Mechanicus - Transonic Razor =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_TransonicRazor</defName>
+		<statBases>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>	
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.2</MeleeCritChance>
+			<MeleeParryChance>0.35</MeleeParryChance>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+		</equippedStatOffsets>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.44</cooldownTime>
+				<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>27</power>
+				<cooldownTime>1.44</cooldownTime>
+				<armorPenetrationBlunt>4.25</armorPenetrationBlunt>
+				<armorPenetrationSharp>4.8</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>edge</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>20</power>
+				<cooldownTime>1.34</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>9.56</armorPenetrationBlunt>
+				<armorPenetrationSharp>4.3</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</li>
+			
+	<!--==================== Mechanicus - Transonic Blade =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_TransonicBlade</defName>
+		<statBases>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeCritChance>1.00</MeleeCritChance>
+			<MeleeParryChance>0.40</MeleeParryChance>
+			<MeleeDodgeChance>0.27</MeleeDodgeChance>	
+		</equippedStatOffsets>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.5</cooldownTime>
+				<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>edge</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>35</power>
+				<cooldownTime>0.83</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+				<armorPenetrationSharp>9999</armorPenetrationSharp>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>16</power>					
+				<cooldownTime>0.94</cooldownTime>
+				<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+				<armorPenetrationSharp>9999</armorPenetrationSharp>
+			</li>	
+		</tools>
+	</li>
+
+	<!--==================== Mechanicus - Arc Maul =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_ArcMaul</defName>
+		<statBases>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeCritChance>2.30</MeleeCritChance>
+			<MeleeParryChance>0.18</MeleeParryChance>
+			<MeleeDodgeChance>0.30</MeleeDodgeChance>	
+		</equippedStatOffsets>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.78</cooldownTime>
+				<chanceFactor>0.10</chanceFactor>
+				<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>OG_PacifierWeapon_Blunt</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>22</power>
+				<cooldownTime>2.36</cooldownTime>
+				<chanceFactor>0.30</chanceFactor>
+				<armorPenetrationBlunt>11.76</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</li>
+	
+	<!--==================== Mechanicus - Taser Goad =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_TaserGoad</defName>
+		<statBases>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>shaft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.35</cooldownTime>
+				<chanceFactor>0.15</chanceFactor>
+				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>shaft</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.78</cooldownTime>
+				<chanceFactor>0.05</chanceFactor>
+				<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>OG_PacifierWeapon_Poke</li>
+					<li>OG_PacifierWeapon_Blunt</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+					</li>
+				</extraMeleeDamages>
+				<power>18</power>
+				<cooldownTime>1.19</cooldownTime>
+				<chanceFactor>1.00</chanceFactor>
+				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				<armorPenetrationSharp>1.5</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</li>
+
+	<!--==================== Mechanicus - Chord Claw (Single) =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_SingleChordClaw</defName>
+		<statBases>
+			<Bulk>11.5</Bulk>
+			<MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
+		</statBases>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.30</MeleeDodgeChance>	
+		</equippedStatOffsets>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>backhand</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.4</cooldownTime>
+				<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>fist</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<extraMeleeDamages>
+					<li>
+						<def>EMP</def>
+						<amount>5</amount>
+						<chance>0.5</chance>
+					</li>
+				</extraMeleeDamages>
+				<power>66</power>
+				<cooldownTime>2.8</cooldownTime>
+				<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+			</li>
+		</tools>
+	</li>
+	
+	<!--==================== Mechanicus - Omnisian Axe =========================-->
+	<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+		<defName>OGAM_Melee_OmnisianAxe</defName>
+		<statBases>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+		</statBases>
+		<equippedStatOffsets>
+				<MeleeCritChance>1.50</MeleeCritChance>
+				<MeleeParryChance>0.30</MeleeParryChance>
+				<MeleeDodgeChance>0.30</MeleeDodgeChance>
+		</equippedStatOffsets>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.78</cooldownTime>
+				<chanceFactor>0.10</chanceFactor>
+				<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>41</power>					
+				<cooldownTime>2.76</cooldownTime>
+				<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+				<armorPenetrationSharp>9999</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				<chanceFactor>0.30</chanceFactor>
+			</li>	
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Demolish</li>
+				</capacities>
+				<power>20</power>
+				<cooldownTime>2.65</cooldownTime>
+				<chanceFactor>0.30</chanceFactor>
+				<armorPenetrationBlunt>9999</armorPenetrationBlunt>
+				<armorPenetrationSharp>9999</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</li>
+
+	</operations>
+</Operation>
+
+</Patch>

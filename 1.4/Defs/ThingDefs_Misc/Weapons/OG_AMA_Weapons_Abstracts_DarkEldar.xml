@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Dark Eldar - Weapon Abstracts -->
+	<!-- Gun Base -->
+	<ThingDef Name="OG_DarkEldar_Gun_Base" ParentName="OG_Gun_Qaulity_Art" Abstract="True">
+		<graphicData>
+			<shaderType>CutoutComplex</shaderType>
+			<color>55,56,69</color>
+			<colorTwo>11,99,113</colorTwo>
+		</graphicData>
+		<thingCategories>
+			<li>OGDERanged</li>
+		</thingCategories>
+		<weaponTags>
+			<li>DarkEldarRanged</li>
+			<li>DarkEldarWeapon</li>
+		</weaponTags>
+	</ThingDef>
+	
+	<!-- Gun Base Makeable -->
+	<ThingDef Name="OG_DarkEldar_Gun_Makeable" ParentName="OG_DarkEldar_Gun_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGDE_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>Gunsmithing</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+   
+	<!-- Gun Standard -->
+  	<ThingDef Name="OG_DarkEldar_Gun" ParentName="OG_DarkEldar_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>DarkEldar_Gun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- Gun Special -->
+	<ThingDef Name="OG_DarkEldar_Gun_Special" ParentName="OG_DarkEldar_Gun_Makeable" Abstract="True">
+		<weaponTags>
+			<li>DarkEldar_SpecialGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!-- Gun Heavy -->
+	<ThingDef Name="OG_DarkEldar_Gun_Heavy" ParentName="OG_DarkEldar_Gun_Makeable" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+		  <li>RangedHeavy</li>
+		</weaponClasses>
+		<weaponTags>
+			<li>DarkEldar_HeavyGun</li>
+		</weaponTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!-- Melee Weapon Base -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Base" ParentName="OG_MeleeWeapon_Base" Abstract="True">
+		<techLevel>Industrial</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+			<li>OGDEMelee</li>
+		</thingCategories>
+		<weaponTags>
+			<li>DarkEldarMelee</li>
+			<li>DarkEldarWeapon</li>
+		</weaponTags>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<comps>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponMelee</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Melee Weapon Base Makable -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Makeable" ParentName="OG_DarkEldar_MeleeWeapon_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>OGDE_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+
+	<!-- Melee Weapon Base Sharp -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Sharp" ParentName="OG_DarkEldar_MeleeWeapon_Makeable" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+			<li>MeleePiercer</li>
+		</weaponClasses>
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+		</ThingDef>
+
+	<!-- Melee Weapon Base Blunt -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Blunt" ParentName="OG_DarkEldar_MeleeWeapon_Makeable" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+			<li>MeleeBlunt</li>
+		</weaponClasses>
+		<recipeMaker>
+			<defaultIngredientFilter>
+				<categories>
+					<li>Root</li>
+				</categories>
+				<disallowedThingDefs>
+					<li>Uranium</li>
+					<li>Silver</li>
+					<li>Gold</li>
+				</disallowedThingDefs>
+			</defaultIngredientFilter>
+		</recipeMaker>
+	</ThingDef>
+  
+	<!-- Melee Weapon Basic Sharp -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Sharp_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Sharp" Abstract="True">
+		<weaponTags>
+			<li>DarkEldarMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Basic Blunt -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Blunt_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Blunt" Abstract="True">
+		<weaponTags>
+			<li>DarkEldarMeleeBasic</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- Melee Weapon Powered Sharp -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Power_Sharp_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Sharp" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+		  <li>Ultratech</li>
+		  <li>OGAM_MeleePowerWeapon</li>
+		</weaponClasses>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>DarkEldarMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Powered Blunt -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Power_Blunt_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Blunt" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+		  <li>Ultratech</li>
+		  <li>OGAM_MeleePowerWeapon</li>
+		</weaponClasses>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>DarkEldarMeleePower</li>
+		</weaponTags>
+	</ThingDef>
+	 
+	<!-- Melee Weapon Force Sharp -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Force_Sharp_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Sharp" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+		  <li>Ultratech</li>
+		</weaponClasses>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>DarkEldarMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+
+	<!-- Melee Weapon Force Blunt -->
+	<ThingDef Name="OG_DarkEldar_MeleeWeapon_Force_Blunt_Quality" ParentName="OG_DarkEldar_MeleeWeapon_Blunt" Abstract="True">
+		<weaponClasses IgnoreIfNoMatchingField="True">
+		  <li>Ultratech</li>
+		</weaponClasses>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Force</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<weaponTags>
+			<li>DarkEldarMeleeForce</li>
+		</weaponTags>
+	</ThingDef>
+	 
+</Defs>

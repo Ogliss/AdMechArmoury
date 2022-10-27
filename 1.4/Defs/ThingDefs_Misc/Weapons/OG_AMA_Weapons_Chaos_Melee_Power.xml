@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ==================== Chaos - Power Sword ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+		<defName>OGC_Melee_PowerSword</defName>
+		<label>power sword (C)</label>
+		<description>A Power Sword is a Power Weapon that has been shaped into a sword of varying lengths and designs crafted from one of any number of different materials, though usually Adamantium. When its power cell is activated, often by touching a control located on the hilt, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Sword a highly effective Chaos close combat weapon. Power Swords are used by all members of the Chaos forces, including the troops of the Traitor Guard and the Chaos Space Marines of the Traitor Legions.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/PowerSword</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>2.0</Mass>
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>14</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.3</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->						
+			</li>
+		</comps>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costStuffCount>200</costStuffCount>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<weaponTags>
+			<li>CPowerSword</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ==================== Chaos - Power Axe ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+		<defName>OGC_Melee_PowerAxe</defName>
+		<label>power axe (C)</label>
+		<description>A Power Axe is a Power Weapon that has been shaped into an axe of varying size and design crafted from one of any number of different materials, though usually Adamantium. When its power cell is activated, often by touching a control located on the haft, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Axe a highly effective Chaos close combat weapon. Power Axes are used by all members of the Chaos armed forces, including the troops of the Traitor Guard and the Space Marines of the Traitor Legions.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Archaon/PowerAxe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<!--MarketValue>7250</MarketValue-->
+			<Mass>3.50</Mass>
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>25</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Gold>2</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>300</costStuffCount>
+		<weaponTags>
+			<li>CPowerAxe</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ==================== Chaos - Lightning Claw (Single) ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+		<defName>OGC_Melee_LightningClawS</defName>
+		<label>lightning claw (C)</label>
+		<description>A Lightning Claw is a specialised type of Power Weapon, most commonly used by Space Marine Assault and Terminator Squads. It consists of a powered gauntlet fitted with three or four razor-sharp Adamantium blades, each a miniature power weapon sheathed in a matter disrupting power field, enabling them to carve through armour and flesh with ease. Lightning claws are often wielded in pairs and are mostly commonly used by Terminator Assault Squads. An entire squad can be armed with a pair each, but the weapon can also be used singly or in pairs by any individual with access to the Chapter's Armoury. Lightning Claws are a standard weapon primarily utilised by battle-brothers of the Traitor Legions, the daemon-hunting Inquisitors of the Ordo Malleus and Chaos Space Marines.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Archaon/LightningClaw</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>3.2</Mass>
+			<!--MarketValue>2250</MarketValue-->
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>14</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.3</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>300</costStuffCount>
+		<weaponTags>
+			<li>CLightningClaw</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<!--
+			<angleAdjustmentNorth>-90</angleAdjustmentNorth>
+			<angleAdjustmentSouth>-90</angleAdjustmentSouth>
+			-->	
+			<angleAdjustmentEast>-45</angleAdjustmentEast>
+			<angleAdjustmentWest>45</angleAdjustmentWest>
+			<eastOffset>-0.15,0,-0.0</eastOffset>
+			<westOffset>0.15,-0.1,-0.0</westOffset>
+			<southOffset>-0.15,0,-0.0</southOffset>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ==================== Chaos - Lightning Claw (Dual) ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Sharp_Quality">
+		<defName>OGC_Melee_LightningClawD</defName>
+		<label>dual lightning claws (C)</label>
+		<description>A Lightning Claw is a specialised type of Power Weapon, most commonly used by Space Marine Assault and Terminator Squads. It consists of a powered gauntlet fitted with three or four razor-sharp Adamantium blades, each a miniature power weapon sheathed in a matter disrupting power field, enabling them to carve through armour and flesh with ease. Lightning claws are often wielded in pairs and are mostly commonly used by Terminator Assault Squads. An entire squad can be armed with a pair each, but the weapon can also be used singly or in pairs by any individual with access to the Chapter's Armoury. Lightning Claws are a standard weapon primarily utilised by battle-brothers of the Traitor Legions, the daemon-hunting Inquisitors of the Ordo Malleus and Chaos Space Marines.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Archaon/LightningClaw</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<!--MarketValue>4500</MarketValue-->
+			<Mass>6.4</Mass>
+			<!--MarketValue>2250</MarketValue-->
+		</statBases>
+		<equippedAngleOffset>-20</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>OG_PowerWeapon_Cut</li>
+				</capacities>
+				<power>14</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>0.65</cooldownTime>
+			</li>
+			<li>
+				<label>point</label>
+				<capacities>
+					<li>OG_PowerWeapon_Stab</li>
+				</capacities>
+				<power>20</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>0.9</cooldownTime>
+			</li>
+		</tools>
+
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>12</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>400</costStuffCount>
+		<weaponTags>
+			<li>CDualLightningClaw</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<!--
+				<angleAdjustmentNorth>-90</angleAdjustmentNorth>
+				<angleAdjustmentSouth>-90</angleAdjustmentSouth>
+				<verticalFlipNorth>true</verticalFlipNorth>
+				<verticalFlipOutsideCombat>true</verticalFlipOutsideCombat>
+				-->	
+				<!--groundGraphic>
+					<texPath>Things/Item/Equipment/WeaponMelee/Imperial/LightningClawD</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(0.286,0.286,0.286)</color>	
+				</groundGraphic-->
+				<verticalFlipNorth>true</verticalFlipNorth>
+				<isDualWeapon>true</isDualWeapon>
+				<angleAdjustmentEast>-125</angleAdjustmentEast>
+				<angleAdjustmentWest>125</angleAdjustmentWest>
+				<eastOffset>-0.0,0,-0.0</eastOffset>
+				<westOffset>0.0,0,-0.0</westOffset>
+				<southOffset>-0.55,0,0.0</southOffset>
+				<northOffset>0.55,0,0.0</northOffset>
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,100,205)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Chaos  - Power Fist ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Blunt_Quality">
+		<defName>OGC_Melee_PowerFist</defName>
+		<label>power fist (C)</label>
+		<description>A Power Fist (also known as a Power Glove) is essentially an over-sized, armoured gauntlet that generates an energy field around it, one that is capable of violently disrupting any solid matter it touches. It is a favoured close combat weapon for many warriors of the Imperium of Man, as well as the Forces of Chaos (particularly the Chaos Space Marines). It is especially an iconic weapon of the Loyalist Space Marines. A Power Fist is large and slow in combat, and so the bearer must be willing to risk the blows of his enemy before he can strike back. However, a Power Fist vastly augments a user's strength, much as Power Armour does due to the power provided its mechanical servos. The disadvantages of its unwieldy nature are often well worth the limitations, as the combination of the disruptive power field and sheer physical strength afforded by a Power Fist allows a Space Marine to pulverize and tear apart armour plate from even the most well-protected of vehicles, and to wound and kill colossal monstrous creatures in close combat; its brutal effects against more mundane foes goes without saying. It is most commonly found fitted to Space Marine Tactical Dreadnought (Terminator) Armour.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Archaon/PowerFist</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<!--MarketValue>750</MarketValue-->
+			<Mass>3.5</Mass>
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>fist</label>
+				<capacities>
+					<li>OG_PowerWeapon_Blunt</li>
+				</capacities>
+				<power>66</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>400</costStuffCount>
+		<weaponTags>
+			<li>CPowerFist</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,100,205)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	 <!-- ==================== Chaos  - Power Maul ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Blunt_Quality">
+		<defName>OGC_Melee_PowerMaul</defName>
+		<label>power maul (C)</label>
+		<description>A Power Maul is an Chaos Power Weapon. Effectively a baton surrounded by a power field, the power maul has a hidden subtlety: the power field setting can be extensively adjusted so that its disruption effect can vary from bashing a hole through a wall, to delivering a sudden knock-out blow to an individual. This tactical depth-of-use makes it a valued tool of Chaos law enforcement. Arbites shock troops employ the weapon in combination with the suppression shield in breaking up riots. A similar weapon is the shock maul, which uses an electrical discharge instead of a power field to incapacitate the enemy.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/PowerMaul</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>3.5</Mass>
+			<!--MarketValue>750</MarketValue-->
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>OG_PacifierWeapon_Blunt</li>
+				</capacities>
+				<power>8</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+			<gizmosOnEquip>false</gizmosOnEquip>
+			<!--<altitudeLayer>PawnState</altitudeLayer>-->
+			<graphicData>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(49,100,205)</color>	
+			</graphicData>	
+			<!--
+			<activateSound>Activate</activateSound>
+			<sustainerSound>Hum</sustainerSound>
+			<deactivateSound>Deactivate</deactivateSound>
+			-->				
+			</li>
+		</comps>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>4</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>300</costStuffCount>
+		<weaponTags>
+			<li>CPowerMaul</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ==================== Chaos  - Thunder Hammer ========================= -->
+	<ThingDef ParentName="OG_Chaos_MeleeWeapon_Blunt_Quality">
+		<defName>OGC_Melee_ThunderHammer</defName>
+		<label>thunder hammer (C)</label>
+		<description>A Thunder Hammer is a melee Power Weapon often employed by Chaos Space Marines. Thunder Hammers are primarily used by Space Marines armoured in Terminator Armour. This large warhammer incorporates an energy field emitter within its head that activates only when the hammer strikes its target. This allows the weapon to store a tremendous amount of energy and release it only at the moment of impact, producing a terrific blast of energy and concussive force like the crack of thunder, from which the name of the weapon originates.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Archaon/ThunderHammer</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>3.5</Mass>
+			<!--MarketValue>1250</MarketValue-->
+		</statBases>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<tools>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>OG_Thunderhammer_Blunt</li>
+				</capacities>
+				<power>56</power>
+				<armorPenetration>2</armorPenetration>
+				<cooldownTime>2.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+				
+			</recipeUsers>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Powered_Special</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Gold>6</Gold>
+		</costList>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>500</costStuffCount>
+		<weaponTags>
+			<li>CThunderHammer</li>
+			<li>OGCPowerWeapon</li>
+			<li>PowerWeapon</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGCMelee</li>
+		</tradeTags>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(49,100,205)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+</Defs>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<AdeptusMechanicus.CultureDef Abstract="True" Name="OG_Orkoid_CultureBase">
+		<defName>OG_Greenskin_Ork_Culture</defName>
+		<label>greenskin klan</label>
+		<description>A broad category describing the styles and practices of ork 'Kultures' and the worship of their brutish gods.</description>
+		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerOrkoidKulture</ideoNameMaker>
+		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityOrkoid</deityNameMaker>
+		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerKriminul</deityTypeMaker>
+		<leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Kriminul</leaderTitleMaker>
+		<festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalKriminul</festivalNameMaker>
+		<allowedPlaceTags>
+			<li>OriginSpacer</li>
+		</allowedPlaceTags>
+		<iconPath>Icons/Ork/Icon_Ork_Hulk</iconPath>
+		<iconColor>(0.8, 0.8, 0.8)</iconColor>
+		<thingStyleCategories>
+			<li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">
+				<category>OG_Orkoid</category>
+				<priority>10</priority>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<category>Totemic</category>
+				<priority>2</priority>
+			</li>
+		</thingStyleCategories>
+		<styleItemTags>
+			<li>
+				<tag>OG_Ork_Hair</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>OG_Grot_Hair</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>Tribal</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>NoBeard</tag>
+				<baseWeight>10</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<!--li>
+				<tag>BeardPunk</tag>
+				<baseWeight>0.1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li-->
+			<li>
+				<tag>NoTattoo</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<!--li>
+				<tag>TattooFacePunk</tag>
+				<baseWeight>0.4</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>TattooBodyPunk</tag>
+				<baseWeight>0.4</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li-->
+		</styleItemTags>
+		<deities>
+			<randomizeOrder>true</randomizeOrder>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
+	</AdeptusMechanicus.CultureDef>
+
+	<AdeptusMechanicus.CultureDef ParentName="OG_Orkoid_CultureBase">
+		<defName>OG_Greenskin_Goffs</defName>
+		<iconPath>Ui/Kultur/Goffs</iconPath>
+		<label>goffs</label>
+		<deities>
+			<min>1</min>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
+	</AdeptusMechanicus.CultureDef>
+
+	<AdeptusMechanicus.CultureDef>
+		<defName>OG_GreenskinTribal_Culture</defName>
+		<label>greenskin tribe</label>
+		<description>An ancient culture common among rimworld tribes.</description>
+		<pawnNameMaker>NamerPersonCorunan</pawnNameMaker>
+		<ideoNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoCorunan</ideoNameMaker>
+		<deityNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerDeityCorunan</deityNameMaker>
+		<deityTypeMaker MayRequire="Ludeon.RimWorld.Ideology">DeityTypeMakerCorunan</deityTypeMaker>
+		<festivalNameMaker MayRequire="Ludeon.RimWorld.Ideology">NamerFestivalCorunan</festivalNameMaker>
+		<leaderTitleMaker MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_Corunan</leaderTitleMaker>
+		<allowedPlaceTags>
+			<li>OriginTribal</li>
+		</allowedPlaceTags>
+		<deities>
+			<min>1</min>
+			<possibleDeities>
+				<li>OG_Gork</li>
+				<li>OG_Mork</li>
+			</possibleDeities>
+		</deities>
+		<iconPath>Icons/Ork/Icon_Ork_Hulk</iconPath>
+		<iconColor>(0.8, 0.8, 0.8)</iconColor>
+		<preferredWeaponClasses>
+			<noble>Neolithic</noble>
+			<despised>Ultratech</despised>
+		</preferredWeaponClasses>
+		<thingStyleCategories>
+			<li MayRequire="Ogliss.AdMech.Xenobiologis.Orkz">
+				<category>OG_Orkoid</category>
+				<priority>10</priority>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<category>Totemic</category>
+				<priority>2</priority>
+			</li>
+		</thingStyleCategories>
+		<styleItemTags>
+			<!--li>
+				<tag>OG_Ork_Hair</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>OG_Grot_Hair</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li-->
+			<li>
+				<tag>Tribal</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>NoBeard</tag>
+				<baseWeight>10</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<!--li>
+				<tag>BeardTribal</tag>
+				<baseWeight>0.3</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li-->
+			<li>
+				<tag>NoTattoo</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<!--li>
+				<tag>TattooFaceTribal</tag>
+				<baseWeight>0.4</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+			<li>
+				<tag>TattooBodyTribal</tag>
+				<baseWeight>0.4</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li-->
+		</styleItemTags>
+	</AdeptusMechanicus.CultureDef>
+	
+</Defs>

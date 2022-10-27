@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <!-- ========================= Chaos ========================== -->
+    <!-- ========================= Chaos - Clothes Base - Apparel Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosApparel</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCSub</li>
+		</thingCategories>
+	</ThingDef>
+	
+    <!-- ========================= Chaos - Clothes Base - Apparel Makable Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Makeable" ParentName="OG_Chaos_Apparel_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Chaos_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+		
+    <!-- ========================= Chaos - Clothes - Apparel Makable ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel" ParentName="OG_Chaos_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosClothing</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCApparel</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<!-- ========================= Chaos - Headgear - Hat Makable ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Headgear" ParentName="OG_Chaos_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosHat</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCHeadgear</li>
+		</thingCategories>
+    <statBases>
+      <Mass>0.15</Mass>
+    </statBases>
+	</ThingDef>
+	
+    <!-- ========================= Chaos - Clothes Base - Apparel Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Armor_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosArmor</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCSub</li>
+		</thingCategories>
+	</ThingDef>
+
+    <!-- ========================= Chaos - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Armor_Makeable" ParentName="OG_Chaos_Apparel_Armor_Base" Abstract="True">
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGC_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Chaos_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+	
+    <!-- ========================= Chaos - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Armor" ParentName="OG_Chaos_Apparel_Armor_Makeable" Abstract="True">
+				<apparel>
+			<tags>
+				<li>ChaosArmour</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCArmour</li>
+		</thingCategories>
+	</ThingDef>	
+		
+	<!-- ========================= Chaos - Headgear Base - Helmet Makable Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Armor_Headgear" ParentName="OG_Chaos_Apparel_Armor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosHelmet</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCHeadgear</li>
+		</thingCategories>
+    <statBases>
+      <Mass>0.35</Mass>
+    </statBases>
+	</ThingDef>
+			
+	<!-- ========================= Chaos - Apparel Wargear Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Wargear_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>ChaosWargear</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGCWargear</li>
+		</thingCategories>
+	</ThingDef>	
+	
+	<!-- ========================= Chaos - Apparel Wargear Makable Base ========================== -->
+	<ThingDef Name="OG_Chaos_Apparel_Wargear_Makeable" ParentName="OG_Chaos_Apparel_Wargear_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGC_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			
+			<researchPrerequisites>
+				<li>OG_Chaos_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>	
+
+</Defs>

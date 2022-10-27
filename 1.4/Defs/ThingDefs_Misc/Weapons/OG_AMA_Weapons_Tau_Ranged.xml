@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Tau - Pulse Pistol =========================-->	
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGT_Bullet_Pulse</defName>
+		<label>Plasma Pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaPulse</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowMoteDef>OG_Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>1.5</glowMoteSize>
+			</li>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.75</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>0.75</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>1.0</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Tau_Gun">
+		<defName>OGT_Gun_PulsePistol</defName>
+		<label>pulse pistol (T)</label>
+		<description>A Pulse Pistol is a Tau Pulse Weapon that utilises pulsed induction fields to propel lethal micro-bursts of plasma over short ranges. A Pulse Pistol is a far smaller version of the Tau Pulse Rifle, and it has a damage output that outclasses the standard pistol weapons of every race the Tau have yet encountered. As a pistol-sized Pulse Weapon, it is only used by certain Tau personnel as a basic defence and hold-out weapon for use in desperate situations.\n\nPulse Pistols are most commonly issued to Sniper Drone Team Firesight Marksmen, although Tau Commanders who utilise a Tau Battlesuit Ejection System are also issued Pulse Pistols to aid them in making their way to safety if their Battlesuit has been destroyed.\n\nTau Air Caste pilots utilise a Pulse Pistol as a common sidearm, and Escort Drones are armed with twin Pulse Pistols to help protect their Water Caste master if necessary.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PulsePistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>500</MarketValue-->
+			<Mass>4</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.50</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>25</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.4</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TPulsePistol</li>
+			<li>TBasicGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>10</Steel>
+			<OGT_Fiotak>2</OGT_Fiotak>
+			<OGT_Component>1</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Tau - Pulse Carbine =========================-->
+	<ThingDef ParentName="OG_Tau_Gun">
+		<defName>OGT_Gun_PulseCarbine</defName>
+		<label>pulse carbine (T)</label>
+		<description>A Pulse Carbine is an advanced Tau Pulse Weapon that utilises pulsed induction fields to propel lethal micro-bursts of plasma over long ranges. A Pulse Carbine is a shorter-barrelled and more lightweight version of the Tau Pulse Rifle, and has a damage output that outclasses the standard weapons of every other intelligent race the Tau have yet encountered. The Pulse Carbine sacrifices the Pulse Rifle's longer range for greater portability and an underslung Photon Grenade Launcher.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PulseCarbine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>1750</MarketValue-->
+			<Mass>4</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.45</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<comps>	 
+			<li Class="AbilitesExtended.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGT_Ability_LaunchPhoton</li>
+				</Abilities>
+			</li>
+		</comps>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+				<warmupTime>0.75</warmupTime>
+				<range>24</range>
+				<ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TPulseCarbine</li>
+			<li>TBasicGun</li>
+			<li>TPathfinderGun</li>
+			<li>KrootGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+			<OGT_Fiotak>10</OGT_Fiotak>
+			<OGT_Component>2</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Tau - Pule Rifle =========================-->
+	<ThingDef ParentName="OG_Tau_Gun">
+		<defName>OGT_Gun_PulseRifle</defName>
+		<label>pulse rifle (T)</label>
+		<description>A Pulse Rifle is the formidable main infantry weapon of the Tau, and is an advanced Pulse Weapon that utilises pulsed induction fields to propel lethal micro-bursts of plasma over astonishing ranges. A Pulse Rifle is the standard-issue weapon for Fire Warriors, and has a range and damage output that outclasses the standard weapons of every race the Tau have yet encountered. Kroot Shapers have also sometimes been known to have been entrusted with the use of a Pulse Rifle on the battlefield, whilst Tetras are armed with twin-linked Pulse Rifles as a basic self-defence weapon.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PulseRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.000</drawSize>			
+	</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>2000</MarketValue-->
+			<Mass>6</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_Pulse</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>36</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>    
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>KrootGun</li>
+			<li>TPulseRifle</li>
+			<li>TBasicGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>45</Steel>
+			<OGT_Fiotak>20</OGT_Fiotak>
+			<OGT_Component>5</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Tau - Pulse Blaster =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGT_Bullet_PulseBlast</defName>
+		<label>Plasma Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaPulseSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>2</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<speed>75</speed>
+		</projectile>
+	<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+	<modExtensions>
+	  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+		<glowMoteDef>OG_Mote_PlasmaGlow</glowMoteDef>
+		<glowMoteSize>1.5</glowMoteSize>
+	  </li>
+	</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_Tau_Gun">
+		<defName>OGT_Gun_PulseBlaster</defName>
+		<label>pulse blaster (T)</label>
+		<description>The Pulse Blaster, also known as a Pulse Shotgun, is a type of Tau Pulse Weapon. Commonly used by Fire Warrior Breacher Teams. Similar to the Human Shotgun in function, the Pulse Blaster is designed to deliver powerful close-range firepower. Though the Tau are historically disdainful of close-range warfare, the Pulse Blaster had to be developed due to Tau difficulties in urban combat on labyrinthine confined Imperial Hive Worlds.\n\nThe Pulse Blaster uses a two-stage firing process to enhance its lethality of its plasma-based ammunition. When the trigger is halfway pulled, an invisible volley of negatively charged particles paint the target, followed by the full plasma payload. This causes victims to glow with a ghostly light moments before they're hit.[2]</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PulseBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TPulseBlaster</li>
+			<li>TBasicGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>30</Steel>
+			<OGT_Fiotak>10</OGT_Fiotak>
+			<OGT_Component>3</OGT_Component>
+		</costList>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>1500</MarketValue-->
+			<Mass>4</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.87</AccuracyShort>
+			<AccuracyMedium>0.77</AccuracyMedium>
+			<AccuracyLong>0.64</AccuracyLong>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_PulseBlast</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>18</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Plasma_Cannon_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Tau - Rail Rifle =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGT_Bullet_RailRifle</defName>
+		<label>railrifle slug</label>
+		
+		<textures>
+		  <li>Things/Projectile/RailgunSml2</li>
+		</textures>
+		<seam>0</seam>
+
+		<projectile>
+			<damageDef>OGTRailgun</damageDef>
+			<damageAmountBase>60</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Tau_Gun_Special">
+		<defName>OGT_Gun_RailRifle</defName>
+		<label>rail rifle (T)</label>
+		<description>A Rail Rifle is a Tau ballistic Rail Weapon that makes use of electromagnetically-induced linear acceleration to fire a projectile at hypersonic speeds. A potent weapon, the Rail Rifle makes use of the same technologies as the larger Railgun and Heavy Rail Rifle, albeit on a smaller scale so that it is infantry portable. Possessing an impressive long range and ability to deal great damage, its true strength lies in its armour penetration capabilities. The Rail Rifle's projectile is able to punch through even Terminator Armour with ease. As a dedicated elite infantry killer, enemy units that manage to survive a Rail Rifle fusillade are often pinned down temporarily afterwards, unable to do anything in the face of such deadly fire.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/RailRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>5000</MarketValue-->
+			<Mass>8</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.85</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_RailRifle</defaultProjectile>
+				<warmupTime>3.0</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Rail_Rifle_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TRailRifle</li>
+			<li>TAdvancedGun</li>
+			<li>TPathfinderGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>OG_Tau_Tech_Weapons_Railgun</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>45</Steel>
+			<OGT_Fiotak>35</OGT_Fiotak>
+			<OGT_Component>6</OGT_Component>
+		</costList>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Tau - Ion Rifle =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGT_Bullet_IonRifle</defName>
+		<label>ion-rifle beam</label>
+		
+		<textures>
+		  <li>Things/Projectile/IonBeamSml</li>
+		</textures>
+		<seam>0</seam>
+
+		<projectile>
+			<damageDef>OGTIon</damageDef>
+			<explosionRadius>0.75</explosionRadius>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Tau_Gun_Heavy">
+		<defName>OGT_Gun_IonRifle</defName>
+		<label>ion rifle (T)</label>
+		<description>An Ion Rifle is an experimental Tau Ion Weapon designed for infantry use developed during the Tau Empire's Third Sphere Expansion. An Ion Rifle is similar in size to a Tau Rail Rifle, and it is a powerful weapon capable of engaging enemies at long ranges with high energy ion streams, vaporising flesh and metal with equal ease. These high-energy particles are accelerated by an electromagnetic field and react explosively with the target as a result of direct transfer of energy at an atomic level.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/IonRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<comps>	  
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<HeavyWeapon>true</HeavyWeapon>
+			</li>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>7000</MarketValue-->
+			<Mass>7</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.50</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.75</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_IonRifle</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Ion_Rifle_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TIonRifle</li>
+			<li>THeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Tau_Tech_Weapons_Ion</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>35</Steel>
+			<OGT_Fiotak>20</OGT_Fiotak>
+			<OGT_Mortonium>5</OGT_Mortonium>
+			<OGT_Component>12</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Tau - Burst Cannon =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGT_Bullet_BurstCannon</defName>
+		<label>Burst Pulse</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlasmaPulseSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGTPlasmaPulse</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationBase>0.48</armorPenetrationBase>
+			<speed>135</speed>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.GlowerProjectileExtension">
+			<glowMoteDef>OG_Mote_PlasmaGlow</glowMoteDef>
+			<glowMoteSize>1.5</glowMoteSize>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Tau_Gun_Heavy">
+		<defName>OGT_Gun_BurstCannon</defName>
+		<label>burst cannon (T)</label>
+		<description>A Burst Cannon is a form of multi-barrelled Tau Pulse Weapon, and utilises the same plasma induction technologies found in a Pulse Rifle to fire micro-pulses of plasma accelerated to near-light speeds. With four rotating barrels to mitigate thermal stress, Burst Cannons are able to sustain ferocious rates of fire, albeit at the expense of the long ranges that many other Pulse Weapons possess. However, this drawback is usually offset by the Burst Cannon’s portability, and the manoeuvrability of units commonly armed with them.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/BurstCannon</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+			<drawSize>1.150</drawSize>			
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<!--thingSetMakerTags IgnoreIfNoMatchingField="True"><li>RewardStandardQualitySuper</li></thingSetMakerTags-->
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>5250</MarketValue-->
+			<Mass>9</Mass>
+			<AccuracyTouch>0.15</AccuracyTouch>
+			<AccuracyShort>0.275</AccuracyShort>
+			<AccuracyMedium>0.275</AccuracyMedium>
+			<AccuracyLong>0.1</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_BurstCannon</defaultProjectile>
+				<warmupTime>0.2</warmupTime>
+				<range>24</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>36</burstShotCount>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>TBurstCannon</li>
+			<li>THeavyGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Laser</li-->
+				<!--li>OG_Common_Tech_Weapons_Plasma</li-->
+				<!--li>OG_Common_Tech_Weapons_Flame</li-->
+				<li>MultibarrelWeapons</li>
+				<li>OG_Tau_Tech_Weapons_PlasmaPulse</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>55</Steel>
+			<OGT_Fiotak>35</OGT_Fiotak>
+			<OGT_Component>8</OGT_Component>
+		</costList>
+		<comps>		
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+			<!--li Class="AdvancedGraphics.CompProperties_AdvancedGraphic">
+				<randomised>true</randomised>
+			</li-->	  
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Tau - Vespid Neutrino Blaster =========================-->
+  <ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGT_Bullet_NeutronBlaster</defName>
+		<label>Neutron Blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/BoltShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGTNeutron</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.32</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+			<AddHediffChance>0.5</AddHediffChance>
+			<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
+			<CanResistHediff>true</CanResistHediff>
+			<ResistHediffStat>ToxicResistance</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Tau_Gun_Special">
+		<defName>OGT_Gun_NeutronBlaster</defName>
+		<label>neutron blaster (T)</label>
+		<description>A Neutron Blaster is a unique and potent weapon utilised only by the Vespid, representing a technology unique to that alien species. A hybrid of Vespid and Tau technology, the bulk of a Neutron Blaster is of Tau manufacture as the Vespid have not yet attained the technical facility to fabricate it themselves. Mounted at the barrel of the weapon is a highly energetic and unstable crystal harvested from the lowest levels of the largest stalactite islands of the Vespid homeworld in the deepest reaches of Vespid's cloud seas. At such depths, the atmospheric pressures create all manner of exotic, bizarre and unique crystal formations, and it is only the larger female Vespid, those who form the leader class of the species, who have the constitution to descend to such depths and harvest the purest crystals.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/NeutrinoBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>32000</WorkToMake>
+			<!--MarketValue>3750</MarketValue-->
+			<Mass>3</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>-0.05</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<rapidFire>true</rapidFire>
+				<effectsUserChance>0.15</effectsUserChance>
+				<resistEffectStat>ToxicResistance</resistEffectStat>
+				<userEffect>OG_Hediff_RadiationPoisioning</userEffect>
+				<userEffectImmuneList>
+					<li>Vespid</li>
+				</userEffectImmuneList>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_NeutronBlaster</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>4</burstShotCount>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			
+			<li>TNeutrinoBlaster</li>
+			<li>TAdvancedGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Vespid_Tech_Base_T1</li>
+			</researchPrerequisites> 
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<OGT_Fiotak>15</OGT_Fiotak>
+			<OGT_Component>8</OGT_Component>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

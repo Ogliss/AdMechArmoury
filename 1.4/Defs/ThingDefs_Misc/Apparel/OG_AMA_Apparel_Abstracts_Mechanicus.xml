@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Mechanicus ========================== -->
+    <!-- ========================= Mechanicus - Clothes Base - Apparel Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<ideoDesireAllowedFactionCategoryTags IgnoreIfNoMatchingField="True">
+				<li>OG_Outlander_Militarum</li>
+				<li>OG_Outlander_Militarum_Cadian</li>
+				<li>OG_Outlander_Militarum_Kreig</li>
+				<li>OG_Outlander_Mechanicus</li>
+			</ideoDesireAllowedFactionCategoryTags>
+			<tags>
+				<li>MechanicusApparel</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMSub</li>
+		</thingCategories>
+	</ThingDef>
+	
+    <!-- ========================= Mechanicus - Clothes Base - Apparel Makable Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Makeable" ParentName="OG_Mechanicus_Apparel_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers>
+				<li>ElectricTailoringBench</li>
+				<li>HandTailoringBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel</li>
+				<li>OG_Mechanicus_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+	</ThingDef>
+		
+    <!-- ========================= Mechanicus - Clothes - Apparel Makable ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel" ParentName="OG_Mechanicus_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusClothing</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMApparel</li>
+		</thingCategories>
+	</ThingDef>
+	
+	<!-- ========================= Mechanicus - Headgear - Hat Makable ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Headgear" ParentName="OG_Mechanicus_Apparel_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusHat</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+    <statBases>
+      <Mass>0.15</Mass>
+    </statBases>
+	</ThingDef>
+	
+    <!-- ========================= Mechanicus - Clothes Base - Apparel Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Armor_Base" ParentName="OG_Apparel_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusApparel</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMSub</li>
+		</thingCategories>
+	</ThingDef>
+
+    <!-- ========================= Mechanicus - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Armor_Makeable" ParentName="OG_Mechanicus_Apparel_Armor_Base" Abstract="True">
+		<recipeMaker>
+			<useIngredientsForColor>false</useIngredientsForColor>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel_Armour_T1</li>
+				<li>OG_Mechanicus_Tech_Base_T1</li>
+			</researchPrerequisites>
+			<!--researchPrerequisite>OG_Mechanicus_Tech_Base_T1</researchPrerequisite-->
+		</recipeMaker>
+	</ThingDef>
+	
+    <!-- ========================= Mechanicus - Apparel Armor Makable Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Armor" ParentName="OG_Mechanicus_Apparel_Armor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusArmour</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMArmour</li>
+		</thingCategories>
+	</ThingDef>	
+		
+	<!-- ========================= Mechanicus - Headgear Base - Helmet Makable Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Armor_Headgear" ParentName="OG_Mechanicus_Apparel_Armor_Makeable" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusHelmet</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMHeadgear</li>
+		</thingCategories>
+    <statBases>
+      <Mass>0.35</Mass>
+    </statBases>
+	</ThingDef>
+			
+	<!-- ========================= Mechanicus - Apparel Wargear Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Wargear_Base" ParentName="OG_Apparel_Wargear_Base" Abstract="True">
+		<apparel>
+			<tags>
+				<li>MechanicusWargear</li>
+			</tags>
+		</apparel>
+		<thingCategories>
+			<li>OGAMWargear</li>
+		</thingCategories>
+	</ThingDef>	
+	
+	<!-- ========================= Mechanicus - Apparel Wargear Makable Base ========================== -->
+	<ThingDef Name="OG_Mechanicus_Apparel_Wargear_Makeable" ParentName="OG_Mechanicus_Apparel_Wargear_Base" Abstract="True">
+		<recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Machining</soundWorking>
+			<recipeUsers>
+				<li>OGI_TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Apparel_Armour_T1</li>
+				<li>OG_Mechanicus_Tech_Base_T1</li>
+			</researchPrerequisites>
+			<!--researchPrerequisite>OG_Mechanicus_Tech_Base_T1</researchPrerequisite-->
+		</recipeMaker>
+	</ThingDef>	
+
+</Defs>

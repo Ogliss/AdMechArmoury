@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Chaos Damage Types =========================-->
+	<!--==================== Sonic Damage Type =========================-->
+	<DamageDef Abstract="True" Name="OG_Chaos_SonicBase" ParentName="OGLocalRangedInjuryBase">
+		<defName>OGCSonic</defName>
+		<label>Sonic</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>false</isExplosive>
+		<deathMessage>{0} has been claimed by Slaanesh.</deathMessage>
+		<hediff>Shredded</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+	
+	<!--==================== ReaperAutocannon Damage Type =========================-->
+	<DamageDef Abstract="True" Name="OG_ReaperAutocannon_Base" ParentName="OGLocalRangedInjuryBaseNoCamShake">
+		<label>reaper autocannon</label>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been taken by the Dark Gods.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<defaultDamage>25</defaultDamage>
+		<buildingDamageFactor>1</buildingDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<soundExplosion>OGIPP_Explosion</soundExplosion>
+	</DamageDef>
+	
+</Defs>

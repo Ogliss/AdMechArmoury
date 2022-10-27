@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Tau  - Bonding Knife =========================-->
+  <!--ThingDef ParentName="OG_Tau_MeleeWeapon_Sharp_Quality">
+    <defName>OGT_Melee_BondingKnife</defName>
+    <label>bonding knife (T)</label>
+    <techLevel>Neolithic</techLevel>
+	<description>The Bonding Knife is a ceremonial knife that serves as part of the Tau ritual of the Ta'lissera, in which a group is bonded together through ritualistic cutting of their flesh.[1b] Following their ritual bonding the knife is then carried into battle by the team leader, although it is not designed for use in actual combat, and serves as a reminder of the sacred bond the group shares. Fire Warriors who serve as part of a Battlesuit team may also undergo the process, although instead of carrying the actual knife into battle the team leader may instead paint a knife design onto his armour.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponMelee/Knife</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <uiIconScale>1.6</uiIconScale>
+    <weaponTags>
+	
+    </weaponTags>
+    <costStuffCount>30</costStuffCount>
+    <statBases>
+      <WorkToMake>1800</WorkToMake>
+      <Mass>0.5</Mass>
+    </statBases>
+    <equippedAngleOffset>-65</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <burnableByRecipe>false</burnableByRecipe>
+    <tools>
+      <li>
+        <label>handle</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>13</power>
+        <cooldownTime>1.5</cooldownTime>
+      </li>
+      <li>
+        <label>point</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>14</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef-->
+
+	<!--==================== Tau  - Honor Blade =========================-->
+	<ThingDef ParentName="OG_Tau_MeleeWeapon_Sharp_Quality">
+		<defName>OGT_Melee_HonorBlade</defName>
+		<label>honor blade (T)</label>
+		<description>A Honour Blade is a weapon carried by Tau Ethereals and Ethereal Guards for a number of uses. It's mainly used as a symbols of their office, ceremonial weapons, and in self-defence. While each weapon is custom-made, they all feature a broad blade fitted to a long, lightweight metallic staff. Ethereals use the blades primarily to settle disputes, engaging in lengthy, highly stylised duels that are more coordinated co-meditation than combat. The combatants dance and weave as if in a trance, their weapons flashing past one another scant millimeters and microseconds from causing terrible damage. Yet somehow, the dance is always bloodless, as if the Ethereals are in total union with one another. In truth, the combatants are engaged in a deeply spiritual duel, conducted at a level which none outside of their caste can discern. Some Ethereals carry their Honour Blades on the field of battle, not expecting to have to use them, but prepared to make a last stand against their foes nonetheless.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponMelee/Tau/HonorBlade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Revolver</soundInteract>
+		<costStuffCount>400</costStuffCount>
+		<statBases>
+			<WorkToMake>27500</WorkToMake>
+			<Mass>2.5</Mass>
+			<MarketValue>2750</MarketValue>
+		</statBases>
+		<equippedStatOffsets>
+			<PsychicSensitivity>-0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<equippedAngleOffset>-25</equippedAngleOffset>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<tools>
+			<li>
+				<label>handle</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>8</power>
+				<cooldownTime>1.0</cooldownTime>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>23</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+		</tools>
+		<recipeMaker>
+			<recipeUsers>
+			
+			</recipeUsers>
+		<!--researchPrerequisite>OG_Tau_Tech_Weapons_Ranged_T2</researchPrerequisite-->
+		</recipeMaker>
+		<costList>
+			<OGT_Component>2</OGT_Component>
+			<OGT_Fiotak>5</OGT_Fiotak>
+		</costList>
+		<weaponTags>
+			<li>THonourBlade</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTMelee</li>
+		</tradeTags>
+    <modExtensions>
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+        <dualWield>false</dualWield>
+        <twoHand>true</twoHand>
+      </li>
+      <li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+        <extraRotation>0</extraRotation>
+      </li>
+    </modExtensions>
+	 </ThingDef>
+
+</Defs>

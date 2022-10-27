@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
+	<!-- Human Humanoid Alien Races 2.0 -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Adeptus Mechanicus: Magos Xenobiologis</li>
+				</mods>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<!--==================== Tyranid - Hormagaunt Weapons =========================-->
+						<ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_MeleeWeapon_Sharp_Quality">
+							<defName>OGTY_Melee_Hormagaunt_ST</defName>
+							<label>scything talons</label>
+							<description>Scything Talons are a Tyranid biomorph of long, razor-edged claws resembling fused talons made of Chitin and serrated bone-like substances. Each talon is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponMelee/Tyranid/ScythingTalons_Hormagaunt</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>CutoutComplex</shaderType>
+								<drawSize>1.5</drawSize>			
+							</graphicData>
+							<equippedAngleOffset>0</equippedAngleOffset>
+							<comps>     
+								<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<isDualWeapon>true</isDualWeapon>
+								<!--verticalFlipNorth>true</verticalFlipNorth-->
+								<angleAdjustmentNorth>-45</angleAdjustmentNorth>
+								<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+								<angleAdjustmentEast>-70</angleAdjustmentEast>
+								<angleAdjustmentWest>70</angleAdjustmentWest>
+								<eastOffset>-0.0,0,-0.25</eastOffset>
+								<westOffset>-0.0,0,-0.25</westOffset>
+								<southOffset>0.150,0,-0.250</southOffset>
+								<northOffset>0.0050,0,-0.350</northOffset>
+								</li> 
+							</comps>
+							<modExtensions>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+									<dualWield>true</dualWield>
+									<twoHand>false</twoHand>
+								</li>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+									<extraRotation>0</extraRotation>
+								</li>
+							</modExtensions>
+							<!--soundInteract>Interact_Chainsword</soundInteract-->
+							<statBases>
+								<Mass>1</Mass>
+								
+								<MarketValue>300</MarketValue>
+							</statBases>
+							<tools>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>1.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+								</li>
+							</tools>
+							<weaponTags>
+								<li>OGTY_Hormagaunt</li>
+							</weaponTags>
+							<generateCommonality>1</generateCommonality>
+						 </ThingDef>
+						 
+						<!--==================== Tyranid - Genestealer Weapons =========================-->
+						<ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_MeleeWeapon_Sharp_Quality">
+							<defName>OGTY_Melee_Genestealer_RC</defName>
+							<label>rending claws</label>
+							<description>Rending Claws are a Tyranid Bio-weapon consisting of short, deadly claws tipped in extremely dense diamond-hard chitin. Powered by the overdeveloped musculature and steel-like tendons of a Tyranid, rending claws become capable of ripping open Ceramite and thick armour with ease as well as fatally shredding flesh and bone.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponMelee/Tyranid/RendingClaws_Genestealer</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>CutoutComplex</shaderType>
+								<drawSize>1.25</drawSize>			
+							</graphicData>
+							<equippedAngleOffset>-45</equippedAngleOffset>
+							<comps>     
+								<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<isDualWeapon>true</isDualWeapon>
+								<verticalFlipNorth>true</verticalFlipNorth>
+								<angleAdjustmentNorth>45</angleAdjustmentNorth>
+								<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+								<angleAdjustmentEast>-70</angleAdjustmentEast>
+								<angleAdjustmentWest>70</angleAdjustmentWest>
+								<eastOffset>0.035,0,-0.15</eastOffset>
+								<westOffset>-0.0350,0,-0.15</westOffset>
+								<southOffset>0.750,0,-0.250</southOffset>
+								<northOffset>0.0,0,-0.250</northOffset>
+								</li> 
+							</comps>
+							<modExtensions>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+								<dualWield>true</dualWield>
+								<twoHand>false</twoHand>
+								</li>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+								<extraRotation>0</extraRotation>
+								</li>
+							</modExtensions>
+							<!--soundInteract>Interact_Chainsword</soundInteract-->
+							<statBases>
+								<Mass>1</Mass>
+								
+								<MarketValue>300</MarketValue>
+							</statBases>
+							<tools>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>1.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+								</li>
+							</tools>
+							<weaponTags>
+								<li>OGTY_Genestealer</li>
+							</weaponTags>
+							<generateCommonality>1</generateCommonality>
+						 </ThingDef>
+						 
+						<!--==================== Tyranid - Ravener Weapons =========================-->
+						<ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_MeleeWeapon_Sharp_Quality">
+							<defName>OGTY_Melee_Ravener_ST</defName>
+							<label>scything talons</label>
+							<description>Scything Talons are a Tyranid biomorph of long, razor-edged claws resembling fused talons made of Chitin and serrated bone-like substances. Each talon is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponMelee/Tyranid/ScythingTalons_Ravener</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>CutoutComplex</shaderType>
+								<drawSize>2.5</drawSize>			
+							</graphicData>
+							<equippedAngleOffset>-45</equippedAngleOffset>
+							<comps>     
+								<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<isDualWeapon>true</isDualWeapon>
+								<!--verticalFlipNorth>true</verticalFlipNorth-->
+								<angleAdjustmentNorth>-45</angleAdjustmentNorth>
+								<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+								<angleAdjustmentEast>-70</angleAdjustmentEast>
+								<angleAdjustmentWest>70</angleAdjustmentWest>
+								<eastOffset>0.0,0,0.25</eastOffset>
+								<westOffset>-0.0,0,0.25</westOffset>
+								<southOffset>0.0,0,-0.050</southOffset>
+								<northOffset>0.0,0,-0.150</northOffset>
+								</li> 
+							</comps>
+							<modExtensions>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+								<dualWield>true</dualWield>
+								<twoHand>false</twoHand>
+								</li>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+								<extraRotation>0</extraRotation>
+								</li>
+							</modExtensions>
+							<!--soundInteract>Interact_Chainsword</soundInteract-->
+							<statBases>
+								<Mass>1</Mass>
+								
+								<MarketValue>300</MarketValue>
+							</statBases>
+							<tools>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>1.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+								</li>
+							</tools>
+							<weaponTags>
+								<li>OGTY_Ravener</li>
+							</weaponTags>
+							<generateCommonality>1</generateCommonality>
+						 </ThingDef>
+						 
+						<!--==================== Tyranid - Lictor Weapons =========================-->
+						<ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_MeleeWeapon_Sharp_Quality">
+							<defName>OGTY_Melee_Lictor_ST</defName>
+							<label>scything talons</label>
+							<description>Scything Talons are a Tyranid biomorph of long, razor-edged claws resembling fused talons made of Chitin and serrated bone-like substances. Each talon is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponMelee/Tyranid/ScythingTalons_Lictor</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>CutoutComplex</shaderType>
+								<drawSize>2.5</drawSize>			
+							</graphicData>
+							<equippedAngleOffset>30</equippedAngleOffset>
+							<comps>     
+								<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<isDualWeapon>true</isDualWeapon>
+								<!--verticalFlipNorth>true</verticalFlipNorth-->
+								<angleAdjustmentNorth>-45</angleAdjustmentNorth>
+								<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+								<angleAdjustmentEast>-70</angleAdjustmentEast>
+								<angleAdjustmentWest>70</angleAdjustmentWest>
+								<eastOffset>-0.50,0,-0.45</eastOffset>
+								<westOffset>0.50,0,-0.45</westOffset>
+								<southOffset>0.0,0,-0.150</southOffset>
+								<northOffset>0.0,0,-0.150</northOffset>
+								</li> 
+							</comps>
+							<modExtensions>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+								<dualWield>true</dualWield>
+								<twoHand>false</twoHand>
+								</li>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+								<extraRotation>0</extraRotation>
+								</li>
+							</modExtensions>
+							<!--soundInteract>Interact_Chainsword</soundInteract-->
+							<statBases>
+								<Mass>1</Mass>
+								
+								<MarketValue>300</MarketValue>
+							</statBases>
+							<tools>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>1.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+								</li>
+							</tools>
+							<weaponTags>
+								<li>OGTY_Lictor</li>
+							</weaponTags>
+							<generateCommonality>1</generateCommonality>
+						 </ThingDef>
+						 
+						<!--==================== Tyranid - Carnifex Weapons =========================-->
+						<ThingDef MayRequire="Ogliss.AdMech.Xenobiologis" ParentName="OG_Tyranid_MeleeWeapon_Sharp_Quality">
+							<defName>OGTY_Melee_Carnifex_STCC</defName>
+							<label>scything talons crushing claws</label>
+							<description>Scything Talons are a Tyranid biomorph of long, razor-edged claws resembling fused talons made of Chitin and serrated bone-like substances. Each talon is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.\n\nCrushing Claws are a Tyranid Bio-weapon of huge crab-like claws found on the largest Tyranid organisms, the only creatures capable of hefting the enormous bulk of the claws, such as Carnifexes. The claws are obscenely strong and powerful enough to destroy multiple opponents in one swoop or easy cut through the toughest vehicle armour.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponMelee/Tyranid/ScythingTalon_CrushingClaw_Carnifex</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>CutoutComplex</shaderType>
+								<drawSize>2.5</drawSize>			
+							</graphicData>
+							<equippedAngleOffset>0</equippedAngleOffset>
+							<comps>     
+								<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+								<isDualWeapon>true</isDualWeapon>
+								<verticalFlipNorth>true</verticalFlipNorth>
+								<angleAdjustmentNorth>45</angleAdjustmentNorth>
+								<angleAdjustmentSouth>-45</angleAdjustmentSouth>
+								<angleAdjustmentEast>-70</angleAdjustmentEast>
+								<angleAdjustmentWest>70</angleAdjustmentWest>
+								<eastOffset>-1.750,0,-01</eastOffset>
+								<westOffset>1.750,0,-01</westOffset>
+								<southOffset>-01.250,0,1.2500</southOffset>
+								<northOffset>-01.250,0,-1.750</northOffset>
+								</li> 
+							</comps>
+							<modExtensions>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+								<dualWield>true</dualWield>
+								<twoHand>false</twoHand>
+								</li>
+								<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+								<extraRotation>0</extraRotation>
+								</li>
+							</modExtensions>
+							<!--soundInteract>Interact_Chainsword</soundInteract-->
+							<statBases>
+								<Mass>3.2</Mass>
+								
+								<MarketValue>300</MarketValue>
+							</statBases>
+							<stuffCategories>
+								<li>Metallic</li>
+							</stuffCategories>
+							<tools>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>claw</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>28</power>
+									<cooldownTime>2.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>1.3</cooldownTime>
+								</li>
+								<li>
+									<label>talon</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+								</li>
+							</tools>
+							<weaponTags>
+								<li>OGTY_Carnifex</li>
+							</weaponTags>
+							<generateCommonality>1</generateCommonality>
+						 </ThingDef>
+						 
+					</value>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+	 
+</Patch>

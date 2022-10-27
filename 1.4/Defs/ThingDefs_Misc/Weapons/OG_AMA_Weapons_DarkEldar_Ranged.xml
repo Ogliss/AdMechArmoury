@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Dark Eldar - Splinter Pistol, Rifle, Shard Carbine =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_Splinter</defName>
+		<label>Splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDESplinter</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_ToxicSplinter</defName>
+		<label>Toxic Splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDESplinter</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.1</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicResistance</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!--==================== Dark Eldar - Splinter Pistol =========================-->
+	<ThingDef ParentName="OG_DarkEldar_Gun">
+		<defName>OGDE_Gun_SplinterPistol</defName>
+		<label>splinter pistol (DE)</label>
+		<description>The Splinter Pistol is the ranged weapon of choice for most the remainder of the Dark Eldar forces, finding frequent use in the ranks of Archons, Wyches, Reaver Jetbikers and most Sybarites and Dracons. Usually paired with a Monomolecular Knife or Claw and used as a pair for added effectiveness in assaults. The Splinter Pistol uses the same ammunition and firing mechanisms as the rifle, although compacted and therefore have shorter range, and with a smaller ammunition crystal to reduce the weight even further. Splinter Pistol crystals are therefore the most frequently impregnated with toxins, as they are the weapons that most need the added effect.\n\nThe gun houses an ammunition disintegration generator to break up the crystal into shards, along with a cyclic ammunition feeder to house the shards before firing. Once fired, it routes the energy used to disintegrate the ammunition crystal through a magno-electric impulse chamber that accelerates the crystal to supersonic speeds, rocketing it towards its intended target.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/SplinterPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>7500</WorkToMake>
+			<!--MarketValue>1050</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Splinter_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.45</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DESplinterPistol</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Splinter Rifle =========================-->
+	<ThingDef ParentName="OG_DarkEldar_Gun">
+		<defName>OGDE_Gun_SplinterRifle</defName>
+		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+		<label>splinter rifle (DE)</label>
+		<description>The most common weapon in the Dark Eldar Armoury, the Splinter Rifle is used by nearly every citizen of Commorragh at some point in their lives. It is the standard weapon of choice for Kabalite Warriors. The weapon is lightweight and usually sports Monomolecular Blades for added functionality in melee combat. It features a medium sized ammunition crystal to reduce weight while still maintaining a decent amount of ammo before the user needs to reload.\n\nThe gun houses an ammunition disintegration generator to break up the crystal into shards, along with a cyclic ammunition feeder to house the shards before firing. Once fired, it routes the energy used to disintegrate the ammunition crystal through a magno-electric impulse chamber that accelerates the crystal to supersonic speeds, rocketing it towards its intended target.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/SplinterRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+		<!--reliability>1</reliability-->
+			<WorkToMake>43500</WorkToMake>
+			<!--MarketValue>1850</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Splinter</defaultProjectile>
+				<warmupTime>0.7</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>9</burstShotCount>
+				<soundCast>OG_Splinter_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.7</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+				<VerbEntries>
+					<li>
+						<RapidFire>true</RapidFire>
+					</li>
+				</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DESplinterRifle</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Shard Carbine =========================-->
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+		<defName>OGDE_Gun_ShardCarbine</defName>
+		<!--thingClass>AdeptusMechanicus.ThingDef_GunOG</thingClass-->
+		<label>shardcarbine (DE)</label>
+		<description>The Shardcarbine has an enlarged barrel able to launch even greater volleys of toxic crystal-ammunition than the normal Splinter Rifle without interrupting the shooter at all. This weapon's range is little bit shorter than a splinter rifle and is favoured by Scourges. Some Trueborns prefer this gun over others they would be able to possess.\n\nThe gun houses an ammunition disintegration generator to break up the crystal into shards, along with a cyclic ammunition feeder to house the shards before firing. Once fired, it routes the energy used to disintegrate the ammunition crystal through a magno-electric impulse chamber that accelerates the crystal to supersonic speeds, rocketing it towards its intended target.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/ShardCarbine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<!--reliability>1</reliability-->
+			<WorkToMake>35750</WorkToMake>
+			<!--MarketValue>1850</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_ToxicSplinter</defaultProjectile>
+				<warmupTime>0.7</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<burstShotCount>12</burstShotCount>
+				<soundCast>OG_Splinter_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.7</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>    
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<RapidFire>true</RapidFire>
+				</li>
+			</VerbEntries>
+			</li> 
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEShardCarbine</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Splinter Cannon =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_SplinterCannon</defName>
+		<label>large splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDESplinter</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_ToxicSplinterCannon</defName>
+		<label>Toxic Splinter</label>
+		<graphicData>
+			<texPath>Things/Projectile/SplinterSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDESplinter</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.1</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicResistance</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
+		<defName>OGDE_Gun_SplinterCannon</defName>
+		<label>splinter cannon (DE)</label>
+		<description>The Splinter Cannon is the most lethal of the four, and much more expensive to produce, as it incorporates several additions to allow the user to fire this large, bulky weapon even while charging into assault.\n\nThe primary additions are a semi-liquid stabilization mechanism housed approximately in the center of the cannon, to provide a counterweight to the constantly fluctuating center of gravity on the weapon. Second, an auto-burst trigger will continue to fire splinters for four to five seconds after it has been pulled, in case the user loses his grip temporarily during the charge. Finally, and possibly most important, is the addition of magneto-impulse directional spines along the barrel, and a secondary power generator housed in the back of the cannon, to prevent stalling or improper functioning. These directional spines provide additional magnetic field stability, preventing the splinters from exiting the barrel traveling at an awkward angle or hitting the inside of the barrel and causing damage to the weapon.\n\nThe Splinter Cannon otherwise contains the same mechanism for loading and firing ammunition, and comes with a very large ammunition crystal to allow for extended use of the cannon regardless of its high rate of fire.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/SplinterCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>55250</WorkToMake>
+			<!--MarketValue>1850</MarketValue-->
+			<Mass>2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.05</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_SplinterCannon</defaultProjectile>
+				<warmupTime>1.7</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>14</burstShotCount>
+				<soundCast>OG_Splinter_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>1</muzzleFlashScale>
+				<muzzleSmokeSize>-1</muzzleSmokeSize>
+				<barrelLength>0.9</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DESplinterCannon</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_DarkEldar_Tech_Weapons_Splinter</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Disintegrator Cannon =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_DisintegratorCannon</defName>
+		<label>Disintegrator Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/PlamsShotSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>185,0,255,255</color>
+			<colorTwo>185,0,255,200</colorTwo>
+			<shaderType>MoteGlow</shaderType>
+			<shaderParameters>
+				<_distortionIntensity>0.015</_distortionIntensity>
+				<_brightnessMultiplier>1.1</_brightnessMultiplier>
+				<_distortionScale>40</_distortionScale>
+			</shaderParameters>
+		</graphicData>
+		<projectile>
+			<damageDef>OGEPlas</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
+		</projectile>
+		<thingClass>AdeptusMechanicus.Bullet_Explosive</thingClass>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.GlowerProjectileExtension">
+				<glowMoteDef>OG_Mote_PlasmaGlow</glowMoteDef>
+				<glowMoteSize>2</glowMoteSize>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_PlasmaTrail</trailMoteDef>
+				<!--trailMoteDef>OG_Mote_GiantExplosionInvert</trailMoteDef-->
+				<trailInitalDelay>5</trailInitalDelay>
+				<trailMoteSize>2</trailMoteSize>
+				<trailerMoteInterval>2</trailerMoteInterval>
+				<motesThrown>3</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.TrailerProjectileExtension">
+				<trailMoteDef>OG_Mote_MicroSparksFast</trailMoteDef>
+				<trailMoteSize>0.350</trailMoteSize>
+				<trailerMoteInterval>3</trailerMoteInterval>
+				<motesThrown>2</motesThrown>
+				<useGraphicColor>True</useGraphicColor>
+			</li>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>1.25</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
+		<defName>OGDE_Gun_DisintegratorCannon</defName>
+		<label>disintegrator cannon (DE)</label>
+		<description>The Disintegrator Cannon is a Dark Eldar weapon, able to fire burst of particles of unstable matter from a stolen sun. It is similar to Imperial plasma weapons but more sophisticated and does not suffer from the same over-heating problems. It remains cool even in the fiercest battles despite the ravening energies housed within.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/DisintegratorCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.250</drawSize>			
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<comps>   
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>75250</WorkToMake>
+			<!--MarketValue>5750</MarketValue-->
+			<Mass>4</Mass>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+			<RangedWeapon_Cooldown>4.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_DisintegratorCannon</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<range>45</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Starcannon_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.9</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEDisintegratorCannon</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Shredder =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_Shredder</defName>
+		<label>Monofilament Mesh</label>
+		<graphicData>
+			<texPath>Things/Projectile/DeathspinnerShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDEShredder</damageDef>
+			<damageAmountBase>29</damageAmountBase>
+			<armorPenetrationBase>0.68</armorPenetrationBase>
+			<speed>135</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+		<defName>OGDE_Gun_Shredder</defName>
+		<label>shredder (DE)</label>
+		<description>the Shredder is a weapon used primarily by Dark Eldar Warriors. When the gun is fired at its target, it unleashes an expanding mesh of monofilaments with miniscule barbs along their lenght. The mesh entangles the victim in an invisible net that slices apart the target as it struggles.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/Shredder</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>35000</WorkToMake>
+			<!--MarketValue>2250</MarketValue-->
+			<Mass>2.75</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>2.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Shredder</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>31</range>
+				<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>OG_Deathspinner_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.7</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEShredder</li>
+			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestShuriken</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Aeldari_Tech_Weapons_Monofilament</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Stinger Pistol =========================-->
+	<ThingDef ParentName="OG_Bullet_Base">
+		<defName>OGDE_Bullet_Stinger</defName>
+		<label>small Stinger</label>
+		<graphicData>
+			<texPath>Things/Projectile/StingerSml</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGDEStinger</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<speed>100</speed>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
+				<AddHediffChance>0.5</AddHediffChance>
+				<HediffToAdd>ToxicBuildup</HediffToAdd>
+				<CanResistHediff>true</CanResistHediff>
+				<ResistHediffStat>ToxicResistance</ResistHediffStat>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+		<defName>OGDE_Gun_StingerPistol</defName>
+		<label>stinger pistol (DE)</label>
+		<description>The Stinger is a Dark Eldar weapon used primarily by Haemonculi. This weapon resembles a smaller, more rounded Splinter Pistol, although the similarities end there. The Stinger, instead, fires small hypodermic needles at the target, the cavity of which contain an incredibly exotic bacteria. This bacteria, once introduced to the target's bloodstream, multiplies quickly, and shortly afterwards causes the victim to literally explode, sending fragments of bone and armor flying in all directions. In the event that the victim's comrades are close enough or unlucky enough to have one of these fragments lodged in their bodies, the bacteria will travel from the lodged debris into the comrade's bloodstream, multiplying and ultimately causing them to explode..</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/StingerPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>24000</WorkToMake>
+			<!--MarketValue>1050</MarketValue-->
+			<Mass>1.2</Mass>
+			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyShort>0.95</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Stinger</defaultProjectile>
+				<warmupTime>0.3</warmupTime>
+				<range>25</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Splinter_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>8</muzzleFlashScale>
+				<barrelLength>0.45</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEStingerPistol</li>
+			<li>OgsWeaponTestShuriken</li>
+			<li>OgsWeaponTestToxic</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<!--li>OG_Common_Tech_Weapons_Melta</li-->
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Darklight Weapons - Blast Pistol, Blaster, Darklance =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGDE_Bullet_Darklance</defName>
+		<label>darklight beam</label>
+		<graphicData>
+			<!--shaderType>MoteGlow</shaderType-->
+			<shaderType>Cutout</shaderType>
+			<color>(255,175,155,255)</color>	
+			<colorTwo>(75,0,0,255)</colorTwo>	
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/Beam_Darklight</li>
+		</textures>
+		<flareMatPath>Other/LaserFlareHeavy</flareMatPath>
+		<flareShaderType>MoteGlow</flareShaderType>
+		<lifetime>40</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>0.25</impulse> <!-- the solidity of the beam -->
+		<beamWidth>3.25</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareLength>3</flareLength> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.5</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.00</flareWidthMod> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod--> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<projectile>
+			<damageDef>OGELance</damageDef>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationBase>0.84</armorPenetrationBase>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGDE_Gun_BlastPistol</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<label>blast pistol (DE)</label>
+		<description>A smaller hand-held version of the Blaster is known as the Blast Pistol. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/BlastPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>0.90</drawSize>			
+		</graphicData>
+		<comps>    
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>17500</WorkToMake>
+			<Mass>1.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>25</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Darklance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEBlastPistol</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGDE_Gun_Blaster</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<label>blaster (DE)</label>
+		<description>A Blaster is a smaller, lightweight version of a Dark Lance, which includes a semi-liquid stabilizer like that found in the Dark Eldar Splinter Cannon. This allows for Warrior squads to launch volleys of this devastating energy while running, although the more compact build of the gun significantly shortens the maximum range of the device. The device uses magnetic containment and stabilization fields to prevent the Darklight from damaging the weapon or its user. The Darklight is accelerated very rapidly down the barrel by these same containment fields. Upon making contact with its target, it reacts very violently, tearing through armor regardless of thickness or composition, and in the event of the Dark Lances use on infantry, it's incredibly rare that any sign of the unfortunate target is left whatsoever.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/Blaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<!--MarketValue>8500</MarketValue-->
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>28</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Darklance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.0</barrelLength>
+				<bulletOffset>-0.0</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>10</power>
+			<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEBlaster</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGDE_Gun_Darklance</defName>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<label>darklance (DE)</label>
+		<description>The Dark Lance is one of the most powerful heavy weapons in the arsenal of the Eldar and is an equivalent of the Imperial Lascannon in utility and power. It can be added as an optional weapon to Wraithlords, War Walkers, Falcons, Wave Serpents and Vypers. It operates in the same manner as a Lascannon, firing a concentrated blast of coherent light that is primarily intended to destroy enemy vehicles. The Dark Lance is a far more efficient weapon than its cruder, human-made counterpart, in part due to its use of psychically-grown crystals to serve as a lasing matrix. It also possesses greater accuracy than a Lascannon and can penetrate any form of armour that is less than a certain thickness.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/DarkLance</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>82500</WorkToMake>
+			<!--MarketValue>8500</MarketValue-->
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_Darklance</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>45</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Darklance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<barrelLength>1.0</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEDarklance</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Fusion Pistol & Heatlance ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGDE_Bullet_FusionBeam</defName>
+		<label>fusion beam</label>
+		<textures>
+			<li>Things/Projectile/MeltaShot</li>
+		</textures>
+		<seam>0</seam>
+		<projectile>
+			<damageDef>OGIMelta</damageDef>
+			<damageAmountBase>105</damageAmountBase>
+			<armorPenetrationBase>2</armorPenetrationBase>
+			<explosionRadius>0.50</explosionRadius>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+		<defName>OGDE_Gun_FusionPistol</defName>
+		<label>fusion pistol (DE)</label>
+		<description>A Fusion Pistol is a hand-held, heat-based Melta Weapon utilised exclusively by the Eldar and Dark Eldar. Fusion Pistols cause the molecules of the target to hyper-vibrate, generating so much heat that their targets burst into flames before suddenly liquefying, and then evaporating into nothingness. Though incredibly short-ranged, the sheer destructive potential of these weapons ensures that they see common usage amongst the masques of the enigmatic Eldar known as Harlequins.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/FusionPistol</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>20000</WorkToMake>
+			<!--MarketValue>6000</MarketValue-->
+			<Mass>2.5</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
+				<warmupTime>1.75</warmupTime>
+				<range>18</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEFusionPistol</li>
+			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestMelta</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Melta</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>true</dualWield>
+				<twoHand>false</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+  
+	<ThingDef ParentName="OG_DarkEldar_Gun_Heavy">
+		<defName>OGDE_Gun_HeatLance</defName>
+		<label>heat lance (DE)</label>
+		<description>Heat Lances are Dark Eldar weapons used by Reavers and Scourges. It is a great technological breakthrough as commorrites have managed to combine the power of melta- and high-yield las-technology in one weapon. As with every melta weapon, the heat lance has short range but is extremely devastating.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/HeatLance</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>60000</WorkToMake>
+			<!--MarketValue>6000</MarketValue-->
+			<Mass>2.5</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.90</AccuracyMedium>
+			<AccuracyLong>0.90</AccuracyLong>
+			<RangedWeapon_Cooldown>2.75</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_FusionBeam</defaultProjectile>
+				<warmupTime>1.75</warmupTime>
+				<range>28</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEHeatlance</li>
+			<li>DEElitDEGun</li>
+			<li>OgsWeaponTestMelta</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Melta</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!--==================== Dark Eldar - Haywire Blaster =========================-->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGDE_Bullet_HaywireBlaster</defName>
+		<label>haywire blast</label>
+		<graphicData>
+			<shaderType>MoteGlow</shaderType>
+			<color>(57,175,255,255)</color> <!-- default bolt colour -->
+		</graphicData>
+		<textures> <!-- list of possible beam textures, can leave blank to use Vanilla's Orbital Laser texture -->
+			<!--li>Things/Projectile/AnimLightning</li-->
+		</textures>
+		<lifetime>30</lifetime> <!-- this is how many ticks the beam should be drawn for -->
+		<seam>0</seam> <!-- lasers are made up of 3 segments, this is how much they should overlap -->
+		<impulse>10</impulse> <!-- the solidity of the beam -->
+		<impulseCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 0.75)</li>
+				<li>(1, 0)</li>
+			</points>
+		</impulseCurve>
+		<beamWidth>0.125</beamWidth> <!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<LightningBeam>true</LightningBeam> <!-- use lightning bolt mesh if true -->
+		<StaticLightning>false</StaticLightning> <!-- use single mesh per arc if true -->
+		<LightningVariance>1.5</LightningVariance> <!-- how varied the path of a lightning bolt will be -->
+		<ArcCount>3</ArcCount> <!-- number of lightning bolts drawn per shot -->
+		<impactReflection>3</impactReflection> <!-- number of lightning bolts drawn -->
+		<flareLength>0.25</flareLength>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareWidth>0.25</flareWidth-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<flareWidthMod>1.50</flareWidthMod>	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		<!--flareLengthMod>0.250</flareLengthMod-->	<!-- the width of the laser beam - i suggest 0.5 for normal lasers and 0.125 for lightning -->
+		
+		<lightningArcWidthDistCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.1, 0.50)</li>
+				<li>(0.9, 0.50)</li>
+				<li>(1, 0.125)</li>
+			</points>
+		</lightningArcWidthDistCurve>
+		<lightningArcWidthTimeCurve>
+			<points>
+				<li>(0, 0.25)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 0.5)</li>
+			</points>
+		</lightningArcWidthTimeCurve>
+		<lightningArcVarianceDistCurve>
+			<points>
+				<li>(0, 1.5)</li>
+				<li>(0.1, 1.5)</li>
+				<li>(0.9, 1.5)</li>
+				<li>(1, 0.0)</li>
+			</points>
+		</lightningArcVarianceDistCurve>
+		<lightningArcVarianceTimeCurve>
+			<points>
+				<li>(0, 0)</li>
+				<li>(0.5, 1.5)</li>
+				<li>(1, 1)</li>
+			</points>
+		</lightningArcVarianceTimeCurve>
+		<effecterLifetime>120</effecterLifetime> <!-- this is how many ticks the beam impact effectors should be drawn for -->
+		<explosionEffect>OG_Effecter_LightningImpact</explosionEffect>
+		<hitLivingEffect>OG_Effecter_LightningImpact</hitLivingEffect>
+		<projectile>
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<stoppingPower>1.25</stoppingPower>
+			<extraDamages>
+				<li>
+					<def>EMP</def>
+					<amount>10</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>1</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>1</amount>
+					<armorPenetration>2</armorPenetration>
+					<chance>0.5</chance>
+				</li>
+			</extraDamages>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteSize>0.25</explosionMoteSize>
+				<impactMoteDef>Mote_YellowSparkFlash</impactMoteDef>
+				<impactMoteSize>1</impactMoteSize>
+				<impactGlowMoteDef>Mote_ExplosionFlash</impactGlowMoteDef>
+				<impactGlowMoteSize>2.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_DarkEldar_Gun_Special">
+		<defName>OGDE_Gun_HaywireBlaster</defName>
+		<label>haywire blaster (DE)</label>
+		<description>Haywire Blasters are Dark Eldar weapons mainly used by Scourges. These are long-barrelled weapons so lightweight that can be fired even when moving. As ammunition it uses crippling electromagnetic energy drawn from the highest aeries of Commorragh which is later released in a horrifying burst. A well-aimed haywire blast can destroy an enemy tank's control system in a single shot. Even the mighty Land Raider can be destroyed by these weapons.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DarkEldar/HaywireBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.250</drawSize>			
+		</graphicData>
+		<!--equippedAngleOffset>45</equippedAngleOffset-->
+		<comps>     
+			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<northOffset>0.0,0.0,0.0</northOffset>
+				<eastOffset>0.0,1.0,0.0</eastOffset>
+				<westOffset>0.0,0.0,0.0</westOffset>
+				<southOffset>0.0,1.0,0.0</southOffset>
+			</li>  
+		</comps>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<!--MarketValue>8500</MarketValue-->
+			<Mass>4.5</Mass>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+			<PsychicSensitivity>0.15</PsychicSensitivity>
+			<MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGDE_Bullet_HaywireBlaster</defaultProjectile>
+				<warmupTime>1.5</warmupTime>
+				<range>28</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Darklance_Sound</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>10</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>DEHaywireBlaster</li>
+			<li>DEHeavyGun</li>
+			<li>OgsWeaponTestLaser</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGDERanged</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Haywire</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>				<!-- USED TO CONTROL WHAT IS GIVEN WHEN ITEM IS SMELTED TIER 1-->
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Plasteel>2</Plasteel>
+			<Steel>10</Steel>
+		</costList>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+</Defs>

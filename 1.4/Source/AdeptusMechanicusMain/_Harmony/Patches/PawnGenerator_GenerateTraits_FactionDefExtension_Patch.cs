@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RimWorld;
+using Verse;
+using Verse.AI;
+using Verse.AI.Group;
+using HarmonyLib;
+using Verse.Sound;
+using System.Reflection;
+using AdeptusMechanicus.ExtensionMethods;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+    [HarmonyPatch(typeof(PawnGenerator), "GenerateTraits")]
+    public static class PawnGenerator_GenerateTraits_FactionDefExtension_Patch
+    {
+        [HarmonyPrefix, HarmonyPriority(Priority.First)]
+        public static void Postfix(ref Pawn pawn, ref PawnGenerationRequest request)
+        {
+            if (pawn != null)
+            {
+                if (pawn.Faction!=null && pawn.RaceProps.Humanlike)
+                {
+                    // dont remember what this is for- commented out in inital 1.4 update
+                    /*
+                    if (pawn.story.childhood==null)
+                    {
+                        pawn.story.childhood = (RimWorld.BackstoryDef)DefDatabase<RimWorld.BackstoryDef>.AllDefsListForReading.Where(x=> x.slot == BackstorySlot.Childhood);
+                        PawnBioAndNameGenerator.GiveAppropriateBioAndNameTo(pawn, request.FixedLastName, pawn.Faction.def);
+                        if (pawn.story.adulthood == null)
+                        {
+                            pawn.story.adulthood = BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
+                            PawnBioAndNameGenerator.GiveAppropriateBioAndNameTo(pawn, request.FixedLastName, pawn.Faction.def);
+                        }
+                    //    log.message(string.Format("reroll {0} : {1}({2}) : {3} : {4} : {5}", pawn.NameShortColored, pawn.KindLabel, pawn.kindDef.defName, pawn.story.childhood, pawn.story.adulthood, pawn.Faction));
+                    }*/
+
+                    if (pawn.Faction.def.HasModExtension<FactionDefExtension>())
+                    {
+                        if (pawn.Faction.def.GetModExtensionFast<FactionDefExtension>() is FactionDefExtension Forced && Forced != null)
+                        {
+                            if (pawn.RaceProps.Humanlike)
+                            {
+                                foreach (FactionTraitEntry item in Forced.ForcedTraits)
+                                {
+                                //    log.message(string.Format("{0} : {1}", pawn.NameShortColored, item.def.LabelCap));
+                                    if (!pawn.story.traits.HasTrait(item.def))
+                                    {
+                                        int maxTraits;
+                                        if (MoreTraitSlotsUtil.TryGetMaxTraitSlots(out int max))
+                                        {
+                                            maxTraits = max;
+                                        }
+                                        else { maxTraits = 4; }
+                                        Rand.PushState();
+                                        bool act = Rand.Chance(item.Chance);
+                                        Rand.PopState();
+                                        if (act)
+                                        {
+                                            if (pawn.story.traits.allTraits.Count >= maxTraits)
+                                            {
+                                                if (!item.replaceiffull)
+                                                {
+                                                    return;
+                                                }
+                                                pawn.story.traits.allTraits.Remove(pawn.story.traits.allTraits.RandomElement());
+                                            }
+                                            Trait trait = new Trait(item.def, item.degree);
+                                            pawn.story.traits.GainTrait(trait);
+                                        }
+                                    }
+                                }
+                            }
+                            foreach (HediffGiverSetDef item in Forced.hediffGivers)
+                            {
+                                foreach (var hdg in item.hediffGivers.Where(x => x is HediffGiver_StartWithHediff))
+                                {
+                                    HediffGiver_StartWithHediff hediffGiver_StartWith = (HediffGiver_StartWithHediff)hdg;
+                                    if (pawn.health.hediffSet.GetNotMissingParts().Any(x => hediffGiver_StartWith.partsToAffect.Contains(x.def)))
+                                    {
+                                        hediffGiver_StartWith.GiveHediff(pawn);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

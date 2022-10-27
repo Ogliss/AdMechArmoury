@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RimWorld;
+using Verse;
+using Verse.AI;
+using Verse.AI.Group;
+using HarmonyLib;
+using Verse.Sound;
+using AdeptusMechanicus;
+using AdeptusMechanicus.ExtensionMethods;
+using System.Reflection.Emit;
+using System.Reflection;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+    // SkyfallerUtility.MakeDropoffShuttle
+    [HarmonyPatch(typeof(SkyfallerUtility), "MakeDropoffShuttle")]
+    public static class SkyfallerUtility_MakeDropoffShuttle_FactionShuttle_Transpiler
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var instructionsList = new List<CodeInstruction>(instructions);
+            FieldInfo shuttle = AccessTools.Field(typeof(ThingDefOf), nameof(ThingDefOf.Shuttle));
+            for (int i = 0; i < instructionsList.Count; i++)
+            {
+                var instruction = instructionsList[i];
+                if (instruction.opcode == OpCodes.Ldsfld && instruction.OperandIs(shuttle))
+                {
+                    yield return instruction;
+                //    Log.Message("Faction Shuttle System: Patching ...SkyfallerUtility.MakeDropoffShuttle...");
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // Faction
+                    instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(SkyfallerUtility_MakeDropoffShuttle_FactionShuttle_Transpiler).GetMethod("FactionShuttle"));
+
+                }
+                /*
+                if (instruction.opcode == OpCodes.Ldfld)
+                {
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);              // CompProjectileInterceptor
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_1);              // Projectile
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_2);              // lastExactPos
+                    yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);              // newExactPos
+                    instruction = new CodeInstruction(opcode: OpCodes.Call, operand: typeof(CompProjectileInterceptor_CheckIntercept_Laser_Transpiler).GetMethod("LaserIntercept"));
+                }
+                */
+                yield return instruction;
+            }
+
+        }
+
+        public static ThingDef FactionShuttle(ThingDef Shuttle, Faction faction = null)
+        {
+            ThingDef result = Shuttle;
+        //    Log.Message("SkyfallerUtility.MakeDropoffShuttle: faction shuttle system: Start");
+            if (faction != null)
+            {
+            //    Log.Message("faction shuttle system: " + faction.Name);
+            }
+            return result;
+        }
+    }
+}

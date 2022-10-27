@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--OG==================== Imperial Tech - Abstract =========================OG-->
+	<ResearchProjectDef Name="OG_Imperial_ReseachBase" Abstract="True">
+		<tab>OGAMA_RSubTab_Imperial</tab>
+		<tags>
+			<li>OG_Imperial_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<!--OG==================== Imperial Tech - Base =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Base_T0</defName> 
+		<label>Imperial Subjects</label>
+		<description>Grants you access to basic Imperial technology.</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<li>Electricity</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>3.00</researchViewY>
+	</ResearchProjectDef>
+	
+	<!--OG==================== Imperial Tech - Apparel =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Apparel</defName>
+		<label>Imperial Clothing</label>
+		<description>Allows you to create basic Imperial Clothing</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<li>ComplexClothing</li>
+			<li>OG_Imperial_Tech_Base_T0</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>1.50</researchViewY>
+	</ResearchProjectDef> 
+	
+	<!--OG==================== Imperial Tech - Armour =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Apparel_Armour_T1</defName>
+		<label>Flakk Armour</label>
+		<description>Allows you to create Imperial Flak Armour</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<li>FlakArmor</li>
+			<li>OG_Imperial_Tech_Apparel</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>1.50</researchViewY>
+	</ResearchProjectDef> 
+	
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Apparel_Armour_T2</defName>
+		<label>Carapace Armour</label>
+		<description>Allows you to create Imperial Carapace Armour</description>
+		<baseCost>750</baseCost>
+		<prerequisites>
+			<li>OG_Imperial_Tech_Apparel_Armour_T1</li>
+			<li>ReconArmor</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>4.50</researchViewX>
+		<researchViewY>1.50</researchViewY>
+	</ResearchProjectDef> 
+		
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Apparel_Armour_T3</defName>
+		<label>Power Armour</label>
+		<description>Allows you to create Imperial Power Armour</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_Imperial_Tech_Apparel_Armour_T2</li>
+			<li>PoweredArmor</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>6.00</researchViewX>
+		<researchViewY>1.50</researchViewY>
+	</ResearchProjectDef> 
+		
+	<!--OG==================== Imperial Tech - Conversion Shield =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Wargear_Shield</defName>
+		<label>Conversion Fields</label>
+		<description>Allows you to create Conversion Field emitters</description>
+		<baseCost>3000</baseCost>
+		<prerequisites>
+			<li>ShieldBelt</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>6.00</researchViewX>
+		<researchViewY>4.75</researchViewY>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
+			<ResearchKeyPrefix>OG_</ResearchKeyPrefix>
+			<ResearchKey>_Tech_Base</ResearchKey>
+			<ResearchKeyPostfix>_T2</ResearchKeyPostfix>
+			<Include>
+				<li>Imperial</li>
+				<li>Mechanicus</li>
+				<li>Sororitas</li>
+				<li>Astartes</li>
+				<li>Chaos</li>
+			</Include>
+			</li>
+		</modExtensions>
+	</ResearchProjectDef>
+	
+	<!--OG==================== Imperial Tech - Servo Skulls =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Wargear_ServoSkull</defName>
+		<label>Servo Skulls</label>
+		<description>Allows you to create basic Servo Skulls</description>
+		<baseCost>2000</baseCost>
+		<prerequisites>
+			<li>OG_Militarum_Tech_Base_T2</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>1.75</researchViewY>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
+			<ResearchKeyPrefix>OG_</ResearchKeyPrefix>
+			<ResearchKey>_Tech_Base</ResearchKey>
+			<ResearchKeyPostfix>_T2</ResearchKeyPostfix>
+			<Include>
+				<li>Imperial</li>
+				<li>Mechanicus</li>
+				<li>Sororitas</li>
+				<li>Astartes</li>
+			</Include>
+			</li>
+		</modExtensions>
+	</ResearchProjectDef>
+
+	<!--OG==================== Imperial Tech - Bolt Weapons =========================OG-->
+	<ResearchProjectDef ParentName="OG_Imperial_ReseachBase">
+		<defName>OG_Imperial_Tech_Weapons_Bolt</defName>
+		<label>Bolt Weapons</label>
+		<description>A brutally efficient weapon, the Bolter fires mass-reactive bolts at its targets, each one a self-propelled missile which explodes with devastating effectiveness after penetrating its target. The fear and awe that Bolter fire creates makes it a perfect weapon for shock troops, the hammering thunder of the guns mixing terrifyingly with the dull, wet explosions as flesh is blown apart.</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>Fabrication</li>
+		</prerequisites>
+		<techLevel>Industrial</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>5.00</researchViewX>
+		<researchViewY>0.75</researchViewY>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.AnyPrerequisiteResearchExtension">
+			<ResearchKeyPrefix>OG_</ResearchKeyPrefix>
+			<ResearchKey>_Tech_Base</ResearchKey>
+			<ResearchKeyPostfix>_T2</ResearchKeyPostfix>
+			<Include>
+				<li>Imperial</li>
+				<li>Militarum</li>
+				<li>Mechanicus</li>
+				<li>Sororitas</li>
+				<li>Astartes</li>
+				<li>Chaos</li>
+			</Include>
+			</li>
+		</modExtensions>
+	</ResearchProjectDef> 
+	
+</Defs>

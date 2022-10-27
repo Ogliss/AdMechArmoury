@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationSequence">
+	<!--success>Always</success-->
+    <operations>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			<match Class="PatchOperationRemove">
+				<xpath>/Defs/BodyPartDef[defName="Brain"]/spawnThingOnRemoved</xpath>
+			</match>
+		</li>
+		
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="LAP_Brain" or defName="HAA_Brain"]</xpath>
+			<match Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="LAP_Brain" or defName="HAA_Brain"]</xpath>
+			</match>
+		</li>
+		<li Class="PatchOperationSetName">
+			  <xpath>Defs/ThingDef[defName="Legiones_Cogitator"]/costList/LAP_Brain</xpath>
+			  <name>Brain</name>
+		</li>
+    </operations>
+  </Operation>
+
+</Patch>

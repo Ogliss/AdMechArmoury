@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Arco_Flagellant</defName>
+		<title>Arco Flagellant</title>
+		<titleShort>Flagellant</titleShort>
+		<baseDesc>[PAWN_nameDef] committed a serious crime against the Empire and either chose or was forced to become a Flagellant to atone for his/her crime. Now he/she is nothing more than a killing machine.</baseDesc>
+		<slot>Adulthood</slot>
+		<!--	+6 melee, all other skills disabled -->
+		<workDisables>
+			<!--
+			<li>ManualDumb</li>
+			<li>ManualSkilled</li>
+			<li>Violent</li>
+			<li>Caring</li>
+			<li>Social</li>
+			<li>Commoner</li>
+			<li>Intellectual</li>
+			<li>Animals</li>
+			<li>Artistic</li>
+			<li>Crafting</li>
+			<li>Cooking</li>
+			<li>Firefighting</li>
+			<li>Cleaning</li>
+			<li>Hauling</li>
+			<li>PlantWork</li>
+			<li>Mining</li>
+			<li>Hunting</li>
+			<li>AllWork</li>
+			-->
+			<li>AllWork</li>
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraitsChance>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+			<li>
+				<defName>Cannibal</defName>
+				<chance>10</chance>
+			</li>
+			<li>
+				<defName>Ascetic</defName>
+				<chance>10</chance>
+			</li>
+			<li>
+				<defName>Psychopath</defName>
+				<chance>10</chance>
+			</li>
+			<li>
+				<defName>Bloodlust</defName>
+				<chance>100</chance>
+			</li>
+			<li>
+				<defName>Brawler</defName>
+				<chance>100</chance>
+			</li>
+		</forcedTraitsChance>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<key>Melee</key>
+				<value>6</value>
+			</li>
+		</skillGains>
+		<spawnCategories>
+			<li>Imperial_Death_Cult_Assassin</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="AdeptusSororitas_Base_Backstory">
+		<defName>OG_Imperial_Death_Cult_Assassin</defName>
+		<title>Death Cult Assassin</title>
+		<titleShort>Assassin</titleShort>
+		<baseDesc>Death Cult Assassins serve and worship the God Emperor through slaying his enemies. [PAWN_nameDef] has devoted herself to the art of killing at close range since early childhood.</baseDesc>
+		<slot>Adulthood</slot>
+		<!--	+3 to melee, shooting, social, and intellect -->
+		<workDisables>
+			<!--
+			<li>Intellectual</li>
+			<li>Caring</li>
+			<li>Animals</li>
+			<li>ManualSkilled</li>
+			<li>Artistic</li>
+			<li>Firefighting</li>
+			-->
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+		</requiredWorkTags>
+		<forcedTraitsChance>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitAstraMilitarum</defName>
+				<chance>5</chance>
+			</li>
+			<li>
+				<defName>Nimble</defName>
+				<chance>100</chance>
+			</li>
+		</forcedTraitsChance>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<key>Melee</key>
+				<value>6</value>
+			</li>
+			<li>
+				<key>Shooting</key>
+				<value>-3</value>
+			</li>
+			<li>
+				<key>Social</key>
+				<value>-3</value>
+			</li>
+		</skillGains>
+		<spawnCategories>
+			<li>Imperial_Death_Cult_Assassin</li>
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>

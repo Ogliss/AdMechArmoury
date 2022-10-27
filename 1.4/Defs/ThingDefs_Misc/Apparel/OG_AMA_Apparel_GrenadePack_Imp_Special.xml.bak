@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Imperial - Wargear S 3 ========================== -->
+    <!-- ========================= Imperial - Uncraftable Grenade Packs	========================== -->
+    <!-- ========================= Imperial - Psyk-Out Grenades	========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Base">
+		<defName>OGI_GrenadePack_Psyk</defName>
+		<label>psyk-out grenade pack (I)</label>
+		<description>A Rad Grenade is a potent and dangerous radioactive anti-personnel weapon used by the military forces of the Imperium of Man.\n\nRad Grenades detonate in a shower of tiny, radioactively-contaminated fragments. Each fragment's ionising radioactive emissions have only a millisecond half-life, ensuring that the wielder can charge in without exposing themself to radioactive contamination.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpPsychGrenades</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<!--MarketValue>1500</MarketValue-->
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>0.5</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<!--costList>
+			<Steel>20</Steel>
+			<Plasteel>20</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Imperial_Tech_Base_T2</li>
+			</researchPrerequisites>
+		</recipeMaker-->
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrensSpecial</li>
+			<li>OGIGrenPsyk</li>
+		</tradeTags>
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<bodyPartGroups>
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers>
+				<li>BeltWargear3</li>
+			</layers>
+			<tags>
+				<li>OGIWargearSpecial</li>
+				<li>OGIGrensSpecial</li>
+				<li>OGIGrenPsyk</li>
+			</tags>
+		</apparel>
+		<verbs>
+			<li>
+				<label>throw psyk-out grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Psyk</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowPsyk</li>
+				</Abilities>
+			</li>
+		</comps-->
+	</ThingDef>
+		
+    <!-- ========================= Imperial - Vortex Bomb	========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Wargear_Base">
+		<defName>OGI_GrenadePack_Vortex</defName>
+		<label>vortex bomb (I)</label>
+		<description>a vortex bomb.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/GrenadePacks/Imperial/ImpVortexGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3500</MarketValue>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>1.5</Mass>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<!--costList>
+			<Steel>40</Steel>
+			<Plasteel>4</Plasteel>
+		</costList>
+		<recipeMaker>
+		<researchPrerequisites>
+			<li MayRequire="QX.AstraMilitarum">IG_ImpBlastCharge</li>
+			<li>OG_Common_Tech_Weapons_Special</li>
+		</researchPrerequisites>
+		</recipeMaker-->
+		<thingCategories>
+			<li>OGIGrens</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIGrensSpecial</li>
+			<li>OGIGrenVortex</li>
+		</tradeTags>
+		<apparel>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<bodyPartGroups>
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers>
+				<li>BeltWargear3</li>
+			</layers>
+			<tags>
+				<li>OGIWargearSpecial</li>
+				<li>OGIGrensSpecial</li>
+				<li>OGIGrenVortex</li>
+			</tags>
+		</apparel>
+		<verbs>
+			<li>
+				<label>throw vortex grenade</label>
+				<verbClass>Verb_LaunchProjectileStatic</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>True</onlyManualCast>
+				<range>12.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<defaultCooldownTime>1.9</defaultCooldownTime>
+				<warmupTime>1.5</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<!--soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale-->
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>OGI_GrenadeThrown_Vortex</defaultProjectile>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_WargearUseable">
+				<Cooldown>10</Cooldown>
+				<hotKey>Misc4</hotKey>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</comps>
+		<!--comps>  
+			<li Class="AbilityUser.CompProperties_AbilityItem">
+				<Abilities>
+					<li>OGI_Ability_ThrowVortex</li>
+				</Abilities>
+			</li>
+		</comps-->
+	</ThingDef>
+	
+</Defs>
