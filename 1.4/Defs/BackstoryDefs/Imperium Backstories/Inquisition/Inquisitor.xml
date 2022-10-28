@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<AdeptusMechanicus.BackstoryDef ParentName="Imperial_Base_Adult_Backstory">
+		<defName>OG_Imperial_Inquisiton_Inquisitor</defName>
+		<title>imperial inquisitor</title>
+		<titleShort>inquisitor</titleShort>
+		<baseDesc>[PAWN_nameDef] served the Emperor of Mankind by searching for that which would endanger the Imperium, and when [PAWN_nameDef] found those dangers, it was their duty to stop them.	 </baseDesc>
+		<slot>Adulthood</slot>
+		<workDisables>
+			<li>ManualDumb</li>	
+			<li>Crafting</li>
+			<li>Cooking</li> 
+			<li>PlantWork</li> 
+			<li>Mining</li>
+		</workDisables>
+		<requiredWorkTags>
+			<li>Violent</li>
+			<li>Social</li>
+		</requiredWorkTags>
+		<forcedTraitsChance>
+			<li MayRequire="QX.AstraMilitarum">
+				<defName>IGTraitInquisition</defName>
+			</li>
+			<li MayRequire="erdelf.HumanoidAlienRaces">
+				<defName>Xenophobia</defName>
+				<chance>40</chance>
+				<degree>1</degree>
+			</li>
+			<li>
+				<defName>Beauty</defName>
+				<chance>45</chance>
+				<degree>2</degree>
+			</li>
+		</forcedTraitsChance>
+		<disallowedTraits />
+		<skillGains>
+			<li>
+				<key>Shooting</key>
+				<value>6</value>
+			</li>
+			<li>
+				<key>Melee</key>
+				<value>3</value>
+			</li>
+			<li>
+				<key>Intellectual</key>
+				<value>6</value>
+			</li>
+			<li>
+				<key>Artistic</key>
+				<value>-4</value>
+			</li>
+		</skillGains>
+		<spawnCategories>
+			<li>Imperium_Standard</li>
+			<li>Imperium_Schola_Cadet</li>	
+		</spawnCategories>
+	</AdeptusMechanicus.BackstoryDef>
+</Defs>
