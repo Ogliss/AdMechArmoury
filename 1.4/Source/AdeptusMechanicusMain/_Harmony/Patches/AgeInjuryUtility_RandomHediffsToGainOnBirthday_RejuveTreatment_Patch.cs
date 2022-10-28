@@ -13,7 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using AdeptusMechanicus.settings;
 
-namespace AdeptusMechanicus.HarmonyInstance
+namespace AdeptusMechanicus.HarmonyInstance 
 {
     
     [HarmonyPatch(typeof(AgeInjuryUtility), "RandomHediffsToGainOnBirthday", new Type[] { typeof(Pawn), typeof(float) })]
