@@ -159,7 +159,7 @@ namespace AdeptusMechanicus.settings
             {
                 AllowTyranidInfestation = AllowTyranid;
             }
-            if (AMAMod.updateIncidents_Disabled) UpdateScenarioDisabledIncidents();
+        //    if (AMAMod.updateIncidents_Disabled) UpdateScenarioDisabledIncidents();
             if (AMAMod.updateFactions_Required) UpdateFactionsRequiredAtGameStart();
             if (AMAMod.updateWeapons_Allowed) UpdateWeapons();
             if (AMAMod.updateFactions_PawnKinds) UpdateFactionPawnKinds();

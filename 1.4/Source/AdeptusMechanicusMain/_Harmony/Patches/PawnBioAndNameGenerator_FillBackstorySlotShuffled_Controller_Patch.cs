@@ -57,6 +57,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                     categoryFilter = FallbackCategoryGroup;
                 }
                 IEnumerable<RimWorld.BackstoryDef> source = DefDatabase<RimWorld.BackstoryDef>.AllDefs.Where((RimWorld.BackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs));
+                source.Concat(DefDatabase<BackstoryDef>.AllDefs.Where((BackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)));
+                if (AdeptusIntergrationUtility.enabled_AlienRaces)
+                {
+                    alienBackstories(categoryFilter, ref source);
+                }
+                if (source.EnumerableNullOrEmpty())
+                {
+                    string s = categoryFilter.categories.NullOrEmpty() ? (slot == BackstorySlot.Adulthood ? $"Adulthoods: {categoryFilter.categoriesAdulthood.ToCommaList()}" : $"Childhoods: {categoryFilter.categoriesChildhood.ToCommaList()}") : $"Catergories: {categoryFilter.categories.ToCommaList()}";
+                    Log.Warning($"No {slot} backstories matching categoryFilter {s} for {pawn} of {pawn.Faction}");
+                }
                 PawnBioAndNameGenerator.tmpBackstories.Clear();
                 if (!mustBeCompatibleTo.HasValue)
                 {
@@ -67,12 +77,18 @@ namespace AdeptusMechanicus.HarmonyInstance
                     IEnumerable<RimWorld.BackstoryDef> compatibleBackstories = source.Where((RimWorld.BackstoryDef bs) => bs.slot == mustBeCompatibleTo.Value);
                     PawnBioAndNameGenerator.tmpBackstories.AddRange(source.Where((RimWorld.BackstoryDef bs) => bs.slot == slot && compatibleBackstories.Any((RimWorld.BackstoryDef b) => !b.requiredWorkTags.OverlapsWithOnAnyWorkType(bs.workDisables))));
                 }
+                if (PawnBioAndNameGenerator.tmpBackstories.NullOrEmpty())
+                {
+                    string s = categoryFilter.categories.NullOrEmpty() ? (slot == BackstorySlot.Adulthood ? $"Adulthoods: {categoryFilter.categoriesAdulthood.ToCommaList()}" : $"Childhoods: {categoryFilter.categoriesChildhood.ToCommaList()}") : $"Catergories: {categoryFilter.categories.ToCommaList()}";
+                    Log.Warning($"No {slot} tmpBackstories matching categoryFilter {s} for {pawn} of {pawn.Faction}");
+                }
                 if (!(from bs in PawnBioAndNameGenerator.tmpBackstories.TakeRandom(20)
                       where (slot != BackstorySlot.Adulthood || bs.requiredWorkTags == WorkTags.None || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.Childhood.workDisables)) ? true : false
                       select bs).TryRandomElementByWeight(x=> PawnBioAndNameGenerator.BackstorySelectionWeight(x), out var result))
                 {
-                    Log.Error(string.Concat("No shuffled ", slot, " found for ", pawn.ToStringSafe(), " of ", factionType.ToStringSafe(), ". Choosing random."));
-                    result = DefDatabase<RimWorld.BackstoryDef>.AllDefs.Where((RimWorld.BackstoryDef bs) => bs.slot == slot).RandomElement();
+                    string s = categoryFilter.categories.NullOrEmpty() ? (slot == BackstorySlot.Adulthood ? $": {categoryFilter.categoriesAdulthood.ToCommaList()}" : $": {categoryFilter.categoriesChildhood.ToCommaList()}") : $": {categoryFilter.categories.ToCommaList()}";
+                    Log.Error(string.Concat("No shuffled ", slot, " backstories matching categoryFilter", s, " found for ", pawn.ToStringSafe(), " of ", factionType.ToStringSafe(), ". Choosing random."));
+                    result = DefDatabase<RimWorld.BackstoryDef>.AllDefs.Where((RimWorld.BackstoryDef bs) => bs.slot == slot && categoryFilter.Matches(bs)).RandomElement();
                 }
                 if (slot == BackstorySlot.Adulthood)
                 {
@@ -86,6 +102,11 @@ namespace AdeptusMechanicus.HarmonyInstance
                 return false;
             }
             return true;
+        }
+
+        public static void alienBackstories(BackstoryCategoryFilter categoryFilter, ref IEnumerable<RimWorld.BackstoryDef> source)
+        {
+            source.Concat(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)));
         }
 
         // Token: 0x060040BF RID: 16575 RVA: 0x00159374 File Offset: 0x00157574

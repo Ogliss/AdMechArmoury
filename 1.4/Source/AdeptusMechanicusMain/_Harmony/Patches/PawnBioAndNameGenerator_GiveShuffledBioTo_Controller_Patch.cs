@@ -13,7 +13,7 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
+//    [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
     public static class PawnBioAndNameGenerator_GiveShuffledBioTo_Controller_Patch
     {
         [HarmonyPrefix]

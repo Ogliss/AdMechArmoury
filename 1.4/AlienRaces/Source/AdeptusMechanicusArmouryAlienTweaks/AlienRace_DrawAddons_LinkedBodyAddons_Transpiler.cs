@@ -118,6 +118,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             return result;
         }
         */
+        /*
         public static Vector2 DrawSize(Vector2 original, bool portrait,AlienRace.AlienPartGenerator.BodyAddon addon, AlienPartGenerator.AlienComp alienComp)
         {
             
@@ -130,7 +131,9 @@ namespace AdeptusMechanicus.HarmonyInstance
             
             return original;
         }
+        */
 
+        /*
         public static Vector3 DrawOffset(Vector3 original, AlienRace.AlienPartGenerator.BodyAddon addon, Rot4 rotation)
         {
             Vector3 result = original;
@@ -141,18 +144,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                 result = v;
                 //    Log.Message("DrawOffset useDefautZeroOffset Original: " + original + " Modifier: " + v + " result: " + result);
             }
-            /*
-            if (linked != null && linked.useHeadPosition)
-            {
-                result = new Vector3();
-                result += quat * pawn.Drawer.renderer.BaseHeadOffsetAt(rotation);
-            //    Log.Message("DrawOffset useHeadPosition Original: " + original + " Modifier: " + pawn.Drawer.renderer.BaseHeadOffsetAt(rotation) + " result: " + result);
-            }
-            */
+           // if (linked != null && linked.useHeadPosition)
+           // {
+           //     result = new Vector3();
+           //     result += quat * pawn.Drawer.renderer.BaseHeadOffsetAt(rotation);
+           //    Log.Message("DrawOffset useHeadPosition Original: " + original + " Modifier: " + pawn.Drawer.renderer.BaseHeadOffsetAt(rotation) + " result: " + result);
+           // }
 
             return result;
         }
-
+        */
         public static Vector3 DrawPosition(Vector3 original, Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, Quaternion quat, Rot4 rotation)
         {
             Vector3 result = original;
@@ -167,7 +168,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             return result;
         }
-
+        /*
         public static AlienPartGenerator.RotationOffset DrawOffsets(AlienPartGenerator.RotationOffset original, Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon)
         {
             AlienPartGenerator.RotationOffset result = original;
@@ -178,13 +179,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                 GraphicPaths paths = thingDef_AlienRace.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage);
                 result = new AlienPartGenerator.RotationOffset();
                 result.bodyTypes = original.bodyTypes;
-                /*
-                for (int i = 0; i < result.bodyTypes.Count; i++)
-                {
-                    AlienPartGenerator.BodyTypeOffset body = result.bodyTypes[i];
-                    body.offset += linked.useHeadDrawSize ? paths.hea : paths.customDrawSize
-                }
-                */
+                
+               // for (int i = 0; i < result.bodyTypes.Count; i++)
+               // {
+               //     AlienPartGenerator.BodyTypeOffset body = result.bodyTypes[i];
+               //     body.offset += linked.useHeadDrawSize ? paths.hea : paths.customDrawSize
+               // }
+                
                 result.crownTypes = original.crownTypes;
                 for (int i = 0; i < result.crownTypes.Count; i++)
                 {
@@ -196,6 +197,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
             return result;
         }
+        */
     }
 
 }

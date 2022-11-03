@@ -470,12 +470,17 @@
 					<texPath>Things/Item/Equipment/WeaponMelee/Imperial/AstraBased/ForceSwordMk1</texPath>
 				</value>
 			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Melee_ForceSword"]/statBases</xpath>
-				<value>
-					<Bulk IgnoreIfNoMatchingField="True">4.0</Bulk>
-					<MeleeCounterParryBonus IgnoreIfNoMatchingField="True">0.575</MeleeCounterParryBonus>
-				</value>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>CETeam.CombatExtended</li>
+				</mods>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Melee_ForceSword"]/statBases</xpath>
+					<value>
+						<Bulk IgnoreIfNoMatchingField="True">4.0</Bulk>
+						<MeleeCounterParryBonus IgnoreIfNoMatchingField="True">0.575</MeleeCounterParryBonus>
+					</value>
+				</match>
 			</li>
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="Melee_ForceSword"]/equippedStatOffsets</xpath>

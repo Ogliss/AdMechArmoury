@@ -17,7 +17,7 @@ namespace AdeptusMechanicus
         public bool linkLifeStageDrawSize = false;
         public List<List<int>> allowPairWith = null;
 
-
+		/*
         public override Graphic GetPath(Pawn pawn, ref int sharedIndex, int? savedIndex = null)
         {
 			string empty = string.Empty;
@@ -111,5 +111,6 @@ namespace AdeptusMechanicus
 				drawRotated = !drawRotated
 			});
 		}
+		*/
     }
 }
