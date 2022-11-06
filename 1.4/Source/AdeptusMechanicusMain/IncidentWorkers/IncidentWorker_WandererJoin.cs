@@ -34,7 +34,7 @@ namespace AdeptusMechanicus
             PawnKindDef pawnKind = this.def.pawnKind;
             Faction ofPlayer = Faction.OfPlayer;
 
-            //    Log.Message(string.Format("{0}", ofPlayer.def.defName));
+            Log.Message($"{this.def.LabelCap} Points: {parms.points}");
             var list = (from def in DefDatabase<PawnKindDef>.AllDefs
                         where (def.race == ofPlayer.def.basicMemberKind.race || def.defaultFactionType == ofPlayer.def) && def.defName.Contains("StrangerInBlack")
                         select def).ToList();

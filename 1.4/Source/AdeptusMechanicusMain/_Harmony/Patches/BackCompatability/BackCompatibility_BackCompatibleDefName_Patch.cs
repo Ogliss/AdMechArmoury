@@ -907,7 +907,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         }
                         newName =list.RandomElement().defName;
                     }
-
+                    if (defName == "StrangerInBlackImperiualGuard") newName = "StrangerInBlack_Militarum";
                 }
                 else if (defType == typeof(ResearchProjectDef))
                 {
