@@ -24,7 +24,7 @@ namespace CompTurretCE
 			}
 		}
 		public CompTurret.CompTurret turret;
-		public CompTurretGun turretGun => turret as CompTurretGun ?? ReloadableCompSource as CompTurretGun;
+		public CompTurret.CompTurretGun turretGun => turret as CompTurret.CompTurretGun ?? ReloadableCompSource as CompTurret.CompTurretGun;
 
         public float Barrellength => turretGun.Props.barrellength;
         public float Offset => turretGun.Props.projectileOffset;
@@ -322,7 +322,7 @@ namespace CompTurretCE
 			//     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
 			GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
 		}
-        public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false)
+		public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
 		{
 			//	Log.Messageage("TryStartCastOn ");
 			if (this.Caster == null)

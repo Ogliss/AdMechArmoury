@@ -1,6 +1,7 @@
 ﻿using AdeptusMechanicus;
 using RimWorld;
 using System;
+using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -10,27 +11,18 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public class WeatherEvent_WarpLightningStrike : WeatherEvent_LightningFlash
     {
-        public WeatherEvent_WarpLightningStrike(Map map) : base(map)
+        public WeatherEvent_WarpLightningStrike(Map map, ThingDef thingtoSpawn = null, float thingSpawnChance = 0f, float spawnPoints = 0f, string spawnFilter = null, WarpStormType stormType = WarpStormType.Natural) : base(map)
         {
+            this.thingDeftoSpawn = thingtoSpawn;
+            this.thingDefSpawnChance = thingSpawnChance;
+            this.spawnPoints = spawnPoints;
         }
 
-        public WeatherEvent_WarpLightningStrike(Map map, ThingDef thingtoSpawn, float thingSpawnChance) : base(map)
-        {
-        }
-
-        public WeatherEvent_WarpLightningStrike(Map map, IntVec3 forcedStrikeLoc) : base(map)
+        public WeatherEvent_WarpLightningStrike(Map map, IntVec3 forcedStrikeLoc, ThingDef thingtoSpawn = null, float thingSpawnChance = 0f, float spawnPoints = 0f, string spawnFilter = null, WarpStormType stormType = WarpStormType.Natural) : base(map)
         {
             this.strikeLoc = forcedStrikeLoc;
-        }
-
-        public WeatherEvent_WarpLightningStrike(Map map, IntVec3 forcedStrikeLoc, ThingDef thingtoSpawn, float thingSpawnChance) : base(map)
-        {
-            this.strikeLoc = forcedStrikeLoc;
-        }
-
-        public WeatherEvent_WarpLightningStrike(Map map, IntVec3 forcedStrikeLoc, float spawnPoints, string spawnFilter ) : base(map)
-        {
-            this.strikeLoc = forcedStrikeLoc;
+            this.thingDeftoSpawn = thingtoSpawn;
+            this.thingDefSpawnChance = thingSpawnChance;
         }
 
         public override void FireEvent()
@@ -54,16 +46,7 @@ namespace AdeptusMechanicus
                 }
                 for (int i = 0; i < 4; i++)
                 {
-                    Rand.PushState();
-                    chance = Rand.Chance(kindDefSpawnChance);
-                    Rand.PopState();
-                    if (chance && kindDeftoSpawn != null)
-                    {
-                        PawnKindDef pawnkind = kindDeftoSpawn != null ? kindDeftoSpawn : null ;
-                        PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(pawnkind, Find.FactionManager.FirstFactionOfDef(pawnkind.defaultFactionType), PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, 0f);
-                        Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
-                        GenSpawn.Spawn(pawn, strikeLoc, map, 0);
-                    }
+                    if (spawnPoints>0f)TrySpawnPawn();
                     FleckMaker.ThrowSmoke(loc, this.map, 1.5f);
                     FleckMaker.ThrowMicroSparks(loc, this.map);
                     FleckMaker.ThrowLightningGlow(loc, this.map, 1.5f);
@@ -75,7 +58,23 @@ namespace AdeptusMechanicus
 
         public void TrySpawnPawn()
         {
-
+            Rand.PushState();
+            bool chance = Rand.Chance(kindDefSpawnChance);
+            Rand.PopState();
+            if (chance)
+            {
+                PawnKindDef pawnkind = kindDeftoSpawn != null ? kindDeftoSpawn : DefDatabase<PawnKindDef>.AllDefs.Where(x=> x.race.thingClass == typeof(WarpBeing) && x.combatPower <= spawnPoints).RandomElement();
+                if (pawnkind != null)
+                {
+                    PawnGenerationRequest pawnGenerationRequest = new PawnGenerationRequest(
+                        pawnkind,
+                        Find.FactionManager.FirstFactionOfDef(pawnkind.defaultFactionType),
+                        PawnGenerationContext.NonPlayer, -1, true, false, false, false, true, 0f);
+                    Pawn pawn = PawnGenerator.GeneratePawn(pawnGenerationRequest);
+                    GenSpawn.Spawn(pawn, strikeLoc, map, 0);
+                    this.spawnPoints -= pawnkind.combatPower;
+                }
+            }
         }
 
         public override void WeatherEventDraw()
@@ -87,8 +86,10 @@ namespace AdeptusMechanicus
         private float kindDefSpawnChance = 0f;
         private ThingDef thingDeftoSpawn = null;
         private float thingDefSpawnChance = 0f;
+        private float spawnPoints = 0f;
 
         private IntVec3 strikeLoc = IntVec3.Invalid;
+        private WarpStormType strikeType = WarpStormType.Natural;
 
         private Mesh boltMesh;
 

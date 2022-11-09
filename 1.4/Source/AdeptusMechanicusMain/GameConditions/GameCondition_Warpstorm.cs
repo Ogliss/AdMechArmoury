@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
@@ -8,59 +9,23 @@ using Verse.Sound;
 
 namespace AdeptusMechanicus
 {
-	public static class WarpStormUtility
-    {
-		public static string GetLabel(this WarpStormScale scale)
-		{
-			switch (scale)
-			{
-				case WarpStormScale.MapWide:
-					return "OG_WarpStormScale_MapWide".Translate();
-				case WarpStormScale.WorldRadius:
-					return "OG_WarpStormScale_WorldRadius".Translate();
-				case WarpStormScale.WorldWide:
-					return "OG_WarpStormScale_WorldWide".Translate();
-				case WarpStormScale.SectorWide:
-					return "OG_WarpStormScale_SectorWide".Translate();
-				default:
-					return "OG_WarpStormScale_Localised".Translate();
-			}
-		}
-		public static string GetDesc(this WarpStormScale scale)
-		{
-			switch (scale)
-			{
-				case WarpStormScale.MapWide:
-					return "OG_WarpStormScale_MapWide_Desc".Translate();
-				case WarpStormScale.WorldRadius:
-					return "OG_WarpStormScale_WorldRadius_Desc".Translate();
-				case WarpStormScale.WorldWide:
-					return "OG_WarpStormScale_WorldWide_Desc".Translate();
-				case WarpStormScale.SectorWide:
-					return "OG_WarpStormScale_SectorWide_Desc".Translate();
-				default:
-					return "OG_WarpStormScale_Localised_Desc".Translate();
-			}
-		}
-	}
-
-	public enum WarpStormScale
-    {
-		Localised,
-		MapWide,
-		WorldRadius,
-		WorldWide,
-		SectorWide
-    }
-
-    // AdeptusMechanicus.GameCondition_Warpstorm
-    public class GameCondition_Warpstorm : GameCondition
+	// AdeptusMechanicus.GameCondition_Warpstorm
+	public class GameCondition_Warpstorm : GameCondition
 	{
 		public GameCondition_Warpstorm()
 		{
 			ColorInt colorInt = new ColorInt(147, 112, 219);
 			Color toColor = colorInt.ToColor;
 			ColorInt colorInt2 = new ColorInt(234, 200, 255);
+
+			if (stormScale >= WarpStormScale.MapWide)
+            {
+                this.WarpRainColors = new SkyColorSet(toColor, colorInt2.ToColor, new Color(0.6f, 0.4f, 0.9f), 0.85f);
+                this.overlays = new List<SkyOverlay>
+            {
+                new WeatherOverlay_Rain()
+            };
+            }
 			/*
 			this.PsychicRainColors = new SkyColorSet(toColor, colorInt2.ToColor, new Color(0.6f, 0.4f, 0.9f), 0.85f);
 			this.overlays = new List<SkyOverlay>
@@ -70,7 +35,7 @@ namespace AdeptusMechanicus
 			*/
 		}
 
-		public int AreaRadius
+        public int AreaRadius
 		{
 			get
 			{
@@ -82,38 +47,88 @@ namespace AdeptusMechanicus
         {
             get
             {
-				return false;
+				return this.stormScale >= WarpStormScale.WorldWide || this.stormScale >= WarpStormScale.WorldRadius ;
             }
         }
 
-		public override void ExposeData()
-		{
-			base.ExposeData();
-			Scribe_Values.Look<IntVec2>(ref this.centerLocation, "centerLocation", default(IntVec2), false);
-			Scribe_Values.Look<int>(ref this.areaRadius, "areaRadius", 0, false);
-			Scribe_Values.Look<IntRange>(ref this.areaRadiusOverride, "areaRadiusOverride", default(IntRange), false);
-			Scribe_Values.Look<int>(ref this.nextMapLocalTicks, "nextLightningTicks", 0, false);
-			Scribe_Values.Look<IntRange>(ref this.initialStrikeDelay, "initialStrikeDelay", default(IntRange), false);
-			Scribe_Values.Look<bool>(ref this.ambientSound, "ambientSound", false, false);
-			Scribe_Values.Look<float>(ref this.severity, "severity", 0f, false);
-			Scribe_Values.Look<float>(ref this.points, "points", -1f, false);
-			Scribe_Values.Look<WarpStormScale>(ref this.stormScale, "stormScale", WarpStormScale.Localised, false);
-		}
+        #region Overrides
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<IntVec2>(ref this.centerLocation, "centerLocation", default(IntVec2), false);
+            Scribe_Values.Look<int>(ref this.areaRadius, "areaRadius", 0, false);
+            Scribe_Values.Look<IntRange>(ref this.areaRadiusOverride, "areaRadiusOverride", default(IntRange), false);
+            Scribe_Values.Look<int>(ref this.nextMapLocalTicks, "nextLightningTicks", 0, false);
+            Scribe_Values.Look<IntRange>(ref this.initialStrikeDelay, "initialStrikeDelay", default(IntRange), false);
+            Scribe_Values.Look<bool>(ref this.ambientSound, "ambientSound", false, false);
+            Scribe_Values.Look<float>(ref this.severity, "severity", 0f, false);
+            Scribe_Values.Look<float>(ref this.points, "points", -1f, false);
+            Scribe_Values.Look<WarpStormScale>(ref this.stormScale, "stormScale", WarpStormScale.Localised, false);
+            Scribe_Values.Look<WarpStormType>(ref this.stormType, "stormType", WarpStormType.Natural, false);
+        }
 
-		public override void Init()
-		{
-			base.Init();
-			this.areaRadius = ((this.areaRadiusOverride == IntRange.zero) ? GameCondition_Warpstorm.AreaRadiusRange.RandomInRange : this.areaRadiusOverride.RandomInRange);
-			this.nextMapLocalTicks = Find.TickManager.TicksGame + this.initialStrikeDelay.RandomInRange;
-			if (this.centerLocation.IsInvalid)
-			{
-				this.FindGoodCenterLocation();
-			}
-			Log.Message($"Warpstorm started with Serverity: {severity}, Threat points: {points}");
-			
-		}
+        public override void Init()
+        {
+            base.Init();
+            this.areaRadius = ((this.areaRadiusOverride == IntRange.zero) ? GameCondition_Warpstorm.AreaRadiusRange.RandomInRange : this.areaRadiusOverride.RandomInRange);
+            this.nextMapLocalTicks = Find.TickManager.TicksGame + this.initialStrikeDelay.RandomInRange;
+            if (this.centerLocation.IsInvalid)
+            {
+                this.FindGoodCenterLocation();
+            }
+        //    Log.Message($"Warpstorm started with Serverity: {severity}, Threat points: {points} Scale:{stormScale}, Type:{stormType}");
 
-		public override void GameConditionTick()
+        }
+
+        public override void RandomizeSettings(float points, Map map, List<Rule> outExtraDescriptionRules, Dictionary<string, string> outExtraDescriptionConstants)
+        {
+
+            if (severity > 0.95f)
+            {
+                this.stormScale = WarpStormScale.SectorWide;
+            }
+            else if (severity > 0.8f)
+            {
+                this.stormScale = WarpStormScale.WorldWide;
+            }
+            else if (severity > 0.75f)
+            {
+                this.stormScale = WarpStormScale.WorldRadius;
+            }
+            else if (severity > 0.4f)
+            {
+                this.stormScale = WarpStormScale.MapWide;
+            }
+            outExtraDescriptionRules.Add(new Rule_String("warpStormScale", this.stormScale.GetLabel()));
+		//	Log.Message("RandomizeSettings: " + this.stormScale.GetLabel());
+            //	outExtraDescriptionRules.Add(new Rule_String("psychicDroneGender", this.gender.GetLabel(false)));
+        }
+
+        public override string Label
+        {
+            get
+            {
+                return this.def.label + ": " + this.stormScale.GetLabel().CapitalizeFirst();
+            }
+        }
+        
+		public override string LetterText
+        {
+            get
+            {
+                return this.def.letterText.Formatted("LetterText", this.stormScale.GetLabel());
+            }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return base.Description.Formatted("DESC");
+            }
+        }
+
+        public override void GameConditionTick()
 		{
             if (this.stormScale == WarpStormScale.Localised)
 			{
@@ -163,17 +178,61 @@ namespace AdeptusMechanicus
 				this.soundSustainer.Maintain();
 			}
 		}
-		public void DoLocalEffects()
+
+        public override void GameConditionDraw(Map map)
         {
-		}
+			if (this.overlays.NullOrEmpty())
+			{
+				base.GameConditionDraw(map);
+				return;
+            }
+            for (int i = 0; i < this.overlays.Count; i++)
+            {
+                this.overlays[i].DrawOverlay(map);
+            }
+        }
+
+        public override float SkyTargetLerpFactor(Map map)
+        {
+
+            return GameConditionUtility.LerpInOutValue(this, 5000f, 0.5f);
+        }
+
+        public override SkyTarget? SkyTarget(Map map)
+        {
+            return new SkyTarget?(new SkyTarget(0.85f, this.WarpRainColors, 1f, 1f));
+        }
+
+        public override List<SkyOverlay> SkyOverlays(Map map)
+        {
+            return this.overlays;
+        }
+
+        public override void End()
+        {
+            Rand.PushState();
+
+            Rand.PopState();
+            if (this.stormScale != WarpStormScale.Localised)
+            {
+
+            }
+            else base.End();
+        }
+        #endregion
+
+        public void DoLocalEffects()
+        {
+			DoStrike();
+        }
 
 		public void DoStrike(float spawnPoints = 0f, string spawnFilter = null)
 		{
-
 			Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, areaRadius);
 			IntVec3 intVec = new IntVec3((int)Math.Round(vector.x) + this.centerLocation.x, 0, (int)Math.Round(vector.y) + this.centerLocation.z);
 			if (this.IsGoodLocationForStrike(intVec))
 			{
+				Log.Message(warpPawns.Select(x => x.LabelCap.ToString()).ToList().ToCommaList());
 				base.SingleMap.weatherManager.eventHandler.AddEvent(new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec));
 				this.nextMapLocalTicks = Find.TickManager.TicksGame + GameCondition_Warpstorm.TicksBetweenStrikes.RandomInRange;
 			}
@@ -184,7 +243,14 @@ namespace AdeptusMechanicus
 			List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
 			for (int i = 0; i < allPawnsSpawned.Count; i++)
 			{
-				DoPawnToxicDamage(allPawnsSpawned[i]);
+				if (stormType == WarpStormType.Nurgle)
+				{
+                    DoPawnToxicDamage(allPawnsSpawned[i]);
+                }
+				if (stormType == WarpStormType.Khorne)
+				{
+                    DriveInsane(allPawnsSpawned[i]);
+                }
 			}
 		}
 
@@ -208,87 +274,64 @@ namespace AdeptusMechanicus
 			}
 		}
 
-		public override void End()
-		{
-			Rand.PushState();
-
-			Rand.PopState();
-            if (true)
+        public static void DriveInsane(Pawn p)
+        {
+            if (p.Spawned && p.Position.Roofed(p.Map))
             {
-
+                return;
             }
-			else base.End();
-		}
-		/*
-		public override string Label
-		{
-			get
-			{
-				if (this.level == PsychicDroneLevel.GoodMedium)
-				{
-					return this.def.label + ": " + this.gender.GetLabel(false).CapitalizeFirst();
-				}
-				if (this.gender != Gender.None)
-				{
-					return string.Concat(new string[]
-					{
-						this.def.label,
-						": ",
-						this.level.GetLabel().CapitalizeFirst(),
-						" (",
-						this.gender.GetLabel(false).ToLower(),
-						")"
-					});
-				}
-				return this.def.label + ": " + this.level.GetLabel().CapitalizeFirst();
-			}
-		}
-
-		public override string LetterText
-		{
-			get
-			{
-				if (this.level == PsychicDroneLevel.GoodMedium)
-				{
-					return this.def.letterText.Formatted(this.gender.GetLabel(false).ToLower());
-				}
-				return this.def.letterText.Formatted(this.gender.GetLabel(false).ToLower(), this.level.GetLabel());
-			}
-		}
-
-		public override string Description
-		{
-			get
-			{
-				return base.Description.Formatted(this.gender.GetLabel(false).ToLower());
-			}
-		}
-		*/
-
-		public override void RandomizeSettings(float points, Map map, List<Rule> outExtraDescriptionRules, Dictionary<string, string> outExtraDescriptionConstants)
-		{
-
-            if (severity > 0.95f)
-			{
-				this.stormScale = WarpStormScale.SectorWide;
+            if (!p.RaceProps.IsFlesh)
+            {
+                return;
             }
-			else if (severity > 0.8f)
-			{
-				this.stormScale = WarpStormScale.WorldWide;
-			}
-			else if (severity > 0.75f)
-			{
-				this.stormScale = WarpStormScale.WorldRadius;
-			}
-			else if (severity > 0.4f)
-			{
-				this.stormScale = WarpStormScale.MapWide;
-			}
-			outExtraDescriptionRules.Add(new Rule_String("warpStormScale", this.stormScale.GetLabel()));
-		//	outExtraDescriptionRules.Add(new Rule_String("psychicDroneGender", this.gender.GetLabel(false)));
-		}
+            p.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Berserk, null, true, false, null, false, false, false);
+        }
 
-		private void FindGoodCenterLocation()
+        public bool TryBlightCrops(Map target, float points)
+        {
+            Map map = (Map)target;
+            float num = IncidentWorker_CropBlight.RadiusFactorPerPointsCurve.Evaluate(points);
+            Plant plant;
+            if (!this.TryFindRandomBlightablePlant(map, out plant))
+            {
+                return false;
+            }
+            Room room = plant.GetRoom(RegionType.Set_All);
+            int i = 0;
+            int num2 = GenRadial.NumCellsInRadius(11f * num);
+            while (i < num2)
+            {
+                IntVec3 intVec = plant.Position + GenRadial.RadialPattern[i];
+                if (intVec.InBounds(map) && intVec.GetRoom(map) == room)
+                {
+                    Plant firstBlightableNowPlant = BlightUtility.GetFirstBlightableNowPlant(intVec, map);
+                    if (firstBlightableNowPlant != null && firstBlightableNowPlant.def == plant.def && Rand.Chance(this.BlightChance(firstBlightableNowPlant.Position, plant.Position, num)))
+                    {
+                        firstBlightableNowPlant.CropBlighted();
+                    }
+                }
+                i++;
+            }
+        //    base.SendStandardLetter("LetterLabelCropBlight".Translate(new NamedArgument(plant.def, "PLANTDEF")), "LetterCropBlight".Translate(new NamedArgument(plant.def, "PLANTDEF")), LetterDefOf.NegativeEvent, parms, new TargetInfo(plant.Position, map, false), Array.Empty<NamedArgument>());
+            return true;
+        }
+
+        private bool TryFindRandomBlightablePlant(Map map, out Plant plant)
+        {
+            Thing thing;
+            bool result = (from x in map.listerThings.ThingsInGroup(ThingRequestGroup.Plant)
+                           where ((Plant)x).BlightableNow
+                           select x).TryRandomElement(out thing);
+            plant = (Plant)thing;
+            return result;
+        }
+
+		private float BlightChance(IntVec3 c, IntVec3 root, float radiusFactor)
+		{
+			float x = c.DistanceTo(root) / radiusFactor;
+			return IncidentWorker_CropBlight.BlightChancePerRadius.Evaluate(x);
+		}
+        private void FindGoodCenterLocation()
 		{
 			if (base.SingleMap.Size.x <= 16 || base.SingleMap.Size.z <= 16)
 			{
@@ -345,7 +388,22 @@ namespace AdeptusMechanicus
 			yield break;
 		}
 
-		private static readonly IntRange AreaRadiusRange = new IntRange(45, 60);
+		public WarpStormScale StormScale
+		{
+			get
+			{
+				return this.stormScale;
+			}
+			set
+			{
+				if (value == this.stormScale) return;
+				this.stormScale = value;
+				// add anything that needs to be changed when the scale of the storm changes here
+            }
+		}
+		IEnumerable<PawnKindDef> warpPawns = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.race.thingClass == typeof(WarpBeing));
+
+        private static readonly IntRange AreaRadiusRange = new IntRange(45, 60);
 		private static readonly IntRange TicksBetweenStrikes = new IntRange(320, 800);
 		private const int RainDisableTicksAfterConditionEnds = 30000;
 		public IntVec2 centerLocation = IntVec2.Invalid;
@@ -362,7 +420,10 @@ namespace AdeptusMechanicus
 		private int nextSectorWideTicks;
 		private Sustainer soundSustainer;
 		private WarpStormScale stormScale = WarpStormScale.Localised;
-	}
+		private WarpStormType stormType = WarpStormType.Natural;
+        private SkyColorSet WarpRainColors;
+        private List<SkyOverlay> overlays;
+    }
 	/*
 	public class PsychicRain : GameCondition
 	{
@@ -450,29 +511,6 @@ namespace AdeptusMechanicus
 					pawn.ageTracker.AgeBiologicalTicks += (long)(20706f * pawn.GetStatValue(StatDefOf.PsychicSensitivity, true));
 				}
 			}
-		}
-
-		public override void GameConditionDraw(Map map)
-		{
-			for (int i = 0; i < this.overlays.Count; i++)
-			{
-				this.overlays[i].DrawOverlay(map);
-			}
-		}
-
-		public override float SkyTargetLerpFactor(Map map)
-		{
-			return GameConditionUtility.LerpInOutValue(this, 5000f, 0.5f);
-		}
-
-		public override SkyTarget? SkyTarget(Map map)
-		{
-			return new SkyTarget?(new SkyTarget(0.85f, this.PsychicRainColors, 1f, 1f));
-		}
-
-		public override List<SkyOverlay> SkyOverlays(Map map)
-		{
-			return this.overlays;
 		}
 
 		private SkyColorSet PsychicRainColors;

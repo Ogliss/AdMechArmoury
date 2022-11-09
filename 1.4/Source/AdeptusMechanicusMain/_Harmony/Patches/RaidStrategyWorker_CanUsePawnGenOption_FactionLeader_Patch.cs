@@ -19,11 +19,11 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class RaidStrategyWorker_CanUsePawnGenOption_FactionLeader_Patch
     {
         [HarmonyPostfix]
-        public static void Postfix(RaidStrategyWorker __instance, PawnGenOption g, List<PawnGenOption> chosenGroups, ref bool __result)
+        public static void Postfix(RaidStrategyWorker __instance, PawnGenOption g, List<PawnGenOptionWithXenotype> chosenGroups, ref bool __result)
         {
             if (g.kind.factionLeader)
             {
-                if (chosenGroups.Any(x => x.kind.factionLeader && x.kind == g.kind))
+                if (!chosenGroups.NullOrEmpty() && chosenGroups.Any(x => x.Option.kind.factionLeader && x.Option.kind == g.kind))
                 {
                     __result = false;
                 //    Log.Warning(string.Format("Excess {0} detected:  there are {1} already in the raid, Disallowing", g.kind.LabelCap, chosenGroups.Where(x => x.kind == g.kind).Count()));

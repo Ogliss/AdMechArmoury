@@ -247,7 +247,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     bool flag7 = __instance.def.projectile.explosionRadius > 0f;
                     if (flag7)
                     {
-                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), __instance.Map, __instance.def.projectile.explosionRadius, __instance.def.projectile.damageDef, launcher, __instance.def.projectile.GetDamageAmount(1f, null), __instance.def.projectile.GetExplosionArmorPenetration(), __instance.def.projectile.soundExplode, equipmentDef, __instance.def, null, __instance.def.projectile.postExplosionSpawnThingDef, __instance.def.projectile.postExplosionSpawnChance, __instance.def.projectile.postExplosionSpawnThingCount, __instance.def.projectile.applyDamageToExplosionCellsNeighbors, __instance.def.projectile.preExplosionSpawnThingDef, __instance.def.projectile.preExplosionSpawnChance, __instance.def.projectile.preExplosionSpawnThingCount, __instance.def.projectile.explosionChanceToStartFire, __instance.def.projectile.explosionDamageFalloff, direction, list, vector.y, 1f, false, null);
+                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), __instance.Map, __instance.def.projectile.explosionRadius, __instance.def.projectile.damageDef, launcher, __instance.def.projectile.GetDamageAmount(1f, null), __instance.def.projectile.GetExplosionArmorPenetration(), __instance.def.projectile.soundExplode, equipmentDef, __instance.def, null, __instance.def.projectile.postExplosionSpawnThingDef, __instance.def.projectile.postExplosionSpawnChance, __instance.def.projectile.postExplosionSpawnThingCount, GasType.Unused, __instance.def.projectile.applyDamageToExplosionCellsNeighbors, __instance.def.projectile.preExplosionSpawnThingDef, __instance.def.projectile.preExplosionSpawnChance, __instance.def.projectile.preExplosionSpawnThingCount, __instance.def.projectile.explosionChanceToStartFire, __instance.def.projectile.explosionDamageFalloff, direction, list, null, true, 1f, 0f, true, __instance.def.projectile.postExplosionSpawnThingDefWater, __instance.def.projectile.screenShakeFactor, vector.y, 1f, false, null);
                         bool flag8 = vector.y < 3f;
                         if (flag8)
                         {
@@ -330,20 +330,20 @@ namespace AdeptusMechanicus.HarmonyInstance
             Traverse.Create(bullet).Field("launcher").SetValue(launcher);
             return bullet;
         }
+
         private static void ApplySuppression(ProjectileCE __instance, IntVec3 OriginIV3, Pawn pawn, Thing launcher, ref float suppressionAmount)
         {
-            ShieldBelt shieldBelt = null;
+            CompShield compShield = null;
             bool humanlike = pawn.RaceProps.Humanlike;
             if (humanlike)
             {
                 List<Apparel> wornApparel = pawn.apparel.WornApparel;
                 for (int i = 0; i < wornApparel.Count; i++)
                 {
-                    ShieldBelt shieldBelt2 = wornApparel[i] as ShieldBelt;
-                    bool flag = shieldBelt2 != null;
-                    if (flag)
+                    CompShield compShield2 = wornApparel[i].TryGetComp<CompShield>();
+                    if (compShield2 != null)
                     {
-                        shieldBelt = shieldBelt2;
+                        compShield = compShield2;
                         break;
                     }
                 }
@@ -356,7 +356,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Thing thing = launcher;
                 if (faction != ((thing != null) ? thing.Faction : null))
                 {
-                    flag2 = (shieldBelt == null || shieldBelt.ShieldState == ShieldState.Resetting);
+                    flag2 = (compShield == null || compShield.ShieldState == ShieldState.Resetting);
                     goto IL_93;
                 }
             }
@@ -373,6 +373,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
         }
+
         private static int FlightTicks(int ticksToImpact, int IntTicksToImpact)
         {
             return IntTicksToImpact - ticksToImpact;

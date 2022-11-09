@@ -80,7 +80,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (PawnBioAndNameGenerator.tmpBackstories.NullOrEmpty())
                 {
                     string s = categoryFilter.categories.NullOrEmpty() ? (slot == BackstorySlot.Adulthood ? $"Adulthoods: {categoryFilter.categoriesAdulthood.ToCommaList()}" : $"Childhoods: {categoryFilter.categoriesChildhood.ToCommaList()}") : $"Catergories: {categoryFilter.categories.ToCommaList()}";
-                    Log.Warning($"No {slot} tmpBackstories matching categoryFilter {s} for {pawn} of {pawn.Faction}");
+                    Log.Warning($"No {slot} tmpBackstories matching categoryFilter {s} for {pawn} of {pawn.Faction}" + (mustBeCompatibleTo.HasValue ? $" Compatible to: {mustBeCompatibleTo.Value}" : ""));
                 }
                 if (!(from bs in PawnBioAndNameGenerator.tmpBackstories.TakeRandom(20)
                       where (slot != BackstorySlot.Adulthood || bs.requiredWorkTags == WorkTags.None || !bs.requiredWorkTags.OverlapsWithOnAnyWorkType(pawn.story.Childhood.workDisables)) ? true : false

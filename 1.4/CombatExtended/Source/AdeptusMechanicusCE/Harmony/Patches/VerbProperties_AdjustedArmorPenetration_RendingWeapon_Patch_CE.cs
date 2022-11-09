@@ -20,7 +20,7 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class VerbProperties_AdjustedArmorPenetration_RendingWeapon_Patch_CE
     {
         public static void Postfix(ref VerbPropertiesCE __instance, Verb ownerVerb, Pawn attacker, ref float __result)
-        {
+        { 
             ToolCE tool = ownerVerb.tool as ToolCE;
             Thing equipment = ownerVerb.EquipmentSource;
             if (tool != null)

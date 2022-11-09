@@ -25,7 +25,7 @@ namespace AdeptusMechanicus
             gameCondition_Warpstorm.severity = Rand.Value;
             Rand.PopState();
             map.gameConditionManager.RegisterCondition(gameCondition_Warpstorm);
-            base.SendStandardLetter(this.def.letterLabel, this.def.letterText, this.def.letterDef, parms, new TargetInfo());
+            base.SendStandardLetter(this.def.letterLabel, this.def.letterText, this.def.letterDef, parms, new TargetInfo(gameCondition_Warpstorm.centerLocation.ToIntVec3, map, false), Array.Empty<NamedArgument>());
             if (map.weatherManager.curWeather.rainRate > 0.1f)
             {
                 map.weatherDecider.StartNextWeather();

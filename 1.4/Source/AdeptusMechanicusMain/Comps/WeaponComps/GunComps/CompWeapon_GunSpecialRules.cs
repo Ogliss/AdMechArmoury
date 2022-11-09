@@ -296,7 +296,7 @@ namespace AdeptusMechanicus
             if (VolkiteWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AdeptusMechanicus.Volite".Translate() + ": " + "AdeptusMechanicus.VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Volkite".Translate() + ": " + "AdeptusMechanicus.VolkiteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
             }
             if (ConversionWeapon)
             {
@@ -384,7 +384,7 @@ namespace AdeptusMechanicus
             if (VolkiteWeapon)
             {
                 builder.AppendLine();
-                builder.AppendLine(string.Format("AdeptusMechanicus.Volite".Translate() + ": " + "AdeptusMechanicus.VoliteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
+                builder.AppendLine(string.Format("AdeptusMechanicus.Volkite".Translate() + ": " + "AdeptusMechanicus.VolkiteDesc".Translate(compEquippable.VerbTracker.PrimaryVerb.verbProps.range / 2)));
             }
             if (ConversionWeapon)
             {

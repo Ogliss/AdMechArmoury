@@ -19,7 +19,5 @@ namespace AdeptusMechanicus
             thought_MemoryObservation.Target = this;
             return thought_MemoryObservation;
         }
-
-
     }
 }

@@ -290,7 +290,7 @@ namespace AdeptusMechanicus.Lasers
                     float? direction = new float?(this.origin.AngleTo(this.Vec2Position(-1f)));
                     if (this.def.projectile.explosionRadius > 0f)
                     {
-                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), base.Map, this.def.projectile.explosionRadius, this.def.projectile.damageDef, this.launcher, (int)this.DamageAmount, this.def.projectile.GetExplosionArmorPenetration(), this.def.projectile.soundExplode, this.equipmentDef, this.def, null, this.def.projectile.postExplosionSpawnThingDef, this.def.projectile.postExplosionSpawnChance, this.def.projectile.postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, this.def.projectile.preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff, direction, list, vector.y, 1f, false, null);
+                        GenExplosionCE.DoExplosion(vector.ToIntVec3(), base.Map, this.def.projectile.explosionRadius, this.def.projectile.damageDef, this.launcher, (int)this.DamageAmount, this.def.projectile.GetExplosionArmorPenetration(), this.def.projectile.soundExplode, this.equipmentDef, this.def, null, this.def.projectile.postExplosionSpawnThingDef, this.def.projectile.postExplosionSpawnChance, this.def.projectile.postExplosionSpawnThingCount, GasType.Unused, this.def.projectile.applyDamageToExplosionCellsNeighbors, this.def.projectile.preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff, direction, list, null, true, 1f, 0f, true, this.def.projectile.postExplosionSpawnThingDefWater, this.def.projectile.screenShakeFactor, vector.y, 1f, false, null);
                         if (vector.y < 3f)
                         {
                             list2.AddRange(GenRadial.RadialDistinctThingsAround(vector.ToIntVec3(), base.Map, 3f + this.def.projectile.explosionRadius, true).OfType<Pawn>());
@@ -315,18 +315,17 @@ namespace AdeptusMechanicus.Lasers
 
         private void ApplySuppression(Pawn pawn)
         {
-            ShieldBelt shieldBelt = null;
+            CompShield compShield = null;
             bool humanlike = pawn.RaceProps.Humanlike;
             if (humanlike)
             {
                 List<Apparel> wornApparel = pawn.apparel.WornApparel;
                 for (int i = 0; i < wornApparel.Count; i++)
                 {
-                    ShieldBelt shieldBelt2 = wornApparel[i] as ShieldBelt;
-                    bool flag = shieldBelt2 != null;
-                    if (flag)
+                    CompShield compShield2 = wornApparel[i].TryGetComp<CompShield>();
+                    if (compShield2 != null)
                     {
-                        shieldBelt = shieldBelt2;
+                        compShield = compShield2;
                         break;
                     }
                 }
@@ -339,7 +338,7 @@ namespace AdeptusMechanicus.Lasers
                 Thing thing = this.launcher;
                 if (faction != ((thing != null) ? thing.Faction : null))
                 {
-                    flag2 = (shieldBelt == null || shieldBelt.ShieldState == ShieldState.Resetting);
+                    flag2 = (compShield == null || compShield.ShieldState == ShieldState.Resetting);
                     goto IL_93;
                 }
             }
@@ -415,7 +414,7 @@ namespace AdeptusMechanicus.Lasers
             float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
             int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
-            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
+            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, GasType.Unused, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
         }
 
         /*
