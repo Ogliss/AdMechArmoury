@@ -225,7 +225,7 @@ namespace AdeptusMechanicus
 				parent = this.parent.pawn;
 			}
 			DamageDef dmg = props.explosiveDamageType ?? DamageDefOf.Bomb;
-			GenExplosion.DoExplosion(this.parent.pawn.PositionHeld, map, num, dmg, parent, props.damageAmountBase > 0 ? props.damageAmountBase : dmg.defaultDamage, props.armorPenetrationBase, props.explosionSound ?? dmg.soundExplosion, null, null, null, props.postExplosionSpawnThingDef, props.postExplosionSpawnChance, props.postExplosionSpawnThingCount, GasType.BlindSmoke, props.applyDamageToExplosionCellsNeighbors, props.preExplosionSpawnThingDef, props.preExplosionSpawnChance, props.preExplosionSpawnThingCount, props.chanceToStartFire, props.damageFalloff, null, null);
+			GenExplosion.DoExplosion(this.parent.pawn.PositionHeld, map, num, dmg, parent, props.damageAmountBase > 0 ? props.damageAmountBase : dmg.defaultDamage, props.armorPenetrationBase, props.explosionSound ?? dmg.soundExplosion, null, null, null, props.postExplosionSpawnThingDef, props.postExplosionSpawnChance, props.postExplosionSpawnThingCount, null, props.applyDamageToExplosionCellsNeighbors, props.preExplosionSpawnThingDef, props.preExplosionSpawnChance, props.preExplosionSpawnThingCount, props.chanceToStartFire, props.damageFalloff, null, null);
 		}
 		public void StartWick(Thing instigator = null)
 		{

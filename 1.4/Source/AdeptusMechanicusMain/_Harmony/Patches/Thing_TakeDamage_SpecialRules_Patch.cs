@@ -308,7 +308,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                                 Thing launcher = Weapon;
                                                 SoundDef soundExplode = WeaponRules?.ForceWeaponTriggerSound ?? compForce.ForceWeaponTriggerSound;
                                                 Thing thing = target;
-                                                GenExplosion.DoExplosion(position, map2, explosionRadius, damDef, launcher, (int)damAmount, armorPenetration, soundExplode, source, null, thing, null, 0f, 0, GasType.BlindSmoke, false, null, 0, 0, 0, false);
+                                                GenExplosion.DoExplosion(position, map2, explosionRadius, damDef, launcher, (int)damAmount, armorPenetration, soundExplode, source, null, thing, null, 0f, 0, null, false, null, 0, 0, 0, false);
                                                 TaggedString msg = "AdeptusMechanicus.ForceStrike";
                                                 MessageTypeDef typeDef = MessageTypeDefOf.NegativeHealthEvent;
                                                 float KillChance = WeaponRules?.ForceWeaponKillChance ?? compForce.ForceWeaponKillChance;

@@ -89,7 +89,7 @@ namespace AdeptusMechanicus
             this.boltMesh = AdeptusLightningBoltMeshMaker.NewBoltMesh(minX, maxX, Z);
             if (!this.strikeLoc.Fogged(this.map))
             {
-                GenExplosion.DoExplosion(this.strikeLoc, this.map, 2.9f, DamageDefOf.Smoke, null, 0, -1f, null, null, null, null, null, 0f, 1, GasType.BlindSmoke, false, null, 0f, 1, 0f, false);
+                GenExplosion.DoExplosion(this.strikeLoc, this.map, 2.9f, DamageDefOf.Smoke, null, 0, -1f, null, null, null, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false);
                 Vector3 loc = this.strikeLoc.ToVector3Shifted();
                 for (int i = 0; i < 4; i++)
                 {

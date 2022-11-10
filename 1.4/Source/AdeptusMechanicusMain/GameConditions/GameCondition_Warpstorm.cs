@@ -223,17 +223,41 @@ namespace AdeptusMechanicus
 
         public void DoLocalEffects()
         {
-			DoStrike();
+			float strikePoints = Rand.RangeInclusive(0, (int)this.points);
+			if (strikePoints < CheapestWarpPawn.combatPower) strikePoints = 0f;
+
+            DoStrike(strikePoints);
         }
 
-		public void DoStrike(float spawnPoints = 0f, string spawnFilter = null)
+		public void DoStrike(float strikePoints = 0f, string spawnFilter = null)
 		{
+			float spawnPoints = strikePoints;
+			float cheapest = CheapestWarpPawn.combatPower;
 			Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, areaRadius);
 			IntVec3 intVec = new IntVec3((int)Math.Round(vector.x) + this.centerLocation.x, 0, (int)Math.Round(vector.y) + this.centerLocation.z);
 			if (this.IsGoodLocationForStrike(intVec))
 			{
-				Log.Message(warpPawns.Select(x => x.LabelCap.ToString()).ToList().ToCommaList());
-				base.SingleMap.weatherManager.eventHandler.AddEvent(new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec));
+				WeatherEvent_WarpLightningStrike strike;
+                IEnumerable<PawnKindDef> spawnableKinds = warpPawns.Where(x => x.combatPower < spawnPoints && (spawnFilter.NullOrEmpty() || x.defName.Contains(spawnFilter)));
+                Log.Message(spawnableKinds.Select(x => x.LabelCap.ToString()).ToList().ToCommaList());
+				
+
+                if (spawnPoints > cheapest)
+				{
+					List<PawnKindDef> kinds = new List<PawnKindDef>();
+					while (spawnableKinds.Any(x => x.combatPower < spawnPoints && (spawnFilter.NullOrEmpty() || x.defName.Contains(spawnFilter))))
+					{
+						PawnKindDef kind = spawnableKinds.Where(x => x.combatPower < spawnPoints).RandomElement();
+                        kinds.Add(kind);
+						spawnPoints -= kind.combatPower;
+						this.points -= kind.combatPower;
+                    }
+                    strike = new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec, null, 0f, kinds);
+
+				}
+				else strike = new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec);
+
+                base.SingleMap.weatherManager.eventHandler.AddEvent(strike);
 				this.nextMapLocalTicks = Find.TickManager.TicksGame + GameCondition_Warpstorm.TicksBetweenStrikes.RandomInRange;
 			}
 		}
@@ -402,7 +426,7 @@ namespace AdeptusMechanicus
             }
 		}
 		IEnumerable<PawnKindDef> warpPawns = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.race.thingClass == typeof(WarpBeing));
-
+		PawnKindDef CheapestWarpPawn => warpPawns.EnumerableNullOrEmpty() ? null : warpPawns.OrderBy(x => x.combatPower).First();
         private static readonly IntRange AreaRadiusRange = new IntRange(45, 60);
 		private static readonly IntRange TicksBetweenStrikes = new IntRange(320, 800);
 		private const int RainDisableTicksAfterConditionEnds = 30000;

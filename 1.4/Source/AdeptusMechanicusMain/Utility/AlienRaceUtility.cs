@@ -19,6 +19,8 @@ namespace AdeptusMechanicus
             AlienRace.ThingDef_AlienRace Ogryn = ArmouryMain.ogryn as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Ratlin = ArmouryMain.ratlin as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Beastman = ArmouryMain.beastman as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace astartes_Geneseed = ArmouryMain.geneseedAstartes as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace custodes_Geneseed = ArmouryMain.geneseedCustodes as AlienRace.ThingDef_AlienRace;
             List<ThingDef> races = new List<ThingDef>();
             foreach (var item in settings.AMSettings.Instance.RaceSettings)
             {
@@ -27,9 +29,16 @@ namespace AdeptusMechanicus
                     if (item.Imperial)
                     {
                         races.Add(item.Race);
-                        races.Add(item.Race);
                     }
                 }
+            }
+            if (astartes_Geneseed != null && !races.Contains(astartes_Geneseed))
+            {
+                races.Add(astartes_Geneseed);
+            }
+            if (custodes_Geneseed != null && !races.Contains(custodes_Geneseed))
+            {
+                races.Add(custodes_Geneseed);
             }
             if (AdeptusIntergrationUtility.enabled_AstraServoSkulls)
             {

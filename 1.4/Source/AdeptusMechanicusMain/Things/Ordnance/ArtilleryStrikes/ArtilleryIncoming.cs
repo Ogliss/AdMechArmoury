@@ -113,7 +113,7 @@ namespace AdeptusMechanicus.Ordnance
 			if (this.def.skyfaller.CausesExplosion)
 			{
 			//	Log.Message("CausesExplosion");
-				GenExplosion.DoExplosion(base.Position, base.Map, this.def.skyfaller.explosionRadius, this.def.skyfaller.explosionDamage, null, GenMath.RoundRandom((float)this.def.skyfaller.explosionDamage.defaultDamage * this.def.skyfaller.explosionDamageFactor), -1f, null, null, null, null, null, 0f, 1, GasType.BlindSmoke,false, null, 0f, 1, 0f, false, null, (!this.def.skyfaller.damageSpawnedThings) ? this.innerContainer.ToList<Thing>() : null);
+				GenExplosion.DoExplosion(base.Position, base.Map, this.def.skyfaller.explosionRadius, this.def.skyfaller.explosionDamage, null, GenMath.RoundRandom((float)this.def.skyfaller.explosionDamage.defaultDamage * this.def.skyfaller.explosionDamageFactor), -1f, null, null, null, null, null, 0f, 1, null,false, null, 0f, 1, 0f, false, null, (!this.def.skyfaller.damageSpawnedThings) ? this.innerContainer.ToList<Thing>() : null);
 			}
 		//	this.SpawnThings();
 			this.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
@@ -193,7 +193,7 @@ namespace AdeptusMechanicus.Ordnance
 			ThingDef preExplosionSpawnThingDef = Payload.projectile.preExplosionSpawnThingDef;
 			float preExplosionSpawnChance = Payload.projectile.preExplosionSpawnChance;
 			int preExplosionSpawnThingCount = Payload.projectile.preExplosionSpawnThingCount;
-			GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, damageAmount, armorPenetration, soundExplode, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, GasType.BlindSmoke ,Payload.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount, Payload.projectile.explosionChanceToStartFire, Payload.projectile.explosionDamageFalloff, null, null);
+			GenExplosion.DoExplosion(position, map2, explosionRadius, damageDef, launcher, damageAmount, armorPenetration, soundExplode, equipmentDef, def, thing, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, null ,Payload.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount, Payload.projectile.explosionChanceToStartFire, Payload.projectile.explosionDamageFalloff, null, null);
 		}
 
 		private int ticksToDetonation = 0;

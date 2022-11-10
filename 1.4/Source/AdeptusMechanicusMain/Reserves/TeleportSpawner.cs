@@ -152,7 +152,7 @@ namespace AdeptusMechanicus
                 }
                 if (Ext.explodesprespawn)
                 {
-                    GenExplosion.DoExplosion(position, map, Ext.blastradius, Ext.damageDef, null, -1, -1f, null, null, null, null, null, 0f, 1, GasType.BlindSmoke, false, null, 0f, 1, 0f, false);
+                    GenExplosion.DoExplosion(position, map, Ext.blastradius, Ext.damageDef, null, -1, -1f, null, null, null, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false);
                 }
             }
             if (!this.innerContainer.NullOrEmpty())

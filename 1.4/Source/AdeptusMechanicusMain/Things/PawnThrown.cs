@@ -139,7 +139,7 @@ namespace AdeptusMechanicus
 			this.RespawnPawn();
 			if (this.def.projectile.explosionRadius > 0)
 			{
-				GenExplosion.DoExplosion(base.Position, base.Map, this.def.projectile.explosionRadius, this.def.projectile.damageDef, ThrownPawn, -1, -1f, null, null, null, null, null, 0f, 1, GasType.BlindSmoke, false, null, 0f, 1, 0f, false);
+				GenExplosion.DoExplosion(base.Position, base.Map, this.def.projectile.explosionRadius, this.def.projectile.damageDef, ThrownPawn, -1, -1f, null, null, null, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false);
 			}
 			this.Destroy(0);
 		}

@@ -80,7 +80,7 @@ namespace AdeptusMechanicus
                     if (this.Pawn.Downed && !this.Pawn.Dead)
                     {
                         Rand.PushState();
-                        GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, Rand.Range(this.explosionRadius * 0.5f, this.explosionRadius * 1.5f), DamageDefOf.Burn, this.Pawn, Rand.Range(6, 10), 0f, null, null, null, null, null, 0f, 1, GasType.Unused,false, null, 0f, 1, 0f, false);
+                        GenExplosion.DoExplosion(this.Pawn.Position, this.Pawn.Map, Rand.Range(this.explosionRadius * 0.5f, this.explosionRadius * 1.5f), DamageDefOf.Burn, this.Pawn, Rand.Range(6, 10), 0f, null, null, null, null, null, 0f, 1, null,false, null, 0f, 1, 0f, false);
                         Rand.PopState();
                         this.Pawn.Kill(null, null);
                     }

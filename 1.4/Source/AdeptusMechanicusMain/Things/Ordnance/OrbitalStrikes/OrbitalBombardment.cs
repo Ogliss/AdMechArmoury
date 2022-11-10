@@ -92,7 +92,7 @@ namespace AdeptusMechanicus.Ordnance
 						ProjectileVFX effects = this.projectiles[i].ordnance.GetModExtensionFast<ProjectileVFX>();
 						effects.ImpactEffects(vector, map, effects.ExplosionMoteDef ?? this.projectiles[i].ordnance.projectile.damageDef.explosionCellMote, randomInRange, this.projectiles[i].ordnance.projectile.damageDef.explosionColorCenter, this.projectiles[i].ordnance.projectile.damageDef.soundExplosion, effects.ImpactMoteDef, randomInRange, effects.ImpactGlowMoteDef, randomInRange);
 					}
-					GenExplosion.DoExplosion(targetCell, map, randomInRange, bomb, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, GasType.BlindSmoke, false, null, 0f, 1, 0f, false, null, null);
+					GenExplosion.DoExplosion(targetCell, map, randomInRange, bomb, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false, null, null);
 					this.projectiles.RemoveAt(i);
 				}
 			}
