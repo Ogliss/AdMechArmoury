@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <MemeDef Abstract="True" Name="OG_Tau_Structure_MemeBase">
+    <randomizationSelectionWeightFactor>0</randomizationSelectionWeightFactor>
+  </MemeDef>
+  
+  <MemeDef ParentName="OG_Tau_Structure_MemeBase" MayRequire="Ogliss.AdMech.Xenobiologis.Tau">
+    <defName>OG_Tau_Structure_Ideological</defName>
+    <label>the greater good</label>
+    <description>There are no gods. The moral structure of the universe is found in our grand narrative of the greater good.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/TheGreaterGood</iconPath>
+    <impact>0</impact>
+    <worshipRoomLabel>sanctuary</worshipRoomLabel>
+    <randomizationSelectionWeightFactor>5</randomizationSelectionWeightFactor>
+    <deityCount>0</deityCount>
+    <consumableBuildings>
+      <li>SacrificialFlag</li>
+    </consumableBuildings>
+    <renderOrder>-1</renderOrder>
+    <generalRules>
+      <rulesStrings>
+        <li>memeHyphenPrefix->ideo</li>
+        <li>memeLeaderNoun->mind</li>
+        <li>memeLeaderNoun->decider</li>
+        <li>memeLeaderNoun->leader</li>
+        <li>memeLeaderAdjective->ethical</li>
+        <li>memeLeaderAdjective->moral</li>
+        <li>memeLeaderAdjective->awoken</li>
+        <li>memeMoralist->counselor</li>
+        <li>memeMoralist->ethicist</li>
+        <li>memeMoralist->moralist</li>
+        <li>memeMoralist->philosopher</li>
+        <li>memeMoralist->thinker</li>
+        <li>memeMoralist->academic</li>
+        <li>memeMoralist->sophist</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li>
+          <def>IdeologicalFounder</def>
+          <weight>1</weight>
+        </li>
+        <li>
+          <def>IdeologicalLesson</def>
+          <weight>3</weight>
+        </li>
+      </patterns>
+      <constants>
+        <li><key>structure_ideological</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <symbolPacks>
+      <li>
+        <ideoName>Ethics</ideoName>
+        <theme>ethics</theme>
+        <adjective>ethical</adjective>
+        <member>ethicist</member>
+      </li>
+      <li>
+        <ideoName>Ideology</ideoName>
+        <theme>ideology</theme>
+        <adjective>ideological</adjective>
+        <member>ideologist</member>
+      </li>
+      <li>
+        <ideoName>Justice</ideoName>
+        <theme>justice</theme>
+        <adjective>just</adjective>
+        <member>justicar</member>
+      </li>
+    </symbolPacks>
+  </MemeDef>
+
+</Defs>

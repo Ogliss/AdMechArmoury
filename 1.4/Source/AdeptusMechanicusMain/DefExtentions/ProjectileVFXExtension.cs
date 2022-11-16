@@ -69,13 +69,16 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            if (Impact(thing, map, hitThing))
-            {
-                return;
-            }
             if (enabled_CombatExtended)
             {
                 if (ImpactCE(thing, map, hitThing))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (Impact(thing, map, hitThing))
                 {
                     return;
                 }

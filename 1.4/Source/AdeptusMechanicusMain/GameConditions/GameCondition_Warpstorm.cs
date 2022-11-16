@@ -223,7 +223,7 @@ namespace AdeptusMechanicus
 
         public void DoLocalEffects()
         {
-			float strikePoints = Rand.RangeInclusive(0, (int)this.points);
+			float strikePoints = Rand.RangeInclusive(0, (int)this.points /** this.Duration*/);
 			if (strikePoints < CheapestWarpPawn.combatPower) strikePoints = 0f;
 
             DoStrike(strikePoints);
@@ -238,22 +238,19 @@ namespace AdeptusMechanicus
 			if (this.IsGoodLocationForStrike(intVec))
 			{
 				WeatherEvent_WarpLightningStrike strike;
-                IEnumerable<PawnKindDef> spawnableKinds = warpPawns.Where(x => x.combatPower < spawnPoints && (spawnFilter.NullOrEmpty() || x.defName.Contains(spawnFilter)));
-                Log.Message(spawnableKinds.Select(x => x.LabelCap.ToString()).ToList().ToCommaList());
-				
-
                 if (spawnPoints > cheapest)
-				{
-					List<PawnKindDef> kinds = new List<PawnKindDef>();
+                {
+                    IEnumerable<PawnKindDef> spawnableKinds = warpPawns.Where(x => x.combatPower < spawnPoints && (spawnFilter.NullOrEmpty() || x.defName.Contains(spawnFilter)));
+                //    Log.Message(spawnableKinds.Select(x => x.LabelCap.ToString()).ToList().ToCommaList());
+                    List<PawnKindDef> kinds = new List<PawnKindDef>();
 					while (spawnableKinds.Any(x => x.combatPower < spawnPoints && (spawnFilter.NullOrEmpty() || x.defName.Contains(spawnFilter))))
 					{
-						PawnKindDef kind = spawnableKinds.Where(x => x.combatPower < spawnPoints).RandomElement();
+						PawnKindDef kind = spawnableKinds.Where(x => x.combatPower < spawnPoints).RandomElementByWeight(x => AdeptusMath.Inverse(x.combatPower));
                         kinds.Add(kind);
 						spawnPoints -= kind.combatPower;
 						this.points -= kind.combatPower;
                     }
                     strike = new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec, null, 0f, kinds);
-
 				}
 				else strike = new WeatherEvent_WarpLightningStrike(base.SingleMap, intVec);
 

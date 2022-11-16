@@ -30,15 +30,16 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static AcceptanceReport Postfix(AcceptanceReport __result, PreceptWorker_Apparel __instance, ThingDef def, Ideo ideo, FactionDef generatingFor)
         {
-            return __result;
+        //    return __result;
             AcceptanceReport result = __result;
+        //    bool act = !__result.Accepted || __result.Accepted &&  __instance.def == PreceptDefOf.app
             if (!__result.Accepted && ideo.culture is CultureDef culture)
             {
                 if (!culture.preferredApparelTags.NullOrEmpty())
                 {
                     foreach (var item in culture.preferredApparelTags)
                     {
-                        Log.Message($"Checking {def}");
+                        Log.Message($"Checking {__instance.def}:{def}");
                         if (def.apparel.tags.Contains(item))
                         {
                             return true;

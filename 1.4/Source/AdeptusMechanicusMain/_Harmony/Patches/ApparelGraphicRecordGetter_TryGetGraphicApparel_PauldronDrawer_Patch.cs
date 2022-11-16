@@ -210,7 +210,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 						newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
 					}
 				}
-				//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+					Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
 			}
 			if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
 			{

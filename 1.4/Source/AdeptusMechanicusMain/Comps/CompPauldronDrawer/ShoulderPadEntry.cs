@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 using Verse;
 
 namespace AdeptusMechanicus
@@ -589,13 +590,15 @@ namespace AdeptusMechanicus
             }
         }
 
-        /*
-         * Broken by changesi n HAR
         Mesh GetPauldronMesh(PawnRenderFlags flags, Pawn pawn, Rot4 facing, bool body)
         {
-            return AlienRace.HarmonyPatches.GetPawnMesh(flags, pawn, facing, body);
+            if (!body)
+            {
+                return HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(facing);
+            }
+            return HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(pawn).MeshAt(facing);
         }
-        */
+        
 
         public bool ShouldDrawEntry(PawnRenderFlags flags, Rot4 bodyFacing, Vector2 size, bool renderBody, out Graphic pauldronMaterial, out Mesh pauldronMesh, out Vector3 offset)
         {
@@ -613,14 +616,7 @@ namespace AdeptusMechanicus
             pauldronMesh = this.MeshSet.MeshAt(bodyFacing);
             if (pauldronMesh == null)
             {
-                pauldronMesh = !Drawer.onHead ? MeshPool.humanlikeBodySet.MeshAt(bodyFacing) : MeshPool.humanlikeHeadSet.MeshAt(bodyFacing);
-                /*
-                 * broken by changes in HAR
-                if (AdeptusIntergrationUtility.enabled_AlienRaces)
-                {
-                    pauldronMesh = GetPauldronMesh(flags, apparel.Wearer, bodyFacing, !Drawer.onHead);
-                }
-                */
+                pauldronMesh = !Drawer.onHead ? HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(apparel.Wearer).MeshAt(bodyFacing) : HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(apparel.Wearer).MeshAt(bodyFacing);
             }
             if (apparel.Wearer.RaceProps.Humanlike)
             {
@@ -702,7 +698,7 @@ namespace AdeptusMechanicus
                 }
                 if (meshSet == null)
                 {
-                    meshSet = new GraphicMeshSet(size.x, size.y);
+                    meshSet = Drawer.onHead ? HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(apparel.Wearer) : HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(apparel.Wearer);
                 }
                 return meshSet;
             }

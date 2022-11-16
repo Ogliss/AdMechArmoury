@@ -122,5 +122,30 @@ namespace AdeptusMechanicus
 			Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
 		}
 
-	}
+        // Verse.DebugToolsSpawning
+        [DebugAction("Adeptus Mechanicus", "Mature All plants of Def...", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void MatureAllPlantsOf()
+        {
+            List<DebugMenuOption> list = new List<DebugMenuOption>();
+            foreach (Thing t in from kd in Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).Where(x => x is Plant).ToList<Thing>()
+                                orderby kd.def.defName
+                                select kd)
+            {
+                list.Add(new DebugMenuOption(t.def.LabelCap, DebugMenuOptionMode.Action, delegate ()
+                {
+                    foreach (Plant thing in Find.CurrentMap.listerThings.AllThings.Where(x => x is Plant).ToList<Thing>())
+                    {
+                        if (thing.def == t.def)
+                        {
+                            int num = (int)((1f - thing.Growth) * thing.def.plant.growDays);
+                            thing.Age += num;
+                            thing.Growth = 1f;
+                        }
+                    }
+                }));
+            }
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
+        }
+
+    }
 }

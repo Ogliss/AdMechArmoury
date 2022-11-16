@@ -40,7 +40,7 @@ namespace AdeptusMechanicus
                         var menu = (Integration_Exposable)Activator.CreateInstance(type, null);
                         if (menu.IsActive)
                         {
-                            if (AlienRaces == null && menu.PackageID == "erdelf.HumanoidAlienRaces")
+                            if (AlienRaces == null && menu.PackageID.Contains("erdelf.HumanoidAlienRaces"))
                             {
                                 AlienRaces = menu;
                             }

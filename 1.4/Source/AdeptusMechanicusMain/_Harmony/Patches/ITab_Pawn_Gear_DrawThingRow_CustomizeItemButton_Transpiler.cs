@@ -28,7 +28,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             for (int i = 0; i < instructionsList.Count; i++)
             {
                 CodeInstruction instruction = instructionsList[i];
-                if (instruction.opcode == OpCodes.Stloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 11)
+                if (instruction.opcode == OpCodes.Stloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 14)
                 {
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_3);
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
