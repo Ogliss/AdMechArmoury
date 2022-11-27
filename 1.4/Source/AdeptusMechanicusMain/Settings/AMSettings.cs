@@ -522,6 +522,8 @@ namespace AdeptusMechanicus.settings
 
         public float OrkoidFightynessStatisfied;
         public string OrkoidFightynessStatisfiedBuffer;
+        public float OrkoidMinHealing;
+        public string OrkoidMinHealingBuffer;
         
         public float FungusMedChance;
         public string FungusMedChanceBuffer;
@@ -698,6 +700,8 @@ namespace AdeptusMechanicus.settings
                 Scribe_Values.Look(ref this.OrkoidFightyness, "AMO_AllowOrkoidFightyness", true);
                 Scribe_Values.Look(ref this.OrkoidFightynessStatisfied, "AMO_OrkoidFightynessStatisfied", 24000);
                 Scribe_Values.Look(ref this.OrkoidFightynessStatisfiedBuffer, "AMO_OrkoidFightynessStatisfiedBuffer", "24000");
+                Scribe_Values.Look(ref this.OrkoidMinHealing, "AMO_OrkoidMinHealing", 0.001f);
+                Scribe_Values.Look(ref this.OrkoidMinHealingBuffer, "AMO_OrkoidMinHealingBuffer", "0.001");
 
                 Scribe_Values.Look(ref this.FungusMedChance, "AMO_FungusMedChance", 0.01f);
                 Scribe_Values.Look(ref this.FungusMedChanceBuffer, "AMO_FungusMedChanceBuffer", "0.01");
@@ -731,7 +735,7 @@ namespace AdeptusMechanicus.settings
             }
             Scribe_Collections.Look<RaceSettingHandle>(ref this.raceSettings, "raceSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             Scribe_Collections.Look<FactionSettingHandle>(ref this.factionSettings, "factionSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
-            if (Scribe.mode == LoadSaveMode.Saving)
+            if (Scribe.mode == LoadSaveMode.Saving && !PatchDisabled.NullOrEmpty())
             {
                 // create the data structure we're going to save.
                 _CompatabilityPatchesScribeHelper = PatchDisabled.ToDictionary(

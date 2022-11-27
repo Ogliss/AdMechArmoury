@@ -5,8 +5,12 @@
 	
 	<!-- ========================= Sororitas - Power Armour ========================== -->
 	<!-- ========================= Sororitas - Base Power Armour ========================== -->
-	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base" ParentName="OG_Imperial_Apparel_Armor">
-		<techLevel>Spacer</techLevel>
+	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base" ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
 			<skillRequirements>
@@ -17,11 +21,6 @@
 				<li>OG_Sororitas_Tech_Base_T2</li>
 			</researchPrerequisites>
 		</recipeMaker>
-		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
 		<statBases>
 			<!--MarketValue>1500</MarketValue-->
 			<MaxHitPoints>500</MaxHitPoints>
@@ -105,7 +104,7 @@
 	</ThingDef>
 	
 	<!-- ========================= Sororitas - Base Power Armour Helmet ========================== -->
-	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet_Base" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet_Base" ParentName="OG_Imperial_Apparel_Armor_Headgear_Power_Helmet_Base">
 		<techLevel>Spacer</techLevel>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
@@ -214,6 +213,7 @@
 			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
 				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
 				<drawAll>true</drawAll>
+				<labelKey>OG_Customize</labelKey>
 				<PauldronEntries>
 					<li>
 						<shoulderPadType>Both</shoulderPadType>
@@ -260,7 +260,7 @@
 		</graphicData>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>PoweredArmor</li>
+				<!--li>PoweredArmor</li-->
 			</researchPrerequisites>
 			<skillRequirements>
 				<Crafting>9</Crafting>

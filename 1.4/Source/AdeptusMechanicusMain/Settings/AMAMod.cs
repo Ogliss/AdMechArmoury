@@ -34,7 +34,7 @@ namespace AdeptusMechanicus.settings
                         if (menu.IsActive && (!menu.XenobiologisSub || !AdeptusIntergrationUtility.enabled_MagosXenobiologis))
                         {
                             list_Adeptus.Add(menu);
-                            Log.Message($"loading {type.Name}");
+                            if (Dev) Log.Message($"loading {type.Name}");
                         }
                     }
                 }
@@ -47,7 +47,7 @@ namespace AdeptusMechanicus.settings
                         {
                             list_Intergrations.Add(menu);
                             if (!menu.Patches.NullOrEmpty()) patches.AddRange(menu.Patches);
-                            Log.Message($"loading {type.Name}");
+                            if (Dev) Log.Message($"loading {type.Name}");
                         }
                     }
                 }
@@ -69,12 +69,12 @@ namespace AdeptusMechanicus.settings
                     {
                         if (settings.PatchDisabled[patch] == false)
                         {
-                            if (Prefs.DevMode) Log.Message("RemoveAll XML Patch: " + patch.label);
+                            if (Dev) Log.Message("RemoveAll XML Patch: " + patch.label);
                             allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
                         }
                         else
                         {
-                            if (Prefs.DevMode) Log.Message("Running XML Patch: " + patch.label);
+                            if (Dev) Log.Message("Running XML Patch: " + patch.label);
                         }
                     }
                 }

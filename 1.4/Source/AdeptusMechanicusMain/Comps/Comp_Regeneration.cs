@@ -38,6 +38,7 @@ namespace AdeptusMechanicus
         public CompProperties_Regeneration Props => this.props as CompProperties_Regeneration;
         public Pawn pawn => this.parent as Pawn;
         public virtual float HealFactor => Props.healFactor;
+        public virtual float HealMinimum => Props.healMinimum;
         public virtual float HealFactorScar => Props.healFactorOldWound;
         public override void PostPostMake()
         {
@@ -109,7 +110,7 @@ namespace AdeptusMechanicus
                             {
                                 pawn.needs.rest.CurLevel -= cost;
                             }
-                            Injury.Heal(Mathf.Max(num, Props.healMinimum));
+                            Injury.Heal(Mathf.Max(num, HealMinimum));
                         }
                     }
                 }

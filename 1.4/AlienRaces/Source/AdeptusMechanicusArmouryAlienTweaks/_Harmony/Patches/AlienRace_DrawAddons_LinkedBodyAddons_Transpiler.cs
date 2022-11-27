@@ -19,16 +19,16 @@ using System.Reflection;
 namespace AdeptusMechanicus.HarmonyInstance
 {
 
-//    [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "DrawAddons")]
+    //    [HarmonyPatch(typeof(AlienRace.HarmonyPatches), "DrawAddons")]
     public static class AlienRace_DrawAddons_LinkedBodyAddons_Transpiler
     {
-    //    static FieldInfo alien = AccessTools.TypeByName("RimWorld.JobDriver_PlantWork").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First();
+        //    static FieldInfo alien = AccessTools.TypeByName("RimWorld.JobDriver_PlantWork").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First();
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var instructionsList = new List<CodeInstruction>(instructions);
             bool drawOffsetPatched = false;
 
-            FieldInfo alienCompField = AccessTools.TypeByName("AlienRace.HarmonyPatches").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(x=> x.GetFields().Any(y=> y.Name.Contains("alienComp"))).GetField("alienComp");
+            FieldInfo alienCompField = AccessTools.TypeByName("AlienRace.HarmonyPatches").GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance).First(x => x.GetFields().Any(y => y.Name.Contains("alienComp"))).GetField("alienComp");
 
             for (int i = 0; i < instructionsList.Count; i++)
             {
@@ -154,7 +154,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             return result;
         }
         */
-        public static Vector3 DrawPosition(Vector3 original, Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, Quaternion quat, Rot4 rotation)
+        public static Vector3 DrawPosition(Vector3 original, Pawn pawn, AlienPartGenerator.BodyAddon addon, Quaternion quat, Rot4 rotation)
         {
             Vector3 result = original;
             LinkedBodyAddon linked = addon as LinkedBodyAddon;

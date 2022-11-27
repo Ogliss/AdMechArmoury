@@ -1201,6 +1201,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                         newName = "DoBillsMachiningTable";
                     }
                 }
+                else if (defType == typeof(BackstoryDef))
+                {
+                    if (defName=="OG_Imperial_Inquisitor")
+                    {
+                        newName = "OG_Imperial_Inquisiton_Inquisitor_Neophyte";
+                    }
+                }
                 else if (defType == typeof(BodyDef))
                 {
                     if (defName.Contains("Kroot") || defName.Contains("Tau") || defName.Contains("Vespid"))

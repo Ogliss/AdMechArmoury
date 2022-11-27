@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using System.Reflection;
+using AlienRace;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -57,10 +58,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                     categoryFilter = FallbackCategoryGroup;
                 }
                 IEnumerable<RimWorld.BackstoryDef> source = DefDatabase<RimWorld.BackstoryDef>.AllDefs.Where((RimWorld.BackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs));
-                source.Concat(DefDatabase<BackstoryDef>.AllDefs.Where((BackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)));
+                source.Concat(DefDatabase<BackstoryDef>.AllDefs.Where((BackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs) && bs.Approved(pawn) && (slot != BackstorySlot.Adulthood || bs.linkedBackstory == null || pawn.story.Childhood == bs.linkedBackstory)));
                 if (AdeptusIntergrationUtility.enabled_AlienRaces)
                 {
-                    alienBackstories(categoryFilter, ref source);
+                    AlienBackstoryUtility.alienBackstories(categoryFilter, ref source, pawn, slot);
                 }
                 if (source.EnumerableNullOrEmpty())
                 {
@@ -104,10 +105,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             return true;
         }
 
-        public static void alienBackstories(BackstoryCategoryFilter categoryFilter, ref IEnumerable<RimWorld.BackstoryDef> source)
-        {
-            source.Concat(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)));
-        }
 
         // Token: 0x060040BF RID: 16575 RVA: 0x00159374 File Offset: 0x00157574
         public static List<BackstoryCategoryFilter> GetBackstoryCategoryFiltersFor(Pawn pawn, FactionDef faction)

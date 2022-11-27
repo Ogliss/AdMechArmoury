@@ -16,7 +16,7 @@ namespace AdeptusMechanicus
         public WorkTags workAllows = WorkTags.AllWork;
         public float maleCommonality = 100f;
         public float femaleCommonality = 100f;
-        public string linkedBackstory;
+        public BackstoryDef linkedBackstory;
         //public RelationSettings relationSettings = new RelationSettings();
         public List<string> forcedHediffs = new List<string>();
         public IntRange bioAgeRange;

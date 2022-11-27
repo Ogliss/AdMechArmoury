@@ -189,27 +189,22 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
         {
-            var storyTrv = Traverse.Create(pawn.story);
-            var newStory = new Pawn_StoryTracker(pawn);
-            var newStoryTrv = Traverse.Create(newStory);
-            AccessTools.GetFieldNames(typeof(Pawn_StoryTracker))
-                    .ForEach(f => newStoryTrv.Field(f).SetValue(storyTrv.Field(f).GetValue()));
-            newStory.bodyType = bt;
-            pawn.story = newStory;
+            pawn.story.bodyType = bt;
             IntVec3 pos = pawn.Position;
             Map map = pawn.Map;
             Building_Bed bed = null;
             Rot4 rot = pawn.Rotation;
             bool spawned = pawn.Map != null;
-            bool selected = Find.Selector.SelectedPawns.Contains(pawn);
+            bool selected = spawned ? Find.Selector.SelectedPawns.Contains(pawn) : false;
             bool drafted = pawn.Drafted;
             bool inBed = pawn.InBed();
-            pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+            pawn.Drawer.renderer.graphics.SetAllGraphicsDirty();
+        //    pawn.Drawer.renderer.graphics.ResolveAllGraphics();
             if (spawned)
             {
-                pawn.DeSpawn();
-                GenSpawn.Spawn(pawn, pos, map);
-                pawn.Rotation = rot;
+            //    pawn.DeSpawn();
+            //    GenSpawn.Spawn(pawn, pos, map);
+            //    pawn.Rotation = rot;
             }
             if (drafted)
             {

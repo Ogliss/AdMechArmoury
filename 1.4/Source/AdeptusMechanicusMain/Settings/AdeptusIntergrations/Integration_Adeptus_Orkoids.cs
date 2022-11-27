@@ -99,6 +99,10 @@ namespace AdeptusMechanicus
                                 AMAMod.updateFactions_Required = true;
                                 AMAMod.updateIncidents_Disabled = true;
                             }
+                            if (AdeptusIntergrationUtility.enabled_XenobiologisOrk)
+                            {
+                                listing_General.TextFieldNumericLabeled<float>("AdeptusMechanicus.Ork.OrkoidMinHealing".Translate(), ref settings.OrkoidMinHealing, ref settings.OrkoidMinHealingBuffer, 0, int.MaxValue, "AdeptusMechanicus.Ork.OrkoidMinHealingToolTip".Translate(), 0.75f, 0.25f);
+                            }
                         }
                         listing_Race.EndSection(listing_General);
                         length_MenuContent = listing_General.MaxColumnHeightSeen; //Math.Max(listing_General.CurHeight, listing_General.MaxColumnHeightSeen);// listing_General.CurHeight > 0 ? listing_General.CurHeight : listing_General.MaxColumnHeightSeen;

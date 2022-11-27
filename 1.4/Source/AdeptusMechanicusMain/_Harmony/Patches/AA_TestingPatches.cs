@@ -21,7 +21,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void Postfix()
         {
-        //    AdeptusDialogMaker.CreateWarningDialogIfNecessary();
+            AdeptusDialogMaker.CreateWarningDialogIfNecessary();
         }
     }
 

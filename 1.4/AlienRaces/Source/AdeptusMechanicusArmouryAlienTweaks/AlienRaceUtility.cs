@@ -70,8 +70,17 @@ namespace AdeptusMechanicus
                 projects.AddRange(ArmouryMain.ReseachMechanicus);
                 DoRacialRestrictionsFor(Mechanicus, Tags, whiteResearches: projects, racesNotXeno: races, Logging: AMAMod.Dev);
             }
+
         }
 
+        public static SimpleCurve RaceAgeSkillMaxFactorCurve(SimpleCurve curve, Pawn pawn)
+        {
+            return curve;
+        }
+        public static void alienBackstories(BackstoryCategoryFilter categoryFilter, ref IEnumerable<RimWorld.BackstoryDef> source, Pawn pawn, BackstorySlot slot)
+        {
+            source.Concat(AlienRace.HarmonyPatches.FilterBackstories(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)), pawn, slot));
+        }
         public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();
