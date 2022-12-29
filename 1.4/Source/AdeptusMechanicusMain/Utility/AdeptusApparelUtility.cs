@@ -137,7 +137,7 @@ namespace AdeptusMechanicus
                 newdata.maskKey = olddata.maskKey;
                 newgraphic = GraphicDatabase.Get<Graphic_MultiMask>(rec.graphic.path, rec.graphic.Shader, apparel.def.graphicData.drawSize, colorOne, colorTwo, newdata);
                 */
-            //    Log.Message(s.ToString());
+                if (AMAMod.Dev) Log.Message(s.ToString());
             }
             return newgraphic;
         }

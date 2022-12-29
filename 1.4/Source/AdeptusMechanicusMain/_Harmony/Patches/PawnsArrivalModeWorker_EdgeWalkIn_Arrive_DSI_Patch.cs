@@ -5,7 +5,6 @@ using System.Text;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Verse.AI.Group;
 using HarmonyLib;
 using Verse.Sound;
 using UnityEngine;
@@ -13,36 +12,6 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-    [HarmonyPatch(typeof(Lord), "Notify_PawnDamaged")]
-    public static class Lord_Notify_PawnDamaged_Reserves_Patch
-    {
-        [HarmonyPostfix, HarmonyPriority(Priority.First)]
-        public static void Postfix(Lord __instance, Pawn victim, DamageInfo dinfo)
-        {
-            if (victim != null)
-            {
-                if (__instance.Map.Reserves() is MapComponent_Reserves _Reserves)
-                {
-                    _Reserves.Notify_PawnDamaged(__instance, dinfo);
-                }
-            }
-        }
-    }
-    [HarmonyPatch(typeof(Lord), "Notify_PawnLost")]
-    public static class Lord_Notify_PawnLost_Reserves_Patch
-    {
-        [HarmonyPostfix, HarmonyPriority(Priority.First)]
-        public static void Postfix(Lord __instance, Pawn pawn, PawnLostCondition cond, DamageInfo? dinfo = null)
-        {
-            if (pawn != null && (cond == PawnLostCondition.Killed || cond == PawnLostCondition.Incapped))
-            {
-                if (__instance.Map.Reserves() is MapComponent_Reserves _Reserves)
-                {
-                    _Reserves.Notify_PawnLostViolently(__instance, dinfo);
-                }
-            }
-        }
-    }
     //    [HarmonyPatch(typeof(PawnsArrivalModeWorker_EdgeWalkIn), "Arrive")]
     public static class PawnsArrivalModeWorker_EdgeWalkIn_Arrive_Reserves_Patch
     {

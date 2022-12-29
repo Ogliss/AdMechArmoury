@@ -8,7 +8,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Corpse), "ButcherProducts")]
     public static class Corpse_ButcherProducts_BloodReplacer_Patch
-    {
+    {// change to transpiler
         [HarmonyPrefix]
         public static bool Prefix(Corpse __instance, Pawn butcher, float efficiency, ref IEnumerable<Thing> __result)
         {

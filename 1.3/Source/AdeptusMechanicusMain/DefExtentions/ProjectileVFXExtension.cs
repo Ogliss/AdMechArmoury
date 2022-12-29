@@ -99,7 +99,7 @@ namespace AdeptusMechanicus
         }
         private bool ImpactCE(Thing thing, Map map, Thing hitThing = null)
         {
-            CombatExtended.ProjectileCE projectile = thing as CombatExtended.ProjectileCE;
+            Projectile projectile = thing as Projectile;
             if (projectile != null)
             {
                 Vector3 pos = projectile.ExactPosition;

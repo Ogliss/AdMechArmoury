@@ -10,15 +10,21 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus
 {
 
-    // AdeptusMechanicus.ApparelProperties
-    /*
-    public class ApparelCompositeProperties : RimWorld.ApparelProperties
+    // AdeptusMechanicus.CompositeApparelProperties
+    
+    public class CompositeApparelProperties : RimWorld.ApparelProperties
     {
         public List<string> wornGraphicMasks = new List<string>();
+        public string wornPauldronPath = string.Empty;
+        public List<string> wornPauldronPaths = new List<string>();
+        public string wornBackpackPath = string.Empty;
+        public List<string> wornBackpackPaths = new List<string>();
+        public string wornCollarPath = string.Empty;
+        public List<string> wornCollarPaths = new List<string>();
         public ApparelGraphicExtension altGraphicsSettings;
-
+        public List<ThingStyleDef> thingStyleDefs = new List<ThingStyleDef>();
     }
-    */
+    
 
     // AdeptusMechanicus.ApparelComposite
     public class ApparelComposite : Apparel
@@ -67,7 +73,7 @@ namespace AdeptusMechanicus
                         */
                         if (AltGraphicsExt.randomizeInital)
                         {
-                            used = Rand.Range(0, useable.Count - 1);
+                            used = this.thingIDNumber % useable.Count;
                         }
                         activeAltGraphic = useable?[Math.Min(used, useable.Count - 1)];
                     }
@@ -118,6 +124,7 @@ namespace AdeptusMechanicus
         public FactionDefExtension ColoursExt => FactionColours !=null ? (FactionColours?.GetModExtensionFast<FactionDefExtension>() ?? null) : null;
         bool triedColorable = false;
         bool triedQuality = false;
+        bool triedStyleable = false;
         public CompQuality quality;
         public CompQuality Quality
         {
@@ -129,6 +136,23 @@ namespace AdeptusMechanicus
                     triedQuality = true;
                 }
                 return quality;
+            }
+        }
+        public CompStyleable styleable;
+        public CompStyleable Styleable
+        {
+            get
+            {
+                if (styleable == null && !triedStyleable)
+                {
+                    styleable = this.TryGetCompFast<CompStyleable>();
+                    triedStyleable = true;
+                    if (styleable == null)
+                    {
+                        styleable = new CompStyleable();
+                    }
+                }
+                return styleable;
             }
         }
         public CompColorable colorable;
@@ -327,7 +351,7 @@ namespace AdeptusMechanicus
             {
                 foreach (var item in Shields)
                 {
-                    item.DrawShield();
+                    item.Draw();
                 }
             }
             
@@ -355,7 +379,7 @@ namespace AdeptusMechanicus
                 return shields;
             }
         }
-
+        /*
         public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
         {
             foreach (Comp_Shield shield in Shields)
@@ -367,7 +391,7 @@ namespace AdeptusMechanicus
             }
             return base.CheckPreAbsorbDamage(dinfo);
         }
-
+        */
         public override IEnumerable<Gizmo> GetWornGizmos()
         {
             foreach (var item in base.GetWornGizmos())
@@ -395,7 +419,6 @@ namespace AdeptusMechanicus
                     };
                     yield return command_Action;
                 }
-                */
                 if (!Shields.NullOrEmpty())
                 {
                     foreach (var item in Shields)
@@ -403,6 +426,7 @@ namespace AdeptusMechanicus
                         yield return item.GetShieldGizmos();
                     }
                 }
+                */
 
             }
             yield break;
@@ -442,28 +466,27 @@ namespace AdeptusMechanicus
         public FloatMenu MakeAlternateGraphicMenu()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
-            if (this.AltGraphics.NullOrEmpty())
+            if (!this.AltGraphics.NullOrEmpty())
             {
-                return null;
-            }
-            if (this.ActiveAltGraphic != null)
-            {
-                list.Add(new FloatMenuOption(AltGraphicsExt.defaultLabel, delegate ()
+                if (this.ActiveAltGraphic != null)
                 {
-                    ActiveAltGraphic = null;
-                }, MenuOptionPriority.Default, null, null, 0f, null, null));
-            }
-            using (List<AlternateApparelGraphic>.Enumerator enumerator = this.AltGraphics.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    AlternateApparelGraphic item = enumerator.Current;
-                    if (this.ActiveAltGraphic == null || this.ActiveAltGraphic != item)
+                    list.Add(new FloatMenuOption(AltGraphicsExt.defaultLabel, delegate ()
                     {
-                        list.Add(new FloatMenuOption(item.label, delegate ()
+                        ActiveAltGraphic = null;
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                }
+                using (List<AlternateApparelGraphic>.Enumerator enumerator = this.AltGraphics.GetEnumerator())
+                {
+                    while (enumerator.MoveNext())
+                    {
+                        AlternateApparelGraphic item = enumerator.Current;
+                        if (this.ActiveAltGraphic == null || this.ActiveAltGraphic != item)
                         {
-                            ActiveAltGraphic = item;
-                        }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                            list.Add(new FloatMenuOption(item.label, delegate ()
+                            {
+                                ActiveAltGraphic = item;
+                            }, MenuOptionPriority.Default, null, null, 0f, null, null));
+                        }
                     }
                 }
             }
@@ -473,19 +496,24 @@ namespace AdeptusMechanicus
         {
             get
             {
-                string r = this.def.apparel.wornGraphicPath;
-                if (ActiveAltGraphic != null)
+                string r = base.WornGraphicPath;
+                if (ActiveAltGraphic != null && !ActiveAltGraphic.wornGraphicPath.NullOrEmpty())
                 {
-                    if (!ActiveAltGraphic.wornGraphicPath.NullOrEmpty())
-                    {
-                        r = ActiveAltGraphic.wornGraphicPath;
-                    }
+                    r = ActiveAltGraphic.wornGraphicPath;
+                }
+                if (base.StyleDef != null && !base.StyleDef.wornGraphicPath.NullOrEmpty())
+                {
+                    r = base.StyleDef.wornGraphicPath;
+                }
+                if (!this.def.apparel.wornGraphicPaths.NullOrEmpty<string>())
+                {
+                    r = this.def.apparel.wornGraphicPaths[activeAltInt > -1 ? activeAltInt : this.thingIDNumber % this.def.apparel.wornGraphicPaths.Count];
                 }
                 if (!OnHead && this.Wearer != null)
                 {
                     r = r + "_" + this.Wearer.story.bodyType.defName;
                 }
-            //    Log.Message("using " + r);
+                Log.Message("using " + r);
                return r;
             }
         }
@@ -532,7 +560,7 @@ namespace AdeptusMechanicus
             {
                 foreach (var item in Shields)
                 {
-                    if (!item.AllowVerbCast(verb))
+                    if (!item.CompAllowVerbCast(verb))
                     {
                         return false;
                     }

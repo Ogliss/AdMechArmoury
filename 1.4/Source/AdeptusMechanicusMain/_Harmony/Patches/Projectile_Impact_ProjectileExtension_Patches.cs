@@ -101,6 +101,17 @@ namespace AdeptusMechanicus.HarmonyInstance
             DamageInfo dinfo = new DamageInfo(damageDef, DamageAmount, ArmorPenetration, y, ___launcher, null, ___launcher.def, DamageInfo.SourceCategory.ThingOrUnknown, hitPawn);
             hitPawn.TakeDamage(dinfo);
             string msg = string.Format("{0} was lost to the warp", hitPawn.LabelCap);
+            if (hitPawn.Faction == Faction.OfPlayer)
+            {
+                Rand.PushState();
+                bool lost = Rand.Value < 0.1f;
+                Rand.PopState();
+                if (lost)
+                {
+                    Faction.OfPlayer.kidnapped.Kidnap(hitPawn, null);
+                    return;
+                }
+            }
             if (!hitPawn.Dead)
             {
                 hitPawn.Kill(dinfo);

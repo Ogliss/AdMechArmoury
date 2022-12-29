@@ -42,6 +42,21 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = Regex.Replace(defName, "OG_Cybork_Ork", "OG_Alien_Ork");
                         return;
                     }
+                    if (defName.Contains("OGIG_Apparel_Armageddon_FlakHelmet"))
+                    {
+                        __result = "OGIG_Apparel_Armageddon_FlakHelmet";
+                        return;
+                    }
+                    if (defName.Contains("OGIG_Apparel_Krieg_FlakHelmet"))
+                    {
+                        __result = "OGIG_Apparel_Krieg_FlakHelmet";
+                        return;
+                    }
+                    if (defName.Contains("OGIG_Apparel_GasMask"))
+                    {
+                        __result = "OGIG_Apparel_Cadian_GasMask";
+                        return;
+                    }
                     if (defName.Contains("OG_Squig_Ork"))
                     {
                         __result = Regex.Replace(defName, "OG_Squig_Ork", "OG_Squig");

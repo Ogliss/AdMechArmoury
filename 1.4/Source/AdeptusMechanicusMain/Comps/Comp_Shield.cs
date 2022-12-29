@@ -10,7 +10,7 @@ using Verse.Sound;
 namespace AdeptusMechanicus
 {
 
-    public class CompProperties_Shield : CompProperties
+    public class CompProperties_Shield : RimWorld.CompProperties_Shield
     {
         public CompProperties_Shield()
         {
@@ -21,10 +21,9 @@ namespace AdeptusMechanicus
         public float drawX = 1f;
         public float drawY = 1f;
         public bool psykerRequired = false;
-        public bool allowRanged = false;
-        public bool allowMelee = true;
-        public bool blockRanged = true;
-        public bool blockMelee = false;
+        public bool allowRangedAttacks = false;
+        public bool allowMeleeAttacks = true;
+        public bool blocksMeleeWeapons = false;
         public bool brokenByEMP = true;
         public List<DamageDef> bypassingDamage = new List<DamageDef>();
 
@@ -35,9 +34,9 @@ namespace AdeptusMechanicus
     }
 
     [StaticConstructorOnStartup]
-    public class Comp_Shield : ThingComp
+    public class Comp_Shield : CompShield
     {
-        public virtual CompProperties_Shield Props
+        public new virtual CompProperties_Shield Props
         {
             get
             {
@@ -45,7 +44,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        public virtual float EnergyMax
+        public new virtual float EnergyMax
         {
             get
             {
@@ -57,7 +56,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        public virtual float EnergyGainPerTick
+        public new virtual float EnergyGainPerTick
         {
             get
             {
@@ -76,58 +75,24 @@ namespace AdeptusMechanicus
             }
         }
 
-        public float Energy
+        public new virtual bool ShouldDisplay
         {
             get
             {
-                return this.energy;
+                return PawnOwner != null && PawnOwner.Spawned && !PawnOwner.Dead && !PawnOwner.Downed && (PawnOwner.InAggroMentalState || PawnOwner.Drafted || (PawnOwner.Faction.HostileTo(Faction.OfPlayer) && !PawnOwner.IsPrisoner) || Find.TickManager.TicksGame < this.lastKeepDisplayTick + this.KeepDisplayingTicks);
             }
         }
 
-        public virtual ShieldState ShieldState
-        {
-            get
-            {
-                if (this.ticksToReset > 0)
-                {
-                    return ShieldState.Resetting;
-                }
-                return ShieldState.Active;
-            }
-        }
-
-        public virtual bool ShouldDisplay
-        {
-            get
-            {
-                return Pawn != null && Pawn.Spawned && !Pawn.Dead && !Pawn.Downed && (Pawn.InAggroMentalState || Pawn.Drafted || (Pawn.Faction.HostileTo(Faction.OfPlayer) && !Pawn.IsPrisoner) || Find.TickManager.TicksGame < this.lastKeepDisplayTick + this.KeepDisplayingTicks);
-            }
-        }
-
-        public virtual Pawn Pawn
-        {
-            get
-            {
-                if (this.parent is Apparel apparel)
-                {
-                    return apparel.Wearer ?? null;
-                }
-                return this.parent as Pawn;
-            }
-        }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<float>(ref this.energy, "energy", 0f, false);
-            Scribe_Values.Look<int>(ref this.ticksToReset, "ticksToReset", -1, false);
-            Scribe_Values.Look<int>(ref this.lastKeepDisplayTick, "lastKeepDisplayTick", 0, false);
         }
 
         private Gizmo_CompEnergyShieldStatus _CompEnergyShieldStatus;
-        public virtual Gizmo GetShieldGizmos()
+        public new virtual Gizmo GetGizmos()
         {
-            if (Find.Selector.SingleSelectedThing == Pawn)
+            if (Find.Selector.SingleSelectedThing == PawnOwner)
             {
                 if (_CompEnergyShieldStatus == null)
                 {
@@ -144,7 +109,7 @@ namespace AdeptusMechanicus
         public override void CompTick()
         {
             base.CompTick();
-            if (Pawn == null)
+            if (PawnOwner == null)
             {
                 this.energy = 0f;
                 return;
@@ -167,35 +132,36 @@ namespace AdeptusMechanicus
             }
         }
 
-        public virtual bool CheckPreAbsorbDamage(DamageInfo dinfo)
+        public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
+            absorbed = false;
             if (this.ShieldState != ShieldState.Active)
             {
-                return false;
+                return;
             }
             if (dinfo.Def == null)
             {
-                return false;
+                return;
             }
-            if (Pawn.Map == null)
+            if (PawnOwner?.Map == null)
             {
-                return false;
+                return;
             }
             if (Props != null)
             {
                 if (dinfo.Def == DamageDefOf.SurgicalCut || Props.bypassingDamage.Contains(dinfo.Def))
                 {
-                    return false;
+                    return;
                 }
                 if (dinfo.Def.externalViolenceForMechanoids && Props.brokenByEMP)
                 {
                     this.energy = 0f;
                     this.Break();
-                    return false;
+                    return;
                 }
-                if ((dinfo.Def.isRanged && Props.blockRanged) || (!dinfo.Def.isRanged && Props.blockMelee))
+                if (((dinfo.Def.isRanged || dinfo.Def.isExplosive) && Props.blocksRangedWeapons) || (!dinfo.Def.isRanged && Props.blocksMeleeWeapons))
                 {
-                    this.energy -= dinfo.Amount * this.EnergyLossPerDamage;
+                    this.energy -= dinfo.Amount * this.Props.energyLossPerDamage;
                     if (this.energy < 0f)
                     {
                         this.Break();
@@ -204,72 +170,38 @@ namespace AdeptusMechanicus
                     {
                         this.AbsorbedDamage(dinfo);
                     }
-                    return true;
+                    absorbed = true;
+                    return;
                 }
             }
-            return false;
+            return;
         }
 
-        public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
-        {
-            base.PostPostApplyDamage(dinfo, totalDamageDealt);
-        }
 
-        public virtual void KeepDisplaying()
+        public new virtual void AbsorbedDamage(DamageInfo dinfo)
         {
-            this.lastKeepDisplayTick = Find.TickManager.TicksGame;
-        }
-
-        public virtual void AbsorbedDamage(DamageInfo dinfo)
-        {
-            SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(Pawn.Position, Pawn.Map, false));
+            SoundDefOf.EnergyShield_AbsorbDamage.PlayOneShot(new TargetInfo(PawnOwner.Position, PawnOwner.Map, false));
             this.impactAngleVect = Vector3Utility.HorizontalVectorFromAngle(dinfo.Angle);
-            Vector3 loc = Pawn.TrueCenter() + this.impactAngleVect.RotatedBy(180f) * 0.5f;
+            Vector3 loc = PawnOwner.TrueCenter() + this.impactAngleVect.RotatedBy(180f) * 0.5f;
             float num = Mathf.Min(10f, 2f + dinfo.Amount / 10f);
-            FleckMaker.Static(loc, Pawn.Map, FleckDefOf.ExplosionFlash, num);
+            FleckMaker.Static(loc, PawnOwner.Map, FleckDefOf.ExplosionFlash, num);
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
                 Rand.PushState();
-                AdeptusFleckMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
+                AdeptusFleckMaker.ThrowDustPuff(loc, PawnOwner.Map, Rand.Range(0.8f, 1.2f));
                 Rand.PopState();
             }
             this.lastAbsorbDamageTick = Find.TickManager.TicksGame;
             this.KeepDisplaying();
         }
 
-        public virtual void Break()
-        {
-            SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(Pawn.Position, Pawn.Map, false));
-            FleckMaker.Static(Pawn.TrueCenter(), Pawn.Map, FleckDefOf.ExplosionFlash, 12);
-            for (int i = 0; i < 6; i++)
-            {
-                Rand.PushState();
-                Vector3 loc = Pawn.TrueCenter() + Vector3Utility.HorizontalVectorFromAngle((float)Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
-                AdeptusFleckMaker.ThrowDustPuff(loc, Pawn.Map, Rand.Range(0.8f, 1.2f));
-                Rand.PopState();
-            }
-            this.energy = 0f;
-            this.ticksToReset = this.StartingTicksToReset;
-        }
-
-        public virtual void Reset()
-        {
-            if (Pawn.Spawned)
-            {
-                SoundDefOf.EnergyShield_Reset.PlayOneShot(new TargetInfo(Pawn.Position, Pawn.Map, false));
-                AdeptusFleckMaker.ThrowLightningGlow(Pawn.TrueCenter(), Pawn.Map, 3f);
-            }
-            this.ticksToReset = -1;
-            this.energy = this.EnergyOnReset;
-        }
-
-        public virtual void DrawShield()
+        public new virtual void Draw()
         {
             if (this.ShieldState == ShieldState.Active && this.ShouldDisplay)
             {
-                float num = Mathf.Lerp(1.2f, 1.55f, this.energy);
-                Vector3 vector = Pawn.Drawer.DrawPos;
+                float num = Mathf.Lerp(this.Props.minDrawSize, this.Props.maxDrawSize, this.energy);
+                Vector3 vector = PawnOwner.Drawer.DrawPos;
                 vector.y = AltitudeLayer.MoteOverhead.AltitudeFor();
                 int num2 = Find.TickManager.TicksGame - this.lastAbsorbDamageTick;
                 if (num2 < 8)
@@ -278,33 +210,23 @@ namespace AdeptusMechanicus
                     vector += this.impactAngleVect * num3;
                     num -= num3;
                 }
-                float angle = 0;
-                Vector3 s = new Vector3(num * (Pawn.Drawer.renderer.graphics.nakedGraphic.drawSize.x * Props.drawX), 1f, num * (Pawn.Drawer.renderer.graphics.nakedGraphic.drawSize.y * Props.drawY));
+                float angle = 0f;
+                Vector3 s = new Vector3(num * (PawnOwner.Drawer.renderer.graphics.nakedGraphic.drawSize.x * Props.drawX), 1f, num * (PawnOwner.Drawer.renderer.graphics.nakedGraphic.drawSize.y * Props.drawY));
                 Matrix4x4 matrix = default(Matrix4x4);
                 matrix.SetTRS(vector, Quaternion.AngleAxis(angle, Vector3.up), s);
                 Graphics.DrawMesh(MeshPool.plane10, matrix, BubbleMat, 0);
             }
         }
 
-        public virtual bool AllowVerbCast(Verb verb)
+        public override bool CompAllowVerbCast(Verb verb)
         {
-            return (verb is Verb_LaunchProjectile) ? Props.allowRanged : Props.allowMelee;
+            return (verb is Verb_LaunchProjectile) ? Props.allowRangedAttacks : Props.allowMeleeAttacks;
         }
 
-        public float energy;
-        public int ticksToReset = -1;
-        public int lastKeepDisplayTick = -9999;
-        public Vector3 impactAngleVect;
-        public int lastAbsorbDamageTick = -9999;
         public const float MinDrawSize = 1.2f;
         public const float MaxDrawSize = 1.55f;
-        public const float MaxDamagedJitterDist = 0.05f;
-        public const int JitterDurationTicks = 8;
         public int StartingTicksToReset = 3200;
         public float EnergyOnReset = 0.2f;
-        public float EnergyLossPerDamage = 0.033f;
-        public int KeepDisplayingTicks = 1000;
-        public float ApparelScorePerEnergyMax = 0.25f;
         protected Material bubbleMat;
 
 
@@ -321,7 +243,7 @@ namespace AdeptusMechanicus
         }
         private Graphic graphic = null;
 
-        protected virtual Material BubbleMat
+        protected new virtual Material BubbleMat
         {
             get
             {

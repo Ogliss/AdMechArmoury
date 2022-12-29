@@ -10,6 +10,8 @@ using UnityEngine;
 
 namespace AdeptusMechanicus
 {
+
+    // AdeptusMechanicus.AlienRaceUtility
     public static class AlienRaceUtility
     {
         public static void AlienRaces()
@@ -73,7 +75,52 @@ namespace AdeptusMechanicus
 
         }
 
+        private static readonly BackstoryCategoryFilter NewbornCategoryGroup = new BackstoryCategoryFilter
+        {
+            categories = new List<string>
+            {
+                "Newborn"
+            },
+            commonality = 1f
+        };
+
+
+        public static BackstoryCategoryFilter RaceNewbornCategoryGroup(BackstoryCategoryFilter newborn, Pawn pawn)
+        {
+            return newborn;
+        }
+        
+
+        public static BackstoryCategoryFilter RaceChildCategoryGroup(BackstoryCategoryFilter child, Pawn pawn)
+        {
+            return child;
+        }
+        
+        public static BackstoryCategoryFilter RaceAdultCategoryGroup(BackstoryCategoryFilter adult, Pawn pawn)
+        {
+            return adult;
+        }
+
+
+        public static bool RaceNewbornSkill(bool newborn, Pawn pawn)
+        {
+            return newborn;
+        }
+        public static bool RaceNewbornTraits(bool newborn, Pawn pawn)
+        {
+            return newborn;
+        }
+        public static int[] RaceGrowthMomentAges(int[] GrowthMomentAges, Pawn pawn)
+        {
+            return GrowthMomentAges;
+        }
+
         public static SimpleCurve RaceAgeSkillMaxFactorCurve(SimpleCurve curve, Pawn pawn)
+        {
+            return curve;
+        }
+
+        public static SimpleCurve RaceAgeSkillFactor(SimpleCurve curve, Pawn pawn)
         {
             return curve;
         }

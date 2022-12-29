@@ -20,10 +20,12 @@ namespace AdeptusMechanicus.HarmonyInstance
     public static class PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch
     {
         static ThingDef def = null;
+        public static FactionDef generatingFor = null;
         [HarmonyPrefix]
-        public static void Prefix(AcceptanceReport __result, PreceptWorker_Apparel __instance, ThingDef def, Ideo ideo)
+        public static void Prefix(AcceptanceReport __result, PreceptWorker_Apparel __instance, ThingDef def, Ideo ideo, FactionDef generatingFor)
         {
             PreceptWorker_Apparel_CanUse_FactionRoleApparel_Patch.def = def;
+
         }
         
 
@@ -48,8 +50,11 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                     if (generatingFor != null)
                     {
-                        Log.Message($"{def} not allowed for {generatingFor}");
-                        return new AcceptanceReport("RoleApparelRequirementIncompatibleFaction".Translate(generatingFor.LabelCap));
+                        if (generatingFor.categoryTag.NullOrEmpty())
+                        {
+                            Log.Message($"generatingFor {def} not allowed for {generatingFor}");
+                            return new AcceptanceReport("RoleApparelRequirementIncompatibleFaction".Translate(generatingFor.LabelCap));
+                        }
                     }
                     else
                     {
@@ -82,6 +87,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (def.defName.StartsWith("OGAM_"))
                 {
                     return ideo.culture.defName.Contains("Mechanicus");
+                }
+                if (def.defName.StartsWith("OGAS_"))
+                {
+                    return ideo.culture.defName.Contains("Sorotias");
+                }
+                if (def.defName.StartsWith("OGAA_"))
+                {
+                    return ideo.culture.defName.Contains("Astartes");
                 }
                 if (def.defName.StartsWith("OGO_"))
                 {
@@ -137,7 +150,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(PreceptWorker_Apparel), "IsValidApparel", new Type[] { typeof(ThingDef)})]
     public static class PreceptWorker_Apparel_IsValidApparel_FactionPreferredApparel_Patch
     {
-
         [HarmonyPostfix]
         public static bool IsValidApparel(bool __result, PreceptWorker_Apparel __instance, ThingDef td)
         {

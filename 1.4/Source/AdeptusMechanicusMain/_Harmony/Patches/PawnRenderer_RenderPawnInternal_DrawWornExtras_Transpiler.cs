@@ -12,7 +12,6 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection.Emit;
 using UnityEngine;
-using System.Reflection;
 using AdeptusMechanicus.settings;
 
 namespace AdeptusMechanicus.HarmonyInstance
@@ -41,7 +40,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             List<CodeInstruction> instructionList = instructions.ToList();
-
+        //    MethodInfo drawApparel = AccessTools.Method(typeof(PawnRenderer), )
             for (int i = 0; i < instructionList.Count; i++)
             {
                 CodeInstruction instruction = instructionList[index: i];

@@ -590,7 +590,7 @@ namespace AdeptusMechanicus
             }
         }
 
-        Mesh GetPauldronMesh(PawnRenderFlags flags, Pawn pawn, Rot4 facing, bool body)
+        Mesh GetPauldronMesh(Pawn pawn, Rot4 facing, bool body)
         {
             if (!body)
             {
@@ -613,10 +613,38 @@ namespace AdeptusMechanicus
                     return false;
                 }
             }
-            pauldronMesh = this.MeshSet.MeshAt(bodyFacing);
+            pauldronMesh = this.GetPauldronMesh(drawer.Apparel.Wearer, bodyFacing, renderBody);
             if (pauldronMesh == null)
             {
                 pauldronMesh = !Drawer.onHead ? HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(apparel.Wearer).MeshAt(bodyFacing) : HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(apparel.Wearer).MeshAt(bodyFacing);
+            }
+            if (apparel.Wearer.RaceProps.Humanlike)
+            {
+                if (this.CheckPauldronRotation(bodyFacing))
+                {
+                    if (Graphic == null || (Graphic != null && Drawer.pawn != apparel.Wearer))
+                    {
+                //    //    Log.Message(string.Format("ShouldDrawPauldron UpdatePadGraphic"));
+                        UpdateGraphic();
+                    }
+                    pauldronMaterial = Graphic;//.GetColoredVersion(shader, this.mainColorFor(Entry), this.secondaryColorFor(Entry)).MatAt(bodyFacing, this.parent);
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        public bool ShouldDrawEntry(Rot4 bodyFacing, Mesh mesh, bool renderBody, out Graphic pauldronMaterial, out Vector3 offset)
+        {
+            pauldronMaterial = null;
+            offset = OffsetFor(bodyFacing);
+            if (!renderBody)
+            {
+                if (!Drawer.onHead || (Props.drawInBed.HasValue && Props.drawInBed.Value == false))
+                {
+                    return false;
+                }
             }
             if (apparel.Wearer.RaceProps.Humanlike)
             {

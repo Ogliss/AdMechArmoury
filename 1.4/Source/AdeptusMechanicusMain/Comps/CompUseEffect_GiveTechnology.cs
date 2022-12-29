@@ -25,7 +25,7 @@ namespace AdeptusMechanicus
         {
             base.DoEffect(usedBy);
             ResearchProjectDef currentProj = Props.TechtoGive;
-            if (currentProj != null)
+            if (currentProj != null && !currentProj.IsFinished)
             {
                 this.FinishInstantly(currentProj, usedBy);
             }
@@ -33,7 +33,7 @@ namespace AdeptusMechanicus
 
         public override bool CanBeUsedBy(Pawn p, out string failReason)
         {
-            if (Props.TechtoGive == null)
+            if (Props.TechtoGive == null || Props.TechtoGive.IsFinished)
             {
                 failReason = "NoActiveResearchProjectToFinish".Translate();
                 return false;

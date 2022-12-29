@@ -27,5 +27,27 @@ namespace AdeptusMechanicus.HarmonyInstance
             AlienRaceUtility.alienBackstories(categoryFilter, ref source, pawn, slot);
         }
     }
+    /*
 
+    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal"), HarmonyPriority(Priority.Last)]
+    public static class PawnRenderer_RenderPawnInternal__Patch
+    {
+        
+        [HarmonyPrefix]
+        public static void Prefix(ref PawnRenderer __instance)
+        {
+            Pawn pawn = __instance.pawn;
+            if (!pawn.RaceProps.Humanlike)
+            {
+                return;
+            }
+            if (ModLister.BiotechInstalled && __instance.graphics.geneGraphics == null)
+            {
+                __instance.graphics.geneGraphics = new List<GeneGraphicRecord>();
+            }
+        }
+        
+
+    }
+    */
 }

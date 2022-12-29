@@ -24,11 +24,11 @@ namespace AdeptusMechanicus
 		{
 			if (this.Pawns.NullOrEmpty())
 			{
-				Log.Message("Pawns NullOrEmpty");
+			//	Log.Message("Pawns NullOrEmpty");
 				base.PostIdeoChosen();
 				return;
 			}
-			Log.Message($"Pawns ({Pawns})");
+		//	Log.Message($"Pawns ({Pawns})");
 			List<PawnKindDef> kinds = new List<PawnKindDef>();
 			foreach (var item in this.Pawns)
 			{

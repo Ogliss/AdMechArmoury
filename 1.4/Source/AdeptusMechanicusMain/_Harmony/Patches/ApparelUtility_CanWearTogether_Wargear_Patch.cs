@@ -24,13 +24,13 @@ namespace AdeptusMechanicus.HarmonyInstance
                 __result = A != B && flag1;
             }
             ApparelRestrictionDefExtension extA = A.GetModExtensionFast<ApparelRestrictionDefExtension>();
-            ApparelRestrictionDefExtension extB = A.GetModExtensionFast<ApparelRestrictionDefExtension>();
+            ApparelRestrictionDefExtension extB = B.GetModExtensionFast<ApparelRestrictionDefExtension>();
             bool restricted = extA != null || extB != null;
             if (restricted)
             {
-                if (extA != null)
+                if ((extA != null && extA.canWearWith.NotNullAndContains(B)) || (extB != null && extB.canWearWith.NotNullAndContains(A)))
                 {
-
+                    __result = true;
                 }
                 if (extB != null)
                 {

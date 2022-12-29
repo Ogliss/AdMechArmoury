@@ -16,9 +16,9 @@
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<MarketValue>300</MarketValue>
-			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.2</ArmorRating_Heat>
+			<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.625</ArmorRating_Heat>
 		</statBases>
 		<costList>
 			<Steel>40</Steel>
@@ -67,9 +67,9 @@
 			<MaxHitPoints>120</MaxHitPoints>
 			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
-			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.75</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -157,10 +157,16 @@
 	
 	<!-- ========================= Steel Leigon - Armour ========================== -->
 	<!-- ========================= Steel Leigon - Flak Helmet ========================== -->
-	<ThingDef Abstract="True" Name="OGIG_Apparel_Armageddon_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+	<ThingDef Name="OGIG_Apparel_Armageddon_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_Armageddon_FlakHelmet</defName>
 		<label>armageddon pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
 		<costList>
 			<Steel>40</Steel>
 			<Plasteel>10</Plasteel>
@@ -170,9 +176,9 @@
 			<MaxHitPoints>120</MaxHitPoints>
 			<MarketValue>300</MarketValue>
 			<Mass>1.2</Mass>
-			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.35</ArmorRating_Heat>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.75</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -199,6 +205,7 @@
 			<defaultOutfitTags>
 				<li>SteelLeigonSoldier</li>
 			</defaultOutfitTags>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/Base</wornGraphicPath>
 		</apparel>
 		<thingCategories>
 			<li>OGAMHeadgear</li>
@@ -214,28 +221,28 @@
 				</li>
 			</options>
 		</colorGenerator>
-		<comps>
+		<!--comps>
 			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
 				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
 			</li> 
 		</comps>
 		<inspectorTabs>
 			<li>OgsCompToggleDef.ITab_ToggleDef</li>
-		</inspectorTabs>
+		</inspectorTabs-->
 	</ThingDef>
 
-	<ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
+	<!--ThingDef ParentName="OGIG_Apparel_Armageddon_FlakHelmet">
 		<defName>OGIG_Apparel_Armageddon_FlakHelmet_TOGGLEDEF_GogglesUp</defName>
 		<label>armageddon pattern helmet</label>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</texPath>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/_Icon_GogglesUp</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<colorTwo>(90,50,0)</colorTwo>
 		</graphicData>
 			<apparel>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesUp</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/GogglesUp</wornGraphicPath>
 			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
@@ -252,7 +259,7 @@
 		<label>armageddon pattern helmet (Goggled)</label>
 		<description>A lightweight combat helmet.</description>
 		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</texPath>
+			<texPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/_Icon_GogglesDown</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<colorTwo>(90,50,0)</colorTwo>
@@ -262,7 +269,7 @@
 				<li>Eyes</li>
 			</bodyPartGroups>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/FlakHelmet_GogglesDown</wornGraphicPath>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/SteelLeigon/FlakHelmet/GogglesDown</wornGraphicPath>
 			</apparel>
 		<colorGenerator Class="ColorGenerator_Options">
 			<options>
@@ -278,14 +285,20 @@
 				<Chance>1</Chance>
 			</li>
 		</comps>
-	</ThingDef>
+	</ThingDef-->
 	
 	<!-- ========================= Death Korps - Armour ========================== -->
 	<!-- ========================= Death Korps - Flak Helmet ========================== -->
-	<ThingDef Abstract="True" Name="OGIG_Apparel_Krieg_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+	<ThingDef Name="OGIG_Apparel_Krieg_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
 		<defName>OGIG_Apparel_Krieg_FlakHelmet</defName>
 		<label>krieg pattern helmet</label>
 		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
 		<costList>
 			<Steel>40</Steel>
 			<Plasteel>10</Plasteel>
@@ -308,10 +321,10 @@
 		
 		</recipeMaker>
 		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
 			<bodyPartGroups>
 				<li>UpperHead</li>
 			</bodyPartGroups>
-			<useWornGraphicMask>true</useWornGraphicMask>
 			<layers>
 				<li>Overhead</li>
 			</layers>
@@ -324,9 +337,14 @@
 			<defaultOutfitTags>
 				<li>DeathKorpsSoldier</li>
 			</defaultOutfitTags>
+			<wornGraphicPaths>
+				<li>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_A</li>
+				<li>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_B</li>
+				<li>Things/Item/Apparel/Imperial/IG/DeathKorps/FlakHelmet/FlakHelmet_C</li>
+			</wornGraphicPaths>
 		</apparel>
 		<thingCategories>
-			<li>OGAMHeadgear</li>
+			<li>OGIGHeadgear</li>
 		</thingCategories>
 		<tradeTags>
 			<li>Headgear</li>
@@ -339,17 +357,17 @@
 				</li>
 			</options>
 		</colorGenerator>
-		<comps>
+		<!--comps>
 			<li Class="OgsCompToggleDef.CompProperties_ToggleDef">
 				<labelKey>AdeptusMechanicus.Toggle_Goggle</labelKey>
 			</li> 
 		</comps>
 		<inspectorTabs>
 			<li>OgsCompToggleDef.ITab_ToggleDef</li>
-		</inspectorTabs>
+		</inspectorTabs-->
 	</ThingDef>
 
-	<ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
+	<!--ThingDef ParentName="OGIG_Apparel_Krieg_FlakHelmet">
 		<defName>OGIG_Apparel_Krieg_FlakHelmet_TOGGLEDEF_A</defName>
 		<label>krieg pattern helmet</label>
 		<graphicData>
@@ -395,8 +413,72 @@
 			</options>
 		</colorGenerator>
 		<tickerType>Normal</tickerType>
-	</ThingDef>
+	</ThingDef-->
 	
+	<!-- ========================= Valhallan - Armour ========================== -->
+	<!-- ========================= Valhallan - Flak Helmet ========================== -->
+	<ThingDef Name="OGIG_Apparel_Valhallan_FlakHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_Valhallan_FlakHelmet</defName>
+		<label>valhallan pattern helmet</label>
+		<description>A lightweight combat helmet.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Valhallan/FlakHelmet/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+			<colorTwo>(90,50,0)</colorTwo>
+		</graphicData>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>8000</WorkToMake>
+			<MaxHitPoints>120</MaxHitPoints>
+			<MarketValue>300</MarketValue>
+			<Mass>1.2</Mass>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.75</ArmorRating_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+			<ShootingAccuracyPawn>-0.05</ShootingAccuracyPawn>
+		</equippedStatOffsets>
+		<recipeMaker>
+		
+		</recipeMaker>
+		<apparel>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGCadian</li>
+				<li>OGCadianArmour</li>
+				<li>OGCadianHeadgear</li>
+				<li>OGCadianBasicHelmet</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>CadianSoldier</li>
+			</defaultOutfitTags>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Valhallan/FlakHelmet/Base</wornGraphicPath>
+		</apparel>
+		<thingCategories>
+			<li>OGIGHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>Headgear</li>
+		</tradeTags>
+		<comps>
+		
+		</comps>
+	</ThingDef>
+
 	<!-- ========================= Tempestus Scion ========================== -->
 	<!-- ========================= Carapace Helmet ========================== -->
 	<ThingDef Name="IGCarapaceHelmTS" ParentName="OG_Imperial_Apparel_Armor_Headgear">
@@ -417,9 +499,9 @@
 			<WorkToMake>8000</WorkToMake>
 			<MaxHitPoints>120</MaxHitPoints>
 			<Mass>1.2</Mass>
-			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.90</ArmorRating_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -470,7 +552,7 @@
  
 	<!-- ========================= Cadian - Gasmask ========================== -->
 	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
-		<defName>OGIG_Apparel_GasMask</defName>
+		<defName>OGIG_Apparel_Cadian_GasMask</defName>
 		<label>imperial guard gas mask</label>
 		<description>A lightweight combat gas mask.\n\nProtective Eye Wear</description>
 		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
@@ -492,6 +574,7 @@
 			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+			<ToxicEnvironmentResistance>0.7</ToxicEnvironmentResistance>
 		</statBases>
 		<equippedStatOffsets>
 			<MoveSpeed>-0.01</MoveSpeed>
@@ -501,19 +584,94 @@
 		</equippedStatOffsets>
 		<generateCommonality>0.25</generateCommonality>
 		<apparel>	
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Cadian/GasMask/GasMask</wornGraphicPath>
 			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
 			<useWornGraphicMask>true</useWornGraphicMask>
-			<hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
+			<hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
 			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<coversHeadMiddle>true</coversHeadMiddle>
 			<blocksAddedPartWoundGraphics>true</blocksAddedPartWoundGraphics>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<bodyPartGroups Inherit="false">
+				<li>Eyes</li>
+				<li>Mouth</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Overhead</li>
+				<li>OG_Overhead_UnderHelmet</li>
+			</layers>
+			<tags>
+				<li>OGImperialGuard</li>
+				<li>OGIGArmour</li>
+				<li>OGIGHeadgear</li>
+				<li>OGIGGasmask</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>OGIArmour</li>
+			</defaultOutfitTags> 
+		</apparel>
+		<tickerType>Normal</tickerType>
+		<comps>	 
+			<li Class="AdeptusMechanicus.CompProperties_Wargear">
+			</li> 
+			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
+				<Chance>1</Chance>
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ========================= Valhallan - Gasmask ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear">
+		<defName>OGIG_Apparel_Valhallan_GasMask</defName>
+		<label>valhallan pattern rebreather</label>
+		<description>A lightweight combat gas mask.</description>
+		<thingClass>AdeptusMechanicus.ApparelComposite</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/IG/Valhallan/Gasmask/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(74,97,71)</color>
+		</graphicData>
+		<costList>
+			<Steel>20</Steel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<statBases>
+			<WorkToMake>4000</WorkToMake>
+			<MaxHitPoints>100</MaxHitPoints>
+			<MarketValue>400</MarketValue>
+			<Mass>3</Mass>
+			<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+			<ToxicEnvironmentResistance>0.6</ToxicEnvironmentResistance>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>-0.01</MoveSpeed>
+			<ToxicEnvironmentResistance>0.6</ToxicEnvironmentResistance>
+			<WorkSpeedGlobal>-0.01</WorkSpeedGlobal>
+		</equippedStatOffsets>
+		<generateCommonality>0.25</generateCommonality>
+		<apparel>	
+			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<coversHeadMiddle>true</coversHeadMiddle>
+			<blocksAddedPartWoundGraphics>true</blocksAddedPartWoundGraphics>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/IG/Valhallan/Gasmask/Base</wornGraphicPath>
 			<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			<bodyPartGroups Inherit="false">
 				<li>Mouth</li>
 			</bodyPartGroups>
 			<layers>
 				<li>Overhead</li>
-				<li>OG_Overhead_Equipment</li>
+				<li>OG_Overhead_UnderHelmet</li>
 			</layers>
 			<tags>
 				<li>OGImperialGuard</li>
@@ -529,25 +687,6 @@
 		<comps>	 
 			<li Class="AdeptusMechanicus.CompProperties_Wargear">
 			</li>
-			<li Class="AdeptusMechanicus.CompProperties_ApparelExtraPartDrawer">
-				<ExtrasEntries>
-					<li>
-						<graphicData>
-							<texPath>Things/Item/Apparel/Imperial/IG/Cadian/GasMask/GasMask</texPath>
-							<!--graphicClass>Graphic_Single</graphicClass-->
-							<shaderType>CutoutComplex</shaderType>
-							<!--colorTwo>(255,255,255)</colorTwo>
-							<color>255,255,209</color-->
-						</graphicData>
-						<UseBodytypeTextures>false</UseBodytypeTextures>
-						<commonality>10</commonality>
-					</li>
-				</ExtrasEntries>
-				<NorthOffset>0,-0.05,0</NorthOffset>
-				<SouthOffset>0,0.000,0</SouthOffset>
-				<EastOffset>0,00.000,0</EastOffset>
-				<WestOffset>0,0.000,0</WestOffset>
-			</li>  
 			<li Class="AdeptusMechanicus.CompProperties_LungProtectionApparel">
 				<Chance>1</Chance>
 			</li>

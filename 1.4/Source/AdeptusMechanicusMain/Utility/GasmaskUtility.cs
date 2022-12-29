@@ -10,45 +10,18 @@ namespace AdeptusMechanicus
     [StaticConstructorOnStartup]
     public static class GasmaskUtility
     {
-        public static void DoPawnToxicDamage(Pawn p, float mod = 1f)
-        {
-            if (p.Spawned && p.Position.Roofed(p.Map))
-            {
-                return;
-            }
-            if (!p.RaceProps.IsFlesh)
-            {
-                return;
-            }
-            float num = 0.028758334f;
-            num *= p.GetStatValue(StatDefOf.ToxicResistance, true);
-            if (num != 0f)
-            {
-                Rand.PushState();
-                float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(p.thingIDNumber ^ 74374237));
-                Rand.PopState();
-                num *= num2;
-                num *= mod;
-                HealthUtility.AdjustSeverity(p, HediffDefOf.ToxicBuildup, num);
-            }
-        }
 
-        public static bool WearingGasmask(Pawn p, out Apparel a, out CompLungProtectionApparel b)
+        public static bool WearingGasmask(Pawn p, out Apparel a)
         {
             a = null;
-            b = null;
             if (p.apparel != null)
             {
                 for (int i = 0; i < p.apparel.WornApparelCount; i++)
                 {
-                    if (p.apparel.WornApparel[i] is Apparel apparel && GasmaskUtility.GasMasks.Contains(apparel.def))
+                    if (p.apparel.WornApparel[i] is Apparel apparel && apparel.def.apparel.immuneToToxGasExposure && GasmaskUtility.GasMasks.Contains(apparel.def))
                     {
                         a = apparel;
-                        if (apparel.TryGetCompFast<CompLungProtectionApparel>() is CompLungProtectionApparel protectionApparel)
-                        {
-                            b = protectionApparel;
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
@@ -65,7 +38,7 @@ namespace AdeptusMechanicus
                     if (gasMasks == null)
                     {
                         gasMasks = new List<ThingDef>();
-                        gasMasks.AddRange(DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && x.HasComp(typeof(CompLungProtectionApparel))));
+                        gasMasks.AddRange(DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && x.HasModExtension<GasmaskExtentsion>()));
                     }
                 }
                 return gasMasks;

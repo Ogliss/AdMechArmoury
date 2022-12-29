@@ -2,212 +2,37 @@
 <Defs>
 
 	<!-- ========================= Sororitas - Armour ========================== -->
-	
 	<!-- ========================= Sororitas - Power Armour ========================== -->
-	<!-- ========================= Sororitas - Base Power Armour ========================== -->
-	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_PowerArmour_Base" ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
-		<graphicData>
-			<texPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
-		<recipeMaker>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-			<skillRequirements>
-				<Crafting>10</Crafting>
-			</skillRequirements>
-			<researchPrerequisites>
-				<li>OG_Imperial_Tech_Apparel_Armour_T3</li>
-				<li>OG_Sororitas_Tech_Base_T2</li>
-			</researchPrerequisites>
-		</recipeMaker>
-		<statBases>
-			<!--MarketValue>1500</MarketValue-->
-			<MaxHitPoints>500</MaxHitPoints>
-			<WorkToMake>25000</WorkToMake>
-			<Mass>15</Mass>
-			<ArmorRating_Blunt>1.06</ArmorRating_Blunt>
-			<ArmorRating_Sharp>1.06</ArmorRating_Sharp>
-			<ArmorRating_Heat>1.06</ArmorRating_Heat>
-			<Insulation_Heat>50</Insulation_Heat>
-			<Insulation_Cold>50</Insulation_Cold>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<MoveSpeed>0.10</MoveSpeed>
-			<WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
-		</equippedStatOffsets>
-		<costList>
-			<Steel>40</Steel>
-			<ComponentIndustrial>18</ComponentIndustrial>
-			<Plasteel>135</Plasteel>
-			<Gold>2</Gold>
-		</costList>
-		<apparel>
-		<careIfWornByCorpse>false</careIfWornByCorpse>
-		<bodyPartGroups>
-			<li>Torso</li>
-			<li>Shoulders</li>
-			<li>Arms</li>
-			<li>Neck</li>
-			<li>Legs</li>
-		</bodyPartGroups>
-		<wornGraphicPath>Things/Item/Apparel/Imperial/AS/SororitasPowerArmour/SororitasPowerArmour</wornGraphicPath>
-		<layers>
-			<li>Shell</li>
-			<li>Middle</li>
-		</layers>
-		<tags>
-			<li>SororitasPowerArmour</li>
-			<li>EVA</li>
-		</tags>
-		<defaultOutfitTags>
-			<li>Soldier</li>
-		</defaultOutfitTags>
-		</apparel>
-		<thingCategories>
-			<!--li>OGIArmour</li-->
-		</thingCategories>
-		<tradeTags>
-			<li>OGIArmour</li>
-		</tradeTags>
-		<comps>
-		<!--
-		  <li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
-			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
-				<PauldronEntries>
-					<li>
-						<shoulderPadType>Both</shoulderPadType>
-						<shaderType>CutoutComplex</shaderType>
-						<padTexPath>Things/Item/Apparel/Imperial/SM/PowerArmour/Pauldrons/PowerArmour</padTexPath>
-						<commonality>10</commonality>
-					</li>
-				</PauldronEntries>
-		  </li>
-		-->
-		</comps>
-		<modExtensions>
-		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
-			<!--RaceDefs>
-				<li>OG_Human_Sororitas</li>
-			</RaceDefs>
-			<HediffDefs>
-				<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
-			</HediffDefs-->
-			<BodytypeDefs>
-				<li>Female</li>
-			</BodytypeDefs>
-			<gender>Female</gender>
-			<forcedBodytype>true</forcedBodytype>
-		  </li>
-		</modExtensions>
-	</ThingDef>
-	
-	<!-- ========================= Sororitas - Base Power Armour Helmet ========================== -->
-	<ThingDef Abstract="true" Name="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet_Base" ParentName="OG_Imperial_Apparel_Armor_Headgear_Power_Helmet_Base">
-		<techLevel>Spacer</techLevel>
-		<recipeMaker>
-			<unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-			<researchPrerequisites>
-				<li>OG_Imperial_Tech_Apparel_Armour_T3</li>
-				<li>OG_Sororitas_Tech_Base_T2</li>
-			</researchPrerequisites>
-			<skillRequirements>
-				<Crafting>9</Crafting>
-			</skillRequirements>
-		</recipeMaker>
-		<generateCommonality>2</generateCommonality>
-		<statBases>
-			<WorkToMake>21000</WorkToMake>
-			<MaxHitPoints>160</MaxHitPoints>
-			<Mass>2.7</Mass>
-			<Flammability>0.4</Flammability>
-			<ArmorRating_Sharp>1.06</ArmorRating_Sharp>
-			<ArmorRating_Blunt>1.06</ArmorRating_Blunt>
-			<ArmorRating_Heat>1.06</ArmorRating_Heat>
-			<Insulation_Cold>4</Insulation_Cold>
-			<Insulation_Heat>2</Insulation_Heat>
-			<EquipDelay>4</EquipDelay>
-		</statBases>
-		<equippedStatOffsets>
-			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-			<MoveSpeed>0.10</MoveSpeed>
-			<WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
-		</equippedStatOffsets>
-		<costList>
-			<ComponentSpacer>1</ComponentSpacer>
-			<Plasteel>40</Plasteel>
-		</costList>
-		<apparel>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
-			<layers>
-				<li>Overhead</li>
-			</layers>
-			<tags>
-				<li>SororitasPowerArmour</li>
-			</tags>
-			<defaultOutfitTags>
-				<li>Soldier</li>
-			</defaultOutfitTags>
-			<useDeflectMetalEffect>true</useDeflectMetalEffect>
-		</apparel>
-		<thingCategories>
-			<li>OGASHeadgear</li>
-		</thingCategories>
-		<tradeTags>
-			<li>OGASArmour</li>
-			<li>OGASHeadgear</li>
-		</tradeTags>
-		<thingSetMakerTags>
-		  
-		</thingSetMakerTags>
-	</ThingDef>
-	
-	<!-- ========================= Sororitas - Power Armour - OGAS_Apparel_PowerArmour ========================== -->
-	<ThingDef ParentName="OG_Sororitas_Apparel_Armor_PowerArmour_Base">
+	<!-- OGAS_Apparel_PowerArmour -->
+	<ThingDef Name="OG_Sororitas_Apparel_Armor_PowerArmour" ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
 		<defName>OGAS_Apparel_PowerArmour</defName>
 		<label>Sororitas Power Armour</label>
 		<description>Power Armour is an advanced form of powered combat armour, worn primarily by the Space Marines and the Chaos Space Marines, though suits have been created to be worn by mere mortals. It is a completely enclosed suit of combat armour composed of shaped Adamantium and Plasteel plates, encased in a Ceramite ablative layer. Each suit possesses a full suite of life-support functions for operation in hostile environments, an automated medicae system to provide some level of first aid to a wounded wearer and a highly advanced and fully integrated tactical targeting and threat analysis system known as Auto-senses. The suit would be heavy and cumbersome to wear but for the electrically motivated fibre bundles within the armour that replicates the wearer's movement and enhances his strength beyond its already considerable superhuman baseline (for Space Marines). Whilst Power Armour is most commonly associated with the Space Marines of the Adeptus Sororitas, the Sisters of Battle and many Inquisitors also use powered armour of one sort or another. Typically, however, these armours may not contain the same strength-enhancing properties or life-support functions of Space Marine Power Armour, nor do they always provide the same level of protection.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/AS/PowerArmour/_Icon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
 			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->
 			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
 		</graphicData>
-		<statBases>
-		
-		</statBases>
-		<equippedStatOffsets>
-		
-		</equippedStatOffsets>
-		<costList>
-		
-		</costList>
 		<recipeMaker>
-	
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T2</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<apparel>
-			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/PowerArmour/Base</wornGraphicPath>
-			<layers>
-			
-			</layers>
 			<tags>
 				<li>SororitasPowerArmour</li>
-				<li>SororitasArmour</li>
+				<li>EVA</li>
 			</tags>
 			<defaultOutfitTags>
 				<!--li>Soldier</li-->
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-		
+			<!--li>OGIArmour</li-->
 		</thingCategories>
 		<tradeTags>
-		
+			<li>OGIArmour</li>
 		</tradeTags>
 		<comps>
 			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
@@ -244,55 +69,60 @@
 				<WestOffset>0,0.35,0</WestOffset>
 			</li>
 		</comps>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<!--RaceDefs>
+				<li>OG_Human_Sororitas</li>
+			</RaceDefs>
+			<HediffDefs>
+				<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
+			</HediffDefs-->
+			<BodytypeDefs>
+				<li>Female</li>
+			</BodytypeDefs>
+			<gender>Female</gender>
+			<forcedBodytype>true</forcedBodytype>
+		  </li>
+		</modExtensions>
 	</ThingDef>
 	
-	<!-- ========================= Sororitas - Power Armour Helmet - OGAS_Apparel_PowerArmourHelmet ========================== -->
-	<ThingDef ParentName="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet_Base">
+	<!-- ========================= Sororitas - Power Armour Helmet ========================== -->
+	<!-- OGAS_Apparel_PowerArmourHelmet -->
+	<ThingDef Name="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear_PowerArmourHelmet_Base">
 		<defName>OGAS_Apparel_PowerArmourHelmet</defName>
-		<label>Sororitas helmet</label>
+		<label>Sororitas power armour helmet</label>
 		<description>A power armor helmet, with a built-in status computer and layered plasteel-weave plates.\n\nArmor like this is often used by the Adeptus Sororitas, the sisters of battle.</description>
 		<graphicData>
 			<texPath>Things/Item/Apparel/Imperial/AS/PowerArmourHelmet/_Icon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
 			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->
 			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
 		</graphicData>
 		<recipeMaker>
 			<researchPrerequisites>
-				<!--li>PoweredArmor</li-->
+				<li>OG_Sororitas_Tech_Base_T2</li>
 			</researchPrerequisites>
-			<skillRequirements>
-				<Crafting>9</Crafting>
-			</skillRequirements>
 		</recipeMaker>
-		<generateCommonality>2</generateCommonality>
-		<statBases>
-		
-		</statBases>
-		<costList>
-		
-		</costList>
 		<apparel>
-			<useWornGraphicMask>true</useWornGraphicMask>
 			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/PowerArmourHelmet/Base</wornGraphicPath>
-			<bodyPartGroups>
-			
-			</bodyPartGroups>
-			<layers>
-			
-			</layers>
 			<tags>
+				<li>SororitasPowerArmour</li>
 				<li>SororitasPowerArmourHelmet</li>
-				<li>SororitasArmour</li>
+				<li>EVA</li>
 			</tags>
 			<defaultOutfitTags>
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
+		<thingCategories>
+			<li>OGASHeadgear</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGASArmour</li>
+			<li>OGASHeadgear</li>
+		</tradeTags>
 		<thingSetMakerTags>
-		
+		  
 		</thingSetMakerTags>
 	</ThingDef>
-
+	
 </Defs>

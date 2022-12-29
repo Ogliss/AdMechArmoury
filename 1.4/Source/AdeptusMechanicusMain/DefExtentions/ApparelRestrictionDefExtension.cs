@@ -10,6 +10,7 @@ namespace AdeptusMechanicus
         public bool Any = false;
         public List<ThingDef> RaceDefs = new List<ThingDef>();
         public List<ThingDef> ApparelDefs = new List<ThingDef>();
+        public List<ThingDef> canWearWith = new List<ThingDef>();
         public List<HediffDef> HediffDefs = new List<HediffDef>();
         public List<TraitDef> TraitDefs = new List<TraitDef>();
         public List<BodyTypeDef> BodytypeDefs = new List<BodyTypeDef>();

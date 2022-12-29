@@ -89,7 +89,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 				
 				if (factionColors != null)
 				{
-                    if (apparel.Wearer.Faction != null)
+                    if (apparel.Wearer?.Faction != null)
 					{
                         if (apparel.Wearer.Faction != Faction.OfPlayer)
 						{
@@ -167,9 +167,11 @@ namespace AdeptusMechanicus.HarmonyInstance
 				{
 					comptype += "Active: " + compColorable.Active + ", ActiveTwo: " + compColorable.ActiveTwo;
 				}
-				
-			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
-                //	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
+
+				//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+				//	Log.Message("New graphic for "+rec.sourceApparel.LabelCap+" worn by "+rec.sourceApparel.Wearer.NameShortColored+ " colorOne: "+colorOne+", colorTwo"+ colorTwo);
+				bool altGraphic = false;
+				bool altGraphicMask = false;
                 if (rec.graphic != null)
 				{
 					string mskVariant = "";
@@ -183,10 +185,13 @@ namespace AdeptusMechanicus.HarmonyInstance
 							if (!composite.ActiveAltGraphic.maskKey.NullOrEmpty())
 							{
 								mskVariant = "_" + composite.ActiveAltGraphic.maskKey;
+								altGraphicMask = true;
 
-							}
+                            }
 							rec = new ApparelGraphicRecord(graphic, apparel);
-						}
+							altGraphic = true;
+
+                        }
 					}
 					Graphic newgraphic = rec.graphic.GetColoredVersion(rec.graphic.Shader, colorOne, colorTwo);
 					bool replaced = false;
@@ -208,9 +213,10 @@ namespace AdeptusMechanicus.HarmonyInstance
 							newgraphic.MatSingle.SetTexture(ShaderPropertyIDs.MaskTex, texture);
 						}
 						newgraphic.MatEast.SetColor(ShaderPropertyIDs.ColorTwo, colorTwo);
-					}
+                        rec = new ApparelGraphicRecord(newgraphic, apparel);
+                    }
 				}
-					Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
+			//	Log.Message(comptype + msg + " present on " + apparel.Wearer +"'s "+ apparel + " colorOne: " + colorOne + ", colorTwo: " + colorTwo);
 			}
 			if (!apparel.def.apparel.wornGraphicPath.NullOrEmpty())
 			{
@@ -225,7 +231,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
 								continue;
                             }
-							if (RaceDef == apparel.Wearer.def)
+							if (RaceDef == apparel.Wearer?.def)
 							{
 								if (!item.texPath.NullOrEmpty())
 								{

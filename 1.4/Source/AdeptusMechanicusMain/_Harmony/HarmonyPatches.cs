@@ -304,6 +304,10 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 try
                 {
+                    if (cur.Name.Contains("PawnsArrivalModeWorker_Gauntlet"))
+                    {
+                        continue;
+                    }
                     if (cur != typeof(PawnsArrivalModeWorker_CenterDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDrop) && cur != typeof(PawnsArrivalModeWorker_EdgeDropGroups) && cur != typeof(PawnsArrivalModeWorker_RandomDrop))
                     {
                         harmonyInstance.Patch(cur.GetMethod("Arrive"), new HarmonyMethod(prefix));

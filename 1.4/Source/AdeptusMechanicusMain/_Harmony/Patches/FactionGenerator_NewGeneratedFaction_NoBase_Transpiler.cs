@@ -54,7 +54,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static bool GenerateBase(Faction faction)
         {
             bool result = faction.def.defName.StartsWith("OG_") && !faction.def.isPlayer && faction.def.settlementGenerationWeight == 0;
-            if (result) Log.Message($"{faction} NOT allowed to spawn inital base");
+            if (result && AMAMod.Dev) Log.Message($"{faction} NOT allowed to spawn inital base");
             return result;
         }
     }

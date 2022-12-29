@@ -149,9 +149,12 @@
     <Compile Include="GameConditions\WarpStormType.cs" />
     <Compile Include="GameConditions\WarpStormUtility.cs" />
     <Compile Include="ScenParts\ScenPart_RequiredApparel.cs" />
+    <Compile Include="Utility\WarpLostPawnsTracker.cs" />
     <Compile Include="_Harmony\Patches\AA_TestingPatches.cs" />
     <Compile Include="_Harmony\Patches\ApparelProperties_get_LastLayer_Tweaks_Patch.cs" />
     <Compile Include="_Harmony\Patches\IncidentWorker_Raid_TryExecuteWorker_AnimalRaids_Transpiler.cs" />
+    <Compile Include="_Harmony\Patches\Lord_Notify_PawnDamaged_Reserves_Patch.cs" />
+    <Compile Include="_Harmony\Patches\Lord_Notify_PawnLost_Reserves_Patch.cs" />
     <Compile Include="_Harmony\Patches\PawnObserver_ObserveSurroundingThings_CompilerGenerated_ObserveablePawn_Transpiler.cs" />
     <Compile Include="Reserves\Window_Reserves.cs" />
     <Compile Include="Reserves\PawnGroupKindWorker_DeepStrike.cs" />
@@ -176,7 +179,9 @@
     <Compile Include="GenSteps\GenStep_EscapePortal_Webway.cs" />
     <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Core.cs" />
     <Compile Include="GenSteps\SymbolResolver_Portal_Webway_Spine.cs" />
+    <Compile Include="_Harmony\Patches\PawnRenderer_DrawBodyApparel_DrawWornExtras_Transpiler.cs" />
     <Compile Include="_Harmony\Patches\Pawn_GetGizmos_CompToggleFireMode_Patch.cs" />
+    <Compile Include="_Harmony\Patches\Precept_AddIdeoRulesTo_CultralRoleNames_Patch.cs" />
     <Compile Include="_Harmony\Patches\Precept_Role_GenerateNameRaw_CultralRoleNames_Transpiler.cs" />
     <Compile Include="_Harmony\Patches\SiegeBlueprintPlacer_PlaceArtilleryBlueprints_RaceRestriction_Patch.cs" />
     <Compile Include="_Harmony\Patches\Precept_Relic_GenerateStuffFor_Name_Patch.cs" />
@@ -253,7 +258,7 @@
     <Compile Include="_Harmony\Patches\BackCompatability\ParseHelper_ParseType_Patch.cs" />
     <Compile Include="_Harmony\Patches\GenSpawn_Spawn_RelicTracker_Patch.cs" />
     <None Include="_Harmony\Patches\ApparelUtility_HasPartsToWear_Restricted_Patch.cs" />
-    <Compile Include="_Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Astartes_MultiLung_Patch.cs" />
+    <Compile Include="_Harmony\Patches\GameCondition_ToxicFallout_DoPawnToxicDamage_Gasmask_Patch.cs" />
     <Compile Include="_Harmony\Patches\Verbs\Verb_TryStartCastOn_warmupTime_Transpiler.cs" />
     <Compile Include="HediffGivers\HediffGiver_HealthBelowThreshold.cs" />
     <Compile Include="Interfaces\IAdvancedVerb.cs" />
@@ -636,7 +641,6 @@
     <Compile Include="_Harmony\Patches\HediffSet_get_PainTotal_ComPainKiller_Patch.cs" />
     <Compile Include="_Harmony\Patches\NonHumanRangedAttacks\JobGiver_AIFightEnemy_TryGiveJob_RangedVerb_Patch.cs" />
     <Compile Include="Apparel\ApparelComposite.cs" />
-    <Compile Include="Apparel\Apparel_ShockCollar.cs" />
     <Compile Include="ExtentionMethods\ObjectExtensions.cs" />
     <Compile Include="Settings\IntergrationUtilities\UtilJurassicRimworld.cs" />
     <None Include="Comps\CompPoweredStatChange.cs.bak" />
@@ -720,7 +724,7 @@
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3542" GeneratePathProperty="true" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3563" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>
     </PackageReference>

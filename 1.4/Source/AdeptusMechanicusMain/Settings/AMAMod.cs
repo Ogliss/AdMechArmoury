@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using UnityEngine;
 using Verse;
 
@@ -46,8 +47,13 @@ namespace AdeptusMechanicus.settings
                         if (menu.IsActive)
                         {
                             list_Intergrations.Add(menu);
-                            if (!menu.Patches.NullOrEmpty()) patches.AddRange(menu.Patches);
-                            if (Dev) Log.Message($"loading {type.Name}");
+                            StringBuilder sb = new StringBuilder($"loading {type.Name}");
+                            if (!menu.Patches.NullOrEmpty())
+                            {
+                                patches.AddRange(menu.Patches);
+                                sb.AppendLine($"    with {menu.Patches.Count}");
+                            }
+                            if (Dev) Log.Message(sb.ToString());
                         }
                     }
                 }

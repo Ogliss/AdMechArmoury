@@ -114,7 +114,8 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         private static bool CE(Verb __instance)
         {
-            if (!(__instance is CombatExtended.Verb_ShootCE) && !(__instance is AbilitesExtended.Verb_ShootEquipment))
+            string typeName = __instance.GetType().Name;
+            if (typeName != "CombatExtended.Verb_ShootCE" && !(__instance is AbilitesExtended.Verb_ShootEquipment))
             {
                 return false;
             }

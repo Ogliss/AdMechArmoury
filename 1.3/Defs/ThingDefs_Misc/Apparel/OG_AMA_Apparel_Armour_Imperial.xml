@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Power Armour Helmet ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
+		<defName>OGI_Armour_Power</defName>
+		<label>Imperial power armor</label>
+		<description>Power Armour is an advanced form of powered combat armour, worn primarily by the Space Marines and the Chaos Space Marines, though suits have been created to be worn by mere mortals. It is a completely enclosed suit of combat armour composed of shaped Adamantium and Plasteel plates, encased in a Ceramite ablative layer. Each suit possesses a full suite of life-support functions for operation in hostile environments, an automated medicae system to provide some level of first aid to a wounded wearer and a highly advanced and fully integrated tactical targeting and threat analysis system known as Auto-senses. The suit would be heavy and cumbersome to wear but for the electrically motivated fibre bundles within the armour that replicates the wearer's movement and enhances his strength beyond its already considerable superhuman baseline (for Space Marines). Whilst Power Armour is most commonly associated with the Space Marines of the Adeptus Astartes, the Sisters of Battle and many Inquisitors also use powered armour of one sort or another. Typically, however, these armours may not contain the same strength-enhancing properties or life-support functions of Space Marine Power Armour, nor do they always provide the same level of protection.</description>
+		<graphicData Class="AdeptusMechanicus.ExtendedGraphicData">
+			<texPath>Things/Item/Apparel/Imperial/Common/PowerArmour/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<maskKey>_</maskKey>
+		</graphicData>
+		<apparel>
+			<tags>
+				<li>ImperialPowerArmour</li>
+				<li>ImperialArmour</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<!--recipeUsers Inherit="False">
+				<li>FabricationBench</li>
+			</recipeUsers-->
+		</recipeMaker>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<labelKey>OG_Customize</labelKey>
+				<PauldronEntries>
+					<li>
+						<label>Power Armour Pauldron Left</label>
+						<shoulderPadType>Left</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Pauldrons_Left/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>0.1,0.0000,0.01</SouthOffset>
+						<NorthOffset>-0.1,-0.0001,0.01</NorthOffset>
+						<EastOffset>0,0.15,0.0</EastOffset>
+						<WestOffset>0,0.15,0.0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<li>
+						<label>Power Armour Pauldron Right</label>
+						<shoulderPadType>Right</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Pauldrons_Right/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>-0.1,0.0000,0.01</SouthOffset>
+						<NorthOffset>0.1,-0.0001,0.01</NorthOffset>
+						<EastOffset>0,0.15,0.0</EastOffset>
+						<WestOffset>0,0.15,0.0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+					<li>
+						<label>Power Armour Pack</label>
+						<shoulderPadType>Backpack</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/Common/PowerArmour/Backpacks/Base</padTexPath>
+						<commonality>10</commonality>
+						<SouthOffset>0,-0.25,0</SouthOffset>
+						<NorthOffset>0,0.5,0</NorthOffset>
+						<EastOffset>0,-0.0,0</EastOffset>
+						<WestOffset>0,-0.0,0</WestOffset>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+					</li>
+				</PauldronEntries>
+				<NorthOffset>0,0.2,0.01</NorthOffset>
+				<SouthOffset>0,0.1,0.01</SouthOffset>
+				<EastOffset>0,0.15,0.01</EastOffset>
+				<WestOffset>0,0.15,0.01</WestOffset>
+				<drawAll>true</drawAll>
+			</li>
+		</comps>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<BodytypeDefs>
+				<li>Hulk</li>
+			</BodytypeDefs>
+			<forcedBodytype>true</forcedBodytype>
+		  </li>
+		</modExtensions>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<only>(0.33,0.33,0.33)</only>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.65,0.65,0.65)</only>
+			</li>
+			<li>
+				<weight>6</weight>
+				<min>(0.3,0.3,0.3)</min>
+				<max>(0.5,0.5,0.5)</max>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.9,0.9,0.9)</only>
+			</li>
+			</options>
+		</colorGenerator>
+	</ThingDef>
+
+	<!-- ========================= Power Armour Helmet ========================== -->
+	<ThingDef ParentName="OG_Imperial_Apparel_Armor_Headgear_PowerArmourHelmet_Base">
+		<defName>OGI_Armour_Power_Helmet</defName>
+		<label>imperial power armour helmet</label>
+		<description>A power armor helmet, with a built-in status computer and layered plasteel-weave plates.\n\nArmor like this is often used by high ranking members of imperial forces.</description>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/Common/PowerArmourHelmet/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<generateCommonality>2</generateCommonality>
+		<statBases>
+		
+		</statBases>
+		<costList>
+		
+		</costList>
+			<apparel>
+				<bodyPartGroups>
+				
+				</bodyPartGroups>
+				<wornGraphicPath>Things/Item/Apparel/Imperial/Common/PowerArmourHelmet/Base</wornGraphicPath>
+				<layers>
+				
+				</layers>
+				<tags>
+					<li>ImperialPowerHelmet</li>
+					<li>ImperialArmour</li>
+				</tags>
+			<defaultOutfitTags>
+			<!-- <li>Soldier</li> -->
+			</defaultOutfitTags>
+		</apparel>
+		<thingSetMakerTags>
+			<!-- <li>RewardSpecial</li> -->
+		</thingSetMakerTags>
+		<colorGenerator Class="AdeptusMechanicus.TwoColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(0.33,0.33,0.33)</only>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>(0.65,0.65,0.65)</only>
+				</li>
+				<li>
+					<weight>6</weight>
+					<min>(0.3,0.3,0.3)</min>
+					<max>(0.5,0.5,0.5)</max>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>(0.9,0.9,0.9)</only>
+				</li>
+			</options>
+			<optionsTwo>
+				<li>
+					<weight>10</weight>
+					<only>(0.33,0.33,0.33)</only>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>(0.65,0.65,0.65)</only>
+				</li>
+				<li>
+					<weight>6</weight>
+					<min>(0.3,0.3,0.3)</min>
+					<max>(0.5,0.5,0.5)</max>
+				</li>
+				<li>
+					<weight>10</weight>
+					<only>(0.9,0.9,0.9)</only>
+				</li>
+			</optionsTwo>
+			<!--optionsPairs>
+				<li>
+					<colorOne>11,99,113</only>
+					<colorTwo>11,99,113</only>
+					
+				</li>
+			</optionsPairs-->
+		</colorGenerator>
+		<!--colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<only>(0.33,0.33,0.33)</only>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.65,0.65,0.65)</only>
+			</li>
+			<li>
+				<weight>6</weight>
+				<min>(0.3,0.3,0.3)</min>
+				<max>(0.5,0.5,0.5)</max>
+			</li>
+			<li>
+				<weight>10</weight>
+				<only>(0.9,0.9,0.9)</only>
+			</li>
+			</options>
+		</colorGenerator-->
+		<modExtensions>
+		
+		</modExtensions>
+	</ThingDef>
+
+</Defs>

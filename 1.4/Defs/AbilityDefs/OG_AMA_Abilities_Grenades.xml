@@ -4,23 +4,6 @@
 <!-- ======================== Grenade Ability Defs ================================== -->
 <!-- ======================== Imperial - Grenade Ability ================================== -->
 <!-- ======================== Imperial - Photon Grenade Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Photon</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpPhotonGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadePhoton</damageDef>
-			<damageAmountBase>1</damageAmountBase>
-			<armorPenetrationBase>1</armorPenetrationBase>
-			<explosionRadius>3</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
  
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowPhoton</defName>
@@ -58,23 +41,6 @@
 	</AbilitesExtended.EquipmentAbilityDef>
 	
 <!-- ======================== Imperial - Frag Grenade Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Frag</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpFragGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeFrag</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
-			<armorPenetrationBase>0.16</armorPenetrationBase>
-			<explosionRadius>3</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
 
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowFrag</defName>
@@ -111,24 +77,6 @@
 	</AbilitesExtended.EquipmentAbilityDef>
  
 <!-- ======================== Imperial - Krak Grenade Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Krak</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpKrakGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeKrak</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
-			<armorPenetrationBase>1.00</armorPenetrationBase>
-			<explosionRadius>1.5</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowKrak</defName>
         <label>Throw Krak</label>
@@ -165,31 +113,6 @@
 	</AbilitesExtended.EquipmentAbilityDef>
  
 <!-- ======================== Imperial - Rad Grenade Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Rad</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpRadGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeRad</damageDef>
-			<!--damageAmountBase>1</damageAmountBase-->
-			<armorPenetrationBase>1</armorPenetrationBase>
-			<explosionRadius>3</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-		<modExtensions>
-			<li Class="AdeptusMechanicus.EffecterProjectileExtension">
-				<AddHediffChance>1</AddHediffChance>
-				<HediffToAdd>OG_Hediff_RadiationPoisioning</HediffToAdd>
-				<CanResistHediff>true</CanResistHediff>
-				<ResistHediffStat>ToxicResistance</ResistHediffStat>
-			</li>
-		</modExtensions>
-	</ThingDef>
  
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowRad</defName>
@@ -227,25 +150,7 @@
 	</AbilitesExtended.EquipmentAbilityDef>
 	
 <!-- ======================== Imperial - Psyk-Out Grenade Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Psyk</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpPsychGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeMelta</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
-			<armorPenetrationBase>10</armorPenetrationBase>
-			<explosionRadius>0.5</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
-	<AbilitesExtended.EquipmentAbilityDef>
+	<!--AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowPsyk</defName>
         <label>Throw Psyk</label>
         <iconPath>Things/Projectile/ImpPsychGrenade</iconPath>
@@ -278,27 +183,9 @@
 			<clamorRadius>0</clamorRadius>
 			</li>
 		</comps>
-	</AbilitesExtended.EquipmentAbilityDef>
+	</AbilitesExtended.EquipmentAbilityDef-->
  
 <!-- ======================== Imperial - Melta Bomb Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Melta</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpMeltaBomb</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeMelta</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
-			<armorPenetrationBase>10</armorPenetrationBase>
-			<explosionRadius>0.5</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
-
 	<AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowMelta</defName>
         <label>Throw Melta</label>
@@ -335,25 +222,8 @@
 	</AbilitesExtended.EquipmentAbilityDef>
  
 <!-- ======================== Imperial - Vortex Bomb Ability ================================== -->
-	<ThingDef ParentName="BaseGrenadeProjectile">
-		<defName>OGI_GrenadeThrown_Vortex</defName>
-		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/ImpVortexGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>OGGrenadeMelta</damageDef>
-			<!-- <damageAmountBase>20</damageAmountBase> -->
-			<armorPenetrationBase>10</armorPenetrationBase>
-			<explosionRadius>0.5</explosionRadius>
-			<explosionDelay>100</explosionDelay>
-			<speed>12</speed>
-			<flyOverhead>false</flyOverhead>
-		</projectile>
-	</ThingDef>
 
-	<AbilitesExtended.EquipmentAbilityDef>
+	<!--AbilitesExtended.EquipmentAbilityDef>
         <defName>OGI_Ability_ThrowVortex</defName>
         <label>Throw Vortex</label>
         <iconPath>Things/Projectile/ImpVortexGrenade</iconPath>
@@ -386,7 +256,7 @@
 			<clamorRadius>0</clamorRadius>
 			</li>
 		</comps>
-	</AbilitesExtended.EquipmentAbilityDef>
+	</AbilitesExtended.EquipmentAbilityDef-->
  
 <!-- ======================== Tau - Grenade Ability ================================== -->
 <!-- ======================== Tau - Photon Grenade Ability ================================== -->

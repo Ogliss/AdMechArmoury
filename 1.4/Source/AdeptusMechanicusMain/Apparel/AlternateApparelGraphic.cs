@@ -102,16 +102,15 @@ namespace AdeptusMechanicus
             this.graphicData.linkType = other.linkType;
             this.graphicData.linkFlags = other.linkFlags;
         }
-        // Token: 0x04000503 RID: 1283
+
         public float weight = 0.5f;
 
-        // Token: 0x04000504 RID: 1284
+
         public string texPath;
         public string wornGraphicPath;
         public string maskKey;
         public bool allowFactionColours = true;
 
-        // Token: 0x04000505 RID: 1285
         public Color? color;
 
         public Color? colorTwo;

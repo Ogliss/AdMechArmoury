@@ -107,10 +107,6 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void Postfix(Thing __instance, ref DamageInfo dinfo)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return;
-            }
             bool force = AMSettings.Instance.AllowForceWeaponEffect && dinfo.Def.forceWeapon();
             Pawn Attacker = dinfo.Instigator as Pawn;
             Pawn hitPawn = __instance as Pawn;

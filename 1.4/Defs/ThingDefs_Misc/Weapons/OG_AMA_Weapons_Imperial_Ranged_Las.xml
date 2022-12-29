@@ -272,11 +272,11 @@
 			<!--MarketValue>500</MarketValue-->
 			<Mass>3.5</Mass>
 			<reliability>1</reliability>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.70</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
 			<skillRequirements>
@@ -334,14 +334,7 @@
 		<uiIconColor>(1,1,1,1)</uiIconColor>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
-			<!--MarketValue>500</MarketValue-->
-			<Mass>2.3</Mass>
-			<reliability>1</reliability>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
-			<AccuracyMedium>0.70</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+		
 		</statBases>
 		<recipeMaker>
 				<researchPrerequisites>
@@ -357,6 +350,7 @@
 		<weaponTags>
 			<li>ImperialGun</li>
 			<li>Lasgun</li>
+			<li>LasgunValhallan</li>
 			<li>LasGun</li>
 			<li>GuevesaGun</li>
 		</weaponTags>
@@ -374,7 +368,7 @@
 				<rapidFire>true</rapidFire>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
-				<warmupTime>0.75</warmupTime>
+				<warmupTime>1.0</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
@@ -392,7 +386,7 @@
 				<label>Hot-shot</label>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>OGI_Bullet_LasGun_Hot</defaultProjectile>
-				<warmupTime>0.75</warmupTime>
+				<warmupTime>1.1</warmupTime>
 				<range>31</range>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
@@ -461,13 +455,11 @@
 		<statBases>
 			<WorkToMake>47500</WorkToMake>
 			<!--MarketValue>500</MarketValue-->
-			<Mass>3.0</Mass>
 			<reliability>1</reliability>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyTouch>0.55</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
 				<researchPrerequisites>
@@ -483,6 +475,7 @@
 		<weaponTags>
 			<li>ImperialGun</li>
 			<li>Lasgun</li>
+			<li>LasgunValhallan</li>
 			<li>LasGun</li>
 			<li>GuevesaGun</li>
 		</weaponTags>
@@ -595,9 +588,12 @@
 		
 		</equippedStatOffsets>
 		<recipeMaker>
-				<researchPrerequisites>
-				
-				</researchPrerequisites>
+			<researchPrerequisites>
+			
+			</researchPrerequisites>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
 		</recipeMaker>
 		<costList>
 			<Steel>75</Steel>
@@ -608,6 +604,7 @@
 		<weaponTags>
 			<li>ImperialGun</li>
 			<li>Lasgun</li>
+			<li>LasgunValhallan</li>
 			<li>TriplexLasGun</li>
 		</weaponTags>
 		<generateCommonality>1.0</generateCommonality>
@@ -682,6 +679,122 @@
 		</tools>
 		<modExtensions>
 		
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ====================== Merovech Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Merovech</defName>
+		<label>merovech pattern lasgun (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lasgun, also sometimes referred to as a Lasrifle, is a directed-energy antipersonnel weapon used by the military forces of the Imperium of Man, and it is the most common and widely-used type of laser weapon in the galaxy. Lasguns are reliable, easy to maintain and to produce, and are readily available on most Imperial worlds. The Lasgun is strong enough to take an ordinary human arm off with one shot but is not as effective against the more durable alien bodies and stronger types of personal armour. A Lasgun's beam also cauterizes the wounds it inflicts due to the immense heat given off by the shot.
+		
+		Designed purely for close range assaults, the merovech assault lasgun is heavily reinforced and has a bayonet built into its short and heavy frame. Slots for two power packs are included so the gun can switch to a fresh pack with no reloading. Since the firefights it’s designed for are typically over long before two packs are exhausted, it serves its design perfectly.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Merovech</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Merovech</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<WorkToMake>51500</WorkToMake>
+			<Mass>6.5</Mass>
+			<AccuracyTouch>0.40</AccuracyTouch>
+			<AccuracyShort>0.48</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.26</AccuracyLong>
+			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>9</Crafting>
+			</skillRequirements>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Laser</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>75</Steel>
+			<Plasteel>30</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>ImperialGun</li>
+			<li>LasgunAssault</li>
+			<li>LasGun</li>
+			<li>GuevesaGun</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGIRanged</li>
+		</tradeTags>
+		<generateCommonality>1.0</generateCommonality>
+		<equippedStatOffsets>
+		
+		</equippedStatOffsets>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>1.6</warmupTime>
+				<range>28</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>	
+		
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+			<li>
+				<label>bayonet</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>23</power>
+				<armorPenetration>0.50</armorPenetration>
+				<cooldownTime>2.6</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
 		</modExtensions>
 	</ThingDef>
 
@@ -809,6 +922,7 @@
 		<weaponTags>
 			<li>LasCarbine</li>
 			<li>CatachanLasCarbine</li>
+			<li>LasgunCatachan</li>
 			<li>CatachanGun</li>
 		</weaponTags>
 		<generateCommonality>1.0</generateCommonality>
@@ -940,6 +1054,93 @@
 			<li>LasCarbine</li>
 			<li>VossLasCarbine</li>
 			<li>SteelLegionGun</li>
+			<li>LasgunSteelLegion</li>
+		</weaponTags>
+		<tools>
+			<li>
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+
+	<!-- ====================== Accatran Pattern ===================== -->
+	<ThingDef ParentName="OG_Imperial_LasGun" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGI_Gun_LasGun_Accatran</defName>
+		<label>accatran pattern lascarbine (I)</label>
+		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
+		<description>The Lascarbine is a carbine form of the standard Imperial Lasgun that is easier to carry and to aim than its larger counterpart. It will often possess a folding stock. However, as a result of these modifications, a Lascarbine has a shorter range and will fire fewer shots before depleting its power pack when compared to a standard Lasgun.
+		
+		The Accatran Mark IV is a bullpup-style Lasgun. The smaller profile is easily manoeuvred at short range or fired from the hip. Often employed by Elysian Drop Troop regiments and Drop Troops regiments drawn from other worlds.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Lasgun_Accatran</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<!--graphicClass>AdvancedGraphics.Graphic_AdvancedSingle</graphicClass-->
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.208,0.286,0.176)</color>
+		</graphicData>  
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/LasGun/Icon_Lasgun_Accatran</uiIconPath>
+		<uiIconColor>(1,1,1,1)</uiIconColor>
+		<soundInteract>Interact_SMG</soundInteract>
+		<recipeMaker>
+			<researchPrerequisite>GasOperation</researchPrerequisite>
+			<skillRequirements>
+			<Crafting>5</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<thingSetMakerTags><li>RewardStandardQualitySuper</li></thingSetMakerTags>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>1.25</Mass>
+			<AccuracyTouch>0.85</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.20</AccuracyLong>
+			<RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>75</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Standard</label>
+				<rapidFire>true</rapidFire>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>27</range>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>OG_Las_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<barrelLength>0.75</barrelLength>
+				<bulletOffset>-0.25</bulletOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>LasCarbine</li>
+			<li>AccatranLasCarbine</li>
+			<li>ElysianGun</li>
+			<li>LasgunElysian</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -1053,6 +1254,7 @@
 			<li>LasRifle</li>
 			<li>LuciusLasRifle</li>
 			<li>KriegGun</li>
+			<li>LasgunKrieg</li>
 		</weaponTags>
 		<generateCommonality>1.0</generateCommonality>
 		<verbs>
@@ -1144,6 +1346,7 @@
 		<weaponTags>
 			<li>ImperialGun</li>
 			<li>Lasgun</li>
+			<li>LasgunTallaran</li>
 			<li>LasGun</li>
 			<li>GuevesaGun</li>
 		</weaponTags>
@@ -1250,6 +1453,7 @@
 		<weaponTags>
 			<li>ImperialGun</li>
 			<li>Lasgun</li>
+			<li>LasgunVostroya</li>
 			<li>LasGun</li>
 			<li>GuevesaGun</li>
 		</weaponTags>

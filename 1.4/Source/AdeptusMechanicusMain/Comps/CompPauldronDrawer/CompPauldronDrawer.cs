@@ -706,7 +706,7 @@ namespace AdeptusMechanicus
 
             if (!signal.NullOrEmpty())
             {
-                if (signal == UpdateString && pawn.Map != null)
+                if (signal == UpdateString && pawn?.Map != null)
                 {
                     if (!this.activeEntries.NullOrEmpty())
                     {

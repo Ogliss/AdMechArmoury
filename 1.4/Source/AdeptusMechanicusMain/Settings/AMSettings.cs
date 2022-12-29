@@ -159,13 +159,14 @@ namespace AdeptusMechanicus.settings
             {
                 AllowTyranidInfestation = AllowTyranid;
             }
-        //    if (AMAMod.updateIncidents_Disabled) UpdateScenarioDisabledIncidents();
+            if (AMAMod.updateIncidents_Disabled) UpdateScenarioDisabledIncidents();
             if (AMAMod.updateFactions_Required) UpdateFactionsRequiredAtGameStart();
             if (AMAMod.updateWeapons_Allowed) UpdateWeapons();
             if (AMAMod.updateFactions_PawnKinds) UpdateFactionPawnKinds();
         }
 
-        List<ThingDef> backup;
+        List<ThingDef> backupThingDefs;
+        List<RecipeDef> backupRecipeDefs;
         public void UpdateFactionPawnKinds()
         {
 
@@ -173,16 +174,20 @@ namespace AdeptusMechanicus.settings
 
         public void UpdateWeapons()
         {
-            if (backup == null)
+            if (backupThingDefs == null)
             {
-                backup = new List<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading);
+                backupThingDefs = new List<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading);
+            }
+            if (backupRecipeDefs == null)
+            {
+                backupRecipeDefs = new List<RecipeDef>(DefDatabase<RecipeDef>.AllDefsListForReading);
             }
             ProcessWeaponTags(new List<string>() { "OGI_", "OGAS_", "OGAA_" }, AllowImperialWeapons);
             ProcessWeaponTag("OGAM_", AllowMechanicusWeapons);
             ProcessWeaponTag("OGE_", AllowEldarWeapons);
             ProcessWeaponTag("OGDE_", AllowDarkEldarWeapons);
             ProcessWeaponTag("OGC_", AllowChaosWeapons);
-            ProcessWeaponTags(new List<string>() { "OGT_", "OGK_" }, AllowTauWeapons);
+            ProcessWeaponTags(new List<string>() { "OGT_", "OGK_", "OGV_" }, AllowTauWeapons);
             ProcessWeaponTag("OGO_", AllowOrkWeapons);
             ProcessWeaponTag("OGN_", AllowNecronWeapons);
             ProcessWeaponTag("OGTY_", AllowTyranidWeapons);
@@ -202,10 +207,14 @@ namespace AdeptusMechanicus.settings
                 DefDatabase<ThingDef>.defsList.RemoveAll(x => (x.defName.Contains(tag)) && (x.defName.Contains("_Gun_") || x.defName.Contains("_Melee_")));
                 DefDatabase<ThingDef>.defsByName.RemoveAll(x => (x.Value.defName.Contains(tag)) && (x.Value.defName.Contains("_Gun_") || x.Value.defName.Contains("_Melee_")));
                 DefDatabase<ThingDef>.defsByShortHash.RemoveAll(x => (x.Value.defName.Contains(tag)) && (x.Value.defName.Contains("_Gun_") || x.Value.defName.Contains("_Melee_")));
+                DefDatabase<RecipeDef>.defsList.RemoveAll(x => (x.defName.Contains(tag)) && (x.defName.Contains("_Gun_") || x.defName.Contains("_Melee_")));
+                DefDatabase<RecipeDef>.defsByName.RemoveAll(x => (x.Value.defName.Contains(tag)) && (x.Value.defName.Contains("_Gun_") || x.Value.defName.Contains("_Melee_")));
+                DefDatabase<RecipeDef>.defsByShortHash.RemoveAll(x => (x.Value.defName.Contains(tag)) && (x.Value.defName.Contains("_Gun_") || x.Value.defName.Contains("_Melee_")));
             }
             else
             {
-                DefDatabase<ThingDef>.Add(backup.Where(x => (!DefDatabase<ThingDef>.AllDefsListForReading.Contains(x) && x.defName.Contains(tag)) && (x.defName.Contains("_Gun_") || x.defName.Contains("_Melee_"))));
+                DefDatabase<ThingDef>.Add(backupThingDefs.Where(x => (!DefDatabase<ThingDef>.AllDefsListForReading.Contains(x) && x.defName.Contains(tag)) && (x.defName.Contains("_Gun_") || x.defName.Contains("_Melee_"))));
+                DefDatabase<RecipeDef>.Add(backupRecipeDefs.Where(x => (!DefDatabase<RecipeDef>.AllDefsListForReading.Contains(x) && x.defName.Contains(tag)) && (x.defName.Contains("_Gun_") || x.defName.Contains("_Melee_"))));
             }
         }
         
@@ -216,10 +225,14 @@ namespace AdeptusMechanicus.settings
                 DefDatabase<ThingDef>.defsList.RemoveAll(x => list.Contains(x));
                 DefDatabase<ThingDef>.defsByName.RemoveAll(x => list.Contains(x.Value));
                 DefDatabase<ThingDef>.defsByShortHash.RemoveAll(x => list.Contains(x.Value));
+                DefDatabase<RecipeDef>.defsList.RemoveAll(x => list.Contains(x.ProducedThingDef));
+                DefDatabase<RecipeDef>.defsByName.RemoveAll(x => list.Contains(x.Value.ProducedThingDef));
+                DefDatabase<RecipeDef>.defsByShortHash.RemoveAll(x => list.Contains(x.Value.ProducedThingDef));
             }
             else
             {
-                DefDatabase<ThingDef>.Add(backup.Where(x => !DefDatabase<ThingDef>.AllDefsListForReading.Contains(x) && list.Contains(x)));
+                DefDatabase<ThingDef>.Add(backupThingDefs.Where(x => !DefDatabase<ThingDef>.AllDefsListForReading.Contains(x) && list.Contains(x)));
+                DefDatabase<RecipeDef>.Add(backupRecipeDefs.Where(x => !DefDatabase<RecipeDef>.AllDefsListForReading.Contains(x) && list.Contains(x.ProducedThingDef)));
             }
         }
         
@@ -245,26 +258,38 @@ namespace AdeptusMechanicus.settings
         {
 
             // Monolith Appears
-            if (!AllowNecronMonolith && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OGN_MonolithAppears != null)
+            {
+                if (!AllowNecronMonolith && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Deamonic Infestations
-            if (!AllowChaosDeamonicInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
-                parts.Add(new ScenPart_DisableIncident() {def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation != null)
+            {
+                if (!AllowChaosDeamonicInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Deamonic Incursions
-            if (!AllowChaosDeamonicIncursion && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion != null)
+            {
+                if (!AllowChaosDeamonicIncursion && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Tyranid Infestations
-            if (!AllowTyranidInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
-                parts.Remove(part);
-            if (AMAMod.Dev) Log.Message("Adeptus Mechanicus:: Updating Incident Settings");
+            if (AdeptusIncidentDefOf.OG_Tyranid_Infestation != null)
+            {
+                if (!AllowTyranidInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+                if (AMAMod.Dev) Log.Message("Adeptus Mechanicus:: Updating Incident Settings");
+            }
         }
 
         public void UpdateFactionsRequiredAtGameStart(bool allowed, List<FactionDef> defs)

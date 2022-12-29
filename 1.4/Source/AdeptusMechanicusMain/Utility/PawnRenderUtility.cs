@@ -58,7 +58,11 @@ namespace AdeptusMechanicus
 
             if (AdeptusIntergrationUtility.enabled_AlienRaces)
             {
-            //    return GetAlienPawnMesh(portrait, pawn, facing, wantsBody);
+                if (!wantsBody)
+                {
+                    return HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(facing);
+                }
+                return HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(pawn).MeshAt(facing);
             }
             if (!wantsBody)
             {

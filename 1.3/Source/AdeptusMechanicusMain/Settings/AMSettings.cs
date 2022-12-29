@@ -245,22 +245,22 @@ namespace AdeptusMechanicus.settings
         {
 
             // Monolith Appears
-            if (!AllowNecronMonolith && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
+            if (!AllowNecronMonolith && AdeptusIncidentDefOf.OGN_MonolithAppears != null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
                 parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
             else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
                 parts.Remove(part);
             // Deamonic Infestations
-            if (!AllowChaosDeamonicInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
+            if (!AllowChaosDeamonicInfestation && AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation  != null&& !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
                 parts.Add(new ScenPart_DisableIncident() {def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
             else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
                 parts.Remove(part);
             // Deamonic Incursions
-            if (!AllowChaosDeamonicIncursion && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
+            if (!AllowChaosDeamonicIncursion && AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion!=null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
                 parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
             else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
                 parts.Remove(part);
             // Tyranid Infestations
-            if (!AllowTyranidInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
+            if (!AllowTyranidInfestation && AdeptusIncidentDefOf.OG_Tyranid_Infestation != null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
                 parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
             else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
                 parts.Remove(part);
@@ -731,7 +731,7 @@ namespace AdeptusMechanicus.settings
             }
             Scribe_Collections.Look<RaceSettingHandle>(ref this.raceSettings, "raceSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             Scribe_Collections.Look<FactionSettingHandle>(ref this.factionSettings, "factionSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
-            if (Scribe.mode == LoadSaveMode.Saving)
+            if (Scribe.mode == LoadSaveMode.Saving && !PatchDisabled.NullOrEmpty())
             {
                 // create the data structure we're going to save.
                 _CompatabilityPatchesScribeHelper = PatchDisabled.ToDictionary(
