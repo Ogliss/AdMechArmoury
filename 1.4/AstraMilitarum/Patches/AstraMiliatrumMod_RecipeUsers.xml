@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
+	<Operation Class="PatchOperationSequenceOptional">
+		<mods>
+			<li>QX.AstraMilitarum</li>
+		</mods>
+		<label>Use Astra Crafting tables</label>
+		<optional>true</optional>
 		<operations>
-			<li Class="PatchOperationFindModID">
-				<mods>
-					<li>QX.AstraMilitarum</li>
-				</mods>
-				<match Class="PatchOperationSequence">
-					<operations>
-						<li Class="PatchOperationRemove">
-							<xpath>/Defs/ThingDef[
-							(contains(@Name, 'Apparel') or 
-							contains(@Name, 'Armor') or 
-							contains(@Name, 'Wargear')) 
-							]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
-						</li>
-						<li Class="PatchOperationRemove">
-							<xpath>/Defs/ThingDef[
-							(contains(@Name, 'Gun') or 
-							contains(defName, 'Gun') or 
-							contains(@Name, 'MeleeWeapon') or 
-							contains(defName, 'MeleeWeapon')) 
-							]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
-						</li>
-						<li Class="PatchOperationReplace">
-							<xpath>/Defs/ThingDef/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
-							<value>
-								<li>ImperialFabricator</li>
-							</value>
-						</li>
-						<!--li Class="PatchOperationRemove"> and 
-							/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]
-							<xpath>/Defs/WorkGiverDef[defName="DoBillsImperialMachining"]</xpath>
-						</li-->
-						<li Class="PatchOperationRemove">
-							<xpath>/Defs/ThingDef[defName = "OGI_TableMachining"]<!--/designationCategory--></xpath>
-						</li>
-					</operations>
-				</match>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+				(contains(@Name, 'Apparel') or 
+				contains(@Name, 'Armor') or 
+				contains(@Name, 'Wargear')) 
+				]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+				(contains(@Name, 'Gun') or 
+				contains(defName, 'Gun') or 
+				contains(@Name, 'MeleeWeapon') or 
+				contains(defName, 'MeleeWeapon')) 
+				]/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]</xpath>
+				<value>
+					<li>ImperialFabricator</li>
+				</value>
+			</li>
+			<!--li Class="PatchOperationRemove"> and 
+				/recipeMaker/recipeUsers/li[text()="OGI_TableMachining"]
+				<xpath>/Defs/WorkGiverDef[defName="DoBillsImperialMachining"]</xpath>
+			</li-->
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "OGI_TableMachining"]<!--/designationCategory--></xpath>
 			</li>
 		</operations>	
 	</Operation>

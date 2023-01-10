@@ -245,25 +245,38 @@ namespace AdeptusMechanicus.settings
         {
 
             // Monolith Appears
-            if (!AllowNecronMonolith && AdeptusIncidentDefOf.OGN_MonolithAppears != null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OGN_MonolithAppears != null)
+            {
+                if (!AllowNecronMonolith && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OGN_MonolithAppears });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OGN_MonolithAppears)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Deamonic Infestations
-            if (!AllowChaosDeamonicInfestation && AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation  != null&& !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
-                parts.Add(new ScenPart_DisableIncident() {def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation != null)
+            {
+                if (!AllowChaosDeamonicInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Daemonic_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Deamonic Incursions
-            if (!AllowChaosDeamonicIncursion && AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion!=null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion != null)
+            {
+                if (!AllowChaosDeamonicIncursion && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Chaos_Deamon_Deamonic_Incursion)) is ScenPart part)
+                    parts.Remove(part);
+            }
             // Tyranid Infestations
-            if (!AllowTyranidInfestation && AdeptusIncidentDefOf.OG_Tyranid_Infestation != null && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
-                parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
-            else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
-                parts.Remove(part);
+            if (AdeptusIncidentDefOf.OG_Tyranid_Infestation != null)
+            {
+                if (!AllowTyranidInfestation && !parts.Any(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)))
+                    parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
+                else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
+                    parts.Remove(part);
+                if (AMAMod.Dev) Log.Message("Adeptus Mechanicus:: Updating Incident Settings");
+            }
             if (AMAMod.Dev) Log.Message("Adeptus Mechanicus:: Updating Incident Settings");
         }
 

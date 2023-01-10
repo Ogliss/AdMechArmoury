@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
         public override string PackageID => "QX.AstraMilitarum";
         public override string Label => "Astra Miliatrum:: Core";
         public bool CE => AdeptusIntergrationUtility.enabled_CombatExtended;
-        private List<PatchDescription> patches;
+        private List<PatchDescription> patches = null;
         public override List<PatchDescription> Patches
         {
             get
@@ -22,7 +22,7 @@ namespace AdeptusMechanicus
                 if (patches == null)
                 {
 
-                    List<PatchDescription> list = new List<PatchDescription>();
+                    patches = new List<PatchDescription>();
                     /*
                     {
                     new PatchDescription("AstraMiliatrumMod_ArmourPatch.xml", "Astra Miliatrum Armour Patch", "Removes the Astra Militarum versions of dupped Armour when active", true),
@@ -37,15 +37,22 @@ namespace AdeptusMechanicus
                     }
                     patches = list;
                     */
-                    foreach (PatchDescriptionDef item in DefDatabase<PatchDescriptionDef>.AllDefsListForReading)
+                    if (!settings.DisabledPatches.NullOrEmpty())
                     {
-                        if (!item.linkedModID.NullOrEmpty() && item.linkedModID == PackageID)
+                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatches.Count} Patches");
+                        foreach (var item in settings.DisabledPatches)
                         {
-                            Log.Message($"Option patch  {item.defName} setup for {Label}");
-                            list.Add(new PatchDescription(item));
+                            if (!item.linkedModID.NullOrEmpty() && !PackageID.NullOrEmpty())
+                            {
+                            //    Log.Message($"Checking {item.label} setup for {Label}");
+                                if (item.linkedModID.Contains(PackageID) && item.optional)
+                                {
+                             //       Log.Message($"Optional patch {item.label} setup for {Label}");
+                                    patches.Add(item);
+                                }
+                            }
                         }
                     }
-                    patches = list;
                 }
                 return patches;
             }
@@ -98,12 +105,17 @@ namespace AdeptusMechanicus
                     }
                     patches = list;
                     */
-                    foreach (PatchDescriptionDef item in DefDatabase<PatchDescriptionDef>.AllDefsListForReading)
+                    if (!settings.DisabledPatches.NullOrEmpty())
                     {
-                        if (item.linkedModID.NullOrEmpty() || item.linkedModID == PackageID)
+                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatches.Count} Patches");
+                        foreach (var item in AMAMod.settings.DisabledPatches)
                         {
-                            Log.Message($"Option patch  {item.defName} setup for {Label}");
-                            list.Add(new PatchDescription(item));
+                            Log.Message($"checking {item.file}");
+                            if (item.linkedModID.NullOrEmpty() || item.linkedModID.Contains(PackageID))
+                            {
+                                Log.Message($"Option patch  {item.label} setup for {Label}");
+                                list.Add(item);
+                            }
                         }
                     }
                     patches = list;

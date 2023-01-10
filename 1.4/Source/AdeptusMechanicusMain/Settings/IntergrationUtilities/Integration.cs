@@ -10,6 +10,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    [StaticConstructorOnStartup]
     public abstract class Integration// : IExposable
     {
         public virtual string PackageID => "";
@@ -34,23 +35,22 @@ namespace AdeptusMechanicus
                 for (int i = 0; i < Patches.Count; i++)
                 {
                     var patch = Patches[i];
-                    if (!patch.optional)
+                    if (!patch.DrawOption)
                     {
                         continue;
                     }
-                    var status = settings.PatchDisabled[patch];
-                    if (!flag && i + 1 > Patches.Count / 2)
+                    bool status = patch.enabled;
+                    if (i != 1 && !flag && i + 1 > Patches.Count / 2)
                     {
                         listing_General.NewColumn();
                         flag = true;
                     }
                     listing_General.CheckboxLabeled(patch.label, ref status, patch.tooltip);
-                    if (settings.PatchDisabled[patch] != status)
+                    if (patch.enabled != status)
                     {
                         IntergrationMenus.restart = true;
                     }
-                    settings.PatchDisabled[patch] = status;
-
+                    patch.enabled = status;
                 }
                 listing_XML.EndSection(listing_General);
                 length_PatchesMenuContent = listing_General.MaxColumnHeightSeen;

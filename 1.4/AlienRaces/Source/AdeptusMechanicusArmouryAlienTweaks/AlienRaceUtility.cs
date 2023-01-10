@@ -114,6 +114,16 @@ namespace AdeptusMechanicus
         {
             return GrowthMomentAges;
         }
+        
+        public static int RaceMinTraitAge(int age, Pawn pawn)
+        {
+            return age;
+        }
+        
+        public static int RaceMinSexualityTraitAge(int age, Pawn pawn)
+        {
+            return age;
+        }
 
         public static SimpleCurve RaceAgeSkillMaxFactorCurve(SimpleCurve curve, Pawn pawn)
         {
@@ -128,6 +138,17 @@ namespace AdeptusMechanicus
         {
             source.Concat(AlienRace.HarmonyPatches.FilterBackstories(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)), pawn, slot));
         }
+        public static void AddRecipes(ThingDef from, ThingDef to, List<ThingDef> races = null)
+        {
+            foreach (var item in from.AllRecipes)
+            {
+                if (!to.AllRecipes.Contains(item) && (races.NullOrEmpty() || !AdeptusIntergrationUtility.enabled_AlienRaces || races.Any(x => RaceRestrictionSettings.CanDoRecipe(item, x))))
+                {
+                    to.allRecipesCached.Add(item);
+                }
+            }
+        }
+
         public static void DoRacialRestrictionsFor(ThingDef race, string whiteTag, List<string> blackTags = null, List<ResearchProjectDef> whiteResearches = null, List<ResearchProjectDef> blackResearches = null, List<ThingDef> whiteApparel = null, List<ThingDef> blackApparel = null, List<ThingDef> whiteWeapons = null, List<ThingDef> blackWeapons = null, List<ThingDef> whitePlants = null, List<ThingDef> blackPlants = null, List<ThingDef> whiteAnimals = null, List<ThingDef> blackAnimals = null, List<ThingDef> racesNotXeno = null, bool Logging = false)
         {
             List<ThingDef> races = new List<ThingDef>();

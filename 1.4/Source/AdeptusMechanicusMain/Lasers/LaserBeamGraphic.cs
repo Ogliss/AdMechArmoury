@@ -10,33 +10,33 @@ using Verse;
 namespace AdeptusMechanicus.Lasers
 {
     [StaticConstructorOnStartup]
-    class LaserBeamGraphic : Thing
+    public class LaserBeamGraphic : Thing
     {
         #region Vars
         public LaserBeamDef projDef;
-        float beamWidth;
-        float beamLength;
-        float flareWidth = -1f;
-        float flareWidthMod = 1f;
-        float flareLength = -1f;
-        float flareLengthMod = 1f;
-        int ticks;
-        int colorIndex = 2;
-        Vector3 a;
-        Vector3 b;
+        public float beamWidth;
+        public float beamLength;
+        public float flareWidth = -1f;
+        public float flareWidthMod = 1f;
+        public float flareLength = -1f;
+        public float flareLengthMod = 1f;
+        public int ticks;
+        public int colorIndex = 2;
+        public Vector3 a;
+        public Vector3 b;
 
         public Matrix4x4 drawingMatrixBeam = default(Matrix4x4);
         public Matrix4x4 drawingMatrixFlare = default(Matrix4x4);
-        Material materialBeam;
-        Mesh mesh;
-        Thing launcher;
-        Verb verb;
-        Thing hitThing;
-        ThingDef equipmentDef;
+        public Material materialBeam;
+        public Mesh mesh;
+        public Thing launcher;
+        public Verb verb;
+        public Thing hitThing;
+        public ThingDef equipmentDef;
         public List<Mesh> meshes = new List<Mesh>();
         public List<Material> mats = new List<Material>();
-        EffecterDef effecterDef;
-        Effecter effecter;
+        public EffecterDef effecterDef;
+        public Effecter effecter;
         public int ticksToDetonation;
         public override void ExposeData()
         {

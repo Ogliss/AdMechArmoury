@@ -1,63 +1,34 @@
 ﻿using HarmonyLib;
+using RimWorld.BaseGen;
 using System.Collections.Generic;
 using Verse;
 
 namespace AdeptusMechanicus.settings
 {
-    public class PatchDescriptionDef : Def
+    public class PatchDescription : IExposable
     {
         public string file;
-        public string linkedModID;
-        public string tooltip;
-        public bool optional = true;
-        public bool enabledByDefault = true;
-
-        public override IEnumerable<string> ConfigErrors()
-        {
-            IEnumerable<string> strings = base.ConfigErrors();
-            if (file.NullOrEmpty())
-            {
-                strings.AddItem($"file null for PatchDescriptionDef {defName}");
-            }
-            if (label.NullOrEmpty())
-            {
-                strings.AddItem($"label null for PatchDescriptionDef {defName}");
-            }
-            return strings;
-        }
-
-    }
-
-    public struct PatchDescription
-    {
-        public string file;
-        public string linkedModID;
+        public string key;
+        public List<string> linkedModID;
         public string label;
         public string tooltip;
-        public bool optional;
-        public bool enabledByDefault;
-
-        public PatchDescription(string file, string label, string linkedModID = null, string tooltip = null, bool optional = true, bool enabledByDefault = true)
+        public bool optional = false;
+        public bool enabledByDefault = true;
+        public bool enabled;
+        public PatchDescription() {}
+        public PatchDescription(string file, string label = null, List<string> linkedModIDs = null, string tooltip = null, bool optional = true, bool enabledByDefault = true)
         {
-            this.file = file;
-            this.linkedModID = linkedModID;
-            this.label = label;
+            this.file = file.Substring(file.LastIndexOf("\\")+1);
+            this.linkedModID = new List<string>();
+            if (!linkedModIDs.NullOrEmpty()) this.linkedModID.AddRange(linkedModIDs);
+            this.label = label ?? this.file;
             this.tooltip = tooltip;
             this.optional = optional;
             this.enabledByDefault = enabledByDefault;
-        }
-        public PatchDescription(PatchDescriptionDef def)
-        {
-            this.file = def.defName;
-            if (!file.EndsWith(".xml"))
+            if (enabledByDefault)
             {
-                this.file += ".xml";
+                enabled = true;
             }
-            this.label = def.label;
-            this.linkedModID = def.linkedModID;
-            this.tooltip = def.tooltip;
-            this.optional = def.optional;
-            this.enabledByDefault = def.enabledByDefault;
         }
         public bool DrawOption
         {
@@ -65,6 +36,18 @@ namespace AdeptusMechanicus.settings
             {
                 return this.optional;
             }
+        }
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref this.file, "file");
+            Scribe_Values.Look(ref this.key, "key");
+            Scribe_Values.Look(ref this.label, "label");
+            Scribe_Values.Look(ref this.tooltip, "tooltip");
+            Scribe_Values.Look(ref this.optional, "optional");
+            Scribe_Values.Look(ref this.enabledByDefault, "enabledByDefault");
+            Scribe_Values.Look(ref this.enabled, "enabled", this.enabledByDefault);
+            Scribe_Collections.Look(ref this.linkedModID, "linkedModIDs");
         }
     }
 }

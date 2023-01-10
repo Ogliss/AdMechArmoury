@@ -11,6 +11,11 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    public class AdvancedTool : Tool
+    {
+        public QualityCategory minQuality = QualityCategory.Awful;
+    }
+
     // AdeptusMechanicus.AdvancedVerbProperties
     public partial class AdvancedVerbProperties : VerbProperties, IMuzzlePosition, IAdvancedVerb
     {
@@ -19,6 +24,7 @@ namespace AdeptusMechanicus
         public float heavyWeaponSetupTime = -1f;
 
         public Reliability reliability = Reliability.NA;
+        public QualityCategory minQuality = QualityCategory.Awful; 
 
         public bool rapidFire = false;
         public float rapidFireRange = 0.55f;

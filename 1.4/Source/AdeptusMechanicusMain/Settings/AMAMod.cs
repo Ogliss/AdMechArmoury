@@ -1,6 +1,7 @@
 ﻿using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.HarmonyInstance;
 using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace AdeptusMechanicus.settings
                         if (menu.IsActive && (!menu.XenobiologisSub || !AdeptusIntergrationUtility.enabled_MagosXenobiologis))
                         {
                             list_Adeptus.Add(menu);
-                            if (Dev) Log.Message($"loading {type.Name}");
+                            if (Dev) Log.Message($"loading {menu.Label}");
                         }
                     }
                 }
@@ -47,12 +48,7 @@ namespace AdeptusMechanicus.settings
                         if (menu.IsActive)
                         {
                             list_Intergrations.Add(menu);
-                            StringBuilder sb = new StringBuilder($"loading {type.Name}");
-                            if (!menu.Patches.NullOrEmpty())
-                            {
-                                patches.AddRange(menu.Patches);
-                                sb.AppendLine($"    with {menu.Patches.Count}");
-                            }
+                            StringBuilder sb = new StringBuilder($"loading {menu.Label}");
                             if (Dev) Log.Message(sb.ToString());
                         }
                     }
@@ -63,17 +59,27 @@ namespace AdeptusMechanicus.settings
         }
         public void FilterPatches(ModContentPack content)
         {
-            showArmouryIntergrationMenu = !Patches.NullOrEmpty() || (AdeptusIntergrationUtility.enabled_AlienRaces && Dev);
-            if (!Patches.NullOrEmpty())
+            var allPatches = content.Patches as List<PatchOperation>;
+            if (settings.DisabledPatches == null)
             {
-                IntergrationOptions = (int)Mathf.Round((Patches.Count / 2) + 0.25f);
-                settings.PatchDisabled = AMAMod.Patches.ToDictionary(p => p, p => p.enabledByDefault);
-                var allPatches = content.Patches as List<PatchOperation>;
-                foreach (var patch in Patches)
+                settings.DisabledPatches = new List<PatchDescription>();
+            }
+            foreach (var item in content.Patches as List<PatchOperation>)
+            {
+                if (item is IOptionalPatch optional && !settings.DisabledPatches.Any(x => x.file == item.sourceFile))
+                {
+                    settings.DisabledPatches.Add(new PatchDescription(item.sourceFile, optional.Label, optional.LinkedModIDs, optional.ToolTip, optional.Optional, optional.EnabledByDefault));
+                }
+            }
+            showArmouryIntergrationMenu = !settings.DisabledPatches.NullOrEmpty() || (AdeptusIntergrationUtility.enabled_AlienRaces && Dev);
+            if (!settings.DisabledPatches.NullOrEmpty())
+            {
+                IntergrationOptions = (int)Mathf.Round((settings.DisabledPatches.Count / 2) + 0.25f);
+                foreach (var patch in settings.DisabledPatches)
                 {
                     if (patch.optional)
                     {
-                        if (settings.PatchDisabled[patch] == false)
+                        if (!patch.enabled)
                         {
                             if (Dev) Log.Message("RemoveAll XML Patch: " + patch.label);
                             allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
@@ -97,6 +103,9 @@ namespace AdeptusMechanicus.settings
             {
                 //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
             }
+            StringBuilder builder = new StringBuilder($"Adeptus Mechanicus:: Loading {content.Patches.Where(x => x is IOptionalPatch modID && modID.Optional).Count()} Optional XML Patches out of {content.Patches.Count()}");
+
+            if (AMAMod.Dev) Log.Message(builder.ToString());
             LoadIntergrations();
             FilterPatches(content);
             if (AdeptusIntergrationUtility.enabled_rooloDualWield)
@@ -159,24 +168,6 @@ namespace AdeptusMechanicus.settings
         public static bool Dev => Prefs.DevMode && SteamUtility.SteamPersonaName.Contains("Ogliss");
         public string ModLoaded() => "Mods Loaded: " + "AdeptusMechanicus.ModName".Translate();
 
-        public int PatchesCount
-        {
-            get
-            {
-                if (patchesCount == -1)
-                {
-                    patchesCount = optionalPatchesCount % 2 == 0 ? optionalPatchesCount / 2 : optionalPatchesCount / 2 + 1;
-                }
-                return patchesCount;
-            }
-        }
-        public static List<PatchDescription> Patches
-        {
-            get
-            {
-                return patches;
-            }
-        }
 
         #endregion
 
@@ -314,13 +305,12 @@ namespace AdeptusMechanicus.settings
         public static AMAMod Instance;
         public static AMSettings settings;
         public static float lineheight = (Text.LineHeight + 2f);
-        private int optionalPatchesCount = Patches.FindAll(x => x.optional).Count;
         private int patchesCount = -1;
         private float menu = 0;
         public float armouryMenuInc = 0f;
         public float XenobiologisMenuInc = 0f;
         private float intergrationMenuInc = 0f;
-        private static List<PatchDescription> patches = new List<PatchDescription>();
+        public static List<PatchDescription> patches = new List<PatchDescription>();
         private float inc = 0;
         bool showArmouryIntergrationMenu;
         bool showArmouryIntergrationOptions = false;

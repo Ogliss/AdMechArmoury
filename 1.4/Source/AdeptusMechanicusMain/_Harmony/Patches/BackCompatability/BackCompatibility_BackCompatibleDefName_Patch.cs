@@ -107,6 +107,16 @@ namespace AdeptusMechanicus.HarmonyInstance
                         __result = "OGAS_Gun_BoltGun_GodwynDeaz";
                         return;
                     }
+                    if (defName == ("OGIG_Apparel_ValhallanSnowGoggles"))
+                    {
+                        __result = "OGIG_Apparel_Valhallan_Goggles";
+                        return;
+                    }
+                    if (defName == ("OGIG_Apparel_ArmageddonDustGoggles"))
+                    {
+                        __result = "OGIG_Apparel_Armageddon_Goggles";
+                        return;
+                    }
                     if (defName.Contains("OGE_Apparel_"))
                     {
                         newName = defName;

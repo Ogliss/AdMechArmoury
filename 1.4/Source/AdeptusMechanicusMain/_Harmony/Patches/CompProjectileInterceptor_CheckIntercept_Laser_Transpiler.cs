@@ -57,6 +57,8 @@ namespace AdeptusMechanicus.HarmonyInstance
                 Vector3 vec = LaserIntersectionPoint(newExactPos, lastExactPos, __instance.parent.Position.ToVector3Shifted(), __instance.Props.radius - 0.5f)[0];
                 vec.y = AltitudeLayer.MoteOverhead.AltitudeFor();
                 beam.destination = vec;
+                beam.UpdateBeam(beam.origin, vec);
+
                 return vec;
             }
             return newExactPos;

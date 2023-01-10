@@ -1,4 +1,5 @@
-﻿using AdeptusMechanicus.settings;
+﻿using AdeptusMechanicus;
+using AdeptusMechanicus.settings;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -6,8 +7,8 @@ using System.Xml;
 namespace Verse
 {
 	// Token: 0x02000215 RID: 533
-	public class PatchOperationFindModID : PatchOperation
-	{
+	public class PatchOperationFindModID : PatchOperation, IOptionalPatch
+    {
 		public bool log = false;
 		public override bool ApplyWorker(XmlDocument xml)
 		{
@@ -74,5 +75,20 @@ namespace Verse
 
 		// Token: 0x04000B39 RID: 2873
 		private PatchOperation nomatch;
+
+        private string label;
+        private string toolTip;
+        private bool optional = false;
+        private bool enabledByDefault = true;
+
+        public bool Optional => optional;
+
+        public bool EnabledByDefault => enabledByDefault;
+
+        public string Label => label;
+
+        public string ToolTip => toolTip;
+
+		public List<string> LinkedModIDs => this.mods;
 	}
 }

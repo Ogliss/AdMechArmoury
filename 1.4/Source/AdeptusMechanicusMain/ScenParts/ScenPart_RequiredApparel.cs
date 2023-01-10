@@ -34,6 +34,22 @@ namespace AdeptusMechanicus
                     else
                     {
                         Apparel apparel = (Apparel)ThingMaker.MakeThing(requiredApparel);
+                        if (!pawn.apparel.CanWearWithoutDroppingAnything(apparel.def))
+                        {
+                            List<Apparel> list = new List<Apparel>();
+                            for (int i = 0; i < pawn.apparel.wornApparel.Count; i++)
+                            {
+                                if (!ApparelUtility.CanWearTogether(apparel.def, pawn.apparel.wornApparel[i].def, pawn.RaceProps.body))
+                                {
+                                    list.Add(pawn.apparel.wornApparel[i]);
+                                }
+                            }
+                            foreach (var item in list)
+                            {
+                                pawn.apparel.Remove(item);
+                                item.Destroy();
+                            }
+                        }
                         pawn.apparel.Wear(apparel, true);
                     }
                 }

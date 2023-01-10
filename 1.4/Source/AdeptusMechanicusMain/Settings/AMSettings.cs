@@ -5,6 +5,7 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 using RimWorld;
+using System.Text;
 
 namespace AdeptusMechanicus.settings
 {
@@ -238,20 +239,21 @@ namespace AdeptusMechanicus.settings
         
         public void UpdateScenarioDisabledIncidents()
         {
+            StringBuilder builder = new StringBuilder("Adeptus Mechanicus:: Updating Incident Settings");
             if (Find.Scenario?.parts is List<ScenPart> parts)
             {
                 UpdateScenarioParts(parts);
+                builder.AppendLine("Current Scenario Updated");
             }
-            else
+            foreach (var item in DefDatabase<ScenarioDef>.AllDefsListForReading)
             {
-                foreach (var item in DefDatabase<ScenarioDef>.AllDefsListForReading)
+                if (item.scenario.parts is List<ScenPart> parts2)
                 {
-                    if (item.scenario.parts is List<ScenPart> parts2)
-                    {
-                        UpdateScenarioParts(parts2);
-                    }
+                    UpdateScenarioParts(parts2);
+                    builder.AppendLine($"Updated {item.LabelCap}");
                 }
             }
+            if (AMAMod.Dev) Log.Message(builder.ToString());
         }
 
         private void UpdateScenarioParts(List<ScenPart> parts)
@@ -288,7 +290,6 @@ namespace AdeptusMechanicus.settings
                     parts.Add(new ScenPart_DisableIncident() { def = AdeptusScenPartDefOf.DisableIncident, incident = AdeptusIncidentDefOf.OG_Tyranid_Infestation });
                 else if (parts.Find(x => (x is ScenPart_DisableIncident disableIncident && disableIncident.incident == AdeptusIncidentDefOf.OG_Tyranid_Infestation)) is ScenPart part)
                     parts.Remove(part);
-                if (AMAMod.Dev) Log.Message("Adeptus Mechanicus:: Updating Incident Settings");
             }
         }
 
@@ -591,8 +592,8 @@ namespace AdeptusMechanicus.settings
         public bool rimTime = false;
         #endregion
         // Compatability Patch Settings
-        private Dictionary<string, bool> _CompatabilityPatchesScribeHelper;
-        public Dictionary<PatchDescription, bool> PatchDisabled;
+        private List<PatchDescription> _PatchesCompatabilityScribeHelper = new List<PatchDescription>();
+        public List<PatchDescription> DisabledPatches = new List<PatchDescription>();
 
         // Racial Restriction Settings
         public List<RaceSettingHandle> RaceSettings => raceSettingsActive ??= raceSettings.FindAll(x=> x.Loaded);
@@ -760,33 +761,16 @@ namespace AdeptusMechanicus.settings
             }
             Scribe_Collections.Look<RaceSettingHandle>(ref this.raceSettings, "raceSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             Scribe_Collections.Look<FactionSettingHandle>(ref this.factionSettings, "factionSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
-            if (Scribe.mode == LoadSaveMode.Saving && !PatchDisabled.NullOrEmpty())
+            if (Scribe.mode == LoadSaveMode.Saving && !DisabledPatches.NullOrEmpty())
             {
                 // create the data structure we're going to save.
-                _CompatabilityPatchesScribeHelper = PatchDisabled.ToDictionary(
-                    // delegate to transform a dict item into a key, we want the file property of the old key. ( PatchDescription => string )
-                    k => k.Key.file,
-
-                    // same for the value, which is just the value. ( bool => bool )
-                    v => v.Value);
+                _PatchesCompatabilityScribeHelper = DisabledPatches;
             }
-            Scribe_Collections.Look(ref _CompatabilityPatchesScribeHelper, "patches", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref _PatchesCompatabilityScribeHelper, "patches");
             // finally, when the scribe finishes, we need to transform this back to a data structure we understand.
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                // for each stored patch, update the value in our dictionary.
-                if (!_CompatabilityPatchesScribeHelper.EnumerableNullOrEmpty())
-                {
-                    foreach (var storedPatch in _CompatabilityPatchesScribeHelper)
-                    {
-                        var index = AMAMod.Patches.FindIndex(p => p.file == storedPatch.Key);
-                        if (index >= 0) // match found
-                        {
-                            var patch = AMAMod.Patches[index];
-                            PatchDisabled[patch] = storedPatch.Value;
-                        }
-                    }
-                }
+                DisabledPatches = _PatchesCompatabilityScribeHelper;
             }
             /*
             if (Scribe.mode == LoadSaveMode.Saving)

@@ -25,21 +25,42 @@ namespace AdeptusMechanicus.Lasers
             get => base.origin;
             set => base.origin = value;
         }
-        Effecter effecter;
-        Thing hitThing;
+        public Effecter effecter;
+        public Thing hitThing;
+        public LaserBeamGraphic Beamgraphic;
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+
+        }
         public void SpawnBeam(Vector3 a, Vector3 b, Thing hitThing = null)
         {
-            LaserBeamGraphic graphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
-            if (graphic == null) return;
-            graphic.ticksToDetonation = this.def.projectile.explosionDelay;
-            graphic.projDef = def;
+            Beamgraphic = ThingMaker.MakeThing(def.beamGraphic, null) as LaserBeamGraphic;
+            if (Beamgraphic == null) return;
+            Beamgraphic.ticksToDetonation = this.def.projectile.explosionDelay;
+            Beamgraphic.projDef = def;
             Pawn pawn = launcher as Pawn;
             Building_TurretGun turretGun = launcher as Building_TurretGun;
 
             Verb verb = pawn?.equipment?.PrimaryEq?.PrimaryVerb ?? turretGun?.AttackVerb;
-            graphic.Setup(launcher, a, b, verb, hitThing, effecter, def.explosionEffect);
-            GenSpawn.Spawn(graphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
+            Beamgraphic.Setup(launcher, a, b, verb, hitThing, effecter, def.explosionEffect);
+            GenSpawn.Spawn(Beamgraphic, origin.ToIntVec3(), Map, WipeMode.Vanish);
+        }
+        public void UpdateBeam(Vector3 a, Vector3 b, Thing hitThing = null)
+        {
+            this.destination = b;
+            this.origin = a;
+            if (Beamgraphic == null)
+            {
+                SpawnBeam(a, b, hitThing);
+            }
+            else
+            {
+                Beamgraphic.a = a;
+                Beamgraphic.b = b;
+                Beamgraphic.hitThing = hitThing;    
+            }
         }
 
         public void SpawnBeamReflections(Vector3 a, Vector3 b, int count)

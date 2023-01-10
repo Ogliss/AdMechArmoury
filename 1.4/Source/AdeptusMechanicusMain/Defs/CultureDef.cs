@@ -10,6 +10,7 @@ using Verse.Grammar;
 
 namespace AdeptusMechanicus
 {
+
     // AdeptusMechanicus.CultureDef
     public class CultureDef : RimWorld.CultureDef
 	{

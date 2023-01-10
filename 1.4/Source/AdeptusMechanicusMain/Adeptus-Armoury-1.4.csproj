@@ -79,6 +79,7 @@
     </Reference>
     <Reference Include="AdvancedGraphics">
       <HintPath>..\..\..\..\OgsTools\AdvancedGraphics\1.4\bin\Debug\AdvancedGraphics.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\1.4\Assemblies\AlienRace.dll</HintPath>
@@ -142,12 +143,16 @@
     <Compile Include="Backstories\PawnBioDef.cs" />
     <Compile Include="DeathActionWorkers\DeathActionWorker_WarpSpawn.cs" />
     <Compile Include="DeathActionWorkers\DeathActionWorker_NoCorpse.cs" />
+    <Compile Include="Defs\PatchDescriptionDef.cs" />
     <Compile Include="Defs\SwarmKindLifeStage.cs" />
     <Compile Include="DeOf\AdeptusThoughtDefOf.cs" />
     <Compile Include="GameConditions\WarpStormScale.cs" />
     <Compile Include="GameConditions\WarpStormState.cs" />
     <Compile Include="GameConditions\WarpStormType.cs" />
     <Compile Include="GameConditions\WarpStormUtility.cs" />
+    <Compile Include="Interfaces\IOptionalPatch.cs" />
+    <Compile Include="PatchOps\PatchOperationConditionalOptional.cs" />
+    <Compile Include="PatchOps\PatchOperationSequenceOptional.cs" />
     <Compile Include="ScenParts\ScenPart_RequiredApparel.cs" />
     <Compile Include="Utility\WarpLostPawnsTracker.cs" />
     <Compile Include="_Harmony\Patches\AA_TestingPatches.cs" />
@@ -206,8 +211,8 @@
     <Compile Include="_Harmony\Patches\ResearchPatches\MainTabWindow_Research_DrawRightRect_SubTabs_Transpiler.cs" />
     <Compile Include="_Harmony\Patches\ResearchPatches\MainTabWindow_Research_HeaderLabel_MultiFix_Patch.cs" />
     <Compile Include="_Harmony\Patches\Verbs\VerbProperties_GetForceMissFactorFor_Patch.cs" />
-    <Compile Include="_Harmony\Patches\VerbTracker_GetVerbsCommands_CompToggleFireMode_Patch.cs" />
-    <Compile Include="_Harmony\Patches\VerbUtility_HarmsHealth_CompToggleFireMode_Patch.cs" />
+    <Compile Include="_Harmony\Patches\Verbs\VerbTracker_GetVerbsCommands_CompToggleFireMode_Patch.cs" />
+    <Compile Include="_Harmony\Patches\Verbs\VerbUtility_HarmsHealth_CompToggleFireMode_Patch.cs" />
     <Compile Include="Hediffs\HediffComps\HediffComp_DetonateOnDeath.cs" />
     <Compile Include="Comps\CompFireStarter.cs" />
     <Compile Include="Comps\CompOrbitalBeam.cs" />
@@ -587,7 +592,7 @@
     <Compile Include="_Harmony\Patches\BackCompatability\BackCompatibility_BackCompatibleDefName_Patch.cs" />
     <Compile Include="_Harmony\Patches\ApparelUtility_CanWearTogether_Wargear_Patch.cs" />
     <Compile Include="_Harmony\Patches\Projectile_CanHit_PhaseShifter_Patch.cs" />
-    <Compile Include="_Harmony\Patches\CompEquippable_PrimaryVerb_CompToggleFireMode_Patch.cs" />
+    <Compile Include="_Harmony\Patches\Verbs\CompEquippable_PrimaryVerb_CompToggleFireMode_Patch.cs" />
     <Compile Include="Hediffs\Hediff_Removable.cs" />
     <Compile Include="Hediffs\Hediff_RegeneratingPart.cs" />
     <Compile Include="Utility\BodypartUtility.cs" />
