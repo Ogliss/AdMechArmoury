@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationSequenceOptional">
+	<Operation Class="PatchOperationOptional">
+		<patchName>RemoveDupedAstraArmour</patchName>
+		<label>Remove Duped Astra Armour</label>
+		<toolTip>Removes Astra versions of armour also included in this mod</toolTip>
+		<log>true</log>
 		<mods>
 			<li>QX.AstraMilitarum</li>
 		</mods>
-		<label>Remove Duped Astra Armour</label>
-		<optional>true</optional>
-		<operations>
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef
-				[
-					defName='IGStd-ArmorMk' or 
-					defName='IGStd-HelmetMk' or 
-					defName='IGStd-CaraArmorMk' or 
-					defName='IGStd-CaraHelmetMk' or 
-					defName='IG_ARM_KriegArmor' or 
-					defName='IG_ARM_KriegHelmet'
-				]</xpath>
-			</li>
-		</operations>	
+		<enabled Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef
+			[
+				defName='IGStd-ArmorMk' or 
+				defName='IGStd-HelmetMk' or 
+				defName='IGStd-CaraArmorMk' or 
+				defName='IGStd-CaraHelmetMk' or 
+				defName='IG_ARM_KriegArmor' or 
+				defName='IG_ARM_KriegHelmet'
+			]</xpath>	
+		</enabled>	
 	</Operation>
 	 
 </Patch>

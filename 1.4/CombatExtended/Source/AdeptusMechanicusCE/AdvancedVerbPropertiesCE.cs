@@ -1,6 +1,6 @@
-﻿using AdeptusMechanicus;
-using AdeptusMechanicus.ExtensionMethods;
+﻿using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.Lasers;
+
 using CombatExtended;
 using RimWorld;
 using System;
@@ -18,7 +18,6 @@ namespace AdeptusMechanicus
     {
         public bool debug = false;
         private float heavyWeaponSetupTime = -1f;
-
         private Reliability reliability = Reliability.NA;
 
         private bool rapidFire = false;

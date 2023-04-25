@@ -12,8 +12,8 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using System.Reflection.Emit;
 using UnityEngine;
-using OgsCompOversizedWeapon;
 using AdeptusMechanicus.settings;
+using AdvancedGraphics;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -61,7 +61,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (verb.verbProps.range > 1.48f)
                 {
                     FleckDef mote = moteDef;
-                    CompEquippable equippable = verb.EquipmentCompSource;
                     Vector3 origin = verb.CasterIsPawn ? verb.CasterPawn.Drawer.DrawPos : verb.Caster.DrawPos;
                     Vector3 a = verb.CurrentTarget.CenterVector3;
                     float aimAngle = 0f;
@@ -75,19 +74,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                     }
                     else
                     {
-                        OgsCompOversizedWeapon.CompOversizedWeapon compOversized = verb.EquipmentSource.TryGetCompFast<CompOversizedWeapon>();
-                        if (compOversized != null)
+                        if (verb.EquipmentSource.def.graphicData is GraphicData_Equippable equippable)
                         {
-                            bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
-                            Vector3 offsetMainHand = default(Vector3);
-                            Vector3 offsetOffHand = default(Vector3);
-                            float offHandAngle = aimAngle;
-                            float mainHandAngle = aimAngle;
-                            OversizedUtil.SetAnglesAndOffsets(compOversized.parent, compOversized.parent, aimAngle, verb.Caster, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
-                            //    if (DualWeapon && AMAMod.Dev) Log.Message("Throwing flash for " + compOversized.parent.LabelCap + " offsetMainHand: " + offsetMainHand + " offsetOffHand: " + offsetOffHand + " Using " + (!compOversized.FirstAttack ? "OffHand" : "MainHand") + " FirstAttack: " + compOversized.FirstAttack);
-                            origin += DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
-                            // origin += compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
-                            if (compOversized.Props.isDualWeapon) compOversized.FirstAttack = !compOversized.FirstAttack;
+                            bool DualWeapon = equippable.isDualWeapon;
+                            Vector3 vector = equippable.OffsetPosFor(verb.CasterPawn.Rotation, DualWeapon && (verb.burstShotsLeft | 2) == 0).RotatedBy(aimAngle);
+                            //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
+                            origin += vector;
                         }
                     }
 

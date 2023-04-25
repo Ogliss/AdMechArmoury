@@ -22,7 +22,29 @@ namespace AdeptusMechanicus
     public class CompColorableTwoFaction : CompColorableTwo
 	{
 		public CompProperties_FactionColorable Props => this.props as CompProperties_FactionColorable;
-		public override Color Color
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            if (this.parent.def.colorGenerator != null && (this.parent.Stuff == null || this.parent.Stuff.stuffProps.allowColorGenerators))
+            {
+                this.SetColorTwo(this.parent.def.colorGenerator.NewRandomizedColor());
+            }
+        }
+        public void SetColorTwo(Color value)
+        {
+            if (value == this.colorTwo)
+            {
+                return;
+            }
+            this.activeTwo = true;
+            this.colorTwo = value;
+            if (value == this.desiredColorTwo)
+            {
+                this.desiredColorTwo = null;
+            }
+            this.parent.Notify_ColorChanged();
+        }
+        public override Color Color
 		{
 			get
 			{
@@ -286,8 +308,9 @@ namespace AdeptusMechanicus
 
 		public Color factioncolor = Color.white;
 		public Color factioncolorTwo = Color.white;
+        public Color? desiredColorTwo;
 
-		protected bool factionactive;
+        protected bool factionactive;
 		protected bool factionactiveTwo;
 	}
 

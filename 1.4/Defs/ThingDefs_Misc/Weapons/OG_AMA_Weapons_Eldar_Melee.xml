@@ -177,10 +177,7 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
-		<comps>    
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
+		<comps>
 		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
@@ -212,18 +209,7 @@
 		</statBases>
 		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tickerType>Normal</tickerType>
-		<comps>    
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<!--
-				<angleAdjustmentNorth>-90</angleAdjustmentNorth>
-				<angleAdjustmentSouth>-90</angleAdjustmentSouth>
-				-->	
-				<angleAdjustmentEast>-45</angleAdjustmentEast>
-				<angleAdjustmentWest>45</angleAdjustmentWest>
-				<eastOffset>-0.25,0,-0.0</eastOffset>
-				<westOffset>0.25,-0.1,-0.0</westOffset>
-				<southOffset>-0.35,0,-0.0</southOffset>
-			</li> 
+		<comps>
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -387,15 +373,6 @@
 			<li>OGEMelee</li>
 		</tradeTags>
 		<comps>   
-			<!--  
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-			<li Class="CompProperties_Glower">
-				<glowRadius>1</glowRadius>
-				<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -512,15 +489,6 @@
 			<li>OGEMelee</li>
 		</tradeTags>
 		<comps>    
-			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li--> 
-			<!--
-			<li Class="CompProperties_Glower">
-				<glowRadius>1</glowRadius>
-				<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -553,11 +521,48 @@
 		<defName>OGE_Melee_MirrorswordD</defName>
 		<label>paired mirrorswords (E)</label>
 		<description>A Mirrorsword is a type of Aeldari Power Sword employed by a Howling Banshee Exarch. Two Mirrorswords are commonly employed by those Howling Banshee Exarchs who have mastered a deadly ambidextrous form of melee combat that uses the paired blades of two matching Power Swords.\n\nMirrorswords allow for a greater number of blows to be made by the wielder in melee combat, compared to other Aeldari warriors who also wield dual close combat weapons.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/MirrorSwordS</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
+			<drawSize>0.95</drawSize>
+			<groundGraphic>
+				<texPath>Things/Item/Equipment/WeaponMelee/Eldar/MirrorSwordD</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(0.286,0.286,0.286)</color>	
+			</groundGraphic>
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>-0.20,0,-0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.20,0,-0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.20,0,0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.20,0,0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.0,0,-0.200</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>-0.05,-0.10,-0.15</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
+		<equippedAngleOffset>-0</equippedAngleOffset>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
 			<WorkToMake>25000</WorkToMake>
@@ -569,7 +574,6 @@
 			<PsychicSensitivity>0.15</PsychicSensitivity>
 			<MoveSpeed>0.25</MoveSpeed>
 		</equippedStatOffsets>
-		<equippedAngleOffset>-25</equippedAngleOffset>
 		<tools>
 			<li>
 				<label>pommel</label>
@@ -637,13 +641,7 @@
 			<li>OGEMelee</li>
 		</tradeTags>
 		<comps>  
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<!--
-				<angleAdjustmentNorth>-90</angleAdjustmentNorth>
-				<angleAdjustmentSouth>-90</angleAdjustmentSouth>
-				<verticalFlipNorth>true</verticalFlipNorth>
-				<verticalFlipOutsideCombat>true</verticalFlipOutsideCombat>
-				-->	
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<groundGraphic>
 					<texPath>Things/Item/Equipment/WeaponMelee/Eldar/MirrorSwordD</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -660,7 +658,7 @@
 				<westOffset>0.0,0,-0.0</westOffset>
 				<northOffset>0.50,0,-0.2</northOffset>
 				<southOffset>-0.200,0,-0.2</southOffset>
-			</li> 
+			</li--> 
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -767,17 +765,7 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
-		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-			<!--
-			<li Class="CompProperties_Glower">
-				<glowRadius>1</glowRadius>
-				<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
-		
+		<comps>    
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -810,11 +798,46 @@
 		<defName>OGE_Melee_GhostSwordD</defName>
 		<label>dual ghost swords (E)</label>
 		<description>The Ghostsword is a large melee Power Weapon used by Eldar Wraithblades. They are the smaller version of Ghostglaives. Usually wielded in pairs, they leave glowing traces in the air as they are swung. Like all Ghostweapons, they guide the wielder's blows into the target's weak spot.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponMelee/Eldar/GhostBladeS</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
+			<drawSize>0.95</drawSize>
+			<groundGraphic>
+				<texPath>Things/Item/Equipment/WeaponMelee/Eldar/GhostBladeD</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(0.286,0.286,0.286)</color>	
+			</groundGraphic>
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>-0.20,0,-0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.20,0,-0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.20,0,0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.20,0,0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.0,0,-0.200</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>180</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>-0.05,-0.10,-0.15</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
@@ -892,13 +915,7 @@
 			<li>OGEMelee</li>
 		</tradeTags>
 		<comps>   
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<!--
-				<angleAdjustmentNorth>-90</angleAdjustmentNorth>
-				<angleAdjustmentSouth>-90</angleAdjustmentSouth>
-				<verticalFlipNorth>true</verticalFlipNorth>
-				<verticalFlipOutsideCombat>true</verticalFlipOutsideCombat>
-				-->	
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<groundGraphic>
 					<texPath>Things/Item/Equipment/WeaponMelee/Eldar/GhostBladeD</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -915,7 +932,7 @@
 				<westOffset>0.0,0,-0.0</westOffset>
 				<northOffset>0.50,0,-0.2</northOffset>
 				<southOffset>-0.200,0,-0.2</southOffset>
-			</li> 
+			</li--> 
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -1003,17 +1020,7 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
-		<comps>     		
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-
-			<!--
-			<li Class="CompProperties_Glower">
-				<glowRadius>1</glowRadius>
-				<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
+		<comps>    
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -1052,17 +1059,7 @@
           <shaderType>CutoutComplex</shaderType>
 			<drawSize>1.5</drawSize>			
 		</graphicData>
-		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
-			<!--
-			<li Class="CompProperties_Glower">
-				<glowRadius>1</glowRadius>
-				<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
-			
+		<comps>
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -1202,9 +1199,6 @@
 				<deactivateSound>Deactivate</deactivateSound>
 				-->					
 			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
 		</comps>
 		<tools>
 			<li>
@@ -1484,10 +1478,7 @@
 		<tradeTags>
 			<li>OGEMelee</li>
 		</tradeTags>
-		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
+		<comps>
 			<li Class="AdeptusMechanicus.CompProperties_ForceWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompForceWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -1614,9 +1605,6 @@
 				<deactivateSound>Deactivate</deactivateSound>
 				-->				
 			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<westOffset>0.0,-0.1,-0.0</westOffset>
-			</li> 
 		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">

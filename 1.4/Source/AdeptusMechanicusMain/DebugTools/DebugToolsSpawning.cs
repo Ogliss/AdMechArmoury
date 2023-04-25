@@ -9,63 +9,67 @@ using RimWorld;
 using RimWorld.Planet;
 using Verse;
 using Verse.AI.Group;
+using System.Collections;
 
 namespace AdeptusMechanicus
 {
     public static class DebugToolsSpawning
     {
-        [DebugAction("Adeptus Mechanicus", "Spawn Weapon, Stuff, Quality", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("Adeptus Mechanicus", "Spawn Weapon, Stuff, Quality", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void SpawnWeaponStuffQuality()
         {
             List<DebugMenuOption> list = new List<DebugMenuOption>();
-            for (int i = 0; i < 6; i++)
+            foreach (ThingDef localDef2 in from def in DefDatabase<ThingDef>.AllDefs
+                                           where def.equipmentType == EquipmentType.Primary
+                                           select def into d
+                                           orderby d.defName
+                                           select d)
             {
-                QualityCategory quality = (QualityCategory)i;
+                ThingDef localDef = localDef2;
 
-                list.Add(new DebugMenuOption(quality.ToString(), DebugMenuOptionMode.Action, delegate ()
+                list.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Action, delegate ()
                 {
-                    List<DebugMenuOption> list2 = new List<DebugMenuOption>();
-                    foreach (ThingDef localDef2 in from def in DefDatabase<ThingDef>.AllDefs
-                                                   where def.equipmentType == EquipmentType.Primary
-                                                   select def into d
-                                                   orderby d.defName
-                                                   select d)
+                    if (localDef.HasComp(typeof(CompQuality)))
                     {
-                        ThingDef localDef = localDef2;
-
-                        list2.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Action, delegate ()
+                        List<DebugMenuOption> list2 = new List<DebugMenuOption>();
+                        for (int i = 0; i < 7; i++)
                         {
-                            List<DebugMenuOption> list3 = new List<DebugMenuOption>();
-                            if (localDef.MadeFromStuff)
+                            QualityCategory quality = (QualityCategory)i;
+                            list2.Add(new DebugMenuOption(quality.ToString(), DebugMenuOptionMode.Action, delegate ()
                             {
-                                foreach (ThingDef stuffDef in from def in GenStuff.AllowedStuffsFor(localDef, TechLevel.Undefined)
-                                select def into d
-                                orderby d.defName
-                                select d)
+                                List<DebugMenuOption> list3 = new List<DebugMenuOption>();
+                                if (localDef.MadeFromStuff)
                                 {
-                                    ThingDef localStuff = stuffDef;
-                                    list3.Add(new DebugMenuOption(localStuff.defName, DebugMenuOptionMode.Tool, delegate ()
+                                    foreach (ThingDef stuffDef in from def in GenStuff.AllowedStuffsFor(localDef, TechLevel.Undefined)
+                                                                  select def into d
+                                                                  orderby d.defName
+                                                                  select d)
                                     {
-                                        DebugSpawn(localDef, UI.MouseCell(), quality, -1, false, null, localStuff);
-                                    }));
-                                    Find.WindowStack.Add(new Dialog_DebugOptionListLister(list3));
+                                        ThingDef localStuff = stuffDef;
+                                        list3.Add(new DebugMenuOption(localStuff.defName, DebugMenuOptionMode.Tool, delegate ()
+                                        {
+                                            DebugSpawn(localDef, UI.MouseCell(), quality, -1, false, null, localStuff);
+                                        }));
+                                        Find.WindowStack.Add(new Dialog_DebugOptionListLister(list3));
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                list2.Add(new DebugMenuOption(quality.ToString(), DebugMenuOptionMode.Tool, delegate ()
+                                else
                                 {
                                     DebugSpawn(localDef, UI.MouseCell(), quality, -1, false, null);
-                                }));
-                            }
-                        }));
+                                }
+                            }));
+                        }
                         Find.WindowStack.Add(new Dialog_DebugOptionListLister(list2));
+                    }
+                    else
+                    {
+                        DebugThingPlaceHelper.DebugSpawn(localDef, UI.MouseCell(), -1, false, null, true, null);
                     }
                 }));
             }
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
         }
-
+        
         public static void DebugSpawn(ThingDef def, IntVec3 c, QualityCategory quality, int stackCount = -1, bool direct = false, ThingStyleDef thingStyleDef = null, ThingDef stuffDef = null)
         {
             if (stackCount <= 0)

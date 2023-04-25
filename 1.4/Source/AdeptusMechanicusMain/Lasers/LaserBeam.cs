@@ -155,7 +155,8 @@ namespace AdeptusMechanicus.Lasers
 
                     SpawnBeamReflections(a, b, 5);
                 }
-
+                if (!blockedByShield)
+                {
                 Rand.PushState();
                 bool flag2 = this.def.causefireChance > 0f && Rand.Chance(this.def.causefireChance);
                 Rand.PopState();
@@ -164,6 +165,7 @@ namespace AdeptusMechanicus.Lasers
                     hitThing.TryAttachFire(0.01f);
                 }
                 AddeEffects(hitThing);
+                }
             }
             //    TriggerEffect(def.explosionEffect, b, hitThing);
             Map map = base.Map;

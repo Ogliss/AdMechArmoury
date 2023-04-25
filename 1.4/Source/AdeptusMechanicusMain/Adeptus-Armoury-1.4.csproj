@@ -61,21 +61,23 @@
     </Reference>
     <Reference Include="1AnimatedProjectile">
       <HintPath>..\..\..\..\OgsTools\AnimatedProjectile\1.4\bin\Debug\1AnimatedProjectile.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="1CompActivatableEffect">
       <HintPath>..\..\..\..\OgsTools\CompActivatableEffect\1.4\bin\Debug\1CompActivatableEffect.dll</HintPath>
-    </Reference>
-    <Reference Include="1CompOversizedWeapon">
-      <HintPath>..\..\..\..\OgsTools\CompOversizedWeapon\1.4\bin\Debug\1CompOversizedWeapon.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="1CompSlotLoadable">
       <HintPath>..\..\..\..\OgsTools\CompSlotLoadable\1.4\bin\Debug\1CompSlotLoadable.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="1CompToggleDef">
       <HintPath>..\..\..\..\OgsTools\CompToggleDef\1.4\bin\Debug\1CompToggleDef.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AbilitiesExtended">
       <HintPath>..\..\..\..\OgsTools\AbilitiesExtended\1.4\bin\Debug\AbilitiesExtended.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AdvancedGraphics">
       <HintPath>..\..\..\..\OgsTools\AdvancedGraphics\1.4\bin\Debug\AdvancedGraphics.dll</HintPath>
@@ -91,12 +93,15 @@
     </Reference>
     <Reference Include="CompApparelVerbGiver">
       <HintPath>..\..\..\..\OgsTools\CompApparelVerbGiver\1.4\bin\Debug\CompApparelVerbGiver.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CompToggleFireMode">
       <HintPath>..\..\..\..\OgsTools\CompToggleFireMode\1.4\bin\Debug\CompToggleFireMode.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CompTurret">
       <HintPath>..\..\..\..\OgsTools\CompTurret\1.4\bin\Debug\CompTurret.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Corruption.Core">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2547885439\1.3\Assemblies\Corruption.Core.dll</HintPath>
@@ -104,13 +109,15 @@
     </Reference>
     <Reference Include="CrashedShipsExtension">
       <HintPath>..\..\..\..\OgsTools\ExpandedCrashedShips\1.4\bin\Debug\CrashedShipsExtension.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DualWield">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1628211313\Assemblies\DualWield.dll</HintPath>
+      <HintPath>..\..\..\..\DualWield\1.4\Assemblies\DualWield.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ExtraHives">
       <HintPath>..\..\..\..\OgsTools\FactionHives\1.4\bin\Debug\ExtraHives.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FacialStuff">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\818322128\1.1\Assemblies\FacialStuff.dll</HintPath>
@@ -118,6 +125,7 @@
     </Reference>
     <Reference Include="RecruitShips">
       <HintPath>..\..\..\..\OgsTools\RecruitShips\1.4\bin\Debug\RecruitShips.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ShipsHaveInsides">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\1909914131\1.2\Assemblies\ShipsHaveInsides.dll</HintPath>
@@ -143,6 +151,8 @@
     <Compile Include="Backstories\PawnBioDef.cs" />
     <Compile Include="DeathActionWorkers\DeathActionWorker_WarpSpawn.cs" />
     <Compile Include="DeathActionWorkers\DeathActionWorker_NoCorpse.cs" />
+    <Compile Include="Utility\ChanceTraitEntry.cs" />
+    <Compile Include="Utility\MoreTraitSlotsUtil.cs" />
     <Compile Include="Defs\PatchDescriptionDef.cs" />
     <Compile Include="Defs\SwarmKindLifeStage.cs" />
     <Compile Include="DeOf\AdeptusThoughtDefOf.cs" />
@@ -151,11 +161,11 @@
     <Compile Include="GameConditions\WarpStormType.cs" />
     <Compile Include="GameConditions\WarpStormUtility.cs" />
     <Compile Include="Interfaces\IOptionalPatch.cs" />
-    <Compile Include="PatchOps\PatchOperationConditionalOptional.cs" />
-    <Compile Include="PatchOps\PatchOperationSequenceOptional.cs" />
+    <Compile Include="PatchOps\PatchOperationOptional.cs" />
     <Compile Include="ScenParts\ScenPart_RequiredApparel.cs" />
     <Compile Include="Utility\WarpLostPawnsTracker.cs" />
     <Compile Include="_Harmony\Patches\AA_TestingPatches.cs" />
+    <Compile Include="_Harmony\Patches\PawnApparelGenerator_PostProcessApparel_FactionColours_Patch.cs" />
     <Compile Include="_Harmony\Patches\ApparelProperties_get_LastLayer_Tweaks_Patch.cs" />
     <Compile Include="_Harmony\Patches\IncidentWorker_Raid_TryExecuteWorker_AnimalRaids_Transpiler.cs" />
     <Compile Include="_Harmony\Patches\Lord_Notify_PawnDamaged_Reserves_Patch.cs" />
@@ -613,8 +623,6 @@
     <Compile Include="_Harmony\Patches\PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch.cs" />
     <Compile Include="_Harmony\Patches\TuretTop_DrawTurret_LaserTurret_Patch.cs" />
     <Compile Include="Comps\CompApparelExtraPart\CompApparelExtraPartDrawer.cs" />
-    <Compile Include="Apparel\PsychicShield.cs" />
-    <Compile Include="Gizmos\Gizmo_PsychicShieldStatus.cs" />
     <Compile Include="Things\Buildings\Barricades\Building_DeployableBarricade.cs" />
     <Compile Include="Things\Buildings\Barricades\DeployableBarricadeExtension.cs" />
     <Compile Include="Things\Buildings\Building_AdvancedArt.cs" />
@@ -713,10 +721,6 @@
     <Compile Include="Comps\CompWargear.cs" />
     <Compile Include="Comps\CompHediffApparel.cs" />
     <Compile Include="Apparel\ProtectiveEyeWear.cs" />
-    <Compile Include="Apparel\AdvShieldBelt.cs" />
-    <Compile Include="Gizmos\Gizmo_CloseCombatShieldStatus.cs" />
-    <Compile Include="Apparel\CloseCombatShield.cs" />
-    <Compile Include="Gizmos\Gizmo_AdvShieldBeltStatus.cs" />
     <Compile Include="Things\Gas\EffectGas.cs" />
     <Compile Include="ThingDef\Thing_AddsHediffDef.cs" />
     <Compile Include="DamageWorkers\DamageWorker_AddBrain.cs" />
@@ -724,8 +728,8 @@
     <Compile Include="DamageWorkers\DamageWorker_FlameNoCamShake.cs" />
     <Compile Include="DeOf\AdeptusBodyPartGroupDefOf.cs" />
     <Compile Include="Utility\GunSpecialRules\StatDrawEntry.cs" />
-    <Compile Include="Utility\GunSpecialRules\StatPart_Reliability.cs" />
-    <Compile Include="Utility\GunSpecialRules\StatWorker_Reliability.cs" />
+    <Compile Include="StatParts\StatPart_Reliability.cs" />
+    <Compile Include="StatWorkers\StatWorker_Reliability.cs" />
     <Compile Include="Things\ThingDef_GunOG.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -745,6 +749,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Apparel\ColourGenerators\" />
+    <Folder Include="Gizmos\" />
     <Folder Include="Properties\" />
     <Folder Include="StockGenerators\" />
   </ItemGroup>

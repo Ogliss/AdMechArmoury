@@ -12,8 +12,8 @@ namespace AdeptusMechanicus
     public static class DebugToolsGeneral
     {
 
-	//	[DebugAction("General", null, false, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
-		private static void SetColor()
+		[DebugAction("General", null, false, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void SetDualColor()
 		{
 			List<FloatMenuOption> colorOne = new List<FloatMenuOption>();
 			List<FloatMenuOption> colorTwo = new List<FloatMenuOption>();

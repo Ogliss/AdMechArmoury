@@ -19,7 +19,7 @@ namespace AdeptusMechanicus
             Log.Message("AppDomain.CurrentDomain.GetAssemblies():\n" + System.AppDomain.CurrentDomain.GetAssemblies().Join(delimiter: "\n"));
             Log.Message("GenTypes.AllActiveAssemblies:\n" + Traverse.Create(typeof(GenTypes)).Property<IEnumerable<System.Reflection.Assembly>>("AllActiveAssemblies").Value.Join(delimiter: "\n"));
             */
-             //   Log.Message("ArmouryMainCE ");
+                Log.Message("ArmouryMainCE ");
             
             if (DefDatabase<ScenarioDef>.AllDefs.Any(x => x.defName.StartsWith("OGAM_TestScenario_")))
             {

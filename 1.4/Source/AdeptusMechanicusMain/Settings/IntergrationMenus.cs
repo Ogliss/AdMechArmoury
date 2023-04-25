@@ -18,12 +18,12 @@ namespace AdeptusMechanicus
         private static AMSettings settings = AMAMod.settings;
         private static AMAMod mod = AMAMod.Instance;
         private static bool Dev => AMAMod.Dev;
-        public static List<PatchDescription> Patches => settings.DisabledPatches;
+        public static List<PatchDescription> Patches => settings.DisabledPatchSetting;
         public static int PatchesCount => Patches.Count;
         private static float length_Menu = 0;
         private static float length_MenuInc = 0;
         private static float length_MenuContent = 0;
-        public static bool showArmouryIntergrationMenu = !settings.DisabledPatches.NullOrEmpty();
+        public static bool showArmouryIntergrationMenu = !settings.DisabledPatchSetting.NullOrEmpty();
         public static bool showArmouryIntergrationOptions = false;
         private static Vector2 impScrollPos = Vector2.one;
         private static Vector2 nonImpScrollPos = Vector2.one;

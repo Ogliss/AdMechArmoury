@@ -3,7 +3,7 @@ using System.Collections;
 using System.Xml;
 using Verse;
 
-namespace CombatExtended
+namespace AdeptusMechanicus
 {
     public class PatchOperationMakeProjectileCECompatible : PatchOperation
 	{

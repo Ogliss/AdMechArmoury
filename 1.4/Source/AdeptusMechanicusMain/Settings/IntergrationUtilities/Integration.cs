@@ -35,10 +35,6 @@ namespace AdeptusMechanicus
                 for (int i = 0; i < Patches.Count; i++)
                 {
                     var patch = Patches[i];
-                    if (!patch.DrawOption)
-                    {
-                        continue;
-                    }
                     bool status = patch.enabled;
                     if (i != 1 && !flag && i + 1 > Patches.Count / 2)
                     {

@@ -6,17 +6,17 @@
 		<operations>
 				<!-- ====================== Imperial Ranged ===================== -->
 				<!-- ====================== Las Weapons ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<Name>OGI_Bullet_Las_Base</Name>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<Name>OGI_Bullet_Las_Hot</Name>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 				</li>
 
 				<!-- ====================== LasPistol ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasPistolStd</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -26,7 +26,7 @@
 						<armorPenetrationBlunt>28</armorPenetrationBlunt>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasPistolHot</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -36,7 +36,7 @@
 						<armorPenetrationBlunt>32</armorPenetrationBlunt>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasPistol</defName>
 					<statBases>
 						<Mass>0.8</Mass>
@@ -97,7 +97,7 @@
 				</li>
 
 				<!-- ====================== LasGuns ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasGun</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -107,7 +107,7 @@
 						<armorPenetrationBlunt>28</armorPenetrationBlunt>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasGun_Hot</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -119,7 +119,7 @@
 				</li>
 				
 				<!-- ====================== M Galaxy Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Galaxy</defName>
 					<warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount>
 					<statBases>
@@ -184,7 +184,7 @@
 				</li>
 
 				<!-- ====================== Kantrael Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Kantrael</defName>
 					<statBases>
 						<Mass>3.0</Mass>
@@ -270,7 +270,7 @@
 				</li>
 
 				<!-- ====================== Triplex Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Triplex</defName>
 					<statBases>
 						<Mass>3.25</Mass>
@@ -355,9 +355,87 @@
 					</tools>
 				</li>
 				
+				<!-- ====================== Merovech Pattern ===================== -->
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
+					<defName>OGI_Gun_LasGun_Merovech</defName>
+					<statBases>
+						<Mass>6.5</Mass>
+						<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.15</ShotSpread>
+						<SwayFactor>1.1</SwayFactor>
+						<Bulk>3.2</Bulk>
+					</statBases>
+					<Properties>
+						<li>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<label>Standard</label>
+							<rapidFire>true</rapidFire>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>OGI_Bullet_LasGun</defaultProjectile>
+							<warmupTime>1.6</warmupTime>
+							<range>28</range>
+							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+							<burstShotCount>8</burstShotCount>
+							<soundCast>OG_Las_Pistol_Sound</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<barrelLength>0.85</barrelLength>
+							<bulletOffset>-0.25</bulletOffset>
+							<recoilAmount>0.1</recoilAmount>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</li>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>160</magazineSize>
+						<reloadTime>2.5</reloadTime>
+						<ammoSet>AmmoSet_OGLasStd</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>	
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.9</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>bayonet</label>
+							<capacities>
+								<li>Stab</li>
+								<li>Cut</li>
+							</capacities>
+							<power>17</power>
+							<cooldownTime>1.9</cooldownTime>
+						<armorPenetrationBlunt>4.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>4.8</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</li>
+				
 				<!-- ====================== LasCarbines ===================== -->
 				<!-- ====================== Locke Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Locke</defName>
 					<statBases>
 						<Mass>1.95</Mass>
@@ -419,7 +497,7 @@
 				</li>
 
 				<!-- ====================== Catachan Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Catachan</defName>
 					<statBases>
 						<Mass>2.0</Mass>
@@ -482,7 +560,7 @@
 				</li>
 
 				<!-- ====================== Voss Pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Voss</defName>
 					<statBases>
 						<Mass>1.75</Mass>
@@ -546,7 +624,7 @@
 				</li>
 
 				<!-- ====================== LasRifles ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasRifle</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -556,7 +634,7 @@
 						<armorPenetrationBlunt>28</armorPenetrationBlunt>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasRifle_Hot</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -568,7 +646,7 @@
 				</li>
 
 				<!-- ====================== Lucius pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Lucius</defName>
 					<statBases>
 						<Mass>3.8</Mass>
@@ -631,7 +709,7 @@
 				</li>
 
 				<!-- ====================== Mars pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Mars</defName>
 					<statBases>
 						<Mass>3.2</Mass>
@@ -694,7 +772,7 @@
 				</li>
 
 				<!-- ====================== Vostroya pattern ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasGun_Vostroya</defName>
 					<statBases>
 						<Mass>3.0</Mass>
@@ -755,7 +833,7 @@
 				</li>
 
 				<!-- ====================== Hell Weapons ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_Hellgun</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -767,7 +845,7 @@
 				</li>
 				
 				<!-- ====================== HellPistol ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_HellPistol</defName>
 					<statBases>
 						<Mass>1.2</Mass>
@@ -829,7 +907,7 @@
 				</li>
 
 				<!-- ====================== Hellgun ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_Hellgun</defName>
 					<statBases>
 						<Mass>4.8</Mass>
@@ -893,7 +971,7 @@
 				</li>
 
 				<!-- ====================== Long-Las ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LongLas</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -903,7 +981,7 @@
 						<armorPenetrationBlunt>58</armorPenetrationBlunt>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LongLas</defName>
 					<statBases>
 						<Mass>4.8</Mass>
@@ -961,7 +1039,7 @@
 				</li>
 
 				<!-- ====================== Las Cannon ===================== -->
-				<li Class="CombatExtended.PatchOperationMakeProjectileCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeProjectileCECompatible">
 					<defName>OGI_Bullet_LasCannon</defName>
 					<defClass>AdeptusMechanicus.Lasers.LaserBeamDefCE</defClass>
 					<projectile>
@@ -973,7 +1051,7 @@
 						<speed>999</speed>
 					</projectile>
 				</li>
-				<li Class="CombatExtended.PatchOperationMakeWeaponCECompatible">
+				<li Class="AdeptusMechanicus.PatchOperationMakeWeaponCECompatible">
 					<defName>OGI_Gun_LasCannon</defName>
 					<statBases>
 						<Mass>4.8</Mass>

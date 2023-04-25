@@ -6,6 +6,7 @@ using Verse;
 
 namespace AdeptusMechanicus
 {
+    /*
     public class StatDrawEntry
     {
         public StatCategoryDef category;
@@ -181,4 +182,5 @@ namespace AdeptusMechanicus
             });
         }
     }
+    */
 }

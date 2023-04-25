@@ -60,37 +60,60 @@ namespace AdeptusMechanicus.settings
         public void FilterPatches(ModContentPack content)
         {
             var allPatches = content.Patches as List<PatchOperation>;
-            if (settings.DisabledPatches == null)
+            List<PatchOperation> optionalPatches = new List<PatchOperation>(); 
+            if (settings.DisabledPatchSetting == null)
             {
-                settings.DisabledPatches = new List<PatchDescription>();
+                settings.DisabledPatchSetting = new List<PatchDescription>();
             }
             foreach (var item in content.Patches as List<PatchOperation>)
             {
-                if (item is IOptionalPatch optional && !settings.DisabledPatches.Any(x => x.file == item.sourceFile))
+                if (item is PatchOperationOptional optional)
                 {
-                    settings.DisabledPatches.Add(new PatchDescription(item.sourceFile, optional.Label, optional.LinkedModIDs, optional.ToolTip, optional.Optional, optional.EnabledByDefault));
+                    PatchDescription patch = settings.DisabledPatchSetting.FirstOrDefault(x => x.key == optional.PatchName);
+                    if (patch == null)
+                    {
+                        patch = settings.DisabledPatchSetting.FirstOrDefault(x => item.sourceFile.EndsWith(x.file));
+
+                    }
+                    if (patch == null)
+                    {
+                        patch = new PatchDescription(item.sourceFile, optional.PatchName, optional.Label, optional.LinkedModIDs, optional.ToolTip, optional.EnabledByDefault);
+                        settings.DisabledPatchSetting.Add(patch);
+                    }
+                    else
+                    {
+                        patch.key = optional.PatchName;
+                    }
+                    patch.LinkedOperation = item;
                 }
             }
-            showArmouryIntergrationMenu = !settings.DisabledPatches.NullOrEmpty() || (AdeptusIntergrationUtility.enabled_AlienRaces && Dev);
-            if (!settings.DisabledPatches.NullOrEmpty())
+
+            /*
+            showArmouryIntergrationMenu = !settings.DisabledPatchSetting.NullOrEmpty();
+            if (!settings.DisabledPatchSetting.NullOrEmpty())
             {
-                IntergrationOptions = (int)Mathf.Round((settings.DisabledPatches.Count / 2) + 0.25f);
-                foreach (var patch in settings.DisabledPatches)
+                IntergrationOptions = (int)Mathf.Round((settings.DisabledPatchSetting.Count / 2) + 0.25f);
+                foreach (PatchOperation patch in optionalPatches)
                 {
-                    if (patch.optional)
+                    if (patch is IOptionalPatch optional)
                     {
-                        if (!patch.enabled)
+                        PatchDescription description = settings.DisabledPatchSetting.FirstOrDefault(x => x.key == optional.PatchName);
+
+                        if (description != null && !description.enabled)
                         {
-                            if (Dev) Log.Message("RemoveAll XML Patch: " + patch.label);
-                            allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
+                            //    if (Dev) Log.Message("RemoveAll XML Patch: " + optional.Label);
+                            //    allPatches.RemoveAll(p => p.sourceFile.EndsWith(patch.file));
+                            if (Dev) Log.Message("Removed XML Patch: " + optional.Label);
+                            allPatches.Remove(patch);
                         }
                         else
                         {
-                            if (Dev) Log.Message("Running XML Patch: " + patch.label);
+                            if (Dev) Log.Message("Running XML Patch: " + optional.Label);
                         }
                     }
                 }
             }
+            */
         }
         #region overrides
         public AMAMod(ModContentPack content) : base(content)
@@ -103,7 +126,7 @@ namespace AdeptusMechanicus.settings
             {
                 //    harmony.Patch(AccessTools.Method(GenTypes.GetTypeInAnyAssembly("ResearchPal.Tree", "ResearchPal"), "DrawEquipmentAimingPostFix", null, null), new HarmonyMethod(typeof(AM_ResearchProjectDef_get_PrerequisitesCompleted_CommonTech_ResearchPal_Patch), "Postfix", null));
             }
-            StringBuilder builder = new StringBuilder($"Adeptus Mechanicus:: Loading {content.Patches.Where(x => x is IOptionalPatch modID && modID.Optional).Count()} Optional XML Patches out of {content.Patches.Count()}");
+            StringBuilder builder = new StringBuilder($"Adeptus Mechanicus:: Loading {content.Patches.Where(x => x is PatchOperationOptional modID).Count()} Optional XML Patches out of {content.Patches.Count()}");
 
             if (AMAMod.Dev) Log.Message(builder.ToString());
             LoadIntergrations();
@@ -206,14 +229,11 @@ namespace AdeptusMechanicus.settings
             {
                 menu.DrawSettings(listing_Main);
             }
-            if (showArmouryIntergrationMenu)
+            string labelI = "AdeptusMechanicus.IntergrationOptions".Translate();
+            string tooltipI = "AdeptusMechanicus.IntergrationOptionsDesc".Translate();
+            if (listing_Main.ButtonText(labelI, ref showArmouryIntergrationOptions, Dev, ref intergrationMenuInc, tooltipI))
             {
-                string labelI = "AdeptusMechanicus.IntergrationOptions".Translate();
-                string tooltipI = "AdeptusMechanicus.IntergrationOptionsDesc".Translate();
-                if (listing_Main.ButtonText(labelI, ref showArmouryIntergrationOptions, Dev, ref intergrationMenuInc, tooltipI))
-                {
-                    IntergrationMenus.DrawMenu(listing_Main);
-                }
+                IntergrationMenus.DrawMenu(listing_Main);
             }
             listing_Main.End();
             rect.height = listing_Main.MaxColumnHeightSeen;

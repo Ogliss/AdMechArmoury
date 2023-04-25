@@ -21,6 +21,7 @@ namespace AdeptusMechanicus
             AlienRace.ThingDef_AlienRace Ogryn = ArmouryMain.ogryn as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Ratlin = ArmouryMain.ratlin as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace Beastman = ArmouryMain.beastman as AlienRace.ThingDef_AlienRace;
+            AlienRace.ThingDef_AlienRace Astartes = ArmouryMain.astartes as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace astartes_Geneseed = ArmouryMain.geneseedAstartes as AlienRace.ThingDef_AlienRace;
             AlienRace.ThingDef_AlienRace custodes_Geneseed = ArmouryMain.geneseedCustodes as AlienRace.ThingDef_AlienRace;
             List<ThingDef> races = new List<ThingDef>();
@@ -33,6 +34,10 @@ namespace AdeptusMechanicus
                         races.Add(item.Race);
                     }
                 }
+            }
+            if (Astartes != null && !races.Contains(Astartes))
+            {
+                races.Add(Astartes);
             }
             if (astartes_Geneseed != null && !races.Contains(astartes_Geneseed))
             {
@@ -136,7 +141,8 @@ namespace AdeptusMechanicus
         }
         public static void alienBackstories(BackstoryCategoryFilter categoryFilter, ref IEnumerable<RimWorld.BackstoryDef> source, Pawn pawn, BackstorySlot slot)
         {
-            source.Concat(AlienRace.HarmonyPatches.FilterBackstories(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)), pawn, slot));
+            IEnumerable<RimWorld.BackstoryDef> aliens = AlienRace.HarmonyPatches.FilterBackstories(DefDatabase<AlienRace.AlienBackstoryDef>.AllDefs.Where((AlienRace.AlienBackstoryDef bs) => bs.shuffleable && categoryFilter.Matches(bs)), pawn, slot);
+            if (!aliens.EnumerableNullOrEmpty()) source.Concat(aliens);
         }
         public static void AddRecipes(ThingDef from, ThingDef to, List<ThingDef> races = null)
         {

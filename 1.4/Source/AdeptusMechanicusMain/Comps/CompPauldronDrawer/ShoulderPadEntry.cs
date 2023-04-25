@@ -442,7 +442,7 @@ namespace AdeptusMechanicus
                     }
                 }
 
-                path = (Used.padTexPathOverride ?? padTexPath) + "/" + Used.TexPath;
+                path = (notPlayer && !Used.padTexPathOverride.NullOrEmpty() ? Used.padTexPathOverride : padTexPath) + "/" + Used.TexPath;
             }
 
             string body = bodyTypeString(pawn.story.bodyType);

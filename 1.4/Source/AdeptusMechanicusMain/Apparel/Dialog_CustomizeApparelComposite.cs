@@ -151,9 +151,10 @@ namespace AdeptusMechanicus
 			int num4 = 0;
             if (this.thing is ApparelComposite composite)
             {
+                float spacer = 72f;
+                bool factionOverride = false;
                 if (composite.ColorableTwo != null)
 				{
-					bool factionOverride = false;
                     if (composite.ColorableFaction != null)
 					{
 						factionOverride = composite.ColorableFaction.ActiveFaction || composite.ColorableFaction.FactionActiveTwo;
@@ -165,13 +166,8 @@ namespace AdeptusMechanicus
 						num += 30f;
 						num4++;
 					}
-					float spacer = 72f;
-					if (!factionOverride && num > num2 && num < num3)
-					{
-						Rect rect = new Rect(0f, num, scrollViewRect.width, spacer);
-						num += AdeptusApparelUtility.DrawBaseColourOptions(rect, "Colours", composite);
-						num4++;
-					}
+
+
 				}
                 if (!composite.AltGraphics.NullOrEmpty())
 				{
@@ -224,7 +220,13 @@ namespace AdeptusMechanicus
 
 					}
                 }
-				/*
+                if (!factionOverride && num > num2 && num < num3)
+                {
+                    Rect rect = new Rect(0f, num, scrollViewRect.width, spacer);
+                    num += AdeptusApparelUtility.DrawBaseColourOptions(rect, "Colours", composite);
+                    num4++;
+                }
+                /*
                 if (!composite.Extras.NullOrEmpty())
 				{
 					for (int i = 0; i < composite.Extras.Count; i++)
@@ -261,7 +263,7 @@ namespace AdeptusMechanicus
 					}
 				}
 				*/
-			}
+            }
 			/*
 			for (int i = 0; i < 10; i++)
 			{

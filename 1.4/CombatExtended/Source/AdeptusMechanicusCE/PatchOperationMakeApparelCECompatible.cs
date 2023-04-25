@@ -7,7 +7,7 @@ using System.Xml;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended
+namespace AdeptusMechanicus
 {
     public class PatchOperationMakeApparelCECompatible : PatchOperation
 	{

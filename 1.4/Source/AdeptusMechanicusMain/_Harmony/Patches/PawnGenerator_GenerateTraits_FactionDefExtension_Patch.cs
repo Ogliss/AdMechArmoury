@@ -43,7 +43,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                         {
                             if (pawn.RaceProps.Humanlike)
                             {
-                                foreach (FactionTraitEntry item in Forced.ForcedTraits)
+                                foreach (ChanceTraitEntry item in Forced.ForcedTraits)
                                 {
                                 //    log.message(string.Format("{0} : {1}", pawn.NameShortColored, item.def.LabelCap));
                                     if (!pawn.story.traits.HasTrait(item.def))

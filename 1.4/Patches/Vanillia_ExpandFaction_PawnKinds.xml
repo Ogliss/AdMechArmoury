@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<!-- Pirate Faction Expansion: Adds additional Pirate units -->
-	<Operation Class="PatchOperationSequenceOptional">
-	<label>Add Pawnkinds with imperial/chaos weapony to vanilla Pirate factions</label>
-		<operations>		
-			<!-- Pirate Faction Expansion: Adds Deamons -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/FactionDef[defName = "Pirate"]/pawnGroupMakers/li[kindDef="Combat"]/options</xpath>
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaPiratePawnkinds</patchName>
+		<label>Additional Pirate Pawnkinds</label>
+		<toolTip>Add Pawnkinds with imperial/chaos weapony to vanilla Pirate factions</toolTip>
+		<log>true</log>
+		<enabled Class="PatchOperationSequence">		
+			<operations>		
+				<!-- Pirate Faction Expansion: Adds 40k weapon versions -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/FactionDef[defName = "Pirate"]/pawnGroupMakers/li[kindDef="Combat"]/options</xpath>
 					<value>
 						<OG_Mercenary_Heavy>3</OG_Mercenary_Heavy>
 						<OG_Mercenary_Gunner>5</OG_Mercenary_Gunner>
@@ -20,8 +24,8 @@
 						<OG_Grenadier_Destructive>1</OG_Grenadier_Destructive>
 						<OG_Mercenary_Sniper>2</OG_Mercenary_Sniper>
 					</value>
-			</li>	
-			
-		</operations>	
+				</li>
+			</operations>	
+		</enabled>	
 	</Operation>
 </Patch>

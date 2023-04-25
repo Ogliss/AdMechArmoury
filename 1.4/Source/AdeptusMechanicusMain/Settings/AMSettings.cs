@@ -593,7 +593,7 @@ namespace AdeptusMechanicus.settings
         #endregion
         // Compatability Patch Settings
         private List<PatchDescription> _PatchesCompatabilityScribeHelper = new List<PatchDescription>();
-        public List<PatchDescription> DisabledPatches = new List<PatchDescription>();
+        public List<PatchDescription> DisabledPatchSetting = new List<PatchDescription>();
 
         // Racial Restriction Settings
         public List<RaceSettingHandle> RaceSettings => raceSettingsActive ??= raceSettings.FindAll(x=> x.Loaded);
@@ -761,16 +761,16 @@ namespace AdeptusMechanicus.settings
             }
             Scribe_Collections.Look<RaceSettingHandle>(ref this.raceSettings, "raceSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
             Scribe_Collections.Look<FactionSettingHandle>(ref this.factionSettings, "factionSettings"/*, LookMode.Def, LookMode.Value, ref RaceKeyWorkingList, ref RaceValueWorkingList*/);
-            if (Scribe.mode == LoadSaveMode.Saving && !DisabledPatches.NullOrEmpty())
+            if (Scribe.mode == LoadSaveMode.Saving && !DisabledPatchSetting.NullOrEmpty())
             {
                 // create the data structure we're going to save.
-                _PatchesCompatabilityScribeHelper = DisabledPatches;
+                _PatchesCompatabilityScribeHelper = DisabledPatchSetting;
             }
             Scribe_Collections.Look(ref _PatchesCompatabilityScribeHelper, "patches");
             // finally, when the scribe finishes, we need to transform this back to a data structure we understand.
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                DisabledPatches = _PatchesCompatabilityScribeHelper;
+                DisabledPatchSetting = _PatchesCompatabilityScribeHelper;
             }
             /*
             if (Scribe.mode == LoadSaveMode.Saving)

@@ -1,5 +1,6 @@
 ﻿using AdeptusMechanicus.ExtensionMethods;
 using AdeptusMechanicus.Lasers;
+
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace AdeptusMechanicus
 
         public float heavyWeaponSetupTime = -1f;
 
+        private float recoilAmount = 0f;
         public Reliability reliability = Reliability.NA;
         public QualityCategory minQuality = QualityCategory.Awful; 
 
@@ -37,6 +39,7 @@ namespace AdeptusMechanicus
         public float getsHotCritExplosionChance = 0f;
 
         public bool getsHot = false;
+        public bool countsAsMelee = false;
 
         public float jamDamage = 0f;
         public float extraCooldown = 0f;

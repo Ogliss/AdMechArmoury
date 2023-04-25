@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace AdeptusMechanicus
-{
+{/*
     public interface IOptionalPatch
     {
         public bool Optional
@@ -9,6 +9,10 @@ namespace AdeptusMechanicus
             get;
         }
         public bool EnabledByDefault
+        {
+            get;
+        }
+        public string PatchName
         {
             get;
         }
@@ -25,7 +29,7 @@ namespace AdeptusMechanicus
         {
             get;
         }
-
     }
+        */
 
 }

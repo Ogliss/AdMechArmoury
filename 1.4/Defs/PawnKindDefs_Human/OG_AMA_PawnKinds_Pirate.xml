@@ -1,7 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+	<!--PawnKindDef Abstract="True" Name="OG_PirateBase">
+		<race>Human</race>
+		<defaultFactionType>Pirate</defaultFactionType>
+		<backstoryCategories>
+			<li>Raider</li>
+		</backstoryCategories>
+		<chemicalAddictionChance>0.12</chemicalAddictionChance>
+		<backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
+		<invNutrition>2.55</invNutrition>
+	</PawnKindDef-->
+
 	<!-- Povery tier - hiver lowlife -->
+	<PawnKindDef Abstract="True" Name="OG_Pirate_Hiver_LowlifeBase" ParentName="PirateBase">
+		<label>hiver lowlife</label>
+		<combatPower>50</combatPower>
+		<invNutrition>0</invNutrition>
+		<gearHealthRange>
+			<min>0.2</min>
+			<max>0.6</max>
+		</gearHealthRange>
+		<itemQuality>Poor</itemQuality>
+		<apparelMoney>
+			<min>90</min>
+			<max>280</max>
+		</apparelMoney>
+		<apparelAllowHeadgearChance>0.2</apparelAllowHeadgearChance>
+		<apparelTags>
+			<li>IndustrialBasic</li>
+		</apparelTags>
+		<weaponMoney>
+			<min>300</min>
+			<max>500</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>AutoPistol</li>
+			<li>LasPistol</li>
+			<li>MedievalMeleeBasic</li>
+			<li>MedievalMeleeDecent</li>
+			<li>ImperialMeleeBasic</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>50</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+		</techHediffsTags>
+		<techHediffsChance>0.15</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.9</skipChance>
+			<subOptionsChooseOne>
+				<li>
+					<thingDef>Silver</thingDef>
+					<countRange>
+						<min>30</min>
+						<max>70</max>
+					</countRange>
+				</li>
+				<li>
+					<thingDef>MedicineIndustrial</thingDef>
+					<countRange>
+						<min>1</min>
+						<max>1</max>
+					</countRange>
+				</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
 
 	<PawnKindDef ParentName="OG_Pirate_Hiver_LowlifeBase">
 		<defName>OGI_Hiver_Lowlife</defName>
@@ -11,17 +78,152 @@
 	
 	<!-- Low tier - scavenger, thrasher -->
 
+	<!--PawnKindDef Abstract="True" Name="OG_PirateScavTierBase" ParentName="PirateBase">
+		<combatPower>45</combatPower>
+		<backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
+		<itemQuality>Poor</itemQuality>
+		<apparelTags>
+			<li>IndustrialBasic</li>
+			<li>IndustrialAdvanced</li>
+		</apparelTags>
+		<gearHealthRange>
+			<min>0.4</min>
+			<max>1.1</max>
+		</gearHealthRange>
+		<apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>50</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+		</techHediffsTags>
+		<techHediffsChance>0.04</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.9</skipChance>
+			<subOptionsChooseOne>
+				<li>
+					<thingDef>Silver</thingDef>
+					<countRange>
+						<min>25</min>
+						<max>50</max>
+					</countRange>
+				</li>
+				<li>
+					<thingDef>MedicineIndustrial</thingDef>
+					<countRange>
+						<min>1</min>
+						<max>1</max>
+					</countRange>
+				</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef-->
+	
+	<PawnKindDef Abstract="True" Name="OG_PirateScavTier_Hiver_GunnerBase" ParentName="PirateScavTierBase">
+		<label>hiver gunner</label>
+		<apparelMoney>
+			<min>405</min>
+			<max>500</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>440</min>
+			<max>500</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>Imperial_Gun</li>
+		</weaponTags>
+	</PawnKindDef>
+	
 	<PawnKindDef ParentName="OG_PirateScavTier_Hiver_GunnerBase">
 		<defName>OGI_Hiver_Gunner</defName>
 		<initialResistanceRange IgnoreIfNoMatchingField="True">17~26</initialResistanceRange>
+	</PawnKindDef>
+
+	<PawnKindDef Abstract="True" Name="OG_PirateScavTier_Hiver_ThrasherBase" ParentName="PirateScavTierBase">
+		<label>hiver thrasher</label>
+		<race>Human</race>
+		<canBeSapper>true</canBeSapper>
+		<apparelMoney>
+			<min>400</min>
+			<max>800</max>
+		</apparelMoney>
+		<apparelTags>
+			<li>Outlander</li>
+		</apparelTags>
+		<weaponMoney>
+			<min>100</min>
+			<max>260</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>AutoPistol</li>
+			<li>MedievalMeleeBasic</li>
+			<li>ImperialMeleeBasic</li>
+		</weaponTags>
 	</PawnKindDef>
 
 	<PawnKindDef ParentName="OG_PirateScavTier_Hiver_ThrasherBase">
 		<defName>OGI_Hiver_Thrasher</defName>
 		<initialResistanceRange IgnoreIfNoMatchingField="True">14~23</initialResistanceRange>
 	</PawnKindDef>
-	
+
 	<!-- Mid tier - pirate -->
+
+	<PawnKindDef Abstract="True" Name="OG_Pirate_DeserterBase" ParentName="PirateBase">
+		<label>deserter guardsmen</label>
+		<race>Human</race>
+		<combatPower>65</combatPower>
+		<maxGenerationAge>65</maxGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelMoney>
+			<min>400</min>
+			<max>1000</max>
+		</apparelMoney>
+		<apparelTags>
+			<li>OGIArmour</li>
+			<li>OGIWargear</li>
+		</apparelTags>
+		<apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+		<weaponMoney>
+			<min>350</min>
+			<max>845</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>Imperial_Gun</li>
+			<li>Imperial_SpecialGun</li>
+		</weaponTags>
+		<techHediffsChance>0.04</techHediffsChance>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>800</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+		</techHediffsTags>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+				<li>
+					<thingDef>Silver</thingDef>
+					<countRange>
+						<min>40</min>
+						<max>80</max>
+					</countRange>
+				</li>
+				<li>
+					<thingDef>MedicineIndustrial</thingDef>
+					<countRange>
+						<min>1</min>
+						<max>1</max>
+					</countRange>
+				</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
 
 	<PawnKindDef ParentName="OG_Pirate_DeserterBase">
 		<defName>OGI_Deserter</defName>

@@ -11,30 +11,21 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			
-			</li> 
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
-			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
-			<gizmosOnEquip>false</gizmosOnEquip>
-			<!--<altitudeLayer>PawnState</altitudeLayer>-->
-			<graphicData>
-				<graphicClass>Graphic_Single</graphicClass>
-				<shaderType>CutoutComplex</shaderType>
-				<color>(240,37,37)</color>	
-			</graphicData>	
-			<!--
-			<activateSound>Activate</activateSound>
-			<sustainerSound>Hum</sustainerSound>
-			<deactivateSound>Deactivate</deactivateSound>
-			-->			
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(240,37,37)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
 			</li>
-			<!--
-			<li Class="CompProperties_Glower">
-			<glowRadius>1</glowRadius>
-			<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
 		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>
@@ -132,14 +123,8 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.25</drawSize>			
 		</graphicData>
-		<comps>     
-				<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-				</li>  
-				<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
+		<comps>      
+			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
 				<!--<altitudeLayer>PawnState</altitudeLayer>-->
@@ -153,7 +138,7 @@
 				<sustainerSound>Hum</sustainerSound>
 				<deactivateSound>Deactivate</deactivateSound>
 				-->			
-				</li>
+			</li>
 		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<costStuffCount>400</costStuffCount>
@@ -239,14 +224,43 @@
 		<defName>OGN_Melee_FlayingTalon</defName>
 		<label>flaying talons (N)</label>
 		<description>A Hyperphase Sword is a Necron melee weapon whose energy blade vibrates across dimensional states and can easily slice through armour and flesh to sever the vital organs within. A Hyperphase Sword can be considered an advanced type of Power Weapon.\n\nHyperphase Swords are found exclusively as part of the armouries of Necron royals, such as Necron Overlords, Necron Lords, Necron Destroyer Lords, and their favoured Lychguards.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponMelee/Necron/FlayingTalons</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
+			<drawSize>1.25</drawSize>			
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>0.0,0,-0.150</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.20,0,-0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.0,0,-0.150</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.20,0,0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.50,0,-0.45</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>180</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>0.50,0,-0.45</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
 		<equippedAngleOffset>-45</equippedAngleOffset>
 		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 			<isDualWeapon>true</isDualWeapon>
 			<angleAdjustmentNorth>-45</angleAdjustmentNorth>
 			<angleAdjustmentSouth>-45</angleAdjustmentSouth>
@@ -254,11 +268,10 @@
 			<westOffset>0,0,-0.25</westOffset>
 			<northOffset>0.25,0,-0.25</northOffset>
 			<southOffset>0.25,0,-0.25</southOffset>
-			</li> 
+			</li--> 
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 			<gizmosOnEquip>false</gizmosOnEquip>
-			<!--<altitudeLayer>PawnState</altitudeLayer>-->
 			<graphicData>
 				<graphicClass>Graphic_Single</graphicClass>
 				<shaderType>CutoutComplex</shaderType>
@@ -348,46 +361,63 @@
 		<defName>OGN_Melee_FabricatorClaw</defName>
 		<label>fabricator claw (N)</label>
 		<description>The fabricator claw array is a Necron close combat weapon whose energy blades vibrates across dimensional states and can easily slice through armour and flesh to sever the vital organs within. A fabricator claw can be considered an advanced type of Power Weapon.\n\nonly utilized by Tomb Spyders.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponMelee/Necron/FabricatorClaw</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<drawSize>1.25</drawSize>
+			<drawSize>1.25</drawSize>			
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>0.0,0,-0.150</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.20,0,-0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.0,0,-0.150</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.20,0,0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.50,0,-0.45</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>180</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>0.50,0,-0.45</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
 		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-			<!-- 
-			<isDualWeapon>true</isDualWeapon> 
-			<angleAdjustmentNorth>-90</angleAdjustmentNorth>
-			<angleAdjustmentSouth>-90</angleAdjustmentSouth>
-			-->
-			<verticalFlipNorth>true</verticalFlipNorth> 
-			<eastOffset>0.9,0,0.15</eastOffset>
-			<westOffset>-0.9,0,0.24</westOffset>
-			<southOffset>0,0,0.0</southOffset>
-			<northOffset>0,0,0.250</northOffset>
-			</li> 
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+				<verticalFlipNorth>true</verticalFlipNorth> 
+				<eastOffset>0.9,0,0.15</eastOffset>
+				<westOffset>-0.9,0,0.24</westOffset>
+				<southOffset>0,0,0.0</southOffset>
+				<northOffset>0,0,0.250</northOffset>
+			</li--> 
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
-			<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
-			<gizmosOnEquip>false</gizmosOnEquip>
-			<!--<altitudeLayer>PawnState</altitudeLayer>-->
-			<graphicData>
-				<graphicClass>Graphic_Single</graphicClass>
-				<shaderType>CutoutComplex</shaderType>
-				<color>(240,37,37)</color>	
-			</graphicData>	
-			<!--
-			<activateSound>Activate</activateSound>
-			<sustainerSound>Hum</sustainerSound>
-			<deactivateSound>Deactivate</deactivateSound>
-			-->			
+				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
+				<gizmosOnEquip>false</gizmosOnEquip>
+				<!--<altitudeLayer>PawnState</altitudeLayer>-->
+				<graphicData>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>CutoutComplex</shaderType>
+					<color>(240,37,37)</color>	
+				</graphicData>	
+				<!--
+				<activateSound>Activate</activateSound>
+				<sustainerSound>Hum</sustainerSound>
+				<deactivateSound>Deactivate</deactivateSound>
+				-->			
 			</li>
-			<!--
-			<li Class="CompProperties_Glower">
-			<glowRadius>1</glowRadius>
-			<glowColor>(0,0,168,0)</glowColor>
-			</li>
-			-->
 		</comps>
 		<soundInteract>Interact_Revolver</soundInteract>
 		<statBases>

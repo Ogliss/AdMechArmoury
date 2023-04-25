@@ -15,6 +15,7 @@ using System.Reflection.Emit;
 using AdeptusMechanicus.Lasers;
 using CombatExtended;
 using System.Reflection;
+using AdvancedGraphics;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
@@ -72,23 +73,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                 //    Log.Message("gunDrawExtension");
                 }
                 else
-                if (equipment.def.HasComp(typeof(OgsCompOversizedWeapon.CompOversizedWeapon)))
+                        if (instance.EquipmentSource.def.graphicData is GraphicData_Equippable equippable)
                 {
-                    OgsCompOversizedWeapon.CompOversizedWeapon compOversized = equipment.TryGetCompFast<OgsCompOversizedWeapon.CompOversizedWeapon>();
-                    if (compOversized != null)
-                    {
-                        bool DualWeapon = compOversized.Props != null && compOversized.Props.isDualWeapon;
-                        Vector3 offsetMainHand = default(Vector3);
-                        Vector3 offsetOffHand = default(Vector3);
-                        float offHandAngle = aimAngle;
-                        float mainHandAngle = aimAngle;
-
-                        OgsCompOversizedWeapon.OversizedUtil.SetAnglesAndOffsets(equipment, equipment as ThingWithComps, aimAngle, launcher, ref offsetMainHand, ref offsetOffHand, ref offHandAngle, ref mainHandAngle, true, DualWeapon && !compOversized.FirstAttack);
-                        Vector3 vector = DualWeapon && !compOversized.FirstAttack ? offsetOffHand : offsetMainHand;
-                        //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
-                        origin += vector;
-
-                    }
+                    bool DualWeapon = equippable.isDualWeapon;
+                    Vector3 vector = equippable.OffsetPosFor(instance.CasterPawn.Rotation, DualWeapon && (instance.burstShotsLeft | 2) == 0).RotatedBy(aimAngle);
+                    //    Vector3 vector = compOversized.AdjustRenderOffsetFromDir(equippable.PrimaryVerb.CasterPawn, !compOversized.FirstAttack);
+                    origin += vector;
                 }
                 origin = equipment.MuzzlePositionFor(origin, aimAngle);
                 result = new Vector2(origin.x, origin.z);

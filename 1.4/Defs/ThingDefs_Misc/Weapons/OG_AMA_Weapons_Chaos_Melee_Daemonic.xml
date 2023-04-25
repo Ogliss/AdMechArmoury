@@ -437,11 +437,40 @@
 		<defName>OGCD_Melee_Deamonette_Claw</defName>
 		<label>Deamonic claw</label>
 		<description>A deamonettes claws are long, razor-edged claws resembling pincers made of Chitin and serrated bone-like substances. Each claw is powered by whipcord muscles to stab, slash, and eviscerate victims with lightning-fast swipes.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponMelee/Chaos/Deamonic/DeamonetteClawA</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<drawSize>1.5</drawSize>			
+			<colorTwo>(0.286,0.286,0.286)</colorTwo>
+			<drawSize>1.5</drawSize>
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>-0.20,0,-0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.20,0,-0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.20,0,0.20</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.20,0,0.20</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.0,0,-0.200</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>180</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>-0.05,-0.10,-0.15</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
 		<equippedAngleOffset>0</equippedAngleOffset>
 		<recipeMaker Inherit="flase">
@@ -494,16 +523,15 @@
 			</li>
 		</tools>
 		<comps>     
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<isDualWeapon>true</isDualWeapon>
-				<!--verticalFlipNorth>true</verticalFlipNorth-->
 				<angleAdjustmentNorth>-45</angleAdjustmentNorth>
 				<angleAdjustmentSouth>-45</angleAdjustmentSouth>
 				<eastOffset>-0.250,0,-0.05</eastOffset>
 				<westOffset>0.250,0,-0.05</westOffset>
 				<southOffset>-0.750,0,-0.050</southOffset>
 				<northOffset>0.550,0,-0.0750</northOffset>
-			</li> 
+			</li--> 
 		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">

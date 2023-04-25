@@ -6,7 +6,7 @@ using System.Xml;
 using UnityEngine;
 using Verse;
 
-namespace CombatExtended
+namespace AdeptusMechanicus
 {
 	public class PatchOperationMakeWeaponCECompatible : PatchOperation
 	{
@@ -87,7 +87,15 @@ namespace CombatExtended
 							}
 							if (this.Properties != null && this.Properties.node.HasChildNodes)
 							{
-								this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
+								try
+                                {
+                                    this.AddOrReplaceVerbPropertiesCE(xml, xmlNode);
+                                }
+								catch (Exception)
+								{
+                                    Log.Error($"Err: {SearchString}");
+                                    throw;
+								}
 							}
 							if (this.tools != null && this.tools.node.HasChildNodes)
 							{
@@ -200,15 +208,15 @@ namespace CombatExtended
 		{
 			XmlElement xmlElement;
 			List<bool> adv = new List<bool>();
-			bool multiverb = false;
-			bool multiverbCE = this.Properties.node.ChildNodes[0].OuterXml.StartsWith("<li");
-			if (this.GetOrCreateNode(xml, xmlNode, "verbs", out xmlElement))
+            bool multiverb = false;
+            bool multiverbCE = this.Properties.node.ChildNodes[0].OuterXml.StartsWith("<li");
+            if (this.GetOrCreateNode(xml, xmlNode, "verbs", out xmlElement))
 			{
 				int i = 0;
 				XmlNodeList xmlNodeList = xmlElement.SelectNodes("li[verbClass=\"Verb_Shoot\" or verbClass=\"Verb_ShootOneUse\" or verbClass=\"Verb_LaunchProjectile\"]");
 				multiverb = xmlNodeList.Count > 1;
 				IEnumerator enumerator = xmlNodeList.GetEnumerator();
-				try
+                try
 				{
 					while (enumerator.MoveNext())
 					{
@@ -226,6 +234,10 @@ namespace CombatExtended
 						}
 						i++;
 					}
+                }
+                catch (Exception)
+                {
+					Log.Warning("Err: GetOrCreateNode");
 				}
 				finally
 				{
@@ -237,8 +249,9 @@ namespace CombatExtended
 				}
 			}
 			if (multiverb)
-			{
-				string mismatchedVerbCount = "Warning: Multiverb CE patch Mismatched Verb Count for {0}, Patch has {1} verbs, Def has {2} verbs, Only converting Primary Verb. If this is intentional add <warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount> to its patch";
+            {
+            //    Log.Warning("multiverb");
+                string mismatchedVerbCount = "Warning: Multiverb CE patch Mismatched Verb Count for {0}, Patch has {1} verbs, Def has {2} verbs, Only converting Primary Verb. If this is intentional add <warnOnMismatchedVerbCount>false</warnOnMismatchedVerbCount> to its patch";
 
 				if (multiverbCE)
 				{
@@ -256,12 +269,13 @@ namespace CombatExtended
 				}
 				if (warnOnMismatchedVerbCount) Log.Warning(string.Format(mismatchedVerbCount, this.defName, adv.Count, multiverbCE ? this.Properties.node.ChildNodes.Count : 1));
 			}
-			{
-				XmlNode item = this.Properties.node;
-				string propClass = adv[0] ? "AdeptusMechanicus.AdvancedVerbPropertiesCE" : "CombatExtended.VerbPropertiesCE";
+            {
+                XmlNode item = this.Properties.node;
+				string propClass = !adv.NullOrEmpty() && adv[0] ? "AdeptusMechanicus.AdvancedVerbPropertiesCE" : "CombatExtended.VerbPropertiesCE";
 			//	if (adv[0] ) Log.Message(this.defName + " AdvancedVerb: " + 0 + " = " + item.OuterXml);
 				xmlElement.AppendChild(this.CreateListElementAndPopulate(xml, item, propClass));
-			}
+            //    Log.Warning($"end {SearchString}");
+            }
 		}
 		
 		private void AddOrReplaceToolsCE(XmlDocument xml, XmlNode xmlNode)

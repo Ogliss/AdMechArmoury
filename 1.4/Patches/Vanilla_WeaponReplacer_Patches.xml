@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Autopistol Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaAutopistolReplacer</patchName>
+		<label>Autopistol Replacer</label>
+		<toolTip>Replaces the vanilla Autopistol with the Autopistol from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_AutoPistol'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AutoPistol"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AutoPistol"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_Autopistol</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/label</xpath>	
+					<value>
+						<label>autopistol</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/description</xpath>	
+					<value>
+						<description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol</texPath>
+							<graphicClass>AdvancedGraphics.Graphic_SingleRandomized</graphicClass>
+							<drawSize>1.0</drawSize>
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/weaponTags</xpath>	
+					<value>
+						<li>Pistol</li>
+						<li>ImperialPistol</li>
+						<li>ImperialGun</li>
+						<li>AutoPistol</li>
+						<li>GuevesaPistol</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_Autopistol']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Autopistol']/verbs/li[1]</xpath>	
+					<value>
+						<barrelLength>0.35</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+
+	<!-- Machinepistol Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaMachinepistolReplacer</patchName>
+		<label>Machinepistol Replacer</label>
+		<toolTip>Replaces the vanilla Machinepistol with the Autopistol from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/label</xpath>	
+					<value>
+						<label>autopistol</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/description</xpath>	
+					<value>
+						<description>An AutoPistol is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoPistol/MachinePistol</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/weaponTags</xpath>	
+					<value>
+						<li>Pistol</li>
+						<li>ImperialPistol</li>
+						<li>ImperialGun</li>
+						<li>AutoPistol</li>
+						<li>GuevesaPistol</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_MachinePistol']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_MachinePistol']/verbs/li[1]</xpath>	
+					<value>
+						<barrelLength>0.35</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+
+	<!-- Pump Shotgun Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaPumpShotgunReplacer</patchName>
+		<label>Pump Shotgun Replacer</label>
+		<toolTip>Replaces the vanilla Pump Shotgun with the Arbites Shotgun from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_ArbitesShotgun'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_ArbitesShotgun"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_ArbitesShotgun"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_PumpShotgun</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/label</xpath>	
+					<value>
+						<label>arbites shotgun</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/description</xpath>	
+					<value>
+						<description>Effectively a large-bore, locally manufactured version of the shotgun designs used by many planetary enforcers, the Vox Legi is a devastating and adaptable weapon that fires shotgun shells nearly the size of those of Astartes Assault shotgun. The increased size of the weapon reduces its ammunition capacity compared to that of its fellow shotguns, but it still remains more powerful and adaptable than a standard shotgun. Most patrolling Arbitrators take advantage of this flexibility by carrying a variety of shotgun shell types so as to offer them different tactical options in the event of encountering a situation that requires their intervention. Over-engineered by a considerable margin, the weapon is also perfectly capable of being used as a large club in close combat. It is also designed for maximum psychological impact, with a very audible pump action (standard Arbites riot training makes use of this). The sound of a hundred Arbitrators simultaneously chambering their weapons has ended countless riots over the millennia. This pattern of combat shotgun is particularly widespread amongst the Arbitrators of The Periphery, and is broadly typical of the weapons favoured by Calixian Arbitrators.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/ArbitesShotgun</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/weaponTags</xpath>	
+					<value>
+						<li>GunHeavy</li>
+						<li>ArbitesShotgun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/verbs</xpath>	
+					<value>
+						<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+							<verbClass>Verb_Shoot</verbClass>
+							<label>Rubber Bullets</label>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>OGI_Bullet_ArbitesShotgunRubber</defaultProjectile>
+							<warmupTime>0.9</warmupTime>
+							<burstShotCount>1</burstShotCount>
+							<range>15.9</range>
+							<soundCast>Shot_Shotgun</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>4</muzzleFlashScale>
+							<barrelLength>0.6</barrelLength>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/comps</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']</xpath>	
+						<value>
+							<comps>
+							</comps>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_PumpShotgun']/comps</xpath>	
+					<value>	
+						<li Class="AdeptusMechanicus.CompProperties_ToggleFireMode">
+							<canSwitchWhileBusy>false</canSwitchWhileBusy><!-- Default = False, pawn cannot swap modes while 'Busy' (while firing or on cooldown) -->
+							<switchStartsCooldown>true</switchStartsCooldown><!-- Default = False, starts the current verbs cooldown when switched  -->
+						</li> 
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_ArbitesShotgun"]/thingDef</xpath>	
+					<success>Always</success>
+					<value>
+						<thingDef>Gun_PumpShotgun</thingDef>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+	
+	<!-- Chain Shotgun Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaChainShotgunReplacer</patchName>
+		<label>Chain Shotgun Replacer</label>
+		<toolTip>Replaces the vanilla Chain Shotgun with the Vanaheim Shotgun from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_Vanaheim'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_Vanaheim"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_Vanaheim"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_ChainShotgun</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/label</xpath>	
+					<value>
+						<label>vanaheim shotgun</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/description</xpath>	
+					<value>
+						<description>Effectively a large-bore, locally manufactured version of the shotgun designs used by many planetary enforcers, the Vox Legi is a devastating and adaptable weapon that fires shotgun shells nearly the size of those of Astartes Assault shotgun. The increased size of the weapon reduces its ammunition capacity compared to that of its fellow shotguns, but it still remains more powerful and adaptable than a standard shotgun. Most patrolling Arbitrators take advantage of this flexibility by carrying a variety of shotgun shell types so as to offer them different tactical options in the event of encountering a situation that requires their intervention. Over-engineered by a considerable margin, the weapon is also perfectly capable of being used as a large club in close combat. It is also designed for maximum psychological impact, with a very audible pump action (standard Arbites riot training makes use of this). The sound of a hundred Arbitrators simultaneously chambering their weapons has ended countless riots over the millennia. This pattern of combat shotgun is particularly widespread amongst the Arbitrators of The Periphery, and is broadly typical of the weapons favoured by Calixian Arbitrators.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Vanaheim</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<colorTwo>(0.286,0.286,0.286)</colorTwo>	
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/equippedAngleOffset</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/equippedAngleOffset</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/weaponTags</xpath>	
+					<value>
+						<li>GunHeavy</li>
+						<li>ArbitesShotgun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_ChainShotgun']/verbs/li[1]</xpath>	
+					<value>
+						<rapidFire>true</rapidFire>
+						<barrelLength>0.55</barrelLength>
+						<barrelOffset>0.1</barrelOffset>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_Vanaheim"]/thingDef</xpath>	
+					<success>Always</success>
+					<value>
+						<thingDef>Gun_ChainShotgun</thingDef>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+
+	<!-- Assualt Rifle Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaARtoAutogun</patchName>
+		<label>Assualt Rifle Replacer</label>
+		<toolTip>Replaces the vanilla Assualt Rifle with the Autogun from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_AutoGun'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AutoGun"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AutoGun"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_AssaultRifle</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/label</xpath>	
+					<value>
+						<label>autogun</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/description</xpath>	
+					<value>
+						<description>An Autogun is a fully automatic Auto Weapon that fires solid-slug ballistic rounds at the intended target in rapid succession. Cheap, rugged and reliable, it can be found throughout the Imperium, where it is appreciated for its decent damage and accuracy. Its main drawbacks are its weight and the need to carry a large amount of cumbersome ammunition for prolonged operations. The latter drawback has led to the Astra Militarum being equipped with Lasguns as its standard armament since the early 32nd Millennium. Xenos races such as the brutal Orks are known to take particular relish in using several of their own crude versions of these formidable automatic weapons, known as Sluggas, Shootas and Snazzguns.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AutoGun/AutoGun</texPath>
+							<graphicClass>AdvancedGraphics.Graphic_SingleQuality</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.208,0.286,0.176)</color>
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/weaponTags</xpath>	
+					<value>
+						<li>ImperialGun</li>
+						<li>Autogun</li>
+						<li>AutoGun</li>
+						<li>GuevesaGun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/verbs/li[1]</xpath>	
+					<value>
+						<rapidFire>true</rapidFire>
+						<barrelLength>0.65</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/comps</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']</xpath>	
+						<value>
+							<comps>
+							</comps>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_AssaultRifle']/comps</xpath>	
+					<value>	
+						<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+							<VerbEntries>
+								<li>
+									<RapidFire>true</RapidFire>
+								</li>
+							</VerbEntries>
+						</li> 
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+	
+	<!-- LMG Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaLMGReplacer</patchName>
+		<label>LMG Replacer</label>
+		<toolTip>Replaces the vanilla LMG with the Heavy Stubber from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_HeavyStubber'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_HeavyStubber"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_HeavyStubber"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_LMG</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/label</xpath>	
+					<value>
+						<label>heavy stubber</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/description</xpath>	
+					<value>
+						<description>A Heavy Stubber is the name given to a range of heavy-barrelled Auto Weapons used for sustained fire. Like Autoguns they are easily manufactured and maintained, and are commonly used by Imperial Guard forces across the Imperium. A mainstay support weapon on lower-technology level planets that cannot maintain laser weapons in working order due to technological or resource limitations, and also popular with outlaws and hive gangers, the Heavy Stubber is ideal for fighting off large numbers of enemies or even lightly armoured vehicles. Its high rate of fire makes up for its lack of strength and armour-piercing abilities.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/HeavyStubber</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.208,0.286,0.176)</color>
+							<drawSize>1.15</drawSize>	
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/equippedAngleOffset</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName='Gun_LMG']/equippedAngleOffset</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_LMG']</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/weaponTags</xpath>	
+					<value>
+						<li>GunHeavy</li>
+						<li>HeavyStubber</li>
+						<li>GuevesaGun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_LMG']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_LMG']/verbs/li[1]</xpath>	
+					<value>
+						<barrelLength>1</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_HeavyStubber"]/thingDef</xpath>	
+					<success>Always</success>
+					<value>
+						<thingDef>Gun_LMG</thingDef>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+
+	<!-- Sniper Rifle Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaSniperRifleReplacer</patchName>
+		<label>Sniper Rifle Replacer</label>
+		<toolTip>Replaces the vanilla Sniper Rifle with the Absolution Pattern Sniper Rifle from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<!--li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_SniperRifle'
+					]</xpath>	
+				</li-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/label</xpath>	
+					<value>
+						<label>absolution pattern sniper</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/description</xpath>	
+					<value>
+						<description>Less advanced than the standard military needle sniper rifle, the Absolution Pattern Sniper Rifle is a solid projectile weapon and is more easily obtainable and very effective against lightly armoured targets. Complete with a tripod brace, silencer, and telescopic sight, in the hands of a skilled marksman it can quickly crush insurrections, put down rebellious natives, or quash labour revolts. The integral noise baffles built into the rifle make it very quiet.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AbsolutionSniperRifle</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.208,0.286,0.176)</color>
+							<drawSize>1.15</drawSize>	
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/equippedAngleOffset</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/equippedAngleOffset</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_SniperRifle']</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/weaponTags</xpath>	
+					<value>
+						<li>GunHeavy</li>
+						<li>AbsolutionSniper</li>
+						<li>GuevesaGun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_SniperRifle']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_SniperRifle']/verbs/li[1]</xpath>	
+					<value>
+						<barrelLength>1</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_SniperRifle"]/thingDef</xpath>	
+					<success>Always</success>
+					<value>
+						<thingDef>Gun_SniperRifle</thingDef>
+					</value>
+				</li-->
+			</operations>	
+		</enabled>
+	</Operation>
+
+	<!-- Minigun Replacer -->
+	<Operation Class="PatchOperationOptional">
+		<patchName>VanillaMinigunReplacer</patchName>
+		<label>Minigun Replacer</label>
+		<toolTip>Replaces the vanilla Minigun with the Assault Cannon from this mod, instead of adding it as a new weapon</toolTip>
+		<enabledByDefault>false</enabledByDefault>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef
+					[
+						defName='OGI_Gun_AssaultCannon'
+					]</xpath>	
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AssaultCannon"]</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AssaultCannon"]/thingDef</xpath>	
+						<value>
+							<thingDef>Gun_Minigun</thingDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/label</xpath>	
+					<value>
+						<label>assault cnnon</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/description</xpath>	
+					<value>
+						<description>A Heavy Stubber is the name given to a range of heavy-barrelled Auto Weapons used for sustained fire. Like Autoguns they are easily manufactured and maintained, and are commonly used by Imperial Guard forces across the Imperium. A mainstay support weapon on lower-technology level planets that cannot maintain laser weapons in working order due to technological or resource limitations, and also popular with outlaws and hive gangers, the Heavy Stubber is ideal for fighting off large numbers of enemies or even lightly armoured vehicles. Its high rate of fire makes up for its lack of strength and armour-piercing abilities.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/graphicData</xpath>	
+					<value>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>CutoutComplex</shaderType>
+							<color>(0.208,0.286,0.176)</color>
+							<drawSize>1.15</drawSize>	
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/equippedAngleOffset</xpath>	
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName='Gun_Minigun']/equippedAngleOffset</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_Minigun']</xpath>	
+						<value>
+							<equippedAngleOffset>45</equippedAngleOffset>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/thingClass</xpath>	
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_Minigun']/thingClass</xpath>	
+						<value>
+							<thingClass>AdeptusMechanicus.Lasers.SpinningLaserGun</thingClass>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_Minigun']</xpath>	
+						<value>
+							<thingClass>AdeptusMechanicus.Lasers.SpinningLaserGun</thingClass>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.Lasers.SpinningLaserGunDef</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']</xpath>	
+					<value>
+						<frames>
+							<li><texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon</texPath><graphicClass>Graphic_Single</graphicClass></li>
+							<li><texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon1</texPath><graphicClass>Graphic_Single</graphicClass></li>
+							<li><texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon2</texPath><graphicClass>Graphic_Single</graphicClass></li>
+							<!--<li><texPath>Things/Item/Equipment/WeaponRanged/Imperial/AssaultCannon3</texPath><graphicClass>Graphic_Single</graphicClass></li>-->
+						</frames>
+						<rotationSpeed>1.0</rotationSpeed>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/weaponTags</xpath>	
+					<value>
+						<li>GunHeavy</li>
+						<li>HeavyStubber</li>
+						<li>GuevesaGun</li>
+						<li>OgsWeaponTestAuto</li>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/tradeTags</xpath>	
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName='Gun_Minigun']</xpath>	
+						<value>
+							<tradeTags>
+							</tradeTags>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/tradeTags</xpath>	
+					<value>
+						<li>OGIRanged</li>
+						<li>OGMilitarumRanged</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/verbs/li[1]</xpath>	
+					<attribute>Class</attribute>
+					<value>AdeptusMechanicus.AdvancedVerbProperties</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName='Gun_Minigun']/verbs/li[1]</xpath>	
+					<value>
+						<barrelLength>1</barrelLength>
+						<barrelOffset>0.0</barrelOffset>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef/scenario/parts/li[@Class="ScenPart_StartingThing_Defined" and thingDef/text()="OGI_Gun_AssaultCannon"]/thingDef</xpath>	
+					<success>Always</success>
+					<value>
+						<thingDef>Gun_Minigun</thingDef>
+					</value>
+				</li>
+			</operations>	
+		</enabled>
+	</Operation>
+
+</Patch>

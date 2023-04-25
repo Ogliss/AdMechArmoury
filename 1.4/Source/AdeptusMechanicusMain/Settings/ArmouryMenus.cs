@@ -53,9 +53,9 @@ namespace AdeptusMechanicus
             // Armoury mod Weapon Special rules options menu
             {
                 Listing_StandardExpanding listing = listing_Menu.BeginSection(length_WSRules + length_WSRulesInc, false, 3, 4, 0);
-                if (listing.CheckboxLabeled("AdeptusMechanicus.ShowWeaponSpecialRules".Translate(), ref settings.ShowAllowedWeaponSpecialRules, "AdeptusMechanicus.ShowWeaponSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex, extend: true))
+                if (listing.CheckboxLabeled("AdeptusMechanicus.ShowWeaponSpecialRules".Translate(), ref settings.ShowAllowedWeaponSpecialRules, Dev, ref length_WSRulesInc, "AdeptusMechanicus.ShowWeaponSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex, extend: true))
                 {
-                    Listing_StandardExpanding listing_General = listing.BeginSection(length_WSRulesContent, true);
+                    Listing_StandardExpanding listing_General = listing.BeginSection(length_WSRulesContent + length_WSRulesInc, true);
                     listing_General.maxOneColumn = false;
                     listing_General.ColumnWidth *= 0.488f;
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowRapidFire".Translate(), ref settings.AllowRapidFire, "AdeptusMechanicus.AllowRapidFireDesc".Translate(), extend: true);

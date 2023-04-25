@@ -14,6 +14,7 @@ using AdeptusMechanicus.ExtensionMethods;
 using CombatExtended;
 using AdeptusMechanicus.Lasers;
 
+
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(Verb_ShootCE), "WarmupComplete")]

@@ -206,6 +206,7 @@
 			<Steel>150</Steel>
 			<Plasteel>30</Plasteel>
 			<ComponentIndustrial>2</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -275,11 +276,46 @@
 		<defName>OGI_Gun_BoltPistolD</defName>
 		<label>dual bolt pistols (I)</label>
 		<description>A Bolt Pistol is a smaller version of the Bolter in standard use by the Space Marines and other Imperial forces such as the Orders Militant of the Adepta Sororitas and certain members of the Astra Militarum and the Imperial Navy. Powerful and utilitarian side arms, Bolt Pistols have seen service within many of the Imperium's military forces since its inception in the 30th Millennium. The current standard pattern in use amongst the Space Marines is the Mark III. Bolt Pistols are also used by many other Imperial forces as well as the Chaos Space Marines. A Bolt Pistol is commonly used in conjunction with a close combat weapon by Space Marine officers, Veterans and Assault Squads to make them into melee combat specialists.</description>
-		<graphicData>
+		<graphicData Class="AdvancedGraphics.GraphicData_Equippable">
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Pistol</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>AdvancedGraphics.Graphic_SingleQuality</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-			<color>(0.286,0.286,0.286)</color>	
+			<colorTwo>(0.286,0.286,0.286)</colorTwo>
+			<drawSize>0.95</drawSize>
+			<groundGraphic>
+				<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Pistol_Dual</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(0.286,0.286,0.286)</color>	
+			</groundGraphic>
+			<verticalFlipNorth>true</verticalFlipNorth>
+			<isDualWeapon>true</isDualWeapon>
+			<offsets>
+				<south>
+					<offset>-0.25,0.0,0.0</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.25,0.0,0.0</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</south>
+				<north>
+					<offset>0.25,0.0,-0.35</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>-0.25,0.0,-0.35</offsetOffhand>
+					<angleAdjustmentOffhand>0</angleAdjustmentOffhand>
+				</north>
+				<east>
+					<offset>-0.0,0,-0.200</offset>
+					<angleAdjustment>0</angleAdjustment>
+					<offsetOffhand>0.05,-0.10,-0.15</offsetOffhand>
+					<angleAdjustmentOffhand>180</angleAdjustmentOffhand>
+				</east>
+				<west>
+					<offset>-0.05,-0.10,-0.15</offset>
+					<angleAdjustment>-0</angleAdjustment>
+					<offsetOffhand>-0.0,0,-0.200</offsetOffhand>
+					<angleAdjustmentOffhand>-0</angleAdjustmentOffhand>
+				</west>
+			</offsets>
 		</graphicData>
 		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Pistol_Dual</uiIconPath>
 		<uiIconColor>(1,1,1,1)</uiIconColor>	
@@ -304,6 +340,7 @@
 			<Steel>200</Steel>
 			<Plasteel>50</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -350,7 +387,7 @@
 			</li>
 		</tools>
 		<comps>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
+			<!--li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
 				<groundGraphic>
 					<texPath>Things/Item/Equipment/WeaponRanged/Imperial/Bolter_Pistol_Dual</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -367,7 +404,7 @@
 				<eastOffset>0.0,0.0,0.0</eastOffset>
 				<westOffset>0.0,0.0,0.0</westOffset>
 				<southOffset>-0.25,0.0,0.0</southOffset>
-			</li> 
+			</li--> 
 		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
@@ -439,12 +476,6 @@
 		<comps> 
 			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,-1.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,-1.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li> 
 		</comps>
 		<modExtensions>
 			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
@@ -463,7 +494,7 @@
 		<description>The Bolter, also called a Boltgun, and its variants are some of the most powerful hand-held ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is a powerful assault weapon that fires explosive kinetic rounds colloquially referred to as bolts capable of ripping through or blowing apart a foe. The Locke Pattern is a variant of an older pattern used by the Adeptus Arbites, and is now the most common pattern of Bolter in use in the Rim.\n\nLike the Bolter patterns used by the Orders Militant of the Adepta Sororitas, the Locke Pattern Bolter can be used without difficulty by normal-sized humans.</description>
 		<graphicData>
 			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_Locke</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>AdvancedGraphics.Graphic_SingleQuality</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<color>(0.286,0.286,0.286)</color>	
 			<drawSize>1.1</drawSize>		
@@ -474,7 +505,8 @@
 		<costList>
 			<Steel>175</Steel>
 			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<statBases>
 			<!--WorkToMake>180000</WorkToMake-->
@@ -562,7 +594,8 @@
 		<costList>
 			<Steel>185</Steel>
 			<Plasteel>65</Plasteel>
-			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 		</costList>
 		<statBases>
 			<WorkToMake>180000</WorkToMake>
@@ -657,6 +690,7 @@
 			<Steel>175</Steel>
 			<Plasteel>80</Plasteel>
 			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -795,13 +829,7 @@
 				<cooldownTime>1.9</cooldownTime>
 			</li>
 		</tools>
-		<comps>		
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
+		<comps>		  
 			<li Class="OgsCompSlotLoadable.CompProperties_SlotLoadable">
 				<slots>
 					<li>OGI_BoltSlot</li>
@@ -852,6 +880,7 @@
 			<Steel>150</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -885,13 +914,7 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>		
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
+		<comps>		  
 		</comps>
 		<tools>
 			<li>
@@ -1008,6 +1031,7 @@
 			<Steel>175</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1151,6 +1175,7 @@
 			<Steel>175</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>3</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1274,6 +1299,7 @@
 			<Steel>175</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>3</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1432,6 +1458,7 @@
 			<Steel>175</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1564,6 +1591,7 @@
 			<Steel>150</Steel>
 			<Plasteel>45</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1756,6 +1784,7 @@
 			<Steel>200</Steel>
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>3</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -1824,12 +1853,6 @@
 			</li>  
 			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
 				<HeavyWeapon>true</HeavyWeapon>
-			</li>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
 			</li>  
 		</comps>
 		<modExtensions>

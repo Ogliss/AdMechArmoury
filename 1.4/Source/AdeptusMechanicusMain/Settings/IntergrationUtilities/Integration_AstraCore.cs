@@ -37,15 +37,15 @@ namespace AdeptusMechanicus
                     }
                     patches = list;
                     */
-                    if (!settings.DisabledPatches.NullOrEmpty())
+                    if (!settings.DisabledPatchSetting.NullOrEmpty())
                     {
-                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatches.Count} Patches");
-                        foreach (var item in settings.DisabledPatches)
+                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatchSetting.Count} Patches");
+                        foreach (var item in settings.DisabledPatchSetting)
                         {
                             if (!item.linkedModID.NullOrEmpty() && !PackageID.NullOrEmpty())
                             {
                             //    Log.Message($"Checking {item.label} setup for {Label}");
-                                if (item.linkedModID.Contains(PackageID) && item.optional)
+                                if (item.linkedModID.Contains(PackageID))
                                 {
                              //       Log.Message($"Optional patch {item.label} setup for {Label}");
                                     patches.Add(item);
@@ -105,10 +105,10 @@ namespace AdeptusMechanicus
                     }
                     patches = list;
                     */
-                    if (!settings.DisabledPatches.NullOrEmpty())
+                    if (!settings.DisabledPatchSetting.NullOrEmpty())
                     {
-                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatches.Count} Patches");
-                        foreach (var item in AMAMod.settings.DisabledPatches)
+                        Log.Message($"Optional patches setup for {Label} checking total of {settings.DisabledPatchSetting.Count} Patches");
+                        foreach (var item in AMAMod.settings.DisabledPatchSetting)
                         {
                             Log.Message($"checking {item.file}");
                             if (item.linkedModID.NullOrEmpty() || item.linkedModID.Contains(PackageID))

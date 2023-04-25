@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<!-- Human Humanoid Alien Races 2.0 -->
-	<Operation Class="PatchOperationFindModID">
+	<Operation Class="PatchOperationOptional">
+		<patchName>AstraMechanicusHediffGiver</patchName>
+		<label>Astra/Mechanicus hediffGiver</label>
+		<toolTip>Add Astra Tech Hediffs to mechanicus hediffGiver</toolTip>
+		<log>true</log>
 		<mods>
 			<li>QX.AstraMilitarum</li>
 		</mods>
-		<label>Add Astra Tech Hediffs to mechanicus hediffGiver</label>
-		<match Class="PatchOperationSequence">
-			<!--success>Always</success-->
-			<operations>
+		<enabled Class="PatchOperationSequence">		
+			<operations>	
 				<li Class="PatchOperationConditional">
 					<xpath>/Defs/HediffDef[@Name = "IG_HediffDef_Aug_FOOT"]</xpath>
 					<match Class="PatchOperationAdd">
@@ -267,7 +269,7 @@
 							</value>
 					</match>	
 				</li>
-			</operations>
-		</match>
+			</operations>	
+		</enabled>	
 	</Operation>
 </Patch>

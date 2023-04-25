@@ -12,7 +12,6 @@ using AdeptusMechanicus;
 using AdeptusMechanicus.ExtensionMethods;
 using UnityEngine;
 using System.Reflection.Emit;
-using OgsCompOversizedWeapon;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {

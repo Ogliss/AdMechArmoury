@@ -29,7 +29,7 @@
 			</defaultOutfitTags>
 		</apparel>
 		<thingCategories>
-			<!--li>OGIArmour</li-->
+			<li>OGASArmour</li>
 		</thingCategories>
 		<tradeTags>
 			<li>OGIArmour</li>
@@ -113,9 +113,9 @@
 				<li>Soldier</li>
 			</defaultOutfitTags>
 		</apparel>
-		<thingCategories>
+		<!--thingCategories>
 			<li>OGASHeadgear</li>
-		</thingCategories>
+		</thingCategories-->
 		<tradeTags>
 			<li>OGASArmour</li>
 			<li>OGASHeadgear</li>
@@ -125,4 +125,171 @@
 		</thingSetMakerTags>
 	</ThingDef>
 	
+	<!-- Add 0.55 inv save, increased in CQC to 0.92 -->
+	<ThingDef ParentName="OG_Imperial_Apparel_NoStuffColour">
+		<defName>OGAS_Apparel_Armor_Repentia</defName>
+		<label>repentia garb</label>
+		<techLevel>Spacer</techLevel>
+		<description>The battle gard of a Sister Repentia, one of the fanatical, self-mutilating Human female warriors who serve within the Orders Militant of the Adepta Sororitas.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AS/RepentiaGarb/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<Mass>4</Mass>
+			<WorkToMake>2800</WorkToMake>
+			<MaxHitPoints>800</MaxHitPoints>
+			<MarketValue>1000</MarketValue>
+			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.55</ArmorRating_Heat>
+			<OG_ArmorRating_InvunerableSave>0.55</OG_ArmorRating_InvunerableSave>
+			<Insulation_Cold>10</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.35</MoveSpeed>
+			<CarryingCapacity>15</CarryingCapacity>
+			<PainShockThreshold>0.25</PainShockThreshold>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<PsychicSensitivity>-0.25</PsychicSensitivity>
+			<ToxicResistance>-1</ToxicResistance>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>120</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<OGDE_Wraithbone>30</OGDE_Wraithbone>
+			<OGDE_SpiritStone>1</OGDE_SpiritStone>
+			<OGDE_Component>10</OGDE_Component>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>15</Crafting>
+			</skillRequirements>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+		<useWornGraphicMask>true</useWornGraphicMask>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li MayRequire="CETeam.CombatExtended">Hands</li>
+				<li MayRequire="CETeam.CombatExtended">Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/RepentiaGarb/Base</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>DarkEldarMilitary</li>
+				<li>DEHaemonculusArmour</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>DarkEldarSoldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OGASArmour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGIArmour</li>
+		</tradeTags>
+		<!--
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<max>(1,1,0.82)</max>
+				<min>(0.906,0.937,0.776)</min>
+			</li>
+			</options>
+		</colorGenerator>
+		-->
+		<comps>
+			<!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/DarkEldar/WychArmour/Pauldron/Pauldron</padTexPath>
+						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+						<SouthOffset>0,0.00105,0.0</SouthOffset>
+					</li>
+				</PauldronEntries>
+			</li-->
+		</comps>
+		<modExtensions>
+		  <li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<BodytypeDefs>
+				<li>Female</li>
+			</BodytypeDefs>
+			<gender>Female</gender>
+			<forcedBodytype>true</forcedBodytype>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+
+  <ThingDef ParentName="HatMakeableBase">
+    <defName>OGAS_Apparel_Armor_RepentiaHood</defName>
+    <label>repentia hood</label>
+    <description>A draped hood which covers the head and ears.</description>
+    <graphicData>
+		<texPath>Things/Item/Apparel/Imperial/AS/RepentiaHood/_Icon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <uiIconScale>1.15</uiIconScale>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToMake>6000</WorkToMake>
+      <Mass>0.1</Mass>
+      <EquipDelay>0.8</EquipDelay>
+      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
+    </statBases>
+    <equippedStatOffsets>
+      <SocialImpact>0.2</SocialImpact>
+    </equippedStatOffsets>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+      <li>Leathery</li>
+    </stuffCategories>
+    <apparel>
+      <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+      <wornGraphicPath>Things/Item/Apparel/Imperial/AS/RepentiaHood/Base</wornGraphicPath>
+      <bodyPartGroups>
+        <li>UpperHead</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <tags>
+        <li>BestowerHood</li>
+      </tags>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_StandardApparel" />
+    <tradeTags>
+      <li>BasicClothing</li>
+    </tradeTags>
+    <recipeMaker>
+      <displayPriority>125</displayPriority>
+    </recipeMaker>
+  </ThingDef>
+
 </Defs>

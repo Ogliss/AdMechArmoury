@@ -217,13 +217,7 @@
 				</targetParams>
 			</li>
 		</verbs>
-		<comps>
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
+		<comps>  
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -375,13 +369,7 @@
 						<ScattershotCount>4</ScattershotCount>
 					</li>
 				</VerbEntries>
-			</li--> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
+			</li-->   
 			<li Class="AdeptusMechanicus.CompProperties_PowerWeaponActivatableEffect">
 				<compClass>AdeptusMechanicus.CompPowerWeaponActivatableEffect</compClass>
 				<gizmosOnEquip>false</gizmosOnEquip>
@@ -456,15 +444,15 @@
 		</projectile>
 	</ThingDef>
 	  
-	<!-- ====================== Inferno Pistol Inquisitorial ===================== -->
+	<!-- ====================== Metla Pistol ===================== -->
 	<ThingDef ParentName="OG_Imperial_Gun_Special"  Class="AdeptusMechanicus.Lasers.LaserGunDef">
-		<defName>OGI_Gun_InfernoPistol_Inquisition</defName>
-		<label>inferno pistol (I)</label>
+		<defName>OGI_Gun_MeltaPistol</defName>
+		<label>melta pistol (I)</label>
 		<thingClass>AdeptusMechanicus.Lasers.LaserGun</thingClass>
-		<description>The Inferno Pistol, also called an Infernus Pistol amongst the Space Marines of the Blood Angels Chapter, is a small hand-held Melta Weapon that has an overall effective range that is only about 50% that of its counterparts, the Meltagun and the Multi-Melta. These rare and often exquisitely-crafted pistols. Arcane processes compact standard fusion-based Melta technology down to the size of a pistol, a single shot at close range can stop a Space Marine in Terminator Armour in his tracks or burn through the hull armour of a Land Raider tank.</description>
+		<description>The Melta Pistol, also called an Infernus or Inferno Pistol amongst the Space Marines of the Blood Angels Chapter, is a small hand-held Melta Weapon that has an overall effective range that is only about 50% that of its counterparts, the Meltagun and the Multi-Melta. These rare and often exquisitely-crafted pistols. Arcane processes compact standard fusion-based Melta technology down to the size of a pistol, a single shot at close range can stop a Space Marine in Terminator Armour in his tracks or burn through the hull armour of a Land Raider tank.</description>
 		<graphicData>
-			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/InfernoPistol_Inquisition</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/MeltaPistol</texPath>
+			<graphicClass>AdvancedGraphics.Graphic_SingleQuality</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 			<color>(0.208,0.286,0.176)</color>
 		</graphicData>
@@ -473,11 +461,11 @@
 			<WorkToMake>12500</WorkToMake>
 			<!--MarketValue>250</MarketValue-->
 			<Mass>1.2</Mass>
-			<AccuracyTouch>0.85</AccuracyTouch>
-			<AccuracyShort>0.80</AccuracyShort>
-			<AccuracyMedium>0.50</AccuracyMedium>
-			<AccuracyLong>0.40</AccuracyLong>
-			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>1.85</RangedWeapon_Cooldown>
 		</statBases>
 		<recipeMaker>
 				<researchPrerequisites>
@@ -488,7 +476,7 @@
 			<Steel>75</Steel>
 			<Plasteel>50</Plasteel>
 			<ComponentIndustrial>5</ComponentIndustrial>
-			<Gold>2</Gold>
+			<ComponentSpacer>2</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -584,7 +572,7 @@
 			<Steel>150</Steel>
 			<Plasteel>100</Plasteel>
 			<ComponentIndustrial>10</ComponentIndustrial>
-			<Gold>4</Gold>
+			<ComponentSpacer>4</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -649,7 +637,7 @@
 	  
 	<!-- ====================== Multi Metla ===================== -->  
 	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
-		<defName>OGI_Bullet_MultiMelta</defName>
+		<defName>OGI_Bullet_MeltaMulti</defName>
 		<label>melta blast</label>
 		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
 		<textures>
@@ -668,7 +656,7 @@
 	</ThingDef>
 	  
 	<ThingDef ParentName="OG_Imperial_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
-		<defName>OGI_Gun_MultiMelta</defName>
+		<defName>OGI_Gun_MeltaMulti</defName>
 		<label>multimelta (I)</label>
 		<description>The Meltagun, also called a "Fusion Gun," "Melter," or "Cooker," is a powerful, short-ranged anti-armour weapon that produces an intense, energetic beam of heat in the tens of thousands of degrees Centigrade. The Melta Gun is used by the Space Marines, the troops of the Imperial Guard and other military forces of the Imperium of Man such as the Orders Militant of the Adepta Sororitas. Melta Weapons emit devastatingly intense but short-ranged blasts of heat which can melt through almost any material. Most types of Melta Weapon like the Meltagun function by inducing highly pressurised gases from an ammunition canister into an unstable sub-molecular state which produces nuclear fusion and directing the resulting energies down the barrel. Melta Weapon usage is always accompanied by a distinctive hissing sound as the Melta beam boils away the water in the air, then a roaring blast as the beam reduces the target to charred scraps or molten slag. Meltaguns are the premier Imperial anti-armour weapons, and few if any vehicles can withstand their power.</description>
 		<graphicData>
@@ -697,7 +685,7 @@
 			<Steel>150</Steel>
 			<Plasteel>100</Plasteel>
 			<ComponentIndustrial>10</ComponentIndustrial>
-			<Gold>4</Gold>
+			<ComponentSpacer>6</ComponentSpacer>
 		</costList>
 		<techLevel>Spacer</techLevel>
 		<weaponTags>
@@ -715,7 +703,7 @@
 			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>OGI_Bullet_MultiMelta</defaultProjectile>
+				<defaultProjectile>OGI_Bullet_MeltaMulti</defaultProjectile>
 				<warmupTime>1.5</warmupTime>
 				<range>28</range>
 				<burstShotCount>1</burstShotCount>
@@ -736,13 +724,7 @@
 					<ScattershotCount>1</ScattershotCount>
 				</li>
 			</VerbEntries>
-			</li> 
-			<li Class="OgsCompOversizedWeapon.CompProperties_OversizedWeapon">
-				<northOffset>0.0,0.0,0.0</northOffset>
-				<eastOffset>0.0,1.0,0.0</eastOffset>
-				<westOffset>0.0,0.0,0.0</westOffset>
-				<southOffset>0.0,1.0,0.0</southOffset>
-			</li>  
+			</li>   
 		</comps>
 		<tools>
 			<li>

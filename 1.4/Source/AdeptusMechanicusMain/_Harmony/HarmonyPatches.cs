@@ -55,6 +55,13 @@ namespace AdeptusMechanicus.HarmonyInstance
             MethodInfo ObserveSurroundingThings = AccessTools.TypeByName("RimWorld.PawnObserver").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).FirstOrFallback(x => x.GetParameters().Length == 1 && x.GetParameters().First().ParameterType == typeof(Region));
             if (ObserveSurroundingThings != null) AMAMod.harmony.Patch(original: ObserveSurroundingThings, transpiler: new HarmonyMethod(typeof(PawnObserver_ObserveSurroundingThings_CompilerGenerated_ObserveablePawn_Transpiler), nameof(PawnObserver_ObserveSurroundingThings_CompilerGenerated_ObserveablePawn_Transpiler.Transpiler)));
             else Log.Error($"ObserveSurroundingThings.Name NOT FOUND");
+
+            MethodInfo PostProcessApparel_ = typeof(PawnApparelGenerator).GetMethod("PostProcessApparel", BindingFlags.Static | BindingFlags.Public);
+            if (PostProcessApparel_ != null)
+            {
+            //    AMAMod.harmony.Patch(PostProcessApparel_, null, new HarmonyMethod(typeof(PawnApparelGenerator_PostProcessApparel_FactionColours_Patch), "Postfix", null), null, null);
+            }
+            else Log.Error($"PawnApparelGenerator.PostProcessApparel NOT FOUND");
             if (AdeptusIntergrationUtility.enabled_FacialStuff)
             {
             //    HarmonyPatches.FacialStuffPatches();
@@ -157,6 +164,7 @@ namespace AdeptusMechanicus.HarmonyInstance
         {
             AMAMod.harmony.Patch(AccessTools.Method(typeof(QuestGen_Pawns), "GeneratePawn", new Type[] { typeof(Quest), typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool) }, null), new HarmonyMethod(typeof(QuestGen_Pawns_GeneratePawn_Refugee_Patch), "Prefix", null), null, null);
         }
+
         /*
         public static void OverrideMaterialIfNeeded()
         {
@@ -206,6 +214,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             //    GenSpawn.Spawn(pawn, pos, map);
             //    pawn.Rotation = rot;
             }
+            /*
             if (drafted)
             {
                 pawn.drafter.Drafted = true;
@@ -214,6 +223,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 Find.Selector.SelectedObjects.Add(pawn);
             }
+            */
             if (inBed)
             {
                 if (bed != null)
