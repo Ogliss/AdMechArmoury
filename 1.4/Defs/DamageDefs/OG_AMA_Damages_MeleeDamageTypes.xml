@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<DamageDef Name="StabBase">
-    <defName>OG_Stab</defName>
-    <label>stab</label>
-    <workerClass>DamageWorker_Stab</workerClass>
-    <externalViolence>true</externalViolence>
-    <deathMessage>{0} has been stabbed to death.</deathMessage>
-    <hediff>Stab</hediff>
-    <hediffSolid>Crack</hediffSolid>
-    <impactSoundType>Slice</impactSoundType>
-    <armorCategory>Sharp</armorCategory>
-    <stabChanceOfForcedInternal>0.6</stabChanceOfForcedInternal>
-    <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+		<defName>OG_Stab</defName>
+		<label>stab</label>
+		<workerClass>DamageWorker_Stab</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been stabbed to death.</deathMessage>
+		<hediff>Stab</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<impactSoundType>Slice</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<stabChanceOfForcedInternal>0.6</stabChanceOfForcedInternal>
+		<overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
 	</DamageDef>
 	
-  <!-- Damage types are the same as Blunt, but behaves like stabbing; intended for things like rifle barrels -->
-  <DamageDef ParentName="BluntBase" Name="PokeBase">
-    <defName>OG_Poke</defName>
-    <workerClass>DamageWorker_Stab</workerClass>
-    <stabChanceOfForcedInternal>0.4</stabChanceOfForcedInternal>
-  </DamageDef>
+	<!-- Damage types are the same as Blunt, but behaves like stabbing; intended for things like rifle barrels -->
+	<DamageDef ParentName="BluntBase" Name="PokeBase">
+		<defName>OG_Poke</defName>
+		<workerClass>DamageWorker_Stab</workerClass>
+		<stabChanceOfForcedInternal>0.4</stabChanceOfForcedInternal>
+	</DamageDef>
 
 	<!--==================== Common Damage Types =========================-->
 	<!--==================== Power Weapon Damage Types =========================-->
@@ -60,32 +60,32 @@
 	</DamageDef>
 		
 	<!--==================== Poision Weapon Damage Types =========================-->
-    <DamageDef ParentName="CutBase" Name="OG_Toxic_CutBase">
-    <defName>OG_Toxic_Cut</defName>
-    <label>toxic cut</label>
-    <additionalHediffs>
-      <li>
-        <hediff>Toxins</hediff>
-        <severityPerDamageDealt>0.0025</severityPerDamageDealt>
-        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
-      </li>
-    </additionalHediffs>
+		<DamageDef ParentName="CutBase" Name="OG_Toxic_CutBase">
+		<defName>OG_Toxic_Cut</defName>
+		<label>toxic cut</label>
+		<additionalHediffs>
+			<li>
+				<hediff>Toxins</hediff>
+				<severityPerDamageDealt>0.01</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+			</li>
+		</additionalHediffs>
 	</DamageDef>
-    
-    <DamageDef ParentName="StabBase" Name="OG_Toxic_StabBase">
-    <defName>OG_Toxic_Stab</defName>
-    <label>toxic cut</label>
-    <additionalHediffs>
-      <li>
-        <hediff>Toxins</hediff>
-        <severityPerDamageDealt>0.005</severityPerDamageDealt>
-        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
-      </li>
-    </additionalHediffs>
+		
+		<DamageDef ParentName="StabBase" Name="OG_Toxic_StabBase">
+		<defName>OG_Toxic_Stab</defName>
+		<label>toxic cut</label>
+		<additionalHediffs>
+			<li>
+				<hediff>Toxins</hediff>
+				<severityPerDamageDealt>0.01</severityPerDamageDealt>
+				<victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+			</li>
+		</additionalHediffs>
 	</DamageDef>
  
 	<!--==================== Plague Weapon Damage Types =========================-->  
-    <DamageDef ParentName="CutBase">
+		<DamageDef ParentName="CutBase">
 		<defName>OG_Plague_Cut</defName>
 		<label>plague cut</label>
 		<additionalHediffs>
@@ -97,7 +97,7 @@
 		</additionalHediffs>
 	</DamageDef>
   
-    <DamageDef ParentName="StabBase">
+		<DamageDef ParentName="StabBase">
 		<defName>OG_Plague_Stab</defName>
 		<label>plague stab</label>
 		<additionalHediffs>
@@ -138,7 +138,7 @@
 		</additionalHediffs>
 	</DamageDef>
 	
-    <DamageDef ParentName="BluntBase">
+		<DamageDef ParentName="BluntBase">
 		<defName>OG_Force_Blunt</defName>
 		<label>force blunt</label>
 		<externalViolence>true</externalViolence>
@@ -203,14 +203,14 @@
 		<bluntInnerHitDamageFractionToAdd>0.2~0.35</bluntInnerHitDamageFractionToAdd>
 		<bluntStunChancePerDamagePctOfCorePartToHeadCurve>
 			<points>
-			<li>(0.04, 0.20)</li>
-			<li>(0.5, 1)</li>
+				<li>(0.04, 0.20)</li>
+				<li>(0.5, 1)</li>
 			</points>
 		</bluntStunChancePerDamagePctOfCorePartToHeadCurve>
 		<bluntStunChancePerDamagePctOfCorePartToBodyCurve>
 			<points>
-			<li>(0.4, 0)</li>
-			<li>(0.9, 0.15)</li>
+				<li>(0.4, 0)</li>
+				<li>(0.9, 0.15)</li>
 			</points>
 		</bluntStunChancePerDamagePctOfCorePartToBodyCurve>
   </DamageDef>	

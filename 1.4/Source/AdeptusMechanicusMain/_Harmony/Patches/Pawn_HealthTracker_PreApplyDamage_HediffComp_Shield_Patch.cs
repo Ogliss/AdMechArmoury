@@ -12,10 +12,6 @@ namespace AdeptusMechanicus.HarmonyInstance
     {
         public static void Postfix(Pawn ___pawn, ref DamageInfo dinfo, ref bool absorbed)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return;
-            }
             if (dinfo.Def != null && ___pawn != null && !___pawn.Downed)
             {
                 if (!___pawn.Spawned || ___pawn.Map == null || ___pawn.health.hediffSet.hediffs.NullOrEmpty())
