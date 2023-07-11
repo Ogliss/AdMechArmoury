@@ -29,7 +29,7 @@ namespace AdeptusMechanicus
 				{
 					if (AMAMod.Dev && warnOnDefNotFound)
 					{
-						Log.Warning(SearchString + " Not Found");
+						Log.Warning(SearchType + " "+SearchString + " Not Found");
 					}
 					info = SearchString + " Not Found";
 					result = false;

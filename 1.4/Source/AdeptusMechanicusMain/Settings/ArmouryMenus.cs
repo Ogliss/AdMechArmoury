@@ -56,12 +56,11 @@ namespace AdeptusMechanicus
                 if (listing.CheckboxLabeled("AdeptusMechanicus.ShowWeaponSpecialRules".Translate(), ref settings.ShowAllowedWeaponSpecialRules, Dev, ref length_WSRulesInc, "AdeptusMechanicus.ShowWeaponSpecialRulesDesc".Translate(), false, false, ArmouryMain.collapseTex, ArmouryMain.expandTex, extend: true))
                 {
                     Listing_StandardExpanding listing_General = listing.BeginSection(length_WSRulesContent + length_WSRulesInc, true);
-                    listing_General.maxOneColumn = false;
                     listing_General.ColumnWidth *= 0.488f;
-                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowRapidFire".Translate(), ref settings.AllowRapidFire, "AdeptusMechanicus.AllowRapidFireDesc".Translate(), extend: true);
-                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowGetsHot".Translate(), ref settings.AllowGetsHot, "AdeptusMechanicus.AllowGetsHotDesc".Translate(), extend: true);
-                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowJams".Translate(), ref settings.AllowJams, "AdeptusMechanicus.AllowJamsDesc".Translate(), extend: true);
-                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowMultiShot".Translate(), ref settings.AllowMultiShot, "AdeptusMechanicus.AllowMultiShotDesc".Translate(), extend: true);
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowRapidFire".Translate(), ref settings.AllowRapidFire, "AdeptusMechanicus.AllowRapidFireDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowGetsHot".Translate(), ref settings.AllowGetsHot, "AdeptusMechanicus.AllowGetsHotDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowJams".Translate(), ref settings.AllowJams, "AdeptusMechanicus.AllowJamsDesc".Translate());
+                    listing_General.CheckboxLabeled("AdeptusMechanicus.AllowMultiShot".Translate(), ref settings.AllowMultiShot, "AdeptusMechanicus.AllowMultiShotDesc".Translate());
                     listing_General.NewColumn();
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowUserEffects".Translate(), ref settings.AllowUserEffects, "AdeptusMechanicus.AllowUserEffectsDesc".Translate());
                     listing_General.CheckboxLabeled("AdeptusMechanicus.AllowForceWeaponEffect".Translate(), ref settings.AllowForceWeaponEffect, "AdeptusMechanicus.AllowForceWeaponEffectDesc".Translate());

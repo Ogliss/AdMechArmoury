@@ -26,10 +26,10 @@ namespace AdeptusMechanicus
 				XmlNodeList nodeList = xml.SelectNodes("Defs/ThingDef[" + SearchType + "=\"" + SearchString + "\"]");
                 if (nodeList.Count == 0)
                 {
-                    if (AMAMod.Dev && warnOnDefNotFound) 
+                    if (AMAMod.Dev && warnOnDefNotFound)
                     {
-						Log.Warning(SearchString + " Not Found");
-					}
+                        Log.Warning(SearchType + " " + SearchString + " Not Found");
+                    }
 					info = SearchString + " Not Found";
 					result = false;
 				}

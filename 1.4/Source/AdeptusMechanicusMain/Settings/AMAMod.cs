@@ -69,12 +69,7 @@ namespace AdeptusMechanicus.settings
             {
                 if (item is PatchOperationOptional optional)
                 {
-                    PatchDescription patch = settings.DisabledPatchSetting.FirstOrDefault(x => x.key == optional.PatchName);
-                    if (patch == null)
-                    {
-                        patch = settings.DisabledPatchSetting.FirstOrDefault(x => item.sourceFile.EndsWith(x.file));
-
-                    }
+                    PatchDescription patch = settings.DisabledPatchSetting.FirstOrDefault(x => (x.key != null && x.key == optional.PatchName) || item.sourceFile.EndsWith(x.file));
                     if (patch == null)
                     {
                         patch = new PatchDescription(item.sourceFile, optional.PatchName, optional.Label, optional.LinkedModIDs, optional.ToolTip, optional.EnabledByDefault);

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using CombatExtended;
+using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -118,8 +119,8 @@ namespace AdeptusMechanicus
 
         public void ImpactEffects(Vector3 pos, Map map, ThingDef explosionMoteDef, float ExplosionMoteSize, Color? color, SoundDef sound, FleckDef ImpactMoteDef, float ImpactMoteSize, FleckDef ImpactGlowMoteDef, float ImpactGlowMoteSize, Thing hitThing = null, Thing projectile = null, int OverrideSolidTime = -1)
         {
-            Rand.PushState();
             FleckDef impactMoteDef = ImpactMoteDef ?? this.ImpactMoteDef;
+            Rand.PushState();
             float rotationRate = Rand.Range(-30f, 30f);
             float VelocityAngel = (float)Rand.Range(0, 360);
             float VelocitySpeed = Rand.Range(0.48f, 0.72f);
@@ -149,9 +150,7 @@ namespace AdeptusMechanicus
                     MoteThrown moteThrown;
                     moteThrown = (MoteThrown)ThingMaker.MakeThing(explosionMoteDef, null);
                     moteThrown.Scale = ExplosionMoteSize;
-                    Rand.PushState();
-                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                    Rand.PopState();
+                    moteThrown.rotationRate = rotationRate;
                     moteThrown.exactPosition = loc;
                     moteThrown.instanceColor = color.Value;
                     moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
@@ -178,7 +177,8 @@ namespace AdeptusMechanicus
                         {
                             sound.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map, false));
                         }
-                        AdeptusFleckMaker.Thrown(loc, map, impactMoteDef, ImpactMoteSize, pawn.RaceProps.BloodDef?.graphic.color, null, Rand.Range(-30f, 30f), OverrideSolidTime > -1 ? (float?)OverrideSolidTime : null, VelocityAngel, VelocitySpeed);
+
+                        AdeptusFleckMaker.Thrown(loc, map, impactMoteDef, ImpactMoteSize, pawn.RaceProps.BloodDef?.graphic.color, null, rotationRate, OverrideSolidTime > -1 ? (float?)OverrideSolidTime : null, VelocityAngel, VelocitySpeed);
                     }
                     else
                     {
@@ -189,7 +189,7 @@ namespace AdeptusMechanicus
                             c.g = color.Value.g * 0.25f;
                             c.b = color.Value.b * 0.25f;
                         }
-                        AdeptusFleckMaker.Thrown(loc, map, impactMoteDef, ImpactGlowMoteSize, c, null, Rand.Range(-30f, 30f), OverrideSolidTime > -1 ? (float?)OverrideSolidTime : null, VelocityAngel, VelocitySpeed);
+                        AdeptusFleckMaker.Thrown(loc, map, impactMoteDef, ImpactGlowMoteSize, c, null, rotationRate, OverrideSolidTime > -1 ? (float?)OverrideSolidTime : null, VelocityAngel, VelocitySpeed);
                     }
                 }
                 catch (System.Exception)
