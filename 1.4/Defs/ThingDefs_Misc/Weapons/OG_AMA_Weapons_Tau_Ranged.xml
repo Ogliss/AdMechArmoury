@@ -780,6 +780,260 @@
 		</modExtensions>
 	</ThingDef>
 
+	<!-- ====================== Tau - Plasma Rifle shot ===================== -->
+	<ThingDef ParentName="OG_Bullet_Base_PlasmaHuman">
+		<defName>OGT_Bullet_PlasmaRifle</defName>
+		<label>Plasma bolt</label>
+		<graphicData>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>OGIPlasma</damageDef>
+			<explosionRadius>0.50</explosionRadius>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.8</armorPenetrationBase>
+			<stoppingPower>2</stoppingPower>
+			<soundExplode>OGIPP_Explosion</soundExplode>
+		</projectile>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ProjectileVFX">
+				<explosionMoteDef>OG_Mote_PlasmaBlastSlow</explosionMoteDef>
+				<explosionMoteSize>0.5</explosionMoteSize>
+				<impactMoteDef>OG_Mote_PlasmaBlast</impactMoteDef>
+				<impactMoteSize>1.25</impactMoteSize>
+				<impactGlowMoteDef>OG_Mote_ExplosionFlashPlasma</impactGlowMoteDef>
+				<impactGlowMoteSize>1.5</impactGlowMoteSize>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	 
+	<!-- ====================== Tau - Plasma Rifle ===================== -->
+	<ThingDef ParentName="OG_Tau_Gun_Heavy">
+		<defName>OGT_Gun_PlasmaRifle</defName>
+		<label>plasma rifle (T)</label>
+		<description>A Plasma Rifle is a T'au Plasma Weapon that delivers pulses of searing energy and superheated matter that has been transmuted into a gaseous plasma state that carries an electrical charge.\n\nThe plasma "bolts" fired by these weapons generate the destructive heat of a small sun; impacting with the fury of a supernova and scything through steel, flesh and bone as if they were nothing.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/PlasmaRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>			
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<reliability>1</reliability>
+			<WorkToMake>53000</WorkToMake>
+			<!--MarketValue>825</MarketValue-->
+			<Mass>2.25</Mass>
+			<AccuracyTouch>0.91</AccuracyTouch>
+			<AccuracyShort>0.81</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.52</AccuracyLong>
+			<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Common_Tech_Weapons_Plasma</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>175</Steel>
+			<Plasteel>55</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>4</ComponentSpacer>
+		</costList>
+		<weaponTags>
+			<li>TauBattlesuitGun</li>
+			<li>TauPlasmarifle</li>
+			<li>TauPlasmaRifle</li>
+			<li>OgsWeaponTestPlasma</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+			<li>OGTRanged_Battlesuit</li>
+		</tradeTags>
+		<generateCommonality>0.15</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<label>Plasma</label>
+				<rapidFire>true</rapidFire>
+				<getsHot>true</getsHot>
+				<hotDamage>10</hotDamage>
+				<reliability>ST</reliability>
+				<defaultCooldownTime>1.75</defaultCooldownTime>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_PlasmaRifle</defaultProjectile>
+				<warmupTime>1.25</warmupTime>
+				<range>31</range>
+				<soundCast>OG_Plasma_Pistol_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.6</barrelLength>
+				<barrelOffset>0.0</barrelOffset>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<comps>	
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			</li>
+		</comps>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<!-- ====================== Tau - Fusion Blast ===================== -->
+	<ThingDef ParentName="OG_Bullet_LaserGeneric" Class="AdeptusMechanicus.Lasers.LaserBeamDef">
+		<defName>OGT_Bullet_Fusion</defName>
+		<label>fusion blast</label>
+		<description>A higher power laser beam which is effective against the more durable alien bodies and stronger types of personal armour.</description>
+		<graphicData>
+			<color>(255,255,255,150)</color>
+			<colorTwo>(255,255,255,255)</colorTwo>
+		</graphicData>
+		<textures>
+			<li>Things/Projectile/MeltaShot</li>
+		</textures>
+		<flareMatPath>Other/LaserFlare</flareMatPath>
+		<seam>0</seam>
+		<!--flareLength>3</flareLength-->
+		<flareWidthMod>1.35</flareWidthMod>
+
+		<projectile>
+			<damageDef>OGIMelta</damageDef>
+			<damageAmountBase>125</damageAmountBase>
+			<armorPenetrationBase>2</armorPenetrationBase>
+			<explosionRadius>0.50</explosionRadius>
+			<stoppingPower>4</stoppingPower>
+			<soundExplode>OGIFL_Explosion</soundExplode>
+		</projectile>
+	</ThingDef>
+	  
+	<ThingDef ParentName="OG_Tau_Gun_Heavy" Class="AdeptusMechanicus.Lasers.LaserGunDef">
+		<defName>OGT_Gun_FusionBlaster</defName>
+		<label>fusion blaster (T)</label>
+		<description>A Fusion Blaster is a short-ranged T'au equivalent of a Melta Weapon that agitates the sub-atomic particles of the target, causing a massive build-up of heat.</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Tau/FusionBlaster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.00</drawSize>	
+		</graphicData>
+		<soundInteract>Interact_Autopistol</soundInteract>
+		<statBases>
+			<WorkToMake>90000</WorkToMake>
+			<!--MarketValue>2800</MarketValue-->
+			<Mass>5.2</Mass>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.80</AccuracyShort>
+			<AccuracyMedium>0.50</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>3.00</RangedWeapon_Cooldown>
+		</statBases>
+		<recipeMaker>
+				<researchPrerequisites>
+					<li>OG_Common_Tech_Weapons_Melta</li>
+				</researchPrerequisites>
+		</recipeMaker>
+		<costList>
+			<Steel>150</Steel>
+			<OGT_Fiotak>35</OGT_Fiotak>
+			<OGT_Component>8</OGT_Component>
+		</costList>
+		<techLevel>Spacer</techLevel>
+		<weaponTags>
+			<li>THeavyGun</li>
+			<li>TFusionBlaster</li>
+			<li>GuevesaHeavyGun</li>
+			<li>OgsWeaponTestMelta</li>
+		</weaponTags>
+		<tradeTags>
+			<li>OGTRanged</li>
+		</tradeTags>
+			<generateCommonality>0.005</generateCommonality>
+		<verbs>
+			<li Class="AdeptusMechanicus.AdvancedVerbProperties">
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>OGT_Bullet_Fusion</defaultProjectile>
+				<warmupTime>0.25</warmupTime>
+				<range>16</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>OG_Melta_Sound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<barrelLength>0.8</barrelLength>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>		
+			<li Class="AdeptusMechanicus.CompProperties_Weapon_GunSpecialRules">
+			<VerbEntries>
+				<li>
+					<Multishot>true</Multishot>
+					<ScattershotCount>1</ScattershotCount>
+				</li>
+			</VerbEntries>
+			</li>   
+		</comps>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>1.8</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				<li>Poke</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+			</li>
+		</tools>
+		<modExtensions>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_DefaultSettings">
+				<dualWield>false</dualWield>
+				<twoHand>true</twoHand>
+			</li>
+			<li MayRequire="Roolo.DualWield" Class="DualWield.DefModextension_CustomRotation">
+				<extraRotation>0</extraRotation>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	  
 	<!--==================== Tau - Vespid Neutrino Blaster =========================-->
   <ThingDef ParentName="OG_Bullet_Base">
 		<defName>OGT_Bullet_NeutronBlaster</defName>

@@ -22,7 +22,6 @@
 
 <Operation Class="PatchOperationConditional">
 	<xpath>Defs/ResearchProjectDef[defName="OG_Eldar_Tech_Base_T1"]</xpath>
-	<success>Always</success>
 	<!--
 	<match Class="PatchOperationAdd">
 		<success>Always</success>
@@ -33,7 +32,6 @@
 	</match>
 	-->
 	<nomatch Class="PatchOperationSequence">
-		<success>Always</success>
 		<operations>
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[starts-with(*,'OGE_Melee_')]/recipeMaker/researchPrerequisites</xpath>
@@ -53,7 +51,6 @@
 
 <Operation Class="PatchOperationConditional">
 	<xpath>Defs/ResearchProjectDef[defName="OG_DarkEldar_Tech_Base_T1"]</xpath>
-	<success>Always</success>
 	<!--
 	<match Class="PatchOperationAdd">
 		<success>Always</success>
@@ -64,7 +61,6 @@
 	</match>
 	-->
 	<nomatch Class="PatchOperationSequence">
-		<success>Always</success>
 		<operations>
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[starts-with(*,'OGDE_Melee_')]/recipeMaker/researchPrerequisites</xpath>
@@ -84,7 +80,6 @@
 
 <Operation Class="PatchOperationConditional">
 	<xpath>Defs/ResearchProjectDef[defName="OG_Tau_Tech_Base_T1"]</xpath>
-	<success>Always</success>
 	<!--
 	<match Class="PatchOperationAdd">
 		<success>Always</success>
@@ -95,7 +90,6 @@
 	</match>
 	-->
 	<nomatch Class="PatchOperationSequence">
-		<!--success>Always</success-->
 		<operations>
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[starts-with(*,'OGT_Melee_') or starts-with(*,'OGK_Melee_') or starts-with(*,'OGV_Melee_')]/recipeMaker/researchPrerequisites/li[contains(.,'OG_Tau_')]</xpath>
@@ -115,7 +109,6 @@
 
 <Operation Class="PatchOperationConditional">
 	<xpath>Defs/ResearchProjectDef[defName="OG_Ork_Tech_Base_T1"]</xpath>
-	<success>Always</success>
 	<!--
 	<match Class="PatchOperationAdd">
 		<success>Always</success>
@@ -126,7 +119,6 @@
 	</match>
 	-->
 	<nomatch Class="PatchOperationSequence">
-		<success>Always</success>
 		<operations>
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[starts-with(*,'OGO_Melee_')]/recipeMaker/researchPrerequisites</xpath>

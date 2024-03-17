@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using static UnityEngine.GridBrushBase;
 
 namespace AdeptusMechanicus
 {
@@ -35,14 +36,17 @@ namespace AdeptusMechanicus
 					}
 					if (possible)
 					{
-						int max = culture.deities.max > culture.deities.possibleDeities.Count ? culture.deities.possibleDeities.Count : culture.deities.max;
+						int max = culture.deities.max > culture.deities.possibleDeities.Count ? culture.deities.max : culture.deities.possibleDeities.Count;
 						int min = culture.deities.min;
 						Rand.PushState();
 						int take = Rand.RangeInclusive(min, max);
-						Rand.PopState();
-						foreach (var def in culture.deities.possibleDeities.TakeRandom(take))
+						Rand.PopState(); 
+						Log.Message($"Generating {take}({min}/{max}) Deities for {__instance.ideo.culture.defName}");
+
+                        List<DeityDef> defs = culture.deities.possibleDeities.TakeRandom(take).ToList();
+                        foreach (var def in defs)
 						{
-							usedDefs.Add(def);
+							if (!usedDefs.Contains(def)) usedDefs.Add(def);
 						}
 					}
 					if (!usedDefs.NullOrEmpty())
@@ -116,6 +120,7 @@ namespace AdeptusMechanicus
 			}
 
 		}
+		
 
 		public static IdeoFoundation_Deity.Deity cloneDeity(this IdeoFoundation_Deity.Deity deity)
 		{
@@ -129,7 +134,7 @@ namespace AdeptusMechanicus
 			};
 		}
 
-		private static void FillDeity(IdeoFoundation_Deity __instance, IdeoFoundation_Deity.Deity deity)
+		public static void FillDeity(IdeoFoundation_Deity __instance, IdeoFoundation_Deity.Deity deity)
 		{
 			/*
 			Gender supremeGender = __instance.ideo.SupremeGender;

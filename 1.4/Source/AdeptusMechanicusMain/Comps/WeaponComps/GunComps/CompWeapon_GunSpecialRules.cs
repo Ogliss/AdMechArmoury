@@ -245,7 +245,7 @@ namespace AdeptusMechanicus
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": " + "AdeptusMechanicus.GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
                     builder.AppendLine("AdeptusMechanicus.GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));
@@ -338,7 +338,7 @@ namespace AdeptusMechanicus
             {
                 builder.AppendLine();
                 StatPart_Reliability.GetReliability(this, out string reliabilityString, out float failChance);
-                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": AMA_GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
+                builder.AppendLine(string.Format("AdeptusMechanicus.GetsHot".Translate() + ": " + "AdeptusMechanicus.GetsHotDesc".Translate(parent.Label, reliabilityString, (failChance / 100).ToStringPercent())));
                 if (HotDamageWeapon)
                 {
                     builder.AppendLine("AdeptusMechanicus.GetsHotWeaponDamage".Translate(HotDamage, parent.def.label));

@@ -14,16 +14,17 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus.HarmonyInstance
 {
     [HarmonyPatch(typeof(RaceProperties), "get_IsFlesh")]
-    public static class RaceProperties_get_IsFlesh_Name_Patch
+    public static class RaceProperties_get_IsFlesh_isConstruct_Patch 
     {
         [HarmonyPostfix]
-        public static void Postfix(RaceProperties __instance, ref bool __result)
+        public static bool Postfix(bool __result, RaceProperties __instance)
         {
-            if (__result && __instance.FleshType.isConstruct())
+            if (__result && __instance != null && __instance.FleshType.isConstruct())
             {
-                __result = false;
+                return false;
             //    Log.Message("Construct found " + __instance.FleshType + " IsFlesh = " + __result);
             }
+            return __result;
         }
     }
     
