@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGGrenadeFrag</defName>
+		<label>fragmentation</label>
+		<labelShort>Frag</labelShort>
+		<description>when the explosive charge detonates, it scatters lethal shrapnel fragments in a large area.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGGrenadeKrak</defName>
+		<label>shaped explosive</label>
+		<labelShort>Krak</labelShort>
+		<description>a shaped explosive charge capable of punching holes in armoured targets such as vehicles or bunkers, and its charge can even rip armour plating apart.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGGrenadesLaunched</defName>
+		<label>Grenade</label>
+		<parent>AmmoGrenades</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGGrenadeL</defName>
+		<label>Ogryn Grenades</label>
+		<ammoTypes>
+			<OG_Ammo_GrenadeFragL>OGI_Bullet_OgrynGauntletGrenadeFrag</OG_Ammo_GrenadeFragL>
+			<OG_Ammo_GrenadeKrakL>OGI_Bullet_OgrynGauntletGrenadeKrak</OG_Ammo_GrenadeKrakL>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGGrenadeBase" ParentName="AmmoBase" Abstract="True">
+		<description>Relatively small, low velocity grenade for use in grenade launchers.</description>
+		<statBases>
+			<Mass>0.2</Mass>
+			<Bulk>0.3</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGGrenadesLaunched</li>
+		</thingCategories>
+		<stackLimit>75</stackLimit>
+		<cookOffFlashScale>20</cookOffFlashScale>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGrenadeBase">
+		<defName>OG_Ammo_GrenadeFragL</defName>
+		<label>ogryn frag grenade</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.73</MarketValue>
+		</statBases>
+		<ammoClass>OGGrenadeFrag</ammoClass>
+		<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>20</damageAmountBase>
+					<explosiveDamageType>OGIBomb</explosiveDamageType>
+					<explosiveRadius>2.0</explosiveRadius>
+				</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGrenadeBase">
+		<defName>OG_Ammo_GrenadeKrakL</defName>
+		<label>ogryn krak grenade</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.73</MarketValue>
+		</statBases>
+		<ammoClass>OGGrenadeKrak</ammoClass>
+		<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>40</damageAmountBase>
+					<explosiveDamageType>OGIBomb</explosiveDamageType>
+					<explosiveRadius>1.0</explosiveRadius>
+				</li>
+		</comps>
+	</ThingDef>
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_GrenadeFragL</defName>
+		<label>make frag grenades x40 (L)</label>
+		<description>Craft 40 fag grenades (L).</description>
+		<jobString>Making frag grenades (L).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>74</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+				<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_GrenadeFragL>40</OG_Ammo_GrenadeFragL>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Special</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_GrenadeKrakL</defName>
+		<label>make krak grenades (L) x40</label>
+		<description>Craft 40 krak grenades (L).</description>
+		<jobString>Making krak grenades (L).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+				<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_GrenadeKrakL>40</OG_Ammo_GrenadeKrakL>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Special</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

@@ -13,14 +13,14 @@ namespace AdeptusMechanicus
     public class Integration_Adeptus_Aeldari : Integration_Adeptus
     {
         public override string PackageID => "Ogliss.AdMech.Xenobiologis.Eldar";
-        public override string Label => "AdeptusMechanicus.Eldar.ModName".Translate();
+        public override string Label => "AdeptusMechanicus.Aeldari.ModName".Translate();
 
         private bool ShowRaces => (Xenobiologis && settings.ShowAllowedRaceSettings && ShowXB) || (!Xenobiologis && settings.ShowAeldari);
 
-        public bool faction_Eldar_Craftworld = DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Craftworld"));
-        public bool faction_Eldar_Exodite = DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Exodite"));
-        public bool faction_Eldar_Harlequin = DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Harlequin"));
-        public bool faction_Eldar_Dark = DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_DarkEldar"));
+        public bool faction_Eldar_Craftworld => DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Craftworld"));
+        public bool faction_Eldar_Exodite => DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Exodite"));
+        public bool faction_Eldar_Harlequin => DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_Eldar_Harlequin"));
+        public bool faction_Eldar_Dark => DefDatabase<FactionDef>.AllDefs.Any(x => x.defName.Contains("OG_DarkEldar"));
 
         List<FactionDef> factions_Craftworld;
         public List<FactionDef> CraftworldFactions

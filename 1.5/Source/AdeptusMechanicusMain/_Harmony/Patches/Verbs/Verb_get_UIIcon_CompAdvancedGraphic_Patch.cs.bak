@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RimWorld;
+using Verse;
+using Verse.AI;
+using Verse.AI.Group;
+using HarmonyLib;
+using Verse.Sound;
+using UnityEngine;
+using System.Reflection;
+using AdeptusMechanicus.settings;
+using AdvancedGraphics;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+    
+    [HarmonyPatch(typeof(Verb), "get_UIIcon")]
+    public static class Verb_get_UIIcon_CompAdvancedGraphic_Patch
+    {
+        [HarmonyPostfix]
+        public static void MakeDowned_Postfix(Verb __instance, ref Texture2D __result)
+        {
+            if (__instance.EquipmentSource != null)
+            {
+                CompAdvancedGraphic advancedWeaponGraphic = __instance.EquipmentSource.TryGetCompFast<CompAdvancedGraphic>();
+                if (advancedWeaponGraphic != null)
+                {
+                    __result = __instance.EquipmentSource.Graphic.MatSingleFor(__instance.EquipmentSource).mainTexture as Texture2D;
+                    // __result.IconDrawColor = ownerThing.Graphic.MatSingleFor(ownerThing).mainTexture as Texture2D;
+                }
+            }
+            
+        }
+    }
+}

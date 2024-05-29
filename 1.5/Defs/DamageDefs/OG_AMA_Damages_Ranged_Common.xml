@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--==================== Base Damage Type - STD =========================-->
+	<DamageDef Name="OGLocalInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+		<harmsHealth>true</harmsHealth>
+	</DamageDef>
+
+	<DamageDef Name="OGLocalRangedInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<harmsHealth>true</harmsHealth>
+		<isRanged>true</isRanged>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+	</DamageDef>
+
+	<DamageDef Name="OGGlobalInjuryBase" Abstract="True">
+		<workerClass>DamageWorker_AddGlobal</workerClass>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+		<harmsHealth>true</harmsHealth>
+	</DamageDef>
+	
+	<DamageDef Name="PlasmaInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<hediff>Burn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+	</DamageDef>
+	
+	<DamageDef Name="MeltaInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
+		<externalViolence>true</externalViolence>
+		<hasForcefulImpact>false</hasForcefulImpact>
+		<hediff>Burn</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Heat</armorCategory>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+		<defaultArmorPenetration>2</defaultArmorPenetration>
+	</DamageDef>
+	
+	<DamageDef Name="LasInjury" ParentName="OGLocalRangedInjuryBase" Abstract="True">
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<hediff>OG_Hediff_Burn_Laser</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<combatLogRules>Damage_Flame</combatLogRules>
+	</DamageDef>
+	
+  <DamageDef ParentName="Flame">
+		<defName>OG_ElectricalBurn</defName>
+		<label>electrical burn</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<deathMessage>{0} has died from electrical burns.</deathMessage>
+		<hediff>ElectricalBurn</hediff>
+		<minDamageToFragment>1</minDamageToFragment>
+		<explosionColorCenter>(0.26, 0.51, 0.97)</explosionColorCenter>
+		<explosionColorEdge>(0.26, 0.51, 0.97)</explosionColorEdge>
+		<scaleDamageToBuildingsBasedOnFlammability>false</scaleDamageToBuildingsBasedOnFlammability>
+  </DamageDef>
+
+  <DamageDef ParentName="Flame">
+		<defName>OG_WarpElectricalBurn</defName>
+		<label>electrical burn</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<deathMessage>{0} has died from electrical burns.</deathMessage>
+		<hediff>ElectricalBurn</hediff>
+		<minDamageToFragment>1</minDamageToFragment>
+		<explosionColorCenter>(0.26, 0.51, 0.97)</explosionColorCenter>
+		<explosionColorEdge>(0.26, 0.51, 0.97)</explosionColorEdge>
+		<scaleDamageToBuildingsBasedOnFlammability>false</scaleDamageToBuildingsBasedOnFlammability>
+  </DamageDef>
+
+	<!--==================== Base Damage Type - No Camera Shake =========================-->	
+	<DamageDef Name="OGLocalRangedInjuryBaseNoCamShake" ParentName="OGLocalRangedInjuryBase" Abstract="True">
+		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
+	</DamageDef>
+	
+	<DamageDef Name="PlasmaInjuryNoCamShake" ParentName="PlasmaInjury" Abstract="True">
+		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
+	</DamageDef>
+	
+	<DamageDef Name="MeltaInjuryNoCamShake" ParentName="MeltaInjury" Abstract="True">
+		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
+	</DamageDef>
+	
+	<DamageDef Name="LasInjuryNoCamShake" ParentName="LasInjury" Abstract="True">
+		<workerClass>AdeptusMechanicus.DamageWorker_BombNoCamShake</workerClass>
+	</DamageDef>
+	<!--==================== Base Damage Type - No Camera Shake =========================-->	
+	<DamageDef Name="OGLocalRangedInjuryBaseFlameNoCamShake" Abstract="True">
+		<workerClass>AdeptusMechanicus.DamageWorker_FlameNoCamShake</workerClass>
+	</DamageDef>
+</Defs>

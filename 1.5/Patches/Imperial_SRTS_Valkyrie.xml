@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<success>Always</success>
+		<mods>
+			<li>SRTS Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+					
+						<ResearchProjectDef>
+							<tab>SRTSE</tab>
+							<defName>OG_Imperial_Tech_SRTS_ValkyrieGunship</defName>
+							<label>The Valkyrie Gunship</label>
+							<description>Grants access to the Astra Militarum's renowned Gunship, Valkyrie's STC, Allowing construction and deployment of one of the Militarum's finest weapon, The Emperor Protects.</description>
+							<baseCost>38000</baseCost>
+							<techLevel>Ultra</techLevel>
+							<prerequisites>
+								<li>Research_SRTSMkII</li>
+							</prerequisites>
+							<researchViewX>3</researchViewX>
+							<researchViewY>0</researchViewY>
+							<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+							<requiredResearchFacilities>
+								<li>MultiAnalyzer</li>
+							</requiredResearchFacilities>
+						</ResearchProjectDef>
+						
+						<ThingDef ParentName="NECShipBase">
+							<defName>OGI_SRTS_Valkyrie</defName>
+							<label>Valkyrie</label>
+							<description>The Imperium's mainstray Gunship, capable of rapid redeployment of personnel as well equipments as well provide powerful close air support to the assault. Astra Militarum's hammer of woe. The Imperium's instrument of War.
+
+	Passenger cap: 2 - 22
+	Space flight: Yes, Shuttlebay Only
+
+	--Military--
+	Armament: 38 Unguided / 8 Guided
+	Accuracy: Good
+	Build: Wide
+	----------------------------
+	Speed: Excellent
+	Fuel cap: 13.800L
+	Fuel efficiency: Excellent
+	----------------------------
+	Cargo cap: 13.000kg
+	Internal power plant: 6.500w</description>
+							<graphicData>
+								<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+								<graphicClass>Graphic_Multi</graphicClass>
+								<drawSize>(11,11)</drawSize>
+								<drawRotated>true</drawRotated>
+							</graphicData>
+							<size>(3,3)</size>
+							<rotatable>true</rotatable>
+							<statBases>
+								<MaxHitPoints>2500</MaxHitPoints>
+								<WorkToBuild>32000</WorkToBuild>
+								<Flammability>0</Flammability>
+								<Mass>20</Mass>
+								<Beauty>150</Beauty>
+							</statBases>
+							<costList>
+								<Steel>5500</Steel>
+								<Plasteel>1250</Plasteel>
+								<Gold>550</Gold>
+								<Uranium>80</Uranium>
+								<ComponentIndustrial>120</ComponentIndustrial>
+								<ComponentSpacer>80</ComponentSpacer>
+								<Silver>80000</Silver>
+							</costList>
+							<comps>
+								<li Class="CompProperties_Transporter">
+									<restEffectiveness>1</restEffectiveness>
+									<massCapacity>13000</massCapacity>
+								</li>
+								<li Class="SRTS.CompProperties_LaunchableSRTS">
+									<travelSpeed>60</travelSpeed>
+									<fuelPerTile>1</fuelPerTile>
+									<minPassengers>1</minPassengers>
+									<maxPassengers>23</maxPassengers>
+									<spaceFaring>true</spaceFaring>
+									<shuttleBayLanding>true</shuttleBayLanding>
+								</li>
+								<li Class="SRTS.CompProperties_BombsAway">
+									<numberBombs>38</numberBombs>
+									<precisionBombingNumBombs>8</precisionBombingNumBombs>
+									<radiusOfDrop>7.5</radiusOfDrop>
+									<speed>1</speed>
+									<distanceBetweenDrops>1</distanceBetweenDrops>
+								</li>
+								<li Class="CompProperties_Refuelable">
+									<fuelCapacity>13000</fuelCapacity>
+									<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+									<initialConfigurableTargetFuelLevel>13000</initialConfigurableTargetFuelLevel>
+									<fuelFilter>
+										<thingDefs>
+											<li>Chemfuel</li>
+										</thingDefs>
+									</fuelFilter>
+									<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+									<initialFuelPercent>0.25</initialFuelPercent>
+									<autoRefuelPercent>1</autoRefuelPercent>
+									<showFuelGizmo>true</showFuelGizmo>
+									<drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+									<drawFuelGaugeInMap>false</drawFuelGaugeInMap>
+								</li>
+								<li Class="CompProperties_Power">
+									<compClass>CompPowerPlant</compClass>
+									<basePowerConsumption>-6500</basePowerConsumption>
+									<transmitsPower>true</transmitsPower>
+								</li>
+								<li Class="CompProperties_Flickable" />
+								<li Class="CompProperties_Glower">
+									<glowRadius>18</glowRadius>
+									<glowColor>(217,217,217,0)</glowColor>
+								</li>
+							</comps>
+							<researchPrerequisites>
+								<li>OG_Imperial_Tech_SRTS_ValkyrieGunship</li>
+							</researchPrerequisites>
+							<constructionSkillPrerequisite>18</constructionSkillPrerequisite>
+							<uiIconScale>0.30</uiIconScale>
+							<killedLeavings>
+								<ChunkSlagSteel>22</ChunkSlagSteel>
+							</killedLeavings>
+						</ThingDef>
+						
+						<ThingDef ParentName="SkyfallerBase">
+						<defName>OGI_SRTS_Valkyrie_Incoming</defName>
+						<label>Gunship incoming</label>
+						<thingClass>SRTS.SRTSIncoming</thingClass>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<shaderType>CutoutFlying</shaderType>
+							<drawSize>(11,11)</drawSize>
+						</graphicData>
+						<skyfaller>
+							<movementType>Decelerate</movementType>
+							<shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+							<shadowSize>(6,6)</shadowSize>
+							<anticipationSound>DropPod_Fall</anticipationSound>
+							<anticipationSoundTicks>100</anticipationSoundTicks>
+							<motesPerCell>0</motesPerCell>
+						</skyfaller>
+						</ThingDef>
+
+						<ThingDef ParentName="BomberSkyfallerBase">
+						<defName>OGI_SRTS_Valkyrie_BomberRun</defName>
+						<label>Gunship Assaulting</label>
+						<thingClass>SRTS.SRTSBombing</thingClass>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<shaderType>CutoutFlying</shaderType>
+							<drawSize>(11,11)</drawSize>
+						</graphicData>
+						<skyfaller>
+							<speed>0.85</speed>
+							<movementType>ConstantSpeed</movementType>
+							<shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+							<shadowSize>(6,6)</shadowSize>
+							<anticipationSound>DropPod_Fall</anticipationSound>
+							<anticipationSoundTicks>100</anticipationSoundTicks>
+							<motesPerCell>0</motesPerCell>
+						</skyfaller>
+						</ThingDef>
+
+						<ThingDef ParentName="SkyfallerBase">
+						<defName>OGI_SRTS_Valkyrie_Leaving</defName>
+						<label>Gunship leaving</label>
+						<thingClass>SRTS.SRTSLeaving</thingClass>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<shaderType>CutoutFlying</shaderType>
+							<drawSize>(11,11)</drawSize>
+						</graphicData>
+						<skyfaller>
+							<movementType>Accelerate</movementType>
+							<reversed>true</reversed>
+							<shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+							<shadowSize>(6,6)</shadowSize>
+							<anticipationSound>Sound_Launch</anticipationSound>
+							<anticipationSoundTicks>-10</anticipationSoundTicks>
+							<ticksToImpactRange><min>-40</min><max>-15</max></ticksToImpactRange>
+						</skyfaller>
+						</ThingDef>
+
+						<ThingDef>
+						<defName>OGI_SRTS_Valkyrie_Active</defName>
+						<label>Gunship active</label>
+						<category>Item</category>
+						<thingClass>ActiveDropPod</thingClass>
+						<scatterableOnMapGen>false</scatterableOnMapGen>
+						<tickerType>Normal</tickerType>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<drawSize>(11,11)</drawSize>
+							<shadowData>
+							<volume>(0.8, 0.6, 0.8)</volume>
+							</shadowData>
+						</graphicData>
+						<altitudeLayer>Building</altitudeLayer>
+						<blockWind>true</blockWind>
+						<useHitPoints>true</useHitPoints>
+						<statBases>
+							<MaxHitPoints>3500</MaxHitPoints>
+							<Flammability>0</Flammability>
+						</statBases>
+						<selectable>true</selectable>
+						</ThingDef>
+	
+					</value>
+				</li>
+			</operations>
+		</match>
+		<nomatch Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+					
+					<ThingDef ParentName="BuildingBase" Name="OGI_Dropship_Valkyrie_Base">
+						<defName>OGI_Dropship_Valkyrie</defName>
+						<label>Valkyrie Dropship</label>
+						<description>The Imperium's mainstray Gunship, capable of rapid redeployment of personnel as well equipments as well provide powerful close air support to the assault. Astra Militarum's hammer of woe. The Imperium's instrument of War.</description>
+						<altitudeLayer>PawnUnused</altitudeLayer>
+						<pathCost>150</pathCost>
+						<blockWind>true</blockWind>
+						<passability>Impassable</passability>
+						<fillPercent>1.0</fillPercent>
+						<size>(5,5)</size>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<drawSize>(11,11)</drawSize>
+							<!-- <color>(162,164,149)</color> -->
+							<shadowData>
+								<volume>(4.1, 1.0, 1.8)</volume>
+								<offset>(0, 0, -0.1)</offset>
+							</shadowData>
+						</graphicData>
+						<statBases>
+							<MaxHitPoints>1000</MaxHitPoints>
+							<Mass>1000</Mass>
+							<Flammability>1</Flammability>
+						</statBases>
+						<tickerType>Normal</tickerType>
+						<killedLeavings>
+							<Steel>100</Steel>
+							<Plasteel>35</Plasteel>
+							<ChunkSlagSteel>8</ChunkSlagSteel>
+							<ComponentIndustrial>4</ComponentIndustrial>
+							<ComponentSpacer>1</ComponentSpacer>
+						</killedLeavings>
+						<rotatable>true</rotatable>
+						<selectable>true</selectable>
+						<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+						<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+						<drawerType>MapMeshOnly</drawerType>
+						<repairEffect>ConstructMetal</repairEffect>
+						<forceDebugSpawnable>true</forceDebugSpawnable>
+						<building>
+							<claimable>false</claimable>
+						</building>
+						<inspectorTabs>
+							<li>ITab_ContentsTransporter</li>
+						</inspectorTabs>
+						<comps>
+							<li Class="AdeptusMechanicus.CompProperties_Dropship">
+								<massCapacity>999999</massCapacity>
+								<max1PerGroup>true</max1PerGroup>
+								<alwaysLaunchable>true</alwaysLaunchable>
+								<canChangeAssignedThingsAfterStarting>true</canChangeAssignedThingsAfterStarting>
+								<showOverallStats>false</showOverallStats>
+								<!--pawnLoadedSound>OG_AMA_Dropship_PawnLoaded</pawnLoadedSound-->
+							</li>
+							<li Class="CompProperties_Refuelable">
+								<fuelCapacity>550.0</fuelCapacity>
+								<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+								<initialConfigurableTargetFuelLevel>200</initialConfigurableTargetFuelLevel>
+								<fuelFilter>
+									<thingDefs>
+										<li>Chemfuel</li>
+									</thingDefs>
+								</fuelFilter>
+								<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+								<autoRefuelPercent>1</autoRefuelPercent>
+								<showFuelGizmo>true</showFuelGizmo>
+								<drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+								<drawFuelGaugeInMap>true</drawFuelGaugeInMap>
+								<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+							</li>
+						</comps>
+						<placeWorkers>
+							<li>PlaceWorker_NotUnderRoof</li>
+						</placeWorkers>
+					</ThingDef>
+
+					<ThingDef ParentName="OGI_Dropship_Valkyrie_Base">
+						<defName>OGI_Dropship_Valkyrie_Crashed</defName>
+						<label>crashed valkyrie</label>
+						<!--graphicData>
+							<texPath>Things/Building/Misc/CrashedShuttle</texPath>
+						</graphicData-->
+						<statBases>
+							<MaxHitPoints>200</MaxHitPoints>
+							<Flammability>1</Flammability>
+						</statBases>
+						<comps Inherit="False"></comps>
+						<killedLeavings Inherit="False">
+							<Steel>4</Steel>
+							<Plasteel>7</Plasteel>
+							<ChunkSlagSteel>1</ChunkSlagSteel>
+							<ComponentIndustrial>1</ComponentIndustrial>
+						</killedLeavings>
+						<costList>
+							<Steel>40</Steel>
+							<Plasteel>70</Plasteel>
+							<ComponentIndustrial>10</ComponentIndustrial>
+						</costList>
+						<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+						<building Inherit="False">
+							<destroySound>BuildingDestroyed_Metal_Big</destroySound>
+							<claimable>false</claimable>
+							<alwaysDeconstructible>true</alwaysDeconstructible>
+						</building>
+					</ThingDef>
+
+					<WorldObjectDef>
+						<defName>OGI_Dropship_Valkyrie_Traveling</defName>
+						<label>valkyrie dropship</label>
+						<description>Dropships in flight.</description>
+						<worldObjectClass>AdeptusMechanicus.DropShipTraveling</worldObjectClass>
+						<texture>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie_north</texture>
+						<useDynamicDrawer>true</useDynamicDrawer>
+						<expandingIcon>true</expandingIcon>
+						<expandingIconTexture>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie_north</expandingIconTexture>
+						<expandingIconPriority>30</expandingIconPriority>
+						<expandMore>true</expandMore>
+						<allowCaravanIncidentsWhichGenerateMap>true</allowCaravanIncidentsWhichGenerateMap>
+					</WorldObjectDef>
+					
+					<ThingDef>
+						<defName>OGI_Dropship_Valkyrie_Active</defName>
+						<label>valkyrie (Active)</label>
+						<category>Item</category>
+						<thingClass>ActiveDropPod</thingClass>
+						<scatterableOnMapGen>false</scatterableOnMapGen>
+						<tickerType>Normal</tickerType>
+						<size>(5,7)</size>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<drawSize>(11,11)</drawSize>
+							<!-- <color>(162,164,149)</color> -->
+							<shadowData>
+								<volume>(4.1, 1.0, 1.8)</volume>
+								<offset>(0, 0, -0.1)</offset>
+							</shadowData>
+						</graphicData>
+						<altitudeLayer>Building</altitudeLayer>
+						<blockWind>true</blockWind>
+						<useHitPoints>true</useHitPoints>
+						<statBases>
+							<MaxHitPoints>500</MaxHitPoints>
+							<Flammability>0</Flammability>
+						</statBases>
+						<selectable>true</selectable>
+						<rotatable>true</rotatable>
+					</ThingDef>
+					
+					<ThingDef Name="OG_Dropship_SkyfallerBase" ParentName="SkyfallerBase" Abstract="True">
+						<size>(1,1)</size>
+						<graphicData>
+							<texPath>Things/Ships/SRTS/Imperial/Valkyrie/Valkyrie</texPath>
+							<graphicClass>Graphic_Multi</graphicClass>
+							<shaderType>CutoutFlying</shaderType>
+							<drawSize>(11,11)</drawSize>
+							<!-- <color>(162,164,149)</color> -->
+						</graphicData>
+						<rotatable>true</rotatable>
+						<altitudeLayer>FogOfWar</altitudeLayer>
+						<skyfaller>
+							<movementType>Decelerate</movementType>
+							<shadow>Things/Ships/Strike/Imperial/StrikeShip_I_Valkyrie_Shadow</shadow>
+							 <shadowSize>(11,11)</shadowSize> 
+							<motesPerCell>1</motesPerCell>
+						</skyfaller>
+						<drawOffscreen>true</drawOffscreen>
+						<seeThroughFog>true</seeThroughFog>
+					</ThingDef>
+					
+					<ThingDef ParentName="OG_Dropship_SkyfallerBase">
+						<defName>OGI_Dropship_Valkyrie_Incoming</defName>
+						<label>valkyrie (incoming)</label>
+						<thingClass>AdeptusMechanicus.DropshipIncoming</thingClass>
+						<skyfaller>
+							<rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+							<anticipationSound>OG_AMA_Dropship_Landing</anticipationSound>
+							<anticipationSoundTicks>250</anticipationSoundTicks>
+							<ticksToImpactRange>200~250</ticksToImpactRange>
+							<angleCurve>
+								<points>
+									<li>(0,-90)</li>
+									<li>(0.8,-90)</li>
+									<li>(0.9,0)</li>
+								</points>
+							</angleCurve>
+							<rotationCurve>
+								<points>
+									<li>(0,0)</li>
+									<li>(0.5,5)</li>
+									<li>(0.8,0)</li>
+								</points>
+							</rotationCurve>
+							<zPositionCurve>
+								<points>
+									<li>(0.0,5)</li>
+									<li>(0.5,3.5)</li>
+									<li>(0.80,2)</li>
+									<li>(0.90,2)</li>
+									<li>(1,0)</li>
+								</points>
+							</zPositionCurve>
+							<speedCurve>
+								<points>
+									<li>(0.3,0.6)</li>
+									<li>(0.6,0.3)</li>
+									<li>(0.80,0.01)</li>
+								</points>
+							</speedCurve>
+						</skyfaller>
+					</ThingDef>
+
+					<ThingDef ParentName="OG_Dropship_SkyfallerBase">
+						<defName>OGI_Dropship_Valkyrie_Leaving</defName>
+						<label>valkyrie (leaving)</label>
+						<thingClass>AdeptusMechanicus.DropshipLeaving</thingClass>
+						<rotatable>true</rotatable>
+						<skyfaller>
+							<reversed>true</reversed>
+							<rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+							<anticipationSound>OG_AMA_Dropship_Leaving</anticipationSound>
+							<anticipationSoundTicks>-10</anticipationSoundTicks>
+							<ticksToImpactRange>-40~-15</ticksToImpactRange>
+							<moteSpawnTime>0.05</moteSpawnTime>
+							<angleCurve>
+								<points>
+									<li>(0,0)</li>
+									<li>(0.2,90)</li>
+									<li>(1,70)</li>
+								</points>
+							</angleCurve>
+							<rotationCurve>
+								<points>
+									<li>(0,0)</li>
+									<li>(0.15,10)</li>
+									<li>(0.5,-5)</li>
+								</points>
+							</rotationCurve>
+							<zPositionCurve>
+								<points>
+									<li>(0,0)</li>
+									<li>(0.2,2)</li>
+									<li>(0.8,5)</li>
+								</points>
+							</zPositionCurve>
+							<speedCurve>
+								<points>
+									<li>(0,0.0)</li>
+									<li>(0.2,0.2)</li>
+									<li>(0.4,0.7)</li>
+								</points>
+							</speedCurve>
+						</skyfaller>
+					</ThingDef>
+
+					<ThingDef ParentName="OG_Dropship_SkyfallerBase">
+						<defName>OGI_Dropship_Valkyrie_Crashing</defName>
+						<label>valkyrie (crashing)</label>
+						<!--thingClass>ShuttleIncoming</thingClass-->
+						<thingClass>AdeptusMechanicus.DropshipIncoming</thingClass>
+						<size>(5,5)</size>
+						<skyfaller>
+							<ticksToImpactRange>150~200</ticksToImpactRange>
+							<movementType>ConstantSpeed</movementType>
+							<angleCurve>
+								<points>
+									<li>(0,-60)</li>
+									<li>(1,-90)</li>
+								</points>
+							</angleCurve>
+							<rotationCurve>
+								<points>
+									<li>(0,20)</li>
+									<li>(0.49,5)</li>
+									<li>(0.6,5)</li>
+									<li>(0.7,3)</li>
+									<li>(0.8,3)</li>
+									<li>(0.83,-4)</li>
+									<li>(0.9,3)</li>
+									<li>(0.95,-2)</li>
+									<li>(0.98,1)</li>
+									<li>(0.99,0)</li>
+								</points>
+							</rotationCurve>
+							<speed>0.8</speed>
+							<explosionRadius>3</explosionRadius>
+							<explosionDamage>Bomb</explosionDamage>
+							<cameraShake>1</cameraShake>
+							<metalShrapnelCountRange>
+								<min>6</min>
+								<max>10</max>
+							</metalShrapnelCountRange>
+							<rubbleShrapnelCountRange>
+								<min>300</min>
+								<max>400</max>
+							</rubbleShrapnelCountRange>
+							<shrapnelDistanceFactor>0.2</shrapnelDistanceFactor>
+						</skyfaller>
+					</ThingDef>
+
+
+					</value>
+				</li>
+			
+			</operations>
+		</nomatch>
+	</Operation>
+
+</Patch>

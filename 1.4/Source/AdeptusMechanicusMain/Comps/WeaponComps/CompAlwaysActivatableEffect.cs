@@ -59,30 +59,13 @@ namespace AdeptusMechanicus
             }
         }
 
-        private GraphicData intGraphicData;
-        private GraphicData GraphicData
-        {
-            get
-            {
-                if (intGraphicData == null)
-                {
-                    intGraphicData = new GraphicData();
-                    intGraphicData.CopyFrom(this.Props.graphicData);
-                    intGraphicData.texPath = this.TexPath;
-                }
-                return intGraphicData;
-            }
-        }
-
         public override Graphic Graphic
         {
             get
             {
-                bool flag = this.graphicInt == null;
-                if (flag)
+                if (this.graphicInt == null)
                 {
-                    bool flag2 = this.Props.graphicData == null;
-                    if (flag2)
+                    if (this.Props.graphicData == null)
                     {
                         Log.ErrorOnce(this.parent.def + " has no SecondLayer graphicData but we are trying to access it.", 764532);
                         return BaseContent.BadGraphic;

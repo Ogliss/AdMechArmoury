@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ScenarioDef>
+		<defName>OGAM_Scenario_Mechanicus_Crashlanded</defName>
+		<label>Mechanicus Exploritas</label>	
+		<description>basic start for testing a race</description>
+		<scenario>
+			<summary>Establish an outpost</summary>
+			<playerFaction>
+				<def>PlayerFaction</def>
+				<factionDef>OG_Mechanicus_PlayerColony</factionDef>
+			</playerFaction>
+			<parts>
+				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns_KindDefs">
+					<def>OG_ConfigurePawnsKindDefs</def>
+					<pawnChoiceCount>8</pawnChoiceCount>
+					<leftBehindPawnKind>Colonist_OG_Mechanicus_Servitor</leftBehindPawnKind>
+					<kindCounts>
+					<li>
+						<kindDef>Colonist_OG_Mechanicus</kindDef>
+						<count>2</count>
+						<requiredAtStart>true</requiredAtStart>
+					</li>
+					<li>
+						<kindDef>Colonist_OG_Mechanicus_Tech_Priest</kindDef>
+						<count>1</count>
+						<requiredAtStart>true</requiredAtStart>
+					</li>
+					<li>
+						<kindDef>Colonist_OG_Mechanicus_Tech_Priest_Enginseer</kindDef>
+						<count>3</count>
+						<requiredAtStart>true</requiredAtStart>
+					</li>
+					</kindCounts>
+				</li>
+
+				<li Class="ScenPart_PlayerPawnsArriveMethod">
+					<def>PlayerPawnsArriveMethod</def>
+					<method>DropPods</method>
+					<visible>false</visible>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Silver</thingDef>
+					<count>800</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>MealSurvivalPack</thingDef>
+					<count>44</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>MedicineIndustrial</thingDef>
+					<count>30</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>ComponentIndustrial</thingDef>
+					<count>30</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>OGAM_Gun_RadiumCarbine</thingDef>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>OGAM_Gun_RadiumPistol</thingDef>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>OGI_Melee_ChainSword</thingDef>
+					<stuff>Plasteel</stuff>
+				</li>
+				<!--
+				<li Class="ScenPart_StartingAnimal">
+					<def>StartingAnimal</def>
+					<count>1</count>
+					<bondToRandomPlayerPawnChance>1</bondToRandomPlayerPawnChance>
+				</li>
+				-->
+				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+					<def>ScatterThingsNearPlayerStart</def>
+					<thingDef>Steel</thingDef>
+					<count>350</count>
+				</li>
+				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+					<def>ScatterThingsNearPlayerStart</def>
+					<thingDef>WoodLog</thingDef>
+					<count>300</count>
+				</li>
+				<li Class="ScenPart_ScatterThingsAnywhere">
+					<def>ScatterThingsAnywhere</def>
+					<thingDef>ShipChunk</thingDef>
+					<count>3</count>
+				</li>
+				<li Class="ScenPart_ScatterThingsAnywhere">
+					<def>ScatterThingsAnywhere</def>
+					<thingDef>Steel</thingDef>
+					<count>720</count>
+				</li>
+				<li Class="ScenPart_ScatterThingsAnywhere">
+					<def>ScatterThingsAnywhere</def>
+					<thingDef>MealSurvivalPack</thingDef>
+					<count>7</count>
+				</li>
+				<li Class="ScenPart_GameStartDialog">
+					<def>GameStartDialog</def>
+					<text />
+					<textKey>GameStartDialog</textKey>
+					<closeSound>GameStartSting</closeSound>
+				</li>
+				<li Class="ScenPart_ScatterThingsNearPlayerStart">
+					<def>ScatterThingsNearPlayerStart</def>
+					<thingDef>Plasteel</thingDef>
+					<count>75</count>
+				</li>
+				<li Class="AdeptusMechanicus.ScenPart_AMXBRelations">
+					<def>OG_Rule_EnforceFactionRelations</def>
+				</li>
+				<li MayRequire="CptVHOhu970.CorruptionWorship" Class="Corruption.Worship.ScenPart_StartingReligion">
+					<def>StartingReligion</def>
+					<pantheon>ImperialCult</pantheon>
+				</li>
+			</parts>
+		</scenario>
+	</ScenarioDef>
+	
+</Defs>

@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ============================ Adeptus Mechanicus Base Pawnkinds ========================== -->
+	<!-- ============================ Base ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Base_Kind">
+		<defaultFactionType>OG_Mechanicus_PlayerColony</defaultFactionType>
+		<race>OG_Human_Mechanicus</race>
+		<backstoryFiltersOverride>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_Standard</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Outlander</li>
+					<li>Imperium_Standard</li>
+				</categoriesChildhood>
+				<commonality>0.95</commonality>
+			</li>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_Standard</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Offworld</li>
+					<li>Pirate</li>
+				</categoriesChildhood>
+				<commonality>0.05</commonality>
+			</li>
+		</backstoryFiltersOverride>
+		<chemicalAddictionChance>0.005</chemicalAddictionChance>
+		<!--baseRecruitDifficulty>0.60</baseRecruitDifficulty-->
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<apparelTags>
+			<li>OGIGClothing</li>
+			<li>IndustrialBasic</li>
+		</apparelTags>
+		 <weaponTags>
+			<li>LasPistol</li>
+			<li>AutoPistol</li>
+		</weaponTags>
+	</PawnKindDef>
+
+	<!-- ============================ Civilian Base ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Civilian_Base" ParentName="OG_Mechanicus_Base_Kind">
+		<combatPower>25</combatPower>
+		<race>OG_Human_Mechanicus</race>
+		<itemQuality>Poor</itemQuality>
+		<isFighter>false</isFighter>
+		<gearHealthRange>
+			<min>0.2</min>
+			<max>2.0</max>
+		</gearHealthRange>
+		<apparelMoney>
+			<min>300</min>
+			<max>900</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>200</min>
+			<max>400</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>Gun</li>
+			<li>NonNeolithicOnlyMelee</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>200</min>
+			<max>300</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Simple</li>
+		</techHediffsTags>
+		<techHediffsChance>0.51</techHediffsChance>
+		<invNutrition>2.55</invNutrition>
+		<inventoryOptions>
+			<skipChance>0.75</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<choiceChance>90</choiceChance>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>25</min>
+				<max>70</max>
+				</countRange>
+			</li>
+			<li>
+				<choiceChance>10</choiceChance>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>700</min>
+				<max>1000</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- ============================ Military Base ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Military_Base" ParentName="OG_Mechanicus_Base_Kind">
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+		<isFighter>true</isFighter>
+		<requiredWorkTags>Violent</requiredWorkTags>
+		<race>OG_Human_Mechanicus</race>
+		<invNutrition>2.55</invNutrition>
+		<itemQuality>Normal</itemQuality>
+		<minGenerationAge>19</minGenerationAge>
+		<maxGenerationAge>250</maxGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelMoney>
+			<min>1500</min>
+			<max>5800</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>1400</min>
+			<max>20000</max>
+		</weaponMoney>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- ============================ Faction Leader Base ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Faction_Tech_Priest" ParentName="OG_Mechanicus_Civilian_Base">
+		<race>OG_Human_Mechanicus</race>
+		<label>tech-priest lord</label>
+		<labelPlural>tech-priest lords</labelPlural>
+		<factionLeader>true</factionLeader>
+		<backstoryFiltersOverride>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_TechPriest</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Outlander</li>
+					<li>Imperium_Standard</li>
+				</categoriesChildhood>
+				<commonality>0.95</commonality>
+			</li>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_TechPriest</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Offworld</li>
+					<li>Pirate</li>
+				</categoriesChildhood>
+				<commonality>0.05</commonality>
+			</li>
+		</backstoryFiltersOverride>
+		<minGenerationAge>50</minGenerationAge>
+		<maxGenerationAge>300</maxGenerationAge>
+		<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+		<apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+		<weaponMoney>
+			<min>9999</min>
+			<max>9999</max>
+		</weaponMoney>
+		<apparelRequired>
+			<li>OGAM_Apparel_EnginseerRobe</li>
+			<li>OGAM_Apparel_EnginseerHood</li>
+		</apparelRequired>
+		<apparelTags>
+			<li>AMTechPriest</li>
+		</apparelTags>
+		 <weaponTags>
+			<li>MacroStubber</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>10000</min>
+			<max>20000</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>UseAllTechHediff</li>
+		</techHediffsTags>
+		<techHediffsChance>10</techHediffsChance>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+	 
+	<!-- ============================ Military ========================== -->
+	<!-- ============================ Human ========================== -->
+	
+	<!-- ============================ Mechanicus Skitarii ============================ -->
+	<!-- ============================ Base ============================ -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Base" ParentName="OG_Mechanicus_Military_Base">
+		<defName>OG_Mechanicus_Skitarii</defName>
+		<label>skitarii warrior</label>
+		<race>OG_Human_Mechanicus</race>
+		<defaultFactionType>OG_Mechanicus_Faction</defaultFactionType>
+		<combatPower>150</combatPower>
+		<!--baseRecruitDifficulty>0.30</baseRecruitDifficulty-->
+		<backstoryFiltersOverride>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_Skitarius</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Outlander</li>
+					<li>Imperium_Standard</li>
+				</categoriesChildhood>
+				<commonality>0.95</commonality>
+			</li>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_Skitarius</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Offworld</li>
+					<li>Pirate</li>
+				</categoriesChildhood>
+				<commonality>0.05</commonality>
+			</li>
+		</backstoryFiltersOverride>
+		<backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+		<chemicalAddictionChance>0.08</chemicalAddictionChance>
+		<apparelMoney>
+			<min>3800</min>
+			<max>3800</max>
+		</apparelMoney>
+		<apparelTags>
+			<li>AMSkitariiLegionnaire</li>
+		</apparelTags>
+		<apparelRequired>
+			<li>OGAM_Apparel_SkitariiLegionnaireArmour</li>
+		</apparelRequired>
+		<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+		<apparelAllowHeadgearChance>1</apparelAllowHeadgearChance>
+		<weaponMoney>
+			<min>1000</min>
+			<max>9999</max>
+		</weaponMoney>
+		<weaponTags>
+			<!-- <li>AMArmoury</li> -->
+		</weaponTags>
+		<techHediffsMoney>
+			<min>2000</min>
+			<max>3000</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Advanced</li>
+			<li>AdvancedWeapon</li>
+		</techHediffsTags>
+		<techHediffsChance>1</techHediffsChance>
+		<combatEnhancingDrugsChance>0.5</combatEnhancingDrugsChance>
+		<combatEnhancingDrugsCount>
+			<min>1</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Ranger ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Ranger" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii ranger</label>
+		<combatPower>120</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+			<li>AMSkitariiRanger</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>25000</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>2400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>RadiumPistol</li>
+			<li>GalvanicRifle</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>1500</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Ranger Special Weapons ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Ranger_Special" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii ranger</label>
+		<combatPower>180</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+			<li>AMSkitariiRanger</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>2500</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>3400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>GalvanicRifle</li>
+			<li>TransuranicArquebus</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Ranger Primus ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Ranger_Primus" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii ranger primus</label>
+		<combatPower>240</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelRequired>
+			<li>OGAM_Apparel_SkitariiRangerHelmet</li>
+		</apparelRequired>
+		<apparelTags>
+			<li>AMSkitariiRanger</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>2500</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>3400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>RadiumPistol</li>
+			<li>GalvanicRifle</li>
+			<li>TransuranicArquebus</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Vanguard ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Vanguard" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii vanguard</label>
+		<combatPower>180</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+			<li>AMSkitariiVanguard</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>25000</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>3400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>RadiumCarbine</li>
+			<li>RadiumPistol</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Vanguard Special Weapons ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Vanguard_Special" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii vanguard</label>
+		<combatPower>120</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+			<li>AMSkitariiVanguard</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>25000</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>3400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>PlasmaPistol</li>
+			<li>BoltPistol</li>
+			<li>IChainsword</li>
+			<li>IEviscerator</li>
+			<li>IPowerSword</li>
+			<li>IPowerAxe</li>
+			<li>IPowerMaul</li>
+		</weaponTags>
+		<techHediffsMoney> 
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Vanguard Primus ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Vanguard_Primus" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii vanguard primus</label>
+		<combatPower>260</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelRequired>
+			<li>OGAM_Apparel_SkitariiVanguardHelmet</li>
+		</apparelRequired>
+		<apparelTags>
+			<li>AMSkitariiVanguard</li>
+		</apparelTags>
+		<apparelMoney>
+			<min>2500</min>
+			<max>25000</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>2500</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>AMArmoury</li>
+			<li>RadiumCarbine</li>
+			<li>RadiumPistol</li>
+		</weaponTags>
+		<techHediffsMoney> 
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Skitarii Heavy Weapons ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Skitarii_Heavy_Weapons" ParentName="OG_Mechanicus_Skitarii_Base">
+		<label>skitarii specialist</label>
+		<combatPower>200</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+			<!--
+			<li>IndustrialAdvanced</li>
+			<li>IndustrialMilitaryBasic</li>
+			<li>IndustrialMilitaryAdvanced</li>
+			<li>SpacerMilitary</li>
+			-->
+		</apparelTags>
+		<apparelMoney>
+			<min>1500</min>
+			<max>2500</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>1400</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>HeavyStubber</li>
+			<li>HeavyBolter</li>
+			<li>LasCannon</li>
+			<li>AutoCannon</li>
+			<li>HeavyFlamer</li>
+			<li>MultiMetla</li>
+			<li>RocketLaucher</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>1000</min>
+			<max>15000</max>
+		</techHediffsMoney>
+		<combatEnhancingDrugsCount>
+			<min>0</min>
+			<max>2</max>
+		</combatEnhancingDrugsCount>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsChance>0.73</techHediffsChance>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+
+	<!-- ============================ Mechanicus Tech-priest ============================ -->
+	<!-- ============================ Base ============================ -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Tech_Priest_Base" ParentName="OG_Mechanicus_Military_Base">
+		<defName>OG_Mechanicus_Tech_Priest</defName>
+		<label>Tech-Priest</label>
+		<race>OG_Human_Mechanicus</race>
+		<defaultFactionType>OG_Mechanicus_Faction</defaultFactionType>
+		<combatPower>600</combatPower>
+		<!--baseRecruitDifficulty>0.50</baseRecruitDifficulty-->
+		<backstoryFiltersOverride>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_TechPriest</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Outlander</li>
+					<li>Imperium_Standard</li>
+					<li>Mechanicus_Standard</li>
+					<li>Mechanicus_Menial</li>	
+				</categoriesChildhood>
+				<commonality>0.95</commonality>
+			</li>
+			<li>
+				<categoriesAdulthood>
+					<li>Mechanicus_TechPriest</li>
+				</categoriesAdulthood>
+				<categoriesChildhood>
+					<li>Offworld</li>
+					<li>Pirate</li>
+				</categoriesChildhood>
+				<commonality>0.05</commonality>
+			</li>
+		</backstoryFiltersOverride>
+		<forceNormalGearQuality>true</forceNormalGearQuality>
+		<isFighter>true</isFighter>
+		<chemicalAddictionChance>0.08</chemicalAddictionChance>
+		<gearHealthRange>
+			<min>0.4</min>
+			<max>1.4</max>
+		</gearHealthRange>
+		<apparelRequired>
+			<li>OGAM_Apparel_EnginseerRobe</li>
+		</apparelRequired>
+		<apparelMoney>
+			<min>3800</min>
+			<max>3800</max>
+		</apparelMoney>
+		<apparelTags>
+			<li>AMTech_Priest</li>
+		</apparelTags>
+		<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+		<apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+		<weaponMoney>
+			<min>9999</min>
+			<max>9999</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>MacroStubber</li>
+		</weaponTags>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- ============================ Enginseer ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Tech_Priest_Enginseer" ParentName="OG_Mechanicus_Tech_Priest_Base">
+		<label>tech-priest enginseer</label>
+		<combatPower>400</combatPower>
+		<minGenerationAge>23</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<apparelTags>
+		
+		</apparelTags>
+		<apparelMoney>
+			<min>2750</min>
+			<max>25000</max>
+		</apparelMoney>
+		<weaponMoney>
+			<min>2750</min>
+			<max>28000</max>
+		</weaponMoney>
+		<weaponTags Inherit="false">
+			<li>MacroStubber</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>14000</min>
+			<max>22200</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsRequired>
+		
+		</techHediffsRequired>
+		<techHediffsChance>1</techHediffsChance>
+		<techHediffsMaxAmount>5</techHediffsMaxAmount>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Dominus ========================== -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Tech_Priest_Dominus" ParentName="OG_Mechanicus_Tech_Priest_Base">
+		<label>tech-priest dominus</label>
+		<combatPower>500</combatPower>
+		<minGenerationAge>53</minGenerationAge>
+		<gearHealthRange>
+			<min>0.7</min>
+			<max>2.3</max>
+		</gearHealthRange>
+		<weaponMoney>
+			<min>9999</min>
+			<max>9999</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>MacroStubber</li>
+		</weaponTags>
+		<techHediffsMoney>
+			<min>24000</min>
+			<max>32200</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+		<techHediffsRequired>
+		
+		</techHediffsRequired>
+		<techHediffsChance>1</techHediffsChance>
+		<techHediffsMaxAmount>10</techHediffsMaxAmount>
+		<inventoryOptions>
+			<skipChance>0.8</skipChance>
+			<subOptionsChooseOne>
+			<li>
+				<thingDef>Silver</thingDef>
+				<countRange>
+				<min>50</min>
+				<max>200</max>
+				</countRange>
+			</li>
+			<li>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>
+				<min>1</min>
+				<max>1</max>
+				</countRange>
+			</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+	</PawnKindDef>
+
+	<!-- ============================ Base Construct ============================ -->
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Construct_BaseKind">
+		<defaultFactionType>OG_Mechanicus_Faction</defaultFactionType>
+		<aiAvoidCover>true</aiAvoidCover>
+		<destroyGearOnDrop>false</destroyGearOnDrop>
+		<modExtensions>
+			<li MayRequire="CETeam.CombatExtended" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- Mechanicus Sicarians -->
+	<!-- Rust Stalker --> 
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Sicarian_Rust_Stalker" ParentName="OG_Mechanicus_Construct_BaseKind">
+		<label>sicarian rust stalker</label>
+		<race>OG_Mechanicus_Sicarian</race>
+		<combatPower>160</combatPower>
+		<lifeStages>
+			<li>
+			<bodyGraphicData>
+				<texPath>Things/Pawn/ToolUser/Mechanicus/AdeptusMechanicusSicarian</texPath>
+				<graphicClass>Graphic_Multi</graphicClass>
+				<drawSize>1.25</drawSize>
+				<shadowData>
+				<volume>(0.4, 0.8, 0.4)</volume>
+				</shadowData>
+			</bodyGraphicData>
+			</li>
+		</lifeStages>
+		<weaponMoney>
+			<min>9999</min>
+			<max>9999</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>IGCDualLightningClaw</li>
+			<li>LightningClaw</li>
+		</weaponTags>
+	</PawnKindDef>
+
+	<!-- Infiltrator --> 
+	<PawnKindDef Abstract="True" Name="OG_Mechanicus_Sicarian_Rust_Infiltrator" ParentName="OG_Mechanicus_Construct_BaseKind">
+		<label>sicarian infiltrator</label>
+		<race>OG_Mechanicus_Sicarian</race>
+		<combatPower>160</combatPower>
+		<lifeStages>
+			<li>
+			<bodyGraphicData>
+				<texPath>Things/Pawn/ToolUser/Mechanicus/AdeptusMechanicusSicarian</texPath>
+				<graphicClass>Graphic_Multi</graphicClass>
+				<drawSize>1.25</drawSize>
+				<shadowData>
+				<volume>(0.4, 0.8, 0.4)</volume>
+				</shadowData>
+			</bodyGraphicData>
+			</li>
+		</lifeStages>
+		<weaponMoney>
+			<min>9999</min>
+			<max>9999</max>
+		</weaponMoney>
+		<weaponTags>
+			<li>StubCarbine</li>
+		</weaponTags>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ReserveDeploymentExtension">
+				<pawnsArrivalMode>Infiltrate</pawnsArrivalMode>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+
+	<!-- ============================ Servitors ========================== -->
+	
+</Defs>

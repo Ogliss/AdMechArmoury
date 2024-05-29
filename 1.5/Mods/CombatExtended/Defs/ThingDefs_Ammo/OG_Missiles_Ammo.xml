@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGMissileFrag</defName>
+		<label>fragmentation</label>
+		<labelShort>Frag</labelShort>
+		<description>when the explosive charge detonates, it scatters lethal shrapnel fragments in a large area.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGMissileKrak</defName>
+		<label>shaped explosive</label>
+		<labelShort>Krak</labelShort>
+		<description>a shaped explosive charge capable of punching holes in armoured targets such as vehicles or bunkers, and its charge can even rip armour plating apart.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGMissile</defName>
+		<label>Missiles</label>
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/AmmoRockets</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+			<OG_Ammo_MissileFrag>OGI_Bullet_RocketFrag</OG_Ammo_MissileFrag>
+			<OG_Ammo_MissileKrak>OGI_Bullet_RocketKrak</OG_Ammo_MissileKrak>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGEMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+			<OG_Ammo_MissileFrag>OGI_Bullet_RocketFrag</OG_Ammo_MissileFrag>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGTMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+			<OG_Ammo_MissileFrag MayRequire="Ogliss.AdMech.Xenobiologis.Tau">OGT_Bullet_Missile</OG_Ammo_MissileFrag>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGOMissile</defName>
+		<label>Missiles</label>
+		<ammoTypes>
+			<OG_Ammo_MissileKrak>OGO_Bullet_RokkitKrak</OG_Ammo_MissileKrak>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGKombiShootaRokkit</defName>
+		<label>Shoota/Burna</label>
+		<ammoTypes>
+			<OG_Ammo_Auto>OGO_Bullet_Shoota</OG_Ammo_Auto>
+			<OG_Ammo_MissileKrak>OGO_Bullet_RokkitKrak</OG_Ammo_MissileKrak>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGMissileBase" ParentName="AmmoBase" Abstract="True">
+		<description>Relatively small, low velocity missile for use in missile launchers.</description>
+		<statBases>
+			<Mass>0.2</Mass>
+			<Bulk>0.3</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGMissile</li>
+		</thingCategories>
+		<stackLimit>75</stackLimit>
+		<cookOffFlashScale>20</cookOffFlashScale>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMissileBase">
+		<defName>OG_Ammo_MissileFrag</defName>
+		<label>frag missile</label>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileFrag</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.73</MarketValue>
+		</statBases>
+		<ammoClass>OGMissileFrag</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>20</damageAmountBase>
+				<explosiveDamageType>OGIBomb</explosiveDamageType>
+				<explosiveRadius>2.0</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMissileBase">
+		<defName>OG_Ammo_MissileKrak</defName>
+		<label>krak missile</label>
+		<graphicData>
+			<texPath>Things/Item/ImpMissileKrak</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.73</MarketValue>
+		</statBases>
+		<ammoClass>OGMissileKrak</ammoClass>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>OGIBomb</explosiveDamageType>
+				<explosiveRadius>1.0</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_MissileFrag</defName>
+		<label>make frag missiles x5 (L)</label>
+		<description>Craft 5 frag missiles (L).</description>
+		<jobString>Making frag missiles (L).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+				<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_MissileFrag>5</OG_Ammo_MissileFrag>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_MissileKrak</defName>
+		<label>make krak missiles (L) x5</label>
+		<description>Craft 5 krak missiles (L).</description>
+		<jobString>Making krak missiles (L).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+				<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_MissileKrak>5</OG_Ammo_MissileKrak>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Heavy</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

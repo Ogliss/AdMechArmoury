@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Executioner Pistol ========================== -->
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGExecutionerPistol</defName>
+		<label>Executioner Pistol</label>
+		<ammoTypes>
+			<OG_Ammo_BoltStd>OGI_Bullet_BoltStd</OG_Ammo_BoltStd>
+			<OG_Ammo_Needle>OGI_Bullet_Needler</OG_Ammo_Needle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Exitus Weapons ========================== -->
+
+	<ThingCategoryDef>
+		<defName>AmmoOGExitus</defName>
+		<label>Exitus shells</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGExitusRifle</defName>
+		<label>Exitus shells</label>
+		<ammoTypes>
+			<OG_Ammo_Exitus>OGI_Bullet_ExitusRound</OG_Ammo_Exitus>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGExitusPistol</defName>
+		<label>Exitus shells</label>
+		<ammoTypes>
+			<OG_Ammo_Exitus>OGI_Bullet_ExitusRound</OG_Ammo_Exitus>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGExitusBase" ParentName="AmmoBase" Abstract="True">
+		<description>Exitus shells</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGExitus</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGExitusBase">
+		<defName>OG_Ammo_Exitus</defName>
+		<label>Exitus shell</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_Exitus</defName>
+		<label>make Exitus cartridge x30</label>
+		<description>Craft 30 Exitus cartridges.</description>
+		<jobString>Making Exitus cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Exitus>50</OG_Ammo_Exitus>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Assassinorum_Tech_Weapons_Vindicare</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+</Defs>

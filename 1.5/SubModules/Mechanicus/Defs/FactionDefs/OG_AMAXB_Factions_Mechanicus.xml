@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<FactionDef Abstract="True" Name="OG_Mechanicus_Faction_Base" ParentName="FactionBase">
+		<label>mechanicus exploritors</label>
+		<description>The Adeptus Mechanicus is the official Imperial name within the Adeptus Terra for the Cult Mechanicus or Cult of the Machine based on Mars which provides the Imperium with its scientists, engineers and technicians. The Adepts of the Mechanicus are the primary keepers of what is viewed as sacred wisdom, a privileged caste of Tech-priests who jealously guard the knowledge required to maintain and construct much of the Imperium's advanced technology. In ancient times, before the current Age of the Imperium officially began following the end of the Horus Heresy, the Adeptus Mechanicus was often called the Mechanicum. The Mechanicus acknowledge the Emperor of Mankind as the ruler of the Imperium of Man, but not the religious truth of the Imperial Cult or the Ecclesiarchy, and are granted an unusual amount of political and religious autonomy within the Imperium's structure, a role protected by the ancient Treaty of Mars. Instead of the Imperial Creed, the servants of the Mechanicus follow their own dark and mysterious scriptures and worship the deity they call the Machine God or the "Omnissiah."</description>
+		<pawnSingular>mechanicus</pawnSingular>
+		<pawnsPlural>mechanicus</pawnsPlural>
+		<basicMemberKind>OG_Mechanicus_Tech_Priest_Engineer</basicMemberKind>
+		<categoryTag>OG_Outlander_Mechanicus</categoryTag>
+		<listOrderPriority>10</listOrderPriority>
+		<requiredCountAtGameStart>1</requiredCountAtGameStart>
+		<settlementGenerationWeight>0</settlementGenerationWeight>
+		<maxConfigurableAtWorldCreation IgnoreIfNoMatchingField="True">9999</maxConfigurableAtWorldCreation>
+		<configurationListOrderPriority IgnoreIfNoMatchingField="True">20</configurationListOrderPriority>
+		<canMakeRandomly>true</canMakeRandomly>
+		<canSiege>true</canSiege>
+		<canStageAttacks>true</canStageAttacks>
+		<leaderTitle>Tech-priest Overlord</leaderTitle>
+		<colorSpectrum>
+			<li>(164,66,62)</li>
+			<li>(0.4, 0.2, 0)</li>
+		</colorSpectrum>
+		<earliestRaidDays>90</earliestRaidDays>
+		<factionNameMaker>OG_Mechanicus_NamerFaction</factionNameMaker>
+		<techLevel>Spacer</techLevel>
+		<backstoryFilters>
+			<li>
+				<categories>
+					<li>Imperium_Standard</li>
+				</categories>
+			</li>
+			<li>
+				<categories>
+					<li>Offworld</li>
+					<li>Pirate</li>
+				</categories>
+			</li>
+		</backstoryFilters>
+		<allowedCultures IgnoreIfNoMatchingField="True">
+			<li>OG_Imperial_Mechanicus_Spacer</li>
+		</allowedCultures>
+		<requiredMemes IgnoreIfNoMatchingField="True">
+			<li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">OG_Mechanicus_Structure_Archist</li>
+		</requiredMemes>
+		<disallowedMemes IgnoreIfNoMatchingField="True">
+			<li MayRequire="Ludeon.RimWorld.Ideology">Structure_Animist</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">Nudism</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">AnimalPersonhood</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">Blindsight</li>
+		</disallowedMemes>
+		<structureMemeWeights IgnoreIfNoMatchingField="True" Inherit="False">
+			<OG_Mechanicus_Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">100</OG_Mechanicus_Structure_Archist>
+		</structureMemeWeights>
+		<hairTags IgnoreIfNoMatchingField="True">
+			<li>Urban</li>
+		</hairTags>
+		<allowedArrivalTemperatureRange>
+			<min>-40</min>
+			<max>45</max>
+		</allowedArrivalTemperatureRange>
+		<fixedLeaderKinds>
+			<li>OG_Mechanicus_Faction_Tech_Priest</li>
+		</fixedLeaderKinds>
+		<visitorTraderKinds>
+			<li>OG_Mechanicus_Trader_Visitor_Standard</li>
+		</visitorTraderKinds>
+		 <caravanTraderKinds>
+			<li>OG_Mechanicus_Trader_Caravan_BulkGoods</li>
+			<li>OG_Mechanicus_Trader_Caravan_CombatSupplier</li>
+			<li>OG_Mechanicus_Trader_Caravan_Exotic</li>
+		</caravanTraderKinds>
+		<baseTraderKinds>
+			<li>OG_Mechanicus_Trader_Base_Standard</li>
+		</baseTraderKinds>
+		<maxPawnCostPerTotalPointsCurve>
+			<points>
+				<li>(0,35)</li>
+				<li>(70, 50)</li>
+				<li>(700, 100)</li>
+				<li>(1300, 150)</li>
+				<li>(100000, 10000)</li>
+			</points>
+		</maxPawnCostPerTotalPointsCurve>
+		<pawnGroupMakers>
+			<li>
+				<!-- Normal fights, ranged with melee mix-ins -->
+				<kindDef>Combat</kindDef>
+				<commonality>100</commonality>
+				<options>
+					<OG_Mechanicus_Skitarii_Ranger>10</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Skitarii_Ranger_Primus>0.5</OG_Mechanicus_Skitarii_Ranger_Primus>
+					<OG_Mechanicus_Skitarii_Vanguard>2</OG_Mechanicus_Skitarii_Vanguard>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>6</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>3</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+					<OG_Mechanicus_Tech_Priest_Engineer>5</OG_Mechanicus_Tech_Priest_Engineer>
+				</options>
+			</li>
+			<li>
+				<!-- Normal fights, melee-only -->
+				<kindDef>Combat</kindDef>
+				<commonality>30</commonality>
+				<disallowedStrategies>
+					<li>Siege</li>
+				</disallowedStrategies>
+				<options>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>10</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>10</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+					<OG_Mechanicus_Tech_Priest_Dominus>5</OG_Mechanicus_Tech_Priest_Dominus>
+				</options>
+			</li>
+			<li>
+				<!-- Normal fights, ranged only -->
+				<kindDef>Combat</kindDef>
+				<commonality>20</commonality>
+				<options>
+					<OG_Mechanicus_Skitarii_Ranger>10</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Skitarii_Vanguard>10</OG_Mechanicus_Skitarii_Vanguard>
+					<OG_Mechanicus_Tech_Priest_Dominus>0.5</OG_Mechanicus_Tech_Priest_Dominus>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>2</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>6</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Tech_Priest_Engineer>5</OG_Mechanicus_Tech_Priest_Engineer>
+				</options>
+			</li>
+			<li>
+				<!-- Normal fights, explosives with ranged mix-ins -->
+				<kindDef>Combat</kindDef>
+				<commonality>15</commonality>
+				<disallowedStrategies>
+					<li>Siege</li>
+				</disallowedStrategies>
+				<options>
+					<OG_Mechanicus_Skitarii_Vanguard_Primus>1</OG_Mechanicus_Skitarii_Vanguard_Primus>
+					<OG_Mechanicus_Skitarii_Vanguard>10</OG_Mechanicus_Skitarii_Vanguard>
+					<OG_Mechanicus_Skitarii_Ranger_Primus>1</OG_Mechanicus_Skitarii_Ranger_Primus>
+					<OG_Mechanicus_Skitarii_Ranger>10</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Tech_Priest_Engineer>1</OG_Mechanicus_Tech_Priest_Engineer>
+				</options>
+			</li>
+			<li>
+				<!-- Normal fights, snipers only -->
+				<kindDef>Combat</kindDef>
+				<commonality>10</commonality>
+				<options>
+					<OG_Mechanicus_Skitarii_Ranger_Primus>10</OG_Mechanicus_Skitarii_Ranger_Primus>
+				</options>
+			</li>
+			<li>
+				<!-- Normal fights, drifters only (very rare) -->
+				<kindDef>Combat</kindDef>
+				<commonality>2.5</commonality>
+				<maxTotalPoints>1000</maxTotalPoints>
+				<options>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>10</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+				</options>
+			</li>
+			<li>
+				<kindDef>Peaceful</kindDef>
+				<options>
+					<Colonist_OG_Mechanicus>50</Colonist_OG_Mechanicus>
+					<OG_Mechanicus_Skitarii_Ranger>230</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>130</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Faction_Tech_Priest>1</OG_Mechanicus_Faction_Tech_Priest>
+				</options>
+			</li>
+			<li>
+				<kindDef>Trader</kindDef>
+				<traders>
+					<OG_Mechanicus_Trader>1</OG_Mechanicus_Trader>
+				</traders>
+				<carriers>
+					<Muffalo>2</Muffalo>
+					<Dromedary>2</Dromedary>
+				</carriers>
+				<guards>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>10</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>10</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+					<OG_Mechanicus_Skitarii_Ranger>10</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Skitarii_Ranger_Primus>3</OG_Mechanicus_Skitarii_Ranger_Primus>
+					<OG_Mechanicus_Skitarii_Vanguard>10</OG_Mechanicus_Skitarii_Vanguard>
+					<OG_Mechanicus_Skitarii_Vanguard_Primus>3</OG_Mechanicus_Skitarii_Vanguard_Primus>
+				</guards>
+			</li>
+			<li>
+				<!-- Base defense, mainly ranged with melee mix-ins -->
+				<kindDef>Settlement</kindDef>
+				<options>
+					<OG_Mechanicus_Skitarii_Ranger>10</OG_Mechanicus_Skitarii_Ranger>
+					<OG_Mechanicus_Skitarii_Ranger_Primus>3</OG_Mechanicus_Skitarii_Ranger_Primus>
+					<OG_Mechanicus_Skitarii_Vanguard>10</OG_Mechanicus_Skitarii_Vanguard>
+					<OG_Mechanicus_Skitarii_Vanguard_Primus>3</OG_Mechanicus_Skitarii_Vanguard_Primus>
+					<OG_Mechanicus_Sicarian_Rust_Stalker>10</OG_Mechanicus_Sicarian_Rust_Stalker>
+					<OG_Mechanicus_Sicarian_Rust_Infiltrator>10</OG_Mechanicus_Sicarian_Rust_Infiltrator>
+					<OG_Mechanicus_Tech_Priest_Engineer>10</OG_Mechanicus_Tech_Priest_Engineer>
+					<OG_Mechanicus_Tech_Priest_Dominus>10</OG_Mechanicus_Tech_Priest_Dominus>
+					<OG_Mechanicus_Faction_Tech_Priest>0</OG_Mechanicus_Faction_Tech_Priest>
+				</options>
+			</li>
+		</pawnGroupMakers>
+		<settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+		<factionIconPath>Icons/Imperial/Mechanicus/Icon_Adeptus_Mechanicus</factionIconPath>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.FactionDefExtension">
+				<ForcedTraits>
+					<li>
+						<def>Transhumanist</def>
+						<degree>0</degree>
+						<Chance>1</Chance>
+						<replaceiffull>True</replaceiffull>
+					</li>
+				</ForcedTraits>
+				<hediffGivers>
+					<!--li>OG_Mechanicus_HediffSet</li-->
+				</hediffGivers>
+			</li>
+		</modExtensions>
+	</FactionDef>
+
+	<FactionDef ParentName="OG_Mechanicus_Faction_Base">
+		<defName>OG_Mechanicus_Faction</defName>
+	</FactionDef>
+
+</Defs>

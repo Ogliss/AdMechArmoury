@@ -1,0 +1,40 @@
+﻿using HarmonyLib;
+using RimWorld;
+using System;
+using System.Collections.Generic;
+using Verse;
+using Verse.AI;
+
+namespace AdeptusMechanicus.HarmonyInstance
+{
+    [HarmonyPatch(typeof(Pawn_PathFollower))]
+    [HarmonyPatch("PawnCanOccupy")]
+    public static class Pawn_PathFollower_PawnCanOccupy_Floater_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(Pawn_PathFollower __instance, Pawn ___pawn, IntVec3 c, ref bool __result) 
+        {
+            Map map = ___pawn?.Map;
+        //    Log.Message("Pawn_PathFollower 0");
+            if (!__result && (map != null && ___pawn != null))
+            {
+            //    Log.Message("Pawn_PathFollower 1");
+                if (___pawn.def.HasComp(typeof(CompFloating)))
+                {
+                    
+                //    Log.Message("Pawn_PathFollower 2");
+                    TerrainDef def = c.GetTerrain(map) ?? c.GetUnderTerrain(map);
+                    if (def != null)
+                    {
+                        __result = def.IsWater;
+                    //    Log.Message("Pawn_PathFollower 3 "+ __result);
+                    }
+                }
+            }
+        }
+        public static TerrainDef GetUnderTerrain(this IntVec3 c, Map map)
+        {
+            return map.terrainGrid.UnderTerrainAt(c);
+        }
+    }
+}

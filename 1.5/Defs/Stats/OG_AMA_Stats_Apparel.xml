@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <StatDef Name="OGArmorRatingPW" Abstract="True">
+    <category>Apparel</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <hideAtValue>0</hideAtValue>
+    <toStringStyle>PercentOne</toStringStyle>
+    <parts>
+      <li Class="StatPart_Quality">
+        <factorAwful>0.6</factorAwful>
+        <factorPoor>0.8</factorPoor>
+        <factorNormal>1</factorNormal>
+        <factorGood>1.2</factorGood>
+        <factorExcellent>1.4</factorExcellent>
+        <factorMasterwork>1.7</factorMasterwork>
+        <factorLegendary>2.1</factorLegendary>
+      </li>
+      <li Class="StatPart_Health">
+        <curve>
+          <points>
+            <li>(0,0.25)</li>
+            <li>(0.70,1)</li>
+          </points>
+        </curve>
+      </li>
+    </parts>
+  </StatDef>
+
+  <StatDef ParentName="OGArmorRatingPW">
+    <defName>OG_ArmorRating_InvunerableSave</defName>
+    <label>Armor - Invunerable Save</label>
+    <description>Invunerable Saves protect against attacks that would normally negate armor</description>
+  </StatDef>
+
+
+  <!--StatDef>
+    <defName>OG_GasEffect</defName>
+    <label>gas sensitivity</label>
+    <description>More sensitive people suffer more from negative psychic effects, and benefit more from positive ones. Higher psychic sensitivity also increases neural heat limit.</description>
+    <category>BasicsPawn</category>
+    <defaultBaseValue>1</defaultBaseValue>
+    <toStringStyle>PercentZero</toStringStyle>
+    <showOnAnimals>false</showOnAnimals>
+    <minValue>0</minValue>
+    <displayPriorityInCategory>3500</displayPriorityInCategory>
+    <scenarioRandomizable>true</scenarioRandomizable>
+    <parts>
+      <li Class="StatPart_ApparelStatOffset">
+        <apparelStat>PsychicSensitivityOffset</apparelStat>
+        <includeWeapon>true</includeWeapon>
+      </li>
+    </parts>
+  </StatDef>
+  
+  <StatDef>
+    <defName>OG_GasEffectOffset</defName>
+    <label>gasmask offset</label>
+    <description>An offset applied to the strength of the effects of Gas on the user.</description>
+    <category>Basics</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <toStringStyle>PercentZero</toStringStyle>
+    <showOnAnimals>false</showOnAnimals>
+    <displayPriorityInCategory>3500</displayPriorityInCategory>
+    <showIfUndefined>false</showIfUndefined>
+    <showOnPawns>false</showOnPawns>
+    <parts>
+      <li Class="StatPart_Quality">
+        <factorAwful>0.5</factorAwful>
+        <factorPoor>0.66</factorPoor>
+        <factorNormal>0.83</factorNormal>
+        <factorGood>1.0</factorGood>
+        <factorExcellent>1.16</factorExcellent>
+        <factorMasterwork>1.32</factorMasterwork>
+        <factorLegendary>1.5</factorLegendary>
+        <applyToNegativeValues>true</applyToNegativeValues>
+      </li>
+    </parts>
+  </StatDef-->
+  
+</Defs>

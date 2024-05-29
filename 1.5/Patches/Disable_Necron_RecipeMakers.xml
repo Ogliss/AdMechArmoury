@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ResearchProjectDef[defName="OG_Necron_Tech_Base_T1"]</xpath>
+		<success>Always</success>
+		<!--
+		<match Class="PatchOperationAdd">
+			<success>Always</success>
+			<xpath>Defs/ThingDef[defName = ""]</xpath>
+			<value>
+			
+			</value>
+		</match>
+		-->
+		<nomatch Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[starts-with(@Name,'OG_Necron_MeleeWeapon') or starts-with(@Name,'OG_Necron_Gun')]/recipeMaker</xpath>
+				</li>
+			</operations>
+		</nomatch>
+	</Operation>
+</Patch>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+ 
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Combat Extended</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="OGI_RogueTraderXeno"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_Ammo</tradeTag>
+						<countRange>
+							<min>400</min>
+							<max>1000</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>10</min>
+							<max>20</max>
+						</thingDefCountRange>
+					</li>
+					<li Class="StockGenerator_Category">
+						<categoryDef>Ammo</categoryDef>
+						<thingDefCountRange>
+							<min>0</min>
+							<max>0</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</match>
+	<!--nomatch Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+		
+		</operations>
+	</nomatch-->	
+</Operation>
+	
+</Patch>
+

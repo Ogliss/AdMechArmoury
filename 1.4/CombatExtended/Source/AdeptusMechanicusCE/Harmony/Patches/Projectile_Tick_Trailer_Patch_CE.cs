@@ -9,10 +9,11 @@ namespace AdeptusMechanicus.HarmonyInstance
     [HarmonyPatch(typeof(ProjectileCE), "Tick")]
     public static class Projectile_Tick_Trailer_Patch_CE
     {
-        public static void Postfix(ProjectileCE __instance, int ___ticksToImpact, IntVec3 ___originInt, Vector3 ___destinationInt)
+        public static void Postfix(ProjectileCE __instance, int ___ticksToImpact, IntVec3 ___OriginIV3, Vector3 ___destinationInt)
         {
             if (__instance != null)
             {
+                
                 if (__instance.def.HasModExtension<TrailerProjectileExtension>() && __instance.Map != null)
                 {
                     for (int i = 0; i < __instance.def.modExtensions.Count; i++)
@@ -37,7 +38,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     {
                                         DC = __instance.DrawColorTwo;
                                     }
-                                    TrailThrower.ThrowSprayTrail(__instance.ExactPosition, __instance.Map, ___originInt.ToVector3Shifted(), ___destinationInt, trailer.TrailMoteDef, trailer.trailMoteSize, 240, __instance.def.projectile.SpeedTilesPerTick, DC);
+                                    TrailThrower.ThrowSprayTrail(__instance.ExactPosition, __instance.Map, ___OriginIV3.ToVector3Shifted(), ___destinationInt, trailer.TrailMoteDef, trailer.trailMoteSize, 240, __instance.def.projectile.SpeedTilesPerTick, DC);
                                 }
                             }
                         }

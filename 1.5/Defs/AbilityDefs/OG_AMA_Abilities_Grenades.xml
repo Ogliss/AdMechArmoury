@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+
+<!-- ======================== Tau - Photon Grenade Launcher Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGT_GrenadeLaunched_Photon</defName>
+		<graphicData>
+			<texPath>Things/Projectile/TauPhotonGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePhoton</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>20</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<AbilityDef>
+        <defName>OGT_Ability_LaunchPhoton</defName>
+        <label>Launch Photon</label>
+        <iconPath>Things/Projectile/TauPhotonGrenade</iconPath>
+        <description>Launches a Photon Grenade.</description>
+        <!--abilityClass>AbilitesExtended.EquipmentAbility</abilityClass-->
+		<cooldownTicksRange>300</cooldownTicksRange> <!-- 5 seconds -->
+        <verbProperties Class="AbilitesExtended.VerbProperties_EquipmentAbility">
+            <verbClass>AbilitesExtended.Verb_ShootEquipment</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<defaultProjectile>OGT_GrenadeLaunched_Photon</defaultProjectile>
+            <warmupTime>0.4</warmupTime>
+            <burstShotCount>1</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<range>31</range>
+			<forcedMissRadius>1.9</forcedMissRadius>
+            <soundCast>ThrowGrenade</soundCast>
+            <muzzleFlashScale>0</muzzleFlashScale>
+            
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+        </verbProperties>
+		<comps>
+			<li Class="CompProperties_EffectWithDest">
+			<compClass>AbilitesExtended.CompAbilityEffect_Shoot</compClass>
+			<psychic>false</psychic>
+			<goodwillImpact>0</goodwillImpact>
+			<screenShakeIntensity>0</screenShakeIntensity>
+			<clamorRadius>0</clamorRadius>
+			</li>
+		</comps>
+	</AbilityDef>
+ 
+<!-- ======================== Tau - Grenade Ability ================================== -->
+<!-- ======================== Tau - Photon Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGT_GrenadeThrown_Photon</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/TauPhotonGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePhoton</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+<!-- ======================== Eldar - Grenade Ability ================================== -->
+<!-- ======================== Eldar - Plasma Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Plasma</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarPlasmaGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePlasma</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+ <!-- ======================== Eldar - Haywire Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Haywire</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeEMP</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>	
+ </ThingDef>
+ 
+<!-- ======================== Eldar - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarMeltaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+  <!-- ======================== Eldar - Hallucinogen Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGE_GrenadeThrown_Hallucinogen</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/EldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<postExplosionSpawnThingDef>OG_HallucinogenGas</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+	<!-- ======================== Eldar - Grenade Launcher Ability ================================== -->
+<!--
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGEGrenadeL</defName>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenade</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ -->
+ 
+<!-- ======================== Dark Eldar - Grenade Ability ================================== -->
+<!-- ======================== Dark Eldar - Plasma Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Plasma</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarPlasmaGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadePlasma</damageDef>
+			<damageAmountBase>45</damageAmountBase>
+			<armorPenetrationBase>0.86</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ 
+ <!-- ======================== Dark Eldar - Haywire Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Haywire</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeEMP</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>	
+ </ThingDef>
+ 
+<!-- ======================== Dark Eldar - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGDE_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarMeltaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+  <!-- ======================== Dark Eldar - Hallucinogen Grenade Ability ================================== -->
+	<!--ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGDEGrenadeHallucinogen</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/DarkEldarHaywireGrenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Smoke</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationBase>0</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<postExplosionSpawnThingDef>HallucinogenGas</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef-->
+ 
+	<!-- ======================== Dark Eldar - Grenade Launcher Ability ================================== -->
+<!--
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Projectile_OGDEGrenadeL</defName>
+		<graphicData>
+			<texPath>Things/Projectile/Grenade</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenade</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<armorPenetrationBase>1</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>35</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+ -->
+ 
+	<!-- ======================== Ork - Grenade Ability ================================== -->
+	<!-- ======================== Ork - Frag Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Frag</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(199,199,46)</color>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeFrag</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>0.16</armorPenetrationBase>
+			<explosionRadius>3</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<!-- ======================== Ork - Krak Grenade Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Krak</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/StikkBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(183,075,0)</color>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeKrak</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>1.00</armorPenetrationBase>
+			<explosionRadius>1.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+<!-- ======================== Ork - Melta Bomb Ability ================================== -->
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>OGO_GrenadeThrown_Melta</defName>
+		<thingClass>AdeptusMechanicus.Projectile_Explosive_Thrown</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/TankbustaBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>OGGrenadeMelta</damageDef>
+			<!-- <damageAmountBase>20</damageAmountBase> -->
+			<armorPenetrationBase>10</armorPenetrationBase>
+			<explosionRadius>0.5</explosionRadius>
+			<explosionDelay>100</explosionDelay>
+			<speed>12</speed>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+</Defs>

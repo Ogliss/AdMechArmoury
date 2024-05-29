@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Tau Galvanic ========================== -->
+	<ThingCategoryDef>
+		<defName>AmmoOGGalvanicRifle</defName>
+		<label>Galvanic charge</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGGalvanicRifle</defName>
+		<label>Galvanic charge</label>
+		<ammoTypes>
+			<OG_Ammo_GalvanicRifle>OGAM_Bullet_GalvanicRifle</OG_Ammo_GalvanicRifle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGGalvanicRifleBase" ParentName="AmmoBase" Abstract="True">
+		<description>Galvanic ammo</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGGalvanicRifle</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGGalvanicRifleBase">
+		<defName>OG_Ammo_GalvanicRifle</defName>
+		<label>galvanice shell</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_GalvanicRifle</defName>
+		<label>make galvanice shell x150</label>
+		<description>Craft 150 galvanice shells.</description>
+		<jobString>Making galvanice shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_GalvanicRifle>150</OG_Ammo_GalvanicRifle>
+		</products>
+		<researchPrerequisites>
+			<li>OG_Mechanicus_Tech_Weapons_AdvancedBallistics</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+</Defs>

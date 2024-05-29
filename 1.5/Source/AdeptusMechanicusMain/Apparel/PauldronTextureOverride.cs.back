@@ -1,0 +1,40 @@
+﻿using RimWorld;
+using System.Collections.Generic;
+using UnityEngine;
+using Verse;
+
+namespace AdeptusMechanicus
+{
+ //   [StaticConstructorOnStartup]
+    public class PauldronTextureOverride : IExposable
+    {
+        public PauldronTextureOverride()
+        {
+
+        }
+        
+        public PauldronTextureOverride(List<PauldronTextureOption> options)
+        {
+            this.Options = options;
+        }
+
+        protected PauldronTextureOption defaultOption = new PauldronTextureOption(null, "Blank");
+        public PauldronTextureOption DefaultOption
+        {
+            get
+            {
+                return defaultOption;
+            }
+        }
+           
+        public PauldronTextureOption activeOption;
+        public List<PauldronTextureOption> Options = new List<PauldronTextureOption>();
+        public void ExposeData()
+        {
+        //    Scribe_Deep.Look<PauldronTextureOption>(ref this.defaultOption, "defaultOption");
+            Scribe_Deep.Look<PauldronTextureOption>(ref this.activeOption, "activeOption", this.defaultOption);
+            Scribe_Collections.Look<PauldronTextureOption>(ref this.Options, "Options", LookMode.Deep);
+        }
+    }
+
+}

@@ -22,7 +22,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             if (__result && __instance != null && __instance.FleshType.isConstruct())
             {
                 return false;
-            //    Log.Message("Construct found " + __instance.FleshType + " IsFlesh = " + __result);
             }
             return __result;
         }

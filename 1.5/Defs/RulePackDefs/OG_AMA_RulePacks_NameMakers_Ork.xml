@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- ========================= Factions ========================= -->
+	<!-- Standard -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name(p=6)->[Kulture] [Klan_B] of [Klan_C]</li>
+				<li>name(p=6)->[Kulture] [Klan_B] of [LeaderName]</li>
+				<li>name(p=4)->[LeaderName]'z [Klan_B] of [Kulture]</li>
+				<li>name(p=2)->[Klan_A] [Klan_B] of [Klan_C]</li>
+				
+				<!--li>name->[Waaagh] [LeaderName]</li-->
+				
+				<li>LeaderName(p=4)->[Ork_Warboss]</li>
+				<li>LeaderName(p=2)->[Ork_Title_Pre] [Ork_Warboss]</li>
+				<li>LeaderName(p=2)->[Ork_Warboss] [Ork_Title_Post]</li>
+				<li>LeaderName(p=1)->[Ork_Title_Pre] [Ork_Warboss] [Ork_Title_Post]</li>
+				
+				<!--
+				<li>name-> of da [OGOrkClans1]</li>
+				
+				<li>name-> of da [OGOrkClans1]</li>
+				-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Player -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Player</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Feral -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Feral</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Feral Player -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Feral_Player</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Klan_A] [Klan_B] [Klan_C]</li>
+				<li>name-> of da [Klan_A]</li>
+				<li>name-> of da [Klan_A]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Waaagh -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Waaagh</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+			<li>name->[Waaagh] [LeaderName]</li>
+			<li>name->[Waaagh] [LeaderName] of [CurrentWorld]</li>
+			<li>Waaagh->Waaagh!</li>
+			
+			<li>LeaderName->[Ork_Warboss]</li>
+			<li>LeaderName->[Ork_Warboss] [Ork_Title_Post]</li>
+			<li>LeaderName->[Ork_Title_Pre] [Ork_Warboss]</li>
+			<li>LeaderName->[Ork_Title_Pre] [Ork_Warboss] [Ork_Title_Post]</li>
+			<!--
+			<li>name-> of da [OGOrkClans1]</li>
+			
+			<li>name-> of da [OGOrkClans1]</li>
+			-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Refugee -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerFaction_Refugee</defName>
+		<rulePack>
+			<rulesStrings>
+
+				<li>r_name->[adj] [group]</li>
+
+				<li>group->survivaz</li>
+				<li>group->gitz</li>
+				<li>group->runtz</li>
+				<li>group->kastawayz</li>
+				<li>group->mob</li>
+				<li>group->roamaz</li>
+				<li>group->wandaraz</li>
+				<li>group->travelaz</li>
+				<li>group->nomadaz</li>
+
+				<li>adj->'aggard</li>
+				<li>adj->knackered</li>
+				<li>adj->abandoned</li>
+				<li>adj->exhausted</li>
+				<li>adj->lost</li>
+				<li>adj->battered</li>
+				<li>adj->tough</li>
+				<li>adj->dogged</li>
+				<li>adj->tenacious</li>
+
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- ========================= Outposts ========================= -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerBases</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Ork_Outpost]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- ========================= Pawns ========================= -->
+	<!-- Ork -->
+	<RulePackDef>
+		<defName>OG_Ork_NamerPerson</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[NameOrk]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Grot -->
+	<RulePackDef>
+		<defName>OG_Grot_NamerPerson</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[NameGrot]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- Snot -->
+	<RulePackDef>
+		<defName>OG_Snotling_NamerAnimal</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[NameSnot]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Squig -->
+	<RulePackDef>
+		<defName>OG_Squig_NamerAnimal</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[NameSquig]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- ========================= Orkoid Name Utility ========================= -->
+	<RulePackDef>
+		<defName>OG_Orkoid_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordOrk(p=4)->[SylB][SylB]</li>
+				<li>WordOrk(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordOrk(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<li>NameOrk(p=8)->[OrkFirst]</li>
+				<li>NameOrk(p=4)->[OrkFirst] [OrkSecond]</li>
+				<li>NameOrk(p=0.2)->[Ork_First] '[TitlePost]' [Ork_First_B]</li>
+				
+				<li>OrkFirst(p=4)->[Ork_First_A][Ork_First_B]</li>
+				<li>OrkFirst(p=1)->[Ork_First]</li>
+				<li>OrkSecond(p=4)->[Ork_Second_A][Ork_Second_B]</li>
+				<li>OrkSecond(p=1)->[Ork_Second]</li>
+				
+				<li>NameGrot(p=15)->[GrotFirst]</li>
+				<li>NameGrot(p=10)->[GrotFirst] [GrotSecond]</li>
+				<li>NameGrot(p=1)->[GrotFirst] '[Grot_Nick]' [GrotSecond]</li>
+				
+				<li>GrotFirst(p=4)->[Grot_First_A][Grot_First_B]</li>
+				<li>GrotSecond(p=4)->[Grot_Second_A][Grot_Second_B]</li>
+				
+				<li>NameSquig->[Squig_A][Squig_B]</li>
+				
+				<li>NameSnot(p=10)->Snot[Ork_First_B]</li>
+				<li>NameSnot(p=7)->Snot[Ork_Second_B]</li>
+				<li>NameSnot(p=5)->[Ork_First_A]snot</li>
+				<li>NameSnot(p=1)->[Ork_Second_A]snot</li>
+				
+				<li>NameSnot(p=10)->Snot[Grot_First_B]</li>
+				<li>NameSnot(p=7)->Snot[Grot_Second_B]</li>
+				<li>NameSnot(p=5)->[Grot_First_A]snot</li>
+				<li>NameSnot(p=1)->[Grot_Second_A]snot</li>
+				
+				<li>NameGod(p=1)->Gork</li>
+				<li>NameGod(p=1)->Mork</li>
+				
+				<li>Klan(p=3)->[Klan_A] [Klan_B]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Klan_A->NameBanks/OG_Greekskin_Ork_Names_Faction_A</li>
+				<li>Klan_B->NameBanks/OG_Greekskin_Ork_Names_Faction_B</li>
+				<li>Klan_C->NameBanks/OG_Greekskin_Ork_Names_Faction_C</li>
+				<li>Kultrue->NameBanks/OG_Greekskin_Ork_Kulture</li>
+				
+				<li>Ork_Outpost->NameBanks/OG_Greekskin_Ork_Names_Outpost</li>
+				
+				<li>Ork_First->NameBanks/OG_Greekskin_Ork_Names_First</li>
+				<li>Ork_First_A->NameBanks/OG_Greekskin_Ork_Names_First_A</li>
+				<li>Ork_First_B->NameBanks/OG_Greekskin_Ork_Names_First_B</li>
+				<li>Ork_Second->NameBanks/OG_Greekskin_Ork_Names_Last</li>
+				<li>Ork_Second_A->NameBanks/OG_Greekskin_Ork_Names_Last_A</li>
+				<li>Ork_Second_B->NameBanks/OG_Greekskin_Ork_Names_Last_B</li>
+				<!--li>Ork_Nick->NameBanks/OG_Greekskin_Ork_Names_Nick</li-->
+				
+				<li>Ork_Warboss->NameBanks/OG_Greekskin_Ork_Names_Leader</li>
+				<li>Ork_Title_Pre->NameBanks/OG_Greekskin_Ork_Titles_Leader_Prefix</li>
+				<li>Ork_Title_Post->NameBanks/OG_Greekskin_Ork_Titles_Leader_Postfix</li>
+				
+				<li>Grot_First_A->NameBanks/OG_Greekskin_Grot_Names_First_A</li>
+				<li>Grot_First_B->NameBanks/OG_Greekskin_Grot_Names_First_B</li>
+				<li>Grot_Second_A->NameBanks/OG_Greekskin_Grot_Names_Second_A</li>
+				<li>Grot_Second_B->NameBanks/OG_Greekskin_Grot_Names_Second_B</li>
+				<li>Grot_Nick->NameBanks/OG_Greekskin_Grot_Names_Nick</li>
+				
+				<li>Squig->NameBanks/OG_Greekskin_Ork_Names_Last</li>
+				<li>Squig_A->NameBanks/OG_Greekskin_Ork_Names_Squig_A</li>
+				<li>Squig_B->NameBanks/OG_Greekskin_Ork_Names_Squig_B</li>
+			</rulesFiles>
+			<rulesRaw>
+				<li Class="AdeptusMechanicus.Rule_Current_World">
+					<keyword>CurrentWorld</keyword>
+				</li>
+			</rulesRaw>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- ========================= Orkoid Kulture Utility ========================= -->
+	
+	<RulePackDef>
+		<defName>NamerOrkoidKulture</defName>
+		<include>
+			<li>GlobalUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<!-- The system will feed one (and only one) of these cases into this namer:
+					- key deity
+					- symbol pack
+					 These cases are separate, they won't mix.
+
+					 The system will also feed a set of place_* keys correesponding to the ideo's foundation PlaceDef
+				 -->
+
+				<!-- From key deity -->
+				<li>r_ideoName->[keyDeity]er's</li>
+				<li>r_ideoName->[hyphenPrefix]-[keyDeity]er's</li>
+				<li>r_ideoName->[keyDeity]er's [creed]</li>
+				<li>r_ideoName->[creed] of [keyDeity]</li>
+				<li>r_ideoAdjective->[keyDeity]ic</li>
+				<li>r_memberName->[keyDeity]ist</li>
+				<li>r_memberName->[keyDeity]ite</li>
+
+				<!-- From symbol pack -->
+				<li>r_ideoName(p=2)->[globalAdjective] [packIdeoName]</li>
+				<li>r_ideoName(p=1.5,forcePrefix==False)->[hyphenPrefix]-[packIdeoName]</li>
+				<li>r_ideoName->[memeAdjective] [packIdeoName]</li>
+				<li>r_ideoName(p=0.5)->[memeAdjective] [creed]</li>
+				<li>r_ideoName(p=0.2)->[creed] of [packTheme]</li>
+				<li>r_ideoAdjective(priority=1)->[packAdjective]</li>
+				<li>r_memberName->[packMember]</li>
+
+				<!-- Generic content -->
+
+				<li>creed(priority=1)->[memeCreed]</li>
+				<li>creed->[genericCreed]</li>
+
+				<li>genericCreed->creed</li>
+				<li>genericCreed->doctrine</li>
+				<li>genericCreed->way</li>
+				<li>genericCreed->path</li>
+
+				<li>globalAdjective->[Color]</li>
+				<li>globalAdjective->New</li>
+				<li>globalAdjective->Full</li>
+				<li>globalAdjective->Old</li>
+				<li>globalAdjective->Ancient</li>
+				<li>globalAdjective->Historical</li>
+				<li>globalAdjective->Revised</li>
+				<li>globalAdjective->Reformed</li>
+				<li>globalAdjective->Hard</li>
+				<li>globalAdjective->Fundamental</li>
+				<li>globalAdjective->True</li>
+				<li>globalAdjective->Folk</li>
+				<li>globalAdjective->Reformed</li>
+				<li>globalAdjective->[place_adjective]</li>
+
+				<li>hyphenPrefix->[globalHyphenPrefix]</li>
+				<li>hyphenPrefix->[memeHyphenPrefix]</li>
+
+				<li>globalHyphenPrefix(p=4)->neo</li>
+				<li>globalHyphenPrefix(p=2)->post</li>
+				<li>globalHyphenPrefix->nova</li>
+				<li>globalHyphenPrefix->archaeo</li>
+				<li>globalHyphenPrefix->hyper</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!--RulePackDef>
+		<defName>OrkoidSpacer</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>globalAdjective->Spacer</li>
+				<li>globalAdjective->Star</li>
+				<li>globalAdjective->Stellar</li>
+				<li>globalAdjective->Interstellar</li>
+
+				<li>globalHyphenPrefix->astro</li>
+				<li>globalHyphenPrefix->stello</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef-->
+
+	<!-- Culture-specific content -->
+
+	<!--RulePackDef>
+		<defName>NamerIdeoCorunan</defName>
+		<include>
+			<li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>globalAdjective(p=15)->Tribal</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef-->
+
+	<!--RulePackDef>
+		<defName>NamerIdeoKriminul</defName>
+		<include>
+			<li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">CultureSpacer</li>
+		</include>
+	</RulePackDef-->
+
+	<!--RulePackDef>
+		<defName>NamerIdeoAstropolitan</defName>
+		<include>
+			<li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">CultureSpacer</li>
+		</include>
+	</RulePackDef-->
+
+	<RulePackDef>
+		<defName>NamerDeityOrkoid</defName>
+		<include>
+			<li>OG_Orkoid_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_deityName->[NameGod]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+  <RulePackDef>
+    <defName>DeityTypeMakerOrkoid</defName>
+    <include>
+      <li MayRequire="Ludeon.RimWorld.Ideology">GlobalUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_deityType->[god] of [memeConcept]</li>
+
+        <li>god(p=7)->God</li>
+        <li>god(p=4)->[memeGod]</li>
+        <li>god(p=3)->Spirit</li>
+        <li>god->Creator</li>
+        <li>god->Master</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+</Defs>

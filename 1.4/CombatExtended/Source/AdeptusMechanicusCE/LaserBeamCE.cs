@@ -355,14 +355,14 @@ namespace AdeptusMechanicus.Lasers
                 compSuppressable.AddSuppression(this.suppressionAmount, this.OriginIV3);
             }
         }
-        private Vector2 Vec2Position(float ticks = -1f)
+        public override Vector2 Vec2Position(float ticks = -1f)
         {
             bool flag = ticks < 0f;
             if (flag)
             {
-                ticks = this.fTicks;
+                ticks = this.FlightTicks;
             }
-            return Vector2.Lerp(this.origin, this.Destination, ticks / this.StartingTicksToImpact);
+            return Vector2.Lerp(this.origin, this.Destination, ticks / this.startingTicksToImpact);
         }
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {

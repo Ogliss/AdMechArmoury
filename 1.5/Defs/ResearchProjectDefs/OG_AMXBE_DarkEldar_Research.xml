@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--OG==================== Adeptus Mechanicus Armoury Mod -Dark Eldar Research =========================OG-->
+	<ResearchProjectDef Name="OG_DarkEldar_Tech_Base" ParentName="OG_Aeldari_ReseachBase" Abstract="True">
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>OGDE_TableMachining</li>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_DarkEldar_Tech_Base">
+		<defName>OG_DarkEldar_Tech_Base_T1</defName>
+		<label>The Dark Kin</label>
+		<description>The Drukhari, often referred to by outsiders as "Dark Eldar" were the malevolent faction of the ancient Aeldari who had chosen to remain within the Webway after the Fall and continued to pursue the decadent and hedonistic ways that nearly led to their extinction</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<!--li>OG_Aeldari_Tech_Base</li-->
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
+		<tags>
+			<li>OG_T1_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_DarkEldar_Tech_Base">
+		<defName>OG_DarkEldar_Tech_Base_T2</defName>
+		<label>The Path of Damnation</label>
+		<description>Improved Dark Eldar Technology Concepts</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Base_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
+		<tags>
+			<li>OG_T2_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_DarkEldar_Tech_Base">
+		<defName>OG_DarkEldar_Tech_Base_T3</defName>
+		<label>The Damned</label>
+		<description>Advanced Dark Eldar Technology Concepts</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Base_T2</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<researchViewX>5.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
+		<tags>
+			<li>OG_T3_Tech</li>
+		</tags>
+	</ResearchProjectDef>
+
+	<!--OG==================== Adeptus Mechanicus Armoury Mod - Dark Eldar Weapons =========================OG-->
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Splinter</defName>
+		<label>Splinter Technology</label>
+		<description>Splinter Weapons fire shards of splintered crystal using a powerful magno-electric pulse. These shards are covered in incredibly virulent and fast-acting toxins the better to ensure a painful death.</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Base_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>3.750</researchViewY>
+	</ResearchProjectDef>
+	
+	<!--ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Stinger</defName>
+		<label>Weapons Technology</label>
+		<description>Allows you to create basic shuriken weapons</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Shuriken</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>6.00</researchViewX>
+		<researchViewY>3.750</researchViewY>
+	</ResearchProjectDef-->
+	
+	<!--ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Monofilament</defName>
+		<label>Aspect Weaponry</label>
+		<description>Allows you to createDark Eldar aspect warrior weaponry</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Ranged_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>3.00</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Distortion</defName>
+		<label>Distortion Tech</label>
+		<description>Allows you to construct Distortion weaponry</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Monofilament</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>3.00</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Melee_T1</defName>
+		<label>Eldar Melee Weapons</label>
+		<description>Allows you to create basic shuriken weapons</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Base_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>3.00</researchViewY>
+	</ResearchProjectDef>	
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Melee_T2</defName>
+		<label>Power Weaponry</label>
+		<description>Allows you to createDark Eldar Power Weapons</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Melee_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>3.0</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Weapons_Melee_T3</defName>
+		<label>Advanced Melee</label>
+		<description>Allows you to create the most advancedDark Eldar melee weapons</description>
+		<baseCost>2000</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Weapons_Melee_T2</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>3.0</researchViewY>
+	</ResearchProjectDef-->
+	
+	<!--OG==================== Adeptus Mechanicus Armoury Mod -Dark Eldar Armour =========================OG-->
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Apparel_Armour_T2</defName>
+		<label>Dark Armour</label>
+		<description>Allows you to create more advanced Dark Eldar armour</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li MayRequire="Ogliss.AdMech.Xenobiologis.Eldar">OG_Aeldari_Tech_Apparel_Armour_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>4.250</researchViewX>
+		<researchViewY>4.00</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Apparel_Armour_T3</defName>
+		<label>Damned Armour</label>
+		<description>Allows you to create the most Advanced Dark Eldar armours, such as those worn by Incubi and Archons</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Apparel_Armour_T2</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>6.00</researchViewX>
+		<researchViewY>4.00</researchViewY>
+	</ResearchProjectDef>
+	
+	
+	<!--OG==================== Adeptus Mechanicus Armoury Mod -Dark Eldar Wargear =========================OG-->
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Apparel_Wargear</defName>
+		<label>Dark Eldar Warger</label>
+		<description>Allows you to create basic Dark Eldar wargear</description>
+		<baseCost>500</baseCost>
+		<prerequisites>
+			<li>OG_DarkEldar_Tech_Base_T1</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>1.8250</researchViewX>
+		<researchViewY>4.250</researchViewY>
+	</ResearchProjectDef>
+	
+	<!--ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Apparel_Wargear</defName>
+		<label>Eldar Aspect Warger</label>
+		<description>Allows you to create Dark Eldar Aspect Warrior Warger</description>
+		<baseCost>1000</baseCost>
+		<prerequisites>
+			<li>EldarWargear</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>1.5</researchViewX>
+		<researchViewY>5.50</researchViewY>
+	</ResearchProjectDef>
+	
+	<ResearchProjectDef ParentName="OG_Aeldari_ReseachBase">
+		<defName>OG_DarkEldar_Tech_Apparel_Wargear</defName>
+		<label>Eldar Advanced Warger</label>
+		<description>Allows you to create the most Advanced Dark Eldar Warger</description>
+		<baseCost>1500</baseCost>
+		<prerequisites>
+			<li>EldarAspectWargear</li>
+		</prerequisites>
+		<techLevel>Spacer</techLevel>
+		<researchViewX>2.25</researchViewX>
+		<researchViewY>5.50</researchViewY>
+	</ResearchProjectDef-->
+	
+</Defs>
