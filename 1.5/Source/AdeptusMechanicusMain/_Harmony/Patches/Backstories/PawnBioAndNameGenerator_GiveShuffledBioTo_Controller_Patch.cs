@@ -13,10 +13,10 @@ using AdeptusMechanicus.ExtensionMethods;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-//    [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
+    //    [HarmonyPatch(typeof(PawnBioAndNameGenerator), "GiveShuffledBioTo")]
     public static class PawnBioAndNameGenerator_GiveShuffledBioTo_Controller_Patch
     {
-    //    [HarmonyPrefix]
+        //    [HarmonyPrefix]
         public static void Prefix(Pawn pawn, FactionDef factionType, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
             BackstoryExtension Ext = pawn.kindDef.GetModExtensionFast<BackstoryExtension>();
@@ -26,27 +26,27 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (Ext.AdultUseChildCatergory)
                 {
                     BackstoryCategoryFilter filter = backstoryCategories.RandomElementByWeight(x => x.commonality);
-                    if (filter!=null)
+                    if (filter != null)
                     {
-                    //    Log.Message(pawn + " of "+ factionType + " using "+filter.categories.ToCommaList());
+                        //    Log.Message(pawn + " of "+ factionType + " using "+filter.categories.ToCommaList());
                         Categories.Add(filter);
                         backstoryCategories = Categories;
                     }
                 }
             }
         }
-    //    [HarmonyPostfix]
+        //    [HarmonyPostfix]
         public static void Postfix(Pawn pawn, FactionDef factionType, ref List<BackstoryCategoryFilter> backstoryCategories)
         {
             BackstoryExtension Ext = pawn.kindDef.GetModExtensionFast<BackstoryExtension>();
             if (Ext != null)
             {
-                string msg = pawn + "("+ pawn.KindLabel+")" + " of " + factionType + " Childhood: " + pawn.story.childhood.identifier;
-                if (pawn.story.adulthood!=null)
+                string msg = pawn + "(" + pawn.KindLabel + ")" + " of " + factionType + " Childhood: " + pawn.story.childhood.identifier;
+                if (pawn.story.adulthood != null)
                 {
                     msg += ", Adulthood: " + pawn.story.adulthood.identifier;
                 }
-            //    Log.Message(msg);
+                //    Log.Message(msg);
             }
         }
 

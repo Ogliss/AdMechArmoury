@@ -1,11 +1,90 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <MemeDef Abstract="True" Name="OG_Tau_Structure_MemeBase">
-    <randomizationSelectionWeightFactor>0</randomizationSelectionWeightFactor>
-  </MemeDef>
-  
-  <MemeDef ParentName="OG_Tau_Structure_MemeBase" MayRequire="Ogliss.AdMech.Xenobiologis.Tau">
+  <MemeDef ParentName="OG_Structure_MemeBase" MayRequireAnyOne="Ogliss.AdMech.Xenobiologis.Tau, Ogliss.AdMech.Xenobiologis.Tau">
+    <defName>OG_Structure_Tau_Collectivist</defName>
+    <label>tau collectivist</label>
+    <description>The Tau believe in the Greater Good, a philosophy that emphasizes the importance of the collective over the individual. This ideology promotes cooperation, unity, and the subordination of personal desires for the benefit of the entire society. The Greater Good is not just a moral code but a way of life that guides all aspects of Tau civilization.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/TauCollectivist</iconPath>
+    <impact>0</impact>
+    <deityCount>0</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->Tau</li>
+        <li>memeHyphenPrefix->Greater</li>
+        <li>memeLeaderNoun->Ethereal</li>
+        <li>memeLeaderAdjective->Guiding</li>
+        <li>memeMoralist->Philosopher</li>
+        <li>memeMoralist->Advisor</li>
+        <li>memeShootingSpecialist->Fire Warrior</li>
+        <li>memeMeleeSpecialist->Kroot Mercenary</li>
+        <li>memeResearchSpecialist->Earth Caste Scientist</li>
+        <li>memePlantSpecialist->Water Caste Agronomist</li>
+        <li>memeAnimalsSpecialist->Kroot Beastmaster</li>
+        <li>memeProductionSpecialist->Earth Caste Engineer</li>
+        <li>memeMiningSpecialist->Earth Caste Miner</li>
+        <li>memeMedicalSpecialist->Water Caste Medic</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Tau_IdeologicalFounder</def></li>
+        <li><def>OG_Tau_IdeologicalLesson</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_tau_collectivist</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <worshipRoomLabel>communal hall</worshipRoomLabel>
+    <symbolPacks>
+      <li>
+        <ideoName>GreaterGood</ideoName>
+        <theme>unity</theme>
+        <adjective>unified</adjective>
+        <member>follower</member>
+      </li>
+      <li>
+        <ideoName>Collectivism</ideoName>
+        <theme>collective</theme>
+        <adjective>collective</adjective>
+        <member>collectivist</member>
+      </li>
+      <li>
+        <ideoName>Progress</ideoName>
+        <theme>progress</theme>
+        <adjective>progressive</adjective>
+        <member>progressor</member>
+      </li>
+    </symbolPacks>
+    <preferredWeaponClasses>
+      <noble>Ranged</noble>
+      <despised>Melee</despised>
+    </preferredWeaponClasses>
+    <!--requireOne>
+      <li>
+        <li>BodyMod_Approved</li>
+      </li>
+    </requireOne-->
+    <thingStyleCategories>
+      <li>
+        <category>Techist</category>
+        <priority>4</priority>
+      </li>
+    </thingStyleCategories>
+    <!--agreeableTraits>
+      <li>Industrious</li>
+      <li>Intellectual</li>
+    </agreeableTraits>
+    <disagreeableTraits>
+      <li>Pyromaniac</li>
+      <li>Bloodlust</li>
+      <li>Psychopath</li>
+    </disagreeableTraits-->
+</MemeDef>
+
+
+  <MemeDef ParentName="OG_Structure_MemeBase">
     <defName>OG_Tau_Structure_Ideological</defName>
     <label>the greater good</label>
     <description>There are no gods. The moral structure of the universe is found in our grand narrative of the greater good.</description>
@@ -40,16 +119,16 @@
     <descriptionMaker>
       <patterns>
         <li>
-          <def>IdeologicalFounder</def>
+          <def>OG_Tau_IdeologicalFounder</def>
           <weight>1</weight>
         </li>
         <li>
-          <def>IdeologicalLesson</def>
+          <def>OG_Tau_IdeologicalLesson</def>
           <weight>3</weight>
         </li>
       </patterns>
       <constants>
-        <li><key>structure_ideological</key><value>true</value></li>
+        <li><key>og_tau_structure_ideological</key><value>true</value></li>
       </constants>
     </descriptionMaker>
     <symbolPacks>

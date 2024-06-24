@@ -23,6 +23,7 @@ namespace AdeptusMechanicus
         public IntRange chronoAgeRange;
         public List<ThingDefCountRangeClass> forcedItems = new List<ThingDefCountRangeClass>();
         //   public Backstory backstory;
+        public List<SkillGain> passions = new List<SkillGain>();
 
         public List<BackstoryTraitChance> forcedTraitsChance = new List<BackstoryTraitChance>();
         public List<BackstoryTraitChance> disallowedTraitsChance = new List<BackstoryTraitChance>();
@@ -82,77 +83,5 @@ namespace AdeptusMechanicus
                 this.bodyTypeGlobal = DefDatabase<BodyTypeDef>.GetRandom();
             }
         }
-        /*
-        public override void ResolveReferences()
-        {
-
-            base.ResolveReferences();
-
-
-            if (!this.addToDatabase || BackstoryDatabase.allBackstories.ContainsKey(key: this.defName) || this.title.NullOrEmpty() || this.spawnCategories.NullOrEmpty()) return;
-
-            Rand.PushState();
-            this.backstory = new Backstory
-            {
-                slot = this.slot,
-                shuffleable = this.shuffleable,
-                spawnCategories = this.spawnCategories,
-                forcedTraits = this.forcedTraits.NullOrEmpty() ? null : this.forcedTraits.Where(predicate: trait => Rand.Range(min: 0, max: 100) < trait.chance).ToList().ConvertAll(converter: trait => new TraitEntry(def: TraitDef.Named(defName: trait.defName), degree: trait.degree)),
-                disallowedTraits = this.disallowedTraits.NullOrEmpty() ? null : this.disallowedTraits.Where(predicate: trait => Rand.Range(min: 0, max: 100) < trait.chance).ToList().ConvertAll(converter: trait => new TraitEntry(def: TraitDef.Named(defName: trait.defName), degree: trait.degree)),
-                workDisables = this.workAllows.NullOrEmpty() ? this.workDisables.NullOrEmpty() ? WorkTags.None : ((Func<WorkTags>)delegate
-                {
-                    WorkTags wt = WorkTags.None;
-                    this.workDisables.ForEach(action: tag => wt |= tag);
-                    return wt;
-                })() : ((Func<WorkTags>)delegate
-                {
-                    WorkTags wt = WorkTags.None;
-                    Enum.GetValues(enumType: typeof(WorkTags)).Cast<WorkTags>().Where(predicate: tag => !this.workAllows.Contains(item: tag)).ToList().ForEach(action: tag => wt |= tag);
-                    return wt;
-                })(),
-                identifier = this.defName,
-                requiredWorkTags = ((Func<WorkTags>)delegate
-                {
-                    WorkTags wt = WorkTags.None;
-                    this.requiredWorkTags.ForEach(action: tag => wt |= tag);
-                    return wt;
-                })()
-                
-            };
-            Rand.PopState();
-            if (!this.nameMaker.NullOrEmpty())
-            {
-                Traverse.Create(root: this.backstory).Field(name: "nameMaker").SetValue(value: this.nameMaker);
-            }
-            Traverse.Create(root: this.backstory).Field(name: "bodyTypeGlobalResolved").SetValue(value: this.bodyTypeGlobal);
-            Traverse.Create(root: this.backstory).Field(name: "bodyTypeFemaleResolved").SetValue(value: this.bodyTypeFemale);
-            Traverse.Create(root: this.backstory).Field(name: "bodyTypeMaleResolved").SetValue(value: this.bodyTypeMale);
-
-            Traverse.Create(root: this.backstory).Field(name: nameof(this.skillGains)).SetValue(value: this.SkillListItems.ToDictionary(keySelector: i => i.defName, elementSelector: i => i.amount));
-
-            UpdateTranslateableFields(bs: this);
-
-            this.backstory.ResolveReferences();
-            this.backstory.PostLoad();
-
-            this.backstory.identifier = this.defName;
-
-            IEnumerable<string> errors;
-            if (!(errors = this.backstory.ConfigErrors(ignoreNoSpawnCategories: false)).Any())
-                BackstoryDatabase.AddBackstory(bs: this.backstory);
-            else
-                Log.Error(text: this.defName + " has errors:\n" + string.Join(separator: "\n", value: errors.ToArray()));
-        }
-        internal static void UpdateTranslateableFields(BackstoryDef bs)
-        {
-            if (bs.backstory == null) return;
-
-            bs.backstory.baseDesc = bs.baseDescription.NullOrEmpty() ? "Empty." : bs.baseDescription;
-            bs.backstory.SetTitle(newTitle: bs.title, newTitleFemale: bs.titleFemale);
-            bs.backstory.SetTitleShort(newTitleShort: bs.titleShort.NullOrEmpty() ? bs.title : bs.titleShort,
-                newTitleShortFemale: bs.titleShortFemale.NullOrEmpty() ? bs.titleFemale : bs.titleShortFemale);
-        }
-        
-        */
     }
 }

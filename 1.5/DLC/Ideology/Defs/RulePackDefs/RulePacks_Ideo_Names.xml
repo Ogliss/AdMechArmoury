@@ -1,24 +1,153 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <RulePackDef>
-    <defName>OG_Culture_Aeldari_Asuryani</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>globalAdjective->Craftworld</li>
+<RulePackDef>
+  <defName>OG_NamerIdeo_Aeldari_Asuryani</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Asuryani Specific Content -->
+      <li>r_ideoName(p=6)->[ancientAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[craftworldAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[ancientAdjective] [craftworldNoun]</li>
+      <li>r_ideoName(p=1)->[craftworldNoun]</li>
 
-        <li>globalHyphenPrefix->astro</li>
-        <li>globalHyphenPrefix->stello</li>
-      </rulesStrings>
-    </rulePack>
-  </RulePackDef>
-  
-  <RulePackDef>
-    <defName>OG_NamerIdeo_Aeldari_Asuryani</defName>
-    <include>
-      <li>NamerIdeoGlobal</li>
-      <li>OG_Culture_Aeldari_Asuryani</li>
-    </include>
-  </RulePackDef>
+      <li>ancientAdjective->Ancient</li>
+      <li>ancientAdjective->Mystic</li>
+      <li>ancientAdjective->Eternal</li>
+      <li>ancientAdjective->Celestial</li>
+      <li>craftworldAdjective->High</li>
+      <li>craftworldAdjective->Great</li>
+      <li>craftworldAdjective->Noble</li>
+      <li>craftworldAdjective->Venerable</li>
+      <li>craftworldNoun->Farseer</li>
+      <li>craftworldNoun->Autarch</li>
+      <li>craftworldNoun->Seer</li>
+      <li>craftworldNoun->Warlock</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_Aeldari_Exodite</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Exodite Specific Content -->
+      <li>r_ideoName(p=6)->[wildAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[exoditeAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[wildAdjective] [exoditeNoun]</li>
+      <li>r_ideoName(p=1)->[exoditeNoun]</li>
+
+      <li>wildAdjective->Wild</li>
+      <li>wildAdjective->Feral</li>
+      <li>wildAdjective->Untamed</li>
+      <li>wildAdjective->Savage</li>
+      <li>exoditeAdjective->Earthbound</li>
+      <li>exoditeAdjective->Prime</li>
+      <li>exoditeAdjective->Noble</li>
+      <li>exoditeAdjective->Ancient</li>
+      <li>exoditeNoun->Chieftain</li>
+      <li>exoditeNoun->Nomad</li>
+      <li>exoditeNoun->Pathfinder</li>
+      <li>exoditeNoun->Protector</li>
+      <li>exoditeNoun->Ranger</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_Aeldari_Corsair</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Corsair Specific Content -->
+      <li>r_ideoName(p=6)->[raiderAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[corsairAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[raiderAdjective] [corsairNoun]</li>
+      <li>r_ideoName(p=1)->[corsairNoun]</li>
+
+      <li>raiderAdjective->Ruthless</li>
+      <li>raiderAdjective->Swift</li>
+      <li>raiderAdjective->Vicious</li>
+      <li>raiderAdjective->Relentless</li>
+      <li>corsairAdjective->Free</li>
+      <li>corsairAdjective->Noble</li>
+      <li>corsairAdjective->Cunning</li>
+      <li>corsairAdjective->Fearless</li>
+      <li>corsairNoun->Captain</li>
+      <li>corsairNoun->Raider</li>
+      <li>corsairNoun->Pirate</li>
+      <li>corsairNoun->Warlord</li>
+      <li>corsairNoun->Plunderer</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_Aeldari_Harlequin</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Harlequin Specific Content -->
+      <li>r_ideoName(p=6)->[theatricalAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[harlequinAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[theatricalAdjective] [harlequinNoun]</li>
+      <li>r_ideoName(p=1)->[harlequinNoun]</li>
+
+      <li>theatricalAdjective->Graceful</li>
+      <li>theatricalAdjective->Mystic</li>
+      <li>theatricalAdjective->Enigmatic</li>
+      <li>theatricalAdjective->Artful</li>
+      <li>harlequinAdjective->Lithe</li>
+      <li>harlequinAdjective->Shadowy</li>
+      <li>harlequinAdjective->Fleeting</li>
+      <li>harlequinAdjective->Elusive</li>
+      <li>harlequinNoun->Troupe Master</li>
+      <li>harlequinNoun->Shadowseer</li>
+      <li>harlequinNoun->Death Jester</li>
+      <li>harlequinNoun->Solitaire</li>
+      <li>harlequinNoun->Mimic</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_Aeldari_Drukhari</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Drukhari Specific Content -->
+      <li>r_ideoName(p=6)->[darkAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[cruelAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[darkAdjective] [drukhariNoun]</li>
+      <li>r_ideoName(p=1)->[drukhariNoun]</li>
+
+      <li>darkAdjective->Dark</li>
+      <li>darkAdjective->Sinister</li>
+      <li>darkAdjective->Shadowed</li>
+      <li>darkAdjective->Ebon</li>
+      <li>cruelAdjective->Cruel</li>
+      <li>cruelAdjective->Ruthless</li>
+      <li>cruelAdjective->Vicious</li>
+      <li>cruelAdjective->Merciless</li>
+      <li>drukhariNoun->Archon</li>
+      <li>drukhariNoun->Succubus</li>
+      <li>drukhariNoun->Haemonculus</li>
+      <li>drukhariNoun->Wych</li>
+      <li>drukhariNoun->Overlord</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
 
 </Defs>

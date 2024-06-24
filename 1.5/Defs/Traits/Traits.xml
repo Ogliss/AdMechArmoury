@@ -14,8 +14,10 @@
       <statOffsets>
         <MentalBreakThreshold>-0.2</MentalBreakThreshold>
         <PainShockThreshold>0.2</PainShockThreshold>
-        <HealthScale>0.2</HealthScale>
       </statOffsets>
+      <statFactors>
+        <IncomingDamageFactor>0.8</IncomingDamageFactor>
+      </statFactors>
       <skillGains>
         <Shooting>2</Shooting>
         <Melee>3</Melee>
@@ -25,17 +27,37 @@
         <li>Wander_Psychotic</li>
         <li>PanicFlee</li>
         <li>WanderConfused</li>
-        <li MayRequire="Ludeon.RimWorld.Biotech">BerserkWarcall</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">BerserkWarcall</li> 
       </disallowedMentalStates>
     </li>
   </degreeDatas>
   <conflictingTraits>
-    <li>Pacifist</li>
+    <li>Kind</li>
     <li>Wimp</li>
   </conflictingTraits>
   <disabledWorkTypes>
-    <li>Caring</li>
+    <li>Doctor</li>
   </disabledWorkTypes>
+</TraitDef>
+
+<TraitDef>
+  <defName>GreenThumb</defName>
+  <label>green thumb</label>
+  <description>{PAWN_nameDef} has a natural talent for growing and caring for plants, making them exceptionally skilled in all plant-related tasks.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>green thumb</label>
+      <degree>0</degree>
+      <statOffsets>
+        <PlantWorkSpeed>0.3</PlantWorkSpeed>
+        <PlantHarvestYield>0.2</PlantHarvestYield>
+      </statOffsets>
+      <skillGains>
+        <Plants>5</Plants>
+      </skillGains>
+    </li>
+  </degreeDatas>
 </TraitDef>
 
 <TraitDef>
@@ -43,6 +65,9 @@
   <label>Berserker</label>
   <description>{PAWN_nameDef} is fueled by rage and becomes a whirlwind of destruction in close combat.</description>
   <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Melee</li>
+  </forcedPassions>
   <degreeDatas>
     <li>
       <label>Berserker</label>
@@ -57,9 +82,6 @@
         <MentalBreakThreshold>0.1</MentalBreakThreshold>
       </statOffsets>
       <forcedMentalState>Berserk</forcedMentalState>
-      <forcedPassions>
-        <Melee />
-      </forcedPassions>
       <disallowedMentalStates>
         <li>Wander_Sad</li>
         <li>PanicFlee</li>
@@ -78,28 +100,28 @@
   <label>Combat Medic</label>
   <description>{PAWN_nameDef} is skilled in battlefield medicine and can quickly treat and stabilize injured allies.</description>
   <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Medicine</li>
+  </forcedPassions>
   <degreeDatas>
     <li>
       <label>Combat Medic</label>
       <description>{PAWN_nameDef} is an expert in battlefield medicine, capable of quickly treating and stabilizing injured allies.</description>
       <degree>0</degree>
       <statOffsets>
-        <MedicineTendQuality>0.2</MedicineTendQuality>
-        <MedicineTendSpeed>0.25</MedicineTendSpeed>
+        <MedicalTendQuality>0.2</MedicalTendQuality>
+        <MedicalTendSpeed>0.25</MedicalTendSpeed>
         <ImmunityGainSpeed>0.15</ImmunityGainSpeed>
         <DrugSynthesisSpeed>0.10</DrugSynthesisSpeed>
       </statOffsets>
       <skillGains>
         <Medicine>3</Medicine>
       </skillGains>
-      <forcedPassions>
-        <Medicine />
-      </forcedPassions>
     </li>
   </degreeDatas>
-  <disabledWorkTypes>
+  <!--disabledWorkTypes>
     <li>Violent</li>
-  </disabledWorkTypes>
+  </disabledWorkTypes-->
 </TraitDef>
 
 <TraitDef>
@@ -137,6 +159,9 @@
   <label>Heavy Weapons Specialist</label>
   <description>{PAWN_nameDef} is trained to handle and operate heavy weaponry with precision.</description>
   <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Shooting</li>
+  </forcedPassions>
   <degreeDatas>
     <li>
       <label>Heavy Weapons Specialist</label>
@@ -149,9 +174,6 @@
       <skillGains>
         <Shooting>2</Shooting>
       </skillGains>
-      <forcedPassions>
-        <Shooting />
-      </forcedPassions>
     </li>
   </degreeDatas>
   <conflictingTraits>
@@ -198,7 +220,7 @@
     </li>
   </degreeDatas>
   <conflictingTraits>
-    <li>Slowpoke</li>
+    <li>SpeedOffset</li>
   </conflictingTraits>
   <requiredWorkTags>Intellectual</requiredWorkTags>
 </TraitDef>
@@ -215,15 +237,14 @@
       <degree>0</degree>
       <statOffsets>
         <RestRateMultiplier>0.5</RestRateMultiplier>
-        <GlobalWorkSpeed>0.15</GlobalWorkSpeed>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
         <MoveSpeed>0.2</MoveSpeed>
       </statOffsets>
     </li>
   </degreeDatas>
   <conflictingTraits>
-    <li>Lazy</li>
+    <li>Industriousness</li>
   </conflictingTraits>
-  <requiredWorkTags>HardWorker</requiredWorkTags>
 </TraitDef>
 
 <TraitDef>
@@ -237,8 +258,10 @@
       <description>{PAWN_nameDef} is incredibly tough and self-sufficient, having endured and overcome countless adversities.</description>
       <degree>0</degree>
       <statOffsets>
+        <CrawlSpeed>0.3</CrawlSpeed>
         <ImmunityGainSpeed>0.3</ImmunityGainSpeed>
-        <HealthScale>0.25</HealthScale>
+        <InjuryHealingFactor>0.25</InjuryHealingFactor>
+        <PainShockThreshold>0.25</PainShockThreshold>
         <MentalBreakThreshold>-0.1</MentalBreakThreshold>
       </statOffsets>
     </li>
@@ -256,7 +279,7 @@
       <description>{PAWN_nameDef} is a master of strategy, capable of enhancing the efficiency and morale of allies on the battlefield.</description>
       <degree>0</degree>
       <statOffsets>
-        <GlobalWorkSpeed>0.1</GlobalWorkSpeed>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
         <SocialImpact>0.1</SocialImpact>
       </statOffsets>
     </li>
@@ -268,6 +291,10 @@
   <label>Tech-Savvy</label>
   <description>{PAWN_nameDef} is exceptionally skilled with technology, excelling at repairing and constructing advanced machinery.</description>
   <commonality>1.0</commonality>
+  <forcedPassions>
+	<li>Intellectual</li>
+	<li>Crafting</li>
+  </forcedPassions>
   <degreeDatas>
     <li>
       <label>Tech-Savvy</label>
@@ -276,21 +303,17 @@
       <statOffsets>
         <ResearchSpeed>0.2</ResearchSpeed>
         <ConstructionSpeed>0.2</ConstructionSpeed>
-        <RepairSuccessChance>0.15</RepairSuccessChance>
+        <FixBrokenDownBuildingSuccessChance>0.15</FixBrokenDownBuildingSuccessChance>
       </statOffsets>
       <skillGains>
         <Intellectual>3</Intellectual>
         <Crafting>2</Crafting>
       </skillGains>
-      <forcedPassions>
-        <li>Intellectual</li>
-        <li>Crafting</li>
-      </forcedPassions>
-      <disabledWorkTypes>
-        <li>Animals</li>
-      </disabledWorkTypes>
     </li>
   </degreeDatas>
+  <disabledWorkTypes>
+	<li>Handling</li>
+  </disabledWorkTypes>
 </TraitDef>
 
 <TraitDef>
@@ -317,6 +340,10 @@
   <label>Veteran Scout</label>
   <description>{PAWN_nameDef} is experienced in reconnaissance and survival, excelling at navigating and enduring harsh environments.</description>
   <commonality>1.4</commonality>
+  <forcedPassions>
+	<li>Plants</li>
+	<li>Animals</li>
+  </forcedPassions>
   <degreeDatas>
     <li>
       <label>Veteran Scout</label>
@@ -331,10 +358,6 @@
         <Plants>2</Plants>
         <Animals>2</Animals>
       </skillGains>
-      <forcedPassions>
-        <Plants />
-        <Animals />
-      </forcedPassions>
     </li>
   </degreeDatas>
   <disabledWorkTypes>
@@ -355,8 +378,9 @@
       <degree>1</degree>
       <statOffsets>
         <ConstructionSpeed>0.1</ConstructionSpeed>
-        <GlobalWorkSpeed>0.05</GlobalWorkSpeed>
-        <CraftingSpeed>0.1</CraftingSpeed>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.1</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.1</ConstructSuccessChance>
       </statOffsets>
     </li>
     <li>
@@ -365,8 +389,9 @@
       <degree>2</degree>
       <statOffsets>
         <ConstructionSpeed>0.2</ConstructionSpeed>
-        <GlobalWorkSpeed>0.1</GlobalWorkSpeed>
-        <CraftingSpeed>0.15</CraftingSpeed>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.15</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.15</ConstructSuccessChance>
       </statOffsets>
     </li>
     <li>
@@ -375,8 +400,9 @@
       <degree>3</degree>
       <statOffsets>
         <ConstructionSpeed>0.3</ConstructionSpeed>
-        <GlobalWorkSpeed>0.2</GlobalWorkSpeed>
-        <CraftingSpeed>0.25</CraftingSpeed>
+        <WorkSpeedGlobal>0.2</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.25</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.25</ConstructSuccessChance>
       </statOffsets>
     </li>
   </degreeDatas>
@@ -393,7 +419,7 @@
       <description>{PAWN_nameDef} is somewhat strategic, able to think ahead and plan accordingly.</description>
       <degree>1</degree>
       <statOffsets>
-        <GlobalWorkSpeed>0.05</GlobalWorkSpeed>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
         <SocialImpact>0.1</SocialImpact>
         <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
       </statOffsets>
@@ -403,7 +429,7 @@
       <description>{PAWN_nameDef} is very strategic, capable of planning and executing complex strategies.</description>
       <degree>2</degree>
       <statOffsets>
-        <GlobalWorkSpeed>0.1</GlobalWorkSpeed>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
         <SocialImpact>0.15</SocialImpact>
         <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
       </statOffsets>
@@ -413,7 +439,7 @@
       <description>{PAWN_nameDef} is extremely strategic, excelling in planning and tactical execution.</description>
       <degree>3</degree>
       <statOffsets>
-        <GlobalWorkSpeed>0.15</GlobalWorkSpeed>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
         <SocialImpact>0.2</SocialImpact>
         <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
       </statOffsets>
@@ -433,7 +459,8 @@
       <degree>1</degree>
       <statOffsets>
         <MentalBreakThreshold>-0.1</MentalBreakThreshold>
-        <HealthScale>0.1</HealthScale>
+        <PainShockThreshold>0.1</PainShockThreshold>
+        <RestFallRateFactor>-0.1</RestFallRateFactor>
         <MoveSpeed>0.05</MoveSpeed>
       </statOffsets>
     </li>
@@ -443,7 +470,8 @@
       <degree>2</degree>
       <statOffsets>
         <MentalBreakThreshold>-0.2</MentalBreakThreshold>
-        <HealthScale>0.15</HealthScale>
+        <PainShockThreshold>0.2</PainShockThreshold>
+        <RestFallRateFactor>-0.2</RestFallRateFactor>
         <MoveSpeed>0.1</MoveSpeed>
       </statOffsets>
     </li>
@@ -453,17 +481,18 @@
       <degree>3</degree>
       <statOffsets>
         <MentalBreakThreshold>-0.3</MentalBreakThreshold>
-        <HealthScale>0.2</HealthScale>
+        <PainShockThreshold>0.3</PainShockThreshold>
+        <RestFallRateFactor>-0.3</RestFallRateFactor>
         <MoveSpeed>0.15</MoveSpeed>
       </statOffsets>
     </li>
   </degreeDatas>
   <conflictingTraits>
-    <li>Lazy</li>
-    <li>Pessimist</li>
+    <li>Industriousness</li>
+    <li>NaturalMood</li>
   </conflictingTraits>
   <disabledWorkTypes>
-    <li>Artistic</li>
+    <li>Art</li>
   </disabledWorkTypes>
 </TraitDef>
 
@@ -479,8 +508,8 @@
       <degree>1</degree>
       <statOffsets>
         <SocialImpact>0.1</SocialImpact>
-        <GlobalWorkSpeed>0.05</GlobalWorkSpeed>
-        <RecruitPrisonerChance>0.1</RecruitPrisonerChance>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        <NegotiationAbility>0.1</NegotiationAbility>
       </statOffsets>
     </li>
     <li>
@@ -489,8 +518,8 @@
       <degree>2</degree>
       <statOffsets>
         <SocialImpact>0.15</SocialImpact>
-        <GlobalWorkSpeed>0.1</GlobalWorkSpeed>
-        <RecruitPrisonerChance>0.15</RecruitPrisonerChance>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <NegotiationAbility>0.15</NegotiationAbility>
       </statOffsets>
     </li>
     <li>
@@ -499,13 +528,13 @@
       <degree>3</degree>
       <statOffsets>
         <SocialImpact>0.2</SocialImpact>
-        <GlobalWorkSpeed>0.15</GlobalWorkSpeed>
-        <RecruitPrisonerChance>0.2</RecruitPrisonerChance>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+        <NegotiationAbility>0.2</NegotiationAbility>
       </statOffsets>
     </li>
   </degreeDatas>
   <conflictingTraits>
-    <li>Antisocial</li>
+    <li MayRequire="Ludeon.RimWorld.Anomaly">Recluse</li>
   </conflictingTraits>
   <requiredWorkTags>Social</requiredWorkTags>
 </TraitDef>
@@ -547,9 +576,6 @@
   <conflictingTraits>
     <li>Brawler</li>
   </conflictingTraits>
-  <requiredWorkTypes>
-    <li>Shooting</li>
-  </requiredWorkTypes>
 </TraitDef>
 
 </Defs>

@@ -19,45 +19,11 @@ namespace AdeptusMechanicus.HarmonyInstance
         [HarmonyPostfix]
         public static void SpawnPostfix(Thing newThing)
         {
-            Pawn p = newThing as Pawn;
-            if (p == null)
+            // Check if the newThing is a Pawn and has primary equipment with components
+            if (newThing is Pawn pawn && pawn.equipment?.Primary is ThingWithComps primaryThing)
             {
-                return;
-            }
-            if (p.equipment != null)
-            {
-                if (p.equipment.Primary != null)
-                {
-                    if (p.equipment.Primary.TryGetCompFast<CompPowerWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetCompFast<CompPowerWeaponActivatableEffect>() is CompPowerWeaponActivatableEffect compPowerWeapon)
-                    {
-                        bool flag = compPowerWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
-                        if (flag)
-                        {
-                            compPowerWeapon.TryActivate();
-                        }
-                    }
-                    if (p.equipment.Primary.TryGetCompFast<CompForceWeaponActivatableEffect>() != null && p.equipment.Primary.TryGetCompFast<CompForceWeaponActivatableEffect>() is CompForceWeaponActivatableEffect compForceWeapon)
-                    {
-                        bool flag = compForceWeapon.CurrentState == OgsCompActivatableEffect.CompActivatableEffect.State.Deactivated;
-                        if (flag)
-                        {
-                            compForceWeapon.TryActivate();
-                        }
-                    }
-                    /*
-                    if (p.equipment.Primary.TryGetCompFast<CompAbilityItem>() != null && p.equipment.Primary.TryGetCompFast<CompAbilityItem>() is CompAbilityItem compAbilityItem)
-                    {
-                        foreach (var item in compAbilityItem.Abilities)
-                        {
-                            bool flag = !p.TryGetCompFast<CompAbilityUser>().AbilityData.TemporaryWeaponPowers.Contains(item);
-                            if (flag)
-                            {
-                                p.TryGetCompFast<CompAbilityUser>().AddWeaponAbility(item.Def);
-                            }
-                        }
-                    }
-                    */
-                }
+                // Broadcast the AlwaysActiveSignal to the primary equipment
+                primaryThing.BroadcastCompSignal(CompAlwaysActivatableEffect.AlwaysActiveSignal);
             }
         }
     }

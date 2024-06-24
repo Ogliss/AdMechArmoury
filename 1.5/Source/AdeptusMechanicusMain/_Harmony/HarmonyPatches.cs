@@ -48,8 +48,6 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 QuestGen_Pawns_GeneratePawn_Patch();
             }
-            AdeptusHarmonyPatches.HeadMatAt();
-            AdeptusHarmonyPatches.HairMatAt();
             AdeptusHarmonyPatches.CanEquip();
 
             MethodInfo ObserveSurroundingThings = AccessTools.TypeByName("RimWorld.PawnObserver").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).FirstOrFallback(x => x.GetParameters().Length == 1 && x.GetParameters().First().ParameterType == typeof(Region));
@@ -83,33 +81,6 @@ namespace AdeptusMechanicus.HarmonyInstance
 
         public static void SOSConstructPatch()
         {
-            //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
-        }
-
-        public static void FacialStuffPatches()
-        {
-       //     Log.Message("FacialStuff detected: attempting to Patch Draw method");
-            MethodInfo method = AccessTools.TypeByName("FacialStuff.HumanBipedDrawer").GetMethod("DrawApparel");
-            MethodInfo method2 = null;// typeof(HumanBipedDrawer_DrawApparel_FacialStuff_Transpiler).GetMethod("Transpiler");
-            bool flag = method == null;
-            bool flag1 = method2 == null;
-            if (flag)
-            {
-                Log.Error("HumanBipedDrawer Method is null");
-            }
-            else
-            if (flag1)
-            {
-                Log.Error("Patch Method is null");
-            }
-            else
-            {
-                bool flag2 = AMAMod.harmony.Patch(method, null, null, new HarmonyMethod(method2)) == null;
-                if (flag2)
-                {
-                    Log.Error("Adeptus Mechanicus: Facial Stuff patch failed.");
-                }
-            }
             //       AMAMod.harmony.Patch(typeof(SaveOurShip2.ShipInteriorMod2).GetMethod("HasSpaceSuitSlow", BindingFlags.NonPublic | BindingFlags.Instance), null, new HarmonyMethod(typeof(HarmonyPatches), nameof(SOSSpaceSuitPostfix_Flesh_Construct)));
         }
 
@@ -159,36 +130,6 @@ namespace AdeptusMechanicus.HarmonyInstance
         public static void QuestGen_Pawns_GeneratePawn_Patch()
         {
             AMAMod.harmony.Patch(AccessTools.Method(typeof(QuestGen_Pawns), "GeneratePawn", new Type[] { typeof(Quest), typeof(PawnKindDef), typeof(Faction), typeof(bool), typeof(IEnumerable<TraitDef>), typeof(float), typeof(bool), typeof(Pawn), typeof(float), typeof(float), typeof(bool), typeof(bool) }, null), new HarmonyMethod(typeof(QuestGen_Pawns_GeneratePawn_Refugee_Patch), "Prefix", null), null, null);
-        }
-
-        /*
-        public static void OverrideMaterialIfNeeded()
-        {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded", null, null), null, new HarmonyMethod(typeof(AvP_PawnRenderer_OverrideMaterialIfNeeded_Xenomorph_Patch), "Postfix", null), null, null);
-        }
-
-        public static void OverrideMaterialIfNeeded_NewTemp()
-        {
-            AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded_NewTemp", null, null), null, new HarmonyMethod(typeof(AvP_PawnRenderer_OverrideMaterialIfNeeded_NewTemp_Xenomorph_Patch), "Postfix", null), null, null);
-        }
-        */
-        public static void HairMatAt()
-        {
-        //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HairMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
-        }
-
-        public static void HairMatAt_NewTemp()
-        {
-        //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HairMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HairMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
-        }
-        public static void HeadMatAt()
-        {
-        //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HeadMatAt_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
-        }
-
-        public static void HeadMatAt_NewTemp()
-        {
-        //    AMAMod.harmony.Patch(AccessTools.Method(typeof(PawnGraphicSet), "HeadMatAt_NewTemp", null, null), null, new HarmonyMethod(typeof(PawnGraphicSet_HeadMatAt_NewTemp_Test_Patch).GetMethod("Postfix"), Priority.Last), null, null);
         }
 
         public static void ChangeBodyType(Pawn pawn, BodyTypeDef bt)
@@ -327,6 +268,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
+        public static PawnBioDef bioReference;
     }
 
 }

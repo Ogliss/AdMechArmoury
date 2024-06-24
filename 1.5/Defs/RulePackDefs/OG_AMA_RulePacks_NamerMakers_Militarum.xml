@@ -503,4 +503,142 @@
 		</rulePack>
 	</RulePackDef>
 	
+<!-- Astra Militarum Festival Name Rule Pack -->
+<RulePackDef>
+  <defName>OG_FestivalNamer_Militarum</defName>
+  <rulePack>
+    <rulesStrings>
+      <!-- Festival Name Patterns -->
+      <li>festivalName(p=2)->[imperialAdjective] [festival]</li>
+      <li>festivalName->[festival] of [militaryAspect]</li>
+      <li>festivalName->[militaryAdjective] [festival]</li>
+      <li>festivalName->[imperialDeity]'s [festival]</li>
+      <li>festivalName->[festival] of [imperialDeity]</li>
+      <li>festivalName->[festival] of [imperialConcept]</li>
+      <li>festivalName->[festival] of [regiment]</li>
+
+      <!-- Festival Synonyms -->
+      <li>festival->festival</li>
+      <li>festival->celebration</li>
+      <li>festival->rite</li>
+      <li>festival->conclave</li>
+      <li>festival->ceremony</li>
+      <li>festival->jubilee</li>
+
+      <!-- Adjectives and Themes -->
+      <li>imperialAdjective->Imperial</li>
+      <li>imperialAdjective->Holy</li>
+      <li>imperialAdjective->Divine</li>
+      <li>imperialAdjective->Sacred</li>
+
+      <li>militaryAdjective->Martial</li>
+      <li>militaryAdjective->Steadfast</li>
+      <li>militaryAdjective->Iron</li>
+      <li>militaryAdjective->Resolute</li>
+
+      <li>imperialDeity->God-Emperor</li>
+      <li>imperialDeity->Saint Celestine</li>
+      <li>imperialDeity->Primarch</li>
+      <li>imperialDeity->High Lord</li>
+
+      <li>imperialConcept->Victory</li>
+      <li>imperialConcept->Sacrifice</li>
+      <li>imperialConcept->Duty</li>
+      <li>imperialConcept->Honor</li>
+
+      <li>regiment->Cadian</li>
+      <li>regiment->Catachan</li>
+      <li>regiment->Vostroyan</li>
+      <li>regiment->Mordian</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<!-- Astra Militarum Leader Title Rule Pack -->
+<RulePackDef>
+  <defName>OG_LeaderTitleMaker_Militarum</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Leader Title Patterns -->
+      <li>r_leaderTitle(p=6)->[militaryAdjective] [militarumTitle]</li>
+      <li>r_leaderTitle(p=3)->[imperialAdjective] [militarumTitle]</li>
+      <li>r_leaderTitle(p=1)->[militaryAdjective] [militarumNoun]</li>
+      <li>r_leaderTitle(p=1)->[militarumNoun]</li>
+
+      <!-- Adjectives and Titles -->
+      <li>militaryAdjective->Martial</li>
+      <li>militaryAdjective->Iron</li>
+      <li>militaryAdjective->Steadfast</li>
+      <li>militaryAdjective->Resolute</li>
+
+      <li>imperialAdjective->Imperial</li>
+      <li>imperialAdjective->Holy</li>
+      <li>imperialAdjective->Divine</li>
+      <li>imperialAdjective->Sacred</li>
+
+      <li>militarumTitle->Commander</li>
+      <li>militarumTitle->General</li>
+      <li>militarumTitle->Colonel</li>
+      <li>militarumTitle->Captain</li>
+      <li>militarumTitle->Lieutenant</li>
+
+      <li>militarumNoun->Leader</li>
+      <li>militarumNoun->Officer</li>
+      <li>militarumNoun->Commander</li>
+      <li>militarumNoun->Strategist</li>
+      <li>militarumNoun->Warrior</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+  <!-- Astra Militarum Ideology Name Rule Pack with a Focus on Emperor Worship -->
+  <RulePackDef>
+    <defName>OG_NamerIdeo_Militarum</defName>
+    <include>
+      <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <!-- Astra Militarum Specific Content -->
+        <li>r_ideoName(p=6)->[emperorAdjective] [creed]</li>
+        <li>r_ideoName(p=3)->[imperialAdjective] [creed]</li>
+        <li>r_ideoName(p=1)->[emperorAdjective] [militarumNoun]</li>
+        <li>r_ideoName(p=1)->[militarumNoun]</li>
+
+        <!-- Creed Definitions -->
+        <li>creed->Faith</li>
+        <li>creed->Doctrine</li>
+        <li>creed->Commandment</li>
+        <li>creed->Code</li>
+        <li>creed->Discipline</li>
+        <li>creed->Cult</li>
+        <li>creed->Worship</li>
+
+        <!-- Emperor Worship Adjectives -->
+        <li>emperorAdjective->Emperor's</li>
+        <li>emperorAdjective->Divine</li>
+        <li>emperorAdjective->Holy</li>
+        <li>emperorAdjective->Imperial</li>
+        <li>emperorAdjective->Sacred</li>
+        <li>emperorAdjective->God-Emperor's</li>
+
+        <!-- Imperial Adjectives -->
+        <li>imperialAdjective->Imperial</li>
+        <li>imperialAdjective->Holy</li>
+        <li>imperialAdjective->Sacred</li>
+        <li>imperialAdjective->Divine</li>
+
+        <!-- Militarum Nouns -->
+        <li>militarumNoun->Regiment</li>
+        <li>militarumNoun->Legion</li>
+        <li>militarumNoun->Brigade</li>
+        <li>militarumNoun->Cohort</li>
+        <li>militarumNoun->Crusade</li>
+        <li>militarumNoun->Battalion</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
 </Defs>

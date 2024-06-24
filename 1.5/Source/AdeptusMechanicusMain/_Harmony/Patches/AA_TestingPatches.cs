@@ -7,25 +7,16 @@ using AdeptusMechanicus.ExtensionMethods;
 using Verse.Sound;
 using System;
 using Verse;
-using HarmonyLib;
 using UnityEngine;
-using AdeptusMechanicus.settings;
 using RimWorld;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+using System.Reflection;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
 
-    [HarmonyPatch(typeof(UIRoot_Entry), "Init")]
-    public static class UIRoot_Entry_Init_HereticalModifications_Patch
-    {
-        [HarmonyPostfix]
-        public static void Postfix()
-        {
-            AdeptusDialogMaker.CreateWarningDialogIfNecessary();
-        }
-    }
-    
-//    [HarmonyPatch(typeof(PawnRelationWorker_Parent), "ResolveMyName")]
+    //    [HarmonyPatch(typeof(PawnRelationWorker_Parent), "ResolveMyName")]
     public static class PawnRelationWorker_Parent_ResolveMyName_Name_Patch
     {
     //    [HarmonyPrefix]

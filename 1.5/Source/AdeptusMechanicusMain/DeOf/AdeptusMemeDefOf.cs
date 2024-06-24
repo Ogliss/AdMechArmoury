@@ -14,7 +14,7 @@ namespace AdeptusMechanicus
 
         [MayRequireIdeology]
         public static readonly MemeDef Transhumanist;
-        public static readonly MemeDef OG_Imperial_Structure_TheistEmbodied;
+    //    public static readonly MemeDef OG_Imperial_Structure_TheistEmbodied;
 
     }
 }

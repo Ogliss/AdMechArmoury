@@ -1,10 +1,402 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <MemeDef Abstract="True" Name="OG_Aeldari_Structure_MemeBase">
-    <randomizationSelectionWeightFactor>0</randomizationSelectionWeightFactor>
-  </MemeDef>
-  
+  <MemeDef ParentName="OG_Structure_MemeBase">
+    <defName>OG_Structure_Aeldari_Asuryani</defName>
+    <label>craftworld eldar</label>
+    <description>The Craftworld Eldar follow a strict path system, guided by their pantheon of gods. Their society is highly structured, with each individual dedicating themselves to a specific path to avoid the excesses that led to their fall. They revere gods such as Asuryan, Khaine, and Isha, and their culture is deeply rooted in maintaining their traditions and spiritual connections.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/CraftworldEldar</iconPath>
+    <impact>0</impact>
+    <deityCount>3</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->Eldar</li>
+        <li>memeHyphenPrefix->Path</li>
+        <li>memeLeaderNoun->Farseer</li>
+        <li>memeLeaderAdjective->Wise</li>
+        <li>memeMoralist->Spiritseer</li>
+        <li>memeMoralist->Warlock</li>
+        <li>memeShootingSpecialist->Pathfinder</li>
+        <li>memeMeleeSpecialist->Striking Scorpion</li>
+        <li>memeResearchSpecialist->Bonesinger</li>
+        <li>memePlantSpecialist->Ranger</li>
+        <li>memeAnimalsSpecialist->Beastmaster</li>
+        <li>memeProductionSpecialist->Artisan</li>
+        <li>memeMiningSpecialist->Miner</li>
+        <li>memeMedicalSpecialist->Healer</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Aeldari_Asuryani_Myth</def></li>
+        <li><def>OG_Aeldari_Asuryani_Founder</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_aeldari_asuryani</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <worshipRoomLabel>temple</worshipRoomLabel>
+    <symbolPacks>
+      <li>
+        <ideoName>Asuryan</ideoName>
+        <theme>wisdom</theme>
+        <adjective>wise</adjective>
+        <member>seer</member>
+      </li>
+      <li>
+        <ideoName>Khaine</ideoName>
+        <theme>war</theme>
+        <adjective>warlike</adjective>
+        <member>warrior</member>
+      </li>
+      <li>
+        <ideoName>Isha</ideoName>
+        <theme>life</theme>
+        <adjective>nurturing</adjective>
+        <member>caretaker</member>
+      </li>
+    </symbolPacks>
+    <preferredWeaponClasses>
+      <noble>Ultratech</noble>
+      <despised>Neolithic</despised>
+    </preferredWeaponClasses>
+    <!--requireOne>
+      <li>
+        <li>BodyMod_Abhorrent</li>
+        <li>WorkDrive_Tripled</li>
+        <li>PsychicRituals_Exalted</li>
+        <li>Comfort_Ignored</li>
+      </li>
+    </requireOne-->
+    <!--thingStyleCategories>
+      <li>
+        <category>Elegant</category>
+        <priority>4</priority>
+      </li>
+    </thingStyleCategories-->
+    <agreeableTraits>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <PsychicSensitivity>2</PsychicSensitivity>
+      <BodyPurist>0</BodyPurist>
+    </agreeableTraits>
+    <disagreeableTraits>
+      <PsychicSensitivity>-1</PsychicSensitivity>
+      <PsychicSensitivity>-2</PsychicSensitivity>
+      <Beauty>-1</Beauty>
+      <Beauty>-2</Beauty>
+    </disagreeableTraits>
+</MemeDef>
+
+<MemeDef ParentName="OG_Structure_MemeBase">
+    <defName>OG_Structure_Aeldari_Exodites</defName>
+    <label>exodites</label>
+    <description>The Exodites are Eldar who rejected the hedonistic and decadent path that led to the Fall. They established remote colonies where they live in harmony with nature, guided by a belief in the spirits of their ancestors and the natural world. Their society is agrarian and deeply spiritual, valuing simplicity and balance.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/Exodites</iconPath>
+    <impact>0</impact>
+    <deityCount>0</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->Exodite</li>
+        <li>memeHyphenPrefix->Spirit</li>
+        <li>memeLeaderNoun->Chieftain</li>
+        <li>memeLeaderAdjective->Wise</li>
+        <li>memeMoralist->Shaman</li>
+        <li>memeMoralist->Seer</li>
+        <li>memeShootingSpecialist->Pathfinder</li>
+        <li>memeMeleeSpecialist->Beast Rider</li>
+        <li>memeResearchSpecialist->Lorekeeper</li>
+        <li>memePlantSpecialist->Farmer</li>
+        <li>memeAnimalsSpecialist->Beastmaster</li>
+        <li>memeProductionSpecialist->Craftsman</li>
+        <li>memeMiningSpecialist->Miner</li>
+        <li>memeMedicalSpecialist->Healer</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Aeldari_Exodite_Myth</def></li>
+        <li><def>OG_Aeldari_Exodite_Founder</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_aeldari_exodites</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <worshipRoomLabel>shrine</worshipRoomLabel>
+    <symbolPacks>
+      <li>
+        <ideoName>Harmony</ideoName>
+        <theme>nature</theme>
+        <adjective>harmonious</adjective>
+        <member>guardian</member>
+      </li>
+      <li>
+        <ideoName>Spirit</ideoName>
+        <theme>spirituality</theme>
+        <adjective>spiritual</adjective>
+        <member>shaman</member>
+      </li>
+      <li>
+        <ideoName>Balance</ideoName>
+        <theme>balance</theme>
+        <adjective>balanced</adjective>
+        <member>keeper</member>
+      </li>
+    </symbolPacks>
+    <preferredWeaponClasses>
+      <noble>Melee</noble>
+      <despised>Ranged</despised>
+    </preferredWeaponClasses>
+    <!--requireOne>
+      <li>
+        <li>PsychicSensitivity_Moderate</li>
+      </li>
+    </requireOne-->
+    <!--thingStyleCategories>
+      <li>
+        <category>Natural</category>
+        <priority>4</priority>
+      </li>
+    </thingStyleCategories-->
+    <agreeableTraits>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <PsychicSensitivity>2</PsychicSensitivity>
+      <GreenThumb>0</GreenThumb>
+    </agreeableTraits>
+    <disagreeableTraits>
+      <PsychicSensitivity>-1</PsychicSensitivity>
+      <PsychicSensitivity>-2</PsychicSensitivity>
+      <Industriousness>2</Industriousness>
+    </disagreeableTraits>
+</MemeDef>
+
+<MemeDef ParentName="OG_Structure_MemeBase">
+    <defName>OG_Structure_Aeldari_Harlequin</defName>
+    <label>Harlequin Masque</label>
+    <description>Harlequins are followers of the Laughing God, Cegorach, and they express their devotion through both deadly combat and elaborate performances. Their creed includes spreading the myths and stories of their people through the Dance Without End, and using their agility and martial prowess to combat the forces of Chaos and protect the remnants of the Eldar race.</description>
+    <category>Structure</category>
+    <groupDef>Theist_Embodied</groupDef>
+    <iconPath>Icons/Harlequin/Icon_Harlequin</iconPath>
+    <impact>0</impact>
+    <worshipRoomLabel>performance hall</worshipRoomLabel>
+    <deityCount>1</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeCreed->troupe</li>
+        <li>memeCreed->masque</li>
+        <li>memeCreed->performance</li>
+        <li>memeCreed->ritual</li>
+        <li>memeHyphenPrefix->harle</li>
+        <li>memeConcept->illusion</li>
+        <li>memeConcept->trickery</li>
+        <li>memeLeaderNoun->Troupe Master</li>
+        <li>memeLeaderAdjective->deceptive</li>
+        <li>memeMoralist->Shadowseer</li>
+        <li>memeMoralist->Death Jester</li>
+        <li>memeShootingSpecialist->Skyweaver</li>
+        <li>memeMeleeSpecialist->Solitaire</li>
+        <li>memeResearchSpecialist->Master of Myths</li>
+        <li>memePlantSpecialist->Master of Harvests</li>
+        <li>memeAnimalsSpecialist->Beastmaster</li>
+        <li>memeProductionSpecialist->Master Artisan</li>
+        <li>memeMiningSpecialist->Prospector</li>
+        <li>memeMedicalSpecialist->Healer</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Aeldari_Harlequin_Myth</def></li>
+        <li><def>OG_Aeldari_Harlequin_Founder</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_aeldari_harlequin_theist</key><value>true</value></li>
+        <li><key>og_structure_aeldari_harlequin_theistembodied</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <symbolPacks>
+      <li>
+        <ideoName>Harlequin</ideoName>
+        <theme>performance</theme>
+        <adjective>performing</adjective>
+        <member>player</member>
+      </li>
+      <li>
+        <ideoName>Illusion</ideoName>
+        <theme>illusion</theme>
+        <adjective>illusionary</adjective>
+        <member>illusionist</member>
+      </li>
+    </symbolPacks>
+</MemeDef>
+
+<MemeDef ParentName="OG_Structure_MemeBase">
+    <defName>OG_Structure_Aeldari_Ynnari</defName>
+    <label>ynnari</label>
+    <description>The Ynnari are followers of Ynnead, the god of the dead, seeking to unite the Eldar factions and overthrow Slaanesh. Led by Yvraine, the Visarch, and the Yncarne, they harness the power of death to rejuvenate themselves and bolster their psychic abilities. The Ynnari believe in the rebirth of their race through the awakening of Ynnead, striving to free Eldar souls from the torment of the Warp.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/Ynnari</iconPath>
+    <impact>0</impact>
+    <deityCount>1</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->Ynnari</li>
+        <li>memeHyphenPrefix->Reborn</li>
+        <li>memeLeaderNoun->Emissary</li>
+        <li>memeLeaderAdjective->Resurrected</li>
+        <li>memeMoralist->Spiritseer</li>
+        <li>memeMoralist->Death Jester</li>
+        <li>memeShootingSpecialist->Reaper</li>
+        <li>memeMeleeSpecialist->Incubus</li>
+        <li>memeResearchSpecialist->Lorekeeper</li>
+        <li>memePlantSpecialist->Harvester</li>
+        <li>memeAnimalsSpecialist->Beastmaster</li>
+        <li>memeProductionSpecialist->Artisan</li>
+        <li>memeMiningSpecialist->Soul Harvester</li>
+        <li>memeMedicalSpecialist->Healer</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Aeldari_Ynnari_Myth</def></li>
+        <li><def>OG_Aeldari_Ynnari_Founder</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_aeldari_ynnari</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <worshipRoomLabel>temple</worshipRoomLabel>
+    <symbolPacks>
+      <li>
+        <ideoName>Rebirth</ideoName>
+        <theme>resurrection</theme>
+        <adjective>reborn</adjective>
+        <member>resurrected</member>
+      </li>
+      <li>
+        <ideoName>Death</ideoName>
+        <theme>death</theme>
+        <adjective>deathly</adjective>
+        <member>deathbringer</member>
+      </li>
+      <li>
+        <ideoName>Unity</ideoName>
+        <theme>unity</theme>
+        <adjective>unified</adjective>
+        <member>unifier</member>
+      </li>
+    </symbolPacks>
+    <preferredWeaponClasses>
+      <noble>Ranged</noble>
+      <despised>LongShots</despised>
+    </preferredWeaponClasses>
+    <!--requireOne>
+      <li>
+        <li>PsychicSensitivity</li>
+      </li>
+    </requireOne-->
+    <!--thingStyleCategories>
+      <li>
+        <category>Elegant</category>
+        <priority>4</priority>
+      </li>
+    </thingStyleCategories-->
+    <agreeableTraits>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <PsychicSensitivity>2</PsychicSensitivity>
+      <Beauty>1</Beauty>
+      <Beauty>2</Beauty>
+    </agreeableTraits>
+    <disagreeableTraits>
+      <PsychicSensitivity>-1</PsychicSensitivity>
+      <PsychicSensitivity>-2</PsychicSensitivity>
+      <Beauty>-1</Beauty>
+      <Beauty>-2</Beauty>
+    </disagreeableTraits>
+</MemeDef>
+
+<MemeDef ParentName="OG_Structure_MemeBase">
+    <defName>OG_Structure_Aeldari_Drukhari</defName>
+    <label>dark eldar</label>
+    <description>The Drukhari are the epitome of the fallen Eldar race, thriving in the Dark City of Commorragh. They sustain their immortality and power through the suffering and torment of others. Their society is built on cruelty, deceit, and a hierarchical system where only the most cunning and ruthless survive. They shun psychic abilities, fearing the gaze of Slaanesh, and rely on advanced technology and sadistic practices to dominate and control.</description>
+    <category>Structure</category>
+    <iconPath>Ui/Memes/Structure/DarkEldar</iconPath>
+    <impact>0</impact>
+    <deityCount>0</deityCount>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->Drukhari</li>
+        <li>memeHyphenPrefix->Dark</li>
+        <li>memeLeaderNoun->Archon</li>
+        <li>memeLeaderAdjective->Cunning</li>
+        <li>memeMoralist->Haemonculus</li>
+        <li>memeMoralist->Sybarite</li>
+        <li>memeShootingSpecialist->Kabalite</li>
+        <li>memeMeleeSpecialist->Wych</li>
+        <li>memeResearchSpecialist->Homunculus</li>
+        <li>memePlantSpecialist->Splicer</li>
+        <li>memeAnimalsSpecialist->Beastmaster</li>
+        <li>memeProductionSpecialist->Artificer</li>
+        <li>memeMiningSpecialist->Soul Harvester</li>
+        <li>memeMedicalSpecialist->Torturer</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <patterns>
+        <li><def>OG_Aeldari_Drukhari_Myth</def></li>
+        <li><def>OG_Aeldari_Drukhari_Founder</def></li>
+      </patterns>
+      <constants>
+        <li><key>og_structure_aeldari_drukhari</key><value>true</value></li>
+      </constants>
+    </descriptionMaker>
+    <worshipRoomLabel>torture chamber</worshipRoomLabel>
+    <symbolPacks>
+      <li>
+        <ideoName>Darkness</ideoName>
+        <theme>shadow</theme>
+        <adjective>shadowed</adjective>
+        <member>shadow</member>
+      </li>
+      <li>
+        <ideoName>Agony</ideoName>
+        <theme>pain</theme>
+        <adjective>agonizing</adjective>
+        <member>torturer</member>
+      </li>
+      <li>
+        <ideoName>Deceit</ideoName>
+        <theme>deception</theme>
+        <adjective>deceptive</adjective>
+        <member>liar</member>
+      </li>
+    </symbolPacks>
+    <preferredWeaponClasses>
+      <noble>Ultratech</noble>
+      <despised>Neolithic</despised>
+    </preferredWeaponClasses>
+    <!--requireOne>
+      <li>
+        <li>NoPsykers</li>
+      </li>
+    </requireOne-->
+    <thingStyleCategories>
+      <!--li>
+        <category>Dark</category>
+        <priority>4</priority>
+      </li-->
+    </thingStyleCategories>
+    <agreeableTraits>
+      <Psychopath>0</Psychopath>
+      <SpeedOffset>1</SpeedOffset>
+    </agreeableTraits>
+    <disagreeableTraits>
+      <Kind>0</Kind>
+      <SpeedOffset>-1</SpeedOffset>
+    </disagreeableTraits>
+</MemeDef>
+
+
   <!--MemeDef ParentName="OG_Aeldari_Structure_MemeBase" MayRequire="Ogliss.AdMech.Xenobiologis.Eldar">
     <defName>OG_Aeldari_Structure</defName>
     <label>aeldari mythology</label>

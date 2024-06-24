@@ -19,132 +19,130 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     bool possible = !culture.deities.possibleDeities.NullOrEmpty();
                     bool required = !culture.deities.requiredDeities.NullOrEmpty();
-                    if (culture != null)
+                    int max = culture.deities.max;
+                    if (__instance.deities.Count >= max)
                     {
-                        int max = culture.deities.max;
-                        if (__instance.deities.Count >= max)
+                        return __result;
+                    }
+                    StringBuilder st = new StringBuilder($"Adding Deity : required:{required} : possible:{required}");
+                    if (required)
+                    {
+                        st.AppendLine($"Required: {culture.deities.requiredDeities.Count}");
+                        List<DeityDef> requiredDefs = new List<DeityDef>();
+                        foreach (var def in culture.deities.requiredDeities)
                         {
-                            return __result;
-                        }
-                        StringBuilder st = new StringBuilder($"Adding Deity : required:{required} : possible:{required}");
-                        if (required)
-                        {
-                            st.AppendLine($"Required: {culture.deities.requiredDeities.Count}");
-                            List<DeityDef> requiredDefs = new List<DeityDef>();
-                            foreach (var def in culture.deities.requiredDeities)
+                            if (!__instance.deities.Any(x => x.name == def.label) && !requiredDefs.Contains(def))
                             {
-                                if (!__instance.deities.Any(x => x.name == def.label) && !requiredDefs.Contains(def))
-                                {
-                                    st.AppendLine($"    {def}");
-                                    requiredDefs.Add(def);
-                                }
-                            }
-                            if (!requiredDefs.NullOrEmpty())
-                            {
-                                deity = requiredDefs.RandomElement().Deity();
-                                st.AppendLine($"using requiredDeity {deity.name}");
-                                DeityUtility.FillDeity(__instance, deity);
-                            //    Log.Message(st.ToString());
-                                return deity;
+                                st.AppendLine($"    {def}");
+                                requiredDefs.Add(def);
                             }
                         }
-                        if (possible)
+                        if (!requiredDefs.NullOrEmpty())
                         {
-                            st.AppendLine($"Optional: {culture.deities.possibleDeities.Count}");
-                            List<DeityDef> possibleDefs = new List<DeityDef>();
-                            foreach (var def in culture.deities.possibleDeities)
-                            {
-                                if (!__instance.deities.Any(x => x.name == def.label) && !possibleDefs.Contains(def))
-                                {
-                                    st.AppendLine($"    {def}");
-                                    possibleDefs.Add(def);
-                                }
-                            }
-                            if (!possibleDefs.NullOrEmpty())
-                            {
-                                deity = possibleDefs.RandomElement().Deity();
-                                st.AppendLine($"using possibleDeity {deity.name}");
-                                DeityUtility.FillDeity(__instance, deity);
+                            deity = requiredDefs.RandomElement().Deity();
+                            st.AppendLine($"using requiredDeity {deity.name}");
+                            DeityUtility.FillDeity(__instance, deity);
                             //    Log.Message(st.ToString());
-                                return deity;
+                            return deity;
+                        }
+                    }
+                    if (possible)
+                    {
+                        st.AppendLine($"Optional: {culture.deities.possibleDeities.Count}");
+                        List<DeityDef> possibleDefs = new List<DeityDef>();
+                        foreach (var def in culture.deities.possibleDeities)
+                        {
+                            if (!__instance.deities.Any(x => x.name == def.label) && !possibleDefs.Contains(def))
+                            {
+                                st.AppendLine($"    {def}");
+                                possibleDefs.Add(def);
                             }
+                        }
+                        if (!possibleDefs.NullOrEmpty())
+                        {
+                            deity = possibleDefs.RandomElement().Deity();
+                            st.AppendLine($"using possibleDeity {deity.name}");
+                            DeityUtility.FillDeity(__instance, deity);
+                            //    Log.Message(st.ToString());
+                            return deity;
                         }
                     }
 
                 }
-                if (__instance.ideo.culture.defName.StartsWith("OG_"))
+            }
+            else if (__instance.ideo.culture.defName.StartsWith("OG_"))
+            {
+                Log.Message($"Looking for deity for {__instance} using {__instance.ideo.culture}");
+                List<DeityDef> usedDefs = new List<DeityDef>();
+                if (__instance.ideo.culture.defName.Contains("Mechanicus"))
                 {
-                    List<DeityDef> usedDefs = new List<DeityDef>();
-                    if (__instance.ideo.culture.defName.Contains("Mechanicus"))
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Omnissiah.name))
                     {
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Omnissiah.name))
-                        {
-                            deity = DeityUtility.Omnissiah.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
+                        deity = DeityUtility.Omnissiah.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
                     }
-                    if (__instance.ideo.culture.defName.Contains("Imperial"))
+                }
+                if (__instance.ideo.culture.defName.Contains("Imperial"))
+                {
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Emperor.name))
                     {
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Emperor.name))
-                        {
-                            deity = DeityUtility.Emperor.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
+                        deity = DeityUtility.Emperor.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
                     }
-                    if (__instance.ideo.culture.defName.Contains("Greenskin") || __instance.ideo.culture.defName.Contains("Orkoid"))
+                }
+                if (__instance.ideo.culture.defName.Contains("Greenskin") || __instance.ideo.culture.defName.Contains("Orkoid"))
+                {
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Gork.name))
                     {
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Gork.name))
-                        {
-                            deity = DeityUtility.Gork.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
+                        deity = DeityUtility.Gork.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
 
-                        }
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Mork.name))
-                        {
-                            deity = DeityUtility.Mork.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
                     }
-                    if (__instance.ideo.culture.defName.Contains("Kroot"))
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Mork.name))
                     {
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Vawk.name))
-                        {
-                            deity = DeityUtility.Vawk.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Gmork.name))
-                        {
-                            deity = DeityUtility.Gmork.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
+                        deity = DeityUtility.Mork.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
                     }
-                    if (__instance.ideo.culture.defName.Contains("Aeldari"))
+                }
+                if (__instance.ideo.culture.defName.Contains("Kroot"))
+                {
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Vawk.name))
                     {
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Khaine.name))
-                        {
-                            deity = DeityUtility.Khaine.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
+                        deity = DeityUtility.Vawk.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
+                    }
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Gmork.name))
+                    {
+                        deity = DeityUtility.Gmork.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
+                    }
+                }
+                if (__instance.ideo.culture.defName.Contains("Aeldari"))
+                {
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Khaine.name))
+                    {
+                        deity = DeityUtility.Khaine.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
 
-                        }
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Ynnead.name))
-                        {
-                            deity = DeityUtility.Ynnead.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
-                        if (!__instance.deities.Any(x => x.name == DeityUtility.Cegorach.name))
-                        {
-                            deity = DeityUtility.Cegorach.cloneDeity();
-                            DeityUtility.FillDeity(__instance, deity);
-                            return deity;
-                        }
+                    }
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Ynnead.name))
+                    {
+                        deity = DeityUtility.Ynnead.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
+                    }
+                    if (!__instance.deities.Any(x => x.name == DeityUtility.Cegorach.name))
+                    {
+                        deity = DeityUtility.Cegorach.cloneDeity();
+                        DeityUtility.FillDeity(__instance, deity);
+                        return deity;
                     }
                 }
             }

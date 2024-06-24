@@ -66,7 +66,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             {
                 return true;
             }
-            //If animal don't bother
+            //If humanlike don't bother
             if (__instance.RaceProps.Humanlike)
                 return true;
 

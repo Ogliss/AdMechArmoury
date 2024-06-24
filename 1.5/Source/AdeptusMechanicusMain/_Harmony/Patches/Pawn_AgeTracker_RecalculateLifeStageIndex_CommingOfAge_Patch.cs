@@ -14,7 +14,7 @@ using AdeptusMechanicus.ExtensionMethods;
 namespace AdeptusMechanicus.HarmonyInstance
 {
 
-    [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
+//    [HarmonyPatch(typeof(Pawn_AgeTracker), "RecalculateLifeStageIndex")]
     public static class Pawn_AgeTracker_RecalculateLifeStageIndex_CommingOfAge_Patch
     {
         [HarmonyPostfix]

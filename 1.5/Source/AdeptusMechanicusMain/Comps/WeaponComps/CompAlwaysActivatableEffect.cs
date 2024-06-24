@@ -181,5 +181,17 @@ namespace AdeptusMechanicus
             return str;
         }
 
+        public override void ReceiveCompSignal(string signal)
+        {
+            if (signal == ActivateSignal)
+            {
+                this.TryActivate();
+            }
+            if (signal == DeactivateSignal)
+            {
+                this.TryDeactivate();
+            }
+            base.ReceiveCompSignal(signal);
+        }
     }
 }

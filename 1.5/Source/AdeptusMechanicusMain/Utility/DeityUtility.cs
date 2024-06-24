@@ -201,7 +201,7 @@ namespace AdeptusMechanicus
             gender = Gender.Male,
             type = "AdeptusMechanicus.Imperial.Emperor_Desc".Translate(),
             iconPath = "Ui/Gods/Icons/Icon_EmperorOfMan",
-			relatedMeme = AdeptusMemeDefOf.OG_Imperial_Structure_TheistEmbodied
+			//relatedMeme = AdeptusMemeDefOf.OG_Imperial_Structure_TheistEmbodied
 
 		};
         public static IdeoFoundation_Deity.Deity Omnissiah = new IdeoFoundation_Deity.Deity()

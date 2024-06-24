@@ -32,10 +32,6 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     __result = true;
                 }
-                if (extB != null)
-                {
-
-                }
             }
         }
     }

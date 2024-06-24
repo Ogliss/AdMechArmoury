@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- Single Traits -->
+<TraitDef>
+  <defName>BattleHardened</defName>
+  <label>battle-hardened</label>
+  <description>{PAWN_nameDef} has been through countless battles and is unshaken by the horrors of war.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>battle-hardened</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>-0.2</mentalBreakThreshold>
+        <painShockThreshold>0.2</painShockThreshold>
+        <healthScale>0.2</healthScale>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Berserker</defName>
+  <label>berserker</label>
+  <description>Fueled by rage, {PAWN_nameDef} becomes a whirlwind of destruction in close combat.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>berserker</label>
+      <degree>1</degree>
+      <statOffsets>
+        <meleeHitChance>0.25</meleeHitChance>
+        <moveSpeed>0.4</moveSpeed>
+        <mentalBreakThreshold>0.1</mentalBreakThreshold>
+      </statOffsets>
+      <mentalBreakInspirationGainChance>0.2</mentalBreakInspirationGainChance>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>CombatMedic</defName>
+  <label>combat medic</label>
+  <description>Skilled in battlefield medicine, {PAWN_nameDef} can quickly treat and stabilize injured allies.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>combat medic</label>
+      <degree>1</degree>
+      <statOffsets>
+        <medicineTendQuality>0.2</medicineTendQuality>
+        <medicineTendSpeed>0.25</medicineTendSpeed>
+        <immunityGainSpeed>0.15</immunityGainSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>DaemonicallyResilient</defName>
+  <label>daemonically resilient</label>
+  <description>Blessed by the Chaos Gods, {PAWN_nameDef} is extremely resilient and heals rapidly.</description>
+  <commonality>0.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>daemonically resilient</label>
+      <degree>1</degree>
+      <statOffsets>
+        <healthScale>0.4</healthScale>
+        <healingRate>0.5</healingRate>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Faithful</defName>
+  <label>faithful</label>
+  <description>Deeply devout, {PAWN_nameDef} draws strength from their faith, improving their morale and resistance to fear.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>faithful</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>-0.15</mentalBreakThreshold>
+        <meleeHitChance>0.1</meleeHitChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Fearless</defName>
+  <label>fearless</label>
+  <description>Unafraid of danger, {PAWN_nameDef} charges into battle without hesitation.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>fearless</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>-0.3</mentalBreakThreshold>
+        <moveSpeed>0.3</moveSpeed>
+        <meleeHitChance>0.15</meleeHitChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>HeavyWeaponsSpecialist</defName>
+  <label>heavy weapons specialist</label>
+  <description>Trained to handle and operate heavy weaponry with precision, {PAWN_nameDef} excels in using heavy weapons.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>heavy weapons specialist</label>
+      <degree>1</degree>
+      <conditionalStatOffsets>
+        <li Apparel="HeavyWeapon">
+          <shootingAccuracyPawn>0.15</shootingAccuracyPawn>
+          <aimingDelayFactor>-0.2</aimingDelayFactor>
+        </li>
+      </conditionalStatOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>InspiringLeader</defName>
+  <label>inspiring leader</label>
+  <description>Charismatic and motivational, {PAWN_nameDef} boosts the morale and productivity of those around them.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>inspiring leader</label>
+      <degree>1</degree>
+      <statOffsets>
+        <socialImpact>0.2</socialImpact>
+        <globalWorkSpeed>0.1</globalWorkSpeed>
+        <recruitPrisonerChance>0.15</recruitPrisonerChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>MachineEmpathy</defName>
+  <label>machine empathy</label>
+  <description>{PAWN_nameDef} possesses an intuitive understanding of machinery, making them exceptionally skilled at repairs and construction.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>machine empathy</label>
+      <degree>1</degree>
+      <statOffsets>
+        <constructionSpeed>0.25</constructionSpeed>
+        <repairSuccessChance>0.2</repairSuccessChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Marksman</defName>
+  <label>marksman</label>
+  <description>With a keen eye and steady hand, {PAWN_nameDef} excels at ranged combat.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>marksman</label>
+      <degree>1</degree>
+      <statOffsets>
+        <shootingAccuracyPawn>0.2</shootingAccuracyPawn>
+        <aimingDelayFactor>-0.3</aimingDelayFactor>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>MasterDuelist</defName>
+  <label>master duelist</label>
+  <description>Highly skilled in one-on-one combat, {PAWN_nameDef} excels in melee duels.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>master duelist</label>
+      <degree>1</degree>
+      <statOffsets>
+        <meleeHitChance>0.2</meleeHitChance>
+        <meleeDodgeChance>0.15</meleeDodgeChance>
+        <moveSpeed>0.2</moveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>PowerArmorSpecialist</defName>
+  <label>power armor specialist</label>
+  <description>Trained in the use of advanced power armor, {PAWN_nameDef} gains significant combat advantages when equipped.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>power armor specialist</label>
+      <degree>1</degree>
+      <statOffsets>
+        <aimingDelayFactor>-0.3</aimingDelayFactor>
+        <armorRating_Sharp>0.2</armorRating_Sharp>
+        <armorRating_Blunt>0.2</armorRating_Blunt>
+      </statOffsets>
+      <conditionalStatOffsets>
+        <li Apparel="PowerArmor">
+          <armorRating_Sharp>0.2</armorRating_Sharp>
+          <armorRating_Blunt>0.2</armorRating_Blunt>
+        </li>
+      </conditionalStatOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>QuickThinker</defName>
+  <label>quick thinker</label>
+  <description>Possessing sharp reflexes and quick wits, {PAWN_nameDef} can react to situations faster than most.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>quick thinker</label>
+      <degree>1</degree>
+      <statOffsets>
+        <aimingDelayFactor>-0.3</aimingDelayFactor>
+        <moveSpeed>0.3</moveSpeed>
+        <mentalBreakThreshold>-0.1</mentalBreakThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Relentless</defName>
+  <label>relentless</label>
+  <description>{PAWN_nameDef} is tireless and relentless, pushing themselves beyond normal limits.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>relentless</label>
+      <degree>1</degree>
+      <statOffsets>
+        <restRateMultiplier>0.5</restRateMultiplier>
+        <globalWorkSpeed>0.15</globalWorkSpeed>
+        <moveSpeed>0.2</moveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Resourceful</defName>
+  <label>resourceful</label>
+  <description>Capable of making the best out of any situation, {PAWN_nameDef} excels at scavenging and improvisation.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>resourceful</label>
+      <degree>1</degree>
+      <statOffsets>
+        <constructionSpeed>0.2</constructionSpeed>
+        <globalWorkSpeed>0.1</globalWorkSpeed>
+        <craftingSpeed>0.15</craftingSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Sadistic</defName>
+  <label>sadistic</label>
+  <description>{PAWN_nameDef} gains pleasure from the suffering of others, thriving on causing pain.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>sadistic</label>
+      <degree>1</degree>
+      <statOffsets>
+        <socialImpact>0.1</socialImpact>
+        <meleeHitChance>0.1</meleeHitChance>
+        <mood>0.1</mood>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Strategist</defName>
+  <label>strategist</label>
+  <description>A master of tactics and strategy, {PAWN_nameDef} provides a boost to the combat efficiency of their allies.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>strategist</label>
+      <degree>1</degree>
+      <statOffsets>
+        <globalWorkSpeed>0.1</globalWorkSpeed>
+        <socialImpact>0.15</socialImpact>
+        <shootingAccuracyPawn>0.1</shootingAccuracyPawn>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Survivor</defName>
+  <label>survivor</label>
+  <description>Having survived numerous hardships, {PAWN_nameDef} is extremely tough and self-sufficient.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>survivor</label>
+      <degree>1</degree>
+      <statOffsets>
+        <immunityGainSpeed>0.3</immunityGainSpeed>
+        <healthScale>0.25</healthScale>
+        <mentalBreakThreshold>-0.1</mentalBreakThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Tactician</defName>
+  <label>tactician</label>
+  <description>Skilled in strategy and battlefield tactics, {PAWN_nameDef} can provide tactical bonuses to allies.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>tactician</label>
+      <degree>1</degree>
+      <statOffsets>
+        <globalWorkSpeed>0.1</globalWorkSpeed>
+        <socialImpact>0.1</socialImpact>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>TechSavvy</defName>
+  <label>tech-savvy</label>
+  <description>Exceptionally skilled with technology, {PAWN_nameDef} excels at repairing and constructing advanced machinery.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>tech-savvy</label>
+      <degree>1</degree>
+      <statOffsets>
+        <researchSpeed>0.2</researchSpeed>
+        <constructionSpeed>0.2</constructionSpeed>
+        <repairSuccessChance>0.15</repairSuccessChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>TrenchFighter</defName>
+  <label>trench fighter</label>
+  <description>Skilled in the brutal close-quarters combat of trench warfare, {PAWN_nameDef} excels in melee combat.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>trench fighter</label>
+      <degree>1</degree>
+      <statOffsets>
+        <meleeDodgeChance>0.1</meleeDodgeChance>
+        <meleeHitChance>0.1</meleeHitChance>
+      </statOffsets>
+      <disallowedWorkTags>Artistic</disallowedWorkTags>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Unyielding</defName>
+  <label>unyielding</label>
+  <description>Possessing an indomitable spirit, {PAWN_nameDef} refuses to give up, no matter the odds.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>unyielding</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>-0.2</mentalBreakThreshold>
+        <healthScale>0.15</healthScale>
+        <moveSpeed>0.2</moveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Veteran</defName>
+  <label>veteran</label>
+  <description>A battle-hardened soldier with extensive combat experience, {PAWN_nameDef} has improved combat skills and resilience.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>veteran</label>
+      <degree>1</degree>
+      <statOffsets>
+        <meleeHitChance>0.15</meleeHitChance>
+        <shootingAccuracyPawn>0.15</shootingAccuracyPawn>
+        <painShockThreshold>0.1</painShockThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>VeteranScout</defName>
+  <label>veteran scout</label>
+  <description>Experienced in reconnaissance and survival, {PAWN_nameDef} excels at navigating and surviving harsh environments.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>veteran scout</label>
+      <degree>1</degree>
+      <statOffsets>
+        <moveSpeed>0.5</moveSpeed>
+        <immunityGainSpeed>0.2</immunityGainSpeed>
+        <constructionSpeed>0.15</constructionSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>WarpInstability</defName>
+  <label>warp instability</label>
+  <description>{PAWN_nameDef} is inherently unstable, being prone to sudden outbursts and transformations.</description>
+  <commonality>0.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>warp instability</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>0.3</mentalBreakThreshold>
+        <moveSpeed>0.3</moveSpeed>
+      </statOffsets>
+      <mentalBreakInspirationGainChance>0.1</mentalBreakInspirationGainChance>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Zealot</defName>
+  <label>zealot</label>
+  <description>Driven by religious fervor, {PAWN_nameDef} is fearless in battle and inspired to purge the unclean.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>zealot</label>
+      <degree>1</degree>
+      <statOffsets>
+        <meleeHitChance>0.2</meleeHitChance>
+        <moveSpeed>0.3</moveSpeed>
+        <mentalBreakThreshold>-0.2</mentalBreakThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Zealous</defName>
+  <label>zealous</label>
+  <description>A fervent believer in the Emperor's divine will, {PAWN_nameDef}'s faith bolsters {PAWN_possessive} resolve in battle.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>zealous</label>
+      <degree>1</degree>
+      <statOffsets>
+        <mentalBreakThreshold>-0.15</mentalBreakThreshold>
+        <recruitPrisonerChance>0.2</recruitPrisonerChance>
+      </statOffsets>
+      <disallowedWorkTags>Research</disallowedWorkTags>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<!-- Spectrum Traits -->
+
+</Defs>

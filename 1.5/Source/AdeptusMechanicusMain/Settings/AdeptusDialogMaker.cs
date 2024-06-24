@@ -1,10 +1,21 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.Steam;
 
 namespace AdeptusMechanicus.settings
 {
+    [HarmonyPatch(typeof(UIRoot_Entry), "Init")]
+    public static class UIRoot_Entry_Init_HereticalModifications_Patch
+    {
+        [HarmonyPostfix]
+        public static void Postfix()
+        {
+            AdeptusDialogMaker.CreateWarningDialogIfNecessary();
+        }
+    }
+
     public static class AdeptusDialogMaker
     {
         // AdeptusDialogMaker.CreateWarningDialogIfNecessary

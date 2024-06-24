@@ -212,29 +212,6 @@
 	<!-- Re-used content -->
 
 	<RulePackDef>
-		<defName>OG_LeaderTitleMaker_Mechanicus</defName>
-		<include>
-			<li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
-		</include>
-		<rulePack>
-			<rulesStrings>
-				<li>memeLeaderNoun(priority=1)->[cultureLeaderNoun]</li> <!-- ignore all meme nouns, pirates always use a culture noun -->
-				
-				<li>cultureLeaderTitle->[cultureLeaderAdjective] [cultureLeaderNoun]</li>
-
-				<li>cultureLeaderAdjective->high</li>
-				<li>cultureLeaderAdjective->grand</li>
-				<li>cultureLeaderAdjective->lord</li>
-
-				<li>cultureLeaderNoun->magos</li>
-				<li>cultureLeaderNoun->archmagos</li>
-				<li>cultureLeaderNoun->marshal</li>
-				<li>cultureLeaderNoun->governor</li>
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-	
-	<RulePackDef>
 		<defName>OG_NamerDeity_Omnissiah</defName>
 		<rulePack>
 			<rulesStrings>
@@ -254,37 +231,6 @@
 		</rulePack>
 	</RulePackDef>
 	
-	<RulePackDef>
-		<defName>OG_NamerFestivalGlobal_Mechanicus</defName>
-		<rulePack>
-			<rulesStrings>
-				<li>festivalName(p=2)->[memeAdjective] [festival]</li>
-				<li>festivalName->[festival] of [chosenTheme]</li>
-				<li>festivalName->[chosenAdjective] [festival]</li>
-				<li>festivalName->[keyDeity]'s [festival]</li>
-				<li>festivalName->[festival] of [keyDeity]</li>
-				<li>festivalName->[festival] of [memeConcept]</li>
-				<li>festivalName->[festival] of [chosenIdeoName]</li>
-
-				<li>festival->festival</li>
-				<li>festival->celebration</li>
-				<li>festival->party</li>
-				<li>festival->advent</li>
-				<li>festival->fair</li>
-				<li>festival->jubilee</li>
-				<li>festival->fiesta</li>
-			</rulesStrings>
-		</rulePack>
-	</RulePackDef>
-
-	<!-- Culture-specific Festival Names -->
-	<RulePackDef>
-		<defName>OG_NamerFestival_Mechanicus</defName>
-		<include>
-			<li>OG_NamerFestivalGlobal_Mechanicus</li>
-		</include>
-	</RulePackDef>
-
   <RulePackDef>
     <defName>OG_NamerRitualFuneral_Mechanicus</defName>
     <rulePack>
@@ -309,4 +255,143 @@
     </rulePack>
   </RulePackDef>
 
+  <!-- Adeptus Mechanicus Festival Name Rule Pack -->
+  <RulePackDef>
+    <defName>OG_FestivalNamer_Mechanicus</defName>
+    <rulePack>
+      <rulesStrings>
+        <!-- Festival Name Patterns -->
+        <li>festivalName(p=2)->[techAdjective] [festival]</li>
+        <li>festivalName->[festival] of [machineAspect]</li>
+        <li>festivalName->[machineAdjective] [festival]</li>
+        <li>festivalName->[techDeity]'s [festival]</li>
+        <li>festivalName->[festival] of [techDeity]</li>
+        <li>festivalName->[festival] of [techConcept]</li>
+        <li>festivalName->[festival] of [forgeWorld]</li>
+
+        <!-- Festival Synonyms -->
+        <li>festival->festival</li>
+        <li>festival->celebration</li>
+        <li>festival->rite</li>
+        <li>festival->conclave</li>
+        <li>festival->ceremony</li>
+        <li>festival->jubilee</li>
+
+        <!-- Adjectives and Themes -->
+        <li>techAdjective->Tech</li>
+        <li>techAdjective->Sacred</li>
+        <li>techAdjective->Divine</li>
+        <li>techAdjective->Arcane</li>
+        <li>techAdjective->Holy</li>
+
+        <li>machineAdjective->Mechanical</li>
+        <li>machineAdjective->Cybernetic</li>
+        <li>machineAdjective->Automated</li>
+        <li>machineAdjective->Robotic</li>
+
+        <li>techDeity->Omnissiah</li>
+        <li>techDeity->Machine God</li>
+        <li>techDeity->Mars</li>
+        <li>techDeity->Belisarius Cawl</li>
+
+        <li>techConcept->Knowledge</li>
+        <li>techConcept->Innovation</li>
+        <li>techConcept->Purity</li>
+        <li>techConcept->Efficiency</li>
+
+        <li>forgeWorld->Mars</li>
+        <li>forgeWorld->Ryza</li>
+        <li>forgeWorld->Stygies VIII</li>
+        <li>forgeWorld->Lucius</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+  <!-- Adeptus Mechanicus Leader Title Rule Pack -->
+  <RulePackDef>
+    <defName>OG_LeaderTitleMaker_Mechanicus</defName>
+	<include>
+		<li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+	</include>
+    <rulePack>
+      <rulesStrings>
+        <!-- Leader Title Patterns -->
+        <li>r_leaderTitle(p=6)->[techAdjective] [mechanicusTitle]</li>
+        <li>r_leaderTitle(p=3)->[machineAdjective] [mechanicusTitle]</li>
+        <li>r_leaderTitle(p=1)->[techAdjective] [mechanicusNoun]</li>
+        <li>r_leaderTitle(p=1)->[mechanicusNoun]</li>
+
+        <!-- Adjectives and Titles -->
+        <li>techAdjective->Tech</li>
+        <li>techAdjective->Arcane</li>
+        <li>techAdjective->Sacred</li>
+        <li>techAdjective->Divine</li>
+        <li>techAdjective->Holy</li>
+
+        <li>machineAdjective->Mechanical</li>
+        <li>machineAdjective->Cybernetic</li>
+        <li>machineAdjective->Automated</li>
+        <li>machineAdjective->Robotic</li>
+
+        <li>mechanicusTitle->Magos</li>
+        <li>mechanicusTitle->Archmagos</li>
+        <li>mechanicusTitle->Tech-Priest</li>
+        <li>mechanicusTitle->Enginseer</li>
+        <li>mechanicusTitle->Fabricator-General</li>
+
+        <li>mechanicusNoun->Overseer</li>
+        <li>mechanicusNoun->Coordinator</li>
+        <li>mechanicusNoun->Director</li>
+        <li>mechanicusNoun->Chief</li>
+        <li>mechanicusNoun->Master</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
+  <!-- Adeptus Mechanicus Ideology Name Rule Pack with a Focus on the Machine God -->
+  <RulePackDef>
+    <defName>OG_NamerIdeo_Mechanicus</defName>
+    <include>
+      <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <!-- Adeptus Mechanicus Specific Content -->
+        <li>r_ideoName(p=6)->[techAdjective] [creed]</li>
+        <li>r_ideoName(p=3)->[machineAdjective] [creed]</li>
+        <li>r_ideoName(p=1)->[techAdjective] [mechanicusNoun]</li>
+        <li>r_ideoName(p=1)->[mechanicusNoun]</li>
+
+        <!-- Creed Definitions -->
+        <li>creed->Faith</li>
+        <li>creed->Doctrine</li>
+        <li>creed->Commandment</li>
+        <li>creed->Code</li>
+        <li>creed->Discipline</li>
+        <li>creed->Cult</li>
+        <li>creed->Worship</li>
+
+        <!-- Tech Adjectives -->
+        <li>techAdjective->Tech</li>
+        <li>techAdjective->Arcane</li>
+        <li>techAdjective->Sacred</li>
+        <li>techAdjective->Holy</li>
+        <li>techAdjective->Divine</li>
+
+        <!-- Machine Adjectives -->
+        <li>machineAdjective->Mechanical</li>
+        <li>machineAdjective->Cybernetic</li>
+        <li>machineAdjective->Automated</li>
+        <li>machineAdjective->Robotic</li>
+
+        <!-- Mechanicus Nouns -->
+        <li>mechanicusNoun->Order</li>
+        <li>mechanicusNoun->Cult</li>
+        <li>mechanicusNoun->Forge</li>
+        <li>mechanicusNoun->Conclave</li>
+        <li>mechanicusNoun->Sect</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  
 </Defs>

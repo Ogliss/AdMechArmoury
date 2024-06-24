@@ -174,4 +174,125 @@
     </include>
   </RulePackDef>
 
+<RulePackDef>
+  <defName>OG_FestivalNamer_Kroot</defName>
+  <rulePack>
+    <rulesStrings>
+      <!-- Festival Name Patterns -->
+      <li>festivalName(p=2)->[tribalAdjective] [festival]</li>
+      <li>festivalName->[festival] of [ancestralAspect]</li>
+      <li>festivalName->[festival] of [shaperAspect]</li>
+      <li>festivalName->[festival] of [geneticConcept]</li>
+      <li>festivalName->[festival] of [homeworldAspect]</li>
+
+      <!-- Festival Synonyms -->
+      <li>festival->festival</li>
+      <li>festival->celebration</li>
+      <li>festival->rite</li>
+      <li>festival->conclave</li>
+      <li>festival->ceremony</li>
+
+      <!-- Adjectives and Themes -->
+      <li>tribalAdjective->Tribal</li>
+      <li>tribalAdjective->Ancient</li>
+      <li>tribalAdjective->Savage</li>
+      <li>tribalAdjective->Primal</li>
+
+      <li>ancestralAspect->Roots</li>
+      <li>ancestralAspect->Ancestors</li>
+      <li>ancestralAspect->Heritage</li>
+
+      <li>shaperAspect->Shaper</li>
+      <li>shaperAspect->Warleader</li>
+      <li>shaperAspect->Flesh</li>
+
+      <li>geneticConcept->Evolution</li>
+      <li>geneticConcept->Adaptation</li>
+      <li>geneticConcept->Transformation</li>
+
+      <li>homeworldAspect->Pech</li>
+      <li>homeworldAspect->Homeworld</li>
+      <li>homeworldAspect->Jungle</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_LeaderTitleMaker_Kroot</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Leader Title Patterns -->
+      <li>r_leaderTitle(p=6)->[tribalAdjective] [krootTitle]</li>
+      <li>r_leaderTitle(p=3)->[ancestralAdjective] [krootTitle]</li>
+      <li>r_leaderTitle(p=1)->[tribalAdjective] [krootNoun]</li>
+      <li>r_leaderTitle(p=1)->[krootNoun]</li>
+
+      <!-- Adjectives -->
+      <li>tribalAdjective->Tribal</li>
+      <li>tribalAdjective->Savage</li>
+      <li>tribalAdjective->Fierce</li>
+      <li>tribalAdjective->Nomadic</li>
+
+      <li>ancestralAdjective->Ancient</li>
+      <li>ancestralAdjective->Wise</li>
+      <li>ancestralAdjective->Elder</li>
+
+      <!-- Titles -->
+      <li>krootTitle->Shaper</li>
+      <li>krootTitle->Warleader</li>
+      <li>krootTitle->Chieftain</li>
+
+      <!-- Nouns -->
+      <li>krootNoun->Hunter</li>
+      <li>krootNoun->Warrior</li>
+      <li>krootNoun->Tracker</li>
+      <li>krootNoun->Scout</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_Kroot</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Ideo Name Patterns -->
+      <li>r_ideoName(p=6)->[tribalAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[evolutionaryAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[tribalAdjective] [krootNoun]</li>
+      <li>r_ideoName(p=1)->[krootNoun]</li>
+
+      <!-- Creed Definitions -->
+      <li>creed->Faith</li>
+      <li>creed->Doctrine</li>
+      <li>creed->Commandment</li>
+      <li>creed->Code</li>
+      <li>creed->Discipline</li>
+      <li>creed->Cult</li>
+      <li>creed->Worship</li>
+
+      <!-- Adjectives -->
+      <li>tribalAdjective->Tribal</li>
+      <li>tribalAdjective->Ancient</li>
+      <li>tribalAdjective->Savage</li>
+      <li>tribalAdjective->Primal</li>
+
+      <li>evolutionaryAdjective->Evolutionary</li>
+      <li>evolutionaryAdjective->Adaptive</li>
+      <li>evolutionaryAdjective->Transformative</li>
+
+      <!-- Nouns -->
+      <li>krootNoun->Kindred</li>
+      <li>krootNoun->Warband</li>
+      <li>krootNoun->Clan</li>
+      <li>krootNoun->Pack</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
 </Defs>

@@ -96,5 +96,148 @@
 			</rulesFiles>
 		</rulePack>
 	</RulePackDef>
+	
+<RulePackDef>
+  <defName>OG_FestivalNamer_Sororitas</defName>
+  <rulePack>
+    <rulesStrings>
+      <!-- Festival Name Patterns -->
+      <li>festivalName(p=2)->[holyAdjective] [festival]</li>
+      <li>festivalName->[festival] of [faithAspect]</li>
+      <li>festivalName->[faithAdjective] [festival]</li>
+      <li>festivalName->[saintName]'s [festival]</li>
+      <li>festivalName->[festival] of [saintName]</li>
+      <li>festivalName->[festival] of [faithConcept]</li>
+      <li>festivalName->[festival] of [convent]</li>
+
+      <!-- Festival Synonyms -->
+      <li>festival->festival</li>
+      <li>festival->celebration</li>
+      <li>festival->rite</li>
+      <li>festival->conclave</li>
+      <li>festival->ceremony</li>
+      <li>festival->jubilee</li>
+
+      <!-- Adjectives and Themes -->
+      <li>holyAdjective->Holy</li>
+      <li>holyAdjective->Sacred</li>
+      <li>holyAdjective->Divine</li>
+      <li>holyAdjective->Blessed</li>
+      <li>holyAdjective->Righteous</li>
+
+      <li>faithAdjective->Zealous</li>
+      <li>faithAdjective->Pious</li>
+      <li>faithAdjective->Devout</li>
+      <li>faithAdjective->Fervent</li>
+      <li>faithAdjective->Martyr</li>
+
+      <li>saintName->Celestine</li>
+      <li>saintName->Katherine</li>
+      <li>saintName->Lucia</li>
+      <li>saintName->Arabella</li>
+      <li>saintName->Dominica</li>
+
+      <li>faithConcept->Faith</li>
+      <li>faithConcept->Sacrifice</li>
+      <li>faithConcept->Martyrdom</li>
+      <li>faithConcept->Purity</li>
+      <li>faithConcept->Virtue</li>
+
+      <li>convent->Sanctorum</li>
+      <li>convent->Prioris</li>
+      <li>convent->Argent Shroud</li>
+      <li>convent->Ebon Chalice</li>
+      <li>convent->Valorous Heart</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_LeaderTitleMaker_Sororitas</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Leader Title Patterns -->
+      <li>r_leaderTitle(p=6)->[holyAdjective] [sororitasTitle]</li>
+      <li>r_leaderTitle(p=3)->[faithAdjective] [sororitasTitle]</li>
+      <li>r_leaderTitle(p=1)->[holyAdjective] [sororitasNoun]</li>
+      <li>r_leaderTitle(p=1)->[sororitasNoun]</li>
+
+      <!-- Adjectives and Titles -->
+      <li>holyAdjective->Holy</li>
+      <li>holyAdjective->Sacred</li>
+      <li>holyAdjective->Divine</li>
+      <li>holyAdjective->Blessed</li>
+      <li>holyAdjective->Righteous</li>
+
+      <li>faithAdjective->Zealous</li>
+      <li>faithAdjective->Pious</li>
+      <li>faithAdjective->Devout</li>
+      <li>faithAdjective->Fervent</li>
+      <li>faithAdjective->Martyr</li>
+
+      <li>sororitasTitle->Canoness</li>
+      <li>sororitasTitle->Prioress</li>
+      <li>sororitasTitle->Abbess</li>
+      <li>sororitasTitle->Palatine</li>
+      <li>sororitasTitle->Mistress</li>
+
+      <li>sororitasNoun->Overseer</li>
+      <li>sororitasNoun->Coordinator</li>
+      <li>sororitasNoun->Director</li>
+      <li>sororitasNoun->Chief</li>
+      <li>sororitasNoun->Matron</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+	
+  <!-- Adepta Sororitas Ideology Name Rule Pack with a Focus on Emperor Worship -->
+  <RulePackDef>
+    <defName>OG_NamerIdeo_Sororitas</defName>
+    <include>
+      <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <!-- Adepta Sororitas Specific Content -->
+        <li>r_ideoName(p=6)->[holyAdjective] [creed]</li>
+        <li>r_ideoName(p=3)->[faithAdjective] [creed]</li>
+        <li>r_ideoName(p=1)->[holyAdjective] [sororitasNoun]</li>
+        <li>r_ideoName(p=1)->[sororitasNoun]</li>
+
+        <!-- Creed Definitions -->
+        <li>creed->Faith</li>
+        <li>creed->Doctrine</li>
+        <li>creed->Commandment</li>
+        <li>creed->Code</li>
+        <li>creed->Discipline</li>
+        <li>creed->Cult</li>
+        <li>creed->Worship</li>
+
+        <!-- Holy Adjectives -->
+        <li>holyAdjective->Holy</li>
+        <li>holyAdjective->Sacred</li>
+        <li>holyAdjective->Divine</li>
+        <li>holyAdjective->Blessed</li>
+        <li>holyAdjective->Righteous</li>
+
+        <!-- Faith Adjectives -->
+        <li>faithAdjective->Zealous</li>
+        <li>faithAdjective->Pious</li>
+        <li>faithAdjective->Devout</li>
+        <li>faithAdjective->Fervent</li>
+        <li>faithAdjective->Martyr</li>
+
+        <!-- Sororitas Nouns -->
+        <li>sororitasNoun->Sisterhood</li>
+        <li>sororitasNoun->Order</li>
+        <li>sororitasNoun->Convent</li>
+        <li>sororitasNoun->Militant</li>
+        <li>sororitasNoun->Sanctum</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
 
 </Defs>
