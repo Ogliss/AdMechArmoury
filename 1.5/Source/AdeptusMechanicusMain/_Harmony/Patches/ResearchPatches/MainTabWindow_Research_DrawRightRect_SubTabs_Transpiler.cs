@@ -37,7 +37,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                 if (i >= 1 && instruction.opcode == OpCodes.Ldarg_1 && instructionsList[i - 1].opcode == OpCodes.Stloc_1 && !tabs)
                 {
                 //    Draws SubTabMenu
-                    Log.Message("ResearchTab DrawRightRect SubTabMenu: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                //    Log.Message("ResearchTab DrawRightRect SubTabMenu: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                     tabs = true;
                     yield return instruction;
                     yield return new CodeInstruction(opcode: OpCodes.Ldarg_0);
@@ -51,7 +51,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                     if (instruction.opcode == OpCodes.Call && instruction.OperandIs(scrollWindow))
                     {
                     //    Enables vertical mousewheel scrolling while holding Ctrl 
-                        Log.Message("ResearchTab DrawRightRect ScrollWindow: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
+                    //    Log.Message("ResearchTab DrawRightRect ScrollWindow: " + i + " opcode: " + instruction.opcode + " operand: " + instruction.operand);
                         instruction.operand = typeof(AdeptusWidgets).GetMethod("ScrollHorizontalAndVert");
                     }
 

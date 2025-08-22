@@ -40,7 +40,7 @@ namespace AdeptusMechanicus.HarmonyInstance
 
                 if (instruction.opcode == OpCodes.Stloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 7)
                 {
-                        Log.Message($"PostProjectile generation patch at {i}");
+                    //    Log.Message($"PostProjectile generation patch at {i}");
                     yield return instruction;
                     yield return new CodeInstruction(OpCodes.Ldloc_S, 7);
                     instruction = new CodeInstruction(OpCodes.Call, operand: typeof(Verb_LaunchProjectile_TryCastShot_Transpiler).GetMethod("ProjectileConfig"));

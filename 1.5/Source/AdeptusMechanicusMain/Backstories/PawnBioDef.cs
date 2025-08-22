@@ -39,7 +39,7 @@ namespace AdeptusMechanicus
                 this.adulthood.spawnCategories.Add("Civil");
             }
             SolidBioDatabase.allBios.Add(item);
-            if (SolidBioDatabase.allBios.Contains(item)) Log.Message($"{item.name}");
+            // if (SolidBioDatabase.allBios.Contains(item)) Log.Message($"{item.name}");
         }
 
         public BackstoryDef childhood;
