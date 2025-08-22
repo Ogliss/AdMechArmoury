@@ -166,53 +166,69 @@ namespace AdeptusMechanicus.settings
             List<ThingCategoryDef> whitelist = new List<ThingCategoryDef>();
             List<ThingCategoryDef> blacklist = new List<ThingCategoryDef>();
 
-            if (AllowImperialWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x=> x.defName.StartsWith("OG_") && x.defName.Contains("_Imperial")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Imperial")));
+            if (AMAMod.Dev) Log.Message("pre _Imperial");
+            if (AllowImperialWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x=> x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Imperial")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Imperial")));
 
-            if (AllowAssassinorumWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Assassinorum")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Assassinorum")));
+            if (AMAMod.Dev) Log.Message("pre _Assassinorum");
+            if (AllowAssassinorumWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Assassinorum")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Assassinorum")));
 
-            if (AllowAstartesWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Astartes")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Astartes")));
+            if (AMAMod.Dev) Log.Message("pre _Astartes");
+            if (AllowAstartesWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Astartes")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Astartes")));
 
-            if (AllowInquisitorialWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Inquisition")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Inquisition")));
+            if (AMAMod.Dev) Log.Message("pre _Inquisition");
+            if (AllowInquisitorialWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Inquisition")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Inquisition")));
 
-            if (AllowMechanicusWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Mechanicus")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Mechanicus")));
+            if (AMAMod.Dev) Log.Message("pre _Mechanicus");
+            if (AllowMechanicusWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Mechanicus")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Mechanicus")));
 
-            if (AllowMilitarumWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Militarum")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Militarum")));
+            if (AMAMod.Dev) Log.Message("pre _Militarum");
+            if (AllowMilitarumWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Militarum")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Militarum")));
 
-            if (AllowSororitasWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Sororitas")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Sororitas")));
+            if (AMAMod.Dev) Log.Message("pre _Sororitas");
+            if (AllowSororitasWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Sororitas")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Sororitas")));
 
-            if (AllowEldarWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Asuryani")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Asuryani")));
+            if (AMAMod.Dev) Log.Message("pre _Asuryani");
+            if (AllowEldarWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Asuryani")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Asuryani")));
 
-            if (AllowDarkEldarWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Drukhari")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Drukhari")));
+            if (AMAMod.Dev) Log.Message("pre _Drukhari");
+            if (AllowDarkEldarWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Drukhari")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Drukhari")));
 
-            if (AllowChaosWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Chaos")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Chaos")));
+            if (AMAMod.Dev) Log.Message("pre _Chaos");
+            if (AllowChaosWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Chaos")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Chaos")));
 
-            if (AllowTauWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Tau")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Tau")));
+            if (AMAMod.Dev) Log.Message("pre _Tau");
+            if (AllowTauWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Tau")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Tau")));
 
-            if (AllowKrootWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Kroot")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Kroot")));
+            if (AMAMod.Dev) Log.Message("pre _Kroot");
+            if (AllowKrootWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Kroot")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Kroot")));
 
-            if (AllowVespuidWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Vespid")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Vespid")));
+            if (AMAMod.Dev) Log.Message("pre _Vespid");
+            if (AllowVespuidWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Vespid")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Vespid")));
 
-            if (AllowOrkWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Ork")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Ork")));
+            if (AMAMod.Dev) Log.Message("pre _Ork");
+            if (AllowOrkWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Ork")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Ork")));
 
+            if (AMAMod.Dev) Log.Message("pre _Necron");
             if (AllowNecronWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Necron")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Necron")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Necron")));
 
+            if (AMAMod.Dev) Log.Message("pre _Tyranid");
             if (AllowTyranidWeapons) whitelist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Tyranid")));
-            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_") && x.defName.Contains("_Tyranid")));
+            else blacklist.AddRange(DefDatabase<ThingCategoryDef>.AllDefs.Where(x => x.defName.StartsWith("OG_Weapons_") && x.defName.Contains("_Tyranid")));
             ProcessWeaponTags(whitelist, blacklist);
         }
         /*
@@ -264,7 +280,7 @@ namespace AdeptusMechanicus.settings
                 {
                     if (AMAMod.Dev) Log.Message($"removed {blackTaggedRecipeDefs.Count()} RecipeDefs tagged {blackTags.Select(x => x.defName).ToCommaList()}\nDefsRemoved: {blackTaggedRecipeDefs.Select(x => x.defName).ToCommaList()}");
 
-                    for (int i = 0; i < blackTaggedThingDefs.Count(); i++)
+                    for (int i = blackTaggedThingDefs.Count-1; i < 0; i--)
                     {
                         DefDatabase<RecipeDef>.Remove(blackTaggedRecipeDefs[i]);
                     }
