@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!-- Single Traits -->
+<TraitDef>
+  <defName>BattleHardened</defName>
+  <label>Battle-Hardened</label>
+  <description>{PAWN_nameDef} has been through countless battles and is unshaken by the horrors of war.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Battle-Hardened</label>
+      <description>{PAWN_nameDef} is exceptionally tough and resilient due to extensive battle experience.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MentalBreakThreshold>-0.2</MentalBreakThreshold>
+        <PainShockThreshold>0.2</PainShockThreshold>
+      </statOffsets>
+      <statFactors>
+        <IncomingDamageFactor>0.8</IncomingDamageFactor>
+      </statFactors>
+      <skillGains>
+        <Shooting>2</Shooting>
+        <Melee>3</Melee>
+      </skillGains>
+      <disallowedMentalStates>
+        <li>Wander_Sad</li>
+        <li>Wander_Psychotic</li>
+        <li>PanicFlee</li>
+        <li>WanderConfused</li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">BerserkWarcall</li> 
+      </disallowedMentalStates>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Kind</li>
+    <li>Wimp</li>
+  </conflictingTraits>
+  <disabledWorkTypes>
+    <li>Doctor</li>
+  </disabledWorkTypes>
+</TraitDef>
+
+<TraitDef>
+  <defName>GreenThumb</defName>
+  <label>green thumb</label>
+  <description>{PAWN_nameDef} has a natural talent for growing and caring for plants, making them exceptionally skilled in all plant-related tasks.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>green thumb</label>
+      <degree>0</degree>
+      <statOffsets>
+        <PlantWorkSpeed>0.3</PlantWorkSpeed>
+        <PlantHarvestYield>0.2</PlantHarvestYield>
+      </statOffsets>
+      <skillGains>
+        <Plants>5</Plants>
+      </skillGains>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Berserker</defName>
+  <label>Berserker</label>
+  <description>{PAWN_nameDef} is fueled by rage and becomes a whirlwind of destruction in close combat.</description>
+  <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Melee</li>
+  </forcedPassions>
+  <degreeDatas>
+    <li>
+      <label>Berserker</label>
+      <description>{PAWN_nameDef} is fueled by rage and becomes a whirlwind of destruction in close combat.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MeleeDamageFactor>0.5</MeleeDamageFactor>
+        <MeleeArmorPenetration>0.5</MeleeArmorPenetration>
+        <MeleeCooldownFactor>-0.25</MeleeCooldownFactor>
+        <MeleeHitChance>-0.25</MeleeHitChance>
+        <MoveSpeed>0.4</MoveSpeed>
+        <MentalBreakThreshold>0.1</MentalBreakThreshold>
+      </statOffsets>
+      <forcedMentalState>Berserk</forcedMentalState>
+      <disallowedMentalStates>
+        <li>Wander_Sad</li>
+        <li>PanicFlee</li>
+        <li>WanderConfused</li>
+      </disallowedMentalStates>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>ShootingAccuracy</li>
+  </conflictingTraits>
+  <requiredWorkTags>Violent</requiredWorkTags>
+</TraitDef>
+
+<TraitDef>
+  <defName>CombatMedic</defName>
+  <label>Combat Medic</label>
+  <description>{PAWN_nameDef} is skilled in battlefield medicine and can quickly treat and stabilize injured allies.</description>
+  <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Medicine</li>
+  </forcedPassions>
+  <degreeDatas>
+    <li>
+      <label>Combat Medic</label>
+      <description>{PAWN_nameDef} is an expert in battlefield medicine, capable of quickly treating and stabilizing injured allies.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MedicalTendQuality>0.2</MedicalTendQuality>
+        <MedicalTendSpeed>0.25</MedicalTendSpeed>
+        <ImmunityGainSpeed>0.15</ImmunityGainSpeed>
+        <DrugSynthesisSpeed>0.10</DrugSynthesisSpeed>
+      </statOffsets>
+      <skillGains>
+        <Medicine>3</Medicine>
+      </skillGains>
+    </li>
+  </degreeDatas>
+  <!--disabledWorkTypes>
+    <li>Violent</li>
+  </disabledWorkTypes-->
+</TraitDef>
+
+<TraitDef>
+  <defName>Fearless</defName>
+  <label>Fearless</label>
+  <description>{PAWN_nameDef} is unafraid of danger and charges into battle without hesitation.</description>
+  <commonality>1.2</commonality>
+  <degreeDatas>
+    <li>
+      <label>Fearless</label>
+      <description>{PAWN_nameDef} shows no fear and is always ready to fight.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MentalBreakThreshold>-0.3</MentalBreakThreshold>
+        <MoveSpeed>0.3</MoveSpeed>
+        <MeleeHitChance>0.15</MeleeHitChance>
+      </statOffsets>
+      <forcedMentalState>Berserk</forcedMentalState>
+      <mentalBreakInspirationGainChance>0.1</mentalBreakInspirationGainChance>
+      <disallowedMentalStates>
+        <li>Wander_Sad</li>
+        <li>PanicFlee</li>
+        <li>WanderConfused</li>
+      </disallowedMentalStates>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Neurotic</li>
+  </conflictingTraits>
+  <requiredWorkTags>Violent</requiredWorkTags>
+</TraitDef>
+
+<TraitDef>
+  <defName>HeavyWeaponsSpecialist</defName>
+  <label>Heavy Weapons Specialist</label>
+  <description>{PAWN_nameDef} is trained to handle and operate heavy weaponry with precision.</description>
+  <commonality>1.3</commonality>
+  <forcedPassions>
+	<li>Shooting</li>
+  </forcedPassions>
+  <degreeDatas>
+    <li>
+      <label>Heavy Weapons Specialist</label>
+      <description>{PAWN_nameDef} is trained to handle and operate heavy weaponry with precision.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+        <AimingDelayFactor>-0.2</AimingDelayFactor>
+      </statOffsets>
+      <skillGains>
+        <Shooting>2</Shooting>
+      </skillGains>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Brawler</li>
+  </conflictingTraits>
+</TraitDef>
+
+<TraitDef>
+  <defName>MasterDuelist</defName>
+  <label>Master Duelist</label>
+  <description>{PAWN_nameDef} is highly skilled in one-on-one combat, excelling in melee duels.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>Master Duelist</label>
+      <description>{PAWN_nameDef} is a master of one-on-one combat, excelling in melee duels.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MeleeHitChance>0.2</MeleeHitChance>
+        <MeleeDodgeChance>0.15</MeleeDodgeChance>
+        <MoveSpeed>0.2</MoveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>QuickThinker</defName>
+  <label>Quick Thinker</label>
+  <description>{PAWN_nameDef} possesses sharp reflexes and quick wits, reacting swiftly to situations.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Quick Thinker</label>
+      <description>{PAWN_nameDef} has sharp reflexes and quick wits, allowing {PAWN_objective} to react swiftly to situations.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <ResearchSpeed>-0.3</ResearchSpeed>
+        <AimingDelayFactor>-0.3</AimingDelayFactor>
+        <MoveSpeed>0.3</MoveSpeed>
+        <MentalBreakThreshold>-0.1</MentalBreakThreshold>
+      </statOffsets>
+      <mentalBreakInspirationGainChance>0.15</mentalBreakInspirationGainChance>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>SpeedOffset</li>
+  </conflictingTraits>
+  <requiredWorkTags>Intellectual</requiredWorkTags>
+</TraitDef>
+
+<TraitDef>
+  <defName>Relentless</defName>
+  <label>Relentless</label>
+  <description>{PAWN_nameDef} is tireless and relentless, pushing themselves beyond normal limits.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Relentless</label>
+      <description>{PAWN_nameDef} is tireless and relentless, pushing themselves beyond normal limits.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <RestRateMultiplier>0.5</RestRateMultiplier>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+        <MoveSpeed>0.2</MoveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Industriousness</li>
+  </conflictingTraits>
+</TraitDef>
+
+<TraitDef>
+  <defName>Survivor</defName>
+  <label>Survivor</label>
+  <description>{PAWN_nameDef} has survived numerous hardships, making them extremely tough and self-sufficient.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>Survivor</label>
+      <description>{PAWN_nameDef} is incredibly tough and self-sufficient, having endured and overcome countless adversities.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <CrawlSpeed>0.3</CrawlSpeed>
+        <ImmunityGainSpeed>0.3</ImmunityGainSpeed>
+        <InjuryHealingFactor>0.25</InjuryHealingFactor>
+        <PainShockThreshold>0.25</PainShockThreshold>
+        <MentalBreakThreshold>-0.1</MentalBreakThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Tactician</defName>
+  <label>Tactician</label>
+  <description>{PAWN_nameDef} is skilled in strategy and battlefield tactics, providing a tactical boost to allies.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>Tactician</label>
+      <description>{PAWN_nameDef} is a master of strategy, capable of enhancing the efficiency and morale of allies on the battlefield.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <SocialImpact>0.1</SocialImpact>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>TechSavvy</defName>
+  <label>Tech-Savvy</label>
+  <description>{PAWN_nameDef} is exceptionally skilled with technology, excelling at repairing and constructing advanced machinery.</description>
+  <commonality>1.0</commonality>
+  <forcedPassions>
+	<li>Intellectual</li>
+	<li>Crafting</li>
+  </forcedPassions>
+  <degreeDatas>
+    <li>
+      <label>Tech-Savvy</label>
+      <description>{PAWN_nameDef} is a technological expert, capable of repairing and constructing advanced machinery with ease.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <ResearchSpeed>0.2</ResearchSpeed>
+        <ConstructionSpeed>0.2</ConstructionSpeed>
+        <FixBrokenDownBuildingSuccessChance>0.15</FixBrokenDownBuildingSuccessChance>
+      </statOffsets>
+      <skillGains>
+        <Intellectual>3</Intellectual>
+        <Crafting>2</Crafting>
+      </skillGains>
+    </li>
+  </degreeDatas>
+  <disabledWorkTypes>
+	<li>Handling</li>
+  </disabledWorkTypes>
+</TraitDef>
+
+<TraitDef>
+  <defName>Veteran</defName>
+  <label>Veteran</label>
+  <description>{PAWN_nameDef} is a battle-hardened soldier with extensive combat experience, providing a boost to combat skills and resilience.</description>
+  <commonality>1.0</commonality>
+  <degreeDatas>
+    <li>
+      <label>Veteran</label>
+      <description>{PAWN_nameDef} has faced countless battles and emerged stronger, with enhanced combat skills and resilience.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MeleeHitChance>0.15</MeleeHitChance>
+        <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+        <PainShockThreshold>0.1</PainShockThreshold>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>VeteranScout</defName>
+  <label>Veteran Scout</label>
+  <description>{PAWN_nameDef} is experienced in reconnaissance and survival, excelling at navigating and enduring harsh environments.</description>
+  <commonality>1.4</commonality>
+  <forcedPassions>
+	<li>Plants</li>
+	<li>Animals</li>
+  </forcedPassions>
+  <degreeDatas>
+    <li>
+      <label>Veteran Scout</label>
+      <description>{PAWN_nameDef} is experienced in reconnaissance and survival, excelling at navigating and enduring harsh environments.</description>
+      <degree>0</degree>
+      <statOffsets>
+        <MoveSpeed>0.5</MoveSpeed>
+        <ImmunityGainSpeed>0.2</ImmunityGainSpeed>
+        <ConstructionSpeed>0.15</ConstructionSpeed>
+      </statOffsets>
+      <skillGains>
+        <Plants>2</Plants>
+        <Animals>2</Animals>
+      </skillGains>
+    </li>
+  </degreeDatas>
+  <disabledWorkTypes>
+    <li>Research</li>
+  </disabledWorkTypes>
+</TraitDef>
+
+<!-- Spectrum Traits -->
+<TraitDef>
+  <defName>Resourceful</defName>
+  <label>Resourceful</label>
+  <description>{PAWN_nameDef} is exceptionally capable of making the best out of any situation, with varying degrees of resourcefulness.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Somewhat Resourceful</label>
+      <description>{PAWN_nameDef} is somewhat resourceful, able to adapt to different situations.</description>
+      <degree>1</degree>
+      <statOffsets>
+        <ConstructionSpeed>0.1</ConstructionSpeed>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.1</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.1</ConstructSuccessChance>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Resourceful</label>
+      <description>{PAWN_nameDef} is very resourceful, capable of adapting to different situations with ease.</description>
+      <degree>2</degree>
+      <statOffsets>
+        <ConstructionSpeed>0.2</ConstructionSpeed>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.15</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.15</ConstructSuccessChance>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Extremely Resourceful</label>
+      <description>{PAWN_nameDef} is extremely resourceful, excelling in making the best out of any situation.</description>
+      <degree>3</degree>
+      <statOffsets>
+        <ConstructionSpeed>0.3</ConstructionSpeed>
+        <WorkSpeedGlobal>0.2</WorkSpeedGlobal>
+        <FixBrokenDownBuildingSuccessChance>0.25</FixBrokenDownBuildingSuccessChance>
+        <ConstructSuccessChance>0.25</ConstructSuccessChance>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Strategist</defName>
+  <label>Strategist</label>
+  <description>{PAWN_nameDef} is a master of tactics and strategy, with varying degrees of strategic thinking.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Somewhat Strategic</label>
+      <description>{PAWN_nameDef} is somewhat strategic, able to think ahead and plan accordingly.</description>
+      <degree>1</degree>
+      <statOffsets>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        <SocialImpact>0.1</SocialImpact>
+        <ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Strategic</label>
+      <description>{PAWN_nameDef} is very strategic, capable of planning and executing complex strategies.</description>
+      <degree>2</degree>
+      <statOffsets>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <SocialImpact>0.15</SocialImpact>
+        <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Extremely Strategic</label>
+      <description>{PAWN_nameDef} is extremely strategic, excelling in planning and tactical execution.</description>
+      <degree>3</degree>
+      <statOffsets>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+        <SocialImpact>0.2</SocialImpact>
+        <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+</TraitDef>
+
+<TraitDef>
+  <defName>Unyielding</defName>
+  <label>Unyielding</label>
+  <description>{PAWN_nameDef} possesses an indomitable spirit and varying levels of resilience.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Somewhat Unyielding</label>
+      <description>{PAWN_nameDef} is somewhat unyielding, able to withstand adversity.</description>
+      <degree>1</degree>
+      <statOffsets>
+        <MentalBreakThreshold>-0.1</MentalBreakThreshold>
+        <PainShockThreshold>0.1</PainShockThreshold>
+        <RestFallRateFactor>-0.1</RestFallRateFactor>
+        <MoveSpeed>0.05</MoveSpeed>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Unyielding</label>
+      <description>{PAWN_nameDef} is very unyielding, showing significant resilience.</description>
+      <degree>2</degree>
+      <statOffsets>
+        <MentalBreakThreshold>-0.2</MentalBreakThreshold>
+        <PainShockThreshold>0.2</PainShockThreshold>
+        <RestFallRateFactor>-0.2</RestFallRateFactor>
+        <MoveSpeed>0.1</MoveSpeed>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Extremely Unyielding</label>
+      <description>{PAWN_nameDef} is extremely unyielding, excelling in resilience and determination.</description>
+      <degree>3</degree>
+      <statOffsets>
+        <MentalBreakThreshold>-0.3</MentalBreakThreshold>
+        <PainShockThreshold>0.3</PainShockThreshold>
+        <RestFallRateFactor>-0.3</RestFallRateFactor>
+        <MoveSpeed>0.15</MoveSpeed>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Industriousness</li>
+    <li>NaturalMood</li>
+  </conflictingTraits>
+  <disabledWorkTypes>
+    <li>Art</li>
+  </disabledWorkTypes>
+</TraitDef>
+
+<TraitDef>
+  <defName>InspiringLeader</defName>
+  <label>Inspiring Leader</label>
+  <description>{PAWN_nameDef} is charismatic and motivational, with varying degrees of leadership.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Somewhat Inspiring</label>
+      <description>{PAWN_nameDef} is somewhat inspiring, able to motivate those around {PAWN_objective}.</description>
+      <degree>1</degree>
+      <statOffsets>
+        <SocialImpact>0.1</SocialImpact>
+        <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        <NegotiationAbility>0.1</NegotiationAbility>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Inspiring</label>
+      <description>{PAWN_nameDef} is very inspiring, capable of significantly boosting the morale and productivity of those around {PAWN_objective}.</description>
+      <degree>2</degree>
+      <statOffsets>
+        <SocialImpact>0.15</SocialImpact>
+        <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+        <NegotiationAbility>0.15</NegotiationAbility>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Extremely Inspiring</label>
+      <description>{PAWN_nameDef} is extremely inspiring, excelling in boosting the morale and productivity of those around {PAWN_objective}.</description>
+      <degree>3</degree>
+      <statOffsets>
+        <SocialImpact>0.2</SocialImpact>
+        <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+        <NegotiationAbility>0.2</NegotiationAbility>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li MayRequire="Ludeon.RimWorld.Anomaly">Recluse</li>
+  </conflictingTraits>
+  <requiredWorkTags>Social</requiredWorkTags>
+</TraitDef>
+
+<TraitDef>
+  <defName>Marksman</defName>
+  <label>Marksman</label>
+  <description>{PAWN_nameDef} has a keen eye and steady hand, with varying levels of marksmanship.</description>
+  <commonality>1.5</commonality>
+  <degreeDatas>
+    <li>
+      <label>Competent Marksman</label>
+      <description>{PAWN_nameDef} is a competent marksman, with good accuracy and a steady aim.</description>
+      <degree>1</degree>
+      <statOffsets>
+        <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+        <AimingDelayFactor>-0.1</AimingDelayFactor>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Skilled Marksman</label>
+      <description>{PAWN_nameDef} is a skilled marksman, with excellent accuracy and a quick aim.</description>
+      <degree>2</degree>
+      <statOffsets>
+        <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+        <AimingDelayFactor>-0.2</AimingDelayFactor>
+      </statOffsets>
+    </li>
+    <li>
+      <label>Expert Marksman</label>
+      <description>{PAWN_nameDef} is an expert marksman, with superb accuracy and an exceptionally quick aim.</description>
+      <degree>3</degree>
+      <statOffsets>
+        <ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+        <AimingDelayFactor>-0.3</AimingDelayFactor>
+      </statOffsets>
+    </li>
+  </degreeDatas>
+  <conflictingTraits>
+    <li>Brawler</li>
+  </conflictingTraits>
+</TraitDef>
+
+</Defs>

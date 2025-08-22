@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!--ThingStyleDef>
+		<defName>PrestigeMarineHelmet_Samurai</defName>
+		<overrideLabel>samurai helmet</overrideLabel>
+		<wornGraphicPath>Things/Pawn/Humanlike/Apparel/SamuraiHelmet/SamuraiHelmet</wornGraphicPath>
+		<graphicData>
+			<texPath>Things/Pawn/Humanlike/Apparel/SamuraiHelmet/SamuraiHelmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+	</ThingStyleDef-->
+
+	<EW.EngravingStyleDef>
+		<defName>ImperialStyle</defName>
+		<styleCategory>OG_Imperial</styleCategory>
+		<texPath>Things/Building/Imperial/WallsEngraved</texPath>
+	</EW.EngravingStyleDef>
+
+	<ThingStyleDef>
+		<defName>OGAM_Apparel_SkitariiRangerHelmet_Hooded</defName>
+		<overrideLabel>skitarii ranger helmet hooded</overrideLabel>
+		<wornGraphicPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/RangerHooded</wornGraphicPath>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AM/SkitariiLegionnaireHelmet/_Icon_RangerHooded</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+	</ThingStyleDef>
+
+	<ThingStyleDef Name="OG_Imperial_TableStyleBase" Abstract="True">
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+		</graphicData>
+	</ThingStyleDef>
+
+	<!--ThingStyleDef ParentName="OG_Imperial_TableStyleBase">
+		<defName>OGI_Table1x2c</defName>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Furniture/Table1x2</texPath>
+			<drawSize>(3,4)</drawSize>
+		</graphicData>
+	</ThingStyleDef-->
+
+	<!--ThingStyleDef ParentName="OG_Imperial_TableStyleBase">
+		<defName>OGI_Table2x2c</defName>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Furniture/MorbidTable2x2</texPath>
+			<drawSize>(4,4)</drawSize>
+		</graphicData>
+	</ThingStyleDef-->
+
+	<!--ThingStyleDef ParentName="OG_Imperial_TableStyleBase">
+		<defName>OGI_Table2x4c</defName>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Furniture/TableReinforced2x4</texPath>
+			<drawSize>(4,6)</drawSize>
+		</graphicData>
+	</ThingStyleDef-->
+
+	<!--ThingStyleDef ParentName="OG_Imperial_TableStyleBase">
+		<defName>OGI_Table3x3c</defName>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Furniture/MorbidTable3x3</texPath>
+			<drawSize>(5,5)</drawSize>
+		</graphicData>
+	</ThingStyleDef-->
+
+
+	<Things Name="OG_Imperial_ColumnStyleBase" Abstract="True">
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1.25)</drawSize>
+			<drawOffset>(0,0,0.2)</drawOffset>
+			<shadowData>
+				<volume>(0.3, 0.5, 0.3)</volume>
+				<offset>(0,0,-0.23)</offset>
+			</shadowData>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+		</graphicData>
+	</Things>
+
+	<Things Name="OG_Imperial_EngravedWallStyleBase" Abstract="True">
+		<graphicData>
+			<graphicClass>Graphic_Random</graphicClass>
+			<linkType>CornerFiller</linkType>
+			<linkFlags>
+				<li>Rock</li>
+				<li>MapEdge</li>
+			</linkFlags>
+			<texPath>Things/Building/Imperial/WallsEngraved</texPath>
+		</graphicData>
+	</Things>
+
+  <ThingStyleDef>
+    <defName>OGI_IdeogramA</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/Misc/Ideogram/IconImperial/IconImperialA</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+  </ThingStyleDef>
+
+  <ThingStyleDef>
+    <defName>OGI_IdeogramB</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/Misc/Ideogram/IconImperial/IconImperialB</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+  </ThingStyleDef>
+
+  <ThingStyleDef>
+    <defName>OGI_AltarSmall</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/BuildingStyles/Altars/AltarImperial1x1</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shadowData>
+        <volume>(0.8, 1, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+  </ThingStyleDef>
+
+  <ThingStyleDef>
+    <defName>OGI_AltarMedium</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/BuildingStyles/Altars/AltarImperial1x3</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,1)</drawSize>
+      <shadowData>
+        <volume>(2.4, 1, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+  </ThingStyleDef>
+
+  <ThingStyleDef>
+    <defName>OGI_AltarLarge</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/BuildingStyles/Altars/AltarImperial2x3</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,2)</drawSize>
+      <shadowData>
+        <volume>(2.4, 1, 1.6)</volume>
+      </shadowData>
+    </graphicData>
+  </ThingStyleDef>
+
+  <ThingStyleDef>
+    <defName>OGI_AltarGrand</defName>
+    <graphicData>
+      <texPath>Things/Building/Imperial/BuildingStyles/Altars/AltarImperial3x3</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(2.4, 1, 2.4)</volume>
+      </shadowData>
+    </graphicData>
+  </ThingStyleDef>
+
+
+	<!--ThingStyleDef>
+		<defName>OGAS_Gun_BoltGun</defName>
+		<overrideLabel>bolter godwyn-deaz (AS)</overrideLabel>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_GodwynDeaz</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(0.286,0.286,0.286)</color>	
+			<drawSize>1.1</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Item/Equipment/WeaponRanged/Imperial/BoltGun/Bolter_Gun_GodwynDeaz_Icon</uiIconPath>
+	</ThingStyleDef-->
+
+</Defs>

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RulePackDef>
+		<defName>OG_Tau_NamerFaction</defName>
+		<include>
+			<li>OG_Tau_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->Shas Kau'ui [Sept]</li>
+				<!--
+				<li>r_name->[nearnameinitial] [political_union_outlander]</li>
+				<li>r_name->[nearnameinitial] [political_adjective] [political_union_outlander]</li>
+				<li>r_name->[political_union_outlander] of [nearnameinitial]</li>
+				<li>r_name->[political_adjective] [political_union_outlander] of [nearnameinitial]</li>
+				-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<RulePackDef>
+		<defName>OG_Tau_NamerBases</defName>
+		<include>
+		  <li>OG_Tau_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>name->[Tau_Outpost]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Tau_NamerPerson</defName>
+		<include>
+			<li>OG_Tau_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameMaleTau]</li>
+				<!--li>r_name(p=3)->[NameMaleTau] [TauNameLast]</li-->
+				<!--li>r_name(p=2)->[TauNameFirstMale] [WordTau]</li>
+				<li>r_name(p=2)->[WordTau] [WordTau]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>OG_Tau_NamerPersonFemale</defName>
+		<include>
+			<li>OG_Tau_NameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name(p=3)->[NameFemaleTau]</li>
+				<!--li>r_name(p=3)->[NameFemaleTau] [TauNameLast]</li-->
+				<!--li>r_name(p=2)->[TauNameFirstFemale] [WordTau]</li>
+				<li>r_name(p=2)->[WordTau] [WordTau]</li-->
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+  
+	<RulePackDef>
+		<defName>OG_Tau_NameUtility</defName>
+		<rulePack>
+			<rulesStrings>
+				<!--li>WordTau(p=4)->[SylB][SylB]</li>
+				<li>WordTau(p=2)->[SylB][SylB][SylB]</li>
+				<li>WordTau(p=0.2)->[SylB][SylB][SylB][SylB]</li-->
+				
+				<li>NameMaleTau(p=4)->[Tau_A][Tau_B]</li>
+				<li>NameMaleTau(p=2)->[Tau]</li>
+				<li>NameMaleTau(p=0.2)->[Tau][Tau_B]</li>
+				
+				<li>NameFemaleTau(p=4)->[Tau_A][Tau_B]</li>
+				<li>NameFemaleTau(p=2)->[Tau]</li>
+				<li>NameFemaleTau(p=0.2)->[Tau_Female][Tau_B]</li>
+				
+				<li>Sept(p=3)->[Sept_Major]</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>Sept_Major->NameBanks/OG_Tau_Names_Septs_Major</li>
+				<li>Tau_Outpost->NameBanks/OG_Tau_Names_Outpost</li>
+				<li>Tau->NameBanks/OG_Tau_Names_Person</li>
+				<li>Tau_A->NameBanks/OG_Tau_Names_Person_A</li>
+				<li>Tau_B->NameBanks/OG_Tau_Names_Person_B</li>
+			</rulesFiles>
+		</rulePack>
+	</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_FestivalNamer_TauEmpire</defName>
+  <rulePack>
+    <rulesStrings>
+      <!-- Festival Name Patterns -->
+      <li>festivalName(p=2)->[techAdjective] [festival]</li>
+      <li>festivalName->[festival] of [greaterGoodConcept]</li>
+      <li>festivalName->[casteAdjective] [festival]</li>
+      <li>festivalName->[ethereal]'s [festival]</li>
+      <li>festivalName->[festival] of [ethereal]</li>
+      <li>festivalName->[festival] of [casteConcept]</li>
+
+      <!-- Festival Synonyms -->
+      <li>festival->festival</li>
+      <li>festival->celebration</li>
+      <li>festival->gathering</li>
+      <li>festival->conclave</li>
+      <li>festival->jubilee</li>
+
+      <!-- Adjectives and Themes -->
+      <li>techAdjective->Tech</li>
+      <li>techAdjective->Advanced</li>
+      <li>techAdjective->Efficient</li>
+      <li>casteAdjective->Fire</li>
+      <li>casteAdjective->Earth</li>
+      <li>casteAdjective->Air</li>
+      <li>casteAdjective->Water</li>
+
+      <!-- Ethereal and Concepts -->
+      <li>ethereal->Aun'va</li>
+      <li>ethereal->Aun'Shi</li>
+      <li>ethereal->Shadowsun</li>
+
+      <!-- Greater Good and Caste Concepts -->
+      <li>greaterGoodConcept->Unity</li>
+      <li>greaterGoodConcept->Progress</li>
+      <li>greaterGoodConcept->Enlightenment</li>
+      <li>casteConcept->Honor</li>
+      <li>casteConcept->Service</li>
+      <li>casteConcept->Duty</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_LeaderTitleMaker_TauEmpire</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">LeaderTitleMaker_GlobalStructure</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Leader Title Patterns -->
+      <li>r_leaderTitle(p=6)->[casteAdjective] [tauTitle]</li>
+      <li>r_leaderTitle(p=3)->[techAdjective] [tauTitle]</li>
+      <li>r_leaderTitle(p=1)->[casteAdjective] [tauNoun]</li>
+      <li>r_leaderTitle(p=1)->[tauNoun]</li>
+
+      <!-- Adjectives -->
+      <li>casteAdjective->Fire</li>
+      <li>casteAdjective->Earth</li>
+      <li>casteAdjective->Air</li>
+      <li>casteAdjective->Water</li>
+      <li>techAdjective->Tech</li>
+      <li>techAdjective->Advanced</li>
+
+      <!-- Titles and Nouns -->
+      <li>tauTitle->Commander</li>
+      <li>tauTitle->Ethereal</li>
+      <li>tauTitle->Shas'O</li>
+      <li>tauTitle->Por'O</li>
+      <li>tauNoun->Leader</li>
+      <li>tauNoun->Master</li>
+      <li>tauNoun->Chief</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+<RulePackDef>
+  <defName>OG_NamerIdeo_TauEmpire</defName>
+  <include>
+    <li MayRequire="Ludeon.RimWorld.Ideology">NamerIdeoGlobal</li>
+  </include>
+  <rulePack>
+    <rulesStrings>
+      <!-- Ideo Name Patterns -->
+      <li>r_ideoName(p=6)->[greaterGoodAdjective] [creed]</li>
+      <li>r_ideoName(p=3)->[casteAdjective] [creed]</li>
+      <li>r_ideoName(p=1)->[greaterGoodAdjective] [tauNoun]</li>
+      <li>r_ideoName(p=1)->[tauNoun]</li>
+
+      <!-- Creed Definitions -->
+      <li>creed->Faith</li>
+      <li>creed->Doctrine</li>
+      <li>creed->Commandment</li>
+      <li>creed->Code</li>
+      <li>creed->Discipline</li>
+      <li>creed->Cult</li>
+      <li>creed->Worship</li>
+
+      <!-- Adjectives -->
+      <li>greaterGoodAdjective->Harmonious</li>
+      <li>greaterGoodAdjective->Unified</li>
+      <li>greaterGoodAdjective->Enlightened</li>
+      <li>casteAdjective->Fire</li>
+      <li>casteAdjective->Earth</li>
+      <li>casteAdjective->Air</li>
+      <li>casteAdjective->Water</li>
+
+      <!-- Nouns -->
+      <li>tauNoun->Caste</li>
+      <li>tauNoun->Order</li>
+      <li>tauNoun->Collective</li>
+    </rulesStrings>
+  </rulePack>
+</RulePackDef>
+
+</Defs>

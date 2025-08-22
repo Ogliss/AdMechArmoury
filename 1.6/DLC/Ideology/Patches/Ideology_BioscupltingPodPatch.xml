@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Adds several hediffDefs to the list of those treated by the Biosculpter Pod's Healing Cycle -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BiosculpterPod"]/comps/li[key="healing" or key="medic"]/conditionsToPossiblyCure</xpath>
+		<value>
+          <li>OG_Hediff_RadiationPoisioning</li>
+          <li>hediff_Pacifier</li>
+          <li>OG_unConsciousness</li>
+          <li>Toxins</li>
+		</value>
+	</Operation>
+</Patch>

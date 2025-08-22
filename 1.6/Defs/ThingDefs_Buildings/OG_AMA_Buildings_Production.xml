@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Name="OG_BenchBase" ParentName="BenchBase" Abstract="True">
+		
+	</ThingDef>
+	
+	<ThingDef Name="OG_TableMachining_Base" ParentName="OG_BenchBase" Abstract="True">
+		<thingClass>Building_WorkTable</thingClass>
+		<graphicData>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(3.5,1.5)</drawSize>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+		</graphicData>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.20</staticSunShadowHeight>
+		<altitudeLayer>Building</altitudeLayer>
+		<fillPercent>0.5</fillPercent>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<WorkToBuild>3000</WorkToBuild>
+			<MaxHitPoints>180</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+			<Cleanliness>-2</Cleanliness>
+			<Mass>40.0</Mass>
+		</statBases>
+		<size>(3,1)</size>
+		<designationCategory>Production</designationCategory>
+		<passability>PassThroughOnly</passability>
+		<pathCost>70</pathCost>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<surfaceType>Item</surfaceType>
+		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+		<recipes>
+			<li>ButcherCorpseMechanoid</li>
+		</recipes>
+		<inspectorTabs>
+			<li>ITab_Bills</li>
+		</inspectorTabs>
+		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+		</building>
+		<constructEffect>ConstructMetal</constructEffect>
+		<designationHotKey>Misc7</designationHotKey>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<shortCircuitInRain>true</shortCircuitInRain>
+				<basePowerConsumption>350</basePowerConsumption>
+			</li>
+			<li Class="CompProperties_Flickable"/>
+			<li Class="CompProperties_Glower">
+				<glowRadius>5</glowRadius>
+				<glowColor>(73,123,138,0)</glowColor>
+			</li>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>ToolCabinet</li>
+					<li>ToolCabinetShelf</li>
+				</linkableFacilities>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_TableMachining_Base">
+		<defName>OGI_TableMachining</defName>
+		<label>Imperial machining table</label>
+		<description>An imperial work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<thingClass>Building_WorkTable</thingClass>
+		<graphicData>
+			<texPath>Things/Building/Imperial/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites>
+			<li>OG_Imperial_Tech_Base_T0</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_TableMachining_Base">
+		<defName>OGC_TableMachining</defName>
+		<label>warp tainted machining table</label>
+		<description>An tainted imperial work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Chaos/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites>
+			<li>OG_Chaos_Tech_Base_T1</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<ThingDef Name="OG_TableMachining_Base_Xeno" ParentName="OG_TableMachining_Base" Abstract="True">
+		<comps>
+			<li Class="CompProperties_Facility">
+				<!--statOffsets>
+					<ResearchSpeedFactor>0.1</ResearchSpeedFactor>
+				</statOffsets-->
+				<maxSimultaneous>4</maxSimultaneous>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_TableMachining_Base_Xeno">
+		<defName>OGE_TableMachining</defName>
+		<label>Eldar crafting supplies</label>
+		<description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Eldar/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<designationCategory Inherit="False"> </designationCategory>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites Inherit="False">
+			<!--li>OG_Eldar_Tech_Base_T1</li-->
+		</researchPrerequisites>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_TableMachining_Base_Xeno">
+		<defName>OGDE_TableMachining</defName>
+		<label>Dark Eldar crafting supplies</label>
+		<description>An eldar work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/DarkEldar/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<designationCategory Inherit="False"> </designationCategory>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites Inherit="False">
+			<!--li>OG_DarkEldar_Tech_Base_T1</li-->
+		</researchPrerequisites>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
+	
+	<ThingDef ParentName="OG_TableMachining_Base_Xeno">
+		<defName>OGO_TableMachining</defName>
+		<label>Ork crafting supplies</label>
+		<description>An orkish work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Ork/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<designationCategory Inherit="False"> </designationCategory>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites Inherit="False">
+			<!--li>OG_Ork_Tech_Base_T1</li-->
+		</researchPrerequisites>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_TableMachining_Base_Xeno">
+		<defName>OGT_TableMachining</defName>
+		<label>Tau crafting supplies</label>
+		<description>A tau work station for assembling or breaking down machinery like components, armour, guns and ammunition, or dead mechanoids.</description>
+		<graphicData>
+			<texPath>Things/Building/Tau/Production/TableMachining</texPath>
+		</graphicData>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<designationCategory Inherit="False"> </designationCategory>
+		<comps>
+	
+		</comps>
+		<researchPrerequisites Inherit="False">
+	
+		</researchPrerequisites>
+		<thingSetMakerTags>
+			<li>RewardSpecial</li>
+		</thingSetMakerTags>
+	</ThingDef>
+
+</Defs>

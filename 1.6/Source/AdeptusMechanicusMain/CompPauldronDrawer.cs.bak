@@ -1,0 +1,444 @@
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+using Verse;
+
+namespace AdeptusMechanicus
+{
+    public enum ShoulderPadType
+    {
+        Both,
+        Right,
+        Left
+    }
+
+    public class ShoulderPadEntry
+    {
+        public ShoulderPadType shoulderPadType;
+        public ShaderTypeDef shaderType;
+        public string padTexPath;
+        public int commonality;
+        public bool UseSecondaryColor;
+        public bool UseFactionTextures;
+        public float NorthOffset = 0f;
+        public float SouthOffset = 0f;
+        public float EastOffset = 0f;
+        public float WestOffset = 0f;
+    }
+
+    public class CompProperties_PauldronDrawer : CompProperties
+    {
+        public List<ShoulderPadEntry> PauldronEntries;
+        public float PauldronEntryChance = 0.5f;
+        public int order = 0;
+        public float NorthOffset = 0f;
+        public float SouthOffset = 0f;
+        public float EastOffset = 0f;
+        public float WestOffset = 0f;
+        public CompProperties_PauldronDrawer()
+        {
+            this.compClass = typeof(CompPauldronDrawer);
+        }
+
+    }
+    public class CompPauldronDrawer : ThingComp
+    {
+        private const float MinClippingDistance = 0.002f;   // Minimum space between layers to avoid z-fighting
+        const float _HeadOffset = 0.02734375f + MinClippingDistance;
+        const float _HairOffset = 035f + MinClippingDistance;       // Number must be same as PawnRenderer.YOffset_Head
+        const float _BodyOffset = 0.0234375f + MinClippingDistance;   // Number must be same as PawnRenderer.YOffset_Shell
+        const float _OffsetFactor = 0.001f;
+        const float _SubOffsetFactor = 0.0001f;
+        static readonly Dictionary<string, bool> _OnHeadCache = new Dictionary<string, bool>();
+        public string graphicPath;
+        public Shader shader = ShaderDatabase.Cutout;
+        public ShoulderPadType padType;
+        private bool useSecondaryColor;
+        private bool useFactionTextures;
+        private bool pauldronInitialized = false;
+        public CompProperties_PauldronDrawer pprops
+        {
+            get
+            {
+                return this.props as CompProperties_PauldronDrawer;
+            }
+        }
+        public Apparel apparel
+        {
+            get
+            {
+                return this.parent as Apparel;
+            }
+        }
+
+        public Pawn pawn
+        {
+            get
+            {
+                return this.apparel.Wearer;
+            }
+        }
+
+        public Color MainColor = Color.white;
+        public Color mainColor
+        {
+            get
+            {
+                if (MainColor == Color.white)
+                {
+                    MainColor = this.parent.DrawColor;
+                //    Log.Message(string.Format("CompPauldronDrawer return {1}'s DrawColor {0}", MainColor, this.parent.def.label));
+                    return MainColor;
+                }
+                if (MainColor != Color.white)
+                {
+                    return MainColor;
+                }
+                if (this.useSecondaryColor)
+                {
+                    return this.parent.DrawColorTwo;
+                }
+                return this.parent.DrawColor;
+            }
+        }
+
+        public Color SecondaryColor = Color.white;
+        public Color secondaryColor
+        {
+            get
+            {
+                if (SecondaryColor == Color.white)
+                {
+                    SecondaryColor = this.parent.DrawColorTwo;
+                //    Log.Message(string.Format("CompPauldronDrawer return {1}'s DrawColorTwo {0}", SecondaryColor, this.parent.def.label));
+                    return SecondaryColor;
+                }
+                if (SecondaryColor != Color.white)
+                {
+                    return SecondaryColor;
+                }
+                if (this.useSecondaryColor)
+                {
+                    return this.parent.DrawColorTwo;
+                }
+                return mainColor;
+            }
+        }
+
+        public float NorthOffset
+        {
+            get
+            {
+                return this.pprops.NorthOffset;
+            }
+        }
+        public float SouthOffset
+        {
+            get
+            {
+                return this.pprops.SouthOffset;
+            }
+        }
+        public float EastOffset
+        {
+            get
+            {
+                return this.pprops.EastOffset;
+            }
+        }
+        public float WestOffset
+        {
+            get
+            {
+                return this.pprops.WestOffset;
+            }
+        }
+        public override void PostDraw()
+        {
+            base.PostDraw();
+
+
+
+            bool flag = ((Apparel)base.parent).Wearer == null || !((Apparel)base.parent).Wearer.Spawned || ((Apparel)base.parent).Wearer.GetPosture() != PawnPosture.Standing;
+            if (!flag)
+            {
+                bool selected = Find.Selector.SingleSelectedThing == ((Apparel)base.parent).Wearer;
+                string direction;
+                direction = "Other";
+                bool flag2 = false;
+                if (!flag2)
+                {
+                    
+                    float angle = 0f;
+                    float offset = 0f;
+                    Vector3 drawPos = ((Apparel)base.parent).Wearer.Drawer.DrawPos;
+                    drawPos.y = Altitudes.AltitudeFor((AltitudeLayer)17);
+                    Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
+                    Rot4 rotation = ((Apparel)base.parent).Wearer.Rotation;
+                    drawPos.y += GetAltitudeOffset(rotation);
+                    //Log.Message(string.Format("PauldronGraphic drawPos.y: {1}", PauldronGraphic.path, drawPos.y));
+                    //Material mat = apparelGraphic.graphic.MatAt(rotation);
+#if DEBUG
+                    if (selected)
+                    {
+                    //    Log.Message(string.Format("{1} CompPauldronDrawer, {2} offset: {3}, drawPos.y:{4}", ((Apparel)base.parent).Wearer.Label, this.parent.def.label, direction, offset, drawPos.y));
+                    }
+#endif
+                    Material matSingle = PauldronGraphic.GetColoredVersion(ShaderDatabase.Cutout, this.mainColor, this.secondaryColor).MatAt(rotation);
+                //    Log.Message(string.Format("PauldronGraphic this.mainColor:{0}, this.secondaryColor: {1}", this.mainColor, this.secondaryColor));
+                    Matrix4x4 matrix = default(Matrix4x4);
+                    matrix.SetTRS(drawPos, Quaternion.AngleAxis(angle, Vector3.up), s);
+                    Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, matSingle, 0);
+                }
+            }
+
+        }
+
+        protected float GetAltitudeOffset(Rot4 rotation)
+        {
+            VisibleAccessoryDefExtension myDef = parent.def.GetModExtension<VisibleAccessoryDefExtension>() ?? new VisibleAccessoryDefExtension();
+            myDef.Validate();
+            float offset = _OffsetFactor * myDef.order;
+            offset = offset + (_SubOffsetFactor * myDef.sublayer);
+
+            bool flag = Find.Selector.SingleSelectedThing == pawn;
+            string direction;
+            if (!onHead)
+            {
+                if (rotation == Rot4.North)
+                {
+                    offset += _BodyOffset;
+                    if (myDef.northtop)
+                    {
+                        offset += _HairOffset;
+                        offset += NorthOffset;
+                    }
+                    else
+                    {
+                        offset += myDef.NorthOffset;
+                        offset += NorthOffset;
+                    }
+                    direction = "North";
+                }
+                else if (rotation == Rot4.West)
+                {
+                    offset += _BodyOffset;
+                    offset += myDef.WestOffset;
+                    offset += WestOffset;
+                    direction = "West";
+                }
+                else if (rotation == Rot4.East)
+                {
+                    offset += _BodyOffset;
+                    offset += myDef.EastOffset;
+                    offset += EastOffset;
+                    direction = "East";
+                }
+                else if (rotation == Rot4.South)
+                {
+                    offset += _BodyOffset;
+                    offset += myDef.SouthOffset;
+                    offset += SouthOffset;
+                    direction = "South";
+                }
+                else
+                {
+                    offset += _BodyOffset;
+                    direction = "Unknown";
+                }
+            }
+            else
+            {
+                if (rotation == Rot4.North)
+                {
+                    offset += _BodyOffset;
+                    direction = "North";
+                }
+                else
+                    offset += _HeadOffset;
+                direction = "Other";
+            }
+            if (flag)
+            {
+            //    Log.Message(string.Format("{0}'s {1}, {2} offset: {3}, DrawPos.y: {4}", this.pawn.Label, parent.def.label, direction, offset, pawn.Drawer.DrawPos.y));
+            }
+
+            return offset;
+        }
+
+        private Graphic _pauldronGraphic;
+        public Graphic PauldronGraphic
+        {
+            get
+            {
+                if (_pauldronGraphic == null)
+                {
+                    string path = graphicPath + "_" + pawn.story.bodyType.ToString();
+                    this._pauldronGraphic = GraphicDatabase.Get<Graphic_Multi>(path, shader, Vector2.one, this.mainColor, this.secondaryColor);
+                }
+                return _pauldronGraphic;
+            }
+        }
+
+
+        public static bool ShouldDrawPauldron(Pawn pawn, Apparel curr, Rot4 bodyFacing, out Material pauldronMaterial)
+        {
+            pauldronMaterial = null;
+            try
+            {
+                if (pawn.needs != null && pawn.story != null)
+                {
+                    CompPauldronDrawer drawer;
+                    if ((drawer = curr.TryGetComp<CompPauldronDrawer>()) != null)
+                    {
+                        if (!drawer.pauldronInitialized) drawer.PostSpawnSetup(false);
+                        if (drawer.PauldronGraphic != null)
+                        {
+                            if (drawer.CheckPauldronRotation(pawn, drawer.padType))
+                            {
+                                pauldronMaterial = drawer.PauldronGraphic.MatAt(bodyFacing);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool CheckPauldronRotation(Pawn pawn, ShoulderPadType shoulderPadType)
+        {
+            if (shoulderPadType == ShoulderPadType.Left && pawn.Rotation == Rot4.East)
+            {
+                return false;
+            }
+            if (shoulderPadType == ShoulderPadType.Right && pawn.Rotation == Rot4.West)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            ShoulderPadEntry entry = this.pprops.PauldronEntries.RandomElementByWeight((ShoulderPadEntry x) => x.commonality);
+            this.graphicPath = entry.padTexPath;
+
+            if (entry.UseFactionTextures)
+            {
+                this.graphicPath += ("_" + this.apparel.Wearer?.Faction.Name);
+            }
+            this.shader = ShaderDatabase.LoadShader(entry.shaderType.shaderPath);
+            this.useSecondaryColor = entry.UseSecondaryColor;
+            this.padType = entry.shoulderPadType;
+            pauldronInitialized = true;
+
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<string>(ref this.graphicPath, "graphicPath", null, false);
+            //Scribe_Values.Look<Shader>(ref this.shader, "shader", ShaderDatabase.Cutout, false);
+            Scribe_Values.Look<ShoulderPadType>(ref this.padType, "padType", ShoulderPadType.Both, false);
+            Scribe_Values.Look<bool>(ref this.useSecondaryColor, "useSecondaryColor", false, false);
+
+        }
+
+
+        // Copied from PawnRenderer
+        private Rot4 LayingFacing()
+        {
+            if (pawn == null)
+            {
+                return Rot4.Random;
+            }
+            if (pawn.GetPosture() == PawnPosture.LayingOnGroundFaceUp)
+            {
+                return Rot4.South;
+            }
+            if (pawn.RaceProps.Humanlike)
+            {
+                switch (pawn.thingIDNumber % 4)
+                {
+                    case 0:
+                        return Rot4.South;
+                    case 1:
+                        return Rot4.South;
+                    case 2:
+                        return Rot4.East;
+                    case 3:
+                        return Rot4.West;
+                }
+            }
+            else
+            {
+                switch (pawn.thingIDNumber % 4)
+                {
+                    case 0:
+                        return Rot4.South;
+                    case 1:
+                        return Rot4.East;
+                    case 2:
+                        return Rot4.West;
+                    case 3:
+                        return Rot4.West;
+                }
+            }
+            return Rot4.Random;
+        }
+
+        //Utility, return if the apparel is worn on the head/body.        
+        protected bool onHead
+        {
+            get
+            {
+                if (!_OnHeadCache.ContainsKey(parent.def.defName))
+                {
+                    List<BodyPartRecord> parts = pawn.RaceProps.body.AllParts.Where(parent.def.apparel.CoversBodyPart).ToList();
+                    bool gotHit = false;
+                    foreach (BodyPartRecord part in parts)
+                    {
+                        BodyPartRecord p = part;
+                        while (p != null)
+                        {
+                            if (p.groups.Contains(BodyPartGroupDefOf.Torso))
+                            {
+                                _OnHeadCache.Add(parent.def.defName, false);
+                                gotHit = true;
+                                break;
+                            }
+                            if (p.groups.Contains(BodyPartGroupDefOf.FullHead))
+                            {
+                                _OnHeadCache.Add(parent.def.defName, true);
+                                gotHit = true;
+                                break;
+                            }
+                            p = p.parent;
+                        }
+                        if (gotHit)
+                            break;
+                    }
+                    if (!_OnHeadCache.ContainsKey(parent.def.defName))
+                    {
+                        Log.ErrorOnce(string.Concat("AdeptusMechanicus :: ", this.GetType(), " was unable to determine if body or head on item '", parent.Label,
+                                                    "', might the Wearer be non-human?  Assuming apparel is on body."), parent.def.debugRandomId);
+                        _OnHeadCache.Add(parent.def.defName, false);
+                    }
+                }
+                bool ret;
+                _OnHeadCache.TryGetValue(parent.def.defName, out ret);  // is there a better way? Dictionary.Item isn't there.  Didn't bother with try/catch as by now it should have the key.
+                return ret;
+            }
+        }
+    }
+}

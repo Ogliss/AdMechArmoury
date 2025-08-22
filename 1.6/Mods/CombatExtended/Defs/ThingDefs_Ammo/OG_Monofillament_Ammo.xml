@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Monofilament ========================== -->
+	<!-- ==================== AmmoCategory ========================== -->
+	<CombatExtended.AmmoCategoryDef>
+		<defName>OGMonofilamentAC</defName>
+		<label>Monofilament Spool</label>
+		<description>Once the weapon is activated, this substance will be forced by an electromagnetic propulsive field through an incredibly fine sift, and will solidify into a mass of threads, each one molecule thick, called mono-filaments which are razor sharp. This mass of threads, called a "spinner cloud," is then catapulted at the enemy with tremendous force. Being only one molecule in width, the filaments will have few difficulties in penetrating any armour through minute weaknesses in its molecular structure, and will wreak havoc on the body within, chopping it into a gory mess.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== ThingCategory ========================== -->
+	<ThingCategoryDef>
+		<defName>AmmoOGMonofilament</defName>
+		<label>Monofilament spool</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGEMonofilament</defName>
+		<label>Monofilament spool</label>
+		<ammoTypes>
+			<OG_Ammo_Monofilament>OGE_Bullet_Deathspinner</OG_Ammo_Monofilament>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGDEMonofilament</defName>
+		<label>Monofilament spool</label>
+		<ammoTypes>
+			<OG_Ammo_Monofilament>OGDE_Bullet_Shredder</OG_Ammo_Monofilament>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGMonofilamentBase" ParentName="AmmoBase" Abstract="True">
+		<description>Monofilament spool</description>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGMonofilament</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGMonofilamentBase">
+		<defName>OG_Ammo_Monofilament</defName>
+		<label>Monofilament spool cartridge</label>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Foam</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>OGMonofilamentAC</ammoClass>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase" Name="OG_MakeAmmo_Monofilament">
+		<defName>MakeOG_Ammo_Monofilament</defName>
+		<label>make Monofilament spool cartridge x100</label>
+		<description>Craft 100 Monofilament spool cartridges.</description>
+		<jobString>Making Monofilament spool cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+					<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Monofilament>100</OG_Ammo_Monofilament>
+		</products>
+		<!-- <researchPrerequisite>WRAutoCannon</researchPrerequisite> -->
+	</RecipeDef>
+	
+	<RecipeDef ParentName="OG_MakeAmmo_Monofilament">
+		<defName>MakeOG_Ammo_E_Monofilament</defName>
+	</RecipeDef>
+
+	<RecipeDef ParentName="OG_MakeAmmo_Monofilament">
+		<defName>MakeOG_Ammo_DE_Monofilament</defName>
+	</RecipeDef>
+
+</Defs>

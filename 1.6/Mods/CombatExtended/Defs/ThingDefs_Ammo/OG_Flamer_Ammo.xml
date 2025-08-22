@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoOGFlamer</defName>
+		<label>Flamethrower</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+		
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamerHand</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGI_Bullet_FlamerHand</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamer</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGI_Bullet_Flamer</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamerHeavy</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGI_Bullet_FlamerHeavy</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGBurna</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGO_Bullet_Burna</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGScorcha</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGO_Bullet_Scorcha</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGFlamerCognis</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGAM_Bullet_FlamerCognis</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGKombiShootaBurna</defName>
+		<label>Shoota/Burna</label>
+		<ammoTypes>
+			<OG_Ammo_Auto>OGO_Bullet_Shoota</OG_Ammo_Auto>
+			<OG_Ammo_Flamer>OGO_Bullet_Burna</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_OGPhosphor</defName>
+		<label>promethium gel</label>
+		<ammoTypes>
+			<OG_Ammo_Flamer>OGAM_Bullet_PhosphorSml</OG_Ammo_Flamer>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+		
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="OGFlamerBase" ParentName="AmmoBase" Abstract="True">
+		<description>Promethium gel</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.05</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoOGFlamer</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="OGFlamerBase">
+		<defName>OG_Ammo_Flamer</defName>
+		<label>promethium gel canister</label>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.95</MarketValue>
+		</statBases>
+		<ammoClass>ThermobaricFuel</ammoClass>
+	</ThingDef>
+		
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeOG_Ammo_Flamer</defName>
+		<label>promethium gel canister x150</label>
+		<description>Craft 150 promethium gel canisters.</description>
+		<jobString>Making promethium gel canisters.</jobString>
+		<workAmount>15000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<OG_Ammo_Flamer>150</OG_Ammo_Flamer>
+		</products>
+		<researchPrerequisite>OG_Common_Tech_Weapons_Flame</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

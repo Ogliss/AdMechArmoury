@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ========================= Sororitas - Armour ========================== -->
+	<!-- ========================= Sororitas - Power Armour ========================== -->
+	<!-- OGAS_Apparel_PowerArmour -->
+	<ThingDef Name="OG_Sororitas_Apparel_Armor_PowerArmour" ParentName="OG_Imperial_Apparel_Armor_PowerArmour_Base">
+		<defName>OGAS_Apparel_PowerArmour</defName>
+		<label>Sororitas Power Armour</label>
+		<description>Power Armour is an advanced form of powered combat armour, worn primarily by the Space Marines and the Chaos Space Marines, though suits have been created to be worn by mere mortals. It is a completely enclosed suit of combat armour composed of shaped Adamantium and Plasteel plates, encased in a Ceramite ablative layer. Each suit possesses a full suite of life-support functions for operation in hostile environments, an automated medicae system to provide some level of first aid to a wounded wearer and a highly advanced and fully integrated tactical targeting and threat analysis system known as Auto-senses. The suit would be heavy and cumbersome to wear but for the electrically motivated fibre bundles within the armour that replicates the wearer's movement and enhances his strength beyond its already considerable superhuman baseline (for Space Marines). Whilst Power Armour is most commonly associated with the Space Marines of the Adeptus Sororitas, the Sisters of Battle and many Inquisitors also use powered armour of one sort or another. Typically, however, these armours may not contain the same strength-enhancing properties or life-support functions of Space Marine Power Armour, nor do they always provide the same level of protection.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AS/PowerArmour/_Icon</texPath>
+			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->
+			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
+		</graphicData>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/PowerArmour/Base</wornGraphicPath>
+			<tags>
+				<li>SororitasPowerArmour</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<!--li>Soldier</li-->
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OG_Apparel_Sororitas</li>
+			<li>OGASArmour</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGASArmour</li>
+		</tradeTags>
+		<comps>
+			<li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+				<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<drawAll>true</drawAll>
+				<labelKey>OG_Customize</labelKey>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AS/PowerArmour/Pauldrons/Base</padTexPath>
+						<NorthOffset>0,0.5,0</NorthOffset>
+						<SouthOffset>0,0.0100,0</SouthOffset>
+						<EastOffset>0,0.035,0</EastOffset>
+						<WestOffset>0,0.035,0</WestOffset>
+					</li>
+					<li>
+						<shoulderPadType>SouthOnly</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/Imperial/AS/PowerArmour/Gorget/Base</padTexPath>
+						<SouthOffset>0,0.0350,0</SouthOffset>
+					</li>
+				</PauldronEntries>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<!--RaceDefs>
+				<li>OG_Human_Sororitas</li>
+			</RaceDefs>
+			<HediffDefs>
+				<li>OG_Hediff_SororitasOrgans_BlackCarapace</li>
+			</HediffDefs-->
+			<BodytypeDefs>
+				<li>Female</li>
+			</BodytypeDefs>
+			<gender>Female</gender>
+			<forcedBodytype>true</forcedBodytype>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<!-- ========================= Sororitas - Power Armour Helmet ========================== -->
+	<!-- OGAS_Apparel_PowerArmourHelmet -->
+	<ThingDef Name="OG_Sororitas_Apparel_Armor_Headgear_PowerArmourHelmet" ParentName="OG_Imperial_Apparel_Armor_Headgear_PowerArmourHelmet_Base">
+		<defName>OGAS_Apparel_PowerArmourHelmet</defName>
+		<label>Sororitas power armour helmet</label>
+		<description>A power armor helmet, with a built-in status computer and layered plasteel-weave plates.\n\nArmor like this is often used by the Adeptus Sororitas, the sisters of battle.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AS/PowerArmourHelmet/_Icon</texPath>
+			<color>74,76,88</color> <!-- ADEPTUS BATTLEGREY -->
+			<colorTwo>238,213,172</colorTwo> <!-- BLEACHED BONE -->
+		</graphicData>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T2</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/PowerArmourHelmet/Base</wornGraphicPath>
+			<tags>
+				<li>SororitasPowerArmour</li>
+				<li>SororitasPowerArmourHelmet</li>
+				<li>EVA</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>Soldier</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OG_Apparel_Sororitas</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGASArmour</li>
+			<li>OGASHeadgear</li>
+		</tradeTags>
+		<thingSetMakerTags>
+			
+		</thingSetMakerTags>
+	</ThingDef>
+	
+	<!-- Add 0.55 inv save, increased in CQC to 0.92 -->
+	<ThingDef ParentName="OG_Imperial_Apparel_NoStuffColour">
+		<defName>OGAS_Apparel_Armor_Repentia</defName>
+		<label>repentia garb</label>
+		<techLevel>Spacer</techLevel>
+		<description>The battle gard of a Sister Repentia, one of the fanatical, self-mutilating Human female warriors who serve within the Orders Militant of the Adepta Sororitas.</description>
+		<graphicData>
+			<texPath>Things/Item/Apparel/Imperial/AS/RepentiaGarb/_Icon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<statBases>
+			<Mass>4</Mass>
+			<WorkToMake>2800</WorkToMake>
+			<MaxHitPoints>800</MaxHitPoints>
+			<MarketValue>1000</MarketValue>
+			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+			<ArmorRating_Heat>0.55</ArmorRating_Heat>
+			<OG_ArmorRating_InvunerableSave>0.55</OG_ArmorRating_InvunerableSave>
+			<Insulation_Cold>10</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+			<MoveSpeed>0.35</MoveSpeed>
+			<CarryingCapacity>15</CarryingCapacity>
+			<PainShockThreshold>0.25</PainShockThreshold>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<PsychicSensitivity>-0.25</PsychicSensitivity>
+			<ToxicResistance>-1</ToxicResistance>
+		</equippedStatOffsets>
+		<costList>
+			<Steel>120</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>15</Crafting>
+			</skillRequirements>
+			<researchPrerequisites>
+				<li>OG_Sororitas_Tech_Base_T1</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<apparel>
+			<useWornGraphicMask>true</useWornGraphicMask>
+			<shellRenderedBehindHead>true</shellRenderedBehindHead>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li MayRequire="CETeam.CombatExtended">Hands</li>
+				<li MayRequire="CETeam.CombatExtended">Feet</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/RepentiaGarb/Base</wornGraphicPath>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
+			<tags>
+				<li>DarkEldarMilitary</li>
+				<li>DEHaemonculusArmour</li>
+			</tags>
+			<defaultOutfitTags>
+				<li>SisterRepentia</li>
+			</defaultOutfitTags>
+		</apparel>
+		<thingCategories>
+			<li>OG_Apparel_Sororitas</li>
+		</thingCategories>
+		<tradeTags>
+			<li>OGASArmour</li>
+		</tradeTags>
+		<!--
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<max>(1,1,0.82)</max>
+				<min>(0.906,0.937,0.776)</min>
+			</li>
+			</options>
+		</colorGenerator>
+		-->
+		<comps>
+			<!--li Class="AdeptusMechanicus.CompProperties_PauldronDrawer">
+			<compClass>AdeptusMechanicus.CompPauldronDrawer</compClass>
+				<PauldronEntries>
+					<li>
+						<shoulderPadType>Both</shoulderPadType>
+						<shaderType>CutoutComplex</shaderType>
+						<padTexPath>Things/Item/Apparel/DarkEldar/WychArmour/Pauldron/Pauldron</padTexPath>
+						<commonality>10</commonality>
+						<northtop>PostHead</northtop>
+						<southtop>Shell</southtop>
+						<easttop>PostHead</easttop>
+						<westtop>PostHead</westtop>
+						<SouthOffset>0,0.00105,0.0</SouthOffset>
+					</li>
+				</PauldronEntries>
+			</li-->
+		</comps>
+		<modExtensions>
+			<li Class="AdeptusMechanicus.ApparelRestrictionDefExtension">
+			<BodytypeDefs>
+				<li>Female</li>
+			</BodytypeDefs>
+			<gender>Female</gender>
+			<forcedBodytype>true</forcedBodytype>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="OG_Imperial_Apparel_Headgear_NoStuffColour">
+		<defName>OGAS_Apparel_Armor_RepentiaHood</defName>
+		<label>repentia hood</label>
+		<description>A draped hood which covers the head and ears.</description>
+		<graphicData>
+		<texPath>Things/Item/Apparel/Imperial/AS/RepentiaHood/_Icon_Base</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>CutoutComplex</shaderType>
+		<color>175,26,26</color> <!-- Repentia Red -->
+		</graphicData>
+		<uiIconScale>1.15</uiIconScale>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToMake>6000</WorkToMake>
+			<Mass>0.1</Mass>
+			<EquipDelay>0.8</EquipDelay>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.10</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<SocialImpact>0.2</SocialImpact>
+		</equippedStatOffsets>
+		<costStuffCount>50</costStuffCount>
+		<stuffCategories>
+			<li>Fabric</li>
+			<li>Leathery</li>
+		</stuffCategories>
+		<thingCategories>
+			<li>OG_Apparel_Sororitas</li>
+		</thingCategories>
+		<apparel>
+			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+			<wornGraphicPath>Things/Item/Apparel/Imperial/AS/RepentiaHood/Base</wornGraphicPath>
+			<wornGraphicPaths>
+				<li>Things/Item/Apparel/Imperial/AS/RepentiaHood/Base</li>
+				<li>Things/Item/Apparel/Imperial/AS/RepentiaHood/Base1</li>
+				<li>Things/Item/Apparel/Imperial/AS/RepentiaHood/Base2</li>
+			</wornGraphicPaths>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>OGASArmour</li>
+			</tags>
+		</apparel>
+		<!--colorGenerator Class="ColorGenerator_StandardApparel" /-->
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+			<li>
+				<weight>10</weight>
+				<max>(225,26,26)</max>
+				<min>(125,26,26)</min>
+			</li>
+			</options>
+		</colorGenerator>
+		<tradeTags>
+			<li>BasicClothing</li>
+		</tradeTags>
+		<recipeMaker>
+			<displayPriority>125</displayPriority>
+		</recipeMaker>
+	</ThingDef>
+
+</Defs>

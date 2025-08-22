@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Defs\Bodies\Bodies_Humanlike.xml -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindModID">
+				<mods>
+					<li>CptOhu.CorruptionCore</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationAdd">
+							<!--success>Always</success-->
+							<xpath>Defs/ThingDef[defName="ChaosLeathers"]/recipeMaker/recipeUsers</xpath>
+							<value>
+								<li>OGC_TableMachining</li>
+							</value>
+						</li>
+						<li Class="PatchOperationAdd">
+							<!--success>Always</success-->
+							<xpath>Defs/ThingDef[defName="Apparel_Chaos_Robe"]/recipeMaker</xpath>
+							<value>
+								  <recipeUsers>
+									<li>OGC_TableMachining</li>
+								  </recipeUsers>
+							</value>
+						</li>
+						<li Class="PatchOperationAdd">
+							<!--success>Always</success-->
+							<xpath>Defs/ThingDef[defName="Apparel_Chaos_HighHat"]</xpath>
+							<value>
+								<recipeMaker>
+								  <recipeUsers>
+									<li>OGC_TableMachining</li>
+								  </recipeUsers>
+								</recipeMaker>
+							</value>
+						</li>
+						<li Class="PatchOperationAdd">
+							<!--success>Always</success-->
+							<xpath>Defs/ThingDef[defName="Apparel_LeatherArmor"]/recipeMaker</xpath>
+							<value>
+								  <recipeUsers>
+									<li>OGC_TableMachining</li>
+								  </recipeUsers>
+							</value>
+						</li>
+						<li Class="PatchOperationAdd">
+							<!--success>Always</success-->
+							<xpath>Defs/ThingDef[defName="Heretic_Helmet"]</xpath>
+							<value>
+								<recipeMaker>
+								  <recipeUsers>
+									<li>OGC_TableMachining</li>
+								  </recipeUsers>
+								</recipeMaker>
+								<costStuffCount>125</costStuffCount>
+								<stuffCategories>
+								  <li>Leathery</li>
+								</stuffCategories>
+								<costList>
+								  <Steel>50</Steel>
+								</costList>
+							</value>
+						</li>
+					</operations>
+				</match>
+			</li>
+		</operations>	
+	</Operation>
+	 
+</Patch>

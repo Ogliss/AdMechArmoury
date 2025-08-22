@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>RunAndGun</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <success>Always</success>
+        <operations>
+			<!-- Processed camellia lumber. Mostly useful for building long-lasting, simple structures and furniture.-->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[@Name="OG_Imperial_Gun_Heavy" or @Name="OG_Mechanicus_Gun_Heavy" or @Name="OG_Chaos_Gun_Heavy" or @Name="OG_Ork_Gun_Heavy" or @Name="OG_Tau_Gun_Heavy" or @Name="OG_Eldar_Gun_Heavy" or @Name="OG_DarkEldar_Gun_Heavy" or @Name="OG_Necron_Gun_Heavy"]</xpath>
+				<value>
+					<li Class="RunAndGun.DefModExtension_SettingDefaults">
+							<weaponForbidden>true</weaponForbidden>
+					</li>
+				</value>
+			</li>
+        </operations>
+    </match>
+</Operation>
+</Patch>
