@@ -6,13 +6,14 @@ using AdeptusMechanicus.settings;
 using AdeptusMechanicus.Utility;
 using System.Drawing;
 using UnityEngine;
+using System;
 
 namespace AdeptusMechanicus.HarmonyInstance
 {
-   // [HarmonyPatch(typeof(PawnRenderTree), "ProcessApparel"), HarmonyPriority(Priority.Last)]
+     [HarmonyPatch(typeof(DynamicPawnRenderNodeSetup_Apparel), "ProcessApparel"), HarmonyPriority(Priority.Last)]
     public static class PawnRenderTree_ProcessApparel_DrawWornExtras_Patch
     {
-        public static void Postfix(PawnRenderTree __instance, Apparel ap, PawnRenderNode headApparelNode, PawnRenderNode bodyApparelNode)
+        public static void Postfix(ref IEnumerable<ValueTuple<PawnRenderNode, PawnRenderNode>> __result, Pawn pawn, PawnRenderTree tree, Apparel ap, PawnRenderNode headApparelNode, PawnRenderNode bodyApparelNode, Dictionary<PawnRenderNode, int> layerOffsets)
         {
             if (ap is ApparelComposite composite)
             {
@@ -28,16 +29,24 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 Pauldron.Initialize();
                             }
+                            if (AMAMod.Dev) Log.Message($"activeEntries: {Pauldron.activeEntries.Count}");
                             foreach (ShoulderPadEntry entry in Pauldron.activeEntries)
                             {
+                                if (AMAMod.Dev) Log.Message($"entry: {entry.Label}");
                                 //    entry.Drawer = Pauldron;
                                 if (entry.apparel == null)
                                 {
                                     entry.apparel = composite;
                                 }
+
+                                if (AMAMod.Dev) Log.Message($"entry apparel: {entry.apparel.Label}");
                                 if (entry.Drawer == null)
                                 {
                                     Log.Warning("Warning! Drawer null");
+                                }
+                                if (pawn == null)
+                                {
+                                    Log.Warning("Warning! Pawm null");
                                 }
                                 /*
                                 if (entry.ForceDynamicDraw)
@@ -45,10 +54,12 @@ namespace AdeptusMechanicus.HarmonyInstance
                                     continue;
                                 }
                                 */
+                                if (AMAMod.Dev) Log.Message($"__instance.pawn {pawn}");
                                 ApparelGraphicRecord apparelGraphicRecord;
-                                if (ApparelAddonGraphicRecordGetter.TryGetGraphicApparelAddon(entry, __instance.pawn, out apparelGraphicRecord))
+                                if (ApparelAddonGraphicRecordGetter.TryGetGraphicApparelAddon(entry, pawn, out apparelGraphicRecord))
                                 {
-                                    ProcessApparelAddons(__instance, ap, entry, headApparelNode, bodyApparelNode);
+                                    if (AMAMod.Dev) Log.Message($"TryGetGraphicApparelAddon: {entry.apparel.Label}");
+                                    ProcessApparelAddons(ref __result, tree, ap, entry, headApparelNode, bodyApparelNode, layerOffsets);
                                 }
                             }
                         }
@@ -71,7 +82,7 @@ namespace AdeptusMechanicus.HarmonyInstance
                             {
                                 bool onHead = ExtraDrawer.onHead || ExtraDrawer.ExtraPartEntry.OnHead || ExtraDrawer.Props.onHead;
 
-                                ProcessApparelExtras(__instance, ap, ExtraDrawer, headApparelNode, bodyApparelNode);
+                                ProcessApparelExtras(tree, ap, ExtraDrawer, headApparelNode, bodyApparelNode);
                             }
                         }
                     }
@@ -79,7 +90,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             }
         }
 
-        public static void ProcessApparelAddons(PawnRenderTree __instance, Apparel ap, ShoulderPadEntry entry, PawnRenderNode headApparelNode, PawnRenderNode bodyApparelNode)
+        public static void ProcessApparelAddons(ref IEnumerable<ValueTuple<PawnRenderNode, PawnRenderNode>> ProcessApparel, PawnRenderTree tree, Apparel ap, ShoulderPadEntry entry, PawnRenderNode headApparelNode, PawnRenderNode bodyApparelNode, Dictionary<PawnRenderNode, int> layerOffsets)
         {
             PawnRenderNodeProperties pawnRenderNodeProperties2 = null;
             PawnRenderNode pawnRenderNode2 = null;
@@ -87,7 +98,7 @@ namespace AdeptusMechanicus.HarmonyInstance
             ApparelLayerDef lastLayer = ap.def.apparel.LastLayer;
             bool flag = lastLayer == ApparelLayerDefOf.Overhead || lastLayer == ApparelLayerDefOf.EyeCover;
             PawnRenderNode pawnRenderNode3;
-            if (ap.def.apparel.parentTagDef != null && __instance.nodesByTag.TryGetValue(ap.def.apparel.parentTagDef, out pawnRenderNode3))
+            if (ap.def.apparel.parentTagDef != null && tree.nodesByTag.TryGetValue(ap.def.apparel.parentTagDef, out pawnRenderNode3))
             {
                 pawnRenderNode2 = pawnRenderNode3;
                 if (headApparelNode != null && pawnRenderNode2 == headApparelNode)
@@ -105,14 +116,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     pawnRenderNode2 = headApparelNode;
                 }
-                float num2;
-                float num = 0f; // __instance.layerOffsets.TryGetValue(pawnRenderNode2, out num2) ? num2 : 0f;
+                int valueOrDefault = layerOffsets.GetValueOrDefault(pawnRenderNode2, 0);
                 pawnRenderNodeProperties2 = new PawnRenderNodeProperties
                 {
                     debugLabel = entry.Label,
                     workerClass = typeof(PawnRenderNodeWorker_Apparel_HeadAddon),
-                    baseLayer = pawnRenderNode2.Props.baseLayer + num,
-                    drawData = drawData
+                    baseLayer = pawnRenderNode2.Props.baseLayer + (float)valueOrDefault,
+                    drawData = drawData,
+                    parentTagDef = ap.def.apparel.parentTagDef
                 };
             }
             else if (bodyApparelNode != null)
@@ -121,14 +132,14 @@ namespace AdeptusMechanicus.HarmonyInstance
                 {
                     pawnRenderNode2 = bodyApparelNode;
                 }
-                float num4;
-                float num3 = 0f; //__instance.layerOffsets.TryGetValue(pawnRenderNode2, out num4) ? num4 : 0f;
+                int valueOrDefault2 = layerOffsets.GetValueOrDefault(pawnRenderNode2, 0);
                 pawnRenderNodeProperties2 = new PawnRenderNodeProperties
                 {
                     debugLabel = entry.Label,
                     workerClass = typeof(PawnRenderNodeWorker_Apparel_BodyAddon),
-                    baseLayer = pawnRenderNode2.Props.baseLayer + num3,
-                    drawData = drawData
+                    baseLayer = pawnRenderNode2.Props.baseLayer + (float)valueOrDefault2,
+                    drawData = drawData,
+                    parentTagDef = ap.def.apparel.parentTagDef
                 };
                 if (drawData == null && !ap.def.apparel.shellRenderedBehindHead)
                 {
@@ -172,9 +183,10 @@ namespace AdeptusMechanicus.HarmonyInstance
                 });
                 pawnRenderNodeProperties2.oppositeFacingLayerWhenFlipped = true;
             }
-            if (__instance.ShouldAddNodeToTree(pawnRenderNodeProperties2))
+            if (tree.ShouldAddNodeToTree(pawnRenderNodeProperties2))
             {
-                __instance.AddChild(new PawnRenderNode_ApparelAddon(__instance.pawn, pawnRenderNodeProperties2, __instance, ap, entry), pawnRenderNode2);
+             //   ProcessApparel.AddItem(new ValueTuple<PawnRenderNode, PawnRenderNode>(new PawnRenderNode_ApparelAddon(tree.pawn, pawnRenderNodeProperties2, tree, ap, entry), pawnRenderNode2));
+                tree.AddChild(new PawnRenderNode_ApparelAddon(tree.pawn, pawnRenderNodeProperties2, tree, ap, entry), pawnRenderNode2);
             }
             if (pawnRenderNode2 != null)
             {

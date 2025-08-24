@@ -3,6 +3,7 @@ using AdeptusMechanicus.Utility;
 using HugsLib.Utils;
 using RimWorld;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -41,18 +42,34 @@ namespace AdeptusMechanicus
     {
         public PawnRenderNode_ApparelAddon(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree, Apparel apparel, ShoulderPadEntry entry) : base(pawn, props, tree, apparel)
         {
-        //    if (AMAMod.Dev) Log.Message($"Mew PawnRenderNode_ApparelAddon: {pawn} {apparel} {entry}");
+            if (AMAMod.Dev) Log.Message($"Mew PawnRenderNode_ApparelAddon: {pawn} {apparel} {entry}");
             this.apparel = apparel;
-            this.entry = entry;
             this.pawn = pawn;
+            this.useHeadMesh = (props.parentTagDef == PawnRenderNodeTagDefOf.ApparelHead);
+            this.entry = entry;
         }
+
         public override void EnsureMaterialVariantsInitialized(Graphic g)
         {
             ApparelGraphicRecord apparelGraphicRecord;
             if (this.primaryGraphic == null && ApparelAddonGraphicRecordGetter.TryGetGraphicApparelAddon(this.entry, this.pawn, out apparelGraphicRecord))
             {
                 this.primaryGraphic = apparelGraphicRecord.graphic;
-                //    if (AMAMod.Dev) Log.Message($"PawnRenderNode_ApparelAddon Graphic for: {pawn} {apparel} {entry} PATH= {this.graphic.path}");
+                    if (AMAMod.Dev) Log.Message($"PawnRenderNode_ApparelAddon set primaryGraphic for: {pawn} {apparel} {entry} PATH= {this.primaryGraphic.path}");
+            }
+            else
+            {
+                if (AMAMod.Dev) Log.Message($"PawnRenderNode_ApparelAddon found primaryGraphic for: {pawn} {apparel} {entry} PATH= {this.primaryGraphic.path}");
+            }
+        }
+
+        public override IEnumerable<Graphic> GraphicsFor(Pawn pawn)
+        {
+            ApparelGraphicRecord apparelGraphicRecord;
+            if (ApparelAddonGraphicRecordGetter.TryGetGraphicApparelAddon(this.entry, this.pawn, out apparelGraphicRecord))
+            {
+                yield return apparelGraphicRecord.graphic;
+
             }
         }
 
