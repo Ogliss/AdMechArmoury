@@ -304,10 +304,55 @@ namespace AdeptusMechanicus
             {
                 return;
             }
-            List<ThingDef> list = alien.alienRace.raceRestriction.buildingList;
-            List<ThingDef> whitelist = alien.alienRace.raceRestriction.whiteBuildingList;
-            List<ThingDef> blacklist = alien.alienRace.raceRestriction.blackBuildingList;
-            RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.buildingRestricted, listWhite, listBlack, Logging);
+            List<BuildableDef> list = alien.alienRace.raceRestriction.buildingList;
+            List<BuildableDef> whitelist = alien.alienRace.raceRestriction.whiteBuildingList;
+            List<BuildableDef> blacklist = alien.alienRace.raceRestriction.blackBuildingList;
+            HashSet<BuildableDef> restricted = RaceRestrictionSettings.buildingRestricted;
+            //    RestrictThings(ref list, ref whitelist, ref blacklist, ref RaceRestrictionSettings.buildingRestricted, listWhite, listBlack, Logging);
+
+
+            if (!listWhite.NullOrEmpty())
+            {
+                if (Logging) debug.AppendLine("        Whitelising: " + listWhite.Count);
+                foreach (BuildableDef def in listWhite)
+                {
+                    if (Logging) debug.AppendLine("            " + def.defName);
+                    if (!list.Contains(def))
+                    {
+                        list.Add(def);
+                    }
+                    if (!restricted.Contains(def))
+                    {
+                        restricted.Add(def);
+                    }
+                    if (!whitelist.Contains(def))
+                    {
+                        whitelist.Add(def);
+                    }
+                }
+            }
+            if (!listBlack.NullOrEmpty())
+            {
+                if (Logging) debug.AppendLine("        blacklising: " + listBlack.Count);
+                foreach (ThingDef def in listBlack)
+                {
+                    if (Logging) debug.AppendLine("            " + def.defName);
+                    /*
+                    if (!list.Contains(def))
+                    {
+                        list.Add(def);
+                    }
+                    if (!restricted.Contains(def))
+                    {
+                        restricted.Add(def);
+                    }
+                    */
+                    if (!blacklist.Contains(def))
+                    {
+                        blacklist.Add(def);
+                    }
+                }
+            }
             /*
             alien.alienRace.raceRestriction.buildingList.AddRange(listWhite);
             alien.alienRace.raceRestriction.whiteBuildingList.AddRange(listWhite);
